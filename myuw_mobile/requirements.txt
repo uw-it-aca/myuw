@@ -1,0 +1,6 @@
+Django==1.4
+South
+simplejson
+
+# If you're using a MySQL database, you may also need mysql-python
+# mysql-python
