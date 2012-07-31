@@ -1,7 +1,7 @@
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('myuw_mobile.views',
-    url(r'^my/$', 'index'),
-#    url(r'^my/menu/$', 'menu'),
-#    url(r'^my/week/$', 'week'),
+    url(r'^$', 'index'),
+#    url(r'^menu/$', 'menu'),
+#    url(r'^week/$', 'week'),
 )
