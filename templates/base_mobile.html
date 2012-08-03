@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block device_head %}
+<!-- Mobile viewport optimization h5bp.com/ad -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
+<meta name="viewport" content="width=device-width" >
+
+<!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
+<meta http-equiv="cleartype" content="on">
+
+<!-- Home screen icon  Mathias Bynens mathiasbynens.be/notes/touch-icons --> 
+<!-- For third generation iPad Retina Display -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/touch/apple-touch-icon-144x144-precomposed.png" />
+<!-- For iPhone 4 with high-resolution Retina display: -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/touch/apple-touch-icon-114x114-precomposed.png" />
+<!-- For first-generation iPad: -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/touch/apple-touch-icon-72x72-precomposed.png" />
+<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+<link rel="apple-touch-icon-precomposed" href="img/touch/apple-touch-icon-57x57-precomposed.png" />
+<!-- For nokia devices: -->
+<link rel="shortcut icon" href="img/touch/apple-touch-icon.png" />
+
+{% endblock %}
+
+
+{% block device_css %}
+<link type="text/less" rel="stylesheet" href="/static/css/device/mobile.less" charset="utf-8">
+{% endblock %}
+
+{% block device_js %}
+<script>
+// When ready...
+window.addEventListener("load",function() {
+	// Set a timeout...
+	setTimeout(function(){
+		// Hide the address bar!
+		window.scrollTo(0, 1);
+	}, 0);
+});
+</script>
+
+{% endblock %}
+
+{% block device_body %}
+{% endblock %}
+
+{% block header %}
+<header>
+<div id="header">
+    <div class="header-purple" style="position:relative">
+        <div class="header-tan-logo"><a id="wlogoLink" href="http://www.washington.edu/" class="hide-text">W</a></div>
+        Tegrity <span>{% block title %}{% endblock %}</span>
+    </div> 
+</div>
+</header>
+{% endblock %}
+
+{% block footer %}
+<header>
+<div id="footer">
+<a href="/">CONTACT US</a><br/>
+&copy; University of Washington
+</div>
+</div>
+{% endblock %}

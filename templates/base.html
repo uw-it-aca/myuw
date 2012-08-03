@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>MyUW {% block title %}{% endblock %}</title>
+        <meta name="description" content="">
+        {% block device_head %}{% endblock %}
+
+        <!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+        {% load compress %}
+        {% compress css %}
+            <link type="text/css" rel="stylesheet" href="/static/css/libs/bootstrap/bootstrap.css" charset="utf-8">
+            {% block device_css %}{% endblock %}
+            {% block app_css %}{% endblock %}
+        {% endcompress %}
+
+
+		<script type="text/javascript">
+    		// load base information for js code
+    		// var userId = '{{ remote_user }}';
+    		// var csrfCode = '{{ csrf_token}}';
+    		// var actAsUserId = userId;
+    		var year = '{{ year }}';
+    		var quarter_code = '{{ quarter_code }}';
+    		var quarter_name = '{{ quarter_name }}';
+    		var regid = '{{ regid }}';
+    		var myuwBaseUrl = '{{ myuw_base_url }}';
+		</script>
+
+    </head>
+
+	{% block device_body %}<body>{% endblock %}
+
+		{% block header %}{% endblock %}
+
+		<div role="main">
+		{% block content %}{% endblock %}
+		</div>
+
+		{% block footer %}{% endblock %}
+
+		<!-- load js last -->
+    	{% compress js %}
+            {% block device_js %}{% endblock %}
+            {% block app_js %}{% endblock %}
+        {% endcompress %}
+
+	</body>
+
+
+
+</html>
