@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 class UserId(models.Model):
     uwregid = models.CharField(max_length=32,
