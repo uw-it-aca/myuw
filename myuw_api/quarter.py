@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
-from datetime import datetime
+from datetime import datetime, timedelta
 from models import Term
 from restclients.sws_client import SWSClient
 import logging
@@ -8,14 +8,13 @@ import urllib
 import re
 import json
 
-# quarter class definition
-
 class Quarter:
     __logger = logging.getLogger('quartermanager')
     __sws_client = SWSClient()
+    __sws_url_base = ''
 
     def __init__(self):
-        pass
+        expiration = datetime.nowtimedelta(1)
 
     def get_cur_quarter(self):
         # see if we have local data
@@ -25,26 +24,33 @@ class Quarter:
                 last_final_exam_date__gte=datetime.today()
                 )
         except ObjectDoesNotExist:
-            __mock()
+#            __mock()
+            __refresh_cur_quarter()
+        else:
+            # if the cached date is older than a day, refresh it
+            if (self.local.last_verified__lte=datetime.today()) :
+                __refresh_cur_quarter()
         return self.local
 
     def get_next_quarter(self):
         pass
 
-    def get_cur_quarter_from_sws(self):
-        url = '...'; # mock SWS URL base
-        self.sws_result = __sws_client.get_current_term(url)
-        
-    def get_next_quarter_from_sws(self):
-        url = '...'
-        self.sws_result = __sws_client.get_next_term(url)
-        
-    def get_prev_quarter_from_sws(self):
-        url = '...'
-        self.sws_result = __sws_client.get_previous_term(url)
+    def get_prev_quarter(self):
+        pass
 
-    def refresh_sws(self):
-        get_cur_quarter_from_sws()
+    def __refresh_cur_quarter(self):
+        self.sws_result = __sws_client.get_current_term(__sws_url_base)
+        __refresh_cache()
+
+    def __refresh_next_quarter(self):
+        self.sws_result = __sws_client.get_next_term(__sws_url_base)
+        __refresh_cache()
+
+    def __refresh_prev_quarter(self):
+        self.sws_result = __sws_client.get_previous_term(__sws_url_base)
+        __refresh_cache()
+
+    def __refresh_cache(self):
         self.local = Term (
             year = self.sws_result.year,
             quarter = self.sws_result.quarter,
@@ -55,7 +61,7 @@ class Quarter:
             last_final_exam_date = self.sws_result.last_final_exam_day,
             last_verified =  datetime.now()
             )
-        __save()
+        self.local.save()
 
     def __mock(self):
         # mock data
@@ -69,9 +75,7 @@ class Quarter:
             last_final_exam_date = datetime.date(2012, 8, 17),
             last_verified =  datetime.now()
             )
-        __save()
-
-    def __save(self):
         self.local.save()
+
      
 
