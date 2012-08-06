@@ -47,7 +47,7 @@ class Quarter:
                 }
 
 
-class InvalidTermData:(RuntimeError):
+class InvalidTermData(RuntimeError):
     def __init__(self, arg):
         self.args = arg
 
