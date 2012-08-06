@@ -25,6 +25,7 @@ class Quarter:
         return __filter_data()
 
     def __filter_data(self):
+        # to do: validate the data attributes
         return {'year': self.sws_result.year,
                 'quarter': self.sws_result.quarter,
                 'first_day_quarter': self.sws_result.first_day,
