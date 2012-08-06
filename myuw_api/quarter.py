@@ -26,6 +26,7 @@ class Quarter:
 
     def __filter_data(self):
         # to do: validate the data attributes
+        # raise InvalidTermData exception if failed
         return {'year': self.sws_result.year,
                 'quarter': self.sws_result.quarter,
                 'first_day_quarter': self.sws_result.first_day,
@@ -45,6 +46,10 @@ class Quarter:
                 'last_final_exam_date': datetime.date(2012, 8, 17)
                 }
 
+
+class InvalidTermData:(RuntimeError):
+    def __init__(self, arg):
+        self.args = arg
 
      
 
