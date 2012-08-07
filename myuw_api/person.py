@@ -4,8 +4,9 @@ import logging
 import json
 import re
 
+
 class Person:
-    """ The Person class encapsulate the access to the Term data """
+    """ The Person class encapsulates the interactions with the PWS client """
 
     __logger = logging.getLogger('myuw_api.person')
     __pws_client = PWSClient()
