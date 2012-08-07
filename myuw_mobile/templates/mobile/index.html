@@ -5,129 +5,16 @@
 {% endblock %}
 
 {% block app_js %}
-<script src="/static/js/libs/bootstrap/bootstrap-typeahead.js"></script>
 <script src="/static/js/myuw_m.js"></script>
 {% endblock %}
 
-{% block title %}Manager Mobile{% endblock %}
+{% block title %}Mobile{% endblock %}
 
 {% block content %}
 
 
 
 <div id="content">
-
-    <div class="user-alias-button clearfix">
-		<button id="blah" class="btn btn-small dropdown">{{ remote_user }} <span class="caret"></span></button>
-	</div>
-	<div id="tcm_user_alias_panel" class="user-alias-panel">
-		<div class="user-alias-panel-content">
-		<div class="switch-user">switch user</div>
-		{% if user_aliases %}
-		    <ul>
-		    {% for alias in user_aliases %}
-			 <li><a href="#" onCLick="javascript:setAlias('{{alias}}')">{{ alias }}</a></li>
-		    {% endfor %}
-		    </ul>
-		{% endif %}
-	  	</div>
-	</div>
-
-	<div id="tcm_panel_container" class="course-panel-container">
-
-		<!-- left panel -->
-		<div id="tcm_left_panel" class="course-panel">
-			<div class="course-manager">
-
-				<div class="course-header clearfix">
-			    	<h2>Your Tegrity Courses</h2>
-			    	<button id="tcm_create_button" class="btn btn-large btn-primary">+ create new course</button>
-				</div>
-
-
-			    <div class="course-list" id="myCoursesPanel">
-				</div>
-
-			</div>
-
-			<div class="course-manager-welcome">
-				<h2>Welcome...</h2>
-    			<p>Tegrity Manager makes presentation capture and review available to all UW faculty, staff, and students and gives them the ability to use Tegrity across disciplines, sections, departments.</p>
-
-    			<p>Tegrity originated for classroom use and its terminology reflects its origins. Because you may be using Tegrity for purposes other than teaching, here are some quick definitions to avoid confusion.</p>
-
-    			<p><strong>Course:</strong> a container of classes. To keep your recordings organized and easy to find, you will probably want to group related classes under the same course.</p>
-
-    			<p><strong>Class:</strong> one or more recordings (video, audio, PowerPoint slides, etc. ) made on the same day. Multiple classes appear as thumbnails in the class list. Think of multiple classes like chapters in a book.</p>
-
-    			<p><strong>Instructor:</strong> the person who creates the course and invites others to view recordings.</p>
-
-    			<p><strong>Student:</strong> anyone who views Tegrity recordings.</p>
-			</div>
-		</div>
-		<!-- end left panel -->
-
-		<!-- right panel -->
-		<div id="tcm_right_panel" class="course-detail">
-
-			<div class="course-header clearfix">
-		    	<h2>Create/Edit</h2>
-				<button id="tcm_create_course_cancel_button" class="btn btn-small btn-inverse" href="#">Close</button>
-			</div>
-
-
-		   	<div class="course-create-name control-group error">
-				<label>Course Name</label>
-				<div id="course_edit_name_error_block" class="alert alert-block alert-error fade in">This field is required.</div>
-		   		<div class="input-append course-name-static">
-		   			<input type="text" value="BIO 101 Course Name" /><span class="add-on"><i class="icon-pencil"></i></span>
-		   		</div>
-		   	</div>
-
-
-			<div class="course-create-instructors control-group error">
-				<label>Instructors <span class="label label-info">6</span></label>
-				<div id="" class="alert alert-block alert-error fade in">
-                    <span class="required">
-                        This field is required.
-                    </span>
-                    <span class="notfound_members">
-                        <h4 class="alert-heading">Oh snap! <span class="">We could not find the following netids or groups:</span></h4>
-                        <ul>
-                            <li>sdkl</li>
-                            <li>asdfasf</li>
-                        </ul>
-                    </span>
-                </div>
-				<textarea>alsdkfjas</textarea>
-			</div>
-
-			<div class="course-create-students control-group error">
-				<label>Students <span class="label label-info">76</span></label>
-				<div id="" class="alert alert-block alert-error fade in">
-                    <span class="notfound_members">
-                        <h4 class="alert-heading">Oh snap! <span class="">We could not find the following netids or groups:</span></h4>
-                        <ul>
-                            <li>sdkl</li>
-                            <li>asdfasf</li>
-                        </ul>
-                    </span>
-                </div>
-
-				<textarea>alsdkfjas
-lajsdflkjasdfk
-asdlkfjasldkfj
-asdkfj</textarea>
-		    </div>
-			<div class="form-actions">
-	            <button type="submit" class="btn btn-primary btn-large">Save changes</button>
-	            <button class="btn btn-large">Cancel</button>
-	         </div>
-
-	    </div>
-		<!-- end right panel -->
-
-	</div>
 
 </div>
 
