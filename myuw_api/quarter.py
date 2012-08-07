@@ -4,24 +4,25 @@ from restclients.sws_client import SWSClient
 import logging
 import json
 
+sws_client = SWSClient()
+
 class Quarter:
     """ The Quarter class encapsulate the access to the Term data """
-
     __logger = logging.getLogger('myuw_api.quarter')
-    __sws_client = SWSClient()
 
     def get_cur_quarter(self):
+        assert False, __mock()
         return __mock()
-#        self.sws_result = __sws_client.get_current_term()
+#        self.sws_result = sws_client.get_current_term()
 #        return __filter_data()
 
 
     def get_next_quarter(self):
-        self.sws_result = __sws_client.get_next_term()
+        self.sws_result = sws_client.get_next_term()
         return __filter_data()
 
     def get_prev_quarter(self):
-        self.sws_result = __sws_client.get_previous_term()
+        self.sws_result = sws_client.get_previous_term()
         return __filter_data()
 
     def __filter_data(self):
@@ -52,4 +53,39 @@ class InvalidTermData(RuntimeError):
         self.args = arg
 
      
+class Schedule:
+    """ The Schedule class encapsulates the access to the Schedule data """
+
+    __logger = logging.getLogger('myuw_api.schedule')
+ 
+    def __init__(self, regid):
+        self.regid = regid
+        
+    def get_curr_quarter_schedule(self):
+        return __mock()
+#        self.sws_result = sws_client.get_current_term()
+#        return __filter_data()
+
+
+    def get_next_quarter_schedule(self):
+        self.sws_result = sws_client.get_next_term()
+        return __filter_data()
+
+    def get_prev_quarter_schedule(self):
+        self.sws_result = sws_client.get_previous_term()
+        return __filter_data()
+
+    def __filter_data(self):
+        return {'year': self.sws_result.year,
+                'quarter': self.sws_result.quarter,
+                }
+
+    def __mock(self):
+        return {'year': '2012',
+                'quarter': 'Summer',
+                }
+
+
+     
+
 
