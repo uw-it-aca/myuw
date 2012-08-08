@@ -1,21 +1,38 @@
-from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
-from myuw_api.quarter import Quarter
-from myuw_api.person import Person
+import logging
+from myuw_api.sws_dao import Quarter
+from myuw_api.pws_dao import Person
 
+logger = logging.getLogger('myuw_mobile.views')
+
+#@mobile_template('{mobile/}index.html')
 def index(request):
-    regid = Person().get_regid ('student1')
-        
-    cur_term = Quarter().get_cur_quarter()
-        
-    context = {'year': cur_term.year,
-               'quarter_name': cur_term.quarter,
-               'regid': regid,
-               'myuw_base_url': ''}
+    context = {'year': None,
+               'quarter': None,
+               'regid': None,
+               'myuw_base_url': '',
+               'err': None}
+    try:
+        regid_str = Person().get_regid ('student')
+    except Exception:
+        context['err'] = 'Failed to get regid'
+    else:
+        context['regid'] = regid_str
+
+    try:
+        cur_term = Quarter().get_cur_quarter()
+    except Exception as e:
+        print e
+        context['err'] = 'Failed to get quarter '
+    else:
+        context['year'] = cur_term['year']
+        context['quarter'] = cur_term['quarter']
+    print context
+
     return render_to_response('mobile/index.html', 
-                              context, 
+                              context,
                               context_instance=RequestContext(request))
 
 
