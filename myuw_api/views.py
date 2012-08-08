@@ -2,13 +2,13 @@ from django.template import Context, loader
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.conf import settings
-from django.contrib import auth
-from django.contrib.auth.decorators import login_required
-from django.core.context_processors import csrf
-from django.views.decorators.csrf import csrf_protect
+#from django.contrib import auth
+#from django.contrib.auth.decorators import login_required
+#from django.core.context_processors import csrf
+#from django.views.decorators.csrf import csrf_protect
 from django.utils import simplejson as json
 from mobility.decorators import mobile_template
-from xml.etree.ElementTree import Element, SubElement, Comment, tostring
+#from xml.etree.ElementTree import Element, SubElement, Comment, tostring
 import re
 import os
 import logging
@@ -47,16 +47,13 @@ class RESTDispatch:
 # ----------------------------------------
 class StudClasScheCurQuarView(RESTDispatch):
     def GET(self, request, regid):
-        assert False, regid
+        print 'REGID =', regid
         schedule = Schedule(regid).get_curr_quarter_schedule()
         if schedule:
-            response = HttpResponse(json.dumps(
-                    {'year' : schedule.year,
-                     'quarter' : schedule.quarter,
-                     }))
+            response = HttpResponse(json.dumps(schedule))
             response.status_code = 200
         else:
-            response = HttpResponse("Scheulde not found")
+            response = HttpResponse('No registration found')
             response.status_code = 404
         return response
 
