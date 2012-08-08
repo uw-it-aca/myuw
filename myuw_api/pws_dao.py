@@ -4,24 +4,24 @@ import logging
 import json
 import re
 
+pws_client = PWSClient()
 
 class Person:
     """ The Person class encapsulates the interactions with the PWS client """
 
     __logger = logging.getLogger('myuw_api.person')
-    __pws_client = PWSClient()
 
     def get_regid(self, netid):
         return '9136CCB8F66711D5BE060004AC494FFE'
-#        regid = __pws_client.get_person_by_netid(netid).uwregid
+#        regid = pws_client.get_person_by_netid(netid).uwregid
 #        if not re.match(r'^[A-F0-9]{32}$', regid, re.I):
 #            raise InvalidRegid("Invalid regid: " + regid)
 #       return regid
 
     def get_contact(self, regid):
         pass
-#        self.person = __pws_client.get_person_by_regid(netid)
-# validate return attributes 
+#        self.person = pws_client.get_person_by_regid(netid)
+# validate the return attributes 
 #        return {'email':
 #                 'phone':
 #                 }        

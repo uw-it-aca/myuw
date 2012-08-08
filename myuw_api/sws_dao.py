@@ -4,10 +4,13 @@ from restclients.sws_client import SWSClient
 import logging
 import json
 
+##############################
+# SWS data access object layer
+##############################
 sws_client = SWSClient()
 
 class Quarter:
-    """ The Quarter class encapsulate the access to the Term data """
+    """ This class encapsulate the access of the term """
     __logger = logging.getLogger('myuw_api.quarter')
 
     def get_cur_quarter(self):
@@ -54,7 +57,7 @@ class InvalidTermData(RuntimeError):
 
      
 class Schedule:
-    """ The Schedule class encapsulates the access to the Schedule data """
+    """ The Schedule class encapsulates the access of the class schedule """
 
     __logger = logging.getLogger('myuw_api.schedule')
  

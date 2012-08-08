@@ -1,9 +1,7 @@
 from django.conf.urls import patterns, include, url
 
-urlpatterns = patterns('myuw_rws.views',
-    url(r'v1/schedule/(?P<regid>\s{32})$', 
-        CurQuarterClassScheView().run),
-#    url(r'v1/schedule/next/(?P<regid>\s{32})$', 
-#        NextQuarterClassScheView().run),
-#    url(r'v1/search/(?P<query>.*)$', SearchView().run),
+urlpatterns = patterns('myuw_spi.views',
+                       url(r'v1/schedule/current/(?P<regid>\s{32})$', 
+                           StudClasScheCurQuarView().run),
+                  #    url(r'v1/search/(?P<query>.*)$', SearchView().run),
 )
