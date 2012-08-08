@@ -17,7 +17,7 @@ class InvalidTermData(RuntimeError):
 
 class Quarter:
     """ This class encapsulate the access of the term data """
-    _logger = logging.getLogger('myuw_api.sws_dao.Quarter')
+    logger = logging.getLogger('myuw_api.sws_dao.Quarter')
 
     def get_cur_quarter(self):
         return  self.mock()
@@ -40,7 +40,7 @@ class Quarter:
 class Schedule:
     """ The Schedule class encapsulates the access of the class schedule """
 
-    _logger = logging.getLogger('myuw_api.sws_dao.Schedule')
+    logger = logging.getLogger('myuw_api.sws_dao.Schedule')
  
     def __init__(self, regid):
         self.regid = regid
