@@ -4,12 +4,13 @@ import logging
 import json
 import re
 
-pws_client = PWSClient()
+# private statis
+#pws_client = PWSClient()
 
 class Person:
     """ The Person class encapsulates the interactions with the PWS client """
 
-    __logger = logging.getLogger('myuw_api.person')
+    logger = logging.getLogger('myuw_api.pws_dao.Person')
 
     def get_regid(self, netid):
         return '9136CCB8F66711D5BE060004AC494FFE'
