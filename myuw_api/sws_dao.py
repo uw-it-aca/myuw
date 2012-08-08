@@ -1,5 +1,5 @@
 from django.conf import settings
-from datetime import datetime
+import datetime
 from restclients.sws_client import SWSClient
 import logging
 import json
@@ -7,40 +7,24 @@ import json
 ##############################
 # SWS data access object layer
 ##############################
-sws_client = SWSClient()
+
+# meant to be private statis...
+#sws_client = SWSClient()
+
+class InvalidTermData(RuntimeError):
+    def __init__(self, arg):
+        self.args = arg
 
 class Quarter:
-    """ This class encapsulate the access of the term """
-    __logger = logging.getLogger('myuw_api.quarter')
+    """ This class encapsulate the access of the term data """
+    _logger = logging.getLogger('myuw_api.sws_dao.Quarter')
 
     def get_cur_quarter(self):
-        assert False, __mock()
-        return __mock()
+        return  self.mock()
 #        self.sws_result = sws_client.get_current_term()
-#        return __filter_data()
+#        return self.flter_data()
 
-
-    def get_next_quarter(self):
-        self.sws_result = sws_client.get_next_term()
-        return __filter_data()
-
-    def get_prev_quarter(self):
-        self.sws_result = sws_client.get_previous_term()
-        return __filter_data()
-
-    def __filter_data(self):
-        # to do: validate the data attributes
-        # raise InvalidTermData exception if failed
-        return {'year': self.sws_result.year,
-                'quarter': self.sws_result.quarter,
-                'first_day_quarter': self.sws_result.first_day,
-                'last_day_instruction': self.sws_result.last_day_of_classes,
-                'aterm_last_date': self.sws_result.a_term_last_day,
-                'bterm_first_date': self.sws_result.b_term_first_day,
-                'last_final_exam_date': self.sws_result.last_final_exam_day
-                }
-
-    def __mock(self):
+    def mock(self):
         return {'year': '2012',
                 'quarter': 'Summer',
                 'first_day_quarter': datetime.date(2012, 6, 18),
@@ -50,43 +34,52 @@ class Quarter:
                 'last_final_exam_date': datetime.date(2012, 8, 17)
                 }
 
+    def filter_data(self):
+        pass
 
-class InvalidTermData(RuntimeError):
-    def __init__(self, arg):
-        self.args = arg
-
-     
 class Schedule:
     """ The Schedule class encapsulates the access of the class schedule """
 
-    __logger = logging.getLogger('myuw_api.schedule')
+    _logger = logging.getLogger('myuw_api.sws_dao.Schedule')
  
     def __init__(self, regid):
         self.regid = regid
         
     def get_curr_quarter_schedule(self):
-        return __mock()
+        return self.mock()
 #        self.sws_result = sws_client.get_current_term()
-#        return __filter_data()
+#        return self.filter_data()
 
+    def filter_data(self):
+        pass
 
-    def get_next_quarter_schedule(self):
-        self.sws_result = sws_client.get_next_term()
-        return __filter_data()
-
-    def get_prev_quarter_schedule(self):
-        self.sws_result = sws_client.get_previous_term()
-        return __filter_data()
-
-    def __filter_data(self):
-        return {'year': self.sws_result.year,
-                'quarter': self.sws_result.quarter,
-                }
-
-    def __mock(self):
+    def mock(self):
         return {'year': '2012',
                 'quarter': 'Summer',
-                }
+                'sections':[
+                {'curriculum_abbr': 'DRAMA',
+                 'course_number': '490',
+                 'section_id': 'A',
+                 'course_title': 'Spec Stdy Act-Direct',
+                 'course_campus': 'Seattle',
+                 'class_website_url': 'http://courses.washington.edu/drama490',
+                 'sln': '11000',
+                 'summer_term': ' ',
+                 'start_date': '',
+                 'end_date': '',
+                 'meetings': [{'index': '1',
+                              'type': 'ST',
+                              'days': 'TTh',
+                              'start_time': '110',
+                              'end_time': '320',
+                              'building': 'HUT',
+                              'room': '303',
+                              'instructor': 
+                               {'name': 'HAFSO, SCOTT',
+                                'email': 'shafso@u.washington.edu',
+                                'phone': '206 543-3076'}
+                              }]
+                }]}
 
 
      
