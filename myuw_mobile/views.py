@@ -14,12 +14,12 @@ def index(request):
                'regid': None,
                'myuw_base_url': '',
                'err': None}
+    person = Person()
     try:
-        regid_str = Person().get_regid ('student')
+        context['regid'] = person.get_regid ('javerage')
+#        context['dirUrl'] = person.get_contact (context['regid'])
     except Exception:
         context['err'] = 'Failed to get regid'
-    else:
-        context['regid'] = regid_str
 
     try:
         cur_term = Quarter().get_cur_quarter()
