@@ -4,54 +4,52 @@ from restclients.sws_client import SWSClient
 import logging
 import json
 
-##############################
-# SWS data access object layer
-##############################
-
-# meant to be private statis...
-#sws_client = SWSClient()
-
-class InvalidTermData(RuntimeError):
-    def __init__(self, arg):
-        self.args = arg
+# This module provides the single point access to SWSClient
+sws_client = SWSClient()
 
 class Quarter:
     """ This class encapsulate the access of the term data """
-    logger = logging.getLogger('myuw_api.sws_dao.Quarter')
+    _logger = logging.getLogger('myuw_api.sws_dao.Quarter')
 
     def get_cur_quarter(self):
-        return  self.mock()
-#        self.sws_result = sws_client.get_current_term()
-#        return self.flter_data()
+        """
+        Returns calendar information for the current term.
+        """
 
-    def mock(self):
-        return {'year': '2012',
-                'quarter': 'Summer',
-                'first_day_quarter': datetime.date(2012, 6, 18),
-                'last_day_instruction': datetime.date(2012, 8, 10),
-                'aterm_last_date': datetime.date(2012, 7, 18),
-                'bterm_first_date': datetime.date(2012, 6, 19),
-                'last_final_exam_date': datetime.date(2012, 8, 17)
+        result = sws_client.get_current_term()
+        print result
+        return {'year': result['Year'],
+                'quarter': result['Quarter'],
+                'first_day_quarter': result['FirstDay'],
+                'last_day_instruction': result['LastDayOfClasses'],
+                'aterm_last_date': result['ATermLastDay'],
+                'bterm_first_date': result['BTermFirstDay'],
+                'last_final_exam_date': result['LastFinalExamDay']
                 }
 
-    def filter_data(self):
-        pass
 
 class Schedule:
-    """ The Schedule class encapsulates the access of the class schedule """
+    """
+    This class encapsulates the access of the registration and section resources
+    """
 
-    logger = logging.getLogger('myuw_api.sws_dao.Schedule')
+    _logger = logging.getLogger('myuw_api.sws_dao.Schedule')
  
     def __init__(self, regid):
         self.regid = regid
+        self.cur_term = Quarter().get_cur_quarter()
         
     def get_curr_quarter_schedule(self):
+        regi_rslt = self.get_actively_enrolled_sections()
+        print regi_rslt
+        for section in regi_rslt['Section']:
+            section_rslt = self.get_section(
+                {'year': section_rslt['Year'], 
+                 'quarter': section_rslt['Quarter'],
+                 'curriculum_abbreviation': section_rslt['CurriculumAbbreviation'],
+                 'course_number': section_rslt['CourseNumber']})
+            print section_result
         return self.mock()
-#        self.sws_result = sws_client.get_current_term()
-#        return self.filter_data()
-
-    def filter_data(self):
-        pass
 
     def mock(self):
         return {'year': '2012',
@@ -80,6 +78,15 @@ class Schedule:
                                 'phone': '206 543-3076'}
                               }]
                 }]}
+
+    def get_actively_enrolled_sections(self):
+        return sws_client.registration_search({'year': self.cur_term['year'],
+                                               'quarter': self.cur_term['quarter'],
+                                               'reg_id': self.regid,
+                                               'is_active': 'on'})
+
+    def get_section(self, params={}):
+        return sws_client.get_section(params)
 
 
      
