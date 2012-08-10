@@ -18,13 +18,14 @@ def index(request):
     try:
         context['regid'] = person.get_regid ('javerage')
 #        context['dirUrl'] = person.get_contact (context['regid'])
-    except Exception:
+    except Exception, message:
+        logger.error(message)
         context['err'] = 'Failed to get regid'
 
     try:
         cur_term = Quarter().get_cur_quarter()
-    except Exception as e:
-        print e
+    except Exception, message:
+        logger.error(message)
         context['err'] = 'Failed to get quarter '
     else:
         context['year'] = cur_term['year']
