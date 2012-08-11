@@ -47,14 +47,20 @@ class RESTDispatch:
 # ----------------------------------------
 class StudClasScheCurQuarView(RESTDispatch):
     def GET(self, request, regid):
-        print 'REGID =', regid
-        schedule = Schedule(regid).get_curr_quarter_schedule()
-        if schedule:
-            response = HttpResponse(json.dumps(schedule))
-            response.status_code = 200
+        print 'GET REGID =', regid
+        try: 
+            schedule = Schedule(regid).get_curr_quarter_schedule()
+        except Exception, message:
+            print 'Failed to get current quarter schedule: ', message
+            response = HttpResponse('Sorry, we have got a system error: ' + message)
+            response.status_code = 500
         else:
-            response = HttpResponse('No registration found')
-            response.status_code = 404
+            if schedule:
+                response = HttpResponse(json.dumps(schedule))
+                response.status_code = 200
+            else:
+                response = HttpResponse('No registration found')
+                response.status_code = 404
         return response
 
 
