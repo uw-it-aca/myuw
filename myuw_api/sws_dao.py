@@ -39,16 +39,29 @@ class Schedule:
         self.regid = regid
         self.cur_term = Quarter().get_cur_quarter()
         
+    def get_cur_quarter_registration(self):
+        """ Return the actively enrolled sections in the current quarter """
+        return sws_client.registration_search({'year': self.cur_term['year'],
+                                               'quarter': self.cur_term['quarter'],
+                                               'reg_id': self.regid,
+                                               'is_active': 'on'})
+
+    def get_section(self, params={}):
+        return sws_client.get_section(params)
+
     def get_curr_quarter_schedule(self):
-        regi_rslt = self.get_actively_enrolled_sections()
+        regi_rslt = self.get_cur_quarter_registration()
+        if not regi_rslt:
+            # not enrolled in the currrent quarter
+            return None
         print regi_rslt
         for section in regi_rslt['Section']:
             section_rslt = self.get_section(
-                {'year': section_rslt['Year'], 
-                 'quarter': section_rslt['Quarter'],
-                 'curriculum_abbreviation': section_rslt['CurriculumAbbreviation'],
-                 'course_number': section_rslt['CourseNumber']})
-            print section_result
+                {'year': regi_rslt['Year'], 
+                 'quarter': regi_rslt['Quarter'],
+                 'curriculum_abbreviation': regi_rslt['CurriculumAbbreviation'],
+                 'course_number': regi_rslt['CourseNumber']})
+            print section_rslt
         return self.mock()
 
     def mock(self):
@@ -79,14 +92,6 @@ class Schedule:
                               }]
                 }]}
 
-    def get_actively_enrolled_sections(self):
-        return sws_client.registration_search({'year': self.cur_term['year'],
-                                               'quarter': self.cur_term['quarter'],
-                                               'reg_id': self.regid,
-                                               'is_active': 'on'})
-
-    def get_section(self, params={}):
-        return sws_client.get_section(params)
 
 
      
