@@ -11,8 +11,9 @@ from mobility.decorators import mobile_template
 #from xml.etree.ElementTree import Element, SubElement, Comment, tostring
 import re
 import os
+import sys, traceback
 import logging
-import time
+
 from sws_dao import Schedule
 
 
@@ -52,7 +53,8 @@ class StudClasScheCurQuarView(RESTDispatch):
             schedule = Schedule(regid).get_curr_quarter_schedule()
         except Exception, message:
             print 'Failed to get current quarter schedule: ', message
-            response = HttpResponse('Sorry, we have got a system error: ' + message)
+            traceback.print_exc(file=sys.stdout)
+            response = HttpResponse('Failed to get data from SWS...')
             response.status_code = 500
         else:
             if schedule:
