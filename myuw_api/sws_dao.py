@@ -55,13 +55,13 @@ class Schedule:
             # not enrolled in the currrent quarter
             return None
         print regi_rslt
-        for section in regi_rslt['Section']:
-            section_rslt = self.get_section(
-                {'year': regi_rslt['Year'], 
-                 'quarter': regi_rslt['Quarter'],
-                 'curriculum_abbreviation': regi_rslt['CurriculumAbbreviation'],
-                 'course_number': regi_rslt['CourseNumber']})
-            print section_rslt
+        #for section in regi_rslt['Section']:
+        #    section_rslt = self.get_section(
+        #        {'year': regi_rslt['Year'], 
+        #         'quarter': regi_rslt['Quarter'],
+        #         'curriculum_abbreviation': regi_rslt['CurriculumAbbreviation'],
+        #         'course_number': regi_rslt['CourseNumber']})
+        #    print section_rslt
         return self.mock()
 
     def mock(self):
@@ -89,8 +89,9 @@ class Schedule:
                                {'name': 'HAFSO, SCOTT',
                                 'email': 'shafso@u.washington.edu',
                                 'phone': '206 543-3076'}
-                              }]
-                }]}
+                              }],
+                },
+                ]}
 
 
 

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Mobile MyUW</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+ 
+    <!-- Le styles -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+   <!-- <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>-->
+    <link href="/static/css/responsive.css" rel="stylesheet">
+ 
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+ 
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <!-- <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png"> -->
+    <link rel="apple-touch-icon" href="/bexar/apple-touch-icon.png">
+
+    {% load templatetag_handlebars %}
+    {% handlebars_js %}
+  </head>
+ 
+  <body>
+  {% include "nav.html" %}
+    <!-- Page content -->
+    <div class="container-fluid">
+ 
+    {% block content %}
+    {% endblock %}
+
+        <!-- Footer -->
+      <hr>
+      <footer>
+
+            <ul class="unstyled pull-right">
+            <li class="inline"><a class="btn" href="#"><i class="icon-arrow-up"></i></a></li>
+            <li class="inline"><a class="btn" href="#" data-toggle="collapse" data-target=".nav-collapse"><i class="icon-reorder"></i></a></li>
+            </ul>
+      
+      
+        <!-- <p>&copy;University of Washington 2012</p>
+        <p>
+            <a href="https://myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank"><i class="icon-envelope"></i>Contact MyUW</a> | 
+            <a href="http://depts.washington.edu/myuwfaq/" target="_blank">Help</a> | 
+            <a href="https://uwnetid.washington.edu/manage/" target="_blank">My Account</a> | 
+        <a href="https://myuw.washington.edu/servlet/main/?0-1.ILinkListener-header-bar_right-logout&f=d&tab=1" target="_blank">Log Out</a> 
+        </p> -->
+      </footer>
+      <!-- /Footer -->
+ 
+    </div> 
+    <!-- /page content -->
+ 
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/bootstrap-transition.js"></script>
+    <script src="/static/js/bootstrap-alert.js"></script>
+    <script src="/static/js/bootstrap-modal.js"></script>
+    <script src="/static/js/bootstrap-dropdown.js"></script>
+    <script src="/static/js/bootstrap-scrollspy.js"></script>
+    <script src="/static/js/bootstrap-tab.js"></script>
+    <script src="/static/js/bootstrap-tooltip.js"></script>
+    <script src="/static/js/bootstrap-popover.js"></script>
+    <script src="/static/js/bootstrap-button.js"></script>
+    <script src="/static/js/bootstrap-collapse.js"></script>
+    <script src="/static/js/bootstrap-carousel.js"></script>
+    <script src="/static/js/bootstrap-typeahead.js"></script>
+    <script src="/static/js/myuw_m.js"></script>
+ 
+  </body>
+</html>
+

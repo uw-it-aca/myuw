@@ -1,0 +1,88 @@
+{% extends "base_mobile.html" %}
+
+{% block content %}
+{% load templatetag_handlebars %}
+
+      <div class="page-header">
+        <h1>My Courses</h1>
+        <h2 id="quarter-info">
+        {% tplhandlebars "quarter" %}
+            <small>{{quarter}} {{year}}</small><a style="margin-top:5px;font-weight:normal;" class="btn pull-right" href="#"><i class="icon-calendar"></i> Visual</a>
+        {% endtplhandlebars %}
+        </h2>
+        
+      </div>
+      
+      <div class="row-fluid">
+        <div class="span12">
+        <!-- Start of course list accordion -->
+            <div class="accordion" id="courselist">
+
+            <!-- group (heading + body) -->
+            {% tplhandlebars "courses" %}
+            {{#each sections}}
+            <div class="accordion-group c1 c1Border">
+             
+                 <!-- heading -->
+                 <div class="accordion-heading"> 
+
+                <h3><a class="accordion-toggle" data-toggle="collapse" data-parent="#courselist" href="#course1"><i class="icon-chevron-down icon-white pull-right-center"></i>
+                  <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}}{{section_id}}</span>
+
+                  <span class="shortTitle">{{ course_title }}</span></a>
+                </h3>
+                 </div>
+                 <!-- /heading -->
+                 <!-- body -->
+                 <div id="course1" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <span class="scheduleHeading">Schedule</span>
+        
+
+                        <table class="table-meeting">
+                        {{#each meetings}} 
+                        <tr>
+                            <td>{{ days }}</td>
+                            <td>{{start_time}} - {{end_time}}</td>
+                            <td><a href="http://uw.edu/maps/?{{ building }}" target="_blank">
+                                {{building}} {{room}}
+                            </a></td>
+                        </tr>
+                        {{/each}}
+
+                        </table>
+                        
+                    <dl class="dl-horizontal">     
+                    
+                     <dt>Type</dt>
+                      <dd>Lecture</dd>
+                     <dt>Instructor</dt>
+                      <dd>{{#each meetings}}
+                            {{#with instructor}}
+                                {{name}}
+                            {{/with}}
+                        {{/each}}</dd>
+                      <dt>Website</dt>
+                      <dd><a href="{{class_website_url}}" target="_blank">Catalyst Commonview</a></dd>
+                    </dl>
+                    
+                </div>
+                 </div>
+                 <!-- /body -->
+            </div>
+             {{/each}}
+             {% endtplhandlebars %}
+            <!-- /group -->
+            
+        <!-- /end accordion -->
+         </div>
+      </div>
+     
+     <div class="row-fluid">
+            <ul class="unstyled">
+            <li class="additional"><a href="#"><i class="icon-book"></i> View Textbooks</a></li>
+            <li class="additional"><a href="#"><i class="icon-check"></i> Final Exam Schedule</a></li>
+            </ul>
+            
+     </div>
+{% endblock %}

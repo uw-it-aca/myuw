@@ -32,7 +32,7 @@ def index(request):
         context['quarter'] = cur_term['quarter']
     print context
 
-    return render_to_response('mobile/index.html', 
+    return render_to_response('index.html', 
                               context,
                               context_instance=RequestContext(request))
 
