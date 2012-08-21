@@ -48,8 +48,7 @@ class RESTDispatch:
 # ----------------------------------------
 class StudClasScheCurQuarView(RESTDispatch):
     def GET(self, request, regid):
-        print 'GET REGID =', regid
-        try: 
+        try:
             schedule = Schedule(regid).get_curr_quarter_schedule()
         except Exception, message:
             print 'Failed to get current quarter schedule: ', message
