@@ -1,6 +1,7 @@
 from django.conf import settings
 import datetime
 from restclients.sws_client import SWSClient
+from restclients.sws import SWS
 import logging
 import json
 
@@ -15,17 +16,10 @@ class Quarter:
         """
         Returns calendar information for the current term.
         """
+        sws = SWS()
+        term = sws.get_current_term()
 
-        result = sws_client.get_current_term()
-        print result
-        return {'year': result['Year'],
-                'quarter': result['Quarter'],
-                'first_day_quarter': result['FirstDay'],
-                'last_day_instruction': result['LastDayOfClasses'],
-                'aterm_last_date': result['ATermLastDay'],
-                'bterm_first_date': result['BTermFirstDay'],
-                'last_final_exam_date': result['LastFinalExamDay']
-                }
+        return term
 
 
 class Schedule:
@@ -34,15 +28,21 @@ class Schedule:
     """
 
     _logger = logging.getLogger('myuw_api.sws_dao.Schedule')
- 
+
     def __init__(self, regid):
         self.regid = regid
-        self.cur_term = Quarter().get_cur_quarter()
-        
+
     def get_cur_quarter_registration(self):
         """ Return the actively enrolled sections in the current quarter """
-        return sws_client.registration_search({'year': self.cur_term['year'],
-                                               'quarter': self.cur_term['quarter'],
+
+        term = Quarter().get_cur_quarter()
+        sws = SWS()
+
+#        sections = sws.registration_for_regid_and_term(self.regid, term)
+
+#        return sections
+        return sws_client.registration_search({'year': term.year,
+                                               'quarter': term.quarter,
                                                'reg_id': self.regid,
                                                'is_active': 'on'})
 

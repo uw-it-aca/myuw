@@ -28,11 +28,10 @@ def index(request):
         logger.error(message)
         context['err'] = 'Failed to get quarter '
     else:
-        context['year'] = cur_term['year']
-        context['quarter'] = cur_term['quarter']
-    print context
+        context['year'] = cur_term.year
+        context['quarter'] = cur_term.quarter
 
-    return render_to_response('index.html', 
+    return render_to_response('index.html',
                               context,
                               context_instance=RequestContext(request))
 
