@@ -14,9 +14,13 @@ $(document).ready(function() {
             if(results !== null){
                 data = results;
 
+                //add indixes
+                for (var i=0; i<data.sections.length; i++) {
+                    data.sections[i] = $.extend({}, data.sections[i], {index: i+1});
+                }
                 var source   = $("#courses").html();
                 var template = Handlebars.compile(source);
-                $("#courselist").html(template({sections: data.sections}));
+                $("#courselist").html(template(data));
 
                 source = $("#quarter").html();
                 template = Handlebars.compile(source);

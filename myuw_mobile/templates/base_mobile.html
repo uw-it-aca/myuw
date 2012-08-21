@@ -7,6 +7,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
  
+   {% load compress %}
+
+   {% compress css %}
     <!-- Le styles -->
     <link href="/static/css/bootstrap.css" rel="stylesheet">
    <!-- <style type="text/css">
@@ -16,7 +19,8 @@
       }
     </style>-->
     <link href="/static/css/responsive.css" rel="stylesheet">
- 
+   {% endcompress %}
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -67,6 +71,7 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    {% compress js %}
     <script src="/static/js/jquery.js"></script>
     <script src="/static/js/bootstrap-transition.js"></script>
     <script src="/static/js/bootstrap-alert.js"></script>
@@ -81,6 +86,7 @@
     <script src="/static/js/bootstrap-carousel.js"></script>
     <script src="/static/js/bootstrap-typeahead.js"></script>
     <script src="/static/js/myuw_m.js"></script>
+    {% endcompress %}
  
   </body>
 </html>

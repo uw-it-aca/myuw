@@ -91,6 +91,29 @@ class Schedule:
                                 'phone': '206 543-3076'}
                               }],
                 },
+                {'curriculum_abbr': 'CSE',
+                 'course_number': '142',
+                 'section_id': 'C',
+                 'course_title': 'Intro to Copy Select Exhultation',
+                 'course_campus': 'Seattle',
+                 'class_website_url': 'http://courses.washington.edu/cse142',
+                 'sln': '11004',
+                 'summer_term': ' ',
+                 'start_date': '', 
+                 'end_date': '', 
+                 'meetings': [{'index': '1',
+                              'type': 'ST',
+                              'days': 'TThF',
+                              'start_time': '1030',
+                              'end_time': '1120',
+                              'building': 'MGH',
+                              'room': '304',
+                              'instructor': 
+                               {'name': 'HALFSON, SCOTTLAND',
+                                'email': 'shafso@u.washington.edu',
+                                'phone': '206 543-3076'}
+                              }], 
+                }, 
                 ]}
 
 
