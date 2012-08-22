@@ -42,7 +42,7 @@
                         {{#each meetings}} 
                         <tr>
                             <td>{{ days }}</td>
-                            <td>{{start_time}} - {{end_time}}</td>
+                            <td>{{formatTime start_time}} - {{formatTime end_time}}</td>
                             <td><a href="http://uw.edu/maps/?{{ building }}" target="_blank">
                                 {{building}} {{room}}
                             </a></td>

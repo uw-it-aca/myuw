@@ -18,6 +18,13 @@ $(document).ready(function() {
                 for (var i=0; i<data.sections.length; i++) {
                     data.sections[i] = $.extend({}, data.sections[i], {index: i+1});
                 }
+
+                Handlebars.registerHelper("formatTime", function(time) {
+                    formatted = time.toString().split("");
+                    formatted.splice(formatted.length-2, 0, ':');
+                    return formatted.join("");
+                });
+
                 var source   = $("#courses").html();
                 var template = Handlebars.compile(source);
                 $("#courselist").html(template(data));
