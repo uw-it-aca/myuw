@@ -57,7 +57,10 @@ class StudClasScheCurQuarView(RESTDispatch):
             response.status_code = 500
         else:
             if schedule:
-                response = HttpResponse(json.dumps(schedule))
+                try:
+                    response = HttpResponse(json.dumps(schedule.json_data()))
+                except Exception as ex:
+                    print "E: ", ex
                 response.status_code = 200
             else:
                 response = HttpResponse('No registration found')

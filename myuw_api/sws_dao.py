@@ -34,72 +34,16 @@ class Schedule:
         term = Quarter().get_cur_quarter()
         sws = SWS()
 
-        sections = sws.registration_for_regid_and_term(self.regid, term)
+        schedule = sws.schedule_for_regid_and_term(self.regid, term)
 
-        return sections
+        return schedule
 
     def get_curr_quarter_schedule(self):
         regi_rslt = self.get_cur_quarter_registration()
+
+        return regi_rslt
         if not regi_rslt:
             # not enrolled in the currrent quarter
             return None
 
-        return self.mock()
-
-    def mock(self):
-        return {'year': '2012',
-                'quarter': 'Summer',
-                'sections':[
-                {'curriculum_abbr': 'DRAMA',
-                 'course_number': '490',
-                 'section_id': 'A',
-                 'course_title': 'Spec Stdy Act-Direct',
-                 'course_campus': 'Seattle',
-                 'class_website_url': 'http://courses.washington.edu/drama490',
-                 'sln': '11000',
-                 'summer_term': ' ',
-                 'start_date': '',
-                 'end_date': '',
-                 'meetings': [{'index': '1',
-                              'type': 'ST',
-                              'days': 'TTh',
-                              'start_time': '110',
-                              'end_time': '320',
-                              'building': 'HUT',
-                              'room': '303',
-                              'instructor': 
-                               {'name': 'HAFSO, SCOTT',
-                                'email': 'shafso@u.washington.edu',
-                                'phone': '206 543-3076'}
-                              }],
-                },
-                {'curriculum_abbr': 'CSE',
-                 'course_number': '142',
-                 'section_id': 'C',
-                 'course_title': 'Intro to Copy Select Exhultation',
-                 'course_campus': 'Seattle',
-                 'class_website_url': 'http://courses.washington.edu/cse142',
-                 'sln': '11004',
-                 'summer_term': ' ',
-                 'start_date': '', 
-                 'end_date': '', 
-                 'meetings': [{'index': '1',
-                              'type': 'ST',
-                              'days': 'TThF',
-                              'start_time': '1030',
-                              'end_time': '1120',
-                              'building': 'MGH',
-                              'room': '304',
-                              'instructor': 
-                               {'name': 'HALFSON, SCOTTLAND',
-                                'email': 'shafso@u.washington.edu',
-                                'phone': '206 543-3076'}
-                              }], 
-                }, 
-                ]}
-
-
-
-     
-
-
+        return regi_rslt
