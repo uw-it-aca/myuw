@@ -49,7 +49,9 @@ class RESTDispatch:
 class StudClasScheCurQuarView(RESTDispatch):
     def GET(self, request, regid):
         try:
-            schedule = Schedule(regid).get_curr_quarter_schedule()
+            schedule_dao = Schedule(regid)
+            schedule = schedule_dao.get_curr_quarter_schedule()
+            colors = schedule_dao.get_colors_for_schedule(schedule)
         except Exception, message:
             print 'Failed to get current quarter schedule: ', message
             traceback.print_exc(file=sys.stdout)
@@ -58,7 +60,14 @@ class StudClasScheCurQuarView(RESTDispatch):
         else:
             if schedule:
                 try:
-                    response = HttpResponse(json.dumps(schedule.json_data()))
+                    json_data = schedule.json_data()
+
+                    section_index = 0
+                    # Since the schedule is restclients, and doesn't know about color ids, 
+                    # backfill that data
+                    for section in schedule.sections:
+                        json_data["sections"][section_index]["color_id"] = colors[section.section_label()]
+                    response = HttpResponse(json.dumps(json_data))
                 except Exception as ex:
                     print "E: ", ex
                 response.status_code = 200
