@@ -51,9 +51,28 @@ class Schedule:
     def get_colors_for_schedule(self, schedule):
         colors = {}
         counter = 1
+
+        primary_sections = []
+        secondary_sections = []
         for section in schedule.sections:
+            if section.is_primary_section:
+                primary_sections.append(section)
+            else:
+                secondary_sections.append(section)
+
+        for section in primary_sections:
             label = section.section_label()
             colors[label] = counter
             counter += 1
+
+        for section in secondary_sections:
+            label = section.section_label()
+            primary_label = section.primary_section_label()
+
+            if colors[primary_label] == None:
+                colors[primary_label] = counter
+                counter += 1
+
+            colors[label] = "%sa" % colors[primary_label]
 
         return colors

@@ -24,6 +24,7 @@ class TestCourseColors(TestCase):
         section.curriculum_abbr = "MATH"
         section.course_number = 124
         section.section_id = "A"
+        section.is_primary_section = True
 
         schedule.sections.append(section)
 
@@ -51,6 +52,7 @@ class TestCourseColors(TestCase):
         section.curriculum_abbr = "MATH"
         section.course_number = 124
         section.section_id = "A"
+        section.is_primary_section = True
 
         schedule.sections.append(section)
 
@@ -59,6 +61,7 @@ class TestCourseColors(TestCase):
         section2.curriculum_abbr = "MATH"
         section2.course_number = 300
         section2.section_id = "A"
+        section2.is_primary_section = True
 
         schedule.sections.append(section2)
 
@@ -69,5 +72,17 @@ class TestCourseColors(TestCase):
 
         self.assertEquals(colors[section.section_label()], 1, "First course section gets the first color")
         self.assertEquals(colors[section2.section_label()], 2, "Second section gets the second color")
+
+
+    def test_primary_secondary(self):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
+            schedule_dao = ScheduleDAO("00000000000000000000000000000003")
+            schedule = schedule_dao.get_curr_quarter_schedule()
+
+            colors = schedule_dao.get_colors_for_schedule(schedule)
+
+            self.assertEquals(colors["2012,summer,PHYS,121/A"], 1, "Primary gets the 1st color")
+            self.assertEquals(colors["2012,summer,PHYS,121/AC"], "1a", "Secondary gets the 1st color, secondary version")
+            self.assertEquals(colors["2012,summer,PHYS,121/AQ"], "1a", "Second secondary gets the 1st color, secondary version")
 
 
