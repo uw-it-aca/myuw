@@ -12,7 +12,7 @@ class TestCourseColors(TestCase):
 
         person = Person()
         person.uwnetid = "javerage"
-        person.regid = "9136CCB8F66711D5BE060004AC494FFE"
+        person.regid = "00000000000000000000000000000001"
         schedule = ClassSchedule()
 
         schedule.term = term
@@ -39,7 +39,7 @@ class TestCourseColors(TestCase):
 
         person = Person()
         person.uwnetid = "javerage"
-        person.regid = "9136CCB8F66711D5BE060004AC494FFE"
+        person.regid = "00000000000000000000000000000002"
         schedule = ClassSchedule()
 
         schedule.term = term
