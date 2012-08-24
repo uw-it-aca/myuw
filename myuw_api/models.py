@@ -105,3 +105,16 @@ class ClassSchedule(models.Model):
     section = models.ForeignKey(Section,
                                 on_delete=models.PROTECT)
     last_verified = models.DateTimeField()
+
+
+class CourseColor(models.Model):
+    regid = models.CharField(max_length=32, db_index=True)
+    year = models.PositiveSmallIntegerField(db_index=True)
+    quarter = models.CharField(max_length=10, db_index=True)
+    curriculum_abbr = models.CharField(max_length=10)
+    course_number = models.PositiveSmallIntegerField()
+    section_id = models.CharField(max_length=2)
+    is_active = models.BooleanField()
+    color_id = models.PositiveIntegerField()
+
+

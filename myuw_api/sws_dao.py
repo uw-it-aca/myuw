@@ -47,3 +47,13 @@ class Schedule:
             return None
 
         return regi_rslt
+
+    def get_colors_for_schedule(self, schedule):
+        colors = {}
+        counter = 1
+        for section in schedule.sections:
+            label = section.section_label()
+            colors[label] = counter
+            counter += 1
+
+        return colors
