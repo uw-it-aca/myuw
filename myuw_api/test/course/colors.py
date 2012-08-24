@@ -148,5 +148,47 @@ class TestCourseColors(TestCase):
         self.assertEquals(colors[section3.section_label()], 3, "3rd section gets the 3rd color")
 
 
+    def test_swap_order(self):
+        term = Term()
+        term.year = 2012
+        term.quarter = "autumn"
+
+        person = Person()
+        person.uwnetid = "javerage"
+        person.regid = "00000000000000000000000000000005"
+        schedule = ClassSchedule()
+
+        schedule.term = term
+        schedule.user = person
+        schedule.sections = []
+
+        section = Section()
+        section.term = term
+        section.curriculum_abbr = "MATH"
+        section.course_number = 124
+        section.section_id = "A"
+        section.is_primary_section = True
+
+        schedule.sections.append(section)
+
+        section2 = Section()
+        section2.term = term
+        section2.curriculum_abbr = "MATH"
+        section2.course_number = 300
+        section2.section_id = "A"
+        section2.is_primary_section = True
+
+        schedule.sections.append(section2)
+
+        sched_dao = ScheduleDAO(person.regid)
+        colors = sched_dao.get_colors_for_schedule(schedule)
+
+
+        schedule.sections = []
+        schedule.sections.append(section2)
+        schedule.sections.append(section)
+        colors = sched_dao.get_colors_for_schedule(schedule)
+        self.assertEquals(colors[section.section_label()], 1, "First course section gets the first color")
+        self.assertEquals(colors[section2.section_label()], 2, "Second section gets the second color")
 
 
