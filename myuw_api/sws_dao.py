@@ -1,6 +1,7 @@
 from django.conf import settings
 import datetime
 from restclients.sws import SWS
+from myuw_api.models import CourseColor
 import logging
 import json
 
@@ -50,7 +51,17 @@ class Schedule:
 
     def get_colors_for_schedule(self, schedule):
         colors = {}
-        counter = 1
+
+        query = CourseColor.objects.filter(regid=self.regid,
+                                            year = schedule.term.year,
+                                            quarter = schedule.term.quarter
+                                            )
+
+        existing_sections = []
+        color_lookup = {}
+        for color in query:
+            existing_sections.append(color)
+            color_lookup[color.section_label()] = color
 
         primary_sections = []
         secondary_sections = []
@@ -62,17 +73,36 @@ class Schedule:
 
         for section in primary_sections:
             label = section.section_label()
-            colors[label] = counter
-            counter += 1
+            if section.section_label() not in color_lookup:
+                color = self._get_color_for_section(existing_sections, schedule, section)
+                existing_sections.append(color)
+                color_lookup[color.section_label()] = color
+
+            colors[label] = color_lookup[section.section_label()].color_id
 
         for section in secondary_sections:
             label = section.section_label()
             primary_label = section.primary_section_label()
 
             if colors[primary_label] == None:
-                colors[primary_label] = counter
-                counter += 1
+                # ... uh oh
+                pass
 
             colors[label] = "%sa" % colors[primary_label]
 
         return colors
+
+
+    def _get_color_for_section(self, existing_sections, schedule, section):
+        color = CourseColor()
+        color.regid = self.regid
+        color.year = schedule.term.year
+        color.quarter = schedule.term.quarter
+        color.curriculum_abbr = section.curriculum_abbr
+        color.course_number = section.course_number
+        color.section_id = section.section_id
+        color.is_active = True
+        color.color_id = len(existing_sections) + 1
+        color.save()
+
+        return color

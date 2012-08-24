@@ -118,3 +118,9 @@ class CourseColor(models.Model):
     color_id = models.PositiveIntegerField()
 
 
+    def section_label(self):
+        return "%s,%s,%s,%s/%s" % (self.year,
+            self.quarter, self.curriculum_abbr,
+            self.course_number, self.section_id)
+
+
