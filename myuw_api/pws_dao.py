@@ -14,6 +14,12 @@ class Person:
     # static class variables
     _logger = logging.getLogger('myuw_api.pws_dao.Person')
 
+    def get_person_by_netid(self, netid):
+        pws = PWS()
+        person = pws.get_person_by_netid(netid)
+
+        return person
+
     def get_regid(self, netid):
         pws = PWS()
         person = pws.get_person_by_netid(netid)

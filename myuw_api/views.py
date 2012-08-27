@@ -16,8 +16,7 @@ import traceback
 import logging
 
 from sws_dao import Schedule
-
-logger = logging.getLogger('myuw_api.views')
+from myuw_api.pws_dao import Person as PersonDAO
 
 
 class RESTDispatch:
@@ -50,8 +49,12 @@ class StudClasScheCurQuarView(RESTDispatch):
         """
         GET returns 200 with course section schedule details.
         """
-        # regid = sesssion.get[]...
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
+
+        person_dao = PersonDAO()
+        user_netid = request.session["user_netid"]
+        person = person_dao.get_person_by_netid(user_netid)
+        regid = person.uwregid
+
         try:
             schedule_dao = Schedule(regid)
             schedule = schedule_dao.get_curr_quarter_schedule()

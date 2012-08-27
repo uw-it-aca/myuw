@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 import logging
 from myuw_api.sws_dao import Quarter
-from myuw_api.pws_dao import Person
+from myuw_api.pws_dao import Person as PersonDAO
 
 logger = logging.getLogger('myuw_mobile.views')
 
@@ -14,10 +14,11 @@ def index(request):
                'regid': None,
                'myuw_base_url': '',
                'err': None}
-    person = Person()
+
+    person_dao = PersonDAO()
     try:
-        context['regid'] = person.get_regid ('javerage')
-#        context['dirUrl'] = person.get_contact (context['regid'])
+        person = person_dao.get_person_by_netid("javerage")
+        request.session["user_netid"] = person.uwnetid
     except Exception, message:
         logger.error(message)
         context['err'] = 'Failed to get regid'
