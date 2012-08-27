@@ -11,19 +11,20 @@ from mobility.decorators import mobile_template
 #from xml.etree.ElementTree import Element, SubElement, Comment, tostring
 import re
 import os
-import sys, traceback
+import sys
+import traceback
 import logging
 
 from sws_dao import Schedule
 
-
 logger = logging.getLogger('myuw_api.views')
 
-# ------------- RESTDispatch --------------------
-# Handles passing on the request to the 
-# correct view method based on the request type.
-# -----------------------------------------------
+
 class RESTDispatch:
+    """
+    Handles passing on the request to the
+    correct view method based on the request type.
+    """
     def run(self, *args, **named_args):
         request = args[0]
 
@@ -40,14 +41,15 @@ class RESTDispatch:
         response.status_code = 405
         return response
 
-# ------------- CurQuarterStudentClassScheView --------------------
-#
-# Performs actions on resource at /api/v1/schedule/current/<regid>.
-# GET returns 200 with course section schedule details.
-#
-# ----------------------------------------
+
 class StudClasScheCurQuarView(RESTDispatch):
+    """
+    Performs actions on resource at /api/v1/schedule/current/<regid>.
+    """
     def GET(self, request, regid):
+        """
+        GET returns 200 with course section schedule details.
+        """
         try:
             schedule_dao = Schedule(regid)
             schedule = schedule_dao.get_curr_quarter_schedule()
@@ -63,10 +65,13 @@ class StudClasScheCurQuarView(RESTDispatch):
                     json_data = schedule.json_data()
 
                     section_index = 0
-                    # Since the schedule is restclients, and doesn't know about color ids, 
-                    # backfill that data
+                    # Since the schedule is restclients, and doesn't know
+                    # about color ids, backfill that data
                     for section in schedule.sections:
-                        json_data["sections"][section_index]["color_id"] = colors[section.section_label()]
+                        section_data = json_data["sections"][section_index]
+                        color = colors[section.section_label()]
+                        section_data["color_id"] = color
+
                     response = HttpResponse(json.dumps(json_data))
                 except Exception as ex:
                     print "E: ", ex
@@ -75,5 +80,3 @@ class StudClasScheCurQuarView(RESTDispatch):
                 response = HttpResponse('No registration found')
                 response.status_code = 404
         return response
-
-

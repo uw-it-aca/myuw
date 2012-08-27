@@ -4,10 +4,12 @@ import logging
 import json
 import re
 
-# This module provides the single point access to PWSClient
 
 class Person:
-    """ The Person class encapsulates the interactions with the PWS person resource """
+    """
+    The Person class encapsulates the interactions
+    with the PWS person resource
+    """
 
     # static class variables
     _logger = logging.getLogger('myuw_api.pws_dao.Person')
@@ -19,13 +21,13 @@ class Person:
         if person != None:
             return person.uwregid
 
-
         raise Exception('No valid regid: ' + regid)
 
-    # parameter id: netid or regid
-    # return {'inDirectory': True/False,
-    #         'directoryUrl': the URL of the UW Directory detail page}
     def get_contact(self, uid):
+        # parameter id: netid or regid
+        # return {'inDirectory': True/False,
+        #         'directoryUrl': the URL of the UW Directory detail page}
+
         # I don't know what this is, so i'm commenting it out for now
         # It looks like the only caller is also commented out, so i don't
         # feel too bad about that.
@@ -38,7 +40,7 @@ class Person:
 #        if result:
 #            contact['inDirectory'] = result['WhitepagesPublish']
 #            if contact['inDirectory'] :
-#                contact['directoryUrl'] = uw_directory_url_base + result['UWNetID']
+#                contact['directoryUrl'] = uw_directory_url_base +
+#                                            result['UWNetID']
 #            return contact
 #        raise Exception('Contact not found for ' + uid)
-

@@ -5,6 +5,7 @@ from myuw_api.models import CourseColor
 import logging
 import json
 
+
 class Quarter:
     """ This class encapsulate the access of the term data """
     _logger = logging.getLogger('myuw_api.sws_dao.Quarter')
@@ -22,7 +23,8 @@ class Quarter:
 class Schedule:
     TOTAL_COURSE_COLORS = 8
     """
-    This class encapsulates the access of the registration and section resources
+    This class encapsulates the access of the registration
+    and section resources
     """
 
     _logger = logging.getLogger('myuw_api.sws_dao.Schedule')
@@ -53,9 +55,10 @@ class Schedule:
     def get_colors_for_schedule(self, schedule):
         colors = {}
 
-        query = CourseColor.objects.filter(regid=self.regid,
-                                            year = schedule.term.year,
-                                            quarter = schedule.term.quarter
+        query = CourseColor.objects.filter(
+                                            regid=self.regid,
+                                            year=schedule.term.year,
+                                            quarter=schedule.term.quarter,
                                             )
 
         existing_sections = []
@@ -80,7 +83,12 @@ class Schedule:
         for section in primary_sections:
             label = section.section_label()
             if section.section_label() not in color_lookup:
-                color = self._get_color_for_section(existing_sections, active_colors, schedule, section)
+                color = self._get_color_for_section(
+                                                    existing_sections,
+                                                    active_colors,
+                                                    schedule,
+                                                    section,
+                                                   )
                 existing_sections.append(color)
                 color_lookup[color.section_label()] = color
                 active_colors[color.color_id] = True
@@ -107,8 +115,7 @@ class Schedule:
 
         return colors
 
-
-    def _get_color_for_section(self, existing_sections, active_colors, schedule, section):
+    def _get_color_for_section(self, existing, active, schedule, section):
         color = CourseColor()
         color.regid = self.regid
         color.year = schedule.term.year
@@ -117,13 +124,14 @@ class Schedule:
         color.course_number = section.course_number
         color.section_id = section.section_id
         color.is_active = True
-        next_color = len(existing_sections) + 1
+        next_color = len(existing) + 1
 
         if next_color > self.TOTAL_COURSE_COLORS:
             for add in range(self.TOTAL_COURSE_COLORS):
-                test_color = ((next_color + add) % self.TOTAL_COURSE_COLORS) + 1
+                total = next_color + add
+                test_color = (total % self.TOTAL_COURSE_COLORS) + 1
 
-                if not test_color in active_colors:
+                if not test_color in active:
                     next_color = test_color
                     break
 
