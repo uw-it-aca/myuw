@@ -44,12 +44,14 @@ class RESTDispatch:
 
 class StudClasScheCurQuarView(RESTDispatch):
     """
-    Performs actions on resource at /api/v1/schedule/current/<regid>.
+    Performs actions on resource at /api/v1/schedule/current/.
     """
-    def GET(self, request, regid):
+    def GET(self, request):
         """
         GET returns 200 with course section schedule details.
         """
+        # regid = sesssion.get[]...
+        regid = "9136CCB8F66711D5BE060004AC494FFE"
         try:
             schedule_dao = Schedule(regid)
             schedule = schedule_dao.get_curr_quarter_schedule()

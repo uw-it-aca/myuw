@@ -2,10 +2,9 @@
 var data;
 
 $(document).ready(function() {
-    regid = '9136CCB8F66711D5BE060004AC494FFE';
 
     $.ajax({
-        url: "/my/api/v1/schedule/current/" + regid,
+        url: "/my/api/v1/schedule/current/",
         dataType: "JSON",
 
         type: "GET",
@@ -38,5 +37,5 @@ $(document).ready(function() {
             //xhr+" "+status+" "+error);
         }
     });
-    
+
 });
