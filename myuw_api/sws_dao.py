@@ -20,6 +20,7 @@ class Quarter:
 
 
 class Schedule:
+    TOTAL_COURSE_COLORS = 8
     """
     This class encapsulates the access of the registration and section resources
     """
@@ -59,9 +60,14 @@ class Schedule:
 
         existing_sections = []
         color_lookup = {}
+        active_colors = {}
+        colors_to_deactivate = {}
         for color in query:
             existing_sections.append(color)
-            color_lookup[color.section_label()] = color
+            if color.is_active:
+                color_lookup[color.section_label()] = color
+                active_colors[color.color_id] = True
+                colors_to_deactivate[color.section_label()] = color
 
         primary_sections = []
         secondary_sections = []
@@ -74,9 +80,13 @@ class Schedule:
         for section in primary_sections:
             label = section.section_label()
             if section.section_label() not in color_lookup:
-                color = self._get_color_for_section(existing_sections, schedule, section)
+                color = self._get_color_for_section(existing_sections, active_colors, schedule, section)
                 existing_sections.append(color)
                 color_lookup[color.section_label()] = color
+                active_colors[color.color_id] = True
+
+            if section.section_label() in colors_to_deactivate:
+                del colors_to_deactivate[section.section_label()]
 
             colors[label] = color_lookup[section.section_label()].color_id
 
@@ -90,10 +100,15 @@ class Schedule:
 
             colors[label] = "%sa" % colors[primary_label]
 
+        for color_key in colors_to_deactivate:
+            color = colors_to_deactivate[color_key]
+            color.is_active = False
+            color.save()
+
         return colors
 
 
-    def _get_color_for_section(self, existing_sections, schedule, section):
+    def _get_color_for_section(self, existing_sections, active_colors, schedule, section):
         color = CourseColor()
         color.regid = self.regid
         color.year = schedule.term.year
@@ -102,7 +117,20 @@ class Schedule:
         color.course_number = section.course_number
         color.section_id = section.section_id
         color.is_active = True
-        color.color_id = len(existing_sections) + 1
+        next_color = len(existing_sections) + 1
+
+        if next_color > self.TOTAL_COURSE_COLORS:
+            for add in range(self.TOTAL_COURSE_COLORS):
+                test_color = ((next_color + add) % self.TOTAL_COURSE_COLORS) + 1
+
+                if not test_color in active_colors:
+                    next_color = test_color
+                    break
+
+        if next_color > self.TOTAL_COURSE_COLORS:
+            next_color = ((next_color - 1) % self.TOTAL_COURSE_COLORS) + 1
+
+        color.color_id = next_color
         color.save()
 
         return color
