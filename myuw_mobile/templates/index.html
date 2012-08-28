@@ -57,10 +57,13 @@
                       <dd>Lecture</dd>
                      <dt>Instructor</dt>
                       <dd>{{#each meetings}}
-                            {{#with instructor}}
-                                {{name}}
-                            {{/with}}
+                            <ul>
+                            {{#each instructors}}
+                                <li>{{full_name}}</li>
+                            {{/each}}
+                            </ul>
                         {{/each}}</dd>
+
                       <dt>Website</dt>
                       <dd><a href="{{class_website_url}}" target="_blank">Catalyst Commonview</a></dd>
                     </dl>
