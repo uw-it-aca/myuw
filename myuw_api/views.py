@@ -51,6 +51,10 @@ class StudClasScheCurQuarView(RESTDispatch):
         """
 
         person_dao = PersonDAO()
+        if not "user_netid" in request.session:
+            response = HttpResponse('No user in session')
+            response.status_code = 400
+            return response
         user_netid = request.session["user_netid"]
         person = person_dao.get_person_by_netid(user_netid)
         regid = person.uwregid
