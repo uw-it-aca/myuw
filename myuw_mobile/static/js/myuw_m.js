@@ -19,10 +19,23 @@ $(document).ready(function() {
                 }
 
                 Handlebars.registerHelper("formatTime", function(time) {
-                    formatted = time.toString().split("");
-                    formatted.splice(formatted.length-2, 0, ':');
-                    return formatted.join("");
+                    formatted = time.toString().split(":");
+                    formatted[0] = parseInt(formatted[0], 10)
+                    return formatted.join(":");
                 });
+
+                Handlebars.registerHelper("formatTimeAMPM", function(time) {
+                    formatted = time.toString().split(":");
+                    formatted[0] = parseInt(formatted[0], 10)
+                    if (formatted[0] < 12) {
+                        formatted[1] += "AM";
+                    }
+                    else {
+                        formatted[1] += "PM";
+                    }
+                    return formatted.join(":");
+                });
+
 
                 var source   = $("#courses").html();
                 var template = Handlebars.compile(source);

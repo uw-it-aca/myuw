@@ -43,7 +43,7 @@
                             <td colspan="2">Days and time to be arranged</td>
                             {{else}}
                             <td>{{ days }}</td>
-                            <td>{{formatTime start_time}} - {{formatTime end_time}}</td>
+                            <td>{{formatTime start_time}} - {{formatTimeAMPM end_time}}</td>
                             {{/if}}
                             {{#if building_tbd}}
                                 <td>Room to be arranged</td>
