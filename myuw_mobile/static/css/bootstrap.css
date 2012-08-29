@@ -4422,30 +4422,6 @@ a.badge:hover {
   color: #ffffff;
   font-size: 1.5em;
 }
-.c1 {
-  background-color: #c8a26f;
-}
-.c2 {
-  background-color: #84b782;
-}
-.c3 {
-  background-color: #6d8db4;
-}
-.c1Border {
-  border-left: 5px solid #c8a26f;
-  border-top: 1px solid #c8a26f;
-  border-bottom: 1px solid #c8a26f;
-}
-.c2Border {
-  border-left: 5px solid #84b782;
-  border-top: 1px solid #84b782;
-  border-bottom: 1px solid #84b782;
-}
-.c3Border {
-  border-left: 5px solid #6d8db4;
-  border-top: 1px solid #6d8db4;
-  border-bottom: 1px solid #6d8db4;
-}
 .accordion-heading .accordion-toggle {
   display: block;
   padding: 5px 10px;
