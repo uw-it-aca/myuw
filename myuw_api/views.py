@@ -17,7 +17,7 @@ import logging
 
 from sws_dao import Schedule
 from myuw_api.pws_dao import Person as PersonDAO
-
+from restclients.bookstore import Bookstore
 
 class RESTDispatch:
     """
@@ -88,5 +88,56 @@ class StudClasScheCurQuarView(RESTDispatch):
                 response.status_code = 200
             else:
                 response = HttpResponse('No registration found')
+                response.status_code = 404
+        return response
+
+
+class UserScheduleBooks(RESTDispatch):
+    """
+    Performs actions on resource at /api/v1/books/current/.
+    """
+    def GET(self, request):
+        """
+        GET returns 200 with books for the current quarter
+        """
+
+        person_dao = PersonDAO()
+        if not "user_netid" in request.session:
+            response = HttpResponse('No user in session')
+            response.status_code = 400
+            return response
+        user_netid = request.session["user_netid"]
+        person = person_dao.get_person_by_netid(user_netid)
+        regid = person.uwregid
+
+        try:
+            schedule_dao = Schedule(regid)
+            schedule = schedule_dao.get_curr_quarter_schedule()
+
+            books_dao = Bookstore()
+
+            book_data = books_dao.get_books_for_schedule(schedule)
+        except Exception, message:
+            print 'Failed to get book list: ', message
+            traceback.print_exc(file=sys.stdout)
+            response = HttpResponse('Failed to get data from SWS...')
+            response.status_code = 500
+        else:
+            if book_data:
+                try:
+                    json_data = {}
+
+                    for sln in book_data:
+                        json_data[sln] = []
+
+                        for book in book_data[sln]:
+                            json_data[sln].append(book.json_data())
+
+                    response = HttpResponse(json.dumps(json_data))
+                except Exception as ex:
+                    print "E: ", ex
+                response.status_code = 200
+            else:
+                response = HttpResponse('No book data found')
                 response.status_code = 404
         return response
