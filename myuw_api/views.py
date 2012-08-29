@@ -80,6 +80,7 @@ class StudClasScheCurQuarView(RESTDispatch):
                         section_data = json_data["sections"][section_index]
                         color = colors[section.section_label()]
                         section_data["color_id"] = color
+                        section_index += 1
 
                     response = HttpResponse(json.dumps(json_data))
                 except Exception as ex:
