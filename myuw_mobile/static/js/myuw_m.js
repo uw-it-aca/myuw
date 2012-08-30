@@ -13,11 +13,6 @@ $(document).ready(function() {
             if(results !== null){
                 data = results;
 
-                //add indixes for the bootstrap accordion effect
-                for (var i=0; i<data.sections.length; i++) {
-                    data.sections[i] = $.extend({}, data.sections[i], {index: i+1});
-                }
-
                 //probably extraneous
                 Handlebars.registerHelper("formatTime", function(time) {
                     formatted = time.toString().split(":");
@@ -36,11 +31,6 @@ $(document).ready(function() {
                         formatted[1] += "PM";
                     }
                     return formatted.join(":");
-                });
-
-                //format names
-                Handlebars.registerHelper("formatName", function(name) {
-                    return name.substr(0,1).toUpperCase()+name.substr(1).toLowerCase()
                 });
 
                 var source   = $("#courses").html();
