@@ -1,0 +1,292 @@
+
+// ======================================================
+// Accordion
+// ======================================================
+.accordion-group {
+  /*border-left:5px solid @grayLighter;
+  border-top:1px solid @grayLighter;
+  border-bottom: 1px solid @grayLighter;*/
+  border-right: 0px;
+  
+  h3 {
+    color:@white;
+    padding-top: 3px;
+    text-transform:uppercase;
+    font-weight:normal;
+    line-height: 1.1em;
+
+  }
+  .border-radius(0px);
+}
+
+.accordion-heading {
+
+  border-bottom: 0;
+  /*border-right:1px solid #e5e5e5;*/
+  
+  a {
+    color:@white;
+    font-size: 1.5em;
+  }
+//  a:hover {text-decoration: none;}
+  	
+ }
+
+.courseBorder (@color) {
+  border-left:5px solid @color;
+  border-top:1px solid @color;
+  border-bottom: 5px solid @color;
+}
+
+.c1 {
+ background-color:@courseOrange;
+}
+.c2 {
+ background-color:@courseGreen;
+}
+.c3{
+  background-color: @courseBlue;
+}
+.c4{
+  background-color: @courseRed;
+}
+.c5{
+  background-color: @courseBrown;
+}
+.c6{
+  background-color: @coursePurple;
+}
+.c7{
+  background-color: @courseGold;
+}
+.c8{
+  background-color: @courseTeal;
+}
+
+.c1Border {
+  .courseBorder(@courseOrange);
+}
+.c2Border {
+  .courseBorder(@courseGreen);
+}
+
+.c3Border {
+  .courseBorder(@courseBlue);
+}
+
+.c4Border {
+  .courseBorder(@courseRed);
+}
+
+.c5Border {
+  .courseBorder(@courseBrown);
+}
+
+.c6Border {
+  .courseBorder(@coursePurple);
+}
+
+.c7Border {
+  .courseBorder(@courseGold);
+}
+
+.c8Border {
+  .courseBorder(@courseTeal);
+}
+
+.accordion-heading .accordion-toggle {
+  padding: 0px 10px;
+}
+
+.accordion-inner {
+  padding: 9px 10px;
+  background-color:@myuw;
+}
+
+// ======================================================
+// buttons
+// ======================================================
+.btn-visual {
+  margin-top:-8px;
+  font-weight:normal;
+  height: 2em;
+  padding-top: .75em;
+  padding-bottom: 2px;
+}
+
+// ======================================================
+// navbar
+// ======================================================
+
+.navbar-inner {
+//  #gradient > .vertical(lighten(@navbarBackground,5%), darken(@navbarBackgroundHighlight,3%));
+  #gradient > .vertical(@uwpurple, @uwpurple);
+}
+
+.navbar .btn {
+@elementHeight: 28px;
+  margin: ((@navbarHeight - @elementHeight) / 2 - 5) 5px ((@navbarHeight - @elementHeight) / 2 - 4);
+}
+
+// Active nav items
+.navbar .nav .active > a {
+  #translucent > .background(@uwLighter, .2);
+  border: 1px solid @grayDarker;
+  .box-shadow(~"inset 0 1px 2px rgba(0,0,0,.3), 0 1px 0 rgba(255,255,255,.15)");
+
+}
+
+.navbar .nav .logout > a {
+  //#translucent > .background(@uwLighter, .2);
+  //#gradient > .vertical(lighten(@navbarBackground,15%), lighten(@navbarBackgroundHighlight,2%));
+  border: 1px solid @grayDarker;
+
+  //.box-shadow(~"inset 0 1px 0 rgba(255,255,255,.15), 0 1px 2px rgba(0,0,0,.3)");
+
+}
+// Navbar button for toggling navbar items in responsive layouts
+// These definitions need to come after '.navbar .btn'
+.navbar .btn-navbar {
+  padding: 12px 12px;
+  .buttonBackground(lighten(@uwpurple,3%), lighten(@uwpurple,15%));
+  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.1), 0px 1px 0 rgba(255,255,255,.125)");
+}
+
+.navbar .btn-navbar .icon-bar {
+  height: 3px;
+  .border-radius(1.5px);
+}
+
+.navbar-fixed-top,
+.navbar-static-top {
+  .navbar-inner {
+    //.box-shadow(~"inset 0 -1px 0 rgba(0,0,0,.1), 0 1px 10px rgba(0,0,0,.1)");
+    .box-shadow(~"0 1px 3px .5px rgba(0,0,0,.5), inset 0 -1px 0 rgba(0,0,0,.1)");
+  }
+}
+/*
+.navbar .nav > a {
+	&:last-child {
+  color: @yellow;
+}
+}*/
+
+// ======================================================
+// tables
+// ======================================================
+
+.table-meeting  {
+  width: 98%;
+  border-collapse: separate; // Done so we can round those corners!
+  *border-collapse: collapsed; // IE7 can't round corners anyway
+  min-height: 20px;
+  //margin-bottom: 5px;
+  margin: 5px 1% 5px 1%;
+  background-color: @bodyAccent;
+  border: 1px solid #eee;
+  border: 1px solid rgba(0,0,0,.09);
+  .border-radius(2px);
+ .box-shadow(inset 1px 1px 5px rgba(0,0,0,.05));
+  td {
+    line-height: @baseLineHeight - 2;
+    padding: 5px 4px;
+    border-bottom: 1px solid #eee;
+ 	border-bottom: 1px solid rgba(0,0,0,.03);
+  }
+  
+  tbody:first-child tr:last-child td {
+    border-bottom: 0;
+  }
+  td:nth-child(2) {
+    text-align: center;
+  }
+  td:last-child {
+    text-align: right;
+  }
+  
+}
+
+// ======================================================
+// type
+// ======================================================
+// Body Text
+a {
+	font-size: @baseFontSize + 3;
+}
+	a:hover {text-decoration:none;}
+
+//Headings
+
+.scheduleHeading {
+  font-weight: bold;
+  line-height: @baseLineHeight - 1; // fix jank Helvetica Neue font bug
+}
+
+// Page header
+.page-header {
+  padding-bottom: 5px;
+  margin: 15px 0;
+  border: none;
+	h1 {
+  		line-height: 1;
+	}
+
+	h2 {
+		  font-size: 18px;
+		  padding-left: 5px;
+		  border-left: 5px solid @yellow;
+		  line-height: 26px;
+  	small {
+    font-size: 18px;
+  	}
+	}
+}
+//Lists
+ul.unstyled,
+ol.unstyled {
+  	li.additional {line-height: @baseLineHeight * 1.5;}
+}
+	li.inline {display:inline;}
+
+.dl-horizontal {
+  dt {
+  	//width: 20px;
+    margin-bottom:5px;
+  }
+  dd {
+    margin-bottom:10px;
+  }
+}
+.courseIDtitle {
+  padding-right:10px;
+  font-size: 28px;
+  line-height: .8;
+  display: block;
+  text-shadow: -1px -1px rgba(0, 0, 0, 0.1), 1px 1px rgba(255,255,255,.2);
+}
+
+.shortTitle {
+  margin-top: 3px;
+  white-space: nowrap;
+  font-size: 16px;
+
+}
+
+// ======================================================
+// utilities
+// ======================================================
+.pull-right-center {
+
+  float: right;
+  font-size:30px;
+  position: relative;
+  top: 15px;
+  right: 3px;
+
+}
+
+.container-fluid {
+  padding-right: 10px;
+  padding-left: 10px;
+  .clearfix();
+}

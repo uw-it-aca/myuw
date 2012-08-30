@@ -1,0 +1,68 @@
+// ======================================================
+// responsive navbar
+// ======================================================
+
+.navbar-fixed-top {
+  margin-bottom: 5px;
+}
+
+.navbar .brand {
+   margin-left: 5px;
+   margin-right: auto;
+   background: url('../images/myuw.png') no-repeat;
+   padding-left: 100px;
+  }
+
+.nav-collapse .nav {
+  //  margin: 5px 0 (@baseLineHeight / 2);
+  margin: 5px 0 5px;
+}
+
+.nav-collapse .nav > li > a,
+  .nav-collapse .dropdown-menu a {
+    padding: 6px 15px;
+    }
+.nav-collapse > hr, .nav-collapse .nav > hr {
+ margin: 2px 10px;
+ border-bottom: 1px solid  rgba(255,255,255,.2);
+ border-top: 1.5px solid rgba(0,0,0,.4);
+ .border-radius(1px);
+}
+/*
+    .nav-collapse .nav > li:last-of-type {
+      a {
+      border-bottom: 1px solid rgba(0,0,0, .5);
+      border-bottom: 1px solid rgba(255,255,255,.3)
+    }
+  }*/
+// ======================================================
+// responsive 767px-max
+// ======================================================
+
+@media (max-width: 767px) {
+
+  // Padding to set content in a bit
+  body {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  // Negative indent the now static "fixed" navbar
+  .navbar-fixed-top,
+  .navbar-fixed-bottom {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  .dl-horizontal {
+      dt {
+    float: left;
+
+    clear: left;
+    text-align: right;
+    .text-overflow();
+  }
+    dd {
+      margin-left: 100px;
+    }
+  }
+  
+}
