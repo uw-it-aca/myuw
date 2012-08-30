@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
+from django.conf import settings
 import logging
 from myuw_api.sws_dao import Quarter
 from myuw_api.pws_dao import Person as PersonDAO
@@ -15,9 +16,17 @@ def index(request):
                'myuw_base_url': '',
                'err': None}
 
+    if settings.DEBUG:
+        netid = 'javerage'
+    else:
+        netid = request.user
+
+        if netid is None:
+            raise("Must have a logged in user when DEBUG is off")
+
     person_dao = PersonDAO()
     try:
-        person = person_dao.get_person_by_netid("javerage")
+        person = person_dao.get_person_by_netid(netid)
         request.session["user_netid"] = person.uwnetid
     except Exception, message:
         logger.error(message)
