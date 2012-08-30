@@ -4,10 +4,10 @@
 {% load templatetag_handlebars %}
 
       <div class="page-header">
-        <h1>My Courses</h1>
+
         <h2 id="quarter-info">
         {% tplhandlebars "quarter" %}
-            <small>{{quarter}} {{year}}</small><a style="margin-top:5px;font-weight:normal;" class="btn pull-right" href="#"><i class="icon-calendar"></i> Visual</a>
+            {{quarter}} {{year}} courses<a class="btn btn-visual pull-right" href="#"><i class="icon-calendar"></i> Visual</a>
         {% endtplhandlebars %}
         </h2>
         
@@ -79,7 +79,7 @@
                         {{/each}}</dd>
 
                       <dt>Website</dt>
-                      <dd><a href="{{class_website_url}}" target="_blank">Catalyst Commonview</a></dd>
+                      <dd><a href="{{class_website_url}}" target="_blank">Course website</a></dd>
                     </dl>
                     
                 </div>
