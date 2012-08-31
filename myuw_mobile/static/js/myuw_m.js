@@ -6,12 +6,8 @@ $(document).ready(function() {
     var course_data = null;
     var book_data = null;
 
-    function show_list() {
-        fetch_course_data(render_list);
-    }
-
     function fetch_course_data(callback, args) {
-         if (course_data == null) {
+        if (course_data == null) {
             $.ajax({
                 url: "/my/api/v1/schedule/current/",
                 dataType: "JSON",
@@ -28,9 +24,14 @@ $(document).ready(function() {
         }
         else {
             window.setTimeout(function() {
-                callback.apply(args);
+                callback.apply(null, args);
             }, 0);
         }
+    }
+
+    /* Methods for the initial page load */
+    function show_list() {
+        fetch_course_data(render_list);
     }
 
     function render_list() {
@@ -43,9 +44,22 @@ $(document).ready(function() {
         $("#quarter-info").html(template({year: course_data.year, quarter: course_data.quarter}));
 
         $(".instructor").bind("click", function(ev) {
-            //console.log(ev.target.rel);
+            var hist = window.History;
+            hist.pushState({
+                state: "instructor",
+                instructor: ev.target.rel
+            },  "", "/my/instructor/"+ev.target.rel);
         });
 
+    }
+
+    /* Methods for showing an instructor */
+    function show_instructor(regid) {
+        fetch_course_data(render_instructor, [regid]);
+    }
+
+    function render_instructor(regid) {
+        alert("Show instructor: "+regid);
     }
 
     //probably extraneous
@@ -69,27 +83,20 @@ $(document).ready(function() {
     });
 
 
-    show_list();
+    History.Adapter.bind(window,'statechange',function(){
+        var history_state = History.getState();
+        var data = history_state.data;
+        var state = data.state;
 
-/*
-    $.ajax({
-        url: "/my/api/v1/schedule/current/",
-        dataType: "JSON",
-
-        type: "GET",
-        accepts: {html: "text/html"},
-        success: function(results){
-            show_list()
-
-            if(results !== null){
-                data = results;
-
-
-            }
-        },
-        error: function(xhr, status, error){
-            //xhr+" "+status+" "+error);
+        if (state === null) {
+            // Figure out what to do from the url
+            show_list();
+        }
+        else if (state === "instructor") {
+            show_instructor(data.instructor);
         }
     });
-*/
+
+    show_list();
+
 });
