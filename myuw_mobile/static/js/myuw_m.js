@@ -35,7 +35,7 @@ $(document).ready(function() {
 
         if (state === null || state === "course_list") {
             // Figure out what to do from the url
-            CourseList.show_list();
+            show_page_from_url();
         }
         else if (state === "instructor") {
             Instructor.show_instructor(data.instructor);
@@ -45,7 +45,26 @@ $(document).ready(function() {
         }
     });
 
-    CourseList.show_list();
+    function show_page_from_url() {
+        var path = window.location.pathname;
+
+        if (path === "/my/") {
+            CourseList.show_list();
+        }
+        else if (path === "/my/visual") {
+            VisualSchedule.show_visual_schedule();
+        }
+        else if (path.match(/^\/my\/instructor\/[A-Z0-9]+/)) {
+            var matches = path.match(/^\/my\/instructor\/([A-Z0-9]+)/);
+            Instructor.show_instructor(matches[1]);
+        }
+        else {
+            // Just fall back to the course list?
+            CourseList.show_list();
+        }
+    }
+
+    show_page_from_url();
 
 
 });
