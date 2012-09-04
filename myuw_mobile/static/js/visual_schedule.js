@@ -1,11 +1,43 @@
 var VisualSchedule = {
+    // This is the height of the days bar... needed for positioning math below
+    day_label_offset: 7,
+
     show_visual_schedule: function() {
         WSData.fetch_course_data(VisualSchedule.render);
     },
 
+    get_scaled_percentage: function(pos, min, max) {
+        var base_percentage = (pos - min) / (max - min);
+        var offset_percentage = (VisualSchedule.day_label_offset * 2) + (base_percentage * (100 - (VisualSchedule.day_label_offset * 2)));
+
+        // The second one is for positioning the last hour label.
+        return offset_percentage - VisualSchedule.day_label_offset;
+    },
+
     render: function() {
+        VisualSchedule.shown_am_marker = false;
+        Handlebars.registerHelper('format_schedule_hour', function(hour) {
+            if (hour == 12) {
+                return hour + "p";
+            }
+            else if (hour < 12) {
+                if (!VisualSchedule.shown_am_marker) {
+                    VisualSchedule.shown_am_marker = true;
+                    return hour + "a";
+                }
+            }
+            return hour;
+        });
+
         Handlebars.registerHelper('time_percentage', function(time, start, end) {
-            return parseInt(((time - start) / (end - start)) * 10000, 10) / 100;
+            return VisualSchedule.get_scaled_percentage(time, start, end);
+        });
+
+        Handlebars.registerHelper('time_percentage_height', function(start, end, min, max) {
+            var top = VisualSchedule.get_scaled_percentage(start, min, max);
+            var bottom = VisualSchedule.get_scaled_percentage(end, min, max);
+
+            return bottom-top;
         });
 
         Handlebars.registerHelper('show_days_meetings', function(list, start_time, end_time) {
@@ -34,7 +66,7 @@ var VisualSchedule = {
             friday: [],
             saturday: [],
             display_hours: [],
-            has_6_days: false
+            has_6_days: true
         };
 
         for (var index in course_data.sections) {
