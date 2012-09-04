@@ -8,6 +8,7 @@ from myuw_api.pws_dao import Person as PersonDAO
 
 logger = logging.getLogger('myuw_mobile.views')
 
+
 #@mobile_template('{mobile/}index.html')
 def index(request):
     context = {'year': None,
@@ -44,5 +45,3 @@ def index(request):
     return render_to_response('index.html',
                               context,
                               context_instance=RequestContext(request))
-
-

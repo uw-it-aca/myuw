@@ -19,6 +19,7 @@ from sws_dao import Schedule
 from myuw_api.pws_dao import Person as PersonDAO
 from restclients.bookstore import Bookstore
 
+
 class RESTDispatch:
     """
     Handles passing on the request to the
