@@ -97,7 +97,8 @@ var VisualSchedule = {
                     end: end_minutes,
                     color_id: section.color_id,
                     curriculum: section.curriculum_abbr,
-                    course_number: section.course_number
+                    course_number: section.course_number,
+                    section_id: section.section_id
                 };
 
                 var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];

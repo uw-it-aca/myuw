@@ -51,7 +51,7 @@
         {% tplhandlebars "visual_schedule_day" %}
             {{#each meetings}}
             <div class="c{{color_id}} visual-course" style="position: absolute; top:{{time_percentage start ../start_time ../end_time}}%; height:{{time_percentage_height start end ../start_time ../end_time}}%;">
-            {{curriculum}} {{course_number}}
+            {{curriculum}} {{course_number}}{{section_id}}
             </div>
             {{/each}}
 
