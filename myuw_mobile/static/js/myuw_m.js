@@ -33,7 +33,7 @@ $(document).ready(function() {
         var data = history_state.data;
         var state = data.state;
 
-        if (state === null) {
+        if (state === null || state === "course_list") {
             // Figure out what to do from the url
             CourseList.show_list();
         }

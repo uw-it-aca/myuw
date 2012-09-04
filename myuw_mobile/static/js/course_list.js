@@ -10,7 +10,7 @@ var CourseList = {
         var course_data = WSData.course_data();
         $("#courselist").html(template(course_data));
 
-        source = $("#quarter").html();
+        source = $("#quarter-list").html();
         template = Handlebars.compile(source);
         $("#quarter-info").html(template({year: course_data.year, quarter: course_data.quarter}));
 
