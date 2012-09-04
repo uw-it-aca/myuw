@@ -8,6 +8,17 @@ var VisualSchedule = {
             return parseInt(((time - start) / (end - start)) * 10000, 10) / 100;
         });
 
+        Handlebars.registerHelper('show_days_meetings', function(list, start_time, end_time) {
+            if (!VisualSchedule.day_template) {
+                var day_source = $("#visual_schedule_day").html();
+                var _day_template = Handlebars.compile(day_source);
+
+                VisualSchedule.day_template = _day_template;
+            }
+
+            return new Handlebars.SafeString(VisualSchedule.day_template({ meetings: list, start_time: start_time, end_time: end_time }));
+        });
+
         var source   = $("#visual_schedule").html();
         var template = Handlebars.compile(source);
 

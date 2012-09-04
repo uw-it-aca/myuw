@@ -7,19 +7,28 @@
             Hour: {{hour}}, position (centered?): {{time_percentage position ../start_time ../end_time}} <br />
         {{/each}}
 
-        {{#each monday}}
-            <div class="c{{color_id}}">
-            Monday session: {{start}} - {{end}} in a span of minutes: {{../start_time}} - {{../end_time}}.  Display percentages: {{time_percentage start ../start_time ../end_time}}% - {{time_percentage end ../start_time ../end_time}}%<br />
-            Course: {{curriculum}} {{course_number}} - Color: {{color_id}}<br/>
-            </div>
-        {{/each}}
-
-        {{#each tuesday}}
-            <div class="c{{color_id}}">
-            Monday session: {{start}} - {{end}} in a span of minutes: {{../start_time}} - {{../end_time}}. Display percentages: {{time_percentage start ../start_time ../end_time}}% - {{time_percentage end ../start_time ../end_time}}%<br />
-            Course: {{curriculum}} {{course_number}} - Color: {{color_id}}<br/>
-            </div>
-        {{/each}}
+        Monday: {{ show_days_meetings monday start_time end_time }}
+        <br />
+        Tuesday: {{ show_days_meetings tuesday start_time end_time }}
+        <br />
+        Wednesday: {{ show_days_meetings wednesday start_time end_time }}
+        <br />
+        Thursday: {{ show_days_meetings thursday start_time end_time }}
+        <br />
+        Friday: {{ show_days_meetings friday start_time end_time }}
+        <br />
+        Saturday: {{ show_days_meetings saturday start_time end_time }}
+        <br />
 
         {% endtplhandlebars %}
 
+
+        {% tplhandlebars "visual_schedule_day" %}
+            {{#each meetings}}
+            <div class="c{{color_id}}">
+            {{start}} - {{end}} in a span of minutes: {{../start_time}} - {{../end_time}}.  Display percentages: {{time_percentage start ../start_time ../end_time}}% - {{time_percentage end ../start_time ../end_time}}%<br />
+            Course: {{curriculum}} {{course_number}} - Color: {{color_id}}<br/>
+            </div>
+            {{/each}}
+
+        {% endtplhandlebars %}
