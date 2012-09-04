@@ -9,6 +9,10 @@ var CourseModal = {
         var content = template(section);
         $("#course_modal_dialog").html(template(section));
         $("#course_modal_dialog").modal('show');
+
+        $(".close_modal").on("click", function() {
+            $("#course_modal_dialog").modal('hide');
+        });
     }
 };
  
