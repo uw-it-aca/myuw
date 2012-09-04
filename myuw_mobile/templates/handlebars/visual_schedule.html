@@ -1,5 +1,25 @@
         {% load templatetag_handlebars %}
         {% tplhandlebars "visual_schedule" %}
-            This is the visual schedule
+
+        Has 6 days (meaning saturday): {{#if has_6_days}}Yes{{else}}No{{/if}} <br />
+
+        {{#each display_hours}}
+            Hour: {{hour}}, position (centered?): {{time_percentage position ../start_time ../end_time}} <br />
+        {{/each}}
+
+        {{#each monday}}
+            <div class="c{{color_id}}">
+            Monday session: {{start}} - {{end}} in a span of minutes: {{../start_time}} - {{../end_time}}.  Display percentages: {{time_percentage start ../start_time ../end_time}}% - {{time_percentage end ../start_time ../end_time}}%<br />
+            Course: {{curriculum}} {{course_number}} - Color: {{color_id}}<br/>
+            </div>
+        {{/each}}
+
+        {{#each tuesday}}
+            <div class="c{{color_id}}">
+            Monday session: {{start}} - {{end}} in a span of minutes: {{../start_time}} - {{../end_time}}. Display percentages: {{time_percentage start ../start_time ../end_time}}% - {{time_percentage end ../start_time ../end_time}}%<br />
+            Course: {{curriculum}} {{course_number}} - Color: {{color_id}}<br/>
+            </div>
+        {{/each}}
+
         {% endtplhandlebars %}
 
