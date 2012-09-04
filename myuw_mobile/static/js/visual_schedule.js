@@ -18,10 +18,16 @@ var VisualSchedule = {
         VisualSchedule.shown_am_marker = false;
         Handlebars.registerHelper('format_schedule_hour', function(hour) {
             if (hour == 12) {
+                VisualSchedule.shown_am_marker = true;
                 return hour + "p";
             }
             else if (hour > 12) {
-                return hour - 12;
+                var shown_hour = hour - 12;
+                if (!VisualSchedule.shown_am_marker) {
+                    VisualSchedule.shown_am_marker = true;
+                    return shown_hour + "p";
+                }
+                return shown_hour;
             }
             else if (hour < 12) {
                 if (!VisualSchedule.shown_am_marker) {
