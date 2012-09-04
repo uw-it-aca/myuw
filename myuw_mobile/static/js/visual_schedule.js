@@ -20,6 +20,9 @@ var VisualSchedule = {
             if (hour == 12) {
                 return hour + "p";
             }
+            else if (hour > 12) {
+                return hour - 12;
+            }
             else if (hour < 12) {
                 if (!VisualSchedule.shown_am_marker) {
                     VisualSchedule.shown_am_marker = true;
