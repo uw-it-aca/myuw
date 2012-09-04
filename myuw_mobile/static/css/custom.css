@@ -1204,7 +1204,6 @@ li.inline {
 }
 .visual-schedule {
   width: 100% ;
-  border: 1px solid red;
   height: 20em;
   position: relative;
   *zoom: 1;
@@ -1232,14 +1231,18 @@ li.inline {
   position: relative;
   display: inline-block;
   float: left;
+  color: #ffffff;
 }
 .six-day {
-  width: 15.5%;
+  width: 15.333333333333334%;
   height: 100%;
-  border-right: 1px inset black;
   position: relative;
   display: inline-block;
   float: left;
+  color: #ffffff;
+}
+.six-day p {
+  color: #333;
 }
 .six-day:last-child,
 .five-day:last-child {

@@ -477,7 +477,7 @@ ol.unstyled {
 .visual-schedule {
 	width: 100% ;
 	//margin-left: -10px;
-	border: 1px solid red;
+	//border: 1px solid red;
 	height: 20em; 
 	position:relative;
 	.clearfix();
@@ -499,17 +499,21 @@ ol.unstyled {
 	position: relative;
 	display:inline-block;
 	float: left;
+	color: @white;
 }
 
 .six-day {
-	width: (98% - @time-bar-width) / 6;
+	width: (97% - @time-bar-width) / 6;
 	//width: 14%;
 	height:100%;
-	border-right: 1px inset black;
+	//border-right: 1px inset black;
 	position: relative;
 	display: inline-block;
 	//margin-left:-5px;
 	float: left;
+	color: @white;
+	
+	p {color:#333;}
 }
 .six-day:last-child, .five-day:last-child {
 	border-right: none;

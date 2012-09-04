@@ -1,25 +1,61 @@
         {% load templatetag_handlebars %}
         {% tplhandlebars "visual_schedule" %}
+            <div class="row-fluid">
+		<div class="span12">
+		<div class="visual-schedule" style="background-color:#eee;">
 
-        Has 6 days (meaning saturday): {{#if has_6_days}}Yes{{else}}No{{/if}} <br />
+			<div style="width:8%;background-color:#eee;" class="time-bar clearfix">
+			
+			<div style="position:absolute;top:10%;"><p>8a</p></div>
+			<div style="position:absolute;top:20%;"><p>9</p></div>
+			<div style="position:absolute;top:30%;"><p>10</p></div>
+			<div style="position:absolute;top:40%;"><p>11</p></div>
+			<div style="position:absolute;top:50%;"><p>12p</p></div>
+			<div style="position:absolute;top:60%;"><p>1</p></div>
+			<div style="position:absolute;top:70%;"><p>2</p></div>
+			<div style="position:absolute;top:80%;"><p>3</p></div>
+			<div style="position:absolute;top:90%;"><p>4</p></div>
+			</div>
 
-        {{#each display_hours}}
-            Hour: {{hour}}, position (centered?): {{time_percentage position ../start_time ../end_time}} <br />
-        {{/each}}
+			<div class="six-day">
+				<div class="day-label"><p>MON</p></div>
+				<div class= "c1 visual-course" style="height: 10%; height 10%; position: absolute; top: 10%">BIO 101</div>
+				<div class="c2 visual-course" style="height: 30%; position: absolute; top: 40%">ECON 200 A</div>
+			</div>
 
-        Monday: {{ show_days_meetings monday start_time end_time }}
-        <br />
-        Tuesday: {{ show_days_meetings tuesday start_time end_time }}
-        <br />
-        Wednesday: {{ show_days_meetings wednesday start_time end_time }}
-        <br />
-        Thursday: {{ show_days_meetings thursday start_time end_time }}
-        <br />
-        Friday: {{ show_days_meetings friday start_time end_time }}
-        <br />
-        Saturday: {{ show_days_meetings saturday start_time end_time }}
-        <br />
+			<div class="six-day">
+				<div class="day-label"><p>TUE</p></div>
+				<div class="c3 visual-course" style="height: 20%; position: absolute; top: 26%">COMM 320A</div>
+				<div class="c6 visual-course"style="height: 15%; position: absolute; top: 80%; ">DXARTS 200</div>
+			</div>
 
+			<div class="six-day">
+				<div class="day-label"><p>WED</p></div>
+				<div class="c1 visual-course" style="height: 10%; position: absolute; top: 10%">BIO 101</div>
+				<div class="c2 visual-course" style="height: 30%; position: absolute; top: 40%">ECON 200 A</div>
+			</div>
+
+			<div class="six-day">
+				<div class="day-label"><p>THU</p></div>
+				<div class="c3 visual-course" style="height: 20%; position: absolute; top: 26%">COMM 320A</div>
+				<div class="c6 visual-course"style="height: 15%; position: absolute; top: 80%; ">DXARTS 200</div>
+				
+			</div>
+
+			<div class="six-day">
+				<div class="day-label"><p>FRI</p></div>
+				<div class= "c1 visual-course" style="height: 10%; height 10%; position: absolute; top: 10%">BIO 101</div>
+				<div class="c2 visual-course" style="height: 30%; position: absolute; top: 40%">ECON 200 A</div>
+			</div>
+
+			<div class="six-day">
+				<div class="day-label"><p>SAT</p></div>
+				<div class="c4 visual-course"  style="height: 15%; position: absolute; top: 15%">HUBIO 510P</div>
+			</div>
+		
+			
+		</div>
+	  </div>
         {% endtplhandlebars %}
 
 
