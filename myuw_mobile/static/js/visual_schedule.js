@@ -101,7 +101,8 @@ var VisualSchedule = {
                     color_id: section.color_id,
                     curriculum: section.curriculum_abbr,
                     course_number: section.course_number,
-                    section_id: section.section_id
+                    section_id: section.section_id,
+                    section_index: index
                 };
 
                 var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
@@ -156,13 +157,11 @@ var VisualSchedule = {
         });
 
 
-        $(".instructor").bind("click", function(ev) {
-            var hist = window.History;
-            hist.pushState({
-                state: "instructor",
-                instructor: ev.target.rel
-            },  "", "/my/instructor/"+ev.target.rel);
+        $(".show_section_details").bind("click", function(ev) {
+            var course_id = ev.target.rel;
+            CourseModal.show_course_modal(course_id);
         });
+
 
     }
 };
