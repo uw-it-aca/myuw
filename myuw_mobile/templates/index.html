@@ -1,14 +1,10 @@
 {% extends "base_mobile.html" %}
 
 {% block content %}
-{% load templatetag_handlebars %}
 
       <div class="page-header">
-
         <h2 id="quarter-info">
-        {% tplhandlebars "quarter" %}
-            {{quarter}} {{year}} courses<a class="btn btn-visual pull-right" href="#"><i class="icon-calendar"></i> Visual</a>
-        {% endtplhandlebars %}
+            {% include "handlebars/quarter.html" %}
         </h2>
         
       </div>
@@ -19,80 +15,7 @@
             <div class="accordion" id="courselist">
 
             <!-- group (heading + body) -->
-            {% tplhandlebars "courses" %}
-            {{#each sections}}
-            <div class="accordion-group c{{color_id}} c{{color_id}}Border">
-                 <!-- heading -->
-                 <div class="accordion-heading"> 
-
-                <h3><a class="accordion-toggle" data-toggle="collapse" data-parent="#courselist" href="#course{{color_id}}"><i class="icon-chevron-down icon-white pull-right-center"></i>
-                  <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}}{{section_id}}</span>
-
-                  <span class="shortTitle">{{ course_title }}</span></a>
-                </h3>
-                 </div>
-                 <!-- /heading -->
-                 <!-- body -->
-                 <div id="course{{color_id}}" class="accordion-body collapse">
-                <div class="accordion-inner">
-                    <span class="scheduleHeading">Schedule</span>
-                        <table class="table-meeting">
-                        {{#each meetings}} 
-                        <tr>
-                            {{#if days_tbd }}
-                            <td colspan="2">Days and time to be arranged</td>
-                            {{else}}
-                            <td>
-                                {{#if meeting_days.monday}}M{{/if}}{{#if
-                                      meeting_days.tuesday}}T{{/if}}{{#if
-                                      meeting_days.wednesday}}W{{/if}}{{#if
-                                      meeting_days.thursday}}Th{{/if}}{{#if
-                                      meeting_days.friday}}F{{/if}}{{#if
-                                      meeting_days.saturday}}Sa{{/if}}{{#if
-                                      meeting_days.sunday}}Su{{/if}}
-                           </td>
-                            <td>{{formatTime start_time}} - {{formatTimeAMPM end_time}}</td>
-                            {{/if}}
-                            {{#if building_tbd}}
-                                <td>Room to be arranged</td>
-                            {{else}}
-                                <td><a href="http://uw.edu/maps/?{{ building }}" target="_blank">
-                                {{building}} {{room}}
-                            {{/if}}
-                            </a></td>
-                        </tr>
-                        {{/each}}
-
-                        </table>
-                        
-                    <dl class="dl-horizontal">     
-                    
-                     <dt>Type</dt>
-                      <dd>Lecture</dd>
-                     <dt>Instructor</dt>
-                      <dd>{{#each meetings}}
-                            <ul>
-                            {{#each instructors}}
-                                {{#if whitepages_publish}}
-                                <li><a href="javascript:void(0);" class="instructor" rel="{{uwregid}}">{{full_name}}</a></li>
-                                {{else}}
-                                <li>{{full_name}}</li>
-                                {{/if}}
-                                    
-                            {{/each}}
-                            </ul>
-                        {{/each}}</dd>
-
-                      <dt>Website</dt>
-                      <dd><a href="{{class_website_url}}" target="_blank">Course website</a></dd>
-                    </dl>
-                    
-                </div>
-                 </div>
-                 <!-- /body -->
-            </div>
-             {{/each}}
-             {% endtplhandlebars %}
+            {% include "handlebars/course_list.html" %}
             <!-- /group -->
             
         <!-- /end accordion -->

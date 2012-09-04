@@ -41,10 +41,11 @@ $(document).ready(function() {
             Instructor.show_instructor(data.instructor);
         }
         else if (state === "visual") {
-            show_visual_schedule()
+            VisualSchedule.show_visual_schedule();
         }
     });
 
     CourseList.show_list();
+
 
 });
