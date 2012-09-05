@@ -167,7 +167,7 @@ var VisualSchedule = {
 
 
         $(".show_section_details").bind("click", function(ev) {
-            var course_id = ev.target.rel;
+            var course_id = this.rel;
             CourseModal.show_course_modal(course_id);
         });
 
