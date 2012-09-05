@@ -40,6 +40,9 @@ $(document).ready(function() {
         else if (state === "instructor") {
             Instructor.show_instructor(data.instructor);
         }
+        else if (state === "textbooks") {
+            TextBooks.show_books();
+        }
         else if (state === "visual") {
             VisualSchedule.show_visual_schedule();
         }
@@ -54,6 +57,9 @@ $(document).ready(function() {
         else if (path === "/my/visual") {
             VisualSchedule.show_visual_schedule();
         }
+        else if (path === "/my/textbooks") {
+            TextBooks.show_books();
+        }
         else if (path.match(/^\/my\/instructor\/[A-Z0-9]+/)) {
             var matches = path.match(/^\/my\/instructor\/([A-Z0-9]+)/);
             Instructor.show_instructor(matches[1]);
@@ -64,7 +70,20 @@ $(document).ready(function() {
         }
     }
 
+        $(".show_textbooks").bind("click", function(ev) {
+            var hist = window.History;
+            hist.pushState({
+                state: "textbooks",
+            },  "", "/my/textbooks");
+
+            return false;
+        });
+
+
+
     show_page_from_url();
 
+
+    
 
 });

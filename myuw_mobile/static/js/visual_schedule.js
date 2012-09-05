@@ -163,6 +163,8 @@ var VisualSchedule = {
             hist.pushState({
                 state: "course_list",
             },  "", "/my/");
+
+            return false;
         });
 
 

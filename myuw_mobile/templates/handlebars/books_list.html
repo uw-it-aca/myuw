@@ -1,67 +1,54 @@
-
-
+{% load templatetag_handlebars %}
+    {% tplhandlebars "textbooks" %}
 
  <div class="row-fluid">
-		<div class="span12">
-		
-			<div class="books">
-			
-				<div class="c1"><h4 style="color:#fff;font-weight:normal;padding:2px 0 2px 5px;">CHEM 475</h4></div>
-				
-				<div style="height:110px;">
-				<div style="float:left;"><img src="img/chemistry.jpeg" alt="chemistry" width="100" height="120"/></div>
-				<h5>Quantum Chemistry (6th Edition)</h5>
-				</div>
-			
-				<dl style="margin-left:10px;" class="dl-horizontal">	 
-					 <dt>Author</dt>
-					  <dd>Ira N. Levine</dd>
-					 <dt>Price (New)</dt>
-					  <dd>$175.00</dd>
-					 <dt>Price (Used)</dt>
-					  <dd>$70.00</dd>
-					 <dt>Notes</dt>
-					  <dd>Required</dd>
-					 <dt>ISBN</dt>
-					  <dd><a href="#">978-0136131069</a></dd>
-					</dl>
-					
-					<hr>
-				
-				<div style="height:110px;">
-				<div style="float:left;"><img src="img/chemistry2.jpeg" alt="chemistry" width="100" height="120"/></div>
-				<h5>Modern Quantum Chemistry: Introduction to Advanced Electronic Structure Theory </h5>
-				</div>
-					
-				<dl style="margin-left:10px;" class="dl-horizontal">	 
-					
+        <div class="span12">
 
-					 <dt>Author</dt>
-					  <dd>Attila Szabo</dd>
-					  <dd>Neil S. Ostlund</dd>
-					 <dt>Price (New)</dt>
-					  <dd>$18.95</dd>
-					 <dt>Price (Used)</dt>
-					  <dd>$10.00</dd>
-					 <dt>Notes</dt>
-					  <dd>Required</dd>
-					 <dt>ISBN</dt>
-					  <dd><a href="#">978-0486691862</a></dd>
-					</dl>	
-					
-			</div>	
-			<div>
-				<div class="c3"><h4 style="color:#fff;font-weight:normal;padding:2px 0 2px 5px;">HUBIO 512A</h4></div>	 
-					
-					 <p>No textbook requirement has been received for this course. Please check with <a href="#">your instructor.</a></p>
-		
-			</div>	
-			<hr>
-			
-				<div style="margin-top:20px;"><p style="line-height:15px;color:#999;"><small>Information on course textbooks is collected by and provided courtesy of <a style="font-size:12px;" href="http://www.bookstore.washington.edu">University Book Store</a> and is subject to change regularly and without notice. </small></p></div>
-					
-		
-		 </div>
-	  </div>
-	  
-	  
+            <div class="books">
+            {{#each sections}}
+            <div class="c{{color_id}}"><h4 style="color:#fff;font-weight:normal;padding:2px 0 2px 5px;">{{curriculum}} {{course_number}}{{section_id}}</h4></div>
+            {{#if books}}
+                {{#each books}}
+                <div style="height:110px;">
+                {{#if cover_image_url}}
+                <div style="float:left;"><img src="{{cover_image_url}}" alt="" width="100" height="120" /></div>
+                {{else}}
+                What if there's no image?
+                {{/if}}
+                <h5>{{title}}</h5>
+                </div>
+
+                <dl style="margin-left:10px;" class="dl-horizontal">
+                     <dt>Author</dt>
+                        {{#each authors}}
+                      <dd>{{name}}</dd>
+                        {{/each}}
+                     <dt>Price (New)</dt>
+                      <dd>${{price}}</dd>
+                      {{#if used_price}}
+                     <dt>Price (Used)</dt>
+                      <dd>${{used_price}}</dd>
+                      {{/if}}
+                     <dt>Notes</dt>
+                        {{#if is_required}}
+                      <dd>Required</dd>
+                        {{/if}}
+                        {{#if notes}}
+                      <dd>{{notes}}</dd>
+                        {{/if}}
+                     <dt>ISBN</dt>
+                      <dd><a href="#">{{isbn}}</a></dd>
+                    </dl>
+                  {{/each}}
+            {{else}}
+            <p>No textbook requirement has been received for this course. Please check with <a href="#">your instructor -- WHICH ONE?.</a></p>
+            {{/if}}
+            {{/each}}
+        </div>
+</div>
+
+
+<div style="margin-top:20px;"><p style="line-height:15px;color:#999;"><small>Information on course textbooks is collected by and provided courtesy of <a style="font-size:12px;" href="http://www.bookstore.washington.edu">University Book Store</a> and is subject to change regularly and without notice. </small></p></div>
+
+
+             {% endtplhandlebars %}

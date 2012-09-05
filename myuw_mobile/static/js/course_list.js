@@ -24,6 +24,8 @@ var CourseList = {
             hist.pushState({
                 state: "visual",
             },  "", "/my/visual");
+
+            return false;
         });
 
 
@@ -33,6 +35,8 @@ var CourseList = {
                 state: "instructor",
                 instructor: ev.target.rel
             },  "", "/my/instructor/"+ev.target.rel);
+
+            return false;
         });
 
 
