@@ -1224,7 +1224,7 @@ li.inline {
   position: relative;
   display: inline-block;
   float: left;
-  background-color: #e6e6e6;
+  background-color: #eeeeee;
   font-weight: bold;
 }
 .five-day {
@@ -1251,11 +1251,10 @@ li.inline {
 .five-day:last-child {
   border-right: none;
 }
-/*
-.six-day:nth-of-type(even),fice-day:nth-of-type(odd) {
-
-	background-color: darken(@grayLighter,3%);
-}*/
+.six-day:nth-of-type(even),
+fice-day:nth-of-type(odd) {
+  background-color: #e6e6e6;
+}
 .day-label {
   width: 100%;
   border-bottom: 1px solid #999999;
@@ -1271,6 +1270,9 @@ li.inline {
   -moz-border-radius: 2px;
   border-radius: 2px;
   text-align: center;
+  font-size: 12px;
+}
+.show_section_details {
   font-size: 12px;
 }
 .pull-right-center {
