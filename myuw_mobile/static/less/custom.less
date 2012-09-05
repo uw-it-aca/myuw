@@ -492,7 +492,7 @@ ol.unstyled {
 	position: relative;
 	display:inline-block;
 	float: left;
-	background-color: darken(@grayLighter,3%);
+	background-color: @grayLighter;
 	font-weight: bold;
 //	padding-left: 1px;
 }
@@ -526,11 +526,11 @@ ol.unstyled {
 	border-right: none;
 
 }
-/*
+
 .six-day:nth-of-type(even),fice-day:nth-of-type(odd) {
 
 	background-color: darken(@grayLighter,3%);
-}*/
+}
 
 .day-label {
 	width:100%;
@@ -546,6 +546,9 @@ ol.unstyled {
 	.border-radius(2px);
 	//padding: 3px;
 	text-align: center;
+	font-size: 12px;
+}
+.show_section_details {
 	font-size: 12px;
 }
 // ======================================================
