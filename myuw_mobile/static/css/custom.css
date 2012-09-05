@@ -914,6 +914,9 @@ a:hover {
   padding-top: .75em;
   padding-bottom: 2px;
 }
+.btn-close {
+  margin-bottom: 5px;
+}
 .navbar-inner {
   background-color: #39275b;
   background-image: -moz-linear-gradient(top, #39275b, #39275b);
@@ -1122,6 +1125,17 @@ body {
   color: @yellow;
 }
 }*/
+.modal-header {
+  padding-top: 15px;
+  padding-bottom: 1px;
+}
+.modal-body {
+  padding-bottom: 0px;
+  max-height: 250px;
+}
+.modal-body .dl-horizontal {
+  margin-bottom: 5px;
+}
 .table-meeting {
   width: 98%;
   border-collapse: separate;
@@ -1190,6 +1204,10 @@ li.inline {
 .dl-horizontal dd {
   margin-bottom: 10px;
 }
+.dl-horizontal ul {
+  list-style: none;
+  margin: 0;
+}
 .courseIDtitle {
   padding-right: 10px;
   font-size: 28px;
@@ -1197,10 +1215,22 @@ li.inline {
   display: block;
   text-shadow: -1px -1px rgba(0, 0, 0, 0.1), 1px 1px rgba(255, 255, 255, 0.2);
 }
+.modal .courseIDtitle {
+  font-size: 20px;
+  line-height: .3;
+}
 .shortTitle {
   margin-top: 3px;
   white-space: nowrap;
   font-size: 16px;
+}
+.modal .courseIDtitle {
+  font-size: 20px;
+  line-height: .3;
+}
+.modal .shortTitle {
+  font-size: 13px;
+  text-shadow: -1px -1px rgba(0, 0, 0, 0.1), 1px 1px rgba(255, 255, 255, 0.2);
 }
 .visual-schedule {
   width: 100% ;
