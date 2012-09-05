@@ -8,6 +8,11 @@ var CourseList = {
         var template = Handlebars.compile(source);
 
         var course_data = WSData.course_data();
+        var index = 0;
+        for (index = 0; index < course_data.sections.length; index++) {
+            course_data.sections[index].index = index;
+        }
+
         $("#courselist").html(template(course_data));
 
         source = $("#quarter-list").html();
