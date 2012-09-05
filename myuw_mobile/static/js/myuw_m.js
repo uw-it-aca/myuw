@@ -10,14 +10,14 @@ $(document).ready(function() {
     //probably extraneous
     Handlebars.registerHelper("formatTime", function(time) {
         formatted = time.toString().split(":");
-        formatted[0] = parseInt(formatted[0], 10)
+        formatted[0] = parseInt(formatted[0], 10);
         return formatted.join(":");
     });
 
     //converts 24 hour time to 12 hour
     Handlebars.registerHelper("formatTimeAMPM", function(time) {
         formatted = time.toString().split(":");
-        formatted[0] = parseInt(formatted[0], 10)
+        formatted[0] = parseInt(formatted[0], 10);
         if (formatted[0] < 12) {
             formatted[1] += "AM";
         }

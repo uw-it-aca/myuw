@@ -17,7 +17,7 @@ var VisualSchedule = {
     render: function() {
         VisualSchedule.shown_am_marker = false;
         Handlebars.registerHelper('format_schedule_hour', function(hour) {
-            if (hour == 12) {
+            if (parseInt(hour, 10) === 12) {
                 VisualSchedule.shown_am_marker = true;
                 return hour + "p";
             }
@@ -78,71 +78,74 @@ var VisualSchedule = {
             has_6_days: true
         };
 
-        for (var index in course_data.sections) {
+        var index = 0;
+        for (index = 0; index < course_data.sections.length; index++) {
             var section = course_data.sections[index];
 
-            for (var meeting_index in section.meetings) {
+            var meeting_index = 0;
+            for (meeting_index = 0; meeting_index < section.meetings.length; meeting_index++) {
                 var meeting = section.meetings[meeting_index];
-                if (meeting.days_tbd) {
-                    continue;
-                }
+                if (!meeting.days_tbd) {
 
-                var start_parts = meeting.start_time.split(":");
-                var start_minutes = parseInt(start_parts[0], 10) * 60 + parseInt(start_parts[1], 10);
+                    var start_parts = meeting.start_time.split(":");
+                    var start_minutes = parseInt(start_parts[0], 10) * 60 + parseInt(start_parts[1], 10);
 
 
-                var end_parts = meeting.end_time.split(":");
-                var end_minutes = parseInt(end_parts[0], 10) * 60 + parseInt(end_parts[1], 10);
+                    var end_parts = meeting.end_time.split(":");
+                    var end_minutes = parseInt(end_parts[0], 10) * 60 + parseInt(end_parts[1], 10);
 
-                if (start_minutes < visual_data.earliest_start) {
-                    visual_data.earliest_start = start_minutes;
-                }
-                if (end_minutes > visual_data.latest_ending) {
-                    visual_data.latest_ending = end_minutes;
-                }
+                    if (start_minutes < visual_data.earliest_start) {
+                        visual_data.earliest_start = start_minutes;
+                    }
+                    if (end_minutes > visual_data.latest_ending) {
+                        visual_data.latest_ending = end_minutes;
+                    }
 
-                var meeting_info = {
-                    start: start_minutes,
-                    end: end_minutes,
-                    color_id: section.color_id,
-                    curriculum: section.curriculum_abbr,
-                    course_number: section.course_number,
-                    section_id: section.section_id,
-                    section_index: index
-                };
+                    var meeting_info = {
+                        start: start_minutes,
+                        end: end_minutes,
+                        color_id: section.color_id,
+                        curriculum: section.curriculum_abbr,
+                        course_number: section.course_number,
+                        section_id: section.section_id,
+                        section_index: index
+                    };
 
-                var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-                for (var day_index in days) {
-                    var day = days[day_index];
+                    var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+                    var day_index = 0;
+                    for (day_index = 0; day_index < days.length; day_index++) {
+                        var day = days[day_index];
 
-                    if (meeting.meeting_days[day]) {
-                        if (day == "saturday") {
-                            visual_data.has_6_days = true;
+                        if (meeting.meeting_days[day]) {
+                            if (day === "saturday") {
+                                visual_data.has_6_days = true;
+                            }
+                            visual_data[day].push(meeting_info);
                         }
-                        visual_data[day].push(meeting_info);
                     }
                 }
             }
         }
 
         // Make it so the start and end times are always on the hour:
-        var start_hour = parseInt(visual_data.earliest_start / 60)
-        if ((start_hour * 60) == visual_data.earliest_start) {
+        var start_hour = parseInt(visual_data.earliest_start / 60, 10);
+        if ((start_hour * 60) === visual_data.earliest_start) {
             visual_data.start_time = (start_hour * 60) - 60;
         }
         else {
             visual_data.start_time = (start_hour * 60);
         }
 
-        var end_hour = parseInt(visual_data.latest_ending / 60) + 1;
-        if ((end_hour * 60) == visual_data.latest_ending) {
+        var end_hour = parseInt(visual_data.latest_ending / 60, 10) + 1;
+        if ((end_hour * 60) === visual_data.latest_ending) {
             visual_data.end_time = (end_hour * 60) - 60;
         }
         else {
             visual_data.end_time = (end_hour * 60);
         }
 
-        for (var i = visual_data.start_time; i <= visual_data.end_time; i += 60) {
+        var i = 0;
+        for (i = visual_data.start_time; i <= visual_data.end_time; i += 60) {
             visual_data.display_hours.push({
                 hour: (i / 60),
                 position: i
@@ -168,6 +171,8 @@ var VisualSchedule = {
             CourseModal.show_course_modal(course_id);
         });
 
+    },
 
+    _get_meeting_info: function(meeting) {
     }
 };

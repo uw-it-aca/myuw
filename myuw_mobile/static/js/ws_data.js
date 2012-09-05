@@ -6,7 +6,7 @@ WSData = {
     },
 
     fetch_course_data: function(callback, args) {
-            if (WSData._course_data == null) {
+            if (WSData._course_data === null) {
                 $.ajax({
                     url: "/my/api/v1/schedule/current/",
                     dataType: "JSON",
