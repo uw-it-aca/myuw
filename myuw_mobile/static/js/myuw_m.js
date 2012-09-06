@@ -31,6 +31,12 @@ $(document).ready(function() {
         return formatted.join(":");
     });
 
+    Handlebars.registerHelper("ucfirst", function(str) {
+        return str.replace(/^([a-z])/, function(match) {
+            return match.toUpperCase();
+        });
+    });
+
 
     History.Adapter.bind(window,'statechange',function(){
         var history_state = History.getState();
