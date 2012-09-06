@@ -1201,6 +1201,9 @@ a {
 .page-header h2 small {
   font-size: 18px;
 }
+.base-font-size {
+  font-size: 14px;
+}
 ul.unstyled li.additional,
 ol.unstyled li.additional {
   line-height: 30px;
@@ -1316,6 +1319,17 @@ fice-day:nth-of-type(odd) {
 .show_section_details {
   font-size: 12px;
   color: #f8f7f0;
+}
+.books-list h4 {
+  color: #fff;
+  font-weight: normal;
+  padding: 2px 0 2px 5px;
+}
+.book-image {
+  height: 120px;
+}
+.book-details {
+  margin-left: 10px;
 }
 .pull-right-center {
   float: right;
