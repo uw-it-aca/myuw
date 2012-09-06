@@ -25,8 +25,11 @@ $(document).ready(function() {
             formatted[1] += "AM";
         }
         else {
-            formatted[0] = formatted[0] - 12;
             formatted[1] += "PM";
+        }
+
+        if (formatted[0] > 12) {
+            formatted[0] = formatted[0] - 12;
         }
         return formatted.join(":");
     });
