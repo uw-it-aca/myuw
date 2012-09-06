@@ -776,49 +776,49 @@ a:hover {
   background-color: #c8a26f;
 }
 .c1a {
-  background-color: #c8a26f;
+  background-color: #d6ba94;
 }
 .c2 {
   background-color: #84b782;
 }
 .c2a {
-  background-color: #84b782;
+  background-color: #a4caa2;
 }
 .c3 {
   background-color: #6d8db4;
 }
 .c3a {
-  background-color: #6d8db4;
+  background-color: #8fa7c5;
 }
 .c4 {
   background-color: #c86f6f;
 }
 .c4a {
-  background-color: #c86f6f;
+  background-color: #d69494;
 }
 .c5 {
   background-color: #998577;
 }
 .c5a {
-  background-color: #998577;
+  background-color: #af9f94;
 }
 .c6 {
   background-color: #a58dce;
 }
 .c6a {
-  background-color: #a58dce;
+  background-color: #c1b1dd;
 }
 .c7 {
   background-color: #c8c36f;
 }
 .c7a {
-  background-color: #c8c36f;
+  background-color: #d6d294;
 }
 .c8 {
   background-color: #6fc8b6;
 }
 .c8a {
-  background-color: #6fc8b6;
+  background-color: #94d6c9;
 }
 .c1Border {
   border-left: 5px solid #c8a26f;
@@ -826,9 +826,9 @@ a:hover {
   border-bottom: 5px solid #c8a26f;
 }
 .c1aBorder {
-  border-left: 5px solid #c8a26f;
-  border-top: 1px solid #c8a26f;
-  border-bottom: 5px solid #c8a26f;
+  border-left: 5px solid #d6ba94;
+  border-top: 1px solid #d6ba94;
+  border-bottom: 5px solid #d6ba94;
 }
 .c2Border {
   border-left: 5px solid #84b782;
@@ -836,9 +836,9 @@ a:hover {
   border-bottom: 5px solid #84b782;
 }
 .c2aBorder {
-  border-left: 5px solid #84b782;
-  border-top: 1px solid #84b782;
-  border-bottom: 5px solid #84b782;
+  border-left: 5px solid #a4caa2;
+  border-top: 1px solid #a4caa2;
+  border-bottom: 5px solid #a4caa2;
 }
 .c3Border {
   border-left: 5px solid #6d8db4;
@@ -846,9 +846,9 @@ a:hover {
   border-bottom: 5px solid #6d8db4;
 }
 .c3aBorder {
-  border-left: 5px solid #6d8db4;
-  border-top: 1px solid #6d8db4;
-  border-bottom: 5px solid #6d8db4;
+  border-left: 5px solid #8fa7c5;
+  border-top: 1px solid #8fa7c5;
+  border-bottom: 5px solid #8fa7c5;
 }
 .c4Border {
   border-left: 5px solid #c86f6f;
@@ -856,9 +856,9 @@ a:hover {
   border-bottom: 5px solid #c86f6f;
 }
 .c4aBorder {
-  border-left: 5px solid #c86f6f;
-  border-top: 1px solid #c86f6f;
-  border-bottom: 5px solid #c86f6f;
+  border-left: 5px solid #d69494;
+  border-top: 1px solid #d69494;
+  border-bottom: 5px solid #d69494;
 }
 .c5Border {
   border-left: 5px solid #998577;
@@ -866,9 +866,9 @@ a:hover {
   border-bottom: 5px solid #998577;
 }
 .c5aBorder {
-  border-left: 5px solid #998577;
-  border-top: 1px solid #998577;
-  border-bottom: 5px solid #998577;
+  border-left: 5px solid #af9f94;
+  border-top: 1px solid #af9f94;
+  border-bottom: 5px solid #af9f94;
 }
 .c6Border {
   border-left: 5px solid #a58dce;
@@ -876,9 +876,9 @@ a:hover {
   border-bottom: 5px solid #a58dce;
 }
 .c6aBorder {
-  border-left: 5px solid #a58dce;
-  border-top: 1px solid #a58dce;
-  border-bottom: 5px solid #a58dce;
+  border-left: 5px solid #c1b1dd;
+  border-top: 1px solid #c1b1dd;
+  border-bottom: 5px solid #c1b1dd;
 }
 .c7Border {
   border-left: 5px solid #c8c36f;
@@ -886,9 +886,9 @@ a:hover {
   border-bottom: 5px solid #c8c36f;
 }
 .c7aBorder {
-  border-left: 5px solid #c8c36f;
-  border-top: 1px solid #c8c36f;
-  border-bottom: 5px solid #c8c36f;
+  border-left: 5px solid #d6d294;
+  border-top: 1px solid #d6d294;
+  border-bottom: 5px solid #d6d294;
 }
 .c8Border {
   border-left: 5px solid #6fc8b6;
@@ -896,9 +896,9 @@ a:hover {
   border-bottom: 5px solid #6fc8b6;
 }
 .c8aBorder {
-  border-left: 5px solid #6fc8b6;
-  border-top: 1px solid #6fc8b6;
-  border-bottom: 5px solid #6fc8b6;
+  border-left: 5px solid #94d6c9;
+  border-top: 1px solid #94d6c9;
+  border-bottom: 5px solid #94d6c9;
 }
 .accordion-heading .accordion-toggle {
   padding: 0px 10px;
@@ -1125,23 +1125,33 @@ body {
   color: @yellow;
 }
 }*/
+.modal {
+  -webkit-background-clip: border-box;
+  -moz-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  max-height: 400px;
+}
 .modal-header {
   padding-top: 15px;
   padding-bottom: 1px;
-  -moz-border-radius-topleft: 5px;
-  -moz-border-radius-topright: 5px;
-  -webkit-border-top-left-radius: 5px;
-  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
 }
 .modal-header .close {
   font-size: 28px;
 }
 .modal-body {
   padding-bottom: 0px;
-  max-height: 60%;
+  max-height: 300px;
 }
 .modal-body .dl-horizontal {
   margin-bottom: 5px;
+  overflow-y: auto;
 }
 .table-meeting {
   width: 98%;
