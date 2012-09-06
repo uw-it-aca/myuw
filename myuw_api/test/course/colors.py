@@ -33,6 +33,38 @@ class TestCourseColors(TestCase):
 
         self.assertEquals(colors[section.section_label()], 1, "Single course section gets the first color")
 
+
+    # This is MUWM-266
+    def test_098(self):
+        term = Term()
+        term.year = 2012
+        term.quarter = "autumn"
+
+        person = Person()
+        person.uwnetid = "javerage"
+        person.regid = "A0000000000000000000000000000001"
+        schedule = ClassSchedule()
+
+        schedule.term = term
+        schedule.user = person
+        schedule.sections = []
+
+        section = Section()
+        section.term = term
+        section.curriculum_abbr = "MATH"
+        section.course_number = "098"
+        section.section_id = "A"
+        section.is_primary_section = True
+
+        schedule.sections.append(section)
+
+        sched_dao = ScheduleDAO(person.regid)
+        colors = sched_dao.get_colors_for_schedule(schedule)
+        self.assertEquals(colors[section.section_label()], 1, "Single course section gets the first color")
+
+        colors = sched_dao.get_colors_for_schedule(schedule)
+        self.assertEquals(colors[section.section_label()], 1, "Single course section gets the first color")
+
     def test_2_courses(self):
         term = Term()
         term.year = 2012

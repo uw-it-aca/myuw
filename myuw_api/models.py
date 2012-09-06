@@ -123,7 +123,8 @@ class CourseColor(models.Model):
     year = models.PositiveSmallIntegerField(db_index=True)
     quarter = models.CharField(max_length=10, db_index=True)
     curriculum_abbr = models.CharField(max_length=10)
-    course_number = models.PositiveSmallIntegerField()
+    # 098 is a valid course number, and that leading 0 matters
+    course_number = models.CharField(max_length=3)
     section_id = models.CharField(max_length=2)
     is_active = models.BooleanField()
     color_id = models.PositiveIntegerField()
