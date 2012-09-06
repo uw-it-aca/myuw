@@ -1227,12 +1227,23 @@ li.inline {
   list-style: none;
   margin: 0;
 }
+.book-image .dl-horizontal {
+  margin: 0 inherit;
+}
 .book-image .dl-horizontal dt {
   clear: none;
 }
 .book-image .dl-horizontal dd {
-  margin-left: 100px;
-  margin-left: 60px;
+  margin-left: 140px;
+}
+.book-info {
+  margin-bottom: 5px;
+}
+.book-info dt {
+  margin-bottom: 5px;
+}
+.book-info dd {
+  margin-bottom: 2px;
 }
 .courseIDtitle {
   padding-right: 10px;
@@ -1340,7 +1351,14 @@ fice-day:nth-of-type(odd) {
 }
 .book-image {
   height: auto;
-  margin-bottom: 20px;
+}
+.book-image > h5 {
+  font-size: 120%;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.book-cover {
+  margin-right: 10px;
 }
 .pull-right-center {
   float: right;
