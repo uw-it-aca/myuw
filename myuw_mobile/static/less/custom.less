@@ -441,6 +441,8 @@ a {
   	}
 	}
 }
+
+.base-font-size {font-size: @baseFontSizeLink;}
 //Lists
 ul.unstyled,
 ol.unstyled {
@@ -478,13 +480,13 @@ ol.unstyled {
 	width: 100% ;
 	//margin-left: -10px;
 	//border: 1px solid red;
-	height: 30em; 
+	height: 20em; 
 	position:relative;
-	background-color: @grayLighter;
 	.clearfix();
+	background-color:@grayLighter;
 }
 
-@time-bar-width: 8%;
+@time-bar-width: 5%;
 .time-bar {
 	height: 100%;
 	width: @time-bar-width;
@@ -492,12 +494,6 @@ ol.unstyled {
 	position: relative;
 	display:inline-block;
 	float: left;
-	background-color: @grayLighter;
-	font-weight: bold;
-//	padding-left: 1px;
-}
-.time-bar > p {
-
 }
 .five-day {
 	width:19%;
@@ -510,7 +506,7 @@ ol.unstyled {
 }
 
 .six-day {
-	width: (97% - 5) / 6;
+	width: (97% - @time-bar-width) / 6;
 	//width: 14%;
 	height:100%;
 	//border-right: 1px inset black;
@@ -519,6 +515,8 @@ ol.unstyled {
 	//margin-left:-5px;
 	float: left;
 	color: @white;
+	font-size:90%;
+	
 	
 	p {color:#333;}
 }
@@ -527,14 +525,9 @@ ol.unstyled {
 
 }
 
-.six-day:nth-of-type(even),fice-day:nth-of-type(odd) {
-
-	background-color: darken(@grayLighter,3%);
-}
-
 .day-label {
 	width:100%;
-	border-bottom: 1px solid @grayLight;
+	border-bottom: 1px solid red;
 	height:7%;
 	top:0px;
 }
@@ -543,16 +536,24 @@ ol.unstyled {
 }
 .visual-course {
 	width: 100%;
-	.border-radius(2px);
-	//padding: 3px;
-	text-align: center;
-	font-size: 12px;
-	line-height: 12px;
+	.border-radius(4px);
 }
-.show_section_details {
-	font-size: 12px;
-	color: @myuw;
-}
+
+.books-list {
+
+	h4 {
+	color:#fff;
+	font-weight:normal;
+	padding:2px 0 2px 5px;
+	}
+}	
+	.book-image {height:120px;}
+	
+	.book-details {margin-left:10px;}
+
+
+
+
 // ======================================================
 // utilities
 // ======================================================

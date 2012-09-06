@@ -4,21 +4,21 @@
  <div class="row-fluid">
         <div class="span12">
 
-            <div class="books">
+            <div>
             {{#each sections}}
-            <div class="c{{color_id}}"><h4 style="color:#fff;font-weight:normal;padding:2px 0 2px 5px;">{{curriculum}} {{course_number}}{{section_id}}</h4></div>
+            <div class="c{{color_id}} books-list"><h4>{{curriculum}} {{course_number}}{{section_id}}</h4></div>
             {{#if books}}
                 {{#each books}}
-                <div style="height:110px;">
+              <div class="book-image" style="height:140px;margin-bottom:20px;">
                 {{#if cover_image_url}}
-                <div style="float:left;"><img src="{{cover_image_url}}" alt="" width="100" height="120" /></div>
+                <div class="pull-left book-cover" style="padding-right:5px;"><img src="{{cover_image_url}}" alt="book cover" width="100" /></div>
                 {{else}}
                 What if there's no image?
                 {{/if}}
                 <h5>{{title}}</h5>
-                </div>
+              </div>
 
-                <dl style="margin-left:10px;" class="dl-horizontal">
+                <dl class="dl-horizontal book-details">
                      <dt>Author</dt>
                         {{#each authors}}
                       <dd>{{name}}</dd>
@@ -41,14 +41,14 @@
                     </dl>
                   {{/each}}
             {{else}}
-            <p>No textbook requirement has been received for this course. Please check with <a href="#">your instructor -- WHICH ONE?.</a></p>
+            <p>No textbook requirement has been received for this course. Please check with <a class="base-font-size" href="#">your instructor -- WHICH ONE?.</a></p>
             {{/if}}
             {{/each}}
         </div>
 </div>
 
 
-<div style="margin-top:20px;"><p style="line-height:15px;color:#999;"><small>Information on course textbooks is collected by and provided courtesy of <a style="font-size:12px;" href="http://www.bookstore.washington.edu">University Book Store</a> and is subject to change regularly and without notice. </small></p></div>
+<div style="margin-top:20px;"><p class="muted"><small>Information on course textbooks is collected by and provided courtesy of <a style="font-size:12px;" href="http://www.bookstore.washington.edu">University Book Store</a> and is subject to change regularly and without notice. </small></p></div>
 
 
              {% endtplhandlebars %}
