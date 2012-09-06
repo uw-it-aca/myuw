@@ -8,6 +8,7 @@ var TextBooks = {
     },
 
     render_books: function() {
+        $('html,body').animate({scrollTop: 0}, 'fast');
         var source   = $("#textbooks").html();
         var template = Handlebars.compile(source);
 
@@ -20,6 +21,7 @@ var TextBooks = {
         for (index = 0; index < course_data.sections.length; index++) {
             var section = course_data.sections[index];
             template_data["sections"].push({
+                index: index,
                 section_title: section["course_title"],
                 curriculum: section["curriculum_abbr"],
                 course_number: section["course_number"],
@@ -40,6 +42,19 @@ var TextBooks = {
             hist.pushState({
                 state: "course_list",
             },  "", "/my/");
+
+            return false;
+        });
+
+
+        $(".show_instructors").bind("click", function(ev) {
+            var hist = window.History;
+            hist.pushState({
+                state: "course_list",
+                course_index: ev.currentTarget.rel
+            },  "", "/my/");
+
+            return false;
         });
 
 

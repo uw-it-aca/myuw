@@ -1,9 +1,12 @@
 var CourseList = {
-    show_list: function() {
-        WSData.fetch_course_data(CourseList.render_list);
+    show_list: function(course_index) {
+        WSData.fetch_course_data(CourseList.render_list, [course_index]);
     },
 
-    render_list: function() {
+    render_list: function(course_index) {
+        if (course_index === undefined) {
+            $('html,body').animate({scrollTop: 0}, 'fast');
+        }
         var source   = $("#courses").html();
         var template = Handlebars.compile(source);
 
@@ -19,6 +22,11 @@ var CourseList = {
         source = $("#quarter-list").html();
         template = Handlebars.compile(source);
         $("#quarter-info").html(template({year: course_data.year, quarter: course_data.quarter}));
+
+        if (course_index !== undefined) {
+            $("#course"+course_index).collapse('show');
+            $('html,body').animate({scrollTop: $("#course_wrapper"+course_index).offset().top},'slow');
+        }
 
         $(".display_visual_sched").bind("click", function(ev) {
             var hist = window.History;

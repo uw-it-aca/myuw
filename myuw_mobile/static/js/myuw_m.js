@@ -46,9 +46,12 @@ $(document).ready(function() {
         var data = history_state.data;
         var state = data.state;
 
-        if (state === null || state === "course_list") {
-            // Figure out what to do from the url
+        if (state === null) {
             show_page_from_url();
+        }
+        else if (state === "course_list") {
+            // Figure out what to do from the url
+            CourseList.show_list(data.course_index);
         }
         else if (state === "instructor") {
             Instructor.show_instructor(data.instructor);

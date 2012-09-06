@@ -15,6 +15,7 @@ var VisualSchedule = {
     },
 
     render: function() {
+        $('html,body').animate({scrollTop: 0}, 'fast');
         VisualSchedule.shown_am_marker = false;
         Handlebars.registerHelper('format_schedule_hour', function(hour) {
             if (parseInt(hour, 10) === 12) {
