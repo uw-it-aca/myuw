@@ -3,6 +3,7 @@ var CourseModal = {
         var source   = $("#course_modal").html();
         var template = Handlebars.compile(source);
 
+        WSData.normalize_instructors();
         var course_data = WSData.course_data();
         var section = course_data.sections[course_index];
 
