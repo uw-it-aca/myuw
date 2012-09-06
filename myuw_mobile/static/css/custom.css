@@ -914,6 +914,9 @@ a:hover {
   padding-top: .75em;
   padding-bottom: 2px;
 }
+.btn-close {
+  margin-bottom: 5px;
+}
 .navbar-inner {
   background-color: #39275b;
   background-image: -moz-linear-gradient(top, #39275b, #39275b);
@@ -1122,6 +1125,24 @@ body {
   color: @yellow;
 }
 }*/
+.modal-header {
+  padding-top: 15px;
+  padding-bottom: 1px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+}
+.modal-header .close {
+  font-size: 28px;
+}
+.modal-body {
+  padding-bottom: 0px;
+  max-height: 60%;
+}
+.modal-body .dl-horizontal {
+  margin-bottom: 5px;
+}
 .table-meeting {
   width: 98%;
   border-collapse: separate;
@@ -1153,6 +1174,9 @@ body {
 .table-meeting td:last-child {
   text-align: right;
 }
+.modal-body .table-meeting {
+  margin: 0;
+}
 a {
   font-size: 17px;
 }
@@ -1177,9 +1201,6 @@ a {
 .page-header h2 small {
   font-size: 18px;
 }
-.base-font-size {
-  font-size: 14px;
-}
 ul.unstyled li.additional,
 ol.unstyled li.additional {
   line-height: 30px;
@@ -1193,6 +1214,10 @@ li.inline {
 .dl-horizontal dd {
   margin-bottom: 10px;
 }
+.dl-horizontal ul {
+  list-style: none;
+  margin: 0;
+}
 .courseIDtitle {
   padding-right: 10px;
   font-size: 28px;
@@ -1200,17 +1225,29 @@ li.inline {
   display: block;
   text-shadow: -1px -1px rgba(0, 0, 0, 0.1), 1px 1px rgba(255, 255, 255, 0.2);
 }
+.modal .courseIDtitle {
+  font-size: 20px;
+  line-height: .3;
+}
 .shortTitle {
   margin-top: 3px;
   white-space: nowrap;
   font-size: 16px;
 }
+.modal .courseIDtitle {
+  font-size: 20px;
+  line-height: .3;
+}
+.modal .shortTitle {
+  font-size: 13px;
+  text-shadow: -1px -1px rgba(0, 0, 0, 0.1), 1px 1px rgba(255, 255, 255, 0.2);
+}
 .visual-schedule {
   width: 100% ;
-  height: 20em;
+  height: 30em;
   position: relative;
-  *zoom: 1;
   background-color: #eeeeee;
+  *zoom: 1;
 }
 .visual-schedule:before,
 .visual-schedule:after {
@@ -1223,10 +1260,12 @@ li.inline {
 }
 .time-bar {
   height: 100%;
-  width: 5%;
+  width: 8%;
   position: relative;
   display: inline-block;
   float: left;
+  background-color: #eeeeee;
+  font-weight: bold;
 }
 .five-day {
   width: 19%;
@@ -1244,7 +1283,6 @@ li.inline {
   display: inline-block;
   float: left;
   color: #ffffff;
-  font-size: 90%;
 }
 .six-day p {
   color: #333;
@@ -1253,9 +1291,13 @@ li.inline {
 .five-day:last-child {
   border-right: none;
 }
+.six-day:nth-of-type(even),
+fice-day:nth-of-type(odd) {
+  background-color: #e6e6e6;
+}
 .day-label {
   width: 100%;
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid #999999;
   height: 7%;
   top: 0px;
 }
@@ -1264,20 +1306,16 @@ li.inline {
 }
 .visual-course {
   width: 100%;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 12px;
 }
-.books-list h4 {
-  color: #fff;
-  font-weight: normal;
-  padding: 2px 0 2px 5px;
-}
-.book-image {
-  height: 120px;
-}
-.book-details {
-  margin-left: 10px;
+.show_section_details {
+  font-size: 12px;
+  color: #f8f7f0;
 }
 .pull-right-center {
   float: right;
