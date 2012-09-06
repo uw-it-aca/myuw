@@ -48,107 +48,107 @@
 }
 
 .c1 {
- background-color:@courseOrange;
+ background-color: @courseOrange;
 }
-.c1a {
- background-color:@courseOrange;
+.c1a { 
+ background-color: lighten(@courseOrange, 10%);
 }
 .c2 {
- background-color:@courseGreen;
+ background-color: @courseGreen;
 }
 .c2a {
- background-color:@courseGreen;
+ background-color: lighten(@courseGreen, 10%);
 }
 .c3 {
   background-color: @courseBlue;
 }
 .c3a {
-  background-color: @courseBlue;
+  background-color: lighten(@courseBlue,10%);
 }
 .c4{
   background-color: @courseRed;
 }
 .c4a{
-  background-color: @courseRed;
+  background-color: lighten(@courseRed, 10%);
 }
 .c5{
   background-color: @courseBrown;
 }
 .c5a{
-  background-color: @courseBrown;
+  background-color: lighten(@courseBrown, 10%);
 }
 .c6{
   background-color: @coursePurple;
 }
 .c6a{
-  background-color: @coursePurple;
+  background-color: lighten(@coursePurple, 10%);
 }
 .c7{
   background-color: @courseGold;
 }
 .c7a{
-  background-color: @courseGold;
+  background-color: lighten(@courseGold, 10%);
 }
 .c8{
   background-color: @courseTeal;
 }
 .c8a{
-  background-color: @courseTeal;
+  background-color: lighten(@courseTeal, 10%);
 }
 
 .c1Border {
   .courseBorder(@courseOrange);
 }
 .c1aBorder {
-  .courseBorder(@courseOrange);
+  .courseBorder(lighten(@courseOrange,10%));
 }
 .c2Border {
   .courseBorder(@courseGreen);
 }
 .c2aBorder {
-  .courseBorder(@courseGreen);
+  .courseBorder(lighten(@courseGreen,10%));
 }
 
 .c3Border {
   .courseBorder(@courseBlue);
 }
 .c3aBorder {
-  .courseBorder(@courseBlue);
+  .courseBorder(lighten(@courseBlue,10%));
 }
 
 .c4Border {
   .courseBorder(@courseRed);
 }
 .c4aBorder {
-  .courseBorder(@courseRed);
+  .courseBorder(lighten(@courseRed,10%));
 }
 
 .c5Border {
   .courseBorder(@courseBrown);
 }
 .c5aBorder {
-  .courseBorder(@courseBrown);
+  .courseBorder(lighten(@courseBrown,10%));
 }
 
 .c6Border {
   .courseBorder(@coursePurple);
 }
 .c6aBorder {
-  .courseBorder(@coursePurple);
+  .courseBorder(lighten(@coursePurple,10%));
 }
 
 .c7Border {
   .courseBorder(@courseGold);
 }
 .c7aBorder {
-  .courseBorder(@courseGold);
+  .courseBorder(lighten(@courseGold,10%));
 }
 
 .c8Border {
   .courseBorder(@courseTeal);
 }
 .c8aBorder {
-  .courseBorder(@courseTeal);
+  .courseBorder(lighten(@courseTeal,10%));
 }
 
 .accordion-heading .accordion-toggle {
@@ -379,12 +379,18 @@ body {
 // ======================================================
 // modal
 // ======================================================
+.modal {
+	.background-clip(border-box);
+	.border-radius(4px);
+	max-height: 400px;
+}
+
 
 .modal-header {
 	padding-top: 15px;
 	padding-bottom: 1px;
 	//.border-radius(6px);
-	@modal-rad: 5px;
+	@modal-rad: 3px;
 	-moz-border-radius-topleft: @modal-rad;
 -moz-border-radius-topright: @modal-rad;
 -webkit-border-top-left-radius: @modal-rad;
@@ -395,9 +401,10 @@ body {
 }
 .modal-body {
 	padding-bottom: 0px;
-	max-height: 60%;
+	max-height: 300px;
 	.dl-horizontal {
 	margin-bottom: 5px;
+	overflow-y: auto;
 	
 	}
 }
