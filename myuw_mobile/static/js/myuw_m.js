@@ -11,6 +11,9 @@ $(document).ready(function() {
     Handlebars.registerHelper("formatTime", function(time) {
         formatted = time.toString().split(":");
         formatted[0] = parseInt(formatted[0], 10);
+        if (formatted[0] > 12) {
+            formatted[0] -= 12;
+        }
         return formatted.join(":");
     });
 
@@ -22,6 +25,7 @@ $(document).ready(function() {
             formatted[1] += "AM";
         }
         else {
+            formatted[0] = formatted[0] - 12;
             formatted[1] += "PM";
         }
         return formatted.join(":");
