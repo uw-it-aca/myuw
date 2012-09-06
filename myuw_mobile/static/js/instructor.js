@@ -8,7 +8,12 @@ var Instructor = {
         
         var source = $("#header").html();
         var template = Handlebars.compile(source);
-        $("#quarter-info").html(template({DisplayName: instructor_data.DisplayName}));
+        $("#page-header").html(template(
+            {   DisplayName: instructor_data.DisplayName, 
+                Title1: instructor_data.PersonAffiliations.EmployeePersonAffiliation.EmployeeWhitePages.Title1,
+                Title2: instructor_data.PersonAffiliations.EmployeePersonAffiliation.EmployeeWhitePages.Title2,
+            }
+        ));
 
         var data = instructor_data.PersonAffiliations.EmployeePersonAffiliation.EmployeeWhitePages;
         data = $.extend(data, {Mailstop: instructor_data.PersonAffiliations.EmployeePersonAffiliation.MailStop});

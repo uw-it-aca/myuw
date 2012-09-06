@@ -1,15 +1,14 @@
 {% load templatetag_handlebars %}
 
     {% tplhandlebars "header" %}
-        {{DisplayName}}
+        <h2>{{DisplayName}}</h2>
+    <h3 style="line-height:18px;margin:0;">
+        <small>{{Title1}}{{#if Title2}}, {{Title2}}{{/if}}</small>
+    </h3>
     {% endtplhandlebars %}
 
     {% tplhandlebars "instructor" %}
 
-<div class="row-fluid">        
-        <h3 style="line-height:18px;margin:0;"><small>Associate Professor, Comparative History of Ideas Program</small></h3>
-        
-      
       <div class="row-fluid">
         <div class="span12">
         <!-- start main content -->
@@ -41,7 +40,8 @@
         </dl>
         
         <p style="line-height:16px;color:#777;padding-top:10px;font-size:90%;"><small>Pursuant to RCW 42.56, the UW is providing this directory information for non-commercial purposes only. Any use of the information for commercial purposes is prohibited.</small></p>
-</div>   
+       </div>   
+    </div>
         <!-- /end main content -->
 
 {% endtplhandlebars %}
