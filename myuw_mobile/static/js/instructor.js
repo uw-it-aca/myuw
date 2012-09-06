@@ -11,6 +11,7 @@ var Instructor = {
         $("#quarter-info").html(template({DisplayName: instructor_data.DisplayName}));
 
         var data = instructor_data.PersonAffiliations.EmployeePersonAffiliation.EmployeeWhitePages;
+        data = $.extend(data, {Mailstop: instructor_data.PersonAffiliations.EmployeePersonAffiliation.MailStop});
         
         source = $("#instructor").html();
         template = Handlebars.compile(source);
