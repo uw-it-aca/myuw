@@ -744,10 +744,6 @@ ul.icons li .icon-large:before {
   content: "\f200";
 }
 .accordion-group {
-  /*border-left:5px solid @grayLighter;
-  border-top:1px solid @grayLighter;
-  border-bottom: 1px solid @grayLighter;*/
-
   border-right: 0px;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
@@ -1226,7 +1222,6 @@ li.inline {
 }
 .dl-horizontal dd {
   margin-bottom: 10px;
-  margin-left: 100px;
 }
 .dl-horizontal ul {
   list-style: none;
@@ -1236,6 +1231,7 @@ li.inline {
   clear: none;
 }
 .book-image .dl-horizontal dd {
+  margin-left: 100px;
   margin-left: 60px;
 }
 .courseIDtitle {
