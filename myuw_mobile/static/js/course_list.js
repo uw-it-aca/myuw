@@ -7,6 +7,7 @@ var CourseList = {
         var source   = $("#courses").html();
         var template = Handlebars.compile(source);
 
+        WSData.normalize_instructors();
         var course_data = WSData.course_data();
         var index = 0;
         for (index = 0; index < course_data.sections.length; index++) {

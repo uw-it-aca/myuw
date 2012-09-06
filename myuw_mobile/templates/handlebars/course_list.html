@@ -50,8 +50,9 @@
                     
                      <dt>Type</dt>
                       <dd>{{ucfirst meetings.0.type}}</dd>
+                      {{#if instructors}}
                      <dt>Instructor</dt>
-                      <dd>{{#each meetings}}
+                      <dd>
                             <ul>
                             {{#each instructors}}
                                 {{#if whitepages_publish}}
@@ -62,8 +63,8 @@
                                     
                             {{/each}}
                             </ul>
-                        {{/each}}</dd>
-
+                        </dd>
+                        {{/if}}
                       <dt>Website</dt>
                       <dd><a href="{{class_website_url}}" target="_blank">Course website</a></dd>
                     </dl>
