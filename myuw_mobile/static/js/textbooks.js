@@ -33,7 +33,7 @@ var TextBooks = {
 
         $("#courselist").html(template(template_data));
 
-        source = $("#quarter-visual").html();
+        source = $("#quarter-books").html();
         template = Handlebars.compile(source);
         $("#quarter-info").html(template({year: course_data.year, quarter: course_data.quarter}));
 
