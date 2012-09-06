@@ -1,6 +1,7 @@
         {% load templatetag_handlebars %}
             {% tplhandlebars "courses" %}
             {{#each sections}}
+            <div class="accordian">
             <div class="accordion-group c{{color_id}} c{{color_id}}Border">
                  <!-- heading -->
                  <div class="accordion-heading"> 
@@ -70,6 +71,7 @@
                 </div>
                  </div>
                  <!-- /body -->
+            </div>
             </div>
              {{/each}}
              {% endtplhandlebars %}
