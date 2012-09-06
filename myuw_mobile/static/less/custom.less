@@ -171,6 +171,10 @@
   padding-bottom: 2px;
 }
 
+.btn-close {
+  margin-bottom: 5px;
+}
+
 // ======================================================
 // navbar
 // ======================================================
@@ -373,6 +377,33 @@ body {
 }*/
 
 // ======================================================
+// modal
+// ======================================================
+
+.modal-header {
+	padding-top: 15px;
+	padding-bottom: 1px;
+	//.border-radius(6px);
+	@modal-rad: 5px;
+	-moz-border-radius-topleft: @modal-rad;
+-moz-border-radius-topright: @modal-rad;
+-webkit-border-top-left-radius: @modal-rad;
+-webkit-border-top-right-radius: @modal-rad;
+	.close {
+	font-size:28px;
+	}
+}
+.modal-body {
+	padding-bottom: 0px;
+	max-height: 60%;
+	.dl-horizontal {
+	margin-bottom: 5px;
+	
+	}
+}
+
+
+// ======================================================
 // tables
 // ======================================================
 
@@ -405,6 +436,10 @@ body {
     text-align: right;
   }
   
+}
+
+.modal-body .table-meeting {
+	margin: 0;
 }
 
 // ======================================================
@@ -441,8 +476,6 @@ a {
   	}
 	}
 }
-
-.base-font-size {font-size: @baseFontSizeLink;}
 //Lists
 ul.unstyled,
 ol.unstyled {
@@ -458,6 +491,10 @@ ol.unstyled {
   dd {
     margin-bottom:10px;
   }
+  ul {
+  list-style: none;
+  margin:0;
+  }
 }
 // ======================================================
 // custom Styles
@@ -470,23 +507,38 @@ ol.unstyled {
   text-shadow: -1px -1px rgba(0, 0, 0, 0.1), 1px 1px rgba(255,255,255,.2);
 }
 
+.modal .courseIDtitle {
+	font-size: 20px;
+	line-height: .3;	
+}
+
 .shortTitle {
   margin-top: 3px;
   white-space: nowrap;
   font-size: 16px;
 
 }
+.modal .courseIDtitle {
+	font-size: 20px;
+	line-height: .3;	
+}
+.modal .shortTitle {
+	font-size: 13px;
+	text-shadow: -1px -1px rgba(0, 0, 0, 0.1), 1px 1px rgba(255,255,255,.2);
+	//line-height: .3;	
+}
+
 .visual-schedule {
 	width: 100% ;
 	//margin-left: -10px;
 	//border: 1px solid red;
-	height: 20em; 
+	height: 30em; 
 	position:relative;
+	background-color: @grayLighter;
 	.clearfix();
-	background-color:@grayLighter;
 }
 
-@time-bar-width: 5%;
+@time-bar-width: 8%;
 .time-bar {
 	height: 100%;
 	width: @time-bar-width;
@@ -494,6 +546,12 @@ ol.unstyled {
 	position: relative;
 	display:inline-block;
 	float: left;
+	background-color: @grayLighter;
+	font-weight: bold;
+//	padding-left: 1px;
+}
+.time-bar > p {
+
 }
 .five-day {
 	width:19%;
@@ -506,7 +564,7 @@ ol.unstyled {
 }
 
 .six-day {
-	width: (97% - @time-bar-width) / 6;
+	width: (97% - 5) / 6;
 	//width: 14%;
 	height:100%;
 	//border-right: 1px inset black;
@@ -515,8 +573,6 @@ ol.unstyled {
 	//margin-left:-5px;
 	float: left;
 	color: @white;
-	font-size:90%;
-	
 	
 	p {color:#333;}
 }
@@ -525,9 +581,14 @@ ol.unstyled {
 
 }
 
+.six-day:nth-of-type(even),fice-day:nth-of-type(odd) {
+
+	background-color: darken(@grayLighter,3%);
+}
+
 .day-label {
 	width:100%;
-	border-bottom: 1px solid red;
+	border-bottom: 1px solid @grayLight;
 	height:7%;
 	top:0px;
 }
@@ -536,22 +597,16 @@ ol.unstyled {
 }
 .visual-course {
 	width: 100%;
-	.border-radius(4px);
+	.border-radius(2px);
+	//padding: 3px;
+	text-align: center;
+	font-size: 12px;
+	line-height: 12px;
 }
-
-.books-list {
-
-	h4 {
-	color:#fff;
-	font-weight:normal;
-	padding:2px 0 2px 5px;
-	}
-}	
-	.book-image {height:120px;}
-	
-	.book-details {margin-left:10px;}
-
-
+.show_section_details {
+	font-size: 12px;
+	color: @myuw;
+}
 
 
 // ======================================================
