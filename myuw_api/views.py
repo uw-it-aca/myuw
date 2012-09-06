@@ -142,3 +142,21 @@ class UserScheduleBooks(RESTDispatch):
                 response = HttpResponse('No book data found')
                 response.status_code = 404
         return response
+
+class InstructorDetails(RESTDispatch):
+    def GET(self, request, regid):
+        """ 
+        GET returns 200 with course section schedule details.
+        """
+
+        person_dao = PersonDAO()
+        person_dao.get_contact(regid)
+
+        person_data = person_dao.get_contact(regid)
+        if person_data:
+            try:
+                response = HttpResponse(json.dumps(person_data))
+            except Exception, message:
+                print 'Failed to get instructor data: ', message
+                response.status_code = 500 
+        return response 

@@ -1,0 +1,37 @@
+{% load templatetag_handlebars %}
+
+    {% tplhandlebars "header" %}
+        {{DisplayName}}
+    {% endtplhandlebars %}
+
+    {% tplhandlebars "instructor" %}
+
+<div class="row-fluid">        
+        <h3 style="line-height:18px;margin:0;"><small>Associate Professor, Comparative History of Ideas Program</small></h3>
+        
+      
+      <div class="row-fluid">
+        <div class="span12">
+        <!-- start main content -->
+        
+        <dl class="dl-horizontal">
+                    <dt>Address</dt>
+                        <dd>{{Address1}}</dd>
+                    <dt>Email</dt>
+                      <dd><a href="mailto:{{Email1}}">{{Email1}}</a></dd>
+                     <dt>Phone</dt>
+                      <dd><a href="#">{{Phone1}}</a></dd>
+                      <dd><a href="#">{{Phone2}}</a></dd>
+                     <dt>Vmail</dt>
+                      <dd><a href="#">{{VoiceMail}}</a></dd>
+                     <dt>Fax</dt>
+                      <dd>{{Fax}}</dd>
+                     <dt>Box Number</dt>
+                      <dd>354300</dd>
+        </dl>
+        
+        <p style="line-height:16px;color:#777;padding-top:10px;font-size:90%;"><small>Pursuant to RCW 42.56, the UW is providing this directory information for non-commercial purposes only. Any use of the information for commercial purposes is prohibited.</small></p>
+</div>   
+        <!-- /end main content -->
+
+{% endtplhandlebars %}

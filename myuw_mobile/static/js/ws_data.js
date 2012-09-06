@@ -1,6 +1,7 @@
 WSData = {
     _course_data: null,
     _book_data: null,
+    _instructor_data: null,
 
     book_data: function() {
         return WSData._book_data;
@@ -8,6 +9,10 @@ WSData = {
 
     course_data: function() {
         return WSData._course_data;
+    },
+
+    instructor_data: function() {
+        return WSData._instructor_data;
     },
 
     fetch_book_data: function(callback, args) {
@@ -55,6 +60,29 @@ WSData = {
                     callback.apply(null, args);
                 }, 0);
             }
+        },
+
+    fetch_instructor_data: function(callback, args) {
+            if (WSData._instructor_data === null) {
+                $.ajax({
+                    url: "/my/api/v1/person/"+args,
+                    dataType: "JSON",
+
+                    type: "GET",
+                    accepts: {html: "text/html"},
+                    success: function(results) {
+                        WSData._instructor_data = results;
+                        callback.apply(null, args);
+                    },  
+                    error: function(xhr, status, error) {
+                    }   
+                }); 
+            }   
+            else {
+                window.setTimeout(function() {
+                    callback.apply(null, args);
+                }, 0); 
+            } 
         },
 
     normalize_instructors: function() {
