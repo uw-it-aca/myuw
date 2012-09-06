@@ -11,9 +11,6 @@
 // Accordion
 // ======================================================
 .accordion-group {
-  /*border-left:5px solid @grayLighter;
-  border-top:1px solid @grayLighter;
-  border-bottom: 1px solid @grayLighter;*/
   border-right: 0px;
   
   h3 {
@@ -46,109 +43,110 @@
   border-top:1px solid @color;
   border-bottom: 5px solid @color;
 }
+@secondary-lighten: 10%;
 
 .c1 {
  background-color: @courseOrange;
 }
 .c1a { 
- background-color: lighten(@courseOrange, 10%);
+ background-color: lighten(@courseOrange, @secondary-lighten);
 }
 .c2 {
  background-color: @courseGreen;
 }
 .c2a {
- background-color: lighten(@courseGreen, 10%);
+ background-color: lighten(@courseGreen, @secondary-lighten);
 }
 .c3 {
   background-color: @courseBlue;
 }
 .c3a {
-  background-color: lighten(@courseBlue,10%);
+  background-color: lighten(@courseBlue,@secondary-lighten);
 }
 .c4{
   background-color: @courseRed;
 }
 .c4a{
-  background-color: lighten(@courseRed, 10%);
+  background-color: lighten(@courseRed, @secondary-lighten);
 }
 .c5{
   background-color: @courseBrown;
 }
 .c5a{
-  background-color: lighten(@courseBrown, 10%);
+  background-color: lighten(@courseBrown, @secondary-lighten);
 }
 .c6{
   background-color: @coursePurple;
 }
 .c6a{
-  background-color: lighten(@coursePurple, 10%);
+  background-color: lighten(@coursePurple, @secondary-lighten);
 }
 .c7{
   background-color: @courseGold;
 }
 .c7a{
-  background-color: lighten(@courseGold, 10%);
+  background-color: lighten(@courseGold, @secondary-lighten);
 }
 .c8{
   background-color: @courseTeal;
 }
 .c8a{
-  background-color: lighten(@courseTeal, 10%);
+  background-color: lighten(@courseTeal, @secondary-lighten);
 }
 
 .c1Border {
   .courseBorder(@courseOrange);
 }
 .c1aBorder {
-  .courseBorder(lighten(@courseOrange,10%));
+  .courseBorder(lighten(@courseOrange,@secondary-lighten));
 }
 .c2Border {
   .courseBorder(@courseGreen);
 }
 .c2aBorder {
-  .courseBorder(lighten(@courseGreen,10%));
+  .courseBorder(lighten(@courseGreen,@secondary-lighten));
 }
 
 .c3Border {
   .courseBorder(@courseBlue);
 }
 .c3aBorder {
-  .courseBorder(lighten(@courseBlue,10%));
+  .courseBorder(lighten(@courseBlue,@secondary-lighten));
 }
 
 .c4Border {
   .courseBorder(@courseRed);
 }
 .c4aBorder {
-  .courseBorder(lighten(@courseRed,10%));
+  .courseBorder(lighten(@courseRed,@secondary-lighten));
 }
 
 .c5Border {
   .courseBorder(@courseBrown);
 }
 .c5aBorder {
-  .courseBorder(lighten(@courseBrown,10%));
+  .courseBorder(lighten(@courseBrown,@secondary-lighten));
 }
 
 .c6Border {
   .courseBorder(@coursePurple);
 }
 .c6aBorder {
-  .courseBorder(lighten(@coursePurple,10%));
+  .courseBorder(lighten(@coursePurple,@secondary-lighten));
 }
 
 .c7Border {
   .courseBorder(@courseGold);
 }
 .c7aBorder {
-  .courseBorder(lighten(@courseGold,10%));
+  .courseBorder(lighten(@courseGold,@secondary-lighten));
 }
 
 .c8Border {
   .courseBorder(@courseTeal);
 }
 .c8aBorder {
-  .courseBorder(lighten(@courseTeal,10%));
+  .courseBorder(lighten(@courseTeal,@secondary-lighten));
 }
 
 .accordion-heading .accordion-toggle {
