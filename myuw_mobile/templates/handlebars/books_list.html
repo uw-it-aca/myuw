@@ -9,21 +9,19 @@
             <div class="c{{color_id}} books-list"><h4>{{curriculum}} {{course_number}}{{section_id}}</h4></div>
             {{#if books}}
                 {{#each books}}
-              <div class="book-image" style="height:140px;margin-bottom:20px;">
+              <div class="book-image">
                 {{#if cover_image_url}}
-                <div class="pull-left book-cover" style="padding-right:5px;"><img src="{{cover_image_url}}" alt="book cover" width="100" /></div>
+                <div class="pull-left book-cover" style="padding-right:5px;"><img src="{{cover_image_url}}" alt="book cover" width="80px" /></div>
                 {{else}}
                 What if there's no image?
                 {{/if}}
-                <h5>{{title}}</h5>
-              </div>
-
-                <dl class="dl-horizontal book-details">
-                     <dt>Author</dt>
-                        {{#each authors}}
-                      <dd>{{name}}</dd>
-                        {{/each}}
-                     <dt>Price (New)</dt>
+                <div style="margin-left:90px;">
+                <h5 style="font-size:120%;margin-bottom:0;">{{title}}</h5>
+                <p>{{#each authors}}
+                      {{name}}
+                        {{/each}}</p>
+                  <dl class="dl-horizontal">
+                     <dt>New</dt>
                       <dd>${{price}}</dd>
                       {{#if used_price}}
                      <dt>Price (Used)</dt>
@@ -39,6 +37,10 @@
                      <dt>ISBN</dt>
                       <dd><a href="#">{{isbn}}</a></dd>
                     </dl>
+                    </div>
+              </div>
+
+              
                   {{/each}}
             {{else}}
             <p>No textbook requirement has been received for this course. Please check with <a class="base-font-size" href="#">your instructor -- WHICH ONE?.</a></p>

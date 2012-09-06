@@ -1226,10 +1226,17 @@ li.inline {
 }
 .dl-horizontal dd {
   margin-bottom: 10px;
+  margin-left: 100px;
 }
 .dl-horizontal ul {
   list-style: none;
   margin: 0;
+}
+.book-image .dl-horizontal dt {
+  clear: none;
+}
+.book-image .dl-horizontal dd {
+  margin-left: 60px;
 }
 .courseIDtitle {
   padding-right: 10px;
@@ -1336,10 +1343,8 @@ fice-day:nth-of-type(odd) {
   padding: 2px 0 2px 5px;
 }
 .book-image {
-  height: 120px;
-}
-.book-details {
-  margin-left: 10px;
+  height: auto;
+  margin-bottom: 20px;
 }
 .pull-right-center {
   float: right;
