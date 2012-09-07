@@ -903,6 +903,12 @@ a:hover {
   padding: 9px 10px;
   background-color: #f8f7f0;
 }
+.icon-chevron:before {
+  content: "\f077";
+}
+.collapsed .icon-chevron:before {
+  content: "\f078";
+}
 .btn-visual {
   margin-top: -8px;
   font-weight: normal;
@@ -1229,9 +1235,6 @@ li.inline {
 }
 .dl-horizontal ul li {
   margin-bottom: 4px;
-}
-.directory-email {
-  word-break: break-all;
 }
 .book-image .dl-horizontal {
   margin: 0 inherit;
