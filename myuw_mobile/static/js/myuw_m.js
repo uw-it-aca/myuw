@@ -86,16 +86,6 @@ $(document).ready(function() {
         }
     }
 
-        $(".show_textbooks").bind("click", function(ev) {
-            var hist = window.History;
-            hist.pushState({
-                state: "textbooks",
-            },  "", "/my/textbooks");
-
-            return false;
-        });
-
-
 
     show_page_from_url();
 

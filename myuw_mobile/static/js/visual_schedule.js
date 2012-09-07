@@ -174,6 +174,18 @@ var VisualSchedule = {
             CourseModal.show_course_modal(course_id);
         });
 
+        $(".show_textbooks").bind("click", function(ev) {
+            var hist = window.History;
+            hist.pushState({
+                state: "textbooks",
+            },  "", "/my/textbooks");
+
+            return false;
+        });
+
+
+
+
     },
 
     _get_meeting_info: function(meeting) {

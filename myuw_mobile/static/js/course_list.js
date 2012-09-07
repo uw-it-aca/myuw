@@ -49,6 +49,16 @@ var CourseList = {
         });
 
 
+        $(".show_textbooks").bind("click", function(ev) {
+            var hist = window.History;
+            hist.pushState({
+                state: "textbooks",
+            },  "", "/my/textbooks");
+
+            return false;
+        });
+
+
     }
 };
 
