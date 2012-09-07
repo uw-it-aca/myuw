@@ -583,13 +583,15 @@ dd {margin-left: 140px;}
 
 }
 .five-day {
-	width:19%;
+	width: (97% - 5) / 5;
 	height:100%;
-	border: 1px solid black;
+	//border: 1px solid black;
 	position: relative;
 	display:inline-block;
 	float: left;
 	color: @white;
+	
+	p {color:#333;}
 }
 
 .six-day {
@@ -610,7 +612,7 @@ dd {margin-left: 140px;}
 
 }
 
-.six-day:nth-of-type(even),fice-day:nth-of-type(odd) {
+.six-day:nth-of-type(even), .five-day:nth-of-type(odd) {
 
 	background-color: darken(@grayLighter,3%);
 }
