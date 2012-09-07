@@ -76,7 +76,7 @@ var VisualSchedule = {
             friday: [],
             saturday: [],
             display_hours: [],
-            has_6_days: true
+            has_6_days: false
         };
 
         var index = 0;
