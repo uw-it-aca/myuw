@@ -23,6 +23,4 @@ var Instructor = {
         $("#courselist").html(template(data));
 
     },
-        
-
 };
