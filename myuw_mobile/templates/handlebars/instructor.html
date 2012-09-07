@@ -8,12 +8,11 @@
     {% endtplhandlebars %}
 
     {% tplhandlebars "instructor" %}
-
-      <div class="row-fluid">
+    
         <div class="span12">
         <!-- start main content -->
         
-        <dl class="dl-horizontal">
+        <dl class="dl-horizontal directory-list">
                    {{#if Address1}}
                     <dt>Address</dt>
                         <dd>{{Address1}}</dd>
@@ -21,8 +20,8 @@
                     {{/if}}
                     {{#if Email1}}
                     <dt>Email</dt>
-                      <dd><a href="mailto:{{Email1}}">{{Email1}}</a></dd>
-                      {{#if Email2}}<dd><a href="mailto:{{Email2}}">{{Email2}}</a></dd>{{/if}}
+                      <dd class="directory-email"><a href="mailto:{{Email1}}">{{Email1}}</a></dd>
+                      {{#if Email2}}<dd  class="directory-email"><a href="mailto:{{Email2}}">{{Email2}}</a></dd>{{/if}}
                     {{/if}}
                     {{#if Phone1}}
                      <dt>Phone</dt>
@@ -48,7 +47,6 @@
         </dl>
         
         <p style="line-height:16px;color:#777;padding-top:10px;font-size:90%;"><small>Pursuant to RCW 42.56, the UW is providing this directory information for non-commercial purposes only. Any use of the information for commercial purposes is prohibited.</small></p>
-       </div>   
     </div>
         <!-- /end main content -->
 

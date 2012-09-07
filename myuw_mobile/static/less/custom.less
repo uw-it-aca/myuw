@@ -424,9 +424,10 @@ body {
   border: 1px solid rgba(0,0,0,.09);
   .border-radius(2px);
  .box-shadow(inset 1px 1px 5px rgba(0,0,0,.05));
+
   td {
     line-height: @baseLineHeight - 2;
-    padding: 5px 4px;
+    padding: 5px 3px;
     border-bottom: 1px solid #eee;
  	border-bottom: 1px solid rgba(0,0,0,.03);
   }
@@ -499,14 +500,19 @@ ol.unstyled {
   }
   ul {
   list-style: none;
-  margin:0;
+  margin: 0;
+  li { margin-bottom: 4px;}
   }
 }
 
-.book-image .dl-horizontal dt {clear:none;}
-.book-image .dl-horizontal dd {margin-left: 125px;}
+.book-image .dl-horizontal {
+margin:0 inherit;
+dt {clear:none;}
+dd {margin-left: 140px;}
+}
 
 .book-info {
+	margin-bottom: 5px;
   dt {
   	//width: 20px;
     margin-bottom:5px;
