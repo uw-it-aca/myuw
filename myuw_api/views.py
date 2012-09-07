@@ -153,8 +153,19 @@ class InstructorDetails(RESTDispatch):
         person_dao.get_contact(regid)
 
         person_data = person_dao.get_contact(regid)
+
         if person_data:
             try:
+                if person_data["WhitepagesPublish"] == False:
+                    affiliations = person_data["PersonAffiliations"]
+                    if "EmployeePersonAffiliation" in affiliations:
+                        data = affiliations["EmployeePersonAffiliation"]
+                        data["EmployeeWhitePages"] = {}
+
+                    if "StudentPersonAffiliation" in affiliations:
+                        data = affiliations["StudentPersonAffiliation"]
+                        data["StudentWhitePages"] = {}
+
                 response = HttpResponse(json.dumps(person_data))
             except Exception, message:
                 print 'Failed to get instructor data: ', message
