@@ -4,6 +4,7 @@ var Instructor = {
     },
     
     render_instructor: function(regid) {
+        $('html,body').animate({scrollTop: 0}, 'fast');        
         var instructor_data = WSData.instructor_data();
         
         var source = $("#header").html();
