@@ -94,3 +94,13 @@
     margin-left: 90px;
   }
 }
+@media (max-width: 767px) and (max-width: 320px) {
+  .modal-body {
+    max-height: 300px;
+  }
+}
+@media (max-width: 767px) and (min-width: 321px) {
+  .modal-body {
+    max-height: 170px;
+  }
+}

@@ -11,7 +11,10 @@
     
         <div class="span12">
         <!-- start main content -->
-        
+        {{#if Email1}}
+        <a href="mailto:{{Email1}}">{{Email1}}</a>
+        {{#if Email2}}<a href="mailto:{{Email2}}">{{Email2}}</a>{{/if}}
+        {{/if}}
         <dl class="dl-horizontal directory-list">
                    {{#if Address1}}
                     <dt>Address</dt>
