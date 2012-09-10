@@ -46,7 +46,7 @@ $(document).ready(function() {
         var data = history_state.data;
         var state = data.state;
 
-        if (state === null) {
+        if (state === undefined) {
             show_page_from_url();
         }
         else if (state === "course_list") {
