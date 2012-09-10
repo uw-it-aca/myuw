@@ -9,7 +9,7 @@
             <div class="c{{color_id}} books-list"><h4>{{curriculum}} {{course_number}}{{section_id}}</h4></div>
             {{#if books}}
                 {{#each books}}
-              <div class="book-image span12 clearfix" style="">
+              <div class="book-image span12 clearfix">
                 {{#if cover_image_url}}
                 <div class="book-cover pull-left"><img src="{{cover_image_url}}" alt="book cover" width="80px" /></div>
                 {{else}}
@@ -27,13 +27,9 @@
                      <dt>Used</dt>
                       <dd>${{used_price}}</dd>
                       {{/if}}
-                      <dt>Used</dt>
-                      <dd>29.99$</dd>
                    </dl>
         
                 </div>
-
-                 
                    <dl class="dl-horizontal book-info">
                      <dt>Notes</dt>
                         {{#if is_required}}
@@ -45,10 +41,7 @@
                      <dt>ISBN</dt>
                       <dd><a href="#">{{isbn}}</a></dd>
                     </dl>
-                    
-             
 
-              
                   {{/each}}
             {{else}}
             <p>No textbook requirement has been received for this course. Please check with <a class="base-font-size show_instructors" href="/my/" rel="{{index}}">your instructor.</a></p>
