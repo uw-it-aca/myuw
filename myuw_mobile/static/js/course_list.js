@@ -21,7 +21,7 @@ var CourseList = {
 
         source = $("#quarter-list").html();
         template = Handlebars.compile(source);
-        $("#quarter-info").html(template({year: course_data.year, quarter: course_data.quarter}));
+        $("#page-header").html(template({year: course_data.year, quarter: course_data.quarter}));
 
         if (course_index !== undefined) {
             $("#course"+course_index).collapse('show');

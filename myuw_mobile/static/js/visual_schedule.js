@@ -157,7 +157,7 @@ var VisualSchedule = {
 
         source = $("#quarter-visual").html();
         template = Handlebars.compile(source);
-        $("#quarter-info").html(template({year: course_data.year, quarter: course_data.quarter}));
+        $("#page-header").html(template({year: course_data.year, quarter: course_data.quarter}));
 
         $(".display_list_sched").bind("click", function(ev) {
             var hist = window.History;
