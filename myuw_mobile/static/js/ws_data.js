@@ -1,7 +1,7 @@
 WSData = {
     _course_data: null,
     _book_data: null,
-    _instructor_data: null,
+    _instructor_data: {},
 
     book_data: function() {
         return WSData._book_data;
@@ -11,8 +11,8 @@ WSData = {
         return WSData._course_data;
     },
 
-    instructor_data: function() {
-        return WSData._instructor_data;
+    instructor_data: function(regid) {
+        return WSData._instructor_data[regid];
     },
 
     fetch_book_data: function(callback, args) {
@@ -63,15 +63,16 @@ WSData = {
         },
 
     fetch_instructor_data: function(callback, args) {
-            if (WSData._instructor_data === null) {
-                $.ajax({
-                    url: "/my/api/v1/person/"+args,
+        var instructor_regid = args[0];
+        if (WSData._instructor_data[instructor_regid] === undefined) {
+            $.ajax({
+                    url: "/my/api/v1/person/"+instructor_regid,
                     dataType: "JSON",
 
                     type: "GET",
                     accepts: {html: "text/html"},
                     success: function(results) {
-                        WSData._instructor_data = results;
+                        WSData._instructor_data[instructor_regid] = results;
                         callback.apply(null, args);
                     },  
                     error: function(xhr, status, error) {

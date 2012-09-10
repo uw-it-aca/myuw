@@ -5,7 +5,7 @@ var Instructor = {
     
     render_instructor: function(regid) {
         $('html,body').animate({scrollTop: 0}, 'fast');        
-        var instructor_data = WSData.instructor_data();
+        var instructor_data = WSData.instructor_data(regid);
         
         var source = $("#header").html();
         var template = Handlebars.compile(source);
