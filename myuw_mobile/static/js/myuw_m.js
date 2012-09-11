@@ -40,6 +40,14 @@ $(document).ready(function() {
         });
     });
 
+    Handlebars.registerHelper("formatPrice", function(price) {
+        formatted = price.toString().split(".");
+        if (formatted[1] && formatted[1].length == 1) {
+            formatted[1] += "0";
+        }
+        return formatted.join(".");
+    });
+
     Handlebars.registerHelper('equal', function(value1, value2, options) {
         if (arguments.length < 3)
             throw new Error("Handlebars Helper equal needs 2 parameters");
