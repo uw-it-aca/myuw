@@ -568,10 +568,23 @@ dd {margin-left: 140px;}
 	width: 100% ;
 	//margin-left: -10px;
 	//border: 1px solid red;
-	height: 30em; 
+	//height: 30em; 
 	position:relative;
 	background-color: @grayLighter;
 	.clearfix();
+}
+//visual schedule height
+//0-6 hrs
+.six-hour {
+height: 20em;
+}
+//6-12
+.twelve-hour {
+	height: 30em;
+}
+
+.twelve-plus {
+	height: 40em;
 }
 
 @time-bar-width: 8%;
@@ -637,9 +650,17 @@ dd {margin-left: 140px;}
 	width: 100%;
 	.border-radius(2px);
 	//padding: 3px;
+	display: table;
 	text-align: center;
+	//vertical-align: middle;
 	font-size: 12px;
 	line-height: 12px;
+}
+
+
+.visual-course-id {
+display: table-cell;
+	vertical-align: middle;
 }
 .show_section_details {
 	font-size: 12px;
@@ -660,7 +681,7 @@ dd {margin-left: 140px;}
 	//display:inline-block;
 }
 .book-image > h5 {
-font-size:120%;
+font-size:110%;
 margin-bottom:0;
 margin-top:0;
 }
