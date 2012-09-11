@@ -1236,6 +1236,12 @@ li.inline {
 .dl-horizontal ul li {
   margin-bottom: 4px;
 }
+.dl-instructor {
+  margin-top: -15px;
+}
+.dl-instructor dt {
+  margin-top: 15px;
+}
 .book-image .dl-horizontal {
   margin: 0 inherit;
 }

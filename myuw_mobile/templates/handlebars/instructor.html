@@ -2,7 +2,7 @@
 
     {% tplhandlebars "header" %}
         <h2>{{DisplayName}}</h2>
-    <h3 style="line-height:18px;margin:0;">
+    <h3 style="line-height:1px;margin:0;">
         <small>{{Title1}}{{#if Title2}}, {{Title2}}{{/if}}</small>
     </h3>
     {% endtplhandlebars %}
@@ -11,11 +11,7 @@
     
         <div class="span12">
         <!-- start main content -->
-        {{#if Email1}}
-        <a href="mailto:{{Email1}}">{{Email1}}</a>
-        {{#if Email2}}<a href="mailto:{{Email2}}">{{Email2}}</a>{{/if}}
-        {{/if}}
-        <dl class="dl-horizontal directory-list">
+        <dl class="dl-instructor">
                    {{#if Address1}}
                     <dt>Address</dt>
                         <dd>{{Address1}}</dd>
