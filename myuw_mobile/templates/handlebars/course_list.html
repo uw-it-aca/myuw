@@ -37,10 +37,14 @@
                             {{#if building_tbd}}
                                 <td>Room to be arranged</td>
                             {{else}}
-                                <td><a href="http://uw.edu/maps/?{{ building }}" target="_blank">
+                                <td>
+                                    {{#equal ../../course_campus "Seattle"}}
+                                    <a href="http://uw.edu/maps/?{{ building }}" target="_blank">
+                                    {{/equal}}
                                 {{building}} {{room}}
-                            {{/if}}
-                            </a></td>
+                                    {{/if}}
+                                {{#equal ../course_campus "Seattle"}}</a>{{/equal}}
+                                </td>
                         </tr>
                         {{/each}}
 

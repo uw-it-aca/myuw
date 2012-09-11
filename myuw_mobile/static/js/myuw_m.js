@@ -40,6 +40,16 @@ $(document).ready(function() {
         });
     });
 
+    Handlebars.registerHelper('equal', function(value1, value2, options) {
+        if (arguments.length < 3)
+            throw new Error("Handlebars Helper equal needs 2 parameters");
+        if(value1 != value2) {
+            return options.inverse(this);
+        } 
+        else {
+            return options.fn(this);
+        }
+    });
 
     History.Adapter.bind(window,'statechange',function(){
         var history_state = History.getState();
