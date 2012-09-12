@@ -154,6 +154,17 @@ var VisualSchedule = {
             });
         }
 
+        var hours_count = parseInt((visual_data.end_time - visual_data.start_time) / 60, 0);
+        if (hours_count <= 6) {
+            visual_data.schedule_hours_class = "six-hour";
+        }
+        else if (hours_count <= 12) {
+            visual_data.schedule_hours_class = "twelve-hour";
+        }
+        else {
+            visual_data.schedule_hours_class = "twelve-plus";
+        }
+
         $("#courselist").html(template(visual_data));
 
         source = $("#quarter-visual").html();
