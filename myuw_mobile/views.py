@@ -20,7 +20,7 @@ def index(request):
     if settings.DEBUG:
         netid = 'javerage'
     else:
-        netid = request.user
+        netid = request.user.username
 
         if netid is None:
             raise("Must have a logged in user when DEBUG is off")
@@ -51,7 +51,7 @@ def myuw_login(request):
     if settings.DEBUG:
         netid = 'javerage'
     else:
-        netid = request.user
+        netid = request.user.username
 
         if netid is None:
             raise("Must have a logged in user when DEBUG is off")
