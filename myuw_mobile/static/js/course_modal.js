@@ -24,7 +24,7 @@ var CourseModal = {
             return false;
         });
 
-        $(".close").on("click", function() {
+        $(".close_modal").on("click", function() {
             History.replaceState({
                 state: "visual"
             },  "", "/my/visual");
