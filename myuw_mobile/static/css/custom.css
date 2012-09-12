@@ -914,6 +914,8 @@ ul.icons li .icon-large:before {
   padding-bottom: 2px;
 }
 .btn-close {
+  width: 100%;
+  margin-top: -5px;
   margin-bottom: 5px;
 }
 .navbar-inner {
