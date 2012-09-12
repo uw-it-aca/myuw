@@ -765,9 +765,6 @@ ul.icons li .icon-large:before {
   color: #ffffff;
   font-size: 1.5em;
 }
-a:hover {
-  text-decoration: none;
-}
 .c1 {
   background-color: #c8a26f;
 }
@@ -1299,7 +1296,7 @@ li.inline {
 .visual-schedule:after {
   clear: both;
 }
-six-hour {
+.six-hour {
   height: 20em;
 }
 .twelve-hour {
@@ -1389,6 +1386,12 @@ six-hour {
 }
 .book-cover {
   margin-right: 10px;
+}
+a:hover {
+  text-decoration: none !important;
+}
+a:active {
+  text-decoration: none !important;
 }
 .pull-right-center {
   float: right;
