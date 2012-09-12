@@ -49,7 +49,7 @@
                         {{/if}}
                     {{#if isbn}}
                      <dt>ISBN</dt>
-                      <dd><a href="#">{{isbn}}</a></dd>
+                      <dd>{{isbn}}</dd>
                     {{/if}}
                     </dl>
 			
@@ -63,7 +63,7 @@
             {{/each}}
 			<hr>
 	
-	<p><button class="btn btn-primary" type="button">Compare prices and buy books</button></p>
+	<p><a href="http://uw-seattle.verbacompare.com/compare?quarter={{quarter}}&sln={{#each sections}}{{sln}},{{/each}}"><button class="btn btn-primary" type="button">Compare prices and buy books</button></a></p>
 
 
 <div style="margin-top:20px;"><p class="muted"><small>Information on course textbooks is collected by and provided courtesy of <a style="font-size:12px;" href="http://www.bookstore.washington.edu">University Book Store</a> and is subject to change regularly and without notice. </small></p></div>

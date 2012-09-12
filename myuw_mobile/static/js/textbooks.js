@@ -15,7 +15,11 @@ var TextBooks = {
         var book_data = WSData.book_data();
         var course_data = WSData.course_data();
 
-        var template_data = { "sections": []};
+        var template_data = {
+            "sections": [],
+            "quarter": course_data.quarter,
+            "year": course_data.year,
+        };
 
         var index = 0;
         for (index = 0; index < course_data.sections.length; index++) {
@@ -27,6 +31,7 @@ var TextBooks = {
                 course_number: section["course_number"],
                 section_id: section["section_id"],
                 color_id: section["color_id"],
+                sln: section["sln"],
                 books: book_data[section["sln"]],
             });
         }
