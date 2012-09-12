@@ -23,6 +23,9 @@ var CourseList = {
         template = Handlebars.compile(source);
         $("#page-header").html(template({year: course_data.year, quarter: course_data.quarter}));
 
+        // In case someone backs onto the page from a modal
+        Modal.hide();
+
         if (course_index !== undefined) {
             $("#course"+course_index).collapse('show');
             $('html,body').animate({scrollTop: $("#course_wrapper"+course_index).offset().top},'slow');
@@ -31,7 +34,7 @@ var CourseList = {
         $(".display_visual_sched").bind("click", function(ev) {
             var hist = window.History;
             hist.pushState({
-                state: "visual",
+                state: "visual"
             },  "", "/my/visual");
 
             return false;

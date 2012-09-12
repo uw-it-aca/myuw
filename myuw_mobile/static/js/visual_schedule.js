@@ -2,8 +2,8 @@ var VisualSchedule = {
     // This is the height of the days bar... needed for positioning math below
     day_label_offset: 7,
 
-    show_visual_schedule: function() {
-        WSData.fetch_course_data(VisualSchedule.render);
+    show_visual_schedule: function(course_index) {
+        WSData.fetch_course_data(VisualSchedule.render, [course_index]);
     },
 
     get_scaled_percentage: function(pos, min, max) {
@@ -14,7 +14,8 @@ var VisualSchedule = {
         return offset_percentage - VisualSchedule.day_label_offset;
     },
 
-    render: function() {
+    // The course_index will be given when a modal is shown.
+    render: function(course_index) {
         $('html,body').animate({scrollTop: 0}, 'fast');
         VisualSchedule.shown_am_marker = false;
         Handlebars.registerHelper('format_schedule_hour', function(hour) {
@@ -162,22 +163,39 @@ var VisualSchedule = {
         $(".display_list_sched").bind("click", function(ev) {
             var hist = window.History;
             hist.pushState({
-                state: "course_list",
+                state: "course_list"
             },  "", "/my/");
 
             return false;
         });
 
+        if (!course_index) {
+            Modal.hide();
+        }
+        else {
+            if (course_index < course_data.sections.length) {
+                CourseModal.show_course_modal(course_index);
+            }
+        }
+
 
         $(".show_section_details").bind("click", function(ev) {
             var course_id = this.rel;
+            var hist = window.History;
+            hist.pushState({
+                state: "visual",
+                course_index: course_id
+            },  "", "/my/visual/"+course_id);
+
             CourseModal.show_course_modal(course_id);
+
+            return false;
         });
 
         $(".show_textbooks").bind("click", function(ev) {
             var hist = window.History;
             hist.pushState({
-                state: "textbooks",
+                state: "textbooks"
             },  "", "/my/textbooks");
 
             return false;

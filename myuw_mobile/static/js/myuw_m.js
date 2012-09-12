@@ -78,7 +78,7 @@ $(document).ready(function() {
             TextBooks.show_books();
         }
         else if (state === "visual") {
-            VisualSchedule.show_visual_schedule();
+            VisualSchedule.show_visual_schedule(data.course_index);
         }
     });
 
@@ -88,8 +88,14 @@ $(document).ready(function() {
         if (path === "/my/") {
             CourseList.show_list();
         }
-        else if (path === "/my/visual") {
-            VisualSchedule.show_visual_schedule();
+        else if (path.match("/my/visual")) {
+            var matches = path.match(/^\/my\/visual\/([0-9]+)/);
+            if (matches) {
+                VisualSchedule.show_visual_schedule(matches[1]);
+            }
+            else {
+                VisualSchedule.show_visual_schedule();
+            }
         }
         else if (path === "/my/textbooks") {
             TextBooks.show_books();

@@ -23,5 +23,6 @@ var Instructor = {
         template = Handlebars.compile(source);
         $("#courselist").html(template(data));
 
+        Modal.hide();
     },
 };
