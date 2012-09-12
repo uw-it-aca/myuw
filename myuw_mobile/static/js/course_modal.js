@@ -8,12 +8,24 @@ var CourseModal = {
         var section = course_data.sections[course_index];
 
         var content = template(section);
-        $("#course_modal_dialog").html(template(section));
-        $("#course_modal_dialog").modal('show');
+        $("#page-modal").html(template(section));
 
-        $(".close_modal").on("click", function() {
-            $("#course_modal_dialog").modal('hide');
+        CourseModal.show_modal();
+        $('html,body').animate({scrollTop: 0}, 'fast');
+
+        $(".close").on("click", function() {
+            CourseModal.close_modal();
         });
+    },
+
+    close_modal: function() {
+        $("#page-modal").hide();
+        $("#page-content").show();
+    },
+
+    show_modal: function() {
+        $("#page-content").hide();
+        $("#page-modal").show();
     }
 };
  
