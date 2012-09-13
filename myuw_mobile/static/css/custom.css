@@ -1246,13 +1246,13 @@ li.inline {
   margin-top: 15px;
 }
 .book-image .dl-horizontal {
-  margin: 0 inherit;
+  margin: 0;
 }
 .book-image .dl-horizontal dt {
   clear: none;
 }
 .book-image .dl-horizontal dd {
-  margin-left: 140px;
+  margin-left: 160px;
 }
 .book-info {
   margin-bottom: 5px;
@@ -1391,7 +1391,8 @@ li.inline {
   margin-top: 0;
 }
 .book-cover {
-  margin-right: 10px;
+  margin-right: 15px;
+  min-height: 180px;
 }
 a:hover {
   text-decoration: none !important;

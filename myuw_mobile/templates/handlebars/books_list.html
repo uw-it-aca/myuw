@@ -9,17 +9,20 @@
           
                 {{#each books}}
               <div class="clearfix book-image">
+              	<h4 style="margin:5px 0 15px 0;">{{title}}</h4>
                 {{#if cover_image_url}}
-                <div class="book-cover pull-left"><img src="{{cover_image_url}}" alt="book cover" width="80px" /></div>
+                <div style="overflow:hidden;" class="book-cover pull-left"><img src="{{cover_image_url}}" alt="book cover" width="80px" /></div>
                 {{else}}
                 What if there's no image?
                 {{/if}}
              
-                <h5>{{title}}</h5>
-                <p>{{#each authors}}
-                      {{name}}
-                        {{/each}}</p>
-                  <dl class="dl-horizontal">
+                
+                  <dl style="display:block;" class="dl-horizontal">
+                  
+                     <dt>Author</dt>
+                     {{#each authors}}
+                      <dd>{{name}}</dd>
+                      {{/each}}
                      <dt>New </dt>
                       <dd>
                       {{#if price}}
@@ -35,11 +38,11 @@
                           *
                       {{/if}}
                       </dd>
-                   </dl>
+                 <!--  </dl>
         
                 </div>
               
-                   <dl class="dl-horizontal book-info clearfix">
+                   <dl class="dl-horizontal book-info clearfix"> -->
                      <dt>Notes</dt>
                         {{#if is_required}}
                       <dd>Required</dd>
@@ -53,17 +56,17 @@
                     {{/if}}
                     </dl>
 			
-		
+		 			<hr>
+		 		</div>
                   {{/each}}
-        
+                   
             {{else}}
             <p>No textbook requirement has been received for this course. Please check with <a class="base-font-size show_instructors" href="/my/" rel="{{index}}">your instructor.</a></p>
             {{/if}}
-            <hr>
             {{/each}}
 			<hr>
 	
-	<p><a href="http://uw-seattle.verbacompare.com/compare?quarter={{quarter}}&sln={{#each sections}}{{sln}},{{/each}}"><button class="btn btn-primary" type="button">Compare prices and buy books</button></a></p>
+	<p><a target=_blank href="http://uw-seattle.verbacompare.com/compare?quarter={{quarter}}&sln={{#each sections}}{{sln}},{{/each}}"><button class="btn btn-primary" type="button">Compare prices and buy books</button></a></p>
 
 
 <div style="margin-top:20px;"><p class="muted"><small>Information on course textbooks is collected by and provided courtesy of <a style="font-size:12px;" href="http://www.bookstore.washington.edu">University Book Store</a> and is subject to change regularly and without notice. </small></p></div>
