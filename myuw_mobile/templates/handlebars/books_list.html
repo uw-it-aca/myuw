@@ -11,13 +11,13 @@
               <div class="clearfix book-image">
               	<h4 style="margin:5px 0 15px 0;">{{title}}</h4>
                 {{#if cover_image_url}}
-                <div style="overflow:hidden;" class="book-cover pull-left"><img src="{{cover_image_url}}" alt="book cover" width="80px" /></div>
+                <div class="book-cover pull-left"><img src="{{cover_image_url}}" alt="book cover" width="80px" /></div>
                 {{else}}
                 What if there's no image?
                 {{/if}}
              
                 
-                  <dl style="display:block;" class="dl-horizontal">
+                  <dl class="dl-books">
                   
                      <dt>Author</dt>
                      {{#each authors}}
@@ -38,11 +38,6 @@
                           *
                       {{/if}}
                       </dd>
-                 <!--  </dl>
-        
-                </div>
-              
-                   <dl class="dl-horizontal book-info clearfix"> -->
                      <dt>Notes</dt>
                         {{#if is_required}}
                       <dd>Required</dd>

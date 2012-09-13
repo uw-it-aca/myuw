@@ -1263,6 +1263,17 @@ li.inline {
 .book-info dd {
   margin-bottom: 2px;
 }
+.dl-books dt {
+  float: left;
+  clear: none;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dl-books dd {
+  margin-left: 160px;
+}
 .courseIDtitle {
   padding-right: 10px;
   font-size: 28px;
