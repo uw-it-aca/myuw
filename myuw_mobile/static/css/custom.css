@@ -1405,6 +1405,14 @@ li.inline {
   margin-right: 15px;
   min-height: 180px;
 }
+.no-book-cover {
+  background-color: #fff;
+  width: 80px;
+  height: 121px;
+  border: 1px solid #333;
+  margin-right: 15px;
+  text-align: center;
+}
 a:hover {
   text-decoration: none !important;
 }
