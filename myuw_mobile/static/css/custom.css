@@ -1419,6 +1419,19 @@ a:hover {
 a:active {
   text-decoration: none !important;
 }
+footer {
+  color: #999999;
+  font-size: 12px;
+}
+footer a {
+  font-size: 16px;
+}
+footer p {
+  margin-bottom: 2px;
+}
+footer .footer-links a {
+  font-size: 12px;
+}
 .pull-right-center {
   float: right;
   font-size: 30px;
