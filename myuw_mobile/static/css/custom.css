@@ -1396,22 +1396,25 @@ li.inline {
 .book-image {
   height: auto;
 }
-.book-image > h5 {
-  font-size: 110%;
-  margin-bottom: 0;
-  margin-top: 0;
+.book-image > h4 {
+  margin: 5px 0 15px 0;
 }
 .book-cover {
   margin-right: 15px;
   min-height: 180px;
 }
 .no-book-cover {
-  background-color: #fff;
+  background-color: #999999;
   width: 80px;
-  height: 121px;
-  border: 1px solid #333;
+  height: 106px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
   margin-right: 15px;
+  padding-top: 15px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
   text-align: center;
+  color: #f8f7f0;
 }
 a:hover {
   text-decoration: none !important;

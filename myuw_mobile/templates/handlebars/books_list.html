@@ -9,7 +9,7 @@
           
                 {{#each books}}
               <div class="clearfix book-image">
-              	<h4 style="margin:5px 0 15px 0;">{{title}}</h4>
+              	<h4>{{title}}</h4>
                 {{#if cover_image_url}}
                 <div class="book-cover pull-left"><img src="{{cover_image_url}}" alt="book cover" width="80px" /></div>              
                 {{else}}
@@ -50,9 +50,9 @@
                       <dd>{{isbn}}</dd>
                     {{/if}}
                     </dl>
-			
-		 			<hr>
+		 		<hr>
 		 		</div>
+		 		
                   {{/each}}
                    
             {{else}}
