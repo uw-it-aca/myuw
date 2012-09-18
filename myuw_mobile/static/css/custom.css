@@ -1127,6 +1127,7 @@ body {
 }
 }*/
 #page-modal {
+  display: none;
   -webkit-background-clip: border-box;
   -moz-background-clip: border-box;
   background-clip: border-box;
@@ -1254,6 +1255,16 @@ li.inline {
 .book-image .dl-horizontal dd {
   margin-left: 160px;
 }
+.book-divider {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  border: 0;
+  border-top: 1px solid #e1e1e1;
+  border-bottom: 1px solid #ffffff;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+}
 .book-info {
   margin-bottom: 5px;
 }
@@ -1262,6 +1273,10 @@ li.inline {
 }
 .book-info dd {
   margin-bottom: 2px;
+}
+.dl-books {
+  margin-left: 90px;
+  margin-bottom: 10px;
 }
 .dl-books dt {
   float: left;
@@ -1272,7 +1287,7 @@ li.inline {
   white-space: nowrap;
 }
 .dl-books dd {
-  margin-left: 160px;
+  margin-left: 65px;
 }
 .courseIDtitle {
   padding-right: 10px;
@@ -1401,7 +1416,6 @@ li.inline {
 }
 .book-cover {
   margin-right: 15px;
-  min-height: 180px;
 }
 .no-book-cover {
   background-color: #999999;
