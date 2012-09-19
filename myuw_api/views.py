@@ -17,6 +17,7 @@ import logging
 
 from sws_dao import Schedule
 from myuw_api.pws_dao import Person as PersonDAO
+from myuw_mobile.user import UserService
 from restclients.bookstore import Bookstore
 
 
@@ -52,11 +53,13 @@ class StudClasScheCurQuarView(RESTDispatch):
         """
 
         person_dao = PersonDAO()
-        if not "user_netid" in request.session:
+        user_netid = UserService(request.session).get_user()
+
+        if user_netid is None:
             response = HttpResponse('No user in session')
             response.status_code = 400
             return response
-        user_netid = request.session["user_netid"]
+
         person = person_dao.get_person_by_netid(user_netid)
         regid = person.uwregid
 
@@ -103,11 +106,12 @@ class UserScheduleBooks(RESTDispatch):
         """
 
         person_dao = PersonDAO()
-        if not "user_netid" in request.session:
+        user_netid = UserService(request.session).get_user()
+
+        if user_netid is None:
             response = HttpResponse('No user in session')
             response.status_code = 400
             return response
-        user_netid = request.session["user_netid"]
         person = person_dao.get_person_by_netid(user_netid)
         regid = person.uwregid
 
