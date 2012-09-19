@@ -77,6 +77,9 @@ $(document).ready(function() {
         else if (state === "textbooks") {
             TextBooks.show_books();
         }
+        else if (state === "quicklinks") {
+            QuickLinks.show_links();
+        }
         else if (state === "visual") {
             VisualSchedule.show_visual_schedule(data.course_index);
         }
@@ -100,6 +103,9 @@ $(document).ready(function() {
         else if (path === "/my/textbooks") {
             TextBooks.show_books();
         }
+        else if (path === "/my/links") {
+            QuickLinks.show_links();
+        }
         else if (path.match(/^\/my\/instructor\/[A-Z0-9]+/)) {
             var matches = path.match(/^\/my\/instructor\/([A-Z0-9]+)/);
             Instructor.show_instructor(matches[1]);
@@ -112,6 +118,16 @@ $(document).ready(function() {
 
 
     show_page_from_url();
+
+    $(".quicklinks").bind("click", function(ev) {
+        $("#myuw_nav").collapse('hide');
+        var hist = window.History;
+        hist.pushState({
+            state: "quicklinks",
+        },  "", "/my/links");
+
+        return false;
+    });
 
 
     

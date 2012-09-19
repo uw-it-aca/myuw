@@ -6,5 +6,6 @@ urlpatterns = patterns('myuw_mobile.views',
     url(r'^visual', 'index'),
     url(r'^textbooks', 'index'),
     url(r'^instructor', 'index'),
+    url(r'^links', 'index'),
     url(r'^$', 'index'),
 )
