@@ -1223,6 +1223,7 @@ a {
 ul.unstyled li.additional,
 ol.unstyled li.additional {
   line-height: 30px;
+  padding-top: 15px;
 }
 li.inline {
   display: inline;
@@ -1402,6 +1403,15 @@ li.inline {
 .show_section_details {
   font-size: 12px;
   color: #f8f7f0;
+}
+.courseTBD {
+  width: 100%;
+  overflow: auto;
+}
+.courseTBD .visual-course {
+  margin: 0 5px 5px 0;
+  width: 70px;
+  height: 38px;
 }
 .books-list h4 {
   color: #fff;
