@@ -2,7 +2,10 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import RequestContext
 from django.conf import settings
+from restclients.gws import GWS
 import logging
+
+from myuw_mobile.user import UserService
 from myuw_api.sws_dao import Quarter
 from myuw_api.pws_dao import Person as PersonDAO
 
@@ -17,13 +20,7 @@ def index(request):
                'myuw_base_url': '',
                'err': None}
 
-    if settings.DEBUG:
-        netid = 'javerage'
-    else:
-        netid = request.user.username
-
-        if netid is None:
-            raise("Must have a logged in user when DEBUG is off")
+    netid = UserService(request.session).get_user()
 
     person_dao = PersonDAO()
     try:
@@ -47,14 +44,7 @@ def index(request):
                               context_instance=RequestContext(request))
 
 def myuw_login(request):
-
-    if settings.DEBUG:
-        netid = 'javerage'
-    else:
-        netid = request.user.username
-
-        if netid is None:
-            raise("Must have a logged in user when DEBUG is off")
+    netid = UserService(request.session).get_user()
 
     person_dao = PersonDAO()
     try:
@@ -73,4 +63,44 @@ def myuw_login(request):
         return redirect("https://myuw.washington.edu/servlet/user"
                            "?defbut=Log+in+with+your+UW+NetID")
 
+
+def support(request):
+    user_service = UserService(request.session)
+    user_service.get_user()
+    # Do the group auth here.
+
+    if not hasattr(settings, "MYUW_ADMIN_GROUP"):
+        print "You must have a group in GWS defined as your admin group."
+        print 'Configure that using MYUW_ADMIN_GROUP="u_foo_bar"'
+        raise Exception("missing config")
+
+
+    actual_user = user_service.get_original_user()
+    gws = GWS()
+    members = gws.get_effective_members(settings.MYUW_ADMIN_GROUP)
+
+    is_admin = False
+
+    for member in members:
+        if member.uwnetid == actual_user:
+            is_admin = True
+            break
+
+    if is_admin == False:
+        return  HttpResponseRedirect("/my")
+
+    if "override_as" in request.POST:
+        user_service.set_override_user(request.POST["override_as"])
+
+    if "clear_override" in request.POST:
+        user_service.clear_override()
+
+    context = {
+        'original_user': user_service.get_original_user(),
+        'override_user': user_service.get_override_user(),
+    }
+
+    return render_to_response('support.html',
+                              context,
+                              context_instance=RequestContext(request))
 

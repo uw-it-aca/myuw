@@ -1,0 +1,21 @@
+<div>This is the support page, with admin override</div>
+
+<div>You are actually: {{ original_user }} </div>
+<div>You are overriding as: {{ override_user }} </div>
+
+<form action="/my/support" method="POST">
+{% csrf_token %}
+
+Override as: <input type="text" name="override_as"> <br/>
+
+<input type="submit">
+</form>
+
+
+<form action="/my/support" method="POST">
+{% csrf_token %}
+<input type="hidden" name="clear_override" value="1"/>
+<input type="submit" value="Clear override">
+
+</form>
+

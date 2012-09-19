@@ -3,6 +3,7 @@ from myuw_mobile.views import index, myuw_login
 
 urlpatterns = patterns('myuw_mobile.views',
     url(r'login', 'myuw_login'),
+    url(r'support', 'support'),
     url(r'^visual', 'index'),
     url(r'^textbooks', 'index'),
     url(r'^instructor', 'index'),
