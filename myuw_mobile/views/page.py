@@ -9,7 +9,7 @@ from myuw_mobile.user import UserService
 from myuw_api.sws_dao import Quarter
 from myuw_api.pws_dao import Person as PersonDAO
 
-logger = logging.getLogger('myuw_mobile.views')
+logger = logging.getLogger('myuw_mobile.views.page')
 
 
 #@mobile_template('{mobile/}index.html')
