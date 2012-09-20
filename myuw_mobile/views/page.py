@@ -7,7 +7,7 @@ import logging
 
 from myuw_mobile.user import UserService
 from myuw_api.sws_dao import Quarter
-from myuw_api.pws_dao import Person as PersonDAO
+from myuw_mobile.dao.pws import Person as PersonDao
 
 logger = logging.getLogger('myuw_mobile.views.page')
 
@@ -22,7 +22,7 @@ def index(request):
 
     netid = UserService(request.session).get_user()
 
-    person_dao = PersonDAO()
+    person_dao = PersonDao()
     try:
         person = person_dao.get_person_by_netid(netid)
         request.session["user_netid"] = person.uwnetid
@@ -46,7 +46,7 @@ def index(request):
 def myuw_login(request):
     netid = UserService(request.session).get_user()
 
-    person_dao = PersonDAO()
+    person_dao = PersonDao()
     try:
         person = person_dao.get_person_by_netid(netid)
 

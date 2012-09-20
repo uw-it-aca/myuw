@@ -12,7 +12,7 @@ class Person:
     """
 
     # static class variables
-    _logger = logging.getLogger('myuw_api.pws_dao.Person')
+    _logger = logging.getLogger('myuw_mobile.dao.pws.Person')
 
     def get_person_by_netid(self, netid):
         pws = PWS()
