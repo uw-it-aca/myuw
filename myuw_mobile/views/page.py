@@ -87,7 +87,7 @@ def support(request):
             break
 
     if is_admin == False:
-        return  HttpResponseRedirect("/my")
+        return  HttpResponseRedirect("/mobile")
 
     if "override_as" in request.POST:
         user_service.set_override_user(request.POST["override_as"])
