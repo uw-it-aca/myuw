@@ -1,4 +1,45 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "quicklinks" %}
-        This is the links template.
+    <!-- main links page -->
+    <div class="page-header">
+		
+		<h2>My Links<a class="btn btn-visual pull-right" href="#"><i class="icon-edit"></i> Edit</a></h2>
+		
+	  </div>
+	  <div class="span12">
+    	<ul class="link-list">
+        	<li><a href="#">Link Link Link Link</a></li>
+        	<li><a href="#">Link Link Link Link</a></li>
+        	<li><a href="#">Link Link Link Link</a></li>
+        	<li><a href="#">Link Link Link Link</a></li>
+        	<li><a href="#">Link Link Link Link</a></li>
+        	<li><a href="#">Link Link Link Link</a></li>
+        	<li><a href="#">Link Link Link Link</a></li>
+        	<li><a href="#">Link Link Link Link</a></li>
+        	<li><a href="#">Link Link Link Link</a></li>
+        </ul>
+        </div>
+       <!-- main links end -->
+       <!-- edit links -->
+       <div class="page-header">
+		
+		<h2>Edit My Links<a class="btn btn-visual pull-right" href="#"><i class="icon-save"></i> Save</a></h2>
+		
+	  </div>
+	  <div class="span12 clearfix">
+    	<ul class="link-list">
+        	<li class="link-on"><a href="#"><i class="icon-ok"></i> Link Activated</a></li>
+        	<li class="link-off"><a href="#"><i class="icon-check-empty"></i> Link Deactivated</a></li>
+        	<li class="link-on"><a href="#"><i class="icon-ok"></i> Link Activated</a></li>
+        	<li class="link-off"><a href="#"><i class="icon-check-empty"></i> Link Deactivated</a></li>
+        	<li class="link-on"><a href="#"><i class="icon-ok"></i> Link Activated</a></li>
+        	<li class="link-off"><a href="#"><i class="icon-check-empty"></i> Link Deactivated</a></li>
+        	<li class="link-on"><a href="#"><i class="icon-ok"></i> Link Activated</a></li>
+        	<li class="link-off"><a href="#"><i class="icon-check-empty"></i> Link Deactivated</a></li>
+        </ul>
+<a class="btn pull-left" href="#"><i class="icon-undo"></i> Restore Defaults</a><a class="btn pull-right" href="#"><i class="icon-save"></i> Save</a>
+</div>
+       
+       
+       <!-- edit links end -->
     {% endtplhandlebars %}
