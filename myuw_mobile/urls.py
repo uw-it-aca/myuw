@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
-from myuw_mobile.views import index, myuw_login
+from myuw_mobile.views.page import index, myuw_login
 
-urlpatterns = patterns('myuw_mobile.views',
+urlpatterns = patterns('myuw_mobile.views.page',
     url(r'login', 'myuw_login'),
     url(r'support', 'support'),
     url(r'^visual', 'index'),
