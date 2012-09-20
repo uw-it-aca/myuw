@@ -798,6 +798,33 @@ margin-right: 5px;
 	
 
 }
+// new method
+
+
+
+.link-list {
+
+label {
+margin-bottom: 0px;
+margin-left: 15px;
+display: block;
+font-size: 17px;
+color: @blue - 25;
+
+}
+
+input[type=checkbox] {
+   position: absolute;
+   top: -9999px;
+   left: -9999px;
+   }
+input[type=checkbox]:checked ~ div {
+    color: @grayLight;
+    font-style: italic;
+    font-weight: 200;
+}
+   
+}
 
 a:hover {
 	text-decoration: none !important;
