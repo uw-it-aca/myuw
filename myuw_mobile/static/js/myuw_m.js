@@ -88,32 +88,68 @@ $(document).ready(function() {
     function show_page_from_url() {
         var path = window.location.pathname;
 
+        var hist = window.History;
+
+        // The replaceState is for MUWM-368
         if (path === "/my/") {
-            CourseList.show_list();
+            hist.replaceState({
+                state: "course_list",
+                }, "", "/my"
+            );
+            //CourseList.show_list();
         }
         else if (path.match("/my/visual")) {
             var matches = path.match(/^\/my\/visual\/([0-9]+)/);
             if (matches) {
-                VisualSchedule.show_visual_schedule(matches[1]);
+                hist.replaceState({
+                    state: "visual",
+                    course_index: matches[1]
+                },  "", "/my/visual");
+                //VisualSchedule.show_visual_schedule(matches[1]);
             }
             else {
-                VisualSchedule.show_visual_schedule();
+                hist.replaceState({
+                    state: "visual"
+                },  "", "/my/visual");
+                //VisualSchedule.show_visual_schedule();
             }
         }
         else if (path === "/my/textbooks") {
-            TextBooks.show_books();
+            hist.replaceState({
+                state: "textbooks"
+            },  "", "/my/textbooks");
+            //TextBooks.show_books();
+        }
+        else if (path === "/my/textbooks") {
+            hist.replaceState({
+                state: "textbooks"
+            },  "", "/my/textbooks");
+            //TextBooks.show_books();
         }
         else if (path === "/my/links") {
-            QuickLinks.show_links();
+            hist.replaceState({
+                state: "quicklinks"
+            },  "", "/my/links");
+            //QuickLinks.show_links();
         }
         else if (path.match(/^\/my\/instructor\/[A-Z0-9]+/)) {
             var matches = path.match(/^\/my\/instructor\/([A-Z0-9]+)/);
-            Instructor.show_instructor(matches[1]);
+            hist.pushState({
+                state: "instructor",
+                instructor: matches[1]
+            },  "", "/my/instructor/"+matches[1]);
+
+//            Instructor.show_instructor(matches[1]);
         }
         else {
             // Just fall back to the course list?
-            CourseList.show_list();
+            hist.replaceState({
+                state: "course_list",
+                }, "", "/my"
+            );
+            //CourseList.show_list();
         }
+        History.Adapter.trigger(window, 'statechange');
     }
 
 
