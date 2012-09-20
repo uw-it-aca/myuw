@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.conf import settings
 
-from myuw_api.sws_dao import Schedule as ScheduleDAO
+from myuw_mobile.dao.sws import Schedule as ScheduleDAO
 from restclients.models import ClassSchedule, Term, Section, Person
 
 class TestCourseColors(TestCase):
