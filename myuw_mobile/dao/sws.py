@@ -1,7 +1,7 @@
 from django.conf import settings
 import datetime
 from restclients.sws import SWS
-from myuw_api.models import CourseColor
+from myuw_mobile.models import CourseColor
 import logging
 import json
 
