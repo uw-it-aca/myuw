@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from myuw_api.views import StudClasScheCurQuarView, UserScheduleBooks, InstructorDetails
+from myuw_api.views import StudClasScheCurQuar, TextbookCurQuar, InstructorContact
 
 urlpatterns = patterns('myuw_spi.views',
                        url(r'v1/schedule/current/$', StudClasScheCurQuar().run),
