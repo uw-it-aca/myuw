@@ -8,7 +8,7 @@ import json
 
 class Quarter:
     """ This class encapsulate the access of the term data """
-    _logger = logging.getLogger('myuw_api.sws_dao.Quarter')
+    _logger = logging.getLogger('myuw_mobile.dao.sws.Quarter')
 
     def get_cur_quarter(self):
         """
@@ -27,7 +27,7 @@ class Schedule:
     and section resources
     """
 
-    _logger = logging.getLogger('myuw_api.sws_dao.Schedule')
+    _logger = logging.getLogger('myuw_mobile.dao.sws.Schedule')
 
     def __init__(self, regid):
         self.regid = regid

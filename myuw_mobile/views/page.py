@@ -6,7 +6,7 @@ from restclients.gws import GWS
 import logging
 
 from myuw_mobile.user import UserService
-from myuw_api.sws_dao import Quarter
+from myuw_mobile.dao.sws import Quarter
 from myuw_mobile.dao.pws import Person as PersonDao
 
 logger = logging.getLogger('myuw_mobile.views.page')

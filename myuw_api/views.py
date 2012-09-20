@@ -15,7 +15,7 @@ import sys
 import traceback
 import logging
 
-from sws_dao import Schedule
+from myuw_mobile.dao.sws import Schedule
 from myuw_mobile.dao.pws import Person as PersonDAO
 from myuw_mobile.user import UserService
 from restclients.bookstore import Bookstore
