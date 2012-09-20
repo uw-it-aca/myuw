@@ -43,7 +43,7 @@ class RESTDispatch:
         return response
 
 
-class StudClasScheCurQuarView(RESTDispatch):
+class StudClasScheCurQuar(RESTDispatch):
     """
     Performs actions on resource at /api/v1/schedule/current/.
     """
@@ -96,7 +96,7 @@ class StudClasScheCurQuarView(RESTDispatch):
         return response
 
 
-class UserScheduleBooks(RESTDispatch):
+class TextbookCurQuar(RESTDispatch):
     """
     Performs actions on resource at /api/v1/books/current/.
     """
@@ -147,7 +147,7 @@ class UserScheduleBooks(RESTDispatch):
                 response.status_code = 404
         return response
 
-class InstructorDetails(RESTDispatch):
+class InstructorContact(RESTDispatch):
     def GET(self, request, regid):
         """ 
         GET returns 200 with course section schedule details.
