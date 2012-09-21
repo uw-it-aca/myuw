@@ -809,9 +809,12 @@ margin-bottom: 0px;
 margin-left: 15px;
 display: block;
 font-size: 17px;
-color: @blue - 25;
-
+color: @grayLight;
+font-style:italic;
 }
+
+.icon-checked:before { content: "\f096"; }
+
 
 input[type=checkbox] {
    position: absolute;
@@ -819,11 +822,11 @@ input[type=checkbox] {
    left: -9999px;
    }
 input[type=checkbox]:checked ~ div {
-    color: @grayLight;
-    font-style: italic;
-    font-weight: 200;
+    color: @blue - 25;
+    font-style:normal; 
+    .icon-checked:before { content: "\f00c"; }
 }
-   
+  
 }
 
 a:hover {

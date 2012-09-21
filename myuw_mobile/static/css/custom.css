@@ -1488,7 +1488,11 @@ li.inline {
   margin-left: 15px;
   display: block;
   font-size: 17px;
-  color: #0083c2;
+  color: #999999;
+  font-style: italic;
+}
+.link-list .icon-checked:before {
+  content: "\f096";
 }
 .link-list input[type=checkbox] {
   position: absolute;
@@ -1496,9 +1500,11 @@ li.inline {
   left: -9999px;
 }
 .link-list input[type=checkbox]:checked ~ div {
-  color: #999999;
-  font-style: italic;
-  font-weight: 200;
+  color: #0083c2;
+  font-style: normal;
+}
+.link-list input[type=checkbox]:checked ~ div .icon-checked:before {
+  content: "\f00c";
 }
 a:hover {
   text-decoration: none !important;
