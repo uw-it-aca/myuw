@@ -38,12 +38,12 @@
                                 <td>Room to be arranged</td>
                             {{else}}
                                 <td>
-                                    {{#equal ../../course_campus "Seattle"}}
-                                    <a href="http://uw.edu/maps/?{{ building }}" target="_blank">
-                                    {{/equal}}
-                                {{building}} {{room}}
+                                    {{#if latitude}}
+                                    <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" target="_blank">
                                     {{/if}}
-                                {{#equal ../course_campus "Seattle"}}</a>{{/equal}}
+                                {{building}} {{room}}
+                                {{#if latitude}}</a>{{/if}}
+                            {{/if}}
                                 </td>
                         </tr>
                         {{/each}}

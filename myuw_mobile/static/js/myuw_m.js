@@ -6,6 +6,13 @@ $(document).ready(function() {
     var course_data = null;
     var book_data = null;
 
+    // Google maps gets very confused by some characters in map urls
+    Handlebars.registerHelper("encodeForMaps", function(str) {
+        str = str.replace(/ \(/g, " - ");
+        str = str.replace(/[\)&]/g, "");
+        str = encodeURIComponent(str);
+        return str;
+    });
 
     //probably extraneous
     Handlebars.registerHelper("formatTime", function(time) {
