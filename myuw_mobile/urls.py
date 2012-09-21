@@ -10,8 +10,10 @@ urlpatterns = patterns('myuw_mobile.views.page',
     url(r'^instructor', 'index'),
     url(r'^links', 'index'),
     url(r'^$', 'index'),
-    url(r'^api/v1/schedule/current/$', StudClasScheCurQuar().run),
-    url(r'^api/v1/books/current/$', TextbookCurQuar().run),
-    url(r'^api/v1/person/(?P<regid>.*)$', InstructorContact().run),
 )
 
+urlpatterns += patterns('myuw_mobile.views.api',
+    url(r'^api/v1/books/current/$', TextbookCurQuar().run),
+    url(r'^api/v1/schedule/current/$', StudClasScheCurQuar().run),
+    url(r'^api/v1/person/(?P<regid>.*)$', InstructorContact().run),
+)
