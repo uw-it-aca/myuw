@@ -99,7 +99,7 @@ $(document).ready(function() {
             //CourseList.show_list();
         }
         else if (path.match("/mobile/visual")) {
-            var matches = path.match(/^\/my\/visual\/([0-9]+)/);
+            var matches = path.match(/^\/mobile\/visual\/([0-9]+)/);
             if (matches) {
                 hist.replaceState({
                     state: "visual",
@@ -132,8 +132,8 @@ $(document).ready(function() {
             },  "", "/mobile/links");
             //QuickLinks.show_links();
         }
-        else if (path.match(/^\/my\/instructor\/[A-Z0-9]+/)) {
-            var matches = path.match(/^\/my\/instructor\/([A-Z0-9]+)/);
+        else if (path.match(/^\/mobile\/instructor\/[A-Z0-9]+/)) {
+            var matches = path.match(/^\/mobile\/instructor\/([A-Z0-9]+)/);
             hist.pushState({
                 state: "instructor",
                 instructor: matches[1]
@@ -145,7 +145,7 @@ $(document).ready(function() {
             // Just fall back to the course list?
             hist.replaceState({
                 state: "course_list",
-                }, "", "/my"
+                }, "", "/mobile"
             );
             //CourseList.show_list();
         }
