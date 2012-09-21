@@ -5,6 +5,10 @@ $(document).ready(function() {
 
     var course_data = null;
     var book_data = null;
+    // This is to prevent multiple events on load from making
+    // multiple web service calls.  This is required due to the
+    // fix for MUWM-368
+    var loaded_url = null;
 
     // Google maps gets very confused by some characters in map urls
     Handlebars.registerHelper("encodeForMaps", function(str) {
@@ -71,8 +75,16 @@ $(document).ready(function() {
         var data = history_state.data;
         var state = data.state;
 
+        var state_url = history_state.url;
+        // This is the check of the same url, to prevent
+        // duplicate web service requests on page load.
+        if (state_url == loaded_url) {
+            return;
+        }
+
         if (state === undefined) {
             show_page_from_url();
+            return;
         }
         else if (state === "course_list") {
             // Figure out what to do from the url
@@ -90,6 +102,8 @@ $(document).ready(function() {
         else if (state === "visual") {
             VisualSchedule.show_visual_schedule(data.course_index);
         }
+
+        loaded_url = state_url;
     });
 
     function show_page_from_url() {
