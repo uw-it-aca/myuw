@@ -5,11 +5,11 @@ import sys
 import traceback
 from restclients.sws import SWS
 from myuw_mobile.models import CourseColor
-from myuw_mobile.dao.building import Building
-from pws import Person as PersonDao
+from building import Building
+from pws import Person
 
 sws = SWS()
-person = PersonDao()
+person = Person()
 
 class Quarter:
     """ 
