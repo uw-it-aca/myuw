@@ -1,0 +1,1277 @@
+{
+   "SWMB" : {
+      "latititude" : 47.654728705826,
+      "longitude" : -122.31527682209,
+      "name" : "SW Maintenance Bldg (SWMB)"
+   },
+   "EXED" : {
+      "latititude" : 47.659471058804,
+      "longitude" : -122.30772025397,
+      "name" : "Bank of America Executive Education Center (EXED)"
+   },
+   "FLK" : {
+      "latititude" : 47.655795092964,
+      "longitude" : -122.30330883069,
+      "name" : "Fluke Hall (FLK)"
+   },
+   "SIG" : {
+      "latititude" : 47.654881773113,
+      "longitude" : -122.30655410185,
+      "name" : "Sieg Hall (SIG)"
+   },
+   "CHCL" : {
+      "latititude" : 47.648536022659,
+      "longitude" : -122.30840906746,
+      "name" : "Center On Human Development And Disability Clinic (CHCL)"
+   },
+   "UMNW" : {
+      "latititude" : 47.649895,
+      "longitude" : -122.308155,
+      "name" : "University Medical Center, Wings Nw (UMNW)"
+   },
+   "DSC" : {
+      "latititude" : 47.655027705971,
+      "longitude" : -122.31362882209,
+      "name" : "3941 University Way N.E. (DSC)"
+   },
+   "HCK" : {
+      "latititude" : 47.6519126819,
+      "longitude" : -122.31152108466,
+      "name" : "Hitchcock Hall (HCK)"
+   },
+   "ELB" : {
+      "latititude" : 47.654608865386,
+      "longitude" : -122.30454291534,
+      "name" : "Engineering Library (ELB)"
+   },
+   "UFA" : {
+      "latititude" : 47.654721386545,
+      "longitude" : -122.30410146627,
+      "name" : "University Facilities Annex 1 (UFA)"
+   },
+   "ADL" : {
+      "latititude" : 47.654192,
+      "longitude" : -122.305435,
+      "name" : "Aerodynamics Laboratory (ADL)"
+   },
+   "NLB" : {
+      "latititude" : 47.655032,
+      "longitude" : -122.319025,
+      "name" : "Northlake Building (NLB)"
+   },
+   "PCH" : {
+      "latititude" : 47.654380319134,
+      "longitude" : -122.31366445767,
+      "name" : "Purchasing And Accounting Building (PCH)"
+   },
+   "GLB" : {
+      "latititude" : 47.662263289682,
+      "longitude" : -122.31276581349,
+      "name" : "4534 University Way Ne (Gelb Building) (GLB)"
+   },
+   "GA1" : {
+      "latititude" : 47.654057,
+      "longitude" : -122.311785,
+      "name" : "Guthrie Annex 1 (GA1)"
+   },
+   "WRS" : {
+      "latititude" : 47.653670227056,
+      "longitude" : -122.31252454233,
+      "name" : "West Receiving Station (WRS)"
+   },
+   "LAVC" : {
+      "latititude" : 47.660099095346,
+      "longitude" : -122.29162366138,
+      "name" : "Laurel Village Building C (LAVC)"
+   },
+   "TGB" : {
+      "latititude" : 47.65305,
+      "longitude" : -122.302276,
+      "name" : "Graves Hall, 3910 Montlake Blvd Ne (TGB)"
+   },
+   "LAVY" : {
+      "latititude" : 47.659860547605,
+      "longitude" : -122.29129366138,
+      "name" : "Laurel Village Building Y (LAVY)"
+   },
+   "BIOE" : {
+      "latititude" : 47.652465772779,
+      "longitude" : -122.31254308465,
+      "name" : "William H. Foege Bioengineering (BIOE)"
+   },
+   "AAC" : {
+      "latititude" : 47.661662,
+      "longitude" : -122.312796,
+      "name" : "4516 University Way Ne (AAC)"
+   },
+   "UWTA" : {
+      "latititude" : 47.660689739214,
+      "longitude" : -122.31392154233,
+      "name" : "4328 Brooklyn Ave Ne (UW Tower Building A) (UWTA)"
+   },
+   "UDB" : {
+      "latititude" : 47.660884417628,
+      "longitude" : -122.31623754233,
+      "name" : "1107 Ne 45th Street (University District Building) (UDB)"
+   },
+   "SHA" : {
+      "latititude" : 47.652542,
+      "longitude" : -122.299265,
+      "name" : "Shellhouse Annex 1 (SHA)"
+   },
+   "ALB" : {
+      "latititude" : 47.655421278318,
+      "longitude" : -122.30700745767,
+      "name" : "Allen Library (ALB)"
+   },
+   "DEN" : {
+      "latititude" : 47.658379641598,
+      "longitude" : -122.30886654233,
+      "name" : "Denny Hall (DEN)"
+   },
+   "HPT" : {
+      "latititude" : 47.660711,
+      "longitude" : -122.308105,
+      "name" : "Hughes Penthouse Theatre (HPT)"
+   },
+   "KIN" : {
+      "latititude" : 47.652655,
+      "longitude" : -122.310597,
+      "name" : "Kincaid Hall (KIN)"
+   },
+   "UWMC" : {
+      "latititude" : 47.648765,
+      "longitude" : -122.306369,
+      "name" : "University Of Washington Medical Center (UWMC)"
+   },
+   "SCC" : {
+      "latititude" : 47.65383,
+      "longitude" : -122.315102,
+      "name" : "Stevens Court C (SCC)"
+   },
+   "FSH" : {
+      "latititude" : 47.653242271194,
+      "longitude" : -122.316242,
+      "name" : "Fishery Sciences (FSH)"
+   },
+   "NPS" : {
+      "latititude" : 47.659107,
+      "longitude" : -122.302907,
+      "name" : "North Physics Laboratory (Cyclotron Shop) (NPS)"
+   },
+   "ESB" : {
+      "latititude" : 47.659575190129,
+      "longitude" : -122.29329466138,
+      "name" : "Environmental Safety Storage Building (ESB)"
+   },
+   "MLR" : {
+      "latititude" : 47.657207,
+      "longitude" : -122.306328,
+      "name" : "Miller Hall (MLR)"
+   },
+   "LAVU" : {
+      "latititude" : 47.659998547643,
+      "longitude" : -122.2906162037,
+      "name" : "Laurel Village Building U (LAVU)"
+   },
+   "CSH" : {
+      "latititude" : 47.652880318511,
+      "longitude" : -122.29978618651,
+      "name" : "Conibear Shellhouse (CSH)"
+   },
+   "UMSP" : {
+      "latititude" : 47.648553772237,
+      "longitude" : -122.30526364418,
+      "name" : "University Medical Center, Surgery And Treatment Pavilion (UMSP)"
+   },
+   "KNE" : {
+      "latititude" : 47.6565514399,
+      "longitude" : -122.309198619,
+      "name" : "Kane Hall (KNE)"
+   },
+   "COL" : {
+      "latititude" : 47.660154286179,
+      "longitude" : -122.31574535582,
+      "name" : "Collegiana (COL)"
+   },
+   "ARC" : {
+      "latititude" : 47.654561,
+      "longitude" : -122.310904,
+      "name" : "Architecture Hall (ARC)"
+   },
+   "GTH" : {
+      "latititude" : 47.653967,
+      "longitude" : -122.310901,
+      "name" : "Guthrie Hall (GTH)"
+   },
+   "NHS" : {
+      "latititude" : 47.658006188391,
+      "longitude" : -122.2903042037,
+      "name" : "Northwest Horticultural Society Hall (NHS)"
+   },
+   "PAA" : {
+      "latititude" : 47.652991135758,
+      "longitude" : -122.31110674603,
+      "name" : "Physics / Astronomy Auditorium (PAA)"
+   },
+   "OSS" : {
+      "latititude" : 47.648679,
+      "longitude" : -122.310449,
+      "name" : "Oceanography Storage Shed (OSS)"
+   },
+   "ROB" : {
+      "latititude" : 47.652035,
+      "longitude" : -122.30510018651,
+      "name" : "Roberts Hall (ROB)"
+   },
+   "OCE" : {
+      "latititude" : 47.649177821447,
+      "longitude" : -122.31071928836,
+      "name" : "Oceanography Building (OCE)"
+   },
+   "EK" : {
+      "latititude" : 47.653749,
+      "longitude" : -122.312877,
+      "name" : "3900/3902 University Way (EK)"
+   },
+   "WCL" : {
+      "latititude" : 47.651679,
+      "longitude" : -122.30493283069,
+      "name" : "Wilson Ceramic Laboratory (WCL)"
+   },
+   "ACC" : {
+      "latititude" : 47.653046362867,
+      "longitude" : -122.31482989815,
+      "name" : "John M. Wallace Hall (ACC)"
+   },
+   "HUT" : {
+      "latititude" : 47.659518737593,
+      "longitude" : -122.30663772884,
+      "name" : "Hutchinson Hall (HUT)"
+   },
+   "PO5" : {
+      "latititude" : 47.654890092463,
+      "longitude" : -122.303229,
+      "name" : "Plant Operations Annex 5 (PO5)"
+   },
+   "BOOK" : {
+      "latititude" : 47.660296,
+      "longitude" : -122.312889,
+      "name" : "University Book Store (BOOK)"
+   },
+   "LAVW" : {
+      "latititude" : 47.659434,
+      "longitude" : -122.29076311905,
+      "name" : "Laurel Village Building W (LAVW)"
+   },
+   "MNY" : {
+      "latititude" : 47.655541773204,
+      "longitude" : -122.31057218651,
+      "name" : "Meany Hall (MNY)"
+   },
+   "UWTC" : {
+      "latititude" : 47.660267929606,
+      "longitude" : -122.315136,
+      "name" : "University Of Washington Tower Building C (UWTC)"
+   },
+   "CMU" : {
+      "latititude" : 47.656967773402,
+      "longitude" : -122.30546437302,
+      "name" : "Communications Building (CMU)"
+   },
+   "CLK" : {
+      "latititude" : 47.657639453014,
+      "longitude" : -122.30490791534,
+      "name" : "Clark Hall (CLK)"
+   },
+   "EGA" : {
+      "latititude" : 47.653754632824,
+      "longitude" : -122.30436191534,
+      "name" : "Engineering Annex (EGA)"
+   },
+   "PSB" : {
+      "latititude" : 47.66201864462,
+      "longitude" : -122.30156772884,
+      "name" : "Plant Services Building (PSB)"
+   },
+   "HAG" : {
+      "latititude" : 47.656519120208,
+      "longitude" : -122.31169618651,
+      "name" : "Henry Art Gallery And Allen Center For The Visual Arts (HAG)"
+   },
+   "WLA" : {
+      "latititude" : 47.651401682112,
+      "longitude" : -122.30519545767,
+      "name" : "Wilson Annex (WLA)"
+   },
+   "SWS" : {
+      "latititude" : 47.657459,
+      "longitude" : -122.312416,
+      "name" : "Social Work / Speech &amp; Hearing Sciences Building (SWS)"
+   },
+   "ECC" : {
+      "latititude" : 47.655071722406,
+      "longitude" : -122.31476635582,
+      "name" : "Ethnic Cultural Center (ECC)"
+   },
+   "ART" : {
+      "latititude" : 47.658392,
+      "longitude" : -122.306461,
+      "name" : "Art Building (ART)"
+   },
+   "ATG" : {
+      "latititude" : 47.654052091999,
+      "longitude" : -122.30914383069,
+      "name" : "Atmospheric Sciences-Geophysics Building (ATG)"
+   },
+   "UMNN" : {
+      "latititude" : 47.649615,
+      "longitude" : -122.307056,
+      "name" : "University Medical Center, Wings Nn (UMNN)"
+   },
+   "MCR" : {
+      "latititude" : 47.654501,
+      "longitude" : -122.31738,
+      "name" : "Mercer Hall (MCR)"
+   },
+   "WFS" : {
+      "latititude" : 47.651501818874,
+      "longitude" : -122.30691164418,
+      "name" : "Winkenwerder Forest Sciences Laboratory (WFS)"
+   },
+   "IPF" : {
+      "latititude" : 47.651535136766,
+      "longitude" : -122.29931327116,
+      "name" : "Indoor Practice Facility (Dempsey Indoor Center) (IPF)"
+   },
+   "HSF" : {
+      "latititude" : 47.6505,
+      "longitude" : -122.309834,
+      "name" : "Magnuson Health Sciences Center F (HSF)"
+   },
+   "SCA" : {
+      "latititude" : 47.654265,
+      "longitude" : -122.315429,
+      "name" : "Stevens Court A (SCA)"
+   },
+   "EEB" : {
+      "latititude" : 47.65361240606,
+      "longitude" : -122.30650313625,
+      "name" : "Electrical Engineering Building (EEB)"
+   },
+   "GLD" : {
+      "latititude" : 47.654943,
+      "longitude" : -122.31271,
+      "name" : "Gould Hall (GLD)"
+   },
+   "BLD" : {
+      "latititude" : 47.651298364319,
+      "longitude" : -122.30766681349,
+      "name" : "Bloedel Hall (BLD)"
+   },
+   "PDL" : {
+      "latititude" : 47.656998,
+      "longitude" : -122.304243,
+      "name" : "Padelford Hall (PDL)"
+   },
+   "Van De Graaff Accelerator" : {
+      "latititude" : 47.659921738151,
+      "longitude" : -122.3029690172,
+      "name" : "North Physics Laboratory (NPV) (Van De Graaff Accelerator)"
+   },
+   "CHB" : {
+      "latititude" : 47.652893,
+      "longitude" : -122.308322,
+      "name" : "Chemistry Building (CHB)"
+   },
+   "CHSC" : {
+      "latititude" : 47.648169683454,
+      "longitude" : -122.30753845767,
+      "name" : "Center On Human Development And Disability School (CHSC)"
+   },
+   "HSD" : {
+      "latititude" : 47.650145,
+      "longitude" : -122.309264,
+      "name" : "Magnuson Health Sciences Center D (HSD)"
+   },
+   "UTC" : {
+      "latititude" : 47.652795814514,
+      "longitude" : -122.31313574471,
+      "name" : "University Transportation Center (UTC)"
+   },
+   "OBS" : {
+      "latititude" : 47.660297643191,
+      "longitude" : -122.30929772884,
+      "name" : "Theodor Jacobsen Observatory (OBS)"
+   },
+   "RAI" : {
+      "latititude" : 47.657875641179,
+      "longitude" : -122.30726272884,
+      "name" : "Raitt Hall (RAI)"
+   },
+   "WSG" : {
+      "latititude" : 47.652101318354,
+      "longitude" : -122.31417335582,
+      "name" : "3710 Brooklyn Avenue N.E. (WSG)"
+   },
+   "LAVN" : {
+      "latititude" : 47.660744321776,
+      "longitude" : -122.29162774603,
+      "name" : "Laurel Village Building N (LAVN)"
+   },
+   "GRB" : {
+      "latititude" : 47.65534,
+      "longitude" : -122.309429,
+      "name" : "Gerberding Hall (GRB)"
+   },
+   "HSAA" : {
+      "latititude" : 47.649701,
+      "longitude" : -122.30844,
+      "name" : "Magnuson Health Sciences Center Aa (HSAA)"
+   },
+   "ADS" : {
+      "latititude" : 47.661578866068,
+      "longitude" : -122.31221844048,
+      "name" : "4545 15th Avenue NE (ADS)"
+   },
+   "SLA" : {
+      "latititude" : 47.623569,
+      "longitude" : -122.340686,
+      "name" : "South Lake Union Research A (SLA)"
+   },
+   "AZ" : {
+      "latititude" : 47.656718546735,
+      "longitude" : -122.31534418651,
+      "name" : "4046 12Th Ave Ne (AZ)"
+   },
+   "NMH" : {
+      "latititude" : 47.657775923397,
+      "longitude" : -122.29064439021,
+      "name" : "Merrill Hall (NMH)"
+   },
+   "UWTS" : {
+      "latititude" : 47.660157738477,
+      "longitude" : -122.31463917791,
+      "name" : "Washington Commons (UWTS)"
+   },
+   "AND" : {
+      "latititude" : 47.651769454638,
+      "longitude" : -122.30754854233,
+      "name" : "Anderson Hall (AND)"
+   },
+   "LAVS" : {
+      "latititude" : 47.660304904556,
+      "longitude" : -122.29124640741,
+      "name" : "Laurel Village Building S (LAVS)"
+   },
+   "LA1" : {
+      "latititude" : 47.658945189431,
+      "longitude" : -122.304749,
+      "name" : "Lewis Annex 1 (A&amp;S) (LA1)"
+   },
+   "MGH" : {
+      "latititude" : 47.654829,
+      "longitude" : -122.307751,
+      "name" : "Mary Gates Hall (MGH)"
+   },
+   "MUE" : {
+      "latititude" : 47.652232,
+      "longitude" : -122.305364,
+      "name" : "Mueller Hall (MUE)"
+   },
+   "GUG" : {
+      "latititude" : 47.65427,
+      "longitude" : -122.306322,
+      "name" : "Guggenheim Hall (GUG)"
+   },
+   "HS4" : {
+      "latititude" : 47.651838,
+      "longitude" : -122.310734,
+      "name" : "Health Sciences Annex 4 (HS4)"
+   },
+   "HSRR" : {
+      "latititude" : 47.649403,
+      "longitude" : -122.3083,
+      "name" : "Magnuson Health Sciences Center Rr (HSRR)"
+   },
+   "CHL" : {
+      "latititude" : 47.653699,
+      "longitude" : -122.309992,
+      "name" : "Chemistry Library Building (CHL)"
+   },
+   "CRB" : {
+      "latititude" : 47.661476,
+      "longitude" : -122.313453,
+      "name" : "Corbet Building (CRB)"
+   },
+   "MEB" : {
+      "latititude" : 47.653729135248,
+      "longitude" : -122.30488647487,
+      "name" : "Mechanical Engineering Building (MEB)"
+   },
+   "BOW" : {
+      "latititude" : 47.662790225793,
+      "longitude" : -122.2954802037,
+      "name" : "4625 Union Bay Place (BOW)"
+   },
+   "GAB" : {
+      "latititude" : 47.65234145448,
+      "longitude" : -122.30101164418,
+      "name" : "Graves Annex Building (GAB)"
+   },
+   "UWTO" : {
+      "latititude" : 47.660809383055,
+      "longitude" : -122.315119,
+      "name" : "University Of Washington Tower Building O (UWTO)"
+   },
+   "LAVV" : {
+      "latititude" : 47.659787,
+      "longitude" : -122.29048,
+      "name" : "Laurel Village Building V (LAVV)"
+   },
+   "UMSE" : {
+      "latititude" : 47.649122,
+      "longitude" : -122.307266,
+      "name" : "University Medical Center, Wings Se (UMSE)"
+   },
+   "PAR" : {
+      "latititude" : 47.65744,
+      "longitude" : -122.31032,
+      "name" : "Parrington Hall (PAR)"
+   },
+   "CDH" : {
+      "latititude" : 47.656599320055,
+      "longitude" : -122.31607327116,
+      "name" : "Condon Hall (CDH)"
+   },
+   "JHN" : {
+      "latititude" : 47.654588546146,
+      "longitude" : -122.30887827116,
+      "name" : "Johnson Hall (JHN)"
+   },
+   "HLL" : {
+      "latititude" : 47.656129746946,
+      "longitude" : -122.30416905159,
+      "name" : "Hall Health Center (HLL)"
+   },
+   "NRB" : {
+      "latititude" : 47.652765,
+      "longitude" : -122.30456674603,
+      "name" : "More Hall Annex (NRB)"
+   },
+   "OCN" : {
+      "latititude" : 47.65130868215,
+      "longitude" : -122.31265262698,
+      "name" : "Ocean Sciences Building (OCN)"
+   },
+   "HSI" : {
+      "latititude" : 47.651099,
+      "longitude" : -122.310709,
+      "name" : "Magnuson Health Sciences Center I (HSI)"
+   },
+   "LAN" : {
+      "latititude" : 47.655726092925,
+      "longitude" : -122.31576752513,
+      "name" : "Terry - Lander Hall (LAN)"
+   },
+   "MCM" : {
+      "latititude" : 47.658188,
+      "longitude" : -122.303669,
+      "name" : "McMahon Hall (MCM)"
+   },
+   "CDA" : {
+      "latititude" : 47.65561,
+      "longitude" : -122.312445,
+      "name" : "Commodore-Duchess Apartments (CDA)"
+   },
+   "RVC" : {
+      "latititude" : 47.660371321621,
+      "longitude" : -122.31689554233,
+      "name" : "Roosevelt Commons (RVC)"
+   },
+   "OTS" : {
+      "latititude" : 47.650330275224,
+      "longitude" : -122.31310291534,
+      "name" : "1429 N.E. Boat Street (OTS)"
+   },
+   "LAVR" : {
+      "latititude" : 47.660360904525,
+      "longitude" : -122.2917230172,
+      "name" : "Laurel Village Building R (LAVR)"
+   },
+   "PO3" : {
+      "latititude" : 47.654667,
+      "longitude" : -122.30329537302,
+      "name" : "Plant Operations Annex 3 (PO3)"
+   },
+   "SAV" : {
+      "latititude" : 47.657106320266,
+      "longitude" : -122.308357,
+      "name" : "Savery Hall (SAV)"
+   },
+   "ICH" : {
+      "latititude" : 47.657215,
+      "longitude" : -122.31108054233,
+      "name" : "Cunningham Hall (ICH)"
+   },
+   "OUG" : {
+      "latititude" : 47.65646093404,
+      "longitude" : -122.3104401865,
+      "name" : "Odegaard Undergraduate Library (OUG)"
+   },
+   "UMSS" : {
+      "latititude" : 47.649247,
+      "longitude" : -122.307768,
+      "name" : "University Medical Center, Wings Ss (UMSS)"
+   },
+   "SLC" : {
+      "latititude" : 47.623595,
+      "longitude" : -122.340073,
+      "name" : "South Lake Union Administration (Slu Building C) (SLC)"
+   },
+   "CYB" : {
+      "latititude" : 47.659006526532,
+      "longitude" : -122.29332264285,
+      "name" : "Corporation Yard Buildings (CYB)"
+   },
+   "UFB" : {
+      "latititude" : 47.655052546274,
+      "longitude" : -122.30394710185,
+      "name" : "University Facilities Building (UFB)"
+   },
+   "HSK" : {
+      "latititude" : 47.651108,
+      "longitude" : -122.311646,
+      "name" : "Fialkow Biomedical Sciences Research Pavilion (K Wing) (HSK)"
+   },
+   "HSB" : {
+      "latititude" : 47.649748,
+      "longitude" : -122.308866,
+      "name" : "Magnuson Health Sciences Center B (HSB)"
+   },
+   "LOW" : {
+      "latititude" : 47.654282,
+      "longitude" : -122.304556,
+      "name" : "Loew Hall (LOW)"
+   },
+   "GDR" : {
+      "latititude" : 47.659478251882,
+      "longitude" : -122.29782101852,
+      "name" : "Golf Driving Range Building (GDR)"
+   },
+   "GWN" : {
+      "latititude" : 47.656372,
+      "longitude" : -122.307748,
+      "name" : "Gowen Hall (GWN)"
+   },
+   "OR1" : {
+      "latititude" : 47.652751227183,
+      "longitude" : -122.30402764418,
+      "name" : "Plant Operations Annex 7 (Modular) (OR1)"
+   },
+   "LAW" : {
+      "latititude" : 47.65917018968,
+      "longitude" : -122.31096318651,
+      "name" : "William H. Gates Hall (LAW)"
+   },
+   "CMA" : {
+      "latititude" : 47.659753190326,
+      "longitude" : -122.29239037302,
+      "name" : "Ceramic And Metal Arts Building (CMA)"
+   },
+   "OTT" : {
+      "latititude" : 47.658030867754,
+      "longitude" : -122.31829735582,
+      "name" : "4225 Roosevelt Way N.E. (Roosevelt I) (OTT)"
+   },
+   "PRO" : {
+      "latititude" : 47.65912200778,
+      "longitude" : -122.31802881349,
+      "name" : "909 N.E. 43Rd (Warren Building) (PRO)"
+   },
+   "EHD" : {
+      "latititude" : 47.654777453806,
+      "longitude" : -122.32109181349,
+      "name" : "668 N. E. Northlake Way (Environmental Hlth Dept) (EHD)"
+   },
+   "PHT" : {
+      "latititude" : 47.656649,
+      "longitude" : -122.313612,
+      "name" : "Floyd and Delores Jones Playhouse Theater (PHT)"
+   },
+   "MKZ" : {
+      "latititude" : 47.65878,
+      "longitude" : -122.307239,
+      "name" : "Mackenzie Hall (MKZ)"
+   },
+   "BGH" : {
+      "latititude" : 47.652307772757,
+      "longitude" : -122.31001818651,
+      "name" : "Botany Greenhouse (BGH)"
+   },
+   "LAVT" : {
+      "latititude" : 47.660258,
+      "longitude" : -122.2906652037,
+      "name" : "Laurel Village Building T (LAVT)"
+   },
+   "RUS" : {
+      "latititude" : 47.661390418118,
+      "longitude" : -122.30521818651,
+      "name" : "Russian House (RUS)"
+   },
+   "GA3" : {
+      "latititude" : 47.654897,
+      "longitude" : -122.311792,
+      "name" : "Guthrie Annex 3 (GA3)"
+   },
+   "BFB" : {
+      "latititude" : 47.624135,
+      "longitude" : -122.340278,
+      "name" : "Brotman Building (Slu Building D) (BFB)"
+   },
+   "SCD" : {
+      "latititude" : 47.653864,
+      "longitude" : -122.315947,
+      "name" : "Stevens Court D (SCD)"
+   },
+   "WNX" : {
+      "latititude" : 47.6511929096,
+      "longitude" : -122.30654364418,
+      "name" : "Winkenwerder Annex (WNX)"
+   },
+   "BHQ" : {
+      "latititude" : 47.659111431544,
+      "longitude" : -122.30770370766,
+      "name" : "Business Hall (BHQ)"
+   },
+   "WAC" : {
+      "latititude" : 47.648586227759,
+      "longitude" : -122.2999692037,
+      "name" : "Waterfront Activities Center (WAC)"
+   },
+   "MOL" : {
+      "latititude" : 47.654414123896,
+      "longitude" : -122.30991384789,
+      "name" : "Molecular Engineering (MOL)"
+   },
+   "UMEE" : {
+      "latititude" : 47.649283,
+      "longitude" : -122.307024,
+      "name" : "University Medical Center, Wings Ee (UMEE)"
+   },
+   "RTB" : {
+      "latititude" : 47.655246175817,
+      "longitude" : -122.32134855952,
+      "name" : "Benjamin Hall Interdisciplinary Research Building(R&amp;T Bldg) (RTB)"
+   },
+   "OR2" : {
+      "latititude" : 47.652406544802,
+      "longitude" : -122.31419590675,
+      "name" : "Ocean Research Bldg. #2 (OR2)"
+   },
+   "MSB" : {
+      "latititude" : 47.649885,
+      "longitude" : -122.312928,
+      "name" : "Marine Sciences Building (MSB)"
+   },
+   "EGL" : {
+      "latititude" : 47.657967679386,
+      "longitude" : -122.31237991534,
+      "name" : "Eagleson Hall (EGL)"
+   },
+   "HND" : {
+      "latititude" : 47.65517,
+      "longitude" : -122.316929,
+      "name" : "Henderson Hall (HND)"
+   },
+   "NTC" : {
+      "latititude" : 47.65187345461,
+      "longitude" : -122.3001892037,
+      "name" : "Nordstrom Tennis Center (NTC)"
+   },
+   "HST" : {
+      "latititude" : 47.650896,
+      "longitude" : -122.309108,
+      "name" : "Magnuson Health Sciences Center T (HST)"
+   },
+   "ADI" : {
+      "latititude" : 47.654318319108,
+      "longitude" : -122.312463,
+      "name" : "3937 15th Avenue N.E. (ADI)"
+   },
+   "WIL" : {
+      "latititude" : 47.651860454613,
+      "longitude" : -122.30460091534,
+      "name" : "Wilcox Hall (WIL)"
+   },
+   "UMSW" : {
+      "latititude" : 47.649427,
+      "longitude" : -122.307879,
+      "name" : "University Medical Center, Wings Sw (UMSW)"
+   },
+   "SOCC" : {
+      "latititude" : 47.649596650241,
+      "longitude" : -122.31093955952,
+      "name" : "South Campus Center (SOCC)"
+   },
+   "FAC" : {
+      "latititude" : 47.655595319638,
+      "longitude" : -122.3041500172,
+      "name" : "University Of Washington Club (FAC)"
+   },
+   "AU" : {
+      "latititude" : 47.656488546672,
+      "longitude" : -122.31531472884,
+      "name" : "4038 12Th Ave Ne (AU)"
+   },
+   "BNS" : {
+      "latititude" : 47.653046590015,
+      "longitude" : -122.30956791534,
+      "name" : "Benson Hall (BNS)"
+   },
+   "GNOM" : {
+      "latititude" : 47.651919,
+      "longitude" : -122.31314881349,
+      "name" : "William H. Foege Genome Sciences (GNOM)"
+   },
+   "RAX" : {
+      "latititude" : 47.652143,
+      "longitude" : -122.30435164418,
+      "name" : "Roberts Annex (RAX)"
+   },
+   "PL1" : {
+      "latititude" : 47.652026227283,
+      "longitude" : -122.30930945767,
+      "name" : "Plant Laboratory Annex (PL1)"
+   },
+   "MUS" : {
+      "latititude" : 47.657609187952,
+      "longitude" : -122.30577327116,
+      "name" : "Music Building (MUS)"
+   },
+   "SMZ" : {
+      "latititude" : 47.656558546691,
+      "longitude" : -122.31272164418,
+      "name" : "Schmitz Hall (SMZ)"
+   },
+   "PLT" : {
+      "latititude" : 47.652076,
+      "longitude" : -122.30959337302,
+      "name" : "Plant Laboratory (PLT)"
+   },
+   "NPC" : {
+      "latititude" : 47.659606190163,
+      "longitude" : -122.30305972884,
+      "name" : "North Physics Laboratory (Cyclotron Building) (NPC)"
+   },
+   "GA2" : {
+      "latititude" : 47.654404,
+      "longitude" : -122.311718,
+      "name" : "Guthrie Annex 2 (GA2)"
+   },
+   "ODB" : {
+      "latititude" : 47.648849138624,
+      "longitude" : -122.311021,
+      "name" : "Oceanography Dock Building (ODB)"
+   },
+   "LAVM" : {
+      "latititude" : 47.660740291274,
+      "longitude" : -122.29208247487,
+      "name" : "Laurel Village Building M (LAVM)"
+   },
+   "PO6" : {
+      "latititude" : 47.654420546099,
+      "longitude" : -122.30351593254,
+      "name" : "Plant Operations Annex 6 (PO6)"
+   },
+   "TSB" : {
+      "latititude" : 47.662736935757,
+      "longitude" : -122.30151774603,
+      "name" : "Transportation Services Building (TSB)"
+   },
+   "LAVP" : {
+      "latititude" : 47.6607370957,
+      "longitude" : -122.29109966138,
+      "name" : "Laurel Village Building P (LAVP)"
+   },
+   "HHL" : {
+      "latititude" : 47.649984,
+      "longitude" : -122.311461,
+      "name" : "Harris Hydraulics Laboratory (HHL)"
+   },
+   "SCK" : {
+      "latititude" : 47.654203,
+      "longitude" : -122.316629,
+      "name" : "Stevens Court K (SCK)"
+   },
+   "OTB" : {
+      "latititude" : 47.650280682577,
+      "longitude" : -122.31233418651,
+      "name" : "Oceanography Teaching Building (OTB)"
+   },
+   "LEW" : {
+      "latititude" : 47.6588188683,
+      "longitude" : -122.305343,
+      "name" : "Lewis Hall (LEW)"
+   },
+   "FSAB" : {
+      "latititude" : 47.655062159707,
+      "longitude" : -122.30428710185,
+      "name" : "Facilities Services Administration Building (FSAB)"
+   },
+   "SCM" : {
+      "latititude" : 47.654163,
+      "longitude" : -122.316073,
+      "name" : "Stevens Court M (SCM)"
+   },
+   "ADA" : {
+      "latititude" : 47.6545403192,
+      "longitude" : -122.31249618651,
+      "name" : "3945 15th Avenue N.E. (ADA)"
+   },
+   "BRA" : {
+      "latititude" : 47.652094,
+      "longitude" : -122.315784,
+      "name" : "Bryants Annex (BRA)"
+   },
+   "SUZ" : {
+      "latititude" : 47.6557692268,
+      "longitude" : -122.308289661,
+      "name" : "Suzzallo Library (SUZ)"
+   },
+   "CNH" : {
+      "latititude" : 47.647825139333,
+      "longitude" : -122.30030330556,
+      "name" : "Canoe House (CNH)"
+   },
+   "PAT" : {
+      "latititude" : 47.6533375458,
+      "longitude" : -122.31182091534,
+      "name" : "Physics / Astronomy Building (PAT)"
+   },
+   "POB" : {
+      "latititude" : 47.654189134929,
+      "longitude" : -122.30388055952,
+      "name" : "Plant Operations Building (POB)"
+   },
+   "MCC" : {
+      "latititude" : 47.660415130621,
+      "longitude" : -122.30454832143,
+      "name" : "McCarty Hall (MCC)"
+   },
+   "PO4" : {
+      "latititude" : 47.654701092358,
+      "longitude" : -122.30359718651,
+      "name" : "Plant Operations Annex 4 (PO4)"
+   },
+   "REC" : {
+      "latititude" : 47.662057515223,
+      "longitude" : -122.29402572884,
+      "name" : "4535 Union Bay Place (Solid Waste Management Office) (REC)"
+   },
+   "ZAK" : {
+      "latititude" : 47.662010870509,
+      "longitude" : -122.31276454233,
+      "name" : "4522 University Way Ne (ZAK)"
+   },
+   "PCAR" : {
+      "latititude" : 47.6591947218,
+      "longitude" : -122.308757868,
+      "name" : "PACCAR Hall (PCAR)"
+   },
+   "FIS" : {
+      "latititude" : 47.648795594133,
+      "longitude" : -122.30947181349,
+      "name" : "Fisheries Center (FIS)"
+   },
+   "HGT" : {
+      "latititude" : 47.659252094878,
+      "longitude" : -122.30370706746,
+      "name" : "Haggett Hall (HGT)"
+   },
+   "HSJ" : {
+      "latititude" : 47.651398,
+      "longitude" : -122.311221,
+      "name" : "Magnuson Health Sciences Center J (HSJ)"
+   },
+   "ATS" : {
+      "latititude" : 47.656695,
+      "longitude" : -122.315104,
+      "name" : "1209 N.E. 41st Street (ATS)"
+   },
+   "BHA" : {
+      "latititude" : 47.652624908807,
+      "longitude" : -122.31004610185,
+      "name" : "Botany Greenhouse Annex (BHA)"
+   },
+   "SCB" : {
+      "latititude" : 47.654132,
+      "longitude" : -122.31493,
+      "name" : "Stevens Court B (SCB)"
+   },
+   "PL2" : {
+      "latititude" : 47.651840818499,
+      "longitude" : -122.30929518651,
+      "name" : "Plant Lab Annex 2 (PL2)"
+   },
+   "AAB" : {
+      "latititude" : 47.661810644447,
+      "longitude" : -122.31277290675,
+      "name" : "4518 University Way N.E. (Arcade Building) (AAB)"
+   },
+   "WSP" : {
+      "latititude" : 47.652267022485,
+      "longitude" : -122.31416372024,
+      "name" : "3716 Brooklyn Avenue N.E. (WSP)"
+   },
+   "CSE" : {
+      "latititude" : 47.653154274553,
+      "longitude" : -122.30588783069,
+      "name" : "Paul G. Allen Center For Computer Science &amp; Engineering (CSE)"
+   },
+   "UMEB" : {
+      "latititude" : 47.648832,
+      "longitude" : -122.305979,
+      "name" : "University Medical Center, Wings Eb (UMEB)"
+   },
+   "UMCC" : {
+      "latititude" : 47.649411,
+      "longitude" : -122.307336,
+      "name" : "University Medical Center,Cc (UMCC)"
+   },
+   "PO2" : {
+      "latititude" : 47.654409730522,
+      "longitude" : -122.30325572884,
+      "name" : "Plant Operations Annex 2 (PO2)"
+   },
+   "BAG" : {
+      "latititude" : 47.6534911755,
+      "longitude" : -122.30882034,
+      "name" : "Bagley Hall (BAG)"
+   },
+   "IC2" : {
+      "latititude" : 47.654999,
+      "longitude" : -122.314227,
+      "name" : "3930 Brooklyn Avenue N.E. (IC2)"
+   },
+   "SCL" : {
+      "latititude" : 47.654497,
+      "longitude" : -122.316197,
+      "name" : "Stevens Court L (SCL)"
+   },
+   "MOR" : {
+      "latititude" : 47.652496227218,
+      "longitude" : -122.30486672884,
+      "name" : "More Hall (MOR)"
+   },
+   "MSS" : {
+      "latititude" : 47.656374093284,
+      "longitude" : -122.31532618651,
+      "name" : "4034 12Th Avenue N.E. (MSS)"
+   },
+   "LSS" : {
+      "latititude" : 47.656599773351,
+      "longitude" : -122.31535045767,
+      "name" : "4042 12Th Avenue N.E. (LSS)"
+   },
+   "MAR" : {
+      "latititude" : 47.652478,
+      "longitude" : -122.31494,
+      "name" : "Marine Studies Building (MAR)"
+   },
+   "BRY" : {
+      "latititude" : 47.652275954807,
+      "longitude" : -122.31658035582,
+      "name" : "Bryants Building (BRY)"
+   },
+   "CHSB" : {
+      "latititude" : 47.648118772177,
+      "longitude" : -122.30875483069,
+      "name" : "Center On Human Development And Disability South (CHSB)"
+   },
+   "FTR" : {
+      "latititude" : 47.652551,
+      "longitude" : -122.31557,
+      "name" : "Fisheries Teaching And Research Building (FTR)"
+   },
+   "ISA" : {
+      "latititude" : 47.657822961717,
+      "longitude" : -122.29007766138,
+      "name" : "Isaacson Hall (ISA)"
+   },
+   "BTB" : {
+      "latititude" : 47.65464286541,
+      "longitude" : -122.31476,
+      "name" : "Brooklyn Trail Building (BTB)"
+   },
+   "PWR" : {
+      "latititude" : 47.653679178853,
+      "longitude" : -122.30370254233,
+      "name" : "Power Plant (PWR)"
+   },
+   "LAVQ" : {
+      "latititude" : 47.660491095563,
+      "longitude" : -122.29061666138,
+      "name" : "Laurel Village Building Q (LAVQ)"
+   },
+   "UWTT" : {
+      "latititude" : 47.660695417445,
+      "longitude" : -122.31463354233,
+      "name" : "University Of Washington Tower Building T (UWTT)"
+   },
+   "DRC" : {
+      "latititude" : 47.657617564076,
+      "longitude" : -122.28911349207,
+      "name" : "Douglas Research Conservatory (DRC)"
+   },
+   "EDP" : {
+      "latititude" : 47.6520376363,
+      "longitude" : -122.302229492,
+      "name" : "Edmundson Pavilion (EDP)"
+   },
+   "GUA" : {
+      "latititude" : 47.654593,
+      "longitude" : -122.306423,
+      "name" : "Guggenheim Annex (GUA)"
+   },
+   "ICT" : {
+      "latititude" : 47.656939933497,
+      "longitude" : -122.31485162698,
+      "name" : "Instructional Center/Theater (ICT)"
+   },
+   "HSBB" : {
+      "latititude" : 47.649665,
+      "longitude" : -122.307771,
+      "name" : "Magnuson Health Sciences Center Bb (HSBB)"
+   },
+   "SEB" : {
+      "latititude" : 47.656367733232,
+      "longitude" : -122.313688,
+      "name" : "Staff Human Resources Building (SEB)"
+   },
+   "HUB" : {
+      "latititude" : 47.655318,
+      "longitude" : -122.30519045767,
+      "name" : "Student Union Building (HUB)"
+   },
+   "HSG" : {
+      "latititude" : 47.650822,
+      "longitude" : -122.30997,
+      "name" : "Magnuson Health Sciences Center G (HSG)"
+   },
+   "BMM" : {
+      "latititude" : 47.660578643424,
+      "longitude" : -122.31057572884,
+      "name" : "Burke Memorial-Washington State Museum (BMM)"
+   },
+   "ESOB" : {
+      "latititude" : 47.658827196221,
+      "longitude" : -122.29404053493,
+      "name" : "Environmental Safety Office Building (ESOB)"
+   },
+   "HNS" : {
+      "latititude" : 47.660776,
+      "longitude" : -122.306512,
+      "name" : "Hansee Hall (HNS)"
+   },
+   "HSA" : {
+      "latititude" : 47.650158,
+      "longitude" : -122.308168,
+      "name" : "Magnuson Health Sciences Center A (HSA)"
+   },
+   "HSH" : {
+      "latititude" : 47.65064,
+      "longitude" : -122.310645,
+      "name" : "Magnuson Health Sciences Center H (HSH)"
+   },
+   "CCC" : {
+      "latititude" : 47.655045453732,
+      "longitude" : -122.31525816931,
+      "name" : "Child Care Center (CCC)"
+   },
+   "KIR" : {
+      "latititude" : 47.65442,
+      "longitude" : -122.305832,
+      "name" : "Kirsten Wnd Tunnel (KIR)"
+   },
+   "HSC" : {
+      "latititude" : 47.65018,
+      "longitude" : -122.308659,
+      "name" : "Magnuson Health Sciences Center C (HSC)"
+   },
+   "AER" : {
+      "latititude" : 47.653964545973,
+      "longitude" : -122.30581118651,
+      "name" : "Aerospace And Engineering Research Building (AER)"
+   },
+   "UHF" : {
+      "latititude" : 47.656502653824,
+      "longitude" : -122.2888902037,
+      "name" : "Urban Horticulture Field House (UHF)"
+   },
+   "IMA" : {
+      "latititude" : 47.653590648,
+      "longitude" : -122.301178066,
+      "name" : "Intramural Activities Building (IMA)"
+   },
+   "LAVX" : {
+      "latititude" : 47.659460905022,
+      "longitude" : -122.2911222037,
+      "name" : "Laurel Village Building X (LAVX)"
+   },
+   "SMI" : {
+      "latititude" : 47.656645546715,
+      "longitude" : -122.30718991534,
+      "name" : "Smith Hall (SMI)"
+   },
+   "SLB" : {
+      "latititude" : 47.624163,
+      "longitude" : -122.340772,
+      "name" : "South Lake Union Research B (SLB)"
+   },
+   "WSB" : {
+      "latititude" : 47.650416582983,
+      "longitude" : -122.29992616931,
+      "name" : "Women's Fastpitch Softball Building (WSB)"
+   },
+   "RSN" : {
+      "latititude" : 47.623463,
+      "longitude" : -122.337527,
+      "name" : "Rosen Building (RSN)"
+   },
+   "STD" : {
+      "latititude" : 47.6503979101,
+      "longitude" : -122.301971661,
+      "name" : "Husky Stadium (STD)"
+   },
+   "PSV" : {
+      "latititude" : 47.655263092669,
+      "longitude" : -122.32029444048,
+      "name" : "Publications Services Building (PSV)"
+   },
+   "PAB" : {
+      "latititude" : 47.653644681181,
+      "longitude" : -122.311302,
+      "name" : "Physics / Astronomy Building (PAB)"
+   },
+   "SCJ" : {
+      "latititude" : 47.653824,
+      "longitude" : -122.316462,
+      "name" : "Stevens Court J (SCJ)"
+   },
+   "THO" : {
+      "latititude" : 47.656504413384,
+      "longitude" : -122.30587564418,
+      "name" : "Thomson Hall (THO)"
+   },
+   "GA4" : {
+      "latititude" : 47.654893,
+      "longitude" : -122.311039,
+      "name" : "Guthrie Annex 4 (GA4)"
+   },
+   "HSE" : {
+      "latititude" : 47.650571,
+      "longitude" : -122.309255,
+      "name" : "Magnuson Health Sciences Center E (HSE)"
+   }
+}
