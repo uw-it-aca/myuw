@@ -1,22 +1,34 @@
 from django.conf import settings
-import datetime
+#import datetime
+import logging
+import sys
+import traceback
 from restclients.sws import SWS
 from myuw_mobile.models import CourseColor
 from myuw_mobile.dao.building import Building
-import logging
+from pws import Person as PersonDao
+
+sws = SWS()
+person = PersonDao()
 
 class Quarter:
-    """ This class encapsulate the access of the term data """
+    """ 
+    This class encapsulate the access of the term data 
+    """
+
     _logger = logging.getLogger('myuw_mobile.dao.sws.Quarter')
 
     def get_cur_quarter(self):
         """
         Returns calendar information for the current term.
         """
-        sws = SWS()
-        term = sws.get_current_term()
+        try:
+            return sws.get_current_term()
+        except Exception, message:
+            traceback.print_exc(file=sys.stdout)
+            Quarter._logger.error("Ex: get_cur_quarter --> " + message)
+            return None
 
-        return term
 
 
 class Schedule:
@@ -28,28 +40,27 @@ class Schedule:
 
     _logger = logging.getLogger('myuw_mobile.dao.sws.Schedule')
 
-    def __init__(self, regid):
-        self.regid = regid
+    def __init__(self, netid):
+        self.netid = netid
+        self.regid = person.get_regid(netid)
+        self.term = Quarter().get_cur_quarter()
 
-    def get_cur_quarter_registration(self):
+
+
+    def get_cur_quarter_schedule(self):
         """ Return the actively enrolled sections in the current quarter """
-
-        term = Quarter().get_cur_quarter()
-        sws = SWS()
-
-        schedule = sws.schedule_for_regid_and_term(self.regid, term)
-
-        return schedule
-
-    def get_curr_quarter_schedule(self):
-        regi_rslt = self.get_cur_quarter_registration()
-
-        return regi_rslt
-        if not regi_rslt:
-            # not enrolled in the currrent quarter
+        
+        if not self.term:
+            return None
+        try:
+            return sws.schedule_for_regid_and_term(self.regid, self.term)
+        except Exception, message:
+            print '//// get current quarter schedule from SWS: ', message
+            traceback.print_exc(file=sys.stdout)
+            Schedule._logger.error("Ex: get_cur_quarter_schedule for " + 
+                                   netid + " --> " + message)
             return None
 
-        return regi_rslt
 
     def get_buildings_for_schedule(self, schedule):
         buildings = {}
@@ -64,14 +75,23 @@ class Schedule:
 
         return buildings
 
-    def get_colors_for_schedule(self, schedule):
-        colors = {}
 
-        query = CourseColor.objects.filter(
-                                            regid=self.regid,
-                                            year=schedule.term.year,
-                                            quarter=schedule.term.quarter,
-                                            )
+
+    def get_colors_for_schedule(self, schedule):
+        if not schedule or not schedule.sections:
+            return None
+        colors = {}
+        try:
+            query = CourseColor.objects.filter(
+                regid=self.regid,
+                year=schedule.term.year,
+                quarter=schedule.term.quarter,
+                )
+        except Exception, message:
+            print '//// get course color from MySQL: ', message
+            Schedule._logger.error("Ex: get_colors_for_schedule for " +
+                                   netid + " --> " + message)
+            return None
 
         existing_sections = []
         color_lookup = {}
