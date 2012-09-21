@@ -35,7 +35,7 @@ var CourseList = {
             var hist = window.History;
             hist.pushState({
                 state: "visual"
-            },  "", "/my/visual");
+            },  "", "/mobile/visual");
 
             return false;
         });
@@ -46,7 +46,7 @@ var CourseList = {
             hist.pushState({
                 state: "instructor",
                 instructor: ev.target.rel
-            },  "", "/my/instructor/"+ev.target.rel);
+            },  "", "/mobile/instructor/"+ev.target.rel);
 
             return false;
         });
@@ -56,7 +56,7 @@ var CourseList = {
             var hist = window.History;
             hist.pushState({
                 state: "textbooks",
-            },  "", "/my/textbooks");
+            },  "", "/mobile/textbooks");
 
             return false;
         });

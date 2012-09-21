@@ -175,7 +175,7 @@ var VisualSchedule = {
             var hist = window.History;
             hist.pushState({
                 state: "course_list"
-            },  "", "/my/");
+            },  "", "/mobile/");
 
             return false;
         });
@@ -196,7 +196,7 @@ var VisualSchedule = {
             hist.pushState({
                 state: "visual",
                 course_index: course_id
-            },  "", "/my/visual/"+course_id);
+            },  "", "/mobile/visual/"+course_id);
 
             CourseModal.show_course_modal(course_id);
 
@@ -207,7 +207,7 @@ var VisualSchedule = {
             var hist = window.History;
             hist.pushState({
                 state: "textbooks"
-            },  "", "/my/textbooks");
+            },  "", "/mobile/textbooks");
 
             return false;
         });

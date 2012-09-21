@@ -46,7 +46,7 @@ var TextBooks = {
             var hist = window.History;
             hist.pushState({
                 state: "course_list",
-            },  "", "/my/");
+            },  "", "/mobile/");
 
             return false;
         });
@@ -57,7 +57,7 @@ var TextBooks = {
             hist.pushState({
                 state: "course_list",
                 course_index: ev.currentTarget.rel
-            },  "", "/my/");
+            },  "", "/mobile/");
 
             return false;
         });

@@ -18,7 +18,7 @@ WSData = {
     fetch_book_data: function(callback, args) {
             if (WSData._book_data === null) {
                 $.ajax({
-                    url: "/my/api/v1/books/current/",
+                    url: "/mobile/api/v1/books/current/",
                     dataType: "JSON",
 
                     type: "GET",
@@ -42,7 +42,7 @@ WSData = {
     fetch_course_data: function(callback, args) {
             if (WSData._course_data === null) {
                 $.ajax({
-                    url: "/my/api/v1/schedule/current/",
+                    url: "/mobile/api/v1/schedule/current/",
                     dataType: "JSON",
 
                     type: "GET",
@@ -66,7 +66,7 @@ WSData = {
         var instructor_regid = args[0];
         if (WSData._instructor_data[instructor_regid] === undefined) {
             $.ajax({
-                    url: "/my/api/v1/person/"+instructor_regid,
+                    url: "/mobile/api/v1/person/"+instructor_regid,
                     dataType: "JSON",
 
                     type: "GET",

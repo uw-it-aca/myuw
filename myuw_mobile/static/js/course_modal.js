@@ -19,7 +19,7 @@ var CourseModal = {
             hist.pushState({
                 state: "instructor",
                 instructor: ev.target.rel
-            },  "", "/my/instructor/"+ev.target.rel);
+            },  "", "/mobile/instructor/"+ev.target.rel);
 
             return false;
         });
@@ -27,7 +27,7 @@ var CourseModal = {
         $(".close_modal").on("click", function() {
             History.replaceState({
                 state: "visual"
-            },  "", "/my/visual");
+            },  "", "/mobile/visual");
         });
     }
 };

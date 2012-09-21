@@ -91,45 +91,45 @@ $(document).ready(function() {
         var hist = window.History;
 
         // The replaceState is for MUWM-368
-        if (path === "/my/") {
+        if (path === "/mobile/") {
             hist.replaceState({
                 state: "course_list",
-                }, "", "/my"
+                }, "", "/mobile"
             );
             //CourseList.show_list();
         }
-        else if (path.match("/my/visual")) {
+        else if (path.match("/mobile/visual")) {
             var matches = path.match(/^\/my\/visual\/([0-9]+)/);
             if (matches) {
                 hist.replaceState({
                     state: "visual",
                     course_index: matches[1]
-                },  "", "/my/visual");
+                },  "", "/mobile/visual");
                 //VisualSchedule.show_visual_schedule(matches[1]);
             }
             else {
                 hist.replaceState({
                     state: "visual"
-                },  "", "/my/visual");
+                },  "", "/mobile/visual");
                 //VisualSchedule.show_visual_schedule();
             }
         }
-        else if (path === "/my/textbooks") {
+        else if (path === "/mobile/textbooks") {
             hist.replaceState({
                 state: "textbooks"
-            },  "", "/my/textbooks");
+            },  "", "/mobile/textbooks");
             //TextBooks.show_books();
         }
-        else if (path === "/my/textbooks") {
+        else if (path === "/mobile/textbooks") {
             hist.replaceState({
                 state: "textbooks"
-            },  "", "/my/textbooks");
+            },  "", "/mobile/textbooks");
             //TextBooks.show_books();
         }
-        else if (path === "/my/links") {
+        else if (path === "/mobile/links") {
             hist.replaceState({
                 state: "quicklinks"
-            },  "", "/my/links");
+            },  "", "/mobile/links");
             //QuickLinks.show_links();
         }
         else if (path.match(/^\/my\/instructor\/[A-Z0-9]+/)) {
@@ -137,7 +137,7 @@ $(document).ready(function() {
             hist.pushState({
                 state: "instructor",
                 instructor: matches[1]
-            },  "", "/my/instructor/"+matches[1]);
+            },  "", "/mobile/instructor/"+matches[1]);
 
 //            Instructor.show_instructor(matches[1]);
         }
@@ -160,7 +160,7 @@ $(document).ready(function() {
         var hist = window.History;
         hist.pushState({
             state: "quicklinks",
-        },  "", "/my/links");
+        },  "", "/mobile/links");
 
         return false;
     });
