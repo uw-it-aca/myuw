@@ -1,9 +1,10 @@
 from django.conf import settings
-from restclients.pws import PWS
+import traceback
 import logging
-import json
-import re
+import sys
+from restclients.pws import PWS
 
+pws = PWS()
 
 class Person:
     """
@@ -15,23 +16,48 @@ class Person:
     _logger = logging.getLogger('myuw_mobile.dao.pws.Person')
 
     def get_person_by_netid(self, netid):
-        pws = PWS()
-        person = pws.get_person_by_netid(netid)
+        try:
+            return pws.get_person_by_netid(netid)
+        except Exception, message:
+            print 'Failed to get person: ', message
+            traceback.print_exc(file=sys.stdout)
+            Person._logger.error("Ex: get_person_by_netid for " + 
+                                 netid + " --> " + message)
+            return None
 
-        return person
+
+
+    def is_student(self, netid):
+        return self.get_person_by_netid(netid).is_student
+
 
     def get_regid(self, netid):
-        pws = PWS()
-        person = pws.get_person_by_netid(netid)
+        return self.get_person_by_netid(netid).uwregid
 
-        if person != None:
-            return person.uwregid
-
-        raise Exception('No valid regid: ' + regid)
 
     def get_contact(self, regid):
-        pws = PWS()
-        person = pws.get_contact(regid)
-        if person != None:
-            return person
-        raise Exception('Contact not found for ' + regid)
+        try:
+            contact = pws.get_contact(regid)
+        except Exception, message:
+            print 'Failed to get instructor data: ', message
+            traceback.print_exc(file=sys.stdout)
+            Person._logger.error("Ex: get_contact for "+
+                                 regid + " --> " + message)
+            return None
+
+        if not contact:
+            return None
+
+        if not contact["WhitepagesPublish"] :
+            affiliations = contact["PersonAffiliations"]
+            if "EmployeePersonAffiliation" in affiliations:
+                data = affiliations["EmployeePersonAffiliation"]
+                data["EmployeeWhitePages"] = {}
+
+            if "StudentPersonAffiliation" in affiliations:
+                data = affiliations["StudentPersonAffiliation"]
+                data["StudentWhitePages"] = {}
+
+        return contact                
+
+
