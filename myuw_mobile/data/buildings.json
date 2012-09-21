@@ -1374,5 +1374,47 @@
         "latitude" : 47.245944,
         "longitude" : -122.437368,
         "name" : "West Coast Grocery (WCG)"
+    },
+
+    "UW1" : {
+        "latitude" : 47.758916,
+        "longitude" : -122.190586,
+        "name" : "UW1"
+    },
+    "UW2" : {
+        "latitude" : 47.758671,
+        "longitude" : -122.191278,
+        "name" : "UW2"
+    },
+    "LB1" : {
+        "latitude" : 47.759731,
+        "longitude" : -122.191364,
+        "name" : "LB1"
+    },
+    "LB2" : {
+        "latitude" : 47.760173,
+        "longitude" : -122.19095,
+        "name" : "LB2"
+    },
+    "CC1" : {
+        "latitude" : 47.760799,
+        "longitude" : -122.191447,
+        "name" : "CC1"
+    },
+    "CC2" : {
+        "latitude" : 47.761273,
+        "longitude" : -122.19183,
+        "name" : "CC2"
+    },
+    "CC3" : {
+        "latitude" : 47.761067,
+        "longitude" : -122.192613,
+        "name" : "CC3"
+    },
+    "UWBB" : {
+        "latitude" : 47.764289,
+        "longitude" : -122.193956,
+        "name" : "UWBB"
     }
+
 }
