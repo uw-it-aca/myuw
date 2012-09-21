@@ -31,7 +31,6 @@ class User(UserId):
     uwnetid = models.SlugField(max_length=16,
                                db_index=True,
                                unique=True)
-    use_default_mylink = models.BooleanField()
     last_visit = models.DateTimeField(default=datetime.now())
 
 
@@ -39,6 +38,7 @@ class UserMyLink(models.Model):
     user = models.ForeignKey(User,
                              on_delete=models.PROTECT)
     linkid = models.PositiveSmallIntegerField()
+    is_off = models.BooleanField()
     class Meta:
         unique_together = ('user',
                            'linkid')
