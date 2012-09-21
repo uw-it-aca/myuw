@@ -1273,5 +1273,106 @@
       "latitude" : 47.650571,
       "longitude" : -122.309255,
       "name" : "Magnuson Health Sciences Center E (HSE)"
-   }
+   },
+
+    "ADMC" : {
+        "latitude" : 47.246013,
+        "longitude" : -122.437317,
+        "name" : "Academic (ADMC)"
+    },
+    "BB" : {
+        "latitude" : 47.245529,
+        "longitude" : -122.437263,
+        "name" : "Birmingham Block (BB)"
+    },
+    "BHS" : {
+        "latitude" : 47.245766,
+        "longitude" : -122.437325,
+        "name" : "Birmingham Hay and Seed (BHS)"
+    },
+    "CAR" : {
+        "latitude" : 47.247461,
+        "longitude" : -122.438446,
+        "name" : "Carlton Center (CAR)"
+    },
+    "CP" : {
+        "latitude" : 47.244156,
+        "longitude" : -122.436912,
+        "name" : "Cherry Parkes (CP)"
+    },
+    "DOU" : {
+        "latitude" : 47.24643,
+        "longitude" : -122.438186,
+        "name" : "Dougan (DOU)"
+    },
+    "GWP" : {
+        "latitude" : 47.245498,
+        "longitude" : -122.43725,
+        "name" : "Garretson Woodruff Pratt (GWP)"
+    },
+    "JOY" : {
+        "latitude" : 47.2464,
+        "longitude" : -122.437413,
+        "name" : "Joy Building (JOY)"
+    },
+    "KEY" : {
+        "latitude" : 47.24539,
+        "longitude" : -122.437829,
+        "name" : "Keystone (KEY)"
+    },
+    "LBH" : {
+        "latitude" : 47.245244,
+        "longitude" : -122.440117,
+        "name" : "Laborers Hall (LBH)"
+    },
+    "LSH" : {
+        "latitude" : 47.246393,
+        "longitude" : -122.440439,
+        "name" : "Longshoremen's Hall (LSH)"
+    },
+    "MAT" : {
+        "latitude" : 47.243385,
+        "longitude" : -122.437459,
+        "name" : "Mattress Factory (MAT)"
+    },
+    "MDS" : {
+        "latitude" : 47.243976,
+        "longitude" : -122.436896,
+        "name" : "McDonald Smith (MDS)"
+    },
+    "WPH" : {
+        "latitude" : 47.244513,
+        "longitude" : -122.437016,
+        "name" : "William W. Philip Hall (WPH)"
+    },
+    "PNK" : {
+        "latitude" : 47.246738,
+        "longitude" : -122.438875,
+        "name" : "Pinkerton (PNK)"
+    },
+    "SCI" : {
+        "latitude" : 47.245545,
+        "longitude" : -122.438398,
+        "name" : "Science Building (SCI)"
+    },
+    "SNO" : {
+        "latitude" : 47.244596,
+        "longitude" : -122.438017,
+        "name" : "Snoqualmie (SNO)"
+    },
+    "TLB" : {
+        "latitude" : 47.244352,
+        "longitude" : -122.438679,
+        "name" : "Tioga Library Building (TLB)"
+    },
+    "WG" : {
+        "latitude" : 47.244671,
+        "longitude" : -122.437035,
+        "name" : "Walsh Gardner (WG)"
+    },
+    "WCG" : {
+        "latitude" : 47.245944,
+        "longitude" : -122.437368,
+        "name" : "West Coast Grocery (WCG)"
+    }
 }
