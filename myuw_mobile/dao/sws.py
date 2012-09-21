@@ -2,9 +2,8 @@ from django.conf import settings
 import datetime
 from restclients.sws import SWS
 from myuw_mobile.models import CourseColor
+from myuw_mobile.dao.building import Building
 import logging
-import json
-
 
 class Quarter:
     """ This class encapsulate the access of the term data """
@@ -51,6 +50,19 @@ class Schedule:
             return None
 
         return regi_rslt
+
+    def get_buildings_for_schedule(self, schedule):
+        buildings = {}
+        building_dao = Building()
+        for section in schedule.sections:
+            for meeting in section.meetings:
+                if not meeting.building_to_be_arranged:
+                    if not meeting.building in buildings:
+                        code = meeting.building
+                        building = building_dao.get_building_from_code(code)
+                        buildings[code] = building
+
+        return buildings
 
     def get_colors_for_schedule(self, schedule):
         colors = {}

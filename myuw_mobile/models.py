@@ -44,3 +44,9 @@ class UserMyLink(models.Model):
                            'linkid')
 
 
+class Building(models.Model):
+    code = models.CharField(max_length=6)
+    latititude = models.CharField(max_length=40)
+    longitude = models.CharField(max_length=40)
+    name = models.CharField(max_length=200)
+

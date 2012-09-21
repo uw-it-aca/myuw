@@ -67,6 +67,7 @@ class StudClasScheCurQuar(RESTDispatch):
             schedule_dao = Schedule(regid)
             schedule = schedule_dao.get_curr_quarter_schedule()
             colors = schedule_dao.get_colors_for_schedule(schedule)
+            buildings = schedule_dao.get_buildings_for_schedule(schedule)
         except Exception, message:
             print 'Failed to get current quarter schedule: ', message
             traceback.print_exc(file=sys.stdout)
@@ -85,6 +86,19 @@ class StudClasScheCurQuar(RESTDispatch):
                         color = colors[section.section_label()]
                         section_data["color_id"] = color
                         section_index += 1
+
+                        # Also backfill the meeting building data
+                        meeting_index = 0
+                        for meeting in section.meetings:
+                            mdata = section_data["meetings"][meeting_index]
+                            if not mdata["building_tbd"]:
+                                building = buildings[mdata["building"]]
+                                if building is not None:
+                                    mdata["latitude"] = building.latitude
+                                    mdata["longitude"] = building.longitude
+                                    mdata["building_name"] = building.name
+
+                            meeting_index += 1
 
                     response = HttpResponse(json.dumps(json_data))
                 except Exception as ex:
