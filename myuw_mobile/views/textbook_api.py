@@ -8,11 +8,11 @@ from django.utils import simplejson as json
 import sys
 import traceback
 import logging
-from myuw_mobile.views.rest_dispatch import RESTDispatch
 from myuw_mobile.dao.sws import Schedule as ScheduleDao
-from myuw_mobile.views.pws_util import is_valid_netid
-from myuw_mobile.views.page import get_netid_from_session
 from restclients.bookstore import Bookstore
+from rest_dispatch import RESTDispatch
+from pws_util import is_valid_netid
+from page import get_netid_from_session
 
 
 class TextbookCurQuar(RESTDispatch):

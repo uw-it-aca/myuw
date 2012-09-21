@@ -3,12 +3,12 @@ from django.http import HttpResponse
 #from django.contrib.auth.decorators import login_required
 #from django.core.context_processors import csrf
 #from django.views.decorators.csrf import csrf_protect
-from django.utils import simplejson as json
-from myuw_mobile.views.rest_dispatch import RESTDispatch
-from myuw_mobile.views.pws_util import is_valid_netid
-from myuw_mobile.views.page import get_netid_from_session
-from myuw_mobile.dao.sws import Schedule as ScheduleDao
 import logging
+from django.utils import simplejson as json
+from myuw_mobile.dao.sws import Schedule as ScheduleDao
+from rest_dispatch import RESTDispatch
+from pws_util import is_valid_netid
+from page import get_netid_from_session
 
 class StudClasScheCurQuar(RESTDispatch):
     """

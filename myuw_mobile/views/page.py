@@ -6,7 +6,7 @@ from restclients.gws import GWS
 import logging
 from myuw_mobile.user import UserService
 from myuw_mobile.dao.sws import Quarter as QuarterDao
-from myuw_mobile.views.pws_util import is_valid_netid, is_student
+from pws_util import is_valid_netid, is_student
 
 logger = logging.getLogger('myuw_mobile.views.page')
 

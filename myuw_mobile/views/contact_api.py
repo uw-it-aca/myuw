@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.utils import simplejson as json
-from myuw_mobile.views.rest_dispatch import RESTDispatch
-from myuw_mobile.views.pws_util import get_contact
+from rest_dispatch import RESTDispatch
+from pws_util import get_contact
 import logging
 
 class InstructorContact(RESTDispatch):
