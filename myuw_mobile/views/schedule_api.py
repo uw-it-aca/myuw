@@ -35,9 +35,7 @@ class StudClasScheCurQuar(RESTDispatch):
             return super(StudClasScheCurQuar, 
                          self).data_not_found(*args, **named_args)
 
-        response = HttpResponse(get_colored_sche_json(colors, schedule))
-        response.status_code = 200
-        return response
+        return HttpResponse(get_colored_sche_json(colors, schedule))
 
 def get_colored_sche_json(colors, schedule):
     # Since the schedule is restclients, and doesn't know

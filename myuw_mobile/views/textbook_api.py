@@ -47,9 +47,7 @@ class TextbookCurQuar(RESTDispatch):
             return super(TextbookCurQuar,
                          self).data_not_found(*args, **named_args)
 
-        response = HttpResponse(get_json(book_data))
-        response.status_code = 200
-        return response
+        return HttpResponse(get_json(book_data))
 
 
 def get_json(book_data):

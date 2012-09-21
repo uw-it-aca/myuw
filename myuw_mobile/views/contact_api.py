@@ -17,7 +17,5 @@ class InstructorContact(RESTDispatch):
             return super(InstructorContact, 
                          self).data_not_found(*args, **named_args)
 
-        response = HttpResponse(json.dumps(contact))
-        response.status_code = 200
-        return response
+        return HttpResponse(json.dumps(contact))
 
