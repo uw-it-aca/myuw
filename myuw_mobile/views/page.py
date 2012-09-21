@@ -6,7 +6,7 @@ from restclients.gws import GWS
 import logging
 from myuw_mobile.user import UserService
 from myuw_mobile.dao.sws import Quarter as QuarterDao
-from pws_util import is_valid_netid, is_student
+from myuw_mobile.dao.pws import Person as PersonDao
 
 logger = logging.getLogger('myuw_mobile.views.page')
 
@@ -20,7 +20,7 @@ def index(request):
                'err': None}
 
     netid = get_netid_from_session(request)
-    if is_valid_netid(netid):
+    if PersonDao().get_regid(netid):
         request.session["user_netid"] = netid
     else:
         context['err'] = 'Invalid netid'
@@ -40,7 +40,7 @@ def index(request):
 
 def myuw_login(request):
     netid = get_netid_from_session(request)
-    if is_student(netid):
+    if PersonDao().is_student(netid):
         return redirect("myuw_mobile.views.page.index")
 
     if hasattr(settings, "MYUW_USER_SERVLET_URL"):

@@ -7,7 +7,7 @@ import logging
 from django.utils import simplejson as json
 from myuw_mobile.dao.sws import Schedule as ScheduleDao
 from rest_dispatch import RESTDispatch
-from pws_util import is_valid_netid
+from myuw_mobile.dao.pws import Person as PersonDao
 from page import get_netid_from_session
 
 class StudClasScheCurQuar(RESTDispatch):
@@ -22,7 +22,7 @@ class StudClasScheCurQuar(RESTDispatch):
         """
 
         netid = get_netid_from_session(request);
-        if not netid or not is_valid_netid(netid):
+        if not netid or not PersonDao().get_regid(netid):
             return super(StudClasScheCurQuar,
                          self).invalid_session(*args, **named_args)
 

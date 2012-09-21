@@ -11,7 +11,7 @@ import logging
 from myuw_mobile.dao.sws import Schedule as ScheduleDao
 from restclients.bookstore import Bookstore
 from rest_dispatch import RESTDispatch
-from pws_util import is_valid_netid
+from myuw_mobile.dao.pws import Person as PersonDao
 from page import get_netid_from_session
 
 
@@ -27,7 +27,7 @@ class TextbookCurQuar(RESTDispatch):
         """
 
         netid = get_netid_from_session(request);
-        if not netid or not is_valid_netid(netid):
+        if not netid or not PersonDao().get_regid(netid):
             return super(TextbookCurQuar, 
                          self).invalid_session(*args, **named_args)
 

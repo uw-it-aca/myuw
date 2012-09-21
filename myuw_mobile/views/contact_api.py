@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.utils import simplejson as json
 from rest_dispatch import RESTDispatch
-from pws_util import get_contact
+from myuw_mobile.dao.pws import Person as PersonDao
 import logging
 
 class InstructorContact(RESTDispatch):
@@ -12,7 +12,7 @@ class InstructorContact(RESTDispatch):
         """ 
         GET returns 200 with the whitepage information of the given person.
         """
-        contact = get_contact(regid)
+        contact = PersonDao().get_contact(regid)
         if not contact:
             return super(InstructorContact, 
                          self).data_not_found(*args, **named_args)
