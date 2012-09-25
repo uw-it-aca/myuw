@@ -29,23 +29,33 @@ class StudClasScheCurQuar(RESTDispatch):
         schedule_dao = ScheduleDao(netid)
         schedule = schedule_dao.get_cur_quarter_schedule()
         colors = schedule_dao.get_colors_for_schedule(schedule)
+        buildings = schedule_dao.get_buildings_for_schedule(schedule)
 
-        if (not colors or 
-            not schedule.json_data()):
+        if (not colors or not schedule.json_data()):
             return super(StudClasScheCurQuar, 
                          self).data_not_found(*args, **named_args)
 
-        return HttpResponse(get_colored_sche_json(colors, schedule))
+        # Since the schedule is restclients, and doesn't know
+        # about color ids, backfill that data
+        json_data = schedule.json_data()
+        section_index = 0
+        for section in schedule.sections:
+            section_data = json_data["sections"][section_index]
+            color = colors[section.section_label()]
+            section_data["color_id"] = color
+            section_index += 1
 
-def get_colored_sche_json(colors, schedule):
-    # Since the schedule is restclients, and doesn't know
-    # about color ids, backfill that data
-    json_data = schedule.json_data()
-    section_index = 0
-    for section in schedule.sections:
-        section_data = json_data["sections"][section_index]
-        color = colors[section.section_label()]
-        section_data["color_id"] = color
-        section_index += 1
-    return json.dumps(json_data) 
+            # Also backfill the meeting building data
+            meeting_index = 0
+            for meeting in section.meetings:
+                mdata = section_data["meetings"][meeting_index]
+                if not mdata["building_tbd"]:
+                    building = buildings[mdata["building"]]
+                    if building is not None:
+                        mdata["latitude"] = building.latitude
+                        mdata["longitude"] = building.longitude
+                        mdata["building_name"] = building.name
 
+                meeting_index += 1
+
+        return HttpResponse(json.dumps(json_data))
