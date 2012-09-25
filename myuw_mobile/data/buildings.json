@@ -1415,6 +1415,11 @@
         "latitude" : 47.764289,
         "longitude" : -122.193956,
         "name" : "UWBB"
+    },
+    "ELC" : {
+        "latitude" : 47.632567,
+        "longitude" : -122.156049,
+        "name" : "ELC"
     }
 
 }
