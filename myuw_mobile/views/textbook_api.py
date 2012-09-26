@@ -47,10 +47,10 @@ class TextbookCurQuar(RESTDispatch):
             return super(TextbookCurQuar,
                          self).data_not_found(*args, **named_args)
 
-        return HttpResponse(get_json(book_data))
+        return HttpResponse(index_by_sln(book_data))
 
 
-def get_json(book_data):
+def index_by_sln(book_data):
     json_data = {}
     for sln in book_data:
         json_data[sln] = []
