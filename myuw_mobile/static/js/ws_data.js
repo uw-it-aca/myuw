@@ -68,7 +68,7 @@ WSData = {
         },
 
     fetch_link_data: function(callback, args) {
-            if (WSData._course_data === null) {
+            if (WSData._link_data === null) {
                 $.ajax({
                     url: "/mobile/api/v1/links/",
                     dataType: "JSON",
@@ -143,7 +143,25 @@ WSData = {
                 }
             }
         }
+    },
+
+    save_links: function(links) {
+        var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;
+        $.ajax({
+                url: "/mobile/api/v1/links/",
+                dataType: "JSON",
+                data: JSON.stringify(links),
+                type: "PUT",
+                accepts: {html: "text/html"},
+                headers: {
+                     "X-CSRFToken": csrf_token
+                },
+                success: function(results) {
+                },
+                error: function(xhr, status, error) {
+                }
+       });
+    },
 
 
-    }
 };

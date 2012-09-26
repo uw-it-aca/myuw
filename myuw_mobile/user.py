@@ -1,4 +1,5 @@
 from django.conf import settings
+from myuw_mobile.models import User
 
 class UserService:
     _session = None
@@ -47,3 +48,17 @@ class UserService:
         self.clear_override()
         self.set_user(netid)
 
+    # the get_user / get_original_user / get_override_user should all really
+    # be returning user models.  But, i don't want to be serializing that
+    # data for each request.  So for now:
+    def get_user_for_netid(self, netid):
+        in_db = User.objects.filter(uwnetid=netid)
+
+        if len(in_db) > 0:
+            return in_db[0]
+
+        new = User()
+        new.uwnetid = netid
+        new.save()
+
+        return new
