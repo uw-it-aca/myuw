@@ -8,11 +8,11 @@ class UserService:
 
     def get_user(self):
         override = self.get_override_user()
-        if override is not None:
+        if override is not None and len(override) > 0:
             return override
 
         actual = self.get_original_user()
-        if actual is None:
+        if actual is None or len(actual) == 0:
             self._get_logged_in_user()
             actual = self.get_original_user()
 
