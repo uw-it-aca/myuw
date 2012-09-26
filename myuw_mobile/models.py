@@ -38,11 +38,23 @@ class UserMyLink(models.Model):
     user = models.ForeignKey(User,
                              on_delete=models.PROTECT)
     linkid = models.PositiveSmallIntegerField()
-    is_off = models.BooleanField()
+    is_on = models.BooleanField()
     class Meta:
         unique_together = ('user',
                            'linkid')
 
+class Link(models.Model):
+    title = models.CharField(max_length=150)
+    url = models.CharField(max_length=150)
+    is_on = models.BooleanField()
+
+    def json_data(self):
+        data = {
+            "title": self.title,
+            "url": self.url,
+            "is_on": self.is_on
+        }
+        return data
 
 class Building(models.Model):
     code = models.CharField(max_length=6)
