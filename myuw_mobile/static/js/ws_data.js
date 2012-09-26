@@ -1,6 +1,7 @@
 WSData = {
     _course_data: null,
     _book_data: null,
+    _link_data: null,
     _instructor_data: {},
 
     book_data: function() {
@@ -9,6 +10,10 @@ WSData = {
 
     course_data: function() {
         return WSData._course_data;
+    },
+
+    link_data: function() {
+        return WSData._link_data;
     },
 
     instructor_data: function(regid) {
@@ -49,6 +54,29 @@ WSData = {
                     accepts: {html: "text/html"},
                     success: function(results) {
                         WSData._course_data = results;
+                        callback.apply(null, args);
+                    },
+                    error: function(xhr, status, error) {
+                    }
+                });
+            }
+            else {
+                window.setTimeout(function() {
+                    callback.apply(null, args);
+                }, 0);
+            }
+        },
+
+    fetch_link_data: function(callback, args) {
+            if (WSData._course_data === null) {
+                $.ajax({
+                    url: "/mobile/api/v1/links/",
+                    dataType: "JSON",
+
+                    type: "GET",
+                    accepts: {html: "text/html"},
+                    success: function(results) {
+                        WSData._link_data = results;
                         callback.apply(null, args);
                     },
                     error: function(xhr, status, error) {

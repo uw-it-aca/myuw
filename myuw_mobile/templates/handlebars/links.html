@@ -1,36 +1,41 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "quicklinks" %}
     <!-- main links page -->
+    <div id="link_display_pane">
     <div class="page-header">
-		
-		<h2>MyLinks<a class="btn btn-visual pull-right" href="#"><i class="icon-edit"></i> Edit</a></h2>
-		
-	  </div>
-	  <div class="span12">
-    	<ul class="link-list">
-        	<li><a href="#">Link Link Link Link</a></li>
-        	<li><a href="#">Link Link Link Link</a></li>
-        	<li><a href="#">Link Link Link Link</a></li>
+
+      <h2>MyLinks<a class="btn btn-visual pull-right" id="edit_links" href="#"><i class="icon-edit"></i> Edit</a></h2>
+
+    </div>
+    <div class="span12">
+        <ul class="link-list">
+            {{#each links}}
+                {{#if is_on }}
+                <li><a href="{{url}}">{{title}}</a></li>
+                {{/if}}
+            {{/each}}
         </ul>
         </div>
        <!-- main links end -->
+    </div>
+    <div id="link_edit_pane" style="display: none;">
        <!-- edit links -->
        <div class="page-header">
-		
-		<a class="btn btn-visual pull-right" href="#"><i class="icon-save"></i> Save</a>
-		
-	  </div>
-	  <div class="span12 clearfix">
-	  <ul class="link-list">
-	  <li><label for="link1"><input type="checkbox" id="link1" value=""><div class="mylink"><i class="icon-checked"></i>Link1</div></label></li>
-	  <li><label for="link2"><input type="checkbox" id="link2" value=""><div class="mylink"><i class="icon-checked"></i>Link2</div></label></li>
-	  <li><label for="link3"><input type="checkbox" id="link3" value=""><div class="mylink"><i class="icon-checked"></i>Link3</div></label></li>
 
-	  </ul>
-	  
-		<a class="btn btn-visual pull-right" href="#"><i class="icon-save"></i> Save</a>
-</div>
-       
-       
+        <h2>MyLinks<a class="btn btn-visual pull-right" id="save_links" href="#"><i class="icon-save"></i> Save</a></h2>
+
+      </div>
+      <div class="span12 clearfix">
+      <ul class="link-list">
+            {{#each links}}
+            <li><label for="link{{id}}"><input type="checkbox" id="link{{id}}" value="1" {{#if is_on}}checked="checked"{{/if}}><div class="mylink"><i class="icon-checked"></i>{{title}}</div></label></li>
+            {{/each}}
+      </ul>
+
+        <a class="btn btn-visual pull-right" id="save_links_bottom" href="#"><i class="icon-save"></i> Save</a>
+    </div>
+    </div>
+
+
        <!-- edit links end -->
     {% endtplhandlebars %}
