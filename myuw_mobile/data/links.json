@@ -1,32 +1,36 @@
 [
     {
+	"id":1,
         "title":"UW Campus Maps",
         "url":"http://www.washington.edu/maps/",
-        "on_for_employees":false,
+        "on_for_employees":true,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
         "on_for_pce":false,
         "restrict_to_campus":"seattle"
     },
     {
+	"id":2,
         "title":"Bothell Campus Map",
-        "url":"http://www.uwb.edu/visitors/directions",
-        "on_for_employees":false,
+        "url":"http://www.uwb.edu/getattachment/visitors/uwb-constructionroute-campusmap-updateaugust-p2.pdf",
+        "on_for_employees":true,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
         "on_for_pce":false,
         "restrict_to_campus":"bothell"
     },
     {
+	"id":3,
         "title":"Tacoma Campus Map",
         "url":"http://www.tacoma.uw.edu/campus-map",
-        "on_for_employees":false,
+        "on_for_employees":true,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
         "on_for_pce":false,
         "restrict_to_campus":"tacoma"
     },
     {
+	"id":4,
         "title":"Catalyst Web Tools",
         "url":"https://catalyst.uw.edu/",
         "on_for_employees":false,
@@ -36,6 +40,7 @@
         "restrict_to_campus":null
     },
     {
+	"id":5,
         "title":"Canvas LMS",
         "url":"http://canvas.uw.edu/",
         "on_for_employees":false,
@@ -45,15 +50,17 @@
         "restrict_to_campus":null
     },
     {
+	"id":6,
         "title":"Degree Audit Reporting System (DARS)",
         "url":"https://sdb.admin.washington.edu/students/uwnetid/dars.asp",
         "on_for_employees":false,
         "on_for_undergrad":true,
-        "on_for_gradstudent":true,
+        "on_for_gradstudent":false,
         "on_for_pce":false,
         "restrict_to_campus":null
     },
     {
+	"id":7,
         "title":"Employee Self-Service (ESS)",
         "url":"https://prp.admin.washington.edu/ess/uwnetid/home.aspx",
         "on_for_employees":true,
@@ -63,26 +70,29 @@
         "restrict_to_campus":null
     },
     {
+	"id":8,
         "title":"Faculty/Staff/Student Directory",
         "url":"http://www.washington.edu/home/peopledir/",
         "on_for_employees":false,
-        "on_for_undergrad":true,
-        "on_for_gradstudent":true,
+        "on_for_undergrad":false,
+        "on_for_gradstudent":false,
         "on_for_pce":false,
         "restrict_to_campus":null
     },
     {
+	"id":9,
         "title":"Financial Aid Status",
         "url":"https://sdb.admin.washington.edu/sisStudents/uwnetid/finaidstatus.aspx",
         "on_for_employees":false,
-        "on_for_undergrad":true,
-        "on_for_gradstudent":true,
+        "on_for_undergrad":false,
+        "on_for_gradstudent":false,
         "on_for_pce":false,
         "restrict_to_campus":null
     },
     {
+	"id":10,
         "title":"Grade Report",
-        "url":"https://sdb.admin.washington.edu/sisStudents/uwnetid/grades.asp",
+        "url":"https://sdb.admin.washington.edu/sisStudents/uwnetid/grades.aspx",
         "on_for_employees":false,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
@@ -90,51 +100,57 @@
         "restrict_to_campus":null
     },
     {
+	"id":11,
         "title":"Registration",
         "url":"https://sdb.admin.washington.edu/students/uwnetid/register.asp",
         "on_for_employees":false,
-        "on_for_undergrad":true,
-        "on_for_gradstudent":true,
+        "on_for_undergrad":false,
+        "on_for_gradstudent":false,
         "on_for_pce":false,
         "restrict_to_campus":null
     },
     {
+	"id":12,
         "title":"Time Schedule - Bothell",
         "url":"http://www.uwb.edu/registration/time",
         "on_for_employees":false,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
         "on_for_pce":false,
-        "restrict_to_campus":null
+        "restrict_to_campus":"bothell"
     },
     {
+	"id":13,
         "title":"Time Schedule - Seattle",
-        "url":"http://www.washington.edu/students/timeschd/AUT2012/",
+        "url":"http://www.washington.edu/students/timeschd/",
         "on_for_employees":false,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
         "on_for_pce":false,
-        "restrict_to_campus":null
+        "restrict_to_campus":"seattle"
     },
     {
+	"id":14,
         "title":"Time Schedule - Tacoma",
         "url":"http://www.washington.edu/students/timeschd/T/",
         "on_for_employees":false,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
         "on_for_pce":false,
-        "restrict_to_campus":null
+        "restrict_to_campus":"tacoma"
     },
     {
+	"id":15,
         "title":"Time Schedule - UW Professional & Continuing Education",
         "url":"http://www.washington.edu/students/timeschd/95index.html",
         "on_for_employees":false,
-        "on_for_undergrad":true,
-        "on_for_gradstudent":true,
-        "on_for_pce":false,
+        "on_for_undergrad":false,
+        "on_for_gradstudent":false,
+        "on_for_pce":true,
         "restrict_to_campus":null
     },
     {
+	"id":16,
         "title":"Tuition Charge Statement",
         "url":"https://sdb.admin.washington.edu/sisStudents/uwnetid/tuition.aspx",
         "on_for_employees":false,
@@ -144,17 +160,39 @@
         "restrict_to_campus":null
     },
     {
-        "title":"UW Libraries",
+	"id":17,
+        "title":"UW Libraries - Bothell",
+        "url":"http://library.uwb.edu/",
+        "on_for_employees":true,
+        "on_for_undergrad":true,
+        "on_for_gradstudent":true,
+        "on_for_pce":true,
+        "restrict_to_campus":"bothell"
+    },
+    {
+	"id":18,
+        "title":"UW Libraries - Seattle",
         "url":"http://www.lib.washington.edu/",
-        "on_for_employees":false,
+        "on_for_employees":true,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
-        "on_for_pce":false,
+        "on_for_pce":true,
         "restrict_to_campus":null
     },
     {
+	"id":19,
+        "title":"UW Libraries - Tacoma",
+        "url":"http://www.tacoma.washington.edu/library/",
+        "on_for_employees":true,
+        "on_for_undergrad":true,
+        "on_for_gradstudent":true,
+        "on_for_pce":true,
+        "restrict_to_campus":"tacoma"
+    },
+    {
+	"id":20,
         "title":"Email - UW Gmail",
-        "url":"http://gmail.uw.edu/",
+        "url":"https://mail.google.com/a/uw.edu/",
         "on_for_employees":false,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
@@ -162,18 +200,20 @@
         "restrict_to_campus":null
     },
     {
+	"id":21,
         "title":"Email - UW Outlook Live",
-        "url":"",
+        "url":"https://www.outlook.com/",
         "on_for_employees":false,
-        "on_for_undergrad":true,
-        "on_for_gradstudent":true,
+        "on_for_undergrad":false,
+        "on_for_gradstudent":false,
         "on_for_pce":false,
         "restrict_to_campus":null
     },
     {
-        "title":"Husky card account",
+	"id":22,
+        "title":"Husky Card Account",
         "url":"https://www.hfs.washington.edu/olco/AccountSummary.aspx",
-        "on_for_employees":false,
+        "on_for_employees":true,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
         "on_for_pce":false,
