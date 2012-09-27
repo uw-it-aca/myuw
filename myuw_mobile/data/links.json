@@ -12,7 +12,7 @@
     {
 	"id":2,
         "title":"Bothell Campus Map",
-        "url":"http://www.uwb.edu/getattachment/visitors/uwb-constructionroute-campusmap-updateaugust-p2.pdf",
+        "url":"http://www.uwb.edu/getattachment/visitors/campus-map.pdf",
         "on_for_employees":true,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
@@ -161,17 +161,7 @@
     },
     {
 	"id":17,
-        "title":"UW Libraries - Bothell",
-        "url":"http://library.uwb.edu/",
-        "on_for_employees":true,
-        "on_for_undergrad":true,
-        "on_for_gradstudent":true,
-        "on_for_pce":true,
-        "restrict_to_campus":"bothell"
-    },
-    {
-	"id":18,
-        "title":"UW Libraries - Seattle",
+        "title":"UW Libraries",
         "url":"http://www.lib.washington.edu/",
         "on_for_employees":true,
         "on_for_undergrad":true,
@@ -180,17 +170,7 @@
         "restrict_to_campus":null
     },
     {
-	"id":19,
-        "title":"UW Libraries - Tacoma",
-        "url":"http://www.tacoma.washington.edu/library/",
-        "on_for_employees":true,
-        "on_for_undergrad":true,
-        "on_for_gradstudent":true,
-        "on_for_pce":true,
-        "restrict_to_campus":"tacoma"
-    },
-    {
-	"id":20,
+	"id":18,
         "title":"Email - UW Gmail",
         "url":"https://mail.google.com/a/uw.edu/",
         "on_for_employees":false,
@@ -200,7 +180,7 @@
         "restrict_to_campus":null
     },
     {
-	"id":21,
+	"id":19,
         "title":"Email - UW Outlook Live",
         "url":"https://www.outlook.com/",
         "on_for_employees":false,
@@ -210,7 +190,7 @@
         "restrict_to_campus":null
     },
     {
-	"id":22,
+	"id":20,
         "title":"Husky Card Account",
         "url":"https://www.hfs.washington.edu/olco/AccountSummary.aspx",
         "on_for_employees":true,
