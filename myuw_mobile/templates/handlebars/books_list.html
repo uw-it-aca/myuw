@@ -1,7 +1,7 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "textbooks" %}
 
-  
+  <p><a target=_blank href="http://uw-seattle.verbacompare.com/compare?quarter={{quarter}}&sln={{#each sections}}{{sln}},{{/each}}"><button class="btn btn-primary btn-block btn-small" type="button">Compare prices and buy books</button></a></p>
             {{#each sections}}
             
             <div class="c{{color_id}} books-list"><h4>{{curriculum}} {{course_number}}{{section_id}}</h4></div>
