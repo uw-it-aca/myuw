@@ -1,7 +1,8 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "textbooks" %}
 
-  <p><a target=_blank href="http://uw-seattle.verbacompare.com/compare?quarter={{quarter}}&sln={{#each sections}}{{sln}},{{/each}}"><button class="btn btn-primary btn-block btn-small" type="button">Compare prices and buy books</button></a></p>
+  <p><a target=_blank href="http://uw-seattle.verbacompare.com/compare?quarter={{quarter}}&sln={{#each sections}}{{sln}},{{/each}}"><button class="btn btn-block" type="button">compare prices and buy books</button></a></p>
+  <p style="line-height:12px;" class="muted"><small>Read the University Book Store's <a href="http://uw-seattle.verbacompare.com/" target="_blank" style="font-size:12px;">price comparison policies</a></small></p>
             {{#each sections}}
             
             <div class="c{{color_id}} books-list"><h4>{{curriculum}} {{course_number}}{{section_id}}</h4></div>
@@ -23,7 +24,7 @@
                      {{#each authors}}
                       <dd>{{name}}</dd>
                       {{/each}}
-                     <dt>New </dt>
+                    <!-- <dt>New </dt>
                       <dd>
                       {{#if price}}
                         ${{formatPrice price}} </dd>
@@ -37,7 +38,7 @@
                       {{else}}
                           *
                       {{/if}}
-                      </dd>
+                      </dd> -->
                      <dt>Notes</dt>
                         {{#if is_required}}
                       <dd>Required</dd>
@@ -56,12 +57,13 @@
                   {{/each}}
                    
             {{else}}
-            <p>No textbook requirement has been received for this course. Please check with <a class="base-font-size show_instructors" href="/my/" rel="{{index}}">your instructor.</a></p>
+            <p>No textbook requirement has been received for this course. Please check with <a class="base-font-size show_instructors" href="/mobile/" rel="{{index}}">your instructor.</a></p>
             {{/if}}
             {{/each}}
 			<hr>
 	
-	<p><a target=_blank href="http://uw-seattle.verbacompare.com/compare?quarter={{quarter}}&sln={{#each sections}}{{sln}},{{/each}}"><button class="btn btn-primary btn-block" type="button">Compare prices and buy books</button></a></p>
+	<p><a target=_blank href="http://uw-seattle.verbacompare.com/compare?quarter={{quarter}}&sln={{#each sections}}{{sln}},{{/each}}"><button class="btn btn-block" type="button">Compare prices and buy books</button></a></p>
+	<p style="line-height:12px;" class="muted"><small>Read the University Book Store's <a href="http://uw-seattle.verbacompare.com/" target="_blank" style="font-size:12px;">price comparison policies</a></small></p>
 
 
 <div style="margin-top:20px;"><p class="muted"><small>Information on course textbooks is collected by and provided courtesy of <a style="font-size:12px;" href="http://www.bookstore.washington.edu">University Book Store</a> and is subject to change regularly and without notice. </small></p></div>

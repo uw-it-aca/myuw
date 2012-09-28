@@ -851,6 +851,22 @@ font-size: 12px;
 }
 
 
+// Alternate buttons
+// --------------------------------------------------
+
+// Provide *some* extra contrast for those who can get it
+.btn-myuw.active
+ {
+  color: rgba(255,255,255,.75);
+}
+
+// Set the backgrounds
+// -------------------------
+
+.btn-myuw {
+  .buttonBackground(@btnMyuwBackground, @btnMyuwBackgroundHighlight);
+}
+
 
 // ======================================================
 // utilities

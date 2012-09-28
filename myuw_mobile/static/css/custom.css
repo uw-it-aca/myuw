@@ -1525,6 +1525,40 @@ footer p {
 footer .footer-links a {
   font-size: 12px;
 }
+.btn-myuw.active {
+  color: rgba(255, 255, 255, 0.75);
+}
+.btn-myuw {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #40275b;
+  background-image: -moz-linear-gradient(top, #39275b, #4a275b);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#39275b), to(#4a275b));
+  background-image: -webkit-linear-gradient(top, #39275b, #4a275b);
+  background-image: -o-linear-gradient(top, #39275b, #4a275b);
+  background-image: linear-gradient(to bottom, #39275b, #4a275b);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff39275b', endColorstr='#ff4a275b', GradientType=0);
+  border-color: #4a275b #4a275b #1f1025;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #4a275b;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.btn-myuw:hover,
+.btn-myuw:active,
+.btn-myuw.active,
+.btn-myuw.disabled,
+.btn-myuw[disabled] {
+  color: #ffffff;
+  background-color: #4a275b;
+  *background-color: #3c1f49;
+}
+.btn-myuw:active,
+.btn-myuw.active {
+  background-color: #2d1837 \9;
+}
 .pull-right-center {
   float: right;
   font-size: 30px;
