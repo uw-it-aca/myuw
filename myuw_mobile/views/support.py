@@ -12,7 +12,7 @@ logger = logging.getLogger('myuw_mobile.views.support')
 gws = GWS()
 
 def support(request):
-    user_service = UserService(request.session)
+    user_service = UserService(request)
     user_service.get_user()
     # Do the group auth here.
 
