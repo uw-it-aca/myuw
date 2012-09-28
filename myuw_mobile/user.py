@@ -38,7 +38,7 @@ class UserService:
 
     def _get_logged_in_user(self):
         if settings.DEBUG:
-            netid = 'eight'
+            netid = 'javerage'
         else:
             netid = request.user.username
 
