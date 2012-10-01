@@ -21,15 +21,13 @@ class Person:
         self._userid = user_svc.get_user()
 
     def get_person_by_netid(self):
-        return get_person_by_netid(self._userid)
-
-    def get_person_by_netid(self, netid):
         try:
-            return pws.get_person_by_netid(netid)
+            return pws.get_person_by_netid(self._userid)
         except Exception, message:
             print 'Failed to get person data: ', message
             traceback.print_exc()
-            Person._logger.error("get_person_by_netid %s %s", Exception, message,
+            Person._logger.error("get_person_by_netid %s %s", 
+                                 Exception, message,
                                  self._user_svc.get_log_user_info())
             return None
 
@@ -46,7 +44,8 @@ class Person:
         except Exception, message:
             print 'Failed to get instructor data: ', message
             traceback.print_exc()
-            Person._logger.error("get_contact %s %s", Exception, message,
+            Person._logger.error("get_contact for %s: %s %s", 
+                                 regid, Exception, message,
                                  self._user_svc.get_log_user_info())
 
         if contact and not contact["WhitepagesPublish"] :
