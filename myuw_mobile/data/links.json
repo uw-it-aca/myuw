@@ -192,7 +192,7 @@
     {
 	"id":20,
         "title":"Husky Card Account",
-        "url":"https://www.hfs.washington.edu/olco/AccountSummary.aspx",
+        "url":"https://www.hfs.washington.edu/olco/",
         "on_for_employees":true,
         "on_for_undergrad":true,
         "on_for_gradstudent":true,
