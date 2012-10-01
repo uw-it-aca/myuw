@@ -9,10 +9,22 @@ class UserService:
 
     def __init__(self, request):
         self._session = request.session
-        self._log_data = {'clientip':request.META['HTTP_X_FORWARDED_FOR'],
+        self._get_real_ip(request)
+        self._log_data = {'clientip':request.META['REMOTE_ADDR'],
                           'user': None,
                           'useragent': request.META['HTTP_USER_AGENT'],
                           'path': request.get_full_path() }
+
+    def _get_real_ip(self, request):
+        try:
+            real_ip = request.META['HTTP_X_FORWARDED_FOR']
+        except KeyError:
+            pass
+        else:
+            # HTTP_X_FORWARDED_FOR can be a comma-separated list of IPs.
+            # Take just the first one.
+            real_ip = real_ip.split(",")[0]
+            request.META['REMOTE_ADDR'] = real_ip
 
     def get_log_user_info(self):
         """
