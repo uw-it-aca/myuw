@@ -1,15 +1,14 @@
 from django.conf import settings
-#import datetime
 import logging
 import sys
 import traceback
 from restclients.sws import SWS
+from myuw_mobile.user import UserService
 from myuw_mobile.models import CourseColor
 from building import Building
 from pws import Person
 
 sws = SWS()
-person = Person()
 
 class Quarter:
     """ 
@@ -18,6 +17,9 @@ class Quarter:
 
     _logger = logging.getLogger('myuw_mobile.dao.sws.Quarter')
 
+    def __init__(self, user_svc):
+        self._user_svc = user_svc
+        
     def get_cur_quarter(self):
         """
         Returns calendar information for the current term.
@@ -25,8 +27,11 @@ class Quarter:
         try:
             return sws.get_current_term()
         except Exception, message:
-            traceback.print_exc(file=sys.stdout)
-            Quarter._logger.error("Ex: get_cur_quarter --> " + message)
+            print 'Failed to get current quarter data: ', message
+            traceback.print_exc()
+            Quarter._logger.error("get_cur_quarter %s %s",
+                                  Exception, message,
+                                  self._user_svc.get_log_user_info())
             return None
 
 
@@ -40,10 +45,11 @@ class Schedule:
 
     _logger = logging.getLogger('myuw_mobile.dao.sws.Schedule')
 
-    def __init__(self, netid):
-        self.netid = netid
-        self.regid = person.get_regid(netid)
-        self.term = Quarter().get_cur_quarter()
+    def __init__(self, user_svc):
+        self._user_svc = user_svc
+        self.netid = user_svc.get_user()
+        self.regid = Person(user_svc).get_regid(netid)
+        self.term = Quarter(user_svc).get_cur_quarter()
 
 
 
@@ -57,8 +63,9 @@ class Schedule:
         except Exception, message:
             print '//// get current quarter schedule from SWS: ', message
             traceback.print_exc(file=sys.stdout)
-            Schedule._logger.error("Ex: get_cur_quarter_schedule for " + 
-                                   netid + " --> " + message)
+            Schedule._logger.error("get_cur_quarter_schedule %s %s " +
+                                   Exception, message,
+                                   self._user_svc.get_log_user_info())
             return None
 
 
@@ -89,8 +96,9 @@ class Schedule:
                 )
         except Exception, message:
             print '//// get course color from MySQL: ', message
-            Schedule._logger.error("Ex: get_colors_for_schedule for " +
-                                   netid + " --> " + message)
+            Schedule._logger.error("get_colors_for_schedule %s %s ",
+                                   Exception, message,
+                                   self._user_svc.get_log_user_info())
             return None
 
         existing_sections = []
