@@ -1,10 +1,20 @@
 from django.http import HttpResponse
+from myuw_mobile.user import UserService
 
 class RESTDispatch:
     """ Handles passing on the request to the correct view method based on the request type.
     """
     def run(self, *args, **named_args):
         request = args[0]
+
+        if not request.is_secure():
+            return not_secure_connection(*args, **named_args)
+        
+        self.user_service = UserService(request)
+        netid = user_service.get_user()
+        if not netid:
+            return invalid_session(*args, **named_args)
+        
         if "GET" == request.META['REQUEST_METHOD']:
             if hasattr(self, "GET"):
                 return self.GET(*args, **named_args)
@@ -43,3 +53,9 @@ class RESTDispatch:
         response = HttpResponse('Data not found')
         response.status_code = 404
         return response
+
+    def not_secure_connection(self, *args, **named_args):
+        response = HttpResponse('HTTP to HTTPS')
+        response.status_code = 497
+        return response
+

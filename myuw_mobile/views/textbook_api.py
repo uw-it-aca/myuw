@@ -12,7 +12,7 @@ from myuw_mobile.dao.sws import Schedule as ScheduleDao
 from restclients.bookstore import Bookstore
 from rest_dispatch import RESTDispatch
 from myuw_mobile.dao.pws import Person as PersonDao
-from page import get_netid_from_session
+from myuw_mobile.user import UserService
 
 
 class TextbookCurQuar(RESTDispatch):
@@ -25,13 +25,9 @@ class TextbookCurQuar(RESTDispatch):
         """
         GET returns 200 with textbooks for the current quarter
         """
-
-        netid = get_netid_from_session(request);
-        if not netid or not PersonDao().get_regid(netid):
-            return super(TextbookCurQuar, 
-                         self).invalid_session(*args, **named_args)
-
-        schedule_dao = ScheduleDao(netid)
+        
+        schedule_dao = ScheduleDao(super(TextbookCurQuar,
+                                         self).user_service)
         schedule = schedule_dao.get_cur_quarter_schedule()
 
         books_dao = Bookstore()
@@ -40,6 +36,8 @@ class TextbookCurQuar(RESTDispatch):
         except Exception, message:
             print netid + ' failed to get textbook list: ', message
             traceback.print_exc(file=sys.stdout)
+
+        if not schedule or not book_data:
             return super(TextbookCurQuar,
                          self).data_not_found(*args, **named_args)
 

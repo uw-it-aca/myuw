@@ -7,8 +7,7 @@ import logging
 from django.utils import simplejson as json
 from myuw_mobile.dao.sws import Schedule as ScheduleDao
 from rest_dispatch import RESTDispatch
-from myuw_mobile.dao.pws import Person as PersonDao
-from page import get_netid_from_session
+from myuw_mobile.user import UserService
 
 class StudClasScheCurQuar(RESTDispatch):
     """
@@ -21,17 +20,13 @@ class StudClasScheCurQuar(RESTDispatch):
         GET returns 200 with course section schedule details.
         """
 
-        netid = get_netid_from_session(request);
-        if not netid or not PersonDao().get_regid(netid):
-            return super(StudClasScheCurQuar,
-                         self).invalid_session(*args, **named_args)
-
-        schedule_dao = ScheduleDao(netid)
+        schedule_dao = ScheduleDao(super(StudClasScheCurQuar,
+                                         self).user_service)
         schedule = schedule_dao.get_cur_quarter_schedule()
         colors = schedule_dao.get_colors_for_schedule(schedule)
         buildings = schedule_dao.get_buildings_for_schedule(schedule)
 
-        if (not colors or not schedule.json_data()):
+        if (not colors or not buildings or not schedule.json_data()):
             return super(StudClasScheCurQuar, 
                          self).data_not_found(*args, **named_args)
 
