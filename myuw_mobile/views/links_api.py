@@ -1,12 +1,12 @@
 from django.http import HttpResponse
 from django.conf import settings
 from django.utils import simplejson as json
+import logging
 from rest_dispatch import RESTDispatch
 from myuw_mobile.dao.links import Link
 from myuw_mobile.user import UserService
 from myuw_mobile.dao.pws import Person as PersonDao
 from myuw_mobile.user import UserService
-import logging
 
 class QuickLinks(RESTDispatch):
     """
@@ -18,9 +18,9 @@ class QuickLinks(RESTDispatch):
         """
         GET returns 200 with textbooks for the current quarter
         """
-
-        links = Link(super(QuickLinks,
-                           self).user_service).get_links_for_user()
+        
+        user_service = UserService(request)
+        links = Link(user_service).get_links_for_user()
         link_data = []
 
         for link in links:
@@ -34,12 +34,12 @@ class QuickLinks(RESTDispatch):
         PUT saves whether links are turned on or off.
         """
 
+        user_service = UserService(request)
         links = json.loads(request.read())
         link_lookup = {}
         for link in links:
             link_lookup[link["id"]] = link["is_on"]
 
-        Link(super(QuickLinks,
-                   self).user_service).save_link_preferences_for_user(link_lookup)
+        Link(user_service).save_link_preferences_for_user(link_lookup)
         return HttpResponse("")
 

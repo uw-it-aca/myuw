@@ -19,9 +19,8 @@ class StudClasScheCurQuar(RESTDispatch):
         """
         GET returns 200 with course section schedule details.
         """
-
-        schedule_dao = ScheduleDao(super(StudClasScheCurQuar,
-                                         self).user_service)
+        user_service = UserService(request)
+        schedule_dao = ScheduleDao(user_service)
         schedule = schedule_dao.get_cur_quarter_schedule()
         colors = schedule_dao.get_colors_for_schedule(schedule)
         buildings = schedule_dao.get_buildings_for_schedule(schedule)

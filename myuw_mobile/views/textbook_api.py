@@ -25,9 +25,9 @@ class TextbookCurQuar(RESTDispatch):
         """
         GET returns 200 with textbooks for the current quarter
         """
-        
-        schedule_dao = ScheduleDao(super(TextbookCurQuar,
-                                         self).user_service)
+
+        user_service = UserService(request)
+        schedule_dao = ScheduleDao(user_service)
         schedule = schedule_dao.get_cur_quarter_schedule()
 
         books_dao = Bookstore()
