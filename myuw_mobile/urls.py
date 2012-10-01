@@ -7,14 +7,14 @@ from myuw_mobile.views.contact_api import InstructorContact
 from myuw_mobile.views.textbook_api import TextbookCurQuar
 from myuw_mobile.views.links_api import QuickLinks
 
-urlpatterns = patterns('myuw_mobile.views.page',
-    url(r'login', 'user_login'),
-    url(r'support', 'support'),
-    url(r'^visual', 'index'),
-    url(r'^textbooks', 'index'),
-    url(r'^instructor', 'index'),
-    url(r'^links', 'index'),
-    url(r'^$', 'index'),
+urlpatterns = patterns('myuw_mobile.views',
+    url(r'login', 'mobile_login.user_login'),
+    url(r'support', 'support.support'),
+    url(r'^visual', 'page.index'),
+    url(r'^textbooks', 'page.index'),
+    url(r'^instructor', 'page.index'),
+    url(r'^links', 'page.index'),
+    url(r'^$', 'page.index'),
     url(r'^api/v1/books/current/$', TextbookCurQuar().run),
     url(r'^api/v1/schedule/current/$', StudClasScheCurQuar().run),
     url(r'^api/v1/links/$', QuickLinks().run),
