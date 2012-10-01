@@ -6,14 +6,14 @@ from myuw_mobile.user import UserService
 from myuw_mobile.dao.pws import Person as PersonDao
 from myuw_mobile.timer import Timer
 
-logger = logging.getLogger('myuw_mobile.views.mobile_login')
+logger = logging.getLogger('myuw_mobile.views.user_login')
 
-def mobile_login(request):
+def user_login(request):
     user_service = UserService(request)
     netid = user_service.get_user()
 
     if not netid:
-        return
+        return #a static error page 
 
     if PersonDao(user_service).is_student():
         return redirect("myuw_mobile.views.page.index")
