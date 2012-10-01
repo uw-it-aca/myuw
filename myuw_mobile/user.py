@@ -50,7 +50,7 @@ class UserService:
         else:
             netid = request.user.username
 
-        if netid
+        if netid:
             self.clear_override()
             self.set_user(netid)
         else:
