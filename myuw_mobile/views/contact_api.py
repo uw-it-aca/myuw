@@ -13,8 +13,9 @@ class InstructorContact(RESTDispatch):
         """ 
         GET returns 200 with the whitepage information of the given person.
         """
-        contact = PersonDao(super(InstructorContact,
-                                  self).user_service).get_contact(regid)
+
+        user_service = UserService(request)
+        contact = PersonDao(user_service).get_contact(regid)
         if not contact:
             return super(InstructorContact, 
                          self).data_not_found(*args, **named_args)
