@@ -5,7 +5,7 @@ from django.conf import settings
 from restclients.gws import GWS
 import logging
 from myuw_mobile.user import UserService
-from myuw_mobile.timer import Timer
+from myuw_mobile.logger.timer import Timer
 
 logger = logging.getLogger('myuw_mobile.views.support')
 
