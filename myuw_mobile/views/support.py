@@ -9,8 +9,6 @@ from myuw_mobile.logger.timer import Timer
 
 logger = logging.getLogger('myuw_mobile.views.support')
 
-gws = GWS()
-
 def support(request):
     user_service = UserService(request)
     user_service.get_user()
@@ -23,6 +21,7 @@ def support(request):
 
 
     actual_user = user_service.get_original_user()
+    gws = GWS()
     members = gws.get_effective_members(settings.MYUW_ADMIN_GROUP)
 
     is_admin = False
