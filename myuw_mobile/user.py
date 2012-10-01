@@ -90,8 +90,8 @@ class UserService:
     # the get_user / get_original_user / get_override_user 
     # should all really be returning user models.  But, i don't want 
     # to be serializing that data for each request. So for now:
-    def get_user_for_netid(self, netid):
-        in_db = User.objects.filter(uwnetid=netid)
+    def get_user_model(self):
+        in_db = User.objects.filter(uwnetid=self.get_user())
 
         if len(in_db) > 0:
             return in_db[0]
