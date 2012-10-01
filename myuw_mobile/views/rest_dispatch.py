@@ -11,7 +11,7 @@ class RESTDispatch:
 #            return not_secure_connection(*args, **named_args)
         
         self.user_service = UserService(request)
-        netid = user_service.get_user()
+        netid = self.user_service.get_user()
         if not netid:
             return invalid_session(*args, **named_args)
         
