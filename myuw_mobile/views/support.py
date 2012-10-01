@@ -36,14 +36,14 @@ def support(request):
         return  HttpResponseRedirect("/mobile")
 
     if "override_as" in request.POST:
-        user_service.set_impersonated_user(request.POST["override_as"])
+        user_service.set_override_user(request.POST["override_as"])
 
     if "clear_override" in request.POST:
-        user_service.clear_impersonated()
+        user_service.clear_override()
 
     context = {
         'original_user': user_service.get_original_user(),
-        'override_user': user_service.get_impersonated_user(),
+        'override_user': user_service.get_override_user(),
     }
 
     return render_to_response('support.html',
