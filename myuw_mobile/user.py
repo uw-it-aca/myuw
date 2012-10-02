@@ -30,10 +30,10 @@ class UserService:
         """
         Return a dictionary of user, accessed path, and client information for logging
         """
-        self._log_data['user'] = get_userid_for_log() 
+        self._log_data['user'] = self._get_userid_for_log() 
         return self._log_data
     
-    def get_userid_for_log(self):
+    def _get_userid_for_log(self):
         """
         Return <actual user netid> acting_as: <override user netid> if
         the user is acting as someone else, otherwise <actual user netid>
@@ -67,7 +67,7 @@ class UserService:
             self.set_user(netid)
         else:
             self._logger.error("_get_authenticated_user no valid netid!",
-                               get_logging_user_info())
+                               self.get_logging_user_info())
         return netid
 
     def get_original_user(self):
@@ -91,7 +91,8 @@ class UserService:
     # should all really be returning user models.  But, i don't want 
     # to be serializing that data for each request. So for now:
     def get_user_model(self):
-        in_db = User.objects.filter(uwnetid=self.get_user())
+        netid = self.get_user()
+        in_db = User.objects.filter(uwnetid=netid)
 
         if len(in_db) > 0:
             return in_db[0]
