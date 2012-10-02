@@ -15,6 +15,10 @@ class InstructorContact(RESTDispatch):
         """
 
         user_service = UserService(request)
+        if not regid:
+            return super(InstructorContact,
+                         self).invalid_arg(*args, **named_args)
+
         contact = PersonDao(user_service).get_contact(regid)
         if not contact:
             return super(InstructorContact, 
