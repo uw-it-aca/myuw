@@ -39,19 +39,24 @@ class RESTDispatch:
         else:
             return self.invalid_method(*args, **named_args)
 
-    def invalid_method(self, *args, **named_args):
-        response = HttpResponse("Method not allowed")
-        response.status_code = 405
-        return response
-
     def invalid_session(self, *args, **named_args):
         response = HttpResponse('No valid userid in session')
+        response.status_code = 400
+        return response
+
+    def invalid_arg(self, *args, **named_args):
+        response = HttpResponse('No valid argument')
         response.status_code = 400
         return response
 
     def data_not_found(self, *args, **named_args):
         response = HttpResponse('Data not found')
         response.status_code = 404
+        return response
+
+    def invalid_method(self, *args, **named_args):
+        response = HttpResponse("Method not allowed")
+        response.status_code = 405
         return response
 
     def not_secure_connection(self, *args, **named_args):
