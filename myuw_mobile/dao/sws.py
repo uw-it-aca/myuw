@@ -7,6 +7,7 @@ from myuw_mobile.user import UserService
 from myuw_mobile.models import CourseColor
 from building import Building
 from pws import Person
+from myuw_mobile.logger.timer import Timer
 
 sws = SWS()
 
@@ -18,12 +19,13 @@ class Quarter:
     _logger = logging.getLogger('myuw_mobile.dao.sws.Quarter')
 
     def __init__(self, user_svc):
-        self._user_svc = user_svc
+        self._log_user_info = user_svc.get_log_user_info()
         
     def get_cur_quarter(self):
         """
         Returns calendar information for the current term.
         """
+        timer = Timer()
         try:
             return sws.get_current_term()
         except Exception, message:
@@ -31,8 +33,13 @@ class Quarter:
             traceback.print_exc()
             Quarter._logger.error("get_cur_quarter %s %s",
                                   Exception, message,
-                                  self._user_svc.get_log_user_info())
-            return None
+                                  self._log_user_info)
+        finally:
+            Quarter._logger.info("SWS get_current_term time=%s",
+                                 timer.get_elapsed(),
+                                 self._log_user_info)
+
+        return None
 
 
 
@@ -46,27 +53,31 @@ class Schedule:
     _logger = logging.getLogger('myuw_mobile.dao.sws.Schedule')
 
     def __init__(self, user_svc):
-        self._user_svc = user_svc
-        self.netid = user_svc.get_user()
-        self.regid = Person(user_svc).get_regid()
-        self.term = Quarter(user_svc).get_cur_quarter()
-
-
+        self._log_user_info = user_svc.get_log_user_info()
+        self._regid = Person(user_svc).get_regid()
+        self._term = Quarter(user_svc).get_cur_quarter()
 
     def get_cur_quarter_schedule(self):
         """ Return the actively enrolled sections in the current quarter """
         
-        if not self.term:
+        if not self._regid or not self._term:
             return None
+
+        timer = Timer()
         try:
-            return sws.schedule_for_regid_and_term(self.regid, self.term)
+            return sws.schedule_for_regid_and_term(self._regid,
+                                                   self._term)
         except Exception, message:
-            print '//// get current quarter schedule from SWS: ', message
             traceback.print_exc(file=sys.stdout)
             Schedule._logger.error("get_cur_quarter_schedule %s %s " +
                                    Exception, message,
-                                   self._user_svc.get_log_user_info())
-            return None
+                                   self._log_user_info)
+        finally:
+            Schedule._logger.info("SWS schedule_for_regid_and_term time=%s",
+                                  timer.get_elapsed(),
+                                  self._log_user_info)
+
+        return None
 
 
     def get_buildings_for_schedule(self, schedule):
@@ -88,6 +99,7 @@ class Schedule:
         if not schedule or not schedule.sections:
             return None
         colors = {}
+        timer = Timer()
         try:
             query = CourseColor.objects.filter(
                 regid=self.regid,
@@ -98,8 +110,12 @@ class Schedule:
             print '//// get course color from MySQL: ', message
             Schedule._logger.error("get_colors_for_schedule %s %s ",
                                    Exception, message,
-                                   self._user_svc.get_log_user_info())
+                                   self._log_user_info)
             return None
+        finally:
+            Schedule._logger.info("CourseColor time=%s",
+                                  timer.get_elapsed(),
+                                  self._log_user_info)
 
         existing_sections = []
         color_lookup = {}
