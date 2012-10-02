@@ -19,7 +19,7 @@ class Quarter:
     _logger = logging.getLogger('myuw_mobile.dao.sws.Quarter')
 
     def __init__(self, user_svc):
-        self._log_user_info = user_svc.get_log_user_info()
+        self._user_svc = user_svc
         
     def get_cur_quarter(self):
         """
@@ -33,11 +33,11 @@ class Quarter:
             traceback.print_exc()
             Quarter._logger.error("get_cur_quarter %s %s",
                                   Exception, message,
-                                  self._log_user_info)
+                                  self._user_svc.get_log_user_info())
         finally:
             Quarter._logger.info("SWS get_current_term time=%s",
                                  timer.get_elapsed(),
-                                 self._log_user_info)
+                                 self._user_svc.get_log_user_info())
 
         return None
 
@@ -53,7 +53,7 @@ class Schedule:
     _logger = logging.getLogger('myuw_mobile.dao.sws.Schedule')
 
     def __init__(self, user_svc):
-        self._log_user_info = user_svc.get_log_user_info()
+        self._user_svc = user_svc
         self._regid = Person(user_svc).get_regid()
         self._term = Quarter(user_svc).get_cur_quarter()
 
@@ -71,11 +71,11 @@ class Schedule:
             traceback.print_exc(file=sys.stdout)
             Schedule._logger.error("get_cur_quarter_schedule %s %s " +
                                    Exception, message,
-                                   self._log_user_info)
+                                   self._user_svc.get_log_user_info())
         finally:
             Schedule._logger.info("SWS schedule_for_regid_and_term time=%s",
                                   timer.get_elapsed(),
-                                  self._log_user_info)
+                                  self._user_svc.get_log_user_info())
 
         return None
 
@@ -110,12 +110,12 @@ class Schedule:
             print '//// get course color from MySQL: ', message
             Schedule._logger.error("get_colors_for_schedule %s %s ",
                                    Exception, message,
-                                   self._log_user_info)
+                                   self._user_svc.get_log_user_info())
             return None
         finally:
             Schedule._logger.info("CourseColor time=%s",
                                   timer.get_elapsed(),
-                                  self._log_user_info)
+                                  self._user_svc.get_log_user_info())
 
         existing_sections = []
         color_lookup = {}
