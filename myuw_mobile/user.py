@@ -3,35 +3,17 @@ from django.conf import settings
 from myuw_mobile.models import User
 import logging
 
+
 class UserService:
-    _session = None
+    _user_data = {}
     _logger = logging.getLogger('myuw_mobile.user.UserService')
-
-    def __init__(self, request):
-        self._session = request.session
-        self._get_real_ip(request)
-        self._log_data = {'clientip':request.META['REMOTE_ADDR'],
-                          'user': None,
-                          'useragent': request.META['HTTP_USER_AGENT'],
-                          'path': request.get_full_path() }
-
-    def _get_real_ip(self, request):
-        try:
-            real_ip = request.META['HTTP_X_FORWARDED_FOR']
-        except KeyError:
-            pass
-        else:
-            # HTTP_X_FORWARDED_FOR can be a comma-separated list of IPs.
-            # Take just the first one.
-            real_ip = real_ip.split(",")[0]
-            request.META['REMOTE_ADDR'] = real_ip
 
     def get_log_user_info(self):
         """
         Return a dictionary of user, accessed path, and client information for logging
         """
-        self._log_data['user'] = self._get_userid_for_log() 
-        return self._log_data
+        #self._log_data['user'] = self._get_userid_for_log() 
+        #########return self._log_data
     
     def _get_userid_for_log(self):
         """
@@ -46,7 +28,16 @@ class UserService:
             log_userid = actual_userid
         return log_userid
 
+    def _require_middleware(self):
+        if not "initialized" in UserService._user_data:
+            print "You need to have this line in your MIDDLEWARE_CLASSES:"
+            print "'myuw_mobile.user.UserServiceMiddleware',"
+
+            raise Exception("You need the UserServiceMiddleware")
+
     def get_user(self):
+        self._require_middleware()
+
         override = self.get_override_user()
         if override and len(override) > 0:
             return override
@@ -56,36 +47,25 @@ class UserService:
             return self._get_authenticated_user()
         return actual
 
-    def _get_authenticated_user(self):
-        if settings.DEBUG:
-            netid = 'javerage'
-        else:
-            netid = request.user.username
-
-        if netid:
-            self.clear_override()
-            self.set_user(netid)
-        else:
-            self._logger.error("_get_authenticated_user no valid netid!",
-                               self.get_logging_user_info())
-        return netid
-
     def get_original_user(self):
-        if "_us_user" in self._session:
-            return self._session["_us_user"]
+        if "original_user" in UserService._user_data:
+            return UserService._user_data["original_user"]
 
     def get_override_user(self):
-        if "_us_override" in self._session:
-            return self._session["_us_override"]
+        if "override_user" in UserService._user_data:
+            return UserService._user_data["override_user"]
 
     def set_user(self, user):
-        self._session["_us_user"] = user
+        UserService._user_data["original_user"] = user
+        UserService._user_data["session"]["_us_user"] = user
 
     def set_override_user(self, override):
-        self._session["_us_override"] = override
+        UserService._user_data["override_user"] = override
+        UserService._user_data["session"]["_us_override"] = override
 
     def clear_override(self):
-        self._session["_us_override"] = None
+        UserService._user_data["override_user"] = None
+        UserService._user_data["session"]["_us_override"] = None
 
     # the get_user / get_original_user / get_override_user 
     # should all really be returning user models.  But, i don't want 
@@ -102,3 +82,42 @@ class UserService:
         new.save()
 
         return new
+
+class UserServiceMiddleware(object):
+    def __init__(self):
+        _logger = logging.getLogger('myuw_mobile.user.UserService')
+
+    def process_request(self, request):
+        UserService._user_data["initialized"] = True
+
+        session = request.session
+        UserService._user_data["session"] = session
+
+        if not "_us_user" in session:
+            user = self._get_authenticated_user()
+            if user:
+                UserService._user_data["original_user"] = user
+        else:
+            UserService._user_data["original_user"] = session["_us_user"]
+
+        if "_us_override" in session:
+            UserService._user_data["override_user"] = session["_us_override"]
+
+    def process_response(self, request, response):
+        UserService._user_data = {}
+        return response
+
+    def _get_authenticated_user(self):
+        if settings.DEBUG:
+            netid = 'javerage'
+        else:
+            netid = request.user.username
+
+        if netid:
+            self.clear_override()
+            self.set_user(netid)
+            return netid
+
+        return None
+
+

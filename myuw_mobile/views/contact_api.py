@@ -14,7 +14,7 @@ class InstructorContact(RESTDispatch):
         GET returns 200 with the whitepage information of the given person.
         """
 
-        user_service = UserService(request)
+        user_service = UserService()
         if not regid:
             return invalid_arg()
 

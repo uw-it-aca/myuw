@@ -19,7 +19,7 @@ class QuickLinks(RESTDispatch):
         GET returns 200 with textbooks for the current quarter
         """
         
-        user_service = UserService(request)
+        user_service = UserService()
         links = Link(user_service).get_links_for_user()
         if not links:
             return data_not_found()
@@ -37,7 +37,7 @@ class QuickLinks(RESTDispatch):
         PUT saves whether links are turned on or off.
         """
 
-        user_service = UserService(request)
+        user_service = UserService()
         links = json.loads(request.read())
         link_lookup = {}
         for link in links:

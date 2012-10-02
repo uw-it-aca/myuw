@@ -10,7 +10,7 @@ def user_login(request):
     timer = Timer()
     logger = logging.getLogger('myuw_mobile.views.user_login')
 
-    user_service = UserService(request)
+    user_service = UserService()
     netid = user_service.get_user()
 
     if not netid:

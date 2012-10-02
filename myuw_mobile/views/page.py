@@ -21,7 +21,7 @@ def index(request):
     if not request.is_secure():
         context['err'] = 'Not https, abort!'
     else:
-        user_service = UserService(request)
+        user_service = UserService()
         netid = user_service.get_user()
 
         if not netid:

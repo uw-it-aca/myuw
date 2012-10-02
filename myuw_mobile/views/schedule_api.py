@@ -19,7 +19,7 @@ class StudClasScheCurQuar(RESTDispatch):
         """
         GET returns 200 with course section schedule details.
         """
-        user_service = UserService(request)
+        user_service = UserService()
         schedule_dao = ScheduleDao(user_service)
         schedule = schedule_dao.get_cur_quarter_schedule()
         if not schedule or not schedule.json_data():

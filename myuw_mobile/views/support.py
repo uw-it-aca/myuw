@@ -11,7 +11,7 @@ def support(request):
     timer = Timer()
     logger = logging.getLogger('myuw_mobile.views.support')
 
-    user_service = UserService(request)
+    user_service = UserService()
     user_service.get_user()
     # Do the group auth here.
 
