@@ -27,8 +27,6 @@ def index(request):
         if not netid:
             context['err'] = 'Invalid netid!'
         else:
-            request.session["user_netid"] = netid
-
             cur_term = QuarterDao(user_service).get_cur_quarter()
             if not cur_term:
                 context['err'] = 'No current quarter data!'
