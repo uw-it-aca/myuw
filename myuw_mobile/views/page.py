@@ -8,11 +8,11 @@ from myuw_mobile.dao.sws import Quarter as QuarterDao
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.user import UserService
 
-logger = logging.getLogger('myuw_mobile.views.page')
-
 #@mobile_template('{mobile/}index.html')
 def index(request):
     timer = Timer()
+    logger = logging.getLogger('myuw_mobile.views.page')
+
     context = {'year': None,
                'quarter': None,
                'home_url': '/mobile',
