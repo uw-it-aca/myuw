@@ -114,7 +114,6 @@ class UserServiceMiddleware(object):
             netid = request.user.username
 
         if netid:
-            self.clear_override()
             self.set_user(netid)
             return netid
 
