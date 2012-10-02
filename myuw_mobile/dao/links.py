@@ -6,9 +6,9 @@ from myuw_mobile.user import UserService
 class Link:
     """ This class gives access to per-user link data """
 
-    def __init__(self, user_svc):
-        self._user_svc = user_svc
-        self._user = user_svc.get_user_model()
+    def __init__(self, user_service):
+        self._user_service = user_service
+        self._user = user_service.get_user_model()
 
     def get_links_for_user(self):
         """
@@ -36,7 +36,7 @@ class Link:
             links.append(link)
 
 
-        saved = UserMyLink.objects.filter(user = self._user)
+        saved = UserMyLink.objects.filter(user=self._user)
 
         if len(saved) > 0:
             use_user_preference = True
@@ -53,9 +53,9 @@ class Link:
         return links
 
     def save_link_preferences_for_user(self, link_preferences):
-        all_links = self.get_links_for_user(self._user)
+        all_links = self.get_links_for_user()
 
-        saved = UserMyLink.objects.filter(user = self._user)
+        saved = UserMyLink.objects.filter(user=self._user)
         saved.delete()
 
         new_links = []
