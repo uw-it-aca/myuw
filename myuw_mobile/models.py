@@ -23,9 +23,7 @@ class User(models.Model):
                                db_index=True,
                                unique=True)
 
-    uwregid = models.CharField(max_length=32,
-                               db_index=True,
-                               unique=True)
+    uwregid = models.CharField(max_length=32)
 
     last_visit = models.DateTimeField(default=datetime.now())
 
