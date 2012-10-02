@@ -19,22 +19,22 @@ class RESTDispatch:
             if hasattr(self, "GET"):
                 return self.GET(*args, **named_args)
             else:
-                return self.invalid_method()
+                return invalid_method()
         elif "POST" == request.META['REQUEST_METHOD']:
             if hasattr(self, "POST"):
                 return self.POST(*args, **named_args)
             else:
-                return self.invalid_method()
+                return invalid_method()
         elif "PUT" == request.META['REQUEST_METHOD']:
             if hasattr(self, "PUT"):
                 return self.PUT(*args, **named_args)
             else:
-                return self.invalid_method()
+                return invalid_method()
         elif "DELETE" == request.META['REQUEST_METHOD']:
             if hasattr(self, "DELETE"):
                 return self.DELETE(*args, **named_args)
             else:
-                return self.invalid_method()
+                return invalid_method()
 
         else:
             return invalid_method()
