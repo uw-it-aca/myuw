@@ -20,7 +20,7 @@ class Person:
     def __init__(self, user_service):
         self._user_service = user_service
         self._netid = user_service.get_user()
-
+        
     def get_person_by_netid(self):
         timer = Timer()
         try:
@@ -38,10 +38,16 @@ class Person:
         return None
 
     def is_student(self):
-        return self.get_person_by_netid().is_student
+        res = self.get_person_by_netid()
+        if res:
+            return res.is_student
+        return None
 
     def get_regid(self):
-        return self.get_person_by_netid().uwregid
+        res = self.get_person_by_netid()
+        if res:
+            return res.uwregid
+        return None
 
     def get_contact(self, regid):
         contact = None
