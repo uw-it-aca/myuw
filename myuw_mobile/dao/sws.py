@@ -81,6 +81,8 @@ class Schedule:
 
 
     def get_buildings_for_schedule(self, schedule):
+        if not schedule or not schedule.sections:
+            return None
         buildings = {}
         building_dao = Building()
         for section in schedule.sections:
