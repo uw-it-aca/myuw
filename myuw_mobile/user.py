@@ -97,6 +97,7 @@ class UserServiceMiddleware(object):
             user = self._get_authenticated_user()
             if user:
                 UserService._user_data["original_user"] = user
+                UserService._user_data["session"]["_us_user"] = user
         else:
             UserService._user_data["original_user"] = session["_us_user"]
 
@@ -114,7 +115,6 @@ class UserServiceMiddleware(object):
             netid = request.user.username
 
         if netid:
-            self.set_user(netid)
             return netid
 
         return None
