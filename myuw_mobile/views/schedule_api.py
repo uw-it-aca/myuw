@@ -22,7 +22,7 @@ class StudClasScheCurQuar(RESTDispatch):
         user_service = UserService(request)
         schedule_dao = ScheduleDao(user_service)
         schedule = schedule_dao.get_cur_quarter_schedule()
-        if (not schedule or not schedule.json_data()):
+        if not schedule or not schedule.json_data():
             return data_not_found()
 
         colors = schedule_dao.get_colors_for_schedule(schedule)
