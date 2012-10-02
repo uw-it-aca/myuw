@@ -19,12 +19,12 @@ class Person:
 
     def __init__(self, user_service):
         self._user_service = user_service
-        self._userid = user_service.get_user()
+        self._netid = user_service.get_user()
 
     def get_person_by_netid(self):
         timer = Timer()
         try:
-            return pws.get_person_by_netid(self._userid)
+            return pws.get_person_by_netid(self._netid)
         except Exception, message:
             print 'Failed to get person data: ', message
             traceback.print_exc()
@@ -55,8 +55,8 @@ class Person:
                                  regid, Exception, message,
                                  self._user_service.get_log_user_info())
         finally:
-            Person._logger.info("PWS get_contact time=%s", 
-                                timer.get_elapsed(),
+            Person._logger.info("PWS get_contact for %s time=%s", 
+                                regid, timer.get_elapsed(),
                                 self._user_service.get_log_user_info())
 
         if contact and not contact["WhitepagesPublish"] :
