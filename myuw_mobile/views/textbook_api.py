@@ -10,7 +10,7 @@ import traceback
 import logging
 from myuw_mobile.dao.sws import Schedule as ScheduleDao
 from restclients.bookstore import Bookstore
-from rest_dispatch import RESTDispatch
+from rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.dao.pws import Person as PersonDao
 from myuw_mobile.user import UserService
 
@@ -29,6 +29,8 @@ class TextbookCurQuar(RESTDispatch):
         user_service = UserService(request)
         schedule_dao = ScheduleDao(user_service)
         schedule = schedule_dao.get_cur_quarter_schedule()
+        if not schedule:
+            return data_not_found()
 
         books_dao = Bookstore()
         try:
@@ -37,13 +39,8 @@ class TextbookCurQuar(RESTDispatch):
             print netid + ' failed to get textbook list: ', message
             traceback.print_exc(file=sys.stdout)
 
-        if not schedule or not book_data:
-            return super(TextbookCurQuar,
-                         self).data_not_found(*args, **named_args)
-
         if not book_data:
-            return super(TextbookCurQuar,
-                         self).data_not_found(*args, **named_args)
+            return data_not_found()
 
         return HttpResponse(index_by_sln(book_data))
 

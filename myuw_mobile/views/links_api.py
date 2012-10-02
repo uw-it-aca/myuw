@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.utils import simplejson as json
 import logging
-from rest_dispatch import RESTDispatch
+from rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.dao.links import Link
 from myuw_mobile.user import UserService
 from myuw_mobile.dao.pws import Person as PersonDao
@@ -21,6 +21,9 @@ class QuickLinks(RESTDispatch):
         
         user_service = UserService(request)
         links = Link(user_service).get_links_for_user()
+        if not links:
+            return data_not_found()
+
         link_data = []
 
         for link in links:

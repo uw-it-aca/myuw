@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.utils import simplejson as json
-from rest_dispatch import RESTDispatch
+from rest_dispatch import RESTDispatch, invalid_arg, data_not_found
 from myuw_mobile.dao.pws import Person as PersonDao
 from myuw_mobile.user import UserService
 import logging
@@ -16,13 +16,11 @@ class InstructorContact(RESTDispatch):
 
         user_service = UserService(request)
         if not regid:
-            return super(InstructorContact,
-                         self).invalid_arg(*args, **named_args)
+            return invalid_arg()
 
         contact = PersonDao(user_service).get_contact(regid)
         if not contact:
-            return super(InstructorContact, 
-                         self).data_not_found(*args, **named_args)
+            return data_not_found()
 
         return HttpResponse(json.dumps(contact))
 

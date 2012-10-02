@@ -6,7 +6,7 @@ from django.http import HttpResponse
 import logging
 from django.utils import simplejson as json
 from myuw_mobile.dao.sws import Schedule as ScheduleDao
-from rest_dispatch import RESTDispatch
+from rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.user import UserService
 
 class StudClasScheCurQuar(RESTDispatch):
@@ -22,12 +22,11 @@ class StudClasScheCurQuar(RESTDispatch):
         user_service = UserService(request)
         schedule_dao = ScheduleDao(user_service)
         schedule = schedule_dao.get_cur_quarter_schedule()
+        if (not schedule or not schedule.json_data()):
+            return data_not_found()
+
         colors = schedule_dao.get_colors_for_schedule(schedule)
         buildings = schedule_dao.get_buildings_for_schedule(schedule)
-
-        if (not colors or not buildings or not schedule.json_data()):
-            return super(StudClasScheCurQuar, 
-                         self).data_not_found(*args, **named_args)
 
         # Since the schedule is restclients, and doesn't know
         # about color ids, backfill that data
