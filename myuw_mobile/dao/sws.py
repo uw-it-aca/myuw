@@ -102,7 +102,7 @@ class Schedule:
         timer = Timer()
         try:
             query = CourseColor.objects.filter(
-                regid=self.regid,
+                regid=self._regid,
                 year=schedule.term.year,
                 quarter=schedule.term.quarter,
                 )
@@ -173,7 +173,7 @@ class Schedule:
 
     def _get_color_for_section(self, existing, active, schedule, section):
         color = CourseColor()
-        color.regid = self.regid
+        color.regid = self._regid
         color.year = schedule.term.year
         color.quarter = schedule.term.quarter
         color.curriculum_abbr = section.curriculum_abbr
