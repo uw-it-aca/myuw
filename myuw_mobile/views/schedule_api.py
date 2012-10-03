@@ -7,7 +7,6 @@ import logging
 from django.utils import simplejson as json
 from myuw_mobile.dao.sws import Schedule as ScheduleDao
 from rest_dispatch import RESTDispatch, data_not_found
-from myuw_mobile.user import UserService
 
 class StudClasScheCurQuar(RESTDispatch):
     """
@@ -19,8 +18,7 @@ class StudClasScheCurQuar(RESTDispatch):
         """
         GET returns 200 with course section schedule details.
         """
-        user_service = UserService()
-        schedule_dao = ScheduleDao(user_service)
+        schedule_dao = ScheduleDao()
         schedule = schedule_dao.get_cur_quarter_schedule()
         if not schedule or not schedule.json_data():
             return data_not_found()
