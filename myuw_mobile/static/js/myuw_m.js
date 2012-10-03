@@ -82,6 +82,7 @@ $(document).ready(function() {
             return;
         }
 
+        // Page titles are defined in templates/index.html
         if (state === undefined) {
             show_page_from_url();
             return;
@@ -89,18 +90,23 @@ $(document).ready(function() {
         else if (state === "course_list") {
             // Figure out what to do from the url
             CourseList.show_list(data.course_index);
+            document.title = window.page_titles["course_list"];
         }
         else if (state === "instructor") {
             Instructor.show_instructor(data.instructor);
+            document.title = window.page_titles["instructor"];
         }
         else if (state === "textbooks") {
             TextBooks.show_books();
+            document.title = window.page_titles["textbooks"];
         }
         else if (state === "quicklinks") {
             QuickLinks.show_links();
+            document.title = window.page_titles["links"];
         }
         else if (state === "visual") {
             VisualSchedule.show_visual_schedule(data.course_index);
+            document.title = window.page_titles["visual"];
         }
 
         loaded_url = state_url;
