@@ -1,6 +1,6 @@
 var VisualSchedule = {
     // This is the height of the days bar... needed for positioning math below
-    day_label_offset: 7,
+    day_label_offset: 0,
 
     show_visual_schedule: function(course_index) {
         WSData.fetch_course_data(VisualSchedule.render, [course_index]);

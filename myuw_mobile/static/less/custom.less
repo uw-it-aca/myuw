@@ -607,6 +607,9 @@ dd {
 	//height: 30em; 
 	position:relative;
 	background-color: @grayLighter;
+	//#gradient > .striped(rgba(0,0,0,.15), 90deg);
+	//background-position: 0 7%;
+	
 	.clearfix();
 }
 //visual schedule height
@@ -625,7 +628,7 @@ height: 20em;
 
 @time-bar-width: 8%;
 .time-bar {
-	height: 100%;
+
 	width: @time-bar-width;
 	//border: 1px solid orange;
 	position: relative;
@@ -633,9 +636,14 @@ height: 20em;
 	float: left;
 	background-color: @grayLighter;
 	font-weight: bold;
+	height:93%; 
+	top: 7%;
 //	padding-left: 1px;
+
+
 }
-.time-bar > p {
+.time-bar p {
+
 
 }
 .five-day {
@@ -668,19 +676,100 @@ height: 20em;
 
 }
 
+
+
 .six-day:nth-of-type(even), .five-day:nth-of-type(odd) {
 
-	background-color: darken(@grayLighter,3%);
+	//background-color: darken(@grayLighter,3%);
+	background-color: rgba(0,0,0,.05);
 }
+
+.day-col {
+#gradient > .striped(rgba(0,0,0,.15), 90deg);
+position: relative;
+height:93%;
+}
+
+// Classes for striped background
+
+.hours-1 { 
+	background-size: auto 200%;
+}
+.hours-2 { 
+	background-size: auto 100%;
+}
+.hours-3 { 
+	background-size: auto 66.666666667%;
+}
+.hours-4 { 
+	background-size: auto 50%;
+}
+.hours-5 { 
+	background-size: auto 40%;
+}
+.hours-6 { 
+	background-size: auto 33.3333333333%;
+}
+.hours-7 { 
+	background-size: auto 28.5714285714286%;
+}
+.hours-8 { 
+	background-size: auto 25%;
+}
+.hours-9 { 
+	background-size: auto 22.2222222222%;
+}
+.hours-10 { 
+	background-size: auto 20%;
+}
+.hours-11 { 
+	background-size: auto 18.1818181818182%;
+}
+.hours-12 { 
+	background-size: auto 16.666666667%;
+}
+.hours-13 { 
+	background-size: auto 15.3846153846154%;
+}
+.hours-14 { 
+	background-size: auto 14.2857142857143%;
+}
+.hours-15 { 
+	background-size: auto 13.33333333%;
+}
+.hours-16 { 
+	background-size: auto 12.5%;
+}
+.hours-17 { 
+	background-size: auto 11.7647058823529%;
+}
+.hours-18 { 
+	background-size: auto 11.1111111111%;
+}
+
+.hour-label {
+
+width:100%;
+//border-top: 1px inset rgba(0,0,0,.1);
+line-height: 14px;
+text-align: center;
+margin:0;
+padding:0;
+}
+
+.hour-label:last-child { border:0}
 
 .day-label {
 	width:100%;
-	border-bottom: 1px solid @grayLight;
+	//border-bottom: 1px solid @grayLight;
+	background-color: @grayLighter;
 	height:7%;
+	text-align: center;
+	color: @grayDark;
 	top:0px;
 }
 .day-label > p {
-	text-align: center;
+	
 }
 .visual-course {
 	width: 100%;
