@@ -2,11 +2,6 @@
     {% tplhandlebars "quicklinks" %}
     <!-- main links page -->
     <div id="link_display_pane">
-    <div class="page-header">
-
-      <h2>MyLinks<a class="btn btn-visual pull-right" id="edit_links" href="#"><i class="icon-edit"></i> Edit</a></h2>
-
-    </div>
     <div class="span12">
         <ul class="link-list">
             {{#each links}}
@@ -20,11 +15,6 @@
     </div>
     <div id="link_edit_pane" style="display: none;">
        <!-- edit links -->
-       <div class="page-header">
-
-        <h2>MyLinks<a class="btn btn-primary btn-visual pull-right" id="save_links" href="#"><i class="icon-save"></i> Save</a></h2>
-
-      </div>
       <div class="span12 clearfix">
       <ul class="link-list">
             {{#each links}}
@@ -38,4 +28,14 @@
 
 
        <!-- edit links end -->
+    {% endtplhandlebars %}
+    {% tplhandlebars "quicklinks-header" %}
+    <div class="page-header" id="link_header_view">
+      <h2>MyLinks<a class="btn btn-visual pull-right" id="edit_links" href="#"><i class="icon-edit"></i> Edit</a></h2>
+    </div>
+
+    <div class="page-header" id="link_header_edit" style="display: none;">
+      <h2>MyLinks<a class="btn btn-primary btn-visual pull-right" id="save_links" href="#"><i class="icon-save"></i> Save</a></h2>
+    </div>
+
     {% endtplhandlebars %}

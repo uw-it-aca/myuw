@@ -7,6 +7,8 @@ var QuickLinks = {
         $('html,body').animate({scrollTop: 0}, 'fast');
         var source   = $("#quicklinks").html();
         var template = Handlebars.compile(source);
+        var head_template = Handlebars.compile($("#quicklinks-header").html());
+        $("#page-header").html(head_template());
 
         var links = WSData.link_data();
         $("#courselist").html(template({ links: links }));
@@ -14,6 +16,9 @@ var QuickLinks = {
         $("#edit_links").bind("click", function(ev) {
             $("#link_display_pane").hide();
             $("#link_edit_pane").show();
+
+            $("#link_header_view").hide();
+            $("#link_header_edit").show();
             return false;
         });
 
