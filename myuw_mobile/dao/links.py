@@ -1,7 +1,6 @@
 import json
 import os
 from myuw_mobile.models import Link as LinkModel, UserMyLink
-from myuw_mobile.user import UserService
 
 class Link:
     """ This class gives access to per-user link data """

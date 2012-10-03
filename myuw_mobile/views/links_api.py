@@ -6,7 +6,6 @@ from rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.dao.links import Link
 from myuw_mobile.user import UserService
 from myuw_mobile.dao.pws import Person as PersonDao
-from myuw_mobile.user import UserService
 
 class QuickLinks(RESTDispatch):
     """

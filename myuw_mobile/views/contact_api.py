@@ -2,7 +2,6 @@ from django.http import HttpResponse
 from django.utils import simplejson as json
 from rest_dispatch import RESTDispatch, invalid_arg, data_not_found
 from myuw_mobile.dao.pws import Person as PersonDao
-from myuw_mobile.user import UserService
 import logging
 
 class InstructorContact(RESTDispatch):
