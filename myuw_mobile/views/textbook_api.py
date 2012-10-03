@@ -12,7 +12,6 @@ from myuw_mobile.dao.sws import Schedule as ScheduleDao
 from restclients.bookstore import Bookstore
 from rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.dao.pws import Person as PersonDao
-from myuw_mobile.user import UserService
 
 
 class TextbookCurQuar(RESTDispatch):
@@ -26,8 +25,7 @@ class TextbookCurQuar(RESTDispatch):
         GET returns 200 with textbooks for the current quarter
         """
 
-        user_service = UserService()
-        schedule_dao = ScheduleDao(user_service)
+        schedule_dao = ScheduleDao()
         schedule = schedule_dao.get_cur_quarter_schedule()
         if not schedule:
             return data_not_found()
