@@ -7,9 +7,6 @@ class RESTDispatch:
     def run(self, *args, **named_args):
         request = args[0]
 
-#        if not request.is_secure():
-#            return not_secure_connection(*args, **named_args)
-        
         user_service = UserService()
         netid = user_service.get_user()
         if not netid:

@@ -18,24 +18,21 @@ def index(request):
                'home_url': '/mobile',
                'err': None}
 
-    if not request.is_secure():
-        context['err'] = 'Not https, abort!'
+    user_service = UserService()
+    netid = user_service.get_user()
+
+    if not netid:
+        context['err'] = 'Invalid netid!'
     else:
-        user_service = UserService()
-        netid = user_service.get_user()
-
-        if not netid:
-            context['err'] = 'Invalid netid!'
+        cur_term = QuarterDao().get_cur_quarter()
+        if not cur_term:
+            context['err'] = 'No current quarter data!'
         else:
-            cur_term = QuarterDao(user_service).get_cur_quarter()
-            if not cur_term:
-                context['err'] = 'No current quarter data!'
-            else:
-                context['year'] = cur_term.year
-                context['quarter'] = cur_term.quarter
+            context['year'] = cur_term.year
+            context['quarter'] = cur_term.quarter
 
-        logger.info("index time=%s", timer.get_elapsed(),
-                    user_service.get_log_user_info())
+    logger.info("index time=%s", timer.get_elapsed(),
+                user_service.get_log_user_info())
 
     return render_to_response('index.html',
                               context,
