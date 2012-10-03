@@ -82,6 +82,10 @@ $(document).ready(function() {
             return;
         }
 
+        $("#nav_course_list").removeClass("active");
+        $("#nav_visual_schedule").removeClass("active");
+        $("#nav_mylinks").removeClass("active");
+
         // Page titles are defined in templates/index.html
         if (state === undefined) {
             show_page_from_url();
@@ -90,6 +94,7 @@ $(document).ready(function() {
         else if (state === "course_list") {
             // Figure out what to do from the url
             CourseList.show_list(data.course_index);
+            $("#nav_course_list").addClass("active");
             document.title = window.page_titles["course_list"];
         }
         else if (state === "instructor") {
@@ -102,10 +107,12 @@ $(document).ready(function() {
         }
         else if (state === "quicklinks") {
             QuickLinks.show_links();
+            $("#nav_mylinks").addClass("active");
             document.title = window.page_titles["links"];
         }
         else if (state === "visual") {
             VisualSchedule.show_visual_schedule(data.course_index);
+            $("#nav_visual_schedule").addClass("active");
             document.title = window.page_titles["visual"];
         }
 
