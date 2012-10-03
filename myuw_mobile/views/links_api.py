@@ -20,7 +20,8 @@ class QuickLinks(RESTDispatch):
         """
         
         user_service = UserService()
-        links = Link(user_service).get_links_for_user()
+        user = user_service.get_user_model()
+        links = Link().get_links_for_user(user)
         if not links:
             return data_not_found()
 
@@ -38,11 +39,12 @@ class QuickLinks(RESTDispatch):
         """
 
         user_service = UserService()
+        user = user_service.get_user_model()
         links = json.loads(request.read())
         link_lookup = {}
         for link in links:
             link_lookup[link["id"]] = link["is_on"]
 
-        Link(user_service).save_link_preferences_for_user(link_lookup)
+        Link().save_link_preferences_for_user(link_lookup, user)
         return HttpResponse("")
 

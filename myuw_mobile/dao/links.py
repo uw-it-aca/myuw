@@ -6,11 +6,7 @@ from myuw_mobile.user import UserService
 class Link:
     """ This class gives access to per-user link data """
 
-    def __init__(self, user_service):
-        self._user_service = user_service
-        self._user = user_service.get_user_model()
-
-    def get_links_for_user(self):
+    def get_links_for_user(self, user):
         """
         Returns a list of all links available for a user.
         If they should be active, is_on will be True.
@@ -36,7 +32,7 @@ class Link:
             links.append(link)
 
 
-        saved = UserMyLink.objects.filter(user=self._user)
+        saved = UserMyLink.objects.filter(user=user)
 
         if len(saved) > 0:
             use_user_preference = True
@@ -52,17 +48,17 @@ class Link:
 
         return links
 
-    def save_link_preferences_for_user(self, link_preferences):
+    def save_link_preferences_for_user(self, link_preferences, user):
         all_links = self.get_links_for_user()
 
-        saved = UserMyLink.objects.filter(user=self._user)
+        saved = UserMyLink.objects.filter(user=user)
         saved.delete()
 
         new_links = []
         for link in all_links:
             new = UserMyLink()
             new.linkid = link.json_id
-            new.user = self._user
+            new.user = user
 
             if link_preferences[link.json_id]:
                 new.is_on = True
