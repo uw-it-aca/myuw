@@ -29,7 +29,7 @@ class Quarter:
             print 'Failed to get current quarter data: ', message
             traceback.print_exc()
             Quarter._logger.error("get_cur_quarter %s %s",
-                                  Exception, message,
+                                  message,
                                   UserService().get_log_user_info())
         finally:
             Quarter._logger.info("SWS get_current_term time=%s",
@@ -65,7 +65,7 @@ class Schedule:
         except Exception, message:
             traceback.print_exc(file=sys.stdout)
             Schedule._logger.error("get_cur_quarter_schedule %s %s " +
-                                   Exception, message,
+                                   message,
                                    UserService().get_log_user_info())
         finally:
             Schedule._logger.info("SWS schedule_for_regid_and_term time=%s",
@@ -107,7 +107,7 @@ class Schedule:
         except Exception, message:
             print '//// get course color from MySQL: ', message
             Schedule._logger.error("get_colors_for_schedule %s %s ",
-                                   Exception, message,
+                                   message,
                                    UserService().get_log_user_info())
             return None
         finally:

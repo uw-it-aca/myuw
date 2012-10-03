@@ -25,7 +25,7 @@ class Person:
             print 'Failed to get person data: ', message
             traceback.print_exc()
             Person._logger.error("get_person_by_netid %s %s", 
-                                 Exception, message,
+                                 message,
                                  UserService().get_log_user_info())
         finally:
             Person._logger.info("PWS get_person_by_netid time=%s", 
@@ -54,7 +54,7 @@ class Person:
             print 'Failed to get instructor data: ', message
             traceback.print_exc()
             Person._logger.error("get_contact for %s: %s %s", 
-                                 regid, Exception, message,
+                                 regid, message,
                                  UserService().get_log_user_info())
         finally:
             Person._logger.info("PWS get_contact for %s time=%s", 
