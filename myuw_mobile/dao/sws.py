@@ -54,7 +54,7 @@ class Schedule:
 
     def __init__(self, user_svc):
         self._user_svc = user_svc
-        self._regid = Person(user_svc).get_regid()
+        self._regid = Person().get_regid(user_svc.get_user())
         self._term = Quarter(user_svc).get_cur_quarter()
 
     def get_cur_quarter_schedule(self):

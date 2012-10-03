@@ -17,34 +17,30 @@ class Person:
     # static class variables
     _logger = logging.getLogger('myuw_mobile.dao.pws.Person')
 
-    def __init__(self, user_service):
-        self._user_service = user_service
-        self._netid = user_service.get_user()
-        
-    def get_person_by_netid(self):
+    def get_person_by_netid(self, netid):
         timer = Timer()
         try:
-            return pws.get_person_by_netid(self._netid)
+            return pws.get_person_by_netid(netid)
         except Exception, message:
             print 'Failed to get person data: ', message
             traceback.print_exc()
             Person._logger.error("get_person_by_netid %s %s", 
                                  Exception, message,
-                                 self._user_service.get_log_user_info())
+                                 UserService().get_log_user_info())
         finally:
             Person._logger.info("PWS get_person_by_netid time=%s", 
                                 timer.get_elapsed(),
-                                self._user_service.get_log_user_info())
+                                UserService().get_log_user_info())
         return None
 
-    def is_student(self):
-        res = self.get_person_by_netid()
+    def is_student(self, netid):
+        res = self.get_person_by_netid(netid)
         if res:
             return res.is_student
         return None
 
-    def get_regid(self):
-        res = self.get_person_by_netid()
+    def get_regid(self, netid):
+        res = self.get_person_by_netid(netid)
         if res:
             return res.uwregid
         return None
@@ -59,11 +55,11 @@ class Person:
             traceback.print_exc()
             Person._logger.error("get_contact for %s: %s %s", 
                                  regid, Exception, message,
-                                 self._user_service.get_log_user_info())
+                                 UserService().get_log_user_info())
         finally:
             Person._logger.info("PWS get_contact for %s time=%s", 
                                 regid, timer.get_elapsed(),
-                                self._user_service.get_log_user_info())
+                                UserService().get_log_user_info())
 
         if contact and not contact["WhitepagesPublish"] :
             affiliations = contact["PersonAffiliations"]
