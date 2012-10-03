@@ -3,11 +3,13 @@ import logging
 import sys
 import traceback
 from restclients.sws import SWS
+from restclients.models import ClassSchedule
 from myuw_mobile.user import UserService
 from myuw_mobile.models import CourseColor
 from building import Building
 from pws import Person
 from myuw_mobile.logger.timer import Timer
+from restclients.exceptions import DataFailureException
 
 sws = SWS()
 
@@ -62,6 +64,12 @@ class Schedule:
         try:
             return sws.schedule_for_regid_and_term(regid,
                                                    term)
+        except DataFailureException as ex:
+            empty = ClassSchedule()
+            empty.term = term
+            empty.sections = []
+
+            return empty
         except Exception, message:
             traceback.print_exc(file=sys.stdout)
             Schedule._logger.error("get_cur_quarter_schedule %s %s " +

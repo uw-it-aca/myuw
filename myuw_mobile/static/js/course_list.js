@@ -7,8 +7,6 @@ var CourseList = {
         if (course_index === undefined) {
             $('html,body').animate({scrollTop: 0}, 'fast');
         }
-        var source   = $("#courses").html();
-        var template = Handlebars.compile(source);
 
         WSData.normalize_instructors();
         var course_data = WSData.course_data();
@@ -16,8 +14,6 @@ var CourseList = {
         for (index = 0; index < course_data.sections.length; index++) {
             course_data.sections[index].index = index;
         }
-
-        $("#courselist").html(template(course_data));
 
         source = $("#quarter-list").html();
         template = Handlebars.compile(source);
@@ -30,6 +26,18 @@ var CourseList = {
             $("#course"+course_index).collapse('show');
             $('html,body').animate({scrollTop: $("#course_wrapper"+course_index).offset().top},'slow');
         }
+
+        // Handle the case of no courses
+        if (course_data.sections.length == 0) {
+            var source   = $("#no-courses").html();
+            var template = Handlebars.compile(source);
+            $("#courselist").html(template(course_data));
+            return;
+        }
+
+        var source   = $("#courses").html();
+        var template = Handlebars.compile(source);
+        $("#courselist").html(template(course_data));
 
         $(".display_visual_sched").bind("click", function(ev) {
             var hist = window.History;

@@ -6,7 +6,7 @@ from django.http import HttpResponse
 import logging
 from django.utils import simplejson as json
 from myuw_mobile.dao.sws import Schedule as ScheduleDao
-from rest_dispatch import RESTDispatch, data_not_found
+from rest_dispatch import RESTDispatch
 
 class StudClasScheCurQuar(RESTDispatch):
     """
@@ -21,7 +21,7 @@ class StudClasScheCurQuar(RESTDispatch):
         schedule_dao = ScheduleDao()
         schedule = schedule_dao.get_cur_quarter_schedule()
         if not schedule or not schedule.json_data():
-            return data_not_found()
+            return HttpResponse({})
 
         colors = schedule_dao.get_colors_for_schedule(schedule)
         buildings = schedule_dao.get_buildings_for_schedule(schedule)

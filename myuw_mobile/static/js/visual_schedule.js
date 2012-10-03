@@ -62,10 +62,11 @@ var VisualSchedule = {
             return new Handlebars.SafeString(VisualSchedule.day_template({ meetings: list, start_time: start_time, end_time: end_time }));
         });
 
-        var source   = $("#visual_schedule").html();
-        var template = Handlebars.compile(source);
-
         var course_data = WSData.course_data();
+
+        var source = $("#quarter-visual").html();
+        var template = Handlebars.compile(source);
+        $("#page-header").html(template({year: course_data.year, quarter: course_data.quarter}));
 
         var visual_data = {
             latest_ending: 0,
@@ -79,6 +80,17 @@ var VisualSchedule = {
             display_hours: [],
             has_6_days: false
         };
+
+        // Handle the case of no courses
+        if (course_data.sections.length == 0) {
+            var source   = $("#no-courses").html();
+            var template = Handlebars.compile(source);
+            $("#courselist").html(template(course_data));
+            return;
+        }
+
+        source   = $("#visual_schedule").html();
+        template = Handlebars.compile(source);
 
         var index = 0;
         for (index = 0; index < course_data.sections.length; index++) {
@@ -166,10 +178,6 @@ var VisualSchedule = {
         }
 
         $("#courselist").html(template(visual_data));
-
-        source = $("#quarter-visual").html();
-        template = Handlebars.compile(source);
-        $("#page-header").html(template({year: course_data.year, quarter: course_data.quarter}));
 
         $(".display_list_sched").bind("click", function(ev) {
             var hist = window.History;
