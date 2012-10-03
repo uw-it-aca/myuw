@@ -78,7 +78,8 @@ var VisualSchedule = {
             friday: [],
             saturday: [],
             display_hours: [],
-            has_6_days: false
+            has_6_days: false,
+            courses_meeting_tbd: []
         };
 
         // Handle the case of no courses
@@ -137,6 +138,15 @@ var VisualSchedule = {
                             visual_data[day].push(meeting_info);
                         }
                     }
+                }
+                else {
+                    visual_data["courses_meeting_tbd"].push({
+                        color_id: section.color_id,
+                        curriculum: section.curriculum_abbr,
+                        course_number: section.course_number,
+                        section_id: section.section_id,
+                        section_index: index
+                    });
                 }
             }
         }
