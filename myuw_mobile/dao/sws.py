@@ -142,6 +142,7 @@ class Schedule:
                                                     active_colors,
                                                     schedule,
                                                     section,
+                                                    regid,
                                                    )
                 existing_sections.append(color)
                 color_lookup[color.section_label()] = color
@@ -169,7 +170,7 @@ class Schedule:
 
         return colors
 
-    def _get_color_for_section(self, existing, active, schedule, section):
+    def _get_color_for_section(self, existing, active, schedule, section, regid):
         color = CourseColor()
         color.regid = regid
         color.year = schedule.term.year
