@@ -6,8 +6,6 @@ from restclients.pws import PWS
 from myuw_mobile.user import UserService
 from myuw_mobile.logger.timer import Timer
 
-pws = PWS()
-
 class Person:
     """
     The Person class encapsulates the interactions
@@ -20,7 +18,7 @@ class Person:
     def get_person_by_netid(self, netid):
         timer = Timer()
         try:
-            return pws.get_person_by_netid(netid)
+            return PWS().get_person_by_netid(netid)
         except Exception, message:
             print 'Failed to get person data: ', message
             traceback.print_exc()
@@ -49,7 +47,7 @@ class Person:
         contact = None
         timer = Timer()
         try:
-            contact = pws.get_contact(regid)
+            contact = PWS().get_contact(regid)
         except Exception, message:
             print 'Failed to get instructor data: ', message
             traceback.print_exc()

@@ -13,35 +13,35 @@
 
             <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
                 <div class="day-label">MON</div>
-                <div class="day-col hours-11">
+                <div class="day-col hours-{{total_hours}}">
                 {{ show_days_meetings monday start_time end_time }}
                 </div>
             </div>
 
             <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
                 <div class="day-label"><p>TUE</p></div>
-                <div class="day-col hours-11">
+                <div class="day-col hours-{{total_hours}}">
                 {{ show_days_meetings tuesday start_time end_time }}
                 </div>
             </div>
 
             <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
                 <div class="day-label"><p>WED</p></div>
-                <div class="day-col hours-11">
+                <div class="day-col hours-{{total_hours}}">
                 {{ show_days_meetings wednesday start_time end_time }}
                 </div>
             </div>
 
             <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
                 <div class="day-label"><p>THU</p></div>
-                <div class="day-col hours-11">
+                <div class="day-col hours-{{total_hours}}">
                 {{ show_days_meetings thursday start_time end_time }}
                 </div>
             </div>
 
             <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
                 <div class="day-label"><p>FRI</p></div>
-                <div class="day-col hours-11">
+                <div class="day-col hours-{{total_hours}}">
                 {{ show_days_meetings friday start_time end_time }}
                 </div>
             </div>
@@ -49,7 +49,7 @@
             {{#if has_6_days}}
             <div class="six-day">
                 <div class="day-label"><p>SAT</p></div>
-                <div class="day-col hours-11">
+                <div class="day-col hours-{{total_hours}}">
                 {{ show_days_meetings saturday start_time end_time }}
                 </div>
             </div>

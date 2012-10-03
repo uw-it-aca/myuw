@@ -169,12 +169,15 @@ var VisualSchedule = {
         }
 
         var i = 0;
-        for (i = visual_data.start_time; i <= visual_data.end_time; i += 60) {
+        // We don't want to add the last hour - it's just off the end of the visual schedule
+        for (i = visual_data.start_time; i <= visual_data.end_time - 1; i += 60) {
             visual_data.display_hours.push({
                 hour: (i / 60),
                 position: i
             });
         }
+
+        visual_data.total_hours = (visual_data.end_time - visual_data.start_time) / 60;
 
         var hours_count = parseInt((visual_data.end_time - visual_data.start_time) / 60, 0);
         if (hours_count <= 6) {

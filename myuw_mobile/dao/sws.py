@@ -11,8 +11,6 @@ from pws import Person
 from myuw_mobile.logger.timer import Timer
 from restclients.exceptions import DataFailureException
 
-sws = SWS()
-
 class Quarter:
     """ 
     This class encapsulate the access of the term data 
@@ -26,7 +24,7 @@ class Quarter:
         """
         timer = Timer()
         try:
-            return sws.get_current_term()
+            return SWS().get_current_term()
         except Exception, message:
             print 'Failed to get current quarter data: ', message
             traceback.print_exc()
@@ -62,7 +60,7 @@ class Schedule:
 
         timer = Timer()
         try:
-            return sws.schedule_for_regid_and_term(regid,
+            return SWS().schedule_for_regid_and_term(regid,
                                                    term)
         except DataFailureException as ex:
             empty = ClassSchedule()
