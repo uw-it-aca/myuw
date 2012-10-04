@@ -9,19 +9,6 @@ class UserService:
     logger = logging.getLogger('myuw_mobile.user.UserService')
 
     
-    def get_logging_userid(self):
-        """
-        Return <actual user netid> acting_as: <override user netid> if
-        the user is acting as someone else, otherwise <actual user netid>
-        """
-        override_userid = self.get_override_user()
-        actual_userid = self.get_original_user()
-        if override_userid:
-            log_userid = actual_userid + ' acting_as: ' + override_userid
-        else:
-            log_userid = actual_userid
-        return log_userid
-
     def _require_middleware(self):
         if not "initialized" in UserService._user_data:
             print "You need to have this line in your MIDDLEWARE_CLASSES:"
