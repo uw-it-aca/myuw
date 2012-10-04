@@ -7,6 +7,9 @@ class RESTDispatch:
     def run(self, *args, **named_args):
         request = args[0]
 
+#        if not request.is_secure():
+#            return insecure_connection()
+        
         user_service = UserService()
         netid = user_service.get_user()
         if not netid:
@@ -56,7 +59,7 @@ def invalid_method():
     response.status_code = 405
     return response
 
-def not_secure_connection():
+def insecure_connection():
     response = HttpResponse('HTTP to HTTPS')
     response.status_code = 497
     return response

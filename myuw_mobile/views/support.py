@@ -6,6 +6,7 @@ from restclients.gws import GWS
 import logging
 from myuw_mobile.user import UserService
 from myuw_mobile.logger.timer import Timer
+from myuw_mobile.logger.util import log_invalid_netid_response, log_success_response
 
 def support(request):
     timer = Timer()
@@ -22,6 +23,10 @@ def support(request):
 
 
     actual_user = user_service.get_original_user()
+    if not actual_user:
+        log_invalid_netid_response(logger, timer)
+        return
+
     gws = GWS()
     members = gws.get_effective_members(settings.MYUW_ADMIN_GROUP)
 
@@ -37,23 +42,15 @@ def support(request):
 
     if "override_as" in request.POST:
         user_service.set_override_user(request.POST["override_as"])
-        print "////To override as: ",  user_service.get_override_user()
-        logger.info("To override %s", 
-                    user_service.get_log_user_info())
 
     if "clear_override" in request.POST:
         user_service.clear_override()
-        print "////Reset override to ", user_service.get_override_user()
-        logger.info("To clear override %s", 
-                    user_service.get_log_user_info())
 
     context = {
         'original_user': user_service.get_original_user(),
         'override_user': user_service.get_override_user(),
     }
-    logger.info("support time=%s %s", timer.get_elapsed(),
-                    user_service.get_log_user_info())
-
+    log_success_response(logger, timer)
     return render_to_response('support.html',
                               context,
                               context_instance=RequestContext(request))

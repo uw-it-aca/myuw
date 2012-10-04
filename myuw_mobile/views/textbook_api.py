@@ -11,23 +11,24 @@ import logging
 from myuw_mobile.dao.sws import Schedule as ScheduleDao
 from restclients.bookstore import Bookstore
 from rest_dispatch import RESTDispatch, data_not_found
-from myuw_mobile.dao.pws import Person as PersonDao
-
+from myuw_mobile.logger.timer import Timer
+from myuw_mobile.logger.util import log_data_not_found_response, log_success_response, log_exception, log_resp_time
 
 class TextbookCurQuar(RESTDispatch):
     """
     Performs actions on resource at /api/v1/books/current/.
     """
-    _logger = logging.getLogger('myuw_mobile.views.textbook_api.TextbookCurQuar')
 
     def GET(self, request):
         """
         GET returns 200 with textbooks for the current quarter
         """
-
+        timer = Timer()
+        logger = logging.getLogger('myuw_mobile.views.textbook_api.TextbookCurQuar.GET')
         schedule_dao = ScheduleDao()
         schedule = schedule_dao.get_cur_quarter_schedule()
         if not schedule:
+            log_data_not_found_response(logger, timer)
             return data_not_found()
 
         books_dao = Bookstore()
@@ -36,10 +37,19 @@ class TextbookCurQuar(RESTDispatch):
         except Exception, message:
             print netid + ' failed to get textbook list: ', message
             traceback.print_exc(file=sys.stdout)
+            log_exception(logger, 
+                         'books_dao.get_books_for_schedule', 
+                          message)
+        finally:
+            log_resp_time(logger,
+                         'books_dao.get_books_for_schedule',
+                          timer)
 
         if not book_data:
+            log_data_not_found_response(logger, timer)
             return data_not_found()
 
+        log_success_response(logger, timer)
         return HttpResponse(index_by_sln(book_data))
 
 
