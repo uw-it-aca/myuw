@@ -38,20 +38,20 @@ def support(request):
     if "override_as" in request.POST:
         user_service.set_override_user(request.POST["override_as"])
         print "////To override as: ",  user_service.get_override_user()
-        logger.info("To override", 
+        logger.info("To override %s", 
                     user_service.get_log_user_info())
 
     if "clear_override" in request.POST:
         user_service.clear_override()
         print "////Reset override to ", user_service.get_override_user()
-        logger.info("To clear override", 
+        logger.info("To clear override %s", 
                     user_service.get_log_user_info())
 
     context = {
         'original_user': user_service.get_original_user(),
         'override_user': user_service.get_override_user(),
     }
-    logger.info("support time=%s", timer.get_elapsed(),
+    logger.info("support time=%s %s", timer.get_elapsed(),
                     user_service.get_log_user_info())
 
     return render_to_response('support.html',
