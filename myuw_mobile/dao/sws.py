@@ -4,12 +4,12 @@ import sys
 import traceback
 from restclients.sws import SWS
 from restclients.models import ClassSchedule
-from myuw_mobile.user import UserService
 from myuw_mobile.models import CourseColor
 from building import Building
 from pws import Person
 from myuw_mobile.logger.timer import Timer
 from restclients.exceptions import DataFailureException
+from myuw_mobile.logger.util import log_resp_time, log_exception
 
 class Quarter:
     """ 
@@ -26,16 +26,10 @@ class Quarter:
         try:
             return SWS().get_current_term()
         except Exception, message:
-            print 'Failed to get current quarter data: ', message
             traceback.print_exc()
-            Quarter._logger.error("get_cur_quarter %s %s",
-                                  message,
-                                  UserService().get_log_user_info())
+            log_exception(Quarter._logger, 'sws.get_cur_quarter', message)
         finally:
-            Quarter._logger.info("SWS get_current_term time=%s %s",
-                                 timer.get_elapsed(),
-                                 UserService().get_log_user_info())
-
+            log_resp_time(Quarter._logger, 'sws.get_current_term', timer)
         return None
 
 
@@ -52,7 +46,7 @@ class Schedule:
     def get_cur_quarter_schedule(self):
         """ Return the actively enrolled sections in the current quarter """
         
-        regid = Person().get_regid(UserService().get_user())
+        regid = Person().get_regid()
         term = Quarter().get_cur_quarter()
 
         if not regid or not term:
@@ -60,26 +54,18 @@ class Schedule:
 
         timer = Timer()
         try:
-            return SWS().schedule_for_regid_and_term(regid,
-                                                   term)
+            return SWS().schedule_for_regid_and_term(regid, term)
         except DataFailureException as ex:
             empty = ClassSchedule()
             empty.term = term
             empty.sections = []
-
             return empty
         except Exception, message:
-            traceback.print_exc(file=sys.stdout)
-            Schedule._logger.error("get_cur_quarter_schedule %s %s " +
-                                   message,
-                                   UserService().get_log_user_info())
+            traceback.print_exc()
+            log_exception(Schedule._logger, 'sws.schedule_for_regid_and_term', message)
         finally:
-            Schedule._logger.info("SWS schedule_for_regid_and_term time=%s %s",
-                                  timer.get_elapsed(),
-                                  UserService().get_log_user_info())
-
+            log_resp_time(Schedule._logger, 'sws.get_cur_quarter_schedule', timer)
         return None
-
 
     def get_buildings_for_schedule(self, schedule):
         if not schedule or not schedule.sections:
@@ -97,12 +83,11 @@ class Schedule:
         return buildings
 
 
-
     def get_colors_for_schedule(self, schedule):
         if not schedule or not schedule.sections:
             return None
         colors = {}
-        regid = Person().get_regid(UserService().get_user())
+        regid = Person().get_regid()
         timer = Timer()
         try:
             query = CourseColor.objects.filter(
@@ -111,15 +96,10 @@ class Schedule:
                 quarter=schedule.term.quarter,
                 )
         except Exception, message:
-            print '//// get course color from MySQL: ', message
-            Schedule._logger.error("get_colors_for_schedule %s %s ",
-                                   message,
-                                   UserService().get_log_user_info())
+            log_exception(Schedule._logger, 'query CourseColor', message)
             return None
         finally:
-            Schedule._logger.info("CourseColor time=%s %s",
-                                  timer.get_elapsed(),
-                                  UserService().get_log_user_info())
+            log_resp_time(Schedule._logger, 'query CourseColor', timer)
 
         existing_sections = []
         color_lookup = {}
