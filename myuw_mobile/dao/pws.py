@@ -5,6 +5,7 @@ import sys
 from restclients.pws import PWS
 from myuw_mobile.user import UserService
 from myuw_mobile.logger.timer import Timer
+from myuw_mobile.logger.util import log_resp_time, log_exception
 
 class Person:
     """
@@ -15,30 +16,26 @@ class Person:
     # static class variables
     _logger = logging.getLogger('myuw_mobile.dao.pws.Person')
 
-    def get_person_by_netid(self, netid):
+    def _get_person(self):
         timer = Timer()
         try:
+            netid = UserService().get_user()
             return PWS().get_person_by_netid(netid)
         except Exception, message:
-            print 'Failed to get person data: ', message
             traceback.print_exc()
-            Person._logger.error("get_person_by_netid %s %s", 
-                                 message,
-                                 UserService().get_log_user_info())
+            log_exception(Person._logger, 'get_person_by_netid', message)
         finally:
-            Person._logger.info("PWS get_person_by_netid time=%s %s", 
-                                timer.get_elapsed(),
-                                UserService().get_log_user_info())
+            log_resp_time(Person._logger, 'pws.get_person_by_netid', timer)
         return None
 
-    def is_student(self, netid):
-        res = self.get_person_by_netid(netid)
+    def is_student(self):
+        res = self._get_person()
         if res:
             return res.is_student
         return None
 
-    def get_regid(self, netid):
-        res = self.get_person_by_netid(netid)
+    def get_regid(self):
+        res = self._get_person()
         if res:
             return res.uwregid
         return None
@@ -49,15 +46,10 @@ class Person:
         try:
             contact = PWS().get_contact(regid)
         except Exception, message:
-            print 'Failed to get instructor data: ', message
             traceback.print_exc()
-            Person._logger.error("get_contact for %s: %s %s", 
-                                 regid, message,
-                                 UserService().get_log_user_info())
+            log_exception(Person._logger, 'pws.get_contact for ' + regid, message)
         finally:
-            Person._logger.info("PWS get_contact for %s time=%s %s", 
-                                regid, timer.get_elapsed(),
-                                UserService().get_log_user_info())
+            log_resp_time(Person._logger, 'pws.get_contact for ' + regid, timer)
 
         if contact and not contact["WhitepagesPublish"] :
             affiliations = contact["PersonAffiliations"]
