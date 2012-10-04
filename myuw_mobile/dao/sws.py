@@ -32,7 +32,7 @@ class Quarter:
                                   message,
                                   UserService().get_log_user_info())
         finally:
-            Quarter._logger.info("SWS get_current_term time=%s",
+            Quarter._logger.info("SWS get_current_term time=%s %s",
                                  timer.get_elapsed(),
                                  UserService().get_log_user_info())
 
@@ -74,7 +74,7 @@ class Schedule:
                                    message,
                                    UserService().get_log_user_info())
         finally:
-            Schedule._logger.info("SWS schedule_for_regid_and_term time=%s",
+            Schedule._logger.info("SWS schedule_for_regid_and_term time=%s %s",
                                   timer.get_elapsed(),
                                   UserService().get_log_user_info())
 
@@ -117,7 +117,7 @@ class Schedule:
                                    UserService().get_log_user_info())
             return None
         finally:
-            Schedule._logger.info("CourseColor time=%s",
+            Schedule._logger.info("CourseColor time=%s %s",
                                   timer.get_elapsed(),
                                   UserService().get_log_user_info())
 

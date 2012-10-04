@@ -26,7 +26,7 @@ class Person:
                                  message,
                                  UserService().get_log_user_info())
         finally:
-            Person._logger.info("PWS get_person_by_netid time=%s", 
+            Person._logger.info("PWS get_person_by_netid time=%s %s", 
                                 timer.get_elapsed(),
                                 UserService().get_log_user_info())
         return None
@@ -55,7 +55,7 @@ class Person:
                                  regid, message,
                                  UserService().get_log_user_info())
         finally:
-            Person._logger.info("PWS get_contact for %s time=%s", 
+            Person._logger.info("PWS get_contact for %s time=%s %s", 
                                 regid, timer.get_elapsed(),
                                 UserService().get_log_user_info())
 

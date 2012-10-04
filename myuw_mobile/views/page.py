@@ -31,7 +31,7 @@ def index(request):
             context['year'] = cur_term.year
             context['quarter'] = cur_term.quarter
 
-    logger.info("index time=%s", timer.get_elapsed(),
+    logger.info("index time=%s %s", timer.get_elapsed(),
                 user_service.get_log_user_info())
 
     return render_to_response('index.html',
