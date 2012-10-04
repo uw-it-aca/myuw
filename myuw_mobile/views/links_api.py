@@ -48,6 +48,6 @@ class QuickLinks(RESTDispatch):
 
         user = UserService().get_user_model()
         Link().save_link_preferences_for_user(link_lookup, user)
-        log_success_response1(logger, timer)
+        log_success_response(logger, timer)
         return HttpResponse("")
 
