@@ -1,21 +1,15 @@
 from django.http import HttpRequest
 from django.conf import settings
-from myuw_mobile.models import User
 import logging
+from myuw_mobile.models import User
 
 
 class UserService:
     _user_data = {}
-    _logger = logging.getLogger('myuw_mobile.user.UserService')
+    logger = logging.getLogger('myuw_mobile.user.UserService')
 
-    def get_log_user_info(self):
-        """
-        Return a dictionary of user, accessed path, and client information for logging
-        """
-        #self._log_data['user'] = self._get_userid_for_log() 
-        #########return self._log_data
     
-    def _get_userid_for_log(self):
+    def get_logging_userid(self):
         """
         Return <actual user netid> acting_as: <override user netid> if
         the user is acting as someone else, otherwise <actual user netid>
@@ -84,8 +78,8 @@ class UserService:
         return new
 
 class UserServiceMiddleware(object):
-    def __init__(self):
-        _logger = logging.getLogger('myuw_mobile.user.UserService')
+
+    logger = logging.getLogger('myuw_mobile.user.UserServiceMiddleware')
 
     def process_request(self, request):
         UserService._user_data["initialized"] = True
@@ -109,14 +103,12 @@ class UserServiceMiddleware(object):
         return response
 
     def _get_authenticated_user(self):
+        netid = None
         if settings.DEBUG:
             netid = 'javerage'
         else:
             netid = request.user.username
 
-        if netid:
-            return netid
-
-        return None
+        return netid
 
 
