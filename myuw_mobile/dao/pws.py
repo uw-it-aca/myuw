@@ -23,7 +23,7 @@ class Person:
             return PWS().get_person_by_netid(netid)
         except Exception, message:
             traceback.print_exc()
-            log_exception(Person._logger, 'get_person_by_netid', message)
+            log_exception(Person._logger, 'pws.get_person_by_netid', message)
         finally:
             log_resp_time(Person._logger, 'pws.get_person_by_netid', timer)
         return None
