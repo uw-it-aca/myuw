@@ -48,7 +48,7 @@ class Link:
         return links
 
     def save_link_preferences_for_user(self, link_preferences, user):
-        all_links = self.get_links_for_user()
+        all_links = self.get_links_for_user(user)
 
         saved = UserMyLink.objects.filter(user=user)
         saved.delete()
