@@ -607,6 +607,8 @@ dd {
 	//height: 30em; 
 	position:relative;
 	background-color: @grayLighter;
+	border-left: 2px solid @grayLighter;
+	border-top: 2px solid @grayLighter;
 	//#gradient > .striped(rgba(0,0,0,.15), 90deg);
 	//background-position: 0 7%;
 	
@@ -628,9 +630,9 @@ height: 20em;
 
 @time-bar-width: 8%;
 .time-bar {
-
+//	margin-left: -2px;
 	width: @time-bar-width;
-	//border: 1px solid orange;
+//	border-right: 2px groove @grayLighter;
 	position: relative;
 	display:inline-block;
 	float: left;
@@ -646,6 +648,7 @@ height: 20em;
 
 
 }
+
 .five-day {
 	width: (97% - 5) / 5;
 	height:100%;
@@ -671,8 +674,14 @@ height: 20em;
 	
 	p {color:#333;}
 }
+/*
 .six-day:last-child, .five-day:last-child {
 	border-right: none;
+
+}*/
+
+.six-day:first-child, .five-day:first-child {
+	border-left: 2px groove @grayLighter;
 
 }
 
@@ -688,6 +697,19 @@ height: 20em;
 #gradient > .striped(rgba(0,0,0,.15), 90deg);
 position: relative;
 height:93%;
+}
+
+.test-col {
+//#gradient > .directional(#abced4, transparent, 90deg);
+//background-color: #fff;
+background-size: auto 9.0909%;
+background-image: -webkit-linear-gradient( rgba(0,0,0,.2) 1px, transparent 1px);
+background-image: -moz-linear-gradient( rgba(0,0,0,.2) 1px, transparent 1px);
+background-image: -ms-linear-gradient( rgba(0,0,0,.2) 1px, transparent 1px);
+background-image: -o-linear-gradient( rgba(0,0,0,.2) 1px, transparent 1px);
+background-image: linear-gradient( rgba(0,0,0,.2) 1px, transparent 1px);
+position: relative;
+height:93.1%;
 }
 
 // Classes for striped background
@@ -753,20 +775,26 @@ width:100%;
 //border-top: 1px inset rgba(0,0,0,.1);
 line-height: 14px;
 text-align: center;
-margin:0;
-padding:0;
+margin: 0;
+margin-top:-.5em;
+
+padding: 0;
+
+
 }
 
-.hour-label:last-child { border:0}
+//.hour-label:last-child { border:0}
 
 .day-label {
 	width:100%;
 	//border-bottom: 1px solid @grayLight;
-	background-color: @grayLighter;
+	background-color: rgba(0,0,0,.2);
 	height:7%;
 	text-align: center;
 	color: @grayDark;
 	top:0px;
+	border-bottom: 2px groove @grayLighter;
+	margin-top:-2px;
 }
 .day-label > p {
 	

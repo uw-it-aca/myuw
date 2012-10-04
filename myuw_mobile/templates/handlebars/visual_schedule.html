@@ -4,10 +4,10 @@
         <div class="span12">
         <div class="visual-schedule {{schedule_hours_class}}" >
 			
-            <div class="time-bar clearfix">
+            <div class="time-bar clearfix ">
 			
             {{#each display_hours}}
-                <div class="hour-label" style="position:absolute;top:{{time_percentage position ../start_time ../end_time }}%;">{{format_schedule_hour hour}}</div>
+                <div class="hour-label" style="position:absolute;top:{{time_percentage position ../start_time ../end_time }}%;"><p>{{format_schedule_hour hour}}</p></div>
             {{/each}}
             </div>
 
@@ -19,28 +19,28 @@
             </div>
 
             <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
-                <div class="day-label"><p>TUE</p></div>
+                <div class="day-label">TUE</div>
                 <div class="day-col hours-{{total_hours}}">
                 {{ show_days_meetings tuesday start_time end_time }}
                 </div>
             </div>
 
             <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
-                <div class="day-label"><p>WED</p></div>
+                <div class="day-label">WED</div>
                 <div class="day-col hours-{{total_hours}}">
                 {{ show_days_meetings wednesday start_time end_time }}
                 </div>
             </div>
 
             <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
-                <div class="day-label"><p>THU</p></div>
+                <div class="day-label">THU</div>
                 <div class="day-col hours-{{total_hours}}">
                 {{ show_days_meetings thursday start_time end_time }}
                 </div>
             </div>
 
             <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
-                <div class="day-label"><p>FRI</p></div>
+                <div class="day-label">FRI</div>
                 <div class="day-col hours-{{total_hours}}">
                 {{ show_days_meetings friday start_time end_time }}
                 </div>
@@ -48,7 +48,7 @@
 
             {{#if has_6_days}}
             <div class="six-day">
-                <div class="day-label"><p>SAT</p></div>
+                <div class="day-label">SAT</div>
                 <div class="day-col hours-{{total_hours}}">
                 {{ show_days_meetings saturday start_time end_time }}
                 </div>

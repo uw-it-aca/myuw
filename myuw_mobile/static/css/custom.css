@@ -1318,6 +1318,8 @@ li.inline {
   width: 100% ;
   position: relative;
   background-color: #eeeeee;
+  border-left: 2px solid #eeeeee;
+  border-top: 2px solid #eeeeee;
   *zoom: 1;
 }
 .visual-schedule:before,
@@ -1370,9 +1372,14 @@ li.inline {
 .six-day p {
   color: #333;
 }
-.six-day:last-child,
-.five-day:last-child {
-  border-right: none;
+/*
+.six-day:last-child, .five-day:last-child {
+	border-right: none;
+
+}*/
+.six-day:first-child,
+.five-day:first-child {
+  border-left: 2px groove #eeeeee;
 }
 .six-day:nth-of-type(even),
 .five-day:nth-of-type(odd) {
@@ -1387,6 +1394,16 @@ li.inline {
   background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   position: relative;
   height: 93%;
+}
+.test-col {
+  background-size: auto 9.0909%;
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2) 1px, transparent 1px);
+  background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.2) 1px, transparent 1px);
+  background-image: -ms-linear-gradient(rgba(0, 0, 0, 0.2) 1px, transparent 1px);
+  background-image: -o-linear-gradient(rgba(0, 0, 0, 0.2) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2) 1px, transparent 1px);
+  position: relative;
+  height: 93.1%;
 }
 .hours-1 {
   background-size: auto 200%;
@@ -1447,18 +1464,18 @@ li.inline {
   line-height: 14px;
   text-align: center;
   margin: 0;
+  margin-top: -0.6em;
   padding: 0;
-}
-.hour-label:last-child {
-  border: 0;
 }
 .day-label {
   width: 100%;
-  background-color: #eeeeee;
+  background-color: rgba(0, 0, 0, 0.2);
   height: 7%;
   text-align: center;
   color: #3c3c3c;
   top: 0px;
+  border-bottom: 2px groove #eeeeee;
+  margin-top: -2px;
 }
 .visual-course {
   width: 100%;
