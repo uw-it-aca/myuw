@@ -9,6 +9,6 @@ class Timer:
         return datetime.datetime.utcnow()
 
     def get_elapsed (self):
-        """ Return the time spent in milliseconds """
+        """ Return the time spent in microseconds """
         delta = self._now() - self.start
-        return delta.microseconds / 1000
+        return delta.microseconds 
