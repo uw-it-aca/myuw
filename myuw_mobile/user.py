@@ -75,7 +75,7 @@ class UserServiceMiddleware(object):
         UserService._user_data["session"] = session
 
         if not "_us_user" in session:
-            user = self._get_authenticated_user()
+            user = self._get_authenticated_user(request)
             if user:
                 UserService._user_data["original_user"] = user
                 UserService._user_data["session"]["_us_user"] = user
@@ -89,7 +89,7 @@ class UserServiceMiddleware(object):
         UserService._user_data = {}
         return response
 
-    def _get_authenticated_user(self):
+    def _get_authenticated_user(self, request):
         netid = None
         if settings.DEBUG:
             netid = 'javerage'
