@@ -22,11 +22,6 @@ var CourseList = {
         // In case someone backs onto the page from a modal
         Modal.hide();
 
-        if (course_index !== undefined) {
-            $("#course"+course_index).collapse('show');
-            $('html,body').animate({scrollTop: $("#course_wrapper"+course_index).offset().top},'slow');
-        }
-
         // Handle the case of no courses
         if (course_data.sections.length == 0) {
             var source   = $("#no-courses").html();
@@ -38,6 +33,12 @@ var CourseList = {
         var source   = $("#courses").html();
         var template = Handlebars.compile(source);
         $("#courselist").html(template(course_data));
+
+        if (course_index !== undefined) {
+            $("#course"+course_index).collapse('show');
+            console.log("Scrolling to course_wrapper"+course_index);
+            $('html,body').animate({scrollTop: $("#course_wrapper"+course_index).offset().top},'slow');
+        }
 
         $(".display_visual_sched").bind("click", function(ev) {
             var hist = window.History;
