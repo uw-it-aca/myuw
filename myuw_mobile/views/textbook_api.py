@@ -32,10 +32,10 @@ class TextbookCurQuar(RESTDispatch):
             return data_not_found()
 
         books_dao = Bookstore()
+        book_data = None
         try:
             book_data = books_dao.get_books_for_schedule(schedule)
         except Exception, message:
-            print netid + ' failed to get textbook list: ', message
             traceback.print_exc(file=sys.stdout)
             log_exception(logger, 
                          'books_dao.get_books_for_schedule', 
