@@ -29,11 +29,13 @@ class StudClasScheCurQuar(RESTDispatch):
             return HttpResponse({})
 
         colors = schedule_dao.get_colors_for_schedule(schedule)
+
         buildings = schedule_dao.get_buildings_for_schedule(schedule)
 
         if not colors:
-            log_data_not_found_response(logger, timer)
-            return data_not_found()
+            if len(schedule.sections) > 0:
+                log_data_not_found_response(logger, timer)
+                return data_not_found()
         # Since the schedule is restclients, and doesn't know
         # about color ids, backfill that data
         json_data = schedule.json_data()
