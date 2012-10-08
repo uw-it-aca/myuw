@@ -21,21 +21,14 @@ def support(request):
         print 'Configure that using MYUW_ADMIN_GROUP="u_foo_bar"'
         raise Exception("Missing MYUW_ADMIN_GROUP in settings")
 
-
     actual_user = user_service.get_original_user()
     if not actual_user:
         log_invalid_netid_response(logger, timer)
         return
 
     gws = GWS()
-    members = gws.get_effective_members(settings.MYUW_ADMIN_GROUP)
+    is_admin = gws.is_effective_member(settings.MYUW_ADMIN_GROUP, actual_user)
 
-    is_admin = False
-
-    for member in members:
-        if member.uwnetid == actual_user:
-            is_admin = True
-            break
 
     if is_admin == False:
         return  HttpResponseRedirect("/mobile")
