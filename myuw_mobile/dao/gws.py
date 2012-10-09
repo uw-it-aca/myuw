@@ -18,7 +18,8 @@ class Member:
 
     def _is_member(self, groupid):
         """
-        return True if the current user netid is an effective member of the given group
+        Return True if the current user netid is 
+        an effective member of the given group
         """
         timer = Timer()
         try:
@@ -37,54 +38,58 @@ class Member:
 
     def is_seattle_student(self):
         """
-        return True if the user is an UW current Seattle student
+        Return True if the user is an UW Seattle student
+        in the current quarter
         """
         return self._is_member('uw_affiliation_seattle-student')
 
     def is_bothell_student(self):
         """
-        return True if the user is an UW current Bothell student
+        Return True if the user is an UW Bothell student
+        in the current quarter
         """
         return self._is_member('uw_affiliation_bothell-student')
 
     def is_tacoma_student(self):
         """
-        return True if the user is an UW current graduate student
+        Return True if the user is an UW Tacoma student
+        in the current quarter
         """
         return self._is_member('uw_affiliation_tacoma-student')
 
     def is_current_grad_student(self):
         """
-        return True if the user is an UW current graduate student
+        Return True if the user is an UW graduate student
+        in the current quarter
         """
         return self._is_member('uw_affiliation_graduate-current')
 
     def is_grad_student(self):
         """
-        return True if the user is an UW graduate student 
-        in the current, past, future quarter
+        Return True if the user is an UW graduate student 
+        in the current, previous, or future quarter
         """
         return self._is_member('uw_affiliation_graduate')
 
     def is_undergrad_student(self):
         """
-        return True if the user is an UW undergraduate student 
-        in the current, past, future quarter
+        Return True if the user is an UW undergraduate student 
+        in the current, previous, or future quarter
         """
         return self._is_member('uw_affiliation_undergraduate')
 
     def is_pce_student(self):
         """
-        return True if the user is an UW PEC student 
-        in the current, past, future quarter
+        Return True if the user is an UW PEC student 
+        in the current, previous, or future quarter
         """
         return self._is_member('uw_affiliation_extension-student')
 
-# is_student function is defined in pws.py
-
     def is_student_employee(self):
         """
-        return True if the user is an UW student employee (valid in 15 days) 
+        Return True if the user is an UW student employee (valid in 15 days) 
         """
         return self._is_member('uw_affiliation_student-employee')
+
+# The is_student function is in pws.py
 
