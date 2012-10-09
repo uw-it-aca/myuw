@@ -4,7 +4,7 @@
         <div class="span12">
         <div class="visual-schedule {{schedule_hours_class}}" >
 			
-            <div class="time-bar clearfix ">
+            <div class="time-bar day-col2 hours-{{total_hours}} clearfix ">
 			
             {{#each display_hours}}
                 <div class="hour-label" style="position:absolute;top:{{time_percentage position ../start_time ../end_time }}%;"><p>{{format_schedule_hour hour}}</p></div>

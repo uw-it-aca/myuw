@@ -1317,9 +1317,6 @@ li.inline {
 .visual-schedule {
   width: 100% ;
   position: relative;
-  background-color: #eeeeee;
-  border-left: 2px solid #eeeeee;
-  border-top: 2px solid #eeeeee;
   *zoom: 1;
 }
 .visual-schedule:before,
@@ -1341,11 +1338,12 @@ li.inline {
   height: 40em;
 }
 .time-bar {
+  margin-left: -2px;
   width: 8%;
+  border-right: 2px groove #eeeeee;
   position: relative;
   display: inline-block;
   float: left;
-  background-color: #eeeeee;
   font-weight: bold;
   height: 93%;
   top: 7%;
@@ -1395,6 +1393,16 @@ li.inline {
   position: relative;
   height: 93%;
 }
+.day-col2 {
+  background-color: rgba(0, 0, 0, 0.2);
+  background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
+  background-image: -webkit-linear-gradient(90deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(90deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(90deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  position: relative;
+  height: 93%;
+}
 .test-col {
   background-size: auto 9.0909%;
   background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2) 1px, transparent 1px);
@@ -1406,65 +1414,65 @@ li.inline {
   height: 93.1%;
 }
 .hours-1 {
-  background-size: auto 200%;
+  background-size: auto 400%;
 }
 .hours-2 {
-  background-size: auto 100%;
+  background-size: auto 200%;
 }
 .hours-3 {
-  background-size: auto 66.666666667%;
+  background-size: auto 133.333333334%;
 }
 .hours-4 {
-  background-size: auto 50%;
+  background-size: auto 100%;
 }
 .hours-5 {
-  background-size: auto 40%;
+  background-size: auto 80%;
 }
 .hours-6 {
-  background-size: auto 33.3333333333%;
+  background-size: auto 66.6666666666%;
 }
 .hours-7 {
-  background-size: auto 28.5714285714286%;
+  background-size: auto 57.1428571428572%;
 }
 .hours-8 {
-  background-size: auto 25%;
+  background-size: auto 50%;
 }
 .hours-9 {
-  background-size: auto 22.2222222222%;
+  background-size: auto 44.4444444444%;
 }
 .hours-10 {
-  background-size: auto 20%;
+  background-size: auto 40%;
 }
 .hours-11 {
-  background-size: auto 18.1818181818182%;
+  background-size: auto 36.3636363636364%;
 }
 .hours-12 {
-  background-size: auto 16.666666667%;
+  background-size: auto 33.333333334%;
 }
 .hours-13 {
-  background-size: auto 15.3846153846154%;
+  background-size: auto 30.7692307692308%;
 }
 .hours-14 {
-  background-size: auto 14.2857142857143%;
+  background-size: auto 28.5714285714286%;
 }
 .hours-15 {
-  background-size: auto 13.33333333%;
+  background-size: auto 26.66666666%;
 }
 .hours-16 {
-  background-size: auto 12.5%;
+  background-size: auto 25%;
 }
 .hours-17 {
-  background-size: auto 11.7647058823529%;
+  background-size: auto 23.5294117647058%;
 }
 .hours-18 {
-  background-size: auto 11.1111111111%;
+  background-size: auto 22.2222222222%;
 }
 .hour-label {
   width: 100%;
   line-height: 14px;
   text-align: center;
   margin: 0;
-  margin-top: -0.6em;
+  margin-top: .5em;
   padding: 0;
 }
 .day-label {
