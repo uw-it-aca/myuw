@@ -1,51 +1,46 @@
-from myuw_mobile.user import UserService
-from myuw_mobile.logger.timer import Timer
-import logging
+from myuw_mobile.dao.gws import Member
+from myuw_mobile.logger.logback import log_time
 
-def get_logging_userid():
-    """
-    Return <actual user netid> acting_as: <override user netid> if
-    the user is acting as someone else, otherwise <actual user netid>
-    """
-    user_svc = UserService()
-    override_userid = user_svc.get_override_user()
-    actual_userid = user_svc.get_original_user()
-    if override_userid:
-        log_userid = actual_userid + ' acting_as: ' + override_userid
-    else:
-        log_userid = actual_userid
-    return log_userid
+def log_response_time(logger, message, timer):
+    log_time(logger, message, timer) 
 
 def log_success_response(logger, timer):
-    logger.info("%s - fulfilled. Time=%.3f milliseconds",
-                get_logging_userid(),
-                timer.get_elapsed())
+    log_time(logger, 
+             get_identity() + 'fulfilled', 
+             timer) 
 
 def log_data_not_found_response(logger, timer):
-    logger.warning("%s - data not found. Time=%.3f milliseconds",
-                get_logging_userid(),
-                timer.get_elapsed())
+    log_time(logger,
+             get_identity() + ' data not found',
+             timer)
 
 def log_invalid_netid_response(logger, timer):
-    logger.error("%s - invalid netid, abort! Time=%.3f milliseconds",
-                get_logging_userid(),
-                timer.get_elapsed())
+    log_time(logger, 'invalid netid, abort', timer)
 
 def log_invalid_regid_response(logger, timer):
-    logger.error("%s - invalid regid, abort! Time=%.3f milliseconds",
-                get_logging_userid(),
-                timer.get_elapsed())
+    log_time(logger, 'invalid regid, abort', timer)
 
-def log_exception(logger, action, message):
-    logger.error("%s - %s =>Exception: %s",
-                 get_logging_userid(),
-                 action,
-                 message)
-
-def log_resp_time(logger, action, timer):
-    logger.info("%s - %s fulfilled. Time=%.3f milliseconds",
-                get_logging_userid(),
-                action,
-                timer.get_elapsed())
-
+def get_identity():
+    """
+    Return "(<affiliation codes>, <campus codes>)"
+    """
+    res = " ("
+    member = Member()
+    if member.is_grad_student():
+        res += 'G'
+    if member.is_undergrad_student():
+        res += 'U'
+    if member.is_pce_student():
+        res += 'P'
+    if member.is_student_employee():
+        res += 'E'
+    res += ','
+    if member.is_seattle_student():
+        res += 'S'
+    if member.is_bothell_student():
+        res += 'B'
+    if member.is_tacoma_student():
+        res += 'T'
+    res += ') '
+    return res
 
