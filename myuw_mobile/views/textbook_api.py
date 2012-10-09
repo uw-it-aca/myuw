@@ -25,8 +25,7 @@ class TextbookCurQuar(RESTDispatch):
         """
         timer = Timer()
         logger = logging.getLogger('myuw_mobile.views.textbook_api.TextbookCurQuar.GET')
-        schedule_dao = ScheduleDao()
-        schedule = schedule_dao.get_cur_quarter_schedule()
+        schedule = ScheduleDao().get_cur_quarter_schedule()
         if not schedule:
             log_data_not_found_response(logger, timer)
             return data_not_found()
