@@ -33,14 +33,14 @@ def get_identity():
     elif member.is_pce_student():
         res += 'Pce'
     if member.is_student_employee():
-        res += 'StudEmpl'
-    res += ','
+        res += ' StudEmployee'
+    res += ', '
     if member.is_seattle_student():
-        res += 'Sea'
+        res += 'Seattle'
     if member.is_bothell_student():
-        res += 'Bot'
+        res += 'Bothell'
     if member.is_tacoma_student():
-        res += 'Tac'
+        res += 'Tacoma'
     res += ') '
     return res
 
