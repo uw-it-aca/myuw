@@ -24,7 +24,7 @@ def get_identity():
     """
     Return "(<affiliations>, <campus codes>)"
     """
-    res = " ("
+    res = "("
     member = Member()
     if member.is_grad_student():
         res += 'Grad'
