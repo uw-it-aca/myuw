@@ -34,13 +34,13 @@ def get_identity():
         res += 'Pce'
     if member.is_student_employee():
         res += ' StudEmployee'
-    res += ', '
+    res += ','
     if member.is_seattle_student():
-        res += 'Seattle'
+        res += ' Seattle'
     if member.is_bothell_student():
-        res += 'Bothell'
+        res += ' Bothell'
     if member.is_tacoma_student():
-        res += 'Tacoma'
+        res += ' Tacoma'
     res += ') '
     return res
 
