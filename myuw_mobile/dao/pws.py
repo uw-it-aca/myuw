@@ -17,6 +17,9 @@ class Person:
     _logger = logging.getLogger('myuw_mobile.dao.pws.Person')
 
     def _get_person(self):
+        """
+        Retrieve the person data using the netid of the user
+        """
         timer = Timer()
         try:
             netid = UserService().get_user()
@@ -33,6 +36,12 @@ class Person:
         return None
 
     def is_student(self):
+        """
+        Return true if the user is an 
+        UW undergraduate/graduate/onleave graduate/pce students 
+        who are enrolled for the current quarter, 
+        the previous quarter, or a future quarter
+        """
         res = self._get_person()
         if res:
             return res.is_student
@@ -45,6 +54,10 @@ class Person:
         return None
 
     def get_contact(self, regid):
+        """
+        Return the whitepage information if the user has given 
+        permission to publish it on the UW Directory.
+        """
         contact = None
         timer = Timer()
         try:
