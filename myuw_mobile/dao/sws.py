@@ -9,7 +9,7 @@ from building import Building
 from pws import Person
 from myuw_mobile.logger.timer import Timer
 from restclients.exceptions import DataFailureException
-from myuw_mobile.logger.util import log_resp_time, log_exception
+from myuw_mobile.logger.logback import log_resp_time, log_exception
 
 class Quarter:
     """ 
@@ -26,10 +26,14 @@ class Quarter:
         try:
             return SWS().get_current_term()
         except Exception, message:
-            traceback.print_exc()
-            log_exception(Quarter._logger, 'sws.get_cur_quarter', message)
+            traceback.print_exc(file=sys.stdout)
+            log_exception(Quarter._logger, 
+                          'sws.get_cur_quarter', 
+                          message)
         finally:
-            log_resp_time(Quarter._logger, 'sws.get_current_term', timer)
+            log_resp_time(Quarter._logger, 
+                          'sws.get_current_term',
+                          timer)
         return None
 
 
@@ -61,10 +65,14 @@ class Schedule:
             empty.sections = []
             return empty
         except Exception, message:
-            traceback.print_exc()
-            log_exception(Schedule._logger, 'sws.schedule_for_regid_and_term', message)
+            traceback.print_exc(file=sys.stdout)
+            log_exception(Schedule._logger, 
+                          'sws.schedule_for_regid_and_term', 
+                          message)
         finally:
-            log_resp_time(Schedule._logger, 'sws.get_cur_quarter_schedule', timer)
+            log_resp_time(Schedule._logger, 
+                          'sws.get_cur_quarter_schedule',
+                          timer)
         return None
 
     def get_buildings_for_schedule(self, schedule):
@@ -96,10 +104,14 @@ class Schedule:
                 quarter=schedule.term.quarter,
                 )
         except Exception, message:
-            log_exception(Schedule._logger, 'query CourseColor', message)
+            log_exception(Schedule._logger, 
+                          'query CourseColor',
+                          message)
             return None
         finally:
-            log_resp_time(Schedule._logger, 'query CourseColor', timer)
+            log_resp_time(Schedule._logger, 
+                          'query CourseColor',
+                          timer)
 
         existing_sections = []
         color_lookup = {}
