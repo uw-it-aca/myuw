@@ -27,11 +27,11 @@ def get_identity():
     res = "("
     member = Member()
     if member.is_grad_student():
-        res += 'Grad'
-    elif member.is_undergrad_student():
-        res += 'Undergrad'
-    elif member.is_pce_student():
-        res += 'Pce'
+        res += ' Grad'
+    if member.is_undergrad_student():
+        res += ' Undergrad'
+    if member.is_pce_student():
+        res += ' Pce'
     if member.is_student_employee():
         res += ' StudEmployee'
     res += ','
