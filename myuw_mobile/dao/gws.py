@@ -27,7 +27,7 @@ class EffectiveMember:
         except Exception, message:
             traceback.print_exc()
             log_exception(Member._logger, 
-                          'gws.is_effective_member of ' + groupid
+                          'gws.is_effective_member of ' + groupid,
                           message)
         finally:
             log_resp_time(Member._logger,
@@ -79,6 +79,14 @@ class EffectiveMember:
         in the current, past, future quarter
         """
         return self._is_member('uw_affiliation_extension-student')
+
+    def is_student(self):
+        """
+        return True if the user is an UW student 
+        regardless graduate, undergraduate, or PCE 
+        in the current, past, future quarter
+        """
+        return self.is_grad_student() or self.is_undergrad_student() or self.is_pce_student()
 
     def is_student_employee(self):
         """
