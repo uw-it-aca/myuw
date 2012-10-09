@@ -10,8 +10,8 @@ from myuw_mobile.logger.logback import log_resp_time, log_exception
 class Textbook():
     """
     encapsulates the interactions with the Bookstore web service.
-    _logger = logging.getLogger('myuw_mobile.dao.textbook.Textbook')
     """
+    logger = logging.getLogger('myuw_mobile.dao.textbook.Textbook')
 
     def get(self, schedule):
         """
