@@ -22,25 +22,25 @@ def log_invalid_regid_response(logger, timer):
 
 def get_identity():
     """
-    Return "(<affiliation codes>, <campus codes>)"
+    Return "(<affiliations>, <campus codes>)"
     """
     res = " ("
     member = Member()
     if member.is_grad_student():
-        res += 'G'
-    if member.is_undergrad_student():
-        res += 'U'
-    if member.is_pce_student():
-        res += 'P'
+        res += 'Grad'
+    elif member.is_undergrad_student():
+        res += 'Undergrad'
+    elif member.is_pce_student():
+        res += 'Pce'
     if member.is_student_employee():
-        res += 'E'
+        res += 'Employee'
     res += ','
     if member.is_seattle_student():
-        res += 'S'
+        res += 'Sea'
     if member.is_bothell_student():
-        res += 'B'
+        res += 'Bot'
     if member.is_tacoma_student():
-        res += 'T'
+        res += 'Tac'
     res += ') '
     return res
 
