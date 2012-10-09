@@ -9,10 +9,10 @@ import sys
 import traceback
 import logging
 from myuw_mobile.dao.sws import Schedule as ScheduleDao
-from restclients.bookstore import Bookstore
+from myuw_mobile.dao.textbook import Textbook
 from rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.logger.timer import Timer
-from myuw_mobile.logger.util import log_data_not_found_response, log_success_response, log_exception, log_resp_time
+from myuw_mobile.logger.logresp import log_data_not_found_response, log_success_response
 
 class TextbookCurQuar(RESTDispatch):
     """
@@ -30,20 +30,7 @@ class TextbookCurQuar(RESTDispatch):
             log_data_not_found_response(logger, timer)
             return data_not_found()
 
-        books_dao = Bookstore()
-        book_data = None
-        try:
-            book_data = books_dao.get_books_for_schedule(schedule)
-        except Exception, message:
-            traceback.print_exc(file=sys.stdout)
-            log_exception(logger, 
-                         'books_dao.get_books_for_schedule', 
-                          message)
-        finally:
-            log_resp_time(logger,
-                         'books_dao.get_books_for_schedule',
-                          timer)
-
+        book_data = Textbook().get(schedule)
         if not book_data:
             log_data_not_found_response(logger, timer)
             return data_not_found()
