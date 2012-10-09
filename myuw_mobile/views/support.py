@@ -6,7 +6,7 @@ from restclients.gws import GWS
 import logging
 from myuw_mobile.user import UserService
 from myuw_mobile.logger.timer import Timer
-from myuw_mobile.logger.util import log_invalid_netid_response, log_success_response
+from myuw_mobile.logger.logresp import log_invalid_netid_response, log_success_response
 
 def support(request):
     timer = Timer()

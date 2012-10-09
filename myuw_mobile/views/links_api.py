@@ -6,7 +6,7 @@ from rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.dao.links import Link
 from myuw_mobile.user import UserService
 from myuw_mobile.logger.timer import Timer
-from myuw_mobile.logger.util import log_data_not_found_response, log_success_response
+from myuw_mobile.logger.logresp import log_data_not_found_response, log_success_response
 
 class QuickLinks(RESTDispatch):
     """

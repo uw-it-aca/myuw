@@ -8,7 +8,7 @@ from django.utils import simplejson as json
 from myuw_mobile.dao.sws import Schedule as ScheduleDao
 from rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.logger.timer import Timer
-from myuw_mobile.logger.util import log_data_not_found_response, log_success_response
+from myuw_mobile.logger.logresp import log_data_not_found_response, log_success_response
 
 class StudClasScheCurQuar(RESTDispatch):
     """

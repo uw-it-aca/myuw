@@ -6,7 +6,7 @@ import logging
 from myuw_mobile.dao.sws import Quarter as QuarterDao
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.user import UserService
-from myuw_mobile.logger.util import log_data_not_found_response, log_invalid_netid_response, log_success_response
+from myuw_mobile.logger.logresp import log_data_not_found_response, log_invalid_netid_response, log_success_response
 
 #@mobile_template('{mobile/}index.html')
 def index(request):

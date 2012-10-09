@@ -5,7 +5,7 @@ import logging
 from myuw_mobile.user import UserService
 from myuw_mobile.dao.pws import Person as PersonDao
 from myuw_mobile.logger.timer import Timer
-from myuw_mobile.logger.util import log_invalid_netid_response, log_resp_time
+from myuw_mobile.logger.logresp import log_invalid_netid_response, log_response_time
 
 def user_login(request):
     timer = Timer()
@@ -17,10 +17,10 @@ def user_login(request):
         return #a static error page 
 
     if PersonDao().is_student():
-        log_resp_time(logger, 'to mobile', timer)
+        log_response_time(logger, 'to mobile', timer)
         return redirect("myuw_mobile.views.page.index")
 
-    log_resp_time(logger, 'to desktop', timer)
+    log_response_time(logger, 'to desktop', timer)
 
     if hasattr(settings, "MYUW_USER_SERVLET_URL"):
         return redirect(settings.MYUW_USER_SERVLET_URL)
