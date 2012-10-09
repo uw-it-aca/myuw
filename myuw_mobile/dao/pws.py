@@ -5,7 +5,7 @@ import sys
 from restclients.pws import PWS
 from myuw_mobile.user import UserService
 from myuw_mobile.logger.timer import Timer
-from myuw_mobile.logger.util import log_resp_time, log_exception
+from myuw_mobile.logger.logback import log_resp_time, log_exception
 
 class Person:
     """
@@ -22,10 +22,14 @@ class Person:
             netid = UserService().get_user()
             return PWS().get_person_by_netid(netid)
         except Exception, message:
-            traceback.print_exc()
-            log_exception(Person._logger, 'pws.get_person_by_netid', message)
+            traceback.print_exc(file=sys.stdout)
+            log_exception(Person._logger, 
+                          'pws.get_person_by_netid', 
+                          message)
         finally:
-            log_resp_time(Person._logger, 'pws.get_person_by_netid', timer)
+            log_resp_time(Person._logger, 
+                          'pws.get_person_by_netid', 
+                          timer)
         return None
 
     def is_student(self):
@@ -46,10 +50,14 @@ class Person:
         try:
             contact = PWS().get_contact(regid)
         except Exception, message:
-            traceback.print_exc()
-            log_exception(Person._logger, 'pws.get_contact for ' + regid, message)
+            traceback.print_exc(file=sys.stdout)
+            log_exception(Person._logger, 
+                          'pws.get_contact for ' + regid, 
+                          message)
         finally:
-            log_resp_time(Person._logger, 'pws.get_contact for ' + regid, timer)
+            log_resp_time(Person._logger, 
+                          'pws.get_contact for ' + regid, 
+                          timer)
 
         if contact and not contact["WhitepagesPublish"] :
             affiliations = contact["PersonAffiliations"]
