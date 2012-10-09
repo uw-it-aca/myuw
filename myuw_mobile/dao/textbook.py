@@ -11,7 +11,7 @@ class Textbook():
     """
     encapsulates the interactions with the Bookstore web service.
     """
-    logger = logging.getLogger('myuw_mobile.dao.textbook.Textbook')
+    _logger = logging.getLogger('myuw_mobile.dao.textbook.Textbook')
 
     def get(self, schedule):
         """
@@ -23,11 +23,11 @@ class Textbook():
             book_data = Bookstore().get_books_for_schedule(schedule)
         except Exception, message:
             traceback.print_exc(file=sys.stdout)
-            log_exception(logger, 
+            log_exception(Textbook._logger, 
                          'get_books_for_schedule', 
                           message)
         finally:
-            log_resp_time(logger,
+            log_resp_time(Textbook._logger,
                          'get_books_for_schedule',
                           timer)
 
