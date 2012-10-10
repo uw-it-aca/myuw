@@ -41,22 +41,23 @@ class UserMyLink(models.Model):
                            'linkid')
 
 class Link(models.Model):
-    json_id = models.PositiveIntegerField()
+    json_id = models.PositiveIntegerField(db_index=True,
+                                          unique=True)
     title = models.CharField(max_length=150)
     url = models.CharField(max_length=150)
     is_on = models.BooleanField()
 
     def json_data(self):
         data = {
+            "id": self.json_id,
             "title": self.title,
             "url": self.url,
-            "is_on": self.is_on,
-            "id": self.json_id
+            "is_on": self.is_on
         }
         return data
 
 class Building(models.Model):
-    code = models.CharField(max_length=6)
+    code = models.CharField(max_length=6, db_index=True)
     latititude = models.CharField(max_length=40)
     longitude = models.CharField(max_length=40)
     name = models.CharField(max_length=200)
