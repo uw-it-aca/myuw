@@ -123,7 +123,7 @@ class Link:
         path = os.path.join(os.path.dirname( __file__ ),
                             '..', 'data', 'links.json')
         f = open(path)
-        return json.loads(f.read()).sort(key=itemgetter('title'))
+        return json.loads(f.read())
 
     @staticmethod
     def _init_link(link_data):
