@@ -31,6 +31,14 @@ var QuickLinks = {
             QuickLinks.save_links();
             return false;
         });
+
+        var index = 0;
+        // This is a workaround for MUWM-427
+        // From: http://stackoverflow.com/questions/7358781/tapping-on-label-in-mobile-safari
+        for (index = 0; index < links.length; index++) {
+            var link = links[index];
+            $("#link"+link.id+"label").bind("click", function() { });
+        }
     },
 
     save_links: function() {
