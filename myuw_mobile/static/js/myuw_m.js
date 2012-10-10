@@ -186,8 +186,17 @@ $(document).ready(function() {
         History.Adapter.trigger(window, 'statechange');
     }
 
+    var test_status = window.location.hash.indexOf('alert') === -1 ? 'false' : 'true';
+    var test_alert_color;
+    if (test_status) {
+        test_alert_color = window.location.hash;
+    }
 
     show_page_from_url();
+
+    if (test_alert_color) {
+        window.location.hash = test_alert_color;
+    }
 
     $(".quicklinks").bind("click", function(ev) {
         $("#myuw_nav").collapse('hide');
