@@ -33,6 +33,7 @@ WSData = {
                         callback.apply(null, args);
                     },
                     error: function(xhr, status, error) {
+                        showError();
                     }
                 });
             }
@@ -57,6 +58,7 @@ WSData = {
                         callback.apply(null, args);
                     },
                     error: function(xhr, status, error) {
+                        showError();
                     }
                 });
             }
@@ -80,6 +82,7 @@ WSData = {
                         callback.apply(null, args);
                     },
                     error: function(xhr, status, error) {
+                        showError();
                     }
                 });
             }
@@ -104,6 +107,7 @@ WSData = {
                         callback.apply(null, args);
                     },  
                     error: function(xhr, status, error) {
+                        showError();
                     }   
                 }); 
             }   

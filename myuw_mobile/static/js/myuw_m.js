@@ -212,3 +212,14 @@ var showLoading = function() {
     template = Handlebars.compile(source);
     $("#courselist").html(template());
 };
+
+var showError = function() {
+    var source = $("#error_header").html();
+    var template = Handlebars.compile(source);
+    $("#page-header").html(template());
+
+    source = $("#error_body").html();
+    template = Handlebars.compile(source);
+    $("#courselist").html(template());
+};
+
