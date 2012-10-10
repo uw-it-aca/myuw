@@ -1151,9 +1151,17 @@ body {
 .modal-header .close {
   font-size: 28px;
 }
+.modal-header h3 {
+  color: #ffffff;
+  padding-top: 3px;
+  text-transform: uppercase;
+  font-weight: normal;
+  line-height: 1.1em;
+}
 .modal-body {
   padding-bottom: 0px;
   max-height: 800px;
+  background-color: #ffffff;
 }
 .modal-body .dl-horizontal {
   margin-bottom: 5px;
