@@ -3,6 +3,7 @@ var VisualSchedule = {
     day_label_offset: 0,
 
     show_visual_schedule: function(course_index) {
+        showLoading();
         WSData.fetch_course_data(VisualSchedule.render, [course_index]);
     },
 

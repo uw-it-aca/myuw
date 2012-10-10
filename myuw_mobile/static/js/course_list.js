@@ -1,5 +1,6 @@
 var CourseList = {
     show_list: function(course_index) {
+        showLoading();
         WSData.fetch_course_data(CourseList.render_list, [course_index]);
     },
 

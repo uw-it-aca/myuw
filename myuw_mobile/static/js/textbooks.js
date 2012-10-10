@@ -1,5 +1,6 @@
 var TextBooks = {
     show_books: function() {
+        showLoading();
         WSData.fetch_book_data(TextBooks._fetch_course_data);
     },
 

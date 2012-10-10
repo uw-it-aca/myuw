@@ -1,5 +1,6 @@
 var Instructor = {
     show_instructor: function(regid) {
+        showLoading();
         WSData.fetch_instructor_data(Instructor.render_instructor, [regid]);
     },
     

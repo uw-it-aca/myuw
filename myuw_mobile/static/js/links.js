@@ -1,5 +1,6 @@
 var QuickLinks = {
     show_links: function() {
+        showLoading();
         WSData.fetch_link_data(QuickLinks.render_links);
     },
 

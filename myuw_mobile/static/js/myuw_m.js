@@ -138,7 +138,7 @@ $(document).ready(function() {
                 hist.replaceState({
                     state: "visual",
                     course_index: matches[1]
-                },  "", "/mobile/visual");
+                },  "", "/mobile/visual/"+matches[1]);
                 //VisualSchedule.show_visual_schedule(matches[1]);
             }
             else {
@@ -200,6 +200,15 @@ $(document).ready(function() {
     });
 
 
-    
-
 });
+
+
+var showLoading = function() {
+    var source = $("#loading_header").html();
+    var template = Handlebars.compile(source);
+    $("#page-header").html(template());
+
+    source = $("#loading_body").html();
+    template = Handlebars.compile(source);
+    $("#courselist").html(template());
+};
