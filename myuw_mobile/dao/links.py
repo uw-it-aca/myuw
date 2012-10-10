@@ -1,6 +1,7 @@
 import logging
 import json
 import os
+from operator import itemgetter 
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logback import log_resp_time, log_exception
 from myuw_mobile.models import Link as LinkModel, UserMyLink
@@ -18,9 +19,9 @@ class Link:
         If they should be active, is_on will be True; Otherwise, False
         """
         if self.customized_link(user):
-            return sorted(self._get_user_links(user))
+            return self._get_user_links(user)
         else:
-            return sorted(self._get_default_links(user))
+            return self._get_default_links(user)
 
 
     def save_link_preferences_for_user(self, new_selection, user):
@@ -39,6 +40,10 @@ class Link:
             else:
                 new.is_on = False
             new_links.append(new)
+        self._save_mylink(new_links)
+
+
+    def _save_mylink(self, new_links):
         timer = Timer()
         try:
             UserMyLink.objects.bulk_create(new_links)
@@ -52,14 +57,10 @@ class Link:
                          'save UserMyLink',
                           timer)
 
-    def customized_link(self, user):
-        """
-        Return True if the user has made her own link selection 
-        """
-        self._user_link_subscription = None
+    def _get_mylink(self, user):
         timer = Timer()
         try:
-            self._user_link_subscription = UserMyLink.objects.filter(user=user)
+            return UserMyLink.objects.filter(user=user)
         except Exception, message:
             traceback.print_exc(file=sys.stdout)
             log_exception(Link._logger,
@@ -70,6 +71,11 @@ class Link:
                          'get UserMyLink',
                           timer)
 
+    def customized_link(self, user):
+        """
+        Return True if the user has changed her link selection 
+        """
+        self._user_link_subscription = self._get_mylink(user)
         return self._user_link_subscription and len(self._user_link_subscription) > 0
 
 
@@ -117,7 +123,7 @@ class Link:
         path = os.path.join(os.path.dirname( __file__ ),
                             '..', 'data', 'links.json')
         f = open(path)
-        return json.loads(f.read())
+        return json.loads(f.read()).sort(key=itemgetter('title'))
 
     @staticmethod
     def _init_link(link_data):
