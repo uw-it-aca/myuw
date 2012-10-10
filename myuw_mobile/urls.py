@@ -6,6 +6,7 @@ from myuw_mobile.views.schedule_api import StudClasScheCurQuar
 from myuw_mobile.views.contact_api import InstructorContact
 from myuw_mobile.views.textbook_api import TextbookCurQuar
 from myuw_mobile.views.links_api import QuickLinks
+from myuw_mobile.views.logout import Logout
 
 urlpatterns = patterns('myuw_mobile.views',
     url(r'login', 'mobile_login.user_login'),
@@ -14,6 +15,7 @@ urlpatterns = patterns('myuw_mobile.views',
     url(r'^textbooks', 'page.index'),
     url(r'^instructor', 'page.index'),
     url(r'^links', 'page.index'),
+    url(r'logout', Logout.as_view()),
     url(r'^$', 'page.index'),
     url(r'^api/v1/books/current/$', TextbookCurQuar().run),
     url(r'^api/v1/schedule/current/$', StudClasScheCurQuar().run),

@@ -208,6 +208,10 @@ $(document).ready(function() {
         return false;
     });
 
+    $(".logout_link").bind("click", function(ev) {
+        $("#logout_form").submit();
+        return false;
+    });
 
 });
 

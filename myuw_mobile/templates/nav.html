@@ -28,8 +28,9 @@
           		<li class=""><a href="https://myuw.washington.edu/cgi-bin/contactmyuw.cgi"  target="_blank"><i class="icon-envelope"></i> Contact MyUW</a></li>
                 <li class=""><a href="https://uwnetid.washington.edu/manage/" target="_blank"><i class="icon-user"></i> Manage UW NetID</a></li>   
                 <li class="divider"></li>
-                <li class=""><a href="#"><i class="icon-signout"></i> Log Out</a></li>
+                <li class=""><a href="#" class="logout_link"><i class="icon-signout"></i> Log Out</a></li>
              </ul>
+             <form action="/mobile/logout" method="POST" id="logout_form">{% csrf_token %}</form>
 
     
             </div>
