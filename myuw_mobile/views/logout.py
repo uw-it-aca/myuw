@@ -5,7 +5,7 @@ class Logout(View):
     def post(self, request):
         request.session.flush()
 
-        return HttpResponseRedirect("https://weblogin.washington.edu/logout/")
+        return HttpResponseRedirect("/mobile/user_logout")
 
     def get(self, request):
         return HttpResponseRedirect("/mobile/")
