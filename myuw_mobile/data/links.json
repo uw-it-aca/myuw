@@ -1,7 +1,7 @@
 [
     {
 	"id":1,
-        "title":"UW Campus Maps",
+        "title":"Campus Maps",
         "url":"http://www.washington.edu/maps/",
         "on_for_employees":true,
         "on_for_undergrad":true,
@@ -11,7 +11,7 @@
     },
     {
 	"id":2,
-        "title":"Bothell Campus Map",
+        "title":"Campus Map - Bothell",
         "url":"http://www.uwb.edu/getattachment/visitors/campus-map.pdf",
         "on_for_employees":true,
         "on_for_undergrad":true,
@@ -21,7 +21,7 @@
     },
     {
 	"id":3,
-        "title":"Tacoma Campus Map",
+        "title":"Campus Map - Tacoma",
         "url":"http://www.tacoma.uw.edu/campus-map",
         "on_for_employees":true,
         "on_for_undergrad":true,
@@ -131,7 +131,7 @@
     },
     {
 	"id":40,
-        "title":"UW Libraries",
+        "title":"Libraries",
         "url":"http://www.lib.washington.edu/",
         "on_for_employees":true,
         "on_for_undergrad":true,
