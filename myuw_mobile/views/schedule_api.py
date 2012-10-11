@@ -57,6 +57,18 @@ class StudClasScheCurQuar(RESTDispatch):
                         mdata["longitude"] = building.longitude
                         mdata["building_name"] = building.name
 
+                for instructor in mdata["instructors"]:
+                    if not instructor[
+                            "email1"] and not instructor[
+                            "email2"] and not instructor[
+                            "phone1"] and not instructor[
+                            "phone2"] and not instructor[
+                            "voicemail"] and not instructor[
+                            "fax"] and not instructor[
+                            "touchdial"] and not instructor[
+                            "address1"] and not instructor[
+                            "address2"]:
+                        instructor["whitepages_publish"] = False
                 meeting_index += 1
 
         log_success_response(logger, timer)
