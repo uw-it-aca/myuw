@@ -1632,6 +1632,29 @@ footer p {
 footer .footer-links a {
   font-size: 12px;
 }
+#uwalert-alert-message {
+  margin: 10px 0 10px 0;
+}
+.alert h1 {
+  font-size: 18px;
+  line-height: 20px;
+  margin: 0;
+}
+.uwalert-orange {
+  background-color: #fcf8e3;
+  border-color: #fbeed5;
+  color: #c09853;
+}
+.uwalert-red {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+}
+.uwalert-steel {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #3a87ad;
+}
 .btn-myuw.active {
   color: rgba(255, 255, 255, 0.75);
 }

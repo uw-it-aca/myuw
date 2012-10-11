@@ -80,12 +80,16 @@ function addElement(strAlertTitle,strAlertLink,strAlertColor,strAlertMessage)
 
   var wrapperDiv = document.createElement('div');
   wrapperDiv.setAttribute('id','uwalert-alert-message');
-  wrapperDiv.setAttribute('class', strAlertColor);
+  wrapperDiv.setAttribute('class', strAlertColor + ' alert alert-block');
 
   var alertBoxTextDiv = document.createElement('div');
+
+  var alertIcon = document.createElement('i');
+  alertIcon.setAttribute('class', 'icon-warning-sign icon-large');
   
   var header1 = document.createElement('h1');
   var header1Text = document.createTextNode(strAlertTitle);
+  header1.appendChild(alertIcon);
   header1.appendChild(header1Text);
 
   var alertTextP = document.createElement('p');
