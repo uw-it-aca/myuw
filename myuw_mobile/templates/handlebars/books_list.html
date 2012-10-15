@@ -12,9 +12,9 @@
               <div class="clearfix book-image">
               	<h4>{{title}}</h4>
                 {{#if cover_image_url}}
-                <div class="book-cover pull-left"><img src="{{cover_image_url}}" alt="book cover" width="80px" /></div>              
+                <div class="book-cover pull-left"><img src="{{cover_image_url}}" alt="{{title}} book cover" width="80px" /></div>              
                 {{else}}
-                <div class="no-book-cover pull-left">No Image Available</div>
+                <div class="no-book-cover pull-left" title="No cover image available">No Image Available</div>
                 {{/if}}
              
                 
