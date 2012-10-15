@@ -8,11 +8,12 @@ def log_exception(logger, action, message):
                  action,
                  message)
 
+def log_info(logger, message):
+    logger.info("%s %s", get_logging_userid(), message)
+
 def log_time(logger, action_message, timer):
-    logger.info("%s %s. Time=%.3f milliseconds",
-                get_logging_userid(),
-                action_message,
-                timer.get_elapsed())
+    log_info(logger, "%s Time=%.3f milliseconds" %
+                (action_message, timer.get_elapsed()))
 
 def log_resp_time(logger, action, timer):
     log_time(logger,

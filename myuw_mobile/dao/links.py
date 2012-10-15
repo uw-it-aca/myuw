@@ -116,6 +116,19 @@ class Link:
 
 
     @staticmethod
+    def get_link_by_id(id):
+        """
+        Returns a link object for the given id, if one exists.  None otherwise.
+        """
+        id = int(id)
+        for link_data in Link._get_all_links():
+            link = Link._init_link(link_data)
+            if link.json_id == id:
+                return link
+
+        return
+
+    @staticmethod
     def _get_all_links():
         """
         Return the list of all the links
