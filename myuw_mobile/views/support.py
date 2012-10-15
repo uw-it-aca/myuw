@@ -7,6 +7,7 @@ import logging
 from myuw_mobile.user import UserService
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_invalid_netid_response, log_success_response
+from myuw_mobile.views.rest_dispatch import invalid_session
 
 def support(request):
     timer = Timer()
@@ -24,7 +25,7 @@ def support(request):
     actual_user = user_service.get_original_user()
     if not actual_user:
         log_invalid_netid_response(logger, timer)
-        return
+        return invalid_session()
 
     gws = GWS()
     is_admin = gws.is_effective_member(settings.MYUW_ADMIN_GROUP, actual_user)
@@ -34,7 +35,7 @@ def support(request):
         return  HttpResponseRedirect("/mobile")
 
     if "override_as" in request.POST:
-        user_service.set_override_user(request.POST["override_as"])
+        user_service.set_override_user(request.POST["override_as"].strip())
 
     if "clear_override" in request.POST:
         user_service.clear_override()
