@@ -7,6 +7,7 @@ from myuw_mobile.dao.sws import Quarter as QuarterDao
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.user import UserService
 from myuw_mobile.logger.logresp import log_data_not_found_response, log_invalid_netid_response, log_success_response
+from myuw_mobile.views.rest_dispatch import invalid_session
 
 #@mobile_template('{mobile/}index.html')
 def index(request):
@@ -23,17 +24,17 @@ def index(request):
     else:
         netid = UserService().get_user()
         if not netid:
-            context['err'] = 'Invalid netid!'
             log_invalid_netid_response(logger, timer)
+            return invalid_session()
+
+        cur_term = QuarterDao().get_cur_quarter()
+        if not cur_term:
+            context['err'] = 'No current quarter data!'
+            log_data_not_found_response(logger, timer)
         else:
-            cur_term = QuarterDao().get_cur_quarter()
-            if not cur_term:
-                context['err'] = 'No current quarter data!'
-                log_data_not_found_response(logger, timer)
-            else:
-                context['year'] = cur_term.year
-                context['quarter'] = cur_term.quarter
-                log_success_response(logger, timer)
+            context['year'] = cur_term.year
+            context['quarter'] = cur_term.quarter
+            log_success_response(logger, timer)
     return render_to_response('index.html',
                               context,
                               context_instance=RequestContext(request))

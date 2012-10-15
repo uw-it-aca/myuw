@@ -6,6 +6,7 @@ from myuw_mobile.user import UserService
 from myuw_mobile.dao.pws import Person as PersonDao
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_invalid_netid_response, log_response_time
+from myuw_mobile.views.rest_dispatch import invalid_session
 
 def user_login(request):
     timer = Timer()
@@ -14,7 +15,7 @@ def user_login(request):
     netid = UserService().get_user()
     if not netid:
         log_invalid_netid_response(logger, timer)
-        return #a static error page 
+        return invalid_session()
 
     if PersonDao().is_student():
         log_response_time(logger, 'to mobile', timer)
