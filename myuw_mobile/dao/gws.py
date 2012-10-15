@@ -40,6 +40,10 @@ class Member:
         """
         Return True if the user is an UW Seattle student
         in the current quarter
+        Note:
+        As the UW Affiliation group only knows about one campus,
+        if you need to know all the campuses where the student has class registered
+        you should use the get_cur_quarter_campuses function in sws.
         """
         return self._is_member('uw_affiliation_seattle-student')
 
@@ -47,6 +51,10 @@ class Member:
         """
         Return True if the user is an UW Bothell student
         in the current quarter
+        Note:
+        As the UW Affiliation group only knows about one campus,
+        if you need to know all the campuses where the student has class registered
+        you should use the get_cur_quarter_campuses function in sws.
         """
         return self._is_member('uw_affiliation_bothell-student')
 
@@ -54,6 +62,10 @@ class Member:
         """
         Return True if the user is an UW Tacoma student
         in the current quarter
+        Note:
+        As the UW Affiliation group only knows about one campus,
+        if you need to know all the campuses where the student has class registered
+        you should use the get_cur_quarter_campuses function in sws.
         """
         return self._is_member('uw_affiliation_tacoma-student')
 
