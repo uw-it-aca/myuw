@@ -75,6 +75,33 @@ class Schedule:
                           timer)
         return None
 
+    def get_cur_quarter_campuses(self):
+        """
+        Returns a dictionary indicating the campuses that the student
+        has enrolled in the current quarter:
+         { seattle: false|true, 
+           bothell: false|true,
+           tacoma: false|true } 
+        True if the user is registered on that campus in the current quarter
+        """
+        campuses = {'seattle': False,
+                    'bothell': False,
+                    'tacoma': False}
+
+        schedule = self.get_cur_quarter_schedule()
+        if schedule and len(schedule.sections) > 0:
+            for section in schedule.sections:
+                if section.course_campus == 'Seattle':
+                    campuses['seattle']=True
+                elif section.course_campus == 'Bothell':
+                    campuses['bothell']=True
+                elif section.course_campus == 'Tacoma':
+                    campuses['tacoma']=True
+                else:
+                    pass
+        return campuses
+
+
     def get_buildings_for_schedule(self, schedule):
         if not schedule or not schedule.sections:
             return None
@@ -195,3 +222,5 @@ class Schedule:
         color.save()
 
         return color
+
+
