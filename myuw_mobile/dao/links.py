@@ -96,7 +96,7 @@ class Link:
         for link_data in Link._get_all_links():
             link = Link._init_link(link_data)
 
-            if lookup[link.json_id]:
+            if link.json_id in lookup and lookup[link.json_id]:
                 link.is_on = True
             link_list.append(link)
         return link_list
