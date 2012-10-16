@@ -4,7 +4,7 @@ import os
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logback import log_resp_time, log_exception
 from myuw_mobile.models import Link as LinkModel, UserMyLink
-from myuw_mobile.dao.gws import Member
+from affiliation import Affiliation
 
 class Link:
     """ 
@@ -102,13 +102,13 @@ class Link:
 
 
     def _get_default_links(self, user):
-        member = Member()
+        affi = Affiliation().get_all()
         link_list = []
         for link_data in Link._get_all_links():
             link = Link._init_link(link_data)
 
-            if link_data["on_for_employees"] and member.is_student_employee() or link_data["on_for_undergrad"] and member.is_undergrad_student() or link_data["on_for_gradstudent"] and member.is_grad_student() or link_data["on_for_pce"] and member.is_pce_student():   
-                if not link_data["restrict_to_campus"] or link_data["restrict_to_campus"] == "seattle" and member.is_seattle_student() or link_data["restrict_to_campus"] == "bothell" and member.is_bothell_student() or link_data["restrict_to_campus"] == "tacoma" and member.is_tacoma_student():
+            if link_data["on_for_employees"] and affi["stud_employee"] or link_data["on_for_undergrad"] and affi["undergrad"] or link_data["on_for_gradstudent"] and affi["grad"] or link_data["on_for_pce"] and affi["pce"]:   
+                if not link_data["restrict_to_campus"] or link_data["restrict_to_campus"] == "seattle" and affi["seattle"] or link_data["restrict_to_campus"] == "bothell" and affi["bothell"] or link_data["restrict_to_campus"] == "tacoma" and affi["tacoma"]:
                     link.is_on = True
             link_list.append(link)
         return link_list
