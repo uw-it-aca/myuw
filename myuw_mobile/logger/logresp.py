@@ -22,9 +22,9 @@ def log_invalid_regid_response(logger, timer):
 
 def get_identity():
     """
-    Return "(<affiliations>, <campus codes>)"
+    Return "(Affiliations: <affiliations>, <campus codes>)"
     """
-    res = "("
+    res = "(Affiliations:"
     member = Member()
     if member.is_grad_student():
         res += ' Grad'
