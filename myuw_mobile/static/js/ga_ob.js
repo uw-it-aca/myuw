@@ -21,23 +21,3 @@ _gaq.push(['_trackPageview']);
  })();
 // end
 
-window.addEvent('load', trackLinkUsage);
-
-function trackLinkUsage() {
-  // if (typeof(_gat) == 'object') {
-  try {
-    _gat._anonymizeIp();
-    var pageTracker = _gat._createTracker(myuwUaId);
-    pageTracker._initData();
-    pageTracker._trackPageview();
- 
-    if(pageTracker) {
-      $$('a[href^=http]').each(function(el) {
-        el.addEvent('click',function() {
-          var dd = '/OG/' + el.get('href').replace(/https?:\/\//i,'');
-          pageTracker._trackPageview(dd);
-	}.bind(this));
-      });
-    }
-  } catch(err) {}
-}
