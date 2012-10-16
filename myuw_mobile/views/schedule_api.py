@@ -9,6 +9,7 @@ from myuw_mobile.dao.sws import Schedule as ScheduleDao
 from rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_data_not_found_response, log_success_response
+from operator import itemgetter
 
 class StudClasScheCurQuar(RESTDispatch):
     """
@@ -39,6 +40,7 @@ class StudClasScheCurQuar(RESTDispatch):
         # Since the schedule is restclients, and doesn't know
         # about color ids, backfill that data
         json_data = schedule.json_data()
+
         section_index = 0
         for section in schedule.sections:
             section_data = json_data["sections"][section_index]
@@ -70,6 +72,13 @@ class StudClasScheCurQuar(RESTDispatch):
                             "address2"]:
                         instructor["whitepages_publish"] = False
                 meeting_index += 1
+
+        # MUWM-443
+        json_data["sections"] = sorted(json_data["sections"],
+                                    key=itemgetter('curriculum_abbr',
+                                                    'course_number',
+                                                    'section_id',
+                                    ))
 
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(json_data))
