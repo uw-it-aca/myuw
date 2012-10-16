@@ -1,5 +1,4 @@
 from myuw_mobile.dao.gws import Member
-from myuw_mobile.dao.sws import Schedule
 from myuw_mobile.logger.logback import log_time
 
 def log_response_time(logger, message, timer):
@@ -27,7 +26,6 @@ def get_identity():
     """
     res = "("
     member = Member()
-    campuses = Schedule().get_cur_quarter_campuses()
     if member.is_grad_student():
         res += ' Grad'
     if member.is_undergrad_student():
@@ -37,11 +35,11 @@ def get_identity():
     if member.is_student_employee():
         res += ' StudEmployee'
     res += ','
-    if campuses['seattle']:
+    if member.is_seattle_student():
         res += ' Seattle'
-    if campuses['bothell']:
+    if member.is_bothell_student():
         res += ' Bothell'
-    if campuses['tacoma']:
+    if member.is_tacoma_student():
         res += ' Tacoma'
     res += ') '
     return res
