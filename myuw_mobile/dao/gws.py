@@ -6,6 +6,7 @@ from restclients.gws import GWS
 from myuw_mobile.user import UserService
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logback import log_resp_time, log_exception
+from sws import Schedule
 
 class Member:
     """
@@ -42,10 +43,11 @@ class Member:
         in the current quarter
         Note:
         As the UW Affiliation group only knows about one campus,
-        if you need to know all the campuses where the student has class registered
-        you should use the get_cur_quarter_campuses function in sws.
+        we also use registered sections in the current quarter
+        to determine the campuses.
         """
-        return self._is_member('uw_affiliation_seattle-student')
+        enrolled_class_at_seattle = Schedule().get_cur_quarter_campuses()['seattle']
+        return self._is_member('uw_affiliation_seattle-student') or enrolled_class_at_seattle
 
     def is_bothell_student(self):
         """
@@ -53,10 +55,11 @@ class Member:
         in the current quarter
         Note:
         As the UW Affiliation group only knows about one campus,
-        if you need to know all the campuses where the student has class registered
-        you should use the get_cur_quarter_campuses function in sws.
+        we also use registered sections in the current quarter
+        to determine the campuses.
         """
-        return self._is_member('uw_affiliation_bothell-student')
+        enrolled_class_at_bothell = Schedule().get_cur_quarter_campuses()['bothell']
+        return self._is_member('uw_affiliation_bothell-student') or enrolled_class_at_bothell
 
     def is_tacoma_student(self):
         """
@@ -64,10 +67,11 @@ class Member:
         in the current quarter
         Note:
         As the UW Affiliation group only knows about one campus,
-        if you need to know all the campuses where the student has class registered
-        you should use the get_cur_quarter_campuses function in sws.
+        we also use registered sections in the current quarter
+        to determine the campuses.
         """
-        return self._is_member('uw_affiliation_tacoma-student')
+        enrolled_class_at_tacoma = Schedule().get_cur_quarter_campuses()['tacoma']
+        return self._is_member('uw_affiliation_tacoma-student') or enrolled_class_at_tacoma
 
     def is_current_grad_student(self):
         """
