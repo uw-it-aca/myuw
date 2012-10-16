@@ -25,6 +25,7 @@ def get_identity():
     Return "(Affiliations: <affiliations>, <campus codes>)"
     """
     res = "(Affiliations:"
+    no_affiliation_lengthmark = len(res)
     member = Member()
     if member.is_grad_student():
         res += ' Grad'
@@ -34,15 +35,17 @@ def get_identity():
         res += ' Pce'
     if member.is_student_employee():
         res += ' StudEmployee'
-    if len(res) > 16:
-        res += ','
+    if len(res) == no_affiliation_lengthmark:
+        res += 'None'
+    res += ', Campuses:'
+    no_campus_lengthmark = len(res)
     if member.is_seattle_student():
         res += ' Seattle'
     if member.is_bothell_student():
         res += ' Bothell'
     if member.is_tacoma_student():
         res += ' Tacoma'
-    if len(res) < 16:
+    if len(res) == no_campus_lengthmark:
         res += 'None'
     res += ') '
     return res
