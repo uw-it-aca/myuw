@@ -6,7 +6,6 @@ from restclients.gws import GWS
 from myuw_mobile.user import UserService
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logback import log_resp_time, log_exception
-from sws import Schedule
 
 class Member:
     """
@@ -41,37 +40,22 @@ class Member:
         """
         Return True if the user is an UW Seattle student
         in the current quarter
-        Note:
-        As the UW Affiliation group only knows about one campus,
-        we also use registered sections in the current quarter
-        to determine the campuses.
         """
-        enrolled_class_at_seattle = Schedule().get_cur_quarter_campuses()['seattle']
-        return self._is_member('uw_affiliation_seattle-student') or enrolled_class_at_seattle
+        return self._is_member('uw_affiliation_seattle-student')
 
     def is_bothell_student(self):
         """
         Return True if the user is an UW Bothell student
         in the current quarter
-        Note:
-        As the UW Affiliation group only knows about one campus,
-        we also use registered sections in the current quarter
-        to determine the campuses.
         """
-        enrolled_class_at_bothell = Schedule().get_cur_quarter_campuses()['bothell']
-        return self._is_member('uw_affiliation_bothell-student') or enrolled_class_at_bothell
+        return self._is_member('uw_affiliation_bothell-student')
 
     def is_tacoma_student(self):
         """
         Return True if the user is an UW Tacoma student
         in the current quarter
-        Note:
-        As the UW Affiliation group only knows about one campus,
-        we also use registered sections in the current quarter
-        to determine the campuses.
         """
-        enrolled_class_at_tacoma = Schedule().get_cur_quarter_campuses()['tacoma']
-        return self._is_member('uw_affiliation_tacoma-student') or enrolled_class_at_tacoma
+        return self._is_member('uw_affiliation_tacoma-student')
 
     def is_current_grad_student(self):
         """
