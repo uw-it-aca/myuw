@@ -34,13 +34,16 @@ def get_identity():
         res += ' Pce'
     if member.is_student_employee():
         res += ' StudEmployee'
-    res += ','
+    if len(res) > 16:
+        res += ','
     if member.is_seattle_student():
         res += ' Seattle'
     if member.is_bothell_student():
         res += ' Bothell'
     if member.is_tacoma_student():
         res += ' Tacoma'
+    if len(res) < 16:
+        res += 'None'
     res += ') '
     return res
 
