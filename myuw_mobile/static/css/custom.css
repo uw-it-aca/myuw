@@ -1625,11 +1625,11 @@ abbr[title] {
   top: -9999px;
   left: -9999px;
 }
-.link-list input[type=checkbox]:checked ~ div {
+.link-list input[type=checkbox]:checked + div {
   color: #0083c2;
   font-style: normal;
 }
-.link-list input[type=checkbox]:checked ~ div .icon-checked:before {
+.link-list input[type=checkbox]:checked + div .icon-checked:before {
   content: "\f00c";
 }
 a:hover {
