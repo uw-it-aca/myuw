@@ -194,6 +194,7 @@ var VisualSchedule = {
         $("#courselist").html(template(visual_data));
 
         $(".display_list_sched").bind("click", function(ev) {
+            WSData.log_interaction("visual_schedule_view_course_list");
             var hist = window.History;
             hist.pushState({
                 state: "course_list"

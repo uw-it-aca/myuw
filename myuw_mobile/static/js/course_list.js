@@ -61,10 +61,13 @@ var CourseList = {
 
 
         $(".display_visual_sched").bind("click", function(ev) {
+            WSData.log_interaction("course_list_view_visual_schedule");
+
             var hist = window.History;
             hist.pushState({
                 state: "visual"
             },  "", "/mobile/visual");
+
 
             return false;
         });
