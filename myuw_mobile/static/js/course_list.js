@@ -59,6 +59,12 @@ var CourseList = {
             WSData.log_interaction("open_course_website_"+course_id);
         });
 
+        $(".show_map").on("click", function(ev) {
+            var building = ev.currentTarget.getAttribute("rel");
+            building = building.replace(/[^a-z0-9]/gi, '_');
+            WSData.log_interaction("show_map_from_course_list_"+building);
+        });
+
 
         $(".display_visual_sched").bind("click", function(ev) {
             WSData.log_interaction("course_list_view_visual_schedule");
