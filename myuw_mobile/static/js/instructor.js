@@ -24,6 +24,13 @@ var Instructor = {
         template = Handlebars.compile(source);
         $("#courselist").html(template(data));
 
+
+        $(".contact_instructor").on("click", function(ev) {
+            var contact_info = ev.currentTarget.getAttribute("href");
+            contact_info = contact_info.replace(/[^a-z0-9]/gi, '_');
+            WSData.log_interaction("instructor_contact_"+contact_info);
+        });
+
         Modal.hide();
     },
 };
