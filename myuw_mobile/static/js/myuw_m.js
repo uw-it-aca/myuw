@@ -213,6 +213,13 @@ $(document).ready(function() {
         return false;
     });
 
+    $("#nav_course_list").bind("click", function(ev) {
+        WSData.log_interaction("nav_menu_course_list");
+    });
+
+    $("#nav_visual_schedule").bind("click", function(ev) {
+        WSData.log_interaction("nav_menu_visual_schedule");
+    });
 });
 
 
