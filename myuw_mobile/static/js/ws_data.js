@@ -167,5 +167,14 @@ WSData = {
        });
     },
 
+    log_interaction: function(interaction_type) {
+        $.ajax({
+                url: "/mobile/logger/" + interaction_type,
+                type: "GET",
+                success: function(results) {},
+                error: function(xhr, status, error) {}
+        });
+    },
+
 
 };

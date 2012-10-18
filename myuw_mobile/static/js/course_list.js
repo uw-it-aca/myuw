@@ -41,6 +41,19 @@ var CourseList = {
             $('html,body').animate({scrollTop: $("#course_wrapper"+course_index).offset().top},'slow');
         }
 
+        $(".accordion-body").on('shown', function(ev) {
+            var course_id = ev.currentTarget.getAttribute("rel");
+            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
+            WSData.log_interaction("expand_course_"+course_id);
+        });
+
+        $(".accordion-body").on('hidden', function(ev) {
+            var course_id = ev.currentTarget.getAttribute("rel");
+            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
+            WSData.log_interaction("collapse_course_"+course_id);
+        });
+
+
         $(".display_visual_sched").bind("click", function(ev) {
             var hist = window.History;
             hist.pushState({
