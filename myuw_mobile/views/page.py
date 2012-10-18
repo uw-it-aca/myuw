@@ -20,23 +20,20 @@ def index(request):
                'err': None,
                'netid': None}
 
-    if not request.is_secure():
-        context['err'] = 'Not https, abort!'
-    else:
-        netid = UserService().get_user()
-        if not netid:
-            log_invalid_netid_response(logger, timer)
-            return invalid_session()
+    netid = UserService().get_user()
+    if not netid:
+        log_invalid_netid_response(logger, timer)
+        return invalid_session()
 
-        context['netid'] = netid
-        cur_term = QuarterDao().get_cur_quarter()
-        if not cur_term:
-            context['err'] = 'No current quarter data!'
-            log_data_not_found_response(logger, timer)
-        else:
-            context['year'] = cur_term.year
-            context['quarter'] = cur_term.quarter
-            log_success_response_with_affiliation(logger, timer)
+    context['netid'] = netid
+    cur_term = QuarterDao().get_cur_quarter()
+    if not cur_term:
+        context['err'] = 'No current quarter data!'
+        log_data_not_found_response(logger, timer)
+    else:
+        context['year'] = cur_term.year
+        context['quarter'] = cur_term.quarter
+        log_success_response_with_affiliation(logger, timer)
     return render_to_response('index.html',
                               context,
                               context_instance=RequestContext(request))
