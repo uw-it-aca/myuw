@@ -215,6 +215,9 @@ var VisualSchedule = {
 
         $(".show_section_details").bind("click", function(ev) {
             var course_id = this.rel;
+            var log_course_id = ev.currentTarget.getAttribute("class").replace(/[^a-z0-9]/gi, '_');
+
+            WSData.log_interaction("open_modal_"+log_course_id);
             var hist = window.History;
             hist.pushState({
                 state: "visual",
