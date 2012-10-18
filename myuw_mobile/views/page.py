@@ -17,7 +17,8 @@ def index(request):
     context = {'year': None,
                'quarter': None,
                'home_url': '/mobile',
-               'err': None}
+               'err': None,
+               'netid': None}
 
     if not request.is_secure():
         context['err'] = 'Not https, abort!'
@@ -27,6 +28,7 @@ def index(request):
             log_invalid_netid_response(logger, timer)
             return invalid_session()
 
+        context['netid'] = netid
         cur_term = QuarterDao().get_cur_quarter()
         if not cur_term:
             context['err'] = 'No current quarter data!'
