@@ -68,6 +68,9 @@ class Member:
         """
         Return True if the user is an UW graduate student 
         in the current, previous, or future quarter
+        (Note by fl, 10/19/2012:
+        If the student is a graduate and PCE student,
+        uw affiliation group only reflects the first one.) 
         """
         return self._is_member('uw_affiliation_graduate')
 
