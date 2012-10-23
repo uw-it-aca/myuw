@@ -1646,7 +1646,6 @@ abbr[title] {
 .link-list input[type=checkbox] {
   position: absolute;
   top: -9999px;
-  left: -9999px;
 }
 .link-list input[type=checkbox]:checked + div {
   color: #0083c2;
