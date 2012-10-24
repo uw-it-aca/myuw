@@ -60,6 +60,9 @@ class Schedule:
         try:
             return SWS().schedule_for_regid_and_term(regid, term)
         except DataFailureException as ex:
+            log_exception(Schedule._logger, 
+                          'sws.schedule_for_regid_and_term', 
+                          ex.message)
             empty = ClassSchedule()
             empty.term = term
             empty.sections = []
