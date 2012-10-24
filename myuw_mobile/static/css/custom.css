@@ -1645,7 +1645,13 @@ abbr[title] {
 }
 .link-list input[type=checkbox] {
   position: absolute;
-  top: -9999px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
 }
 .link-list input[type=checkbox]:checked + div {
   color: #0083c2;
