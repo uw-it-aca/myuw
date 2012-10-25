@@ -46,11 +46,10 @@ class Link:
         timer = Timer()
         try:
             UserMyLink.objects.bulk_create(new_links)
-        except Exception, message:
-            traceback.print_exc(file=sys.stdout)
+        except Exception as ex:
             log_exception(Link._logger,
                          'save UserMyLink',
-                          message)
+                          traceback.format_exc(1))
         finally:
             log_resp_time(Link._logger,
                          'save UserMyLink',
@@ -60,11 +59,10 @@ class Link:
         timer = Timer()
         try:
             return UserMyLink.objects.filter(user=user)
-        except Exception, message:
-            traceback.print_exc(file=sys.stdout)
+        except Exception as ex:
             log_exception(Link._logger,
                          'get UserMyLink',
-                          message)
+                          traceback.format_exc(1))
         finally:
             log_resp_time(Link._logger,
                          'get UserMyLink',

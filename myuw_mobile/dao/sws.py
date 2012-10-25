@@ -1,6 +1,5 @@
 from django.conf import settings
 import logging
-import sys
 import traceback
 from restclients.sws import SWS
 from restclients.models import ClassSchedule
@@ -25,11 +24,10 @@ class Quarter:
         timer = Timer()
         try:
             return SWS().get_current_term()
-        except Exception, message:
-            traceback.print_exc(file=sys.stdout)
+        except Exception as ex:
             log_exception(Quarter._logger, 
                           'sws.get_cur_quarter', 
-                          message)
+                          traceback.format_exc(1))
         finally:
             log_resp_time(Quarter._logger, 
                           'sws.get_current_term',
@@ -53,7 +51,7 @@ class Schedule:
         regid = Person().get_regid()
         term = Quarter().get_cur_quarter()
 
-        if not regid or not term:
+        if regid is None or term is None:
             return None
 
         timer = Timer()
@@ -62,16 +60,15 @@ class Schedule:
         except DataFailureException as ex:
             log_exception(Schedule._logger, 
                           'sws.schedule_for_regid_and_term', 
-                          ex.message)
+                          traceback.format_exc(1))
             empty = ClassSchedule()
             empty.term = term
             empty.sections = []
             return empty
-        except Exception, message:
-            traceback.print_exc(file=sys.stdout)
+        except Exception as ex:
             log_exception(Schedule._logger, 
                           'sws.schedule_for_regid_and_term', 
-                          message)
+                          traceback.format_exc(1))
         finally:
             log_resp_time(Schedule._logger, 
                           'sws.get_cur_quarter_schedule',
@@ -92,7 +89,7 @@ class Schedule:
                     'tacoma': False}
 
         schedule = self.get_cur_quarter_schedule()
-        if schedule and len(schedule.sections) > 0:
+        if schedule is not None and len(schedule.sections) > 0:
             for section in schedule.sections:
                 if section.course_campus == 'Seattle':
                     campuses['seattle']=True
@@ -106,7 +103,7 @@ class Schedule:
 
 
     def get_buildings_for_schedule(self, schedule):
-        if not schedule or not schedule.sections:
+        if schedule is None or len(schedule.sections) == 0:
             return None
         buildings = {}
         building_dao = Building()
@@ -122,7 +119,7 @@ class Schedule:
 
 
     def get_colors_for_schedule(self, schedule):
-        if not schedule or not schedule.sections:
+        if schedule is None or len(schedule.sections) == 0:
             return None
         colors = {}
         regid = Person().get_regid()
@@ -133,10 +130,10 @@ class Schedule:
                 year=schedule.term.year,
                 quarter=schedule.term.quarter,
                 )
-        except Exception, message:
+        except Exception as ex:
             log_exception(Schedule._logger, 
                           'query CourseColor',
-                          message)
+                          traceback.format_exc(1))
             return None
         finally:
             log_resp_time(Schedule._logger, 

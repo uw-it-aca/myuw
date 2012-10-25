@@ -1,6 +1,5 @@
 from django.conf import settings
 import logging
-import sys
 import traceback
 from myuw_mobile.dao.sws import Schedule
 from restclients.bookstore import Bookstore
@@ -21,11 +20,10 @@ class Textbook():
         book_data = None
         try:
             book_data = Bookstore().get_books_for_schedule(schedule)
-        except Exception, message:
-            traceback.print_exc(file=sys.stdout)
+        except Exception as ex:
             log_exception(Textbook._logger, 
                          'get_books_for_schedule', 
-                          message)
+                          traceback.format_exc(1))
         finally:
             log_resp_time(Textbook._logger,
                          'get_books_for_schedule',

@@ -1,7 +1,6 @@
 from django.conf import settings
-import traceback
 import logging
-import sys
+import traceback
 from restclients.gws import GWS
 from myuw_mobile.user import UserService
 from myuw_mobile.logger.timer import Timer
@@ -25,11 +24,11 @@ class Member:
         try:
             netid = UserService().get_user()
             return GWS().is_effective_member(groupid, netid)
-        except Exception, message:
+        except Exception as ex:
             traceback.print_exc(file=sys.stdout)
             log_exception(Member._logger, 
                           'gws.is_effective_member of ' + groupid,
-                          message)
+                          traceback.format_exc(1))
         finally:
             log_resp_time(Member._logger,
                           'gws.is_effective_member of ' + groupid,

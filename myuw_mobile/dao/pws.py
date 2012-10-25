@@ -1,7 +1,6 @@
 from django.conf import settings
-import traceback
 import logging
-import sys
+import traceback
 from restclients.pws import PWS
 from myuw_mobile.user import UserService
 from myuw_mobile.logger.timer import Timer
@@ -24,11 +23,10 @@ class Person:
         try:
             netid = UserService().get_user()
             return PWS().get_person_by_netid(netid)
-        except Exception, message:
-            traceback.print_exc(file=sys.stdout)
+        except Exception as ex:
             log_exception(Person._logger, 
                           'pws.get_person_by_netid', 
-                          message)
+                          traceback.format_exc(1))
         finally:
             log_resp_time(Person._logger, 
                           'pws.get_person_by_netid', 
@@ -43,13 +41,13 @@ class Person:
         the previous quarter, or a future quarter
         """
         res = self._get_person()
-        if res:
+        if res is not None:
             return res.is_student
         return None
 
     def get_regid(self):
         res = self._get_person()
-        if res:
+        if res is not None:
             return res.uwregid
         return None
 
@@ -62,11 +60,10 @@ class Person:
         timer = Timer()
         try:
             contact = PWS().get_contact(regid)
-        except Exception, message:
-            traceback.print_exc(file=sys.stdout)
+        except Exception as ex:
             log_exception(Person._logger, 
                           'pws.get_contact for ' + regid, 
-                          message)
+                          traceback.format_exc(1))
         finally:
             log_resp_time(Person._logger, 
                           'pws.get_contact for ' + regid, 
