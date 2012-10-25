@@ -2,11 +2,15 @@ import logging
 from myuw_mobile.user import UserService
 from myuw_mobile.logger.timer import Timer
 
-def log_exception(logger, action, message):
-    logger.error("%s - %s =>Exception: %s",
+def log_exception(logger, action, exc_info):
+    """
+    exc_info is a string containing 
+    the most recent call, the exception type and value
+    """
+    logger.error("%s - %s => %s ",
                  get_logging_userid(),
                  action,
-                 message)
+                 exc_info)
 
 def log_info(logger, message):
     logger.info("%s %s", get_logging_userid(), message)
