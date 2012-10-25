@@ -1,8 +1,4 @@
 from django.http import HttpResponse
-#from django.contrib import auth
-#from django.contrib.auth.decorators import login_required
-#from django.core.context_processors import csrf
-#from django.views.decorators.csrf import csrf_protect
 import logging
 from django.utils import simplejson as json
 from myuw_mobile.dao.sws import Schedule as ScheduleDao
@@ -25,7 +21,7 @@ class StudClasScheCurQuar(RESTDispatch):
 
         schedule_dao = ScheduleDao()
         schedule = schedule_dao.get_cur_quarter_schedule()
-        if not schedule or not schedule.json_data():
+        if schedule is None or len(schedule.sections) == 0 or not schedule.json_data():
             log_data_not_found_response(logger, timer)
             return HttpResponse({})
 
@@ -33,7 +29,7 @@ class StudClasScheCurQuar(RESTDispatch):
 
         buildings = schedule_dao.get_buildings_for_schedule(schedule)
 
-        if not colors:
+        if colors is None:
             if len(schedule.sections) > 0:
                 log_data_not_found_response(logger, timer)
                 return data_not_found()
