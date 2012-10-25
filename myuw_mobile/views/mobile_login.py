@@ -13,7 +13,7 @@ def user_login(request):
     logger = logging.getLogger('myuw_mobile.views.mobile_login.user_login')
 
     netid = UserService().get_user()
-    if not netid:
+    if netid is None:
         log_invalid_netid_response(logger, timer)
         return invalid_session()
 
