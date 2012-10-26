@@ -10,7 +10,7 @@ def log_exception(logger, action, exc_info):
     logger.error("%s - %s => %s ",
                  get_logging_userid(),
                  action,
-                 exc_info)
+                 exc_info.splitlines())
 
 def log_info(logger, message):
     logger.info("%s %s", get_logging_userid(), message)
