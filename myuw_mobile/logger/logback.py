@@ -10,7 +10,8 @@ def log_exception(logger, action, exc_info):
     logger.error("%s - %s => %s ",
                  get_logging_userid(),
                  action,
-                 exc_info.splitlines()[-3:])
+                 exc_info.splitlines())
+    #             exc_info.splitlines()[-3:])
     #print the last function call, exception type and value 
 
 def log_info(logger, message):
