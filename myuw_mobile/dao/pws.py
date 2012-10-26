@@ -63,7 +63,7 @@ class Person:
         except Exception as ex:
             log_exception(Person._logger, 
                           'pws.get_contact for ' + regid, 
-                          traceback.format_exc(1))
+                          traceback.format_exc())
         finally:
             log_resp_time(Person._logger, 
                           'pws.get_contact for ' + regid, 

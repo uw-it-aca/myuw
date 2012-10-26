@@ -49,7 +49,7 @@ class Link:
         except Exception as ex:
             log_exception(Link._logger,
                          'save UserMyLink',
-                          traceback.format_exc(1))
+                          traceback.format_exc())
         finally:
             log_resp_time(Link._logger,
                          'save UserMyLink',
@@ -62,7 +62,7 @@ class Link:
         except Exception as ex:
             log_exception(Link._logger,
                          'get UserMyLink',
-                          traceback.format_exc(1))
+                          traceback.format_exc())
         finally:
             log_resp_time(Link._logger,
                          'get UserMyLink',

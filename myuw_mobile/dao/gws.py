@@ -28,7 +28,7 @@ class Member:
             traceback.print_exc(file=sys.stdout)
             log_exception(Member._logger, 
                           'gws.is_effective_member of ' + groupid,
-                          traceback.format_exc(1))
+                          traceback.format_exc())
         finally:
             log_resp_time(Member._logger,
                           'gws.is_effective_member of ' + groupid,

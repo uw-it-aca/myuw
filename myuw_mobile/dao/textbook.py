@@ -23,7 +23,7 @@ class Textbook():
         except Exception as ex:
             log_exception(Textbook._logger, 
                          'get_books_for_schedule', 
-                          traceback.format_exc(1))
+                          traceback.format_exc())
         finally:
             log_resp_time(Textbook._logger,
                          'get_books_for_schedule',

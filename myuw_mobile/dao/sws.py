@@ -27,7 +27,7 @@ class Quarter:
         except Exception as ex:
             log_exception(Quarter._logger, 
                           'sws.get_cur_quarter', 
-                          traceback.format_exc(1))
+                          traceback.format_exc())
         finally:
             log_resp_time(Quarter._logger, 
                           'sws.get_current_term',
@@ -60,7 +60,7 @@ class Schedule:
         except DataFailureException as ex:
             log_exception(Schedule._logger, 
                           'sws.schedule_for_regid_and_term', 
-                          traceback.format_exc(1))
+                          traceback.format_exc())
             empty = ClassSchedule()
             empty.term = term
             empty.sections = []
@@ -68,7 +68,7 @@ class Schedule:
         except Exception as ex:
             log_exception(Schedule._logger, 
                           'sws.schedule_for_regid_and_term', 
-                          traceback.format_exc(1))
+                          traceback.format_exc())
         finally:
             log_resp_time(Schedule._logger, 
                           'sws.get_cur_quarter_schedule',
@@ -133,7 +133,7 @@ class Schedule:
         except Exception as ex:
             log_exception(Schedule._logger, 
                           'query CourseColor',
-                          traceback.format_exc(1))
+                          traceback.format_exc())
             return None
         finally:
             log_resp_time(Schedule._logger, 
