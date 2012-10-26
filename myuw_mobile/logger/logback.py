@@ -5,12 +5,12 @@ from myuw_mobile.logger.timer import Timer
 def log_exception(logger, action, exc_info):
     """
     exc_info is a string containing 
-    the most recent call, the exception type and value
+    the last call, the exception type and value
     """
     logger.error("%s - %s => %s ",
                  get_logging_userid(),
                  action,
-                 exc_info.splitlines())
+                 exc_info.splitlines()[-3:])
 
 def log_info(logger, message):
     logger.info("%s %s", get_logging_userid(), message)
