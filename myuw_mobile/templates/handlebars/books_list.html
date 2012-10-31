@@ -11,7 +11,8 @@
             <div class="c{{color_id}} books-list"><h4>{{curriculum}} {{course_number}}{{section_id}}</h4></div>
             {{#if books}}
           
-                {{#each books}}
+                {{#eachWithIndex books}}
+		 		{{#if index}}<hr class="book-divider">{{/if}}
               <div class="clearfix book-image">
               	<h4>{{title}}</h4>
                 {{#if cover_image_url}}
@@ -56,8 +57,7 @@
                     </dl>
 		 		
 		 		</div>
-		 		<hr class="book-divider">
-                  {{/each}}
+                  {{/eachWithIndex}}
                    
             {{else}}
             <p>No textbook requirement has been received for this course. Please check with <a class="base-font-size show_instructors" href="/mobile/" rel="{{index}}">your instructor.</a></p>

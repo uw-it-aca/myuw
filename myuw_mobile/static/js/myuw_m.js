@@ -70,6 +70,17 @@ $(document).ready(function() {
         }
     });
 
+    Handlebars.registerHelper("eachWithIndex", function(array, fn) {
+        var buffer = ""; 
+        for (var i = 0, j = array.length; i < j; i++) {
+            var item = array[i];
+            item.index = i;
+            buffer += fn(item);
+        }   
+        return buffer;
+    }); 
+
+
     History.Adapter.bind(window,'statechange',function(){
         var history_state = History.getState();
         var data = history_state.data;
