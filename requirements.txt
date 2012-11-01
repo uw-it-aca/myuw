@@ -6,5 +6,6 @@ django-mobility
 BeautifulSoup
 urllib3
 django-templatetag-handlebars
+-e svn+https://svn.cac.washington.edu/svn/restclients/trunk#egg=RestClients
 # If you're using a MySQL database, you may also need mysql-python
 # mysql-python
