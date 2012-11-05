@@ -1734,6 +1734,27 @@ footer .footer-links a {
 .btn-myuw.active {
   background-color: #2d1837 \9;
 }
+#financial .account {
+  width: 100%;
+  background-color: #eeeeee;
+  padding: 0 10px;
+}
+#financial .account span.amount {
+  font-size: 35px;
+  color: #46a546;
+}
+#financial .account h3 {
+  padding: 5px 5px;
+  font-size: 90%;
+  font-weight: bold;
+}
+#financial .account .balance {
+  padding: 10px 5px;
+}
+#financial sup {
+  font-size: 20px;
+  color: #000000;
+}
 .pull-right-center {
   float: right;
   font-size: 30px;
