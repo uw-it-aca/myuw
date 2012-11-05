@@ -51,10 +51,9 @@ class Person:
             return res.uwregid
         return None
 
-    def get_contact(self, regid):
+    def _get_contact(self, regid):
         """
-        Return the whitepage information if the user has given 
-        permission to publish it on the UW Directory.
+        Return the raw contact information of the given user
         """
         contact = None
         timer = Timer()
@@ -68,7 +67,23 @@ class Person:
             log_resp_time(Person._logger, 
                           'pws.get_contact for ' + regid, 
                           timer)
+        return contact
 
+    def _get_cur_user_contact(self):
+        """
+        Return the raw contact information of the current user
+        """
+        regid = self.get_regid()
+        if regid is None:
+            return None
+        return self._get_contact(regid)
+
+    def get_contact(self, regid):
+        """
+        Return the whitepage information of the user if she
+        gives permission to publish it on the UW Directory.
+        """
+        contact = self._get_contact(regid)
         if contact and not contact["WhitepagesPublish"] :
             affiliations = contact["PersonAffiliations"]
             if "EmployeePersonAffiliation" in affiliations:
@@ -80,5 +95,53 @@ class Person:
                 data["StudentWhitePages"] = {}
 
         return contact                
+
+
+    def get_student_affi(self):
+        """
+        Return the student affiliation of the user, None if not exist
+        """
+        contact = self._get_cur_user_contact()
+        if contact is not None and contact["PersonAffiliations"]:
+            affi = contact["PersonAffiliations"]
+            return affi["StudentPersonAffiliation"]
+        return None
+
+    def get_student_system_key(self):
+        """
+        Return the student system key of the user
+        """
+        studAffi = self.get_student_affi()
+        if studAffi is None:
+            return None
+        return studAffi["StudentSystemKey"]
+
+    def get_student_number(self):
+        """
+        Return the student number of the user
+        """
+        studAffi = self.get_student_affi()
+        if studAffi is None:
+            return None
+        return studAffi["StudentNumber"]
+
+    def get_employee_affi(self):
+        """
+        Return the student affiliation of the user, None if not exist
+        """
+        contact = self._get_cur_user_contact()
+        if contact is not None and contact["PersonAffiliations"]:
+            affi = contact["PersonAffiliations"]
+            return affi["EmployeePersonAffiliation"]
+        return None
+
+    def get_employee_id(self):
+        """
+        Return the employee identification number of the current user
+        """
+        employeeAffi = self.get_employee_affi()
+        if employeeAffi is None:
+            return None
+        return employeeAffi["EmployeeID"]
 
 
