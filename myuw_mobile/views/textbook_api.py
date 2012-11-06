@@ -35,8 +35,13 @@ class TextbookCurQuar(RESTDispatch):
             log_data_not_found_response(logger, timer)
             return data_not_found()
 
+        verba_link = Textbook().get_verba_link(schedule)
+
         log_success_response(logger, timer)
-        return HttpResponse(index_by_sln(book_data))
+
+        by_sln = index_by_sln(book_data)
+        by_sln["verba_link"] = verba_link
+        return HttpResponse(json.dumps(by_sln))
 
 
 def index_by_sln(book_data):
@@ -45,5 +50,5 @@ def index_by_sln(book_data):
         json_data[sln] = []
         for book in book_data[sln]:
             json_data[sln].append(book.json_data())
-    return json.dumps(json_data)
+    return json_data
 

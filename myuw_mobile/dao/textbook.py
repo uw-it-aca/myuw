@@ -31,3 +31,22 @@ class Textbook():
 
         return book_data
 
+    def get_verba_link(self, schedule):
+        """
+        returns a link to the verba price compare page for a schedule
+        """
+        timer = Timer()
+        verba_link = None
+        try:
+            verba_link = Bookstore().get_verba_link_for_schedule(schedule)
+        except Exception as ex:
+            log_exception(Textbook._logger,
+                         'get_verba_link',
+                          traceback.format_exc())
+        finally:
+            log_resp_time(Textbook._logger,
+                         'get_verba_link',
+                          timer)
+
+        return verba_link
+
