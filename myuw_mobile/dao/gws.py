@@ -25,7 +25,6 @@ class Member:
             netid = UserService().get_user()
             return GWS().is_effective_member(groupid, netid)
         except Exception as ex:
-            traceback.print_exc(file=sys.stdout)
             log_exception(Member._logger, 
                           'gws.is_effective_member of ' + groupid,
                           traceback.format_exc())
