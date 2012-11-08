@@ -1,6 +1,7 @@
 import logging
-from sws import Schedule
-from gws import Member
+from myuw_mobile.logger.logback import log_info
+from myuw_mobile.dao.sws import Schedule
+from myuw_mobile.dao.gws import Member
 
 class Affiliation:
     """
@@ -16,7 +17,7 @@ class Affiliation:
         """
         return a dictionary of affiliations
         """
-        return {"grad": self.member.is_grad_student(),
+        data = {"grad": self.member.is_grad_student(),
                 "undergrad": self.member.is_undergrad_student(),
                 "pce": self.member.is_pce_student(),
                 "stud_employee": self.member.is_student_employee(),
@@ -24,6 +25,8 @@ class Affiliation:
                 "bothell": self._is_bothell_student(), 
                 "tacoma": self._is_tacoma_student()
                 }
+        log_info(Affiliation._logger, data)
+        return data
 
     def _is_seattle_student(self):
         """
