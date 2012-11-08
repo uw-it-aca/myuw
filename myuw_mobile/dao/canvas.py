@@ -15,7 +15,7 @@ class Enrollments:
         logger = logging.getLogger('myuw_mobile.dao.canvas.Enrollments')
         try:
             regid = Person().get_regid()
-            return Canvas().get_enrollments_for_regid(regid)
+            return Canvas().get_courses_for_regid(regid)
         except Exception as ex:
             log_exception(logger,
                           'canvas.get_enrollments',
