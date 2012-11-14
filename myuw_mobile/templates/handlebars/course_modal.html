@@ -75,6 +75,10 @@
                       <dt>Website</dt>
                       <dd><a href="{{class_website_url}}" target="_blank" class="course_website" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course website</a></dd>
                       {{/if}}
+                      {{#if canvas_url}}
+                      <dt>Canvas</dt>
+                      <dd><a href="{{canvas_url}}" target="_blank" class="course_canvas_site" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">{{canvas_name}}</a></dd>
+                      {{/if}}
                     </dl>
                    
  <button class="btn btn-close close_modal">Close</button>
