@@ -42,11 +42,13 @@
                           *
                       {{/if}}
                       </dd> -->
+                        {{#if notes}}
                      <dt>Notes</dt>
+                     <!-- MUWM-484.  Can a book be required and have other notes?
                         {{#if is_required}}
                       <dd>Required</dd>
                         {{/if}}
-                        {{#if notes}}
+                        -->
                       <dd>{{notes}}</dd>
                         {{/if}}
                     {{#if isbn}}
