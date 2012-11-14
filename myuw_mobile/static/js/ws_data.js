@@ -54,6 +54,26 @@ WSData = {
                     type: "GET",
                     accepts: {html: "text/html"},
                     success: function(results) {
+                        // MUWM-549 and MUWM-552
+                        var sections = results.sections;
+                        var section_count = sections.length;
+                        for (var index = 0; index < section_count; index++) {
+                            section = sections[index];
+
+                            var canvas_url = section["canvas_url"];
+                            if (canvas_url) {
+                                if (section["class_website_url"] == canvas_url) {
+                                    section["class_website_url"] = null;
+                                }
+                                var matches = canvas_url.match(/\/([0-9]+)$/);
+                                var canvas_id = matches[1];
+                                var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
+
+                                if (section["class_website_url"] == alternate_url) {
+                                    section["class_website_url"] = null;
+                                }
+                            }
+                        }
                         WSData._course_data = results;
                         callback.apply(null, args);
                     },
