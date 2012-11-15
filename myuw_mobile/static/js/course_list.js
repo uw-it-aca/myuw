@@ -14,6 +14,9 @@ var CourseList = {
         var index = 0;
         for (index = 0; index < course_data.sections.length; index++) {
             course_data.sections[index].index = index;
+            if (course_data.sections[index].class_website_url || course_data.sections[index].canvas_url) {
+                course_data.sections[index].has_resources = true;
+            }
         }
 
         source = $("#quarter-list").html();
