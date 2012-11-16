@@ -71,14 +71,20 @@
                         </dd>
                         {{/if}}
 
-                      {{#if class_website_url}}
-                      <dt>Website</dt>
-                      <dd><a href="{{class_website_url}}" target="_blank" class="course_website" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course website</a></dd>
-                      {{/if}}
-                      {{#if canvas_url}}
-                      <dt>Canvas</dt>
-                      <dd><a href="{{canvas_url}}" target="_blank" class="course_canvas_site" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">{{canvas_name}}</a></dd>
-                      {{/if}}
+                     {{#if has_resources }}
+                      <dt>Resources</dt>
+                      	<dd>
+                      		<ul>
+                      		{{#if class_website_url}}
+                      			<li><a href="{{class_website_url}}" target="_blank" class="course_website" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Website</a></li>
+                      		{{/if}}
+                      
+                      		{{#if canvas_url}}                      
+                      			<li><a href="{{canvas_url}}" target="_blank" class="course_canvas_site" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Canvas</a></li>
+                       		{{/if}} 
+                      		</ul>
+                      	</dd>
+                     {{/if}}
                     </dl>
                    
  <button class="btn btn-close close_modal">Close</button>
