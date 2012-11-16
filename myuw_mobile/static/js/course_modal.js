@@ -7,6 +7,10 @@ var CourseModal = {
         var course_data = WSData.course_data();
         var section = course_data.sections[course_index];
 
+        if (section.class_website_url || section.canvas_url) {
+            section.has_resources = true;
+        }
+
         var content = template(section);
         Modal.html(template(section));
 
