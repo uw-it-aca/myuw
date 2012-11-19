@@ -62,3 +62,30 @@ class Building(models.Model):
     longitude = models.CharField(max_length=40)
     name = models.CharField(max_length=200)
 
+class StudentAccountsBalances(models.Model):
+    student_number = models.CharField(max_length=10,
+                                      db_index=True,
+                                      unique=True)
+    employee_id = models.CharField(max_length=10,
+                                   db_index=True,
+                                   null=True,
+                                   blank=True)
+    asof_datetime = models.DateTimeField()
+    is_am = models.BooleanField(default=True)
+    husky_card = models.DecimalField(max_digits=6,
+                                     decimal_places=2,
+                                     default=0.00)
+    residence_hall_dining = models.DecimalField(max_digits=7,
+                                                decimal_places=2,
+                                                null=True,
+                                                blank=True)
+
+    def json_data(self):
+        data = {
+            "asof_date": self.asof_datetime.date().isoformat(),
+            "asof_time": self.asof_datetime.time().isoformat(),
+            "is_am": self.is_am,
+            "husky_card": self.husky_card,
+            "residence_hall_dining": self.residence_hall_dining
+            }
+        return data
