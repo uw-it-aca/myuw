@@ -83,8 +83,7 @@ class StudentAccountsBalances(models.Model):
     def json_data(self):
         data = {
             "asof_date": self.asof_datetime.date().strftime("%m/%d/%Y"),
-            "asof_time": self.asof_datetime.time().strftime("%I:%M").lstrip('0'),
-            "is_am": self.is_am,
+            "asof_time": self.asof_datetime.time().strftime("%H:%M"),
             "husky_card": self.husky_card,
             "residence_hall_dining": self.residence_hall_dining
             }

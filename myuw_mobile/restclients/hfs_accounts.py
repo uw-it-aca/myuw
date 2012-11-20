@@ -22,7 +22,7 @@ class HfsAccounts(object):
         if a_datetime > HfsAccounts._most_recent_update_datetime:
             HfsAccounts._most_recent_update_datetime = a_datetime
 
-    def get_balances(self, student_number):
+    def get_balances(self, student_number, employee_id):
         """
         Returns a dictionary of husky card and dining balances.
         'husky' or 'dining' are the keys, decimal number the value.
@@ -30,8 +30,11 @@ class HfsAccounts(object):
         if not re.match(r'^[0-9]{7,10}$', student_number):
             raise InvalidStudentNumber(student_number)
 
-        url = "/servlet/hfservices?sn=%s" % (student_number)
+        if not re.match(r'^[0-9]{9,10}$', employee_id):
+            raise InvalidEmployeeId(employee_id)
 
+        url = "/servlet/hfservices?sn=%s&eid=%s" % (student_number, employee_id)
+        
         dao = Hfs_DAO()
         response = dao.getURL(url, {"Accept": "text/html"})
 
@@ -57,29 +60,32 @@ class HfsAccounts(object):
         timespec = re.search(
             '([0-9]{1,2})/([0-9]{1,2})/([1-9][0-9]{3}) at ([0-9]{1,2}):([0-9]{1,2}) ([ap]\.m)\.',
             data, re.I)
-        if timespec:
+        if timespec is not None:
+
+            thehour = int(timespec.group(4))
+            if re.match('p\.m', timespec.group(6), re.I):
+                thehour = thehour + 12
+
             cache.asof_datetime = datetime(int(timespec.group(3)), #year
                                            int(timespec.group(1)), #month
                                            int(timespec.group(2)), #day
-                                           int(timespec.group(4)), #hour,
+                                           thehour,
                                            int(timespec.group(5))) #minute
             self.set_recent_update_time(cache.asof_datetime)
-            if re.match('p\.m', timespec.group(6), re.I):
-                cache.is_am = False
-                # rare case
+
         else:
             cache.asof_datetime = HfsAccounts._most_recent_update_datetime
 
         husky_card_bal = re.search(
             '(?<=Husky Card Account balance was \$)([.0-9]+)',
             data)
-        if husky_card_bal:
+        if husky_card_bal is not None:
             cache.husky_card = float(husky_card_bal.group(0))
 
         dining_bal = re.search(
             '(?<=Residence Hall Dining Plan balance was \$)([.0-9]+)',
             data)
-        if dining_bal:
+        if dining_bal is not None:
             cache.residence_hall_dining = float(dining_bal.group(0))
 
         return cache

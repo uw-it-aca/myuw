@@ -17,14 +17,19 @@ class Accounts():
         """
         returns Account Balancess for the current user
         """
-        student_number = Person().get_student_number()
+        person = Person()
+        student_number = person.get_student_number()
         if student_number is None:
-            return None
+            student_number = "0000000"
+
+        employee_id = person.get_employee_id()
+        if employee_id is None:
+            employee_id = "000000000"
 
         timer = Timer()
-        account_data = None
         try:
-            account_data = HfsAccounts().get_balances(student_number)
+            account_data = HfsAccounts().get_balances(student_number,
+                                                      employee_id)
         except Exception as ex:
             log_exception(Accounts._logger, 
                          'HfsAccounts.get_balances', 
@@ -33,6 +38,7 @@ class Accounts():
             log_resp_time(Accounts._logger,
                          'HfsAccounts.get_balances',
                           timer)
+        if account_data is not None:
+            log_info(Accounts._logger, account_data.json_data())
 
-        log_info(Accounts._logger, account_data.json_data())
         return account_data
