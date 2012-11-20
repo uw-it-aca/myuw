@@ -1743,6 +1743,10 @@ footer .footer-links a {
   font-size: 35px;
   color: #46a546;
 }
+#financial .account span.amount-low {
+  font-size: 35px;
+  color: #9d261d;
+}
 #financial .account h3 {
   padding: 5px 5px;
   font-size: 90%;
