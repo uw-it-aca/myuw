@@ -3,6 +3,7 @@ WSData = {
     _book_data: null,
     _link_data: null,
     _instructor_data: {},
+    _financial_data: null,
 
     book_data: function() {
         return WSData._book_data;
@@ -18,6 +19,10 @@ WSData = {
 
     instructor_data: function(regid) {
         return WSData._instructor_data[regid];
+    },
+
+    financial_data: function() {
+        return WSData._financial_data;
     },
 
     fetch_book_data: function(callback, args) {
@@ -168,6 +173,31 @@ WSData = {
             }
         }
     },
+
+    fetch_financial_data: function(callback, args) {
+        if (WSData._financial_data === null) {
+            $.ajax({
+                    url: "/mobile/api/v1/finabala/",
+                    dataType: "JSON",
+
+                    type: "GET",
+                    accepts: {html: "text/html"},
+                    success: function(results) {
+                        WSData._financial_data = results;
+                        callback.apply(null, args);
+                        },
+                    error: function(xhr, status, error) {
+                        showError();
+                        }
+                    });
+              }
+        else {
+            window.setTimeout(function() {
+                    callback.apply(null, args);
+                    }, 0);
+            }
+        },
+
 
     save_links: function(links) {
         var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;

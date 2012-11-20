@@ -96,6 +96,7 @@ $(document).ready(function() {
         $("#nav_course_list").removeClass("active");
         $("#nav_visual_schedule").removeClass("active");
         $("#nav_mylinks").removeClass("active");
+        $("#nav_finabala").removeClass("active");
 
         // Page titles are defined in templates/index.html
         if (state === undefined) {
@@ -120,6 +121,11 @@ $(document).ready(function() {
             QuickLinks.show_links();
             $("#nav_mylinks").addClass("active");
             document.title = window.page_titles["links"];
+        }
+        else if (state === "finabala") {
+            FinaAccounts.show_balances();
+            $("#nav_finabala").addClass("active");
+            document.title = window.page_titles["finabala"];
         }
         else if (state === "visual") {
             VisualSchedule.show_visual_schedule(data.course_index);
@@ -177,6 +183,12 @@ $(document).ready(function() {
             },  "", "/mobile/links");
             //QuickLinks.show_links();
         }
+        else if (path === "/mobile/finabala") {
+            hist.replaceState({
+                state: "finabala"
+            },  "", "/mobile/finabala");
+            //FinaAccounts.show_balances();
+        }
         else if (path.match(/^\/mobile\/instructor\/[A-Z0-9]+/)) {
             var matches = path.match(/^\/mobile\/instructor\/([A-Z0-9]+)/);
             hist.pushState({
@@ -215,6 +227,16 @@ $(document).ready(function() {
         hist.pushState({
             state: "quicklinks",
         },  "", "/mobile/links");
+
+        return false;
+    });
+
+    $(".finabala").bind("click", function(ev) {
+        $("#myuw_nav").collapse('hide');
+        var hist = window.History;
+        hist.pushState({
+            state: "finabala",
+        },  "", "/mobile/finabala");
 
         return false;
     });
