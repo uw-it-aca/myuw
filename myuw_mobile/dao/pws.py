@@ -4,7 +4,7 @@ import traceback
 from restclients.pws import PWS
 from myuw_mobile.user import UserService
 from myuw_mobile.logger.timer import Timer
-from myuw_mobile.logger.logback import log_resp_time, log_exception
+from myuw_mobile.logger.logback import log_resp_time, log_exception, log_info
 
 class Person:
     """
@@ -59,6 +59,7 @@ class Person:
         timer = Timer()
         try:
             contact = PWS().get_contact(regid)
+            log_info(Person._logger, contact)
         except Exception as ex:
             log_exception(Person._logger, 
                           'pws.get_contact for ' + regid, 
@@ -84,7 +85,7 @@ class Person:
         gives permission to publish it on the UW Directory.
         """
         contact = self._get_contact(regid)
-        if contact and not contact["WhitepagesPublish"] :
+        if contact is not None and not contact["WhitepagesPublish"] :
             affiliations = contact["PersonAffiliations"]
             if "EmployeePersonAffiliation" in affiliations:
                 data = affiliations["EmployeePersonAffiliation"]
@@ -102,9 +103,10 @@ class Person:
         Return the student affiliation of the user, None if not exist
         """
         contact = self._get_cur_user_contact()
-        if contact is not None and contact["PersonAffiliations"]:
+        if contact is not None and "PersonAffiliations" in contact:
             affi = contact["PersonAffiliations"]
-            return affi["StudentPersonAffiliation"]
+            if "StudentPersonAffiliation" in affi:
+                return affi["StudentPersonAffiliation"]
         return None
 
     def get_student_system_key(self):
@@ -130,9 +132,10 @@ class Person:
         Return the student affiliation of the user, None if not exist
         """
         contact = self._get_cur_user_contact()
-        if contact is not None and contact["PersonAffiliations"]:
+        if contact is not None  and "PersonAffiliations" in contact:
             affi = contact["PersonAffiliations"]
-            return affi["EmployeePersonAffiliation"]
+            if "EmployeePersonAffiliation" in affi:
+                return affi["EmployeePersonAffiliation"]
         return None
 
     def get_employee_id(self):
@@ -145,3 +148,7 @@ class Person:
         return employeeAffi["EmployeeID"]
 
 
+#def test():
+#    person = Person()
+#    person._get_contact("6DF0A9206A7D11D5A4AE0004AC494FFE")
+#    person._get_contact("9136CCB8F66711D5BE060004AC494FFE")

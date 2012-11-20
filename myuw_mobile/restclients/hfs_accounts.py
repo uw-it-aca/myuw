@@ -42,10 +42,7 @@ class HfsAccounts(object):
                  'Url=%s Status=%d RespData=%s' % 
                  (url, response.status, response.data))
 
-        if response.status == 404:
-            return None
-
-        if response.status != 200:
+        if response.status != 200 and response.status != 404:
             raise DataFailureException(url, 
                                        response.status, 
                                        response.data)
