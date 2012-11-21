@@ -33,7 +33,7 @@ class HfsAccounts(object):
         if not re.match(r'^[0-9]{9,10}$', employee_id):
             raise InvalidEmployeeId(employee_id)
 
-        url = "/servlet/hfservices?sn=%s&eid=%s" % (student_number, employee_id)
+        url = "/hfs/servlet/hfservices?sn=%s&eid=%s" % (student_number, employee_id)
         
         dao = Hfs_DAO()
         response = dao.getURL(url, {"Accept": "text/html"})
