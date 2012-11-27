@@ -16,13 +16,29 @@ var FinaAccounts = {
 
          source   = $("#financial_balances").html();
          template = Handlebars.compile(source);
-         var amount_css = "amount"
+         var hc_amount_css = "amount"
          if ( balances.husky_card < 1.00 ) {
-            amount_css = "amount-low" 
+            hc_amount_css = "amount-low" 
+            }
+         var hc_negative = ""
+         if ( balances.husky_card < 0.00 ) {
+            hc_negative = "<span class=amount-low>-</span>"
+            }
+
+         var din_amount_css = "amount"
+         if ( balances.residence_hall_dining < 1.00 ) {
+            din_amount_css = "amount-low" 
+            }
+         var din_negative = ""
+         if ( balances.residence_hall_dining < 0.00 ) {
+            din_negative = "<span class=amount-low>-</span>"
             }
          $("#courselist").html(template(
-                {color: amount_css,
-                 husky_card_balance: balances.husky_card,
-                 residence_hall_dining_balance: balances.residence_hall_dining }));
+                {hc_negative: hc_negative,
+                 hc_color: hc_amount_css,
+                 husky_card_balance: Math.abs(balances.husky_card),
+                 din_negative: din_negative,
+                 din_color: din_amount_css,
+                 residence_hall_dining_balance: Math.abs(balances.residence_hall_dining) }));
          }
 };

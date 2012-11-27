@@ -74,13 +74,13 @@ class HfsAccounts(object):
             cache.asof_datetime = HfsAccounts._most_recent_update_datetime
 
         husky_card_bal = re.search(
-            '(?<=Husky Card Account balance was \$)([.0-9]+)',
+            '(?<=Husky Card Account balance was \$)(-?[.0-9]+)',
             data)
         if husky_card_bal is not None:
             cache.husky_card = float(husky_card_bal.group(0))
 
         dining_bal = re.search(
-            '(?<=Residence Hall Dining Plan balance was \$)([.0-9]+)',
+            '(?<=Residence Hall Dining Plan balance was \$)(-?[.0-9]+)',
             data)
         if dining_bal is not None:
             cache.residence_hall_dining = float(dining_bal.group(0))
