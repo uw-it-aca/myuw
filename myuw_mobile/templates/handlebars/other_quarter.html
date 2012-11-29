@@ -1,0 +1,9 @@
+{% load templatetag_handlebars %}
+
+{% tplhandlebars "oquarter-header" %}
+  <h2 id="quarter-info">View Other Quarters</h2>
+{% endtplhandlebars %}
+
+{% tplhandlebars "quarterlist" %}
+ {{data}}
+{% endtplhandlebars %}
