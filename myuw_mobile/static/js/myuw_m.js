@@ -109,9 +109,17 @@ $(document).ready(function() {
             $("#nav_course_list").addClass("active");
             document.title = window.page_titles["course_list"];
         }
+        else if (state === "finalexams") {
+            TextBooks.show_books();
+            document.title = window.page_titles["finalexams"];
+        }
         else if (state === "instructor") {
             Instructor.show_instructor(data.instructor);
             document.title = window.page_titles["instructor"];
+        }
+        else if (state === "oquarters") {
+            Quarters.show_future_quarters();
+            document.title = window.page_titles["oquarters"];
         }
         else if (state === "textbooks") {
             TextBooks.show_books();
@@ -165,11 +173,17 @@ $(document).ready(function() {
                 //VisualSchedule.show_visual_schedule();
             }
         }
-        else if (path === "/mobile/textbooks") {
+        else if (path === "/mobile/finalexams") {
             hist.replaceState({
-                state: "textbooks"
-            },  "", "/mobile/textbooks");
-            //TextBooks.show_books();
+                state: "finalexams"
+            },  "", "/mobile/finalexams");
+            //FinalExams.show_schedule();
+        }
+        else if (path === "/mobile/oquarters") {
+            hist.replaceState({
+                state: "oquarters"
+            },  "", "/mobile/oquarters");
+            //Quarters.show_future();
         }
         else if (path === "/mobile/textbooks") {
             hist.replaceState({

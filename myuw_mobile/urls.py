@@ -7,6 +7,7 @@ from myuw_mobile.views.contact_api import InstructorContact
 from myuw_mobile.views.textbook_api import TextbookCurQuar
 from myuw_mobile.views.links_api import QuickLinks
 from myuw_mobile.views.stud_finances_api import AccountBalances
+from myuw_mobile.views.other_quarters_api import RegisteredFutureQuarters
 from myuw_mobile.views.logout import Logout
 
 urlpatterns = patterns('myuw_mobile.views',
@@ -14,6 +15,7 @@ urlpatterns = patterns('myuw_mobile.views',
     url(r'support', 'support.support'),
     url(r'^visual', 'page.index'),
     url(r'^textbooks', 'page.index'),
+    url(r'^oquarters', 'page.index'),
     url(r'^instructor', 'page.index'),
     url(r'^links', 'page.index'),
     url(r'^finabala', 'page.index'),
@@ -26,4 +28,5 @@ urlpatterns = patterns('myuw_mobile.views',
     url(r'^api/v1/links/$', QuickLinks().run),
     url(r'^api/v1/person/(?P<regid>.*)$', InstructorContact().run),
     url(r'^api/v1/finabala/$', AccountBalances().run),
+    url(r'^api/v1/oquarters/$', RegisteredFutureQuarters().run),
 )

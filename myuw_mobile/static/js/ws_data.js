@@ -4,6 +4,7 @@ WSData = {
     _link_data: null,
     _instructor_data: {},
     _financial_data: null,
+    _oquarter_data: null,
 
     book_data: function() {
         return WSData._book_data;
@@ -23,6 +24,10 @@ WSData = {
 
     financial_data: function() {
         return WSData._financial_data;
+    },
+
+    oquarter_data: function() {
+        return WSData._oquarter_data;
     },
 
     fetch_book_data: function(callback, args) {
@@ -198,6 +203,30 @@ WSData = {
             }
         },
 
+
+    fetch_oquarter_data: function(callback, args) {
+        if (WSData._oquarter_data === null) {
+            $.ajax({
+                    url: "/mobile/api/v1/oquarters/",
+                    dataType: "JSON",
+
+                    type: "GET",
+                    accepts: {html: "text/html"},
+                    success: function(results) {
+                        WSData._oquarter_data = results;
+                        callback.apply(null, args);
+                        },
+                    error: function(xhr, status, error) {
+                        showError();
+                        }
+                    });
+              }
+        else {
+            window.setTimeout(function() {
+                    callback.apply(null, args);
+                    }, 0);
+            }
+        },
 
     save_links: function(links) {
         var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;

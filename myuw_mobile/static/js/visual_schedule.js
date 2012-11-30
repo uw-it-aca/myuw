@@ -239,7 +239,14 @@ var VisualSchedule = {
         });
 
 
+         $(".show_other_quarters").bind("click", function(ev) {
+            var hist = window.History;
+            hist.pushState({
+                state: "oquarters",
+            },  "", "/mobile/oquarters/visualsche");
 
+            return false;
+        });
 
     },
 

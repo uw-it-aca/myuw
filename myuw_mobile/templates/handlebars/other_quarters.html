@@ -1,15 +1,22 @@
+{% load templatetag_handlebars %}
 
-<h2 id="quarter-info">Other Quarters</h2>
+{% tplhandlebars "oquarter-header" %}
+  <h2 id="quarter-info">Other Quarters</h2>
+{% endtplhandlebars %}
 
-<div id="future_quarters">
-	<ul>
-		<li><a href="#"><i class="icon-list-ul"></i> Winter 2013</a></li>
-		<li><a href="#"><i class="icon-list-ul"></i> Spring 2013</a></li>
-	</ul>
-	
-	<!-- being if no registered coursed in future quarters -->
-	
- <div class="alert alert-info"><h4>No courses found in other quarters.</h4><p class="text-info" style="font-size:inheret;">You do not appear to be registered for credit courses in future quarterz. If you are not registered, you can go to the <a title="Go to MyUW desktop version" href="http://my.uw.edu/servlet/main">MyUW full site</a> to learn about registration. If you think this is an error, please <a href="http://myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank" title="Contact MyUW">contact MyUW.</p></div>
-	
-	<!-- end if no registered courses in future quarters -->
+{% tplhandlebars "quarterlist" %}
+  <div id="future_quarters">
+    <ul class="unstyled">
+      {{#each terms}}
+      <li class="additional"><a href="{{url}}"><i class="icon-list-ul"></i> {{quarter}} {{year}}</a></li>
+      {{/each}}
+    </ul>
+    {{#if not_registered }}
+    <div class="alert alert-info">
+      <h4>No courses found in other quarters.</h4>
+      <p class="text-info" style="font-size:inheret;">You do not appear to be registered for credit courses in any future quarter. If you think this is an error, please <a href="/cgi-bin/contactmyuw.cgi" target="_blank" title="Contact MyUW">contact MyUW.</p>
+    </div>
+    {{/if}}
 </div>
+
+{% endtplhandlebars %}

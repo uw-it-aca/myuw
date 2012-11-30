@@ -1,4 +1,5 @@
 from django.conf import settings
+from datetime import datetime
 import logging
 import traceback
 from restclients.sws import SWS
@@ -26,11 +27,53 @@ class Quarter:
             return SWS().get_current_term()
         except Exception as ex:
             log_exception(Quarter._logger, 
-                          'sws.get_cur_quarter', 
+                          'sws.get_current_term', 
                           traceback.format_exc())
         finally:
             log_resp_time(Quarter._logger, 
                           'sws.get_current_term',
+                          timer)
+        return None
+
+    def is_cur_quar_spring(self):
+        return self.get_cur_quarter().quarter == 'spring'
+
+    def get_next_quarter(self):
+        """
+        Returns calendar information for the next term.
+        """
+        timer = Timer()
+        try:
+            return SWS().get_next_term()
+        except Exception as ex:
+            log_exception(Quarter._logger, 
+                          'sws.get_next_term', 
+                          traceback.format_exc())
+        finally:
+            log_resp_time(Quarter._logger, 
+                          'sws.get_next_term',
+                          timer)
+        return None
+
+    def get_next_fall_quarter(self):
+        """
+        This function is to get the fall quarter when in the Spring quarter
+        Returns term information for the next fall term in the same year.
+        """
+        logid = ('sws.get_term_by_year_and_quarter ' + 
+                 str(datetime.year) +
+                 ',fall')
+        # print "///////////get_next_fall_quarter" + logid
+        timer = Timer()
+        try:
+            return SWS().get_term_by_year_and_quarter(datetime.year, 'fall')
+        except Exception as ex:
+            log_exception(Quarter._logger, 
+                          logid,
+                          traceback.format_exc())
+        finally:
+            log_resp_time(Quarter._logger, 
+                          logid,
                           timer)
         return None
 
@@ -45,35 +88,53 @@ class Schedule:
 
     _logger = logging.getLogger('myuw_mobile.dao.sws.Schedule')
 
-    def get_cur_quarter_schedule(self):
-        """ Return the actively enrolled sections in the current quarter """
-        
-        regid = Person().get_regid()
-        term = Quarter().get_cur_quarter()
+    def get_regid(self):
+        return Person().get_regid()
 
+    def _get_schedule(self, term):
+        """ 
+        Return the actively enrolled sections in the given term/quarter 
+        """
+        regid = self.get_regid()
         if regid is None or term is None:
             return None
+        logid = ('sws.schedule_for_regid_and_term ' + 
+                 str(regid) + ',' + str(term.year) + ',' + term.quarter)
+        #print "///////////" + logid
 
         timer = Timer()
         try:
             return SWS().schedule_for_regid_and_term(regid, term)
         except DataFailureException as ex:
-            log_exception(Schedule._logger, 
-                          'sws.schedule_for_regid_and_term', 
+            log_exception(Schedule._logger,
+                          logid,
                           traceback.format_exc())
             empty = ClassSchedule()
             empty.term = term
             empty.sections = []
             return empty
         except Exception as ex:
-            log_exception(Schedule._logger, 
-                          'sws.schedule_for_regid_and_term', 
+            log_exception(Schedule._logger,
+                          logid,
                           traceback.format_exc())
         finally:
-            log_resp_time(Schedule._logger, 
-                          'sws.get_cur_quarter_schedule',
+            log_resp_time(Schedule._logger,
+                          logid,
                           timer)
         return None
+
+
+    def get_cur_quarter_schedule(self):
+        """ Return the actively enrolled sections in the current quarter """
+        return self._get_schedule(Quarter().get_cur_quarter())
+
+    def get_next_quarter_schedule(self):
+        """ Return the actively enrolled sections in the next quarter """
+        return self._get_schedule(Quarter().get_next_quarter())
+
+    def get_next_fall_quarter_schedule(self):
+        """ Return the actively enrolled sections in the next fall quarter """
+        return self._get_schedule(Quarter().get_next_fall_quarter())
 
     def get_cur_quarter_campuses(self):
         """
