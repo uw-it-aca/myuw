@@ -23,7 +23,7 @@ class StudClasScheCurQuar(RESTDispatch):
 
         schedule_dao = ScheduleDao()
         schedule = schedule_dao.get_cur_quarter_schedule()
-        if schedule is None or len(schedule.sections) == 0 or not schedule.json_data():
+        if schedule is None or not schedule.json_data():
             log_data_not_found_response(logger, timer)
             return HttpResponse({})
 
