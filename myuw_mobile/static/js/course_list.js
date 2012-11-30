@@ -26,20 +26,12 @@ var CourseList = {
         // In case someone backs onto the page from a modal
         Modal.hide();
 
-        console.log(course_data.sections.length)
+        //console.log(course_data.sections.length)
         // Handle the case of no courses
         if (course_data.sections.length == 0) {
             var source   = $("#no-courses").html();
             var template = Handlebars.compile(source);
             $("#courselist").html(template(course_data));
-
-            $(".show_other_quarters").bind("click", function(ev) {
-                var hist = window.History;
-                hist.pushState({
-                            state: "oquarters",
-                            },  "", "/mobile/oquarters");
-                return false;
-                });
 
             return;
         }
