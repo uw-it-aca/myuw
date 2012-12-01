@@ -59,7 +59,7 @@ class Person:
         timer = Timer()
         try:
             contact = PWS().get_contact(regid)
-            log_info(Person._logger, contact)
+            #log_info(Person._logger, contact)
         except Exception as ex:
             log_exception(Person._logger, 
                           'pws.get_contact for ' + regid, 
