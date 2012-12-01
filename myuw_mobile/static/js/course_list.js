@@ -33,10 +33,17 @@ var CourseList = {
             var template = Handlebars.compile(source);
             $("#courselist").html(template(course_data));
 
+            $(".show_other_quarters").bind("click", function(ev) {
+                var hist = window.History;
+                hist.pushState({
+                    state: "oquarters",
+                },  "", "/mobile/oquarters");
+            return false;
+            });
             return;
         }
 
-        var source   = $("#courses").html();
+        var source = $("#courses").html();
         var template = Handlebars.compile(source);
         $("#courselist").html(template(course_data));
 
