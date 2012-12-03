@@ -9,7 +9,7 @@
 <div id="financial">
   <div class="account">
     <h3>Husky Card</h3>
-    <div class="balance"><sup>$</sup>{{{hc_negative}}}<span class={{hc_color}}>{{husky_card_balance}}</span><a target="_blank" class="btn pull-right" href="https://www.hfs.washington.edu/olco/" title="Add Funds"><i class="icon-credit-card"></i> Add Funds</a>
+    <div class="balance"><span class={{hc_color}}>{{{hc_negative}}}<sup>$</sup>{{husky_card_balance}}</span><a target="_blank" class="btn pull-right" href="https://www.hfs.washington.edu/olco/" title="Add Funds"><i class="icon-credit-card"></i> Add Funds</a>
     </div>
     <div class="row-fluid">
     </div>
@@ -18,7 +18,7 @@
   {{#if residence_hall_dining_balance }}
   <div class="account">
     <h3>Resident Dining Account</h3>
-    <div class="balance"><sup>$</sup>{{{din_negative}}}<span class={{din_color}}>{{residence_hall_dining_balance}}</span>
+    <div class="balance"><span class={{din_color}}>{{{din_negative}}}<sup>$</sup>{{residence_hall_dining_balance}}</span>
     </div>		
     <div class="row-fluid">
       <ul class="unstyled">
