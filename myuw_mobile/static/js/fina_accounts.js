@@ -22,7 +22,7 @@ var FinaAccounts = {
             }
          var hc_negative = ""
          if ( balances.husky_card < 0.00 ) {
-            hc_negative = "<span class=amount-low>-</span>"
+            hc_negative = "-"
             }
 
          var din_amount_css = "amount"
@@ -31,14 +31,14 @@ var FinaAccounts = {
             }
          var din_negative = ""
          if ( balances.residence_hall_dining < 0.00 ) {
-            din_negative = "<span class=amount-low>-</span>"
+            din_negative = "-"
             }
-         $("#courselist").html(template(
-                {hc_negative: hc_negative,
-                 hc_color: hc_amount_css,
-                 husky_card_balance: Math.abs(balances.husky_card),
-                 din_negative: din_negative,
-                 din_color: din_amount_css,
-                 residence_hall_dining_balance: Math.abs(balances.residence_hall_dining) }));
+         $("#courselist").html(template({
+            hc_color: hc_amount_css,
+            hc_negative: hc_negative,
+            husky_card_balance: Math.abs(balances.husky_card),
+            din_color: din_amount_css,
+            din_negative: din_negative,
+            residence_hall_dining_balance: Math.abs(balances.residence_hall_dining) }));
          }
 };
