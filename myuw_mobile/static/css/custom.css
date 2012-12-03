@@ -1737,7 +1737,6 @@ footer .footer-links a {
 #financial .account {
   width: 100%;
   background-color: #eeeeee;
-  padding: 0 10px;
 }
 #financial .account span.amount {
   font-size: 35px;
@@ -1748,12 +1747,15 @@ footer .footer-links a {
   color: #9d261d;
 }
 #financial .account h3 {
-  padding: 5px 5px;
+  padding: 5px 10px;
   font-size: 90%;
   font-weight: bold;
 }
 #financial .account .balance {
-  padding: 10px 5px;
+  padding: 20px 10px;
+}
+#financial .account ul.unstyled {
+  margin-left: 10px;
 }
 #financial sup {
   font-size: 20px;
