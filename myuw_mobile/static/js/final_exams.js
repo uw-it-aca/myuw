@@ -12,6 +12,10 @@ var FinalExams = {
 
         var max_date, min_date;
 
+        source = $("#quarter-list-finals").html();
+        template = Handlebars.compile(source);
+        $("#page-header").html(template({year: course_data.year, quarter: course_data.quarter}));
+
         for (index = 0; index < course_data.sections.length; index++) {
             var section = course_data.sections[index];
             if (section.final_exam) {
