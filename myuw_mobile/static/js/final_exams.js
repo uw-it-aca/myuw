@@ -43,7 +43,7 @@ var FinalExams = {
         // This shouldn't happen, but if we have over a week span of finals, just list them out.
         var over_one_week = [];
         if (scheduled_finals.length) {
-            if ((max_date - min_date) > (60 * 60 * 24 * 7)) {
+            if ((max_date - min_date) > (1000 * 60 * 60 * 24 * 7)) {
                 over_one_week = scheduled_finals;
             }
             else {
