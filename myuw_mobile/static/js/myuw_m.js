@@ -45,6 +45,39 @@ $(document).ready(function() {
         return formatted.join(":");
     });
 
+    // converts date string into 12 hour am/pm display
+    Handlebars.registerHelper("formatDateAsTimeAMPM", function(date_str) {
+        var date = new Date(date_str);
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var am_pm;
+        if (hours < 12) {
+            am_pm = "AM";
+        }
+        else {
+            am_pm = "PM";
+        }
+
+        if (hours > 12) {
+            hours = hours - 12;
+        }
+        return hours + ":" + minutes + " " + am_pm;
+    });
+
+    // converts date string into a day display
+    Handlebars.registerHelper("formatDateAsDate", function(date_str) {
+        var date = new Date(date_str);
+        var day_of_week = date.getDay();
+        var month_num = date.getMonth();
+        var day_of_month = date.getDate();
+
+        var day_names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        var month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        return day_names[day_of_week] + " " + month_names[month_num] + " " + day_of_month;
+    });
+
+
     Handlebars.registerHelper("ucfirst", function(str) {
         return str.replace(/^([a-z])/, function(match) {
             return match.toUpperCase();

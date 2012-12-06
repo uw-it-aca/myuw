@@ -40,6 +40,10 @@ function displayAlert(objAlertData)
         // For some reason the test feed has found: 0 in it.  So, dropping the return.
 //        return false;
     }
+    // This test instead of the one above
+    if (!objAlertData.posts || !objAlertData.posts.length) {
+        return false;
+    }
 
     // Alert colors
     arrAlertTypes = {
