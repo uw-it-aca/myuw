@@ -140,6 +140,11 @@ $(document).ready(function() {
             $("#nav_visual_schedule").addClass("active");
             document.title = window.page_titles["visual"];
         }
+        else if (state === "final_exams") {
+            FinalExams.show_finals();
+            document.title = window.page_titles["finals"];
+        }
+
 
         loaded_url = state_url;
     });
@@ -203,6 +208,13 @@ $(document).ready(function() {
             },  "", "/mobile/finabala");
             //FinaAccounts.show_balances();
         }
+        else if (path === "/mobile/final_exams") {
+            hist.replaceState({
+                state: "final_exams"
+            },  "", "/mobile/final_exams");
+            //FinaAccounts.show_balances();
+        }
+
         else if (path.match(/^\/mobile\/instructor\/[A-Z0-9]+/)) {
             var matches = path.match(/^\/mobile\/instructor\/([A-Z0-9]+)/);
             hist.pushState({
