@@ -55,18 +55,19 @@ class Quarter:
                           timer)
         return None
 
-    def get_next_fall_quarter(self):
+    def get_next_autumn_quarter(self):
         """
-        This function is to get the fall quarter when in the Spring quarter
-        Returns term information for the next fall term in the same year.
+        This function is to get the autumn quarter when in the Spring quarter
+        Returns term information for the next autumn term in the same year.
         """
+        cur_quar_year = self.get_cur_quarter().year
         logid = ('sws.get_term_by_year_and_quarter ' + 
-                 str(datetime.year) +
-                 ',fall')
-        # print "///////////get_next_fall_quarter" + logid
+                 str(cur_quar_year) +
+                 ',autumn')
+        #print "///////////get_next_autumn_quarter" + logid
         timer = Timer()
         try:
-            return SWS().get_term_by_year_and_quarter(datetime.year, 'fall')
+            return SWS().get_term_by_year_and_quarter(cur_quar_year, 'autumn')
         except Exception as ex:
             log_exception(Quarter._logger, 
                           logid,
@@ -132,9 +133,26 @@ class Schedule:
         """ Return the actively enrolled sections in the next quarter """
         return self._get_schedule(Quarter().get_next_quarter())
 
-    def get_next_fall_quarter_schedule(self):
-        """ Return the actively enrolled sections in the next fall quarter """
-        return self._get_schedule(Quarter().get_next_fall_quarter())
+    def get_next_autumn_quarter_schedule(self):
+        """ Return the actively enrolled sections in the next autumn quarter """
+        return self._get_schedule(Quarter().get_next_autumn_quarter())
+
+    def get_registered_future_quarters(self):
+        """ 
+        Return the list of future quarters that 
+        has actively enrolled sections
+        """
+        terms = []
+        term = Quarter()
+        next_quar_sche = self.get_next_quarter_schedule()
+        if next_quar_sche is not None and len(next_quar_sche.sections) > 0:
+            terms.append(term.get_next_quarter().json_data())
+
+        if term.is_cur_quar_spring():
+            next_autumn_quar_sche = self.get_next_autumn_quarter_schedule()
+            if next_autumn_quar_sche is not None and len(next_autumn_quar_sche.sections) > 0:
+                terms.append(term.get_next_autumn_quarter().json_data())
+        return terms
 
     def get_cur_quarter_campuses(self):
         """
