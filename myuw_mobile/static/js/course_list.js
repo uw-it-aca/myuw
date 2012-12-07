@@ -29,23 +29,17 @@ var CourseList = {
         //console.log(course_data.sections.length)
         // Handle the case of no courses
         if (course_data.sections.length == 0) {
-            var source   = $("#no-courses").html();
-            var template = Handlebars.compile(source);
-            $("#courselist").html(template(course_data));
-
-            $(".show_other_quarters").bind("click", function(ev) {
-                var hist = window.History;
-                hist.pushState({
-                    state: "oquarters",
-                },  "", "/mobile/oquarters");
-            return false;
-            });
+            $("#courselist").no_courses();
             return;
         }
 
         var source = $("#courses").html();
         var template = Handlebars.compile(source);
+	Handlebars.registerPartial("no-course-msg", 
+				   $("#no-course-msg").html());
         $("#courselist").html(template(course_data));
+
+        $("#addi_links").addi_course_links();
 
         if (course_index !== undefined) {
             $("#course"+course_index).collapse('show');

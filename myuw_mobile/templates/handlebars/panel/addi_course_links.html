@@ -1,0 +1,18 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "additional_course_links" %}
+<ul class="unstyled">
+  {{#if registered_for_the_quarter}}
+  <li class="additional">
+    <a class="show_textbooks" href="/mobile/textbooks"><i class="icon-book"></i> View Textbooks</a>
+  </li>
+  <li>
+    <a class="show_finalexams" href="/mobile/finalexams"><i class="icon-calendar"></i> Final Exam Schedule</a>
+  </li>
+  {{/if}}
+
+  <li class="additional">
+    <a class="show_other_quarters" href="/mobile/oquarters"><i class="icon-sort"></i> View Other Quarters</a>
+  </li>
+</ul>
+</div>
+{% endtplhandlebars %}

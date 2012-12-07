@@ -85,18 +85,7 @@ var VisualSchedule = {
 
         // Handle the case of no courses
         if (course_data.sections.length == 0) {
-            var source   = $("#no-courses").html();
-            var template = Handlebars.compile(source);
-            $("#courselist").html(template(course_data));
-            
-            $(".show_other_quarters").bind("click", function(ev) {
-                var hist = window.History;
-                hist.pushState({
-                    state: "oquarters",
-                },  "", "/mobile/oquarters");
-            return false;
-            });
-            
+	    $("#courselist").no_courses();
             return;
         }
 
@@ -200,7 +189,11 @@ var VisualSchedule = {
             visual_data.schedule_hours_class = "twelve-plus";
         }
 
+	Handlebars.registerPartial("no-course-msg",
+                                   $("#no-course-msg").html());
         $("#courselist").html(template(visual_data));
+
+	$("#addi_links").addi_course_links();
 
         $(".display_list_sched").bind("click", function(ev) {
             WSData.log_interaction("visual_schedule_view_course_list");
@@ -234,25 +227,6 @@ var VisualSchedule = {
             },  "", "/mobile/visual/"+course_id);
 
             CourseModal.show_course_modal(course_id);
-
-            return false;
-        });
-
-        $(".show_textbooks").bind("click", function(ev) {
-            var hist = window.History;
-            hist.pushState({
-                state: "textbooks"
-            },  "", "/mobile/textbooks");
-
-            return false;
-        });
-
-
-         $(".show_other_quarters").bind("click", function(ev) {
-            var hist = window.History;
-            hist.pushState({
-                state: "oquarters",
-            },  "", "/mobile/oquarters/visualsche");
 
             return false;
         });

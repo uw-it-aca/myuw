@@ -57,10 +57,9 @@
 
         </div>
       </div>
+
      <div class="row-fluid">
-     
  <!-- begin - if there are meetings with times to be arranged -->  
-   
     {{#if courses_meeting_tbd }}
     <div class="courseTBD">
     <h6>Courses with meeting times to be determined:</h6>
@@ -71,19 +70,10 @@
     {{/if}}
 
  <!-- end - if there are meetings with times to be arranged --> 
-        
-            <ul class="unstyled">
-              <li class="additional">
-                <a class="show_textbooks" href="/mobile/textbooks"><i class="icon-book"></i> View Textbooks</a>
-              </li>
-              <li>
-		<a class="show_finalexams" href="/mobile/finalexams"><i class="icon-calendar"></i> Final Exam Schedule</a>
-	      </li>
-              <li class="additional">
-		<a class="show_other_quarters" href="/mobile/oquarters"><i class="icon-sort"></i> View Other Quarters</a>
-	      </li>
-            </ul>
      </div>  
+        
+	<div class="row-fluid" id="addi_links">
+	</div>  
 
         {% endtplhandlebars %}
 

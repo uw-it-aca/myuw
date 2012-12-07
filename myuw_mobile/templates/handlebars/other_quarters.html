@@ -12,10 +12,7 @@
       {{/each}}
     </ul>
     {{#if not_registered }}
-    <div class="alert alert-info">
-      <h4>No courses found in other quarters.</h4>
-      <p class="text-info" style="font-size:inheret;">You do not appear to be registered for credit courses in any future quarter. If you think this is an error, please <a href="/cgi-bin/contactmyuw.cgi" target="_blank" title="Contact MyUW">contact MyUW.</p>
-    </div>
+      {{> no-course-msg}}
     {{/if}}
 </div>
 
