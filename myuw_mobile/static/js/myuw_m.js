@@ -142,10 +142,6 @@ $(document).ready(function() {
             $("#nav_course_list").addClass("active");
             document.title = window.page_titles["course_list"];
         }
-        else if (state === "finalexams") {
-            TextBooks.show_books();
-            document.title = window.page_titles["finalexams"];
-        }
         else if (state === "instructor") {
             Instructor.show_instructor(data.instructor);
             document.title = window.page_titles["instructor"];
