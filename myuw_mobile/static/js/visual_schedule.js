@@ -41,7 +41,9 @@ var VisualSchedule = {
 
         // Handle the case of no courses
         if (course_data.sections.length == 0) {
-	    $("#courselist").no_courses();
+	    $("#courselist").no_courses({
+		visual: "/visual",
+	    });
             return;
         }
 
@@ -148,7 +150,7 @@ var VisualSchedule = {
         $("#courselist").html(template(visual_data));
 
 	$("#addi_links").addi_course_links({
-	    visual: '/visual',
+	    visual: "/visual",
 	});
 
         $(".display_list_sched").bind("click", function(ev) {
