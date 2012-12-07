@@ -20,25 +20,10 @@ class RegisteredFutureQuarters(RESTDispatch):
         timer = Timer()
         logger = logging.getLogger('myuw_mobile.views.other_quarters_api.RegisteredFutureQuarters.GET')
         
-        resp_data = { "not_registered": True, 
-                      "terms": []
-                      }
-        terms = []
-        term = Quarter()
         sche = Schedule()
-        next_quarter_sche = sche.get_next_quarter_schedule()
-        if next_quarter_sche is not None and len(next_quarter_sche.sections) > 0:
-            terms.append(term.get_next_quarter().json_data())
-            resp_data["not_registered"] = False
-
-        if term.is_cur_quar_spring():
-            next_fall_quarter_sche = sche.get_next_fall_quarter_schedule() 
-            if next_fall_quarter_sche is not None and len(next_fall_quarter_sche.sections) > 0:
-                terms.append(term.get_next_fall_quarter().json_data())
-                resp_data["not_registered"] = False
-
-        resp_data["terms"] = terms
-
+        resp_data = { "visual": False, 
+                      "terms": sche.get_registered_future_quarters()
+                      }
         #print resp_data
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(resp_data))

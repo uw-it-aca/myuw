@@ -203,9 +203,9 @@ $(document).ready(function() {
             Instructor.show_instructor(data.instructor);
             document.title = window.page_titles["instructor"];
         }
-        else if (state === "oquarters") {
+        else if (state === "future_quarters") {
             Quarters.show_future_quarters();
-            document.title = window.page_titles["oquarters"];
+            document.title = window.page_titles["future_quarters"];
         }
         else if (state === "textbooks") {
             TextBooks.show_books();
@@ -270,10 +270,10 @@ $(document).ready(function() {
             },  "", "/mobile/finalexams");
             //FinalExams.show_schedule();
         }
-        else if (path === "/mobile/oquarters") {
+        else if (path === "/mobile/future_quarters") {
             hist.replaceState({
-                state: "oquarters"
-            },  "", "/mobile/oquarters");
+                state: "future_quarters"
+            },  "", "/mobile/future_quarters");
             //Quarters.show_future();
         }
         else if (path === "/mobile/textbooks") {

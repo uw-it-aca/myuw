@@ -1,6 +1,9 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "no-courses" %}
-   {{> no-course-msg}}
+{{> no-course-msg}}
+
+{{#if present_addi_links}}
    <div class="row-fluid" id="addi_links">
    </div>
+{{/if}}
 {% endtplhandlebars %}

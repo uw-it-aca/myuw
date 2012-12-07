@@ -12,12 +12,17 @@ var Quarters = {
         $("#page-header").html(template());
 
         var data = WSData.oquarter_data();
+
+	if (data.terms.length == 0) {
+	    $("#courselist").no_courses({
+		"which_quarter_or_term" : "in future quarters",
+		"present_addi_links" : false,
+	    });
+            return;
+        }
+
         source = $("#quarterlist").html();
         template = Handlebars.compile(source);
-	Handlebars.registerPartial("no-course-msg",
-				   $("#no-course-msg").html());
-        $("#courselist").html(template({ terms : data.terms,
-					 which_quarter_or_term : 'in future quarters',
-                                         not_registered : data.not_registered}));
+        $("#courselist").html(template({ terms : data.terms }));
     }
 };

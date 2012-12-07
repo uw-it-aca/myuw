@@ -4,7 +4,8 @@
 
     $.fn.no_courses = function(inputs) {
         var settings = $.extend({}, {
-            which_quarter_or_term : 'this quarter'
+            "which_quarter_or_term" : "this quarter",
+	    "present_addi_links" : true,
         }, inputs);
 
         return this.each(function() {
@@ -15,7 +16,7 @@
             $(this).html(template(settings));
 	    
 	    $("#addi_links").addi_course_links({
-		'registered_for_the_quarter' : false });
+		"registered_for_the_quarter" : false });
         });
     };
 })( jQuery );

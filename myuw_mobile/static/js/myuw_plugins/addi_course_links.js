@@ -5,7 +5,8 @@
 
     $.fn.addi_course_links = function(inputs) {  
         var settings = $.extend({}, {
-            registered_for_the_quarter: true
+            registered_for_the_quarter: true,
+            visual: '',
 	}, inputs);
 
 	return this.each(function() {        
@@ -32,8 +33,8 @@
 	    $(".show_other_quarters").bind("click", function(ev) {
 		var hist = window.History;
 		hist.pushState({
-                    state: "oquarters",
-		},  "", "/mobile/oquarters");
+                    state: "future_quarters",
+		},  "", "/mobile/future_quarters");
 		return false;
             });
 	});

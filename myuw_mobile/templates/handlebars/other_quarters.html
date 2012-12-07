@@ -1,7 +1,7 @@
 {% load templatetag_handlebars %}
 
 {% tplhandlebars "oquarter-header" %}
-  <h2 id="quarter-info">Other Quarters</h2>
+  <h2 id="quarter-info">Future Quarters</h2>
 {% endtplhandlebars %}
 
 {% tplhandlebars "quarterlist" %}
@@ -11,9 +11,6 @@
       <li class="additional"><a href="{{url}}"><i class="icon-list-ul"></i> {{quarter}} {{year}}</a></li>
       {{/each}}
     </ul>
-    {{#if not_registered }}
-      {{> no-course-msg}}
-    {{/if}}
-</div>
+  </div>
 
 {% endtplhandlebars %}

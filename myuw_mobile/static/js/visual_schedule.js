@@ -145,11 +145,11 @@ var VisualSchedule = {
             visual_data.schedule_hours_class = "twelve-plus";
         }
 
-	Handlebars.registerPartial("no-course-msg",
-                                   $("#no-course-msg").html());
         $("#courselist").html(template(visual_data));
 
-	$("#addi_links").addi_course_links();
+	$("#addi_links").addi_course_links({
+	    visual: '/visual',
+	});
 
         $(".display_list_sched").bind("click", function(ev) {
             WSData.log_interaction("visual_schedule_view_course_list");
