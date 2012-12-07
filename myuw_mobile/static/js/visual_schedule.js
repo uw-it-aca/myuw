@@ -19,50 +19,6 @@ var VisualSchedule = {
     render: function(course_index) {
         $('html,body').animate({scrollTop: 0}, 'fast');
         VisualSchedule.shown_am_marker = false;
-        Handlebars.registerHelper('format_schedule_hour', function(hour) {
-            if (parseInt(hour, 10) === 12) {
-                VisualSchedule.shown_am_marker = true;
-                return hour + "p";
-            }
-            else if (hour > 12) {
-                var shown_hour = hour - 12;
-                if (!VisualSchedule.shown_am_marker) {
-                    VisualSchedule.shown_am_marker = true;
-                    return shown_hour + "p";
-                }
-                return shown_hour;
-            }
-            else if (hour < 12) {
-                if (!VisualSchedule.shown_am_marker) {
-                    VisualSchedule.shown_am_marker = true;
-                    return hour + "a";
-                }
-            }
-            return hour;
-        });
-
-        Handlebars.registerHelper('time_percentage', function(time, start, end) {
-            return VisualSchedule.get_scaled_percentage(time, start, end);
-        });
-
-        Handlebars.registerHelper('time_percentage_height', function(start, end, min, max) {
-            var top = VisualSchedule.get_scaled_percentage(start, min, max);
-            var bottom = VisualSchedule.get_scaled_percentage(end, min, max);
-
-            return bottom-top;
-        });
-
-        Handlebars.registerHelper('show_days_meetings', function(list, start_time, end_time) {
-            if (!VisualSchedule.day_template) {
-                var day_source = $("#visual_schedule_day").html();
-                var _day_template = Handlebars.compile(day_source);
-
-                VisualSchedule.day_template = _day_template;
-            }
-
-            return new Handlebars.SafeString(VisualSchedule.day_template({ meetings: list, start_time: start_time, end_time: end_time }));
-        });
-
         var course_data = WSData.course_data();
 
         var source = $("#quarter-visual").html();

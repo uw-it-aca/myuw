@@ -1418,12 +1418,24 @@ abbr[title] {
 .six-day p {
   color: #333;
 }
+.seven-day {
+  width: 13.1428571428571%;
+  height: 100%;
+  position: relative;
+  display: inline-block;
+  float: left;
+  color: #ffffff;
+}
+.seven-day p {
+  color: #333;
+}
 /*
 .six-day:last-child, .five-day:last-child {
 	border-right: none;
 
 }*/
 .six-day:first-child,
+.seven-day:first-child,
 .five-day:first-child {
   border-left: 2px groove #eeeeee;
 }
