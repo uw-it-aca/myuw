@@ -101,26 +101,6 @@ var CourseList = {
             return false;
         });
 
-
-        $(".show_textbooks").bind("click", function(ev) {
-            var hist = window.History;
-            hist.pushState({
-                state: "textbooks",
-            },  "", "/mobile/textbooks");
-
-            return false;
-        });
-
-        $(".show_other_quarters").bind("click", function(ev) {
-            var hist = window.History;
-            hist.pushState({
-                state: "oquarters",
-            },  "", "/mobile/oquarters");
-
-            return false;
-        });
-
-
     }
 };
 
