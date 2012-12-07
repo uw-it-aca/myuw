@@ -5,8 +5,8 @@
 
     $.fn.addi_course_links = function(inputs) {  
         var settings = $.extend({}, {
-            registered_for_the_quarter: true,
-            visual: '',
+            "registered_for_the_quarter": true,
+            "visual": "",
 	}, inputs);
 
 	return this.each(function() {        
@@ -14,7 +14,7 @@
             var template = Handlebars.compile(source);
             $(this).html(template(settings));
 
-            $(".show_textbooks").bind("click", function(ev) {
+            $(".show_textbooks").on("click", function(ev) {
 		var hist = window.History;
 		hist.pushState({
                     state: "textbooks",
@@ -22,7 +22,7 @@
 		return false;
             });
 
-	    $(".show_finalexams").bind("click", function(ev) {
+	    $(".show_finalexams").on("click", function(ev) {
 		var hist = window.History;
 		hist.pushState({
                     state: "final_exams",
@@ -30,7 +30,7 @@
 		return false;
             });
 
-	    $(".show_other_quarters").bind("click", function(ev) {
+	    $(".show_other_quarters").on("click", function(ev) {
 		var hist = window.History;
 		hist.pushState({
                     state: "future_quarters",
