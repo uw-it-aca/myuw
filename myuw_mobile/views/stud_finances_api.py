@@ -21,10 +21,6 @@ class AccountBalances(RESTDispatch):
         logger = logging.getLogger('myuw_mobile.views.stud_finances_api.AccountBalances.GET')
 
         balances = Accounts().get_balances()
-        if balances is None:
-            log_data_not_found_response(logger, timer)
-            return data_not_found()
-
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(balances.json_data()))
 
