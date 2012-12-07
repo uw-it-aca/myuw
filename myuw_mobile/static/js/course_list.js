@@ -35,10 +35,7 @@ var CourseList = {
 
         var source = $("#courses").html();
         var template = Handlebars.compile(source);
-	Handlebars.registerPartial("no-course-msg", 
-				   $("#no-course-msg").html());
         $("#courselist").html(template(course_data));
-
         $("#addi_links").addi_course_links();
 
         if (course_index !== undefined) {
