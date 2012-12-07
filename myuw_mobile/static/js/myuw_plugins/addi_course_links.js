@@ -24,8 +24,8 @@
 	    $(".show_finalexams").bind("click", function(ev) {
 		var hist = window.History;
 		hist.pushState({
-                    state: "finalexams",
-		},  "", "/mobile/finalexams");
+                    state: "final_exams",
+		},  "", "/mobile/final_exams");
 		return false;
             });
 
