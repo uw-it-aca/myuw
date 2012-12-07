@@ -100,9 +100,9 @@ var FinalExams = {
             sunday: [],
             display_hours: [],
             has_7_days: false,
-            courses_meeting_tbd: []
+            courses_meeting_tbd: [],
+            end_date: term.last_final_exam_date
         };
-
 
         var index = 0;
         for (index = 0; index < sections_with_finals.length; index++) {
