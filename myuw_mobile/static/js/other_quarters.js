@@ -16,7 +16,7 @@ var Quarters = {
 	if (data.terms.length == 0) {
 	    $("#courselist").no_courses({
 		"which_quarter_or_term" : "in future quarters",
-		"present_addi_links" : false,
+		"present_addi_links" : false
 	    });
             return;
         }

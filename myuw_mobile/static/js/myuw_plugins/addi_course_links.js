@@ -6,7 +6,7 @@
     $.fn.addi_course_links = function(inputs) {  
         var settings = $.extend({}, {
             "registered_for_the_quarter": true,
-            "visual": "",
+            "visual": ""
 	}, inputs);
 
 	return this.each(function() {        

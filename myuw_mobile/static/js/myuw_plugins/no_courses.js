@@ -6,7 +6,7 @@
         var settings = $.extend({}, {
             "which_quarter_or_term" : "this quarter",
 	    "present_addi_links" : true,
-	    "visual": "",
+	    "visual": ""
         }, inputs);
 
         return this.each(function() {
