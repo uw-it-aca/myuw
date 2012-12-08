@@ -3,7 +3,7 @@
     // the additional course link panel
     // which has View Textbooks, Final exams, Other Quarters.
 
-    $.fn.addi_course_links = function(inputs) {  
+    $.fn.addi_course_links = function( inputs ) {  
         var settings = $.extend({}, {
             "registered_for_the_quarter": true,
             "visual": ""
@@ -25,18 +25,18 @@
 	    $(".show_finalexams").on("click", function(ev) {
 		var hist = window.History;
 		hist.pushState({
-                    state: "final_exams",
-		},  "", "/mobile/final_exams");
+                    state: "final_exams" + settings.visual,
+		},  "", "/mobile/final_exams" + settings.visual);
 		return false;
             });
 
 	    $(".show_other_quarters").on("click", function(ev) {
 		var hist = window.History;
 		hist.pushState({
-                    state: "future_quarters",
-		},  "", "/mobile/future_quarters");
+                    state: "future_quarters" + settings.visual,
+		},  "", "/mobile/future_quarters" + settings.visual);
 		return false;
             });
 	});
   };
-}(jQuery));
+})( jQuery );
