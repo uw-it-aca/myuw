@@ -239,7 +239,7 @@ $(document).ready(function() {
             document.title = window.page_titles["visual"];
         }
         else if (state === "final_exams") {
-            FinalExams.show_finals();
+            FinalExams.show_finals(data.course_index);
             document.title = window.page_titles["finals"];
         }
 
@@ -276,12 +276,6 @@ $(document).ready(function() {
                 //VisualSchedule.show_visual_schedule();
             }
         }
-        else if (path === "/mobile/finalexams") {
-            hist.replaceState({
-                state: "finalexams"
-            },  "", "/mobile/finalexams");
-            //FinalExams.show_schedule();
-        }
         else if (path === "/mobile/future_quarters") {
             hist.replaceState({
                 state: "future_quarters"
@@ -306,11 +300,19 @@ $(document).ready(function() {
             },  "", "/mobile/finabala");
             //FinaAccounts.show_balances();
         }
-        else if (path === "/mobile/final_exams") {
-            hist.replaceState({
-                state: "final_exams"
-            },  "", "/mobile/final_exams");
-            //FinaAccounts.show_balances();
+        else if (path.match("/mobile/final_exams")) {
+            var matches = path.match(/^\/mobile\/final_exams\/([0-9]+)/);
+            if (matches) {
+                hist.replaceState({
+                    state: "final_exams",
+                    course_index: matches[1]
+                },  "", "/mobile/final_exams/"+matches[1]);
+            }
+            else {
+                hist.replaceState({
+                    state: "final_exams"
+                },  "", "/mobile/final_exams");
+            }
         }
 
         else if (path.match(/^\/mobile\/instructor\/[A-Z0-9]+/)) {

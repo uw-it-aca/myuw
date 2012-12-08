@@ -2,12 +2,12 @@ var FinalExams = {
     FRIDAY: 5,
     SATURDAY: 6,
     SUNDAY: 0,
-    show_finals: function() {
+    show_finals: function(course_index) {
         showLoading();
-        WSData.fetch_course_data(FinalExams.render_exams, []);
+        WSData.fetch_course_data(FinalExams.render_exams, [course_index]);
     },
 
-    render_exams: function() {
+    render_exams: function(course_index) {
         var course_data = WSData.course_data();
         var index = 0;
         var tbd_or_nonexistent = [];
@@ -26,6 +26,9 @@ var FinalExams = {
 
         for (index = 0; index < course_data.sections.length; index++) {
             var section = course_data.sections[index];
+            // We need to set this here, since the code that displays links doesn't have access
+            // to the full list of sections, necessarily
+            section.index = index;
             if (section.final_exam) {
                 var final_exam = section.final_exam;
                 var start_date = new Date(final_exam.start_date);
@@ -85,6 +88,33 @@ var FinalExams = {
         var template = Handlebars.compile(source);
         $("#courselist").html(template(template_data));
 
+        if (!course_index) {
+            Modal.hide();
+        }
+        else {
+            if (course_index < course_data.sections.length) {
+                FinalsModal.show_finals_modal(course_index);
+            }
+        }
+
+        $(".show_section_details").bind("click", function(ev) {
+            var course_id = this.rel;
+            var log_course_id = ev.currentTarget.getAttribute("class").replace(/[^a-z0-9]/gi, '_');
+
+            WSData.log_interaction("open_finals_modal_"+log_course_id);
+            var hist = window.History;
+            hist.pushState({
+                state: "final_exams",
+                course_index: course_id
+            },  "", "/mobile/final_exams/"+course_id);
+
+            CourseModal.show_course_modal(course_id);
+
+            return false;
+        });
+
+
+
     },
 
     _build_visual_schedule_data: function(sections_with_finals, term) {
@@ -136,7 +166,7 @@ var FinalExams = {
                 curriculum: section.curriculum_abbr,
                 course_number: section.course_number,
                 section_id: section.section_id,
-                section_index: index
+                section_index: section.index
             };
 
             var days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
