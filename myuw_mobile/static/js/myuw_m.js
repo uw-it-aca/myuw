@@ -215,6 +215,10 @@ $(document).ready(function() {
             Instructor.show_instructor(data.instructor);
             document.title = window.page_titles["instructor"];
         }
+        else if (state === "future_quarters/visual") {
+            Quarters.show_future_quarters();
+            document.title = window.page_titles["future_quarters"];
+        }
         else if (state === "future_quarters") {
             Quarters.show_future_quarters();
             document.title = window.page_titles["future_quarters"];
@@ -276,12 +280,6 @@ $(document).ready(function() {
                 //VisualSchedule.show_visual_schedule();
             }
         }
-        else if (path === "/mobile/future_quarters") {
-            hist.replaceState({
-                state: "future_quarters"
-            },  "", "/mobile/future_quarters");
-            //Quarters.show_future();
-        }
         else if (path === "/mobile/textbooks") {
             hist.replaceState({
                 state: "textbooks"
@@ -299,6 +297,13 @@ $(document).ready(function() {
                 state: "finabala"
             },  "", "/mobile/finabala");
             //FinaAccounts.show_balances();
+        }
+        else if (path.match("/mobile/future_quarters")) {
+	    var matches = path.match(/^\/mobile\/future_quarters(\/[a-z]+)/);
+            hist.replaceState({
+                state: "future_quarters" + matches[1]
+            },  "", "/mobile/future_quarters" + matches[1]);
+            //Quarters.show_future();
         }
         else if (path.match("/mobile/final_exams")) {
             var matches = path.match(/^\/mobile\/final_exams\/([0-9]+)/);
