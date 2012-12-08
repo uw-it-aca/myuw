@@ -2,8 +2,8 @@
     // This re-usable plugin displays
     // the no credit course registered message panel
 
-    $.fn.no_courses = function(inputs) {
-        var settings = $.extend({}, {
+    $.fn.no_courses = function( inputs ) {
+        var settings = $.extend( {
             "which_quarter_or_term" : "this quarter",
 	    "present_addi_links" : true,
 	    "visual": ""
@@ -16,11 +16,11 @@
 //				       $("#no-course-msg").html());
             $(this).html(template(settings));
 	    
-	    if (settings.present_addi_links) {
+	    if ( settings.present_addi_links ) {
 		$("#addi_links").addi_course_links({
 		    "visual": settings.visual,
 		    "registered_for_the_quarter" : false });
 	    }
         });
     };
-}(jQuery));
+})( jQuery );
