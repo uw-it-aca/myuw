@@ -20,9 +20,15 @@ var Quarters = {
 	    });
             return;
         }
-
+	
+	var path = window.location.pathname;
+	var visual = (path.match(/(\/visual)/)
+		      ? "/visual"
+		      : "");
         source = $("#quarterlist").html();
         template = Handlebars.compile(source);
-        $("#courselist").html(template({ terms : data.terms }));
+        $("#courselist").html(template({ 
+	    "visual" : visual,
+	    "terms" : data.terms }));
     }
 };

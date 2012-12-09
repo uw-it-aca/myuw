@@ -1,10 +1,10 @@
 from django.http import HttpResponse
 from django.utils import simplejson as json
 import logging
-from rest_dispatch import RESTDispatch, data_not_found
-from myuw_mobile.dao.sws import Quarter, Schedule
+from rest_dispatch import RESTDispatch
+from myuw_mobile.dao.sws import Schedule
 from myuw_mobile.logger.timer import Timer
-from myuw_mobile.logger.logresp import log_data_not_found_response, log_success_response
+from myuw_mobile.logger.logresp import log_success_response
 
 class RegisteredFutureQuarters(RESTDispatch):
     """
@@ -21,10 +21,10 @@ class RegisteredFutureQuarters(RESTDispatch):
         logger = logging.getLogger('myuw_mobile.views.other_quarters_api.RegisteredFutureQuarters.GET')
         
         sche = Schedule()
-        resp_data = { "visual": False, 
+        resp_data = { 
                       "terms": sche.get_registered_future_quarters()
                       }
-        #print resp_data
+        print resp_data
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(resp_data))
 

@@ -35,9 +35,6 @@ class Quarter:
                           timer)
         return None
 
-    def is_cur_quar_spring(self):
-        return self.get_cur_quarter().quarter == 'spring'
-
     def get_next_quarter(self):
         """
         Returns calendar information for the next term.
@@ -126,16 +123,52 @@ class Schedule:
 
 
     def get_cur_quarter_schedule(self):
-        """ Return the actively enrolled sections in the current quarter """
+        """
+        Return the actively enrolled sections in the current quarter 
+        """
         return self._get_schedule(Quarter().get_cur_quarter())
 
     def get_next_quarter_schedule(self):
-        """ Return the actively enrolled sections in the next quarter """
+        """ 
+        Return the actively enrolled sections in the next quarter 
+        """
         return self._get_schedule(Quarter().get_next_quarter())
 
     def get_next_autumn_quarter_schedule(self):
-        """ Return the actively enrolled sections in the next autumn quarter """
+        """
+        Return the actively enrolled sections in the next autumn quarter 
+        """
         return self._get_schedule(Quarter().get_next_autumn_quarter())
+
+    def get_summer_term(self, registered_summer_sections):
+        """
+        Return summer registered terms
+        """
+        data = {
+            "full_term" : None,
+            "A_term" : None,
+            "B_term" : None,
+            }
+        for section in registered_summer_sections:
+            if section.summer_term == "Full-term":
+                data["Full_term"] = True
+            elif section.summer_term == "A-term":
+                data["A_term"] = True
+            elif section.summer_term == "B-term":
+                data["B_term"] = True
+            else:
+                pass
+        return data
+
+    def _get_future_term_json(self, term, summer_term):
+        res_json = term.json_data()
+        res_json["summer_term"] = summer_term
+        url = "/" + str(term.year) + "," + term.quarter
+        if summer_term:
+            url = url + "," + summer_term
+        res_json["url"] = url
+        return res_json
+
 
     def get_registered_future_quarters(self):
         """ 
@@ -143,15 +176,29 @@ class Schedule:
         has actively enrolled sections
         """
         terms = []
-        term = Quarter()
         next_quar_sche = self.get_next_quarter_schedule()
+        next_quarter = next_quar_sche.term
         if next_quar_sche is not None and len(next_quar_sche.sections) > 0:
-            terms.append(term.get_next_quarter().json_data())
 
-        if term.is_cur_quar_spring():
+            if next_quarter.quarter == "summer":
+                sumr_tms = self.get_summer_term(next_quar_sche.sections)
+
+                if sumr_tms["A_term"] and sumr_tms["B_term"] and sumr_tms["Full_term"] or sumr_tms["A_term"] and sumr_tms["Full_term"] or sumr_tms["B_term"] and sumr_tms["Full_term"] or sumr_tms["A_term"] and sumr_tms["B_term"]:
+
+                    if sumr_tms["A_term"]:
+                        terms.append(self._get_future_term_json(next_quarter,
+                                                                "A-Term"))
+                    if sumr_tms["B_term"]:
+                        terms.append(self._get_future_term_json(next_quarter,
+                                                                "B-Term"))
+            else:
+                terms.append(self._get_future_term_json(next_quarter,""))
+
+        if next_quarter.quarter == 'summer':
             next_autumn_quar_sche = self.get_next_autumn_quarter_schedule()
             if next_autumn_quar_sche is not None and len(next_autumn_quar_sche.sections) > 0:
-                terms.append(term.get_next_autumn_quarter().json_data())
+                terms.append(self._get_future_term_json(next_autumn_quar_sche.term,
+                                                        ""))
         return terms
 
     def get_cur_quarter_campuses(self):
@@ -163,19 +210,19 @@ class Schedule:
            tacoma: false|true } 
         True if the user is registered on that campus in the current quarter
         """
-        campuses = {'seattle': False,
-                    'bothell': False,
-                    'tacoma': False}
+        campuses = {"seattle": False,
+                    "bothell": False,
+                    "tacoma": False}
 
         schedule = self.get_cur_quarter_schedule()
         if schedule is not None and len(schedule.sections) > 0:
             for section in schedule.sections:
-                if section.course_campus == 'Seattle':
-                    campuses['seattle']=True
-                elif section.course_campus == 'Bothell':
-                    campuses['bothell']=True
-                elif section.course_campus == 'Tacoma':
-                    campuses['tacoma']=True
+                if section.course_campus == "Seattle":
+                    campuses["seattle"]=True
+                elif section.course_campus == "Bothell":
+                    campuses["bothell"]=True
+                elif section.course_campus == "Tacoma":
+                    campuses["tacoma"]=True
                 else:
                     pass
         return campuses
