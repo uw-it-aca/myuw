@@ -22,13 +22,13 @@ var Quarters = {
         }
 	
 	var path = window.location.pathname;
-	var visual = (path.match(/(\/visual)/)
-		      ? "/visual"
-		      : "");
+	var urlprefix = "/mobile/next" + (path.match(/(\/visual)/)
+					  ? "/visual"
+					  : "");
         source = $("#quarterlist").html();
         template = Handlebars.compile(source);
         $("#courselist").html(template({ 
-	    "visual" : visual,
+	    "urlprefix" : urlprefix,
 	    "terms" : data.terms }));
     }
 };
