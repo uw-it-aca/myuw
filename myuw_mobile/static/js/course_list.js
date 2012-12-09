@@ -11,17 +11,23 @@ var CourseList = {
 
         WSData.normalize_instructors();
         var course_data = WSData.course_data();
+
+        $("#page-header").page_header({
+	    year: course_data.year, 
+	    quarter: course_data.quarter,
+	    view_name: 'Courses',
+	    on_current_list: true
+	});
+
+
         var index = 0;
         for (index = 0; index < course_data.sections.length; index++) {
             course_data.sections[index].index = index;
-            if (course_data.sections[index].class_website_url || course_data.sections[index].canvas_url) {
+            if (course_data.sections[index].class_website_url || 
+		course_data.sections[index].canvas_url) {
                 course_data.sections[index].has_resources = true;
             }
         }
-
-        source = $("#quarter-list").html();
-        template = Handlebars.compile(source);
-        $("#page-header").html(template({year: course_data.year, quarter: course_data.quarter}));
 
         // In case someone backs onto the page from a modal
         Modal.hide();
