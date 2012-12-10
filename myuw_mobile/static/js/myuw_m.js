@@ -47,7 +47,7 @@ $(document).ready(function() {
 
     // converts date string into 12 hour am/pm display
     Handlebars.registerHelper("formatDateAsTimeAMPM", function(date_str) {
-        var date = new Date(date_str);
+        var date = date_from_string(date_str);
         var hours = date.getHours();
         var minutes = date.getMinutes();
         var am_pm;
@@ -66,7 +66,7 @@ $(document).ready(function() {
 
     // converts date string into a day display
     Handlebars.registerHelper("formatDateAsDate", function(date_str) {
-        var date = new Date(date_str);
+        var date = date_from_string(date_str);
         var day_of_week = date.getDay();
         var month_num = date.getMonth();
         var day_of_month = date.getDate();
@@ -79,7 +79,7 @@ $(document).ready(function() {
 
     // converts date string into the label for the final exams schedule
     Handlebars.registerHelper("formatDateAsFinalsDay", function(date_str, days_back) {
-        var date = new Date(date_str);
+        var date = date_from_string(date_str);
         date.setDate(date.getDate() - days_back);
         var day_of_week = date.getDay();
         var month_num = date.getMonth();
@@ -406,4 +406,17 @@ var showError = function() {
     template = Handlebars.compile(source);
     $("#courselist").html(template());
 };
+
+// The strings from our web service only work w/ the native Date parsing on chrome :(
+var date_from_string = function(date_string) {
+    var matches = date_string.match(/([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2})/);
+    if (!matches) {
+        return;
+    }
+    var date_object = new Date(matches[1], (parseInt(matches[2], 10) - 1), parseInt(matches[3], 10), parseInt(matches[4], 10), parseInt(matches[5], 10));
+    
+    return date_object;
+};
+
+
 

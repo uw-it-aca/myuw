@@ -8,8 +8,8 @@ var FinalExams = {
     },
 
     sort_by_finals_date: function(a, b) {
-        var a_date = new Date(a.final_exam.start_date);
-        var b_date = new Date(b.final_exam.start_date);
+        var a_date = date_from_string(a.final_exam.start_date);
+        var b_date = date_from_string(b.final_exam.start_date);
 
         return a_date - b_date;
     },
@@ -19,7 +19,7 @@ var FinalExams = {
         var tbd_or_nonexistent = [];
         var scheduled_finals = [];
 
-        var last_day_of_finals = new Date(course_data.term.last_final_exam_date);
+        var last_day_of_finals = date_from_string(course_data.term.last_final_exam_date);
         var max_date = last_day_of_finals;
         var min_date;
 
@@ -39,7 +39,7 @@ var FinalExams = {
             section.index = index;
             if (section.final_exam) {
                 var final_exam = section.final_exam;
-                var start_date = new Date(final_exam.start_date);
+                var start_date = date_from_string(final_exam.start_date);
 
                 if (final_exam.start_date) {
                     if (max_date == null || max_date < start_date) {
@@ -149,8 +149,8 @@ var FinalExams = {
             var section = sections_with_finals[index];
             var final_exam = section.final_exam;
 
-            var start_date = new Date(final_exam.start_date);
-            var end_date = new Date(final_exam.end_date);
+            var start_date = date_from_string(final_exam.start_date);
+            var end_date = date_from_string(final_exam.end_date);
 
             if (start_date.getDay() == FinalExams.SATURDAY) {
                 visual_data.has_7_days = true;
