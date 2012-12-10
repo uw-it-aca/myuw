@@ -7,6 +7,12 @@ var FinalExams = {
         WSData.fetch_course_data(FinalExams.render_exams, [course_index]);
     },
 
+    sort_by_finals_date: function(a, b) {
+        var a_date = new Date(a.final_exam.start_date);
+        var b_date = new Date(b.final_exam.start_date);
+
+        return a_date - b_date;
+    },
     render_exams: function(course_index) {
         var course_data = WSData.course_data();
         var index = 0;
@@ -74,7 +80,7 @@ var FinalExams = {
         var visual_data = {};
 
         if (show_list_instead_of_visual) {
-            over_one_week = scheduled_finals;
+            over_one_week = scheduled_finals.sort(FinalExams.sort_by_finals_date);
         }
         else if (course_data.quarter != "summer") {
             // summer quarter doesn't have properly scheduled finals
