@@ -76,13 +76,15 @@ var FinalExams = {
         if (show_list_instead_of_visual) {
             over_one_week = scheduled_finals;
         }
-        else {
+        else if (course_data.quarter != "summer") {
+            // summer quarter doesn't have properly scheduled finals
             visual_data = FinalExams._build_visual_schedule_data(scheduled_finals, course_data.term);
         }
 
         var template_data = {
             tbd: tbd_or_nonexistent,
             over_one_week: over_one_week,
+            is_summer: (course_data.quarter == "summer"),
             visual_data: visual_data,
         };
 
