@@ -170,7 +170,8 @@ var FinalExams = {
                 curriculum: section.curriculum_abbr,
                 course_number: section.course_number,
                 section_id: section.section_id,
-                section_index: section.index
+                section_index: section.index,
+                is_confirmed: final_exam.is_confirmed
             };
 
             var days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];

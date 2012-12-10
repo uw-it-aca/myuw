@@ -25,6 +25,12 @@
                  <br />
                  End: {{ formatDateAsTimeAMPM final_exam.end_date }}
                  <br />
+                 {{#if final_exam.is_confirmed }}
+                 Confirmed
+                 {{else}}
+                 Not confirmed
+                 {{/if}}
+                 <br />
 
                       {{#if instructors}}
                      <dt>Instructor</dt>
