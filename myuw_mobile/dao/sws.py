@@ -52,19 +52,15 @@ class Quarter:
                           timer)
         return None
 
-    def get_next_autumn_quarter(self):
+    def get_term(self, year, quarter):
         """
-        This function is to get the autumn quarter when in the Spring quarter
-        Returns term information for the next autumn term in the same year.
+        Returns term object by year and quarterfor
         """
-        cur_quar_year = self.get_cur_quarter().year
         logid = ('sws.get_term_by_year_and_quarter ' + 
-                 str(cur_quar_year) +
-                 ',autumn')
-        #print "///////////get_next_autumn_quarter" + logid
+                 str(year) + "," + quarter);
         timer = Timer()
         try:
-            return SWS().get_term_by_year_and_quarter(cur_quar_year, 'autumn')
+            return SWS().get_term_by_year_and_quarter(year, quarter)
         except Exception as ex:
             log_exception(Quarter._logger, 
                           logid,
@@ -75,6 +71,12 @@ class Quarter:
                           timer)
         return None
 
+    def get_next_autumn_quarter(self):
+        """
+        This function is to get the autumn quarter when in the Spring quarter
+        Returns term information for the next autumn term in the same year.
+        """
+        return self.get_term(self.get_cur_quarter().year, 'autumn')
 
 
 class Schedule:
@@ -89,7 +91,7 @@ class Schedule:
     def get_regid(self):
         return Person().get_regid()
 
-    def _get_schedule(self, term):
+    def get_schedule(self, term):
         """ 
         Return the actively enrolled sections in the given term/quarter 
         """
@@ -98,7 +100,6 @@ class Schedule:
             return None
         logid = ('sws.schedule_for_regid_and_term ' + 
                  str(regid) + ',' + str(term.year) + ',' + term.quarter)
-        #print "///////////" + logid
 
         timer = Timer()
         try:
@@ -126,21 +127,21 @@ class Schedule:
         """
         Return the actively enrolled sections in the current quarter 
         """
-        return self._get_schedule(Quarter().get_cur_quarter())
+        return self.get_schedule(Quarter().get_cur_quarter())
 
     def get_next_quarter_schedule(self):
         """ 
         Return the actively enrolled sections in the next quarter 
         """
-        return self._get_schedule(Quarter().get_next_quarter())
+        return self.get_schedule(Quarter().get_next_quarter())
 
     def get_next_autumn_quarter_schedule(self):
         """
         Return the actively enrolled sections in the next autumn quarter 
         """
-        return self._get_schedule(Quarter().get_next_autumn_quarter())
+        return self.get_schedule(Quarter().get_next_autumn_quarter())
 
-    def get_summer_term(self, registered_summer_sections):
+    def _get_summer_term(self, registered_summer_sections):
         """
         Return summer registered terms
         """
@@ -181,7 +182,7 @@ class Schedule:
         if next_quar_sche is not None and len(next_quar_sche.sections) > 0:
 
             if next_quarter.quarter == "summer":
-                sumr_tms = self.get_summer_term(next_quar_sche.sections)
+                sumr_tms = self._get_summer_term(next_quar_sche.sections)
 
                 if sumr_tms["A_term"] and sumr_tms["B_term"] and sumr_tms["Full_term"] or sumr_tms["A_term"] and sumr_tms["Full_term"] or sumr_tms["B_term"] and sumr_tms["Full_term"] or sumr_tms["A_term"] and sumr_tms["B_term"]:
 

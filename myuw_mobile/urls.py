@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from myuw_mobile.views.page import index
 from myuw_mobile.views.mobile_login import user_login
 from myuw_mobile.views.support import support
-from myuw_mobile.views.schedule_api import StudClasScheCurQuar
+from myuw_mobile.views.schedule_api import StudClasScheCurQuar, StudClasScheFutureQuar
 from myuw_mobile.views.contact_api import InstructorContact
 from myuw_mobile.views.textbook_api import TextbookCurQuar
 from myuw_mobile.views.links_api import QuickLinks
@@ -26,7 +26,11 @@ urlpatterns = patterns('myuw_mobile.views',
     url(r'logout', Logout.as_view()),
     url(r'^$', 'page.index'),
     url(r'^api/v1/books/current/$', TextbookCurQuar().run),
+#    url(r'^api/v1/book/(?P<year>\d{4}),(?P<quarter>[a-z]+)(?P<summer_term>[-,ABterm]*)$',
+#        TextbookFutureQuar().run),
     url(r'^api/v1/schedule/current/$', StudClasScheCurQuar().run),
+    url(r'^api/v1/schedule/(?P<year>\d{4}),(?P<quarter>[a-z]+)(?P<summer_term>[-,ABterm]*)$',
+        StudClasScheFutureQuar().run),
     url(r'^api/v1/links/$', QuickLinks().run),
     url(r'^api/v1/person/(?P<regid>.*)$', InstructorContact().run),
     url(r'^api/v1/finabala/$', AccountBalances().run),
