@@ -1165,6 +1165,12 @@ body {
   margin-bottom: 5px;
   overflow-y: auto;
 }
+.final-exam-modal-label {
+  width: 100%;
+  background-color: #bbb;
+  text-align: center;
+  font-weight: bold;
+}
 .table-meeting {
   width: 98%;
   border-collapse: separate;

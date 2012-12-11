@@ -9,29 +9,28 @@
                     <span class="shortTitle">{{ course_title }}</span>
                 </h3>
                  </div>
+                 <div class="final-exam-modal-label">Final Exam</div>
                  <!-- /heading -->
                  <!-- body -->
                  <div id="course{{color_id}}" class="modal-body">
-                 Final Exam.
+                 
 
-                 <br />
-                 Building: {{ final_exam.building }}
-                 <br />
-                 Room: {{ final_exam.room_number }}
-                 <br />
-                 Date: {{ formatDateAsDate final_exam.start_date }}
-                 <br />
-                 Start: {{ formatDateAsTimeAMPM final_exam.start_date }}
-                 <br />
-                 End: {{ formatDateAsTimeAMPM final_exam.end_date }}
-                 <br />
-                 {{#if final_exam.is_confirmed }}
+
+				<table class="table-meeting">
+				<tr>
+					<td>{{ formatDateAsDate final_exam.start_date }}</td>
+					<td>{{ formatDateAsTimeAMPM final_exam.start_date }} - {{ formatDateAsTimeAMPM final_exam.end_date }}</td>
+					<td>{{ final_exam.building }} {{ final_exam.room_number }}</td>
+                 </tr>
+                 </table>
+
+				<dl class="dl-horizontal">
+					 <dt>Status</dt>
+					 	<dd> {{#if final_exam.is_confirmed }}
                  Confirmed
                  {{else}}
                  Not confirmed
-                 {{/if}}
-                 <br />
-
+                 {{/if}}</dd>
                       {{#if instructors}}
                      <dt>Instructor</dt>
                       <dd>
@@ -47,7 +46,7 @@
                             </ul>
                         </dd>
                         {{/if}}
-
+				</dl>
 
  <button class="btn btn-close close_modal">Close</button>
                 </div>
