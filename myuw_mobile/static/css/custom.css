@@ -1171,6 +1171,21 @@ body {
   text-align: center;
   font-weight: bold;
 }
+.fallback-exams-list {
+  background-color: #eee;
+  margin-bottom: 10px;
+}
+.fallback-exams-list h3 {
+  text-transform: uppercase;
+  line-height: 1.1em;
+  color: #fff;
+  font-weight: normal;
+  padding: 2px 0 2px 5px;
+}
+.fallback-exams-list .fallback-exams-details {
+  height: 100%;
+  padding-left: 10px;
+}
 .table-meeting {
   width: 98%;
   border-collapse: separate;
