@@ -21,12 +21,9 @@ var VisualSchedule = {
         VisualSchedule.shown_am_marker = false;
         var course_data = WSData.course_data();
 
-        $("#page-header").page_header({
-            year: course_data.year,
-            quarter: course_data.quarter,
-            view_name: 'Courses',
-            on_current_visual: true
-        });
+        var source = $("#quarter-visual").html();
+        var template = Handlebars.compile(source);
+        $("#page-header").html(template({year: course_data.year, quarter: course_data.quarter}));
 
         var visual_data = {
             latest_ending: 0,

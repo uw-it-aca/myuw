@@ -41,11 +41,9 @@ var TextBooks = {
 
         $("#courselist").html(template(template_data));
 
-        $("#page-header").page_header({
-            year: course_data.year,
-            quarter: course_data.quarter,
-            view_name: 'Textbooks'
-        });
+        source = $("#quarter-books").html();
+        template = Handlebars.compile(source);
+        $("#page-header").html(template({year: course_data.year, quarter: course_data.quarter}));
 
         $(".display_list_sched").bind("click", function(ev) {
             var hist = window.History;

@@ -26,11 +26,9 @@ var FinalExams = {
         // If there's something unexpected, show a list, not the visual schedule
         var show_list_instead_of_visual = false;
 
-        $("#page-header").page_header({
-            year: course_data.year,
-            quarter: course_data.quarter,
-            view_name: 'Final Exams'
-        });
+	source = $("#quarter-list-finals").html();
+        template = Handlebars.compile(source);
+        $("#page-header").html(template({year: course_data.year, quarter: course_data.quarter}));
 
         for (index = 0; index < course_data.sections.length; index++) {
             var section = course_data.sections[index];
