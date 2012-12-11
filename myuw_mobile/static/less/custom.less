@@ -678,6 +678,12 @@ color: darken(@grayLighter,10%);
 	.clearfix();
 }
 //visual schedule height
+
+.final-visual-schedule {
+
+}
+
+// visual schedule height
 //0-6 hrs
 .six-hour {
 height: 20em;
@@ -690,6 +696,7 @@ height: 20em;
 .twelve-plus {
 	height: 40em;
 }
+
 
 @time-bar-width: 8%;
 .time-bar {
@@ -706,9 +713,28 @@ height: 20em;
 	height:93%; 
 	top: 7%;
 //	padding-left: 1px;
+}
+
+@time-bar-width: 8%;
+.exam-time-bar {
+	margin-left: -2px;
+	//.border-left-radius(4px);
+	width: @time-bar-width;
+	border-right: 2px groove @grayLighter;
+	//border-top: 1px groove @grayLighter;
+	position: relative;
+	display:inline-block;
+	float: left;
+	//background-color: @white;
+	font-weight: bold;
+	height:90%; 
+	top: 10%;
+//	padding-left: 1px;
 
 
 }
+
+
 .time-bar p {
 
 
@@ -739,13 +765,31 @@ height: 20em;
 	
 	p {color:#333;}
 }
+
+.seven-day {
+  //width: 13.1428571428571%;
+  width: (97% - 5) / 7;
+  height: 100%;
+  position: relative;
+  display: inline-block;
+  float: left;
+  color: #ffffff;
+}
+.seven-day p {
+  color: #333;
+}
+
+.final-visual-schedule .day-label {height:10%;}
+
+.seven-day span.final-date {font-size:85%;}
+
 /*
 .six-day:last-child, .five-day:last-child {
 	border-right: none;
 
 }*/
 
-.six-day:first-child, .five-day:first-child {
+.six-day:first-child, seven-day:first-child, .five-day:first-child {
 	border-left: 2px groove @grayLighter;
 	
 
@@ -753,7 +797,7 @@ height: 20em;
 
 
 
-.six-day:nth-of-type(even), .five-day:nth-of-type(odd) {
+.seven-day:nth-of-type(odd), .six-day:nth-of-type(even), .five-day:nth-of-type(odd) {
 
 	//background-color: darken(@grayLighter,3%);
 	background-color: rgba(0,0,0,.05);
@@ -903,6 +947,7 @@ display: table-cell;
 		width:70px;
 		height:38px;
 		}
+	h6 {margin:20px 0;}
 }	
 
 .books-list {

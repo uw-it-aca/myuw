@@ -10,9 +10,9 @@
     {{#with visual_data}}
         <div class="row-fluid">
         <div class="span12">
-        <div class="visual-schedule {{schedule_hours_class}}" >
+        <div class="final-visual-schedule visual-schedule {{schedule_hours_class}}" >
 			
-            <div class="time-bar day-col2 hours-{{total_hours}} clearfix ">
+            <div class="exam-time-bar day-col2 hours-{{total_hours}} clearfix ">
 			
             {{#each display_hours}}
                 <div class="hour-label" style="position:absolute;top:{{time_percentage position ../start_time ../end_time }}%;"><p>{{format_schedule_hour hour}}</p></div>
@@ -20,13 +20,13 @@
             </div>
             {{#if has_7_days}}
             <div class="seven-day">
-                <div class="day-label">SAT <br /> {{ formatDateAsFinalsDay end_date 6}}</div>
+                <div class="day-label">SAT <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 6}}</span></div>
                 <div class="day-col hours-{{total_hours}}">
                 {{ show_days_finals saturday start_time end_time }}
                 </div>
             </div>
             <div class="seven-day">
-                <div class="day-label">SUN <br /> {{ formatDateAsFinalsDay end_date 5}}</div>
+                <div class="day-label">SUN <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 5}}</span></div>
                 <div class="day-col hours-{{total_hours}}">
                 {{ show_days_finals sunday start_time end_time }}
                 </div>
@@ -36,35 +36,35 @@
 
 
             <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
-                <div class="day-label">MON <br /> {{ formatDateAsFinalsDay end_date 4}}</div>
+                <div class="day-label">MON <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 4}}</span></div>
                 <div class="day-col hours-{{total_hours}}">
                 {{ show_days_finals monday start_time end_time }}
                 </div>
             </div>
 
             <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
-                <div class="day-label">TUE <br /> {{ formatDateAsFinalsDay end_date 3}}</div>
+                <div class="day-label">TUE <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 3}}</span></div>
                 <div class="day-col hours-{{total_hours}}">
                 {{ show_days_finals tuesday start_time end_time }}
                 </div>
             </div>
 
             <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
-                <div class="day-label">WED <br /> {{ formatDateAsFinalsDay end_date 2}}</div>
+                <div class="day-label">WED <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 2}}</span></div>
                 <div class="day-col hours-{{total_hours}}">
                 {{ show_days_finals wednesday start_time end_time }}
                 </div>
             </div>
 
             <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
-                <div class="day-label">THU <br /> {{ formatDateAsFinalsDay end_date 1}}</div>
+                <div class="day-label">THU <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 1}}</span></div>
                 <div class="day-col hours-{{total_hours}}">
                 {{ show_days_finals thursday start_time end_time }}
                 </div>
             </div>
 
             <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
-                <div class="day-label">FRI <br /> {{ formatDateAsFinalsDay end_date 0}}</div>
+                <div class="day-label">FRI <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 0}}</span></div>
                 <div class="day-col hours-{{total_hours}}">
                 {{ show_days_finals friday start_time end_time }}
                 </div>
@@ -93,15 +93,20 @@
     {{/if}}
 
     {{#if tbd}}
-    <p>Courses with final exam meeting times to be determined or courses with no final exam:</p>
+    <div class="courseTBD">
+    <h6>Courses with final exam meeting times to be determined or courses with no final exam:</h6>
     {{#each tbd}}
-        <div>
+    
+     <a href="#" class="show_section_details " rel="{{section_index}}"> <div class="c{{color_id}} visual-course pull-left"> <div class="visual-course-id">{{ curriculum_abbr }} {{course_number}}{{section_id}}</div> </div> </a>
+    
+       <!-- <div>
             <div class="c{{color_id}} c{{color_id}}Border">
                   <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}}{{section_id}}</span>
             </div>
-        </div>
+        </div> -->
     {{/each}}
     {{/if}}
+    </div>
     {{/if}}
     {% endtplhandlebars %}
 

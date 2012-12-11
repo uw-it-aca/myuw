@@ -1396,6 +1396,17 @@ abbr[title] {
   height: 93%;
   top: 7%;
 }
+.exam-time-bar {
+  margin-left: -2px;
+  width: 8%;
+  border-right: 2px groove #eeeeee;
+  position: relative;
+  display: inline-block;
+  float: left;
+  font-weight: bold;
+  height: 90%;
+  top: 10%;
+}
 .five-day {
   width: 18.4%;
   height: 100%;
@@ -1419,7 +1430,7 @@ abbr[title] {
   color: #333;
 }
 .seven-day {
-  width: 13.1428571428571%;
+  width: 13.142857142857142%;
   height: 100%;
   position: relative;
   display: inline-block;
@@ -1429,16 +1440,23 @@ abbr[title] {
 .seven-day p {
   color: #333;
 }
+.final-visual-schedule .day-label {
+  height: 10%;
+}
+.seven-day span.final-date {
+  font-size: 85%;
+}
 /*
 .six-day:last-child, .five-day:last-child {
 	border-right: none;
 
 }*/
 .six-day:first-child,
-.seven-day:first-child,
+seven-day:first-child,
 .five-day:first-child {
   border-left: 2px groove #eeeeee;
 }
+.seven-day:nth-of-type(odd),
 .six-day:nth-of-type(even),
 .five-day:nth-of-type(odd) {
   background-color: rgba(0, 0, 0, 0.05);
@@ -1571,6 +1589,9 @@ abbr[title] {
   margin: 0 5px 5px 0;
   width: 70px;
   height: 38px;
+}
+.courseTBD h6 {
+  margin: 20px 0;
 }
 .books-list h4 {
   color: #fff;
