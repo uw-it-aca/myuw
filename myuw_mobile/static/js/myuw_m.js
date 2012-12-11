@@ -45,6 +45,23 @@ $(document).ready(function() {
         return formatted.join(":");
     });
 
+    // converts date string into 12 hour display - no am/pm
+    Handlebars.registerHelper("formatDateAsTime", function(date_str) {
+        var date = date_from_string(date_str);
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        if (minutes < 10) {
+            minutes = "0"+minutes;
+        }
+
+        if (hours > 12) {
+            hours = hours - 12;
+        }
+        return hours + ":" + minutes;
+    });
+
+
+
     // converts date string into 12 hour am/pm display
     Handlebars.registerHelper("formatDateAsTimeAMPM", function(date_str) {
         var date = date_from_string(date_str);
@@ -58,6 +75,9 @@ $(document).ready(function() {
             am_pm = "PM";
         }
 
+        if (minutes < 10) {
+            minutes = "0"+minutes;
+        }
         if (hours > 12) {
             hours = hours - 12;
         }

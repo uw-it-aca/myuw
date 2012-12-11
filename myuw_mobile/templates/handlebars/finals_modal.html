@@ -20,7 +20,7 @@
 				<tr>
                     {{#if final_exam.start_date}}
 					<td>{{ formatDateAsDate final_exam.start_date }}</td>
-					<td>{{ formatDateAsTimeAMPM final_exam.start_date }} - {{ formatDateAsTimeAMPM final_exam.end_date }}</td>
+					<td>{{ formatDateAsTime final_exam.start_date }} - {{ formatDateAsTimeAMPM final_exam.end_date }}</td>
 					<td>{{ final_exam.building }} {{ final_exam.room_number }}</td>
                     {{/if}}
                  </tr>
