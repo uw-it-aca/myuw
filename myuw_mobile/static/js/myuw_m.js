@@ -94,7 +94,7 @@ $(document).ready(function() {
         var day_names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         var month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-        return day_names[day_of_week] + " " + month_names[month_num] + " " + day_of_month;
+        return new Handlebars.SafeString(day_names[day_of_week] + "<br />" + month_names[month_num] + " " + day_of_month);
     });
 
     // converts date string into the label for the final exams schedule
