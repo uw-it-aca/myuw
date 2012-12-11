@@ -13,22 +13,22 @@ var Quarters = {
 
         var data = WSData.oquarter_data();
 
-	if (data.terms.length == 0) {
-	    $("#courselist").no_courses({
-		"which_quarter_or_term" : "in future quarters",
-		"present_addi_links" : false
-	    });
+        if (data.terms.length == 0) {
+            $("#courselist").no_courses({
+                "which_quarter_or_term" : "in future quarters",
+                "present_addi_links" : false
+            });
             return;
         }
 	
-	var path = window.location.pathname;
-	var urlprefix = "/mobile/next" + (path.match(/(\/visual)/)
-					  ? "/visual"
-					  : "");
+        var path = window.location.pathname;
+        var urlprefix = "/mobile/next" + (path.match(/(\/visual)/)
+                                          ? "/visual"
+                                          : "");
         source = $("#quarterlist").html();
         template = Handlebars.compile(source);
         $("#courselist").html(template({ 
-	    "urlprefix" : urlprefix,
-	    "terms" : data.terms }));
+            "urlprefix" : urlprefix,
+            "terms" : data.terms }));
     }
 };
