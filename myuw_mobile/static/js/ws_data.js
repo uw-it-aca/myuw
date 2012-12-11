@@ -171,8 +171,16 @@ WSData = {
             } 
         },
 
-    normalize_instructors: function() {
-        var data = WSData.course_data();
+
+    normalize_instructors_for_term: function(term) {
+        WSData._normalize_instructors(WSData.course_data_for_term(term));
+    },
+
+    normalize_instructors_for_current_term: function() {
+        WSData._normalize_instructors(WSData.current_course_data());
+    },
+
+    _normalize_instructors: function(data) {
         if (!data.sections.length) {
             return;
         }
@@ -200,6 +208,13 @@ WSData = {
                 }
             }
         }
+    },
+
+    normalize_instructors: function() {
+        if (window.console) {
+            console.warn("Use WSData.normalize_instructors_for_current_term");
+        }
+        WSData.normalize_instructors_for_current_term();
     },
 
     fetch_financial_data: function(callback, args) {

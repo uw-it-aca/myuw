@@ -2,9 +2,14 @@ var FinalExams = {
     FRIDAY: 5,
     SATURDAY: 6,
     SUNDAY: 0,
-    show_finals: function(course_index) {
+    show_finals: function(term, course_index) {
         showLoading();
-        WSData.fetch_course_data(FinalExams.render_exams, [course_index]);
+        if (term) {
+            WSData.fetch_course_data_for_term(term, FinalExams.render_exams, [term, course_index]);
+        }
+        else {
+            WSData.fetch_current_course_data(FinalExams.render_exams, [term, course_index]);
+        }
     },
 
     sort_by_finals_date: function(a, b) {
@@ -13,8 +18,14 @@ var FinalExams = {
 
         return a_date - b_date;
     },
-    render_exams: function(course_index) {
-        var course_data = WSData.course_data();
+    render_exams: function(term, course_index) {
+        var course_data;
+        if (term) {
+            course_data = WSData.course_data_for_term(term);
+        }
+        else {
+            course_data = WSData.current_course_data();
+        }
         var index = 0;
         var tbd_or_nonexistent = [];
         var scheduled_finals = [];
@@ -26,7 +37,7 @@ var FinalExams = {
         // If there's something unexpected, show a list, not the visual schedule
         var show_list_instead_of_visual = false;
 
-	source = $("#quarter-list-finals").html();
+        source = $("#quarter-list-finals").html();
         template = Handlebars.compile(source);
         $("#page-header").html(template({year: course_data.year, quarter: course_data.quarter}));
 
@@ -86,6 +97,7 @@ var FinalExams = {
         }
 
         var template_data = {
+            term: term,
             tbd: tbd_or_nonexistent,
             over_one_week: over_one_week,
             is_summer: (course_data.quarter == "summer"),
@@ -101,7 +113,7 @@ var FinalExams = {
         }
         else {
             if (course_index < course_data.sections.length) {
-                FinalsModal.show_finals_modal(course_index);
+                FinalsModal.show_finals_modal(term, course_index);
             }
         }
 
@@ -109,14 +121,25 @@ var FinalExams = {
             var course_id = this.rel;
             var log_course_id = ev.currentTarget.getAttribute("class").replace(/[^a-z0-9]/gi, '_');
 
-            WSData.log_interaction("open_finals_modal_"+log_course_id);
-            var hist = window.History;
-            hist.pushState({
-                state: "final_exams",
-                course_index: course_id
-            },  "", "/mobile/final_exams/"+course_id);
+            if (term) {
+                var logging_term = term.replace(/[^a-z0-9]/gi, '_');
+                WSData.log_interaction("open_finals_modal_"+log_course_id+"_term_"+logging_term);
+                var hist = window.History;
+                hist.pushState({
+                    state: "final_exams",
+                    course_index: course_id,
+                    term: term
+                },  "", "/mobile/final_exams/"+term+"/"+course_id);
+            }
+            else {
+                WSData.log_interaction("open_finals_modal_"+log_course_id);
+                var hist = window.History;
+                hist.pushState({
+                    state: "final_exams",
+                    course_index: course_id
+                },  "", "/mobile/final_exams/"+course_id);
 
-            CourseModal.show_course_modal(course_id);
+            }
 
             return false;
         });

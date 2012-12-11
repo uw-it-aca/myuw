@@ -22,13 +22,13 @@
             <div class="seven-day">
                 <div class="day-label">SAT <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 6}}</span></div>
                 <div class="day-col hours-{{total_hours}}">
-                {{ show_days_finals saturday start_time end_time }}
+                {{ show_days_finals saturday start_time end_time ../term}}
                 </div>
             </div>
             <div class="seven-day">
                 <div class="day-label">SUN <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 5}}</span></div>
                 <div class="day-col hours-{{total_hours}}">
-                {{ show_days_finals sunday start_time end_time }}
+                {{ show_days_finals sunday start_time end_time ../term}}
                 </div>
             </div>
 
@@ -38,35 +38,35 @@
             <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
                 <div class="day-label">MON <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 4}}</span></div>
                 <div class="day-col hours-{{total_hours}}">
-                {{ show_days_finals monday start_time end_time }}
+                {{ show_days_finals monday start_time end_time ../term}}
                 </div>
             </div>
 
             <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
                 <div class="day-label">TUE <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 3}}</span></div>
                 <div class="day-col hours-{{total_hours}}">
-                {{ show_days_finals tuesday start_time end_time }}
+                {{ show_days_finals tuesday start_time end_time ../term}}
                 </div>
             </div>
 
             <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
                 <div class="day-label">WED <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 2}}</span></div>
                 <div class="day-col hours-{{total_hours}}">
-                {{ show_days_finals wednesday start_time end_time }}
+                {{ show_days_finals wednesday start_time end_time ../term}}
                 </div>
             </div>
 
             <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
                 <div class="day-label">THU <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 1}}</span></div>
                 <div class="day-col hours-{{total_hours}}">
-                {{ show_days_finals thursday start_time end_time }}
+                {{ show_days_finals thursday start_time end_time ../term}}
                 </div>
             </div>
 
             <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
                 <div class="day-label">FRI <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 0}}</span></div>
                 <div class="day-col hours-{{total_hours}}">
-                {{ show_days_finals friday start_time end_time }}
+                {{ show_days_finals friday start_time end_time ../term}}
                 </div>
             </div>
 
@@ -110,7 +110,11 @@
 
         {% tplhandlebars "finals_schedule_day" %}
             {{#each meetings}}
+            {{#if ../term}}
+            <a href="/mobile/final_exams/{{../../term}}/{{section_index}}" class="show_section_details {{curriculum}}_{{course_number}}{{section_id}}" rel="{{section_index}}">
+            {{else}}
             <a href="/mobile/final_exams/{{section_index}}" class="show_section_details {{curriculum}}_{{course_number}}{{section_id}}" rel="{{section_index}}">
+            {{/if}}
             <div class="c{{color_id}} visual-course" style="position: absolute; top:{{time_percentage start ../start_time ../end_time}}%; height:{{time_percentage_height start end ../start_time ../end_time}}%;">
             <div class="visual-course-id">{{curriculum}} {{course_number}}{{section_id}}</div>
             </div>
