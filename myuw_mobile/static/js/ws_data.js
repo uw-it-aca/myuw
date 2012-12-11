@@ -1,5 +1,5 @@
 WSData = {
-    _course_data: null,
+    _course_data: {},
     _book_data: null,
     _link_data: null,
     _instructor_data: {},
@@ -10,8 +10,19 @@ WSData = {
         return WSData._book_data;
     },
 
+    current_course_data: function() {
+        return WSData._course_data["current"];
+    },
+
+    course_data_for_term: function(term) {
+        return WSData._course_data[term];
+    },
+
     course_data: function() {
-        return WSData._course_data;
+        if (window.console) {
+            console.warn("Use WSData.current_course_data");
+        }
+        return WSData.current_course_data();
     },
 
     link_data: function() {
@@ -55,49 +66,61 @@ WSData = {
         },
 
 
-    fetch_course_data: function(callback, args) {
-            if (WSData._course_data === null) {
-                $.ajax({
-                    url: "/mobile/api/v1/schedule/current/",
-                    dataType: "JSON",
+    fetch_current_course_data: function(callback, args) {
+        return WSData.fetch_course_data_for_term("current", callback, args);
+    },
 
-                    type: "GET",
-                    accepts: {html: "text/html"},
-                    success: function(results) {
-                        // MUWM-549 and MUWM-552
-                        var sections = results.sections;
-                        var section_count = sections.length;
-                        for (var index = 0; index < section_count; index++) {
-                            section = sections[index];
+    fetch_course_data_for_term: function(term, callback, args) {
+        if (!WSData._course_data.length) {
+            $.ajax({
+                url: "/mobile/api/v1/schedule/"+term,
+                dataType: "JSON",
 
-                            var canvas_url = section["canvas_url"];
-                            if (canvas_url) {
-                                if (section["class_website_url"] == canvas_url) {
-                                    section["class_website_url"] = null;
-                                }
-                                var matches = canvas_url.match(/\/([0-9]+)$/);
-                                var canvas_id = matches[1];
-                                var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    // MUWM-549 and MUWM-552
+                    var sections = results.sections;
+                    var section_count = sections.length;
+                    for (var index = 0; index < section_count; index++) {
+                        section = sections[index];
 
-                                if (section["class_website_url"] == alternate_url) {
-                                    section["class_website_url"] = null;
-                                }
+                        var canvas_url = section["canvas_url"];
+                        if (canvas_url) {
+                            if (section["class_website_url"] == canvas_url) {
+                                section["class_website_url"] = null;
+                            }
+                            var matches = canvas_url.match(/\/([0-9]+)$/);
+                            var canvas_id = matches[1];
+                            var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
+
+                            if (section["class_website_url"] == alternate_url) {
+                                section["class_website_url"] = null;
                             }
                         }
-                        WSData._course_data = results;
-                        callback.apply(null, args);
-                    },
-                    error: function(xhr, status, error) {
-                        showError();
                     }
-                });
-            }
-            else {
-                window.setTimeout(function() {
+                    WSData._course_data[term] = results;
                     callback.apply(null, args);
-                }, 0);
-            }
-        },
+                },
+                error: function(xhr, status, error) {
+                    showError();
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+
+    },
+
+    fetch_course_data: function(callback, args) {
+        if (window.console) {
+            console.warn("Use WSData.fetch_current_course_data instead");
+        }
+        return WSData.fetch_current_course_data(callback, args);
+    },
 
     fetch_link_data: function(callback, args) {
             if (WSData._link_data === null) {
