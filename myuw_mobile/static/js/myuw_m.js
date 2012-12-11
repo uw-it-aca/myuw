@@ -409,6 +409,9 @@ var showError = function() {
 
 // The strings from our web service only work w/ the native Date parsing on chrome :(
 var date_from_string = function(date_string) {
+    if (!date_string) {
+        return;
+    }
     var matches = date_string.match(/([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2})/);
     if (!matches) {
         return;
