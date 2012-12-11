@@ -235,6 +235,11 @@ class Schedule:
         buildings = {}
         building_dao = Building()
         for section in schedule.sections:
+            if section.final_exam and section.final_exam.building:
+                code = section.final_exam.building
+                if not code in buildings:
+                    building = building_dao.get_building_from_code(code)
+                    buildings[code] = building
             for meeting in section.meetings:
                 if not meeting.building_to_be_arranged:
                     if not meeting.building in buildings:

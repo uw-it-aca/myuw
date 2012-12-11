@@ -58,7 +58,7 @@ var FinalsModal = {
         $(".show_map_modal").on("click", function(ev) {
             var building = ev.currentTarget.getAttribute("rel");
             building = building.replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("show_map_from_course_modal_"+building);
+            WSData.log_interaction("show_map_from_final_modal_"+building);
         });
     }
 };

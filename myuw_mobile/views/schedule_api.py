@@ -86,6 +86,7 @@ def make_sche_api_response(schedule, summer_term=""):
     # about color ids, backfill that data
     json_data = schedule.json_data()
 
+
     section_index = 0
     for section in schedule.sections:
         section_data = json_data["sections"][section_index]
@@ -99,6 +100,14 @@ def make_sche_api_response(schedule, summer_term=""):
             canvas_name = enrollment.course_name
             section_data["canvas_url"] = canvas_url
             section_data["canvas_name"] = canvas_name
+
+        # MUWM-596
+        if section.final_exam.building:
+            building = buildings[section.final_exam.building]
+            if building:
+                section_data["final_exam"]["longitude"] = building.longitude
+                section_data["final_exam"]["latitude"] = building.latitude
+                section_data["final_exam"]["building_name"] = building.name
 
         # Also backfill the meeting building data
         meeting_index = 0

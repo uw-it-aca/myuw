@@ -21,7 +21,12 @@
                     {{#if final_exam.start_date}}
 					<td>{{ formatDateAsDate final_exam.start_date }}</td>
 					<td>{{ formatDateAsTime final_exam.start_date }} - {{ formatDateAsTimeAMPM final_exam.end_date }}</td>
-					<td>{{ final_exam.building }} {{ final_exam.room_number }}</td>
+					<td>{{#if final_exam.latitude}}
+                    <a href="http://maps.google.com/maps?q={{ final_exam.latitude }},{{ final_exam.longitude }}+({{encodeForMaps final_exam.building_name }})&z=18" target="_blank" class="show_map_modal" rel="{{final_exam.building_name}}">
+                    {{/if}}
+                        {{ final_exam.building }} {{ final_exam.room_number }}
+                        {{#if latitude}}</a>{{/if}}
+                        </td>
                     {{/if}}
                  </tr>
                  </table>
