@@ -1,0 +1,9 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "quarter-list-finals" %}
+<h2 id="quarter-info">
+  {{ucfirst quarter}} {{year}} Final Exams
+  {{ucfirst quarter}} {{year}} Courses
+  <a class="" href="/mobile/final_exams" title="Back to current quarter"><i class=""></i> Back to current quarter</a>
+  {{summer_term}}
+</h2>
+{% endtplhandlebars %}

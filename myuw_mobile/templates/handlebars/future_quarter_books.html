@@ -1,0 +1,8 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "quarter-books" %}
+<h2 id="quarter-info">
+  {{ucfirst quarter}} {{year}} Textbooks
+  <a class="" href="/mobile/textbooks" title="Back to current quarter"><i class=""></i> Back to current quarter</a>
+  {{summer_term}}
+</h2>
+{% endtplhandlebars %}
