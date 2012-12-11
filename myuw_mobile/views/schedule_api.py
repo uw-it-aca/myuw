@@ -102,7 +102,7 @@ def make_sche_api_response(schedule, summer_term=""):
             section_data["canvas_name"] = canvas_name
 
         # MUWM-596
-        if section.final_exam.building:
+        if section.final_exam and section.final_exam.building:
             building = buildings[section.final_exam.building]
             if building:
                 section_data["final_exam"]["longitude"] = building.longitude
