@@ -18,9 +18,11 @@
 
 				<table class="table-meeting">
 				<tr>
+                    {{#if final_exam.start_date}}
 					<td>{{ formatDateAsDate final_exam.start_date }}</td>
 					<td>{{ formatDateAsTimeAMPM final_exam.start_date }} - {{ formatDateAsTimeAMPM final_exam.end_date }}</td>
 					<td>{{ final_exam.building }} {{ final_exam.room_number }}</td>
+                    {{/if}}
                  </tr>
                  </table>
 
@@ -29,7 +31,11 @@
 					 	<dd> {{#if final_exam.is_confirmed }}
                  Confirmed
                  {{else}}
+                 {{#if final_exam.start_date}}
                  Not confirmed
+                 {{else}}
+                 No final exam, or non-traditional final exam
+                 {{/if}}
                  {{/if}}</dd>
                       {{#if instructors}}
                      <dt>Instructor</dt>

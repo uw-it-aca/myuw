@@ -96,8 +96,11 @@
     <div class="courseTBD">
     <h6>Courses with final exam meeting times to be determined or courses with no final exam:</h6>
     {{#each tbd}}
-    
-     <a href="/mobile/final_exams/{{section_index}}" class="show_section_details " rel="{{section_index}}"> <div class="c{{color_id}} visual-course pull-left"> <div class="visual-course-id">{{ curriculum_abbr }} {{course_number}}{{section_id}}</div> 
+     {{#if ../term}}
+     <a href="/mobile/final_exams/{{../../term}}/{{index}}" class="show_section_details " rel="{{index}}"> <div class="c{{color_id}} visual-course pull-left"> <div class="visual-course-id">{{ curriculum_abbr }} {{course_number}}{{section_id}}</div> 
+     {{else}}
+     <a href="/mobile/final_exams/{{index}}" class="show_section_details " rel="{{index}}"> <div class="c{{color_id}} visual-course pull-left"> <div class="visual-course-id">{{ curriculum_abbr }} {{course_number}}{{section_id}}</div> 
+     {{/if}}
      </div> 
     
 
