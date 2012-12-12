@@ -1,5 +1,5 @@
 from django.conf import settings
-from datetime import datetime
+from datetime import date, timedelta
 import logging
 import traceback
 from restclients.sws import SWS
@@ -34,6 +34,13 @@ class Quarter:
                           'sws.get_current_term',
                           timer)
         return None
+
+    def get_current_summer_term(self):
+        term = self.get_cur_quarter()
+        if (date.today() - term.aterm_last_date) > timedelta (days = 1):
+            return "B-term"
+        else:
+            return "A-term"
 
     def get_next_quarter(self):
         """
@@ -141,7 +148,7 @@ class Schedule:
         """
         return self.get_schedule(Quarter().get_next_autumn_quarter())
 
-    def _get_summer_term(self, registered_summer_sections):
+    def get_registered_summer_terms(self, registered_summer_sections):
         """
         Return summer registered terms
         """
@@ -182,7 +189,7 @@ class Schedule:
         if next_quar_sche is not None and len(next_quar_sche.sections) > 0:
 
             if next_quarter.quarter == "summer":
-                sumr_tms = self._get_summer_term(next_quar_sche.sections)
+                sumr_tms = self.get_registered_summer_terms(next_quar_sche.sections)
 
                 if sumr_tms["A_term"] and sumr_tms["B_term"] and sumr_tms["Full_term"] or sumr_tms["A_term"] and sumr_tms["Full_term"] or sumr_tms["B_term"] and sumr_tms["Full_term"] or sumr_tms["A_term"] and sumr_tms["B_term"]:
 

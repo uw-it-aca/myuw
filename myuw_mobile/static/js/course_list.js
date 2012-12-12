@@ -21,7 +21,11 @@ var CourseList = {
 
         source = $("#quarter-list").html();
         template = Handlebars.compile(source);
-        $("#page-header").html(template({year: course_data.year, quarter: course_data.quarter}));
+        $("#page-header").html(template({
+	    year: course_data.year, 
+	    quarter: course_data.quarter,
+	    summer_term: course_data.summer_term
+	}));
 
         // In case someone backs onto the page from a modal
         Modal.hide();

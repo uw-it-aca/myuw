@@ -39,7 +39,11 @@ var FinalExams = {
 
         source = $("#quarter-list-finals").html();
         template = Handlebars.compile(source);
-        $("#page-header").html(template({year: course_data.year, quarter: course_data.quarter}));
+        $("#page-header").html(template({
+	    year: course_data.year,
+	    quarter: course_data.quarter,
+	    summer_term: course_data.summer_term
+	}));
 
         for (index = 0; index < course_data.sections.length; index++) {
             var section = course_data.sections[index];

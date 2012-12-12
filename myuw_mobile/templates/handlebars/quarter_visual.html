@@ -1,6 +1,7 @@
-        {% load templatetag_handlebars %}
-        {% tplhandlebars "quarter-visual" %}
-        <h2 id="quarter-info">
-            {{ucfirst quarter}} {{year}} Courses<a role="button" title="View course list" class="btn btn-visual pull-right display_list_sched" href="/mobile/"><i class="icon-list-ul"></i> List</a>
-        </h2>
-        {% endtplhandlebars %}
+{% load templatetag_handlebars %}
+{% tplhandlebars "quarter-visual" %}
+<h2 id="quarter-info">
+  {{ucfirst quarter}} {{year}} Courses<a role="button" title="View course list" class="btn btn-visual pull-right display_list_sched" href="/mobile/"><i class="icon-list-ul"></i> List</a>
+  {{summer_term}}   
+</h2>
+{% endtplhandlebars %}

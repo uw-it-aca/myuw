@@ -27,7 +27,13 @@ class StudClasScheCurQuar(RESTDispatch):
         if schedule is None or not schedule.json_data():
             log_data_not_found_response(logger, timer)
             return HttpResponse({})
-        resp_data = make_sche_api_response(schedule)
+
+        summer_term = None
+        if len(schedule.sections) > 0 and schedule.term.quarter == "summer":
+            sumr_tms = schedule_dao.get_registered_summer_terms(schedule.sections)
+            if sumr_tms["A_term"] and sumr_tms["B_term"] and sumr_tms["Full_term"] or sumr_tms["A_term"] and sumr_tms["Full_term"] or sumr_tms["B_term"] and sumr_tms["Full_term"] or sumr_tms["A_term"] and sumr_tms["B_term"]:
+                summer_term = quarter_dao.get_current_summer_term()
+        resp_data = make_sche_api_response(schedule, summer_term)
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(resp_data))
 
@@ -140,4 +146,5 @@ def make_sche_api_response(schedule, summer_term=""):
                                                   'course_number',
                                                   'section_id',
                                                   ))
+    json_data["summer_term"]=summer_term
     return json_data
