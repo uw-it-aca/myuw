@@ -28,7 +28,7 @@ class StudClasScheCurQuar(RESTDispatch):
             log_data_not_found_response(logger, timer)
             return HttpResponse({})
 
-        summer_term = None
+        summer_term = ""
         if len(schedule.sections) > 0 and schedule.term.quarter == "summer":
             sumr_tms = schedule_dao.get_registered_summer_terms(schedule.sections)
             if sumr_tms["A_term"] and sumr_tms["B_term"] and sumr_tms["Full_term"] or sumr_tms["A_term"] and sumr_tms["Full_term"] or sumr_tms["B_term"] and sumr_tms["Full_term"] or sumr_tms["A_term"] and sumr_tms["B_term"]:
@@ -59,7 +59,10 @@ class StudClasScheFutureQuar(RESTDispatch):
             log_data_not_found_response(logger, timer)
             return HttpResponse({})
 
-        resp_data = make_sche_api_response(schedule, summer_term[1:])
+        smr_term = ""
+        if summer_term and len(summer_term) > 1:
+            smr_term = summer_term[1:]
+        resp_data = make_sche_api_response(schedule, smr_term[1:])
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(resp_data))
 
