@@ -12,15 +12,6 @@ class UserService:
     def _get_current_user_data(self):
         return UserService._user_data[currentThread()]
 
-    def _is_user_service_in_config(self):
-        if not hasattr(settings, 'MIDDLEWARE_CLASSES'):
-            return False
-        middleware = settings.MIDDLEWARE_CLASSES
-        for value in middleware:
-            if value == 'myuw_mobile.user.UserServiceMiddleware':
-                return True
-        return False
-
     def _require_middleware(self):
         if not "initialized" in self._get_current_user_data():
             print "You need to have this line in your MIDDLEWARE_CLASSES:"
