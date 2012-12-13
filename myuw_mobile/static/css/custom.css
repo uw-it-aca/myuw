@@ -1406,6 +1406,12 @@ abbr[title] {
 .twelve-plus {
   height: 40em;
 }
+.six-hour .exam-time-bar {
+  top: 14%;
+}
+.twelve-plus .exam-time-bar {
+  top: 7%;
+}
 .time-bar {
   margin-left: -2px;
   width: 8%;
@@ -1462,7 +1468,7 @@ abbr[title] {
   color: #333;
 }
 .final-visual-schedule .day-label {
-  height: 10%;
+  height: auto;
 }
 .seven-day span.final-date {
   font-size: 85%;
