@@ -31,18 +31,18 @@ var CourseList = {
             }
         }
 	
-	var source;
-	if (term) {
-            source = $("#future-quarter-list").html();
-	} else {
-            source = $("#quarter-list").html();
-	}
-        template = Handlebars.compile(source);
+        var source = $("#quarter-header").html();
+        var template = Handlebars.compile(source);
         $("#page-header").html(template({
-	    year: course_data.year, 
-	    quarter: course_data.quarter,
-	    summer_term: course_data.summer_term
-	}));
+            year: course_data.year, 
+            quarter: course_data.quarter,
+            summer_term: course_data.summer_term,
+            page: "Courses",
+	    go_back_path: "",
+            show_visual_button: term ? false :true,
+            show_list_button: false,
+            is_future_quarter: term ? true :false
+        }));
 
         // In case someone backs onto the page from a modal
         Modal.hide();
@@ -51,16 +51,16 @@ var CourseList = {
         // Handle the case of no courses
         if (course_data.sections.length == 0) {
             $("#courselist").no_courses({
-		show_future_link: (term) ? false : true
+		show_future_link: term ? false : true
 	    });
             return;
         }
 
-        var source = $("#courses").html();
-        var template = Handlebars.compile(source);
+        source = $("#courses").html();
+        template = Handlebars.compile(source);
         $("#courselist").html(template(course_data));
         $("#addi_links").addi_course_links({
-	    show_future_link: (term) ? false : true,
+	    show_future_link: term ? false : true,
 	    term: term
 	});
 
@@ -122,17 +122,6 @@ var CourseList = {
         });
 
 
-        $(".display_visual_sched").bind("click", function(ev) {
-	    var hist = window.History;
-	    WSData.log_interaction("course_list_view_visual_schedule");
-	    hist.pushState({
-                state: "visual"
-	    },  "", "/mobile/visual");
-
-            return false;
-        });
-
-
         $(".instructor").on("click", function(ev) {
             var hist = window.History;
 	    if (term) {
@@ -151,15 +140,26 @@ var CourseList = {
 	    return false;
         });
 
-        $(".back_to_current").on("click", function(ev) {
-            WSData.log_interaction("course_list_back_to_current");
-            var hist = window.History;
-            hist.replaceState({
-                state: "course_list"
-            },  "", "/mobile/");
-            return false;
-        });
-
+        if (term) {
+            $(".back_to_current").on("click", function(ev) {
+                WSData.log_interaction("course_list_back_to_current");
+                var hist = window.History;
+                hist.replaceState({
+                    state: "course_list"
+                },  "", "/mobile/");
+                return false;
+            });
+	}
+        else {
+            $(".display_visual_sched").bind("click", function(ev) {
+	        var hist = window.History;
+                WSData.log_interaction("course_list_view_visual_schedule");
+                hist.pushState({
+                    state: "visual"
+                },  "", "/mobile/visual");
+		return false;
+            });
+        }
     }
 };
 

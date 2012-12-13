@@ -37,18 +37,29 @@ var FinalExams = {
         // If there's something unexpected, show a list, not the visual schedule
         var show_list_instead_of_visual = false;
 
-        var source;
-        if (term) {
-            source = $("#future-quarter-list-finals").html();
-        } else {
-            source = $("#quarter-list-finals").html();
-        }
-        template = Handlebars.compile(source);
+        var source = $("#quarter-header").html();
+        var template = Handlebars.compile(source);
         $("#page-header").html(template({
 	    year: course_data.year,
 	    quarter: course_data.quarter,
-	    summer_term: course_data.summer_term
+	    summer_term: course_data.summer_term,
+            page: "Final Exams",
+            go_back_path: "final_examsl",
+            show_visual_button: false,
+            show_list_button: false,
+            is_future_quarter: term ? true :false
 	}));
+
+	if (term) {
+	    $(".back_to_current").bind("click", function(ev) {
+                WSData.log_interaction("final_exams_back_to_current");
+                var hist = window.History;
+                hist.pushState({
+                    state: "final_exams"
+                },  "", "/final_exams/");
+                return false;
+            });
+        }
 
         for (index = 0; index < course_data.sections.length; index++) {
             var section = course_data.sections[index];

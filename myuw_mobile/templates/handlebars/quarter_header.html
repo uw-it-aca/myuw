@@ -1,0 +1,16 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "quarter-header" %}
+<h2 id="quarter-info">
+  {{ucfirst quarter}} {{year}} {{page}}
+  {{#if show_visual_button}}
+  <a aria-hidden="true" class="btn btn-visual pull-right display_visual_sched" href="/mobile/visual" title="View Visual Schedule"><i class="icon-calendar"></i> Visual</a>
+  {{/if}}
+  {{#if show_list_button}}
+  <a role="button" title="View course list" class="btn btn-visual pull-right display_list_sched" href="/mobile/"><i class="icon-list-ul"></i> List</a>
+  {{/if}}
+  <br /><small>{{summer_term}}</small>
+</h2>
+{{#if is_future_quarter}}
+<a class="back_to_current" href="/mobile/{{go_back_path}}" title="Back to current quarter"><i class="icon-arrow-left"></i> Back to current quarter</a>
+{{/if}}
+{% endtplhandlebars %}
