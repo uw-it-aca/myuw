@@ -3,16 +3,17 @@
 <ul class="unstyled">
   {{#if registered_for_the_quarter}}
   <li class="additional">
-    <a class="show_textbooks" href="/mobile/textbooks"><i class="icon-book"></i> View Textbooks</a>
+    <a class="show_textbooks" href="/mobile/textbooks/{{term}}"><i class="icon-book"></i> View Textbooks</a>
   </li>
   <li>
-    <a class="show_finalexams" href="/mobile/final_exams{{visual}}"><i class="icon-calendar"></i> Final Exam Schedule</a>
+    <a class="show_finalexams" href="/mobile/final_exams/{{term}}"><i class="icon-calendar"></i> Final Exam Schedule</a>
   </li>
   {{/if}}
-
+  {{#if show_future_link}}
   <li class="additional">
     <a class="show_other_quarters" href="/mobile/future_quarters{{visual}}"><i class="icon-sort"></i> View Future Quarters</a>
   </li>
+  {{/if}}
 </ul>
 </div>
 {% endtplhandlebars %}

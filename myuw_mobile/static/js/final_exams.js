@@ -37,7 +37,12 @@ var FinalExams = {
         // If there's something unexpected, show a list, not the visual schedule
         var show_list_instead_of_visual = false;
 
-        source = $("#quarter-list-finals").html();
+        var source;
+        if (term) {
+            source = $("#future-quarter-list-finals").html();
+        } else {
+            source = $("#quarter-list-finals").html();
+        }
         template = Handlebars.compile(source);
         $("#page-header").html(template({
 	    year: course_data.year,

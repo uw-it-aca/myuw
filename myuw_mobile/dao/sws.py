@@ -173,7 +173,7 @@ class Schedule:
         res_json["summer_term"] = summer_term
         url = "/" + str(term.year) + "," + term.quarter
         if summer_term:
-            url = url + "," + summer_term
+            url = url + "," + summer_term.lower()
         res_json["url"] = url
         return res_json
 

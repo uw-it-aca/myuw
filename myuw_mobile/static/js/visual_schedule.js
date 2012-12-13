@@ -2,9 +2,13 @@ var VisualSchedule = {
     // This is the height of the days bar... needed for positioning math below
     day_label_offset: 0,
 
-    show_visual_schedule: function(course_index) {
+    show_visual_schedule: function(term, course_index) {
         showLoading();
-        WSData.fetch_course_data(VisualSchedule.render, [course_index]);
+	if (term) {
+	    WSData.fetch_course_data_for_term(term, VisualSchedule.render, [term, course_index]);
+        } else {
+	    WSData.fetch_current_course_data(VisualSchedule.render, [term, course_index]);
+        }
     },
 
     get_scaled_percentage: function(pos, min, max) {
@@ -16,18 +20,42 @@ var VisualSchedule = {
     },
 
     // The course_index will be given when a modal is shown.
-    render: function(course_index) {
+    render: function(term, course_index) {
         $('html,body').animate({scrollTop: 0}, 'fast');
         VisualSchedule.shown_am_marker = false;
-        var course_data = WSData.course_data();
+        var course_data;
+	if (term) {
+            course_data = WSData.course_data_for_term(term);
+            WSData.normalize_instructors_for_term(term);
+        }
+        else {
+            course_data = WSData.current_course_data();
+            WSData.normalize_instructors_for_current_term();
+        }
 
-        var source = $("#quarter-visual").html();
+        var source;
+	if (term) {
+            source = $("#future-quarter-visual").html();
+        } else {
+            source = $("#quarter-visual").html();
+	}
         var template = Handlebars.compile(source);
         $("#page-header").html(template({
 	    year: course_data.year, 
 	    quarter: course_data.quarter,
 	    summer_term: course_data.summer_term
 	}));
+
+	$(".back_to_current").bind("click", function(ev) {
+            WSData.log_interaction("visual_back_to_current");
+            var hist = window.History;
+            hist.pushState({
+                state: "visual"
+            },  "", "/mobile/visual");
+            return false;
+        });
+
+
 
         var visual_data = {
             latest_ending: 0,
@@ -46,7 +74,8 @@ var VisualSchedule = {
         // Handle the case of no courses
         if (course_data.sections.length == 0) {
 	    $("#courselist").no_courses({
-		visual: "/visual"
+		visual: "/visual",
+		show_future_link: (term) ? false : true
 	    });
             return;
         }
@@ -154,7 +183,9 @@ var VisualSchedule = {
         $("#courselist").html(template(visual_data));
 
 	$("#addi_links").addi_course_links({
-	    visual: "/visual"
+	    show_future_link: (term) ? false : true,
+	    visual: "/visual",
+	    term: term
 	});
 
         $(".display_list_sched").bind("click", function(ev) {
@@ -181,13 +212,24 @@ var VisualSchedule = {
             var course_id = this.rel;
             var log_course_id = ev.currentTarget.getAttribute("class").replace(/[^a-z0-9]/gi, '_');
 
-            WSData.log_interaction("open_modal_"+log_course_id);
-            var hist = window.History;
-            hist.pushState({
-                state: "visual",
-                course_index: course_id
-            },  "", "/mobile/visual/"+course_id);
-
+	    if (term) {
+                var logging_term = term.replace(/[^a-z0-9]/gi, '_');
+		WSData.log_interaction("open_modal_"+log_course_id+"_term_"+logging_term);
+		var hist = window.History;
+		hist.pushState({
+                    state: "visual",
+                    course_index: course_id,
+		    term: term
+		},  "", "/mobile/visual/"+term+"/"+course_id);
+	    }
+	    else {
+		WSData.log_interaction("open_modal_"+log_course_id);
+		var hist = window.History;
+		hist.pushState({
+                    state: "visual",
+                    course_index: course_id,
+		},  "", "/mobile/visual/"+course_id);
+	    }
             CourseModal.show_course_modal(course_id);
 
             return false;

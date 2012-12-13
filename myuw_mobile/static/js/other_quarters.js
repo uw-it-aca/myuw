@@ -20,11 +20,13 @@ var Quarters = {
             });
             return;
         }
-	
+	var urlprefix = "/mobile";
         var path = window.location.pathname;
-        var urlprefix = "/mobile/next" + (path.match(/(\/visual)/)
-                                          ? "/visual"
-                                          : "");
+        var matches = path.match(/^\/mobile\/future_quarters(\/.*)$/);
+        if (matches) {
+            urlprefix = urlprefix + matches[1]
+	}
+
         source = $("#quarterlist").html();
         template = Handlebars.compile(source);
         $("#courselist").html(template({ 

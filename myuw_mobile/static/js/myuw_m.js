@@ -227,17 +227,13 @@ $(document).ready(function() {
         }
         else if (state === "course_list") {
             // Figure out what to do from the url
-            CourseList.show_list(data.course_index);
+            CourseList.show_list(data.term, data.course_index);
             $("#nav_course_list").addClass("active");
             document.title = window.page_titles["course_list"];
         }
         else if (state === "instructor") {
             Instructor.show_instructor(data.instructor);
             document.title = window.page_titles["instructor"];
-        }
-        else if (state === "future_quarters/visual") {
-            Quarters.show_future_quarters();
-            document.title = window.page_titles["future_quarters"];
         }
         else if (state === "future_quarters") {
             Quarters.show_future_quarters();
@@ -258,7 +254,7 @@ $(document).ready(function() {
             document.title = window.page_titles["finabala"];
         }
         else if (state === "visual") {
-            VisualSchedule.show_visual_schedule(data.course_index);
+            VisualSchedule.show_visual_schedule(data.term, data.course_index);
             $("#nav_visual_schedule").addClass("active");
             document.title = window.page_titles["visual"];
         }
@@ -284,21 +280,43 @@ $(document).ready(function() {
             );
             //CourseList.show_list();
         }
-        else if (path.match("/mobile/visual")) {
+	else if (path.match(/^\/mobile\/[0-9]{4},[a-z]+[,-abterm]*$/)) {
+            var matches = path.match(/^\/mobile\/([0-9]{4},[a-z]+[,-abterm]*)$/);
+            var state = "course_list";
+            var term = matches[1];
+	    hist.replaceState({
+                state: "course_list",
+		term: matches[1]
+            }, "", "/mobile/"+matches[1]);
+	}
+        else if (path.match(/^\/mobile\/visual\/[^\/]+\/[0-9]+$/)) {
+            var matches = path.match(/^\/mobile\/visual\/([^\/]+)\/([0-9]+)/);
+            hist.replaceState({
+                state: "visual",
+                term: matches[1],
+                course_index: matches[2]
+            },  "", "/mobile/visual/"+matches[1]+"/"+matches[2]);
+	}
+	else if (path.match(/^\/mobile\/visual\/[0-9]{4},[a-z]+[,-abterm]*$/)) {
+            var matches = path.match(/^\/mobile\/visual\/([0-9]{4},[a-z]+[,-abterm]*)$/);
+            hist.replaceState({
+		state: "visual",
+		term: matches[1]
+            },  "", "/mobile/visual/"+matches[1]);
+        } 
+        else if (path.match(/^\/mobile\/visual\/[0-9]+$/)) {
             var matches = path.match(/^\/mobile\/visual\/([0-9]+)/);
-            if (matches) {
-                hist.replaceState({
-                    state: "visual",
-                    course_index: matches[1]
-                },  "", "/mobile/visual/"+matches[1]);
-                //VisualSchedule.show_visual_schedule(matches[1]);
-            }
-            else {
-                hist.replaceState({
-                    state: "visual"
-                },  "", "/mobile/visual");
-                //VisualSchedule.show_visual_schedule();
-            }
+            hist.replaceState({
+                state: "visual",
+                course_index: matches[1]
+            },  "", "/mobile/visual/"+matches[1]);
+            //VisualSchedule.show_visual_schedule(matches[1]);
+        }
+        else if (path === "/mobile/visual") {
+            hist.replaceState({
+                state: "visual"
+            },  "", "/mobile/visual");
+            //VisualSchedule.show_visual_schedule();
         }
         else if (path === "/mobile/textbooks") {
             hist.replaceState({
@@ -318,12 +336,14 @@ $(document).ready(function() {
             },  "", "/mobile/finabala");
             //FinaAccounts.show_balances();
         }
-        else if (path.match("/mobile/future_quarters")) {
+        else if (path.match(/^\/mobile\/future_quarters/)) {
 	    var matches = path.match(/^\/mobile\/future_quarters(\/[a-z]+)/);
-            hist.replaceState({
-                state: "future_quarters" + matches[1]
-            },  "", "/mobile/future_quarters" + matches[1]);
-            //Quarters.show_future();
+	    hist.replaceState({
+                state: "future_quarters"
+	    },  "", "/mobile/future_quarters" + (matches
+						 ? matches[1]
+						 : ""));
+	    //Quarters.show_future();
         }
         else if (path === "/mobile/final_exams") {
             hist.replaceState({
@@ -337,26 +357,21 @@ $(document).ready(function() {
                 course_index: matches[1]
             },  "", "/mobile/final_exams/"+matches[1]);
         }
-        else if (path.match(/^\/mobile\/final_exams\/.+/)) {
+        else if (path.match(/^\/mobile\/final_exams\/[^\/]+\/[0-9]+/)) {
             var matches = path.match(/^\/mobile\/final_exams\/([^\/]+)\/([0-9]+)/);
-            if (matches) {
-                hist.replaceState({
-                    state: "final_exams",
-                    term: matches[1],
-                    course_index: matches[2]
-                },  "", "/mobile/final_exams/"+matches[1]+"/"+matches[2]);
-            }
-            else {
-                var matches = path.match(/^\/mobile\/final_exams\/([^\/]+)/);
-                if (matches) {
-                    hist.replaceState({
-                        state: "final_exams",
-                        term: matches[1],
-                    },  "", "/mobile/final_exams/"+matches[1]);
-                }
-            }
+            hist.replaceState({
+                state: "final_exams",
+                term: matches[1],
+                course_index: matches[2]
+            },  "", "/mobile/final_exams/"+matches[1]+"/"+matches[2]);
         }
-
+        else if (path.match(/^\/mobile\/final_exams\/[^\/]+/)) {
+            var matches = path.match(/^\/mobile\/final_exams\/([^\/]+)/);
+            hist.replaceState({
+                state: "final_exams",
+                term: matches[1],
+            },  "", "/mobile/final_exams/"+matches[1]);
+        }
         else if (path.match(/^\/mobile\/instructor\/[A-Z0-9]+/)) {
             var matches = path.match(/^\/mobile\/instructor\/([A-Z0-9]+)/);
             hist.pushState({
