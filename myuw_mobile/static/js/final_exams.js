@@ -20,6 +20,14 @@ var FinalExams = {
     },
     render_exams: function(term, course_index) {
         var course_data;
+
+        if (term) {
+            WSData.normalize_instructors_for_term(term);
+        }
+        else {
+            WSData.normalize_instructors_for_current_term();
+        }
+
         if (term) {
             course_data = WSData.course_data_for_term(term);
         }
