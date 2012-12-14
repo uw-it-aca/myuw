@@ -81,7 +81,7 @@ $(document).ready(function() {
         if (hours > 12) {
             hours = hours - 12;
         }
-        return hours + ":" + minutes + " " + am_pm;
+        return hours + ":" + minutes + am_pm;
     });
 
     // converts date string into a day display
