@@ -25,7 +25,7 @@
                     <a href="http://maps.google.com/maps?q={{ final_exam.latitude }},{{ final_exam.longitude }}+({{encodeForMaps final_exam.building_name }})&z=18" target="_blank" class="show_map_modal" rel="{{final_exam.building_name}}">
                     {{/if}}
                         {{ final_exam.building }} {{ final_exam.room_number }}
-                        {{#if latitude}}</a>{{/if}}
+                        {{#if final_exam.latitude}}</a>{{/if}}
                         </td>
                     {{/if}}
                  </tr>
