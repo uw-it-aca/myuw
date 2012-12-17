@@ -705,7 +705,7 @@ color: darken(@grayLighter,10%);
 }
 //visual schedule height
 
-.final-visual-schedule {
+#final-visual-schedule {
 
 }
 
@@ -730,13 +730,57 @@ height: 20em;
 		top:14%;
 		}
 		}
+.twelve-hour {
+	.exam-time-bar {
+		top:9.5%;
+		}
+		}
 .twelve-plus {
 	.exam-time-bar {
 		top:7%;
 		}
 	}
-	
 
+//#final-visual-schedule
+
+	.twelve-plus {
+		.exam-day-col2 {
+		#gradient > .striped(rgba(0,0,0,.2), 90deg);
+		position: relative;
+		height:93%;
+		}
+		.exam-day-col {
+		#gradient > .striped(rgba(0,0,0,.15), 90deg);
+		position: relative;
+		height:93%;
+		}
+	}
+	.six-hour {
+		.exam-day-col2 {
+		#gradient > .striped(rgba(0,0,0,.2), 90deg);
+		position: relative;
+		height:86%;
+		}
+		.exam-day-col {
+		#gradient > .striped(rgba(0,0,0,.15), 90deg);
+		position: relative;
+		height:86%;
+		}
+	}
+	.twelve-hour {
+		.exam-day-col2 {
+			#gradient > .striped(rgba(0,0,0,.2), 90deg);
+			position: relative;
+			height:91%;
+		}
+		.exam-day-col {
+			#gradient > .striped(rgba(0,0,0,.15), 90deg);
+			position: relative;
+			height:91%;
+		}
+	}
+
+	
 
 @time-bar-width: 8%;
 .time-bar {
@@ -819,7 +863,7 @@ height: 20em;
   color: #333;
 }
 
-.final-visual-schedule .day-label {height:auto;}
+#final-visual-schedule .day-label {height:auto;}
 
 .seven-day span.final-date {font-size:85%;}
 
@@ -855,6 +899,7 @@ height:93%;
 position: relative;
 height:93%;
 }
+
 
 .test-col {
 //#gradient > .directional(#abced4, transparent, 90deg);
