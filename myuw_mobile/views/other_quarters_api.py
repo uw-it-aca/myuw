@@ -20,9 +20,8 @@ class RegisteredFutureQuarters(RESTDispatch):
         timer = Timer()
         logger = logging.getLogger('myuw_mobile.views.other_quarters_api.RegisteredFutureQuarters.GET')
         
-        sche = Schedule()
         resp_data = { 
-                      "terms": sche.get_registered_future_quarters()
+                      "terms": Schedule().get_registered_future_quarters()
                       }
         print resp_data
         log_success_response(logger, timer)
