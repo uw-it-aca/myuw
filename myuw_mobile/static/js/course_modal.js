@@ -1,10 +1,17 @@
 var CourseModal = {
-    show_course_modal: function(course_index) {
+    show_course_modal: function(term, course_index) {
         var source   = $("#course_modal").html();
         var template = Handlebars.compile(source);
 
-        WSData.normalize_instructors();
-        var course_data = WSData.course_data();
+        var course_data;
+        if (term) {
+            WSData.normalize_instructors_for_term(term);
+            course_data = WSData.course_data_for_term(term);
+        }
+        else {
+            WSData.normalize_instructors();
+            course_data = WSData.current_course_data(term);
+        }
         var section = course_data.sections[course_index];
 
         if (section.class_website_url || section.canvas_url) {

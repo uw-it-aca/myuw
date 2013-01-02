@@ -209,7 +209,7 @@ var VisualSchedule = {
         }
         else {
             if (course_index < course_data.sections.length) {
-                CourseModal.show_course_modal(course_index);
+                CourseModal.show_course_modal(term, course_index);
             }
         }
 
@@ -236,7 +236,7 @@ var VisualSchedule = {
                     course_index: course_id,
                 },  "", "/mobile/visual/"+course_id);
             }
-            CourseModal.show_course_modal(course_id);
+            CourseModal.show_course_modal(term, course_id);
 
             return false;
         });
