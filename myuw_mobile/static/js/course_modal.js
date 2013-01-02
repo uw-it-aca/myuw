@@ -35,10 +35,15 @@ var CourseModal = {
             return false;
         });
 
+        var state = { state: "visual" };
+        var url = "/mobile/visual";
+
+        if (term) {
+            state.term = term;
+            url += "/"+term;
+        }
         $(".close_modal").on("click", function() {
-            History.replaceState({
-                state: "visual"
-            },  "", "/mobile/visual");
+            History.replaceState(state, "", url);
         });
 
         $(".course_website").on("click", function(ev) {
