@@ -24,7 +24,7 @@ var strProto = (window.location.protocol == 'https:') ? 'https://' : 'http://';
 var test_status = window.location.hash.indexOf('alert') === -1 ? 'false' : 'true';
 // Allow for local testing
 var strDomain = 'www.washington.edu/static';
-var strDataFeed = '/UW-Alert-Banner-v2/alert/?c=displayAlert&test='+test_status
+var strDataFeed = '/UW-Alert-Banner/alert/?c=displayAlert&test='+test_status
 
 var strScript = document.createElement('script');
 strScript.setAttribute('src', strProto + strDomain + strDataFeed);
