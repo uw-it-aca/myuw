@@ -71,7 +71,7 @@ WSData = {
     },
 
     fetch_course_data_for_term: function(term, callback, args) {
-        if (!WSData._course_data.length) {
+        if (!WSData._course_data[term]) {
             $.ajax({
                 url: "/mobile/api/v1/schedule/"+term,
                 dataType: "JSON",
