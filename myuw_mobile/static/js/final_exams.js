@@ -48,18 +48,18 @@ var FinalExams = {
         var source = $("#quarter-header").html();
         var template = Handlebars.compile(source);
         $("#page-header").html(template({
-	    year: course_data.year,
-	    quarter: course_data.quarter,
-	    summer_term: course_data.summer_term,
+        year: course_data.year,
+        quarter: course_data.quarter,
+        summer_term: course_data.summer_term,
             page: "Final Exams",
             go_back_path: "final_examsl",
             show_visual_button: false,
             show_list_button: false,
             is_future_quarter: term ? true :false
-	}));
+    }));
 
-	if (term) {
-	    $(".back_to_current").bind("click", function(ev) {
+    if (term) {
+        $(".back_to_current").bind("click", function(ev) {
                 WSData.log_interaction("final_exams_back_to_current");
                 var hist = window.History;
                 hist.pushState({

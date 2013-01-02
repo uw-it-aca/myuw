@@ -280,15 +280,15 @@ $(document).ready(function() {
             );
             //CourseList.show_list();
         }
-	else if (path.match(/^\/mobile\/[0-9]{4},[a-z]+[,-abterm]*$/)) {
+    else if (path.match(/^\/mobile\/[0-9]{4},[a-z]+[,-abterm]*$/)) {
             var matches = path.match(/^\/mobile\/([0-9]{4},[a-z]+[,-abterm]*)$/);
             var state = "course_list";
             var term = matches[1];
-	    hist.replaceState({
+        hist.replaceState({
                 state: "course_list",
-		term: matches[1]
+        term: matches[1]
             }, "", "/mobile/"+matches[1]);
-	}
+    }
         else if (path.match(/^\/mobile\/visual\/[^\/]+\/[0-9]+$/)) {
             var matches = path.match(/^\/mobile\/visual\/([^\/]+)\/([0-9]+)/);
             hist.replaceState({
@@ -296,12 +296,12 @@ $(document).ready(function() {
                 term: matches[1],
                 course_index: matches[2]
             },  "", "/mobile/visual/"+matches[1]+"/"+matches[2]);
-	}
-	else if (path.match(/^\/mobile\/visual\/[0-9]{4},[a-z]+[,-abterm]*$/)) {
+    }
+    else if (path.match(/^\/mobile\/visual\/[0-9]{4},[a-z]+[,-abterm]*$/)) {
             var matches = path.match(/^\/mobile\/visual\/([0-9]{4},[a-z]+[,-abterm]*)$/);
             hist.replaceState({
-		state: "visual",
-		term: matches[1]
+        state: "visual",
+        term: matches[1]
             },  "", "/mobile/visual/"+matches[1]);
         } 
         else if (path.match(/^\/mobile\/visual\/[0-9]+$/)) {
@@ -337,13 +337,13 @@ $(document).ready(function() {
             //FinaAccounts.show_balances();
         }
         else if (path.match(/^\/mobile\/future_quarters/)) {
-	    var matches = path.match(/^\/mobile\/future_quarters(\/[a-z]+)/);
-	    hist.replaceState({
+        var matches = path.match(/^\/mobile\/future_quarters(\/[a-z]+)/);
+        hist.replaceState({
                 state: "future_quarters"
-	    },  "", "/mobile/future_quarters" + (matches
-						 ? matches[1]
-						 : ""));
-	    //Quarters.show_future();
+        },  "", "/mobile/future_quarters" + (matches
+                         ? matches[1]
+                         : ""));
+        //Quarters.show_future();
         }
         else if (path === "/mobile/final_exams") {
             hist.replaceState({

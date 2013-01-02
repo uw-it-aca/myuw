@@ -4,10 +4,10 @@ var VisualSchedule = {
 
     show_visual_schedule: function(term, course_index) {
         showLoading();
-	if (term) {
-	    WSData.fetch_course_data_for_term(term, VisualSchedule.render, [term, course_index]);
+    if (term) {
+        WSData.fetch_course_data_for_term(term, VisualSchedule.render, [term, course_index]);
         } else {
-	    WSData.fetch_current_course_data(VisualSchedule.render, [term, course_index]);
+        WSData.fetch_current_course_data(VisualSchedule.render, [term, course_index]);
         }
     },
 
@@ -24,7 +24,7 @@ var VisualSchedule = {
         $('html,body').animate({scrollTop: 0}, 'fast');
         VisualSchedule.shown_am_marker = false;
         var course_data;
-	if (term) {
+    if (term) {
             course_data = WSData.course_data_for_term(term);
             WSData.normalize_instructors_for_term(term);
         }
@@ -33,18 +33,18 @@ var VisualSchedule = {
             WSData.normalize_instructors_for_current_term();
         }
 
-	var source = $("#quarter-header").html();
+    var source = $("#quarter-header").html();
         var template = Handlebars.compile(source);
         $("#page-header").html(template({
-	    year: course_data.year, 
-	    quarter: course_data.quarter,
-	    summer_term: course_data.summer_term,
+        year: course_data.year, 
+        quarter: course_data.quarter,
+        summer_term: course_data.summer_term,
             page: "Courses",
-	    go_back_path: "visual",
+        go_back_path: "visual",
             show_visual_button: false,
             show_list_button: term ? false :true,
             is_future_quarter: term ? true :false
-	}));
+    }));
 
         var visual_data = {
             latest_ending: 0,
@@ -62,10 +62,10 @@ var VisualSchedule = {
 
         // Handle the case of no courses
         if (course_data.sections.length == 0) {
-	    $("#courselist").no_courses({
-		visual: "/visual",
-		show_future_link: term ? false : true
-	    });
+        $("#courselist").no_courses({
+        visual: "/visual",
+        show_future_link: term ? false : true
+        });
             return;
         }
 
@@ -171,11 +171,11 @@ var VisualSchedule = {
 
         $("#courselist").html(template(visual_data));
 
-	$("#addi_links").addi_course_links({
-	    show_future_link: term ? false : true,
-	    visual: "/visual",
-	    term: term
-	});
+    $("#addi_links").addi_course_links({
+        show_future_link: term ? false : true,
+        visual: "/visual",
+        term: term
+    });
 
         if (term) {
             $(".back_to_current").bind("click", function(ev) {
@@ -211,24 +211,24 @@ var VisualSchedule = {
             var course_id = this.rel;
             var log_course_id = ev.currentTarget.getAttribute("class").replace(/[^a-z0-9]/gi, '_');
 
-	    if (term) {
+        if (term) {
                 var logging_term = term.replace(/[^a-z0-9]/gi, '_');
-		WSData.log_interaction("open_modal_"+log_course_id+"_term_"+logging_term);
-		var hist = window.History;
-		hist.pushState({
+        WSData.log_interaction("open_modal_"+log_course_id+"_term_"+logging_term);
+        var hist = window.History;
+        hist.pushState({
                     state: "visual",
                     course_index: course_id,
-		    term: term
-		},  "", "/mobile/visual/"+term+"/"+course_id);
-	    }
-	    else {
-		WSData.log_interaction("open_modal_"+log_course_id);
-		var hist = window.History;
-		hist.pushState({
+            term: term
+        },  "", "/mobile/visual/"+term+"/"+course_id);
+        }
+        else {
+        WSData.log_interaction("open_modal_"+log_course_id);
+        var hist = window.History;
+        hist.pushState({
                     state: "visual",
                     course_index: course_id,
-		},  "", "/mobile/visual/"+course_id);
-	    }
+        },  "", "/mobile/visual/"+course_id);
+        }
             CourseModal.show_course_modal(course_id);
 
             return false;

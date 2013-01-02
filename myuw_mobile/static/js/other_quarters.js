@@ -6,7 +6,7 @@ var Quarters = {
 
     render_registered_future_quarters: function() {
         $('html,body').animate({scrollTop: 0}, 'fast');
-	
+    
         var source = $("#oquarter-header").html();
         var template = Handlebars.compile(source);
         $("#page-header").html(template());
@@ -20,12 +20,12 @@ var Quarters = {
             });
             return;
         }
-	var urlprefix = "/mobile";
+    var urlprefix = "/mobile";
         var path = window.location.pathname;
         var matches = path.match(/^\/mobile\/future_quarters(\/.*)$/);
         if (matches) {
             urlprefix = urlprefix + matches[1]
-	}
+    }
 
         source = $("#quarterlist").html();
         template = Handlebars.compile(source);
