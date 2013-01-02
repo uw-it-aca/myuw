@@ -35,14 +35,16 @@ var VisualSchedule = {
 
         var source = $("#quarter-header").html();
         var template = Handlebars.compile(source);
+        console.log("T: ", term);
         $("#page-header").html(template({
             year: course_data.year, 
             quarter: course_data.quarter,
             summer_term: course_data.summer_term,
             page: "Courses",
             go_back_path: "visual",
+            term: term,
             show_visual_button: false,
-            show_list_button: term ? false :true,
+            show_list_button: true,
             is_future_quarter: term ? true :false
         }));
 

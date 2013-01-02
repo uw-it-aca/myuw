@@ -39,7 +39,8 @@ var CourseList = {
             summer_term: course_data.summer_term,
             page: "Courses",
             go_back_path: "",
-            show_visual_button: term ? false :true,
+            term: term,
+            show_visual_button: true,
             show_list_button: false,
             is_future_quarter: term ? true :false
         }));

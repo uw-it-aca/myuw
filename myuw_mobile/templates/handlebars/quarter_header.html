@@ -3,10 +3,10 @@
 <h2 id="quarter-info">
   {{ucfirst quarter}} {{year}} {{page}}
   {{#if show_visual_button}}
-  <a aria-hidden="true" class="btn btn-visual pull-right display_visual_sched" href="/mobile/visual" title="View Visual Schedule"><i class="icon-calendar"></i> Visual</a>
+  <a aria-hidden="true" class="btn btn-visual pull-right display_visual_sched" href="/mobile/visual/{{term}}" title="View Visual Schedule"><i class="icon-calendar"></i> Visual</a>
   {{/if}}
   {{#if show_list_button}}
-  <a role="button" title="View course list" class="btn btn-visual pull-right display_list_sched" href="/mobile/"><i class="icon-list-ul"></i> List</a>
+  <a role="button" title="View course list" class="btn btn-visual pull-right display_list_sched" href="/mobile/{{term}}"><i class="icon-list-ul"></i> List</a>
   {{/if}}
   <br /><small>{{summer_term}}</small>
 </h2>

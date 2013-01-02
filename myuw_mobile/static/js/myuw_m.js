@@ -312,7 +312,7 @@ $(document).ready(function() {
             },  "", "/mobile/visual/"+matches[1]);
             //VisualSchedule.show_visual_schedule(matches[1]);
         }
-        else if (path === "/mobile/visual") {
+        else if (path.match(/^\/mobile\/visual\/?/)) {
             hist.replaceState({
                 state: "visual"
             },  "", "/mobile/visual");
