@@ -1,16 +1,16 @@
 var CourseList = {
     show_list: function(term, course_index) {
         showLoading();
-    if (term) {
+        if (term) {
             WSData.fetch_course_data_for_term(term, CourseList.render_list, [term, course_index]);
-    } else {
+        } else {
             WSData.fetch_course_data(CourseList.render_list, [term, course_index]);
-    }
+        }
     },
 
     render_list: function(term, course_index) {
-    var course_data;
-    if (term) {
+        var course_data;
+        if (term) {
             course_data = WSData.course_data_for_term(term);
             WSData.normalize_instructors_for_term(term);
         }
@@ -30,7 +30,7 @@ var CourseList = {
                 course_data.sections[index].has_resources = true;
             }
         }
-    
+        
         var source = $("#quarter-header").html();
         var template = Handlebars.compile(source);
         $("#page-header").html(template({
@@ -38,7 +38,7 @@ var CourseList = {
             quarter: course_data.quarter,
             summer_term: course_data.summer_term,
             page: "Courses",
-        go_back_path: "",
+            go_back_path: "",
             show_visual_button: term ? false :true,
             show_list_button: false,
             is_future_quarter: term ? true :false
@@ -51,8 +51,8 @@ var CourseList = {
         // Handle the case of no courses
         if (course_data.sections.length == 0) {
             $("#courselist").no_courses({
-        show_future_link: term ? false : true
-        });
+                show_future_link: term ? false : true
+            });
             return;
         }
 
@@ -60,9 +60,9 @@ var CourseList = {
         template = Handlebars.compile(source);
         $("#courselist").html(template(course_data));
         $("#addi_links").addi_course_links({
-        show_future_link: term ? false : true,
-        term: term
-    });
+            show_future_link: term ? false : true,
+            term: term
+        });
 
         if (course_index !== undefined) {
             $("#course"+course_index).collapse('show');
@@ -75,69 +75,69 @@ var CourseList = {
         course_id = course_id.replace(/[^a-z0-9]/gi, '_');
 
         $(".accordion-body").on('shown', function(ev) {
-        if (term) {
-        WSData.log_interaction("expand_course_"+course_id+"_term_"+logging_term);
-        } 
-        else {
-        WSData.log_interaction("expand_course_"+course_id);
-        }
+            if (term) {
+                WSData.log_interaction("expand_course_"+course_id+"_term_"+logging_term);
+            } 
+            else {
+                WSData.log_interaction("expand_course_"+course_id);
+            }
         });
 
         $(".accordion-body").on('hidden', function(ev) {
-        if (term) {
-        WSData.log_interaction("collapse_course_"+course_id+"_term_"+logging_term);
-        }
-        else {
-        WSData.log_interaction("collapse_course_"+course_id);
-        }
+            if (term) {
+                WSData.log_interaction("collapse_course_"+course_id+"_term_"+logging_term);
+            }
+            else {
+                WSData.log_interaction("collapse_course_"+course_id);
+            }
         });
 
         $(".course_website").on("click", function(ev) {
-        if (term) {
-        WSData.log_interaction("open_course_website_"+course_id+"_term_"+logging_term);
-        }
-        else {
-        WSData.log_interaction("open_course_website_"+course_id);
-        }
+            if (term) {
+                WSData.log_interaction("open_course_website_"+course_id+"_term_"+logging_term);
+            }
+            else {
+                WSData.log_interaction("open_course_website_"+course_id);
+            }
         });
 
         $(".course_canvas_site").on("click", function(ev) {
-        if (term) {
-        WSData.log_interaction("open_course_canvas_website_"+course_id+"_term_"+logging_term);
-        }
-        else {
-        WSData.log_interaction("open_course_canvas_website_"+course_id);
-        }
+            if (term) {
+                WSData.log_interaction("open_course_canvas_website_"+course_id+"_term_"+logging_term);
+            }
+            else {
+                WSData.log_interaction("open_course_canvas_website_"+course_id);
+            }
         });
 
         $(".show_map").on("click", function(ev) {
             var building = ev.currentTarget.getAttribute("rel");
             building = building.replace(/[^a-z0-9]/gi, '_');
-        if (term) {
-        WSData.log_interaction("show_map_from_course_list_"+building+"_term_"+logging_term);
-        }
-        else {
-        WSData.log_interaction("show_map_from_course_list_"+building);
-        }
+            if (term) {
+                WSData.log_interaction("show_map_from_course_list_"+building+"_term_"+logging_term);
+            }
+            else {
+                WSData.log_interaction("show_map_from_course_list_"+building);
+            }
         });
 
 
         $(".instructor").on("click", function(ev) {
             var hist = window.History;
-        if (term) {
-        hist.pushState({
+            if (term) {
+                hist.pushState({
                     state: "instructor",
                     instructor: ev.target.rel,
-            term: term
-        },  "", "/mobile/instructor/"+term+"/"+ev.target.rel);
-        }
+                    term: term
+                },  "", "/mobile/instructor/"+term+"/"+ev.target.rel);
+            }
             else {
-        hist.pushState({
+                hist.pushState({
                     state: "instructor",
                     instructor: ev.target.rel
-        },  "", "/mobile/instructor/"+ev.target.rel);
-        }
-        return false;
+                },  "", "/mobile/instructor/"+ev.target.rel);
+            }
+            return false;
         });
 
         if (term) {
@@ -149,15 +149,15 @@ var CourseList = {
                 },  "", "/mobile/");
                 return false;
             });
-    }
+        }
         else {
             $(".display_visual_sched").bind("click", function(ev) {
-            var hist = window.History;
+                var hist = window.History;
                 WSData.log_interaction("course_list_view_visual_schedule");
                 hist.pushState({
                     state: "visual"
                 },  "", "/mobile/visual");
-        return false;
+                return false;
             });
         }
     }

@@ -20,7 +20,7 @@ var TextBooks = {
             "sections": [],
             "quarter": course_data.quarter,
             "year": course_data.year,
-        "summer_term": course_data.summer_term
+            "summer_term": course_data.summer_term
         };
 
         var index = 0;
@@ -45,10 +45,10 @@ var TextBooks = {
         source = $("#quarter-books").html();
         template = Handlebars.compile(source);
         $("#page-header").html(template({
-        year: course_data.year, 
-        quarter: course_data.quarter,
-        summer_term: course_data.summer_term
-    }));
+            year: course_data.year, 
+            quarter: course_data.quarter,
+            summer_term: course_data.summer_term
+        }));
 
         $(".display_list_sched").bind("click", function(ev) {
             var hist = window.History;
