@@ -35,7 +35,6 @@ var VisualSchedule = {
 
         var source = $("#quarter-header").html();
         var template = Handlebars.compile(source);
-        console.log("T: ", term);
         $("#page-header").html(template({
             year: course_data.year, 
             quarter: course_data.quarter,

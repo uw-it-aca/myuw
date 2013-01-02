@@ -71,11 +71,17 @@ var CourseList = {
             $('html,body').animate({scrollTop: $("#course_wrapper"+course_index).offset().top},'slow');
         }
 
-        var logging_term = term.replace(/[^a-z0-9]/gi, '_');
-        var course_id = ev.currentTarget.getAttribute("rel");
-        course_id = course_id.replace(/[^a-z0-9]/gi, '_');
+        var logging_term;
+        if (term === undefined) {
+            logging_term = "current";
+        }
+        else {
+            logging_term = term.replace(/[^a-z0-9]/gi, '_');
+        }
 
         $(".accordion-body").on('shown', function(ev) {
+            var course_id = ev.currentTarget.getAttribute("rel");
+            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
             if (term) {
                 WSData.log_interaction("expand_course_"+course_id+"_term_"+logging_term);
             } 
@@ -85,6 +91,8 @@ var CourseList = {
         });
 
         $(".accordion-body").on('hidden', function(ev) {
+            var course_id = ev.currentTarget.getAttribute("rel");
+            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
             if (term) {
                 WSData.log_interaction("collapse_course_"+course_id+"_term_"+logging_term);
             }
@@ -94,6 +102,8 @@ var CourseList = {
         });
 
         $(".course_website").on("click", function(ev) {
+            var course_id = ev.currentTarget.getAttribute("rel");
+            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
             if (term) {
                 WSData.log_interaction("open_course_website_"+course_id+"_term_"+logging_term);
             }
@@ -103,6 +113,8 @@ var CourseList = {
         });
 
         $(".course_canvas_site").on("click", function(ev) {
+            var course_id = ev.currentTarget.getAttribute("rel");
+            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
             if (term) {
                 WSData.log_interaction("open_course_canvas_website_"+course_id+"_term_"+logging_term);
             }
@@ -112,6 +124,8 @@ var CourseList = {
         });
 
         $(".show_map").on("click", function(ev) {
+            var course_id = ev.currentTarget.getAttribute("rel");
+            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
             var building = ev.currentTarget.getAttribute("rel");
             building = building.replace(/[^a-z0-9]/gi, '_');
             if (term) {
