@@ -178,6 +178,22 @@ var VisualSchedule = {
             term: term
         });
 
+        $(".display_list_sched").bind("click", function(ev) {
+            WSData.log_interaction("visual_schedule_view_course_list");
+            var hist = window.History;
+            var state = { state: "course_list" };
+            var url = "/mobile/";
+
+            if (term) {
+                state.term = term;
+                url += term;
+            }
+
+            hist.pushState(state, "", url);
+            return false;
+        });
+
+
         if (term) {
             $(".back_to_current").bind("click", function(ev) {
                 WSData.log_interaction("visual_back_to_current");
@@ -185,16 +201,6 @@ var VisualSchedule = {
                 hist.pushState({
                     state: "visual"
                 },  "", "/mobile/visual");
-                return false;
-            });
-        }
-        else {
-            $(".display_list_sched").bind("click", function(ev) {
-                WSData.log_interaction("visual_schedule_view_course_list");
-                var hist = window.History;
-                hist.pushState({
-                    state: "course_list"
-                },  "", "/mobile/");
                 return false;
             });
         }

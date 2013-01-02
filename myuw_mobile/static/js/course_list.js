@@ -165,16 +165,21 @@ var CourseList = {
                 return false;
             });
         }
-        else {
-            $(".display_visual_sched").bind("click", function(ev) {
-                var hist = window.History;
-                WSData.log_interaction("course_list_view_visual_schedule");
-                hist.pushState({
-                    state: "visual"
-                },  "", "/mobile/visual");
-                return false;
-            });
-        }
+        $(".display_visual_sched").bind("click", function(ev) {
+            var hist = window.History;
+            WSData.log_interaction("course_list_view_visual_schedule");
+
+            var state = { state: "visual" };
+            var url = "/mobile/visual";
+
+            if (term) {
+                state.term = term;
+                url += "/"+term;
+            }
+
+            hist.pushState(state, "", url);
+            return false;
+        });
     }
 };
 
