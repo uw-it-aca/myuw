@@ -5,7 +5,7 @@ var TextBooks = {
     },
 
     _fetch_course_data: function() {
-        WSData.fetch_course_data(TextBooks.render_books);
+        WSData.fetch_current_course_data(TextBooks.render_books);
     },
 
     render_books: function() {

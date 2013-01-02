@@ -4,7 +4,7 @@ var CourseList = {
         if (term) {
             WSData.fetch_course_data_for_term(term, CourseList.render_list, [term, course_index]);
         } else {
-            WSData.fetch_course_data(CourseList.render_list, [term, course_index]);
+            WSData.fetch_current_course_data(CourseList.render_list, [term, course_index]);
         }
     },
 

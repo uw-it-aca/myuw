@@ -116,10 +116,7 @@ WSData = {
     },
 
     fetch_course_data: function(callback, args) {
-        if (window.console) {
-            console.warn("Use WSData.fetch_current_course_data instead");
-        }
-        return WSData.fetch_current_course_data(callback, args);
+        console.warn("Use WSData.fetch_current_course_data instead");
     },
 
     fetch_link_data: function(callback, args) {
