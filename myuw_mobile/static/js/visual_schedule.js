@@ -115,6 +115,7 @@ var VisualSchedule = {
                             if (day === "saturday") {
                                 visual_data.has_6_days = true;
                             }
+                            meeting_info.term = term;
                             visual_data[day].push(meeting_info);
                         }
                     }
