@@ -20,6 +20,7 @@ var Quarters = {
             });
             return;
         }
+
         var urlprefix = "/mobile";
         var path = window.location.pathname;
         var matches = path.match(/^\/mobile\/future_quarters(\/.*)$/);
@@ -27,10 +28,37 @@ var Quarters = {
             urlprefix = urlprefix + matches[1]
         }
 
+        var is_visual = false;
+        if (urlprefix === "/mobile/visual") {
+            is_visual = true;
+        }
+
         source = $("#quarterlist").html();
         template = Handlebars.compile(source);
         $("#courselist").html(template({ 
             "urlprefix" : urlprefix,
             "terms" : data.terms }));
+
+        $(".show_future_term").bind("click", function(ev) {
+            var term = ev.target.rel.replace(/^\//, '');
+            var state = {
+                state: is_visual ? "visual" : "course_list",
+                term: term
+            };
+
+            var url;
+            if (is_visual) {
+                url = "/mobile/visual/"+term;
+            }
+            else {
+                url = "/mobile/"+term;
+            }
+            var hist = window.History;
+            hist.pushState(state, "", url);
+
+            return false;
+        });
+
+
     }
 };
