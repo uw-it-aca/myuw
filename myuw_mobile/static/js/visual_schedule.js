@@ -199,7 +199,7 @@ var VisualSchedule = {
                 WSData.log_interaction("visual_back_to_current");
                 var hist = window.History;
                 hist.pushState({
-                    state: "visual"
+                    state: "course_list"
                 },  "", "/mobile/");
                 return false;
             });

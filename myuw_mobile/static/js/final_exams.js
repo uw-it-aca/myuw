@@ -63,7 +63,7 @@ var FinalExams = {
                 WSData.log_interaction("final_exams_back_to_current");
                 var hist = window.History;
                 hist.pushState({
-                    state: "final_exams"
+                    state: "course_list"
                 },  "", "/mobile/");
                 return false;
             });
