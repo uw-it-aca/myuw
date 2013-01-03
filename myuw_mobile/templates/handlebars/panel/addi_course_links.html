@@ -2,9 +2,11 @@
 {% tplhandlebars "additional_course_links" %}
 <ul class="unstyled">
   {{#if registered_for_the_quarter}}
+  {{#unless term}}
   <li class="additional">
     <a class="show_textbooks" href="/mobile/textbooks/{{term}}"><i class="icon-book"></i> View Textbooks</a>
   </li>
+  {{/unless}}
   <li>
     <a class="show_finalexams" href="/mobile/final_exams/{{term}}"><i class="icon-calendar"></i> Final Exam Schedule</a>
   </li>
