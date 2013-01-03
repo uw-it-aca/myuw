@@ -38,7 +38,6 @@ var CourseList = {
             quarter: course_data.quarter,
             summer_term: course_data.summer_term,
             page: "Courses",
-            go_back_path: "",
             term: term,
             show_visual_button: true,
             show_list_button: false,

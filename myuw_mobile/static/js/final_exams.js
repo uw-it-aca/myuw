@@ -53,7 +53,6 @@ var FinalExams = {
             quarter: course_data.quarter,
             summer_term: course_data.summer_term,
             page: "Final Exams",
-            go_back_path: "final_exams",
             show_visual_button: false,
             show_list_button: false,
             is_future_quarter: term ? true :false
@@ -65,7 +64,7 @@ var FinalExams = {
                 var hist = window.History;
                 hist.pushState({
                     state: "final_exams"
-                },  "", "/mobile/final_exams/");
+                },  "", "/mobile/");
                 return false;
             });
         }

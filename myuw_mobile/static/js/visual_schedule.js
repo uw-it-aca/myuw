@@ -40,7 +40,6 @@ var VisualSchedule = {
             quarter: course_data.quarter,
             summer_term: course_data.summer_term,
             page: "Courses",
-            go_back_path: "visual",
             term: term,
             show_visual_button: false,
             show_list_button: true,
@@ -201,7 +200,7 @@ var VisualSchedule = {
                 var hist = window.History;
                 hist.pushState({
                     state: "visual"
-                },  "", "/mobile/visual");
+                },  "", "/mobile/");
                 return false;
             });
         }
