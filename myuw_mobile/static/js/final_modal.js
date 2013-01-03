@@ -18,7 +18,9 @@ var FinalsModal = {
         }
         var section = course_data.sections[course_index];
 
-        var content = template(section);
+        if (section.final_exam && section.final_exam.building === "*") {
+            section.final_exam.building_tbd = true;
+        }
         Modal.html(template(section));
 
         Modal.show();
