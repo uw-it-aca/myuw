@@ -8,7 +8,9 @@
   {{#if show_list_button}}
   <a role="button" title="View course list" class="btn btn-visual pull-right display_list_sched" href="/mobile/{{term}}"><i class="icon-list-ul"></i> List</a>
   {{/if}}
+  {{#if summer_term}}
   <br /><small>{{summer_term}}</small>
+  {{/if}}
 </h2>
 {{#if is_future_quarter}}
 <a class="back_to_current" href="/mobile/{{go_back_path}}" title="Back to current quarter"><i class="icon-arrow-left"></i> Back to current quarter</a>
