@@ -19,6 +19,7 @@ var FinalExams = {
         return a_date - b_date;
     },
     render_exams: function(term, course_index) {
+        $('html,body').animate({scrollTop: 0}, 'fast');
         var course_data;
 
         if (term) {
