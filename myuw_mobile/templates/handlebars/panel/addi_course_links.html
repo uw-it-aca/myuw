@@ -1,9 +1,9 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "additional_course_links" %}
-<ul class="unstyled">
+<ul class="unstyled additional-list">
   {{#if registered_for_the_quarter}}
   {{#unless term}}
-  <li class="additional">
+  <li>
     <a class="show_textbooks" href="/mobile/textbooks/{{term}}"><i class="icon-book"></i> View Textbooks</a>
   </li>
   {{/unless}}
@@ -11,8 +11,10 @@
     <a class="show_finalexams" href="/mobile/final_exams/{{term}}"><i class="icon-calendar"></i> Final Exam Schedule</a>
   </li>
   {{/if}}
+</ul>
+<ul class="unstyled additional-list">
   {{#if show_future_link}}
-  <li class="additional">
+  <li>
     <a class="show_other_quarters" href="/mobile/future_quarters{{visual}}"><i class="icon-sort"></i> View Future Quarters</a>
   </li>
   {{/if}}

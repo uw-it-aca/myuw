@@ -1255,6 +1255,10 @@ ol.unstyled li.additional {
 li.inline {
   display: inline;
 }
+ul.additional-list {
+  line-height: 30px;
+  padding-top: 15px;
+}
 .dl-horizontal dt {
   margin-bottom: 5px;
 }
