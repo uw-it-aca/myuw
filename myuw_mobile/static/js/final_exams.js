@@ -88,6 +88,9 @@ var FinalExams = {
                     if (start_date > last_day_of_finals) {
                         show_list_instead_of_visual = true;
                     }
+                    if (final_exam.building === "*") {
+                        final_exam.building_tbd = true;
+                    }
                     scheduled_finals.push(section);
                 }
                 else {
