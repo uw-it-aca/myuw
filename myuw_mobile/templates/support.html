@@ -1,21 +1,49 @@
-<div>This is the support page, with admin override</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Mobile MyUW Support</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Le styles -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/custom.css" rel="stylesheet">
+    <link href="/static/css/responsive.css" rel="stylesheet">
+    <link href="/static/css/responsive-custom.css" rel="stylesheet">
 
-<div>You are actually: {{ original_user }} </div>
-<div>You are overriding as: {{ override_user }} </div>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-<form action="/mobile/support" method="POST">
-{% csrf_token %}
+  </head>
 
-Override as: <input type="text" name="override_as"> <br/>
+<body>
+<!-- <div>This is the support page, with admin override</div> -->
 
-<input type="submit">
-</form>
-
+<h2>Hello, {{ original_user }}.</h2>
+<div style="margin: 0 auto;">
+<h4>You are overriding as:</h4>
+<h1 style="color:#ee5f5b;">{{ override_user }} </h1>
 
 <form action="/mobile/support" method="POST">
 {% csrf_token %}
 <input type="hidden" name="clear_override" value="1"/>
-<input type="submit" value="Clear override">
-
+<button class="btn btn-danger" type="submit" value="Clear override">Clear Override</button>
 </form>
 
+</div>
+
+<form action="/mobile/support" method="POST">
+{% csrf_token %}
+
+<h4>Override as:</h4> 
+<input type="text" name="override_as"> <br/>
+
+<button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+<a href="/mobile/"><i class="icon-arrow-left"></i> Back to MyUW Mobile</a>
+</body>
+</html>
