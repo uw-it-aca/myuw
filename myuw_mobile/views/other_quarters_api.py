@@ -23,7 +23,6 @@ class RegisteredFutureQuarters(RESTDispatch):
         resp_data = { 
                       "terms": Schedule().get_registered_future_quarters()
                       }
-        print resp_data
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(resp_data))
 
