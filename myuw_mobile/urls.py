@@ -36,7 +36,7 @@ urlpatterns = patterns('myuw_mobile.views',
     url(r'^api/v1/schedule/(?P<year>\d{4}),(?P<quarter>[a-z]+)(?P<summer_term>[-,abterm]*)$',
         StudClasScheFutureQuar().run),
     url(r'^api/v1/links/$', QuickLinks().run),
-    url(r'^api/v1/person/(?P<regid>.*)$', InstructorContact().run),
+    url(r'^api/v1/person/(?P<regid>[0-9A-F]{32})$', InstructorContact().run),
     url(r'^api/v1/finabala/$', AccountBalances().run),
     url(r'^api/v1/oquarters/$', RegisteredFutureQuarters().run),
 )
