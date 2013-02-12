@@ -281,9 +281,17 @@ WSData = {
        });
     },
 
-    log_interaction: function(interaction_type) {
+    log_interaction: function(interaction_type, term) {
+        var logging_term;
+        if(term === undefined) {
+            logging_term = "";
+        }            
+        else {
+            logging_term = "_term_" + term.replace(/[^a-z0-9]/gi, '_');
+        }
+
         $.ajax({
-                url: "/mobile/logger/" + interaction_type,
+                url: "/mobile/logger/" + interaction_type + logging_term,
                 type: "GET",
                 success: function(results) {},
                 error: function(xhr, status, error) {}

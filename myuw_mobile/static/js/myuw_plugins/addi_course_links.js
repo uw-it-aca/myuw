@@ -17,6 +17,7 @@
             $(this).html(template(settings));
 
             $(".show_textbooks").on("click", function(ev) {
+                WSData.log_interaction((settings.visual?"visual_schedule":"course_list")+"_view_textbooks", settings.term);
                 var hist = window.History;
                 if (settings.term) {
                     hist.pushState({
@@ -33,6 +34,7 @@
             });
 
             $(".show_finalexams").on("click", function(ev) {
+                WSData.log_interaction((settings.visual?"visual_schedule":"course_list")+"_view_finalexams", settings.term);
                 var hist = window.History;
                 if (settings.term) {
                     hist.pushState({

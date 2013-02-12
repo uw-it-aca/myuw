@@ -60,7 +60,7 @@ var FinalExams = {
 
         if (term) {
             $(".back_to_current").bind("click", function(ev) {
-                WSData.log_interaction("final_exams_back_to_current");
+                WSData.log_interaction("final_exams_back_to_current", "");
                 var hist = window.History;
                 hist.pushState({
                     state: "course_list"
@@ -147,15 +147,14 @@ var FinalExams = {
                 FinalsModal.show_finals_modal(term, course_index);
             }
         }
-
+        
         $(".show_section_details").bind("click", function(ev) {
             var course_id = this.rel;
             var log_course_id = ev.currentTarget.getAttribute("class").replace(/[^a-z0-9]/gi, '_');
+            WSData.log_interaction("open_finals_modal_"+log_course_id, term);
+            var hist = window.History;
 
             if (term) {
-                var logging_term = term.replace(/[^a-z0-9]/gi, '_');
-                WSData.log_interaction("open_finals_modal_"+log_course_id+"_term_"+logging_term);
-                var hist = window.History;
                 hist.pushState({
                     state: "final_exams",
                     course_index: course_id,
@@ -163,8 +162,6 @@ var FinalExams = {
                 },  "", "/mobile/final_exams/"+term+"/"+course_id);
             }
             else {
-                WSData.log_interaction("open_finals_modal_"+log_course_id);
-                var hist = window.History;
                 hist.pushState({
                     state: "final_exams",
                     course_index: course_id

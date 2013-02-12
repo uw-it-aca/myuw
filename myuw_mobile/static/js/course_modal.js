@@ -26,12 +26,21 @@ var CourseModal = {
         $('html,body').animate({scrollTop: 0}, 'fast');
 
         $(".instructor").bind("click", function(ev) {
+            WSData.log_interaction("view_instructor_from_course_modal", term);
             var hist = window.History;
-            hist.pushState({
-                state: "instructor",
-                instructor: ev.target.rel
-            },  "", "/mobile/instructor/"+ev.target.rel);
-
+            if (term) {
+                hist.pushState({
+                    state: "instructor",
+                    instructor: ev.target.rel,
+                    term: term
+                },  "", "/mobile/instructor/"+ev.target.rel+"/"+term);
+            }
+            else {
+                hist.pushState({
+                    state: "instructor",
+                    instructor: ev.target.rel
+                },  "", "/mobile/instructor/"+ev.target.rel);
+            }
             return false;
         });
 
@@ -49,13 +58,13 @@ var CourseModal = {
         $(".course_website").on("click", function(ev) {
             var course_id = ev.currentTarget.getAttribute("rel");
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("open_course_website_"+course_id);
+            WSData.log_interaction("open_course_website_from_course_modal_"+course_id, term);
         });
 
         $(".show_map_modal").on("click", function(ev) {
             var building = ev.currentTarget.getAttribute("rel");
             building = building.replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("show_map_from_course_modal_"+building);
+            WSData.log_interaction("show_map_from_course_modal_"+building, term);
         });
 
 

@@ -54,13 +54,13 @@ var FinalsModal = {
         $(".course_website").on("click", function(ev) {
             var course_id = ev.currentTarget.getAttribute("rel");
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("open_course_website_"+course_id);
+            WSData.log_interaction("open_course_website_"+course_id, term);
         });
 
         $(".show_map_modal").on("click", function(ev) {
             var building = ev.currentTarget.getAttribute("rel");
             building = building.replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("show_map_from_final_modal_"+building);
+            WSData.log_interaction("show_map_from_final_modal_"+building, term);
         });
     }
 };
