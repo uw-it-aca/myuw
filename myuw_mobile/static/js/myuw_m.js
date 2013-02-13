@@ -232,7 +232,7 @@ $(document).ready(function() {
             document.title = window.page_titles["course_list"];
         }
         else if (state === "instructor") {
-            Instructor.show_instructor(data.instructor);
+            Instructor.show_instructor(data.term, data.instructor);
             document.title = window.page_titles["instructor"];
         }
         else if (state === "future_quarters") {

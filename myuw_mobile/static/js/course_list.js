@@ -104,7 +104,7 @@ var CourseList = {
 
 
         $(".instructor").on("click", function(ev) {
-            WSData.log_interaction("view_instructor_from_course_list_", term);
+            WSData.log_interaction("view_instructor_from_course_list", term);
             var hist = window.History;
             if (term) {
                 hist.pushState({

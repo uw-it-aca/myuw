@@ -1,10 +1,10 @@
 var Instructor = {
-    show_instructor: function(regid) {
+    show_instructor: function(term, regid) {
         showLoading();
-        WSData.fetch_instructor_data(Instructor.render_instructor, [regid]);
+        WSData.fetch_instructor_data(Instructor.render_instructor, [term, regid]);
     },
     
-    render_instructor: function(regid) {
+    render_instructor: function(term, regid) {
         $('html,body').animate({scrollTop: 0}, 'fast');        
         var instructor_data = WSData.instructor_data(regid);
         
@@ -28,7 +28,7 @@ var Instructor = {
         $(".contact_instructor").on("click", function(ev) {
             var contact_info = ev.currentTarget.getAttribute("href");
             contact_info = contact_info.replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("instructor_contact_"+contact_info);
+            WSData.log_interaction("instructor_contact_"+contact_info, term);
         });
 
         Modal.hide();

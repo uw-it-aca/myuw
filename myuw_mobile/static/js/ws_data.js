@@ -144,7 +144,7 @@ WSData = {
         },
 
     fetch_instructor_data: function(callback, args) {
-        var instructor_regid = args[0];
+        var instructor_regid = args[1];
         if (WSData._instructor_data[instructor_regid] === undefined) {
             $.ajax({
                     url: "/mobile/api/v1/person/"+instructor_regid,
