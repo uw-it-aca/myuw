@@ -1827,6 +1827,11 @@ footer .footer-links a {
   border-color: #bce8f1;
   color: #3a87ad;
 }
+.alert-myuw {
+  background-color: #eeeeee;
+  border-color: #dcdcdc;
+  color: #555555;
+}
 .btn-myuw.active {
   color: rgba(255, 255, 255, 0.75);
 }
