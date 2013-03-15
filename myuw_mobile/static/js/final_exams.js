@@ -49,6 +49,7 @@ var FinalExams = {
         var source = $("#quarter-header").html();
         var template = Handlebars.compile(source);
         $("#page-header").html(template({
+            show_alert: false,
             year: course_data.year,
             quarter: course_data.quarter,
             summer_term: course_data.summer_term,
@@ -57,7 +58,7 @@ var FinalExams = {
             show_list_button: false,
             is_future_quarter: term ? true :false
         }));
-
+        
         if (term) {
             $(".back_to_current").bind("click", function(ev) {
                 WSData.log_interaction("final_exams_back_to_current", "");

@@ -33,9 +33,13 @@ var VisualSchedule = {
             WSData.normalize_instructors_for_current_term();
         }
 
+        var no_alert_cookie_name = "no_alert_" + $('.user').html().substring(9) ;
+        var no_alert_cookie = $.cookie(no_alert_cookie_name);
+
         var source = $("#quarter-header").html();
         var template = Handlebars.compile(source);
         $("#page-header").html(template({
+            show_alert: no_alert_cookie == null,
             year: course_data.year, 
             quarter: course_data.quarter,
             summer_term: course_data.summer_term,
@@ -176,6 +180,13 @@ var VisualSchedule = {
             show_future_link: term ? false : true,
             visual: "/visual",
             term: term
+        });
+
+        $("#close_alert").bind("click", function(ev) {
+            $(".alert").hide();
+            $.cookie(no_alert_cookie_name, '1', { expires: 10, path: '/' });
+            //alert( $.cookie(no_alert_cookie_name) );
+            return false;
         });
 
         $(".display_list_sched").bind("click", function(ev) {
