@@ -184,7 +184,7 @@ var VisualSchedule = {
 
         $("#close_alert").bind("click", function(ev) {
             $(".alert").hide();
-            $.cookie(no_alert_cookie_name, '1', { expires: 10, path: '/' });
+            $.cookie(no_alert_cookie_name, '1', { expires: 18, path: '/' });
             //alert( $.cookie(no_alert_cookie_name) );
             return false;
         });
