@@ -1,11 +1,5 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "quarter-header" %}
-{{#if show_alert}}
-  <div class="alert alert-info">
-  <button type="button" class="close" id="close_alert">&times;</button>
-  Tell us what you think about MyUW Mobile. <a style="font-size:inherit;font-weight:bold;" target="_blank" href="http://fluidsurveys.com/s/myuw-mobile-Win13/">Take a short survey <i class="icon-arrow-right"></i></a>
-  </div>
-{{/if}}
 <h2 id="quarter-info">
   {{ucfirst quarter}} {{year}} {{page}}
   {{#if show_visual_button}}
