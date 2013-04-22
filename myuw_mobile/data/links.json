@@ -140,6 +140,16 @@
         "restrict_to_campus":null
     },
     {
+	"id":89,
+        "title":"Notify.UW",
+        "url":"https://notify.uw.edu/",
+        "on_for_employees":false,
+        "on_for_undergrad":true,
+        "on_for_gradstudent":false,
+        "on_for_pce":false,
+        "restrict_to_campus":null
+    },
+    {
 	"id":90,
         "title":"Registration",
         "url":"https://sdb.admin.washington.edu/students/uwnetid/register.asp",
@@ -148,6 +158,16 @@
         "on_for_gradstudent":false,
         "on_for_pce":false,
         "restrict_to_campus":null
+    },
+    {
+	"id":100,
+        "title":"SpaceScout",
+        "url":"http://spacescout.uw.edu/",
+        "on_for_employees":false,
+        "on_for_undergrad":true,
+        "on_for_gradstudent":true,
+        "on_for_pce":false,
+        "restrict_to_campus":"seattle"
     },
     {
 	"id":101,
