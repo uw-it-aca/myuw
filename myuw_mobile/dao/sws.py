@@ -37,7 +37,7 @@ class Quarter:
 
     def get_current_summer_term(self):
         term = self.get_cur_quarter()
-        if datetime.now() > term.aterm_last_date:
+        if datetime.now().date() > term.aterm_last_date:
             return "B-term"
         else:
             return "A-term"
