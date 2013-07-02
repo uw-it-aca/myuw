@@ -196,7 +196,16 @@ class Schedule:
                     if sumr_tms["A_term"]:
                         terms.append(self._get_future_term_json(next_quarter,
                                                                 "A-Term"))
+
+                    if sumr_tms["Full_term"] and not sumr_tms["A_term"]:
+                        terms.append(self._get_future_term_json(next_quarter,
+                                                                "A-Term"))
+
                     if sumr_tms["B_term"]:
+                        terms.append(self._get_future_term_json(next_quarter,
+                                                                "B-Term"))
+
+                    if sumr_tms["Full_term"] and not sumr_tms["B_term"]:
                         terms.append(self._get_future_term_json(next_quarter,
                                                                 "B-Term"))
             else:
