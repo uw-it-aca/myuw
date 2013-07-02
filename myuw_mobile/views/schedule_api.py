@@ -62,17 +62,19 @@ class StudClasScheFutureQuar(RESTDispatch):
         smr_term = ""
         if summer_term and len(summer_term) > 1:
             smr_term = summer_term[1:].title()
+
         resp_data = make_sche_api_response(schedule, smr_term)
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(resp_data))
 
 
 def make_sche_api_response(schedule, summer_term=""):
+    summer_term_lc = summer_term.lower()
     if len(schedule.sections) > 0 and schedule.term.quarter == "summer":
-        if summer_term == "A-term" or summer_term == "B-term":
+        if summer_term_lc == "a-term" or summer_term_lc == "b-term":
             filtered_sections = []
             for section in schedule.sections:
-                if section.summer_term == "Full-term" or section.summer_term == summer_term:
+                if section.summer_term.lower() == "full-term" or section.summer_term.lower() == summer_term_lc:
                     filtered_sections.append(section)
             schedule.sections = filtered_sections    
 
