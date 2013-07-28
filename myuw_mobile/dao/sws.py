@@ -1,5 +1,5 @@
 from django.conf import settings
-from datetime import datetime
+from datetime import date
 import logging
 import traceback
 from restclients.sws import SWS
@@ -37,7 +37,7 @@ class Quarter:
 
     def get_current_summer_term(self):
         term = self.get_cur_quarter()
-        if datetime.now().date() > term.aterm_last_date:
+        if date.today() > term.aterm_last_date:
             return "B-term"
         else:
             return "A-term"
@@ -153,7 +153,7 @@ class Schedule:
         Return summer registered terms
         """
         data = {
-            "full_term" : None,
+            "Full_term" : None,
             "A_term" : None,
             "B_term" : None,
             }
