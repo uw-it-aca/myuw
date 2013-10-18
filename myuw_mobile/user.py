@@ -10,7 +10,10 @@ class UserService:
     logger = logging.getLogger('myuw_mobile.user.UserService')
 
     def _get_current_user_data(self):
-        return UserService._user_data[currentThread()]
+        try:
+            return UserService._user_data[currentThread()]
+        except KeyError:
+            return {}
 
     def _require_middleware(self):
         if not "initialized" in self._get_current_user_data():
