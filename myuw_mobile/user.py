@@ -20,7 +20,7 @@ class UserService:
             print "You need to have this line in your MIDDLEWARE_CLASSES:"
             print "'myuw_mobile.user.UserServiceMiddleware',"
 
-            raise Exception("You need the UserServiceMiddleware")
+            raise Exception("You need the myuw_mobile.user.UserServiceMiddleware")
 
     def get_user(self):
         self._require_middleware()
