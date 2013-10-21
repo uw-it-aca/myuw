@@ -8,13 +8,14 @@
     <meta name="author" content="">
  
    {% load compress %}
+   {% load static %}
 
    {% compress css %}
     <!-- Le styles -->
-    <link href="/static/css/bootstrap.css" rel="stylesheet">
-    <link href="/static/css/custom.css" rel="stylesheet">
-    <link href="/static/css/responsive.css" rel="stylesheet">
-    <link href="/static/css/responsive-custom.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive-custom.css' %}" rel="stylesheet">
    {% endcompress %}
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -23,17 +24,17 @@
     <![endif]-->
  
     <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="/static/images/favicon.ico">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico">
     <!-- For third-generation iPad with high-resolution Retina display: -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/images/apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/apple-touch-icon-144x144-precomposed.png' %}">
 <!-- For iPhone with high-resolution Retina display: -->
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/images/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/apple-touch-icon-114x114-precomposed.png' %}">
 <!-- For first- and second-generation iPad: -->
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/images/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/apple-touch-icon-72x72-precomposed.png' %}">
 <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/static/images/apple-touch-icon-57x57-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'images/apple-touch-icon-57x57-precomposed.png' %}">
 <!-- For everything else otherwise not specified -->
-<link rel="apple-touch-icon-precomposed" href="/static/images/apple-touch-icon-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="{% static 'images/apple-touch-icon-precomposed.png' %}">
 
     {% load templatetag_handlebars %}
   </head>
@@ -79,41 +80,41 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     {% compress js %}
-    <script src="/static/js/jquery.js"></script>
-    <script src="/static/js/jquery.cookies.js"></script>
-    <script src="/static/js/ios-orientationchange-fix.js"></script>
-    <script src="/static/js/bootstrap/bootstrap-affix.js"></script>
-    <script src="/static/js/bootstrap/bootstrap-transition.js"></script>
-    <script src="/static/js/bootstrap/bootstrap-alert.js"></script>
-    <script src="/static/js/bootstrap/bootstrap-modal.js"></script>
-    <script src="/static/js/bootstrap/bootstrap-dropdown.js"></script>
-    <script src="/static/js/bootstrap/bootstrap-scrollspy.js"></script>
-    <script src="/static/js/bootstrap/bootstrap-tab.js"></script>
-    <script src="/static/js/bootstrap/bootstrap-tooltip.js"></script>
-    <script src="/static/js/bootstrap/bootstrap-popover.js"></script>
-    <script src="/static/js/bootstrap/bootstrap-button.js"></script>
-    <script src="/static/js/bootstrap/bootstrap-collapse.js"></script>
-    <script src="/static/js/bootstrap/bootstrap-carousel.js"></script>
-    <script src="/static/js/bootstrap/bootstrap-typeahead.js"></script>
-    <script src="/static/js/handlebars.js"></script>
-    <script src="/static/js/history.js"></script>
-    <script src="/static/js/modal.js"></script>
-    <script src="/static/js/ws_data.js"></script>
-    <script src="/static/js/myuw_plugins/addi_course_links.js"></script>
-    <script src="/static/js/myuw_plugins/no_courses.js"></script>
-    <script src="/static/js/course_list.js"></script>
-    <script src="/static/js/course_modal.js"></script>
-    <script src="/static/js/final_modal.js"></script>
-    <script src="/static/js/final_exams.js"></script>
-    <script src="/static/js/visual_schedule.js"></script>
-    <script src="/static/js/instructor.js"></script>
-    <script src="/static/js/textbooks.js"></script>
-    <script src="/static/js/links.js"></script>
-    <script src="/static/js/fina_accounts.js"></script>
-    <script src="/static/js/other_quarters.js"></script>
-    <script src="/static/js/myuw_m.js"></script>
-    <script src="/static/js/ga_ob.js"></script>
-    <script type="text/javascript" src="/static/js/uw-alert.js"></script> 
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/jquery.cookies.js' %}"></script>
+    <script src="{% static 'js/ios-orientationchange-fix.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-affix.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-transition.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-alert.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-modal.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-dropdown.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-scrollspy.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-tab.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-tooltip.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-popover.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-button.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-collapse.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-carousel.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-typeahead.js' %}"></script>
+    <script src="{% static 'js/handlebars.js' %}"></script>
+    <script src="{% static 'js/history.js' %}"></script>
+    <script src="{% static 'js/modal.js' %}"></script>
+    <script src="{% static 'js/ws_data.js' %}"></script>
+    <script src="{% static 'js/myuw_plugins/addi_course_links.js' %}"></script>
+    <script src="{% static 'js/myuw_plugins/no_courses.js' %}"></script>
+    <script src="{% static 'js/course_list.js' %}"></script>
+    <script src="{% static 'js/course_modal.js' %}"></script>
+    <script src="{% static 'js/final_modal.js' %}"></script>
+    <script src="{% static 'js/final_exams.js' %}"></script>
+    <script src="{% static 'js/visual_schedule.js' %}"></script>
+    <script src="{% static 'js/instructor.js' %}"></script>
+    <script src="{% static 'js/textbooks.js' %}"></script>
+    <script src="{% static 'js/links.js' %}"></script>
+    <script src="{% static 'js/fina_accounts.js' %}"></script>
+    <script src="{% static 'js/other_quarters.js' %}"></script>
+    <script src="{% static 'js/myuw_m.js' %}"></script>
+    <script src="{% static 'js/ga_ob.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/uw-alert.js' %}"></script> 
     {% endcompress %}
   </body>
 </html>
