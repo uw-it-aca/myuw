@@ -72,6 +72,10 @@ $(document).ready(function() {
             FinalExams.show_finals(data.term, data.course_index);
             document.title = window.page_titles["finals"];
         }
+        else if (state === "grades") {
+            Grades.show_grades(data.term);
+            document.title = window.page_titles["grades"];
+        }
 
 
         loaded_url = state_url;
@@ -191,6 +195,15 @@ $(document).ready(function() {
 
 //            Instructor.show_instructor(matches[1]);
         }
+        else if (path.match(/^\/mobile\/grades/)) {
+            var matches = path.match(/^\/mobile\/grades\/([0-9,a-z]+)/);
+            hist.replaceState({
+                state: "grades",
+                term: (matches ? matches[1] : "")
+            },  "", "/mobile/grades/" + (matches
+                                                 ? matches[1]
+                                                 : ""));
+        }
         else {
             // Just fall back to the course list?
             hist.replaceState({
@@ -199,6 +212,8 @@ $(document).ready(function() {
             );
             //CourseList.show_list();
         }
+
+
         History.Adapter.trigger(window, 'statechange');
     }
 

@@ -1,5 +1,6 @@
 WSData = {
     _course_data: {},
+    _grade_data: {},
     _book_data: null,
     _link_data: null,
     _instructor_data: {},
@@ -16,6 +17,12 @@ WSData = {
 
     course_data_for_term: function(term) {
         return WSData._course_data[term];
+    },
+
+
+    grade_data_for_term: function(term) {
+        if (!term) { term = ''; }
+        return WSData._grade_data[term];
     },
 
     course_data: function() {
@@ -113,6 +120,29 @@ WSData = {
             }, 0);
         }
 
+    },
+
+    fetch_grades_for_term: function(term, callback, args) {
+        if (!term) { term = ''; }
+
+        if (WSData.course_data_for_term(term)) {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+            return;
+        }
+
+        $.ajax({
+            url: "/mobile/api/v1/grades/"+term,
+            type: 'GET',
+            success: function(results) {
+                WSData._grade_data[term] = results;
+                callback.apply(null, args);
+            },
+            error: function() {
+                showError();
+            }
+        });
     },
 
     fetch_course_data: function(callback, args) {

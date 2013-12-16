@@ -1,0 +1,73 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "grades" %}
+    <h2>Grades</h2>
+    {{ term.year }} {{ term.quarter }}
+    <br />
+    <h3>Final grades</h3>
+    {{#each sections}}
+        <div class="c{{color_id}} c{{color_id}}Border">
+        <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}}{{section_id}}</span>
+        <span class="shortTitle">{{ course_title }}</span>
+            <div>
+            {{ #if official_grade }}
+                {{ official_grade }}
+            {{ else }}
+            Grade not yet submitted
+            {{ /if }}
+            </div>
+        </div>
+        <br />
+    {{/each}}
+
+    <h3>Assignments</h3>
+    {{#each sections}}
+        {{ #if assignments }}
+        <div class="c{{color_id}} c{{color_id}}Border">
+        <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}}{{section_id}}</span>
+        <span class="shortTitle">{{ course_title }}</span>
+            <div>
+                {{ #each assignments }}
+                    <span class="source_{{source_id }}">Source: {{ source_name }}</span> <br />
+                    {{ #each data }}
+                        {{ #if url }}
+                                <h4><a href="{{ url }}">{{ name }}</a></h4>
+                        {{ else }}
+                            {{ #if name }}
+                                <h4>{{ name }}</h4>
+                            {{ /if }}
+                        {{ /if }}
+                        {{ #if total_score }}
+                        Total Score: {{ total_score }} <br />
+                        {{ /if }}
+
+                        {{ #if class_grade }}
+                        Class Grade: {{ class_grade }} <br />
+                        {{ /if }}
+
+                        {{ #if assignments }}
+                            {{ #each assignments }}
+                                <div>
+                                name: {{ name }} <Br />
+                                {{ #if url }}
+                                    participant url: {{ url }} <br />
+                                {{ /if }}
+                                score: {{ score }} <Br />
+                                {{ #if max_points }}
+                                max points: {{ max_points }} <Br />
+                                {{ /if }}
+                                type: {{ type }} <Br />
+                                </div>
+                                <br />
+                            {{ /each }}
+                        {{ /if }}
+
+                    {{ /each}}
+                {{ /each}}
+            </div>
+        </div>
+        <br />
+        {{ /if }}
+    {{/each}}
+
+
+    {% endtplhandlebars %}
