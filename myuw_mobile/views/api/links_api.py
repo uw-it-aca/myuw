@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.utils import simplejson as json
 import logging
-from rest_dispatch import RESTDispatch, data_not_found
+from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.dao.links import Link
 from myuw_mobile.user import UserService
 from myuw_mobile.logger.timer import Timer

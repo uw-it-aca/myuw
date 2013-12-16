@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.utils import simplejson as json
 import logging
-from rest_dispatch import RESTDispatch, data_not_found
+from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.dao.student_finances import Accounts
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_data_not_found_response, log_success_response

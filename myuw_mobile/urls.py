@@ -2,12 +2,12 @@ from django.conf.urls import patterns, include, url
 from myuw_mobile.views.page import index
 from myuw_mobile.views.mobile_login import user_login
 from myuw_mobile.views.support import support
-from myuw_mobile.views.schedule_api import StudClasScheCurQuar, StudClasScheFutureQuar
-from myuw_mobile.views.contact_api import InstructorContact
-from myuw_mobile.views.textbook_api import TextbookCurQuar
-from myuw_mobile.views.links_api import QuickLinks
-from myuw_mobile.views.stud_finances_api import AccountBalances
-from myuw_mobile.views.other_quarters_api import RegisteredFutureQuarters
+from myuw_mobile.views.api.schedule_api import StudClasScheCurQuar, StudClasScheFutureQuar
+from myuw_mobile.views.api.contact_api import InstructorContact
+from myuw_mobile.views.api.textbook_api import TextbookCurQuar
+from myuw_mobile.views.api.links_api import QuickLinks
+from myuw_mobile.views.api.stud_finances_api import AccountBalances
+from myuw_mobile.views.api.other_quarters_api import RegisteredFutureQuarters
 from myuw_mobile.views.logout import Logout
 
 urlpatterns = patterns('myuw_mobile.views',

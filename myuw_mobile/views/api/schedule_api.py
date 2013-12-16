@@ -3,7 +3,7 @@ import logging
 from django.utils import simplejson as json
 from myuw_mobile.dao.sws import Quarter, Schedule
 from myuw_mobile.dao.canvas import Enrollments
-from rest_dispatch import RESTDispatch, data_not_found
+from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_data_not_found_response
 from myuw_mobile.logger.logresp import log_success_response
