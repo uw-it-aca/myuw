@@ -12,6 +12,5 @@ var Grades = {
         var template = Handlebars.compile(source);
 
         $("#courselist").html(template(grade_data));
-        console.log("GD: ", grade_data);
     }
 };
