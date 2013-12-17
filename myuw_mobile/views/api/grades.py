@@ -2,7 +2,9 @@ from django.http import HttpResponse
 from django.utils import simplejson as json
 from myuw_mobile.views.rest_dispatch import RESTDispatch
 from myuw_mobile.dao.sws import Quarter, Schedule
+from restclients.catalyst.gradebook import GradeBook
 from operator import itemgetter
+from myuw_mobile.user import UserService
 
 
 class Grades(RESTDispatch):
@@ -30,44 +32,21 @@ class Grades(RESTDispatch):
             return HttpResponse({})
 
         colors = schedule_dao.get_colors_for_schedule(schedule)
+        grades = self._get_grades_for_term(term.year, term.quarter)
+
         json_data = schedule.json_data()
 
         section_index = 0
         for section in schedule.sections:
             section_data = json_data["sections"][section_index]
             color = colors[section.section_label()]
+
             section_data["color_id"] = color
+
+            self._add_grades_for_section(grades, section_data, section.section_label())
 
             # XXX - Fake Data!
             section_data["official_grade"] = "3.8"
-            section_data["assignments"] = [
-                    {
-                        "source_id": "catalyst_gradebook",
-                        "source_name": "Catalyst GradeBook",
-                        "data": [ {
-                            "class_grade": "3.9",
-                            "total_score": 87,
-                            "url": "https://catalyst.uw.edu/gradebook/owner/id",
-                            "name": "Gradebook for the course",
-                            "assignments": [
-                                { "name": "Homework 1", "score": 90, "type": "points", "max_points": 100 },
-                                { "name": "Homework 2", "score": 95, "type": "percentage" },
-                                { "name": "Homework 3", "score": "2.7", "type": "grade_point" },
-                                { "name": "Homework 4", "score": "B", "type": "custom" },
-                                { "name": "Homework 5", "score": "nice", "type": "text" }
-                            ]
-                        } ]
-                    },
-                    {
-                        "source_id": "catalyst_webq",
-                        "source_name": "Catalyst WebQ",
-                        "data": [ {
-                            "assignments": [
-                                { "name": "Quiz 1", "score": 4, "type": "points", "max_points": 5, "url": "https://catalyst.uw.edu/webq/owner/id/" }
-                            ]
-                        } ]
-                    }
-                ]
 
             section_index += 1
 
@@ -79,3 +58,34 @@ class Grades(RESTDispatch):
 
 
         return HttpResponse(json.dumps(json_data), { "Content-Type": "application/json" })
+
+    def _get_grades_for_term(self, year, quarter):
+        # XXX -Thread these methods!
+        netid = UserService().get_user()
+        gradebook_grades = GradeBook().get_grades_for_student_and_term(netid, year, quarter)
+
+        return { "catalyst_gradebook": gradebook_grades }
+
+    def _add_grades_for_section(self, all_grades, section_data, section_label):
+        self._add_grades(all_grades["catalyst_gradebook"], section_data, section_label, "catalyst_gradebook", "Catalyst GradeBook")
+
+    def _add_grades(self, source_data, section_data, section_label, source_key, source_name):
+        if section_label in source_data:
+            section_grades = source_data[section_label]
+            print "SL: ", section_label, section_grades[0].json_data()
+
+            data = []
+
+            for grades in section_grades:
+                data.append(grades.json_data())
+                print "G: ", grades.json_data()
+
+            if not "assignments" in section_data:
+                section_data["assignments"] = []
+
+            section_data["assignments"].append({
+                "source_id": source_key,
+                "source_name": source_name,
+                "data": data
+            })
+

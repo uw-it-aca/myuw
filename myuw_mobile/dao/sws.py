@@ -5,8 +5,8 @@ import traceback
 from restclients.sws import SWS
 from restclients.models import ClassSchedule
 from myuw_mobile.models import CourseColor
-from building import Building
-from pws import Person
+from myuw_mobile.dao.building import Building
+from myuw_mobile.dao.pws import Person
 from myuw_mobile.logger.timer import Timer
 from restclients.exceptions import DataFailureException
 from myuw_mobile.logger.logback import log_resp_time, log_exception
