@@ -3,6 +3,7 @@ from django.utils import simplejson as json
 from myuw_mobile.views.rest_dispatch import RESTDispatch
 from myuw_mobile.dao.sws import Quarter, Schedule
 from restclients.catalyst.gradebook import GradeBook
+from restclients.catalyst.webq import WebQ
 from operator import itemgetter
 from myuw_mobile.user import UserService
 
@@ -63,22 +64,22 @@ class Grades(RESTDispatch):
         # XXX -Thread these methods!
         netid = UserService().get_user()
         gradebook_grades = GradeBook().get_grades_for_student_and_term(netid, year, quarter)
+        webq_grades = WebQ().get_grades_for_student_and_term(netid, year, quarter)
 
-        return { "catalyst_gradebook": gradebook_grades }
+        return { "catalyst_gradebook": gradebook_grades, "catalyst_webq": webq_grades  }
 
     def _add_grades_for_section(self, all_grades, section_data, section_label):
         self._add_grades(all_grades["catalyst_gradebook"], section_data, section_label, "catalyst_gradebook", "Catalyst GradeBook")
+        self._add_grades(all_grades["catalyst_webq"], section_data, section_label, "catalyst_webq", "Catalyst WebQ")
 
     def _add_grades(self, source_data, section_data, section_label, source_key, source_name):
         if section_label in source_data:
             section_grades = source_data[section_label]
-            print "SL: ", section_label, section_grades[0].json_data()
 
             data = []
 
             for grades in section_grades:
                 data.append(grades.json_data())
-                print "G: ", grades.json_data()
 
             if not "assignments" in section_data:
                 section_data["assignments"] = []
