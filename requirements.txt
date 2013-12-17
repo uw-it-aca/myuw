@@ -1,4 +1,4 @@
-Django==1.4
+Django==1.6
 South
 simplejson
 django-compressor
