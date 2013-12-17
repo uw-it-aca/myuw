@@ -4,6 +4,8 @@ from myuw_mobile.views.rest_dispatch import RESTDispatch
 from myuw_mobile.dao.sws import Quarter, Schedule
 from restclients.catalyst.gradebook import GradeBook
 from restclients.catalyst.webq import WebQ
+from restclients.sws import SWS
+from restclients.pws import PWS
 from operator import itemgetter
 from myuw_mobile.user import UserService
 
@@ -35,19 +37,30 @@ class Grades(RESTDispatch):
         colors = schedule_dao.get_colors_for_schedule(schedule)
         grades = self._get_grades_for_term(term.year, term.quarter)
 
+        username = UserService().get_user()
+        regid = PWS().get_person_by_netid(username).uwregid
+
+        final_grades = SWS().grades_for_regid_and_term(regid, term)
+
+        grade_by_section_label = {}
+        for grade in final_grades.grades:
+            grade_by_section_label[grade.section.section_label()] = grade
+
         json_data = schedule.json_data()
 
         section_index = 0
         for section in schedule.sections:
+            section_label = section.section_label()
             section_data = json_data["sections"][section_index]
-            color = colors[section.section_label()]
+            color = colors[section_label]
 
             section_data["color_id"] = color
 
-            self._add_grades_for_section(grades, section_data, section.section_label())
+            self._add_grades_for_section(grades, section_data, section_label)
 
-            # XXX - Fake Data!
-            section_data["official_grade"] = "3.8"
+            if section_label in grade_by_section_label:
+                grade_data = grade_by_section_label[section_label]
+                section_data["official_grade"] = grade_data.grade
 
             section_index += 1
 
