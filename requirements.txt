@@ -7,5 +7,6 @@ BeautifulSoup
 urllib3
 django-templatetag-handlebars
 -e svn+https://svn.cac.washington.edu/svn/restclients/trunk#egg=RestClients
+-e git://github.com/vegitron/django-userservice#egg=Django-UserService
 # If you're using a MySQL database, you may also need mysql-python
 # mysql-python
