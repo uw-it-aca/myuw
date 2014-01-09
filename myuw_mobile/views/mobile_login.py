@@ -2,7 +2,7 @@ from django.http import HttpRequest
 from django.shortcuts import redirect
 from django.conf import settings
 import logging
-from myuw_mobile.user import UserService
+from userservice.user import UserService
 from myuw_mobile.dao.pws import Person as PersonDao
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_invalid_netid_response, log_response_time

@@ -5,7 +5,7 @@ from django.conf import settings
 import logging
 from myuw_mobile.dao.sws import Quarter as QuarterDao
 from myuw_mobile.logger.timer import Timer
-from myuw_mobile.user import UserService
+from userservice.user import UserService
 from myuw_mobile.logger.logresp import log_data_not_found_response, log_invalid_netid_response, log_success_response_with_affiliation
 from myuw_mobile.views.rest_dispatch import invalid_session
 

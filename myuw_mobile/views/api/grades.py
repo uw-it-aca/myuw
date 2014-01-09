@@ -12,7 +12,7 @@ from restclients.canvas.assignments import Assignments
 from restclients.canvas.enrollments import Enrollments
 from restclients.canvas import Canvas
 from operator import itemgetter
-from myuw_mobile.user import UserService
+from userservice.user import UserService
 
 
 class Grades(RESTDispatch):

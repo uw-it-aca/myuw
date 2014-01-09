@@ -1,7 +1,6 @@
 from django.conf.urls import patterns, include, url
 from myuw_mobile.views.page import index
 from myuw_mobile.views.mobile_login import user_login
-from myuw_mobile.views.support import support
 from myuw_mobile.views.api.schedule_api import StudClasScheCurQuar, StudClasScheFutureQuar
 from myuw_mobile.views.api.contact_api import InstructorContact
 from myuw_mobile.views.api.textbook_api import TextbookCurQuar
@@ -13,7 +12,6 @@ from myuw_mobile.views.logout import Logout
 
 urlpatterns = patterns('myuw_mobile.views',
     url(r'login', 'mobile_login.user_login'),
-    url(r'support', 'support.support'),
     url(r'^link/(?P<linkid>\d+)$', 'link.show_link'),
     url(r'^logger/(?P<interaction_type>\w+)$', 'logger.log_interaction'),
     url(r'logout', Logout.as_view()),

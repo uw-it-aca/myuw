@@ -1,5 +1,5 @@
 import logging
-from myuw_mobile.user import UserService
+from userservice.user import UserService
 from myuw_mobile.logger.timer import Timer
 
 def log_exception(logger, action, exc_info):

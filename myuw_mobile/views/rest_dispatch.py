@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from myuw_mobile.user import UserService
+from userservice.user import UserService
 
 class RESTDispatch:
     """ Handles passing on the request to the correct view method based on the request type.
