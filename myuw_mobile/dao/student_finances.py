@@ -27,6 +27,7 @@ class Accounts():
             employee_id = "000000000"
 
         timer = Timer()
+        account_data = None
         try:
             account_data = HfsAccounts().get_balances(student_number,
                                                       employee_id)
