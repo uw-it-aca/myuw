@@ -17,8 +17,7 @@ class File(object):
         :param url:
             in the format of "hfs/servlet/hfservices?sn=<student number>"
         """
-        return get_mockdata_url("hfs", "file", url, headers,
-                                dir_base=dirname(__file__))
+        return get_mockdata_url("hfs", "file", url, headers)
 
 class Live(object):
     """
