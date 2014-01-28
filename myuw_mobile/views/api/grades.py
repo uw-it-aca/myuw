@@ -2,8 +2,6 @@ from django.http import HttpResponse
 from django.utils import simplejson as json
 from myuw_mobile.views.rest_dispatch import RESTDispatch
 from myuw_mobile.dao.sws import Quarter, Schedule
-from restclients.catalyst.gradebook import GradeBook
-from restclients.catalyst.webq import WebQ
 from restclients.sws import SWS
 from restclients.pws import PWS
 from restclients.canvas.quizzes import Quizzes
@@ -44,7 +42,6 @@ class Grades(RESTDispatch):
         username = UserService().get_user()
         regid = PWS().get_person_by_netid(username).uwregid
 
-        grades = self._get_grades_for_term(term.year, term.quarter)
         canvas_grades = self._get_canvas_grades_for_schedule(schedule, regid)
 
         final_grades = SWS().grades_for_regid_and_term(regid, term)
@@ -63,7 +60,6 @@ class Grades(RESTDispatch):
 
             section_data["color_id"] = color
 
-            self._add_grades_for_section(grades, section_data, section_label)
             self._add_canvas_grades_for_section(canvas_grades, section_data, section_label)
 
             if section_label in grade_by_section_label:
@@ -80,18 +76,6 @@ class Grades(RESTDispatch):
 
 
         return HttpResponse(json.dumps(json_data), { "Content-Type": "application/json" })
-
-    def _get_grades_for_term(self, year, quarter):
-        # XXX -Thread these methods!
-        netid = UserService().get_user()
-        gradebook_grades = GradeBook().get_grades_for_student_and_term(netid, year, quarter)
-        webq_grades = WebQ().get_grades_for_student_and_term(netid, year, quarter)
-
-        return { "catalyst_gradebook": gradebook_grades, "catalyst_webq": webq_grades  }
-
-    def _add_grades_for_section(self, all_grades, section_data, section_label):
-        self._add_grades(all_grades["catalyst_gradebook"], section_data, section_label, "catalyst_gradebook", "Catalyst GradeBook")
-        self._add_grades(all_grades["catalyst_webq"], section_data, section_label, "catalyst_webq", "Catalyst WebQ")
 
     def _add_grades(self, source_data, section_data, section_label, source_key, source_name):
         if section_label in source_data:
