@@ -52,6 +52,12 @@ class StudClasScheFutureQuar(RESTDispatch):
         logger = logging.getLogger('myuw_mobile.views.schedule_api.StudClasScheFutureQuar.GET')
 
         term = quarter_dao.get_term(year, quarter.lower())
+        resp_data = get_schedule_for_term(term)
+        log_success_response(logger, timer)
+        return HttpResponse(json.dumps(resp_data))
+
+
+def get_schedule_for_term(term, summer_term):
         if term is not None:
             schedule = schedule_dao.get_schedule(term)
 
@@ -64,9 +70,7 @@ class StudClasScheFutureQuar(RESTDispatch):
             smr_term = summer_term[1:].title()
 
         resp_data = make_sche_api_response(schedule, smr_term)
-        log_success_response(logger, timer)
-        return HttpResponse(json.dumps(resp_data))
-
+        return resp_data
 
 def make_sche_api_response(schedule, summer_term=""):
     summer_term_lc = summer_term.lower()

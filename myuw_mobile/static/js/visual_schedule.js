@@ -50,7 +50,31 @@ var VisualSchedule = {
             is_future_quarter: term ? true :false
         }));
 
-        var visual_data = {
+ 
+
+        $("#courselist").html(VisualSchedule.get_html(course_data, term));
+
+        $("#addi_links").addi_course_links({
+            show_future_link: term ? false : true,
+            visual: "/visual",
+            term: term
+        });
+
+        if (!course_index) {
+            Modal.hide();
+        }
+        else {
+            if (course_index < course_data.sections.length) {
+                CourseModal.show_course_modal(term, course_index);
+            }
+        }
+
+        VisualSchedule.add_events(term);
+
+    },
+
+    get_html: function(course_data, term) {
+       var visual_data = {
             latest_ending: 0,
             earliest_start: 24*60,
             monday: [],
@@ -174,14 +198,10 @@ var VisualSchedule = {
             visual_data.schedule_hours_class = "twelve-plus";
         }
 
-        $("#courselist").html(template(visual_data));
+        return template(visual_data);
+    },
 
-        $("#addi_links").addi_course_links({
-            show_future_link: term ? false : true,
-            visual: "/visual",
-            term: term
-        });
-
+    add_events: function(term) {
         $("#close_alert").bind("click", function(ev) {
             $(".alert").hide();
             $.cookie(no_alert_cookie_name, '1', { expires: 18, path: '/' });
@@ -215,15 +235,6 @@ var VisualSchedule = {
                 return false;
             });
         }
-        if (!course_index) {
-            Modal.hide();
-        }
-        else {
-            if (course_index < course_data.sections.length) {
-                CourseModal.show_course_modal(term, course_index);
-            }
-        }
-
 
         $(".show_section_details").bind("click", function(ev) {
             var course_id = this.rel;
@@ -247,7 +258,6 @@ var VisualSchedule = {
 
             return false;
         });
-
     },
 
     _get_meeting_info: function(meeting) {

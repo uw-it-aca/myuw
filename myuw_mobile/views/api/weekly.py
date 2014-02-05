@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from myuw_mobile.views.rest_dispatch import RESTDispatch
+from myuw_mobile.views.api.schedule_api import get_schedule_for_term
 from restclients.sws import SWS
 import json
 
@@ -15,7 +16,8 @@ class Weekly(RESTDispatch):
 
 
         json_data = {
-            "current_week": current_week
+            "current_week": current_week,
+            "schedule": get_schedule_for_term(term, None),
         }
 
         return HttpResponse(json.dumps(json_data), { "Content-Type": "application/json" })

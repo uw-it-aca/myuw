@@ -1,4 +1,11 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "week1_outline" %}
-    week 1
+    <div class="card">
+        {{{ visual_schedule }}}
+    </div>
+    <div class="card">
+        Course list
+        {{ course_list }}
+    </div>
+
     {% endtplhandlebars %}

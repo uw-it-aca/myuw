@@ -23,6 +23,10 @@ var Weekly = {
             template = Handlebars.compile(source);
         }
 
-        $("#courselist").html(template());
+        var visual_schedule = VisualSchedule.get_html(data.schedule);
+
+        $("#courselist").html(template({
+            visual_schedule: visual_schedule
+        }));
     }
 };
