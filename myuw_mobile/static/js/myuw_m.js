@@ -76,6 +76,10 @@ $(document).ready(function() {
             Grades.show_grades(data.term);
             document.title = window.page_titles["grades"];
         }
+        else if (state === "weekly") {
+            Weekly.show_current_week(data);
+            document.title = window.page_titles["weekly"];
+        }
 
 
         loaded_url = state_url;
@@ -204,6 +208,12 @@ $(document).ready(function() {
                                                  ? matches[1]
                                                  : ""));
         }
+        else if (path.match(/^\/mobile\/weekly/)) {
+            hist.replaceState({
+                state: "weekly",
+            },  "", "/mobile/weekly/");
+        }
+
         else {
             // Just fall back to the course list?
             hist.replaceState({

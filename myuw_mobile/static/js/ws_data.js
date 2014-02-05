@@ -145,6 +145,19 @@ WSData = {
         });
     },
 
+    fetch_current_week_data: function(callback, args) {
+        $.ajax({
+            url: "/mobile/api/v1/current_week/",
+            type: 'GET',
+            success: function(results) {
+                callback.apply(null, [results, args]);
+            },
+            error: function() {
+                showError();
+            }
+        });
+    },
+
     fetch_course_data: function(callback, args) {
         console.warn("Use WSData.fetch_current_course_data instead");
     },

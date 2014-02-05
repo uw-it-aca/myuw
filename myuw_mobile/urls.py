@@ -8,6 +8,7 @@ from myuw_mobile.views.api.links_api import QuickLinks
 from myuw_mobile.views.api.stud_finances_api import AccountBalances
 from myuw_mobile.views.api.other_quarters_api import RegisteredFutureQuarters
 from myuw_mobile.views.api.grades import Grades
+from myuw_mobile.views.api.weekly import Weekly
 from myuw_mobile.views.logout import Logout
 
 urlpatterns = patterns('myuw_mobile.views',
@@ -26,6 +27,7 @@ urlpatterns = patterns('myuw_mobile.views',
     url(r'^api/v1/finabala/$', AccountBalances().run),
     url(r'^api/v1/oquarters/$', RegisteredFutureQuarters().run),
     url(r'^api/v1/grades/$', Grades().run),
+    url(r'^api/v1/current_week/$', Weekly().run),
     url(r'^api/v1/grades/(?P<year>[0-9]{4}),(?P<quarter>[a-z]+)$', Grades().run),
     url(r'.*', 'page.index'),
 )
