@@ -25,8 +25,24 @@ var Weekly = {
 
         var visual_schedule = VisualSchedule.get_html(data.schedule);
 
+        // XXX - get this into course_list.js
+        var course_data = data.schedule;
+        var index = 0;
+        for (index = 0; index < course_data.sections.length; index++) {
+            course_data.sections[index].index = index;
+            if (course_data.sections[index].class_website_url || course_data.sections[index].canvas_url) {
+                course_data.sections[index].has_resources = true;
+            }
+        }
+
+
+        var source = $("#courses").html();
+        var courses_template = Handlebars.compile(source);
+        var course_list = courses_template(course_data);
+
         $("#courselist").html(template({
-            visual_schedule: visual_schedule
+            visual_schedule: visual_schedule,
+            course_list: course_list
         }));
     }
 };
