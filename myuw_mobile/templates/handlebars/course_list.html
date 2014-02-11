@@ -13,82 +13,84 @@
                 </h3>
                  </div>
                  <!-- /heading -->
-                 <!-- body -->
+                 <!-- body of course panel -->
                  <div id="course{{index}}" class="accordion-body collapse" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
-                <div class="accordion-inner">
-                    <span class="scheduleHeading">Schedule</span>
-                        <table class="table-meeting">
-                        {{#each meetings}} 
-                        <tr>
-                            {{#if days_tbd }}
-                            <td colspan="2">Days and times to be arranged</td>
-                            {{else}}
-                            <td>
-                                {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
-                                      meeting_days.tuesday}}<abbr title="Tuesday">T</abbr>{{/if}}{{#if
-                                      meeting_days.wednesday}}<abbr title="Wednesday">W</abbr>{{/if}}{{#if
-                                      meeting_days.thursday}}<abbr title="Thursday">Th</abbr>{{/if}}{{#if
-                                      meeting_days.friday}}<abbr title="Friday">F</abbr>{{/if}}{{#if
-                                      meeting_days.saturday}}<abbr title="Saturday">Sa</abbr>{{/if}}{{#if
-                                      meeting_days.sunday}}<abbr title="Sunday">Su</abbr>{{/if}}
-                           </td>
-                            <td>{{formatTime start_time}} - {{formatTimeAMPM end_time}}</td>
-                            {{/if}}
-                            {{#if building_tbd}}
-                                <td>Room to be arranged</td>
-                            {{else}}
-                                <td>
-                                    {{#if latitude}}
-                                    <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" target="_blank" class="show_map" rel="{{building_name}}">
+                     <div class="accordion-inner">
+                        <span class="scheduleHeading">Schedule</span>
+                            <!-- Table with class schedule -->
+                            <table class="table-meeting">
+                                {{#each meetings}} 
+                                <tr>
+                                    {{#if days_tbd }}
+                                    <td colspan="2">Days and times to be arranged</td>
+                                    {{else}}
+                                    <td>
+                                        {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
+                                              meeting_days.tuesday}}<abbr title="Tuesday">T</abbr>{{/if}}{{#if
+                                              meeting_days.wednesday}}<abbr title="Wednesday">W</abbr>{{/if}}{{#if
+                                              meeting_days.thursday}}<abbr title="Thursday">Th</abbr>{{/if}}{{#if
+                                              meeting_days.friday}}<abbr title="Friday">F</abbr>{{/if}}{{#if
+                                              meeting_days.saturday}}<abbr title="Saturday">Sa</abbr>{{/if}}{{#if
+                                              meeting_days.sunday}}<abbr title="Sunday">Su</abbr>{{/if}}
+                                   </td>
+                                    <td>{{formatTime start_time}} - {{formatTimeAMPM end_time}}</td>
                                     {{/if}}
-                                {{building}} {{room}}
-                                {{#if latitude}}</a>{{/if}}
-                            {{/if}}
-                                </td>
-                        </tr>
-                        {{/each}}
-
-                        </table>
-                        
-                    <dl class="dl-horizontal">     
-                    
-                     <dt>Type</dt>
-                      <dd>{{ucfirst meetings.0.type}}</dd>
-                      {{#if instructors}}
-                     <dt>Instructor</dt>
-                      <dd>
-                            <ul>
-                            {{#each instructors}}
-                                {{#if whitepages_publish}}
-                                <li><a href="/mobile/instructor/{{uwregid}}" class="instructor" rel="{{uwregid}}">{{full_name}}</a></li>
-                                {{else}}
-                                <li>{{full_name}}</li>
-                                {{/if}}
-                                    
+                                    {{#if building_tbd}}
+                                        <td>Room to be arranged</td>
+                                    {{else}}
+                                        <td>
+                                            {{#if latitude}}
+                                            <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" target="_blank" class="show_map" rel="{{building_name}}">
+                                            {{/if}}
+                                        {{building}} {{room}}
+                                        {{#if latitude}}</a>{{/if}}
+                                    {{/if}}
+                                        </td>
+                                </tr>
                             {{/each}}
-                            </ul>
-                        </dd>
-                        {{/if}}
-                      
-                      {{#if has_resources }}
-                      <dt>Resources</dt>
-                      	<dd>
-                      		<ul>
-                      		{{#if class_website_url}}
-                      			<li><a href="{{class_website_url}}" target="_blank" class="course_website" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Website</a></li>
-                      		{{/if}}
-                      
-                      		{{#if canvas_url}}                      
-                      			<li><a href="{{canvas_url}}" target="_blank" class="course_canvas_site" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Canvas</a></li>
-                       		{{/if}} 
-                      		</ul>
-                      	</dd>
-                     {{/if}}
-                    </dl>
-                    
+                        </table>
+                            
+                        <dl class="dl-horizontal">     
+                            <!-- type of course --> 
+                            <dt>Type</dt>
+                            <dd>{{ucfirst meetings.0.type}}</dd>
+                            
+                            <!-- list instructors, if there are any --> 
+                            {{#if instructors}}
+                            <dt>Instructor</dt>
+                            <dd>
+                                <ul>
+                                {{#each instructors}}
+                                    {{#if whitepages_publish}}
+                                    <li><a href="/mobile/instructor/{{uwregid}}" class="instructor" rel="{{uwregid}}">{{full_name}}</a></li>
+                                    {{else}}
+                                    <li>{{full_name}}</li>
+                                    {{/if}}        
+                                {{/each}}
+                                </ul>
+                            </dd>
+                            {{/if}}
+                          
+                          <!-- list resources, if there are any --> 
+                          {{#if has_resources }}
+                          <dt>Resources</dt>
+                          <dd>
+                          		<ul><!-- list class website, if any --> 
+                          		{{#if class_website_url}}
+                          			<li><a href="{{class_website_url}}" target="_blank" class="course_website" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Website</a></li>
+                          		{{/if}}
+                          
+                          		{{#if canvas_url}} <!-- list canvas site, if any -->                      
+                          			<li><a href="{{canvas_url}}" target="_blank" class="course_canvas_site" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Canvas</a></li>
+                           		{{/if}} 
+                          		</ul>
+                          </dd>
+                         {{/if}}
+                        </dl>
+                        
+                    </div>
                 </div>
-                 </div>
-                 <!-- /body -->
+                     <!-- /body -->
             </div>
             </div>
              {{/each}}
