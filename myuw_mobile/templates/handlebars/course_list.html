@@ -54,13 +54,13 @@
                         <table>     
                             <tr>
                                 <!-- type of course --> 
-                                <th scope="col">Type</th>
+                                <th scope="row">Type</th>
                                 <td>{{ucfirst meetings.0.type}}</td>
                             </tr>
                             
                             {{#if instructors}}<!-- list instructors, if there are any --> 
                             <tr>
-                                <th scope="col">Instructor</th>
+                                <th scope="row">Instructor</th>
                                 <td>
                                     <ul>
                                     {{#each instructors}}
@@ -78,7 +78,7 @@
                           <!-- list resources, if there are any --> 
                           {{#if has_resources }}
                           <tr>
-                              <th scope="col">Resources</th>
+                              <th scope="row">Resources</th>
                               <td>
                               		<ul> 
                               		{{#if class_website_url}}<!-- list class website, if any -->
