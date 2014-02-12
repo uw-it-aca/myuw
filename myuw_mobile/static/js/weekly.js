@@ -44,5 +44,23 @@ var Weekly = {
             visual_schedule: visual_schedule,
             course_list: course_list
         }));
+
+        //Collapse events
+        for (index = 0; index < course_data.sections.length; index++) {
+            var section = $("#course" + index);
+            var label = $("#course"+index+"_label");
+
+            $(section).on('shown.bs.collapse',
+                function () {
+                    $(this).parent().find("div.accordion-footer > a > span.show_more").hide();
+                    $(this).parent().find("div.accordion-footer > a > span.show_less").show();
+            });
+            $(section).on('hidden.bs.collapse',
+                function () {
+                    $(this).parent().find("div.accordion-footer > a > span.show_more").show();
+                    $(this).parent().find("div.accordion-footer > a > span.show_less").hide();
+            });
+        }
+
     }
 };
