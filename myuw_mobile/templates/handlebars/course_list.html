@@ -13,8 +13,9 @@
                 </h3>
                  </div>
                  <!-- /heading -->
-                 <!-- body of course panel -->
+                 <!-- body of the course panel -->
                  <div id="course{{index}}" class="accordion-body collapse" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
+                     <!-- stuff what opens when you expand the accordion --> 
                      <div class="accordion-inner">
                         <span class="scheduleHeading">Schedule</span>
                             <!-- Table with class schedule -->
@@ -50,47 +51,51 @@
                             {{/each}}
                         </table>
                             
-                        <dl class="dl-horizontal">     
-                            <!-- type of course --> 
-                            <dt>Type</dt>
-                            <dd>{{ucfirst meetings.0.type}}</dd>
+                        <table>     
+                            <tr>
+                                <!-- type of course --> 
+                                <th scope="col">Type</th>
+                                <td>{{ucfirst meetings.0.type}}</td>
+                            </tr>
                             
-                            <!-- list instructors, if there are any --> 
-                            {{#if instructors}}
-                            <dt>Instructor</dt>
-                            <dd>
-                                <ul>
-                                {{#each instructors}}
-                                    {{#if whitepages_publish}}
-                                    <li><a href="/mobile/instructor/{{uwregid}}" class="instructor" rel="{{uwregid}}">{{full_name}}</a></li>
-                                    {{else}}
-                                    <li>{{full_name}}</li>
-                                    {{/if}}        
-                                {{/each}}
-                                </ul>
-                            </dd>
+                            {{#if instructors}}<!-- list instructors, if there are any --> 
+                            <tr>
+                                <th scope="col">Instructor</th>
+                                <td>
+                                    <ul>
+                                    {{#each instructors}}
+                                        {{#if whitepages_publish}}
+                                        <li><a href="/mobile/instructor/{{uwregid}}" class="instructor" rel="{{uwregid}}">{{full_name}}</a></li>
+                                        {{else}}
+                                        <li>{{full_name}}</li>
+                                        {{/if}}        
+                                    {{/each}}
+                                    </ul>
+                                </td>
+                            </tr>
                             {{/if}}
                           
                           <!-- list resources, if there are any --> 
                           {{#if has_resources }}
-                          <dt>Resources</dt>
-                          <dd>
-                          		<ul><!-- list class website, if any --> 
-                          		{{#if class_website_url}}
-                          			<li><a href="{{class_website_url}}" target="_blank" class="course_website" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Website</a></li>
-                          		{{/if}}
-                          
-                          		{{#if canvas_url}} <!-- list canvas site, if any -->                      
-                          			<li><a href="{{canvas_url}}" target="_blank" class="course_canvas_site" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Canvas</a></li>
-                           		{{/if}} 
-                          		</ul>
-                          </dd>
+                          <tr>
+                              <th scope="col">Resources</th>
+                              <td>
+                              		<ul> 
+                              		{{#if class_website_url}}<!-- list class website, if any -->
+                              			<li><a href="{{class_website_url}}" target="_blank" class="course_website" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Website</a></li>
+                              		{{/if}}
+                              
+                              		{{#if canvas_url}} <!-- list canvas site, if any -->                      
+                              			<li><a href="{{canvas_url}}" target="_blank" class="course_canvas_site" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Canvas</a></li>
+                               		{{/if}} 
+                              		</ul>
+                              </td>
+                          </tr>
                          {{/if}}
-                        </dl>
+                    </table>
                         
-                    </div>
-                </div>
-                     <!-- /body -->
+                    </div><!-- /stuff what opens --> 
+                </div><!-- /body -->
             </div>
             </div>
              {{/each}}
