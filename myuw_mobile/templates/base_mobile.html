@@ -79,6 +79,7 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    {% load handlebars_i18n %}
     {% compress js %}
     <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/jquery.cookies.js' %}"></script>
@@ -119,7 +120,11 @@
     <script src="{% static 'js/ga_ob.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/uw-alert.js' %}"></script> 
     <script src="{% static 'js/weekly.js' %}"></script>
+    {% hb_i18_script %}
     {% endcompress %}
+
+    <!-- not compressable :( -->
+    {% i18n_catalog "myuw_mobile" %}
   </body>
 </html>
 
