@@ -14,14 +14,14 @@ var CourseListCard = {
         courses_template = Handlebars.compile(source);
 
         $("body").on('shown.bs.collapse',
-            function () {
-                $(this).parent().find("div.accordion-footer > a > span.show_more").hide();
-                $(this).parent().find("div.accordion-footer > a > span.show_less").show();
+            function (event) {
+                $(event.target).parent().find("div.accordion-footer > a > span.show_more").hide();
+                $(event.target).parent().find("div.accordion-footer > a > span.show_less").show();
             });
         $("body").on('hidden.bs.collapse',
-            function () {
-                $(this).parent().find("div.accordion-footer > a > span.show_more").show();
-                $(this).parent().find("div.accordion-footer > a > span.show_less").hide();
+            function (event) {
+                $(event.target).parent().find("div.accordion-footer > a > span.show_more").show();
+                $(event.target).parent().find("div.accordion-footer > a > span.show_less").hide();
             });
 //        }
         return courses_template(course_data);
