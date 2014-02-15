@@ -23,14 +23,6 @@ var CourseList = {
             $('html,body').animate({scrollTop: 0}, 'fast');
         }
 
-        var index = 0;
-        for (index = 0; index < course_data.sections.length; index++) {
-            course_data.sections[index].index = index;
-            if (course_data.sections[index].class_website_url || course_data.sections[index].canvas_url) {
-                course_data.sections[index].has_resources = true;
-            }
-        }
-        
         var no_alert_cookie_name = "no_alert_" + $('.user').html().substring(9) ;
         var no_alert_cookie = $.cookie(no_alert_cookie_name);
 
@@ -38,7 +30,7 @@ var CourseList = {
         var template = Handlebars.compile(source);
         $("#page-header").html(template({
             show_alert: no_alert_cookie == null,
-            year: course_data.year, 
+            year: course_data.year,
             quarter: course_data.quarter,
             summer_term: course_data.summer_term,
             page: "Courses",
@@ -51,7 +43,6 @@ var CourseList = {
         // In case someone backs onto the page from a modal
         Modal.hide();
 
-        //console.log(course_data.sections.length)
         // Handle the case of no courses
         if (course_data.sections.length == 0) {
             $("#courselist").no_courses({
@@ -66,9 +57,8 @@ var CourseList = {
             return false;
         });
 
-        source = $("#courses").html();
-        template = Handlebars.compile(source);
-        $("#courselist").html(template(course_data));
+        var course_list_html = CourseListCard.render_card(course_data);
+        $("#courselist").html(course_list_html);
         $("#addi_links").addi_course_links({
             show_future_link: term ? false : true,
             term: term
