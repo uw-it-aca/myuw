@@ -11,6 +11,10 @@
 
                   <span class="shortTitle">{{ course_title }}</span></a>
                 </h3>
+                 {{ #if canvas_grade }}
+                 <span class="canvasGrade">{{ canvas_grade }}%*</span>
+                 <span class="canvasGradeLabel">*Canvas Grade</span>
+                 {{ /if }}
                  </div>
                  <!-- /heading -->
                  <!-- body of the course panel -->
