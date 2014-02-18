@@ -1,56 +1,56 @@
-        {% load templatetag_handlebars %}
-            {% tplhandlebars "courses" %}
-            {{#each sections}}
-            <div id="course_wrapper{{index}}" class="accordian">
-            <div class="accordion-group c{{color_id}} c{{color_id}}Border">
-                 <!-- heading -->
-                 <div class="accordion-heading"> 
-
-                <h3>
-                  <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}}{{section_id}}</span>
-
-                  <span class="shortTitle">{{ course_title }}</span></a>
+{% load templatetag_handlebars %}
+    {% tplhandlebars "courses" %}
+    {{#each sections}}
+    <div id="course_wrapper{{index}}" class="accordian">
+        <div class="accordion-group c{{color_id}} c{{color_id}}Border">
+            <!-- heading -->
+            <div class="accordion-heading"> 
+                <h3><a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#courselist" href="#course{{index}}"><i class="icon-chevron icon-white pull-right-center"></i>
+                    <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}}{{section_id}}</span>
+                    <span class="shortTitle">{{ course_title }}</span></a>
                 </h3>
-                 </div>
-                 <!-- /heading -->
-                 <!-- body of the course panel -->
-                 <div id="course{{index}}" class="accordion-body collapse" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
-                     <!-- stuff what opens when you expand the accordion --> 
-                     <div class="accordion-inner">
-                        <span class="scheduleHeading">Schedule</span>
-                            <!-- Table with class schedule -->
-                            <table class="table-meeting">
-                                {{#each meetings}} 
-                                <tr>
-                                    {{#if days_tbd }}
-                                    <td colspan="2">Days and times to be arranged</td>
-                                    {{else}}
+            </div>
+            <!-- /heading -->
+            
+            <!-- body of the course panel -->
+            <div id="course{{index}}" class="accordion-body collapse" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
+                <!-- stuff what opens when you expand the accordion --> 
+                <div class="accordion-inner">
+                    <span class="scheduleHeading">Schedule</span>
+                    
+                        <!-- Table with class schedule -->
+                        <table class="table-meeting">
+                            {{#each meetings}} 
+                            <tr>
+                                {{#if days_tbd }}
+                                <td colspan="2">Days and times to be arranged</td>
+                                {{else}}
+                                <td>
+                                    {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
+                                          meeting_days.tuesday}}<abbr title="Tuesday">T</abbr>{{/if}}{{#if
+                                          meeting_days.wednesday}}<abbr title="Wednesday">W</abbr>{{/if}}{{#if
+                                          meeting_days.thursday}}<abbr title="Thursday">Th</abbr>{{/if}}{{#if
+                                          meeting_days.friday}}<abbr title="Friday">F</abbr>{{/if}}{{#if
+                                          meeting_days.saturday}}<abbr title="Saturday">Sa</abbr>{{/if}}{{#if
+                                          meeting_days.sunday}}<abbr title="Sunday">Su</abbr>{{/if}}
+                               </td>
+                                <td>{{formatTime start_time}} - {{formatTimeAMPM end_time}}</td>
+                                {{/if}}
+                                {{#if building_tbd}}
+                                    <td>Room to be arranged</td>
+                                {{else}}
                                     <td>
-                                        {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
-                                              meeting_days.tuesday}}<abbr title="Tuesday">T</abbr>{{/if}}{{#if
-                                              meeting_days.wednesday}}<abbr title="Wednesday">W</abbr>{{/if}}{{#if
-                                              meeting_days.thursday}}<abbr title="Thursday">Th</abbr>{{/if}}{{#if
-                                              meeting_days.friday}}<abbr title="Friday">F</abbr>{{/if}}{{#if
-                                              meeting_days.saturday}}<abbr title="Saturday">Sa</abbr>{{/if}}{{#if
-                                              meeting_days.sunday}}<abbr title="Sunday">Su</abbr>{{/if}}
-                                   </td>
-                                    <td>{{formatTime start_time}} - {{formatTimeAMPM end_time}}</td>
-                                    {{/if}}
-                                    {{#if building_tbd}}
-                                        <td>Room to be arranged</td>
-                                    {{else}}
-                                        <td>
-                                            {{#if latitude}}
-                                            <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" target="_blank" class="show_map" rel="{{building_name}}">
-                                            {{/if}}
-                                        {{building}} {{room}}
-                                        {{#if latitude}}</a>{{/if}}
-                                    {{/if}}
-                                        </td>
-                                </tr>
+                                        {{#if latitude}}
+                                        <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" target="_blank" class="show_map" rel="{{building_name}}">
+                                        {{/if}}
+                                    {{building}} {{room}}
+                                    {{#if latitude}}</a>{{/if}}
+                                {{/if}}
+                                    </td>
+                            </tr>
                             {{/each}}
                         </table>
-                            
+                          
                         <table>     
                             <tr>
                                 <!-- type of course --> 
@@ -96,21 +96,12 @@
                         
                     </div><!-- /stuff what opens --> 
                 </div><!-- /body -->
-                <div class="accordion-footer">
-                    <hr>
-                    <a class="accordion-toggle collapsed collapsable" data-toggle="collapse" data-parent="#courselist" href="#course{{index}}">
-                        <span class="show_more">{{ trans "course_list_show_more" }}</span>
-                        <span class="show_less" style="display:none;">{{ trans "course_list_show_less" }}</span>
-                    </a>
-                </div>
             </div>
-            </div>
-             {{/each}}
+        </div>
+        {{/each}}
 
      <div class="row-fluid" id="addi_links">
      </div>
 
-
-
-             {% endtplhandlebars %}
+{% endtplhandlebars %}
 
