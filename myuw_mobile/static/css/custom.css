@@ -1,8 +1,13 @@
 /* XXX - UX - change this as you want */
-.card { border: 0px; background: #F8F7F0; padding: 4px; margin: 4px;}
-.card div, .card h3, .card p { color: black; }
-.card a {color: blue !important; }
-.card span.courseIDtitle, .card span.shortTitle { color: black; }
+
+body {background-color: #e6e6e6;}
+
+.card { 
+	background-color: #fff;
+	padding: 15px 4px; 
+	margin: 20px 4px; 
+	box-shadow: rgba(0, 0, 0, 0.0470588) 0px 2px 3px 0px;
+	}
 
 .clearfix {
   *zoom: 1;
