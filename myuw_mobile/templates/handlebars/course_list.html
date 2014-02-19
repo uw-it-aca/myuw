@@ -5,10 +5,17 @@
         <div class="accordion-group c{{color_id}} c{{color_id}}Border">
             <!-- heading -->
             <div class="accordion-heading"> 
-                <h3><a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#courselist" href="#course{{index}}"><i class="icon-chevron icon-white pull-right-center"></i>
+                <h3>
                     <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}}{{section_id}}</span>
                     <span class="shortTitle">{{ course_title }}</span></a>
                 </h3>
+                <div class="accordion-footer">
+                    <hr>
+                    <a class="accordion-toggle collapsed collapsable" data-toggle="collapse" data-parent="#courselist" href="#course{{index}}">
+                        <span class="show_more">{{ trans "course_list_show_more" }}</span>
+                        <span class="show_less" style="display:none;">{{ trans "course_list_show_less" }}</span> 
+                    </a>
+                </div>
             </div>
             <!-- /heading -->
             

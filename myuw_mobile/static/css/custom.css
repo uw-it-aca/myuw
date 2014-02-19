@@ -1,5 +1,5 @@
 /* XXX - UX - change this as you want */
-.card { border: 1px solid blue; background: #DDF; padding: 4px; margin: 4px;}
+.card { border: 0px; background: #F8F7F0; padding: 4px; margin: 4px;}
 
 .clearfix {
   *zoom: 1;
