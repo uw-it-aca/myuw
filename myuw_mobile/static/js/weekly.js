@@ -31,8 +31,6 @@ var Weekly = {
             visual_schedule: visual_schedule,
             course_list: course_list
         }));
-
-
-
+        CourseListCard.init_events();
     }
 };

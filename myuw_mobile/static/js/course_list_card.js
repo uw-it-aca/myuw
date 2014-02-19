@@ -1,4 +1,4 @@
-/*global $,Handlebars*/
+/*global $,Handlebars,gettext*/
 var CourseListCard = {
     render_card: function (course_data, current_week) {
         var source,
@@ -42,10 +42,11 @@ var CourseListCard = {
                 $(event.target).parent().find("div.accordion-footer > a > span.show_more").show();
                 $(event.target).parent().find("div.accordion-footer > a > span.show_less").hide();
             });
-
-        $('body').popover({content: django.catalog.canvas_grade_tip,
-                            selector: '.canvasGradeLabel',
-                            placement: 'right'});
         return courses_template(course_data);
+    },
+    init_events: function () {
+        $('.canvasGradeBox').popover({content: gettext('canvas_grade_tip'),
+                    selector: '.canvasGradeLabel',
+                    placement: 'right'});
     }
 };
