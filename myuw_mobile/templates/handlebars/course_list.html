@@ -5,6 +5,13 @@
         <div class="accordion-group c{{color_id}} c{{color_id}}Border">
             <!-- heading -->
             <div class="accordion-heading"> 
+            {{ #if canvas_grade }}
+                 <div class="canvasGradeBox">
+                     <span class="canvasGrade">{{ canvas_grade }}%*</span>
+                     <span class="canvasGradeLabel">*Canvas Grade</span>
+                 </div>
+            {{ /if }}
+
 
                 <h3>
                     <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}}{{section_id}}</span>
@@ -19,7 +26,6 @@
                 </div>
             </div>
             <!-- /heading -->
-            
             <!-- body of the course panel -->
             <div id="course{{index}}" class="accordion-body collapse" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
                 <!-- stuff what opens when you expand the accordion --> 

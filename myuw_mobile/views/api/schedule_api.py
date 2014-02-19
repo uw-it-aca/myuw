@@ -112,8 +112,10 @@ def make_sche_api_response(schedule, summer_term=""):
             enrollment = canvas_data_by_course_id[section.section_label()]
             canvas_url = enrollment.course_url
             canvas_name = enrollment.course_name
+            canvas_grade = enrollment.final_grade
             section_data["canvas_url"] = canvas_url
             section_data["canvas_name"] = canvas_name
+            section_data["canvas_grade"] = canvas_grade
 
         # MUWM-596
         if section.final_exam and section.final_exam.building:

@@ -1,4 +1,4 @@
-from restclients.canvas import Canvas
+from restclients.canvas.enrollments import Enrollments as CanvasEnrollments
 from myuw_mobile.dao.pws import Person
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logback import log_resp_time, log_exception
@@ -13,9 +13,9 @@ class Enrollments:
         """
         timer = Timer()
         logger = logging.getLogger('myuw_mobile.dao.canvas.Enrollments')
+        regid = Person().get_regid()
         try:
-            regid = Person().get_regid()
-            return Canvas().get_courses_for_regid(regid)
+            return CanvasEnrollments().get_enrollments_for_regid(regid)
         except Exception as ex:
             log_exception(logger,
                           'canvas.get_enrollments',
