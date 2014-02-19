@@ -1,10 +1,61 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "week1_outline" %}
-    <div class="card">
+    <div class="notification" style="padding: 5px; background: #E9E6A5; position: relative; top: -40px;">
+        <h4 style="color: #555;">Notices</h4>
+        <p>Late Registration Fee $25 begins today.</p>
+        <p>Next week: Free Add/Drop Withdraw Ends.</p>	
+    </div>
+    <div class="card long_card">
+        <h4 style="color: #555;">Email</h4>
+        <p>You have <b>6</b> new emails.</p>
+         <a href="">Check email</a>
+    </div>
+     <div class="card">
         {{{ visual_schedule }}}
     </div>
     <div class="card">
         {{{ course_list }}}
     </div>
-
+   <div class="card short_card">
+        <h4 style="color: #555;">Tuition Owed</h4>
+        <p>Tuition owed: <b>$1200.50</b><br>
+	        Due on <b>April 9th, 2014</b>
+        </p>
+         <a href=""></a>
+    </div>
+    <div class="card medium_card">
+        <h4 style="color: #555;">Husky Accnt</h4>
+        <p>Balance: <b>$17.34</b><br>
+	        Due on <b>April 9th, 2014</b>
+        </p>
+         <a href=""></a>
+    </div>
+    <div class="card">
+        <h4 style="color: #555;">Dining & Food Services</h4>
+        <p>Balance: <b>$6.00</b></p>
+         <a href=""></a>
+    </div>
+    <div class="card">
+        <h4 style="color: #555;">GPA: 3.8</h4>
+        <p>As of Feb 20th, 2014</p>
+         <a href="">Grade Report</a><br>
+         <a href="">Unofficial Transcript</a>
+    </div>
+    <div class="card">
+        <h4 style="color: #555;">Advisor Contact</h4>
+        <p>Jane Smith</p>
+        <p>206.123.4567</p>
+         <a href=""></a>
+    </div>
+    <div class="card">
+        <h4 style="color: #555;">Libraries</h4>
+        <p>You have <b>2</b> items checked out.</p>
+        <p>You have <b>1 item due</b> on <b>May 20th, 2014</b></p>
+         <a href=""></a>
+    </div>
+    <div class="card">
+        <h4 style="color: #555;">Campus Events Calendar</h4>
+        <p>uis venenatis imperdiet. In magna massa, tempor sit amet sapien vitae, sodales imperdiet lectus. Maecenas rutrum mattis augue non pharetra. Vivamus vitae pellentesque purus. Fusce dapibus tempus pharetra. Pellentesque scelerisque sem sit amet sapien laoreet elementum. Curabitur euismod sed lorem at suscipit. Curabitur sed arcu sed erat elementum pulvinar. Morbi ut risus velit. Suspendisse tincidunt mi venenatis diam auctor rhoncus.</p>
+         <a href=""></a>
+    </div>
     {% endtplhandlebars %}
