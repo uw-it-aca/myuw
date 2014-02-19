@@ -1,5 +1,8 @@
 /* XXX - UX - change this as you want */
 .card { border: 0px; background: #F8F7F0; padding: 4px; margin: 4px;}
+.card div, .card h3, .card p { color: black; }
+.card a {color: blue !important; }
+.card span.courseIDtitle, .card span.shortTitle { color: black; }
 
 .clearfix {
   *zoom: 1;
