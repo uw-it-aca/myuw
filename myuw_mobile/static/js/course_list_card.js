@@ -23,7 +23,10 @@ var CourseListCard = {
                 $(event.target).parent().find("div.accordion-footer > a > span.show_more").show();
                 $(event.target).parent().find("div.accordion-footer > a > span.show_less").hide();
             });
-//        }
+
+        $('body').popover({content: 'NOTE: depending on how your Instructor has Canvas conﬁgured, this grade  calculation may be for points needed for the entire quarter, rather than for course work due to date.',
+                            selector: '.canvasGradeLabel',
+                            placement: 'right'});
         return courses_template(course_data);
     }
 };
