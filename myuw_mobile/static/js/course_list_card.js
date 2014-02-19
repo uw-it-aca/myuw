@@ -1,6 +1,6 @@
 /*global $,Handlebars*/
 var CourseListCard = {
-    render_card: function (course_data) {
+    render_card: function (course_data, current_week) {
         var source,
             courses_template,
             index;
@@ -10,7 +10,26 @@ var CourseListCard = {
                 course_data.sections[index].has_resources = true;
             }
         }
-        source = $("#courses").html();
+
+        switch (current_week) {
+            case 1:
+            case 2:
+                source = $("#course_list_A").html();
+                break;
+
+            case 3:
+                source = $("#course_list_B").html();
+                break;
+
+            case 4:
+                source = $("#course_list_C").html();
+                break;
+
+            default:
+                source = $("#courses").html();
+                break;
+
+        }
         courses_template = Handlebars.compile(source);
 
         $("body").on('shown.bs.collapse',
