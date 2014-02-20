@@ -1,21 +1,18 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "course_list_A" %}
-    Course list A
-    
+    Course List config A     
     {{#each sections}}
     <div class="card">
     <div id="course_wrapper{{index}}" class="accordian">
         <div class="accordion-group">
             <!-- above the accordion -->
-            <div> 
-                <div class="canvas_grade">            
+            <div>           
                     {{ #if canvas_grade }}
-                         <div class="canvasGradeBox">
-                             <span class="canvasGrade">{{ canvas_grade }}%*</span>
-                             <span class="canvasGradeLabel">*Canvas Grade</span>
+                         <div class="canvasGradeBox" style="float: right; border: 1px solid black; padding: 6px; width: 85px;">
+                             <span class="canvasGrade" style="font-size: 18px;">{{ canvas_grade }}% *</span><br />
+                             <span class="canvasGradeLabel" style="font-size: 12px;">* Canvas Grade</span>
                          </div>
                     {{ /if }}
-                </div>
 
                 <h3>
                     <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}}{{section_id}}</span>
