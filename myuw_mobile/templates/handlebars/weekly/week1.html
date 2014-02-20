@@ -1,3 +1,4 @@
+{% load static %}
 {% load templatetag_handlebars %}
     {% tplhandlebars "week1_outline" %}
     <div class="notification" style="padding: 8px 15px; background: #E9E6A5; position: relative; top: -40px; margin: 0px -10px;">
@@ -12,7 +13,8 @@
          <a href="">Check email</a>
     </div>
      <div class="card">
-        {{{ visual_schedule }}}
+        <h4 style="color: #555;">Visual Schedule</h4>
+        <img src="{% static '../../../static/images/vis_sched_for_test.gif' %}" alt="vis_sched_for_test" width="85%" height="" />
     </div>
         {{{ course_list }}}
    <div class="card medium_card">
@@ -23,7 +25,7 @@
          <a href=""></a>
     </div>
     <div class="card medium_card">
-        <h4 style="color: #555;">Husky Accnt</h4>
+        <h4 style="color: #555;">Husky Account</h4>
         <p>Balance: <b>$17.34</b><br>
 	        Due on <b>April 9th, 2014</b>
         </p>
