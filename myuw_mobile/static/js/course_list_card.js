@@ -47,6 +47,6 @@ var CourseListCard = {
     init_events: function () {
         $('.canvasGradeBox').popover({content: gettext('canvas_grade_tip'),
                     selector: '.canvasGradeLabel',
-                    placement: 'right'});
+                    placement: 'bottom'});
     }
 };
