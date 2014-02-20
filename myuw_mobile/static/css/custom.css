@@ -4,10 +4,23 @@ body {background-color: #e6e6e6;}
 
 hr {border-top: 1px solid #ddd;}
 
+a {}
+
 h4 {
 	font-size: 22px;
 	line-height: 20px;
 	font-weight: normal;
+}
+
+ul {list-style-type: none;}
+
+div.accordion-inner ul {
+	margin:	0;
+	}
+
+div.accordion-inner th {
+	text-align: left;
+	width: 9em;
 }
 
 .card { 
@@ -24,6 +37,7 @@ h4 {
 .medium-card {
 	min-height: 8em;
 }
+
 
 .clearfix {
   *zoom: 1;
@@ -925,7 +939,7 @@ ul.icons li .icon-large:before {
 }
 .accordion-inner {
   padding: 9px 10px;
-  background-color: #f8f7f0;
+  border:none;
 }
 .icon-chevron:before {
   content: "\f077";
@@ -1215,6 +1229,7 @@ body {
 }
 .table-meeting {
   width: 98%;
+  padding:3px;
   border-collapse: separate;
   *border-collapse: collapsed;
   min-height: 20px;
@@ -1225,9 +1240,6 @@ body {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
-  -webkit-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
 }
 .table-meeting td {
   line-height: 18px;
@@ -1246,9 +1258,6 @@ body {
 }
 .modal-body .table-meeting {
   margin: 0;
-}
-a {
-  font-size: 17px;
 }
 .scheduleHeading {
   font-weight: bold;
