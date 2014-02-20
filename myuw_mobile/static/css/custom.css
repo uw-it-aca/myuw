@@ -4,6 +4,12 @@ body {background-color: #e6e6e6;}
 
 hr {border-top: 1px solid #ddd;}
 
+h4 {
+	font-size: 22px;
+	line-height: 20px;
+	font-weight: normal;
+}
+
 .card { 
 	background-color: #fff;
 	padding: 15px 15px 15px; 
@@ -1386,19 +1392,19 @@ abbr[title] {
 }
 .courseIDtitle {
   padding-right: 10px;
-  font-size: 28px;
+  font-size: 22px;
   line-height: .8;
   display: block;
-  text-shadow: -1px -1px rgba(0, 0, 0, 0.1), 1px 1px rgba(255, 255, 255, 0.2);
 }
 .modal .courseIDtitle {
   font-size: 20px;
   line-height: .3;
 }
 .shortTitle {
+
   margin-top: 3px;
   white-space: nowrap;
-  font-size: 16px;
+  font-size: 14px;
 }
 .modal .courseIDtitle {
   font-size: 20px;
