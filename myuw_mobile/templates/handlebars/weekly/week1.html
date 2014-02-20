@@ -1,11 +1,12 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "week1_outline" %}
-    <div class="notification" style="padding: 5px; background: #E9E6A5; position: relative; top: -40px;">
+    <div class="notification" style="padding: 8px 15px; background: #E9E6A5; position: relative; top: -40px; margin: 0px -10px;">
         <h4 style="color: #555;">Notices</h4>
         <p>Late Registration Fee $25 begins today.</p>
         <p>Next week: Free Add/Drop Withdraw Ends.</p>	
     </div>
-    <div class="card long_card">
+
+    <div class="card first-card medium-card">
         <h4 style="color: #555;">Email</h4>
         <p>You have <b>6</b> new emails.</p>
          <a href="">Check email</a>
@@ -13,10 +14,8 @@
      <div class="card">
         {{{ visual_schedule }}}
     </div>
-    <div class="card">
         {{{ course_list }}}
-    </div>
-   <div class="card short_card">
+   <div class="card medium_card">
         <h4 style="color: #555;">Tuition Owed</h4>
         <p>Tuition owed: <b>$1200.50</b><br>
 	        Due on <b>April 9th, 2014</b>
