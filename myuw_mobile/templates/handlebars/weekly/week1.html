@@ -1,3 +1,4 @@
+{% load static %}
 {% load templatetag_handlebars %}
     {% tplhandlebars "week1_outline" %}
     <div class="notification" style="padding: 8px 15px; background: #F3EE81; position: relative; top: -40px; margin: 0px -10px;">
@@ -21,7 +22,7 @@
          <a href="">Check email</a>
     </div>
      <div class="card">
-        {{{ visual_schedule }}}
+        <img src="{% static '../../../static/images/vis_sched_for_test.gif' %}" alt="vis_sched_for_test" width="" height="" />
     </div>
         {{{ course_list }}}
    <div class="card medium_card">
