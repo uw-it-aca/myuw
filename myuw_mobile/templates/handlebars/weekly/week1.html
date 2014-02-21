@@ -1,20 +1,27 @@
-{% load static %}
 {% load templatetag_handlebars %}
     {% tplhandlebars "week1_outline" %}
-    <div class="notification" style="padding: 8px 15px; background: #E9E6A5; position: relative; top: -40px; margin: 0px -10px;">
+    <div class="notification" style="padding: 8px 15px; background: #F3EE81; position: relative; top: -40px; margin: 0px -10px;">
         <h4 style="color: #555;">Notices</h4>
-        <p>Late Registration Fee $25 begins today.</p>
-        <p>Next week: Free Add/Drop Withdraw Ends.</p>	
+        <ul>
+        	<li>Late Registration Fee $25 begins <b>today</b>.</li>
+			<li><b>Next week</b>: Free Add/Drop Withdraw Ends.</li>
+		</ul>	
     </div>
 
     <div class="card first-card medium-card">
+        <h4 style="color: #555;">Spring 2014</h4>
+        <i class="icon-chevron-right pull-right-center" style="color: #777;"></i>
+        <p>You are registered for <b>6 courses</b> (18 credits).</p>
+        <a>View Spring 2014 Courses</a><br>
+
+    </div>
+    <div class="card <ul>  <li>Sunscreen</li>  <li>A towel</li>  <li>Bathing suit</li></ul>medium-card">
         <h4 style="color: #555;">Email</h4>
         <p>You have <b>6</b> new emails.</p>
          <a href="">Check email</a>
     </div>
      <div class="card">
-        <h4 style="color: #555;">Visual Schedule</h4>
-        <img src="{% static '../../../static/images/vis_sched_for_test.gif' %}" alt="vis_sched_for_test" width="85%" height="" />
+        {{{ visual_schedule }}}
     </div>
         {{{ course_list }}}
    <div class="card medium_card">
@@ -25,7 +32,7 @@
          <a href=""></a>
     </div>
     <div class="card medium_card">
-        <h4 style="color: #555;">Husky Account</h4>
+        <h4 style="color: #555;">Husky Accnt</h4>
         <p>Balance: <b>$17.34</b><br>
 	        Due on <b>April 9th, 2014</b>
         </p>

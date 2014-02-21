@@ -4,7 +4,9 @@ body {background-color: #e6e6e6;}
 
 hr {border-top: 1px solid #ddd;}
 
-a {}
+div.notification ul {
+	list-style: disc;
+}
 
 h4 {
 	font-size: 22px;
