@@ -18,10 +18,18 @@ var CourseListCard = {
                 break;
 
             case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
                 source = $("#course_list_B").html();
                 break;
 
-            case 4:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
                 source = $("#course_list_C").html();
                 break;
 
