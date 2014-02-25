@@ -1,6 +1,5 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "course_list_A" %}
-    Course List config A     
     {{#each sections}}
     <div class="card">
     <div id="course_wrapper{{index}}" class="accordian">
@@ -10,7 +9,7 @@
                     {{ #if canvas_grade }}
                          <div class="canvasGradeBox" style="float: right; border: 1px solid black; padding: 6px; width: 85px;">
                              <span class="canvasGrade" style="font-size: 18px;">{{ canvas_grade }}% *</span><br />
-                             <span class="canvasGradeLabel" style="font-size: 12px; cursor: pointer; color: #0088CC;">* Canvas Grade</span>
+                             <span class="canvasGradeLabel" style="font-size: 12px;">* Canvas Grade</span>
                          </div>
                     {{ /if }}
 
