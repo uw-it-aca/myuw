@@ -1,4 +1,92 @@
-{% load templatetag_handlebars %}
+{% load static %} 
+{% load templatetag_handlebars %} 
     {% tplhandlebars "week2_outline" %}
-    week 2
-    {% endtplhandlebars %}
+    
+    <!-- notifications banner -->
+    <div class="notification" style="padding: 8px 15px; background: #F3EE81; position: relative; top: -40px; margin: 0px -10px;">
+        <h4 style="color: #555;">Notices</h4>
+        <p style="float: right; font-size: 10px; margin-top: -40px;">Week 2</p>
+        <ul>
+        	<li><b>Your registration period is open!</b></li>
+        	<li>COM 213 has 2 seats available.</li>
+        	<li>Next Monday (4/30) is the last day to change a Winter quarter class to S/NS grading.</li>
+		</ul>	
+    </div>
+    
+    	<!-- you are registered for next quarter card --> 
+    <div class="card first-card medium-card">
+        <h4 style="color: #555;">Spring 2014</h4>
+        <i class="icon-chevron-right pull-right-center" style="color: #777;"></i>
+        <p>You are registered for <b>6 courses</b> (18 credits).</p>
+        <a>View your Spring 2014 courses</a><br>
+    </div>
+    
+    
+    <!-- email card --> 
+    <div class="card medium-card">
+        <h4 style="color: #555;">Email</h4>
+        <p>You have <b>0</b> new emails.</p>
+         <a href="">Check email</a>
+    </div>
+    
+    <!-- application to graduate card --> 
+    <div class="card medium-card">
+    	<h4 style="color: #555;">Applying to graduate</h4>
+    	<p>Applications to graduate in Spring 2014 are due in four weeks. <a>Learn more.</a></p>
+    </div>
+    
+    <!-- Advisor card -->
+    <div class="card">
+        <h4 style="color: #555;">Advisor Contact</h4>
+        <p>Jane Smith</p>
+        <p>206.123.4567</p>
+        <a href=""></a>
+        </p>
+    </div>
+    
+    <!-- course list, all cards --> 
+        {{{ course_list }}}
+               
+    <!-- current quarter visual schedule card --> 
+     <div class="card">
+        <img src="{% static '../../../static/images/vis_sched_for_test.gif' %}" alt="vis_sched_for_test" width="" height="" />
+    </div>
+    
+    <!-- husky account balance card --> 
+    <div class="card medium_card">
+        <h4 style="color: #555;">Husky Card Account</h4>
+        <p>Balance: <b>$42.34</b></p>
+         <a href=""></a>
+    </div>
+
+	<!-- Dining account balance card --> 
+    <div class="card">
+        <h4 style="color: #555;">Dining & Food Services</h4>
+        <p>Balance: <b>$14.00</b></p>
+         <a href=""></a>
+    </div>
+    
+    <!-- GPA card --> 
+    <div class="card">
+        <h4 style="color: #555;">Cumulative GPA: 3.6</h4>
+        <p>As of Feb 20th, 2014</p>
+         <a href="">Grade Report</a><br>
+         <a href="">Unofficial Transcript</a>
+    </div>
+    
+    <!-- Libraries card --> 
+    <div class="card">
+        <h4 style="color: #555;">UW Libraries</h4>
+        <p>You have <b>2</b> items checked out.</p>
+        <p>You have <b>1 item due</b> on <b>May 20th, 2014</b></p>
+         <a href="">Go to your UW Libraries account</a>
+    </div>
+    
+    <!-- events calendar card --> 
+    <div class="card">
+        <h4 style="color: #555;">Campus Events Calendar</h4>
+        <p>uis venenatis imperdiet. In magna massa, tempor sit amet sapien vitae, sodales imperdiet lectus. Maecenas rutrum mattis augue non pharetra. Vivamus vitae pellentesque purus. Fusce dapibus tempus pharetra. Pellentesque scelerisque sem sit amet sapien laoreet elementum. Curabitur euismod sed lorem at suscipit. Curabitur sed arcu sed erat elementum pulvinar. Morbi ut risus velit. Suspendisse tincidunt mi venenatis diam auctor rhoncus.</p>
+         <a href=""></a>
+    </div>
+ 
+ {% endtplhandlebars %}
