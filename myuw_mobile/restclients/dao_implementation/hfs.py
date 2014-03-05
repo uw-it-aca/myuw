@@ -1,8 +1,9 @@
 from os.path import dirname
-from restclients.dao_implementation.mock import get_mockdata_url
-from restclients.dao_implementation.live import get_con_pool, get_live_url
 import logging
+import re
+from restclients.dao_implementation.live import get_con_pool, get_live_url
 from myuw_mobile.logger.logback import log_info
+from myuw_mobile.restclients.dao_implementation.mock import get_mockdata_url
 
 class File(object):
     """
@@ -17,7 +18,9 @@ class File(object):
         :param url:
             in the format of "hfs/servlet/hfservices?sn=<student number>"
         """
-        return get_mockdata_url("hfs", "file", url, headers)
+        file_url = re.sub('[\?<>=:,;+&]', '_', url)
+        log_info(Live.logger, "HFS File url=%s" % file_url)
+        return get_mockdata_url("hfs", "file", file_url, headers)
 
 class Live(object):
     """
