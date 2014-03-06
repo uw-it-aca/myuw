@@ -80,6 +80,10 @@ $(document).ready(function() {
             Weekly.show_current_week(data);
             document.title = window.page_titles["weekly"];
         }
+        else if (state = "libraries") {
+            Libraries.show_card();
+            document.title = window.page_titles["libraries"];
+        }
 
 
         loaded_url = state_url;
@@ -213,7 +217,11 @@ $(document).ready(function() {
                 state: "weekly",
             },  "", "/mobile/weekly/");
         }
-
+        else if (path.match(/^\/mobile\/libraries/)) {
+            hist.replaceState({
+                state: "libraries",
+            },  "", "/mobile/libraries/");
+        }
         else {
             // Just fall back to the course list?
             hist.replaceState({
