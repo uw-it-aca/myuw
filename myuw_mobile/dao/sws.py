@@ -110,7 +110,7 @@ class Schedule:
 
         timer = Timer()
         try:
-            return SWS().schedule_for_regid_and_term(regid, term)
+            return SWS().schedule_for_regid_and_term(regid, term, False)
         except DataFailureException as ex:
             log_exception(Schedule._logger,
                           logid,
