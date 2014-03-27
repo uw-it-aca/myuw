@@ -1,6 +1,6 @@
-/*global $,Handlebars*/
+/*global $,Handlebars,gettext*/
 var CourseListCard = {
-    render_card: function (course_data) {
+    render_card: function (course_data, current_week) {
         var source,
             courses_template,
             index;
@@ -10,7 +10,34 @@ var CourseListCard = {
                 course_data.sections[index].has_resources = true;
             }
         }
-        source = $("#courses").html();
+
+        switch (current_week) {
+            case 1:
+            case 2:
+                source = $("#course_list_A").html();
+                break;
+
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+                source = $("#course_list_B").html();
+                break;
+
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+                source = $("#course_list_C").html();
+                break;
+
+            default:
+                source = $("#courses").html();
+                break;
+
+        }
         courses_template = Handlebars.compile(source);
 
         $("body").on('shown.bs.collapse',
@@ -23,10 +50,11 @@ var CourseListCard = {
                 $(event.target).parent().find("div.accordion-footer > a > span.show_more").show();
                 $(event.target).parent().find("div.accordion-footer > a > span.show_less").hide();
             });
-
-        $('body').popover({content: gettext('canvas_grade_tip'),
-                            selector: '.canvasGradeLabel',
-                            placement: 'right'});
         return courses_template(course_data);
+    },
+    init_events: function () {
+        $('.canvasGradeBox').popover({content: gettext('canvas_grade_tip'),
+                    selector: '.canvasGradeLabel',
+                    placement: 'bottom'});
     }
 };

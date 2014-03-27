@@ -59,6 +59,7 @@ var CourseList = {
 
         var course_list_html = CourseListCard.render_card(course_data);
         $("#courselist").html(course_list_html);
+        CourseListCard.init_events();
         $("#addi_links").addi_course_links({
             show_future_link: term ? false : true,
             term: term

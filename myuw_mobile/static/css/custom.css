@@ -1,5 +1,45 @@
 /* XXX - UX - change this as you want */
-.card { border: 1px solid blue; background: #DDF; padding: 4px; margin: 4px;}
+
+body {background-color: #e6e6e6;}
+
+hr {border-top: 1px solid #ddd;}
+
+div.notification ul {
+	list-style: disc;
+}
+
+h4 {
+	font-size: 22px;
+	line-height: 20px;
+	font-weight: normal;
+}
+
+ul {list-style-type: none;}
+
+div.accordion-inner ul {
+	margin:	0;
+	}
+
+div.accordion-inner th {
+	text-align: left;
+	width: 9em;
+}
+
+.card { 
+	background-color: #fff;
+	padding: 15px 15px 15px; 
+	margin: 20px 4px; 
+	box-shadow: rgba(0, 0, 0, 0.0470588) 0px 2px 3px 0px;
+	}
+
+.first-card {
+	margin-top: -30px;
+}
+
+.medium-card {
+	min-height: 8em;
+}
+
 
 .clearfix {
   *zoom: 1;
@@ -53,8 +93,8 @@
     */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('../font/fontawesome-webfont.eot');
-  src: url('../font/fontawesome-webfont.eot?#iefix') format('embedded-opentype'), url('../font/fontawesome-webfont.woff') format('woff'), url('../font/fontawesome-webfont.ttf') format('truetype'), url('../font/fontawesome-webfont.svg#FontAwesome') format('svg');
+  src: url('fonts/fontawesome-webfont.eot');
+  src: url('fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/fontawesome-webfont.woff') format('woff'), url('fonts/fontawesome-webfont.ttf') format('truetype'), url('fonts/fontawesome-webfont.svg#FontAwesome') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -751,9 +791,9 @@ ul.icons li .icon-large:before {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
+  border: 0px;
 }
 .accordion-group h3 {
-  color: #ffffff;
   padding-top: 3px;
   text-transform: uppercase;
   font-weight: normal;
@@ -901,7 +941,7 @@ ul.icons li .icon-large:before {
 }
 .accordion-inner {
   padding: 9px 10px;
-  background-color: #f8f7f0;
+  border:none;
 }
 .icon-chevron:before {
   content: "\f077";
@@ -1191,6 +1231,7 @@ body {
 }
 .table-meeting {
   width: 98%;
+  padding:3px;
   border-collapse: separate;
   *border-collapse: collapsed;
   min-height: 20px;
@@ -1201,9 +1242,6 @@ body {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
-  -webkit-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
 }
 .table-meeting td {
   line-height: 18px;
@@ -1222,9 +1260,6 @@ body {
 }
 .modal-body .table-meeting {
   margin: 0;
-}
-a {
-  font-size: 17px;
 }
 .scheduleHeading {
   font-weight: bold;
@@ -1368,19 +1403,19 @@ abbr[title] {
 }
 .courseIDtitle {
   padding-right: 10px;
-  font-size: 28px;
+  font-size: 22px;
   line-height: .8;
   display: block;
-  text-shadow: -1px -1px rgba(0, 0, 0, 0.1), 1px 1px rgba(255, 255, 255, 0.2);
 }
 .modal .courseIDtitle {
   font-size: 20px;
   line-height: .3;
 }
 .shortTitle {
+
   margin-top: 3px;
   white-space: nowrap;
-  font-size: 16px;
+  font-size: 14px;
 }
 .modal .courseIDtitle {
   font-size: 20px;

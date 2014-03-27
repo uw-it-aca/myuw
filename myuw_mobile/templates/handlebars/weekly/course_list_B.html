@@ -1,39 +1,48 @@
 {% load templatetag_handlebars %}
-    {% tplhandlebars "courses" %}
+    {% tplhandlebars "course_list_B" %}
     {{#each sections}}
+    <div class="card">
     <div id="course_wrapper{{index}}" class="accordian">
-        <div class="accordion-group c{{color_id}} c{{color_id}}Border">
-            <!-- heading -->
-            <div class="accordion-heading">
-            {{ #if canvas_grade }}
-                 <div class="canvasGradeBox">
-                     <span class="canvasGrade">{{ canvas_grade }}%*</span>
-                     <span class="canvasGradeLabel">*Canvas Grade</span>
-                 </div>
-            {{ /if }}
+        <div class="accordion-group">
+            <!-- above the accordion -->
+            <div>           
+                    {{ #if canvas_grade }}
+                         <div class="canvasGradeBox" style="float: right; border: 1px solid black; padding: 6px; width: 85px;">
+                             <span class="canvasGrade" style="font-size: 18px;">62.41% *</span><br />
+                             <span class="canvasGradeLabel" style="font-size: 12px; cursor: pointer; color: #0088CC;">* Canvas Grade</span>
+                         </div>
+                    {{ /if }}
 
                 <h3>
                     <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}}{{section_id}}</span>
-
                     <span class="shortTitle">{{ course_title }}</span></a>
                 </h3>
+          
+                        
+            <!-- /above the accordion -->             
+
                 <div class="accordion-footer">
                     <hr>
                     <a class="accordion-toggle collapsed collapsable" data-toggle="collapse" data-parent="#courselist" href="#course{{index}}">
-                        <span class="show_more">{{ trans "course_list_show_more" }}</span>
-                        <span class="show_less" style="display:none;">{{ trans "course_list_show_less" }}</span>
+                        <span class="show_more" style="">{{ trans "course_list_show_more" }}</span>
+                        <span class="show_less" style="display:none;">{{ trans "course_list_show_less" }}</span> 
                     </a>
                 </div>
             </div>
             <!-- /heading -->
-            <!-- body of the course panel -->
+
+
+            <!-- inside the accordion -->    
+            
+            
+                    
             <div id="course{{index}}" class="accordion-body collapse" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
-                <!-- stuff what opens when you expand the accordion -->
                 <div class="accordion-inner">
-                    <span class="scheduleHeading">Schedule</span>
+        
                         <!-- Table with class schedule -->
+                    <span class="scheduleHeading">Schedule</span>
                         <table class="table-meeting">
-                            {{#each meetings}}
+                            {{#each meetings}} 
                             <tr>
                                 {{#if days_tbd }}
                                 <td colspan="2">Days and times to be arranged</td>
@@ -64,6 +73,7 @@
                             {{/each}}
                         </table>
 
+                          
                         <table>     
                             <tr>
                                 <!-- type of course --> 
@@ -111,10 +121,11 @@
                 </div><!-- /body -->
             </div>
         </div>
+        </div>
         {{/each}}
 
      <div class="row-fluid" id="addi_links">
      </div>
 
+    
     {% endtplhandlebars %}
-

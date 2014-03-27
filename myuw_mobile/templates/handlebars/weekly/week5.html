@@ -1,38 +1,36 @@
 {% load static %} 
 {% load templatetag_handlebars %} 
-    {% tplhandlebars "week2_outline" %}
+    {% tplhandlebars "week5_outline" %}
     
     <!-- notifications banner -->
     <div class="notification" style="padding: 8px 15px; background: #F3EE81; position: relative; top: -40px; margin: 0px -10px;">
         <h4 style="color: #555;">Notices</h4>
-        <p style="float: right; font-size: 10px; margin-top: -40px;">Week 2</p>
+        <p style="float: right; font-size: 10px; margin-top: -40px;">Week 5</p>
         <ul>
-        	<li><b>Your registration period is open!</b></li>
-        	<li>COM 213 has 2 seats available.</li>
-        	<li>Next Monday (4/30) is the last day to change a Winter quarter class to S/NS grading.</li>
+        	<li>You will be able to register for classes on <b>April 24 at 8:30AM</b>.</li>
 		</ul>	
     </div>
     
-    	<!-- you are registered for next quarter card --> 
-    <div class="card first-card medium-card">
-        <h4 style="color: #555;">Spring 2014</h4>
-        <i class="icon-chevron-right pull-right-center" style="color: #777;"></i>
-        <p>You are registered for <b>6 courses</b> (18 credits).</p>
-        <a>View your Spring 2014 courses</a><br>
+    <!-- registration status --> 
+    <div class="first-card card">
+    	<h4 style="color: #555;">Registration Status</h4>
+    	<p>You have <b>two</b> registration holds. You will be unable to register for classes until these holds have been resolved. </p>
+    	<ul style="list-style-type: none;"><li><b>Immunization Hold</b> - We have no record of you getting a measles immunization. 
+    			<ul style="list-style-type: none;"><li>Please contact Hall Health, 206-555-5555</li>
+	    		</ul>
+   			</li>
+   			<li><b>Fiscal Hold</b> - Outstanding balance on an account.
+   				<ul style="list-style-type: none;"><li>Please Contact Student Fiscal Services, 206-987-6543</li></ul>
+   			</li>
+    	</ul>
+    	<p>Your estimated registration date is April 24 at 8:30AM once these holds have been resolved.</p>
     </div>
-    
     
     <!-- email card --> 
     <div class="card medium-card">
         <h4 style="color: #555;">Email</h4>
-        <p>You have <b>0</b> new emails.</p>
+        <p>You have <b>4</b> new emails.</p>
          <a href="">Check email</a>
-    </div>
-    
-    <!-- application to graduate card --> 
-    <div class="card medium-card">
-    	<h4 style="color: #555;">Applying to graduate</h4>
-    	<p>Applications to graduate in Spring 2014 are due in four weeks. <a>Learn more.</a></p>
     </div>
     
     <!-- Advisor card -->
@@ -40,8 +38,8 @@
         <h4 style="color: #555;">Advisor Contact</h4>
         <p>Jane Smith</p>
         <p>206.123.4567</p>
-        <a href=""></a>
-        </p>
+         <a href=""></a>
+        <p>You have an appointment with your advisor on <b>Wednesday, April 26 at 10:45AM</b>.</p>
     </div>
     
     <!-- course list, all cards --> 
@@ -77,10 +75,9 @@
     <!-- Libraries card --> 
     <div class="card">
         <h4 style="color: #555;">UW Libraries</h4>
-        <a><span class="icon-chevron-right pull-right-center" style="color: #777;">week6.html</span></a>
         <p>You have <b>2</b> items checked out.</p>
         <p>You have <b>1 item due</b> on <b>May 20th, 2014</b></p>
-        <a href="">Go to your UW Libraries account</a>
+         <a href="">Go to your UW Libraries account</a>
     </div>
     
     <!-- events calendar card --> 
@@ -90,30 +87,4 @@
          <a href=""></a>
     </div>
  
-    <!-- nav footer --> 
-    <div class="row-fluid" style="background: #ccc; position: relative; bottom: 0px; margin: 0px -10px; padding: 8px 25px;"> 
-      <div class="span3">
-        <b>Your stuff</b><br>
-        <a>Grades</a><br>
-        <a>Finances</a><br>
-        <a>Academic Planning</a><br>
-        <a>Registration</a><br>
-        <a>Profile</a><br>
-        <a>Calendar</a>
-      </div>
-      <div class="span3">
-        <b>Other semi-yours stuff</b><br>
-        <a>UW Housing and Dining</a><br>
-        <a>Libraries</a><br>
-        <a>Campus employment and Career</a><br>
-      </div>
-      <div class="span3">
-        <b>Static stuff</b><br>
-        <a>Academic Resources</a><br>
-        <a>Student Life</a><br>
-        <a>Around Campus</a><br>
-        <a>Campus events</a><br>
-      </div>
-    </div>
-    
  {% endtplhandlebars %}
