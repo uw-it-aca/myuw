@@ -1,146 +1,167 @@
+""" 
+This module accesses per-user quick link data 
+"""
+
 import logging
 import json
 import os
+from myuw_mobile.models import Link as LinkModel, UserMyLink
+from myuw_mobile.models import User
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logback import log_resp_time, log_exception
-from myuw_mobile.models import Link as LinkModel, UserMyLink
-from affiliation import Affiliation
+from myuw_mobile.dao.affiliation import get_all_affiliations
+from myuw_mobile.dao.pws import get_netid_of_current_user
 
-class Link:
-    """ 
-    This class accesses per-user quick link data 
+
+logger = logging.getLogger(__name__)
+
+
+def _customized_link():
     """
-    _logger = logging.getLogger('myuw_mobile.dao.links.Link')
-    
-    def get_links_for_user(self, user):
-        """
-        Returns a list of all the links available for a user.
-        If they should be active, is_on will be True; Otherwise, False
-        """
-        if self.customized_link(user):
-            return self._get_user_links(user)
-        else:
-            return self._get_default_links(user)
+    Return True if the user has changed her link selection 
+    """
+    _user_link_subscription = _get_mylink()
+    return _user_link_subscription and len(_user_link_subscription) > 0
 
 
-    def save_link_preferences_for_user(self, new_selection, user):
-        """
-        Save the user's new selectio of links
-        If they should be active, is_on will be True; Otherwise, False
-        """
-        self.remove_prev_selection(user)
-        new_links = []
-        for link_data in Link._get_all_links():
-            new = UserMyLink()
-            new.linkid = link_data["id"]
-            new.user = user
-            if new_selection[new.linkid]:
-                new.is_on = True
-            else:
-                new.is_on = False
-            new_links.append(new)
-        self._save_mylink(new_links)
+def get_links_for_user():
+    """
+    Returns a list of all the links available for a user.
+    If they should be active, is_on will be True; Otherwise, False
+    """
+    if _customized_link():
+        return _get_user_links()
+    else:
+        return _get_default_links()
 
 
-    def _save_mylink(self, new_links):
-        timer = Timer()
-        try:
-            UserMyLink.objects.bulk_create(new_links)
-        except Exception as ex:
-            log_exception(Link._logger,
-                         'save UserMyLink',
-                          traceback.format_exc())
-        finally:
-            log_resp_time(Link._logger,
-                         'save UserMyLink',
-                          timer)
-
-    def _get_mylink(self, user):
-        timer = Timer()
-        try:
-            return UserMyLink.objects.filter(user=user)
-        except Exception as ex:
-            log_exception(Link._logger,
-                         'get UserMyLink',
-                          traceback.format_exc())
-        finally:
-            log_resp_time(Link._logger,
-                         'get UserMyLink',
-                          timer)
-
-    def customized_link(self, user):
-        """
-        Return True if the user has changed her link selection 
-        """
-        self._user_link_subscription = self._get_mylink(user)
-        return self._user_link_subscription and len(self._user_link_subscription) > 0
+def _get_all_links():
+    """
+    Return the list of all the links
+    """
+    path = os.path.join(os.path.dirname( __file__ ),
+                        '..', 'data', 'links.json')
+    f = open(path)
+    return json.loads(f.read())
 
 
-    def remove_prev_selection(self, user):
-        """
-        Remove the user's previous link selection 
-        """
-        if self.customized_link(user):
-            self._user_link_subscription.delete()
+def _init_link(link_data):
+    link = LinkModel()
+    link.title = link_data["title"]
+    link.url = link_data["url"]
+    link.json_id = link_data["id"]
+    link.is_on = False
+    return link
 
 
-    def _get_user_links(self, user):
-        lookup = {}
-        for link in self._user_link_subscription:
-            lookup[link.linkid] = link.is_on
+def _get_default_links():
+    affi = get_all_affiliations()
+    link_list = []
+    for link_data in _get_all_links():
+        link = _init_link(link_data)
 
-        link_list = []
-        for link_data in Link._get_all_links():
-            link = Link._init_link(link_data)
-
-            if link.json_id in lookup and lookup[link.json_id]:
+        if link_data["on_for_employees"] and affi["stud_employee"] or link_data["on_for_undergrad"] and affi["undergrad"] or link_data["on_for_gradstudent"] and affi["grad"] or link_data["on_for_pce"] and affi["pce"]:   
+            if not link_data["restrict_to_campus"] or link_data["restrict_to_campus"] == "seattle" and affi["seattle"] or link_data["restrict_to_campus"] == "bothell" and affi["bothell"] or link_data["restrict_to_campus"] == "tacoma" and affi["tacoma"]:
                 link.is_on = True
-            link_list.append(link)
-        return link_list
+        link_list.append(link)
+    return link_list
 
 
-    def _get_default_links(self, user):
-        affi = Affiliation().get_all()
-        link_list = []
-        for link_data in Link._get_all_links():
-            link = Link._init_link(link_data)
+def get_link_by_id(id):
+    """
+    Returns a link object for the given id, if one exists.  None otherwise.
+    """
+    id = int(id)
+    for link_data in _get_all_links():
+        link = _init_link(link_data)
+        if link.json_id == id:
+            return link
 
-            if link_data["on_for_employees"] and affi["stud_employee"] or link_data["on_for_undergrad"] and affi["undergrad"] or link_data["on_for_gradstudent"] and affi["grad"] or link_data["on_for_pce"] and affi["pce"]:   
-                if not link_data["restrict_to_campus"] or link_data["restrict_to_campus"] == "seattle" and affi["seattle"] or link_data["restrict_to_campus"] == "bothell" and affi["bothell"] or link_data["restrict_to_campus"] == "tacoma" and affi["tacoma"]:
-                    link.is_on = True
-            link_list.append(link)
-        return link_list
+    return
 
 
-    @staticmethod
-    def get_link_by_id(id):
-        """
-        Returns a link object for the given id, if one exists.  None otherwise.
-        """
-        id = int(id)
-        for link_data in Link._get_all_links():
-            link = Link._init_link(link_data)
-            if link.json_id == id:
-                return link
+def _get_user():
+    user_netid = get_netid_of_current_user()
+    in_db = User.objects.filter(uwnetid=user_netid)
+    if len(in_db) > 0:
+        return in_db[0]
 
-        return
+    new = User()
+    new.uwnetid = user_netid
+    new.save()
+    return new
 
-    @staticmethod
-    def _get_all_links():
-        """
-        Return the list of all the links
-        """
-        path = os.path.join(os.path.dirname( __file__ ),
-                            '..', 'data', 'links.json')
-        f = open(path)
-        return json.loads(f.read())
 
-    @staticmethod
-    def _init_link(link_data):
-        link = LinkModel()
-        link.title = link_data["title"]
-        link.url = link_data["url"]
-        link.json_id = link_data["id"]
-        link.is_on = False
-        return link
+def _get_mylink():
+    timer = Timer()
+    try:
+        return UserMyLink.objects.filter(user=_get_user())
+    except Exception as ex:
+        log_exception(logger,
+                     'get UserMyLink',
+                      traceback.format_exc())
+    finally:
+        log_resp_time(logger,
+                     'get UserMyLink',
+                      timer)
+
+
+def _get_user_links():
+    """
+    return a list of user selected links
+    """
+    lookup = {}
+    for link in _get_mylink():
+        lookup[link.linkid] = link.is_on
+
+    link_list = []
+    for link_data in _get_all_links():
+        link = _init_link(link_data)
+
+        if link.json_id in lookup and lookup[link.json_id]:
+            link.is_on = True
+        link_list.append(link)
+    return link_list
+
+
+def _remove_prev_selection():
+    """
+    Remove the user's previous link selection 
+    """
+    if _customized_link():
+        _get_mylink().delete()
+
+
+def _save_mylink(new_links):
+    timer = Timer()
+    try:
+        UserMyLink.objects.bulk_create(new_links)
+    except Exception as ex:
+        log_exception(logger,
+                     'save UserMyLink',
+                      traceback.format_exc())
+    finally:
+        log_resp_time(logger,
+                     'save UserMyLink',
+                      timer)
+
+
+def save_link_preferences_for_user(new_selection):
+    """
+    Save the user's new selectio of links
+    If they should be active, is_on will be True; Otherwise, False
+    """
+    user = _get_user()
+    _remove_prev_selection()
+    new_links = []
+    for link_data in _get_all_links():
+        new_link = UserMyLink()
+        new_link.linkid = link_data["id"]
+        new_link.user = user
+        if new_selection[new_link.linkid]:
+            new_link.is_on = True
+        else:
+            new_link.is_on = False
+        new_links.append(new_link)
+    _save_mylink(new_links)
 

@@ -1,7 +1,9 @@
 from django.test import TestCase
 from django.conf import settings
 
-from myuw_mobile.dao.sws import Schedule as ScheduleDAO
+from myuw_mobile.dao.course_color import get_colors_by_regid_and_schedule
+from myuw_mobile.dao.term import get_current_quarter
+from myuw_mobile.dao.schedule import _get_schedule, get_current_quarter_schedule
 from restclients.models import ClassSchedule, Term, Section, Person
 
 class TestCourseColors(TestCase):
@@ -28,8 +30,7 @@ class TestCourseColors(TestCase):
 
         schedule.sections.append(section)
 
-        sched_dao = ScheduleDAO(person.regid)
-        colors = sched_dao.get_colors_for_schedule(schedule)
+        colors = get_colors_by_regid_and_schedule(person.regid, schedule)
 
         self.assertEquals(colors[section.section_label()], 1, "Single course section gets the first color")
 
@@ -58,12 +59,9 @@ class TestCourseColors(TestCase):
 
         schedule.sections.append(section)
 
-        sched_dao = ScheduleDAO(person.regid)
-        colors = sched_dao.get_colors_for_schedule(schedule)
+        colors = get_colors_by_regid_and_schedule(person.regid, schedule)
         self.assertEquals(colors[section.section_label()], 1, "Single course section gets the first color")
 
-        colors = sched_dao.get_colors_for_schedule(schedule)
-        self.assertEquals(colors[section.section_label()], 1, "Single course section gets the first color")
 
     def test_2_courses(self):
         term = Term()
@@ -97,10 +95,7 @@ class TestCourseColors(TestCase):
 
         schedule.sections.append(section2)
 
-
-
-        sched_dao = ScheduleDAO(person.regid)
-        colors = sched_dao.get_colors_for_schedule(schedule)
+        colors = get_colors_by_regid_and_schedule(person.regid, schedule)
 
         self.assertEquals(colors[section.section_label()], 1, "First course section gets the first color")
         self.assertEquals(colors[section2.section_label()], 2, "Second section gets the second color")
@@ -108,10 +103,12 @@ class TestCourseColors(TestCase):
 
     def test_primary_secondary(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
-            schedule_dao = ScheduleDAO("00000000000000000000000000000003")
-            schedule = schedule_dao.get_curr_quarter_schedule()
-
-            colors = schedule_dao.get_colors_for_schedule(schedule)
+            regid = "00000000000000000000000000000003"
+            term = Term()
+            term.year = 2012
+            term.quarter = "summer"
+            schedule = _get_schedule(regid, term)
+            colors = get_colors_by_regid_and_schedule(regid, schedule)
 
             self.assertEquals(colors["2012,summer,PHYS,121/A"], 1, "Primary gets the 1st color")
             self.assertEquals(colors["2012,summer,PHYS,121/AC"], "1a", "Secondary gets the 1st color, secondary version")
@@ -150,10 +147,8 @@ class TestCourseColors(TestCase):
 
         schedule.sections.append(section2)
 
-        sched_dao = ScheduleDAO(person.regid)
-
         # Get the colors for the first round - doesn't matter what they are though
-        colors = sched_dao.get_colors_for_schedule(schedule)
+        colors = get_colors_by_regid_and_schedule(person.regid, schedule)
 
         schedule.sections = []
         schedule.sections.append(section)
@@ -167,7 +162,7 @@ class TestCourseColors(TestCase):
 
         schedule.sections.append(section3)
 
-        colors = sched_dao.get_colors_for_schedule(schedule)
+        colors = get_colors_by_regid_and_schedule(person.regid, schedule)
 
         self.assertEquals(colors[section.section_label()], 1, "First course section gets the first color")
 
@@ -212,14 +207,13 @@ class TestCourseColors(TestCase):
 
         schedule.sections.append(section2)
 
-        sched_dao = ScheduleDAO(person.regid)
-        colors = sched_dao.get_colors_for_schedule(schedule)
+        colors = get_colors_by_regid_and_schedule(person.regid, schedule)
 
 
         schedule.sections = []
         schedule.sections.append(section2)
         schedule.sections.append(section)
-        colors = sched_dao.get_colors_for_schedule(schedule)
+        colors = get_colors_by_regid_and_schedule(person.regid, schedule)
         self.assertEquals(colors[section.section_label()], 1, "First course section gets the first color")
         self.assertEquals(colors[section2.section_label()], 2, "Second section gets the second color")
 
@@ -302,17 +296,14 @@ class TestCourseColors(TestCase):
         section7.section_id = "A"
         section7.is_primary_section = True
         schedule.sections.append(section7)
-
-        sched_dao = ScheduleDAO(person.regid)
-        colors = sched_dao.get_colors_for_schedule(schedule)
-
+        colors = get_colors_by_regid_and_schedule(person.regid, schedule)
 
         schedule.sections = []
         schedule.sections.append(section)
         schedule.sections.append(section7)
 
 
-        colors = sched_dao.get_colors_for_schedule(schedule)
+        colors = get_colors_by_regid_and_schedule(person.regid, schedule)
         self.assertEquals(len(colors), 2, "Only has colors for 2 courses")
 
         self.assertEquals(colors[section.section_label()], 1, "First course section gets the first color")
@@ -337,7 +328,7 @@ class TestCourseColors(TestCase):
 
 
 
-        colors = sched_dao.get_colors_for_schedule(schedule)
+        colors = get_colors_by_regid_and_schedule(person.regid, schedule)
         self.assertEquals(len(colors), 4, "Only has colors for 4 courses")
 
         self.assertEquals(colors[section.section_label()], 1, "First course section gets the first color")
@@ -347,7 +338,7 @@ class TestCourseColors(TestCase):
 
         schedule.sections.append(section6)
 
-        colors = sched_dao.get_colors_for_schedule(schedule)
+        colors = get_colors_by_regid_and_schedule(person.regid, schedule)
         self.assertEquals(len(colors), 5, "Only has colors for 5 courses")
 
         self.assertEquals(colors[section.section_label()], 1, "First course section gets the first color")
@@ -460,9 +451,7 @@ class TestCourseColors(TestCase):
         section10.is_primary_section = True
         schedule.sections.append(section10)
 
-
-        sched_dao = ScheduleDAO(person.regid)
-        colors = sched_dao.get_colors_for_schedule(schedule)
+        colors = get_colors_by_regid_and_schedule(person.regid, schedule)
 
         self.assertEquals(len(colors), 10, "has 10 colors")
 

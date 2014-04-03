@@ -3,9 +3,9 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.conf import settings
 import logging
-from myuw_mobile.dao.sws import Quarter as QuarterDao
-from myuw_mobile.logger.timer import Timer
 from userservice.user import UserService
+from myuw_mobile.dao.term import get_current_quarter
+from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_data_not_found_response, log_invalid_netid_response, log_success_response_with_affiliation
 from myuw_mobile.views.rest_dispatch import invalid_session
 
@@ -31,7 +31,7 @@ def index(request,
 
     context["netid"] = netid
     if year is None or quarter is None:
-        cur_term = QuarterDao().get_cur_quarter()
+        cur_term = get_current_quarter()
         if cur_term is None:
             context["err"] = "No current quarter data!"
             log_data_not_found_response(logger, timer)

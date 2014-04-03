@@ -1,4 +1,4 @@
-from myuw_mobile.dao.affiliation import Affiliation
+from myuw_mobile.dao.affiliation import get_all_affiliations
 from myuw_mobile.logger.logback import log_info, log_time
 
 def log_response_time(logger, message, timer):
@@ -32,7 +32,7 @@ def get_identity():
     """
     res = "(Affiliations:"
     no_affiliation_lengthmark = len(res)
-    affi = Affiliation().get_all()
+    affi = get_all_affiliations()
     if affi["grad"]:
         res += ' Grad'
     if affi["undergrad"]:

@@ -1,11 +1,15 @@
+from operator import itemgetter
 from django.http import HttpResponse
 from django.utils import simplejson as json
-from myuw_mobile.views.rest_dispatch import RESTDispatch
-from myuw_mobile.dao.sws import Quarter, Schedule
-from restclients.sws import SWS
-from restclients.pws import PWS
-from operator import itemgetter
 from userservice.user import UserService
+from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
+from myuw_mobile.dao.course_color import get_colors_by_schedule
+from myuw_mobile.dao.final_grade import get_grades_by_term
+from myuw_mobile.dao.schedule import get_schedule_by_term
+from myuw_mobile.dao.term import get_quarter
+from myuw_mobile.logger.timer import Timer
+from myuw_mobile.logger.logresp import log_data_not_found_response
+from myuw_mobile.logger.logresp import log_success_response
 
 
 class Grades(RESTDispatch):
@@ -17,31 +21,24 @@ class Grades(RESTDispatch):
         Returns grades for a given term.  If no term is given, the current
         term is used.
         """
-        schedule_dao = Schedule()
-        quarter_dao = Quarter()
-
-        if year and quarter:
-            term = quarter_dao.get_term(year, quarter.lower())
-        else:
-            term = quarter_dao.get_cur_quarter()
-
-        if term is not None:
-            schedule = schedule_dao.get_schedule(term)
-
-        if schedule is None or not schedule.json_data():
+        timer = Timer()
+        logger = logging.getLogger(__name__) 
+        term = get_quarter(year, quarter)
+        if term is None:
             log_data_not_found_response(logger, timer)
-            return HttpResponse({})
+            return data_not_found()
 
-        colors = schedule_dao.get_colors_for_schedule(schedule)
+        schedule = get_schedule_by_term(term)
+        if schedule is None:
+            log_data_not_found_response(logger, timer)
+            return data_not_found()
 
-        username = UserService().get_user()
-        regid = PWS().get_person_by_netid(username).uwregid
+        colors = get_colors_by_schedule(schedule)
+        if colors is None and len(schedule.sections) > 0:
+            log_data_not_found_response(logger, timer)
+            return data_not_found()
 
-        final_grades = SWS().grades_for_regid_and_term(regid, term)
-
-        grade_by_section_label = {}
-        for grade in final_grades.grades:
-            grade_by_section_label[grade.section.section_label()] = grade
+        grade_by_section_label = get_grades_by_term(term)
 
         json_data = schedule.json_data()
 

@@ -1,10 +1,11 @@
+import logging
 from django.http import HttpResponse
 from django.utils import simplejson as json
-import logging
 from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
-from myuw_mobile.dao.student_finances import Accounts
+from myuw_mobile.dao.hfs import get_account_balances
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_data_not_found_response, log_success_response
+
 
 class AccountBalances(RESTDispatch):
     """
@@ -18,9 +19,12 @@ class AccountBalances(RESTDispatch):
         """
 
         timer = Timer()
-        logger = logging.getLogger('myuw_mobile.views.stud_finances_api.AccountBalances.GET')
+        logger = logging.getLogger(__name__)
+        balances = get_account_balances()
+        if balances is None:
+            log_data_not_found_response(logger, timer)
+            return data_not_found()
 
-        balances = Accounts().get_balances()
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(balances.json_data()))
 

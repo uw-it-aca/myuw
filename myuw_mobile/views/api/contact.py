@@ -1,10 +1,11 @@
+import logging
 from django.http import HttpResponse
 from django.utils import simplejson as json
 from myuw_mobile.views.rest_dispatch import RESTDispatch, invalid_arg, data_not_found
-from myuw_mobile.dao.pws import Person as PersonDao
+from myuw_mobile.dao.pws import get_contact
 from myuw_mobile.logger.timer import Timer
-from myuw_mobile.logger.logresp import log_invalid_regid_response, log_data_not_found_response, log_success_response
-import logging
+from myuw_mobile.logger.logresp import log_invalid_regid_response
+from myuw_mobile.logger.logresp import log_data_not_found_response, log_success_response
 
 class InstructorContact(RESTDispatch):
     """
@@ -17,13 +18,13 @@ class InstructorContact(RESTDispatch):
         """
 
         timer = Timer()
-        logger = logging.getLogger('myuw_mobile.views.contact_api.InstructorContact.GET')
+        logger = logging.getLogger(__name__)
 
         if not regid:
             log_invalid_regid_response(logger, timer)
             return invalid_arg()
 
-        contact = PersonDao().get_contact(regid)
+        contact = get_contact(regid)
         if not contact:
             log_data_not_found_response(logger, timer)
             return data_not_found()
