@@ -7,6 +7,7 @@ from myuw_mobile.logger.logresp import log_data_not_found_response
 from myuw_mobile.logger.logresp import log_success_response
 from myuw_mobile.views.rest_dispatch import RESTDispatch
 from myuw_mobile.views.api.base_schedule import load_schedule
+import logging
 
 class Weekly(RESTDispatch):
     """
