@@ -21,7 +21,6 @@ class TestSchedule(TestCase):
         schedule = _get_schedule(regid, term)
         self.assertFalse(has_summer_quarter_section(schedule))
 
-class TestSchedule(TestCase):
     def test_filter_schedule_sections_by_summer_term(self):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = Term()
