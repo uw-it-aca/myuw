@@ -10,6 +10,7 @@ from myuw_mobile.dao.term import get_quarter
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_data_not_found_response
 from myuw_mobile.logger.logresp import log_success_response
+import logging
 
 
 class Grades(RESTDispatch):
