@@ -32,11 +32,7 @@ class StudClasSche(RESTDispatch):
         if summer_term is None:
             summer_term = get_current_summer_term_in_schedule(schedule)
 
-        smr_term = ""
-        if summer_term and len(summer_term) > 1:
-            smr_term = summer_term[1:].title()
-
-        resp_data = load_schedule(schedule, smr_term)
+        resp_data = load_schedule(schedule, summer_term)
         if resp_data is None:
             log_data_not_found_response(logger, timer)
             return data_not_found()
