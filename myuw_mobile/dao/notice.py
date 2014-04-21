@@ -97,7 +97,7 @@ def get_notices_for_current_user():
 
 def _categorize_notices(notices):
     for notice in notices:
-        notice.myuw_category = _get_notice_category(notice)
+        notice.custom_category = _get_notice_category(notice)
     return notices
 
 

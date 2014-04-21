@@ -16,9 +16,9 @@ class TestNotce(TestCase):
 
             notices = _get_notices_by_regid(regid)
             #has category
-            self.assertEquals(notices[0].myuw_category, "Holds")
+            self.assertEquals(notices[0].custom_category, "Holds")
             #no category
-            self.assertEquals(notices[1].myuw_category, UNKNOWN_CATEGORY_NAME)
+            self.assertEquals(notices[1].custom_category, UNKNOWN_CATEGORY_NAME)
 
             #no regid
             notices = _get_notices_by_regid(None)
