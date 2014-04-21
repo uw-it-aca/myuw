@@ -193,7 +193,7 @@
 // Active nav items
 .navbar .nav .active > a {
   #translucent > .background(@uwLighter, .2);
-  border: 1px solid @grayDarker;
+  border: 1px solid @gray-darker;
   .box-shadow(~"inset 0 1px 2px rgba(0,0,0,.3), 0 1px 0 rgba(255,255,255,.15)");
 
 }
@@ -201,7 +201,7 @@
 .navbar .nav .logout > a {
   //#translucent > .background(@uwLighter, .2);
   //#gradient > .vertical(lighten(@navbarBackground,15%), lighten(@navbarBackgroundHighlight,2%));
-  border: 1px solid @grayDarker;
+  border: 1px solid @gray-darker;
 
   //.box-shadow(~"inset 0 1px 0 rgba(255,255,255,.15), 0 1px 2px rgba(0,0,0,.3)");
 
@@ -240,10 +240,10 @@ body {
     position: static;
   }
   .navbar-fixed-top {
-    margin-bottom: @baseLineHeight;
+    margin-bottom: @line-height-base;
   }
   .navbar-fixed-bottom {
-    margin-top: @baseLineHeight;
+    margin-top: @line-height-base;
   }
   .navbar-fixed-top .navbar-inner,
   .navbar-fixed-bottom .navbar-inner {
@@ -270,7 +270,7 @@ body {
   // Block-level the nav
   .nav-collapse .nav {
     float: none;
-    margin: 0 0 (@baseLineHeight / 2);
+    margin: 0 0 (@line-height-base / 2);
   }
   .nav-collapse .nav > li {
     float: none;
@@ -341,8 +341,8 @@ body {
   .nav-collapse .navbar-form,
   .nav-collapse .navbar-search {
     float: none;
-    padding: (@baseLineHeight / 2) 15px;
-    margin: (@baseLineHeight / 2) 0;
+    padding: (@line-height-base / 2) 15px;
+    margin: (@line-height-base / 2) 0;
     border-top: 1px solid @navbarBackground;
     border-bottom: 1px solid @navbarBackground;
     .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.1)");
@@ -387,7 +387,7 @@ body {
 	.border-radius(4px);
 	margin: 5px;
 	max-height: 800px;
-	//border: 1px solid @grayDarker;
+	//border: 1px solid @gray-darker;
   .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.05), 0 1px 4px 1px rgba(0,0,0,.3)");
 }
 
@@ -463,14 +463,14 @@ body {
   min-height: 20px;
   //margin-bottom: 5px;
   margin: 5px 1% 5px 1%;
-  background-color: @bodyAccent;
+  background-color: @body-accent;
   border: 1px solid #eee;
   border: 1px solid rgba(0,0,0,.09);
   .border-radius(2px);
  .box-shadow(inset 1px 1px 5px rgba(0,0,0,.05));
 
   td {
-    line-height: @baseLineHeight - 2;
+    line-height: @line-height-base - 2;
     padding: 5px 3px;
     border-bottom: 1px solid #eee;
  	border-bottom: 1px solid rgba(0,0,0,.03);
@@ -497,14 +497,14 @@ body {
 // ======================================================
 // Body Text
 a {
-	font-size: @baseFontSize + 3;
+	font-size: @font-size-base + 3;
 }
 
 //Headings
 
 .scheduleHeading {
   font-weight: bold;
-  line-height: @baseLineHeight - 1; // fix jank Helvetica Neue font bug
+  line-height: @line-height-base - 1; // fix jank Helvetica Neue font bug
 }
 
 // Page header
@@ -526,15 +526,15 @@ a {
   	}
 	}
 }
-.base-font-size {font-size: @baseFontSizeLink;}
+.base-font-size {font-size: @font-size-base-link;}
 //Lists
 ul.unstyled,
 ol.unstyled {
-  	li.additional {line-height: @baseLineHeight * 1.5;padding-top:15px;}
+  	li.additional {line-height: @line-height-base * 1.5;padding-top:15px;}
 }
 	li.inline {display:inline;}
 	
-ul.additional-list {line-height: @baseLineHeight * 1.5;padding-top:15px;}
+ul.additional-list {line-height: @line-height-base * 1.5;padding-top:15px;}
 
 .dl-horizontal {
   dt {
@@ -994,7 +994,7 @@ padding: 0;
 	background-color: rgba(0,0,0,.2);
 	height:7%;
 	text-align: center;
-	color: @grayDark;
+	color: @gray-dark;
 	top:0px;
 	border-bottom: 2px groove @grayLighter;
 	margin-top:-2px;
