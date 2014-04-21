@@ -1,10 +1,11 @@
 WSData = {
-    _course_data: {},
-    _grade_data: {},
     _book_data: null,
-    _link_data: null,
-    _instructor_data: {},
+    _course_data: {},
     _financial_data: null,
+    _grade_data: {},
+    _notice_data: {},
+    _instructor_data: {},
+    _link_data: null,
     _oquarter_data: null,
 
     book_data: function() {
@@ -42,6 +43,10 @@ WSData = {
 
     financial_data: function() {
         return WSData._financial_data;
+    },
+
+    notice_data: function() {
+        return WSData._notice_data;
     },
 
     oquarter_data: function() {

@@ -1,0 +1,15 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "reg_status_card" %}
+    <div class="card medium_card">
+        <h4 style="color: #555;">Registration Status</h4>
+        <ul class="reg-card-list">
+            {{ #each reg_notices }}
+            <li>
+                {{{ reg_notice }}}
+            </li>
+            {{ /each }}
+            <li>Your estimated <a href='http://www.washington.edu/students/reg/2014cal.html#Q3'>Period I Priority Registration Date</a> for winter quarter is <b></b>. Registration begins at <b>6:00 a.m.</b>
+            </li>
+        </ul>
+    </div>
+    {% endtplhandlebars %}

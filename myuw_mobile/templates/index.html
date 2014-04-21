@@ -14,6 +14,10 @@
          
       </div>
 
+     {% include "handlebars/card_list.html" %}
+     {% include "handlebars/card/reg_status.html" %}
+     {% include "handlebars/card/notice.html" %}
+
      {% include "handlebars/quarter_header.html" %}
      {% include "handlebars/quarter_books.html" %}
      {% include "handlebars/panel/addi_course_links.html" %}
@@ -48,6 +52,7 @@
 
      <script>
         window.page_titles = {
+            "card_list": "MyUW Mobile 1",
             "course_list": "MyUW Mobile",
             "visual": "Visual Schedule",
             "links": "MyLinks",
