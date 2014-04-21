@@ -39,7 +39,7 @@ def get_registered_future_quarters():
     """
     next_quar_sche = get_next_quarter_schedule()
     next_autumn_sche = None
-    if next_quar_sche.term.quarter == 'summer':
+    if next_quar_sche and next_quar_sche.term.quarter == 'summer':
         next_autumn_sche = get_next_autumn_quarter_schedule()
     return _get_registered_future_quarters(next_quar_sche,
                                            next_autumn_sche)
@@ -62,8 +62,8 @@ def _get_registered_future_quarters(next_quar_sche,
            autumn quarter if the next_quar_sche is of summer quarter 
     """
     terms = []
-    next_quarter = next_quar_sche.term
     if next_quar_sche is not None and len(next_quar_sche.sections) > 0:
+        next_quarter = next_quar_sche.term
 
         if next_quarter.quarter == "summer":
             sumr_tms = _get_registered_summer_terms(next_quar_sche.sections)
