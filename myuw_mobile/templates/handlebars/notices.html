@@ -10,101 +10,98 @@
           <li>COM 213 has 2 seats available.</li>
           <li>Next Monday (4/30) is the last day to change a Winter quarter class to S/NS grading.</li>            
         </ul>
-    </div><--></-->
+    </div><-->
+    <a>Back</a>
 
-    <h2>Grades and Academic Planning</h3>
-
-<!-- Canvas grades -->
-    <div style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid black;">
-        <h4 style="color: #555;">Current Canvas grades, Spring 2014</h4>
-        <table>
-          <tr>
-  	        <td class="canvasGradeBox" style="background: #e7e7e7; padding: 15px; margin: 5px; border: 1px solid #808080;">
-  	        	<span class="courseIDtitle">MATH 321</span>  	        	<span class="canvasGrade" style="font-size: 18px; float: right; padding-bottom: 10px; margin: 5px; ">23.41%</span>
-
-  	        	<span class="shortTitle">Discrete Math Modeling</span>
-      			</td>
-      			<td class="canvasGradeBox span1" style="background: #e7e7e7; padding: 15px; margin: 5px; border: 1px solid #808080;">
-      	       <span class="courseIDtitle">BIOL 101</span>
-               <span class="shortTitle">Biology for dummies</span>
-      	       <p class="canvasGrade" style="font-size: 18px; float: right; padding-bottom: 10px; margin: 5px;">81.54%</p><br style="clear:both;">
-      			</td>
-          </tr>
-          <tr>
-            <td class="canvasGradeBox span1" style="background: #e7e7e7; padding: 15px; margin: 5px; border: 1px solid #808080;">
-                <span class="courseIDtitle">ENGL 204</span>
-                <span class="shortTitle">Course title here</span>
-                <p class="canvasGrade" style="font-size: 18px; float: right; padding-bottom: 10px; margin: 5px;">23.41%</p>    			
-                </td>
-      			<td class="canvasGradeBox span1" style="background: #e7e7e7; padding: 15px; margin: 5px; border: 1px solid #808080;">
-      	       <span class="courseIDtitle">MATH 321</span>
-               <span class="shortTitle">Discrete Math Modeling</span>
-      	       <p class="canvasGrade" style="font-size: 18px; float: right; padding-bottom: 10px; margin: 5px;">23.41%</p><br style="clear:both;">
-      			</td>
-          </tr>
-          <tr ><td colspan="2"><p>NOTE: depending on how your Instructor has Canvas conﬁgured, this grade calculation may be for points needed for the entire quarter, rather than for course work due to date.</p></td></tr>
-        </table>
-        </div>        
-        
+    <h2>Notices (#) </h3>
+    
+    <div style="float: right; font-size: 11px;">
+      <a>Expand all</a>  |  <a>[icon] Show only critical</a>
     </div>
+    
+    <br style="clear: both;">
 
-    <h3>Final Grades for [the previous quarter]</h3>
-    <br />
-    {{#each sections}}
-        <div class="c{{color_id}} c{{color_id}}Border canvasGradeBox" style="padding: 8px 4px;">
-          <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}}{{section_id}}</span>
-          <span class="shortTitle">{{ course_title }}</span>
-              <span class="canvasGrade" style="font-size: 25px; float: right; padding-right: 10px;">
-                {{ #if official_grade }}
-                  {{ official_grade }}
-                {{ else }}
-                  Grade not yet submitted
-                {{ /if }}
-              </span>
+    <!-- collapsy areas --> 
+    <div class="panel-group" id="accordion">
+
+      <!-- collapsy 1: holds -->       
+      <div class="panel panel-default holds" style="width: 100% !important;">
+        <!-- collapsy 1 header -->       
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          <div class="panel-heading"> 
+            <h3 class="panel-title">
+              Registration Holds (# new) 
+              <span style="float: right;">[icon]</span>            
+            </h3>
         </div>
-        <br />
-    {{/each}}
-
-
-    <!-- GPA card --> 
-      <div class="" style="border-right: 1px solid black; float: left; width: 45%; position: relative; padding: 10px; padding-right: 20px; margin-right: 10px;">
-          <h3 style="color: #555; margin-top: 0;">GPA: 3.6</h3>
-          <p>As of March 15th, 2014</p>
-           <a href="">Grade Report</a><br>
-           <a href="">Unofficial Transcript</a>
+        </a>
+        <!-- collapsy 1 content --> 
+        <div id="collapseOne" class="panel-collapse collapse">
+          <div class="panel-body" style="border-top: 1px solid #555;">
+            
+            <div class="notice-category" style="font-size: 11px; color: #777;">Category: <a>Holds</a></div>
+            <div class="notice-title" style="font-weight: bold;">[icon] The following offices have placed <a>administrative holds</a> on your academic record which prevent further registration and/or ordering official transcripts. (notice_content)</div>
+            <div class="hold-container" style="padding: 5px 0 5px 30px;">
+              <div class="hold-type"> 
+                Type: Registration/Transcript
+              </div>
+              <div class="hold-office">
+                Library Account Services, Suzzallo, 1st floor, 206-543-1174
+              </div>
+            </div>
+            <div class="hold-container" style="padding: 5px 0 5px 30px;">
+              <div class="hold-type">
+                Type: Registration/Transcript
+              </div>
+              <div class="hold-office">
+                Library Account Services, Suzzallo, 1st floor, 206-543-1174
+              </div>
+            </div>
+            <div class="hold-container" style="padding: 5px 0 5px 30px;">
+              <div class="hold-type">
+                Type: Registration/Transcript
+              </div>
+              <div class="hold-office">
+                Library Account Services, Suzzallo, 1st floor, 206-543-1174
+              </div>
+            </div>
+            
+          </div>
+        </div>
       </div>
-      <div class="" style="float: left; width: 45%; position: relative; padding: 10px; margin-right: 10px;">
-          <h3 style="color: #555; margin-top: 0;">[Stuff you can do]</h3>
-          <ul style="padding-left: 3px;">
-            <li><a>Contact your advisor</a></li>
-            <li><a>Use the GPA calculator</a></li>
-            <li><a>Adjust your courseload</a></li>
-            <li><a>Use DARS to make a plan</a></li>
-            <li><a>Declare or change a major</a></li>
-            <li><a>See your unofficial transcript</a></li>
-            <li><a>Order an official transcript</a></li>
-          </ul>
+      <!-- end collapsy 1 --> 
+  
+    <!-- collapsy 2 --> 
+    <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Today (# new) [alert icon]
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
       </div>
-
-      
-<br style="clear: both;"> 
-
-
-
-        
-
-<div class="row-fluid">
-   	<div class="span6">
-   		<h3>Academic Planning Resources</h3>
-   		<a>MyPlan</a><br />
-   		<a>DARS</a><br />
-   		<a>GPA Calculator</a><br />
-   		<a>Grade Report</a><br />
-   		<a>View Unofficial Transcript</a><br />
-   		<a>Request Official Transcript</a><br />
-
-   	</div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          This week (# new) [alert icon]
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
 </div>
+
 
  
     <!-- nav footer -->
