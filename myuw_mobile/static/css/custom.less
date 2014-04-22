@@ -3,7 +3,11 @@
 @import "variables.less";
 @import "font-awesome.less"; 
 
+@link-color: #08c; 
+@link-color-hover: @link-color; 
 
+
+// body and top-level stuff //
 
 body {
   background-color: #e6e6e6; 
@@ -12,14 +16,18 @@ body {
   // Headers //
 
 
+  // links //
+  a { color: @link-color; cursor: pointer; text-decoration: none; }
+  a:hover { color: @link-color-hover; cursor: pointer;}
+
   // misc 
   hr {border-top: 1px solid #ddd;}
   ul {list-style-type: none;}
-
   
   }
 
-// notices banner 
+
+// notices banner // 
 div.notification { 
   
   padding: 8px 15px; 
@@ -33,8 +41,11 @@ div.notification {
     color: #555;
   }
 
-
 }
+
+//notices page // 
+
+
 
 // accordion (I think this is for the old class list style?) 
 div.accordion-inner ul {
