@@ -16,25 +16,23 @@ class TestRegisteredTerm(TestCase):
             RESTCLIENTS_PWS_DAO_CLASS='restclients.dao_implementation.pws.File',
             RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
-            term = Term()
-            term.year = 2013
-            term.quarter = "summer"
+            term = _get_term_by_year_and_quarter(2013, "summer")
             schedule = _get_schedule(regid, term)
             data = _get_registered_summer_terms(schedule.sections)
             self.assertFalse(data["A"])
             self.assertTrue(data["B"])
             self.assertTrue(data["F"])
 
+
     def test_must_displayed_separately(self):
         with self.settings(
             RESTCLIENTS_PWS_DAO_CLASS='restclients.dao_implementation.pws.File',
             RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
-            term = Term()
-            term.year = 2013
-            term.quarter = "summer"
+            term = _get_term_by_year_and_quarter(2013, "summer")
             schedule = _get_schedule(regid, term)
             self.assertTrue(_must_displayed_separately(schedule))
+
 
     def test_get_registered_future_quarters(self):
         with self.settings(
@@ -63,4 +61,8 @@ class TestRegisteredTerm(TestCase):
             self.assertEqual(terms[2]['quarter'], "Autumn")
             self.assertEqual(terms[2]['summer_term'], "")
                 
+
+            terms = _get_registered_future_quarters(None, None)
+            self.assertEqual(len(terms), 0)
+
 
