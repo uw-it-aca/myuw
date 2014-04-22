@@ -11,6 +11,7 @@ from myuw_mobile.views.api.other_quarters import RegisteredFutureQuarters
 from myuw_mobile.views.api.grades import Grades
 from myuw_mobile.views.api.weekly import Weekly
 from myuw_mobile.views.logout import Logout
+from myuw_mobile.views.api.notices import Notices
 
 urlpatterns = patterns('myuw_mobile.views',
     url(r'login', 'mobile_login.user_login'),
@@ -28,6 +29,7 @@ urlpatterns = patterns('myuw_mobile.views',
     url(r'^api/v1/finabala/$', AccountBalances().run),
     url(r'^api/v1/oquarters/$', RegisteredFutureQuarters().run),
     url(r'^api/v1/grades/$', Grades().run),
+    url(r'^api/v1/notices/$', Notices().run),
     url(r'^api/v1/current_week/$', Weekly().run),
     url(r'^api/v1/grades/(?P<year>[0-9]{4}),(?P<quarter>[a-z]+)$', Grades().run),
     url(r'.*', 'page.index'),

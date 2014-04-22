@@ -92,7 +92,7 @@ def _get_notices_by_regid(user_regid):
 
 
 def get_notices_for_current_user():
-    return get_notices_by_regid(get_regid_of_current_user())
+    return _get_notices_by_regid(get_regid_of_current_user())
 
 
 def _categorize_notices(notices):
