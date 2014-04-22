@@ -1,16 +1,9 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "notice_card" %}
 
-    <div class="card notification" id="notice_card">
+    <div class="notification" id="notice_card">
         <h4 style="color: #555;">Notices</h4>
-        <ul class="notice-list">
-            {{ #each notices }}
-            <li>
-                {{{ notice }}}
-            </li>
-            {{ /each }}
-            <li>You are scheduled to attend Advising and Orientation on <b>June 23, 2014</b>                          
-            </li>
-        </ul>
+        <p>You have {{ unread_notice_count }} new notices!</p>
+        <a href="/mobile/notices/" title="to open notice page">View your notices</a>
     </div>
     {% endtplhandlebars %}
