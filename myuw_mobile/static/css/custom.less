@@ -1,7 +1,6 @@
 // Variables // 
 
 @import "variables.less";
-@import "variables-override.less";
 @import "font-awesome.less"; 
 
 
@@ -11,12 +10,7 @@ body {
   font-family: @font-family-sans-serif;
   
   // Headers //
-  
-  h4 {
-	  font-size: 22px;
-    line-height: 20px;
-    font-weight: normal;
-    }
+
 
   // misc 
   hr {border-top: 1px solid #ddd;}
@@ -28,13 +22,21 @@ body {
 // notices banner 
 div.notification { 
   
-  ul {
-	  list-style: disc;
-    }
+  padding: 8px 15px; 
+  background: #F3EE81; 
+  position: relative; 
+  top: -40px; 
+  
+  h2 { 
+    font-size: 10px; 
+    font-weight: bold; 
+    color: #555;
+  }
+
 
 }
 
-// accordion 
+// accordion (I think this is for the old class list style?) 
 div.accordion-inner ul {
 	margin:	0;
 	}
@@ -94,6 +96,11 @@ div.accordion-inner th {
 	min-height: 8em;
 }
 
+  h4 { // this currently seems to be used only in cards
+ 	  font-size: 22px;
+    line-height: 20px;
+    font-weight: normal;
+    }
 
 /* What is this for? 
 .clearfix {
