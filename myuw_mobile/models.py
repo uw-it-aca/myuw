@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+import hashlib
 
 
 class CourseColor(models.Model):
@@ -88,3 +89,18 @@ class StudentAccountsBalances(models.Model):
             "residence_hall_dining": self.residence_hall_dining
             }
         return data
+
+
+class UserNotices(models.Model):
+    notice_hash = models.CharField(max_length=32)
+    user = models.ForeignKey('User', on_delete=models.PROTECT)
+    is_read = models.BooleanField(default=False)
+
+    def set_hash(self, notice):
+        notice_hash = hashlib.md5()
+        notice_hash.update(notice.notice_type)
+        notice_hash.update(notice.notice_category)
+        notice_hash.update(notice.notice_content)
+
+        self.notice_hash =  notice_hash.hexdigest()
+

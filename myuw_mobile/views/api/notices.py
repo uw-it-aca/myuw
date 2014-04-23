@@ -24,6 +24,7 @@ class Notices(RESTDispatch):
         notice_json = {}
         for notice in notices:
             data = notice.json_data()
+            data['id_hash'] = notice.id_hash
             if notice.custom_category in notice_json:
                 notice_json[notice.custom_category]["notices"].append(data)
             else:

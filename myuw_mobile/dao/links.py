@@ -6,11 +6,10 @@ import logging
 import json
 import os
 from myuw_mobile.models import Link as LinkModel, UserMyLink
-from myuw_mobile.models import User
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logback import log_resp_time, log_exception
 from myuw_mobile.dao.affiliation import get_all_affiliations
-from myuw_mobile.dao.pws import get_netid_of_current_user
+from myuw_mobile.dao import get_user_model
 
 
 logger = logging.getLogger(__name__)
@@ -81,15 +80,7 @@ def get_link_by_id(id):
 
 
 def _get_user():
-    user_netid = get_netid_of_current_user()
-    in_db = User.objects.filter(uwnetid=user_netid)
-    if len(in_db) > 0:
-        return in_db[0]
-
-    new = User()
-    new.uwnetid = user_netid
-    new.save()
-    return new
+    get_user_model()
 
 
 def _get_mylink():

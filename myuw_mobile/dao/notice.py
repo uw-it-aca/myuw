@@ -9,6 +9,8 @@ from restclients.sws.notice import get_notices_by_regid
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logback import log_resp_time, log_exception, log_info
 from myuw_mobile.dao.pws import get_regid_of_current_user
+from myuw_mobile.models import UserNotices
+from myuw_mobile.dao import get_user_model
 
 
 logger = logging.getLogger(__name__)
@@ -92,7 +94,15 @@ def _get_notices_by_regid(user_regid):
 
 
 def get_notices_for_current_user():
-    return _get_notices_by_regid(get_regid_of_current_user())
+    notices = _get_notices_by_regid(get_regid_of_current_user())
+    user = get_user_model()
+    for notice in notices:
+        user_notice = UserNotices()
+        user_notice.set_hash(notice)
+        user_notice.user = user
+        user_notice.save()
+        notice.id_hash = user_notice.notice_hash
+    return notices
 
 
 def _categorize_notices(notices):
