@@ -12,7 +12,7 @@
 
    {% compress css %}
     <!-- Les styles -->
-      <link href="{% static 'css/vendor/bootstrap-3.1.1.css' %}" rel="stylesheet/css">
+      <link href="{% static 'css/vendor/bootstrap-3.1.1.css' %}" rel="stylesheet">
       <link href="{% static 'css/custom.less' %}" rel="stylesheet/less">
    {% endcompress %}
 
@@ -45,7 +45,7 @@
     <div id="page-content">
   {% include "nav.html" %}
     <!-- Page content -->
-    <div class="container-fluid">
+    <div class="container">
  
     {% block content %}
     {% endblock %}
