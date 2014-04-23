@@ -92,15 +92,14 @@ class StudentAccountsBalances(models.Model):
 
 
 class UserNotices(models.Model):
-    notice_hash = models.CharField(max_length=32)
+    notice_hash = models.CharField(max_length=32, unique=True)
     user = models.ForeignKey('User', on_delete=models.PROTECT)
     is_read = models.BooleanField(default=False)
 
-    def set_hash(self, notice):
+    def generate_hash(self, notice):
         notice_hash = hashlib.md5()
         notice_hash.update(notice.notice_type)
         notice_hash.update(notice.notice_category)
         notice_hash.update(notice.notice_content)
-
-        self.notice_hash =  notice_hash.hexdigest()
+        return notice_hash.hexdigest()
 

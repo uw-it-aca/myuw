@@ -11,6 +11,7 @@ from myuw_mobile.logger.logback import log_resp_time, log_exception, log_info
 from myuw_mobile.dao.pws import get_regid_of_current_user
 from myuw_mobile.models import UserNotices
 from myuw_mobile.dao import get_user_model
+from django.core.exceptions import ObjectDoesNotExist
 
 
 logger = logging.getLogger(__name__)
@@ -95,15 +96,27 @@ def _get_notices_by_regid(user_regid):
 
 def get_notices_for_current_user():
     notices = _get_notices_by_regid(get_regid_of_current_user())
-    user = get_user_model()
     for notice in notices:
-        user_notice = UserNotices()
-        user_notice.set_hash(notice)
-        user_notice.user = user
-        user_notice.save()
+        user_notice = _get_user_notice(notice)
         notice.id_hash = user_notice.notice_hash
+        notice.is_read = user_notice.is_read
+
     return notices
 
+
+def _get_user_notice(notice):
+    notice_hash = UserNotices().generate_hash(notice)
+    user_notice = None
+    try:
+        user_notice = UserNotices.objects.get(notice_hash=notice_hash)
+    except ObjectDoesNotExist:
+        user = get_user_model()
+        user_notice = UserNotices()
+        user_notice.notice_hash = notice_hash
+        user_notice.user = user
+        user_notice.save()
+    notice.id_hash = user_notice.notice_hash
+    return user_notice
 
 def _categorize_notices(notices):
     for notice in notices:
