@@ -1,10 +1,45 @@
-// Variables // 
+
 
 @import "variables.less";
 @import "font-awesome.less"; 
 
+// Overridden Bootstrap Variables // 
+@gray-dark: #3c3c3c;
+@yellow: #D7A900;
 @link-color: #08c; 
 @link-color-hover: @link-color; 
+
+@body-bg:        @myuw;
+@body-accent:               lighten(@myuw, 1.5%);
+
+@font-size-base:          14px;
+@font-size-base-link:          14px;
+@line-height-base:        20px;
+
+
+
+// MyUW Colors // 
+@myuw: #f8f7f0;
+@uwpurple: #39275B;
+@uwLighter: lighten(@uwpurple, 35%);
+
+// MyUW Button & Link Colors // 
+@btnMyuwBackground:              @uwpurple;
+@btnMyuwBackgroundHighlight:     spin(@btnMyuwBackground, 20%);
+@myuwText:                @gray;
+@myuwBackground:          @gray-lighter;
+@myuwBorder:              darken(spin(@myuwBackground, -10), 7%); 
+
+// MyUW Course Colors // 
+@coursePurple:               #a58dce;
+@courseBlue:               #6d8db4;
+@courseGreen:               #84b782;
+@courseOrange:               #c8a26f;
+@courseGray:               #959595;
+@courseBrown:               #998577;
+@courseRed:                    #c86f6f;
+@courseTeal:               #6fc8b6;
+@courseGold:               #c8c36f;
 
 
 // body and top-level stuff //
