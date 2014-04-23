@@ -10,4 +10,4 @@ def has_less_compiled(request):
 
 
 def less_not_compiled(request):
-    return
+    return { }
