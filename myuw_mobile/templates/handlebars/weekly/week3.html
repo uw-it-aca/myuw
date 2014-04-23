@@ -1,10 +1,13 @@
 {% load static %} 
 {% load templatetag_handlebars %} 
     {% tplhandlebars "week3_outline" %}
+
+    
+    <h2 class="hide-text">PLACEHOLDER main page content</h2>
     
     <!-- email card --> 
     <div class="card first-card medium-card">
-        <h4 style="color: #555;">Email</h4>
+        <h3 style="color: #555;">Email</h3>
         <p>You have <b>2</b> new emails.</p>
          <a href="">Check email</a>
     </div>
@@ -14,7 +17,7 @@
         
     <!-- tuition card --> 
    <div class="card medium_card">
-        <h4 style="color: #555;">Tuition Owed</h4>
+        <h3 style="color: #555;">Tuition Owed</h3>
         <p>Tuition owed: <b>$1200.50</b><br>
 	        Due <b>tomorrow, April 9th, 2014</b>
         </p>
@@ -23,26 +26,26 @@
        
     <!-- current quarter visual schedule card --> 
      <div class="card">
-        <img src="{% static '../../../static/images/vis_sched_for_test.gif' %}" alt="vis_sched_for_test" style="width: 100%;" />
+        <img src="{% static '../../../static/images/vis_sched_for_test.gif' %}" alt="vis_sched_for_test" style="width: 100%; max-width: 500px;" />
     </div>
     
     <!-- husky account balance card --> 
     <div class="card medium_card">
-        <h4 style="color: #555;">Husky Card Account</h4>
+        <h3 style="color: #555;">Husky Card Account</h3>
         <p>Balance: <b>$17.34</b></p>
          <a href=""></a>
     </div>
 
 	<!-- Dining account balance card --> 
     <div class="card">
-        <h4 style="color: #555;">Dining & Food Services</h4>
+        <h3 style="color: #555;">Dining & Food Services</h3>
         <p>Balance: <b>$6.00</b></p>
          <a href=""></a>
     </div>
     
     <!-- GPA card --> 
     <div class="card">
-        <h4 style="color: #555;">Cumulative GPA: 3.8</h4>
+        <h3 style="color: #555;">Cumulative GPA: 3.8</h3>
         <p>As of Feb 20th, 2014</p>
          <a href="">Grade Report</a><br>
          <a href="">Unofficial Transcript</a>
@@ -50,7 +53,7 @@
     
     <!-- Advisor card -->
     <div class="card">
-        <h4 style="color: #555;">Advisor Contact</h4>
+        <h3 style="color: #555;">Advisor Contact</h3>
         <p>Jane Smith</p>
         <p>206.123.4567</p>
          <a href=""></a>
@@ -58,7 +61,7 @@
     
     <!-- Libraries card --> 
     <div class="card">
-        <h4 style="color: #555;">UW Libraries</h4>
+        <h3 style="color: #555;">UW Libraries</h3>
         <p>You have <b>2</b> items checked out.</p>
         <p>You have <b>1 item due</b> on <b>May 20th, 2014</b></p>
          <a href="">Go to your UW Libraries account</a>
@@ -66,9 +69,11 @@
     
     <!-- events calendar card --> 
     <div class="card">
-        <h4 style="color: #555;">Campus Events Calendar</h4>
+        <h3 style="color: #555;">Campus Events Calendar</h3>
         <p>uis venenatis imperdiet. In magna massa, tempor sit amet sapien vitae, sodales imperdiet lectus. Maecenas rutrum mattis augue non pharetra. Vivamus vitae pellentesque purus. Fusce dapibus tempus pharetra. Pellentesque scelerisque sem sit amet sapien laoreet elementum. Curabitur euismod sed lorem at suscipit. Curabitur sed arcu sed erat elementum pulvinar. Morbi ut risus velit. Suspendisse tincidunt mi venenatis diam auctor rhoncus.</p>
          <a href=""></a>
     </div>
+    
+
  
  {% endtplhandlebars %}
