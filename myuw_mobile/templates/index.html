@@ -6,9 +6,16 @@
       </div>
 
       <div class="notice-banner">
+        <!-- Temporary Notice Banner content -->
+	    <div class="notification" id="notice_banner">
+	        <h4><span class="count-badge">{{ unread_notice_count }}</span>Notices</h4>
+	        <span>You have {{ unread_notice_count }} unread notices!</span>
+	        <a href="/mobile/notices/" title="to open notice page">View your notices</a>
+	    </div>
+
       </div>
 
-      <div class="row">
+      <div class="row-fluid">
             
         <!-- Start of course list accordion -->
             <div id="courselist">
