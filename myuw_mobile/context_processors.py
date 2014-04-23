@@ -8,3 +8,6 @@ def has_less_compiled(request):
     else:
         return {'has_less_compiled': False}
 
+
+def less_not_compiled(request):
+    return
