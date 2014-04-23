@@ -3,7 +3,7 @@ WSData = {
     _course_data: {},
     _financial_data: null,
     _grade_data: {},
-    _notice_data: {},
+    _notice_data: null,
     _instructor_data: {},
     _link_data: null,
     _oquarter_data: null,
@@ -16,16 +16,6 @@ WSData = {
         return WSData._course_data["current"];
     },
 
-    course_data_for_term: function(term) {
-        return WSData._course_data[term];
-    },
-
-
-    grade_data_for_term: function(term) {
-        if (!term) { term = ''; }
-        return WSData._grade_data[term];
-    },
-
     course_data: function() {
         if (window.console) {
             console.warn("Use WSData.current_course_data");
@@ -33,16 +23,25 @@ WSData = {
         return WSData.current_course_data();
     },
 
-    link_data: function() {
-        return WSData._link_data;
+    course_data_for_term: function(term) {
+        return WSData._course_data[term];
+    },
+
+    grade_data_for_term: function(term) {
+        if (!term) { term = ''; }
+        return WSData._grade_data[term];
+    },
+
+    financial_data: function() {
+        return WSData._financial_data;
     },
 
     instructor_data: function(regid) {
         return WSData._instructor_data[regid];
     },
 
-    financial_data: function() {
-        return WSData._financial_data;
+    link_data: function() {
+        return WSData._link_data;
     },
 
     notice_data: function() {
@@ -52,6 +51,7 @@ WSData = {
     oquarter_data: function() {
         return WSData._oquarter_data;
     },
+
 
     fetch_book_data: function(callback, args) {
             if (WSData._book_data === null) {
@@ -286,6 +286,29 @@ WSData = {
             }
         },
 
+    fetch_notice_data: function(callback, args) {
+        if (WSData._notice_data === null) {
+            $.ajax({
+                url: "/mobile/api/v1/notices/",
+                dataType: "JSON",
+
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    WSData._notice_data = results;
+                    callback.apply(null, args);
+                },
+                error: function(xhr, status, error) {
+                    showError();
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
 
     fetch_oquarter_data: function(callback, args) {
         if (WSData._oquarter_data === null) {
