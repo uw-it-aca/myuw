@@ -112,7 +112,7 @@
     <script src="{% static 'js/card/notice.js' %}"></script>
     {% hb_i18_script %}
     {% endcompress %}
-    {% if less_not_compiled %}
+    {% if not has_less_compiled %}
         <script src="{% static 'js/vendor/less-1.7.0.min.js' %}" type="text/javascript"></script>
     {% endif %}
 

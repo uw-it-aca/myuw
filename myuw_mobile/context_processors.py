@@ -1,10 +1,10 @@
 from django.conf import settings
 
-def less_not_compiled(request):
+def has_less_compiled(request):
     """ See if django-compressor is being used to precompile less
     """
     if settings.COMPRESS_ENABLED:
-        return {'less_not_compiled': False} 
+        return {'has_less_compiled': True}
     else:
-        return {'less_not_compiled': True}
+        return {'has_less_compiled': False}
 
