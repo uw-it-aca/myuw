@@ -1,9 +1,9 @@
 {% load templatetag_handlebars %}
-    {% tplhandlebars "notice_card" %}
+    {% tplhandlebars "notice_banner" %}
 
-    <div class="notification" id="notice_card">
+    <div class="notification" id="notice_banner">
         <h4 style="color: #555;">Notices</h4>
         <span class="...">You have {{ unread_notice_count }} unread notices!</span>
-        <a href="/mobile/notices/" title="to open notice page">View your notices</a>
+
     </div>
     {% endtplhandlebars %}

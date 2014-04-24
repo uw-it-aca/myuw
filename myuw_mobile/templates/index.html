@@ -5,54 +5,43 @@
       <div class="page-header" id="page-header">
       </div>
 
-      <div class="notice-banner">
-        <!-- Temporary Notice Banner content -->
-	    <div class="notification" id="notice_banner">
-	        <h4><span class="count-badge">{{ unread_notice_count }}3</span>Notices</h4>
-	        <span class="notice-category">unread category notice, unread category notice</span>
-	        <a href="/mobile/notices/" title="to open notice page">View your notices</a><i class="fa fa-angle-right">test</i>
-	    </div>
-
+      <div id="courselist">
       </div>
 
-      <div class="row-fluid">
-            
-        <!-- Start of course list accordion -->
-            <div id="courselist">
-
-        <!-- /end accordion -->
-         
+      <div id="static-links">
       </div>
 
-     {% include "handlebars/card_list.html" %}
+     <!-- component content templates -->
+     {% include "handlebars/banner/notice.html" %}
      {% include "handlebars/card/reg_status.html" %}
-     {% include "handlebars/notice_banner.html" %}
-
-     {% include "handlebars/quarter_header.html" %}
-     {% include "handlebars/quarter_books.html" %}
+     {% include "handlebars/header/quarter.html" %}
      {% include "handlebars/panel/addi_course_links.html" %}
      {% include "handlebars/panel/no_courses.html" %}
-     {% include "handlebars/other_quarters.html" %}
+
+     <!-- page content templates -->
+     {% include "handlebars/landing.html" %}
+     {% include "handlebars/books_list.html" %}
      {% include "handlebars/course_list.html" %}
      {% include "handlebars/course_modal.html" %}
-     {% include "handlebars/finals_modal.html" %}
-     {% include "handlebars/visual_schedule.html" %}
-     {% include "handlebars/books_list.html" %}
-     {% include "handlebars/financial.html" %}
-     {% include "handlebars/links.html" %}
-     {% include "handlebars/instructor.html" %}
-     {% include "handlebars/loading.html" %}
      {% include "handlebars/error.html" %}
+     {% include "handlebars/finals_modal.html" %}
      {% include "handlebars/final_exams.html" %}
+     {% include "handlebars/financial.html" %}
      {% include "handlebars/grades.html" %}
+     {% include "handlebars/instructor.html" %}
+     {% include "handlebars/links.html" %}
+     {% include "handlebars/loading.html" %}
+     {% include "handlebars/notices.html" %}
+     {% include "handlebars/other_quarters.html" %}
+     {% include "handlebars/quarter_books.html" %}
+     {% include "handlebars/visual_schedule.html" %}
+
      {% include "handlebars/weekly/other.html" %}
      {% include "handlebars/weekly/week1.html" %}
      {% include "handlebars/weekly/week2.html" %}
      {% include "handlebars/weekly/week3.html" %}
      {% include "handlebars/weekly/week5.html" %}
      {% include "handlebars/weekly/week6.html" %}
-     {% include "handlebars/notices.html" %}
-
      {% include "handlebars/weekly/course_list_A.html" %}
      {% include "handlebars/weekly/course_list_B.html" %}
      {% include "handlebars/weekly/course_list_C.html" %}
@@ -62,7 +51,7 @@
 
      <script>
         window.page_titles = {
-            "card_list": "MyUW Mobile 1",
+            "landing": "MyUW Mobile Main page",
             "course_list": "MyUW Mobile",
             "visual": "Visual Schedule",
             "links": "MyLinks",

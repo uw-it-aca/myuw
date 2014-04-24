@@ -25,7 +25,7 @@ $(document).ready(function() {
             return;
         }
 
-        $("#card_list").removeClass("active");
+        $("#landing").removeClass("active");
         $("#nav_course_list").removeClass("active");
         $("#nav_visual_schedule").removeClass("active");
         $("#nav_mylinks").removeClass("active");
@@ -49,6 +49,10 @@ $(document).ready(function() {
         else if (state === "future_quarters") {
             Quarters.show_future_quarters();
             document.title = window.page_titles["future_quarters"];
+        }
+        else if (state === "landing") {
+            Landing.render();
+            document.title = window.page_titles["landing"];
         }
         else if (state === "textbooks") {
             TextBooks.show_books();
@@ -76,10 +80,6 @@ $(document).ready(function() {
         else if (state === "grades") {
             Grades.show_grades(data.term);
             document.title = window.page_titles["grades"];
-        }
-        else if (state === "card_list") {
-            Card_list.show_list();
-            document.title = window.page_titles["card_list"];
         }
         else if (state === "weekly") {
             Weekly.show_current_week(data);
@@ -221,10 +221,10 @@ $(document).ready(function() {
                                                  ? matches[1]
                                                  : ""));
         }
-        else if (path.match(/^\/mobile\/card_list/)) {
+        else if (path.match(/^\/mobile\/landing/)) {
             hist.replaceState({
-                state: "card_list",
-            },  "", "/mobile/card_list/");
+                state: "landing",
+            },  "", "/mobile/landing/");
         }
         else if (path.match(/^\/mobile\/weekly/)) {
             hist.replaceState({
