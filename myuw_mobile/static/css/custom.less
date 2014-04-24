@@ -13,12 +13,14 @@
 @link-color: #08c; 
 @link-color-hover: @link-color; 
 
-@body-bg:        @myuw; //where is this used? the actual body bg color is e6e6e6, referenced below 
+@body-bg:        @myuw;
 @body-accent:               lighten(@myuw, 1.5%);
 
 @font-size-base:          14px;
-@font-size-base-link:     14px;
+@font-size-base-link:          14px;
 @line-height-base:        20px;
+
+
 
 // MyUW Colors // 
 @myuw: #f8f7f0;
@@ -33,33 +35,57 @@
 @myuwBorder:              darken(spin(@myuwBackground, -10), 7%); 
 
 // MyUW Course Colors // 
-@coursePurple:             #a58dce;
+@coursePurple:               #a58dce;
 @courseBlue:               #6d8db4;
-@courseGreen:              #84b782;
-@courseOrange:             #c8a26f;
+@courseGreen:               #84b782;
+@courseOrange:               #c8a26f;
 @courseGray:               #959595;
-@courseBrown:              #998577;
-@courseRed:                #c86f6f;
+@courseBrown:               #998577;
+@courseRed:                    #c86f6f;
 @courseTeal:               #6fc8b6;
 @courseGold:               #c8c36f;
 
 
-// --- Classes --- // 
+// ------------ NEW CLASSES --------------- // 
 
+
+// notices banner // 
+
+#notice_banner h4 {
+	display: inline;	
+	}
+
+.count-badge {
+	background: red;
+	border-radius: 14px;	
+	background-color: red;
+	font-size: 80%;
+	text-align: center;
+	padding: 3px;
+	margin-right: 10px;
+}
+
+.notice-category {
+	color: lighten(@gray, 10%);
+	font-size: 80%;
+	font-style:	italic;
+	padding-right: 2em;
+	padding-left: 2em;
+}
+
+
+
+
+// ------------ LEGACY CLASSES  ------------ // 
 
 // body and top-level stuff //
 
 body {
   background-color: #e6e6e6; 
   font-family: @font-family-sans-serif;
-  font-size: @font-size-base; 
   
   // Headers //
-  h1 { font-size: @font-size-base + 12; }
-  h2 { font-size: @font-size-base + 9; }
-  h3 { font-size: @font-size-base + 6; }
-  h4 { font-size: @font-size-base + 3; }
-  h5 { font-size: @font-size-base; font-weight: bold; }
+
 
   // links //
   a { color: @link-color; cursor: pointer; text-decoration: none; }
@@ -74,7 +100,7 @@ body {
 
 // notices banner // 
 div.notification { 
-  
+
   padding: 8px 15px; 
   background: #F3EE81; 
   position: relative; 
@@ -90,46 +116,10 @@ div.notification {
 
 
 
+
 //notices page // 
 
-.notices-container { 
-    
-    .panel { background: none; }
-    
-    .holds {
-        .panel-heading { 
-            background-color: @yellow; 
-        }
-    }
-    
-    .panel-default { border-color: @gray-darker; }
-    
-    .panel-heading { 
-        background: none;  
-       	color: @myuwText;
-        }
-        
-    .notice-container { 
-        padding-top: 6px; 
-        border-top: 1px solid @gray; 
-        padding-bottom: 6px; 
-    }
-       
-    .notice-category { 
-        font-size: @font-size-base - 3; 
-        color: @gray-dark; 
-        margin-bottom: 6px;          
-    } 
-    
-    .notice-title { 
-        font-weight: bold; 
-    }
-        
-    .hold-container, { 
-        padding: 5px 0 5px 30px;
-    }
-}
-  
+
 
 // accordion (I think this is for the old class list style?) 
 div.accordion-inner ul {
