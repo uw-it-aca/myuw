@@ -48,6 +48,24 @@
 
 // ------------ NEW CLASSES --------------- // 
 
+// body and top-level stuff //
+
+body {
+  background-color: #e6e6e6; 
+  font-family: @font-family-sans-serif;
+  
+  // Headers //
+
+
+  // links //
+  a { color: @link-color; cursor: pointer; text-decoration: none; }
+  a:hover { color: @link-color-hover; cursor: pointer;}
+
+  // misc 
+  hr {border-top: 1px solid #ddd;}
+  ul {list-style-type: none;}
+  
+  }
 
 // notices banner // 
 
@@ -77,28 +95,52 @@
 }
 
 
+//notices page // 
+
+.notices-container { 
+    
+    .panel { background: none; }
+    
+    .holds {
+        .panel-heading { 
+            background-color: @yellow; 
+        }
+    }
+    
+    .panel-default { border-color: @gray-darker; }
+    
+    .panel-heading { 
+        background: none;  
+       	color: @myuwText;
+        }
+        
+    .notice-container { 
+        padding-top: 6px; 
+        border-top: 1px solid @gray; 
+        padding-bottom: 6px; 
+    }
+       
+    .notice-category { 
+        font-size: @font-size-base - 3; 
+        color: @gray-dark; 
+        margin-bottom: 6px;          
+    } 
+    
+    .notice-title { 
+        font-weight: normal; 
+    }
+        
+    .hold-container, { 
+        padding: 5px 0 5px 30px;
+    }
+}
+
+
 
 
 // ------------ LEGACY CLASSES  ------------ // 
 
-// body and top-level stuff //
 
-body {
-  background-color: #e6e6e6; 
-  font-family: @font-family-sans-serif;
-  
-  // Headers //
-
-
-  // links //
-  a { color: @link-color; cursor: pointer; text-decoration: none; }
-  a:hover { color: @link-color-hover; cursor: pointer;}
-
-  // misc 
-  hr {border-top: 1px solid #ddd;}
-  ul {list-style-type: none;}
-  
-  }
 
 
 // notices banner // 
