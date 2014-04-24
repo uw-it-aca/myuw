@@ -13,7 +13,7 @@
 @link-color: #08c; 
 @link-color-hover: @link-color; 
 
-@body-bg:        @myuw;
+@body-bg:        @myuw; //where is this used? the actual body bg color is e6e6e6, referenced below 
 @body-accent:               lighten(@myuw, 1.5%);
 
 @font-size-base:          14px;
@@ -94,12 +94,42 @@ div.notification {
 
 .notices-container { 
     
-    .panel-heading { 
-        
+    .panel { background: none; }
+    
+    .holds {
+        .panel-heading { 
+            background-color: @yellow; 
+        }
     }
-  
-  
+    
+    .panel-default { border-color: @gray-darker; }
+    
+    .panel-heading { 
+        background: none;  
+       	color: @myuwText;
+        }
+        
+    .notice-container { 
+        padding-top: 6px; 
+        border-top: 1px solid @gray; 
+        padding-bottom: 6px; 
+    }
+       
+    .notice-category { 
+        font-size: @font-size-base - 3; 
+        color: @gray-dark; 
+        margin-bottom: 6px;          
+    } 
+    
+    .notice-title { 
+        font-weight: bold; 
+    }
+        
+    .hold-container, { 
+        padding: 5px 0 5px 30px;
+    }
 }
+  
 
 // accordion (I think this is for the old class list style?) 
 div.accordion-inner ul {

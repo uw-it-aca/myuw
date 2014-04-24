@@ -1,9 +1,10 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "notices" %}
 
+  <div class="notices-container">
     <a>Back</a>
 
-    <h2>Notices (#) </h3>
+    <h2>Notices (#) </h2>
     
     <div style="float: right; font-size: 11px;">
       <a>Expand all</a>  |  <a>[icon] Show only critical</a>
@@ -11,51 +12,91 @@
     
     <br style="clear: both;">
 
-   <div class="panel-group" id="accordion">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-          Collapsible Group Item #1
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+    <!-- collapsy areas -->
+    <div class="panel-group" id="accordion">
+        <!-- collapsy 1: holds -->      
+        <div class="panel panel-default holds" style="width: 100% !important;">
+            <!-- collapsy 1 header -->      
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Registration Holds (# unread) <span style="float: right;">[icon]</span></h3>
+                </div>
+            </a>
+            <!-- collapsy 1 content -->
+            <div id="collapseOne" class="panel-collapse collapse">
+                <div class="panel-body"> 
+                    <div class="notice-category">
+                        Category: <a>Holds</a>
+                    </div>
+                    <div class="notice-title" style="font-weight: bold;"> <!-- what is correct here -- h4? --> 
+                        [icon] The following offices have placed <a>administrative holds</a> on your academic record which prevent further registration and/or ordering official transcripts. (notice_content)
+                    </div>
+                    <div class="hold-container"><!-- and should this actually be a ul? --> 
+                        <div class="hold-type">
+                            Type: Registration/Transcript
+                        </div>
+                        <div class="hold-office">
+                            Library Account Services, Suzzallo, 1st floor, 206-543-1174
+                        </div>
+                    </div>
+                    
+                    <div class="hold-container">
+                        <div class="hold-type">
+                            Type: Registration/Transcript
+                        </div>
+                        <div class="hold-office">
+                            Library Account Services, Suzzallo, 1st floor, 206-543-1174
+                        </div>
+                    </div>
+                        
+                    <div class="hold-container">
+                        <div class="hold-type">
+                            Type: Registration/Transcript
+                        </div>
+                        <div class="hold-office">
+                            Library Account Services, Suzzallo, 1st floor, 206-543-1174
+                        </div>
+                    </div>
+                </div>
+            </div>
       </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-          Collapsible Group Item #2
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-          Collapsible Group Item #3
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-</div>
+      <!-- end collapsy 1 -->
+      
+      <!-- collapsy 2: today -->      
+        <div class="panel panel-default today" style="width: 100% !important;">
+            <!-- collapsy 2 header -->      
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Today, March 5 (# unread) <span style="float: right;">[icon]</span></h3>
+                </div>
+            </a>
+            <!-- collapsy 2 content -->
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body"> 
+                    <div class="notice-container">
+                        <div class="notice-category">
+                            Category: <a>Registration</a>
+                        </div>
+                        <div class="notice-title">
+                            The last day to change a class on your winter quarter schedule to or from an Audit Grade Option is March 5th, 2014.
+                        </div>
+                    </div>
+                    
+                    <div class="notice-container">
+                        <div class="notice-category">
+                            Category: <a>Registration</a>
+                        </div>
+                        <div class="notice-title">
+                            Your estimated Period I Priority Registration Date for winter quarter is March 5th, 2014. Registration begins at 6:00 a.m.
+                        </div>
+                    </div>
 
+                </div>
+            </div>
+      </div>
+      <!-- end collapsy 2 -->
+
+</div> <!-- end notices container  --> 
  
     <!-- nav footer -->
     <div class="row-fluid" style="background: #ccc; position: relative; bottom: 0px; margin: 10px -10px 0px; padding: 8px 25px;">
