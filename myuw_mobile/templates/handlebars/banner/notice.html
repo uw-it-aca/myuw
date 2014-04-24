@@ -1,9 +1,16 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "notice_banner" %}
 
-    <div class="notification" id="notice_banner">
-        <h4 style="color: #555;">Notices</h4>
-        <span class="...">You have {{ unread_notice_count }} unread notices!</span>
-
-    </div>
+      <div class="notice-banner">
+        <!-- Temporary Notice Banner content -->
+		<a href="/mobile/notices/" title="to open notice page">
+		    <div class="notification" id="notice_banner">
+		        <h4><span class="count-badge">{{ unread_notice_count }}3</span>Notices</h4>
+		        <span class="notice-category">unread category notice, unread category notice</span>
+		        <i class="fa fa-angle-right">testing fontawesome</i>
+		    </div>
+		</a>
+      </div>
+      
+      
     {% endtplhandlebars %}
