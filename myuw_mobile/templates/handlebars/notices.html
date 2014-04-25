@@ -4,7 +4,7 @@
   <div class="notices-container">
     <a href="/mobile/weekly/">Back</a>
 
-    <h2>Notices (#) </h2>
+    <h2>Notices ({{ total_unread }}) </h2>
     
     <div style="float: right; font-size: 11px;">
       <a>Expand all</a>  |  <a>[icon] Show only critical</a>
@@ -14,190 +14,140 @@
 
     <!-- collapsy areas -->
     <div class="panel-group" id="accordion">
-        <!-- collapsy 1: holds -->      
+        {{ #if holds.notices }}
+        <!-- collapsy 1: holds -->
         <div class="panel panel-default holds" style="width: 100% !important;">
             <!-- collapsy 1 header -->      
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Registration Holds (# unread) <span style="float: right;">[icon]</span></h3>
+                    <h3 class="panel-title">Registration Holds ({{ holds.unread_count }}) <span style="float: right;">[icon]</span></h3>
                 </div>
             </a>
             <!-- collapsy 1 content -->
             <div id="collapseOne" class="panel-collapse collapse">
-                <div class="panel-body"> 
+                <div class="panel-body">
+                    {{ #each holds.notices }}
+
                     <div class="notice-category">
-                        Category: <a>Holds</a>
+                        Category: <a> {{ category }}</a>
                     </div>
                     <div class="notice-title"> <!-- what is correct here -- h4? --> 
-                        [icon] The following offices have placed <a>administrative holds</a> on your academic record which prevent further registration and/or ordering official transcripts. (notice_content)
+                        {{{ notice_content }}}
                     </div>
-                    <div class="hold-container"><!-- and should this actually be a ul? --> 
-                        <div class="hold-type">
-                            Type: Registration/Transcript
-                        </div>
-                        <div class="hold-office">
-                            Library Account Services, Suzzallo, 1st floor, 206-543-1174
-                        </div>
-                    </div>
-                    
-                    <div class="hold-container">
-                        <div class="hold-type">
-                            Type: Registration/Transcript
-                        </div>
-                        <div class="hold-office">
-                            Library Account Services, Suzzallo, 1st floor, 206-543-1174
-                        </div>
-                    </div>
-                        
-                    <div class="hold-container">
-                        <div class="hold-type">
-                            Type: Registration/Transcript
-                        </div>
-                        <div class="hold-office">
-                            Library Account Services, Suzzallo, 1st floor, 206-543-1174
-                        </div>
-                    </div>
+
+                    {{ /each }}
                 </div>
             </div>
       </div>
+        {{ /if }}
       <!-- end collapsy 1 -->
-      
+      {{ #if today.notices }}
       <!-- collapsy 2: today -->      
         <div class="panel panel-default today" style="width: 100% !important;">
             <!-- collapsy 2 header -->      
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Today, March 5 (# unread) <span style="float: right;">[icon]</span></h3>
+                    <h3 class="panel-title">Today, March 5 ({{ today.unread_count }}) <span style="float: right;">[icon]</span></h3>
                 </div>
             </a>
             <!-- collapsy 2 content -->
             <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body"> 
+                    {{# each today.notices }}
                     <div class="notice-container">
                         <div class="notice-category">
-                            Category: <a>Registration</a>
+                            Category: <a>{{ category }}</a>
                         </div>
                         <div class="notice-title">
-                            The last day to change a class on your winter quarter schedule to or from an Audit Grade Option is March 5th, 2014.
+                            {{{ notice_content }}}
                         </div>
                     </div>
-                    
-                    <div class="notice-container">
-                        <div class="notice-category">
-                            Category: <a>Registration</a>
-                        </div>
-                        <div class="notice-title">
-                            Your estimated Period I Priority Registration Date for winter quarter is March 5th, 2014. Registration begins at 6:00 a.m.
-                        </div>
-                    </div>
-
+                    {{ /each }}
                 </div>
             </div>
       </div>
+        {{ /if }}
       <!-- end collapsy 3 -->
-      
+      {{ #if week.notices }}
        <!-- collapsy 3: this week -->      
         <div class="panel panel-default today" style="width: 100% !important;">
             <!-- collapsy 3 header -->      
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
                 <div class="panel-heading">
-                    <h3 class="panel-title">This week, Week 4 (# unread) <span style="float: right;">[icon]</span></h3>
+                    <h3 class="panel-title">This week, Week 4 ({{ week.unread_count }}) <span style="float: right;">[icon]</span></h3>
                 </div>
             </a>
             <!-- collapsy 3 content -->
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body"> 
+                    {{# each week.notices }}
                     <div class="notice-container">
                         <div class="notice-category">
-                            Category: <a>Registration</a>
+                            Category: <a>{{ category }}</a>
                         </div>
                         <div class="notice-title">
-                            The last day to drop winter quarter classes without using your Annual Drop is March 5th, 2014.
+                            {{{ notice_content }}}
                         </div>
                     </div>
-                    
-                    <div class="notice-container">
-                        <div class="notice-category">
-                            Category: <a>Registration</a>
-                        </div>
-                        <div class="notice-title">
-                            Your estimated Period I Priority Registration Date for winter quarter is March 5th, 2014. Registration begins at 6:00 a.m.
-                        </div>
-                    </div>
-
+                    {{ /each }}
                 </div>
             </div>
       </div>
+        {{ /if }}
       <!-- end collapsy 3 -->
-      
+      {{ #if future.notices }}
       <!-- collapsy 4: this week -->      
         <div class="panel panel-default today" style="width: 100% !important;">
             <!-- collapsy 4 header -->      
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Upcoming weeks (# unread)</h3>
+                    <h3 class="panel-title">Upcoming weeks ({{ future.unread_count }})</h3>
                 </div>
             </a>
             <!-- collapsy 4 content -->
             <div id="collapseFour" class="panel-collapse collapse">
                 <div class="panel-body"> 
+                    {{# each future.notices }}
                     <div class="notice-container">
                         <div class="notice-category">
-                            Category: <a>Registration</a>
+                            Category: <a>{{ category }}</a>
                         </div>
                         <div class="notice-title">
-                            The last day to drop winter quarter classes without using your Annual Drop is March 5th, 2014.
+                            {{{ notice_content }}}
                         </div>
                     </div>
-                    
-                    <div class="notice-container">
-                        <div class="notice-category">
-                            Category: <a>Registration</a>
-                        </div>
-                        <div class="notice-title">
-                            Your estimated Period I Priority Registration Date for winter quarter is March 5th, 2014. Registration begins at 6:00 a.m.
-                        </div>
-                    </div>
-
+                    {{ /each }}
                 </div>
             </div>
       </div>
+        {{ /if }}
       <!-- end collapsy 3 -->
-      
+      {{ #if legal.notices }}
              <!-- collapsy legal -->      
         <div class="panel panel-default today" style="width: 100% !important;">
             <!-- collapsy legal header -->      
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Legal<span style="float: right;"></span></h3>
+                    <h3 class="panel-title">Legal ({{ legal.unread_count }})<span style="float: right;"></span></h3>
                 </div>
             </a>
             <!-- collapsy legal content -->
             <div id="collapseFive" class="panel-collapse collapse">
                 <div class="panel-body"> 
+                    {{# each legal.notices }}
                     <div class="notice-container">
                         <div class="notice-category">
-                            Category: <a>Legal</a>
+                            Category: <a>{{ category }}</a>
                         </div>
                         <div class="notice-title">
-                            <b>Annual Family Educational Rights and Privacy Act Notification</b>
-                            <p>The Family Educational Rights and Privacy Act (FERPA) of 1974 protects the privacy of your education records. However, the "directory" information may be released unless you inform the Registrar's Office. For further details check the <a href='http://www.washington.edu/students/reg/ferpa.html'>Family Educational Rights and Privacy Act</a> web site. </p>
+                            {{{ notice_content }}}
                         </div>
                     </div>
-                    
-                    <div class="notice-container">
-                        <div class="notice-category">
-                            Category: <a>Legal</a>
-                        </div>
-                        <div class="notice-title">
-                            <b>Peer-to-Peer File-Sharing and Copyright Infringement</b>
-                            <p>Under copyright law it is illegal to download or share copyrighted mater ials such as music or movies without the permission of the copyright owner. Your actions when downloading or sharing files are traceable and could result in a significant financial penalty to you. For more information, go to the Peer-to-Peer File-Sharing and Copyright Infringement page in the Student Guide.</p>
-                        </div>
-                    </div>
-
+                    {{ /each }}
                 </div>
             </div>
       </div>
+        {{ /if }}
       <!-- end collapsy legal -->
 
 </div> <!-- end notices container  --> 
