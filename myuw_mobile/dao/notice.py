@@ -96,6 +96,8 @@ def _get_notices_by_regid(user_regid):
 
 def get_notices_for_current_user():
     notices = _get_notices_by_regid(get_regid_of_current_user())
+    if notices is None:
+        return []
     for notice in notices:
         user_notice = _get_user_notice(notice)
         notice.id_hash = user_notice.notice_hash
