@@ -5,6 +5,7 @@ from myuw_mobile.views.rest_dispatch import RESTDispatch
 from myuw_mobile.dao.notice import get_notices_for_current_user
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_success_response
+from datetime import datetime
 
 
 class Notices(RESTDispatch):
@@ -28,14 +29,31 @@ class Notices(RESTDispatch):
 
     def _get_json(self, notices):
 
-        notice_json = {}
+        notice_json = {
+            "holds": [],
+            "today": [],
+            "week": [],
+            'future': []
+        }
+        today = datetime.now()
+
         for notice in notices:
             data = notice.json_data()
             data['id_hash'] = notice.id_hash
             data['is_read'] = notice.is_read
-            if notice.custom_category in notice_json:
-                notice_json[notice.custom_category]["notices"].append(data)
+            data['category'] = notice.custom_category
+
+            if notice.custom_category == "Holds":
+                notice_json['holds'].append(data)
             else:
-                notice_json[notice.custom_category] = {"notices": [data]}
+                for attr in notice.attributes:
+                    if attr.data_type == "date":
+                        date = datetime.strptime(attr.get_value(), "%Y-%m-%d")
+                        if date.strftime("%j") == today.strftime("%j"):
+                            notice_json["today"].append(data)
+                        if date.strftime("%V") == today.strftime("%V"):
+                            notice_json["week"].append(data)
+                        if date > today:
+                            notice_json["future"].append(data)
         return notice_json
 
