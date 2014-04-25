@@ -1,13 +1,13 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "notices" %}
 
-  <div class="notices-container">
-    <a href="/mobile/weekly/">Back</a>
+  <div class="notices-container container">
+    <a href="/mobile/landing/">Back</a>
 
     <h2>Notices ({{ total_unread }}) </h2>
     
     <div style="float: right; font-size: 11px;">
-      <a>Expand all</a>  |  <a>[icon] Show only critical</a>
+      <a>Expand all</a>  |  <a><i class="fa fa-exclamation-circle"></i> Show only critical</a>
     </div>
     
     <br style="clear: both;">
@@ -20,7 +20,7 @@
             <!-- collapsy 1 header -->      
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Registration Holds ({{ holds.unread_count }}) <span style="float: right;">[icon]</span></h3>
+                    <h3 class="panel-title">Registration Holds ({{ holds.unread_count }}) <span style="float: right;"><i class="fa fa-exclamation-circle"></i></span></h3>
                 </div>
             </a>
             <!-- collapsy 1 content -->
@@ -39,15 +39,16 @@
                 </div>
             </div>
       </div>
-        {{ /if }}
+      {{ /if }}
       <!-- end collapsy 1 -->
+      
       {{ #if today.notices }}
       <!-- collapsy 2: today -->      
         <div class="panel panel-default today" style="width: 100% !important;">
             <!-- collapsy 2 header -->      
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Today, March 5 ({{ today.unread_count }}) <span style="float: right;">[icon]</span></h3>
+                    <h3 class="panel-title">Today, March 5 ({{ today.unread_count }}) <span style="float: right;"><i class="fa fa-exclamation-circle"></i></span></h3>
                 </div>
             </a>
             <!-- collapsy 2 content -->
@@ -68,13 +69,14 @@
       </div>
         {{ /if }}
       <!-- end collapsy 3 -->
+      
       {{ #if week.notices }}
        <!-- collapsy 3: this week -->      
         <div class="panel panel-default today" style="width: 100% !important;">
             <!-- collapsy 3 header -->      
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
                 <div class="panel-heading">
-                    <h3 class="panel-title">This week, Week 4 ({{ week.unread_count }}) <span style="float: right;">[icon]</span></h3>
+                    <h3 class="panel-title">This week, Week 4 ({{ week.unread_count }}) <span style="float: right;"><i class="fa fa-exclamation-circle"></i></span></h3>
                 </div>
             </a>
             <!-- collapsy 3 content -->
@@ -95,8 +97,9 @@
       </div>
         {{ /if }}
       <!-- end collapsy 3 -->
+      
       {{ #if future.notices }}
-      <!-- collapsy 4: this week -->      
+      <!-- collapsy 4: future -->      
         <div class="panel panel-default today" style="width: 100% !important;">
             <!-- collapsy 4 header -->      
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
@@ -121,9 +124,10 @@
             </div>
       </div>
         {{ /if }}
-      <!-- end collapsy 3 -->
+      <!-- end collapsy 4 -->
+      
       {{ #if legal.notices }}
-             <!-- collapsy legal -->      
+        <!-- collapsy legal -->      
         <div class="panel panel-default today" style="width: 100% !important;">
             <!-- collapsy legal header -->      
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
@@ -150,7 +154,8 @@
         {{ /if }}
       <!-- end collapsy legal -->
 
-</div> <!-- end notices container  --> 
+</div> 
+<!-- end notices container  --> 
  
     <!-- nav footer -->
     <div class="row-fluid" style="background: #ccc; position: relative; bottom: 0px; margin: 10px -10px 0px; padding: 8px 25px;">
