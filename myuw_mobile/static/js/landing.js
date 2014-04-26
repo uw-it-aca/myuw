@@ -8,7 +8,10 @@ var Landing = {
         var source = $("#landing").html();
         var template = Handlebars.compile(source);
 
-        var notice_banner = NoticeBanner.render(notice_data);
+        var notice_banner = "";
+        if (notice_data.total_unread > 0) {
+            notice_banner = NoticeBanner.render(notice_data);
+        }
         var reg_status_card = RegStatusCard.render(notice_data);
 
         $("#courselist").html(template({
