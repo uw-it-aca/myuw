@@ -3,13 +3,13 @@
     <div class="card medium_card">
         <h4 style="color: #555;">Registration Status</h4>
         <ul class="reg-card-list">
-            {{ #each reg_notices }}
-            <li>
+          {{ #each reg_notices }}
+              {{ #unless is_read }}
+              <li>
                 {{{ notice_content }}}
-            </li>
-            {{ else }}
-            <p class="text-info" style="font-size:inheret;">You do not have registration notice. If you think this is an error, please <a href="/cgi-bin/contactmyuw.cgi" target="_blank" title="Contact MyUW">contact MyUW</a>.</p>
-            {{ /each }}
+              </li>
+              {{/unless}}
+          {{ /each }}
         </ul>
     </div>
     {% endtplhandlebars %}

@@ -336,4 +336,20 @@ var date_from_string = function(date_string) {
 };
 
 
+// Filter non-holds notices by the given category
+// Return a list of notice
+var filter_notices_by_category = function (category, notice_data) {
+    reg_notices = notice_data.today.notices.concat(
+        notice_data.week.notices, 
+        notice_data.future.notices);
+    reg_notices = reg_notices.filter(function(notice) {
+        if (notice.category === category) {
+            return true;
+        }
+    });
+    return reg_notices;
+};
+
+
+
 
