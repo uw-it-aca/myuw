@@ -4,11 +4,13 @@
         <h4 style="color: #555;">Registration Status</h4>
         <ul class="reg-card-list">
           {{ #each reg_notices }}
-              {{ #unless is_read }}
-              <li>
+              {{ #if is_read }}
+              <li class="read-notice">
+              {{else}}
+              <li class="unread-notice">
+              {{/if}}
                 {{{ notice_content }}}
               </li>
-              {{/unless}}
           {{ /each }}
         </ul>
     </div>
