@@ -2,13 +2,9 @@
     {% tplhandlebars "reg_status_card" %}
     <div class="card medium_card">
         <h4 style="color: #555;">Registration Status</h4>
-        <ul class="reg-card-list">
+        <ul class="reg-notice-list">
           {{ #each reg_notices }}
-              {{ #if is_read }}
-              <li class="read-notice">
-              {{else}}
-              <li class="unread-notice">
-              {{/if}}
+              <li>
                 {{{ notice_content }}}
               </li>
           {{ /each }}
