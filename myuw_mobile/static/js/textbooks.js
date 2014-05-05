@@ -40,7 +40,7 @@ var TextBooks = {
 
         template_data["verba_link"] = book_data["verba_link"]
 
-        $("#courselist").html(template(template_data));
+        $("#main-content").html(template(template_data));
 
         source = $("#quarter-books").html();
         template = Handlebars.compile(source);

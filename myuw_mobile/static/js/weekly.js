@@ -27,7 +27,7 @@ var Weekly = {
 
         var course_list = CourseListCard.render_card(data.schedule, current_week);
 
-        $("#courselist").html(template({
+        $("#main-content").html(template({
             visual_schedule: visual_schedule,
             course_list: course_list
         }));

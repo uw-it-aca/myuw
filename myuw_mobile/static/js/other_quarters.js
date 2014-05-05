@@ -14,7 +14,7 @@ var Quarters = {
         var data = WSData.oquarter_data();
 
         if (data.terms.length == 0) {
-            $("#courselist").no_courses({
+            $("#main-content").no_courses({
                 "which_quarter_or_term" : "in future quarters",
                 "show_future_link" : false
             });
@@ -35,7 +35,7 @@ var Quarters = {
 
         source = $("#quarterlist").html();
         template = Handlebars.compile(source);
-        $("#courselist").html(template({ 
+        $("#main-content").html(template({ 
             "urlprefix" : urlprefix,
             "terms" : data.terms }));
 

@@ -11,6 +11,6 @@ var Grades = {
         var source = $("#grades").html();
         var template = Handlebars.compile(source);
 
-        $("#courselist").html(template(grade_data));
+        $("#main-content").html(template(grade_data));
     }
 };

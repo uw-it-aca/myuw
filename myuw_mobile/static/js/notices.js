@@ -13,6 +13,6 @@ var Notices = {
 
         source = $("#notices").html();
         template = Handlebars.compile(source);
-        $("#courselist").html(template(notices));
+        $("#main-content").html(template(notices));
     }
 };

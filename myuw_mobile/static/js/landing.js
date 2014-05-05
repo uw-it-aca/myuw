@@ -20,7 +20,7 @@ var Landing = {
             reg_status_card = RegStatusCard.render(reg_notices);
         }
 
-        $('#courselist').html(template({
+        $('#main-content').html(template({
             notice_banner: notice_banner,
             reg_status_card: reg_status_card
         }));

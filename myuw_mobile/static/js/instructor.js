@@ -22,7 +22,7 @@ var Instructor = {
         
         source = $("#instructor").html();
         template = Handlebars.compile(source);
-        $("#courselist").html(template(data));
+        $("#main-content").html(template(data));
 
 
         $(".contact_instructor").on("click", function(ev) {

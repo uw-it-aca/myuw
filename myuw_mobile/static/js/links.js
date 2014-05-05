@@ -12,7 +12,7 @@ var QuickLinks = {
         $("#page-header").html(head_template());
 
         var links = WSData.link_data();
-        $("#courselist").html(template({ links: links }));
+        $("#main-content").html(template({ links: links }));
 
         $("#edit_links").bind("click", function(ev) {
             $("#link_display_pane").hide();

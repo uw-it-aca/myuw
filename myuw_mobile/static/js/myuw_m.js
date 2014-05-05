@@ -308,7 +308,7 @@ var showLoading = function() {
 
     source = $("#loading_body").html();
     template = Handlebars.compile(source);
-    $("#courselist").html(template());
+    $("#main-content").html(template());
 };
 
 var showError = function() {
@@ -318,7 +318,7 @@ var showError = function() {
 
     source = $("#error_body").html();
     template = Handlebars.compile(source);
-    $("#courselist").html(template());
+    $("#main-content").html(template());
 };
 
 // The strings from our web service only work w/ the native Date parsing on chrome :(

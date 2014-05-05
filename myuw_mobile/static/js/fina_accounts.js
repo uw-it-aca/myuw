@@ -33,7 +33,7 @@ var FinaAccounts = {
          if ( balances.residence_hall_dining < 0.00 ) {
             din_negative = "-"
             }
-         $("#courselist").html(template({
+         $("#main-content").html(template({
             hc_color: hc_amount_css,
             hc_negative: hc_negative,
             husky_card_balance: Math.abs(balances.husky_card),

@@ -138,7 +138,7 @@ var FinalExams = {
 
         var source = $("#final_exams").html();
         var template = Handlebars.compile(source);
-        $("#courselist").html(template(template_data));
+        $("#main-content").html(template(template_data));
 
         if (!course_index) {
             Modal.hide();

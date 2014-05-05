@@ -3,6 +3,6 @@ var Libraries = {
         source = $("#libraries").html();
         template = Handlebars.compile(source);
 
-        $("#courselist").html(template());
+        $("#main-content").html(template());
     }
 };

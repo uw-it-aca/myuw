@@ -45,7 +45,7 @@ var CourseList = {
 
         // Handle the case of no courses
         if (course_data.sections.length == 0) {
-            $("#courselist").no_courses({
+            $("#main-content").no_courses({
                 show_future_link: term ? false : true
             });
             return;
@@ -58,7 +58,7 @@ var CourseList = {
         });
 
         var course_list_html = CourseListCard.render_card(course_data);
-        $("#courselist").html(course_list_html);
+        $("#main-content").html(course_list_html);
         CourseListCard.init_events();
         $("#addi_links").addi_course_links({
             show_future_link: term ? false : true,

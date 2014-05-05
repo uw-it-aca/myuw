@@ -52,7 +52,7 @@ var VisualSchedule = {
 
  
 
-        $("#courselist").html(VisualSchedule.get_html(course_data, term));
+        $("#main-content").html(VisualSchedule.get_html(course_data, term));
 
         $("#addi_links").addi_course_links({
             show_future_link: term ? false : true,
@@ -90,7 +90,7 @@ var VisualSchedule = {
 
         // Handle the case of no courses
         if (course_data.sections.length == 0) {
-            $("#courselist").no_courses({
+            $("#main-content").no_courses({
                 visual: "/visual",
                 show_future_link: term ? false : true
             });
