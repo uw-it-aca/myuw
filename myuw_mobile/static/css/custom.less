@@ -17,7 +17,7 @@
 @body-accent:               lighten(@myuw, 1.5%);
 
 @font-size-base:          14px;
-@font-size-base-link:          14px;
+@font-size-base-link:     14px;
 @line-height-base:        20px;
 
 
@@ -55,7 +55,6 @@ body {
   font-family: @font-family-sans-serif;
   
   // Headers //
-
 
   // links //
   a { color: @link-color; cursor: pointer; text-decoration: none; }
@@ -136,6 +135,31 @@ body {
     }
 }
 
+
+// footer // 
+
+.nav-footer { 
+    
+    font-size: @font-size-base - 2; 
+    background: #ccc; 
+    position: relative; 
+    bottom: 0px; 
+    margin: 10px -10px 0px; 
+    padding: 8px 25px; 
+    font-weight: normal; 
+    
+    h3 { font-size: @font-size-base; margin-top: 10px; margin-bottom: 5px; }    
+
+}
+
+.offscreen {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 
 
 
@@ -1434,12 +1458,4 @@ footer .footer-links a {
 }
 .container-fluid:after {
   clear: both;
-}
-.offscreen {
-  position: absolute;
-  left: -10000px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
 }
