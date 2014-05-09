@@ -23,6 +23,8 @@ type coming from the notice resource
 """
 
 NOTICE_CATEGORIES = [
+    ("StudentDAD_QtrBegin", "Calendar"),
+    ("StudentDAD_QtrEnd", "Calendar"),
     ("StudentDAD_IntlStuRegCutoffDate", "Visa"),
     ("StudentGEN_FERPA", "Me_at_UW"),
     ("StudentGEN_IntendedMajors", "Me_at_UW"),

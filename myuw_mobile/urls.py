@@ -1,17 +1,18 @@
 from django.conf.urls import patterns, include, url
-from myuw_mobile.views.page import index
 from myuw_mobile.views.mobile_login import user_login
-from myuw_mobile.views.api.current_schedule import StudClasScheCurQuar
-from myuw_mobile.views.api.future_schedule import StudClasScheFutureQuar
 from myuw_mobile.views.api.contact import InstructorContact
-from myuw_mobile.views.api.textbook import TextbookCurQuar
-from myuw_mobile.views.api.links import QuickLinks
-from myuw_mobile.views.api.hfs import HfsBalances
-from myuw_mobile.views.api.other_quarters import RegisteredFutureQuarters
+from myuw_mobile.views.api.current_schedule import StudClasScheCurQuar
+from myuw_mobile.views.api.finance import Finance
 from myuw_mobile.views.api.grades import Grades
+from myuw_mobile.views.api.hfs import HfsBalances
+from myuw_mobile.views.api.future_schedule import StudClasScheFutureQuar
+from myuw_mobile.views.api.links import QuickLinks
+from myuw_mobile.views.api.other_quarters import RegisteredFutureQuarters
+from myuw_mobile.views.api.textbook import TextbookCurQuar
 from myuw_mobile.views.api.weekly import Weekly
 from myuw_mobile.views.logout import Logout
 from myuw_mobile.views.api.notices import Notices
+from myuw_mobile.views.page import index
 
 urlpatterns = patterns('myuw_mobile.views',
     url(r'login', 'mobile_login.user_login'),
@@ -26,6 +27,7 @@ urlpatterns = patterns('myuw_mobile.views',
         StudClasScheFutureQuar().run),
     url(r'^api/v1/links/$', QuickLinks().run),
     url(r'^api/v1/person/(?P<regid>[0-9A-F]{32})$', InstructorContact().run),
+    url(r'^api/v1/finance/$', Finance().run),                   
     url(r'^api/v1/hfs/$', HfsBalances().run),
     url(r'^api/v1/oquarters/$', RegisteredFutureQuarters().run),
     url(r'^api/v1/grades/$', Grades().run),
