@@ -64,7 +64,7 @@ $(document).ready(function() {
             document.title = window.page_titles["links"];
         }
         else if (state === "finabala") {
-            FinaAccounts.show_balances();
+            HfsAccounts.show_balances();
             $("#nav_finabala").addClass("active");
             document.title = window.page_titles["finabala"];
         }
@@ -165,7 +165,7 @@ $(document).ready(function() {
             hist.replaceState({
                 state: "finabala"
             },  "", "/mobile/finabala");
-            //FinaAccounts.show_balances();
+            //HfsAccounts.show_balances();
         }
         else if (path.match(/^\/mobile\/future_quarters/)) {
             var matches = path.match(/^\/mobile\/future_quarters(\/[a-z]+)/);

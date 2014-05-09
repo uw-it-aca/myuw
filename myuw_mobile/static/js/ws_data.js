@@ -1,7 +1,7 @@
 WSData = {
     _book_data: null,
     _course_data: {},
-    _financial_data: null,
+    _hfs_data: null,
     _grade_data: {},
     _notice_data: null,
     _instructor_data: {},
@@ -32,8 +32,8 @@ WSData = {
         return WSData._grade_data[term];
     },
 
-    financial_data: function() {
-        return WSData._financial_data;
+    hfs_data: function() {
+        return WSData._hfs_data;
     },
 
     instructor_data: function(regid) {
@@ -262,16 +262,16 @@ WSData = {
         WSData.normalize_instructors_for_current_term();
     },
 
-    fetch_financial_data: function(callback, args) {
-        if (WSData._financial_data === null) {
+    fetch_hfs_data: function(callback, args) {
+        if (WSData._hfs_data === null) {
             $.ajax({
-                    url: "/mobile/api/v1/finabala/",
+                    url: "/mobile/api/v1/hfs/",
                     dataType: "JSON",
 
                     type: "GET",
                     accepts: {html: "text/html"},
                     success: function(results) {
-                        WSData._financial_data = results;
+                        WSData._hfs_data = results;
                         callback.apply(null, args);
                         },
                     error: function(xhr, status, error) {

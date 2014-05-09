@@ -1,11 +1,11 @@
 {% load templatetag_handlebars %}
 
-{% tplhandlebars "finabala-header" %}
+{% tplhandlebars "hfs-header" %}
   <h2 id="quarter-info">Financial Balances</h2>
   <span class="muted">As of {{formatTimeAMPM time}} on {{date}}</span>
 {% endtplhandlebars %}
 
-{% tplhandlebars "financial_balances" %}
+{% tplhandlebars "hfs_balances" %}
 <div id="financial">
   <div class="account">
     <h3>Husky Card</h3>

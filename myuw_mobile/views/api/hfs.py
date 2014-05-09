@@ -7,9 +7,9 @@ from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_data_not_found_response, log_success_response
 
 
-class AccountBalances(RESTDispatch):
+class HfsBalances(RESTDispatch):
     """
-    Performs actions on resource at /api/v1/finabala/.
+    Performs actions on resource at /api/v1/hfs/.
     """
 
     def GET(self, request):
@@ -26,5 +26,6 @@ class AccountBalances(RESTDispatch):
             return data_not_found()
 
         log_success_response(logger, timer)
+        logger.debug(balances.json_data())
         return HttpResponse(json.dumps(balances.json_data()))
 

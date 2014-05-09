@@ -1,20 +1,20 @@
-var FinaAccounts = {
+var HfsAccounts = {
     show_balances: function() {
         showLoading();
-        WSData.fetch_financial_data(FinaAccounts.render_balances);
+        WSData.fetch_hfs_data(HfsAccounts.render_balances);
     },
 
     render_balances: function() {
         $('html,body').animate({scrollTop: 0}, 'fast');
-        var balances = WSData.financial_data();
+        var balances = WSData.hfs_data();
 
-        var source   = $("#finabala-header").html();
+        var source   = $("#hfs-header").html();
         var template = Handlebars.compile(source);
         $("#page-header").html(template(
                 {time: balances.asof_time, 
                  date: balances.asof_date}));
 
-         source   = $("#financial_balances").html();
+         source   = $("#hfs_balances").html();
          template = Handlebars.compile(source);
          var hc_amount_css = "amount"
          if ( balances.husky_card < 1.00 ) {
