@@ -2,7 +2,8 @@
     {% tplhandlebars "reg_status_card" %}
     <div class="card medium_card">
         
-        <h4 style="color: #555;">Registration Status</h4>
+        <h3>Registration Status</h3>
+        
         <ul class="reg-notice-list">
           {{ #each reg_notices }}
               <li>
@@ -20,9 +21,9 @@
         
         <h4>Registration Resources</h4>
         <ul>
-            <li>Time Schedule</li>
-            <li>Tacoma Time Schedule Quick Search</li>
-            <li>Registration</li>
+            <li><a>Time Schedule</a></li>
+            <li><a>Tacoma Time Schedule Quick Search</a></li>
+            <li><a>Registration</a></li>
         </ul>
     </div>
     {% endtplhandlebars %}
