@@ -60,7 +60,7 @@ class Notices(RESTDispatch):
                     notice_json["holds"]["unread_count"] += 1
             else:
                 for attr in notice.attributes:
-                    if attr.data_type == "date":
+                    if attr.name == "Date":
                         date = datetime.strptime(attr.get_value(), "%Y-%m-%d")
                         if date.strftime("%j") == today.strftime("%j"):
                             notice_json["today"]["notices"].append(data)
