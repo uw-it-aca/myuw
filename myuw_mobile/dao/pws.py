@@ -62,6 +62,7 @@ def _get_contact_by_regid(regid):
                       timer)
     return None
 
+
 def _get_contact_of_current_user():
     """
     Return the raw contact information of the current user
