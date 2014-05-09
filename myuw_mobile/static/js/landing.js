@@ -2,6 +2,7 @@ var Landing = {
     render: function() {
         showLoading();
         WSData.fetch_notice_data(Landing.make_html);
+        WSData.fetch_tuition_data();
     },
 
     make_html: function() {
@@ -20,9 +21,16 @@ var Landing = {
             reg_status_card = RegStatusCard.render(reg_notices);
         }
 
+        fina_notices = Landing.filter_notices_by_category('Finance', notice_data);
+        var tuition_card = ''
+        if (fina_notices.length > 0) {
+            tuition_card = TuitionCard.render(fina_notices);
+        }
+
         $('#main-content').html(template({
             notice_banner: notice_banner,
-            reg_status_card: reg_status_card
+            reg_status_card: reg_status_card,
+            tuition_card: tuition_card
         }));
 
     },

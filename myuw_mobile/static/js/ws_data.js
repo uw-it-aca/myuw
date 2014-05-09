@@ -2,6 +2,7 @@ WSData = {
     _book_data: null,
     _course_data: {},
     _hfs_data: null,
+    _tuition_data: null,
     _grade_data: {},
     _notice_data: null,
     _instructor_data: {},
@@ -52,6 +53,10 @@ WSData = {
         return WSData._oquarter_data;
     },
 
+
+    tuition_data: function() {
+        return WSData._tuition_data;
+    },
 
     fetch_book_data: function(callback, args) {
             if (WSData._book_data === null) {
@@ -272,6 +277,30 @@ WSData = {
                     accepts: {html: "text/html"},
                     success: function(results) {
                         WSData._hfs_data = results;
+                        callback.apply(null, args);
+                        },
+                    error: function(xhr, status, error) {
+                        showError();
+                        }
+                    });
+              }
+        else {
+            window.setTimeout(function() {
+                    callback.apply(null, args);
+                    }, 0);
+            }
+        },
+
+    fetch_tuition_data: function(callback, args) {
+        if (WSData._tuition_data === null) {
+            $.ajax({
+                    url: "/mobile/api/v1/finance/",
+                    dataType: "JSON",
+
+                    type: "GET",
+                    accepts: {html: "text/html"},
+                    success: function(results) {
+                        WSData._tuition_data = results;
                         callback.apply(null, args);
                         },
                     error: function(xhr, status, error) {
