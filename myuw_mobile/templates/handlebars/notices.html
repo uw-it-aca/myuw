@@ -71,9 +71,9 @@
       <!-- end collapsy 3 -->
       
       {{ #if week.notices }}
-       <!-- collapsy 3: this week -->      
+       <!-- collapsy 3: this week -->
         <div class="panel panel-default today" style="width: 100% !important;">
-            <!-- collapsy 3 header -->      
+            <!-- collapsy 3 header -->
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
                 <div class="panel-heading">
                     <h3 class="panel-title">This week, Week 4 ({{ week.unread_count }}) <span style="float: right;"><i class="fa fa-exclamation-circle"></i></span></h3>
@@ -81,7 +81,7 @@
             </a>
             <!-- collapsy 3 content -->
             <div id="collapseThree" class="panel-collapse collapse">
-                <div class="panel-body"> 
+                <div class="panel-body">
                     {{# each week.notices }}
                     <div class="notice-container">
                         <div class="notice-category">
@@ -97,18 +97,46 @@
       </div>
         {{ /if }}
       <!-- end collapsy 3 -->
-      
+
+      {{ #if next_week.notices }}
+       <!-- collapsy 3: this week -->
+        <div class="panel panel-default today" style="width: 100% !important;">
+            <!-- collapsy 3 header -->
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Next week, Week 5 ({{ next_week.unread_count }}) <span style="float: right;"><i class="fa fa-exclamation-circle"></i></span></h3>
+                </div>
+            </a>
+            <!-- collapsy 3 content -->
+            <div id="collapseFour" class="panel-collapse collapse">
+                <div class="panel-body">
+                    {{# each next_week.notices }}
+                    <div class="notice-container">
+                        <div class="notice-category">
+                            Category: <a>{{ category }}</a>
+                        </div>
+                        <div class="notice-title">
+                            {{{ notice_content }}}
+                        </div>
+                    </div>
+                    {{ /each }}
+                </div>
+            </div>
+      </div>
+        {{ /if }}
+      <!-- end collapsy 3 -->
+
       {{ #if future.notices }}
       <!-- collapsy 4: future -->      
         <div class="panel panel-default today" style="width: 100% !important;">
             <!-- collapsy 4 header -->      
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
                 <div class="panel-heading">
                     <h3 class="panel-title">Upcoming weeks ({{ future.unread_count }})</h3>
                 </div>
             </a>
             <!-- collapsy 4 content -->
-            <div id="collapseFour" class="panel-collapse collapse">
+            <div id="collapseFive" class="panel-collapse collapse">
                 <div class="panel-body"> 
                     {{# each future.notices }}
                     <div class="notice-container">
@@ -130,13 +158,13 @@
         <!-- collapsy legal -->      
         <div class="panel panel-default today" style="width: 100% !important;">
             <!-- collapsy legal header -->      
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
                 <div class="panel-heading">
                     <h3 class="panel-title">Legal ({{ legal.unread_count }})<span style="float: right;"></span></h3>
                 </div>
             </a>
             <!-- collapsy legal content -->
-            <div id="collapseFive" class="panel-collapse collapse">
+            <div id="collapseSix" class="panel-collapse collapse">
                 <div class="panel-body"> 
                     {{# each legal.notices }}
                     <div class="notice-container">

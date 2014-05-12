@@ -39,6 +39,8 @@ class Notices(RESTDispatch):
                       "notices": []},
             "week": {"unread_count": 0,
                      "notices": []},
+            "next_week": {"unread_count": 0,
+                     "notices": []},
             "future": {"unread_count": 0,
                        "notices": []},
             "total_unread": 0
@@ -70,7 +72,11 @@ class Notices(RESTDispatch):
                             notice_json["week"]["notices"].append(data)
                             if notice.is_read is False:
                                 notice_json["week"]["unread_count"] += 1
-                        elif date > today:
+                        elif int(date.strftime("%V")) == int(today.strftime("%V")) + 1:
+                            notice_json["next_week"]["notices"].append(data)
+                            if notice.is_read is False:
+                                notice_json["next_week"]["unread_count"] += 1
+                        elif int(date.strftime("%V")) > int(today.strftime("%V")) + 1:
                             notice_json["future"]["notices"].append(data)
                             if notice.is_read is False:
                                 notice_json["future"]["unread_count"] += 1
