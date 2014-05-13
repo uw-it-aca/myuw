@@ -41,6 +41,7 @@ var Landing = {
     filter_notices_by_category: function (category, notice_data) {
         reg_notices = notice_data.today.notices.concat(
             notice_data.week.notices, 
+            notice_data.next_week.notices, 
             notice_data.future.notices);
         reg_notices = reg_notices.filter(function(notice) {
             if (notice.category === category) {
