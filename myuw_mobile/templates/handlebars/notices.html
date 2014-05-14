@@ -7,7 +7,7 @@
     <h2>Notices ({{ total_unread }}) </h2>
     
     <div style="float: right; font-size: 11px;">
-      <a>Expand all</a>  |  <a><i class="fa fa-exclamation-circle"></i> Show only critical</a>
+      <a id="expand" class="disclosure_toggle">Expand all</a><a id="collapse" class="disclosure_toggle" style="display: none">Collapse all</a>  |  <a><i class="fa fa-exclamation-circle"></i> Show only critical</a>
     </div>
     
     <br style="clear: both;">
@@ -18,7 +18,7 @@
         <!-- collapsy 1: holds -->
         <div class="panel panel-default holds" style="width: 100% !important;">
             <!-- collapsy 1 header -->      
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+            <a data-toggle="collapse"  href="#collapseOne">
                 <div class="panel-heading">
                     <h3 class="panel-title">Registration Holds ({{ holds.unread_count }}) <span style="float: right;"><i class="fa fa-exclamation-circle"></i></span></h3>
                 </div>
@@ -46,7 +46,7 @@
       <!-- collapsy 2: today -->      
         <div class="panel panel-default today" style="width: 100% !important;">
             <!-- collapsy 2 header -->      
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+            <a data-toggle="collapse"  href="#collapseTwo">
                 <div class="panel-heading">
                     <h3 class="panel-title">Today, March 5 ({{ today.unread_count }}) <span style="float: right;"><i class="fa fa-exclamation-circle"></i></span></h3>
                 </div>
@@ -74,7 +74,7 @@
        <!-- collapsy 3: this week -->
         <div class="panel panel-default today" style="width: 100% !important;">
             <!-- collapsy 3 header -->
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+            <a data-toggle="collapse"  href="#collapseThree">
                 <div class="panel-heading">
                     <h3 class="panel-title">This week, Week 4 ({{ week.unread_count }}) <span style="float: right;"><i class="fa fa-exclamation-circle"></i></span></h3>
                 </div>
@@ -102,7 +102,7 @@
        <!-- collapsy 3: this week -->
         <div class="panel panel-default today" style="width: 100% !important;">
             <!-- collapsy 3 header -->
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+            <a data-toggle="collapse"  href="#collapseFour">
                 <div class="panel-heading">
                     <h3 class="panel-title">Next week, Week 5 ({{ next_week.unread_count }}) <span style="float: right;"><i class="fa fa-exclamation-circle"></i></span></h3>
                 </div>
@@ -130,7 +130,7 @@
       <!-- collapsy 4: future -->      
         <div class="panel panel-default today" style="width: 100% !important;">
             <!-- collapsy 4 header -->      
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+            <a data-toggle="collapse"  href="#collapseFive">
                 <div class="panel-heading">
                     <h3 class="panel-title">Upcoming weeks ({{ future.unread_count }})</h3>
                 </div>
@@ -158,7 +158,7 @@
         <!-- collapsy legal -->      
         <div class="panel panel-default today" style="width: 100% !important;">
             <!-- collapsy legal header -->      
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+            <a data-toggle="collapse"  href="#collapseSix">
                 <div class="panel-heading">
                     <h3 class="panel-title">Legal ({{ legal.unread_count }})<span style="float: right;"></span></h3>
                 </div>
