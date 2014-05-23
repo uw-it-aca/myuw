@@ -4,10 +4,11 @@
   <div class="notices-container container">
     <a href="/mobile/landing/">Back</a>
 
-    <h2>Notices ({{ total_unread }}) </h2>
-    
-    <div style="float: right; font-size: 11px;">
-      <a id="expand" class="disclosure_toggle">Expand all</a><a id="collapse" class="disclosure_toggle" style="display: none">Collapse all</a>  |  <a><i class="fa fa-exclamation-circle"></i> Show only critical</a>
+    <h2>Notices</h2>
+    <span class="notice-count">[variable: total number of notices] notices total</span>
+
+    <div class="toggle">
+      <a id="expand" class="disclosure_toggle">Expand all</a><a id="collapse" class="disclosure_toggle" style="display: none">Collapse all</a>
     </div>
     
     <br style="clear: both;">
@@ -15,21 +16,28 @@
     <!-- collapsy areas -->
     <div class="panel-group" id="accordion">
         {{ #if holds.notices }}
-        <!-- collapsy 1: holds -->
-        <div class="panel panel-default holds" style="width: 100% !important;">
+        <!-- collapsy 1: critical -->
+        <div class="panel panel-default panel-critical" style="width: 100% !important;">
             <!-- collapsy 1 header -->      
             <a data-toggle="collapse"  href="#collapseOne">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Registration Holds ({{ holds.unread_count }}) <span style="float: right;"><i class="fa fa-exclamation-circle"></i></span></h3>
+                <div class="panel-heading clearfix">
+                	<div class="pull-left">
+	                	<i class="fa fa-exclamation-circle critical-icon"></i>
+	                    <h3 class="panel-title">Critical</h3>
+	                    <span class="panel-title-metadata">[variable: number of critical notices] critical</span>
+                	</div>
+					<div class="pull-right">
+	                    <span class="badge">{{ holds.unread_count }} unread</span><i class="fa fa-angle-right fa-2x pull-right"></i>
+					</div>
                 </div>
             </a>
             <!-- collapsy 1 content -->
-            <div id="collapseOne" class="panel-collapse collapse">
+            <div id="collapseOne" class="panel-collapse collapse clearfix">
                 <div class="panel-body">
                     {{ #each holds.notices }}
 
                     <div class="notice-category">
-                        Category: <a> {{ category }}</a>
+                        Category: {{ category }}
                     </div>
                     <div class="notice-title"> <!-- what is correct here -- h4? --> 
                         {{{ notice_content }}}

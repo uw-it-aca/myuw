@@ -105,12 +105,23 @@ body {
 
 .notices-container { 
     
+	.badge {
+		background-color:#d11717;
+	}
+
     .panel { background: none; }
     
-    .holds {
+    .panel-critical {
         .panel-heading { 
             background-color: @yellow; 
         }
+		.critical-icon {
+			padding-right: .5em;
+		}
+		.panel-title {
+			display: inline;
+		}
+
     }
     
     .panel-default { border-color: @gray-darker; }
@@ -118,7 +129,10 @@ body {
     .panel-heading { 
         background: none;  
        	color: @myuwText;
-        }
+       	.panel-title-metadata {
+	       	display: block;
+       	}  		
+    }
         
     .notice-container { 
         padding-top: 6px; 
@@ -139,7 +153,20 @@ body {
     .hold-container, { 
         padding: 5px 0 5px 30px;
     }
+
+	.notice-count {
+		margin-top: -.9em;
+		font-size: @font-size-base - 3;
+		color: @gray;
+		display: block;
+	}
+	
+	.toggle {
+		float: right; 
+		font-size: 11px;
+	}
 }
+
 
 // cards // 
 .card { 
@@ -281,21 +308,6 @@ div.accordion-inner th {
     line-height: 20px;
     font-weight: normal;
     }
-
-/* What is this for? 
-.clearfix {
-  *zoom: 1;
-}
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-.clearfix:after {
-  clear: both;
-}
-*/
 
 .hide-text {
   font: 0/0 a;
