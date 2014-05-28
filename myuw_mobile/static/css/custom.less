@@ -74,30 +74,33 @@ body {
 
 // notices banner // 
 
-#notice_banner h4 {
+#notice_banner {
+
+	h4 {
 	display: inline;	
 	color: black;
 	}
 
-.count-badge {
-	background: red;
-	border-radius: 20px;
-	background-color: red;
-	font-size: 90%;
-	text-align: center;
-	padding: 1px 8px;
-	margin-right: 10px;
-	font-weight: bold;
-	color: whitesmoke;
-	vertical-align: 1px;
-}
+	.count-badge {
+		background: red;
+		border-radius: 20px;
+		background-color: red;
+		font-size: 90%;
+		text-align: center;
+		padding: 1px 8px;
+		margin-right: 10px;
+		font-weight: bold;
+		color: whitesmoke;
+		vertical-align: 1px;
+		}
 
-.notice-category {
-	color: lighten(@gray, 10%);
-	font-size:	110%;
-	font-style:	italic;
-	padding-right: 2em;
-	padding-left: 1.5em;
+	.notice-category {
+		color: lighten(@gray, 10%);
+		font-size:	110%;
+		font-style:	italic;
+		padding-right: 2em;
+		padding-left: 1.5em;
+	}
 }
 
 
@@ -109,9 +112,16 @@ body {
 		background-color:#d11717;
 	}
 
-    .panel { background: none; }
+    .panel { background: none;
+    }
+
+	.panel-body {
+		padding-top: 0px;
+	}
     
     .panel-critical {
+    	margin-bottom: 1.5em;
+    
         .panel-heading { 
             background-color: @yellow; 
         }
@@ -125,13 +135,15 @@ body {
 			display: table-cell;
 			vertical-align: middle
 		}
-		.fa-2x {
-			margin-top: -.1em;
-			margin-bottom: -.3em;
-		}
     }
+
+	.fa-2x {
+		margin-top: -.1em;			
+		margin-bottom: -.3em;
+	}
     
-    .panel-default { border-color: @gray-darker; }
+    .panel-default { border-color: @gray-darker;
+    }
     
     .panel-heading { 
         background: none;  
@@ -144,15 +156,20 @@ body {
     }
         
     .notice-container { 
-        padding-top: 6px; 
-        border-top: 1px solid @gray; 
-        padding-bottom: 6px; 
+        padding: 10px 0; 
+        border-top: 1px solid @gray-light; 
+    }
+    
+	 // - class for read notices - //
+    .unread-notice {
+		background: lighten(@body-bg, 15%);
+        color: darken(@text-color, 15%);
     }
        
     .notice-category { 
         font-size: @font-size-base - 3; 
-        color: @gray-dark; 
-        margin-bottom: 6px;          
+		font-weight: bold;
+        color: @gray-light; 
     } 
     
     .notice-title { 
@@ -175,6 +192,10 @@ body {
 		font-size: 11px;
 	}
 }
+
+#accordion .panel {
+	width: 100% !important;
+	}
 
 
 // cards // 

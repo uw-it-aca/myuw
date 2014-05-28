@@ -15,7 +15,7 @@
     <div class="panel-group" id="accordion">
         {{ #if holds.notices }}
         <!-- collapsy 1: critical -->
-        <div class="panel panel-default panel-critical" style="width: 100% !important;">
+        <div class="panel panel-default panel-critical">
             <!-- collapsy 1 header -->      
             <a data-toggle="collapse"  href="#collapseOne">
                 <div class="panel-heading clearfix">
@@ -26,7 +26,7 @@
 					<div class="pull-right">
 	                    <span class="badge">{{ holds.unread_count }} unread</span><i class="fa fa-angle-down fa-2x pull-right"></i>
 					</div>
-					<div class="panel-title-metadata">[variable: number of critical notices] critical
+					<div class="panel-title-metadata">[variable: total number of critical] critical
 					</div>
                 </div>
             </a>
@@ -34,14 +34,14 @@
             <div id="collapseOne" class="panel-collapse collapse clearfix">
                 <div class="panel-body">
                     {{ #each holds.notices }}
-
-                    <div class="notice-category">
-                        Category: {{ category }}
+                    <div class="notice-container">
+	                    <div class="notice-category">
+	                        Category: {{ category }}
+	                    </div>
+	                    <div class="notice-title"> <!-- what is correct here -- h4? --> 
+	                        {{{ notice_content }}}
+	                    </div>
                     </div>
-                    <div class="notice-title"> <!-- what is correct here -- h4? --> 
-                        {{{ notice_content }}}
-                    </div>
-
                     {{ /each }}
                 </div>
             </div>
@@ -51,11 +51,18 @@
       
       {{ #if today.notices }}
       <!-- collapsy 2: today -->      
-        <div class="panel panel-default today" style="width: 100% !important;">
+        <div class="panel panel-default">
             <!-- collapsy 2 header -->      
             <a data-toggle="collapse"  href="#collapseTwo">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Today, March 5 ({{ today.unread_count }}) <span style="float: right;"><i class="fa fa-exclamation-circle"></i></span></h3>
+                <div class="panel-heading clearfix">
+                	<div class="pull-left">
+	                    <h3 class="panel-title">Today</h3>
+                	</div>
+					<div class="pull-right">
+						 <span class="badge">{{ today.unread_count }} unread</span><i class="fa fa-angle-down fa-2x pull-right"></i>
+					</div>
+					<div class="panel-title-metadata">[variable: number of critical today] critical
+					</div>
                 </div>
             </a>
             <!-- collapsy 2 content -->
@@ -64,7 +71,7 @@
                     {{# each today.notices }}
                     <div class="notice-container">
                         <div class="notice-category">
-                            Category: <a>{{ category }}</a>
+                            {{ category }}
                         </div>
                         <div class="notice-title">
                             {{{ notice_content }}}
@@ -79,11 +86,18 @@
       
       {{ #if week.notices }}
        <!-- collapsy 3: this week -->
-        <div class="panel panel-default today" style="width: 100% !important;">
+        <div class="panel panel-default">
             <!-- collapsy 3 header -->
             <a data-toggle="collapse"  href="#collapseThree">
-                <div class="panel-heading">
-                    <h3 class="panel-title">This week, Week 4 ({{ week.unread_count }}) <span style="float: right;"><i class="fa fa-exclamation-circle"></i></span></h3>
+                <div class="panel-heading clearfix">
+                	<div class="pull-left">
+	                    <h3 class="panel-title">This week (Week 4)</h3>
+                	</div>
+					<div class="pull-right">
+						 <span class="badge">{{ week.unread_count }} unread</span><i class="fa fa-angle-down fa-2x pull-right"></i>
+					</div>
+					<div class="panel-title-metadata">[variable: number of critical this week] critical
+					</div>
                 </div>
             </a>
             <!-- collapsy 3 content -->
@@ -92,7 +106,7 @@
                     {{# each week.notices }}
                     <div class="notice-container">
                         <div class="notice-category">
-                            Category: <a>{{ category }}</a>
+                            {{ category }}
                         </div>
                         <div class="notice-title">
                             {{{ notice_content }}}
@@ -107,20 +121,27 @@
 
       {{ #if next_week.notices }}
        <!-- collapsy 3: this week -->
-        <div class="panel panel-default today" style="width: 100% !important;">
+        <div class="panel panel-default">
             <!-- collapsy 3 header -->
             <a data-toggle="collapse"  href="#collapseFour">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Next week, Week 5 ({{ next_week.unread_count }}) <span style="float: right;"><i class="fa fa-exclamation-circle"></i></span></h3>
+                <div class="panel-heading clearfix">
+                	<div class="pull-left">
+	                    <h3 class="panel-title">Next week</h3>
+                	</div>
+					<div class="pull-right">
+						 <span class="badge">{{ next_week.unread_count }} unread</span><i class="fa fa-angle-down fa-2x pull-right"></i>
+					</div>
+					<div class="panel-title-metadata">[variable: number of critical next week] critical
+					</div>
                 </div>
             </a>
             <!-- collapsy 3 content -->
             <div id="collapseFour" class="panel-collapse collapse">
                 <div class="panel-body">
                     {{# each next_week.notices }}
-                    <div class="notice-container">
+                    <div class="notice-container unread-notice">
                         <div class="notice-category">
-                            Category: <a>{{ category }}</a>
+                            {{ category }}
                         </div>
                         <div class="notice-title">
                             {{{ notice_content }}}
@@ -135,11 +156,18 @@
 
       {{ #if future.notices }}
       <!-- collapsy 4: future -->      
-        <div class="panel panel-default today" style="width: 100% !important;">
+        <div class="panel panel-default">
             <!-- collapsy 4 header -->      
             <a data-toggle="collapse"  href="#collapseFive">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Upcoming weeks ({{ future.unread_count }})</h3>
+                <div class="panel-heading clearfix">
+                	<div class="pull-left">
+	                    <h3 class="panel-title">Upcoming weeks</h3>
+                	</div>
+					<div class="pull-right">
+						 <span class="badge">{{ future.unread_count }} unread</span><i class="fa fa-angle-down fa-2x pull-right"></i>
+					</div>
+					<div class="panel-title-metadata">[variable: number of critical upcoming weeks] critical
+					</div>
                 </div>
             </a>
             <!-- collapsy 4 content -->
@@ -148,7 +176,7 @@
                     {{# each future.notices }}
                     <div class="notice-container">
                         <div class="notice-category">
-                            Category: <a>{{ category }}</a>
+                            {{ category }}
                         </div>
                         <div class="notice-title">
                             {{{ notice_content }}}
@@ -163,11 +191,18 @@
       
       {{ #if legal.notices }}
         <!-- collapsy legal -->      
-        <div class="panel panel-default today" style="width: 100% !important;">
+        <div class="panel panel-default">
             <!-- collapsy legal header -->      
             <a data-toggle="collapse"  href="#collapseSix">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Legal ({{ legal.unread_count }})<span style="float: right;"></span></h3>
+                <div class="panel-heading clearfix">
+                	<div class="pull-left">
+	                    <h3 class="panel-title">Legal</h3>
+                	</div>
+					<div class="pull-right">
+						 <span class="badge">{{ legal.unread_count }} unread</span><i class="fa fa-angle-down fa-2x pull-right"></i>
+					</div>
+					<div class="panel-title-metadata">[variable: number of legal critical] critical
+					</div>
                 </div>
             </a>
             <!-- collapsy legal content -->
@@ -176,7 +211,7 @@
                     {{# each legal.notices }}
                     <div class="notice-container">
                         <div class="notice-category">
-                            Category: <a>{{ category }}</a>
+                            {{ category }}
                         </div>
                         <div class="notice-title">
                             {{{ notice_content }}}
