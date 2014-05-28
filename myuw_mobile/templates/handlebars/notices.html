@@ -11,8 +11,6 @@
       <a id="expand" class="disclosure_toggle">Expand all</a><a id="collapse" class="disclosure_toggle" style="display: none">Collapse all</a>
     </div>
     
-    <br style="clear: both;">
-
     <!-- collapsy areas -->
     <div class="panel-group" id="accordion">
         {{ #if holds.notices }}
@@ -24,10 +22,11 @@
                 	<div class="pull-left">
 	                	<i class="fa fa-exclamation-circle critical-icon"></i>
 	                    <h3 class="panel-title">Critical</h3>
-	                    <span class="panel-title-metadata">[variable: number of critical notices] critical</span>
                 	</div>
 					<div class="pull-right">
-	                    <span class="badge">{{ holds.unread_count }} unread</span><i class="fa fa-angle-right fa-2x pull-right"></i>
+	                    <span class="badge">{{ holds.unread_count }} unread</span><i class="fa fa-angle-down fa-2x pull-right"></i>
+					</div>
+					<div class="panel-title-metadata">[variable: number of critical notices] critical
 					</div>
                 </div>
             </a>
