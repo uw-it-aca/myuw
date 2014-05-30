@@ -2,10 +2,10 @@
 {% load templatetag_handlebars %} 
     {% tplhandlebars "week2_outline" %}
     
-        <!-- current quarter visual schedule card --> 
+        <!-- current quarter visual schedule card 
      <div class="card">
         <img src="{% static '../../../static/images/vis_sched_for_test.gif' %}" alt="vis_sched_for_test" width="" height="" />
-    </div>
+    </div>--> 
     
     
     <!-- GPA card --> 
@@ -26,12 +26,33 @@
         <a href="">Go to your UW Libraries account</a>
     </div>
     
-    <!-- events calendar card --> 
-    <div class="card">
-        <h4 style="color: #555;">Campus Events Calendar</h4>
-        <p>uis venenatis imperdiet. In magna massa, tempor sit amet sapien vitae, sodales imperdiet lectus. Maecenas rutrum mattis augue non pharetra. Vivamus vitae pellentesque purus. Fusce dapibus tempus pharetra. Pellentesque scelerisque sem sit amet sapien laoreet elementum. Curabitur euismod sed lorem at suscipit. Curabitur sed arcu sed erat elementum pulvinar. Morbi ut risus velit. Suspendisse tincidunt mi venenatis diam auctor rhoncus.</p>
-         <a href=""></a>
-    </div>
+   <!-- tuition card --> 
+   <div class="card"> <!-- put the a here -->
+        <div class="card-content">
+            <h4>Tuition Balance</h4>
+            <div class="card-critical-alert"><i class="fa fa-exclamation-circle"></i> Your tuition is past due. <a>Show details</a></div>
+            <div class="card-badges-container">
+                <div class="card-badge">
+                    <span class="card-badge-label">You owe</span> 
+                    <span class="card-badge-value">$12,345.67</span>
+                </div>
+                <div class="card-badge">
+                    <span class="card-badge-label">Tuition due</span>
+                    <span class="card-badge-value">5/28/2014</span>
+                </div>
+            </div>
+            
+            <div class="card-related-messages">
+                <p><a>Learn how to pay tuition</a> or <a>set up third-party access</a> for parents or others.</p>
+            </div>
+        </div> 
+         
+        <i class="fa fa-chevron-right fa-2x nav-card-arrow"></i>
+        
+   </div>
+   
+
+   
  
     <!-- nav footer --> 
     <div class="row-fluid" style="background: #ccc; position: relative; bottom: 0px; margin: 0px -10px; padding: 8px 25px;"> 
