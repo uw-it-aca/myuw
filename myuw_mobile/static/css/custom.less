@@ -135,6 +135,10 @@ body {
 			display: table-cell;
 			vertical-align: middle
 		}
+		div:first-of-type {
+			border-top: none;	
+		}
+
     }
 
 	.fa-2x {
@@ -156,20 +160,30 @@ body {
     }
         
     .notice-container { 
-        padding: 10px 0; 
+        padding: 1px 0; 
         border-top: 1px solid @gray-light; 
+        .critical-icon {
+	        display: inline;
+			float:right;
+        }
     }
     
-	 // - class for read notices - //
-    .unread-notice {
-		background: lighten(@body-bg, 15%);
-        color: darken(@text-color, 15%);
+    .inner-notice-container {
+		margin: 0px -4px;
+		padding: 9px 4px;
     }
+
+	 // - class for read notices - //
+	.unread-notice {
+		background: lighten(@body-bg, 15%);
+        color: darken(@text-color, 15%);		
+	}
        
     .notice-category { 
         font-size: @font-size-base - 3; 
 		font-weight: bold;
-        color: @gray-light; 
+        color: @gray-light;
+        display: inline; 
     } 
     
     .notice-title { 

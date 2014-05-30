@@ -35,11 +35,13 @@
                 <div class="panel-body">
                     {{ #each holds.notices }}
                     <div class="notice-container">
-	                    <div class="notice-category">
-	                        Category: {{ category }}
-	                    </div>
-	                    <div class="notice-title"> <!-- what is correct here -- h4? --> 
-	                        {{{ notice_content }}}
+	                    <div class="inner-notice-container">
+	                        <div class="notice-category">
+	                            {{ category }}
+	                        </div>
+	                        <div class="notice-title">
+	                            {{{ notice_content }}}
+	                        </div>
 	                    </div>
                     </div>
                     {{ /each }}
@@ -70,19 +72,21 @@
                 <div class="panel-body"> 
                     {{# each today.notices }}
                     <div class="notice-container">
-                        <div class="notice-category">
-                            {{ category }}
-                        </div>
-                        <div class="notice-title">
-                            {{{ notice_content }}}
-                        </div>
+	                    <div class="inner-notice-container">
+	                        <div class="notice-category">
+	                            {{ category }}
+	                        </div>
+	                        <div class="notice-title">
+	                            {{{ notice_content }}}
+	                        </div>
+	                    </div>
                     </div>
                     {{ /each }}
                 </div>
             </div>
       </div>
         {{ /if }}
-      <!-- end collapsy 3 -->
+      <!-- end collapsy 2 -->
       
       {{ #if week.notices }}
        <!-- collapsy 3: this week -->
@@ -105,12 +109,14 @@
                 <div class="panel-body">
                     {{# each week.notices }}
                     <div class="notice-container">
-                        <div class="notice-category">
-                            {{ category }}
-                        </div>
-                        <div class="notice-title">
-                            {{{ notice_content }}}
-                        </div>
+	                    <div class="inner-notice-container">
+	                        <div class="notice-category">
+	                            {{ category }}
+	                        </div>
+	                        <div class="notice-title">
+	                            {{{ notice_content }}}
+	                        </div>
+	                    </div>
                     </div>
                     {{ /each }}
                 </div>
@@ -120,9 +126,9 @@
       <!-- end collapsy 3 -->
 
       {{ #if next_week.notices }}
-       <!-- collapsy 3: this week -->
+       <!-- collapsy 4: next week -->
         <div class="panel panel-default">
-            <!-- collapsy 3 header -->
+            <!-- collapsy 4 header -->
             <a data-toggle="collapse"  href="#collapseFour">
                 <div class="panel-heading clearfix">
                 	<div class="pull-left">
@@ -135,24 +141,27 @@
 					</div>
                 </div>
             </a>
-            <!-- collapsy 3 content -->
+            <!-- collapsy 4 content -->
             <div id="collapseFour" class="panel-collapse collapse">
                 <div class="panel-body">
                     {{# each next_week.notices }}
-                    <div class="notice-container unread-notice">
-                        <div class="notice-category">
-                            {{ category }}
-                        </div>
-                        <div class="notice-title">
-                            {{{ notice_content }}}
-                        </div>
+                    <div class="notice-container">
+	                    <div class="inner-notice-container unread-notice">
+							<i class="fa fa-exclamation-circle critical-icon"></i>
+	                        <div class="notice-category">
+	                            {{ category }}
+	                        </div>
+	                        <div class="notice-title">
+	                            {{{ notice_content }}}
+	                        </div>
+	                    </div>
                     </div>
                     {{ /each }}
                 </div>
             </div>
       </div>
         {{ /if }}
-      <!-- end collapsy 3 -->
+      <!-- end collapsy 4 -->
 
       {{ #if future.notices }}
       <!-- collapsy 4: future -->      
@@ -175,12 +184,14 @@
                 <div class="panel-body"> 
                     {{# each future.notices }}
                     <div class="notice-container">
-                        <div class="notice-category">
-                            {{ category }}
-                        </div>
-                        <div class="notice-title">
-                            {{{ notice_content }}}
-                        </div>
+	                    <div class="inner-notice-container">
+	                        <div class="notice-category">
+	                            {{ category }}
+	                        </div>
+	                        <div class="notice-title">
+	                            {{{ notice_content }}}
+	                        </div>
+	                    </div>
                     </div>
                     {{ /each }}
                 </div>
@@ -210,12 +221,14 @@
                 <div class="panel-body"> 
                     {{# each legal.notices }}
                     <div class="notice-container">
-                        <div class="notice-category">
-                            {{ category }}
-                        </div>
-                        <div class="notice-title">
-                            {{{ notice_content }}}
-                        </div>
+	                    <div class="inner-notice-container">
+	                        <div class="notice-category">
+	                            {{ category }}
+	                        </div>
+	                        <div class="notice-title">
+	                            {{{ notice_content }}}
+	                        </div>
+	                    </div>
                     </div>
                     {{ /each }}
                 </div>
