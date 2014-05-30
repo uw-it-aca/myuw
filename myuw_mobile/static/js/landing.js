@@ -3,6 +3,7 @@ var Landing = {
         showLoading();
         WSData.fetch_notice_data(Landing.make_html);
         WSData.fetch_tuition_data();
+        WSData.fetch_library_data();
     },
 
     make_html: function() {
@@ -23,14 +24,20 @@ var Landing = {
 
         fina_notices = Landing.filter_notices_by_category('Finance', notice_data);
         var tuition_card = ''
-        if (fina_notices.length > 0) {
+        if (fina_notices.length > 0 || WSData.tuition_data()) {
             tuition_card = TuitionCard.render(fina_notices);
+        }
+
+        var library_card = ''
+        if (WSData.library_data()) {
+            library_card = LibraryCard.render();
         }
 
         $('#main-content').html(template({
             notice_banner: notice_banner,
             reg_status_card: reg_status_card,
-            tuition_card: tuition_card
+            tuition_card: tuition_card,
+            library_card: library_card
         }));
 
     },

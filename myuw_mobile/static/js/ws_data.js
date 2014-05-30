@@ -2,6 +2,7 @@ WSData = {
     _book_data: null,
     _course_data: {},
     _hfs_data: null,
+    _library_data: null,
     _tuition_data: null,
     _grade_data: {},
     _notice_data: null,
@@ -39,6 +40,10 @@ WSData = {
 
     instructor_data: function(regid) {
         return WSData._instructor_data[regid];
+    },
+
+    library_data: function() {
+        return WSData._library_data;
     },
 
     link_data: function() {
@@ -291,6 +296,30 @@ WSData = {
             }
         },
 
+    fetch_library_data: function(callback, args) {
+        if (WSData._library_data === null) {
+            $.ajax({
+                    url: "/mobile/api/v1/library/",
+                    dataType: "JSON",
+
+                    type: "GET",
+                    accepts: {html: "text/html"},
+                    success: function(results) {
+                        WSData._library_data = results;
+                        //callback.apply(null, args);
+                        },
+                    error: function(xhr, status, error) {
+                        showError();
+                        }
+                    });
+              }
+        else {
+            window.setTimeout(function() {
+                    callback.apply(null, args);
+                    }, 0);
+            }
+        },
+
     fetch_tuition_data: function(callback, args) {
         if (WSData._tuition_data === null) {
             $.ajax({
@@ -301,7 +330,7 @@ WSData = {
                     accepts: {html: "text/html"},
                     success: function(results) {
                         WSData._tuition_data = results;
-                        callback.apply(null, args);
+                        //callback.apply(null, args);
                         },
                     error: function(xhr, status, error) {
                         showError();

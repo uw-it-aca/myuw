@@ -1,0 +1,27 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "library_card" %}
+    <div class="card medium_card">
+        <h3>My Library Account</h3>
+        <div>
+          {{#with mylibaccount}}
+            <p>
+              You have {{ items_loaned }} items checked out.
+            </p>
+            <p>
+              {{#if next_due}}
+                Next due back is: <span>{{ next_due }}</span>
+              {{else}}
+                No item due.
+              {{/if}}
+            </p>
+            <p>
+              Requested items ready: {{ holds_ready }}
+            </p>
+              Fines & Fees: ${{ fines }}
+            </p>
+            {{/with}}
+        </div>
+
+        <a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount">Access Your Library Account</a> 
+    </div>
+    {% endtplhandlebars %}
