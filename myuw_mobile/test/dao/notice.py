@@ -1,11 +1,7 @@
 from django.test import TestCase
-from myuw_mobile.dao.notice import NOTICE_CATEGORIES, UNKNOWN_CATEGORY_NAME, _get_notices_by_regid
+from myuw_mobile.dao.notice import UNKNOWN_CATEGORY_NAME, _get_notices_by_regid
 
 class TestNotce(TestCase):
-
-    def test_notice_category_uniqueness(self):
-        combo, cat = zip(*NOTICE_CATEGORIES)
-        self.assertEquals(len(combo), len(set(combo)))
 
     def test_get_notice_by_regid(self):
         with self.settings(
@@ -17,6 +13,15 @@ class TestNotce(TestCase):
             notices = _get_notices_by_regid(regid)
             #has category
             self.assertEquals(notices[0].custom_category, "Holds")
+
+            #location tags
+            self.assertEquals(notices[0].location_tags, ['notices_holds', 'reg_card_holds'])
+
+            self.assertEquals(notices[1].location_tags, None)
+
+
+            #criticality
+            self.assertEquals(notices[0].is_critical, True)
             #no category
             self.assertEquals(notices[1].custom_category, UNKNOWN_CATEGORY_NAME)
 

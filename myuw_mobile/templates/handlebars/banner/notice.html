@@ -9,7 +9,7 @@
 	        <span class="notice-category">
                   {{ #each categories }}
                      {{ #if @index }}, {{ /if }}
-                     {{ this }}
+                     {{ @key }} {{ this }}
                   {{ /each }}
                 </span>
                 <i class="fa fa-angle-right fa-2x" style="float: right;"></i>

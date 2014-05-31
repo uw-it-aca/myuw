@@ -31,54 +31,15 @@ class Notices(RESTDispatch):
         return self._get_json_for_date(notices, datetime.now())
 
     def _get_json_for_date(self, notices, today):
-        notice_json = {
-            "holds": {"unread_count": 0,
-                    "notices": []},
-
-            "today": {"unread_count": 0,
-                      "notices": []},
-            "week": {"unread_count": 0,
-                     "notices": []},
-            "next_week": {"unread_count": 0,
-                     "notices": []},
-            "future": {"unread_count": 0,
-                       "notices": []},
-            "total_unread": 0
-        }
+        notice_json = []
 
         for notice in notices:
             data = notice.json_data()
             data['id_hash'] = notice.id_hash
             data['is_read'] = notice.is_read
             data['category'] = notice.custom_category
-            #total count
-            if notice.is_read is False:
-                notice_json["total_unread"] += 1
-
-            #split into UX defined categories
-            if notice.custom_category == "Holds":
-                notice_json["holds"]["notices"].append(data)
-                if notice.is_read is False:
-                    notice_json["holds"]["unread_count"] += 1
-            else:
-                for attr in notice.attributes:
-                    if attr.name == "Date":
-                        date = datetime.strptime(attr.get_value(), "%Y-%m-%d")
-                        if date.strftime("%j") == today.strftime("%j"):
-                            notice_json["today"]["notices"].append(data)
-                            if notice.is_read is False:
-                                notice_json["today"]["unread_count"] += 1
-                        elif date.strftime("%V") == today.strftime("%V"):
-                            notice_json["week"]["notices"].append(data)
-                            if notice.is_read is False:
-                                notice_json["week"]["unread_count"] += 1
-                        elif int(date.strftime("%V")) == int(today.strftime("%V")) + 1:
-                            notice_json["next_week"]["notices"].append(data)
-                            if notice.is_read is False:
-                                notice_json["next_week"]["unread_count"] += 1
-                        elif int(date.strftime("%V")) > int(today.strftime("%V")) + 1:
-                            notice_json["future"]["notices"].append(data)
-                            if notice.is_read is False:
-                                notice_json["future"]["unread_count"] += 1
+            data['is_critical'] = notice.is_critical
+            data['location_tags'] = notice.location_tags
+            notice_json.append(data)
         return notice_json
 

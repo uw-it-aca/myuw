@@ -2,7 +2,7 @@ var Landing = {
     render: function() {
         showLoading();
         WSData.fetch_notice_data(Landing.make_html);
-        WSData.fetch_tuition_data();
+//        WSData.fetch_tuition_data();
         WSData.fetch_library_data();
     },
 
@@ -12,19 +12,19 @@ var Landing = {
         var template = Handlebars.compile(source);
 
         var notice_banner = '';
-        if (notice_data.total_unread > 0) {
+        if (Notices.get_total_unread() > 0) {
             notice_banner = NoticeBanner.render(notice_data);
         }
 
-        reg_notices = Landing.filter_notices_by_category('Registration', notice_data);
+        reg_notices = Notices.get_notices_for_category("Registration");
         var reg_status_card = ''
-        if (reg_notices.length > 0) {
+        if (reg_notices.notices.length > 0) {
             reg_status_card = RegStatusCard.render(reg_notices);
         }
 
-        fina_notices = Landing.filter_notices_by_category('Finance', notice_data);
+        fina_notices = Notices.get_notices_for_category("Finance");
         var tuition_card = ''
-        if (fina_notices.length > 0 || WSData.tuition_data()) {
+        if (fina_notices.notices.length > 0 || WSData.tuition_data()) {
             tuition_card = TuitionCard.render(fina_notices);
         }
 
