@@ -108,10 +108,6 @@ body {
 
 .notices-container { 
     
-	.badge {
-		background-color:#d11717;
-	}
-
     .panel { background: none;
     }
 
@@ -152,11 +148,6 @@ body {
     .panel-heading { 
         background: none;  
        	color: @myuwText;
-       	.panel-title-metadata {
-	       	display: block;
-	       	clear:both;
- 			font-size: @font-size-base - 3;
-       	}  		
     }
         
     .notice-container { 
@@ -209,7 +200,20 @@ body {
 
 #accordion .panel {
 	width: 100% !important;
-	}
+}
+
+ // Both Notice Banner & Page  //
+
+.panel-title-metadata {
+	display: block;
+	clear:both;
+	font-size: @font-size-base - 3;
+}  		
+
+.badge {
+	background-color:#d11717;
+}
+
 
 
 // cards // 
