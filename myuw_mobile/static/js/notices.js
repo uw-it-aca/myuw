@@ -94,12 +94,14 @@ var Notices = {
 
         for (i = 0; i < notices.length; i += 1) {
             notice = notices[i];
-            if (notice['attributes'] !== null && notice['attributes'].length > 0){
+            if (notice['attributes'] !== null && notice['attributes'].length > 0) {
                 for (j = 0; j < notice['attributes'].length; j += 1){
                     if (notice['attributes'][j]['name'] === "Date"){
-                        date = new Date(notice['attributes'][j]['value'] + " PST");
+                        date = notice['attributes'][j]['value'].replace(/-/g, "/");
+                        date = new Date(date + " PST");
                         date = Notices._get_utc_date(date);
-                        if(today.getDate() === date.getDate()){
+
+                        if (today.getDate() === date.getDate()) {
                             notices_today.push(notice);
                         } else if (Notices._get_week_number(date) === Notices._get_week_number(today)) {
                             notices_week.push(notice);
