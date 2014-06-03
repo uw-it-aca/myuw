@@ -24,7 +24,10 @@
 	                    <h3 class="panel-title">Critical</h3>
                 	</div>
 					<div class="pull-right">
-	                    <span class="badge">{{ holds.unread_count }} unread</span><i class="fa fa-angle-down fa-2x pull-right"></i>
+                        {{ #if holds.unread_count }}
+	                        <span class="badge">{{ holds.unread_count }} unread</span>
+                        {{ /if }}
+                        <i class="fa fa-angle-down fa-2x pull-right"></i>
 					</div>
 					<div class="panel-title-metadata">[variable: total number of critical] critical
 					</div>
@@ -61,7 +64,10 @@
 	                    <h3 class="panel-title">Today</h3>
                 	</div>
 					<div class="pull-right">
-						 <span class="badge">{{ today.unread_count }} unread</span><i class="fa fa-angle-down fa-2x pull-right"></i>
+                        {{ #if today.unread_count }}
+						 <span class="badge">{{ today.unread_count }} unread</span>
+                        {{ /if }}
+                        <i class="fa fa-angle-down fa-2x pull-right"></i>
 					</div>
 					<div class="panel-title-metadata">[variable: number of critical today] critical
 					</div>
@@ -98,7 +104,11 @@
 	                    <h3 class="panel-title">This week (Week 4)</h3>
                 	</div>
 					<div class="pull-right">
-						 <span class="badge">{{ week.unread_count }} unread</span><i class="fa fa-angle-up fa-2x pull-right"></i>
+                        {{ #if week.unread_count }}
+						 <span class="badge">{{ week.unread_count }} unread</span>
+                        {{ /if }}
+                        <i class="fa fa-angle-up fa-2x pull-right"></i>
+
 					</div>
 					<div class="panel-title-metadata">[variable: number of critical this week] critical
 					</div>
@@ -135,7 +145,10 @@
 	                    <h3 class="panel-title">Next week</h3>
                 	</div>
 					<div class="pull-right">
-						 <span class="badge">{{ next_week.unread_count }} unread</span><i class="fa fa-angle-down fa-2x pull-right"></i>
+                        {{ #if next_week.unread_count }}
+						 <span class="badge">{{ next_week.unread_count }} unread</span>
+                        {{ /if }}
+                        <i class="fa fa-angle-down fa-2x pull-right"></i>
 					</div>
 					<div class="panel-title-metadata">[variable: number of critical next week] critical
 					</div>
@@ -173,7 +186,10 @@
 	                    <h3 class="panel-title">Upcoming weeks</h3>
                 	</div>
 					<div class="pull-right">
-						 <span class="badge">{{ future.unread_count }} unread</span><i class="fa fa-angle-down fa-2x pull-right"></i>
+                        {{ #if future.unread_count }}
+						 <span class="badge">{{ future.unread_count }} unread</span>
+                        {{ /if }}
+                        <i class="fa fa-angle-down fa-2x pull-right"></i>
 					</div>
 					<div class="panel-title-metadata">[variable: number of critical upcoming weeks] critical
 					</div>
@@ -210,7 +226,10 @@
 	                    <h3 class="panel-title">Legal</h3>
                 	</div>
 					<div class="pull-right">
-						 <span class="badge">{{ legal.unread_count }} unread</span><i class="fa fa-angle-down fa-2x pull-right"></i>
+                        {{ #if legal.unread_count }}
+						 <span class="badge">{{ legal.unread_count }} unread</span>
+                        {{ /if }}
+                        <i class="fa fa-angle-down fa-2x pull-right"></i>
 					</div>
 					<div class="panel-title-metadata">[variable: number of legal critical] critical
 					</div>
