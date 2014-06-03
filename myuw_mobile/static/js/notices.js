@@ -11,13 +11,25 @@ var Notices = {
         var notices, source, template,
             expanded = false;
 
-        notices = Notices.get_notices_by_date()
+        notices = Notices.get_notices_by_date();
         notices['holds'] = Notices.get_notices_for_category("Holds");
         notices['legal'] = Notices.get_notices_for_category("Legal");
 
         source = $("#notices").html();
         template = Handlebars.compile(source);
         $("#main-content").html(template(notices));
+
+        $(".panel-collapse").on('show.bs.collapse', function (e) {
+            var icon = $($($(e.target).parent()).find(".fa-angle-down")[0]);
+            icon.removeClass("fa-angle-down");
+            icon.addClass("fa-angle-up");
+        });
+        $(".panel-collapse").on('hide.bs.collapse', function (e) {
+            var icon = $($($(e.target).parent()).find(".fa-angle-up")[0]);
+            icon.removeClass("fa-angle-up");
+            icon.addClass("fa-angle-down");
+        });
+
         /* Events for expand/close all */
         $(".disclosure_toggle").click(function () {
             if (expanded) {
