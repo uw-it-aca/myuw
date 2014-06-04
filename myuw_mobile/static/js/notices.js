@@ -169,6 +169,12 @@ var Notices = {
         return category_counts;
     },
 
+    get_critical_this_week: function () {
+        var notices_by_date = Notices.get_notices_by_date();
+        var notices = notices_by_date.week.notices.concat(notices_by_date.today.notices);
+        return Notices._get_critical_count(notices);
+    },
+
     _get_unread_count: function (notices) {
         var unread_count = 0;
         for (i = 0; i < notices.length; i += 1) {
@@ -184,10 +190,11 @@ var Notices = {
         var critical_count = 0;
         for (i = 0; i < notices.length; i += 1) {
             notice = notices[i];
-            if (!notice["is_critical"]) {
+            if (notice["is_critical"]) {
                     critical_count += 1;
             }
         }
+        return critical_count;
     },
 
     _get_utc_date: function (date) {

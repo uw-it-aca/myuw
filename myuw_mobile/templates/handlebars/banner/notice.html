@@ -12,22 +12,8 @@
 			<div class="pull-right">
                 <span class="badge">{{ total_unread }} unread</span>
 			</div>
-			<div class="panel-title-metadata">[variable: number of critical due this week] critical this week
+			<div class="panel-title-metadata">{{ week_critical }} critical this week
 			</div>
-
-			<!-- Old Notice counts
-			
-	        <span class="count-badge"></span>
-	        <span class="notice-category">
-                  {{ #each categories }}
-                     {{ #if @index }}, {{ /if }}
-                     {{ @key }} {{ this }}
-                  {{ /each }}
-                </span>
-                <i class="fa fa-angle-right fa-2x" style="float: right;"></i>
-
-			--->
-
 	    </div>
         </a>
     </div>
