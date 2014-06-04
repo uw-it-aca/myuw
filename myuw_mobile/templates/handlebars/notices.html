@@ -39,6 +39,9 @@
                     {{ #each holds.notices }}
                     <div class="notice-container {{ #unless is_read }}unread{{ /unless }}">
 	                    <div class="inner-notice-container">
+                            {{ #if is_critical }}
+							<i class="fa fa-exclamation-circle critical-icon"></i>
+                            {{ /if }}
 	                        <div class="notice-category">
 	                            {{ category }}
 	                        </div>
@@ -79,6 +82,9 @@
                     {{# each today.notices }}
                     <div class="notice-container {{ #unless is_read }}unread{{ /unless }}">
 	                    <div class="inner-notice-container">
+                            {{ #if is_critical }}
+							<i class="fa fa-exclamation-circle critical-icon"></i>
+                            {{ /if }}
 	                        <div class="notice-category">
 	                            {{ category }}
 	                        </div>
@@ -120,6 +126,9 @@
                     {{# each week.notices }}
                     <div class="notice-container {{ #unless is_read }}unread{{ /unless }}">
 	                    <div class="inner-notice-container">
+                            {{ #if is_critical }}
+							<i class="fa fa-exclamation-circle critical-icon"></i>
+                            {{ /if }}
 	                        <div class="notice-category">
 	                            {{ category }}
 	                        </div>
@@ -160,7 +169,9 @@
                     {{# each next_week.notices }}
                     <div class="notice-container {{ #unless is_read }}unread{{ /unless }}">
 	                    <div class="inner-notice-container unread-notice">
+                            {{ #if is_critical }}
 							<i class="fa fa-exclamation-circle critical-icon"></i>
+                            {{ /if }}
 	                        <div class="notice-category">
 	                            {{ category }}
 	                        </div>
