@@ -2,7 +2,7 @@ var Landing = {
     render: function() {
         showLoading();
         WSData.fetch_notice_data(Landing.make_html);
-//        WSData.fetch_tuition_data();
+        WSData.fetch_tuition_data();
         WSData.fetch_library_data();
     },
 
@@ -22,7 +22,7 @@ var Landing = {
             reg_status_card = RegStatusCard.render(reg_notices);
         }
 
-        fina_notices = Notices.get_notices_for_category("Finance");
+        fina_notices = Notices.get_notices_for_category("Fees & Finances");
         var tuition_card = ''
         if (fina_notices.notices.length > 0 || WSData.tuition_data()) {
             tuition_card = TuitionCard.render(fina_notices);
