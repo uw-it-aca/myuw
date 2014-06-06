@@ -1,0 +1,25 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "fin_aid_card" %}
+    <div class="card medium_card row">
+        <h3>Financial Aid</h3>
+        <div>
+          {{#with balances}}
+            <p>
+              Tuition Account Balance: ${{ tuition_accbalance }}
+            </p>
+            <p>
+              UW Professional & Continuing Education fees: ${{ pce_accbalance }}
+            </p>
+          {{/with}}
+        </div>
+
+        <ul class="fina-notice-list">
+          {{ #each fina_notices }}
+              <li>
+                {{{ notice_content }}}
+              </li>
+          {{ /each }}
+        </ul>
+
+    </div>
+{% endtplhandlebars %}

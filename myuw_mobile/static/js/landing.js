@@ -18,24 +18,30 @@ var Landing = {
         }
 
         var reg_notices = Notices.get_notices_for_category("Registration");
-        var reg_status_card = ''
+        var reg_status_card = '';
         if (reg_notices.notices.length > 0) {
             reg_status_card = RegStatusCard.render(reg_notices);
         }
 
+        var tuition_card = '';
+        tuition_card = TuitionCard.render();
+        var pce_tuition_card = '';
+        pce_tuition_card = PCETuitionCard.render();
+
+
         var fina_notices = Notices.get_notices_for_category("Fees & Finances");
-        var tuition_card = ''
+        fin_aid_card = '';
         if (fina_notices.notices.length > 0 || WSData.tuition_data()) {
-            tuition_card = TuitionCard.render(fina_notices);
+            fin_aid_card = FinAidCard.render(fina_notices);
         }
 
-        var hfs_data = WSData.hfs_data()
-        var hfs_card = ''
+        var hfs_data = WSData.hfs_data();
+        var hfs_card = '';
         if (hfs_data && (hfs_data.student_husky_card || hfs_data.employee_husky_card || hfs_data.resident_dining)) {
             hfs_card = HfsCard.render();
         }
 
-        var library_card = ''
+        var library_card = '';
         if (WSData.library_data()) {
             library_card = LibraryCard.render();
         }
@@ -44,6 +50,8 @@ var Landing = {
             notice_banner: notice_banner,
             reg_status_card: reg_status_card,
             tuition_card: tuition_card,
+            pce_tuition_card: pce_tuition_card,
+            fin_aid_card: fin_aid_card,
             hfs_card: hfs_card,
             library_card: library_card
         }));
