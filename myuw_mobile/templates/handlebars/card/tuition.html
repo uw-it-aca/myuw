@@ -1,7 +1,7 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "tuition_card" %}
-    <div class="card medium_card">
-        <h3>Account Balances</h3>
+    <div class="card medium_card row">
+        <h3>Tuition Balance</h3>
         <div>
           {{#with balances}}
             <p>
@@ -22,4 +22,54 @@
         </ul>
 
     </div>
+    
+    
+    <div class="row card"> 
+            <h4>Tuition Balance</h4>
+            <div class="col-xs-12">
+                <div class="row">                    
+                    <div class="col-xs-11">                    
+                        <!-- if tuition due date has passed and balance is greater than 0 --> 
+                        <div class="row card-critical-alert">
+                            <div class="col-xs-12">
+                                <i class="fa fa-exclamation-circle"></i> Your tuition is past due. <a>Show details</a><!-- this should expand the div with the message tagged tuition_card_past_due in it --> 
+                            </div>
+                        </div>
+                        <!-- end if --> 
+                        <div class="row">
+                            <div class="card-badges-container col-xs-12">
+                                <div class="card-badge col-xs-5">
+                                    <span class="card-badge-label">You owe</span>
+                                    {{#with balances}} 
+                                        <span class="card-badge-value">${{ tuition_accbalance }}</span>
+                                    {{/with}}
+                                    <span class="card-badge-label"><a>details</a></span>
+                                </div>
+                                <div class="card-badge col-xs-5 col-xs-offset-2">
+                                    <span class="card-badge-label">Tuition due</span>
+                                    <span class="card-badge-value">5/28/2014</span> <!-- this is tuition_due_date but only the actual date --> 
+                                    <span class="card-badge-label">in 10 days</span><!-- var needed here. this could be removed if it's very complicated for some reason. --> 
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="card-related-messages row"> 
+                           <div class="col-xs-12">
+                                <p>[[If they have a PCE balance, put pce_tuition_dup here. Can we remove the italics from it?]]
+                                <p><a>Learn how to pay tuition</a> or <a>set up third-party access</a> for parents or others.</p>
+                                <p>[[ this is some combination of tuition_card_webcheck, tuition_card_3rdparty, and tuition_card_pay depending on whether we can have logic on those]]
+                                <p><a>Get your 1098-T tax form</a></p><!-- this message doesn't exist yet, but Ammy said it should be here --> 
+
+                            </div>
+                        </div>                   
+                    </div> 
+                <a><div class="col-xs-1">
+                    <i class="fa fa-chevron-right fa-2x nav-card-arrow"></i>
+                </div></a>
+            </div>             
+            
+       </div>
+
+       
+</div>   
+    
     {% endtplhandlebars %}
