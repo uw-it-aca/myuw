@@ -2,24 +2,26 @@
     {% tplhandlebars "fin_aid_card" %}
     <div class="card medium_card row">
         <h3>Financial Aid</h3>
-        <div>
-          {{#with balances}}
-            <p>
-              Tuition Account Balance: ${{ tuition_accbalance }}
-            </p>
-            <p>
-              UW Professional & Continuing Education fees: ${{ pce_accbalance }}
-            </p>
-          {{/with}}
+        <div class="col-xs-12">
+            <div class="row">                    
+                <div class="col-xs-11">                    
+                    <div class="row card-related-messages">
+                        <ul class="fina-notice-list">
+                            {{ #each fina_notices }}
+                                <li>
+                                    {{{ notice_content }}}
+                                </li>
+                            {{ /each }}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    <a><div class="col-xs-1 nav-card-arrow">
+        <i class="fa fa-chevron-right fa-2x"></i>
+    </div></a>
         </div>
-
-        <ul class="fina-notice-list">
-          {{ #each fina_notices }}
-              <li>
-                {{{ notice_content }}}
-              </li>
-          {{ /each }}
-        </ul>
-
+            
+    
+    
     </div>
 {% endtplhandlebars %}
