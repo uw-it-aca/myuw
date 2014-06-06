@@ -29,7 +29,7 @@
                         {{ /if }}
                         <i class="fa fa-angle-down fa-2x pull-right"></i>
 					</div>
-					<div class="panel-title-metadata">[variable: total number of critical] critical
+					<div class="panel-title-metadata">{{ holds.critical_count }} critical
 					</div>
                 </div>
             </a>
@@ -72,7 +72,7 @@
                         {{ /if }}
                         <i class="fa fa-angle-down fa-2x pull-right"></i>
 					</div>
-					<div class="panel-title-metadata">[variable: number of critical today] critical
+					<div class="panel-title-metadata">{{ today.critical_count }} critical
 					</div>
                 </div>
             </a>
@@ -116,7 +116,7 @@
                         <i class="fa fa-angle-down fa-2x pull-right"></i>
 
 					</div>
-					<div class="panel-title-metadata">[variable: number of critical this week] critical
+					<div class="panel-title-metadata">{{ week.critical_count }} critical
 					</div>
                 </div>
             </a>
@@ -159,7 +159,7 @@
                         {{ /if }}
                         <i class="fa fa-angle-down fa-2x pull-right"></i>
 					</div>
-					<div class="panel-title-metadata">[variable: number of critical next week] critical
+					<div class="panel-title-metadata">{{ next_week.critical_count }} critical
 					</div>
                 </div>
             </a>
@@ -202,7 +202,7 @@
                         {{ /if }}
                         <i class="fa fa-angle-down fa-2x pull-right"></i>
 					</div>
-					<div class="panel-title-metadata">[variable: number of critical upcoming weeks] critical
+					<div class="panel-title-metadata">{{ future.critical_count }} critical
 					</div>
                 </div>
             </a>
