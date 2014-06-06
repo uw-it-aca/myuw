@@ -14,7 +14,7 @@ class MyLibInfo(RESTDispatch):
 
     def GET(self, request):
         """ 
-        GET returns 200 with the student account balances 
+        GET returns 200 with the library account balances 
         of the current user
         """
 
@@ -28,4 +28,3 @@ class MyLibInfo(RESTDispatch):
         log_success_response(logger, timer)
         logger.debug(myaccount.json_data())
         return HttpResponse(json.dumps(myaccount.json_data()))
-
