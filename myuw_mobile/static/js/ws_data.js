@@ -282,7 +282,7 @@ WSData = {
                     accepts: {html: "text/html"},
                     success: function(results) {
                         WSData._hfs_data = results;
-                        callback.apply(null, args);
+                        //callback.apply(null, args);
                         },
                     error: function(xhr, status, error) {
                         showError();

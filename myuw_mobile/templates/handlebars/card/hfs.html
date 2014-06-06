@@ -1,0 +1,51 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "hfs_card" %}
+    <div class="card medium_card">
+        <h3>My HFS IDCard Accounts</h3>
+
+          {{#if student_husky_card}}
+              <div>
+              <h4>Student_Husky_Card</h4>
+                  {{#with student_husky_card}}
+                  <p>
+                  Your balance of <span>${{ balance }}</span> was updated on {{ last_updated }}
+                  </p>
+                  <p>
+                  <a href="{{ add_funds_url }}">Add fund</a> 
+                 </p>
+                 {{/with}}
+              </div>
+          {{/if}}
+
+
+          {{#if resident_dining}}
+              <div>
+              <h4>Resident_Dining</h4>
+                  {{#with resident_dining}}
+                  <p>
+                  Your balance of <span>${{ balance }}</span> was updated on {{ last_updated }}
+                  </p>
+                  <p>
+                  <a href="{{ add_funds_url }}">Add fund</a> 
+                 </p>
+                 {{/with}}
+              </div>
+          {{/if}}
+
+
+          {{#if employee_husky_card}}
+              <div>
+              <h4>Employee_Husky_Card</h4>
+                  {{#with employee_husky_card}}
+                  <p>
+                  Your balance of <span>${{ balance }}</span> was updated on {{ last_updated }}
+                  </p>
+                  <p>
+                  <a href="{{ add_funds_url }}">Add fund</a> 
+                 </p>
+                 {{/with}}
+              </div>
+          {{/if}}
+
+    </div>
+    {% endtplhandlebars %}
