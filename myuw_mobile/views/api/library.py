@@ -26,5 +26,6 @@ class MyLibInfo(RESTDispatch):
             return data_not_found()
 
         log_success_response(logger, timer)
-        logger.debug(myaccount.json_data())
-        return HttpResponse(json.dumps(myaccount.json_data()))
+        resp_json = myaccount.json_data()
+        logger.debug(resp_json)
+        return HttpResponse(json.dumps(resp_json))
