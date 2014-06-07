@@ -1,9 +1,8 @@
 var PCETuitionCard = {
-    render: function (fina_notices) {
+    render: function (pce_tuition_data) {
         var source = $("#pce_tuition_card").html();
-
         var template = Handlebars.compile(source);
-        return template();
+        return template(pce_tuition_data);
     },
 
 };

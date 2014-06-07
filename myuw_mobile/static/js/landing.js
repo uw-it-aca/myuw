@@ -24,9 +24,12 @@ var Landing = {
         }
 
         var tuition_card = '';
-        tuition_card = TuitionCard.render();
         var pce_tuition_card = '';
-        pce_tuition_card = PCETuitionCard.render();
+        if (WSData.tuition_data()){
+            tuition_card = TuitionCard.render(WSData.tuition_data());
+            pce_tuition_card = PCETuitionCard.render(WSData.tuition_data());
+        }
+
 
 
         var fina_notices = Notices.get_notices_for_category("Fees & Finances");
