@@ -1,27 +1,53 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "library_card" %}
-    <div class="card medium_card">
+    <div class="card medium_card row">
         <h3>My Library Account</h3>
-        <div>
-          {{#with mylibaccount}}
-            <p>
-              You have {{ items_loaned }} items checked out.
-            </p>
-            <p>
-              {{#if next_due}}
-                Next due back is: <span>{{ next_due }}</span>
-              {{else}}
-                No item due.
-              {{/if}}
-            </p>
-            <p>
-              Requested items ready: {{ holds_ready }}
-            </p>
-              Fines & Fees: ${{ fines }}
-            </p>
+        {{#with mylibaccount}}
+        <div class="col-xs-12">
+                <div class="row card-critical-alert">
+                    <div class="col-xs-12">
+                        <i class="fa fa-exclamation-circle"></i> Requested items ready: {{ holds_ready }}                                   
+                    </div>
+                </div>
+                <!-- end if -->      
+                <div class="row">
+                    <div class="card-badges-container col-xs-11">
+                        <div class="card-badge col-xs-3 col-xs-offset-1">                                
+                            <span class="card-badge-label">You have</span>
+                            <span class="card-badge-value">{{ items_loaned }}</span>
+                            <span class="card-badge-label"><a>items out</a></span>
+                        </div>
+                        
+                        <div class="card-badge col-xs-3 col-xs-offset-1">                                
+                            <span class="card-badge-label">Next item due</span>
+                            <span class="card-badge-value">{{ next_due }}</span>
+                            <span class="card-badge-label">&nbsp;</span>
+                        </div>
+                        
+                        <div class="card-badge col-xs-3 col-xs-offset-1">
+                            <span class="card-badge-label">Fines & Fees</span>
+                            <span class="card-badge-value">${{ fines }}</span> <!-- this is tuition_due_date but only the actual date --> 
+                            <span class="card-badge-label"><a>Pay online</a></span><!-- var needed here. this could be removed if it's very complicated for some reason. --> 
+                        </div>
+                    </div>
+                </div>
+            <div class="card-related-messages row"> 
+                <p><a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount">Access Your Library Account</a></p>
+            </div>
+            </div> 
+            
+        </div>                   
+</div>              
+        
+                                <!--    {{#if next_due}}
+                        Next due back is: <span>{{ next_due }}</span>
+                      {{else}}
+                        No item due.
+                      {{/if}}
+                    </p>
+                    <p>              
             {{/with}}
-        </div>
-
-        <a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount">Access Your Library Account</a> 
+        
+                <a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount">Access Your Library Account</a> 
     </div>
     {% endtplhandlebars %}
