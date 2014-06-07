@@ -15,6 +15,11 @@ var Notices = {
         notices['holds'] = Notices.get_notices_for_category("Holds");
         notices['legal'] = Notices.get_notices_for_category("Legal");
 
+        var total_notices = 0;
+        for (var group in notices) {
+            total_notices += notices[group].notices.length;
+        }
+        notices['total_notices'] = total_notices;
         source = $("#notices").html();
         template = Handlebars.compile(source);
         $("#main-content").html(template(notices));
@@ -203,11 +208,11 @@ var Notices = {
     },
 
     _get_week_number: function (d) {
-    d = new Date(+d);
-    d.setHours(0,0,0);
-    d.setDate(d.getDate() + 4 - (d.getDay()||7));
-    var yearStart = new Date(d.getFullYear(),0,1);
-    var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7)
-    return weekNo;
-}
+        d = new Date(+d);
+        d.setHours(0,0,0);
+        d.setDate(d.getDate() + 4 - (d.getDay()||7));
+        var yearStart = new Date(d.getFullYear(),0,1);
+        var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7)
+        return weekNo;
+    }
 };
