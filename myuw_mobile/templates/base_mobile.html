@@ -12,8 +12,9 @@
 
    {% compress css %}
     <!-- Les styles -->
-      <link href="{% static 'css/vendor/bootstrap-3.1.1.css' %}" rel="stylesheet">
-      <link href="{% static 'css/vendor/font-awesome.min.css' %}" rel="stylesheet">
+      <link href="{% static 'vendor/css/bootstrap-3.1.1.min.css' %}" rel="stylesheet">
+      <link href="{% static 'vendor/css/font-awesome-4.0.3.min.css' %}" rel="stylesheet">
+      
       <link href="{% static 'css/custom.less' %}" rel="stylesheet" type="text/less">
    {% endcompress %}
 
@@ -25,21 +26,22 @@
     <!-- Les fav and touch icons -->
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
     <!-- For third-generation iPad with high-resolution Retina display: -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/apple-touch-icon-144x144-precomposed.png' %}">
-<!-- For iPhone with high-resolution Retina display: -->
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/apple-touch-icon-114x114-precomposed.png' %}">
-<!-- For first- and second-generation iPad: -->
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/apple-touch-icon-72x72-precomposed.png' %}">
-<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-<link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'images/apple-touch-icon-57x57-precomposed.png' %}">
-<!-- For everything else otherwise not specified -->
-<link rel="apple-touch-icon-precomposed" href="{% static 'images/apple-touch-icon-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'vendor/ico/apple-touch-icon-144x144-precomposed.png' %}">
+    <!-- For iPhone with high-resolution Retina display: -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'vendor/ico/apple-touch-icon-114x114-precomposed.png' %}">
+    <!-- For first- and second-generation iPad: -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'vendor/ico/apple-touch-icon-72x72-precomposed.png' %}">
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'vendor/ico/apple-touch-icon-57x57-precomposed.png' %}">
+    <!-- For everything else otherwise not specified -->
+    <link rel="apple-touch-icon-precomposed" href="{% static 'vendor/ico/apple-touch-icon-precomposed.png' %}">
 
     {% load templatetag_handlebars %}
   </head>
  
   <body>
-<h1 class="offscreen">My U W Mobile</h1>
+      
+      <h1 class="offscreen">My U W Mobile</h1>
     {% csrf_token %}
     <div id="page-modal">
     </div>
@@ -66,7 +68,7 @@
       <div  class="span12">
       <p class="footer-links"><a href="https://myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank"><i class="icon-envelope"></i> Contact</a> | <a href="http://depts.washington.edu/myuwfaq/" target="_blank">Help</a> | <a href="http://www.washington.edu/online/terms/" target="_blank">Terms</a> | <a href="http://www.washington.edu/online/privacy/" target="_blank">Privacy</a></p>
 
-       <p>© 2013 University of Washington</p>
+       <p>&copy; 2013 University of Washington</p>
       </div>
       </footer>
       <!-- /Footer -->
@@ -79,12 +81,14 @@
     <!-- Placed at the end of the document so the pages load faster -->
     {% load handlebars_i18n %}
     {% compress js %}
-    <script src="{% static 'js/vendor/jquery.js' %}"></script>
-    <script src="{% static 'js/vendor/jquery.cookies.js' %}"></script>
-    <script src="{% static 'js/vendor/ios-orientationchange-fix.js' %}"></script>
-    <script src="{% static 'js/vendor/bootstrap/bootstrap.js' %}"></script>
-    <script src="{% static 'js/vendor/handlebars.js' %}"></script>
-    <script src="{% static 'js/vendor/history.js' %}"></script>
+    <!-- vendor files -->
+    <script src="{% static 'vendor/js/jquery-1.11.0.min.js' %}"></script>
+    <script src="{% static 'vendor/js/jquery.cookie-1.4.1.min.js' %}"></script>
+    <script src="{% static 'vendor/js/ios-orientationchange-fix.min.js' %}"></script>
+    <script src="{% static 'vendor/js/bootstrap-3.1.1.min.js' %}"></script>
+    <script src="{% static 'vendor/js/handlebars-1.0.0.min.js' %}"></script>
+    <script src="{% static 'vendor/js/jquery.history-1.8.0.min.js' %}"></script>
+    <!-- app files -->
     <script src="{% static 'js/modal.js' %}"></script>
     <script src="{% static 'js/ws_data.js' %}"></script>
     <script src="{% static 'js/panel/addi_course_links.js' %}"></script>
@@ -104,7 +108,7 @@
     <script src="{% static 'js/myuw_m.js' %}"></script>
     <script src="{% static 'js/handlebars-helpers.js' %}"></script>
     <script src="{% static 'js/ga_ob.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/uw-alert.js' %}"></script> 
+    <script src="{% static 'js/uw-alert.js' %}"></script> 
     <script src="{% static 'js/weekly.js' %}"></script>
     <script src="{% static 'js/libraries.js' %}"></script>
     <script src="{% static 'js/notices.js' %}"></script>
@@ -119,7 +123,7 @@
     {% hb_i18_script %}
     {% endcompress %}
     {% if not has_less_compiled %}
-        <script src="{% static 'js/vendor/less-1.7.0.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'vendor/js/less-1.7.0.min.js' %}" type="text/javascript"></script>
     {% endif %}
 
     <!-- not compressable :( -->
