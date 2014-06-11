@@ -41,20 +41,33 @@
  
   <body>
       
-      <h1 class="offscreen">My U W Mobile</h1>
+    
+    <h1 class="offscreen">My U W Mobile</h1>
+    
+    
     {% csrf_token %}
-    <div id="page-modal">
-    </div>
+    <div id="page-modal"></div>
+    
     <div id="page-content">
    {% include "nav.html" %}
 
     <!-- Page content -->
- 
-    {% block content %}
-    {% endblock %}
+    {% block content %}{% endblock %}
 
     <!-- Footer -->
     <hr>
+    
+    <div>
+        <ul>
+            <li><a href="/mobile/category/">Academics</a></li>
+            <li>Finances</li>
+            <li>Rules &amp; Regulations</li>
+            <li>Campus Resources</li>
+            <li>Technology</li>
+            <li>Employment</li>
+        </ul>
+    </div>
+    
     <footer>
       <div class="span12 clearfix">
       <p class="pull-left">

@@ -93,6 +93,10 @@ $(document).ready(function() {
             Notices.show_notices();
             document.title = window.page_titles["notices"];
         }
+        else if (state === "category_page") {
+            Category.show_category_page();
+            document.title = window.page_titles["category_page"];
+        }
 
 
         loaded_url = state_url;
@@ -240,6 +244,11 @@ $(document).ready(function() {
             hist.replaceState({
                 state: "notices",
             },  "", "/mobile/notices/");
+        }
+        else if (path.match(/^\/mobile\/category/)) {
+            hist.replaceState({
+                state: "category_page",
+            },  "", "/mobile/category/");
         }
         else {
             // Just fall back to the course list?
