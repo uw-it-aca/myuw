@@ -89,10 +89,7 @@ var Notices = {
                 }
             }
         }
-        return {"notices": filtered_notices,
-                "unread_count": Notices._get_unread_count(filtered_notices),
-                "critical_count": Notices._get_critical_count(filtered_notices)
-                };
+        return filtered_notices;
     },
 
     get_notices_by_date: function () {

@@ -28,7 +28,9 @@
                     </div> 
                     <div class="card-related-messages row"> 
                        <div class="col-xs-12">
-                            <p>[[If they have a PCE balance, put pce_tuition_dup here. Can we remove the italics from it?]]
+                            {{ #each pce_tuition_dup }}
+                            <p> {{{ this.notice_content }}}</p>
+                            {{ /each }}
                             <p><a>Learn how to pay tuition</a> or <a>set up third-party access</a> for parents or others.</p>
                             <p>[[ this is some combination of tuition_card_webcheck, tuition_card_3rdparty, and tuition_card_pay depending on whether we can have logic on those]]
                             <p><a>Get your 1098-T tax form</a></p><!-- this message doesn't exist yet, but Ammy said it should be here --> 
