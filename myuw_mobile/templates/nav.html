@@ -1,47 +1,11 @@
 {% load static %}
-    <!-- navbar start -->
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-            <a role="button" class="btn btn-navbar" title="Open Menu" href="javascript:void(0)" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </a>
-            <!-- <a class="btn btn-navbar pull-right" data-toggle="collapse" data-target=".search-collapse">
-            <i class="icon-search icon-white"></i> -->
 
-    
-            <a class="brand" href="/mobile"><img alt="My U W Logo, Go to home" src="{% static 'images/myuw.png' %}"/></a>
- 
-            <div class="nav-collapse collapse" id="myuw_nav"> <!-- start nav menu -->
-		<nav>
-            <ul class="nav">
-            <div class="user">Welcome, {{netid}}</div>
-                 <li id="nav_course_list" class=""><a href="/mobile"><i class="icon-list-ul"></i> Course List</a></li>
-                 <li aria-hidden="true" id="nav_visual_schedule" class=""><a href="/mobile/visual"><i class="icon-calendar"></i> Visual Schedule</a></li>
-                 <li id="nav_finabala" class=""><a href="/mobile/finabala" class=""><i class="icon-money"></i> Financial Balances</a></li>
-                 <li id="nav_mylinks" class=""><a href="/mobile/links" class="quicklinks"><i class="icon-bookmark"></i> MyLinks</a></li>
-    		<hr />
-
-          		<li class=""><a href="https://myuw.washington.edu/cgi-bin/contactmyuw.cgi"  target="_blank"><i class="icon-envelope"></i> Contact MyUW</a></li>
-                <li class=""><a href="https://uwnetid.washington.edu/manage/" target="_blank"><i class="icon-user"></i> Manage UW NetID</a></li>   
-                <li class="divider"></li>
-                <li class=""><a href="#" class="logout_link"><i class="icon-signout"></i> Log Out</a></li>
-             </ul>
-             <form action="/mobile/logout" method="POST" id="logout_form">{% csrf_token %}</form>
-		</nav>
-    
-            </div>
-            <!-- <div class="search-collapse collapse">
-            <form class="navbar-search" action="">
-            <input type="text" class="search-query span4" placeholder="Search MyUW">
-            </form>
-            <button class="btn" href="#">Search</button>
-         
-        </div>-->
-            <!--Nav End -->
-
-        </div>
-      </div>
+<header id="app_header">
+    <div class="container clearfix">
+        <h1 class="pull-left">MyUW</h1>
+        <div class="pull-left user">{{netid}}</div>
+        <div class="pull-right"><a href="#app_nav"><i class="fa fa-bars"></i> Menu</a></div>
     </div>
+</header>
+    
+    
