@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Mobile MyUW</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
     <meta name="description" content="">
     <meta name="author" content="">
  
@@ -40,54 +40,59 @@
   </head>
  
   <body>
+     
+     {% csrf_token %}
       
+    <header id="app_header">
+        <div class="container clearfix">
+            <h1 class="pull-left">MyUW</h1>
+            <div class="pull-right"><a href="#app_nav"><i class="fa fa-bars"></i> Menu</a></div>
+        </div>
+    </header>
     
-    <h1 class="offscreen">My U W Mobile</h1>
-    
-    
-    {% csrf_token %}
+    <!-- modal ??????? not sure if this will be needed later -->
     <div id="page-modal"></div>
     
-    <div id="page-content">
-   {% include "nav.html" %}
-
+    <div id="app_content">
     <!-- Page content -->
     {% block content %}{% endblock %}
-
-    <!-- Footer -->
-    <hr>
-    
-    <div>
-        <ul>
-            <li><a href="/mobile/category/">Academics</a></li>
-            <li>Finances</li>
-            <li>Rules &amp; Regulations</li>
-            <li>Campus Resources</li>
-            <li>Technology</li>
-            <li>Employment</li>
-        </ul>
     </div>
     
-    <footer>
-      <div class="span12 clearfix">
-      <p class="pull-left">
-			<a href="http://my.uw.edu/servlet/main" target="_blank" title="Go to My U W Desktop version"><i class="icon-external-link"></i> Full Site</a>
-		</p>
-		<ul class="unstyled pull-right">
+    <!-- Footer -->
+    <footer id="app_footer">
+    
+        
+        <nav id="app_nav" class="container">
+            <ul style="list-style:none; margin: 1em 0; padding:0;">
+                <li><a href="/mobile/category/">Academics</a></li>
+                <li><a href="/mobile/category/">Finances</a></li>
+                <li><a href="/mobile/category/">Rules &amp; Regulations</a></li>
+                <li><a href="/mobile/category/">Campus Resources</a></li>
+                <li><a href="/mobile/category/">Technology</a></li>
+                <li><a href="/mobile/category/">Employment</a></li>
+            </ul>
+        </nav>
+        
+       <!-- <div class="container clearfix">
+        <p class="pull-left">
+        	<a href="http://my.uw.edu/servlet/main" target="_blank" title="Go to My U W Desktop version"><i class="icon-external-link"></i> Full Site</a>
+        </p>
+        <ul class="unstyled pull-right">
             <li class="inline"><a role="button" class="btn btn-visual" title="Go to top" href="#"><i class="icon-arrow-up"></i></a></li>
             <li class="inline"><a role="button" class="btn btn-visual" title="Open Menu" href="#" data-toggle="collapse" data-target=".nav-collapse"><i class="icon-reorder"></i></a></li>
             </ul>
-      </div>
-      <div  class="span12">
-      <p class="footer-links"><a href="https://myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank"><i class="icon-envelope"></i> Contact</a> | <a href="http://depts.washington.edu/myuwfaq/" target="_blank">Help</a> | <a href="http://www.washington.edu/online/terms/" target="_blank">Terms</a> | <a href="http://www.washington.edu/online/privacy/" target="_blank">Privacy</a></p>
-
-       <p>&copy; 2013 University of Washington</p>
-      </div>
-      </footer>
-      <!-- /Footer -->
+        </div>-->
+        
+        <div class="container">
+          <p class="footer-links"><a href="https://myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank"><i class="icon-envelope"></i> Contact</a> | <a href="http://depts.washington.edu/myuwfaq/" target="_blank">Help</a> | <a href="http://www.washington.edu/online/terms/" target="_blank">Terms</a> | <a href="http://www.washington.edu/online/privacy/" target="_blank">Privacy</a></p>
+        
+           <p>&copy; 2013 University of Washington</p>
+        </div>
+    
+    </footer>
+    <!-- /Footer -->
  
-    </div>
-    <!-- /page content -->
+
  
     <!-- Le javascript
     ================================================== -->
