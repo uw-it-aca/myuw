@@ -112,8 +112,7 @@ var Notices = {
                 for (j = 0; j < notice['attributes'].length; j += 1){
                     if (notice['attributes'][j]['name'] === "Date"){
                         date = notice['attributes'][j]['value'].replace(/-/g, "/");
-                        date = new Date(date + " PST");
-                        date = Notices._get_utc_date(date);
+                        date = new Date(date);
 
                         if (today.getDate() === date.getDate()) {
                             notices_today.push(notice);
