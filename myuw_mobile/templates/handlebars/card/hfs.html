@@ -1,5 +1,7 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "hfs_card" %}
+{{#if hfs_data}}
+    {{#with hfs_data}}
     <div class="card medium_card">
         <h3>My HFS IDCard Accounts</h3>
 
@@ -48,4 +50,6 @@
           {{/if}}
 
     </div>
+    {{/with}}
+{{/if}}
     {% endtplhandlebars %}

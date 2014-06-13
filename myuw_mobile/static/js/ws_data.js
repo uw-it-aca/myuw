@@ -14,6 +14,16 @@ WSData = {
         return WSData._book_data;
     },
 
+    normalized_course_data: function(term) {
+        if (term) {
+            WSData.normalize_instructors_for_term(term);
+            return WSData.course_data_for_term(term);
+        } else {
+            WSData.normalize_instructors_for_current_term();
+            return WSData.current_course_data();
+        }
+    },
+
     current_course_data: function() {
         return WSData._course_data["current"];
     },
@@ -122,7 +132,9 @@ WSData = {
                         }
                     }
                     WSData._course_data[term] = results;
-                    callback.apply(null, args);
+                    if (callback !== null) {
+                        callback.apply(null, args);
+                    }
                 },
                 error: function(xhr, status, error) {
                     showError();
@@ -282,8 +294,10 @@ WSData = {
                     accepts: {html: "text/html"},
                     success: function(results) {
                         WSData._hfs_data = results;
-                        //callback.apply(null, args);
-                        },
+                        if (callback !== null) {
+                            callback.apply(null, args);
+                        }
+                    },
                     error: function(xhr, status, error) {
                         showError();
                         }
@@ -306,8 +320,10 @@ WSData = {
                     accepts: {html: "text/html"},
                     success: function(results) {
                         WSData._library_data = results;
-                        //callback.apply(null, args);
-                        },
+                        if (callback !== null) {
+                            callback.apply(null, args);
+                        }
+                    },
                     error: function(xhr, status, error) {
                         showError();
                         }
@@ -330,8 +346,10 @@ WSData = {
                     accepts: {html: "text/html"},
                     success: function(results) {
                         WSData._tuition_data = results;
-                        //callback.apply(null, args);
-                        },
+                        if (callback !== null) {
+                            callback.apply(null, args);
+                        }
+                    },
                     error: function(xhr, status, error) {
                         showError();
                         }

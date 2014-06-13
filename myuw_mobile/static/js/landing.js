@@ -2,12 +2,14 @@ var Landing = {
     render: function() {
         showLoading();
         WSData.fetch_notice_data(Landing.make_html);
-        WSData.fetch_tuition_data();
-        WSData.fetch_hfs_data();
-        WSData.fetch_library_data();
+//        WSData.fetch_current_course_data(VisualScheduleCard.render);
+        WSData.fetch_tuition_data(null);
+        WSData.fetch_hfs_data(HfsCard.render);
+        WSData.fetch_library_data(LibraryCard.render);
     },
 
     make_html: function() {
+        $('html,body').animate({scrollTop: 0}, 'fast');
         var notice_data = WSData.notice_data();
         var source = $('#landing').html();
         var template = Handlebars.compile(source);
@@ -30,50 +32,22 @@ var Landing = {
             pce_tuition_card = PCETuitionCard.render(WSData.tuition_data());
         }
 
-
-
         var fina_notices = Notices.get_notices_for_category("Fees & Finances");
-        fin_aid_card = '';
+        var fin_aid_card = '';
         if (fina_notices.notices.length > 0 || WSData.tuition_data()) {
             fin_aid_card = FinAidCard.render(fina_notices);
-        }
-
-        var hfs_data = WSData.hfs_data();
-        var hfs_card = '';
-        if (hfs_data && (hfs_data.student_husky_card || hfs_data.employee_husky_card || hfs_data.resident_dining)) {
-            hfs_card = HfsCard.render();
-        }
-
-        var library_card = '';
-        if (WSData.library_data()) {
-            library_card = LibraryCard.render();
         }
 
         $('#main-content').html(template({
             notice_banner: notice_banner,
             reg_status_card: reg_status_card,
+//            visual_schedule_card: VisualScheduleCard.render(),
             tuition_card: tuition_card,
             pce_tuition_card: pce_tuition_card,
             fin_aid_card: fin_aid_card,
-            hfs_card: hfs_card,
-            library_card: library_card
+            hfs_card: HfsCard.render(),
+            library_card: LibraryCard.render()
         }));
-
     },
 
-
-    // Filter non-holds notices by the given category
-    // Return a list of notices
-    filter_notices_by_category: function (category, notice_data) {
-        reg_notices = notice_data.today.notices.concat(
-            notice_data.week.notices, 
-            notice_data.next_week.notices, 
-            notice_data.future.notices);
-        reg_notices = reg_notices.filter(function(notice) {
-            if (notice.category === category) {
-                return true;
-            }
-        });
-        return reg_notices;
-    }
 };
