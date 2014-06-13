@@ -17,6 +17,7 @@ from myuw_mobile.views.page import index
 
 urlpatterns = patterns('myuw_mobile.views',
     url(r'login', 'mobile_login.user_login'),
+    url(r'test', 'test.index'),
     url(r'^link/(?P<linkid>\d+)$', 'link.show_link'),
     url(r'^logger/(?P<interaction_type>\w+)$', 'logger.log_interaction'),
     url(r'logout', Logout.as_view()),
