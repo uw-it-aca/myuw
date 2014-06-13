@@ -21,8 +21,8 @@
                             </div>
                             <div class="card-badge col-xs-5 col-xs-offset-2">
                                 <span class="card-badge-label">Tuition due</span>
-                                <span class="card-badge-value">5/28/2014</span> <!-- this is tuition_due_date but only the actual date --> 
-                                <span class="card-badge-label">in 10 days</span><!-- var needed here. this could be removed if it's very complicated for some reason. --> 
+                                <span class="card-badge-value"> {{ tuition_date }}</span> <!-- this is tuition_due_date but only the actual date -->
+                                <span class="card-badge-label">in {{ tuition_date_offset }} days</span><!-- var needed here. this could be removed if it's very complicated for some reason. -->
                             </div>
                         </div>
                     </div> 
