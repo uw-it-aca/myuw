@@ -15,13 +15,16 @@ WSData = {
     },
 
     normalized_course_data: function(term) {
+        var course_data;
         if (term) {
-            WSData.normalize_instructors_for_term(term);
-            return WSData.course_data_for_term(term);
+            course_data = WSData.course_data_for_term(term);
         } else {
-            WSData.normalize_instructors_for_current_term();
-            return WSData.current_course_data();
+            course_data = WSData.current_course_data();
         }
+        if (course_data) {
+            WSData._normalize_instructors(course_data);
+        }
+        return course_data;
     },
 
     current_course_data: function() {

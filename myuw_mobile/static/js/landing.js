@@ -2,10 +2,10 @@ var Landing = {
     render: function() {
         showLoading();
         WSData.fetch_notice_data(Landing.make_html);
-//        WSData.fetch_current_course_data(VisualScheduleCard.render);
         WSData.fetch_tuition_data(null);
-        WSData.fetch_hfs_data(HfsCard.render);
-        WSData.fetch_library_data(LibraryCard.render);
+        WSData.fetch_current_course_data(VisualScheduleCard.render_upon_data);
+        WSData.fetch_hfs_data(HfsCard.render_upon_data);
+        WSData.fetch_library_data(LibraryCard.render_upon_data);
     },
 
     make_html: function() {
@@ -41,12 +41,12 @@ var Landing = {
         $('#main-content').html(template({
             notice_banner: notice_banner,
             reg_status_card: reg_status_card,
-//            visual_schedule_card: VisualScheduleCard.render(),
+            visual_schedule_card: VisualScheduleCard.render_init(),
             tuition_card: tuition_card,
             pce_tuition_card: pce_tuition_card,
             fin_aid_card: fin_aid_card,
-            hfs_card: HfsCard.render(),
-            library_card: LibraryCard.render()
+            hfs_card: HfsCard.render_init(),
+            library_card: LibraryCard.render_init()
         }));
     },
 
