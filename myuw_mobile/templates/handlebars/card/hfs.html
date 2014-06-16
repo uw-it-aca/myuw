@@ -2,53 +2,64 @@
     {% tplhandlebars "hfs_card_content" %}
 {{#if hfs_data}}
     {{#with hfs_data}}
-    <div class="card medium_card">
-        <h3>My HFS IDCard Accounts</h3>
-
-          {{#if student_husky_card}}
-              <div>
-              <h4>Student_Husky_Card</h4>
-                  {{#with student_husky_card}}
-                  <p>
-                  Your balance of <span>${{ balance }}</span> was updated on {{ last_updated }}
-                  </p>
-                  <p>
-                  <a href="{{ add_funds_url }}">Add fund</a> 
-                 </p>
-                 {{/with}}
-              </div>
-          {{/if}}
-
-
-          {{#if resident_dining}}
-              <div>
-              <h4>Resident_Dining</h4>
-                  {{#with resident_dining}}
-                  <p>
-                  Your balance of <span>${{ balance }}</span> was updated on {{ last_updated }}
-                  </p>
-                  <p>
-                  <a href="{{ add_funds_url }}">Add fund</a> 
-                 </p>
-                 {{/with}}
-              </div>
-          {{/if}}
-
-
-          {{#if employee_husky_card}}
-              <div>
-              <h4>Employee_Husky_Card</h4>
-                  {{#with employee_husky_card}}
-                  <p>
-                  Your balance of <span>${{ balance }}</span> was updated on {{ last_updated }}
-                  </p>
-                  <p>
-                  <a href="{{ add_funds_url }}">Add fund</a> 
-                 </p>
-                 {{/with}}
-              </div>
-          {{/if}}
-
+    
+    
+    <div class="row card">
+         <div class="col-xs-12">
+         
+            <h3>My HFS IDCard Accounts</h3>
+            <div class="row card-badge-container">
+                
+                <!-- TODO: logic based on badges displayed
+                    if all 3 badges - 6-6-12 (dining will have 12)
+                    if only 2 badges - 6-6
+                    if only 1 badge - 12
+                -->
+                
+                {{#if student_husky_card}}
+                <div class="col-xs-6">
+                    
+                    <div class="card-badge">
+                        <h4>Student_Husky_Card</h4>
+                        {{#with student_husky_card}}
+                        <p>Your balance of <span>${{ balance }}</span> was updated on {{ last_updated }}</p>
+                        <p><a href="{{ add_funds_url }}">Add fund</a></p>
+                        {{/with}}
+                    </div>
+                    
+                </div>
+                {{/if}}
+                
+                {{#if employee_husky_card}}
+                <div class="col-xs-6">
+                    
+                    <div class="card-badge">
+                        <h4>Employee_Husky_Card</h4>
+                        {{#with employee_husky_card}}
+                        <p>Your balance of <span>${{ balance }}</span> was updated on {{ last_updated }}</p>
+                        <p><a href="{{ add_funds_url }}">Add fund</a></p>
+                        {{/with}}
+                    </div>
+                    
+                </div>
+                {{/if}}
+                
+                {{#if resident_dining}}
+                <div class="col-xs-12">
+                    
+                    <div class="card-badge">
+                        <h4>Resident_Dining</h4>
+                        {{#with resident_dining}}
+                        <p>Your balance of <span>${{ balance }}</span> was updated on {{ last_updated }}</p>
+                        <p><a href="{{ add_funds_url }}">Add fund</a></p>
+                        {{/with}}
+                    </div>
+                    
+                </div>
+                {{/if}}
+                
+            </div>
+         </div>
     </div>
     {{/with}}
 {{/if}}

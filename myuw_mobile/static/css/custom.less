@@ -93,6 +93,7 @@ body {
 
 // notices banner // 
 
+.notice-banner { margin-bottom: 1em; }
 #notice_banner {
 
 	h4 {
@@ -236,32 +237,28 @@ body {
 
 
 // cards // 
-.card { 
+.card {  
     
-    position: relative; 
-    
-    div.row { margin-bottom: 8px; }
+    position: relative; 	
+    background-color: #fff;
+	box-shadow: rgba(0, 0, 0, 0.0470588) 0px 2px 3px 0px;
+	margin-bottom: 1em;
     
     h4 { color: #555; }
     
     .card-content {  }
     
-    .card-critical-alert { 
-        background: #EDCB62; padding: 8px; text-align: center; margin: 0px auto;
-    }
+    .card-critical-alert { background: #EDCB62; padding: 8px; text-align: center; margin-bottom: 1em; }
     
-    .card-badges-container { 
+    .card-badge-container { margin-bottom: 1em;
             
-        .card-badge {  background: #e7e7e7; padding: 8px; 
-            
+        .card-badge {  background: yellow; padding: 8px; margin-bottom: 8px;
             .card-badge-label { text-align: center; display: block; font-size: 12px; font-weight: normal;  }
-            
             .card-badge-value { text-align: center; display: block; font-size: 16px; font-weight: bold; }
         }
-        
     }
     
-    .card-related-messages {  }
+    .card-related-messages { margin-bottom: 1em; }
     
     .nav-card-arrow { height: @line-height-base; position: absolute; right: 0; display: inline-block; top: 50%; margin-top: -@line-height-base / 2; }
     
@@ -270,8 +267,7 @@ body {
         li { padding-bottom: 8px; }
         
     }
-    
-    
+        
 }
 
 
@@ -379,14 +375,6 @@ div.accordion-inner th {
 
 
 //card styles 
-
-.card { 
-	background-color: #fff;
-	padding: 15px 15px 15px; 
-	margin: 20px 0; 
-	box-shadow: rgba(0, 0, 0, 0.0470588) 0px 2px 3px 0px;
-	
-	}
 
 .first-card {
 	margin-top: -30px;
@@ -1589,3 +1577,19 @@ footer .footer-links a {
 .container-fluid:after {
   clear: both;
 }
+
+
+
+/*** bootstrap container and grid override ***/
+
+// 5px gutters
+
+.container { margin-left: 5px; margin-right: 5px; padding-left: 5px; padding-right: 5px; }
+
+.row { 
+    
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+[class*="col-"] { padding-left: 5px; padding-right: 5px}
