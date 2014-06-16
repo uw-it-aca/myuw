@@ -252,7 +252,7 @@ body {
     
     .card-badge-container { margin-bottom: 1em;
             
-        .card-badge {  background: yellow; padding: 8px; margin-bottom: 8px;
+        .card-badge {  background: yellow; padding: 8px; margin-bottom: 8px; overflow: hidden;
             .card-badge-label { text-align: center; display: block; font-size: 12px; font-weight: normal;  }
             .card-badge-value { text-align: center; display: block; font-size: 16px; font-weight: bold; }
         }
@@ -1582,9 +1582,7 @@ footer .footer-links a {
 
 /*** bootstrap container and grid override ***/
 
-// 10px gutters
-
-.container { margin-left: 5px; margin-right: 5px; padding-left: 5px; padding-right: 5px; 
+.container { margin-left: 5px; margin-right: 5px; padding-left: 8px; padding-right: 8px; 
     
     // make margins auto at 768px
     @media only screen and (min-width : 768px) {
@@ -1593,7 +1591,9 @@ footer .footer-links a {
 
 }
 
-.row { margin-left: -5px; margin-right: -5px; }
+// 10px gutters
 
-[class*="col-"] { padding-left: 5px; padding-right: 5px}
+.row { margin-left: -8px; margin-right: -8px; }
+
+[class*="col-"] { padding-left: 8px; padding-right: 8px}
 
