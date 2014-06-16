@@ -1582,16 +1582,18 @@ footer .footer-links a {
 
 /*** bootstrap container and grid override ***/
 
-// 5px gutters
+// 10px gutters
 
-/****
-.container { margin-left: 5px; margin-right: 5px; padding-left: 5px; padding-right: 5px; }
-
-.row { 
+.container { margin-left: 5px; margin-right: 5px; padding-left: 5px; padding-right: 5px; 
     
-    margin-left: -5px;
-    margin-right: -5px;
+    // make margins auto at 768px
+    @media only screen and (min-width : 768px) {
+        margin-left: auto; margin-right: auto;
+    }
+
 }
 
+.row { margin-left: -5px; margin-right: -5px; }
+
 [class*="col-"] { padding-left: 5px; padding-right: 5px}
-****/
+
