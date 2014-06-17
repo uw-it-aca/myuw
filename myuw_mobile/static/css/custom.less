@@ -80,8 +80,15 @@ body {
     background: @uwpurple;
     line-height: 60px;
     
-    h1 { line-height: 60px; margin: 0; padding: 0; color: @myuw; text-transform: uppercase; margin-right: 10px; }
-    a { color: #fff; }
+    .header-bar {
+
+        .header-logo { line-height: 60px; margin: 0; padding: 0; color: @myuw; text-transform: uppercase; margin-right: 10px; }
+        .header-user { }
+        .header-menu { 
+            a { color: #fff; }
+        }        
+    }
+    
 }
 
 #app_content {
@@ -283,7 +290,7 @@ body {
     
     .card-badge-container { margin-bottom: 1em;
             
-        .card-badge {  background: #ccc; padding: 8px; margin-bottom: 8px; overflow: hidden;
+        .card-badge {  background: #ccc; padding: 8px; margin-bottom: 15px; overflow: hidden;
             .card-badge-label { text-align: center; display: block; font-size: 12px; font-weight: normal;  }
             .card-badge-value { text-align: center; display: block; font-size: 16px; font-weight: bold; }
         }
