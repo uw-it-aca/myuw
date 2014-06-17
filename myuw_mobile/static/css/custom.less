@@ -51,7 +51,7 @@
 // body and top-level stuff //
 
 body {
-  background-color: #e6e6e6; 
+  background-color: #fff; 
   font-family: @font-family-sans-serif;
   
   // Headers //
@@ -85,7 +85,7 @@ body {
 
 #app_footer {
     
-    background: #ccc; 
+    background: #444; 
     
     #app_nav { min-height: 420px; }
 }
@@ -93,7 +93,7 @@ body {
 
 // notices banner // 
 
-.notice-banner { margin-bottom: 1em; }
+.notice-banner { margin-top: 2px; margin-bottom: 1em; background: #f5d300; padding: 8px; box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 2px 0px; }
 #notice_banner {
 
 	h4 {
@@ -240,19 +240,19 @@ body {
 .card {  
     
     position: relative; 	
-    background-color: #fff;
-	box-shadow: rgba(0, 0, 0, 0.0470588) 0px 2px 3px 0px;
+    background-color: #efefef;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 2px 0px;
 	margin-bottom: 1em;
     
     h4 { color: #555; }
     
     .card-content {  }
     
-    .card-critical-alert { background: #EDCB62; padding: 8px; text-align: center; margin-bottom: 1em; }
+    .card-critical-alert { background: #f5d300; padding: 8px; text-align: center; margin-bottom: 1em; }
     
     .card-badge-container { margin-bottom: 1em;
             
-        .card-badge {  background: yellow; padding: 8px; margin-bottom: 8px; overflow: hidden;
+        .card-badge {  background: #ccc; padding: 8px; margin-bottom: 8px; overflow: hidden;
             .card-badge-label { text-align: center; display: block; font-size: 12px; font-weight: normal;  }
             .card-badge-value { text-align: center; display: block; font-size: 16px; font-weight: bold; }
         }
@@ -310,7 +310,7 @@ body {
 
 
 // notices banner // 
-div.notification { 
+/*div.notification { 
 
   padding: 8px 0; 
   background: #F3EE81; 
@@ -325,7 +325,7 @@ div.notification {
 
 }
 
-
+*/
 
 
 //notices page // 
@@ -1582,7 +1582,7 @@ footer .footer-links a {
 
 /*** bootstrap container and grid override ***/
 
-.container { margin-left: 5px; margin-right: 5px; padding-left: 8px; padding-right: 8px; 
+.container { margin-left: 10px; margin-right: 10px; padding-left: 10px; padding-right: 10px; 
     
     // make margins auto at 768px
     @media only screen and (min-width : 768px) {
@@ -1591,9 +1591,9 @@ footer .footer-links a {
 
 }
 
-// 10px gutters
+// 20px gutters
 
-.row { margin-left: -8px; margin-right: -8px; }
+.row { margin-left: -10px; margin-right: -10px; }
 
-[class*="col-"] { padding-left: 8px; padding-right: 8px}
+[class*="col-"] { padding-left: 10px; padding-right: 10px}
 
