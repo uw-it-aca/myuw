@@ -1,0 +1,121 @@
+/*** less variables ***/
+
+@myuw: #f8f7f0;
+@uwpurple: #39275B;
+@yellow: #f5d300;
+@gray: #ccc;
+
+/*** less mixins ***/
+
+
+body {
+    
+}
+
+
+/*** header ***/
+
+#app_header {
+    
+    background: @uwpurple;
+    line-height: 60px;
+    
+    // header bar
+    .header-bar {
+
+        .header-logo { line-height: 60px; margin: 0; padding: 0; color: @myuw; text-transform: uppercase; margin-right: 10px; }
+        .header-user { }
+        .header-menu { 
+            a { color: #fff; }
+        }        
+    }
+    
+}
+
+/*** content ***/
+
+#app_content {
+    
+    // notice bar
+    .notice-bar { margin-top: 2px; margin-bottom: 1em; background: @yellow; padding: 8px; box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 2px 0px; 
+        
+        h4 { display: inline; color: black; }
+    
+    	/****
+    	.count-badge {
+            background: red;
+            border-radius: 20px;
+            background-color: red;
+            font-size: 90%;
+            text-align: center;
+            padding: 1px 8px;
+            margin-right: 10px;
+            font-weight: bold;
+            color: whitesmoke;
+            vertical-align: 1px;
+        }
+    
+    	.notice-category {
+    		color: lighten(@gray, 10%);
+    		font-size:	110%;
+    		font-style:	italic;
+    		padding-right: 2em;
+    		padding-left: 1.5em;
+    	}
+    	****/
+	
+    }
+    
+}
+
+/*** footer ***/
+
+#app_footer {
+    
+    background: #444; 
+    
+    // navigation bar
+    .navigation-bar { min-height: 420px; 
+        
+        .navigation-list {  list-style:none;padding-left:0;margin-top:2.5em;
+    
+            .navigation-item { text-align:center; 
+                
+                a { background:#333; height:100px; margin-bottom:1em; padding:8px; display: block;
+                    
+                    /* for browsers that support flexbox, display text vertically centered */
+                    display:flex; justify-content:center; align-items:center;
+                    
+                    &:hover { background: #555; }
+                }
+            }
+        }
+        
+    }
+    
+    // footer bar
+    .footer-bar { background:#333; padding: 10px 0; 
+        
+        .footer-links { color: #aaa; font-size: 11px; }
+    }
+    
+}
+
+
+
+/*** bootstrap overrides ***/
+
+.container { margin-left: 10px; margin-right: 10px; padding-left: 10px; padding-right: 10px; 
+    
+    // make margins auto at 768px
+    @media only screen and (min-width : 768px) {
+        margin-left: auto; margin-right: auto;
+    }
+
+}
+
+// grid gutters (20px)
+
+.row { margin-left: -10px; margin-right: -10px; }
+
+[class*="col-"] { padding-left: 10px; padding-right: 10px; }

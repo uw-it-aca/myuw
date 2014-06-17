@@ -9,8 +9,7 @@
 
 // Overridden Bootstrap Variables // 
 @gray-dark: #3c3c3c;
-//@yellow: #D7A900;
-@yellow: #f5d300;
+@yellow: #D7A900;
 @link-color: #08c; 
 @link-color-hover: @link-color; 
 
@@ -20,7 +19,6 @@
 @font-size-base:          14px;
 @font-size-base-link:     14px;
 @line-height-base:        20px;
-
 
 
 // MyUW Colors // 
@@ -72,96 +70,7 @@ body {
   ul {list-style-type: none;}
   
   }
-
-// app containers
-
-#app_header {
-    
-    background: @uwpurple;
-    line-height: 60px;
-    
-    .header-bar {
-
-        .header-logo { line-height: 60px; margin: 0; padding: 0; color: @myuw; text-transform: uppercase; margin-right: 10px; }
-        .header-user { }
-        .header-menu { 
-            a { color: #fff; }
-        }        
-    }
-    
-}
-
-#app_content {
-    
-    
-}
-
-#app_footer {
-    
-    background: #444; 
-    
-    .navigation-bar { min-height: 420px; 
-        
-        .navigation-list {  list-style:none;padding-left:0;margin-top:2.5em;
-    
-            .navigation-item { text-align:center; 
-                
-                a { background:#333; height:100px; margin-bottom:1em; padding:8px; display: block;
-                    
-                    /* for browsers that support flexbox, display text vertically centered */
-                    display:flex; justify-content:center; align-items:center;
-                    
-                    &:hover { background: #555; }
-                }
-            }
-        }
-        
-    }
-    
-    .footer-bar { background:#333; padding: 10px 0; 
-        
-        .footer-links { color: #aaa; font-size: 11px; }
-    }
-    
-}
-
-
-
-
-
-// notices banner // 
-
-.notice-banner { margin-top: 2px; margin-bottom: 1em; background: @yellow; padding: 8px; box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 2px 0px; }
-#notice_banner {
-
-	h4 {
-	display: inline;	
-	color: black;
-	}
-
-	.count-badge {
-		background: red;
-		border-radius: 20px;
-		background-color: red;
-		font-size: 90%;
-		text-align: center;
-		padding: 1px 8px;
-		margin-right: 10px;
-		font-weight: bold;
-		color: whitesmoke;
-		vertical-align: 1px;
-		}
-
-	.notice-category {
-		color: lighten(@gray, 10%);
-		font-size:	110%;
-		font-style:	italic;
-		padding-right: 2em;
-		padding-left: 1.5em;
-	}
-}
-
-
+  
 //notices page // 
 
 .notices-container { 
@@ -1603,23 +1512,3 @@ a:active {
 .container-fluid:after {
   clear: both;
 }
-
-
-
-/*** bootstrap container and grid override ***/
-
-.container { margin-left: 10px; margin-right: 10px; padding-left: 10px; padding-right: 10px; 
-    
-    // make margins auto at 768px
-    @media only screen and (min-width : 768px) {
-        margin-left: auto; margin-right: auto;
-    }
-
-}
-
-// 20px gutters
-
-.row { margin-left: -10px; margin-right: -10px; }
-
-[class*="col-"] { padding-left: 10px; padding-right: 10px}
-
