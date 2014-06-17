@@ -9,7 +9,8 @@
 
 // Overridden Bootstrap Variables // 
 @gray-dark: #3c3c3c;
-@yellow: #D7A900;
+//@yellow: #D7A900;
+@yellow: #f5d300;
 @link-color: #08c; 
 @link-color-hover: @link-color; 
 
@@ -83,17 +84,47 @@ body {
     a { color: #fff; }
 }
 
+#app_content {
+    
+    
+}
+
 #app_footer {
     
     background: #444; 
     
-    #app_nav { min-height: 420px; }
+    .navigation-bar { min-height: 420px; 
+        
+        .navigation-list {  list-style:none;padding-left:0;margin-top:2.5em;
+    
+            .navigation-item { text-align:center; 
+                
+                a { background:#333; height:100px; margin-bottom:1em; padding:8px; display: block;
+                    
+                    /* for browsers that support flexbox, display text vertically centered */
+                    display:flex; justify-content:center; align-items:center;
+                    
+                    &:hover { background: #555; }
+                }
+            }
+        }
+        
+    }
+    
+    .footer-bar { background:#333; padding: 10px 0; 
+        
+        .footer-links { color: #aaa; font-size: 11px; }
+    }
+    
 }
+
+
+
 
 
 // notices banner // 
 
-.notice-banner { margin-top: 2px; margin-bottom: 1em; background: #f5d300; padding: 8px; box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 2px 0px; }
+.notice-banner { margin-top: 2px; margin-bottom: 1em; background: @yellow; padding: 8px; box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 2px 0px; }
 #notice_banner {
 
 	h4 {
@@ -1142,7 +1173,7 @@ abbr[title] {
   height: 91%;
 }
 .time-bar {
-  //margin-left: -2px;
+  /*margin-left: -2px;*/
   width: 8%;
   border-right: 2px groove #eeeeee;
   position: relative;
@@ -1153,7 +1184,7 @@ abbr[title] {
   top: 7%;
 }
 .exam-time-bar {
-  margin-left: -2px;
+  /*margin-left: -2px;*/
   width: 8%;
   border-right: 2px groove #eeeeee;
   position: relative;
@@ -1455,19 +1486,7 @@ a:hover {
 a:active {
   text-decoration: none !important;
 }
-footer {
-  color: #999999;
-  font-size: 12px;
-}
-footer a {
-  font-size: 16px;
-}
-footer p {
-  margin-bottom: 2px;
-}
-footer .footer-links a {
-  font-size: 12px;
-}
+
 #uwalert-alert-message {
   margin: 10px 0 10px 0;
 }
