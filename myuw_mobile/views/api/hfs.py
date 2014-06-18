@@ -1,4 +1,5 @@
 import logging
+import time
 from django.http import HttpResponse
 from django.utils import simplejson as json
 from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
@@ -26,7 +27,7 @@ class HfsBalances(RESTDispatch):
             return data_not_found()
 
         log_success_response(logger, timer)
-        resp_json = balances.json_data(10)
+        resp_json = balances.json_data(use_custom_date_format=True)
         logger.debug(resp_json)
         return HttpResponse(json.dumps(resp_json))
 
