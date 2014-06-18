@@ -5,23 +5,27 @@
 @yellow: #f5d300;
 @gray: #ccc;
 
-/*** less mixins ***/
+@line-height-base:        20px;
 
+
+/*** break points ***/
+@medium: ~"screen and (min-width: 768px)";
+@large: ~"screen and (min-width: 1024px)";
+
+/*** global ***/
 
 body {
     
 }
 
 
+
 /*** header ***/
 
-#app_header {
-    
-    background: @uwpurple;
-    line-height: 60px;
+#app_header { background: @uwpurple; line-height: 60px;
     
     // header bar
-    .header-bar {
+    .header-bar { padding: 0px !important;
 
         .header-logo { line-height: 60px; margin: 0; padding: 0; color: @myuw; text-transform: uppercase; margin-right: 10px; }
         .header-user { }
@@ -37,9 +41,13 @@ body {
 #app_content {
     
     // notice bar
-    .notice-bar { margin-top: 2px; margin-bottom: 1em; background: @yellow; padding: 8px; box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 2px 0px; 
+    .notice-bar { margin-top: 2px; margin-bottom: 1em; background: @yellow; padding: 10px 0; box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 2px 0px; 
         
-        h4 { display: inline; color: black; }
+        .notice-container { padding: 0px !important;
+             h4 { display: inline; color: black; }
+            
+        }
+       
     
     	/****
     	.count-badge {
@@ -63,16 +71,50 @@ body {
     		padding-left: 1.5em;
     	}
     	****/
-	
     }
+    
+    // cards
+    .card {  
+        
+        position: relative; 	
+        background-color: #efefef;
+    	box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 2px 0px;
+    	margin-bottom: 1em;
+        
+        h4 { color: #555; }
+        
+        .card-content {  }
+        
+        .card-critical-alert { background: #f5d300; padding: 8px; text-align: center; margin-bottom: 1em; }
+        
+        .card-badge-container { margin-bottom: 1em;
+                
+            .card-badge {  background: #ccc; padding: 8px; margin-bottom: 15px; overflow: hidden; text-align: center;
+                .card-badge-label { text-align: center; display: block; font-weight: normal;  }
+                .card-badge-value { text-align: center; display: block; font-size: 16px; font-weight: bold; }
+                .card-badge-note { text-align: center; display: block; font-weight: normal; font-style: italic; color: #888; margin-top: 10px; }
+            }
+        }
+        
+        .card-related-messages { margin-bottom: 1em; }
+        
+        .nav-card-arrow { height: @line-height-base; position: absolute; right: 0; display: inline-block; top: 50%; margin-top: -@line-height-base / 2; }
+        
+        ul.fina-notice-list { padding-left: 0px; 
+            
+            li { padding-bottom: 8px; }
+            
+        }
+            
+    }
+
+    
     
 }
 
 /*** footer ***/
 
-#app_footer {
-    
-    background: #444; 
+#app_footer { background: #444; 
     
     // navigation bar
     .navigation-bar { min-height: 420px; 
@@ -110,20 +152,27 @@ body {
 }
 
 
+/*** development helpers ***/
+
+.todo { color: red !important; }
+
+
 
 /*** bootstrap overrides ***/
 
 .container { margin-left: 10px; margin-right: 10px; padding-left: 10px; padding-right: 10px; 
     
     // make margins auto at 768px
-    @media only screen and (min-width : 768px) {
+     @media @medium {
         margin-left: auto; margin-right: auto;
     }
 
 }
 
+
 // grid gutters (20px)
 
-.row { margin-left: -10px; margin-right: -10px; }
+.row { margin-left: -10px; margin-right: -10px; 
+    [class*="col-"] { padding-left: 10px; padding-right: 10px; }    
+}
 
-[class*="col-"] { padding-left: 10px; padding-right: 10px; }
