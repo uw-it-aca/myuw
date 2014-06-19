@@ -20,8 +20,8 @@
                 <div class="col-xs-4">    
                     <div class="card-badge">                            
                         <span class="card-badge-label">You have</span>
-                        <span class="card-badge-value">{{ items_loaned }}</span>
-                        <span class="card-badge-label"><a>items out</a></span>
+                        <span class="card-badge-value">{{ items_loaned }} items out</span>
+                        <span class="card-badge-label"><a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount">See account</a></span>
                     </div>
                 </div>
                         
@@ -30,7 +30,7 @@
                         {{#if next_due }}     
                         <span class="card-badge-label">Next item due</span>
                         <span class="card-badge-value">{{ next_due }}</span>
-                        <span class="card-badge-label">&nbsp;</span>
+                        <span class="card-badge-label">in 7 days</span>
                         {{else}}
                         <span class="card-badge-label">No item due</span>
                         {{/if}}
@@ -39,14 +39,11 @@
                         
                 <div class="col-xs-4">
                     <div class="card-badge">  
-                        <span class="card-badge-label">Fines & Fees</span>
+                        <span class="card-badge-label">You owe</span>
                         <span class="card-badge-value">${{ fines }}</span> 
-                        <span class="card-badge-label"><a>Pay online</a></span>
+                        <span class="card-badge-label"><a href="https://p.lib.washington.edu/payfines/">Pay fees</a></span>
                     </div>
                 </div>
-            </div>
-            <div class="card-related-messages"> 
-                <p><a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount">Access Your Library Account</a></p>
             </div>
         </div> 
         {{/with}}
