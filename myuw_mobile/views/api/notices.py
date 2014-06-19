@@ -34,7 +34,7 @@ class Notices(RESTDispatch):
         notice_json = []
 
         for notice in notices:
-            data = notice.json_data()
+            data = notice.json_data(include_abbr_week_month_day_format=True)
             data['id_hash'] = notice.id_hash
             data['is_read'] = notice.is_read
             data['category'] = notice.custom_category
