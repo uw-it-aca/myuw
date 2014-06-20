@@ -23,10 +23,19 @@ class CategoryLinks(RESTDispatch):
             log_data_not_found_response(logger, timer)
             return data_not_found()
 
-        link_data = []
-        for link in links:
-            link_data.append(link.json_data())
+        link_data = self._group_links_by_subcategory(links)
 
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(link_data))
 
+
+    def _group_links_by_subcategory(self, links):
+        link_data = {}
+        for link in links:
+            sub_cat = link.sub_category
+            print sub_cat
+            if sub_cat in link_data:
+                link_data[sub_cat].append(link.json_data())
+            else:
+                link_data[sub_cat] = [link.json_data()]
+        return link_data
