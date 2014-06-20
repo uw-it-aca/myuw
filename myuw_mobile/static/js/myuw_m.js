@@ -10,9 +10,6 @@ $(document).ready(function() {
     // fix for MUWM-368
     var loaded_url = null;
 
-
-
-
     History.Adapter.bind(window,'statechange',function(){
         var history_state = History.getState();
         var data = history_state.data;
@@ -30,7 +27,7 @@ $(document).ready(function() {
         $("#nav_visual_schedule").removeClass("active");
         $("#nav_mylinks").removeClass("active");
         $("#nav_finabala").removeClass("active");
-
+                
         // Page titles are defined in templates/index.html
         if (state === undefined) {
             show_page_from_url();
@@ -102,7 +99,7 @@ $(document).ready(function() {
 
         loaded_url = state_url;
     });
-
+    
     function show_page_from_url() {
         var path = window.location.pathname;
 
@@ -308,6 +305,12 @@ $(document).ready(function() {
     $("#nav_visual_schedule").bind("click", function(ev) {
         WSData.log_interaction("nav_menu_visual_schedule");
     });
+    
+    // email chooser    
+    $("#email_chooser").change(function() {
+        location = this.options[this.selectedIndex].value;
+    });
+    
 });
 
 
