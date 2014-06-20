@@ -8,6 +8,7 @@ from myuw_mobile.views.api.hfs import HfsBalances
 from myuw_mobile.views.api.future_schedule import StudClasScheFutureQuar
 from myuw_mobile.views.api.library import MyLibInfo
 from myuw_mobile.views.api.links import QuickLinks
+from myuw_mobile.views.api.category_links import CategoryLinks
 from myuw_mobile.views.api.other_quarters import RegisteredFutureQuarters
 from myuw_mobile.views.api.textbook import TextbookCurQuar
 from myuw_mobile.views.api.weekly import Weekly
@@ -28,6 +29,7 @@ urlpatterns = patterns('myuw_mobile.views',
     url(r'^api/v1/schedule/(?P<year>\d{4}),(?P<quarter>[a-z]+)(?P<summer_term>[-,abterm]*)$',
         StudClasScheFutureQuar().run),
     url(r'^api/v1/links/$', QuickLinks().run),
+    url(r'^api/v1/categorylinks/(?P<category>.*?)$', CategoryLinks().run),
     url(r'^api/v1/person/(?P<regid>[0-9A-F]{32})$', InstructorContact().run),
     url(r'^api/v1/finance/$', Finance().run),                   
     url(r'^api/v1/hfs/$', HfsBalances().run),
