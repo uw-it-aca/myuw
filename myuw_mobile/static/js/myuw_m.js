@@ -308,12 +308,7 @@ $(document).ready(function() {
     
     // email chooser    
     $("#email_chooser").bind("change", function(ev) {
-        //window.location = $(this).find("option:selected").val();
-        
-        var url = $(this).find("option:selected").val();
-        var urltext = $(this).find("option:selected").text();
-        $("#email_link").attr("href", url);
-        $("#email_link").text(urltext);    
+        window.location = $(this).find("option:selected").val();
     });
     
 });
