@@ -112,6 +112,7 @@ var Notices = {
                 for (j = 0; j < notice['attributes'].length; j += 1){
                     if (notice['attributes'][j]['name'] === "Date"){
                         date = notice['attributes'][j]['value'].replace(/-/g, "/");
+                        date = date.replace("+00:00", " GMT");
                         date = new Date(date);
 
                         if (today.getDate() === date.getDate()) {
