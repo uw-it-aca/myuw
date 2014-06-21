@@ -55,7 +55,14 @@ var VisualScheduleCard = {
                         curriculum: section.curriculum_abbr,
                         course_number: section.course_number,
                         section_id: section.section_id,
-                        section_index: index
+                        section_index: index,
+                        building_tbd: meeting.building_tbd,
+                        building: meeting.building,
+                        building_name: meeting.building_name,
+                        room_tbd: meeting.room_tbd,
+                        room: meeting.room,
+                        latitude: meeting.latitude,
+                        longitude: meeting.longitude
                     };
 
                     var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
@@ -185,6 +192,13 @@ var VisualScheduleCard = {
 
             return false;
         });
+        
+        $(".show_map").on("click", function(ev) {
+            var course_id = ev.currentTarget.getAttribute("rel");
+            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
+            var building = ev.currentTarget.getAttribute("rel");
+            building = building.replace(/[^a-z0-9]/gi, '_');
+            WSData.log_interaction("show_map_from_visual_card_"+building, term);
+        });
     },
-
 };
