@@ -9,6 +9,7 @@ WSData = {
     _instructor_data: {},
     _link_data: null,
     _oquarter_data: null,
+    _category_link_data: {},
 
     book_data: function() {
         return WSData._book_data;
@@ -71,6 +72,9 @@ WSData = {
         return WSData._oquarter_data;
     },
 
+    category_link_data: function(category) {
+        return WSData._category_link_data[category];
+    },
 
     tuition_data: function() {
         return WSData._tuition_data;
@@ -412,6 +416,30 @@ WSData = {
                     }, 0);
             }
         },
+
+    fetch_category_links: function(callback, args) {
+        var category = args[0];
+        if (WSData._category_link_data[category] === undefined) {
+            $.ajax({
+                    url: "/mobile/api/v1/categorylinks/" + category,
+                    dataType: "JSON",
+                    type: "GET",
+                    accepts: {html: "application/json"},
+                    success: function(results) {
+                        WSData._category_link_data[category] = results;
+                        callback.apply(null, args);
+                        },
+                    error: function(xhr, status, error) {
+                        showError();
+                        }
+                    });
+              }
+        else {
+            window.setTimeout(function() {
+                    callback.apply(null, args);
+                    }, 0);
+            }
+    },
 
     save_links: function(links) {
         var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;

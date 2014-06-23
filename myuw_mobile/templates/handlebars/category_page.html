@@ -5,35 +5,14 @@
 
         <div style="margin-top:1em;"><a href="/mobile/landing/">Back</a></div>
         
-        <h1>Category</h1>
-        
-        <h2>Sub Category</h2>
-        <ul>
-            <li>link</li>
-            <li>link</li>
-            <li>link</li>
-            <li>link</li>
-            <li>link</li>
-        </ul>
-        
-        <h2>Sub Category</h2>
-        <ul>
-            <li>link</li>
-            <li>link</li>
-            <li>link</li>
-            <li>link</li>
-            <li>link</li>
-        </ul>
-        
-        <h2>Sub Category</h2>
-        <ul>
-            <li>link</li>
-            <li>link</li>
-            <li>link</li>
-            <li>link</li>
-            <li>link</li>
-        </ul>
-    
+        <h1>{{category_name}}</h1>
+        {{ #each link_data }}
+        <h2>{{ subcategory }}</h2>
+            {{ #each links }}
+                <ul>
+                    <li> <a href="{{ url }}">{{ title }}</a></li>
+                </ul>
+            {{ /each }}
+        {{ /each }}
     </div>
-    
     {% endtplhandlebars %}

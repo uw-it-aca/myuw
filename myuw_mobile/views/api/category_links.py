@@ -12,13 +12,13 @@ class CategoryLinks(RESTDispatch):
     Performs actions on resource at /api/v1/categorylinks/.
     """
 
-    def GET(self, request, category):
+    def GET(self, request, category_id):
         """
         GET returns 200 with links for the given category
         """
         timer = Timer()
         logger = logging.getLogger('views.api.CategoryLinks.GET')
-        links = get_links_for_category(category)
+        links = get_links_for_category(category_id)
         if not links:
             log_data_not_found_response(logger, timer)
             return data_not_found()
@@ -26,16 +26,23 @@ class CategoryLinks(RESTDispatch):
         link_data = self._group_links_by_subcategory(links)
 
         log_success_response(logger, timer)
-        return HttpResponse(json.dumps(link_data))
+        return HttpResponse(json.dumps({"link_data": link_data,
+                                        "category_name": links[0].category_name}))
 
 
     def _group_links_by_subcategory(self, links):
-        link_data = {}
+        subcategory_data = {}
+        link_output = []
         for link in links:
             sub_cat = link.sub_category
-            print sub_cat
-            if sub_cat in link_data:
-                link_data[sub_cat].append(link.json_data())
+            
+            if sub_cat in subcategory_data:
+                subcategory_data[sub_cat]['links'].append(link.json_data())
             else:
-                link_data[sub_cat] = [link.json_data()]
-        return link_data
+                subcategory_data[sub_cat] = {}
+                subcategory_data[sub_cat]['links'] = [link.json_data()]
+                subcategory_data[sub_cat]['subcategory'] = sub_cat
+
+        for subcat_group in subcategory_data:
+               link_output.append(subcategory_data[subcat_group])
+        return link_output

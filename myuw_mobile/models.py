@@ -107,7 +107,8 @@ class CategoryLinks(models.Model):
     url = models.CharField(max_length=150)
     title = models.CharField(max_length=150)
     campus = models.CharField(max_length=8, null=True)
-    category = models.CharField(max_length=80)
+    category_id = models.CharField(max_length=80)
+    category_name = models.CharField(max_length=80)
     sub_category = models.CharField(max_length=80)
 
     def json_data(self):

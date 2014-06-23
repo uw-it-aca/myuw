@@ -92,7 +92,7 @@ $(document).ready(function() {
             document.title = window.page_titles["notices"];
         }
         else if (state === "category_page") {
-            Category.show_category_page();
+            Category.show_category_page(data.category);
             document.title = window.page_titles["category_page"];
         }
 
@@ -244,9 +244,12 @@ $(document).ready(function() {
             },  "", "/mobile/notices/");
         }
         else if (path.match(/^\/mobile\/category/)) {
+            var matches = path.match(/^\/mobile\/category\/([a-z]+)/),
+                category =  (matches ? matches[1] : "");
             hist.replaceState({
                 state: "category_page",
-            },  "", "/mobile/category/");
+                category: category,
+            },  "", "/mobile/category/" + category);
         }
         else {
             // Just fall back to the course list?
