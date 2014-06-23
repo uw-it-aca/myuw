@@ -139,27 +139,16 @@ body {
 #app_footer { background: #444; 
     
     // navigation bar
-    .navigation-bar { min-height: 420px; 
+    .navigation-bar { min-height: 420px; padding: 0;
         
-        .navigation-list {  list-style:none;padding-left:0;margin-top:2.5em; text-align: center;
+        .navigation-list {  list-style:none; padding-left:0; margin-top:15px; text-align: center;
     
-            .navigation-item { 
+            .navigation-item { background:#333; height:100px; margin-bottom:1em; display: block; position: relative;
+                                    
+                &:hover { background: #555; }
                 
-                a { background:#333; height:100px; margin-bottom:1em; padding:00px;
-                    
-                    /* for browsers that support flexbox, display text vertically centered */
-                    display: -webkit-flexbox;
-                    display: -ms-flexbox;
-                    display: -webkit-flex;
-                    display: flex;
-                    -webkit-flex-align: center;
-                    -ms-flex-align: center;
-                    -webkit-align-items: center;
-                    align-items: center;  
-                    justify-content: center;
-                    
-                    &:hover { background: #555; }
-                }
+                .navigation-item-text { position: absolute; width: 100%; top: 50%; left: 0; margin-top: -10px; }
+
             }
         }
         
