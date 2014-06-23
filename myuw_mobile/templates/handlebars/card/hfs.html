@@ -1,26 +1,17 @@
 {% load templatetag_handlebars %}
-    {% tplhandlebars "hfs_card_content" %}
+{% tplhandlebars "hfs_card_content" %}
 {{#if hfs_data}}
-    {{#with hfs_data}}
-    
-    
     <div class="row card">
          <div class="col-xs-11">
          
             <h3>Husky Card &amp; Dining</h3>
             <div class="row card-badge-container">
                 
-                <!-- TODO: logic based on badges displayed
-                    if all 3 badges - 6-6-12 (dining will have 12)
-                    if only 2 badges - 6-6
-                    if only 1 badge - 12
-                -->
-                
-                {{#if student_husky_card}}
-                <div class="col-xs-6">
+                {{#if hfs_data.student_husky_card}}
+                <div class={{#if is_only_one_card}}"col-xs-12"{{else}}"col-xs-6"{{/if}}>
                     
                     <div class="card-badge">
-                        {{#with student_husky_card}}
+                        {{#with hfs_data.student_husky_card}}
                         <span class="card-badge-label">You have</span> 
                         <span class="card-badge-value">${{ balance }}</span>
                         <span class="card-badge-label">in Student Husky</span>
@@ -31,11 +22,11 @@
                 </div>
                 {{/if}}
                 
-                {{#if employee_husky_card}}
-                <div class="col-xs-6">
+                {{#if hfs_data.employee_husky_card}}
+                <div class={{#if is_only_one_card}}"col-xs-12"{{else}}"col-xs-6"{{/if}}>
                     
                     <div class="card-badge">
-                        {{#with employee_husky_card}}
+                        {{#with hfs_data.employee_husky_card}}
                         <span class="card-badge-label">You have</span> 
                         <span class="card-badge-value">${{ balance }}</span>
                         <span class="card-badge-label">in Employee Husky</span>
@@ -46,11 +37,11 @@
                 </div>
                 {{/if}}
                 
-                {{#if resident_dining}}
-                <div class="col-xs-12">
+                {{#if hfs_data.resident_dining}}
+                <div class={{#unless is_total_two_cards}}"col-xs-12"{{else}}"col-xs-6"{{/unless}}>
 
                     <div class="card-badge">
-                        {{#with resident_dining}}
+                        {{#with hfs_data.resident_dining}}
                         <span class="card-badge-label">You have</span> 
                         <span class="card-badge-value">${{ balance }}</span>
                         <span class="card-badge-label">in Resident Dining</span>
@@ -63,15 +54,13 @@
                 
             </div>
             
-            <p><a class="todo" href="{{ add_funds_url }}">Add funds to your accounts</a></p>
-            <!-- TODO: this link is not wired up -->
+            <p><a href="{{ student_husky_card.add_funds_url }}">Add funds to your accounts</a></p>
             
          </div>
          <div class="col-xs-1 nav-card-arrow" style="text-align:center;">
-            <a><i class="fa fa-chevron-right"></i></a>
+            <a href="{{ student_husky_card.add_funds_url }}"><i class="fa fa-chevron-right"></i></a>
         </div>
         
     </div>
-    {{/with}}
 {{/if}}
-    {% endtplhandlebars %}
+{% endtplhandlebars %}
