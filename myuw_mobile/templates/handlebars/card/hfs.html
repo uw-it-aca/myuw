@@ -42,7 +42,7 @@
                             {{/if}}
                             
                             {{#if hfs_data.resident_dining}}
-                            <div class={{#unless is_total_two_cards}}"col-xs-12"{{else}}"col-xs-6"{{/unless}}>
+                            <div class={{#unless is_total_two_cards}}"col-xs-12"{{else}}"col-xs-6"{{/unless}} {{#unless is_total_two_cards}}style="margin-top:10px;"{{/unless}}>
             
                                 <div class="card-badge">
                                     {{#with hfs_data.resident_dining}}
