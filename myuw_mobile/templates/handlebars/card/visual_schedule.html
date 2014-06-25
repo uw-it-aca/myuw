@@ -1,93 +1,95 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "visual_schedule_card_content" %}
 {{#if total_sections}}
-<div class="row card">
+<div class="row">
     <div class="col-xs-12">
+        <div class="card">
+        
+            <h3 id="quarter-info">
+                {{ucfirst quarter}} {{year}} Courses
+                {{#if summer_term}}
+                <br /><small>{{summer_term}}</small>
+                {{/if}}
+            </h3>
     
-        <h3 id="quarter-info">
-            {{ucfirst quarter}} {{year}} Courses
-            {{#if summer_term}}
-            <br /><small>{{summer_term}}</small>
-            {{/if}}
-        </h3>
-
-
-        <div class="visual-schedule {{schedule_hours_class}}" >
-		
-    	    <div class="time-bar day-col2 hours-{{total_hours}} clearfix ">
+    
+            <div class="visual-schedule {{schedule_hours_class}}" >
     		
-    	        {{#each display_hours}}
-    	        <div class="hour-label" style="position:absolute;top:{{time_percentage position ../start_time ../end_time }}%;"><p>{{format_schedule_hour hour}}</p>
-    	        </div>
-    	        {{/each}}
-    	    </div>
+        	    <div class="time-bar day-col2 hours-{{total_hours}} clearfix ">
+        		
+        	        {{#each display_hours}}
+        	        <div class="hour-label" style="position:absolute;top:{{time_percentage position ../start_time ../end_time }}%;"><p>{{format_schedule_hour hour}}</p>
+        	        </div>
+        	        {{/each}}
+        	    </div>
+        
+        	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+        	        <div class="day-label">MON</div>
+        	        <div class="day-col hours-{{total_hours}}">
+        	            {{ show_days_meetings monday start_time end_time }}
+        	        </div>
+        	    </div>
+        	
+        	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+        	        <div class="day-label">TUE</div>
+        	        <div class="day-col hours-{{total_hours}}">
+        	            {{ show_days_meetings tuesday start_time end_time }}
+        	        </div>
+        	    </div>
+        	       
+        	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+        	        <div class="day-label">WED</div>
+        	        <div class="day-col hours-{{total_hours}}">
+        	            {{ show_days_meetings wednesday start_time end_time }}
+        	        </div>
+        	    </div>
+        	
+        	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+        	        <div class="day-label">THU</div>
+        	        <div class="day-col hours-{{total_hours}}">
+        	            {{ show_days_meetings thursday start_time end_time }}
+        	        </div>
+        	    </div>
+        	
+        	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+        	        <div class="day-label">FRI</div>
+        	        <div class="day-col hours-{{total_hours}}">
+        	            {{ show_days_meetings friday start_time end_time }}
+        	        </div>
+        	    </div>
+        	
+        	    {{#if has_6_days}}
+        	    <div class="six-day">
+        	        <div class="day-label">SAT</div>
+        	        <div class="day-col hours-{{total_hours}}">
+        	            {{ show_days_meetings saturday start_time end_time }}
+        	        </div>
+        	    </div>
+        	    {{/if}}
+                   
+            </div>
     
-    	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
-    	        <div class="day-label">MON</div>
-    	        <div class="day-col hours-{{total_hours}}">
-    	            {{ show_days_meetings monday start_time end_time }}
-    	        </div>
-    	    </div>
-    	
-    	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
-    	        <div class="day-label">TUE</div>
-    	        <div class="day-col hours-{{total_hours}}">
-    	            {{ show_days_meetings tuesday start_time end_time }}
-    	        </div>
-    	    </div>
-    	       
-    	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
-    	        <div class="day-label">WED</div>
-    	        <div class="day-col hours-{{total_hours}}">
-    	            {{ show_days_meetings wednesday start_time end_time }}
-    	        </div>
-    	    </div>
-    	
-    	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
-    	        <div class="day-label">THU</div>
-    	        <div class="day-col hours-{{total_hours}}">
-    	            {{ show_days_meetings thursday start_time end_time }}
-    	        </div>
-    	    </div>
-    	
-    	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
-    	        <div class="day-label">FRI</div>
-    	        <div class="day-col hours-{{total_hours}}">
-    	            {{ show_days_meetings friday start_time end_time }}
-    	        </div>
-    	    </div>
-    	
-    	    {{#if has_6_days}}
-    	    <div class="six-day">
-    	        <div class="day-label">SAT</div>
-    	        <div class="day-col hours-{{total_hours}}">
-    	            {{ show_days_meetings saturday start_time end_time }}
-    	        </div>
-    	    </div>
-    	    {{/if}}
-               
+            <!-- begin - if there are meetings with times to be arranged -->  
+            {{#if courses_meeting_tbd }}
+            <div class="courseTBD">
+                <h6>Courses with meeting times to be determined:</h6>
+                {{#each courses_meeting_tbd }}
+                <a href="/mobile/visual/{{section_index}}" class="show_section_details {{curriculum}}_{{course_number}}{{section_id}}" rel="{{section_index}}"> 
+        	    <div class="c{{color_id}} visual-course pull-left"> 
+        	        <div class="visual-course-id">{{curriculum}} {{course_number}}{{section_id}}</div> 
+        	    </div> 
+                </a>
+                {{/each}}
+            </div>
+            {{/if}}
+            <!-- end - if there are meetings with times to be arranged --> 
+            
+            <div>
+                <p><a class="show_textbooks" href="/mobile/textbooks/{{term}}" title="Textbooks"><i class="icon-book"></i> View Textbooks</a></p>
+                <p><a class="show_finalexams" href="/mobile/final_exams/{{term}}" title="Final Exam Schedule"><i class="icon-calendar"></i> Final Exam Schedule</a></p>
+            </div>
+        
         </div>
-
-    <!-- begin - if there are meetings with times to be arranged -->  
-    {{#if courses_meeting_tbd }}
-    <div class="courseTBD">
-        <h6>Courses with meeting times to be determined:</h6>
-        {{#each courses_meeting_tbd }}
-        <a href="/mobile/visual/{{section_index}}" class="show_section_details {{curriculum}}_{{course_number}}{{section_id}}" rel="{{section_index}}"> 
-	    <div class="c{{color_id}} visual-course pull-left"> 
-	        <div class="visual-course-id">{{curriculum}} {{course_number}}{{section_id}}</div> 
-	    </div> 
-        </a>
-        {{/each}}
-    </div>
-    {{/if}}
-    <!-- end - if there are meetings with times to be arranged --> 
-    
-    <div>
-        <p><a class="show_textbooks" href="/mobile/textbooks/{{term}}" title="Textbooks"><i class="icon-book"></i> View Textbooks</a></p>
-        <p><a class="show_finalexams" href="/mobile/final_exams/{{term}}" title="Final Exam Schedule"><i class="icon-calendar"></i> Final Exam Schedule</a></p>
-    </div>
-    
     </div>
 </div>
 

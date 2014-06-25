@@ -2,51 +2,55 @@
     {% tplhandlebars "library_card_content" %}
     
     {{#if mylibaccount}}
-    <div class="row card">
+    <div class="row">
     
-    
-        
         {{#with mylibaccount}}
         <div class="col-xs-12">
             
-            <h3>My Library Account</h3>
-        
-            <div class="card-critical-alert">
-                <i class="fa fa-exclamation-circle"></i> Requested items ready: {{ holds_ready }}                                   
-            </div>
-    
-            <div class="row card-badge-container">
+            <div class="card">
             
-                <div class="col-xs-4">    
-                    <div class="card-badge">                            
-                        <span class="card-badge-label">You have</span>
-                        <span class="card-badge-value">{{ items_loaned }} items out</span>
-                        <span class="card-badge-label"><a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount">See account</a></span>
+                <h3>My Library Account</h3>
+            
+                <div class="card-critical-alert">
+                    <i class="fa fa-exclamation-circle"></i> Requested items ready: {{ holds_ready }}                                   
+                </div>
+        
+                <div class="row card-badge-container">
+            
+                    <div class="col-xs-4">    
+                        <div class="card-badge">                            
+                            <span class="card-badge-label">You have</span>
+                            <span class="card-badge-value">{{ items_loaned }} items out</span>
+                            <span class="card-badge-label"><a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount">See account</a></span>
+                        </div>
+                    </div>
+                            
+                    <div class="col-xs-4">
+                        <div class="card-badge">  
+                            {{#if next_due }}     
+                            <span class="card-badge-label">Next item due</span>
+                            <span class="card-badge-value">{{ next_due }}</span>
+                            <span class="card-badge-label">in 7 days</span>
+                            {{else}}
+                            <span class="card-badge-label">No item due</span>
+                            {{/if}}
+                        </div>
+                    </div>
+                            
+                    <div class="col-xs-4">
+                        <div class="card-badge">  
+                            <span class="card-badge-label">You owe</span>
+                            <span class="card-badge-value">${{ fines }}</span> 
+                            <span class="card-badge-label"><a href="https://p.lib.washington.edu/payfines/">Pay fees</a></span>
+                        </div>
                     </div>
                 </div>
-                        
-                <div class="col-xs-4">
-                    <div class="card-badge">  
-                        {{#if next_due }}     
-                        <span class="card-badge-label">Next item due</span>
-                        <span class="card-badge-value">{{ next_due }}</span>
-                        <span class="card-badge-label">in 7 days</span>
-                        {{else}}
-                        <span class="card-badge-label">No item due</span>
-                        {{/if}}
-                    </div>
-                </div>
-                        
-                <div class="col-xs-4">
-                    <div class="card-badge">  
-                        <span class="card-badge-label">You owe</span>
-                        <span class="card-badge-value">${{ fines }}</span> 
-                        <span class="card-badge-label"><a href="https://p.lib.washington.edu/payfines/">Pay fees</a></span>
-                    </div>
-                </div>
+            
             </div>
+            
         </div> 
         {{/with}}
+        
     </div>                   
     {{/if}}
 

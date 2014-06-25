@@ -1,61 +1,65 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "reg_status_card" %}
     
-    <div class="row card">
+    <div class="row">
         
         <div class="col-xs-12">
-        
-            <h3>Registration</h3>
             
-            <div class="card-critical-alert">
-                <i class="fa fa-exclamation-circle"></i> <span class="todo">3</span> Holds <a href="#" class="todo">Show details</a><!-- this should expand the div with the message tagged tuition_card_past_due in it --> 
-            </div>
+            <div class="card">
+            
+            
+                <h3>Registration</h3>
                 
-            <div class="est-reg-date">
-                <p class="todo">[ put here: est_reg_date ]</p>
-                <p>Your estimated <a href='http://www.washington.edu/students/reg/2014cal.html#Q3'>Period I Priority Registration Date</a> for spring quarter is <b>May 1, 2014</b>. Registration begins at <b>6:00 a.m.</b></p>
-                <p><strong><a href="#" class="todo">Register now</a></strong></p>
-            </div>     
-                
-            <div style="background:#ccc;">    
-                <h4>Holds</h4>
-                <div class="reg-holds">
-                    <p class="todo">[ put here: reg_card_holds ]</p>
-                    <p>The following offices have placed <a href='http://www.washington.edu/students/reg/regrest.html#Q2'>administrative holds</a> on your academic record which will prevent further registration and/or ordering official transcripts: <br/><b>Type:</b> Registration/Transcript <b>Office:</b> Library Account Services, Suzzallo, 1st Floor 206-543-1174 <br/><b>Type:</b> Registration/Transcript <b>Office:</b> Student Fiscal Services, 129 Schmitz, 206-543-4694 <br/><b>Type:</b> Registration  <b>Office:</b> Financial Aid Office, 105 Schmitz Hall, 206-543-6101<br /></p>
-                    <p>You currently have a <a href='http://www.washington.edu/students/reg/regpol.html#progress'>satisfactory progress registration block</A> on your academic record which will prevent further registration in any quarter but summer. </p> 
-                    <p>Online ISS information session required before registration<br/>All new international students are required to complete the <a href='https://catalysttools.washington.edu/webq/survey/torre/79003'>International Student Services(ISS) Online Information Session</a> before registering for classes. You will need your UW NetID and password to access the online ISS information session. After you arrive on campus the International Student Services(ISS) must collect copies of your immigration documents.</p>
+                <div class="card-critical-alert">
+                    <i class="fa fa-exclamation-circle"></i> <span class="todo">3</span> Holds <a href="#" class="todo">Show details</a><!-- this should expand the div with the message tagged tuition_card_past_due in it --> 
                 </div>
-            </div>
-            
-            <h4>Registration Status Messages</h4>
-            <p class="todo">[ put here: reg_card_messages ] </p>
-            <ul class="reg-notice-list">
-              {{ #each reg_notices }}
-                  <li>
-                    {{{ notice_content }}}
-                  </li>
-              {{ /each }}
-            </ul>
-            
-            
-            <div style="border-top:solid 1px #ddd; text-align:center"><a id="reg_show_resources" class="todo" style="display:block; line-height:40px;">Show more</a></div>
-            <div id="reg_resources" style="background:#ccc;">
-                <h4>Registration Resources</h4>
-                <ul style="padding-left:0;" class="todo">
-                    <li><a>Time Schedule</a></li>
-                    <li><a>Tacoma Time Schedule Quick Search</a></li>
-                    <li><a>Registration</a></li>
+                    
+                <div class="est-reg-date">
+                    <p class="todo">[ put here: est_reg_date ]</p>
+                    <p>Your estimated <a href='http://www.washington.edu/students/reg/2014cal.html#Q3'>Period I Priority Registration Date</a> for spring quarter is <b>May 1, 2014</b>. Registration begins at <b>6:00 a.m.</b></p>
+                </div>     
+                    
+                <div style="background:#ccc;">    
+                    <h4>Holds</h4>
+                    <div class="reg-holds">
+                        <p class="todo">[ put here: reg_card_holds ]</p>
+                        <p>The following offices have placed <a href='http://www.washington.edu/students/reg/regrest.html#Q2'>administrative holds</a> on your academic record which will prevent further registration and/or ordering official transcripts: <br/><b>Type:</b> Registration/Transcript <b>Office:</b> Library Account Services, Suzzallo, 1st Floor 206-543-1174 <br/><b>Type:</b> Registration/Transcript <b>Office:</b> Student Fiscal Services, 129 Schmitz, 206-543-4694 <br/><b>Type:</b> Registration  <b>Office:</b> Financial Aid Office, 105 Schmitz Hall, 206-543-6101<br /></p>
+                        <p>You currently have a <a href='http://www.washington.edu/students/reg/regpol.html#progress'>satisfactory progress registration block</A> on your academic record which will prevent further registration in any quarter but summer. </p> 
+                        <p>Online ISS information session required before registration<br/>All new international students are required to complete the <a href='https://catalysttools.washington.edu/webq/survey/torre/79003'>International Student Services(ISS) Online Information Session</a> before registering for classes. You will need your UW NetID and password to access the online ISS information session. After you arrive on campus the International Student Services(ISS) must collect copies of your immigration documents.</p>
+                    </div>
+                </div>
+                
+                <p><strong><a href="#" class="todo">Register now</a></strong></p>
+                
+                <h4>Registration Status Messages</h4>
+                <p class="todo">[ put here: reg_card_messages ] </p>
+                <ul class="reg-notice-list">
+                  {{ #each reg_notices }}
+                      <li>
+                        {{{ notice_content }}}
+                      </li>
+                  {{ /each }}
                 </ul>
                 
-                <h4>Academic Planning Resources</h4>
-                <ul style="padding-left:0;" class="todo">
-                    <li><a>MyPlan</a></li>
-                    <li><a>DARS</a></li>
-                    <li><a>Academic Advising</a></li>
-                </ul>
-            </div>
+                
+                <div id="reg_resources" style="background:#ccc;">
+                    <h4>Registration Resources</h4>
+                    <ul style="padding-left:0;" class="todo">
+                        <li><a>Time Schedule</a></li>
+                        <li><a>Tacoma Time Schedule Quick Search</a></li>
+                        <li><a>Registration</a></li>
+                    </ul>
+                    
+                    <h4>Academic Planning Resources</h4>
+                    <ul style="padding-left:0;" class="todo">
+                        <li><a>MyPlan</a></li>
+                        <li><a>DARS</a></li>
+                        <li><a>Academic Advising</a></li>
+                    </ul>
+                </div>
+                <div style="border-top:solid 1px #ddd; text-align:center"><a id="reg_show_resources" class="todo" style="display:block; line-height:40px;">Show more/less</a></div>
             
+            </div>
         </div>
-        
     </div>
     {% endtplhandlebars %}

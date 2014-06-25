@@ -1,47 +1,53 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "tuition_card" %}
-    <div class="row card">
-        
-        <div class="col-xs-11">
-            
-            <h3>Tuition Balance</h3>
-                     
-            <!-- if tuition due date has passed and balance is greater than 0 --> 
-            <div class="card-critical-alert">
-                <i class="fa fa-exclamation-circle"></i> Your tuition is past due. <a>Show details</a><!-- this should expand the div with the message tagged tuition_card_past_due in it --> 
-            </div>
-            <!-- end if --> 
-            <div class="row card-badge-container">
-                <div class="col-xs-6">
-                    <div class="card-badge">
-                        <span class="card-badge-label">You owe</span>
-                        <span class="card-badge-value">${{ tuition_accbalance }}</span>
-                        <span class="card-badge-label"><a>Pay tuition</a></span>
+    <div class="row ">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="row">
+                
+                    <div class="col-xs-11">
+                        
+                        <h3>Tuition Balance</h3>
+                                 
+                        <!-- if tuition due date has passed and balance is greater than 0 --> 
+                        <div class="card-critical-alert">
+                            <i class="fa fa-exclamation-circle"></i> Your tuition is past due. <a>Show details</a><!-- this should expand the div with the message tagged tuition_card_past_due in it --> 
+                        </div>
+                        <!-- end if --> 
+                        <div class="row card-badge-container">
+                            <div class="col-xs-6">
+                                <div class="card-badge">
+                                    <span class="card-badge-label">You owe</span>
+                                    <span class="card-badge-value">${{ tuition_accbalance }}</span>
+                                    <span class="card-badge-label"><a>Pay tuition</a></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="card-badge">
+                                    <span class="card-badge-label">Tuition due</span>
+                                    <span class="card-badge-value"> {{ tuition_date }}</span> <!-- this is tuition_due_date but only the actual date -->
+                                    <span class="card-badge-label">in {{ tuition_date_offset }} days</span><!-- var needed here. this could be removed if it's very complicated for some reason. -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-related-messages"> 
+                            <p><a>Set up third-party access</a> for parents or others.</p>
+                            <p><a>Get your 1098-T tax form</a></p><!-- this message doesn't exist yet, but Ammy said it should be here --> 
+                            {{ #each pce_tuition_dup }}
+                            <p> {{{ this.notice_content }}}</p>
+                            {{ /each }}
+                        </div>                   
+                                 
+                   </div>
+                   
+                   <div class="col-xs-1 nav-card-arrow" style="text-align:center;">
+                        <a><i class="fa fa-chevron-right"></i></a>
                     </div>
-                </div>
-                <div class="col-xs-6">
-                    <div class="card-badge">
-                        <span class="card-badge-label">Tuition due</span>
-                        <span class="card-badge-value"> {{ tuition_date }}</span> <!-- this is tuition_due_date but only the actual date -->
-                        <span class="card-badge-label">in {{ tuition_date_offset }} days</span><!-- var needed here. this could be removed if it's very complicated for some reason. -->
-                    </div>
+      
                 </div>
             </div>
-            
-            <div class="card-related-messages"> 
-                <p><a>Set up third-party access</a> for parents or others.</p>
-                <p><a>Get your 1098-T tax form</a></p><!-- this message doesn't exist yet, but Ammy said it should be here --> 
-                {{ #each pce_tuition_dup }}
-                <p> {{{ this.notice_content }}}</p>
-                {{ /each }}
-            </div>                   
-                     
-       </div>
-       
-       <div class="col-xs-1 nav-card-arrow" style="text-align:center;">
-            <a><i class="fa fa-chevron-right"></i></a>
-        </div>
-            
+       </div>      
     </div>   
     
     {% endtplhandlebars %}
