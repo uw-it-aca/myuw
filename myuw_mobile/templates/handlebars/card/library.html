@@ -16,7 +16,7 @@
                 </div>
         
                 <div class="row card-badge-container">
-                    <div class="col-xs-4">    
+                    <div class="col-xs-6">    
                         <div class="card-badge">                            
                             <span class="card-badge-label">You have</span>
                             <span class="card-badge-value">{{ items_loaned }} items out</span>
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                             
-                    <div class="col-xs-4">
+                    <div class="col-xs-6">
                         <div class="card-badge">  
                             {{#if next_due }}     
                             <span class="card-badge-label">Next item due</span>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                         
-                    <div class="col-xs-4">
+                    <div class="col-xs-12" style="margin-top:10px;">
                         <div class="card-badge">  
                             <span class="card-badge-label">You owe</span>
                             <span class="card-badge-value">${{ formatPrice fines }}</span> 
