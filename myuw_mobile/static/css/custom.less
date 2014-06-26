@@ -1114,7 +1114,7 @@ abbr[title] {
 /*
 .six-day:last-child, .five-day:last-child {
 	border-right: none;
-
+	
 }*/
 .six-day:first-child,
 seven-day:first-child,
@@ -1228,6 +1228,15 @@ seven-day:first-child,
   border-bottom: 2px groove #eeeeee;
   //margin-top: -2px;
 }
+.visual-scehdule-carousel {
+	overflow-x: scroll; 
+	overflow-y: hidden; 
+	height: 30em; 
+	width:auto; 
+	border: 1px solid red; 
+	white-space: nowrap;
+}
+
 .visual-course {
   width: 100%;
   -webkit-border-radius: 2px;
@@ -1241,12 +1250,27 @@ seven-day:first-child,
 .visual-info {
   display: table-cell;
   vertical-align: middle;
+  text-align: left;
 }
 .visual-course-id {
-	font-size: smaller;
+	line-height: .9;
+	opacity: .6;
+	position: absolute;
+	bottom: 0;
+	text-align: right;
+	right: 0;
+	font-weight: bold;
 }
 .visual-location {
 	font-size: smaller;
+	position: absolute;
+	top: 0px;
+	background-color: white;
+	opacity: .7;
+	color: #555;
+	a { 
+			color: #0088cc;
+	}
 }
 .show_section_details {
   font-size: 12px;
