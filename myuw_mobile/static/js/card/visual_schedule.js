@@ -1,11 +1,11 @@
 var VisualScheduleCard = {
-    // This is the height of the days bar... needed for positioning math below
-    day_label_offset: 0,
 
     // The course_index will be given when a modal is shown.
     render: function(course_data, term, course_index) {
         VisualScheduleCard.shown_am_marker = false;
         Modal.hide();
+        var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+
         var visual_data = {
             total_sections: course_data.sections.length,
             year: course_data.year, 
@@ -49,11 +49,13 @@ var VisualScheduleCard = {
                     }
 
                     var meeting_info = {
+                        is_meeting: true,
                         start: start_minutes,
                         end: end_minutes,
                         color_id: section.color_id,
                         curriculum: section.curriculum_abbr,
                         course_number: section.course_number,
+                        term: term,
                         section_id: section.section_id,
                         section_index: index,
                         building_tbd: meeting.building_tbd,
@@ -65,7 +67,6 @@ var VisualScheduleCard = {
                         longitude: meeting.longitude
                     };
 
-                    var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
                     var day_index = 0;
                     for (day_index = 0; day_index < days.length; day_index++) {
                         var day = days[day_index];
@@ -74,7 +75,6 @@ var VisualScheduleCard = {
                             if (day === "saturday") {
                                 visual_data.has_6_days = true;
                             }
-                            meeting_info.term = term;
                             visual_data[day].push(meeting_info);
                         }
                     }
@@ -130,6 +130,40 @@ var VisualScheduleCard = {
             visual_data.schedule_hours_class = "twelve-plus";
         }
 
+        var day_index;
+        var weekends = days.length;
+        if (!visual_data.has_6_days) {
+            weekends = 5
+        }
+        for (day_index = 0; day_index < weekends; day_index++) {
+            var day = days[day_index];
+            var i = 0;
+            while (i < visual_data[day].length) {
+                var top = VisualScheduleCard.get_scaled_percentage(visual_data[day][i].start, visual_data.start_time, visual_data.end_time);
+                var height =  VisualScheduleCard.get_scaled_percentage(visual_data[day][i].end, visual_data.start_time, visual_data.end_time) - top;
+                visual_data[day][i].top=top;
+                visual_data[day][i].height=height;
+                i += 1;
+            }
+
+            var start_at_hr = true;
+            var position_start = visual_data.start_time;
+            while (position_start < visual_data.end_time) {
+                var position_end = position_start + 30;
+                var top = VisualScheduleCard.get_scaled_percentage(position_start, visual_data.start_time, visual_data.end_time);
+                var height =  VisualScheduleCard.get_scaled_percentage(position_end, visual_data.start_time, visual_data.end_time) - top;
+                visual_data[day].push({
+                    is_meeting: false,
+                    start_at_hr: start_at_hr,
+                    top:top,
+                    height:height, 
+                    start: position_start,
+                    end: position_end});
+                position_start = position_end;
+                start_at_hr = !start_at_hr;
+            }
+        }
+
         source   = $("#visual_schedule_card_content").html();
         template = Handlebars.compile(source);
         return template(visual_data);
@@ -169,6 +203,25 @@ var VisualScheduleCard = {
         }
     },
             
+    compare: function(meeting1, meeting2) {
+        if (meeting1.start < meeting2.start)
+            return -1;
+        if (meeting1.start > meeting2.start)
+            return 1;
+        return 0;
+    },
+
+    // This is the height of the days bar... needed for positioning math below
+    day_label_offset: 0,
+
+    get_scaled_percentage: function(pos, min, max) {
+        var base_percentage = (pos - min) / (max - min);
+        var offset_percentage = (VisualScheduleCard.day_label_offset * 2) + (base_percentage * (100 - (VisualScheduleCard.day_label_offset * 2)));
+
+        // The second one is for positioning the last hour label.
+        return offset_percentage - VisualScheduleCard.day_label_offset;
+    },
+
     add_events: function(term) {
         $(".show_section_details").bind("click", function(ev) {
             var course_id = this.rel;
