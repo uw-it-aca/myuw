@@ -35,7 +35,7 @@ def get_all_affiliations():
             "stud_employee": is_student_employee(),
             "seattle": enrolled_campuses["seattle"] or is_seattle_student(),
             "bothell": enrolled_campuses["bothell"] or is_bothell_student(),
-            "tacoma": enrolled_campuses["tacoma"] or is_tacoma_student
+            "tacoma": enrolled_campuses["tacoma"] or is_tacoma_student()
             }
     # Note:
     #    As the UW Affiliation group (gws) only knows about one campus,

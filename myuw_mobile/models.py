@@ -117,3 +117,9 @@ class CategoryLinks(models.Model):
             "url": self.url
         }
         return data
+
+    def set_category_id(self, category_name):
+        category_id = category_name.lower()
+        category_id = "".join(c for c in category_id if c.isalpha())
+        self.category_id = category_id
+
