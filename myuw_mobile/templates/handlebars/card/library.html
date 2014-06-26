@@ -16,7 +16,6 @@
                 </div>
         
                 <div class="row card-badge-container">
-            
                     <div class="col-xs-4">    
                         <div class="card-badge">                            
                             <span class="card-badge-label">You have</span>
@@ -36,11 +35,11 @@
                             {{/if}}
                         </div>
                     </div>
-                            
+                        
                     <div class="col-xs-4">
                         <div class="card-badge">  
                             <span class="card-badge-label">You owe</span>
-                            <span class="card-badge-value">${{ fines }}</span> 
+                            <span class="card-badge-value">${{ formatPrice fines }}</span> 
                             <span class="card-badge-label"><a href="https://p.lib.washington.edu/payfines/">Pay fees</a></span>
                         </div>
                     </div>
