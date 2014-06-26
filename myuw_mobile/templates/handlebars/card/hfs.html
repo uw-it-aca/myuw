@@ -17,7 +17,7 @@
                                 <div class="card-badge">
                                     {{#with hfs_data.student_husky_card}}
                                     <span class="card-badge-label">You have</span> 
-                                    <span class="card-badge-value">${{ balance }}</span>
+                                    <span class="card-badge-value">${{ formatPrice balance }}</span>
                                     <span class="card-badge-label">in Student Husky</span>
                                     <span class="card-badge-note">Last transaction: {{ last_updated }}</span>
                                     {{/with}}
@@ -32,7 +32,7 @@
                                 <div class="card-badge">
                                     {{#with hfs_data.employee_husky_card}}
                                     <span class="card-badge-label">You have</span> 
-                                    <span class="card-badge-value">${{ balance }}</span>
+                                    <span class="card-badge-value">${{ formatPrice balance }}</span>
                                     <span class="card-badge-label">in Employee Husky</span>
                                     <span class="card-badge-note">Last transaction: {{ last_updated }}</span>
                                     {{/with}}
@@ -47,7 +47,7 @@
                                 <div class="card-badge">
                                     {{#with hfs_data.resident_dining}}
                                     <span class="card-badge-label">You have</span> 
-                                    <span class="card-badge-value">${{ balance }}</span>
+                                    <span class="card-badge-value">${{ formatPrice balance }}</span>
                                     <span class="card-badge-label">in Resident Dining</span>
                                     <span class="card-badge-note">Last transaction: {{ last_updated }}</span>
                                     {{/with}}
