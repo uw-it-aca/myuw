@@ -109,7 +109,7 @@ body {
         
         .card-critical-alert { background: #f5d300; padding: 8px; text-align: center; margin-bottom: 1em; }
         
-        .card-badge-container { margin-bottom: 10px;
+        .card-badge-container {
                 
             .card-badge {  background: #ccc; padding: 8px; overflow: hidden; text-align: center;
                 .card-badge-label { text-align: center; display: block; font-weight: normal;  }
@@ -118,7 +118,7 @@ body {
             }
         }
         
-        .card-related-messages { margin-bottom: 1em; 
+        .card-related-messages { margin: 1em 0; 
             
             // override italics coming from the messageAPI
             i { font-style: normal !important; }
@@ -166,6 +166,22 @@ body {
     
 }
 
+
+/*** animations classes ***/
+
+// animated hide div
+.slide-hide {
+   max-height: 0;
+   overflow: hidden; 
+   -webkit-transition: max-height 0.8s;
+   -moz-transition: max-height 0.8s;
+   transition: max-height 0.8s;
+}
+
+// animated show div
+.slide-show {
+    max-height: 2000px; // height auto cannot be animated... so use max-height set to a really high number instead
+}
 
 /*** development helpers ***/
 

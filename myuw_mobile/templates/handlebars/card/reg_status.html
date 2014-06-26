@@ -11,7 +11,7 @@
                 <h3>Registration</h3>
                 
                 <div class="card-critical-alert">
-                    <i class="fa fa-exclamation-circle"></i> <span class="todo">3</span> Holds <a href="#" class="todo">Show details</a><!-- this should expand the div with the message tagged tuition_card_past_due in it --> 
+                    <i class="fa fa-exclamation-circle"></i> <span class="todo">3</span> Holds <a id="reg_show_holds" href="#">Show details</a><!-- this should expand the div with the message tagged tuition_card_past_due in it --> 
                 </div>
                     
                 <div class="est-reg-date">
@@ -19,7 +19,7 @@
                     <p>Your estimated <a href='http://www.washington.edu/students/reg/2014cal.html#Q3'>Period I Priority Registration Date</a> for spring quarter is <b>May 1, 2014</b>. Registration begins at <b>6:00 a.m.</b></p>
                 </div>     
                     
-                <div style="background:#ccc;">    
+                <div id="reg_holds" class="slide-hide">    
                     <h4>Holds</h4>
                     <div class="reg-holds">
                         <p class="todo">[ put here: reg_card_holds ]</p>
@@ -42,7 +42,7 @@
                 </ul>
                 
                 
-                <div id="reg_resources" style="background:#ccc;">
+                <div id="reg_resources" class="slide-hide">
                     <h4>Registration Resources</h4>
                     <ul style="padding-left:0;" class="todo">
                         <li><a>Time Schedule</a></li>
@@ -57,7 +57,7 @@
                         <li><a>Academic Advising</a></li>
                     </ul>
                 </div>
-                <div style="border-top:solid 1px #ddd; text-align:center"><a id="reg_show_resources" class="todo" style="display:block; line-height:40px;">Show more/less</a></div>
+                <div style="border-top:solid 1px #ddd; text-align:center"><a id="reg_show_resources" href="#" style="display:block; line-height:40px;">Show more...</a></div>
             
             </div>
         </div>
