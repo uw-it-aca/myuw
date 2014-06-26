@@ -118,7 +118,11 @@ body {
             }
         }
         
-        .card-related-messages { margin-bottom: 1em; }
+        .card-related-messages { margin-bottom: 1em; 
+            
+            // override italics coming from the messageAPI
+            i { font-style: normal !important; }
+        }
         
         .nav-card-arrow { height: @line-height-base; position: absolute; right: 0; display: inline-block; top: 50%; margin-top: -@line-height-base / 2; }
         
