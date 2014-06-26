@@ -101,25 +101,21 @@
 {% tplhandlebars "visual_schedule_day" %}
 {{#each meetings}}
 <div class="c{{color_id}} visual-course" style="position: absolute; top:{{time_percentage start ../start_time ../end_time}}%; height:{{time_percentage_height start end ../start_time ../end_time}}%;">
-    {{#if term}}
-    <a href="/mobile/visual/{{term}}/{{section_index}}" class="show_section_details {{curriculum}}_{{course_number}}{{section_id}}" rel="{{section_index}}">
-    {{else}}
-    <a href="/mobile/visual/{{section_index}}" class="show_section_details {{curriculum}}_{{course_number}}{{section_id}}" rel="{{section_index}}">
-    {{/if}}
-    <div class="visual-course-id">{{curriculum}} {{course_number}}{{section_id}}</div>
-    </a>
-    <br>
-    <div>
-        {{#if building_tbd}}
-            Room TBD
-        {{else}}
-            {{#if latitude}}
-            <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" target="_blank" class="show_map" style="color:white" rel="{{building_name}}">
-            {{/if}}
-            {{building}} {{room}}
-            {{#if latitude}}</a>{{/if}}
-        {{/if}}
-    </div>
+
+	<div class="visual-info">
+	    <div class="visual-course-id">{{curriculum}} {{course_number}}{{section_id}}</div>
+	    <div class="visual-location">
+	        {{#if building_tbd}}
+	            Room TBD
+	        {{else}}
+	            {{#if latitude}}
+	            <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" target="_blank" class="show_map" style="color:white" rel="{{building_name}}">
+	            {{/if}}
+	            {{building}} {{room}}
+	            {{#if latitude}}</a>{{/if}}
+	        {{/if}}
+	    </div>
+	</div>
 </div>
 {{/each}}
 
