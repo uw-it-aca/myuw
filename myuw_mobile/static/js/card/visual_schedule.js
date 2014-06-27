@@ -253,5 +253,13 @@ var VisualScheduleCard = {
             building = building.replace(/[^a-z0-9]/gi, '_');
             WSData.log_interaction("show_map_from_visual_card_"+building, term);
         });
+        
+        // TODO: this is testing... just ignore
+        $("#show_today_schedule").on("click", function(ev) {
+            ev.preventDefault();
+            console.log("click click");
+            $( "#today_schedule" ).toggleClass("show");
+  
+        });
     },
 };

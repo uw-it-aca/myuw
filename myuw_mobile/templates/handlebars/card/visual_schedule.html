@@ -12,7 +12,7 @@
                 {{/if}}
             </h3>
     
-    
+            <!-- week view -->
             <div class="visual-schedule {{schedule_hours_class}}" >
     		
         	    <div class="time-bar day-col2 hours-{{total_hours}} clearfix ">
@@ -68,7 +68,31 @@
         	    {{/if}}
                    
             </div>
-    
+            <!-- end week view -->
+            
+            <!-- MOCK UP: explores today view of student schedule. This is not dynamic yet, it just displays the first day of the week -->
+            <div id="today_schedule" class="visual-schedule {{schedule_hours_class}} hide" style="margin-top:2em; height:55em;">
+    		
+        	    <div class="time-bar day-col2 hours-{{total_hours}} clearfix" style="width:20%;background: transparent; border: none;">
+        		
+        	        {{#each display_hours}}
+        	        <div class="hour-label" style="position:absolute;top:{{time_percentage position ../start_time ../end_time }}%; border-top: solid 1px grey; margin-top:0;">
+        	            <div style="margin-top:-10px;"><span style="background:#efefef; display:inline-block; padding: 0px; width: 20px; height: 20px; line-height:20px; font-size:80%;">{{format_schedule_hour hour}}</span></div>
+        	        </div>
+        	        {{/each}}
+        	    </div>
+        
+        	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}} style="width:80%;">
+        	        <div class="day-label todo" style="line-height:54px; background: transparent; border:none; margin-left:-10%; font-weight:bold;">TODAY - Friday blah blah</div>
+        	        <div class="day-col hours-{{total_hours}}">
+        	            {{ show_days_meetings monday start_time end_time }}
+        	        </div>
+        	    </div>
+        	
+            </div>
+            <!-- end testing stuff -->
+            
+            
             <!-- begin - if there are meetings with times to be arranged -->  
             {{#if courses_meeting_tbd }}
             <div class="courseTBD">
@@ -85,6 +109,7 @@
             <div>
                 <p><a class="show_textbooks" href="/mobile/textbooks/{{term}}" title="Textbooks"><i class="icon-book"></i> View Textbooks</a></p>
                 <p><a class="show_finalexams" href="/mobile/final_exams/{{term}}" title="Final Exam Schedule"><i class="icon-calendar"></i> Final Exam Schedule</a></p>
+                <p><p><a href="#" id="show_today_schedule" title="Today's Schedule"><i class="icon-calendar"></i> Today's Schedule</a></p>
             </div>
         
         </div>
