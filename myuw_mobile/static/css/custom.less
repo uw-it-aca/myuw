@@ -976,10 +976,10 @@ abbr[title] {
   height: 20em;
 }
 .twelve-hour {
-  height: 30em;
+  height: 35em;
 }
 .twelve-plus {
-  height: 40em;
+  height: 47em;
 }
 .six-hour .exam-time-bar {
   top: 14%;
@@ -1114,7 +1114,7 @@ abbr[title] {
 /*
 .six-day:last-child, .five-day:last-child {
 	border-right: none;
-	
+
 }*/
 .six-day:first-child,
 seven-day:first-child,
@@ -1215,7 +1215,7 @@ seven-day:first-child,
   line-height: 14px;
   text-align: center;
   margin: 0;
-  margin-top: .5em;
+  margin-top: -.5em;
   padding: 0;
 }
 .day-label {
@@ -1228,15 +1228,6 @@ seven-day:first-child,
   border-bottom: 2px groove #eeeeee;
   //margin-top: -2px;
 }
-.visual-scehdule-carousel {
-	overflow-x: scroll; 
-	overflow-y: hidden; 
-	height: 30em; 
-	width:auto; 
-	border: 1px solid red; 
-	white-space: nowrap;
-}
-
 .visual-course {
   width: 100%;
   -webkit-border-radius: 2px;
@@ -1257,9 +1248,9 @@ seven-day:first-child,
 	opacity: .6;
 	position: absolute;
 	bottom: 0;
-	text-align: right;
-	right: 0;
+	left: 0;
 	font-weight: bold;
+	font-size:smaller;
 }
 .visual-location {
 	font-size: smaller;
@@ -1284,10 +1275,14 @@ seven-day:first-child,
   margin: 0 5px 5px 0;
   width: 70px;
   height: 38px;
+  position: relative;
 }
 .courseTBD .visual-course-id {
+	position: inherit;
 	display: table-cell;
-	vertical-align: middle
+	vertical-align: middle;
+	color: white;
+	font-size: small;	
 }
 .courseTBD h6 {
   margin: 20px 0;
