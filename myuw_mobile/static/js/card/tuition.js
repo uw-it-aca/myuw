@@ -15,11 +15,21 @@ var TuitionCard = {
         if (due_date !== undefined) {
             template_data['tuition_date'] = display_date
             template_data['tuition_date_offset'] = TuitionCard._days_from_today(due_date);
+
+            //Alert banners
+            if(parseFloat(template_data['tuition_accbalance']) > 0){
+                if(template_data['tuition_date_offset'] === 0){
+                    template_data['due_today'] = true;
+                }
+                if (template_data['tuition_date_offset'] < 0){
+                    template_data['past_due'] = true;
+                }
+            }
         }
 
         var source = $("#tuition_card").html();
         var template = Handlebars.compile(source);
-        return template(tuition_data);
+        return template(template_data);
     },
 
     _days_from_today: function (date) {
