@@ -11,7 +11,7 @@
                                                         
                         <!-- if tuition due date is TODAY -->
                         {{ #if due_today}}
-                            <div class="card-critical-alert todo">
+                            <div class="card-critical-alert">
                                 <i class="fa fa-exclamation-circle"></i> Tuition is due today.
                             </div>
                         {{ /if }}
@@ -19,7 +19,7 @@
                         
                         <!-- if tuition due date has passed and balance is greater than 0 -->
                         {{ #if past_due }}
-                            <div class="card-critical-alert todo">
+                            <div class="card-critical-alert">
                                 <i class="fa fa-exclamation-circle"></i> You have a balance that may be past due. <a href="https://sdb.admin.washington.edu/sisStudents/uwnetid/tuition.aspx">See your statement for details</a>.
                             </div>
                         {{ /if }}
