@@ -258,7 +258,14 @@ var VisualScheduleCard = {
         $("#show_today_schedule").on("click", function(ev) {
             ev.preventDefault();
             console.log("click click");
-            $( "#today_schedule" ).toggleClass("show");
+            $("#today_schedule").toggleClass("slide-show");
+  
+        });
+        
+        $("#show_exam_schedule").on("click", function(ev) {
+            ev.preventDefault();
+            console.log("click click");
+            $("#exam_schedule").toggleClass("slide-show");
   
         });
     },
