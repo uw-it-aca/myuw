@@ -14,7 +14,7 @@ var LibraryCard = {
 
     render_upon_data: function() {
         var html_content = LibraryCard.render();
-        $("#library_card").html(html_content);
+        $("#library_card_row").html(html_content);
     },
 
 };

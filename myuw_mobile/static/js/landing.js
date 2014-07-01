@@ -42,6 +42,7 @@ var Landing = {
             notice_banner: notice_banner,
             reg_status_card: reg_status_card,
             visual_schedule_card: VisualScheduleCard.render_init(),
+            course_card: CourseCard.render_init(),
             tuition_card: tuition_card,
             pce_tuition_card: pce_tuition_card,
             fin_aid_card: fin_aid_card,

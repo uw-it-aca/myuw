@@ -26,7 +26,7 @@ var HfsCard = {
 
     render_upon_data: function() {
         var html_content = HfsCard.render();
-        $("#hfs_card").html(html_content);
+        $("#hfs_card_row").html(html_content);
     },
 
     is_only_one_card: function(hfs_data) {
