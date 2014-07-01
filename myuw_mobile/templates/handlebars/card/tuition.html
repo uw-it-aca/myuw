@@ -24,7 +24,7 @@
                             </div>
                         {{ /if }}
                         <!-- end if --> 
-                        
+                        {{ #unless has_balance }}
                         <!-- if tuition balance is 0 -->
                         <div class="row card-badge-container">
                             <div class="col-xs-12">
@@ -34,7 +34,10 @@
                                 </div>
                             </div>
                         </div>
-                        
+
+                        {{ /unless }}
+
+                        {{ #if has_balance }}
                         <!-- else, there is a balance -->
                         <div class="row card-badge-container">
                             <div class="col-xs-6">
@@ -52,7 +55,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- end if --> 
+                        <!-- end if -->
+                        {{ /if }}
                         
                         
                         <div class="card-related-messages">
