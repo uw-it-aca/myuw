@@ -33,19 +33,20 @@
                 
                 
                 <p><strong><a href="#" class="todo">Register now</a></strong></p>
-                
-                <h4>Registration Status Messages</h4>
-                <p class="todo">[ put here: reg_card_messages ] </p>
-                <ul class="reg-notice-list">
-                  {{ #each reg_notices }}
-                      <li>
-                        {{{ notice_content }}}
-                      </li>
-                  {{ /each }}
-                </ul>
-                
+                                
                 
                 <div id="reg_resources" class="slide-hide">
+                	<p class="todo">[ put here: reg_card_messages ] </p>
+					<span class="notice-title">Before You Register</span>
+					<span class="notice-body-with-title">Beginning one week prior to each quarter's registration period you can take care of all the required Notices and Insurance&#47Optional Charges selections so that when your priority registration period begins, you can go directly into Web Registration. If you have not already done so, go to the <a href='https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp'>Insurance &#47; Optional Charges</a> services now to take care of these requirements prior to registering for summer quarter. </span>
+	                <ul class="reg-notice-list">
+	                  {{ #each reg_notices }}
+	                      <li>
+	                        {{{ notice_content }}}
+	                      </li>
+	                  {{ /each }}
+	                </ul>
+
                     <h4>Registration Resources</h4>
                     <ul style="padding-left:0;" class="todo">
                         <li><a>Time Schedule</a></li>
