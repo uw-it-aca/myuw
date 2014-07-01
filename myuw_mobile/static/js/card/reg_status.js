@@ -11,10 +11,17 @@ var RegStatusCard = {
             
             $("#reg_resources").toggleClass("slide-show");
             
-            if ($("#reg_show_resources").text() == "Show more...")
+            if ($("#reg_show_resources").text() == "Show more...") {
                $("#reg_show_resources").text("Show less...")
-            else
+               //$("#reg_resources").attr('aria-hidden', 'true');
+            }   
+            else {
                $("#reg_show_resources").text("Show more...");
+               //$("#reg_resources").attr('aria-hidden', 'false');
+            }
+            
+            // TODO: Toggle aria-hidden attribute depending if shown/hidden
+            
         });
         
         // show hold details
