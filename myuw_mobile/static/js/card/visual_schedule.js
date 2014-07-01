@@ -174,21 +174,20 @@ var VisualScheduleCard = {
         var course_data =  WSData.normalized_course_data(term);
         if (course_data === undefined) {
             return CardLoading.render("Visual Schedule");
-        } else {
-            if (course_data.sections.length == 0) {
-                return NoCourse.render("this quarter");
-            }
-            
-            var html_content = VisualScheduleCard.render(course_data, 
-                                                         term, 
-                                                         course_index);
-            VisualScheduleCard.add_events(term);
-            return html_content;
+        } 
+        if (course_data.sections.length == 0) {
+            return NoCourse.render("this quarter");
         }
+        var html_content = VisualScheduleCard.render(course_data, 
+                                                     term, 
+                                                     course_index);
+        VisualScheduleCard.add_events(term);
+        return html_content;
     },
 
     render_upon_data: function(term, course_index) {
         var course_data =  WSData.normalized_course_data(term);
+        CourseCard.render_upon_data(course_data,term, course_index);
         var html_content;
         if (course_data.sections.length == 0) {
             html_content = NoCourse.render("this quarter");
