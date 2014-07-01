@@ -29,7 +29,7 @@
                         <div class="row card-badge-container">
                             <div class="col-xs-12">
                                 <div class="card-badge">
-                                    <span class="card-badge-label">Your tuition has been paid.</span>
+                                    <span class="card-badge-label">Your tuition and fees have been paid.</span>
                                     <span class="card-badge-label"><a href="https://sdb.admin.washington.edu/sisStudents/uwnetid/tuition.aspx">See tuition statement</a></span>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="card-badge">
-                                    <span class="card-badge-label">Tuition due</span>
+                                    <span class="card-badge-label">{{ #if past_due }}Tuition due date{{else}}Due{{ /if }}</span>
                                     <span class="card-badge-value"> {{ tuition_date }}</span> <!-- this is tuition_due_date but only the actual date -->
                                     <span class="card-badge-label">in {{ tuition_date_offset }} days</span><!-- var needed here. this could be removed if it's very complicated for some reason. -->
                                 </div>
