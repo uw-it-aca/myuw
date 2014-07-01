@@ -1,9 +1,9 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "course_card_content" %}
 
-<div class="card">
 {{#each sections}}
-    <div id="course_wrapper{{index}}" class="accordian c{{color_id}}">
+<div class="card">
+    <div id="course_wrapper{{index}}" class="accordian ccc{{color_id}}">
         <div class="accordion-group">
             <!-- above the accordion -->
             <div>           
@@ -113,7 +113,9 @@
             </div><!-- /body -->
         </div>
     </div>
-{{/each}}
+    
 </div>
+{{/each}}
+
 
 {% endtplhandlebars %}
