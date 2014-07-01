@@ -1,23 +1,15 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "notice_banner" %}
 
-    <div class="notice-bar">
-        <!-- Temporary Notice Banner content -->
-        <a href="/mobile/notices/" title="to open notice page">
-	    <div class="notification" id="notice_banner">
+    <div class="notice-bar">        
+        <div class="container">
+
+            <a href="/mobile/notices/" title="to open notice page">
+                <h4 class="notice-header" id="notice_banner">Notices</h4>
+            </a>
+            <div class="notice-unread"><span class="badge">{{ total_unread }} unread</span></div>
+            <div class="notice-critical">{{ week_critical }} critical this week</div>
             
-            <div class="container clearfix notice-container">
-    	    	<div class="pull-left">
-    				<h4>Notices</h4>
-    			</div>
-    			<div class="pull-right">
-                    <span class="badge">{{ total_unread }} unread</span>
-    			</div>
-    			<div class="panel-title-metadata">{{ week_critical }} critical this week
-    			</div>
-            </div>
-            
-	    </div>
-        </a>
+        </div>
     </div>
     {% endtplhandlebars %}
