@@ -29,21 +29,21 @@ body {
 
         .header-logo { line-height: 60px; margin: 0; padding: 0; color: @myuw; text-transform: uppercase; margin-right: 10px; }
         .header-user { }
-        .header-menu { 
-            a { color: #fff; }
-        }
+        .header-menu { color: #fff; }
         
         .header-email { margin-right: 20px; position: relative; color: #fff;
             
+            // visually hide the select menu
             select { 
                 -moz-appearance: none; 
                 -webkit-appearance: none;
                 appearance: none;
                 
-                height: 20px;
+                height: 60px;
                 background: transparent;
+                color: transparent;
                 position:absolute; 
-                top:20px; 
+                top:0; 
                 left: 0px; 
                 width:80px; 
                 border: none;
