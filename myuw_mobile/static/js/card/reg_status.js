@@ -12,11 +12,11 @@ var RegStatusCard = {
             $("#reg_resources").toggleClass("slide-show");
             
             if ($("#reg_resources").hasClass("slide-show")) {
-               $("#reg_show_resources").text("Show less...")
+               $("#show_reg_resources").text("Show less...")
                $("#reg_resources").attr('aria-hidden', 'false');
             }   
             else {
-               $("#reg_show_resources").text("Show more...");
+               $("#show_reg_esources").text("Show more...");
                $("#reg_resources").attr('aria-hidden', 'true');
             }
                         
@@ -30,11 +30,11 @@ var RegStatusCard = {
             $("#reg_holds").toggleClass("slide-show");
             
             if ($("#reg_holds").hasClass("slide-show")) {
-               $("#reg_show_holds").text("Hide details")
+               $("#show_reg_holds").text("Hide details")
                $("#reg_holds").attr('aria-hidden', 'false');
             }
             else {
-               $("#reg_show_holds").text("Show details");
+               $("#show_reg_holds").text("Show details");
                $("#reg_holds").attr('aria-hidden', 'true');
             }
             

@@ -247,9 +247,17 @@ var VisualScheduleCard = {
         
         $("#show_exam_schedule").on("click", function(ev) {
             ev.preventDefault();
-            console.log("click click");
             $("#exam_schedule").toggleClass("slide-show");
-  
+            
+            if ($("#exam_schedule").hasClass("slide-show")) {
+               $("#show_exam_schedule").text("Hide Final Exam Schedule")
+               $("#exam_schedule").attr('aria-hidden', 'false');
+            }
+            else {
+               $("#show_exam_schedule").text("Show Final Exam Schedule");
+               $("#exam_schedule").attr('aria-hidden', 'true');
+            }
+            
         });
     },
 };
