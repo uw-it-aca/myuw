@@ -28,8 +28,8 @@ var Landing = {
         var tuition_card = '';
         var pce_tuition_card = '';
         if (WSData.tuition_data()){
-            tuition_card = TuitionCard.render(WSData.tuition_data());
-            pce_tuition_card = PCETuitionCard.render(WSData.tuition_data());
+            tuition_card = TuitionCard.render(WSData.tuition_data(), false);
+            pce_tuition_card = TuitionCard.render(WSData.tuition_data(), true);
         }
 
         var fina_notices = Notices.get_notices_for_category("Fees & Finances");

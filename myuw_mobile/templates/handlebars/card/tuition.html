@@ -6,13 +6,16 @@
                 <div class="row">
                 
                     <div class="col-xs-11">
-                        
+                        {{ #if is_pce}}
+                        <h3>PCE Account Balance</h3>
+
+                        {{ else }}
                         <h3>Tuition &amp; Fees</h3>
-                                                        
+                        {{ /if }}
                         <!-- if tuition due date is TODAY -->
                         {{ #if due_today}}
                             <div class="card-critical-alert">
-                                <i class="fa fa-exclamation-circle"></i> Tuition is due today.
+                                <i class="fa fa-exclamation-circle"></i> {{ #if is_pce}} PCE tuition{{ else  }}Tuition{{ /if }} is due today.
                             </div>
                         {{ /if }}
                         <!-- end if --> 
@@ -20,7 +23,7 @@
                         <!-- if tuition due date has passed and balance is greater than 0 -->
                         {{ #if past_due }}
                             <div class="card-critical-alert">
-                                <i class="fa fa-exclamation-circle"></i> You have a balance that may be past due. <a href="https://sdb.admin.washington.edu/sisStudents/uwnetid/tuition.aspx">See your statement for details</a>.
+                                <i class="fa fa-exclamation-circle"></i> {{ #if is_pce}} Your PCE tuition is past due.{{ else  }}You have a balance that may be past due. {{ /if }}<a href="https://sdb.admin.washington.edu/sisStudents/uwnetid/tuition.aspx">See your statement for details</a>.
                             </div>
                         {{ /if }}
                         <!-- end if --> 
@@ -29,7 +32,7 @@
                         <div class="row card-badge-container">
                             <div class="col-xs-12">
                                 <div class="card-badge">
-                                    <span class="card-badge-label">Your tuition and fees have been paid.</span>
+                                    <span class="card-badge-label">{{ #if is_pce}}Your PCE tuition has been paid{{ else  }}Your tuition and fees have been paid.{{ /if }}</span>
                                     <span class="card-badge-label"><a href="https://sdb.admin.washington.edu/sisStudents/uwnetid/tuition.aspx">See tuition statement</a></span>
                                 </div>
                             </div>
@@ -50,8 +53,8 @@
                             <div class="col-xs-6">
                                 <div class="card-badge">
                                     <span class="card-badge-label">{{ #if past_due }}Tuition due date{{else}}Due{{ /if }}</span>
-                                    <span class="card-badge-value"> {{ tuition_date }}</span> <!-- this is tuition_due_date but only the actual date -->
-                                    <span class="card-badge-label">in {{ tuition_date_offset }} days</span><!-- var needed here. this could be removed if it's very complicated for some reason. -->
+                                    <span class="card-badge-value"> {{ tuition_date }}</span>
+                                    <span class="card-badge-label">in {{ tuition_date_offset }} days</span>
                                 </div>
                             </div>
                         </div>

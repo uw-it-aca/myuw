@@ -1,9 +1,14 @@
 var TuitionCard = {
-    render: function (tuition_data) {
+    render: function (tuition_data, is_pce) {
         var template_data = tuition_data,
         tuition_due_notice, display_date,
             due_date;
         template_data['pce_tuition_dup'] = Notices.get_notices_for_tag("pce_tuition_dup");
+        template_data['is_pce'] = is_pce;
+
+        if (is_pce) {
+            template_data['tuition_accbalance'] = template_data['pce_tuition_accbalance'];
+        }
 
         tuition_due_notice = Notices.get_notices_for_tag("tuition_balance")[0];
         for (var i = 0; i < tuition_due_notice.attributes.length; i += 1){
