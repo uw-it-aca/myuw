@@ -3,14 +3,14 @@
 
 {{#each sections}}
 <div class="card">
-    <div id="course_wrapper{{index}}" class="accordian ccc{{color_id}}">
+    <div id="course_wrapper{{index}}" class="accordian OFFc{{color_id}}">
         <div class="accordion-group">
             <!-- above the accordion -->
             <div>           
                 {{ #if canvas_grade }}
                 <div class="canvasGradeBox" style="float: right; border: 1px solid black; padding: 6px; width: 85px;">
                     <span class="canvasGrade" style="font-size: 18px;">{{ canvas_grade }}% *</span><br />
-                    <span class="canvasGradeLabel" style="font-size: 12px; cursor: pointer;">* Canvas Grade</span>
+                    <a class="canvasGradeLabel" style="font-size: 12px; cursor: pointer;" title="See note">* Canvas Grade</a>
                 </div>
                 {{ /if }}
 
@@ -113,9 +113,7 @@
             </div><!-- /body -->
         </div>
     </div>
-    
 </div>
 {{/each}}
-
 
 {% endtplhandlebars %}

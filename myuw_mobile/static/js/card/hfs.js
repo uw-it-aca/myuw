@@ -1,8 +1,26 @@
 var HfsCard = {
-    render: function () {
+
+    render_init: function() {
+        var hfs_data = WSData.hfs_data();
+        if (!hfs_data) {
+            $("#hfs_card_row").html(CardLoading.render("HFS"));
+            return;
+        }
+        HfsCard.render(hfs_data);
+    },
+
+    render_upon_data: function () {
+        var hfs_data = WSData.hfs_data();
+        if (!hfs_data) {
+            $("#hfs_card_row").html(CardWithError.render());
+            return;
+        }
+        HfsCard.render(hfs_data);
+    },
+
+    render: function (hfs_data) {
         var source = $("#hfs_card_content").html();
         var template = Handlebars.compile(source);
-        var hfs_data = WSData.hfs_data();
         var template_data;
         if (!hfs_data.student_husky_card && !hfs_data.employee_husky_card && !hfs_data.resident_dining) {
             template_data = {hfs_data: null};
@@ -13,20 +31,7 @@ var HfsCard = {
                 is_total_two_cards: HfsCard.is_total_two_cards(hfs_data),
             };
         }
-        return template(template_data);
-    },
-
-
-    render_init: function() {
-        if (!WSData.hfs_data()) {
-            return CardLoading.render("HFS");
-        }
-        return HfsCard.render();
-    },
-
-    render_upon_data: function() {
-        var html_content = HfsCard.render();
-        $("#hfs_card_row").html(html_content);
+        $("#hfs_card_row").html(template(template_data));
     },
 
     is_only_one_card: function(hfs_data) {

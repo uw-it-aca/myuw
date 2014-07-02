@@ -1,20 +1,27 @@
 var LibraryCard = {
-    render: function () {
-        var source = $("#library_card_content").html();
-        var template = Handlebars.compile(source);
-        return template({mylibaccount: WSData.library_data()});
-    },
 
     render_init: function() {
-        if (!WSData.library_data()) {
-            return CardLoading.render("Library");
+        var library_data = WSData.library_data()
+        if (!library_data) {
+            $("#library_card_row").html(CardLoading.render("Library"));
+            return;
         }
-        return LibraryCard.render();
+        LibraryCard.render(library_data);
     },
 
     render_upon_data: function() {
-        var html_content = LibraryCard.render();
-        $("#library_card_row").html(html_content);
+        var library_data = WSData.library_data()
+        if (!library_data) {
+            $("#library_card_row").html(CardWithError.render());
+            return;
+        }
+        LibraryCard.render(library_data);
+    },
+
+    render: function (library_data) {
+        var source = $("#library_card_content").html();
+        var template = Handlebars.compile(source);
+        $("#library_card_row").html(template({mylibaccount: library_data}));
     },
 
 };

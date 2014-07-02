@@ -1,4 +1,4 @@
-var NoCourse = {
+var CardWithNoCourse = {
     render: function( quarter_or_term_str ) {
         var source   = $("#card_with_no_course").html();
         var template = Handlebars.compile(source);

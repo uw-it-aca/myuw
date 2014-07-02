@@ -1,8 +1,32 @@
 var VisualScheduleCard = {
 
+    render_init: function(term, course_index) {
+        var course_data =  WSData.normalized_course_data(term);
+        if (course_data === undefined) {
+            $("#visual_schedule_card_row").html(CardLoading.render("Visual Schedule"));
+            return;
+        } 
+        VisualScheduleCard.render(course_data, term, course_index);
+    },
+
+    render_upon_data: function(term, course_index) {
+        var course_data =  WSData.normalized_course_data(term);
+        if (course_data === undefined) {
+            $("#visual_schedule_card_row").html(CardWithError.render());
+            return;
+        } 
+        CourseCard.render(course_data, term, course_index);
+        VisualScheduleCard.render(course_data, term, course_index);
+    },
+
     // The course_index will be given when a modal is shown.
     render: function(course_data, term, course_index) {
+        if (course_data.sections.length == 0) {
+            $("#visual_schedule_card_row").html(CardWithNoCourse.render("this quarter"));
+            return;
+        }
         VisualScheduleCard.shown_am_marker = false;
+
         Modal.hide();
         var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
 
@@ -166,51 +190,10 @@ var VisualScheduleCard = {
 
         source   = $("#visual_schedule_card_content").html();
         template = Handlebars.compile(source);
-        return template(visual_data);
-    },
-
-
-    render_init: function(term, course_index) {
-        var course_data =  WSData.normalized_course_data(term);
-        if (course_data === undefined) {
-            return CardLoading.render("Visual Schedule");
-        } 
-        if (course_data.sections.length == 0) {
-            return NoCourse.render("this quarter");
-        }
-        var html_content = VisualScheduleCard.render(course_data, 
-                                                     term, 
-                                                     course_index);
+        $("#visual_schedule_card_row").html(template(visual_data));
         VisualScheduleCard.add_events(term);
-        return html_content;
-    },
-
-    render_upon_data: function(term, course_index) {
-        var course_data =  WSData.normalized_course_data(term);
-        CourseCard.render_upon_data(course_data, term, course_index);
-
-        var html_content;
-        if (course_data.sections.length == 0) {
-            html_content = NoCourse.render("this quarter");
-        } else {
-            html_content = VisualScheduleCard.render(course_data,
-                                                     term, 
-                                                     course_index);
-        }
-        $("#visual_schedule_card_row").html(html_content);
-        if (course_data.sections.length > 0) {
-            VisualScheduleCard.add_events(term);
-        }
     },
             
-    compare: function(meeting1, meeting2) {
-        if (meeting1.start < meeting2.start)
-            return -1;
-        if (meeting1.start > meeting2.start)
-            return 1;
-        return 0;
-    },
-
     // This is the height of the days bar... needed for positioning math below
     day_label_offset: 0,
 

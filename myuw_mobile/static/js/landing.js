@@ -41,14 +41,15 @@ var Landing = {
         $('#main-content').html(template({
             notice_banner: notice_banner,
             reg_status_card: reg_status_card,
-            visual_schedule_card: VisualScheduleCard.render_init(),
-            course_card: CourseCard.render_init(),
             tuition_card: tuition_card,
             pce_tuition_card: pce_tuition_card,
-            fin_aid_card: fin_aid_card,
-            hfs_card: HfsCard.render_init(),
-            library_card: LibraryCard.render_init()
+            fin_aid_card: fin_aid_card
         }));
+
+        VisualScheduleCard.render_init();
+        CourseCard.render_init();
+        HfsCard.render_init();
+        LibraryCard.render_init();
     },
 
 };
