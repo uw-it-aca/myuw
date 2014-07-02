@@ -11,9 +11,9 @@
                 <h3>Registration</h3>
                 
                 <div class="card-critical-alert">
-                    <i class="fa fa-exclamation-circle"></i> <span class="todo">3</span> Holds <a id="reg_show_holds" href="#">Show details</a><!-- this should expand the div with the message tagged tuition_card_past_due in it --> 
+                    <i class="fa fa-exclamation-circle"></i> <span class="todo">3</span> Holds <a id="reg_show_holds" aria-controls="reg_holds" href="#">Show details</a><!-- this should expand the div with the message tagged tuition_card_past_due in it --> 
                     
-                    <div id="reg_holds" class="slide-hide" style="text-align:left;">    
+                    <div id="reg_holds" class="slide-hide" aria-hidden="true" style="text-align:left;">    
                         <h4>Holds</h4>
                         <div class="reg-holds">
                             <p class="todo">[ put here: reg_card_holds ]</p>
@@ -35,7 +35,7 @@
                 <p><strong><a href="#" class="todo">Register now</a></strong></p>
                                 
                 
-                <div id="reg_resources" class="slide-hide">
+                <div id="reg_resources" class="slide-hide" aria-hidden="true">
                 	<p class="todo">[ put here: reg_card_messages ] </p>
 					<span class="notice-title">Before You Register</span>
 					<span class="notice-body-with-title">Beginning one week prior to each quarter's registration period you can take care of all the required Notices and Insurance&#47Optional Charges selections so that when your priority registration period begins, you can go directly into Web Registration. If you have not already done so, go to the <a href='https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp'>Insurance &#47; Optional Charges</a> services now to take care of these requirements prior to registering for summer quarter. </span>
@@ -61,7 +61,7 @@
                         <li><a>Academic Advising</a></li>
                     </ul>
                 </div>
-                <div style="border-top:solid 1px #ddd; text-align:center"><a id="reg_show_resources" href="#" style="display:block; line-height:40px;">Show more...</a></div>
+                <div style="border-top:solid 1px #ddd; text-align:center"><a id="reg_show_resources" aria-controls="reg_resources" href="#" style="display:block; line-height:40px;">Show more...</a></div>
             
             </div>
         </div>

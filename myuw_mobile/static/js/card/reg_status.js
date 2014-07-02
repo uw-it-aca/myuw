@@ -11,17 +11,15 @@ var RegStatusCard = {
             
             $("#reg_resources").toggleClass("slide-show");
             
-            if ($("#reg_show_resources").text() == "Show more...") {
+            if ($("#reg_resources").hasClass("slide-show")) {
                $("#reg_show_resources").text("Show less...")
-               //$("#reg_resources").attr('aria-hidden', 'true');
+               $("#reg_resources").attr('aria-hidden', 'false');
             }   
             else {
                $("#reg_show_resources").text("Show more...");
-               //$("#reg_resources").attr('aria-hidden', 'false');
+               $("#reg_resources").attr('aria-hidden', 'true');
             }
-            
-            // TODO: Toggle aria-hidden attribute depending if shown/hidden
-            
+                        
         });
         
         // show hold details
@@ -31,10 +29,14 @@ var RegStatusCard = {
             
             $("#reg_holds").toggleClass("slide-show");
             
-            if ($("#reg_show_holds").text() == "Show details")
+            if ($("#reg_holds").hasClass("slide-show")) {
                $("#reg_show_holds").text("Hide details")
-            else
+               $("#reg_holds").attr('aria-hidden', 'false');
+            }
+            else {
                $("#reg_show_holds").text("Show details");
+               $("#reg_holds").attr('aria-hidden', 'true');
+            }
             
         });
 
