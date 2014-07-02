@@ -5,7 +5,7 @@ var RegStatusCard = {
         var template = Handlebars.compile(source);
         
         // show registration resources
-        $('body').on('click', '#reg_show_resources', function (ev) {
+        $('body').on('click', '#show_reg_resources', function (ev) {
             
             ev.preventDefault();
             
@@ -23,7 +23,7 @@ var RegStatusCard = {
         });
         
         // show hold details
-        $('body').on('click', '#reg_show_holds', function (ev) {
+        $('body').on('click', '#show_reg_holds', function (ev) {
             
             ev.preventDefault();
             
