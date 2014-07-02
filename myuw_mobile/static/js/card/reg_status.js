@@ -16,7 +16,7 @@ var RegStatusCard = {
                $("#reg_resources").attr('aria-hidden', 'false');
             }   
             else {
-               $("#show_reg_esources").text("Show more...");
+               $("#show_reg_resources").text("Show more...");
                $("#reg_resources").attr('aria-hidden', 'true');
             }
                         

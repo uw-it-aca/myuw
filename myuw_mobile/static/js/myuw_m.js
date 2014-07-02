@@ -308,12 +308,7 @@ $(document).ready(function() {
     $("#nav_visual_schedule").bind("click", function(ev) {
         WSData.log_interaction("nav_menu_visual_schedule");
     });
-    
-    // email chooser    
-    $("#email_chooser").bind("change", function(ev) {
-        window.location = $(this).find("option:selected").val();
-    });
-    
+        
 });
 
 

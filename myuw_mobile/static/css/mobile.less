@@ -16,6 +16,7 @@
 
 body {
     
+
 }
 
 
@@ -31,25 +32,17 @@ body {
         .header-user { }
         .header-menu { color: #fff; }
         
-        .header-email { margin-right: 20px; position: relative; color: #fff;
+        .header-email { margin-right: 20px; position: relative; color: red;
             
-            // visually hide the select menu
-            select { 
-                -moz-appearance: none; 
-                -webkit-appearance: none;
-                appearance: none;
-                
-                height: 60px;
-                background: transparent;
-                color: transparent;
-                position:absolute; 
-                top:0; 
-                left: 0px; 
-                width:80px; 
-                border: none;
-                cursor: pointer;
-            }
-        
+            .header-email-link { display:inline-block; line-height:60px; color: #fff; }
+            .header-email-menu { line-height:40px; color: red; padding: 8px; top:40px !important; 
+                //li:first-child { color:#bbb; line-height: 20px; padding-left: 20px; font-size: 80%; text-transform: uppercase; }
+                li { padding: 0;
+                    a { padding: 0; line-height: 35px; color: #428bca;
+                        i { color: #aaa; width:17px; text-align:center; }
+                    }
+                }
+            }        
         }        
     }
     

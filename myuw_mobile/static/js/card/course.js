@@ -33,16 +33,15 @@ var CourseCard = {
         var source = $("#course_card_content").html();
         var courses_template = Handlebars.compile(source);
 
-        $("body").on('shown.bs.collapse',
-            function (event) {
-                $(event.target).parent().find("div.accordion-footer > a > span.show_more").hide();
-                $(event.target).parent().find("div.accordion-footer > a > span.show_less").show();
-            });
-        $("body").on('hidden.bs.collapse',
-            function (event) {
-                $(event.target).parent().find("div.accordion-footer > a > span.show_more").show();
-                $(event.target).parent().find("div.accordion-footer > a > span.show_less").hide();
-            });
+        $("body").on('shown.bs.collapse', function (event) {
+            $(event.target).parent().find("div.accordion-footer > a > span.show_more").hide();
+            $(event.target).parent().find("div.accordion-footer > a > span.show_less").show();
+        });
+        
+        $("body").on('hidden.bs.collapse', function (event) {
+            $(event.target).parent().find("div.accordion-footer > a > span.show_more").show();
+            $(event.target).parent().find("div.accordion-footer > a > span.show_less").hide();
+        });
 
         $("#course_card_row").html(courses_template(course_data));
         CourseCard.add_events(term);

@@ -7,12 +7,15 @@
         <a href="#app_nav"><div class="pull-right header-menu"><i class="fa fa-bars"></i> Menu</div></a>
         
         <div class="pull-right header-email">
-            <div><i class="fa fa-envelope"></i> UW Email</div>
-            <select id="email_chooser">
-                <option selected="selected">Choose email...</option>
-                <option value="http://gmail.uw.edu">UW Gmail</option>
-                <option value="http://www.outlook.com">UW Live</option>
-            </select>
+        
+            <div class="dropdown">
+                <a data-toggle="dropdown" id="show_email_links_menu" class="header-email-link" href="#" aria-controls="email_links_menu"><i class="fa fa-envelope"></i> UW Email</a>
+                <ul id="email_links_menu" class="dropdown-menu header-email-menu" role="menu" aria-labelledby="">
+                    <li><a href="http://gmail.uw.edu" target="_blank"><i class="fa fa-google"></i> UW Gmail</a></li>
+                    <li><a href="http://www.outlook.com" target="_blank"><i class="fa fa-windows"></i> UW MSN Live</a></li>
+                </ul>
+            </div>
+
         </div>
         
     </div>
