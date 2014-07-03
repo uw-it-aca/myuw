@@ -144,11 +144,7 @@ WSData = {
                     }
                 },
                 error: function(xhr, status, error) {
-                    if (callback !== null) {
-                        callback.apply(null, args);
-                    } else {
-                        showError();
-                    }
+                    showError();
                 }
             });
         }
@@ -316,10 +312,10 @@ WSData = {
               }
         else {
             window.setTimeout(function() {
-                    callback.apply(null, args);
-                    }, 0);
-            }
-        },
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
 
     fetch_library_data: function(callback, args) {
         if (WSData._library_data === null) {
@@ -342,10 +338,10 @@ WSData = {
               }
         else {
             window.setTimeout(function() {
-                    callback.apply(null, args);
-                    }, 0);
-            }
-        },
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
 
     fetch_tuition_data: function(callback, args) {
         if (WSData._tuition_data === null) {
@@ -368,10 +364,10 @@ WSData = {
               }
         else {
             window.setTimeout(function() {
-                    callback.apply(null, args);
-                    }, 0);
-            }
-        },
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
 
     fetch_notice_data: function(callback, args) {
         if (WSData._notice_data === null) {
@@ -416,10 +412,10 @@ WSData = {
               }
         else {
             window.setTimeout(function() {
-                    callback.apply(null, args);
-                    }, 0);
-            }
-        },
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
 
     fetch_category_links: function(callback, args) {
         var category = args[0];
@@ -440,9 +436,9 @@ WSData = {
               }
         else {
             window.setTimeout(function() {
-                    callback.apply(null, args);
-                    }, 0);
-            }
+                callback.apply(null, args);
+            }, 0);
+        }
     },
 
     save_links: function(links) {
