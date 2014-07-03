@@ -3,7 +3,7 @@ var VisualScheduleCard = {
     render_init: function(term, course_index) {
         var course_data =  WSData.normalized_course_data(term);
         if (course_data === undefined) {
-            $("#visual_schedule_card_row").html(CardLoading.render("Visual Schedule"));
+            $("#visual_schedule_card_row").html(CardLoading.render("Course Schedule"));
             return;
         } 
         VisualScheduleCard.render(course_data, term, course_index);
@@ -15,7 +15,6 @@ var VisualScheduleCard = {
             $("#visual_schedule_card_row").html(CardWithError.render());
             return;
         } 
-        CourseCard.render(course_data, term, course_index);
         VisualScheduleCard.render(course_data, term, course_index);
     },
 
@@ -25,6 +24,7 @@ var VisualScheduleCard = {
             $("#visual_schedule_card_row").html(CardWithNoCourse.render("this quarter"));
             return;
         }
+        CourseCard.render(course_data, term, course_index);
         VisualScheduleCard.shown_am_marker = false;
 
         Modal.hide();
@@ -242,22 +242,20 @@ var VisualScheduleCard = {
             ev.preventDefault();
             console.log("click click");
             $("#today_schedule").toggleClass("slide-show");
-  
+            
         });
         
         $("#show_exam_schedule").on("click", function(ev) {
             ev.preventDefault();
             $("#exam_schedule").toggleClass("slide-show");
-            
             if ($("#exam_schedule").hasClass("slide-show")) {
-               $("#show_exam_schedule").text("Hide Final Exam Schedule")
-               $("#exam_schedule").attr('aria-hidden', 'false');
+                $("#show_exam_schedule").text("Hide Final Exam Schedule")
+                $("#exam_schedule").attr('aria-hidden', 'false');
             }
             else {
-               $("#show_exam_schedule").text("Show Final Exam Schedule");
-               $("#exam_schedule").attr('aria-hidden', 'true');
+                $("#show_exam_schedule").text("Show Final Exam Schedule");
+                $("#exam_schedule").attr('aria-hidden', 'true');
             }
-            
         });
     },
 };

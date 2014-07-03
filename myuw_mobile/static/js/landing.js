@@ -45,9 +45,9 @@ var Landing = {
             pce_tuition_card: pce_tuition_card,
             fin_aid_card: fin_aid_card
         }));
-
+        
+        // cards have no notice
         VisualScheduleCard.render_init();
-        CourseCard.render_init();
         HfsCard.render_init();
         LibraryCard.render_init();
     },

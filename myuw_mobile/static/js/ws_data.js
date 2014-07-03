@@ -144,7 +144,11 @@ WSData = {
                     }
                 },
                 error: function(xhr, status, error) {
-                    showError();
+                    if (callback !== null) {
+                        callback.apply(null, args);
+                    } else {
+                        showError();
+                    }
                 }
             });
         }
