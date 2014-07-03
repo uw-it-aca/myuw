@@ -123,3 +123,7 @@ class CategoryLinks(models.Model):
         category_id = "".join(c for c in category_id if c.isalpha())
         self.category_id = category_id
 
+class TuitionDate(models.Model):
+    user = models.ForeignKey('User', on_delete=models.PROTECT, unique=True)
+    date_stored = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField()

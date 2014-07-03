@@ -9,7 +9,7 @@ from restclients.sws.notice import get_notices_by_regid
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logback import log_resp_time, log_exception, log_info
 from myuw_mobile.dao.pws import get_regid_of_current_user
-from myuw_mobile.models import UserNotices
+from myuw_mobile.models import UserNotices, TuitionDate
 from myuw_mobile.dao import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -309,3 +309,31 @@ def _map_notice(notice):
         notice.custom_category = UNKNOWN_CATEGORY_NAME
         notice.is_critical = False
         notice.location_tags = None
+
+def get_tuition_due_date():
+    tuition_date = None
+    notices = get_notices_for_current_user()
+    for notice in notices:
+        if notice.notice_category + "_" + notice.notice_type == "StudentDAD_TuitDue":
+            tuition_notice = _store_tuition_notice_date(notice)
+            if tuition_notice is not None:
+                tuition_date = tuition_notice.date
+    if tuition_date is None:
+        try:
+            stored_tuition = TuitionDate.objects.get(user=get_user_model())
+            tuition_date = stored_tuition.date
+        except:
+            pass
+    return tuition_date
+
+
+def _store_tuition_notice_date(notice):
+    for attrib in notice.attributes:
+        if attrib.name == "Date":
+            tuition_date, created = TuitionDate.objects.get_or_create(user=get_user_model(),
+                                                                      defaults={'date': attrib.get_value()})
+            if not created:
+                tuition_date.date = attrib.get_value()
+                tuition_date.save()
+            return tuition_date
+    return None
