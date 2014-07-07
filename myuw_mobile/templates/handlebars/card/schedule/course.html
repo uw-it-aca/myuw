@@ -52,19 +52,13 @@
                     </tr>
                     {{/each}}
                 </table>
-                <!-- /above the accordion --> 
-                <div class="accordion-footer">
-                    <a class="accordion-toggle collapsed collapsable" data-toggle="collapse" data-parent="#main-content" href="#course{{index}}" aria-controls="course{{index}}">
-                        <span class="show_more" style="">{{ trans "course_list_show_more" }}</span>
-                        <span class="show_less" style="display:none;">{{ trans "course_list_show_less" }}</span> 
-                    </a>
-                </div>
+                
             </div>
             <!-- /heading -->
 
             <!-- inside the accordion -->            
             <div id="course{{index}}" class="accordion-body collapse" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
-                <div class="accordion-inner">
+                <div class="accordion-inner clearfix">
                     <div>     
                     {{#if has_resources }}
                         {{#if class_website_url}}
@@ -103,6 +97,15 @@
 
                 </div><!-- /stuff what opens --> 
             </div><!-- /body -->
+            
+            <!-- /above the accordion --> 
+            <div class="accordion-footer" style="border-top:solid 1px #ddd; text-align:center;">
+                <a class="accordion-toggle collapsed collapsable" data-toggle="collapse" data-parent="#main-content" href="#course{{index}}" aria-controls="course{{index}}" style="line-height:40px;">
+                    <span class="show_more" style="">{{ trans "course_list_show_more" }}</span>
+                    <span class="show_less" style="display:none;">{{ trans "course_list_show_less" }}</span> 
+                </a>
+            </div>
+                
         </div>
     </div>
 </div>
