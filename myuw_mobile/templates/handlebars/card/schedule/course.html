@@ -11,7 +11,7 @@
                 <div class="canvasGradeBox" style="float: right; padding: 6px; width: 100px;">
                     <span class="canvasGrade" style="font-size: 18px;">{{ canvas_grade }}%</span>
                     <br />
-                    <a class="canvasGradeLabel" style="font-size: 12px; cursor: pointer;" title="See note">Canvas Grade*</a>
+                    <span class="canvasGradeLabel" style="font-size: 12px; cursor: pointer;" title="See note">Canvas Grade *</span>
                 </div>
                 {{ /if }}
 
@@ -20,7 +20,7 @@
                     <span class="shortTitle">{{ course_title }}</span>
                 </h3>
             
-                <h4 class="scheduleHeading">Schedule</h4>
+                <h4 class="scheduleHeading">{{ucfirst meetings.0.type}} Schedule</h4>
                 <table class="table-meeting">
                     {{#each meetings}} 
                     <tr>
@@ -52,13 +52,19 @@
                     </tr>
                     {{/each}}
                 </table>
-                
+                <!-- /above the accordion --> 
+                <div class="accordion-footer">
+                    <a class="accordion-toggle collapsed collapsable" data-toggle="collapse" data-parent="#main-content" href="#course{{index}}" aria-controls="course{{index}}">
+                        <span class="show_more" style="">{{ trans "course_list_show_more" }}</span>
+                        <span class="show_less" style="display:none;">{{ trans "course_list_show_less" }}</span> 
+                    </a>
+                </div>
             </div>
             <!-- /heading -->
 
             <!-- inside the accordion -->            
             <div id="course{{index}}" class="accordion-body collapse" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
-                <div class="accordion-inner clearfix">
+                <div class="accordion-inner">
                     <div>     
                     {{#if has_resources }}
                         {{#if class_website_url}}
@@ -70,14 +76,10 @@
                         {{/if}} 
                     {{/if}}
                     </div>
-                    
-                    <div style="float: right;">
-                        <span>Type</span><span>{{ucfirst meetings.0.type}}</span>
-                    </div>
 
                     {{#if instructors}}<!-- list instructors, if there are any --> 
                     <div>
-                        <span>Instructor</span>
+                        <h4>Instructors</h4>
                         {{#each instructors}}
                             {{#if whitepages_publish}}
                             <span><a href="/mobile/instructor/{{uwregid}}" class="instructor" rel="{{uwregid}}">{{full_name}}</a></span>
@@ -91,21 +93,12 @@
                     {{ #if canvas_grade }}
                     <div class="canvasGradeBox">
                         <h4>*Canvas Grade</h4>
-                        <p>Depending on how your Instructor has Canvas configured, this grade calculation may be for points needed for the entire quarter, rather than for course work due to date.</p>
+                        <p>Depending on how your instructor has configured Canvas, this grade calculation may be for points needed for the entire quarter, rather than for course work due to date.</p>
                     </div>
                     {{ /if }}
 
                 </div><!-- /stuff what opens --> 
             </div><!-- /body -->
-            
-            <!-- /above the accordion --> 
-            <div class="accordion-footer" style="border-top:solid 1px #ddd; text-align:center;">
-                <a class="accordion-toggle collapsed collapsable" data-toggle="collapse" data-parent="#main-content" href="#course{{index}}" aria-controls="course{{index}}" style="line-height:40px;">
-                    <span class="show_more" style="">{{ trans "course_list_show_more" }}</span>
-                    <span class="show_less" style="display:none;">{{ trans "course_list_show_less" }}</span> 
-                </a>
-            </div>
-                
         </div>
     </div>
 </div>
