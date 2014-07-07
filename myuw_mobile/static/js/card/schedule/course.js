@@ -19,10 +19,12 @@ var CourseCard = {
         $("body").on('shown.bs.collapse', function (event) {
                 $(event.target).parent().find("div.accordion-footer > a > span.show_more").hide();
                 $(event.target).parent().find("div.accordion-footer > a > span.show_less").show();
+                $(event.target).attr('aria-hidden', false);
             });
         $("body").on('hidden.bs.collapse', function (event) {
                 $(event.target).parent().find("div.accordion-footer > a > span.show_more").show();
                 $(event.target).parent().find("div.accordion-footer > a > span.show_less").hide();
+                $(event.target).attr('aria-hidden', true);
             });
 
         $("#course_card_row").html(courses_template(course_data));
