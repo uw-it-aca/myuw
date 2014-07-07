@@ -25,11 +25,13 @@ var Notices = {
         $("#main-content").html(template(notices));
 
         $(".panel-collapse").on('show.bs.collapse', function (e) {
+            $(e.target).attr('aria-hidden', false);
             var icon = $($($(e.target).parent()).find(".fa-angle-down")[0]);
             icon.removeClass("fa-angle-down");
             icon.addClass("fa-angle-up");
         });
         $(".panel-collapse").on('hide.bs.collapse', function (e) {
+            $(e.target).attr('aria-hidden', true);
             var icon = $($($(e.target).parent()).find(".fa-angle-up")[0]);
             icon.removeClass("fa-angle-up");
             icon.addClass("fa-angle-down");
