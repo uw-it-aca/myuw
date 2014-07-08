@@ -9,7 +9,7 @@
             <div>           
                 {{ #if canvas_grade }}
                 <div class="canvasGradeBox" style="float: right; padding: 6px; width: 100px;">
-                    <span class="canvasGrade" style="font-size: 18px;">{{ canvas_grade }}%</span>
+                    <span class="canvasGrade" style="font-size: 22px;">{{ canvas_grade }}%</span>
                     <br />
                     <span class="canvasGradeLabel" style="font-size: 12px; cursor: pointer;" title="See note">Canvas Grade *</span>
                 </div>
@@ -65,7 +65,8 @@
             <!-- inside the accordion -->            
             <div id="course{{index}}" class="accordion-body collapse" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
                 <div class="accordion-inner">
-                    <div>     
+                    <div>
+                    <h4>Course resources</h4>     
                     {{#if has_resources }}
                         {{#if class_website_url}}
                         <p><a href="{{class_website_url}}" target="_blank" class="course_website" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Website</a></p>
@@ -75,18 +76,31 @@
                         <p><a href="{{canvas_url}}" target="_blank" class="course_canvas_site" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Canvas</a></p>
                         {{/if}} 
                     {{/if}}
+                    
+                    <p class="todo">Textbook link</p>
+                    
                     </div>
 
                     {{#if instructors}}<!-- list instructors, if there are any --> 
                     <div>
                         <h4>Instructors</h4>
+                        {{# if instructors }}<ol style="padding-left: 0px;">{{/if}}
                         {{#each instructors}}
-                            {{#if whitepages_publish}}
-                            <span><a href="/mobile/instructor/{{uwregid}}" class="instructor" rel="{{uwregid}}">{{full_name}}</a></span>
-                            {{else}}
-                            <span>{{full_name}}</span>
-                            {{/if}}        
+                            <li class="instructor-container" style="list-style-type: none; width: 98%; padding:3px; border-collapse: separate; *border-collapse: collapsed; min-height: 20px; margin: 5px 1% 5px 1%; background-color: #fafaf5; border: 1px solid #eee; border: 1px solid rgba(0, 0, 0, 0.09); -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;">
+                                <h5 style="margin-bottom: 5px; margin-top: 5px;">{{full_name}}</h5>
+                                <!-- #if whitepages_publish}}-->
+                                <div class="contact-info-container">
+                                    <span style="display: block;">Senior Lecturer</span>
+                                    <span style="display: block;">301 Mary Gates Hall</span>
+                                    <span style="display: block;"><a href="mailto:lmanes@uw.edu">lmanes@uw.edu</a>
+                                    <span style="display: block;"><a href="tel:+12068555493">206-855-5493</a><br /><a href="tel:+12065555555">206-555-5555</a></span>
+                                </div>
+                                <!-- /if}} -->
+                            </li>
                         {{/each}}
+                        {{# if instructors }}</ol>{{/if}}
+                        <!-- #if whitepages_publish}}-->
+                            </div>
                     </div>
                     {{/if}}
 
