@@ -26,35 +26,35 @@
         	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
         	        <div class="day-label">MON</div>
         	        <div class="day-col hours-{{total_hours}}">
-        	            {{ show_days_meetings monday start_time end_time }}
+        	            {{ show_card_days_meetings monday start_time end_time }}
         	        </div>
         	    </div>
         	
         	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
         	        <div class="day-label">TUE</div>
         	        <div class="day-col hours-{{total_hours}}">
-        	            {{ show_days_meetings tuesday start_time end_time }}
+        	            {{ show_card_days_meetings tuesday start_time end_time }}
         	        </div>
         	    </div>
         	       
         	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
         	        <div class="day-label">WED</div>
         	        <div class="day-col hours-{{total_hours}}">
-        	            {{ show_days_meetings wednesday start_time end_time }}
+        	            {{ show_card_days_meetings wednesday start_time end_time }}
         	        </div>
         	    </div>
         	
         	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
         	        <div class="day-label">THU</div>
         	        <div class="day-col hours-{{total_hours}}">
-        	            {{ show_days_meetings thursday start_time end_time }}
+        	            {{ show_card_days_meetings thursday start_time end_time }}
         	        </div>
         	    </div>
         	
         	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
         	        <div class="day-label">FRI</div>
         	        <div class="day-col hours-{{total_hours}}">
-        	            {{ show_days_meetings friday start_time end_time }}
+        	            {{ show_card_days_meetings friday start_time end_time }}
         	        </div>
         	    </div>
         	
@@ -62,36 +62,13 @@
         	    <div class="six-day">
         	        <div class="day-label">SAT</div>
         	        <div class="day-col hours-{{total_hours}}">
-        	            {{ show_days_meetings saturday start_time end_time }}
+        	            {{ show_card_days_meetings saturday start_time end_time }}
         	        </div>
         	    </div>
         	    {{/if}}
                    
             </div>
             <!-- end week view -->
-            
-            <!-- MOCK UP: explores today view of student schedule. This is not dynamic yet, it just displays the first day of the week -->
-            <div id="today_schedule" class="visual-schedule {{schedule_hours_class}} hide" style="margin-top:2em; height:55em;">
-    		
-        	    <div class="time-bar day-col2 hours-{{total_hours}} clearfix" style="width:20%;background: transparent; border: none;">
-        		
-        	        {{#each display_hours}}
-        	        <div class="hour-label" style="position:absolute;top:{{time_percentage position ../start_time ../end_time }}%; border-top: solid 1px grey; margin-top:0;">
-        	            <div style="margin-top:-10px;"><span style="background:#efefef; display:inline-block; padding: 0px; width: 20px; height: 20px; line-height:20px; font-size:80%;">{{format_schedule_hour hour}}</span></div>
-        	        </div>
-        	        {{/each}}
-        	    </div>
-        
-        	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}} style="width:80%;">
-        	        <div class="day-label todo" style="line-height:54px; background: transparent; border:none; margin-left:-10%; font-weight:bold;">TODAY - Friday blah blah</div>
-        	        <div class="day-col hours-{{total_hours}}">
-        	            {{ show_days_meetings monday start_time end_time }}
-        	        </div>
-        	    </div>
-        	
-            </div>
-            <!-- end testing stuff -->
-            
             
             <!-- begin - if there are meetings with times to be arranged -->  
             {{#if courses_meeting_tbd }}
@@ -105,22 +82,15 @@
             </div>
             {{/if}}
             <!-- end - if there are meetings with times to be arranged --> 
-            
+
+            <p><a class="show_textbooks todo" href="/mobile/textbooks/{{term}}" title="Textbooks">View Textbooks</a></p>
+
             <div>
-                <p><a class="show_textbooks todo" href="/mobile/textbooks/{{term}}" title="Textbooks">View Textbooks</a></p>
-                <p><a class="show_finalexams" href="#" id="show_exam_schedule" aria-controls="exam_schedule"  title="Final Exam Schedule">Show Final Exam Schedule</a></p>
-                <!--<p style="display:none;"><a href="#" id="show_today_schedule" title="Today's Schedule"><i class="icon-calendar"></i> Today's Schedule</a></p>-->
+                <p><a class="show_finalexams" id="toggle_finalexams" href="#" aria-controls="final_exam_schedule_card"  title="Show Final Exam Schedule">Show Final Exam Schedule</a></p>
+
+                <div id="final_exam_schedule_card" class="slide-hide" aria-hidden="true">    
+                </div>
             </div>
-            
-            
-            <div id="exam_schedule" class="todo slide-hide" aria-hidden="true">    
-                
-                <h4>Final Exam Schedule</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce iaculis dolor enim, ut scelerisque arcu imperdiet ut. Cras fermentum, urna et gravida cursus, libero tellus hendrerit lectus, at tincidunt quam mauris in enim. Quisque mattis ante vel libero placerat porta ut non libero. Quisque vulputate dapibus dui, quis fringilla est laoreet non. Pellentesque vitae neque sed lectus consectetur pretium eget in urna. Proin a est in felis laoreet ullamcorper. Nulla facilisi. Etiam vel ipsum facilisis tellus aliquet ultrices. Cras vitae nisl lacus. Praesent condimentum dictum nibh in bibendum.</p>
-                
-            </div>
-            
-        
         </div>
     </div>
 </div>
@@ -128,34 +98,4 @@
 {{/if}}
 {% endtplhandlebars %}
 
-
-
-{% tplhandlebars "visual_schedule_day" %}
-{{#each meetings}}
-    {{#unless is_meeting}}
-        <div style="position:absolute; border-top:1px {{#if start_at_hr}}solid{{else}}dashed{{/if}} grey; top:{{top}}%; height:{{height}}%; width:100%">
-        </div>
-    {{else}}
-        <div class="c{{color_id}}" style="z-index: 1; position: absolute; top:{{top}}%; height:{{height}}%; width:100%">
-	        <div class="visual-course-id">{{curriculum}} {{course_number}}{{section_id}}</div>
-        </div>
-        <div class="visual-course" style="z-index: 1; position: absolute; top:{{top}}%; height:{{height}}%;">
-		    <div class="visual-info">
-		        <div class="visual-location">
-		        {{#if building_tbd}}
-		            Room TBD
-		        {{else}}
-		            {{#if latitude}}
-		            <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" target="_blank" class="show_map" rel="{{building_name}}">
-		            {{/if}}
-		            {{building}} {{room}}
-		            {{#if latitude}}</a>{{/if}}
-		        {{/if}}
-		        </div>
-		    </div>
-        </div>
-    {{/unless}}
-{{/each}}
-
-{% endtplhandlebars %}
 

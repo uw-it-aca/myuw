@@ -24,12 +24,15 @@ var VisualScheduleCard = {
             $("#visual_schedule_card_row").html(CardWithNoCourse.render("this quarter"));
             return;
         }
+
         CourseCard.render(course_data, term, course_index);
+        VisualScheduleCard.render_schedule(course_data, term);
+        FinalExamCard.render(course_data, term);
+    },
+        
+    render_schedule: function(course_data, term) {
         VisualScheduleCard.shown_am_marker = false;
-
-        Modal.hide();
         var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-
         var visual_data = {
             total_sections: course_data.sections.length,
             year: course_data.year, 
@@ -154,11 +157,11 @@ var VisualScheduleCard = {
             visual_data.schedule_hours_class = "twelve-plus";
         }
 
-        var day_index;
         var weekends = days.length;
         if (!visual_data.has_6_days) {
             weekends = 5
         }
+        var day_index;
         for (day_index = 0; day_index < weekends; day_index++) {
             var day = days[day_index];
             var i = 0;
@@ -206,55 +209,28 @@ var VisualScheduleCard = {
     },
 
     add_events: function(term) {
-        $(".show_section_details").bind("click", function(ev) {
-            var course_id = this.rel;
-            var log_course_id = ev.currentTarget.getAttribute("class").replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("open_modal_"+log_course_id, term);
-            var hist = window.History;
-            if (term) {
-                hist.pushState({
-                    state: "visual",
-                    course_index: course_id,
-                    term: term
-                },  "", "/mobile/visual/"+term+"/"+course_id);
-            }
-            else {
-                hist.pushState({
-                    state: "visual",
-                    course_index: course_id,
-                },  "", "/mobile/visual/"+course_id);
-            }
-            CourseModal.show_course_modal(term, course_id);
-
-            return false;
-        });
-        
-        $(".show_map").on("click", function(ev) {
-            var course_id = ev.currentTarget.getAttribute("rel");
-            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
+        $(".show_visual_map").on("click", function(ev) {
+            var building_name = ev.currentTarget.getAttribute("rel");
+            building_name = building_name.replace(/[^a-z0-9]/gi, '_');
             var building = ev.currentTarget.getAttribute("rel");
             building = building.replace(/[^a-z0-9]/gi, '_');
             WSData.log_interaction("show_map_from_visual_card_"+building, term);
         });
         
-        // TODO: this is testing... just ignore
-        $("#show_today_schedule").on("click", function(ev) {
+        $("#toggle_finalexams").on("click", function(ev) {
             ev.preventDefault();
-            console.log("click click");
-            $("#today_schedule").toggleClass("slide-show");
-            
-        });
-        
-        $("#show_exam_schedule").on("click", function(ev) {
-            ev.preventDefault();
-            $("#exam_schedule").toggleClass("slide-show");
-            if ($("#exam_schedule").hasClass("slide-show")) {
-                $("#show_exam_schedule").text("Hide Final Exam Schedule")
-                $("#exam_schedule").attr('aria-hidden', 'false');
+            $("#final_exam_schedule_card").toggleClass("slide-show");
+
+            if ($("#final_exam_schedule_card").hasClass("slide-show")) {
+                $("#toggle_finalexams").text("Hide Final Exam Schedule")
+                $("#toggle_finalexams").attr('title', 'Hide Final Exam Schedule');
+                $("#final_exam_schedule_card").attr('aria-hidden', 'false');
+                WSData.log_interaction("show_final_card", term);
             }
             else {
-                $("#show_exam_schedule").text("Show Final Exam Schedule");
-                $("#exam_schedule").attr('aria-hidden', 'true');
+                $("#toggle_finalexams").text("Show Final Exam Schedule");
+                $("#toggle_finalexams").attr('title', 'Show Final Exam Schedule');
+                $("#final_exam_schedule_card").attr('aria-hidden', 'true');
             }
         });
     },

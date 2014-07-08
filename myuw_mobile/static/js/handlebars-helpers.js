@@ -188,4 +188,26 @@ Handlebars.registerHelper('show_days_finals', function(list, start_time, end_tim
     return new Handlebars.SafeString(VisualSchedule.day_template({ meetings: list, start_time: start_time, end_time: end_time, term: term }));
 });
 
+Handlebars.registerHelper('show_card_days_meetings', function(list, start_time, end_time) {
+    if (!VisualScheduleCard.day_template) {
+        var day_source = $("#visual_schedule_card_day").html();
+        var _day_template = Handlebars.compile(day_source);
+
+        VisualScheduleCard.day_template = _day_template;
+    }
+
+    return new Handlebars.SafeString(VisualScheduleCard.day_template({ meetings: list, start_time: start_time, end_time: end_time }));
+});
+
+Handlebars.registerHelper('show_final_card_day', function(list, start_time, end_time, term) {
+    if (!FinalExamCard.day_template) {
+        var day_source = $("#final_exam_schedule_card_day").html();
+        var _day_template = Handlebars.compile(day_source);
+
+        FinalExamCard.day_template = _day_template;
+    }
+
+    return new Handlebars.SafeString(FinalExamCard.day_template({ meetings: list, start_time: start_time, end_time: end_time, term: term }));
+});
+
 
