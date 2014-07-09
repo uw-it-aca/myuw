@@ -37,15 +37,17 @@ var Landing = {
         if (fina_notices.notices.length > 0 || WSData.tuition_data()) {
             fin_aid_card = FinAidCard.render(fina_notices);
         }
+        var textbook_card = TextbookCard.render_init();
 
         $('#main-content').html(template({
             notice_banner: notice_banner,
             reg_status_card: reg_status_card,
             tuition_card: tuition_card,
             pce_tuition_card: pce_tuition_card,
-            fin_aid_card: fin_aid_card
+            fin_aid_card: fin_aid_card,
+            textbook_card: textbook_card,
         }));
-        
+
         // cards have no notice
         VisualScheduleCard.render_init();
         HfsCard.render_init();
