@@ -124,11 +124,11 @@ Handlebars.registerHelper('equal', function(value1, value2, options) {
 });
 
 Handlebars.registerHelper("eachWithIndex", function(array, fn) {
-    var buffer = ""; 
+    var buffer = "";
     for (var i = 0, j = array.length; i < j; i++) {
         var item = array[i];
         item.index = i;
-        buffer += fn(item);
+        buffer += fn.fn(item);
     }   
     return buffer;
 }); 

@@ -156,7 +156,7 @@ $(document).ready(function() {
                 state: "landing",
             },  "", "/mobile/landing/");
         }
-        else if (path === "/mobile/textbooks") {
+        else if (path === "\/mobile\/textbooks") {
             hist.replaceState({
                 state: "textbooks"
             },  "", "/mobile/textbooks");
