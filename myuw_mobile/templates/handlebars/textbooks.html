@@ -1,6 +1,7 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "textbooks" %}
 
+ <div class="container">       
         {{#if verba_link }}
               <p><a target=_blank href="{{verba_link}}"><button class="btn btn-block" type="button">Compare Prices and Buy Books</button></a></p>
               <p style="line-height:12px;" class="muted"><small>Read the University Book Store's <a href="http://uw-seattle.verbacompare.com/" target="_blank" style="font-size:12px;">price comparison policies</a></small></p>
@@ -74,6 +75,6 @@
 
 
 <div style="margin-top:20px;"><p class="muted"><small>Information on course textbooks is collected by and provided courtesy of <a style="font-size:12px;" target="_blank" href="http://www.bookstore.washington.edu">University Book Store</a> and is subject to change regularly and without notice. </small></p></div>
-
+</div>
 
              {% endtplhandlebars %}
