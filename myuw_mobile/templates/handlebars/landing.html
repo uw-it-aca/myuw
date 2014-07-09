@@ -1,12 +1,13 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "landing" %}
-
+    
+    <h1 class="sr-only">Home</h1>
+    
     {{{ notice_banner }}}
 
+    <h2 id="home_content" class="sr-only">Cards</h2>
+    
     <div id="" class="container" role="main" aria-labeledby="home_content">
-        
-        <h1 id="home_content" class="sr-only">Home</h1>
-        
         <div id="registration_card_row">
         {{{ reg_status_card }}}
         </div>

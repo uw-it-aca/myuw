@@ -7,10 +7,10 @@
         
         <div class="category-content">
         
-            <h2 class="category-header">{{category_name}}</h2>
+            <h1 class="category-header">{{category_name}}</h1>
             
             {{ #each link_data }}
-            <h3 class="category-sub-header">{{ subcategory }}</h3>
+            <h2 class="category-sub-header">{{ subcategory }}</h2>
             {{ #each links }}
                 <ul class="category-links">
                     <li> <a href="{{ url }}">{{ title }}</a></li>
