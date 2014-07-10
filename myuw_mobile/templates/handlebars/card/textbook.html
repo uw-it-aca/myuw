@@ -1,6 +1,30 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "textbook_card" %}
-  <div class="row card">
-      <h3>Textbook card ...</h3>
+  <div class="row ">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="row">
+                
+                    <div class="col-xs-11">
+                        <h3>Textbooks (<span class="todo">Summer A-Term</span>)</h3>
+                        
+                        <ul class="unstyled-list">
+                            <li class="todo">PHYS 121 A: 3 required, 1 optional</li>
+                            <li class="todo">PHYS 121 A: 3 required, 1 optional</li>
+                            <li class="todo">PHYS 121 A: 3 required, 1 optional</li>
+                        </ul>
+                        
+                    </div>
+                   
+                    <div class="col-xs-1 nav-card-arrow" style="text-align:center;">
+                        <a href="/mobile/textbooks"><i class="fa fa-chevron-right todo"></i></a>
+                    </div>
+      
+                </div>
+            </div>
+       </div>      
+    </div> 
+
+      
   </div>
 {% endtplhandlebars %}
