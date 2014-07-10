@@ -1,24 +1,21 @@
 var HfsCard = {
+    name: 'HFSCard',
+    dom_target: undefined,
 
     render_init: function() {
-        var hfs_data = WSData.hfs_data();
-        if (!hfs_data) {
-            $("#hfs_card_row").html(CardLoading.render("HFS"));
-            return;
-        }
-        HfsCard.render(hfs_data);
+        WSData.fetch_hfs_data(HfsCard.render_upon_data);
     },
 
     render_upon_data: function () {
-        var hfs_data = WSData.hfs_data();
-        if (!hfs_data) {
+        if (!HfsCard._has_all_data()) {
             $("#hfs_card_row").html(CardWithError.render());
             return;
         }
-        HfsCard.render(hfs_data);
+        HfsCard._render();
     },
 
-    render: function (hfs_data) {
+    _render: function () {
+        var hfs_data = WSData.hfs_data();
         var source = $("#hfs_card_content").html();
         var template = Handlebars.compile(source);
         var template_data;
@@ -31,7 +28,7 @@ var HfsCard = {
                 is_total_two_cards: HfsCard.is_total_two_cards(hfs_data),
             };
         }
-        $("#hfs_card_row").html(template(template_data));
+        HfsCard.dom_target.html(template(template_data));
     },
 
     is_only_one_card: function(hfs_data) {
@@ -41,4 +38,11 @@ var HfsCard = {
     is_total_two_cards: function(hfs_data) {
         return (hfs_data.student_husky_card && hfs_data.employee_husky_card && !hfs_data.resident_dining || !hfs_data.student_husky_card && hfs_data.employee_husky_card && hfs_data.resident_dining || hfs_data.student_husky_card && !hfs_data.employee_husky_card && hfs_data.resident_dining);
     },
+
+    _has_all_data: function () {
+        if (WSData.hfs_data()) {
+            return true;
+        }
+        return false;
+    }
 };

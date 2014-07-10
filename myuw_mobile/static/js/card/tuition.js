@@ -1,14 +1,33 @@
 var TuitionCard = {
-    render: function (tuition_data, is_pce) {
-        var template_data = tuition_data,
-        tuition_due_notice, display_date,
-            due_date;
-        template_data['pce_tuition_dup'] = Notices.get_notices_for_tag("pce_tuition_dup");
-        template_data['is_pce'] = is_pce;
+    name: 'TuitionCard',
+    dom_target: undefined,
+    _ajax_count: 0,
 
-        if (is_pce) {
-            template_data['tuition_accbalance'] = template_data['pce_tuition_accbalance'];
+    render_init: function() {
+        TuitionCard._ajax_count = 2;
+        WSData.fetch_tuition_data(TuitionCard.render_upon_data);
+        WSData.fetch_notice_data(TuitionCard.render_upon_data);
+    },
+
+    render_upon_data: function() {
+        TuitionCard._ajax_count -= 1;
+
+        if (!TuitionCard._has_all_data() && TuitionCard._ajax_count === 0){
+            TuitionCard.dom_target.html(CardWithError.render());
+            return;
+        } else if (TuitionCard._has_all_data()) {
+            TuitionCard._render();
         }
+    },
+
+    _render: function () {
+        var template_data = WSData.tuition_data(),
+            tuition_due_notice,
+            display_date,
+            due_date;
+
+        template_data['pce_tuition_dup'] = Notices.get_notices_for_tag("pce_tuition_dup");
+        template_data['is_pce'] = false;
 
         tuition_due_notice = Notices.get_notices_for_tag("tuition_balance")[0];
         for (var i = 0; i < tuition_due_notice.attributes.length; i += 1){
@@ -35,12 +54,19 @@ var TuitionCard = {
 
         var source = $("#tuition_card").html();
         var template = Handlebars.compile(source);
-        return template(template_data);
+        TuitionCard.dom_target.html(template(template_data));
     },
 
     _days_from_today: function (date) {
         var today = new Date()
         return Math.ceil((date - today) / (1000*60*60*24));
+    },
+
+    _has_all_data: function () {
+        if (WSData.tuition_data() && WSData.notice_data()) {
+            return true;
+        }
+        return false;
     }
 
 };

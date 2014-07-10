@@ -1,33 +1,39 @@
 var VisualScheduleCard = {
+    name: 'VisualScheduleCard',
+    dom_target: undefined,
+    term: 'current',
 
     render_init: function(term, course_index) {
-        var course_data =  WSData.normalized_course_data(term);
-        if (course_data === undefined) {
-            $("#visual_schedule_card_row").html(CardLoading.render("Course Schedule"));
-            return;
-        } 
-        VisualScheduleCard.render(course_data, term, course_index);
+        WSData.fetch_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_upon_data)
+        WSData.fetch_current_course_data(VisualScheduleCard.render_upon_data);
     },
 
-    render_upon_data: function(term, course_index) {
-        var course_data =  WSData.normalized_course_data(term);
-        if (course_data === undefined) {
-            $("#visual_schedule_card_row").html(CardWithError.render());
+    _has_all_data: function () {
+        if (WSData.normalized_course_data(VisualScheduleCard.term)) {
+            return true;
+        }
+        return false;
+    },
+
+    render_upon_data: function(course_index) {
+        if (!VisualScheduleCard._has_all_data()) {
+            VisualScheduleCard.dom_target.html(CardWithError.render());
             return;
-        } 
-        VisualScheduleCard.render(course_data, term, course_index);
+        }
+        VisualScheduleCard._render();
     },
 
     // The course_index will be given when a modal is shown.
-    render: function(course_data, term, course_index) {
+    _render: function() {
+        var course_data = WSData.normalized_course_data(VisualScheduleCard.term)
         if (course_data.sections.length == 0) {
             $("#visual_schedule_card_row").html(CardWithNoCourse.render("this quarter"));
             return;
         }
 
-        CourseCard.render(course_data, term, course_index);
-        VisualScheduleCard.render_schedule(course_data, term);
-        FinalExamCard.render(course_data, term);
+        CourseCard._render(course_data, VisualScheduleCard.term);
+        VisualScheduleCard.render_schedule(course_data, VisualScheduleCard.term);
+        FinalExamCard.render(course_data, VisualScheduleCard.term);
     },
         
     render_schedule: function(course_data, term) {
@@ -193,7 +199,7 @@ var VisualScheduleCard = {
 
         source   = $("#visual_schedule_card_content").html();
         template = Handlebars.compile(source);
-        $("#visual_schedule_card_row").html(template(visual_data));
+        VisualScheduleCard.dom_target.html(template(visual_data));
         VisualScheduleCard.add_events(term);
     },
             

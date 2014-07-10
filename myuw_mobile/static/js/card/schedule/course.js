@@ -1,6 +1,30 @@
 var CourseCard = {
+    name: 'CourseCard',
+    dom_target: undefined,
+    term: 'current',
 
-    render: function (course_data, term, course_index) {
+    render_init: function() {
+        WSData.fetch_course_data_for_term(CourseCard.term, CourseCard.render_upon_data);
+    },
+
+    render_upon_data: function() {
+        if (!CourseCard._has_all_data()) {
+            CourseCard.dom_target.html(CardWithError.render());
+            return;
+        }
+        CourseCard._render(WSData.library_data());
+    },
+
+    _has_all_data: function () {
+        if (WSData.normalized_course_data()) {
+            return true;
+        }
+        return false;
+    },
+
+    _render: function () {
+        var term = CourseCard.term;
+        var course_data = WSData.normalized_course_data(term);
         if (course_data.sections.length == 0) {
             $("#course_card_row").html(CardWithNoCourse.render("this quarter"));
             return;
@@ -27,7 +51,7 @@ var CourseCard = {
                 $(event.target).attr('aria-hidden', true);
             });
 
-        $("#course_card_row").html(courses_template(course_data));
+        CourseCard.dom_target.html(courses_template(course_data));
         CourseCard.add_events(term);
     },
 
