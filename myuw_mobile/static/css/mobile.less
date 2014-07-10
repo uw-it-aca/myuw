@@ -193,7 +193,12 @@ body {
     // footer bar
     .footer-bar { background:#333; padding: 10px 0; 
         
-        .footer-links { color: #aaa; font-size: 11px; }
+        .footer-links { color: #aaa; font-size: 11px; 
+            ul { padding: 0; margin-bottom: .5em; line-height: 11px;
+                li { display: inline-block; padding-right: 5px; margin-right: 3px; border-right: solid 1px #aaa; }
+                li:last-child { border: none; }
+            }
+        }
     }
     
 }
