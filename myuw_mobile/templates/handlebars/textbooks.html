@@ -8,7 +8,7 @@
         {{/if}}
             {{#each sections}}
             
-            <div class="c{{color_id}} books-list"><h4>{{curriculum}} {{course_number}}{{section_id}}</h4></div>
+            <div class="c{{color_id}} books-list"><a name="{{curriculum}}{{course_number}}{{section_id}}"><h4>{{curriculum}} {{course_number}}{{section_id}}</h4></a></div>
             {{#if books}}
           
                 {{#eachWithIndex books}}
