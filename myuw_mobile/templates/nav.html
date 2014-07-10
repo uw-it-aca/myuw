@@ -2,21 +2,13 @@
 
 <div id="app_header">
     <div class="container header-bar clearfix">
-    	<a href="/mobile/landing"><div class="pull-left header-logo">Home</div></a>
-        <div class="pull-left header-user sr-only"><span class="user">{{netid}}</span></div>
-        <a href="#categories" aria-controls="categories"><div class="pull-right header-menu"><i class="fa fa-bars"></i> <span class="sr-only">Categories</span> Menu</div></a>
+    	<a href="/mobile/landing" alt="Return to Home"><div class="pull-left header-logo">Home</div></a>
+        <div class="pull-left header-user"><span class="user">{{netid}}</span></div>
         
-        <div class="pull-right header-email">
+        <a href="#categories" alt="Link to categories menu"><div class="pull-right header-menu"><i class="fa fa-bars"></i> Categories</div></a>
         
-            <div class="dropdown">
-                <a data-toggle="dropdown" id="show_email_links_menu" class="header-email-link" href="#" aria-controls="email_links_menu"><i class="fa fa-envelope"></i> UW Email</a>
-                <ul id="email_links_menu" class="dropdown-menu header-email-menu" role="menu" aria-labelledby="">
-                    <li><a href="http://gmail.uw.edu" target="_blank"><i class="fa fa-google"></i> UW Gmail</a></li>
-                    <li><a href="http://www.outlook.com" target="_blank"><i class="fa fa-windows"></i> UW MSN Live</a></li>
-                </ul>
-            </div>
-
-        </div>
+        <!TODO: get users email client -->
+        <a href="http://www.outlook.com" target="_blank" alt="Open email in new tab"><div class="pull-right header-email todo"><i class="fa fa-windows"></i> UW MSN Live</div></a>
         
     </div>
 </div>
