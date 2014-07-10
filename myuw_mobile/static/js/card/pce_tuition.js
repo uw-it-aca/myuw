@@ -15,7 +15,10 @@ var PCETuitionCard = {
             PCETuitionCard.dom_target.html(CardWithError.render());
             return;
         }
-        PCETuitionCard._render();
+        else if(PCETuitionCard._has_all_data()){
+            PCETuitionCard._render();
+        }
+
     },
 
     _render: function () {
