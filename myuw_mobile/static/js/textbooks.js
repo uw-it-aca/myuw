@@ -69,9 +69,14 @@ var TextBooks = {
 
             return false;
         });
-
-
-
+        // Scroll to correct section
+        hash = location.hash.replace("#", "");
+        element = $("a[name='" + hash + "']");
+        if (element.length > 0) {
+                $('html, body').animate({
+                scrollTop: element.offset().top
+            });
+        }
     }
 };
 
