@@ -750,12 +750,11 @@ body {
 // course meeting times
 
 .table-meeting {
-  width: 98%;
+  width: 100%;
   padding:3px;
   border-collapse: separate;
   *border-collapse: collapsed;
   min-height: 20px;
-  margin: 5px 1% 5px 1%;
   background-color: #fafaf5;
   border: 1px solid #eee;
   border: 1px solid rgba(0, 0, 0, 0.09);
@@ -1054,7 +1053,7 @@ abbr[title] {
 .time-bar {
   /*margin-left: -2px;*/
   width: 8%;
-  border-right: 2px groove #eeeeee;
+  border-right: 1px solid #ccc;
   position: relative;
   display: inline-block;
   float: left;
@@ -1080,6 +1079,7 @@ abbr[title] {
   display: inline-block;
   float: left;
   color: #ffffff;
+  border-bottom: 1px solid #ccc;
 }
 .five-day p {
   color: #333;
@@ -1125,10 +1125,10 @@ seven-day:first-child,
 .seven-day:nth-of-type(odd),
 .six-day:nth-of-type(even),
 .five-day:nth-of-type(odd) {
-  background-color: rgba(0, 0, 0, 0.05);
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
 }
 .day-col {
-  background-color: rgba(0, 0, 0, 0.15);
   /*background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
   background-image: -webkit-linear-gradient(90deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -moz-linear-gradient(90deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
@@ -1138,7 +1138,6 @@ seven-day:first-child,
   height: 93%;
 }
 .day-col2 {
-  background-color: rgba(0, 0, 0, 0.2);
   /*background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
   background-image: -webkit-linear-gradient(90deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -moz-linear-gradient(90deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
@@ -1221,45 +1220,42 @@ seven-day:first-child,
 }
 .day-label {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
   height: 7%;
   text-align: center;
   color: #3c3c3c;
   top: 0px;
-  border-bottom: 2px groove #eeeeee;
   //margin-top: -2px;
 }
 .visual-course {
   width: 100%;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
   display: table;
   text-align: center;
   font-size: 12px;
   line-height: 12px;
 }
 .visual-info {
-  display: table-cell;
+	width: 100%;
+/**  display: table-cell;
   vertical-align: middle;
-  text-align: left;
+  text-align: left; **/
 }
 .visual-course-id {
-	line-height: .9;
-	opacity: .6;
 	position: absolute;
-	bottom: 0;
-	left: 0;
-	font-weight: bold;
-	font-size:smaller;
+	top: 0;
+	width:100%;
+	font-size:.8em;
+	text-align: left;
+
 }
 .visual-location {
-	font-size: smaller;
+	width:100%;
+	text-align: left;
+	font-size: .7em;
 	position: absolute;
-	top: 0px;
-	background-color: white;
-	opacity: .7;
+	bottom: 0px;
 	color: #555;
+	text-align: center;
+	font-size:smaller;
 	a { 
 			color: #0088cc;
 	}
