@@ -69,11 +69,11 @@ var FinalExamCard = {
             show_list_instead_of_visual = true;
         }
 
-        var over_one_week = [];
+        var list_data = [];
         var visual_data = {};
 
         if (show_list_instead_of_visual) {
-            over_one_week = scheduled_finals.sort(FinalExams.sort_by_finals_date);
+            list_data = scheduled_finals.sort(FinalExams.sort_by_finals_date);
         }
         else if (course_data.quarter != "summer") {
             // summer quarter doesn't have properly scheduled finals
@@ -83,7 +83,7 @@ var FinalExamCard = {
         var template_data = {
             term: term,
             tbd: tbd_or_nonexistent,
-            over_one_week: over_one_week,
+            list_data: list_data,
             is_summer: (course_data.quarter == "summer"),
             visual_data: visual_data,
         };

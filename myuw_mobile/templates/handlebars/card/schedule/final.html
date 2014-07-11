@@ -77,60 +77,6 @@
         {{/with}}
         {{/if}}
 
-        {{#if over_one_week}}
-        {{#each over_one_week}}
-            <div class="fallback-exams-list">
-                <div class="c{{color_id}} c{{color_id}}Border">
-            	    <h3>{{ curriculum_abbr }} {{course_number}}{{section_id}}</h3>
-                </div>
-            
-                <div class="fallback-exams-details">
-		    <dl class="dl-horizontal">
-                        <dt>Date</dt>
-                        <dd>{{ formatDateAsDate final_exam.start_date }}</dd>
-                        <dt>Time</dt>
-                        <dd>{{ formatDateAsTimeAMPM final_exam.start_date }}-{{ formatDateAsTimeAMPM final_exam.end_date }}</dd>               
-                        <dt>Location</dt>
-                        <dd>
-                            {{#if final_exam.latitude}}
-                            <a href="http://maps.google.com/maps?q={{ final_exam.latitude }},{{ final_exam.longitude }}+({{encodeForMaps final_exam.building_name }})&z=18" target="_blank" class="show_map_modal" rel="{{final_exam.building_name}}">
-                            {{/if}}
-                            {{#if final_exam.building_tbd}}
-                            Room TBD
-                            {{else}}
-                            {{ final_exam.building }} {{ final_exam.room_number }}
-                            {{/if}}
-                            {{#if final_exam.latitude}}</a>{{/if}}
-                        </dd>
-      		        <dt>Status</dt>
-      		        <dd>
-                            {{#if final_exam.is_confirmed }}
-                            Confirmed
-                            {{else}}
-                            Not confirmed
-                            {{/if}}
-                        </dd>
-
-                        {{#if instructors}}
-      		        <dt>Instructor</dt>
-      		        <dd>  
-      			    <ul>
-                                {{#each instructors}}
-                                {{#if whitepages_publish}}
-                                <li><a href="javascript:void(0);" class="instructor" rel="{{uwregid}}">{{full_name}}</a></li>
-                                {{else}}
-                                <li>{{full_name}}</li>
-                                {{/if}}
-                                {{/each}}
-                            </ul>
-                        </dd>
-                        {{/if}}
-                    </dl>
-                </div>          
-            </div>
-        {{/each}}
-        {{/if}}
-
         <!-- begin - if there are meetings with times to be arranged -->
         {{#if tbd}}
         <div class="courseTBD">
