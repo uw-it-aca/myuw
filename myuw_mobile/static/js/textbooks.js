@@ -1,14 +1,14 @@
 var TextBooks = {
-    show_books: function() {
+    show_books: function(textbook) {
         showLoading();
-        WSData.fetch_book_data(TextBooks._fetch_course_data);
+        WSData.fetch_book_data(TextBooks._fetch_course_data, [textbook]);
     },
 
-    _fetch_course_data: function() {
-        WSData.fetch_current_course_data(TextBooks.render_books);
+    _fetch_course_data: function(textbook) {
+        WSData.fetch_current_course_data(TextBooks.render_books, [textbook]);
     },
 
-    render_books: function() {
+    render_books: function(textbook) {
         $('html,body').animate({scrollTop: 0}, 'fast');
         var source   = $("#textbooks").html();
         var template = Handlebars.compile(source);
@@ -70,8 +70,7 @@ var TextBooks = {
             return false;
         });
         // Scroll to correct section
-        hash = location.hash.replace("#", "");
-        element = $("a[name='" + hash + "']");
+        element = $("a[name='" + textbook + "']");
         if (element.length > 0) {
                 $('html, body').animate({
                 scrollTop: element.offset().top

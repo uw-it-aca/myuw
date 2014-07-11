@@ -53,7 +53,7 @@ $(document).ready(function() {
             document.title = window.page_titles["future_quarters"];
         }
         else if (state === "textbooks") {
-            TextBooks.show_books();
+            TextBooks.show_books(data.textbook);
             document.title = window.page_titles["textbooks"];
         }
         else if (state === "quicklinks") {
@@ -156,10 +156,18 @@ $(document).ready(function() {
                 state: "landing",
             },  "", "/mobile/landing/");
         }
-        else if (path.match(/^\/mobile\/textbooks/)) {
-            hist.replaceState({
+        else if (true === false) {
+        var matches = path.match(/^\/mobile\/textbooks/[A-Z0-9]+$);
+             hist.replaceState({
                 state: "textbooks"
             },  "", "/mobile/textbooks");
+        }
+        else if (path.match(/^\/mobile\/textbooks/)) {
+        var matches = path.match(/^\/mobile\/textbooks\/([A-Z0-9]+$)/);
+            hist.replaceState({
+                state: "textbooks",
+                textbook: matches !== null ? matches[1] : undefined
+            },  "", path);
             //TextBooks.show_books();
         }
         else if (path === "/mobile/links") {
