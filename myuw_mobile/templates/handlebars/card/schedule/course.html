@@ -82,26 +82,27 @@
                     
                     </div>
 
-                    {{#if instructors}}<!-- list instructors, if there are any --> 
+                    {{#if instructors}}
                     <div>
                         <h4>Instructors</h4>
-                        {{# if instructors }}<ol style="padding-left: 0px;">{{/if}}
-                        {{#each instructors}}
+                        <ol style="padding-left: 0px;">
+                            {{#each instructors}}
                             <li class="instructor-container" style="list-style-type: none; width: 98%; padding:3px; border-collapse: separate; *border-collapse: collapsed; min-height: 20px; margin: 5px 1% 5px 1%; background-color: #fafaf5; border: 1px solid #eee; border: 1px solid rgba(0, 0, 0, 0.09); -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;">
                                 <h5 style="margin-bottom: 5px; margin-top: 5px;">{{full_name}}</h5>
-                                <!-- #if whitepages_publish}}-->
+                                {{# if whitepages_publish}}
                                 <div class="contact-info-container">
-                                    <span style="display: block;">Senior Lecturer</span>
-                                    <span style="display: block;">301 Mary Gates Hall</span>
-                                    <span style="display: block;"><a href="mailto:lmanes@uw.edu">lmanes@uw.edu</a>
-                                    <span style="display: block;"><a href="tel:+12068555493">206-855-5493</a><br /><a href="tel:+12065555555">206-555-5555</a></span>
+                                    <span style="display: block;">{{title1}}</span>
+                                    <span style="display: block;"><a href="mailto:{{email1}}">{{email1}}</a>
+                                    <span style="display: block;"><a href="tel:+1{{phone1}}">{{phone1}}</a><br />
+                                        {{# if phone2}}
+                                        <a href="tel:+1{{phone2}}">{{phone2}}</a></span>
+                                        {{/if}}
+                                    <span style="display: block;">{{address1}}</span>
                                 </div>
-                                <!-- /if}} -->
+                                {{/if}}
                             </li>
-                        {{/each}}
-                        {{# if instructors }}</ol>{{/if}}
-                        <!-- #if whitepages_publish}}-->
-                            </div>
+                            {{/each}}
+                        </ol>
                     </div>
                     {{/if}}
 

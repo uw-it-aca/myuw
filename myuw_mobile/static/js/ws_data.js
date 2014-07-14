@@ -254,6 +254,12 @@ WSData = {
         WSData._normalize_instructors(WSData.current_course_data());
     },
 
+    _sort_instructors_by_last_name: function(a, b) {
+        if (a.surname < b.surname) return -1;
+        if (a.surname > b.surname) return 1;
+        return 0;
+    },
+
     _normalize_instructors: function(data) {
         if (!data.sections.length) {
             return;
@@ -281,6 +287,7 @@ WSData = {
                     instructors[instructor.uwregid] = true;
                 }
             }
+            section.instructors = section.instructors.sort(WSData._sort_instructors_by_last_name);
         }
     },
 
