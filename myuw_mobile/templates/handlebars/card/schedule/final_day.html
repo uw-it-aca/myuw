@@ -2,7 +2,7 @@
 {% tplhandlebars "final_exam_schedule_card_day" %}
 {{#each meetings}}
     {{#unless is_meeting}}
-        <div style="position:absolute; border-top:1px {{#if start_at_hr}}solid{{else}}dashed{{/if}} grey; top:{{top}}%; height:{{height}}%; width:100%">
+        <div class="{{#if start_at_hr}}hour-marker{{else}}halfhour-marker{{/if}}" style="position:absolute; top:{{top}}%; height:{{height}}%;">
         </div>
     {{else}}
         <div class="c{{color_id}} visual-course" style="z-index: 1; position: absolute; top:{{top}}%; height:{{height}}%; width:100%">
