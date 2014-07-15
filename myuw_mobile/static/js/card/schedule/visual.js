@@ -239,5 +239,8 @@ var VisualScheduleCard = {
                 $("#final_exam_schedule_card").attr('aria-hidden', 'true');
             }
         });
+        
+        // hide visual schedule from screen readers
+        $("#VisualScheduleCard").attr('aria-hidden', 'true');
     },
 };
