@@ -2,9 +2,9 @@
     {% tplhandlebars "notice_banner" %}
 
     <div class="notice-bar" aria-labeledby="notice_banner" role="alert">        
-        <div class="container" style="position:relative;">
+        <div class="container" style="position:relative;" aria-labelledby="notice_banner">
 
-            <a href="/mobile/notices/" title="to open notice page">
+            <a href="/mobile/notices/" title="Navigate to Notices">
                 <h2 class="notice-header" id="notice_banner">Notices</h2>
             </a>
             <div class="notice-unread"><span class="badge">{{ total_unread }} unread</span></div>
