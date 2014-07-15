@@ -3,12 +3,12 @@
 <div id="app_header" role="navigation">
     <div class="container header-bar clearfix">
     	<a href="/mobile/landing" alt="Return to Home"><div class="pull-left header-logo" style="background: #39275B url('{{ STATIC_URL }}images/myuw.png') no-repeat 50% 50%;">Home</div></a>
-        <div class="pull-left header-user"><span class="user">{{netid}}</span></div>
+        <div class="pull-left header-user"><span class="user">logged in {{netid}}</span></div>
         
-        <a href="#categories" alt="Link to categories menu"><div class="pull-right header-menu"><i class="fa fa-bars"></i> Categories</div></a>
+        <a href="#categories" alt="Link to categories menu"><div class="pull-right header-menu"><i class="fa fa-bars" aria-hidden="true"></i> Categories</div></a>
                 
         <!TODO: get users email client -->
-        <a href="http://www.outlook.com" target="_blank" alt="Open email in new tab"><div class="pull-right header-email todo"><i class="fa fa-windows"></i> UW MSN Live</div></a>
+        <a href="http://www.outlook.com" target="_blank" alt="Open email in new tab"><div class="pull-right header-email todo"><i class="fa fa-windows" aria-hidden="true"></i> UW MSN Live</div></a>
         
     </div>
 </div>
