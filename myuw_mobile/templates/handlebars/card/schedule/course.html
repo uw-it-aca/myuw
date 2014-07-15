@@ -1,8 +1,9 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "course_card_content" %}
 
-<h3>Your Courses</h3>
+<h3 id="your_courses" class="sr-only">Your Courses</h3>
 
+<div aria-labeledby="your_courses">
 {{#each sections}}
 <div class="card">
     <div id="course_wrapper{{index}}" class="accordian OFFc{{color_id}}">
@@ -10,12 +11,12 @@
             <!-- above the accordion -->
             <div>           
                 
-                <h3>
+                <h4>
                     <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}}{{section_id}}</span>
                     <span class="shortTitle">{{ course_title }}</span>
-                </h3>
+                </h4>
                 
-                <h4 class="scheduleHeading">{{ucfirst meetings.0.type}} Schedule</h4>
+                <h5 class="scheduleHeading">{{ucfirst meetings.0.type}} Schedule</h5>
                 
                 {{ #if canvas_grade }}
                 <div class="canvasGradeBox" style="float: right; padding: 6px; width: 100px;">
@@ -70,7 +71,7 @@
             <div id="course{{index}}" class="accordion-body collapse" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
                 <div class="accordion-inner">
                     <div>
-                    <h4>Course resources</h4>     
+                    <h5>Course resources</h5>     
                     <ul class="unstyled-list">
                     {{#if has_resources }}
                         {{#if class_website_url}}
@@ -88,7 +89,7 @@
 
                     {{#if instructors}}
                     <div>
-                        <h4>Instructors</h4>
+                        <h5>Instructors</h5>
                         <ol style="padding-left: 0px;">
                             {{#each instructors}}
                             <li class="instructor-container" style="list-style-type: none; width: 98%; padding:3px; border-collapse: separate; *border-collapse: collapsed; min-height: 20px; margin: 5px 1% 5px 1%; background-color: #fafaf5; border: 1px solid #eee; border: 1px solid rgba(0, 0, 0, 0.09); -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;">
@@ -112,7 +113,7 @@
 
                     {{ #if canvas_grade }}
                     <div class="canvasGradeBox">
-                        <h4>* Canvas Grade</h4>
+                        <h5>* Canvas Grade</h5>
                         <p>Depending on how your instructor has configured Canvas, this grade calculation may be for points needed for the entire quarter, rather than for course work due to date.</p>
                     </div>
                     {{ /if }}
@@ -123,5 +124,6 @@
     </div>
 </div>
 {{/each}}
+</div>
 
 {% endtplhandlebars %}
