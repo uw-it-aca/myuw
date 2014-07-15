@@ -105,11 +105,6 @@ def load_schedule(schedule, summer_term=""):
                     "address1"] and not instructor[
                     "address2"]:
                     instructor["whitepages_publish"] = False
-                if instructor["whitepages_publish"] and instructor["uwregid"]:
-                    contact = get_contact(instructor["uwregid"])
-                    if contact:
-                        instructor["title1"] = contact["PersonAffiliations"]["EmployeePersonAffiliation"]["EmployeeWhitePages"]["Title1"]
-                        instructor["title2"] = contact["PersonAffiliations"]["EmployeePersonAffiliation"]["EmployeeWhitePages"]["Title2"]
             meeting_index += 1
 
     # MUWM-443
