@@ -23,13 +23,10 @@ var CourseList = {
             $('html,body').animate({scrollTop: 0}, 'fast');
         }
 
-        var no_alert_cookie_name = "no_alert_" + $('.user').html().substring(9) ;
-        var no_alert_cookie = $.cookie(no_alert_cookie_name);
 
         var source = $("#quarter-header").html();
         var template = Handlebars.compile(source);
         $("#page-header").html(template({
-            show_alert: no_alert_cookie == null,
             year: course_data.year,
             quarter: course_data.quarter,
             summer_term: course_data.summer_term,
@@ -53,7 +50,6 @@ var CourseList = {
 
         $("#close_alert").bind("click", function(ev) {
             $(".alert").hide();
-            $.cookie(no_alert_cookie_name, '1', { expires: 18, path: '/' });
             return false;
         });
 
