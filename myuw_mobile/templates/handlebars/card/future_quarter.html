@@ -1,16 +1,23 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "future_quarter_card" %}
 
-    <div class="row">
-         <div class="col-xs-12">
-            <div class="card">
-            
-            
-                <h3>Spring 2014</h3> 
-                <p><a class="todo" href="../future/spr2014">View Quarter</a></p>
+<div class="row ">
+    <div class="col-xs-12">
+        <div class="card">
+            <div class="row">
 
+                <div class="col-xs-11">
+                    <h3 class="todo">Spring 2014</h3> 
+                    <p>You have registered for <span class="todo">12</span> credits (<span class="todo">3</span> classes) for <span class="todo">Spring 2014</span>.</p>
+                </div>
+                    
+                <div class="col-xs-1 nav-card-arrow" style="text-align:center;">
+                    <a href="../future/spr2014"><i class="fa fa-chevron-right todo"></i></a>
+                </div>
+      
             </div>
         </div>
-    </div>
-         
+    </div>      
+</div> 
+
 {% endtplhandlebars %}
