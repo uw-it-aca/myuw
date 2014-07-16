@@ -49,7 +49,7 @@ $(document).ready(function() {
             document.title = window.page_titles["instructor"];
         }
         else if (state === "future_quarters") {
-            Quarters.show_future_quarters();
+            FutureQuarter.render(data.term);
             document.title = window.page_titles["future_quarters"];
         }
         else if (state === "textbooks") {
@@ -183,13 +183,11 @@ $(document).ready(function() {
             //HfsAccounts.show_balances();
         }
         else if (path.match(/^\/mobile\/future_quarters/)) {
-            var matches = path.match(/^\/mobile\/future_quarters(\/[a-z]+)/);
+            var matches = path.match(/^\/mobile\/future_quarters\/([0-9]+?,[a-z]+(.+))/);
             hist.replaceState({
-                state: "future_quarters"
-            },  "", "/mobile/future_quarters" + (matches
-                                                 ? matches[1]
-                                                 : ""));
-            //Quarters.show_future();
+                state: "future_quarters",
+                term: matches[1],
+            },  "", path);
         }
         else if (path === "/mobile/final_exams") {
             hist.replaceState({
