@@ -25,15 +25,14 @@ var VisualScheduleCard = {
 
     // The course_index will be given when a modal is shown.
     _render: function() {
-        var course_data = WSData.normalized_course_data(VisualScheduleCard.term)
+        var term = VisualScheduleCard.term;
+        var course_data = WSData.normalized_course_data(term)
         if (course_data.sections.length == 0) {
-            $("#visual_schedule_card_row").html(CardWithNoCourse.render("this quarter"));
+            $("#VisualScheduleCard").html(CardWithNoCourse.render("this quarter"));
             return;
         }
-
-        CourseCard._render(course_data, VisualScheduleCard.term);
-        VisualScheduleCard.render_schedule(course_data, VisualScheduleCard.term);
-        FinalExamCard.render(course_data, VisualScheduleCard.term);
+        VisualScheduleCard.render_schedule(course_data, term);
+        FinalExamCard.render(course_data, term);
     },
         
     render_schedule: function(course_data, term) {

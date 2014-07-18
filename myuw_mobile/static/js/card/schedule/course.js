@@ -12,7 +12,7 @@ var CourseCard = {
             CourseCard.dom_target.html(CardWithError.render());
             return;
         }
-        CourseCard._render(WSData.library_data());
+        CourseCard._render();
     },
 
     _has_all_data: function () {
@@ -26,7 +26,7 @@ var CourseCard = {
         var term = CourseCard.term;
         var course_data = WSData.normalized_course_data(term);
         if (course_data.sections.length == 0) {
-            $("#course_card_row").html(CardWithNoCourse.render("this quarter"));
+            $("#CourseCard").html(CardWithNoCourse.render("this quarter"));
             return;
         }
 
