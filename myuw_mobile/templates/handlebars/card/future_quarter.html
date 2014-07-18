@@ -3,12 +3,13 @@
 
 <div class="row ">
     <div class="col-xs-12">
+        {{ #each terms }}
         <div class="card">
             <div class="row">
 
                 <div class="col-xs-11">
-                    <h3 class="todo">Spring 2014</h3> 
-                    <p>You have registered for <span class="todo">12</span> credits (<span class="todo">3</span> classes) for <span class="todo">Spring 2014</span>.</p>
+                    <h3 class="">{{ quarter }} {{ year }}{{ #if summer_term }}: {{ summer_term }} {{ /if }}</h3>
+                    <p>You have registered for <span class="todo">12</span> credits (<span class="todo">3</span> classes) for <span class="">{{ quarter }} {{ year }}{{ #if summer_term }}: {{ summer_term }} {{ /if }}</span>.</p>
                 </div>
                     
                 <div class="col-xs-1 nav-card-arrow" style="text-align:center;">
@@ -17,6 +18,7 @@
       
             </div>
         </div>
+        {{ /each }}
     </div>      
 </div> 
 

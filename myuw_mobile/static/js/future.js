@@ -15,7 +15,6 @@ var FutureQuarter = {
         var cards = [RegStatusCard,
                      VisualScheduleCard,
                      CourseCard,
-                     FutureQuarterCard,
                      TuitionCard,
                      PCETuitionCard,
                      TextbookCard,
