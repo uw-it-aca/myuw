@@ -20,7 +20,7 @@ class TextbookCurQuar(RESTDispatch):
         timer = Timer()
         logger = logging.getLogger(__name__)
         schedule = get_current_quarter_schedule()
-        if schedule is None:
+        if schedule is None or len(schedule.sections) == 0:
             log_data_not_found_response(logger, timer)
             return data_not_found()
 
