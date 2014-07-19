@@ -28,7 +28,7 @@ var VisualScheduleCard = {
         var term = VisualScheduleCard.term;
         var course_data = WSData.normalized_course_data(term)
         if (course_data.sections.length == 0) {
-            $("#VisualScheduleCard").html(CardWithNoCourse.render("this quarter"));
+            VisualScheduleCard.dom_target.html(CardWithNoCourse.render(term));
             return;
         }
         VisualScheduleCard.render_schedule(course_data, term);

@@ -26,7 +26,7 @@ var CourseCard = {
         var term = CourseCard.term;
         var course_data = WSData.normalized_course_data(term);
         if (course_data.sections.length == 0) {
-            $("#CourseCard").html(CardWithNoCourse.render("this quarter"));
+            CourseCard.dom_target.html(CardWithNoCourse.render(term));
             return;
         }
 
