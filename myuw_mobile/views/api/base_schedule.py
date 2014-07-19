@@ -44,8 +44,14 @@ class StudClasSche(RESTDispatch):
 
 
 def load_schedule(schedule, summer_term=""):
-    filter_schedule_sections_by_summer_term(schedule, summer_term)
+    json_data = schedule.json_data()
+    json_data["summer_term"]=summer_term
+    
+    if len(schedule.sections) == 0:
+        return json_data
 
+    filter_schedule_sections_by_summer_term(schedule, summer_term)
+        
     colors = get_colors_by_schedule(schedule)
     if colors is None and len(schedule.sections) > 0:
         return None
@@ -56,8 +62,6 @@ def load_schedule(schedule, summer_term=""):
 
     # Since the schedule is restclients, and doesn't know
     # about color ids, backfill that data
-    json_data = schedule.json_data()
-    
     section_index = 0
     for section in schedule.sections:
         section_data = json_data["sections"][section_index]
@@ -113,5 +117,4 @@ def load_schedule(schedule, summer_term=""):
                                                   'course_number',
                                                   'section_id',
                                                   ))
-    json_data["summer_term"]=summer_term
     return json_data
