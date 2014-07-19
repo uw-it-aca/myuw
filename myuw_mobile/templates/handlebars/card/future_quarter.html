@@ -9,11 +9,11 @@
 
                 <div class="col-xs-11">
                     <h3 class="">{{ quarter }} {{ year }}{{ #if summer_term }}: {{ summer_term }} {{ /if }}</h3>
-                    <p>You have registered for <span class="todo">12</span> credits (<span class="todo">3</span> classes) for <span class="">{{ quarter }} {{ year }}{{ #if summer_term }}: {{ summer_term }} {{ /if }}</span>.</p>
+                    <p>You have registered for <span class="">{{ credits }}</span> credits (<span class="">{{ section_count }}</span> sections) for <span class="">{{ quarter }} {{ year }}{{ #if summer_term }}: {{ summer_term }} {{ /if }}</span>.</p>
                 </div>
-                    
+
                 <div class="col-xs-1 nav-card-arrow" style="text-align:center;">
-                    <a href="../future/spr2014"><i class="fa fa-chevron-right todo"></i></a>
+                    <a href="../future/{{ url }}"><i class="fa fa-chevron-right todo"></i></a>
                 </div>
       
             </div>

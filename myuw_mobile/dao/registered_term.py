@@ -94,6 +94,8 @@ def _get_future_term_json(term, summer_term):
     if len(summer_term) > 0:
         url = url + "," + summer_term.lower()
     return_json["url"] = url
+    return_json["credits"] = term.credits
+    return_json["section_count"] = term.section_count
     return return_json
 
 
