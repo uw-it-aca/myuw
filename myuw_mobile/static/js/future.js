@@ -12,14 +12,9 @@ var FutureQuarter = {
 
         WSData.fetch_notice_data(Landing.render_notice_banner);
 
-        var cards = [RegStatusCard,
-                     VisualScheduleCard,
+        var cards = [VisualScheduleCard,
                      CourseCard,
-                     TuitionCard,
-                     PCETuitionCard,
-                     TextbookCard,
-                     HfsCard,
-                     LibraryCard];
+                     TextbookCard];
 
         Cards.load_cards_in_order(cards, $("#landing_content"));
 
