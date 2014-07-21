@@ -13,13 +13,11 @@ var Landing = {
         WSData.fetch_notice_data(Landing.render_notice_banner);
 
         var cards = [RegStatusCard,
+                     FutureQuarterCard,
                      VisualScheduleCard,
                      CourseCard,
-                     FutureQuarterCard,
-                     TuitionCard,
-                     PCETuitionCard,
-                     TextbookCard,
                      HfsCard,
+                     TuitionCard,
                      LibraryCard];
 
         Cards.load_cards_in_order(cards, $("#landing_content"));
