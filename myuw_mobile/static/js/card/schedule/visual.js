@@ -233,9 +233,12 @@ var VisualScheduleCard = {
                 WSData.log_interaction("show_final_card", term);
             }
             else {
-                $("#toggle_finalexams").text("Show Final Exam Schedule");
                 $("#toggle_finalexams").attr('title', 'Show Final Exam Schedule');
                 $("#final_exam_schedule_card").attr('aria-hidden', 'true');
+                
+                setTimeout(function() {
+                      $("#toggle_finalexams").text("Show Final Exam Schedule");
+               }, 700);
             }
         });
         
