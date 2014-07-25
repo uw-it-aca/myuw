@@ -79,6 +79,29 @@ var CourseCard = {
             building = building.replace(/[^a-z0-9]/gi, '_');
             WSData.log_interaction("show_map_from_course_list_"+building, term);
         });
+        
+        
+        $(".blah").on("click", function(ev) {
+            
+            ev.preventDefault();
+            console.log("blah was clicked!");
+            
+            $("#course" + index).toggleClass("slide-show");
+
+            if ($("#course" + index).hasClass("slide-show")) {
+                $(this).text("Show Less")
+                $(this).attr('title', 'Show less course information');
+                $("#course" + index).attr('aria-hidden', 'false');
+                //WSData.log_interaction("show_final_card", term);
+            }
+            else {
+                $(this).text("Show More");
+                $(this).attr('title', 'Show more course information');
+                $("#course" + index).attr('aria-hidden', 'true');
+            }
+            
+            
+        });
 
 
         $(".instructor").on("click", function(ev) {

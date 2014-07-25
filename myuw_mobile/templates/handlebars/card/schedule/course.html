@@ -2,128 +2,118 @@
     {% tplhandlebars "course_card_content" %}
 
 <h3 id="your_courses" class="sr-only">Your Courses</h3>
-
 <div aria-labeledby="your_courses">
-{{#each sections}}
-<div class="card">
-    <div id="course_wrapper{{index}}" class="accordian OFFc{{color_id}}">
-        <div class="accordion-group">
-            <!-- above the accordion -->
-            <div>           
-                
-                <h4>
-                    <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}}{{section_id}}</span>
-                    <span class="shortTitle">{{ course_title }}</span>
-                </h4>
-                
-                <h5 class="scheduleHeading">{{ucfirst meetings.0.type}} Schedule</h5>
-                
-                {{ #if canvas_grade }}
-                <div class="canvasGradeBox" style="float: right; padding: 6px; width: 100px;">
-                    <span class="canvasGrade" style="font-size: 22px;">{{ canvas_grade }}%</span>
-                    <br />
-                    <span class="canvasGradeLabel" style="font-size: 12px; cursor: pointer;" title="See note">Canvas Grade *</span>
-                </div>
-                {{ /if }}
-                
-                <table class="table-meeting">
-                    {{#each meetings}} 
-                    <tr>
-                        {{#if days_tbd }}
-                        <td colspan="2">Days and times to be arranged</td>
-                        {{else}}
-                        <td>
-                            {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
-                            meeting_days.tuesday}}<abbr title="Tuesday">T</abbr>{{/if}}{{#if
-                            meeting_days.wednesday}}<abbr title="Wednesday">W</abbr>{{/if}}{{#if
-                            meeting_days.thursday}}<abbr title="Thursday">Th</abbr>{{/if}}{{#if
-                            meeting_days.friday}}<abbr title="Friday">F</abbr>{{/if}}{{#if
-                            meeting_days.saturday}}<abbr title="Saturday">Sa</abbr>{{/if}}{{#if
-                            meeting_days.sunday}}<abbr title="Sunday">Su</abbr>{{/if}}
-                        </td>
-                        <td>{{formatTime start_time}} - {{formatTimeAMPM end_time}}</td>
-                        {{/if}}
-                        {{#if building_tbd}}
-                        <td>Room to be arranged</td>
-                        {{else}}
-                        <td>
-                            {{#if latitude}}
-                            <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" target="_blank" class="show_map" rel="{{building_name}}">
-                            {{/if}}
-                            {{building}} {{room}}
-                            {{#if latitude}}</a>{{/if}}
-                        </td>
-                        {{/if}}
-                    </tr>
-                    {{/each}}
-                </table>
-                <!-- /above the accordion --> 
-                <div class="accordion-footer">
-                    <a class="accordion-toggle collapsed collapsable" data-toggle="collapse" data-parent="#main-content" href="#course{{index}}" aria-controls="course{{index}}">
-                        <span class="show_more" style="">{{ trans "course_list_show_more" }}</span>
-                        <span class="show_less" style="display:none;">{{ trans "course_list_show_less" }}</span> 
-                    </a>
-                </div>
-            </div>
-            <!-- /heading -->
 
-            <!-- inside the accordion -->            
-            <div id="course{{index}}" class="accordion-body collapse" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
-                <div class="accordion-inner">
-                    <div>
+    {{#each sections}}
+    <div class="card">
+        <div id="course_wrapper{{index}}" class="OFFc{{color_id}}">
+                
+            <h4>
+                <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>
+                <span class="shortTitle">{{ course_title }}</span>
+            </h4>
+            
+            <h5 class="scheduleHeading">{{ucfirst meetings.0.type}} Schedule</h5>
+            
+            {{ #if canvas_grade }}
+            <div class="canvasGradeBox" style="float: right; padding: 6px; width: 100px;">
+                <span class="canvasGrade" style="font-size: 22px;">{{ canvas_grade }}%</span>
+                <br />
+                <span class="canvasGradeLabel" style="font-size: 12px; cursor: pointer;" title="See note">Canvas Grade *</span>
+            </div>
+            {{ /if }}
+            
+            <table class="table-meeting">
+                {{#each meetings}} 
+                <tr>
+                    {{#if days_tbd }}
+                    <td colspan="2">Days and times to be arranged</td>
+                    {{else}}
+                    <td>
+                        {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
+                        meeting_days.tuesday}}<abbr title="Tuesday">T</abbr>{{/if}}{{#if
+                        meeting_days.wednesday}}<abbr title="Wednesday">W</abbr>{{/if}}{{#if
+                        meeting_days.thursday}}<abbr title="Thursday">Th</abbr>{{/if}}{{#if
+                        meeting_days.friday}}<abbr title="Friday">F</abbr>{{/if}}{{#if
+                        meeting_days.saturday}}<abbr title="Saturday">Sa</abbr>{{/if}}{{#if
+                        meeting_days.sunday}}<abbr title="Sunday">Su</abbr>{{/if}}
+                    </td>
+                    <td>{{formatTime start_time}} - {{formatTimeAMPM end_time}}</td>
+                    {{/if}}
+                    {{#if building_tbd}}
+                    <td>Room to be arranged</td>
+                    {{else}}
+                    <td>
+                        {{#if latitude}}
+                        <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" target="_blank" class="show_map" rel="{{building_name}}">
+                        {{/if}}
+                        {{building}} {{room}}
+                        {{#if latitude}}</a>{{/if}}
+                    </td>
+                    {{/if}}
+                </tr>
+                {{/each}}
+            </table>
+            
+            
+            <div>
+                <a class="blah" href="#" aria-controls="course{{index}}" title="Show more course information">Show More</a>                    
+            </div>
+
+            <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true" style="background:yellow;">
+                
+                <div>
                     <h5>Course resources</h5>     
                     <ul class="unstyled-list">
-                    {{#if has_resources }}
-                        {{#if class_website_url}}
-                        <li><a href="{{class_website_url}}" target="_blank" class="course_website" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Website</a></li>
-                        {{/if}}       
-                        {{#if canvas_url}}
-                        <li><a href="{{canvas_url}}" target="_blank" class="course_canvas_site" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Canvas</a></li>
-                        {{/if}} 
-                    {{/if}}
-                    
+                        {{#if has_resources }}
+                            {{#if class_website_url}}
+                            <li><a href="{{class_website_url}}" target="_blank" class="course_website" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Website</a></li>
+                            {{/if}}       
+                            {{#if canvas_url}}
+                            <li><a href="{{canvas_url}}" target="_blank" class="course_canvas_site" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Canvas</a></li>
+                            {{/if}} 
+                        {{/if}}
                         <li><a href="/mobile/textbooks/{{curriculum_abbr}}{{course_number}}{{section_id}}">Textbooks</a></li>
                     </ul>
-                    
-                    </div>
+                </div>
 
-                    {{#if instructors}}
-                    <div>
-                        <h5>Instructors</h5>
-                        <ol style="padding-left: 0px;">
-                            {{#each instructors}}
-                            <li class="instructor-container" style="list-style-type: none; width: 98%; padding:3px; border-collapse: separate; *border-collapse: collapsed; min-height: 20px; margin: 5px 1% 5px 1%; background-color: #fafaf5; border: 1px solid #eee; border: 1px solid rgba(0, 0, 0, 0.09); -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;">
-                                <h5 style="margin-bottom: 5px; margin-top: 5px;">{{full_name}}</h5>
-                                {{# if whitepages_publish}}
-                                <div class="contact-info-container">
-                                    <span style="display: block;">{{title1}}</span>
-                                    <span style="display: block;"><a href="mailto:{{email1}}">{{email1}}</a>
-                                    <span style="display: block;"><a href="tel:+1{{phone1}}">{{phone1}}</a><br />
-                                        {{# if phone2}}
-                                        <a href="tel:+1{{phone2}}">{{phone2}}</a></span>
-                                        {{/if}}
-                                    <span style="display: block;">{{address1}}</span>
-                                </div>
-                                {{/if}}
-                            </li>
-                            {{/each}}
-                        </ol>
-                    </div>
-                    {{/if}}
+                {{#if instructors}}
+                <div>
+                    <h5>Instructors</h5>
+                    <ol style="padding-left: 0px;">
+                        {{#each instructors}}
+                        <li class="instructor-container" style="list-style-type: none; width: 98%; padding:3px; border-collapse: separate; *border-collapse: collapsed; min-height: 20px; margin: 5px 1% 5px 1%; background-color: #fafaf5; border: 1px solid #eee; border: 1px solid rgba(0, 0, 0, 0.09); -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;">
+                            <h5 style="margin-bottom: 5px; margin-top: 5px;">{{full_name}}</h5>
+                            {{# if whitepages_publish}}
+                            <div class="contact-info-container">
+                                <span style="display: block;">{{title1}}</span>
+                                <span style="display: block;"><a href="mailto:{{email1}}">{{email1}}</a>
+                                <span style="display: block;"><a href="tel:+1{{phone1}}">{{phone1}}</a><br />
+                                    {{# if phone2}}
+                                    <a href="tel:+1{{phone2}}">{{phone2}}</a></span>
+                                    {{/if}}
+                                <span style="display: block;">{{address1}}</span>
+                            </div>
+                            {{/if}}
+                        </li>
+                        {{/each}}
+                    </ol>
+                </div>
+                {{/if}}
 
-                    {{ #if canvas_grade }}
-                    <div class="canvasGradeBox">
-                        <h5>* Canvas Grade</h5>
-                        <p>Depending on how your instructor has configured Canvas, this grade calculation may be for points needed for the entire quarter, rather than for course work due to date.</p>
-                    </div>
-                    {{ /if }}
+                {{ #if canvas_grade }}
+                <div class="canvasGradeBox">
+                    <h5>* Canvas Grade</h5>
+                    <p>Depending on how your instructor has configured Canvas, this grade calculation may be for points needed for the entire quarter, rather than for course work due to date.</p>
+                </div>
+                {{ /if }}
 
-                </div><!-- /stuff what opens --> 
-            </div><!-- /body -->
+            </div>
+                
         </div>
     </div>
-</div>
-{{/each}}
-</div>
+    {{/each}}
+
+</div> 
 
 {% endtplhandlebars %}

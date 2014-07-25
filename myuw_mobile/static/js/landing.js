@@ -8,8 +8,11 @@ var Landing = {
         $('html,body').animate({scrollTop: 0}, 'fast');
         var landing_source = $("#landing").html();
         var template = Handlebars.compile(landing_source);
-         $("#main-content").html(template());
+        
+        $("#main-content").html(template());
 
+ 
+         
         WSData.fetch_notice_data(Landing.render_notice_banner);
 
         var cards = [RegStatusCard,
@@ -19,6 +22,7 @@ var Landing = {
                      HfsCard,
                      TuitionCard,
                      LibraryCard];
+
 
         Cards.load_cards_in_order(cards, $("#landing_content"));
 
