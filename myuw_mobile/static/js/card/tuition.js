@@ -11,7 +11,6 @@ var TuitionCard = {
 
     render_upon_data: function() {
         TuitionCard._ajax_count -= 1;
-
         if (!TuitionCard._has_all_data() && TuitionCard._ajax_count === 0){
             TuitionCard.dom_target.html(CardWithError.render());
             return;
@@ -30,10 +29,12 @@ var TuitionCard = {
         template_data['is_pce'] = false;
 
         tuition_due_notice = Notices.get_notices_for_tag("tuition_balance")[0];
-        for (var i = 0; i < tuition_due_notice.attributes.length; i += 1){
-            if (tuition_due_notice.attributes[i].name === "Date"){
-                due_date = new Date(tuition_due_notice.attributes[i].value.replace(/-/g, "/"));
-                display_date = tuition_due_notice.attributes[i].formatted_value
+        if (tuition_due_notice !== undefined) {
+            for (var i = 0; i < tuition_due_notice.attributes.length; i += 1) {
+                if (tuition_due_notice.attributes[i].name === "Date") {
+                    due_date = new Date(tuition_due_notice.attributes[i].value.replace(/-/g, "/"));
+                    display_date = tuition_due_notice.attributes[i].formatted_value
+                }
             }
         }
         if (due_date !== undefined) {
