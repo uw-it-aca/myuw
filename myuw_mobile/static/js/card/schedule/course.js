@@ -82,25 +82,22 @@ var CourseCard = {
         
         
         $(".blah").on("click", function(ev) {
-            
             ev.preventDefault();
-            console.log("blah was clicked!");
-            
-            $("#course" + index).toggleClass("slide-show");
+            var hidden_block = $(ev.target).parent().siblings(".slide-hide")[0];
 
-            if ($("#course" + index).hasClass("slide-show")) {
+            $(hidden_block).toggleClass("slide-show");
+
+            if ($(hidden_block).hasClass("slide-show")) {
                 $(this).text("Show Less")
                 $(this).attr('title', 'Show less course information');
-                $("#course" + index).attr('aria-hidden', 'false');
+                $(hidden_block).attr('aria-hidden', 'false');
                 //WSData.log_interaction("show_final_card", term);
             }
             else {
                 $(this).text("Show More");
                 $(this).attr('title', 'Show more course information');
-                $("#course" + index).attr('aria-hidden', 'true');
+                $(hidden_block).attr('aria-hidden', 'true');
             }
-            
-            
         });
 
 
