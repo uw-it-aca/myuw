@@ -41,9 +41,14 @@ var RegStatusCard = {
                $("#show_reg_resources").attr('title', 'Collapse to hide additional registration resources');
             }
             else {
-               $("#show_reg_resources").text("Show more");
+               
                $("#reg_resources").attr('aria-hidden', 'true');
-               $("#show_reg_resources").attr('title', 'Expand to show additional registration resources');               
+               $("#show_reg_resources").attr('title', 'Expand to show additional registration resources');     
+               
+               setTimeout(function() {
+                      $("#show_reg_resources").text("Show more");
+               }, 700);
+          
             }
 
         });
@@ -61,9 +66,12 @@ var RegStatusCard = {
                $("#show_reg_holds").attr('title', 'Collapse to hide holds information');
             }
             else {
-               $("#show_reg_holds").text("Show holds");
                $("#reg_holds").attr('aria-hidden', 'true');
                $("#show_reg_holds").attr('title', 'Expand to show holds information');
+               
+               setTimeout(function() {
+                      $("#show_reg_holds").text("Show holds");
+               }, 700);
             }
 
         });
