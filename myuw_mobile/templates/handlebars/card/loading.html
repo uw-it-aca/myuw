@@ -1,6 +1,10 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "card_is_loading" %}
-  <div class="row card">
-      <h3>Loading {{ card_name }} card ...</h3>
+  <div class="row">
+    <div class="col-xs-12">
+        <div class="card">
+            <h3>Loading {{ card_name }} card ...</h3>
+        </div>
+    </div>
   </div>
 {% endtplhandlebars %}
