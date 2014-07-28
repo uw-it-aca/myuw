@@ -1,7 +1,13 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "card_with_no_course" %}
-  <div class="row card">
-      <p class="text-info" style="font-size:inheret;">You do not appear to be registered for credit courses {{quarter_or_term}}. If you are not registered, you can go to the <a title="Go to MyUW desktop version" href="/servlet/user">MyUW full site</a> to learn about registration. If you think this is an error, please <a href="/cgi-bin/contactmyuw.cgi" target="_blank" title="Contact MyUW">contact MyUW</a>.</p>
-
-  </div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="card">
+            <h3>No Registration Found</h3>
+            <p class="text-info" style="font-size:inherit;">You don't appear to be registered for credit courses <span class="todo">Summer 2014</span>.</p>
+            <p>If you are not registered, you can <a href="../category/academics" class="todo">access some resources about registering</a>.</p>
+            <p>If you think this is an error, please <a href="/cgi-bin/contactmyuw.cgi" target="_blank" title="Contact MyUW">contact MyUW</a>.</p>
+        </div>
+    </div>
+</div>
 {% endtplhandlebars %}
