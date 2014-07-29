@@ -6,12 +6,13 @@
 
     {{#each sections}}
     <div class="card">
-        <div id="course_wrapper{{index}}" class="OFF c{{color_id}}">
+		<div class="c{{color_id}} card-color-band"></div>
+        <div id="course_wrapper{{index}}" class="OFF">
                 
-            <h4>
+            <h5>
                 <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>
                 <span class="shortTitle">{{ course_title }}</span>
-            </h4>
+            </h5>
             
             <h5 class="scheduleHeading">{{ucfirst meetings.0.type}} Schedule</h5>
             
@@ -63,7 +64,7 @@
             <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
                 
                 <div>
-                    <h5>Course resources</h5>     
+                    <h6>Course resources</h6>     
                     <ul class="unstyled-list">
                         {{#if has_resources }}
                             {{#if class_website_url}}
@@ -79,7 +80,7 @@
 
                 {{#if instructors}}
                 <div>
-                    <h5>Instructors</h5>
+                    <h6>Instructors</h6>
                     <ol style="padding-left: 0px;">
                         {{#each instructors}}
                         <li class="instructor-container" style="list-style-type: none; width: 98%; padding:3px; border-collapse: separate; *border-collapse: collapsed; min-height: 20px; margin: 5px 1% 5px 1%; background-color: #fafaf5; border: 1px solid #eee; border: 1px solid rgba(0, 0, 0, 0.09); -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;">
@@ -103,7 +104,7 @@
 
                 {{ #if canvas_grade }}
                 <div class="canvasGradeBox">
-                    <h5>* Canvas Grade</h5>
+                    <span>* Canvas Grade</span>
                     <p>Depending on how your instructor has configured Canvas, this grade calculation may be for points needed for the entire quarter, rather than for course work due to date.</p>
                 </div>
                 {{ /if }}

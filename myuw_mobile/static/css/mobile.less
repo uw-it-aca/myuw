@@ -17,6 +17,9 @@
 body {
     
     // body fonts
+    font-family: 'Arimo', sans-serif;
+	font-family: 'helvetica', sans-serif;
+/**
     font-family: 'Source Sans Pro', sans-serif;
     font-family: 'Noto Sans', sans-serif;
     font-family: 'Droid Sans', sans-serif;
@@ -27,20 +30,24 @@ body {
     font-family: 'Muli', sans-serif;
     font-family: 'Open Sans', sans-serif;
     font-family: 'Pontano Sans', sans-serif;
+ **/
     
     // header fonts
     h1, h2, h3, h4, h5, h6 {
+/**
         font-family: 'Source Sans Pro', sans-serif;
         font-family: 'Noto Sans', sans-serif;
         font-family: 'Droid Sans', sans-serif;
         font-family: 'PT Sans', sans-serif;
         font-family: 'Istok Web', sans-serif;
         font-family: 'Arimo', sans-serif;
+ **/
         font-family: 'Gudea', sans-serif;
+/**
         font-family: 'Muli', sans-serif;
         font-family: 'Open Sans', sans-serif;
         font-family: 'Pontano Sans', sans-serif;
-        font-weight: 700;
+**/        
     }
     
     a { text-decoration: none; 
@@ -216,11 +223,12 @@ body {
 #app_content { min-height: 200px; background-color: #eee; padding-bottom: 1.5em; 
         
     // notice bar
-    .notice-bar { margin-top: 2px; margin-bottom: 1em; background: @yellow; box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 2px 0px;
+    .notice-bar { margin-top: 1px; background: rgb(204,204,204); border-top: 1px solid #ddd;
         
         .notice-header { line-height: 50px; color: black; margin: 0; font-size: 1.5em; }
         .notice-critical { position: absolute;  top: 50%; margin-top: -9px; left: 90px; color: #666; }
         .notice-unread { position: absolute; right: 10px; top: 50%; margin-top: -9px; }
+        .badge {background-color: rgb(85,85,85); font-weight: 300;}
     
     	/****
     	.count-badge {
@@ -310,6 +318,7 @@ body {
             h5 { font-size: 18px; color: #555; }
         }
     }
+		.card-color-band {height: 6px; margin-left: -10px; margin-right: -10px; margin-top: -10px;}
     
     // future quarter cards (custom style)
     
