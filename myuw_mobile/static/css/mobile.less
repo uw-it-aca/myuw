@@ -231,7 +231,7 @@ body {
     	margin-top: 1.1em;
     	padding: 10px;
         
-		h3 {font-size: @font-size-base + 10; font-weight: 400; margin-top: .3em;}
+		h3 {font-size: @font-size-base + 5; font-weight: 400; margin-top: .3em; text-transform: uppercase; }
 
         h4 { color: #555; }
         
@@ -279,8 +279,8 @@ body {
     
     #CourseCard {
         .card {
-            // make h4 look like h3
-            h4 { font-size: 20px; color: #333; font-weight: 400; }
+            // make h4 == h3
+            h4 { font-size: @font-size-base + 5; font-weight: 400; color: #333; text-transform: uppercase; }
             
             // make h5 look like h4 -- William overrode this
             h5 { color: #555; margin-top: .2em; margin-bottom: .2em; font-weight: bold;
@@ -294,8 +294,8 @@ body {
     
     #FutureQuarterCard {
         .card {
-            // make h4 look like h3
-            h4 { font-size: 24px; color: #333; font-weight: 400; }
+            // make h4 == h3
+            h4 { font-size: @font-size-base + 6; font-weight: 400; color: #333; text-transform: uppercase; }
             
             // make h5 look like h4
             h5 { font-size: 18px; color: #555; }
