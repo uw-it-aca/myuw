@@ -5,7 +5,7 @@
 
     {{#if is_summer}}
         <div class="alert alert-info">
-            Unlike Autumn, Winter and Spring quarters, the Summer quarter does not have a week set aside exclusively for final examinations. Most Summer quarter final examinations are given on the final meeting day of the course. Consult with your instructor on when your final examination will be given.
+            Unlike Autumn, Winter and Spring quarters, the Summer quarter does not have a week set aside exclusively for final examinations. Most Summer quarter final examinations are given on the final meeting day of the course. Consult with your instructors on when your final examinations will be given.
         </div>
     {{else}}
 
@@ -13,7 +13,7 @@
         {{#with visual_data}}
         
  
-                <div id="final-visual-schedule" class="visual-schedule {{schedule_hours_class}}" >
+                <div id="final-visual-schedule" class="visual-schedule {{schedule_hours_class}}" aria-hidden="true">
 			
                     <div class="exam-time-bar exam-day-col2 hours-{{total_hours}} clearfix ">
                         {{#each display_hours}}
@@ -72,6 +72,28 @@
                             {{ show_final_card_day friday start_time end_time ../term}}
                         </div>
                     </div>
+                </div>
+                
+                <div class="final_schedule_table">
+                    <table summary="">
+                        <caption>Final Exam Schedule</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Class</th>
+                                <th scope="col">Exam date and time</th>
+                                <th scope="col">Exam location</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="todo">TRAIN 101</td>
+                                <td class="todo">Mon, Jul 18, 10:00 AM - 11:20 AM </td>
+                                <td class="todo"><a>PHYS 201</a>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                
                 </div>
                 
         {{/with}}
