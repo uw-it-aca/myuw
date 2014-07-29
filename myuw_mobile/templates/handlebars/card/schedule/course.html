@@ -94,8 +94,10 @@
                         {{#each instructors}}
                         <li class="instructor-container" style="list-style-type: none; width: 98%; padding:3px; border-collapse: separate; *border-collapse: collapsed; min-height: 20px; margin: 5px 1% 5px 1%; background-color: #fafaf5; border: 1px solid #eee; border: 1px solid rgba(0, 0, 0, 0.09); -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;">
                             <h6 style="margin-bottom: 5px; margin-top: 5px;">{{full_name}}</h6>
-                            {{# if whitepages_publish}}
+                            
+                            
                             <div class="contact-info-container">
+                                {{# if whitepages_publish}}
                                 <span style="display: block;">{{title1}}</span>
                                 <span style="display: block;"><a href="mailto:{{email1}}">{{email1}}</a>
                                 <span style="display: block;"><a href="tel:+1{{phone1}}">{{phone1}}</a><br />
@@ -103,8 +105,11 @@
                                     <a href="tel:+1{{phone2}}">{{phone2}}</a></span>
                                     {{/if}}
                                 <span style="display: block;">{{address1}}</span>
+                                {{else}}
+                                <span class="todo">no contact information available</span>
+                                {{/if}}
                             </div>
-                            {{/if}}
+                            
                         </li>
                         {{/each}}
                     </ol>
