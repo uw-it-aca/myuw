@@ -89,27 +89,30 @@ def load_schedule(schedule, summer_term=""):
         # Also backfill the meeting building data
         meeting_index = 0
         for meeting in section.meetings:
-            mdata = section_data["meetings"][meeting_index]
-            if not mdata["building_tbd"]:
-                building = buildings[mdata["building"]]
-                if building is not None:
-                    mdata["latitude"] = building.latitude
-                    mdata["longitude"] = building.longitude
-                    mdata["building_name"] = building.name
+            try:
+                mdata = section_data["meetings"][meeting_index]
+                if not mdata["building_tbd"]:
+                    building = buildings[mdata["building"]]
+                    if building is not None:
+                        mdata["latitude"] = building.latitude
+                        mdata["longitude"] = building.longitude
+                        mdata["building_name"] = building.name
 
-            for instructor in mdata["instructors"]:
-                if not instructor[
-                    "email1"] and not instructor[
-                    "email2"] and not instructor[
-                    "phone1"] and not instructor[
-                    "phone2"] and not instructor[
-                    "voicemail"] and not instructor[
-                    "fax"] and not instructor[
-                    "touchdial"] and not instructor[
-                    "address1"] and not instructor[
-                    "address2"]:
-                    instructor["whitepages_publish"] = False
-            meeting_index += 1
+                for instructor in mdata["instructors"]:
+                    if not instructor[
+                        "email1"] and not instructor[
+                        "email2"] and not instructor[
+                        "phone1"] and not instructor[
+                        "phone2"] and not instructor[
+                        "voicemail"] and not instructor[
+                        "fax"] and not instructor[
+                        "touchdial"] and not instructor[
+                        "address1"] and not instructor[
+                        "address2"]:
+                        instructor["whitepages_publish"] = False
+                meeting_index += 1
+            except IndexError as ex:
+                pass
 
     # MUWM-443
     json_data["sections"] = sorted(json_data["sections"],
