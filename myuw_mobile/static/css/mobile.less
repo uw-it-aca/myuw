@@ -275,6 +275,14 @@ body {
         .card-disclosure {  margin: 0 -10px; padding: 0 10px; border-top: solid 1px #eee; text-transform: uppercase; text-align: center; font-size: .8em;
             a { color: #444; display:block; line-height:40px; }
         }
+        
+        // override bootstrap table styles
+        .table {
+            tr {
+                td:first-child { padding-left: 0; }
+            }
+            td { border: none; }
+        }
             
     }
     
@@ -283,7 +291,7 @@ body {
     #CourseCard {
         .card {
             // make h4 == h3
-            h4 { font-size: @font-size-base + 5; font-weight: 400; color: #333; text-transform: uppercase; margin-bottom: 1.5em; }
+            h4 { font-size: @font-size-base + 5; font-weight: 400; color: #333; text-transform: uppercase; margin-bottom: 1em; }
             
             // make h5 look like h4 -- William overrode this
             h5 { color: #555; margin-top: .2em; margin-bottom: .2em; font-weight: bold;
