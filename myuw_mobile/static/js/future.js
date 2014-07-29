@@ -4,7 +4,7 @@ var FutureQuarter = {
         FutureQuarter.make_html(term);
     },
 
-    make_html: function () {
+    make_html: function (term) {
         $('html,body').animate({scrollTop: 0}, 'fast');
         var page_source = $("#landing").html();
         var template = Handlebars.compile(page_source);
@@ -16,7 +16,7 @@ var FutureQuarter = {
                      CourseCard,
                      TextbookCard];
 
-        Cards.load_cards_in_order(cards, $("#landing_content"));
+        Cards.load_cards_in_order(cards, $("#landing_content"), term);
 
 
     },
