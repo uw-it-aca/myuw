@@ -1,5 +1,6 @@
 var TextBooks = {
     show_books: function(textbook) {
+        UwEmail.render_init();
         showLoading();
         WSData.fetch_book_data(TextBooks._fetch_course_data, [textbook]);
     },

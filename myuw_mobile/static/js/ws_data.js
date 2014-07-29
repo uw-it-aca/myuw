@@ -8,6 +8,7 @@ WSData = {
     _notice_data: null,
     _instructor_data: {},
     _link_data: null,
+    _uwemail_data: null,
     _oquarter_data: null,
     _category_link_data: {},
 
@@ -80,6 +81,10 @@ WSData = {
         return WSData._tuition_data;
     },
 
+    uwemail_data: function() {
+        return WSData._uwemail_data;
+    },
+
     fetch_book_data: function(callback, args) {
             if (WSData._book_data === null) {
                 $.ajax({
@@ -93,7 +98,7 @@ WSData = {
                         callback.apply(null, args);
                     },
                     error: function(xhr, status, error) {
-                        showError();
+                        WSData._book_data = null; // showError();
                     }
                 });
             }
@@ -436,6 +441,32 @@ WSData = {
                         WSData._category_link_data[category] = results;
                         callback.apply(null, args);
                         },
+                    error: function(xhr, status, error) {
+                        showError();
+                        }
+                    });
+              }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
+    fetch_uwemail_data: function(callback, args) {
+        if (WSData._uwemail_data === null) {
+            $.ajax({
+                    url: "/mobile/api/v1/uwemail/",
+                    dataType: "JSON",
+
+                    type: "GET",
+                    accepts: {html: "text/html"},
+                    success: function(results) {
+                        WSData._uwemail_data = results;
+                        if (callback !== null) {
+                            callback.apply(null, args);
+                        }
+                    },
                     error: function(xhr, status, error) {
                         showError();
                         }

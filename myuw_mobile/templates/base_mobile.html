@@ -44,13 +44,11 @@
   <body data-grid-framework="b3" data-grid-color="red" data-grid-opacity="0.1" data-grid-zindex="10" data-grid-gutterwidth="10px" data-grid-nbcols="16">
      
     {% csrf_token %}
-          
+    
     {% include "nav.html" %}
-    
-    <!-- modal ??????? not sure if this will be needed later -->
+          
     <div id="page-modal"></div>
-    
-    <!-- content -->
+
     <div id="app_content">
         {% block content %}Loading...{% endblock %}
     </div>
@@ -161,6 +159,7 @@
     <script src="{% static 'js/card/schedule/course.js' %}"></script>
     <script src="{% static 'js/card/schedule/visual.js' %}"></script>
     <script src="{% static 'js/card/schedule/final.js' %}"></script>
+    <script src="{% static 'js/banner/email.js' %}"></script>
     <script src="{% static 'js/banner/notice.js' %}"></script>
     {% hb_i18_script %}
     {% endcompress %}

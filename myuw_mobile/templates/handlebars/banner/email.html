@@ -1,0 +1,8 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "uwemail-content" %}
+
+{{#if is_active}}
+    <a href="{{fwd}}" target="_blank" title="Open email in new tab"><div class="pull-right header-email todo"><i class="fa fa-windows">{{fwd}}</i></div></a>
+{{/if}}
+
+{% endtplhandlebars %}

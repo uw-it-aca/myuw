@@ -1,5 +1,6 @@
 var Category = {
     show_category_page: function(category) {
+        UwEmail.render_init();
         WSData.fetch_category_links(Category.render_category_page, [category]);
     },
 

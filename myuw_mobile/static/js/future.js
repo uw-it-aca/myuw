@@ -1,5 +1,6 @@
 var FutureQuarter = {
     render: function(term) {
+        UwEmail.render_init();
         showLoading();
         FutureQuarter.make_html(term);
     },

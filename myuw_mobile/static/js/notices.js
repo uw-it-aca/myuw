@@ -4,6 +4,7 @@ var Notices = {
     show_notices: function () {
         "use strict";
         WSData.fetch_notice_data(Notices.render_notices);
+        UwEmail.render_init();
     },
 
     render_notices: function () {

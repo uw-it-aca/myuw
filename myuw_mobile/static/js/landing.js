@@ -1,5 +1,6 @@
 var Landing = {
     render: function() {
+        UwEmail.render_init();
         showLoading();
         Landing.make_html();
     },
@@ -11,8 +12,6 @@ var Landing = {
         
         $("#main-content").html(template());
 
- 
-         
         WSData.fetch_notice_data(Landing.render_notice_banner);
 
         var cards = [RegStatusCard,
