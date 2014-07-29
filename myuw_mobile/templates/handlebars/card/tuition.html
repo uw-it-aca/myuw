@@ -41,18 +41,26 @@
                         {{ #if has_balance }}
                         <!-- else, there is a balance -->
                         <div class="row card-badge-container">
-                            <div class="col-xs-6">
-                                <div class="card-badge">
-                                    <span class="card-badge-label">You owe</span>
-                                    <span class="card-badge-value text-danger">${{ tuition_accbalance }}</span>
-                                    <span class="card-badge-label"><a href="http://f2.washington.edu/fm/sfs/tuition/payment">Make payment</a></span>
+                            <div class="col-xs-12">
+                                <div class="card-badge clearfix">
+                                    <div class="pull-left">    
+                                        <span class="card-badge-label">You owe</span>
+                                        <span class="card-badge-label"><a href="http://f2.washington.edu/fm/sfs/tuition/payment">Make payment</a></span>
+                                    </div>
+                                    <div class="pull-right">
+                                        <span class="card-badge-value text-danger">${{ tuition_accbalance }}</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-xs-6">
-                                <div class="card-badge">
-                                    <span class="card-badge-label">{{ #if past_due }}Tuition due date{{else}}Due{{ /if }}</span>
-                                    <span class="card-badge-value"> {{ tuition_date }}</span>
-                                    <span class="card-badge-label">in {{ tuition_date_offset }} days</span>
+                            <div class="col-xs-12" style="margin-top:10px;">
+                                <div class="card-badge clearfix">
+                                    <div class="pull-left">  
+                                        <span class="card-badge-label">{{ #if past_due }}Tuition due date{{else}}Due{{ /if }}</span>
+                                        <span class="card-badge-label">in {{ tuition_date_offset }} days</span>
+                                    </div>
+                                    <div class="pull-right">
+                                        <span class="card-badge-value"> {{ tuition_date }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

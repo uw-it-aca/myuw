@@ -19,31 +19,44 @@
         
                 <div class="row card-badge-container">
                     {{#if items_loaned }}
-                    <div class={{#if is_only_one_card}}"col-xs-12"{{else}}"col-xs-6"{{/if}}>    
-                        <div class="card-badge">                            
-                            <span class="card-badge-label">You have</span>
-                            <span class="card-badge-value">{{ items_loaned }} items out</span>
-                            <span class="card-badge-label"><a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount">See account</a></span>
+                    <div class="col-xs-12">    
+                        <div class="card-badge clearfix">     
+                            <div class="pull-left">                   
+                                <span class="card-badge-label">You have</span>
+                                <span class="card-badge-label"><a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount">See account</a></span>
+                            </div>
+                            <div class="pull-right">
+                                <span class="card-badge-value">{{ items_loaned }} items out</span>
+                            </div>
+                            
                         </div>
                         {{/if}}
                     </div>
                     
                     {{#if next_due }}        
-                    <div class={{#if is_only_one_card}}"col-xs-12"{{else}}"col-xs-6"{{/if}}>
-                        <div class="card-badge">         
-                            <span class="card-badge-label">Next item due</span>
-                            <span class="card-badge-value">{{ next_due }}</span>
-                            <span class="card-badge-label">in 7 days</span>
+                    <div class="col-xs-12" style="margin-top:10px;">
+                        <div class="card-badge clearfix">         
+                            <div class="pull-left"> 
+                                <span class="card-badge-label">Next item due</span>
+                                <span class="card-badge-label">in 7 days</span>
+                            </div>
+                            <div class="pull-right">
+                                <span class="card-badge-value">{{ next_due }}</span>
+                            </div>
                         </div>
                     </div>
                     {{/if}}
                         
                     {{#if fines}}
-                    <div class={{#unless is_total_two_cards}}"col-xs-12"{{else}}"col-xs-6"{{/unless}} {{#unless is_total_two_cards}}style="margin-top:10px;"{{/unless}}>
-                        <div class="card-badge">  
-                            <span class="card-badge-label">You owe</span>
-                            <span class="card-badge-value">${{ formatPrice fines }}</span> 
-                            <span class="card-badge-label"><a href="https://p.lib.washington.edu/payfines/">Pay fees</a></span>
+                    <div class="col-xs-12" style="margin-top:10px;">
+                        <div class="card-badge clearfix">  
+                            <div class="pull-left"> 
+                                <span class="card-badge-label">You owe</span>
+                                <span class="card-badge-label"><a href="https://p.lib.washington.edu/payfines/">Pay fees</a></span>
+                            </div>
+                            <div class="pull-right">
+                                <span class="card-badge-value">${{ formatPrice fines }}</span> 
+                            </div>
                         </div>
                     </div>
                     {{/if}}
