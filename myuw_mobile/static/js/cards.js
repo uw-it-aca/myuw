@@ -25,6 +25,10 @@ var Cards = {
         var card = attrs.card;
         card.dom_target = attrs.destination;
         card.term = attrs.term;
-        card.render_init();
+        
+        setTimeout(function() {
+              card.render_init();
+        }, 900);
+                
     }
 };
