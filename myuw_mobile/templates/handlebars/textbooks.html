@@ -2,7 +2,7 @@
     {% tplhandlebars "textbooks" %}
 
 <div class="textbooks-container">
- <div class="container">       
+<div class="container">       
  
         <h1 class="todo">SPRING 2038 Textbooks</h1>
         <h2 id="future_cards_header" class="sr-only">Cards</h2>
@@ -16,7 +16,6 @@
         
         {{#each sections}}
         
-        <div class="card c{{color_id}}Border">
         
         <div class="books-list"><a name="{{curriculum}}{{course_number}}{{section_id}}" /><h3>{{curriculum}} {{course_number}}{{section_id}}</h3></div>
         
@@ -80,7 +79,6 @@
         <p>No textbook requirement has been received for this course. Please check with <a class="base-font-size show_instructors" href="/mobile/" rel="{{index}}">your instructor.</a></p>
         {{/if}}
         
-        </div>
         {{/each}}
           	
         {{#if verba_link }}
