@@ -54,6 +54,12 @@ body {
         &:hover { text-decoration: none; }
         &:active { text-decoration: none; }
     }
+
+	// positioning 
+	
+	.relative {
+		position: relative;
+	}
     
     // course color-coding
 
@@ -194,7 +200,7 @@ body {
     .notice-bar { margin-top: 1px; background: rgb(204,204,204); border-top: 1px solid #ddd;
         
         .notice-header { line-height: 50px; color: black; margin: 0; font-size: 1.2em; text-transform: uppercase;}
-        .notice-critical { position: absolute;  top: 50%; margin-top: -10px; left: 90px; color: #666; }
+        .notice-critical { position: absolute;  top: 50%; margin-top: -10px; left: 90px; color: #af4b1a;}
         .notice-unread { position: absolute; right: 10px; top: 50%; margin-top: -9px; }
         .badge {background-color: rgb(85,85,85); font-weight: 300;}
     
@@ -272,7 +278,7 @@ body {
         
         ul.unstyled-list, ol.unstyled-list { padding-left: 0px; list-style-type: none; }
         
-        .card-disclosure {  margin: 0 -10px; padding: 0 10px; border-top: solid 1px #eee; text-transform: uppercase; text-align: center; font-size: .8em;
+        .card-disclosure {  margin-left: -10px; margin-right: -10px; margin-bottom: -10px; margin-top: 2em; padding-left: 10px; border-top: solid 1px #eee; text-transform: uppercase; text-align: center; font-size: .8em;
             a { color: #444; display:block; line-height:40px; }
         }
         
@@ -594,7 +600,155 @@ body {
         .category-sub-header { color: #666; }
         .category-links { padding-left: 0; }
     }
-    
+	    
+	//notices page 
+	
+	.notices-container { 
+
+		background-color: white;
+		margin-bottom: -3em;
+		padding-bottom: 3em;
+
+		h1 {font-size: 2em; text-transform: uppercase;
+		}
+
+		.notice-count {
+		}
+
+		.notice-header-metadata {
+			margin-top: -0.9em;
+			color: black;
+			font-size:.8em;
+		}
+
+		h3 {
+			font-weight: 400; color: #333; margin-top: 0; margin-bottom:0;
+		}
+	 	
+/**		div:first-of-type {
+			border-top: none;	
+		}	 **/	
+	 	    
+	    .disclosure-critical {
+	    	margin-top: 1.5em;
+			border-top: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+			padding: 5px 0;
+			h3 {color: #af4b1a;}
+	    
+	        .disclosure-heading { 
+          /**	background: #f0dbd0;   **/
+				color: #af4b1a; 
+	        }
+
+
+			.badge {
+				background-color: #af4b1a; 
+			}
+
+			.critical-icon {
+				padding-right: .5em;
+				display: table-cell;
+				vertical-align: middle
+			}
+			.disclosure-title {
+				display: inline;
+				display: table-cell;
+				vertical-align: middle
+			}	
+	    }
+
+/**		div.disclosure:first-of-type {
+			border-top: 1px solid red;
+			}
+**/		
+		.disclosure {
+			border-bottom: 1px solid #ccc; 
+			padding: 5px 0;
+		}
+
+	    .disclosure-heading { 
+	        background: none;  
+	       	color: #555;
+		   	height: 4em;
+	    }
+	
+		.fa-angle-down, .fa-angle-up {
+			position: absolute;
+			right: 0;
+			display: inline-block;
+			top: 50%;
+		}
+	    	    
+	    .badge {
+		    position: absolute;
+			right: 40px;
+			display: inline-block;
+			top: 50%
+	    }
+
+	        
+	    .notice-container { 
+	        padding: 1px 0; 
+	        border-top: 1px dotted #bbb; 
+
+	        .critical-icon {
+		        display: inline;
+				float:right;
+				color: #af4b1a; 
+			}
+	    }
+	    
+	    .inner-notice-container {
+			margin: 0px -4px;
+			padding: 9px 4px;
+	    }
+	
+		 // - class for read notices - //
+		.unread-notice {
+			background: rgb(236,232,196);
+	        color: black;		
+		}
+
+	    .notice-category { 
+	        font-size: .8em; 
+	        color: rgb(108,108,108);
+	        display: inline; 
+	    } 
+	    
+	    .notice-title { 
+	        font-weight: normal; 
+	    }
+	        
+	    .hold-container, { 
+	        padding: 5px 0 5px 30px;
+	    }
+		
+		.toggle {
+			float: right;
+			display:inline-block; 
+		}
+	}
+	
+	#accordion .panel {
+		width: 100% !important;
+	}
+	
+	
+	.disclosure-title-metadata {
+		display: block;
+		clear:both;
+		font-size: .8em;
+	}  		
+	
+	.badge {
+		background-color: #555555;
+		font-weight: 300;
+		font-size:1em;
+	}
+
+
+
 
 }
 
