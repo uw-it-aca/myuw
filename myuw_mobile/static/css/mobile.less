@@ -197,11 +197,11 @@ body {
 #app_content { min-height: 200px; background-color: #eee; padding-bottom: 1.5em; 
         
     // notice bar
-    .notice-bar { background: rgb(248,247,240); border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;
+    .notice-bar { background: rgb(248,247,240); border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; height: 4.5em;
         
-        .notice-header { line-height: 50px; color: black; margin: 0; font-size: 1.2em; text-transform: uppercase;}
-        .notice-critical { position: absolute;  top: 50%; margin-top: -10px; left: 90px; color: #af4b1a;}
-        .notice-unread { position: absolute; right: 10px; top: 50%; margin-top: -9px; }
+        .notice-header { line-height: 50px; color: black; margin: 0; font-size: 1.8em;}
+        .notice-critical {position: absolute; top: 50%; margin-top: .9em; left: 5px;color: #af4b1a; font-size: .8em;}
+        .notice-unread { position: absolute; right: 10px; top: 50%; margin-top: -.3em; }
         .badge {background-color: rgb(85,85,85); font-weight: 300;}
     
     	/****
@@ -239,7 +239,7 @@ body {
     	margin-top: 1.1em;
     	padding: 10px;
     	
-		h3 {font-size: @font-size-base + 5; font-weight: 400; margin-top: .3em; text-transform: uppercase; }
+		h3 {font-size: 1.8em; font-weight: 400; margin-top: .3em; }
 
         h4 { color: #555; }
         
@@ -270,9 +270,7 @@ body {
             i { font-style: normal !important; }
         }
         
-        .nav-card-arrow { /*height: @line-height-base; position: absolute; right: 0; display: inline-block; top: 50%; margin-top: -@line-height-base / 2;*/ 
-            a { line-height: 100px; display: block; /*background: yellow;*/ }
-        }
+        .nav-card-arrow { height: @line-height-base; position: absolute; right: 0; display: inline-block; top: 50%; margin-top: -@line-height-base / 2; }
         
         ul.fina-notice-list { padding-left: 0px; 
             
@@ -301,13 +299,13 @@ body {
     #CourseCard {
         .card {
             // make h4 == h3
-            h4 { font-size: @font-size-base + 5; font-weight: 400; color: #333; text-transform: uppercase; margin-bottom: 1em; }
+            h4 { font-size: 1.8em; font-weight: 400; color: #333; margin-bottom: 1em; }
             
             // make h5 look like h4 -- William overrode this
             h5 { color: #555; margin-top: .2em; margin-bottom: .2em; font-weight: bold;
             }
             
-			h6 {font-size: 11px; font-weight: 700; color: #555;}
+			h6 {font-size: .9em; font-weight: 700; color: #555;}
         }
     }
     
@@ -316,10 +314,10 @@ body {
     #FutureQuarterCard {
         .card {
             // make h4 == h3
-            h4 { font-size: @font-size-base + 6; font-weight: 400; color: #333; text-transform: uppercase; }
+            h4 { font-size: 1.8em; font-weight: 400; color: #333; }
             
             // make h5 look like h4
-            h5 { font-size: 18px; color: #555; }
+            h5 { font-size: 1.3em; color: #555; }
         }
     }
     
@@ -613,7 +611,7 @@ body {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
 		
-		h1 { font-size: 2em; text-transform: uppercase; }
+		h1 { font-size: 1.8em; }
     }
     
     
@@ -625,7 +623,7 @@ body {
 		padding-bottom: 3em;
 		background-color: #f8f7f0;
 		
-		h1 { font-size: 2em; text-transform: uppercase; }
+		h1 { font-size: 1.8em; }
     }
     // future quarters page
     
@@ -633,7 +631,7 @@ body {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
         
-        h1 { font-size: 2em; text-transform: uppercase; }
+        h1 { font-size: 1.8em; }
     }
 	    
 	//notices page 
@@ -644,7 +642,7 @@ body {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
 
-		h1 { font-size: 2em; text-transform: uppercase; }
+		h1 { font-size: 1.8em; }
 
 		.notice-count { }
 
