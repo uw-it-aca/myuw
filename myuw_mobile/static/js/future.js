@@ -7,7 +7,7 @@ var FutureQuarter = {
 
     make_html: function (term) {
         $('html,body').animate({scrollTop: 0}, 'fast');
-        var page_source = $("#landing").html();
+        var page_source = $("#future").html();
         var template = Handlebars.compile(page_source);
          $("#main-content").html(template());
 
@@ -17,11 +17,11 @@ var FutureQuarter = {
                      CourseCard,
                      TextbookCard];
 
-        Cards.load_cards_in_order(cards, $("#landing_content"), term);
+        Cards.load_cards_in_order(cards, $("#future_content"), term);
 
 
     },
-
+    
     render_notice_banner: function () {
         var notice_banner = '',
             notice_data = WSData.notice_data();
@@ -30,5 +30,4 @@ var FutureQuarter = {
         }
         $("#notice_banner_location").html(notice_banner);
     }
-
 };
