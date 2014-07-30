@@ -1,80 +1,98 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "textbooks" %}
 
+<div class="notices-container">
  <div class="container">       
+ 
+        <h1 class="todo">SPRING 2038 Textbooks</h1>
+        <h2 id="future_cards_header" class="sr-only">Cards</h2>
+ 
         {{#if verba_link }}
               <p><a target=_blank href="{{verba_link}}"><button class="btn btn-block" type="button">Compare Prices and Buy Books</button></a></p>
               <p style="line-height:12px;" class="muted"><small>Read the University Book Store's <a href="http://uw-seattle.verbacompare.com/" target="_blank" style="font-size:12px;">price comparison policies</a></small></p>
         {{/if}}
-            {{#each sections}}
+        
+        
+        
+        {{#each sections}}
+        
+        <div class="card c{{color_id}}Border">
+        
+        <div class="books-list"><a name="{{curriculum}}{{course_number}}{{section_id}}" /><h3>{{curriculum}} {{course_number}}{{section_id}}</h3></div>
+        
+        {{#if books}}
+      
+            {{#eachWithIndex books}}
             
-            <div class="c{{color_id}} books-list"><a name="{{curriculum}}{{course_number}}{{section_id}}" /><h4>{{curriculum}} {{course_number}}{{section_id}}</h4></div>
-            {{#if books}}
-          
-                {{#eachWithIndex books}}
-		 		{{#if index}}<hr class="book-divider">{{/if}}
-              <div class="clearfix book-image">
-              	<h4>{{title}}</h4>
-                {{#if cover_image_url}}
-                    <div class="book-cover pull-left"><img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{cover_image_url}}" alt="{{title}} book cover" width="80px" /></div>
-                {{else}}
-                <div class="no-book-cover pull-left" title="No cover image available">No Image Available</div>
-                {{/if}}
-             
-                
-                  <dl class="dl-books">
-                  
-                     <dt>Author</dt>
-                     {{#each authors}}
-                      <dd>{{name}}</dd>
-                      {{/each}}
-                    <!-- <dt>New </dt>
-                      <dd>
-                      {{#if price}}
-                        ${{formatPrice price}} </dd>
-                      {{else}}
-                        *
-                      {{/if}}
-                     <dt>Used</dt>
-                      <dd>
-                      {{#if used_price}}
-                          ${{formatPrice used_price}}
-                      {{else}}
-                          *
-                      {{/if}}
-                      </dd> -->
-                        {{#if notes}}
-                     <dt>Notes</dt>
-                     <!-- MUWM-484.  Can a book be required and have other notes?
-                        {{#if is_required}}
-                      <dd>Required</dd>
-                        {{/if}}
-                        -->
-                      <dd>{{notes}}</dd>
-                        {{/if}}
-                    {{#if isbn}}
-                     <dt>ISBN</dt>
-                      <dd>{{isbn}}</dd>
-                    {{/if}}
-                    </dl>
-		 		
-		 		</div>
-                  {{/eachWithIndex}}
-                   
+	 		{{#if index}}<hr class="book-divider">{{/if}}
+	 		
+          <div class="clearfix book-image">
+          	<h4>{{title}}</h4>
+            
+            
+            {{#if cover_image_url}}
+                <div class="book-cover pull-left"><img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{cover_image_url}}" alt="{{title}} book cover" width="80px" /></div>
             {{else}}
-            <p>No textbook requirement has been received for this course. Please check with <a class="base-font-size show_instructors" href="/mobile/" rel="{{index}}">your instructor.</a></p>
+            <div class="no-book-cover pull-left" title="No cover image available">No Image Available</div>
             {{/if}}
-            {{/each}}
-			<hr>
-	
+         
+            
+              <dl class="dl-books">
+              
+                 <dt>Author</dt>
+                 {{#each authors}}
+                  <dd>{{name}}</dd>
+                  {{/each}}
+                <!-- <dt>New </dt>
+                  <dd>
+                  {{#if price}}
+                    ${{formatPrice price}} </dd>
+                  {{else}}
+                    *
+                  {{/if}}
+                 <dt>Used</dt>
+                  <dd>
+                  {{#if used_price}}
+                      ${{formatPrice used_price}}
+                  {{else}}
+                      *
+                  {{/if}}
+                  </dd> -->
+                    {{#if notes}}
+                 <dt>Notes</dt>
+                 <!-- MUWM-484.  Can a book be required and have other notes?
+                    {{#if is_required}}
+                  <dd>Required</dd>
+                    {{/if}}
+                    -->
+                  <dd>{{notes}}</dd>
+                    {{/if}}
+                {{#if isbn}}
+                 <dt>ISBN</dt>
+                  <dd>{{isbn}}</dd>
+                {{/if}}
+                </dl>
 
+          </div>
+              {{/eachWithIndex}}
+               
+        {{else}}
+        <p>No textbook requirement has been received for this course. Please check with <a class="base-font-size show_instructors" href="/mobile/" rel="{{index}}">your instructor.</a></p>
+        {{/if}}
+        
+        </div>
+        {{/each}}
+          	
         {{#if verba_link }}
               <p><a target=_blank href="{{verba_link}}"><button class="btn btn-block" type="button">Compare Prices and Buy Books</button></a></p>
               <p style="line-height:12px;" class="muted"><small>Read the University Book Store's <a href="http://uw-seattle.verbacompare.com/" target="_blank" style="font-size:12px;">price comparison policies</a></small></p>
         {{/if}}
 
 
-<div style="margin-top:20px;"><p class="muted"><small>Information on course textbooks is collected by and provided courtesy of <a style="font-size:12px;" target="_blank" href="http://www.bookstore.washington.edu">University Book Store</a> and is subject to change regularly and without notice. </small></p></div>
-</div>
+        <div style="margin-top:20px;"><p class="muted">Information on course textbooks is collected by and provided courtesy of <a target="_blank" href="http://www.bookstore.washington.edu">University Book Store</a> and is subject to change regularly and without notice.</p>
+        </div>
 
+
+</div>
+</div>
              {% endtplhandlebars %}
