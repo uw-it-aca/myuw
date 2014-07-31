@@ -6,18 +6,20 @@
                 <div class="row">
                 
                     <div class="col-xs-11">
-                        <h3>Textbooks (<span class="todo">Summer A-Term</span>)</h3>
-                        
+                        <h3>Textbooks (<span>{{ term }}</span>)</h3>
+                        {{ #if no_books }}
+                            <p>No textbooks for this term</p>
+                        {{ /if }}
                         <ul class="unstyled-list">
-                            <li class="todo">PHYS 121 A: 3 required, 1 optional</li>
-                            <li class="todo">PHYS 121 A: 3 required, 1 optional</li>
-                            <li class="todo">PHYS 121 A: 3 required, 1 optional</li>
+                            {{ #each sections }}
+                                <li>{{ course_id }}: {{ required }} required, {{ optional }} optional</li>
+                            {{ /each }}
                         </ul>
                         
                     </div>
                    
                     <div class="col-xs-1 nav-card-arrow" style="text-align:center;">
-                        <a href="/mobile/textbooks"><i class="fa fa-chevron-right todo"></i></a>
+                        <a href="{{ url }}"><i class="fa fa-chevron-right"></i></a>
                     </div>
       
                 </div>

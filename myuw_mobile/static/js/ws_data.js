@@ -8,7 +8,6 @@ WSData = {
     _notice_data: null,
     _instructor_data: {},
     _link_data: null,
-    _uwemail_data: null,
     _oquarter_data: null,
     _category_link_data: {},
 
@@ -85,20 +84,23 @@ WSData = {
         return WSData._uwemail_data;
     },
 
-    fetch_book_data: function(callback, args) {
-            if (WSData._book_data === null) {
-                $.ajax({
-                    url: "/mobile/api/v1/books/current/",
-                    dataType: "JSON",
+    fetch_book_data: function(callback, term, err_callback, args) {
+        if (WSData._book_data === null) {
+            $.ajax({
+                url: "/mobile/api/v1/book/" + term,
+                dataType: "JSON",
 
-                    type: "GET",
-                    accepts: {html: "text/html"},
-                    success: function(results) {
-                        WSData._book_data = results;
-                        callback.apply(null, args);
-                    },
-                    error: function(xhr, status, error) {
-                        WSData._book_data = null; // showError();
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    WSData._book_data = results;
+                    callback.apply(null, args);
+                },
+                error: function(xhr, status, error) {
+                        WSData._book_data = null;
+                        if (err_callback !== undefined){
+                            err_callback.apply(null, args);
+                        }
                     }
                 });
             }
@@ -237,17 +239,17 @@ WSData = {
                     success: function(results) {
                         WSData._instructor_data[instructor_regid] = results;
                         callback.apply(null, args);
-                    },  
+                    },
                     error: function(xhr, status, error) {
                         showError();
-                    }   
-                }); 
-            }   
+                    }
+                });
+            }
             else {
                 window.setTimeout(function() {
                     callback.apply(null, args);
-                }, 0); 
-            } 
+                }, 0);
+            }
         },
 
 
@@ -501,7 +503,7 @@ WSData = {
         var logging_term;
         if(term === undefined) {
             logging_term = "";
-        }            
+        }
         else {
             logging_term = "_term_" + term.replace(/[^a-z0-9]/gi, '_');
         }

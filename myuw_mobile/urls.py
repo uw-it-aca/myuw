@@ -11,7 +11,7 @@ from myuw_mobile.views.api.links import QuickLinks
 from myuw_mobile.views.api.category_links import CategoryLinks
 from myuw_mobile.views.api.other_quarters import RegisteredFutureQuarters
 from myuw_mobile.views.api.uwemail import UwEmail
-from myuw_mobile.views.api.textbook import TextbookCurQuar
+from myuw_mobile.views.api.textbook import Textbook
 from myuw_mobile.views.api.weekly import Weekly
 from myuw_mobile.views.logout import Logout
 from myuw_mobile.views.api.notices import Notices
@@ -23,9 +23,8 @@ urlpatterns = patterns('myuw_mobile.views',
     url(r'^link/(?P<linkid>\d+)$', 'link.show_link'),
     url(r'^logger/(?P<interaction_type>\w+)$', 'logger.log_interaction'),
     url(r'logout', Logout.as_view()),
-    url(r'^api/v1/books/current/$', TextbookCurQuar().run),
-#    url(r'^api/v1/book/(?P<year>\d{4}),(?P<quarter>[a-z]+)(?P<summer_term>[-,abterm]*)$',
-#        TextbookFutureQuar().run),
+    url(r'^api/v1/book/(current|(?P<year>\d{4}),(?P<quarter>[a-z]+)(?P<summer_term>[-,abterm]*))$',
+       Textbook().run),
     url(r'^api/v1/schedule/current/?$', StudClasScheCurQuar().run),
     url(r'^api/v1/schedule/(?P<year>\d{4}),(?P<quarter>[a-z]+)(?P<summer_term>[-,abterm]*)$',
         StudClasScheFutureQuar().run),

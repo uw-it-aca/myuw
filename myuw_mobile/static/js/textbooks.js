@@ -2,21 +2,13 @@ var TextBooks = {
     show_books: function(textbook) {
         UwEmail.render_init();
         showLoading();
-        WSData.fetch_book_data(TextBooks._fetch_course_data, [textbook]);
+        WSData.fetch_book_data(TextBooks._fetch_course_data, 'current', [textbook]);
     },
 
     _fetch_course_data: function(textbook) {
         WSData.fetch_current_course_data(TextBooks.render_books, [textbook]);
     },
-
-    render_books: function(textbook) {
-        $('html,body').animate({scrollTop: 0}, 'fast');
-        var source   = $("#textbooks").html();
-        var template = Handlebars.compile(source);
-
-        var book_data = WSData.book_data();
-        var course_data = WSData.course_data();
-
+    process_book_data: function(book_data, course_data) {
         var template_data = {
             "sections": [],
             "quarter": course_data.quarter,
@@ -40,13 +32,23 @@ var TextBooks = {
         }
 
         template_data["verba_link"] = book_data["verba_link"]
+        return template_data;
+    },
+
+    render_books: function(textbook) {
+        $('html,body').animate({scrollTop: 0}, 'fast');
+        var source   = $("#textbooks").html();
+        var template = Handlebars.compile(source);
+
+        var template_data = TextBooks.process_book_data(WSData.book_data(), WSData.course_data())
+
 
         $("#main-content").html(template(template_data));
 
         source = $("#quarter-books").html();
         template = Handlebars.compile(source);
         $("#page-header").html(template({
-            year: course_data.year, 
+            year: course_data.year,
             quarter: course_data.quarter,
             summer_term: course_data.summer_term
         }));
