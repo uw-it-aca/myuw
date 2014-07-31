@@ -17,7 +17,7 @@
 	        <!-- collapsy 1: critical -->
 	        <div class="disclosure-critical">
 	            <!-- collapsy 1 header -->      
-	            <a data-toggle="collapse"  href="#collapseOne" aria-controls="collapseOne">
+	            <a href="#collapseOne" aria-controls="collapseOne">
 	                <div class="disclosure-heading clearfix">
 	                	<div class="pull-left">
 		               <!-- 	<i class="fa fa-exclamation-triangle critical-icon"></i>  -->
@@ -32,7 +32,7 @@
 	                </div>
 	            </a>
 	            <!-- collapsy 1 content -->
-	            <div id="collapseOne" class="panel-collapse collapse clearfix" aria-hidden="true">
+	            <div id="collapseOne" class="clearfix" aria-hidden="true">
 	                <div class="panel-body">
 	                    {{ #each holds.notices }}
 	                    <div class="notice-container {{ #unless is_read }}unread{{ /unless }}">
@@ -59,7 +59,7 @@
 	      <!-- collapsy 2: today -->      
 	        <div class="disclosure">
 	            <!-- collapsy 2 header -->      
-	            <a data-toggle="collapse"  href="#collapseTwo" aria-controls="collapseTwo">
+	            <a href="#collapseTwo" aria-controls="collapseTwo">
 	                <div class="disclosure-heading clearfix">
 	                	<div class="pull-left">
 		                    <h3 class="disclosure-title">Today</h3>
@@ -74,7 +74,7 @@
 	                </div>
 	            </a>
 	            <!-- collapsy 2 content -->
-	            <div id="collapseTwo" class="panel-collapse collapse" aria-hidden="true">
+	            <div id="collapseTwo" class="" aria-hidden="true">
 	                <div class="panel-body"> 
 	                    {{# each today.notices }}
 	                    <div class="notice-container {{ #unless is_read }}unread{{ /unless }}">
@@ -101,7 +101,7 @@
 	       <!-- collapsy 3: this week -->
 	        <div class="disclosure">
 	            <!-- collapsy 3 header -->
-	            <a data-toggle="collapse"  href="#collapseThree" aria-controls="collapseThree">
+	            <a href="#collapseThree" aria-controls="collapseThree">
 	                <div class="disclosure-heading clearfix">
 	                	<div class="pull-left">
 		                    <h3 class="disclosure-title">This week (Week 4)</h3>
@@ -116,7 +116,7 @@
 	                </div>
 	            </a>
 	            <!-- collapsy 3 content -->
-	            <div id="collapseThree" class="panel-collapse collapse" aria-hidden="true">
+	            <div id="collapseThree" class="" aria-hidden="true">
 	                <div class="panel-body">
 	                    {{# each week.notices }}
 	                    <div class="notice-container {{ #unless is_read }}unread{{ /unless }}">
@@ -143,7 +143,7 @@
 	       <!-- collapsy 4: next week -->
 	        <div class="disclosure">
 	            <!-- collapsy 4 header -->
-	            <a data-toggle="collapse"  href="#collapseFour" aria-controls="collapseFour">
+	            <a href="#collapseFour" aria-controls="collapseFour">
 	                <div class="disclosure-heading clearfix">
 	                	<div class="pull-left">
 		                    <h3 class="disclosure-title">Next week</h3>
@@ -158,7 +158,7 @@
 	                </div>
 	            </a>
 	            <!-- collapsy 4 content -->
-	            <div id="collapseFour" class="panel-collapse collapse" aria-hidden="true">
+	            <div id="collapseFour" class="" aria-hidden="true">
 	                <div class="panel-body">
 	                    {{# each next_week.notices }}
 	                    <div class="notice-container {{ #unless is_read }}unread{{ /unless }}">
@@ -185,7 +185,7 @@
 	      <!-- collapsy 5: future -->      
 	        <div class="disclosure">
 	            <!-- collapsy 5 header -->      
-	            <a data-toggle="collapse"  href="#collapseFive" aria-controls="collapseFive">
+	            <a href="#collapseFive" aria-controls="collapseFive">
 	                <div class="disclosure-heading clearfix">
 	                	<div class="pull-left">
 		                    <h3 class="disclosure-title">Upcoming weeks</h3>
@@ -200,7 +200,7 @@
 	                </div>
 	            </a>
 	            <!-- collapsy 5 content -->
-	            <div id="collapseFive" class="panel-collapse collapse" aria-hidden="true">
+	            <div id="collapseFive" class="" aria-hidden="true">
 	                <div class="panel-body"> 
 	                    {{# each future.notices }}
 	                    <div class="notice-container {{ #unless is_read }}unread{{ /unless }}">
@@ -224,7 +224,7 @@
 	        <!-- collapsy legal -->      
 	        <div class="disclosure">
 	            <!-- collapsy legal header -->      
-	            <a data-toggle="collapse"  href="#collapseSix" aria-controls="collapseSix">
+	            <a href="#collapseSix" aria-controls="collapseSix">
 	                <div class="disclosure-heading clearfix">
 	                	<div class="pull-left">
 		                    <h3 class="disclosure-title">Legal</h3>
@@ -239,7 +239,7 @@
 	                </div>
 	            </a>
 	            <!-- collapsy legal content -->
-	            <div id="collapseSix" class="panel-collapse collapse" aria-hidden="true">
+	            <div id="collapseSix" class="" aria-hidden="true">
 	                <div class="panel-body"> 
 	                    {{# each legal.notices }}
 	                    <div class="notice-container {{ #unless is_read }}unread{{ /unless }}">
