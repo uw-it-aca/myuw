@@ -76,13 +76,10 @@ var Notices = {
                 //$(slide_link).attr('title', 'Show more course information');
                 $(hidden_block).attr('aria-hidden', 'true');
                 
-                
                 setTimeout(function() {
                       $(slide_link).find("i").removeClass("fa-angle-up");
                       $(slide_link).find("i").addClass("fa-angle-down");
                 }, 700);
-            
- 
             }
         });
         
