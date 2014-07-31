@@ -53,6 +53,34 @@ var Notices = {
             }
 
         });
+        
+        // event for slide show/hide panels
+        $(".slide-link").on("click", function(ev) {
+            ev.preventDefault();
+            var hidden_block = $(ev.target).parent().siblings(".slide-hide")[0];
+            var slide_link = this;
+                        
+            $(hidden_block).toggleClass("slide-show");
+
+            if ($(hidden_block).hasClass("slide-show")) {
+                //$(slide_link).text("Show less")
+                //$(slide_link).attr('title', 'Show less course information');
+                $(hidden_block).attr('aria-hidden', 'false');
+                //WSData.log_interaction("show_final_card", term);
+            }
+            else {
+                
+                //$(slide_link).attr('title', 'Show more course information');
+                $(hidden_block).attr('aria-hidden', 'true');
+                
+                setTimeout(function() {
+                      //$(slide_link).text("Show more");
+                }, 700);
+ 
+            }
+        });
+        
+        
 
     },
 
