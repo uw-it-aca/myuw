@@ -63,19 +63,25 @@ var Notices = {
             $(hidden_block).toggleClass("slide-show");
 
             if ($(hidden_block).hasClass("slide-show")) {
+            
+                $(slide_link).find("i").removeClass("fa-angle-down");
+                $(slide_link).find("i").addClass("fa-angle-up");
                 //$(slide_link).text("Show less")
                 //$(slide_link).attr('title', 'Show less course information');
                 $(hidden_block).attr('aria-hidden', 'false');
                 //WSData.log_interaction("show_final_card", term);
             }
             else {
-                
+                                
                 //$(slide_link).attr('title', 'Show more course information');
                 $(hidden_block).attr('aria-hidden', 'true');
                 
+                
                 setTimeout(function() {
-                      //$(slide_link).text("Show more");
+                      $(slide_link).find("i").removeClass("fa-angle-up");
+                      $(slide_link).find("i").addClass("fa-angle-down");
                 }, 700);
+            
  
             }
         });
