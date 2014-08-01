@@ -1,8 +1,12 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "uwemail-content" %}
 
-{{#if is_active}}
-    <a href="{{fwd}}" target="_blank" title="Open email in new tab"><div class="pull-right header-email todo"><i class="fa fa-windows">{{fwd}}</i></div></a>
+{{#if is_uwgmail}}
+    <a href="http://gmail.uw.edu/" target="_blank" title="Open UW Gmail in new tab"><div class="pull-right header-email todo"><i class="fa fa-gmail">UW Gmail</i></div></a>
+{{/if}}
+
+{{#if is_uwlive}}
+    <a href="https://www.outlook.com/myuw.net" target="_blank" title="Open UW Outlook Live email in new tab"><div class="pull-right header-email todo"><i class="fa fa-windows">UW Outlook Live Email</i></div></a>
 {{/if}}
 
 {% endtplhandlebars %}

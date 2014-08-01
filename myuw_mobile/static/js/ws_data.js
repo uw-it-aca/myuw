@@ -1,6 +1,7 @@
 WSData = {
     _book_data: null,
     _course_data: {},
+    _uwemail_data: null,
     _hfs_data: null,
     _library_data: null,
     _tuition_data: null,

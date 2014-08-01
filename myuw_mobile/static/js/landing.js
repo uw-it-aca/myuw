@@ -1,7 +1,7 @@
 var Landing = {
     render: function() {
-        UwEmail.render_init();
         showLoading();
+        UwEmail.render_init();
         Landing.make_html();
     },
 
