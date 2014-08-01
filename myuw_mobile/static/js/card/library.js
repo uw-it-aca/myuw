@@ -20,6 +20,9 @@ var LibraryCard = {
     _render: function (library_data) {
         var source = $("#library_card_content").html();
         var template = Handlebars.compile(source);
+        if (!library_data.next_due && !library_data.holds_ready && !library_data.items_loaned && !library_data.fines) {
+            library_data = null;
+        }
         LibraryCard.dom_target.html(template({mylibaccount: library_data}));
     },
 
