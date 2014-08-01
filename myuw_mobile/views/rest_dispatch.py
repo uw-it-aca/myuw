@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.utils import simplejson as json
 from userservice.user import UserService
 
 class RESTDispatch:
@@ -52,6 +53,11 @@ def invalid_arg():
 def data_not_found():
     response = HttpResponse('Data not found')
     response.status_code = 404
+    return response
+
+def null_data():
+    response = HttpResponse(json.dumps(None))
+    response.status_code = 200
     return response
 
 def invalid_method():
