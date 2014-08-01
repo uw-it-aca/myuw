@@ -15,14 +15,14 @@
                             
                             <div class="card-badge clearfix">
                                 {{#with hfs_data.student_husky_card}}
-                                <div class="pull-left" style="width:60%;">
-                                    <span class="card-badge-label">You have</span> 
-                                    <span class="card-badge-label">in Student Husky</span>
-                                    <span class="card-badge-note">Last transaction: {{ last_updated }}</span>
+                                <div class="pull-left" style="width:70%;">
+                                    <span class="card-badge-label" style="font-size: 18px;">Student Husky Card</span>
                                 </div>
                                 <div class="pull-right">
                                     <span class="card-badge-value">${{ formatPrice balance }}</span>
                                 </div>  
+                                <div class="card-badge-note pull-left">Last transaction: {{ last_updated }}</div>
+
                                 {{/with}}
                             </div>
                             
@@ -34,14 +34,14 @@
                             
                             <div class="card-badge clearfix">
                                 {{#with hfs_data.employee_husky_card}}
-                                <div class="pull-left" style="width:60%;">
-                                    <span class="card-badge-label">You have</span> 
-                                    <span class="card-badge-label">in Employee Husky</span>
-                                    <span class="card-badge-note">Last transaction: {{ last_updated }}</span>
+                                <div class="pull-left" style="width:70%;">
+                                    <span class="card-badge-label" style="font-size: 18px;">Employee Husky Card</span>
                                 </div>
                                 <div class="pull-right">
                                     <span class="card-badge-value">${{ formatPrice balance }}</span>
                                 </div>   
+                                <div class="card-badge-note pull-left">Last transaction: {{ last_updated }}</div>
+
                                 {{/with}}
                             </div>
                             
@@ -54,13 +54,12 @@
                             <div class="card-badge clearfix">
                                 {{#with hfs_data.resident_dining}}
                                 <div class="pull-left" style="width:60%;">
-                                    <span class="card-badge-label">You have</span> 
-                                    <span class="card-badge-label">in Resident Dining</span>
-                                    <span class="card-badge-note">Last transaction: {{ last_updated }}</span>
+                                    <span class="card-badge-label" style="font-size: 18px;">Resident Dining</span>
                                 </div>
                                 <div class="pull-right">
                                     <span class="card-badge-value">${{ formatPrice balance }}</span>
                                 </div>
+                                <div class="card-badge-note pull-left">Last transaction: {{ last_updated }}</div>
                                 {{/with}}
                             </div>
                             
