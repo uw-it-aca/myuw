@@ -167,10 +167,10 @@ body {
 
 /*** header ***/
 
-#app_header { background: #333; line-height: 60px;
+#app_header { background: #333; 
     
     // header bar
-    .header-bar { /*padding: 0px !important;*/
+    .header-bar { /*padding: 0px !important;*/ line-height: 60px;
 
         .header-logo { line-height: 60px; margin: 0; padding: 0; color: @myuw; text-transform: uppercase; margin-right: 10px; font-size: 2em; /*text-indent: -9999px;*/ width: 83px; }
 
@@ -188,6 +188,11 @@ body {
                 }
             }        
         }        
+    }
+    
+    .header-bar-thin { line-height: 30px;
+        .header-logo { background: gold; }
+        
     }
     
 }
