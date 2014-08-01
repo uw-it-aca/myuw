@@ -247,7 +247,7 @@ body {
         
         .card-critical-alert { background: rgb(240,219,208); padding: 8px; margin-bottom: 1em; color: #af4b1a; text-align: center;        
 	        i {font-size: 1.5em; vertical-align: middle; margin-right: .2em;}	        
-			a {padding-left: 1em; text-decoration: underline; color: #af4b1a;}
+			a {padding-left: .3em; text-decoration: underline; color: #af4b1a;}
         }
 
         .card-noncritical-alert { background: rgb(221,229,239); padding: 8px; margin-bottom: 1em; color: #555; text-align: center;
@@ -302,21 +302,23 @@ body {
             h4 { font-size: 1.8em; font-weight: 400; color: #333; margin-bottom: 1em; }
             
             // make h5 look like h4 -- William overrode this
-            h5 { color: #555; margin-top: .2em; margin-bottom: .2em; font-size:1.1em;
+            h5 { color: #555; margin-top: 1.5em; margin-bottom: .3em; font-size: .9em; text-transform: uppercase;            
             }
             
-			h6 {font-size: .9em; font-weight: 700; color: #555;}
+			h6 {font-size: .8em; font-weight: bold;}
 
-			instructor-container {
-				list-style-type: none; padding: 10px 0;
-				h6 {margin-bottom: 0px; margin-top: 5px; font-family: helvetica, sans-serif; font-weight: bold; line-height: 1em;}
+			li.instructor-container {list-style-type: none; padding: 10px 10px;
+
+				h6 {margin-bottom: 0px; margin-top: 0em; font-family: helvetica, sans-serif; line-height: 1em;}
 			}
 
-			instructors {
-				ol {padding-left: 0px;}
+			.instructors {
+				ol {padding: 0px;}
 			}
 
-			
+			.table {
+				margin-top: -5px;	
+			}
         }
     }
     
