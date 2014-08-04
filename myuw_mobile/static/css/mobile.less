@@ -682,53 +682,40 @@ body {
 			color: #555;			
 		}
 	 	
-/**		div:first-of-type {
-			border-top: none;	
-		}	 **/	
-	 	    
-	    .disclosure-critical {
-	    	margin-top: 1.5em;
-			border-top: 1px solid #ccc;
-			border-bottom: 1px solid #ccc;
+	    
+		.disclosure {
+			border-bottom: 1px solid #ccc; 
 			padding: 5px 0;
+			
+			.disclosure-heading { 
+	        background: none;  
+    	       	color: #555;
+                   position: relative;
+    	       	
+    	       	a { display: block; position: relative; z-index: 900;
+        	       	
+        	       	.disclosure-title { line-height: 80px; }
+    	       	}
+    	       	
+    	       	.disclosure-meta { 
+        	       	position: absolute; top: 50%; right: 0; z-index: 1;
+    	       	}
+    	    }
+			
+		}
+		
+		.disclosure-heading-critical {
+			
 			h3 {color: #af4b1a;}
 	    
-	        .disclosure-heading { 
-          /**	background: #f0dbd0;   **/
-				color: #af4b1a; 
-	        }
-
 
 			.badge {
 				background-color: #af4b1a; 
 			}
 
-			.critical-icon {
-				padding-right: .5em;
-				display: table-cell;
-				vertical-align: middle
-			}
-			.disclosure-title {
-				display: inline;
-				display: table-cell;
-				vertical-align: middle
-			}	
 	    }
 
-/**		div.disclosure:first-of-type {
-			border-top: 1px solid red;
-			}
-**/		
-		.disclosure {
-			border-bottom: 1px solid #ccc; 
-			padding: 5px 0;
-		}
-
-	    .disclosure-heading { 
-	        background: none;  
-	       	color: #555;
-		   	height: 4em;
-	    }
+	    
 	
 		.fa-angle-down, .fa-angle-up {
 			position: absolute;

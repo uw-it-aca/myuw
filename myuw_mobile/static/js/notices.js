@@ -57,8 +57,12 @@ var Notices = {
         // event for slide show/hide panels
         $(".slide-link").on("click", function(ev) {
             ev.preventDefault();
-            var hidden_block = $(ev.target).parent().siblings(".slide-hide")[0];
+                        
+            var hidden_block = $(ev.target).parent().parent().siblings(".slide-hide")[0];
+            
             var slide_link = this;
+            
+            console.log(hidden_block);
                         
             $(hidden_block).toggleClass("slide-show");
 
