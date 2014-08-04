@@ -61,23 +61,20 @@ var Notices = {
             var hidden_block = $(ev.target).parent().parent().siblings(".slide-hide")[0];
             
             var slide_link = this;
-            
-            console.log(slide_link);
-                        
+                                    
             $(hidden_block).toggleClass("slide-show");
 
             if ($(hidden_block).hasClass("slide-show")) {
             
                 $(slide_link).siblings().find("i").removeClass("fa-angle-down");
                 $(slide_link).siblings().find("i").addClass("fa-angle-up");
-                //$(slide_link).text("Show less")
-                //$(slide_link).attr('title', 'Show less course information');
+                $(slide_link).attr('title', 'Show less notice information');
                 $(hidden_block).attr('aria-hidden', 'false');
                 //WSData.log_interaction("show_final_card", term);
             }
             else {
                                 
-                //$(slide_link).attr('title', 'Show more course information');
+                $(slide_link).attr('title', 'Show more notice information');
                 $(hidden_block).attr('aria-hidden', 'true');
                 
                 setTimeout(function() {
