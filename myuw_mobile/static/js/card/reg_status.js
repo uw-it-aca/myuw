@@ -26,7 +26,7 @@ var RegStatusCard = {
     _render: function () {
         var source = $("#reg_status_card").html();
         var template = Handlebars.compile(source);
-        var reg_notices = Notices.get_notices_for_category("Registration");
+        var reg_notices = Notices.get_notices_for_tag("reg_card_messages");
 
         // show registration resources
         $('body').on('click', '#show_reg_resources', function (ev) {

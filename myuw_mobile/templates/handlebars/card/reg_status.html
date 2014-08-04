@@ -40,13 +40,8 @@
                 </div>
                                 
                 <div id="reg_resources" class="slide-hide" aria-hidden="true">
-                	
-                	<!-- TODO: if reg_card_messages, print them -->
-					<span class="todo">reg_card_messages</span>
-	                
-	                <!-- TODO: reg_notices -->
-	                {{ #if notice_content }}
-	                <ul class="reg-notice-list todo">
+	                {{ #if reg_notices }}
+	                <ul class="reg-notice-list">
 	                  {{ #each reg_notices }}
 	                      <li>
 	                        {{{ notice_content }}}
