@@ -100,7 +100,7 @@ WSData = {
                 error: function(xhr, status, error) {
                         WSData._book_data = null;
                         if (err_callback !== undefined){
-                            err_callback.apply(null, args);
+                            err_callback.call(null, args);
                         }
                     }
                 });
@@ -113,11 +113,11 @@ WSData = {
         },
 
 
-    fetch_current_course_data: function(callback, args) {
-        return WSData.fetch_course_data_for_term("current", callback, args);
+    fetch_current_course_data: function(callback, err_callback, args) {
+        return WSData.fetch_course_data_for_term("current", callback, err_callback, args);
     },
 
-    fetch_course_data_for_term: function(term, callback, args) {
+    fetch_course_data_for_term: function(term, callback, err_callback, args) {
         if (!WSData._course_data[term]) {
             $.ajax({
                 url: "/mobile/api/v1/schedule/"+term,
@@ -152,7 +152,7 @@ WSData = {
                     }
                 },
                 error: function(xhr, status, error) {
-                    showError();
+                    err_callback.call(null, status, error);
                 }
             });
         }
@@ -164,7 +164,7 @@ WSData = {
 
     },
 
-    fetch_grades_for_term: function(term, callback, args) {
+    fetch_grades_for_term: function(term, callback, err_callback, args) {
         if (!term) { term = ''; }
 
         if (WSData.course_data_for_term(term)) {
@@ -179,15 +179,15 @@ WSData = {
             type: 'GET',
             success: function(results) {
                 WSData._grade_data[term] = results;
-                callback.apply(null, args);
+                err_callback.call(null, status, error);
             },
             error: function() {
-                showError();
+                err_callback.call(null, status, error);
             }
         });
     },
 
-    fetch_current_week_data: function(callback, args) {
+    fetch_current_week_data: function(callback, err_callback, args) {
         $.ajax({
             url: "/mobile/api/v1/current_week/",
             type: 'GET',
@@ -195,7 +195,7 @@ WSData = {
                 callback.apply(null, [results, args]);
             },
             error: function() {
-                showError();
+                err_callback.call(null, status, error);
             }
         });
     },
@@ -204,7 +204,7 @@ WSData = {
         console.warn("Use WSData.fetch_current_course_data instead");
     },
 
-    fetch_link_data: function(callback, args) {
+    fetch_link_data: function(callback, err_callback, args) {
             if (WSData._link_data === null) {
                 $.ajax({
                     url: "/mobile/api/v1/links/",
@@ -217,7 +217,7 @@ WSData = {
                         callback.apply(null, args);
                     },
                     error: function(xhr, status, error) {
-                        showError();
+                        err_callback.call(null, status, error);
                     }
                 });
             }
@@ -228,7 +228,7 @@ WSData = {
             }
         },
 
-    fetch_instructor_data: function(callback, args) {
+    fetch_instructor_data: function(callback, err_callback, args) {
         var instructor_regid = args[1];
         if (WSData._instructor_data[instructor_regid] === undefined) {
             $.ajax({
@@ -242,7 +242,7 @@ WSData = {
                         callback.apply(null, args);
                     },
                     error: function(xhr, status, error) {
-                        showError();
+                        err_callback.call(null, status, error);
                     }
                 });
             }
@@ -306,7 +306,7 @@ WSData = {
         WSData.normalize_instructors_for_current_term();
     },
 
-    fetch_hfs_data: function(callback, args) {
+    fetch_hfs_data: function(callback, err_callback, args) {
         if (WSData._hfs_data === null) {
             $.ajax({
                     url: "/mobile/api/v1/hfs/",
@@ -321,7 +321,7 @@ WSData = {
                         }
                     },
                     error: function(xhr, status, error) {
-                        showError();
+                        err_callback.call(null, status, error);
                         }
                     });
               }
@@ -332,7 +332,7 @@ WSData = {
         }
     },
 
-    fetch_library_data: function(callback, args) {
+    fetch_library_data: function(callback, err_callback, args) {
         if (WSData._library_data === null) {
             $.ajax({
                     url: "/mobile/api/v1/library/",
@@ -347,7 +347,7 @@ WSData = {
                         }
                     },
                     error: function(xhr, status, error) {
-                        showError();
+                        err_callback.call(null, status, error);
                         }
                     });
               }
@@ -358,7 +358,7 @@ WSData = {
         }
     },
 
-    fetch_tuition_data: function(callback, args) {
+    fetch_tuition_data: function(callback, err_callback, args) {
         if (WSData._tuition_data === null) {
             $.ajax({
                     url: "/mobile/api/v1/finance/",
@@ -373,7 +373,7 @@ WSData = {
                         }
                     },
                     error: function(xhr, status, error) {
-                        showError();
+                        err_callback.call(null, status, error);
                         }
                     });
               }
@@ -384,7 +384,7 @@ WSData = {
         }
     },
 
-    fetch_notice_data: function(callback, args) {
+    fetch_notice_data: function(callback, err_callback, args) {
         if (WSData._notice_data === null) {
             $.ajax({
                 url: "/mobile/api/v1/notices/",
@@ -397,7 +397,7 @@ WSData = {
                     callback.apply(null, args);
                 },
                 error: function(xhr, status, error) {
-                    showError();
+                    err_callback.call(null, status, error);
                 }
             });
         }
@@ -408,7 +408,7 @@ WSData = {
         }
     },
 
-    fetch_oquarter_data: function(callback, args) {
+    fetch_oquarter_data: function(callback, err_callback, args) {
         if (WSData._oquarter_data === null) {
             $.ajax({
                     url: "/mobile/api/v1/oquarters/",
@@ -421,7 +421,7 @@ WSData = {
                         callback.apply(null, args);
                         },
                     error: function(xhr, status, error) {
-                        showError();
+                        err_callback.call(null, status, error);
                         }
                     });
               }
@@ -432,7 +432,7 @@ WSData = {
         }
     },
 
-    fetch_category_links: function(callback, args) {
+    fetch_category_links: function(callback, err_callback, args) {
         var category = args[0];
         if (WSData._category_link_data[category] === undefined) {
             $.ajax({
@@ -445,7 +445,7 @@ WSData = {
                         callback.apply(null, args);
                         },
                     error: function(xhr, status, error) {
-                        showError();
+                        err_callback.call(null, status, error);
                         }
                     });
               }
@@ -456,7 +456,7 @@ WSData = {
         }
     },
 
-    fetch_uwemail_data: function(callback, args) {
+    fetch_uwemail_data: function(callback, err_callback, args) {
         if (WSData._uwemail_data === null) {
             $.ajax({
                     url: "/mobile/api/v1/uwemail/",
@@ -471,7 +471,7 @@ WSData = {
                         }
                     },
                     error: function(xhr, status, error) {
-                        showError();
+                        err_callback.call(null, status, error);
                         }
                     });
               }
