@@ -1,32 +1,31 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "textbook_card" %}
-  <div class="row ">
-        <div class="col-xs-12">
-            <div class="card">
-                <div class="row">
+<div class="row ">
+    <div class="col-xs-12">
+        <div class="card">
+            
+            <div class="fade-in" style="position:relative;">
                 
-                    <div class="col-xs-11">
-                        <h3>Textbooks (<span>{{ term }}</span>)</h3>
-                        {{ #if no_books }}
-                            <p>No textbooks for this term</p>
-                        {{ /if }}
-                        <ul class="unstyled-list">
-                            {{ #each sections }}
-                                <li>{{ course_id }}: {{ required }} required, {{ optional }} optional</li>
-                            {{ /each }}
-                        </ul>
-                        
-                    </div>
-                   
-                    <div class="col-xs-1 nav-card-arrow" style="text-align:center;">
-                        <a href="{{ url }}"><i class="fa fa-chevron-right"></i></a>
-                    </div>
-      
+                <a class="textbook-card" href="{{url}}" style="height:140px;"><h3>Textbooks (<span>{{ term }}</span>)</h3></a>
+                
+                <div style="position:absolute; top: 35px; width: 93%;">
+                {{ #if no_books }}
+                    <p>No textbooks for this term</p>
+                {{ else }}
+                <ul class="unstyled-list">
+                    {{ #each sections }}
+                        <li>{{ course_id }}: {{ required }} required, {{ optional }} optional</li>
+                    {{ /each }}
+                </ul>
+                {{ /if }}
                 </div>
+                
+                <div style="position:absolute; top: 50%; right: 0; margin-top:-14px;">
+                    <i class="fa fa-chevron-right"></i>
+                </div>
+                    
             </div>
-       </div>      
-    </div> 
-
-      
-  </div>
+        </div>
+   </div>      
+</div> 
 {% endtplhandlebars %}
