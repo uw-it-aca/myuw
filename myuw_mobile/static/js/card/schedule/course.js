@@ -4,15 +4,19 @@ var CourseCard = {
     term: 'current',
 
     render_init: function() {
-        WSData.fetch_course_data_for_term(CourseCard.term, CourseCard.render_upon_data);
+        WSData.fetch_course_data_for_term(CourseCard.term, CourseCard.render_upon_data, CourseCard.render_error);
     },
 
     render_upon_data: function() {
         if (!CourseCard._has_all_data()) {
-            CourseCard.dom_target.html(CardWithError.render());
+            CourseCard.render_error();
             return;
         }
         CourseCard._render();
+    },
+
+    render_error: function() {
+        CourseCard.dom_target.html(CardWithNoCourse.render(titilizeTerm(CourseCard.term)));
     },
 
     _has_all_data: function () {

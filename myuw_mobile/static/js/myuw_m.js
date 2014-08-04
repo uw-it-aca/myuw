@@ -360,3 +360,18 @@ var date_from_string = function(date_string) {
     return date_object;
 };
 
+var titilizeTerm = function(term) {
+    //Takes a term string (Eg 2032,summer,b-term) and returns a title (Eg Summer 2032: B-term)
+    var pieces = term.split(",");
+    var string = _capitalizeString(pieces[1]) + " " + pieces[0];
+    if (pieces.length > 2) {
+        string += ": " + _capitalizeString(pieces[2]);
+    }
+    return string
+
+}
+
+var _capitalizeString = function(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+

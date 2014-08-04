@@ -4,7 +4,7 @@ var VisualScheduleCard = {
     term: 'current',
 
     render_init: function(term, course_index) {
-        WSData.fetch_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_upon_data)
+        WSData.fetch_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_upon_data, VisualScheduleCard.render_error)
         WSData.fetch_current_course_data(VisualScheduleCard.render_upon_data);
     },
 
@@ -13,6 +13,10 @@ var VisualScheduleCard = {
             return true;
         }
         return false;
+    },
+
+    render_error: function() {
+        VisualScheduleCard.dom_target.html(CardWithNoCourse.render(titilizeTerm(VisualScheduleCard.term)));
     },
 
     render_upon_data: function(course_index) {
