@@ -5,7 +5,7 @@
 <div class="container">       
  
         <h1 class="todo">SPRING 2038 Textbooks</h1>
-        <h2 id="future_cards_header" class="sr-only">Cards</h2>
+        <h2 id="future_cards_header" class="sr-only">Books</h2>
  
         {{#if verba_link }}
               <p><a target=_blank href="{{verba_link}}"><button class="btn btn-block" type="button">Compare Prices and Buy Books</button></a></p>
@@ -17,7 +17,7 @@
         {{#each sections}}
         
         
-        <div class="books-list"><a name="{{curriculum}}{{course_number}}{{section_id}}" /><h3>{{curriculum}} {{course_number}}{{section_id}}</h3></div>
+        <div class="books-list"><a name="{{curriculum}}{{course_number}}{{section_id}}" /><h3 class="c{{color_id}}Border">{{curriculum}} {{course_number}}{{section_id}}</h3></div>
         
         {{#if books}}
       
@@ -27,7 +27,6 @@
 	 		
           <div class="clearfix book-image">
           	<h4>{{title}}</h4>
-            
             
             {{#if cover_image_url}}
                 <div class="book-cover pull-left"><img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{cover_image_url}}" alt="{{title}} book cover" width="80px" /></div>
