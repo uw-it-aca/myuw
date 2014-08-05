@@ -74,11 +74,14 @@
             {{#if courses_meeting_tbd }}
             <div class="courseTBD">
                 <h6>Courses with meeting times to be determined:</h6>
+                
                 {{#each courses_meeting_tbd }} 
-        	    <div class="c{{color_id}} visual-course pull-left"> 
-        	        <div class="visual-course-id">{{curriculum}} {{course_number}}{{section_id}}</div> 
+        	    <div class="pull-left" style="background:#ddd; width: 70px; height: 40px; font-size:11px;"> 
+        	        <div class="c{{color_id}}" style="text-align:center;">{{curriculum}} {{course_number}}{{section_id}}</div>
         	    </div> 
+        	    
                 {{/each}}
+                
             </div>
             {{/if}}
             <!-- end - if there are meetings with times to be arranged --> 
