@@ -21,12 +21,13 @@
                     {{#if items_loaned }}
                     <div class="col-xs-12">    
                         <div class="card-badge clearfix">     
-                            <div class="pull-left" style="width:50%;">                   
-                                <span class="card-badge-label">You have</span>
-                                <span class="card-badge-label"><a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount">See account</a></span>
+                            <div class="pull-left">                   
+                                <span class="card-badge-label" style="font-size: 18px;">Items out</span>
+                                
                             </div>
                             <div class="pull-right">
-                                <span class="card-badge-value">{{ items_loaned }} items out</span>
+                                <span class="card-badge-value">{{ items_loaned }} items</span>
+                                <span class="card-badge-label pull-right"><a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount">See account</a></span>
                             </div>
                             
                         </div>
@@ -36,12 +37,12 @@
                     {{#if next_due }}        
                     <div class="col-xs-12" style="margin-top:10px;">
                         <div class="card-badge clearfix">         
-                            <div class="pull-left" style="width:50%;"> 
-                                <span class="card-badge-label">Next item due</span>
-                                <span class="card-badge-label">in 7 days</span>
+                            <div class="pull-left"> 
+                                <span class="card-badge-label" style="font-size: 18px;">Next item due</span>
                             </div>
                             <div class="pull-right">
                                 <span class="card-badge-value">{{ next_due }}</span>
+                                <span class="card-badge-label pull-right">in 7 days</span>
                             </div>
                         </div>
                     </div>
@@ -50,12 +51,12 @@
                     {{#if fines}}
                     <div class="col-xs-12" style="margin-top:10px;">
                         <div class="card-badge clearfix">  
-                            <div class="pull-left" style="width:70%;"> 
-                                <span class="card-badge-label">You owe</span>
-                                <span class="card-badge-label"><a href="https://p.lib.washington.edu/payfines/">Pay fees</a></span>
+                            <div class="pull-left"> 
+                                <span class="card-badge-label" style="font-size: 18px;">You owe</span>
                             </div>
                             <div class="pull-right">
                                 <span class="card-badge-value">${{ formatPrice fines }}</span> 
+                                <span class="card-badge-label pull-right"><a href="https://p.lib.washington.edu/payfines/">Pay fees</a></span>
                             </div>
                         </div>
                     </div>
