@@ -6,17 +6,18 @@
             
             <div class="fade-in" style="position:relative;">
                 
-                <a class="textbook-card" href="{{url}}" style="height:140px;"><h3>Textbooks (<span>{{ term }}</span>)</h3></a>
+                <a class="textbook-card" href='{{url}}' style='{{ #if no_books }}height:70px;{{ else }}height:150px;{{ /if }}'><h3>Textbooks (<span>{{ term }}</span>)</h3></a>
                 
                 <div style="position:absolute; top: 35px; width: 93%;">
+                
                 {{ #if no_books }}
                     <p>No textbooks for this term</p>
                 {{ else }}
-                <ul class="unstyled-list">
-                    {{ #each sections }}
-                        <li>{{ course_id }}: {{ required }} required, {{ optional }} optional</li>
-                    {{ /each }}
-                </ul>
+                    <ul class="unstyled-list">
+                        {{ #each sections }}
+                            <li>{{ course_id }}: {{ required }} required, {{ optional }} optional</li>
+                        {{ /each }}
+                    </ul>
                 {{ /if }}
                 </div>
                 
