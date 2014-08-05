@@ -72,10 +72,9 @@ var FinalExamCard = {
         var list_data = [];
         var visual_data = {};
 
-        if (show_list_instead_of_visual) {
-            list_data = scheduled_finals.sort(FinalExams.sort_by_finals_date);
-        }
-        else if (course_data.quarter != "summer") {
+        list_data = scheduled_finals.sort(FinalExams.sort_by_finals_date);
+
+        if (course_data.quarter != "summer") {
             // summer quarter doesn't have properly scheduled finals
             visual_data = FinalExamCard._build_visual_schedule_data(scheduled_finals, course_data.term);
         }

@@ -79,10 +79,10 @@ Handlebars.registerHelper("formatDateAsDate", function(date_str) {
     var month_num = date.getMonth();
     var day_of_month = date.getDate();
 
-    var day_names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var day_names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     var month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-    return new Handlebars.SafeString(day_names[day_of_week] + "<br />" + month_names[month_num] + " " + day_of_month);
+    return new Handlebars.SafeString(day_names[day_of_week] + ", " + month_names[month_num] + " " + day_of_month);
 });
 
 // converts date string into the label for the final exams schedule

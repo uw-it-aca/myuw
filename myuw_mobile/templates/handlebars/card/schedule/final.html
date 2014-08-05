@@ -12,92 +12,104 @@
         {{#if visual_data.latest_ending}}
         {{#with visual_data}}
         
- 
-                <div id="final-visual-schedule" class="visual-schedule {{schedule_hours_class}}" aria-hidden="true">
+         <div id="final-visual-schedule" class="visual-schedule {{schedule_hours_class}}" aria-hidden="true">
 			
-                    <div class="exam-time-bar exam-day-col2 hours-{{total_hours}} clearfix ">
-                        {{#each display_hours}}
-                            <div class="hour-label" style="position:absolute;top:{{time_percentage position ../start_time ../end_time }}%;"><p>{{format_schedule_hour hour}}</p>
-                            </div>
-                        {{/each}}
-                    </div>
+             <div class="exam-time-bar exam-day-col2 hours-{{total_hours}} clearfix ">
+                 {{#each display_hours}}
+                 <div class="hour-label" style="position:absolute;top:{{time_percentage position ../start_time ../end_time }}%;"><p>{{format_schedule_hour hour}}</p>
+                 </div>
+                 {{/each}}
+             </div>
 
-                    {{#if has_7_days}}
-                        <div class="seven-day">
-                            <div class="day-label">SAT <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 6}}</span></div>
-                            <div class="exam-day-col hours-{{total_hours}}">
-                                {{ show_final_card_day saturday start_time end_time ../term}}
-                            </div>
-                        </div>
+             {{#if has_7_days}}
+             <div class="seven-day">
+                 <div class="day-label">SAT <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 6}}</span></div>
+                 <div class="exam-day-col hours-{{total_hours}}">
+                     {{ show_final_card_day saturday start_time end_time ../term}}
+                 </div>
+             </div>
 
-                        <div class="seven-day">
-                            <div class="day-label">SUN <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 5}}</span></div>
-                            <div class="exam-day-col hours-{{total_hours}}">
+             <div class="seven-day">
+                 <div class="day-label">SUN <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 5}}</span></div>
+                 <div class="exam-day-col hours-{{total_hours}}">
                                 {{ show_final_card_day sunday start_time end_time ../term}}
-                            </div>
-                        </div>
-                    {{/if}}
+                 </div>
+             </div>
+             {{/if}}
 
-                    <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
-                        <div class="day-label">MON <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 4}}</span></div>
-                        <div class="exam-day-col hours-{{total_hours}}">
-                            {{ show_final_card_day monday start_time end_time ../term}}
-                        </div>
-                    </div>
+             <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
+                 <div class="day-label">MON <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 4}}</span></div>
+                 <div class="exam-day-col hours-{{total_hours}}">
+                     {{ show_final_card_day monday start_time end_time ../term}}
+                 </div>
+             </div>
 
-                    <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
-                        <div class="day-label">TUE <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 3}}</span></div>
-                        <div class="exam-day-col hours-{{total_hours}}">
-                            {{ show_final_card_day tuesday start_time end_time ../term}}
-                        </div>
-                    </div>
+             <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
+                 <div class="day-label">TUE <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 3}}</span></div>
+                 <div class="exam-day-col hours-{{total_hours}}">
+                     {{ show_final_card_day tuesday start_time end_time ../term}}
+                 </div>
+             </div>
 
-                    <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
-                        <div class="day-label">WED <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 2}}</span></div>
-                        <div class="exam-day-col hours-{{total_hours}}">
-                            {{ show_final_card_day wednesday start_time end_time ../term}}
-                        </div>
-                    </div>
+             <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
+                 <div class="day-label">WED <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 2}}</span></div>
+                 <div class="exam-day-col hours-{{total_hours}}">
+                     {{ show_final_card_day wednesday start_time end_time ../term}}
+                 </div>
+             </div>
 
-                    <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
-                        <div class="day-label">THU <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 1}}</span></div>
-                        <div class="exam-day-col hours-{{total_hours}}">
-                            {{ show_final_card_day thursday start_time end_time ../term}}
-                        </div>
-                    </div>
+             <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
+                 <div class="day-label">THU <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 1}}</span></div>
+                 <div class="exam-day-col hours-{{total_hours}}">
+                     {{ show_final_card_day thursday start_time end_time ../term}}
+                 </div>
+             </div>
 
-                    <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
-                        <div class="day-label">FRI <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 0}}</span></div>
-                        <div class="exam-day-col hours-{{total_hours}}">
-                            {{ show_final_card_day friday start_time end_time ../term}}
-                        </div>
-                    </div>
-                </div>
+             <div {{#if has_7_days}}class="seven-day"{{else}}class="five-day"{{/if}}>
+                 <div class="day-label">FRI <br /> <span class="final-date">{{ formatDateAsFinalsDay end_date 0}}</span></div>
+                 <div class="exam-day-col hours-{{total_hours}}">
+                     {{ show_final_card_day friday start_time end_time ../term}}
+                 </div>
+             </div>
+         </div>
                 
-                <div class="final_schedule_table">
-                    <table>
-                        <caption>Final Exam Schedule</caption>
-                        <thead>
-                            <tr>
-                                <th scope="col">Class</th>
-                                <th scope="col">Exam date and time</th>
-                                <th scope="col">Exam location</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row" class="todo">TRAIN 101: Intro to Training</td>
-                                <td class="todo">Mon, Jul 18, 10:00 AM - 11:20 AM </td>
-                                <td class="todo">[location]</td>
-                            </tr>
-                        </tbody>
-                        
-                    </table>
+         {{/with}}
+         {{/if}}
+
+         <div class="final_schedule_table">
+             <table>
+                 <caption>Final Exam Schedule</caption>
+                 <thead>
+                     <tr>
+                         <th scope="col">Class</th>
+                         <th scope="col">Exam date and time</th>
+                         <th scope="col">Exam location</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     {{#each list_data}}
+                     <tr>
+                         <th scope="row">{{curriculum_abbr}} {{course_number}} {{course_title}}</td>
+                         {{#with final_exam}}
+                         <td>{{formatDateAsDate start_date}}, {{formatDateAsTimeAMPM start_date}} - {{formatDateAsTimeAMPM end_date}}</td>
+                         <td>
+                             {{#if building_tbd}}
+                             Room TBD
+                             {{else}}
+                                 {{#if latitude}}
+                                 <a href="http://maps.google.com/maps?q={{latitude }},{{longitude }}+({{encodeForMaps building_name}})&z=18" target="_blank" class="show_map_modal" rel="{{building_name}}">
+                                 {{/if}}
+                                 {{building}} {{room_number}}
+                                 {{#if final_exam.latitude}}</a>{{/if}}
+                             {{/if}}
+                         </td>
+                         {{/with}}
+                     </tr>
+                     {{/each}}
+                 </tbody>
+             </table>
+         </div>
                 
-                </div>
-                
-        {{/with}}
-        {{/if}}
 
         <!-- begin - if there are meetings with times to be arranged -->
         {{#if tbd}}
