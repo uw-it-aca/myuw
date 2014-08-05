@@ -59,9 +59,11 @@ var RegStatusCard = {
             ev.preventDefault();
 
             $("#reg_holds").toggleClass("slide-show");
-
+            
             if ($("#reg_holds").hasClass("slide-show")) {
-               $("#show_reg_holds").text("Hide holds")
+               
+               /* TODO: need to get a value for holds count */
+               $("#show_reg_holds").text("Hide 333 Holds")
                $("#reg_holds").attr('aria-hidden', 'false');
                $("#show_reg_holds").attr('title', 'Collapse to hide holds information');
             }
@@ -70,7 +72,8 @@ var RegStatusCard = {
                $("#show_reg_holds").attr('title', 'Expand to show holds information');
                
                setTimeout(function() {
-                      $("#show_reg_holds").text("Show holds");
+                    /* TODO: need to get a value for holds count */
+                    $("#show_reg_holds").text("Show 333 Holds");
                }, 700);
             }
 
