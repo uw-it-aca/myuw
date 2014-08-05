@@ -55,11 +55,6 @@ def data_not_found():
     response.status_code = 404
     return response
 
-def null_data():
-    response = HttpResponse(json.dumps(None))
-    response.status_code = 200
-    return response
-
 def invalid_method():
     response = HttpResponse("Method not allowed")
     response.status_code = 405
