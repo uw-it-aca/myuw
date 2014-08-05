@@ -9,7 +9,7 @@ var FutureQuarter = {
         $('html,body').animate({scrollTop: 0}, 'fast');
         var page_source = $("#future").html();
         var template = Handlebars.compile(page_source);
-         $("#main-content").html(template());
+        $("#main-content").html(template({"term": term}));
 
         WSData.fetch_notice_data(Landing.render_notice_banner);
 
@@ -18,8 +18,6 @@ var FutureQuarter = {
                      TextbookCard];
 
         Cards.load_cards_in_order(cards, $("#future_content"), term);
-
-
     },
     
     render_notice_banner: function () {

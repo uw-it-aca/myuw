@@ -1,3 +1,13 @@
+// convert term string from "2013,summer,a-term" to "summer "2013 a-term"
+Handlebars.registerHelper("formatTerm", function(term) {
+    value = term.split(",");
+    str = value[1] + " " + value[0];
+    if (value[2]) {
+        str += " " + value[2];
+    }
+    return str;
+});
+
 // Google maps gets very confused by some characters in map urls
 Handlebars.registerHelper("encodeForMaps", function(str) {
     str = str.replace(/ \(/g, " - ");
