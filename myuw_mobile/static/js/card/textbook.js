@@ -49,6 +49,7 @@ var TextbookCard = {
         if (textbook_data.summer_term !== "") {
             term_title += " " + textbook_data.summer_term;
         }
+        var url = "/mobile/textbooks/" + TextbookCard.term;
         var section_book_data = [];
         $.each(textbook_data.sections, function (sec_idx, section) {
             var required = 0;
@@ -61,16 +62,15 @@ var TextbookCard = {
                 }
             });
             var course_id = section.curriculum + " " + section.course_number + " " + section.section_id;
-            var url = "/mobile/textbooks/" + textbook_data.year + "," + textbook_data.quarter + "," + textbook_data.summer_term;
 
             var section_data = {"course_id": course_id,
                                 "required": required,
-                                "optional": optional,
-                                "url": url
+                                "optional": optional
             };
             section_book_data.push(section_data);
         });
-        var template_data = {"term": term_title,
+        var template_data = {"page_url": url,
+                             "term": term_title,
                              "sections": section_book_data}
 
         var source = $("#textbook_card").html();
