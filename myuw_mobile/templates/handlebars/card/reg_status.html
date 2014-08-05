@@ -12,7 +12,7 @@
                         <i class="fa fa-exclamation-triangle"><span class="sr-only">You have registration holds!</span></i> <span class="todo">3</span><a id="show_reg_holds" aria-controls="reg_holds" href="#" title="Expands to show holds information">Holds</a> 
                         
                         <div id="reg_holds" class="slide-hide" aria-hidden="true" style="text-align:left;">    
-                            <h4>Registration holds</h4>
+                            <h4 class="sr-only">Registration holds</h4>
                             <div class="reg-holds">
                             
                                 <!-- TODO: reg_card_holds -->
@@ -28,10 +28,15 @@
                         <!-- TODO: est_reg_date -->
                         <p class="todo">est_reg_date</p>
                     </div>     
-                                        
-                    <!-- TODO: logic about when this link shows up (only when registration is open) --> 
-                    <p><a href="#" class="todo">Register for classes</a></p>
-                                                        
+                    <h4 class="sr-only">Registration Resources</h4>
+                    <ul style="padding-left:0;" class="todo">
+                        <li><a href="http://www.washington.edu/students/timeschd/T/">Time Schedules</a></li>
+                        <li><a href="http://www.tacoma.washington.edu/enrollment_apps/timeschedule/search.cfm">Tacoma Time Schedule Quick Search</a></li>
+                        <li><a href="http://www.washington.edu/students/timeschd/">Time Schedules</a></li>
+                        <li><a href="http://www.uwb.edu/registration/time">Time Schedules</a></li>
+                        <li><a>Registration</a></li>
+                    </ul>
+					                                                                                                
                     <div id="reg_resources" class="slide-hide" aria-hidden="true">
     	                {{ #if reg_notices }}
     	                <ul class="reg-notice-list">
@@ -42,19 +47,11 @@
     	                  {{ /each }}
     	                </ul>
     	                {{/if}}
-    
-                        <h4>Registration Resources</h4>
-                        <ul style="padding-left:0;" class="todo">
-                            <li><a>Time Schedule</a></li>
-                            <li><a>Tacoma Time Schedule Quick Search</a></li>
-                            <li><a>Registration</a></li>
-                        </ul>
-                        
+                            
                         <h4>Academic Planning Resources</h4>
                         <ul style="padding-left:0;" class="todo">
-                            <li><a>MyPlan</a></li>
-                            <li><a>DARS</a></li>
-                            <li><a>Academic Advising</a></li>
+                            <li><a href="https://myplan.uw.edu">MyPlan</a></li>
+                            <li><a href="https://uwstudent.washington.edu/student/myplan/audit?methodToCall=audit&viewId=DegreeAudit-FormView">Degree Audit Reporting System (DARS)</a></li>
                         </ul>
                     </div>
                     
