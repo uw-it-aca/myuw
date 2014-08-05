@@ -67,11 +67,6 @@
                 
             </table>
             
-            
-            <div class="card-disclosure">
-                <a class="slide-link" href="#" aria-controls="course{{index}}" title="Show more course information">Show more</a>                    
-            </div>
-
             <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
                 
                 <div>
@@ -126,6 +121,11 @@
                 {{ /if }}
 
             </div>
+            
+            <div class="card-disclosure">
+                <a class="slide-link" href="#" aria-controls="course{{index}}" title="Show more course information">Show more</a>                    
+            </div>
+            
         </div>
         
     </div>
