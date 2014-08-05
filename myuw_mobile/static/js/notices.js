@@ -39,17 +39,41 @@ var Notices = {
         });
 
         /* Events for expand/close all */
-        $(".disclosure_toggle").click(function () {
+        $("#expand_collapse").on("click", function(ev) {
+        
+            ev.preventDefault();
+                        
             if (expanded) {
                 expanded = false;
-                $(".panel-collapse").collapse("hide");
-                $("#expand").show();
-                $("#collapse").hide();
+                
+                // update all individual disclosure links
+                $(".slide-hide").removeClass("slide-show");
+                $(".slide-hide").attr('aria-hidden', 'true');
+                $(".slide-link").attr('title', 'Show more notice information');
+                
+                $(this).attr('title', 'Show all notice information');
+                
+                $(".disclosure-meta").find("i").removeClass("fa-angle-up");
+                $(".disclosure-meta").find("i").addClass("fa-angle-down");
+                
+                setTimeout(function() {
+                      $("#expand_collapse").text("Expand all");
+                }, 700);
+                
+                
             } else if (!expanded) {
                 expanded = true;
-                $(".panel-collapse").collapse("show");
-                $("#expand").hide();
-                $("#collapse").show();
+                
+                // update all individual disclosure links
+                $(".slide-hide").addClass("slide-show");
+                $(".slide-hide").attr('aria-hidden', 'false');
+                $(".slide-link").attr('title', 'Show less notice information');
+                
+                $(this).attr('title', 'Hide all notice information');
+                
+                $(".disclosure-meta").find("i").removeClass("fa-angle-down");
+                $(".disclosure-meta").find("i").addClass("fa-angle-up");
+                $(this).text("Collapse all");
             }
 
         });
