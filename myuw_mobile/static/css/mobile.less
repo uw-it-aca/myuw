@@ -693,10 +693,6 @@ body {
 			font-weight: 400; color: #333; margin-top: 0; margin-bottom:0;
 		}
 		
-		a#expand, a#expand:hover {
-			color: #555;			
-		}
-	 	
 	    
 		.disclosure {
 			border-bottom: 1px solid #ccc; 
@@ -707,21 +703,24 @@ body {
     	       	color: #555;
                 position: relative;
     	       	
-    	       	a { display: block; position: relative; z-index: 900;
-        	       	
-        	       	.disclosure-title { line-height: 80px; }
+    	       	a { display: block; position: relative; z-index: 900; height: 80px;
+        	       	.disclosure-title { position: absolute; top: 25%; width: 100%; }
     	       	}
     	       	
     	       	.disclosure-meta {  position: absolute; top: 50%; left: 0; right: 0; z-index: 1; line-height: 30px; margin-top: -15px;
         	       	
         	       	.disclosure-unread { background-color: #555555; font-weight: 300; font-size:1em; position: absolute; right: 25px; top: 5px; }
-        	       	.disclosure-critical { position: absolute; bottom: -23px; color: #888; }
+        	       	.disclosure-critical { position: absolute; bottom: -20px; color: #888; }
     	       	}
     	    }
     	    
     	    .disclosure-heading-critical {
     			
     			h3 { color: #af4b1a; }
+    			
+    			a {
+        		    .disclosure-title { top: 30%; }	
+    			}
     			
     			.disclosure-meta { 
         			.disclosure-unread { background-color: #af4b1a; }
