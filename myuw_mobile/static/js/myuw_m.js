@@ -249,13 +249,13 @@ $(document).ready(function() {
                 state: "notices",
             },  "", "/mobile/notices/");
         }
-        else if (path.match(/^\/mobile\/category/)) {
-            var matches = path.match(/^\/mobile\/category\/([a-z]+)/),
+        else if (path.match(/^\/mobile\/resource/)) {
+            var matches = path.match(/^\/mobile\/resource\/([a-z]+)/),
                 category =  (matches ? matches[1] : "");
             hist.replaceState({
                 state: "category_page",
                 category: category,
-            },  "", "/mobile/category/" + category);
+            },  "", "/mobile/resource/" + category);
         }
         else {
             // Just fall back to the course list?
