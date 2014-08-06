@@ -115,10 +115,11 @@
         <div class="courseTBD">
             <h6>Courses with final exam meeting times to be determined or courses with no final exam:</h6>
             {{#each tbd}}
-            <div class="c{{color_id}} visual-course pull-left">
-                <div class="visual-course-id">{{ curriculum_abbr }} {{course_number}}{{section_id}}</div> 
-            </div>
+    	    <div class="pull-left" style="background:#ddd; width: 50px; height: 40px; font-size:11px; margin-right:5px; line-height:.9em;"> 
+    	        <div class="c{{color_id}}" style="text-align:center; color:#fff; padding:2px;">{{curriculum_abbr}} {{course_number}} {{section_id}}</div>
+    	    </div> 
             {{/each}}
+            
         </div>
         {{/if}}
         <!-- end - if there are meetings with times to be arranged -->
