@@ -20,16 +20,15 @@
 	                
                 <div class="disclosure-heading disclosure-heading-critical clearfix">
                 	<!-- collapsy 1 header -->      
-    	            <a class="slide-link" href="#" aria-controls="collapseOne" title="Show more notice information">
-    	                <h3 class="disclosure-title">{{ holds.critical_count }} Critical</h3>
-    	            </a>   
+    	            <a class="slide-link" href="#" aria-controls="collapseOne" title="Show more notice information"><h3 class="disclosure-title">{{ holds.critical_count }} Critical</h3></a>   
     	            
-					<div class="disclosure-meta">
+					<div class="disclosure-meta clearfix">
                         {{ #if holds.unread_count }}
-	                        <span class="badge">{{ holds.unread_count }} unread</span>
+	                        <span class="badge disclosure-unread">{{ holds.unread_count }} unread</span>
                         {{ /if }}
                         <i class="fa fa-angle-down fa-2x pull-right"></i>
 					</div>
+					
                 </div>
 	            
 	            <!-- collapsy 1 content -->
@@ -62,21 +61,16 @@
 	            
                 <div class="disclosure-heading clearfix">
                     <!-- collapsy 2 header -->      
-    	            <a href="#" class="slide-link" aria-controls="collapseTwo" title="Show more notice information">
-    	                <h3 class="disclosure-title">Today</h3>
-    	            </a>
+    	            <a href="#" class="slide-link" aria-controls="collapseTwo" title="Show more notice information"><h3 class="disclosure-title">Today</h3></a>
                     
                     <div class="disclosure-meta clearfix">                        
-	                	<div class="pull-left">
-							<div class="disclosure-title-metadata">{{ today.critical_count }} critical</div>
-	                	</div>
-						<div class="pull-right relative">
-	                        {{ #if today.unread_count }}
-							 <span class="badge">{{ today.unread_count }} unread</span>
-	                        {{ /if }}
-	                        <i class="fa fa-angle-down fa-2x pull-right"></i>
-						</div>
+						<span class="disclosure-critical">{{ today.critical_count }} critical</span>
+                        {{ #if today.unread_count }}
+						 <span class="badge disclosure-unread">{{ today.unread_count }} unread</span>
+                        {{ /if }}
+                        <i class="fa fa-angle-down fa-2x pull-right"></i>
                     </div>
+                    
                 </div>
 	            
 	            <!-- collapsy 2 content -->
@@ -111,21 +105,16 @@
                 <div class="disclosure-heading clearfix">
                 
                     <!-- collapsy 3 header -->
-    	            <a href="#" class="slide-link" aria-controls="collapseThree" title="Show more notice information">
-    	            <h3 class="disclosure-title">This week (Week 4)</h3>
-    	             </a> 
+    	            <a href="#" class="slide-link" aria-controls="collapseThree" title="Show more notice information"><h3 class="disclosure-title">This week (Week 4)</h3></a> 
                      
-                     <div class="disclosure-meta clearfix">  
-	                	<div class="pull-left">
-							<div class="disclosure-title-metadata">{{ week.critical_count }} critical</div>
-	                	</div>
-						<div class="pull-right relative">
-	                        {{ #if week.unread_count }}
-							 <span class="badge">{{ week.unread_count }} unread</span>
-	                        {{ /if }}
-	                        <i class="fa fa-angle-down fa-2x pull-right"></i>	
-						</div>
-                     </div>
+                    <div class="disclosure-meta clearfix">  
+                        <span class="disclosure-critical">{{ week.critical_count }} critical</span>
+                        {{ #if week.unread_count }}
+						 <span class="badge disclosure-unread">{{ week.unread_count }} unread</span>
+                        {{ /if }}
+                        <i class="fa fa-angle-down fa-2x pull-right"></i>	
+                    </div>
+                    
                 </div>
 	            
 	            <!-- collapsy 3 content -->
@@ -158,21 +147,16 @@
 	              
                 <div class="disclosure-heading clearfix">
                     <!-- collapsy 4 header -->
-    	            <a href="#" class="slide-link" aria-controls="collapseFour" title="Show more notice information">
-    	            <h3 class="disclosure-title">Next week</h3>
-    	            </a>  
+    	            <a href="#" class="slide-link" aria-controls="collapseFour" title="Show more notice information"><h3 class="disclosure-title">Next week</h3></a>  
                     
                     <div class="disclosure-meta clearfix">  
-	                	<div class="pull-left">
-							<div class="disclosure-title-metadata">{{ next_week.critical_count }} critical</div>
-	                	</div>
-						<div class="pull-right relative">
-	                        {{ #if next_week.unread_count }}
-							 <span class="badge">{{ next_week.unread_count }} unread</span>
-	                        {{ /if }}
-	                        <i class="fa fa-angle-down fa-2x pull-right"></i>
-						</div>
+						<span class="disclosure-critical">{{ next_week.critical_count }} critical</span>
+                        {{ #if next_week.unread_count }}
+						 <span class="badge disclosure-unread">{{ next_week.unread_count }} unread</span>
+                        {{ /if }}
+                        <i class="fa fa-angle-down fa-2x pull-right"></i>
                     </div>
+                    
                 </div>
 	            
 	            <!-- collapsy 4 content -->
@@ -206,21 +190,16 @@
 	            
                 <div class="disclosure-heading clearfix">
                     <!-- collapsy 5 header -->      
-    	            <a href="#" class="slide-link" aria-controls="collapseFive" title="Show more notice information">
-    	            <h3 class="disclosure-title">Upcoming weeks</h3>
-    	            </a>
+    	            <a href="#" class="slide-link" aria-controls="collapseFive" title="Show more notice information"><h3 class="disclosure-title">Upcoming weeks</h3></a>
     	            
     	            <div class="disclosure-meta clearfix">  
-	                	<div class="pull-left">
-							<div class="disclosure-title-metadata">{{ future.critical_count }} critical</div>
-	                	</div>
-						<div class="pull-right relative">
-	                        {{ #if future.unread_count }}
-							 <span class="badge">{{ future.unread_count }} unread</span>
-	                        {{ /if }}
-	                        <i class="fa fa-angle-down fa-2x pull-right"></i>
-						</div>
+						<span class="disclosure-critical">{{ future.critical_count }} critical</span>
+                        {{ #if future.unread_count }}
+						 <span class="badge disclosure-unread">{{ future.unread_count }} unread</span>
+                        {{ /if }}
+                        <i class="fa fa-angle-down fa-2x pull-right"></i>
     	            </div>
+    	            
                 </div>
 	            
 	            <!-- collapsy 5 content -->
@@ -250,20 +229,16 @@
 	              
                 <div class="disclosure-heading clearfix">
                     <!-- collapsy legal header -->      
-    	            <a href="#" class="slide-link" aria-controls="collapseSix" title="Show more notice information">
-    	                <h3 class="disclosure-title">Legal</h3>
-    	            </a>  
+    	            <a href="#" class="slide-link" aria-controls="collapseSix" title="Show more notice information"><h3 class="disclosure-title">Legal</h3></a>  
+    	            
     	            <div class="disclosure-meta clearfix">  
-	                	<div class="pull-left">
-							<div class="disclosure-title-metadata">[variable: number of legal critical] critical</div>
-	                	</div>
-						<div class="pull-right relative">
-	                        {{ #if legal.unread_count }}
-							 <span class="badge">{{ legal.unread_count }} unread</span>
-	                        {{ /if }}
-	                        <i class="fa fa-angle-down fa-2x pull-right"></i>
-						</div>
+						<span class="disclosure-critical">[variable: number of legal critical] critical</span>
+                        {{ #if legal.unread_count }}
+						 <span class="badge disclosure-unread">{{ legal.unread_count }} unread</span>
+                        {{ /if }}
+                        <i class="fa fa-angle-down fa-2x pull-right"></i>
     	            </div>
+    	            
                 </div>
 	            
 	            <!-- collapsy legal content -->

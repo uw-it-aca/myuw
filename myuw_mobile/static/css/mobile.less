@@ -703,51 +703,35 @@ body {
 			padding: 5px 0;
 			
 			.disclosure-heading { 
-	        background: none;  
+	            background: none;  
     	       	color: #555;
-                   position: relative;
+                position: relative;
     	       	
     	       	a { display: block; position: relative; z-index: 900;
         	       	
         	       	.disclosure-title { line-height: 80px; }
     	       	}
     	       	
-    	       	.disclosure-meta { 
-        	       	position: absolute; top: 50%; right: 0; z-index: 1;
+    	       	.disclosure-meta {  position: absolute; top: 50%; left: 0; right: 0; z-index: 1; line-height: 30px; margin-top: -15px;
+        	       	
+        	       	.disclosure-unread { background-color: #555555; font-weight: 300; font-size:1em; position: absolute; right: 25px; top: 5px; }
+        	       	.disclosure-critical { position: absolute; bottom: -23px; color: #888; }
     	       	}
     	    }
-			
+    	    
+    	    .disclosure-heading-critical {
+    			
+    			h3 { color: #af4b1a; }
+    			
+    			.disclosure-meta { 
+        			.disclosure-unread { background-color: #af4b1a; }
+                }
+    	    }
+
 		}
 		
-		.disclosure-heading-critical {
-			
-			h3 {color: #af4b1a;}
-	    
-
-			.badge {
-				background-color: #af4b1a; 
-			}
-
-	    }
-
-	    
-	
-		.fa-angle-down, .fa-angle-up {
-			position: absolute;
-			right: 0;
-			display: inline-block;
-			top: 50%;
-		}
-	    	    
-	    .badge {
-		    position: absolute;
-			right: 40px;
-			display: inline-block;
-			top: 50%
-	    }
-
-	        
 	    .notice-container { 
+	        
 	        padding: 1px 0; 
 	        border-top: 1px dotted #bbb; 
 
@@ -789,11 +773,7 @@ body {
 		}
 	}
 	
-	#accordion .panel {
-		width: 100% !important;
-	}
-	
-	
+	/*	
 	.disclosure-title-metadata {
 		display: block;
 		clear:both;
@@ -806,7 +786,7 @@ body {
 		font-size:1em;
 	}
 
-
+    */
 
 
 }
