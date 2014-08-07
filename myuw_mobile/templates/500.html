@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>500 Error</title>
+        <title>MyUW Mobile - 500 Error</title>
         <meta name="description" content="">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
@@ -12,7 +12,7 @@
 
                
         <!-- add web fonts if needed -->
-        <link href="//fonts.googleapis.com/css?family=Raleway:400,800" rel="stylesheet" type="text/css">
+        <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Noto+Sans:400,700|Droid+Sans|PT+Sans:400,700|Istok+Web:400,700|Arimo:400,700|Gudea:400,700|Muli|Open+Sans:400,700|Pontano+Sans' rel='stylesheet' type='text/css'>
 
         <!-- mobile first styles -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -20,91 +20,24 @@
                 
         <!-- copy the base styling from mobile.less -->
         <style type="text/less">
-            
-            @desktop: ~"screen and (min-width: 768px)";
-            @widescreen: ~"screen and (min-width: 1200px)";
-            
-            @media @widescreen { 
-                .container { max-width: 970px; }
-            }
-
-            /*** less variables ***/
-            @danger: #d9534f;
-            @success: #1fa67a;
-            @purple-light: #9B59B6;
-            @purple-dark: #563d7c;
-            
+                        
             /*** global ***/
 
             html, body { height: 100%; }
-            
-            h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-                font-weight: 200;
-                line-height: 1.1;
-            }
-         
-            #header { margin: 0; border-radius: 0;
-                
-                .gp-app-logo-container { margin: 0; 
-                    .gp-app-title { margin: 0; padding: 0; line-height: 60px; }
-                }
-                
-                .gp-remote-user { line-height: 60px; 
-                    .gp-netid-fullname { display: inline-block; margin-right: 20px; }
-                    .gp-netid-display { display: inline-block; color: #aaa; }
-                }
+        
+            #app_header { line-height: 60px; background: #333; 
+                .header-logo { line-height: 60px;}
             }
             
-            #content { 
-
+            #app_content { 
+                h1 { font-family: 'Gudea', sans-serif; }
+            }
+            
+            #footer {
+                
+                
             }
              
-            /*** app icon and name ***/
-
-            .gp-app-icon { color: @purple-dark; margin-right: 1px; }
-            .gp-app-name { font-family: 'Raleway', sans-serif; font-weight: 800; color: @purple-light; text-transform: uppercase; font-size: 23px; }
-            .gp-app-tagline { color: #aaa; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: 100; font-size: 20px; }
-            
-            /*** header ***/
-            
-            #header { margin: 0; border-radius: 0;
-                
-                .gp-app-logo-container { margin: 0; height: 62px;
-                    .gp-app-title { margin: 0; padding: 0; line-height: 60px; }
-                }
-                
-                .gp-remote-user { line-height: 60px; 
-                    .gp-netid-fullname { display: inline-block; margin-right: 20px; }
-                    .gp-netid-display { display: inline-block; color: #aaa; }
-                }
-            }
-
-            /*** wrapper for sticky footer ****/
-
-            #wrap {
-              min-height: 100%;
-              height: auto;
-              margin: 0 auto -60px;
-              padding: 0 0 60px;
-            }
-            
-            /*** footer ***/
-
-            #footer { height: 60px; background-color: #f5f5f5; position: relative;
-              
-              .credit { line-height: 60px; margin: 0; }
-              
-            }
-            
-            /*** developer ***/
-
-            #developer { position: fixed; bottom:15px; right: 10px; text-transform: uppercase; z-index: 10000;}
-            
-            .dummy { color: @danger !important; 
-                & * { color: @danger !important; }
-            }
-        
         </style>
         
         <!-- jquery -->
@@ -139,49 +72,26 @@
         
     </head>
     <body>
-        <!-- wrap all content here -->
-        <div id="wrap">
-    
-            
-            
+        
+        <div id="app_header" role="navigation">
+            <div class="container header-bar clearfix">
+            	<a href="/mobile/landing" title="Return to Home"><div class="pull-left header-logo" style="background: #39275B;"><img src="/static/images/myuw.png" alt="Home" style="margin-bottom:10px;"></div></a>
+            </div>
+        </div>
+
             <!-- content container -->
-            <div id="content" role="main" aria-labelledby="gp-500-error">
+            <div id="app_content" role="main" aria-labelledby="myuw-500-error">
                 <div class="container">
-                    
-                    <h1>MyUW Mobile</h1>
-                    
-                    <h2>500 error</h2>
+                                        
+                    <h1 id="myuw-500-error">500: Unable to Load Page</h1>
             
-                    <p>Our developers have been alerted of this issue and are working to get you back on track.</p>
-                    
-                    <p>You may want to:</p>
-                    
-                    <ul>
-                        <li>Relax, give us a little time, and <a href="/">try again</a> later.</li>
-                        <li>Drop us a line at <a href="mailto:help@uw.edu">help@uw.edu</a> and let us know that this has been taking awhile.</li>
-                    </ul>
+                    <p>A server error has occurred, and the MyUW team has been notified. Please try again in a few minutes.</p> 
+
+                    <p>Use the full MyUW site instead. <a href="http://myuw.uw.edu/">http://myuw.uw.edu</a></p> 
 
                 </div>
              </div>
 
-        </div><!-- /wrap -->
-
-        <!-- footer -->
-        <div role="complimentary" id="footer">
-            <div class="container">
-                
-                <script type="text/javascript">
-                    if (mobile) {
-                        document.write('<p class="credit">&copy; 1998-2014, UW-IT, ACA&nbsp;&nbsp;&nbsp;<a href="http://www.washington.edu/online/privacy" title="UW Privacy Policy">Privacy</a> | <a href="http://www.washington.edu/online/terms" title="UW Terms of Service">Terms</a></p>');
-                    } 
-                    else {
-                        document.write('<p class="credit">&copy; 1998-2014, UW Information Technology, Academic &amp; Collaborative Applications&nbsp;&nbsp;&nbsp;<a href="http://www.washington.edu/online/privacy" title="UW Privacy Policy">Privacy</a> | <a href="http://www.washington.edu/online/terms" title="UW Terms of Service">Terms</a></p>');
-                      
-                    }
-                </script>
-
-            </div>
-        </div>
                         
     </body>
 </html>
