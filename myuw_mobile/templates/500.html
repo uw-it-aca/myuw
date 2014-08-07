@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>500 Error</title>
+        <meta name="description" content="">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+        <meta http-equiv="cleartype" content="on">
+
+               
+        <!-- add web fonts if needed -->
+        <link href="//fonts.googleapis.com/css?family=Raleway:400,800" rel="stylesheet" type="text/css">
+
+        <!-- mobile first styles -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+                
+        <!-- copy the base styling from mobile.less -->
+        <style type="text/less">
+            
+            @desktop: ~"screen and (min-width: 768px)";
+            @widescreen: ~"screen and (min-width: 1200px)";
+            
+            @media @widescreen { 
+                .container { max-width: 970px; }
+            }
+
+            /*** less variables ***/
+            @danger: #d9534f;
+            @success: #1fa67a;
+            @purple-light: #9B59B6;
+            @purple-dark: #563d7c;
+            
+            /*** global ***/
+
+            html, body { height: 100%; }
+            
+            h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-weight: 200;
+                line-height: 1.1;
+            }
+         
+            #header { margin: 0; border-radius: 0;
+                
+                .gp-app-logo-container { margin: 0; 
+                    .gp-app-title { margin: 0; padding: 0; line-height: 60px; }
+                }
+                
+                .gp-remote-user { line-height: 60px; 
+                    .gp-netid-fullname { display: inline-block; margin-right: 20px; }
+                    .gp-netid-display { display: inline-block; color: #aaa; }
+                }
+            }
+            
+            #content { 
+
+            }
+             
+            /*** app icon and name ***/
+
+            .gp-app-icon { color: @purple-dark; margin-right: 1px; }
+            .gp-app-name { font-family: 'Raleway', sans-serif; font-weight: 800; color: @purple-light; text-transform: uppercase; font-size: 23px; }
+            .gp-app-tagline { color: #aaa; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: 100; font-size: 20px; }
+            
+            /*** header ***/
+            
+            #header { margin: 0; border-radius: 0;
+                
+                .gp-app-logo-container { margin: 0; height: 62px;
+                    .gp-app-title { margin: 0; padding: 0; line-height: 60px; }
+                }
+                
+                .gp-remote-user { line-height: 60px; 
+                    .gp-netid-fullname { display: inline-block; margin-right: 20px; }
+                    .gp-netid-display { display: inline-block; color: #aaa; }
+                }
+            }
+
+            /*** wrapper for sticky footer ****/
+
+            #wrap {
+              min-height: 100%;
+              height: auto;
+              margin: 0 auto -60px;
+              padding: 0 0 60px;
+            }
+            
+            /*** footer ***/
+
+            #footer { height: 60px; background-color: #f5f5f5; position: relative;
+              
+              .credit { line-height: 60px; margin: 0; }
+              
+            }
+            
+            /*** developer ***/
+
+            #developer { position: fixed; bottom:15px; right: 10px; text-transform: uppercase; z-index: 10000;}
+            
+            .dummy { color: @danger !important; 
+                & * { color: @danger !important; }
+            }
+        
+        </style>
+        
+        <!-- jquery -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        
+        <!-- less js precomiler -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.0/less.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/detectizr/1.5.0/detectizr.min.js"></script>
+        
+        <script type="text/javascript">        
+            var mobile, tablet, desktop;
+    
+            Modernizr.Detectizr.detect({ detectDeviceModel: false, detectScreen: false, detectOS: false, detectBrowser: false, detectPlugins: false });
+            
+            if ( $('html').hasClass("mobile") ) {
+                mobile = true
+                tablet = false
+                desktop = false
+            } 
+            else if ( $('html').hasClass("tablet") ) {
+                mobile = false
+                tablet = true
+                deskotp = false
+            }
+            else if ( $('html').hasClass("desktop") ){
+                mobile = false
+                tablet = false
+                desktop = true
+            }              
+        </script>
+        
+    </head>
+    <body>
+        <!-- wrap all content here -->
+        <div id="wrap">
+    
+            <!-- fixed navbar -->
+            <div id="header" class="navbar navbar-default" role="navigation">
+                <div aria-labelledby="gradepage-main" class="container clearfix">
+                	<h1 id="gradepage-main" class="sr-only">GradePage - Online Grade Submission</h1>
+                    <div class="navbar-header pull-left gp-app-logo-container"><a class="navbar-brand gp-app-title" href="/"><i class="fa fa-pencil-square-o gp-app-icon fa-lg"></i> <span class="gp-app-name">Gradepage</span> 
+                    
+                    </a></div>
+                </div>
+            </div>
+            
+            <!-- content container -->
+            <div id="content" role="main" aria-labelledby="gp-500-error">
+                <div class="container">
+                
+                    <script type="text/javascript">
+                        if (mobile) { document.write('<h2 id="gp-500-error">500 error</h2>'); } 
+                        else { document.write('<h2 id="gp-500-error">500 error: There is a problem on our end</h2>'); }
+                    </script>
+            
+                    <p>Our GradePage developers have been alerted of this issue and are working to get you back on track.</p>
+                    
+                    <p>You may want to:</p>
+                    
+                    <ul>
+                        <li>Relax, give us a little time, and <a href="/">try again</a> later.</li>
+                        <li>Drop us a line at <a href="mailto:help@uw.edu">help@uw.edu</a> and let us know that this has been taking awhile.</li>
+                    </ul>
+
+                </div>
+             </div>
+
+        </div><!-- /wrap -->
+
+        <!-- footer -->
+        <div role="complimentary" id="footer">
+            <div class="container">
+                
+                <script type="text/javascript">
+                    if (mobile) {
+                        document.write('<p class="credit">&copy; 1998-2014, UW-IT, ACA&nbsp;&nbsp;&nbsp;<a href="http://www.washington.edu/online/privacy" title="UW Privacy Policy">Privacy</a> | <a href="http://www.washington.edu/online/terms" title="UW Terms of Service">Terms</a></p>');
+                    } 
+                    else {
+                        document.write('<p class="credit">&copy; 1998-2014, UW Information Technology, Academic &amp; Collaborative Applications&nbsp;&nbsp;&nbsp;<a href="http://www.washington.edu/online/privacy" title="UW Privacy Policy">Privacy</a> | <a href="http://www.washington.edu/online/terms" title="UW Terms of Service">Terms</a></p>');
+                      
+                    }
+                </script>
+
+            </div>
+        </div>
+                        
+    </body>
+</html>
