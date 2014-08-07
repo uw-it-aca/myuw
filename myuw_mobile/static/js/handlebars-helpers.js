@@ -1,4 +1,22 @@
-// convert term string from "2013,summer,a-term" to "summer "2013 a-term"
+
+Handlebars.registerHelper("toLowerCase", function(str) {
+    if (str) {
+        return str.toLowerCase();
+    }
+    return str;
+});
+
+// convert term string from "2013,summer,a-term" to "summer a-term"
+Handlebars.registerHelper("termNoYear", function(term) {
+    value = term.split(",");
+    str = value[1];
+    if (value[2]) {
+        str += " " + value[2];
+    }
+    return str;
+});
+
+// convert term string from "2013,summer,a-term" to "summer 2013 a-term"
 Handlebars.registerHelper("formatTerm", function(term) {
     value = term.split(",");
     str = value[1] + " " + value[0];

@@ -4,28 +4,27 @@
     <div class="col-xs-12">
         <div class="card">
             
-            <div class="fade-in" style="position:relative;">
+            <div class="fade-in" style="position:relative; {{#if no_books}}height:90px;{{else}}height:160px;{{/if}}">
+                {{#unless no_books}}<a class="show_textbooks textbook-card" href="/mobile/textbooks/{{term}}" title="view textbooks">{{/unless}}
+                <h3>Textbooks <span style="font-size:16px; display:block; text-transform:uppercase;">{{termNoYear term}}</span></h3>
                 
-                <a class="textbook-card" href='{{page_url}}' style='{{ #if no_books }}height:90px;{{ else }}height:160px;{{ /if }}'>
-                    <h3>Textbooks <span style="font-size:16px; display:block; text-transform:uppercase;">{{ term }}</span></h3>
+                <div style="position:absolute; top: 55px; width: 93%;">
                 
-                    <div style="position:absolute; top: 55px; width: 93%;">
-                
-                        {{ #if no_books }}
+                    {{ #if no_books }}
                         <p class="text-muted">No textbooks for this term</p>
-                        {{ else }}
+                    {{ else }}
                         <ul class="unstyled-list">
                             {{ #each sections }}
                             <li>{{ course_id }}: {{ required }} required, {{ optional }} optional</li>
                             {{ /each }}
                         </ul>
-                        {{ /if }}
-                    </div>
+                    {{ /if }}
+                </div>
                 
-                    <div style="position:absolute; top: 50%; right: 0; margin-top:-14px;">
-                        <i class="fa fa-chevron-right"></i>
-                    </div>
-                </a>
+                <div style="position:absolute; top: 50%; right: 0; margin-top:-14px;">
+                    <i class="fa fa-chevron-right"></i>
+                </div>
+                {{#unless no_books}}</a>{{/unless}}
             </div>
         </div>
    </div>      

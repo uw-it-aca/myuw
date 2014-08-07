@@ -6,8 +6,14 @@ var TextbookCard = {
 
     render_init: function() {
         var term =  (TextbookCard.term === undefined) ? 'current' : TextbookCard.term;
-        WSData.fetch_book_data(TextbookCard.render_upon_data, term, TextbookCard.textbook_error);
-        WSData.fetch_course_data_for_term(term, TextbookCard.render_upon_data);
+        WSData.fetch_book_data(term, TextbookCard.render_upon_data, TextbookCard.textbook_error);
+        WSData.fetch_course_data_for_term(term, TextbookCard.render_upon_data, TextbookCard.textbook_error);
+        // may need to add a missing_course_error
+    },
+
+
+    _has_all_data: function () {
+        return (WSData.book_data(TextbookCard.term) && WSData.course_data_for_term(TextbookCard.term));
     },
 
     render_upon_data: function(args) {
@@ -31,25 +37,17 @@ var TextbookCard = {
     },
 
     _render_error: function() {
-        var term_data = WSData.course_data_for_term(TextbookCard.term);
-        var term_title = term_data.quarter;
-        if (term_data.summer_term !== "") {
-            term_title += " " + term_data.summer_term;
-        }
         var source = $("#textbook_card").html();
         var template = Handlebars.compile(source);
         TextbookCard.dom_target.html(template({'no_books': true,
-                                               'term': term_title}));
+                                               'term': TextbookCard.term}
+                                             ));
     },
 
     _render: function () {
-        var textbook_data  = TextBooks.process_book_data(WSData.book_data(), WSData.course_data_for_term(TextbookCard.term));
+        var term = TextbookCard.term;
+        var textbook_data  = TextBooks.process_book_data(WSData.book_data(term), WSData.course_data_for_term(term));
 
-        var term_title = textbook_data.quarter;
-        if (textbook_data.summer_term !== "") {
-            term_title += " " + textbook_data.summer_term;
-        }
-        var url = "/mobile/textbooks/" + TextbookCard.term;
         var section_book_data = [];
         $.each(textbook_data.sections, function (sec_idx, section) {
             var required = 0;
@@ -69,20 +67,24 @@ var TextbookCard = {
             };
             section_book_data.push(section_data);
         });
-        var template_data = {"page_url": url,
-                             "term": term_title,
+
+        var template_data = {"term": term,
                              "sections": section_book_data}
 
         var source = $("#textbook_card").html();
         var template = Handlebars.compile(source);
         TextbookCard.dom_target.html(template(template_data));
-    },
 
-    _has_all_data: function () {
-        if (WSData.book_data() && WSData.course_data_for_term(TextbookCard.term)) {
-            return true;
-        }
-        return false;
+        $(".show_textbooks").on("click", function(ev) {
+            WSData.log_interaction("card_view_future_textbooks", term);
+            var hist = window.History;
+            hist.pushState({
+                state: "textbooks",
+                term: term
+            },  "", "/mobile/textbooks/"+term);
+            return false;
+        });
+
     }
 
 };

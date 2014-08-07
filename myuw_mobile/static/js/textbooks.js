@@ -1,13 +1,19 @@
 var TextBooks = {
-    show_books: function(textbook) {
+    term: undefined,
+    anchor_textbook: undefined,
+
+    show_books: function(term, textbook) {
+        TextBooks.term = term;
+        TextBooks.anchor_textbook = textbook;
         UwEmail.render_init();
         showLoading();
-        WSData.fetch_book_data(TextBooks._fetch_course_data, 'current', [textbook]);
+        WSData.fetch_book_data(term, TextBooks._fetch_course_data);
     },
 
-    _fetch_course_data: function(textbook) {
-        WSData.fetch_current_course_data(TextBooks.render_books, [textbook]);
+    _fetch_course_data: function() {
+        WSData.fetch_course_data_for_term(TextBooks.term, TextBooks.render_books);
     },
+
     process_book_data: function(book_data, course_data) {
         var template_data = {
             "sections": [],
@@ -35,45 +41,16 @@ var TextBooks = {
         return template_data;
     },
 
-    render_books: function(textbook) {
+    render_books: function() {
+        var term = TextBooks.term;
         $('html,body').animate({scrollTop: 0}, 'fast');
         var source   = $("#textbooks").html();
         var template = Handlebars.compile(source);
-
-        var template_data = TextBooks.process_book_data(WSData.book_data(), WSData.course_data())
-
-
+        var template_data = TextBooks.process_book_data(WSData.book_data(term), WSData.course_data_for_term(term))
         $("#main-content").html(template(template_data));
 
-        source = $("#quarter-books").html();
-        template = Handlebars.compile(source);
-        $("#page-header").html(template({
-            year: course_data.year,
-            quarter: course_data.quarter,
-            summer_term: course_data.summer_term
-        }));
-
-        $(".display_list_sched").bind("click", function(ev) {
-            var hist = window.History;
-            hist.pushState({
-                state: "course_list",
-            },  "", "/mobile/");
-
-            return false;
-        });
-
-
-        $(".show_instructors").bind("click", function(ev) {
-            var hist = window.History;
-            hist.pushState({
-                state: "course_list",
-                course_index: ev.currentTarget.rel
-            },  "", "/mobile/");
-
-            return false;
-        });
         // Scroll to correct section
-        element = $("a[name='" + textbook + "']");
+        element = $("a[name='" + TextBooks.anchor_textbook + "']");
         if (element.length > 0) {
                 $('html, body').animate({
                 scrollTop: element.offset().top

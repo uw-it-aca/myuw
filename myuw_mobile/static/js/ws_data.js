@@ -1,5 +1,5 @@
 WSData = {
-    _book_data: null,
+    _book_data: {},
     _course_data: {},
     _uwemail_data: null,
     _hfs_data: null,
@@ -12,8 +12,8 @@ WSData = {
     _oquarter_data: null,
     _category_link_data: {},
 
-    book_data: function() {
-        return WSData._book_data;
+    book_data: function(term) {
+        return WSData._book_data[term];
     },
 
     normalized_course_data: function(term) {
@@ -85,8 +85,8 @@ WSData = {
         return WSData._uwemail_data;
     },
 
-    fetch_book_data: function(callback, term, err_callback, args) {
-        if (WSData._book_data === null) {
+    fetch_book_data: function(term, callback, err_callback, args) {
+        if (!WSData._book_data[term]) {
             $.ajax({
                 url: "/mobile/api/v1/book/" + term,
                 dataType: "JSON",
@@ -94,15 +94,14 @@ WSData = {
                 type: "GET",
                 accepts: {html: "text/html"},
                 success: function(results) {
-                    WSData._book_data = results;
+                    WSData._book_data[term] = results;
                     callback.apply(null, args);
                 },
                 error: function(xhr, status, error) {
-                        WSData._book_data = null;
-                        if (err_callback !== undefined){
-                            err_callback.call(null, args);
-                        }
+                    if (err_callback !== undefined){
+                        err_callback.call(null, args);
                     }
+                }
                 });
             }
             else {

@@ -110,6 +110,10 @@ var CourseCard = {
             }
         });
 
+        // to do
+        //$(".show_course_textbook").on("click", function(ev) {
+        //});
+
 
         $(".instructor").on("click", function(ev) {
             WSData.log_interaction("view_instructor_from_course_list", term);
