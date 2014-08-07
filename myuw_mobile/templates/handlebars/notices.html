@@ -64,7 +64,9 @@
     	            <a href="#" class="slide-link" aria-controls="collapseTwo" title="Show more notice information"><h3 class="disclosure-title">Today</h3></a>
                     
                     <div class="disclosure-meta clearfix">                        
+						{{ #if today.critical_count }}
 						<span class="disclosure-critical">{{ today.critical_count }} critical</span>
+						{{ /if }}
                         {{ #if today.unread_count }}
 						 <span class="badge disclosure-unread">{{ today.unread_count }} unread</span>
                         {{ /if }}
@@ -107,8 +109,10 @@
                     <!-- collapsy 3 header -->
     	            <a href="#" class="slide-link" aria-controls="collapseThree" title="Show more notice information"><h3 class="disclosure-title">This week (Week 4)</h3></a> 
                      
-                    <div class="disclosure-meta clearfix">  
+                    <div class="disclosure-meta clearfix">
+                        {{ #if week.critical_count }}  
                         <span class="disclosure-critical">{{ week.critical_count }} critical</span>
+                        {{ /if }}
                         {{ #if week.unread_count }}
 						 <span class="badge disclosure-unread">{{ week.unread_count }} unread</span>
                         {{ /if }}
@@ -150,7 +154,9 @@
     	            <a href="#" class="slide-link" aria-controls="collapseFour" title="Show more notice information"><h3 class="disclosure-title">Next week</h3></a>  
                     
                     <div class="disclosure-meta clearfix">  
+                        {{ #if next_week.critical_count }}
 						<span class="disclosure-critical">{{ next_week.critical_count }} critical</span>
+						{{ /if }}
                         {{ #if next_week.unread_count }}
 						 <span class="badge disclosure-unread">{{ next_week.unread_count }} unread</span>
                         {{ /if }}
@@ -193,7 +199,9 @@
     	            <a href="#" class="slide-link" aria-controls="collapseFive" title="Show more notice information"><h3 class="disclosure-title">Upcoming weeks</h3></a>
     	            
     	            <div class="disclosure-meta clearfix">  
+						{{ #if future.critical_count }}
 						<span class="disclosure-critical">{{ future.critical_count }} critical</span>
+						{{ /if }}
                         {{ #if future.unread_count }}
 						 <span class="badge disclosure-unread">{{ future.unread_count }} unread</span>
                         {{ /if }}
@@ -232,7 +240,9 @@
     	            <a href="#" class="slide-link" aria-controls="collapseSix" title="Show more notice information"><h3 class="disclosure-title">Legal</h3></a>  
     	            
     	            <div class="disclosure-meta clearfix">  
+    	                <!-- TODO: {{ #if variable: number of legal critical }} -->
 						<span class="disclosure-critical">[variable: number of legal critical] critical</span>
+						<! -- {{ /if }} -->
                         {{ #if legal.unread_count }}
 						 <span class="badge disclosure-unread">{{ legal.unread_count }} unread</span>
                         {{ /if }}
