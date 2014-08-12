@@ -18,7 +18,7 @@ $(document).ready(function() {
         var state_url = history_state.url;
         // This is the check of the same url, to prevent
         // duplicate web service requests on page load.
-        if (state_url == loaded_url) {
+        if (state_url === loaded_url) {
             return;
         }
 
@@ -27,7 +27,7 @@ $(document).ready(function() {
         $("#nav_visual_schedule").removeClass("active");
         $("#nav_mylinks").removeClass("active");
         $("#nav_finabala").removeClass("active");
-                
+
         // Page titles are defined in templates/index.html
         if (state === undefined) {
             show_page_from_url();
@@ -92,7 +92,7 @@ $(document).ready(function() {
             document.title = window.page_titles["notices"];
         }
         else if (state === "category_page") {
-            Category.show_category_page(data.category);
+            Category.show_category_page(data.category, data.topic);
             document.title = window.page_titles["category_page"];
         }
 
@@ -249,13 +249,20 @@ $(document).ready(function() {
                 state: "notices",
             },  "", "/mobile/notices/");
         }
-        else if (path.match(/^\/mobile\/resource/)) {
-            var matches = path.match(/^\/mobile\/resource\/([a-z]+)/),
-                category =  (matches ? matches[1] : "");
+        else if (path.match(/^\/mobile\/resource\/([a-z]+)/)) {
+            var matches = path.match(/^\/mobile\/resource\/([a-z]+)\/?([a-z]+)?/),
+                category = (matches ? matches[1] : ""),
+                topic = (matches ? matches[2] : undefined);
+            var slug = category;
+            if (topic !== undefined) {
+                slug += "/" + topic;
+            }
+
             hist.replaceState({
                 state: "category_page",
                 category: category,
-            },  "", "/mobile/resource/" + category);
+                topic: topic
+            },  "", "/mobile/resource/" + slug );
         }
         else {
             // Just fall back to the course list?
