@@ -8,10 +8,10 @@
      
                         
                 <h3>Husky Card &amp; Dining</h3>
-                <div class="row card-badge-container">
+                <div class="card-badge-container">
                     
                     {{#if hfs_data.student_husky_card}}
-                    <div class="col-xs-12">
+                    <div>
                         
                         <div class="card-badge clearfix">
                             {{#with hfs_data.student_husky_card}}
@@ -30,7 +30,7 @@
                     {{/if}}
                     
                     {{#if hfs_data.employee_husky_card}}
-                    <div class="col-xs-12" style="margin-top:10px;">
+                    <div style="margin-top:10px;">
                         
                         <div class="card-badge clearfix">
                             {{#with hfs_data.employee_husky_card}}
@@ -49,7 +49,7 @@
                     {{/if}}
                     
                     {{#if hfs_data.resident_dining}}
-                    <div class="col-xs-12" style="margin-top:10px;">
+                    <div style="margin-top:10px;">
     
                         <div class="card-badge clearfix">
                             {{#with hfs_data.resident_dining}}
@@ -66,12 +66,12 @@
                     </div>
                     {{/if}}
                     
-                </div>
+                    <div class="card-badge pull-right">
+                        <span class="card-badge-action"><a href="{{ hfs_data.student_husky_card.add_funds_url }}" style="display:block; line-height:35px;">Add funds to your accounts</a></p>
+                    </div>
                 
-                <div class="pull-right" style="margin-right:10px;">
-                    <p><a href="{{ hfs_data.student_husky_card.add_funds_url }}" style="display:block; line-height:35px;">Add funds to your accounts</a></p>
                 </div>
-                
+                                
             </div>
          </div>
     </div>
