@@ -3,6 +3,7 @@ var TextBooks = {
     anchor_textbook: undefined,
 
     show_books: function(term, textbook) {
+        Navbar.render_navbar("nav-sub");
         TextBooks.term = term;
         TextBooks.anchor_textbook = textbook;
         UwEmail.render_init();

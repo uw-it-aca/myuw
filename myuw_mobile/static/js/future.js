@@ -1,5 +1,6 @@
 var FutureQuarter = {
     render: function(term) {
+        Navbar.render_navbar();
         UwEmail.render_init();
         showLoading();
         FutureQuarter.make_html(term);
