@@ -1,6 +1,6 @@
 import logging
 from django.http import HttpResponse
-from django.utils import simplejson as json
+import json
 from myuw_mobile.dao.schedule import get_schedule_by_term, filter_schedule_sections_by_summer_term
 from myuw_mobile.dao.term import get_quarter
 from myuw_mobile.dao.textbook import get_textbook_by_schedule, get_verba_link_by_schedule

@@ -1,6 +1,6 @@
 import logging
 from django.http import HttpResponse
-from django.utils import simplejson as json
+import json
 from myuw_mobile.views.rest_dispatch import RESTDispatch, invalid_arg, data_not_found
 from myuw_mobile.dao.pws import get_contact
 from myuw_mobile.logger.timer import Timer

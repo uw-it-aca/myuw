@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.conf import settings
-from django.utils import simplejson as json
+import json
 import logging
 from myuw_mobile.dao.links import get_links_for_user, save_link_preferences_for_user
 from myuw_mobile.logger.timer import Timer

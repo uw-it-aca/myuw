@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 import logging
 from operator import itemgetter
-from django.utils import simplejson as json
+import json
 from myuw_mobile.dao.building import get_buildings_by_schedule
 from myuw_mobile.dao.canvas import get_canvas_enrolled_courses
 from myuw_mobile.dao.course_color import get_colors_by_schedule

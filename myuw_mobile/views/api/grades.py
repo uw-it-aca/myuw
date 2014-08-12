@@ -1,6 +1,6 @@
 from operator import itemgetter
 from django.http import HttpResponse
-from django.utils import simplejson as json
+import json
 from userservice.user import UserService
 from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.dao.course_color import get_colors_by_schedule
