@@ -6,7 +6,7 @@ var NoticeBanner = {
 
         return template({
             "total_unread": Notices.get_total_unread(),
-            "week_critical": Notices.get_critical_this_week()
+            "total_critical": Notices.get_all_critical()
         });
     }
 };

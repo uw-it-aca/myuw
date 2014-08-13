@@ -231,9 +231,11 @@ var Notices = {
         return category_counts;
     },
 
-    get_critical_this_week: function () {
+    get_all_critical: function () {
         var notices_by_date = Notices.get_notices_by_date();
-        var notices = notices_by_date.week.notices.concat(notices_by_date.today.notices);
+        var notices = notices_by_date.week.notices.concat(notices_by_date.today.notices)
+            .concat(notices_by_date.next_week.notices)
+            .concat(notices_by_date.future.notices);
         return Notices._get_critical_count(notices);
     },
 
