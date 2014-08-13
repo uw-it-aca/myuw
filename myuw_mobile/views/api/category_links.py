@@ -48,5 +48,7 @@ class CategoryLinks(RESTDispatch):
                 subcategory_data[sub_cat]['subcat_slug'] = sub_cat_slug
 
         for subcat_group in subcategory_data:
-               link_output.append(subcategory_data[subcat_group])
+            subcategory_data[subcat_group]['links'] = sorted(subcategory_data[subcat_group]['links'],
+                                                          key=lambda k: k['title'])
+            link_output.append(subcategory_data[subcat_group])
         return link_output
