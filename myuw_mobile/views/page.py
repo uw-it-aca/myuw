@@ -5,6 +5,7 @@ from django.conf import settings
 import logging
 from userservice.user import UserService
 from myuw_mobile.dao.term import get_current_quarter
+from myuw_mobile.dao.affiliation import get_all_affiliations
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_data_not_found_response, log_invalid_netid_response, log_success_response_with_affiliation
 from myuw_mobile.views.rest_dispatch import invalid_session
@@ -22,14 +23,17 @@ def index(request,
                "summer_term": summer_term,
                "home_url": "/mobile",
                "err": None,
-               "netid": None}
+               "user": {
+                   "netid": None,
+                   "affiliations": get_all_affiliations()
+               }}
 
     netid = UserService().get_user()
     if not netid:
         log_invalid_netid_response(logger, timer)
         return invalid_session()
 
-    context["netid"] = netid
+    context["user"]["netid"] = netid
     if year is None or quarter is None:
         cur_term = get_current_quarter()
         if cur_term is None:

@@ -79,6 +79,15 @@
         "notices": "Notices",
         "category_page": "Category",
     };
+    window.user = {
+        "grad": {{ user.affiliations.grad|yesno:"true, false" }},
+        "undergrad": {{ user.affiliations.undergrad|yesno:"true, false" }},
+        "pce": {{ user.affiliations.pce|yesno:"true, false" }},
+        "stud_employee": {{ user.affiliations.stud_employee|yesno:"true, false" }},
+        "seattle": {{ user.affiliations.seattle|yesno:"true, false" }},
+        "bothell": {{ user.affiliations.bothell|yesno:"true, false" }},
+        "tacoma": {{ user.affiliations.tacoma|yesno:"true, false" }}
+    }
     </script>
 
 {% endblock %}

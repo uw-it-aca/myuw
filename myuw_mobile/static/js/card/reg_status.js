@@ -36,21 +36,18 @@ var RegStatusCard = {
             $("#reg_resources").toggleClass("slide-show");
 
             if ($("#reg_resources").hasClass("slide-show")) {
-               $("#show_reg_resources").text("Show less")
-               $("#reg_resources").attr('aria-hidden', 'false');
-               $("#show_reg_resources").attr('title', 'Collapse to hide additional registration resources');
-            }
-            else {
-               
-               $("#reg_resources").attr('aria-hidden', 'true');
-               $("#show_reg_resources").attr('title', 'Expand to show additional registration resources');     
-               
-               setTimeout(function() {
-                      $("#show_reg_resources").text("Show more");
-               }, 700);
-          
-            }
+                $("#show_reg_resources").text("Show less")
+                $("#reg_resources").attr('aria-hidden', 'false');
+                $("#show_reg_resources").attr('title', 'Collapse to hide additional registration resources');
+            } else {
 
+                $("#reg_resources").attr('aria-hidden', 'true');
+                $("#show_reg_resources").attr('title', 'Expand to show additional registration resources');
+
+                setTimeout(function() {
+                    $("#show_reg_resources").text("Show more");
+                }, 700);
+            }
         });
 
         // show hold details
@@ -59,26 +56,28 @@ var RegStatusCard = {
             ev.preventDefault();
 
             $("#reg_holds").toggleClass("slide-show");
-            
+
             if ($("#reg_holds").hasClass("slide-show")) {
-               
-               /* TODO: need to get a value for holds count */
-               $("#show_reg_holds").text("Hide 333 Holds")
-               $("#reg_holds").attr('aria-hidden', 'false');
-               $("#show_reg_holds").attr('title', 'Collapse to hide holds information');
+
+                /* TODO: need to get a value for holds count */
+                $("#show_reg_holds").text("Hide 333 Holds")
+                $("#reg_holds").attr('aria-hidden', 'false');
+                $("#show_reg_holds").attr('title', 'Collapse to hide holds information');
             }
             else {
-               $("#reg_holds").attr('aria-hidden', 'true');
-               $("#show_reg_holds").attr('title', 'Expand to show holds information');
-               
-               setTimeout(function() {
+                $("#reg_holds").attr('aria-hidden', 'true');
+                $("#show_reg_holds").attr('title', 'Expand to show holds information');
+
+                setTimeout(function() {
                     /* TODO: need to get a value for holds count */
                     $("#show_reg_holds").text("Show 333 Holds");
-               }, 700);
+                }, 700);
             }
-
         });
 
-        RegStatusCard.dom_target.html(template({"reg_notices": reg_notices}));
+        RegStatusCard.dom_target.html(template({"reg_notices": reg_notices,
+                                                "is_tacoma": window.user.tacoma,
+                                                "is_bothell": window.user.bothell,
+                                                "is_seattle": window.user.seattle}));
     }
 };

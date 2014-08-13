@@ -6,7 +6,6 @@ var Navbar = {
             //defaulting to the 'standard' navbar
             source = $("#nav").html();
         }
-        console.log(source);
         template = Handlebars.compile(source);
         $("#navbar").html(template());
     }
