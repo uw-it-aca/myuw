@@ -27,6 +27,17 @@ var RegStatusCard = {
         var source = $("#reg_status_card").html();
         var template = Handlebars.compile(source);
         var reg_notices = Notices.get_notices_for_tag("reg_card_messages");
+        var reg_holds = Notices.get_notices_for_tag("reg_card_holds");
+
+        //Get hold count from notice attrs
+        var hold_count = 0;
+        $.each(reg_holds, function(idx, notice) {
+            $.each(notice['attributes'], function(idx, attribute){
+                if (attribute['name'] === "Holds") {
+                    hold_count = attribute['value'];
+                }
+            });
+        });
 
         // show registration resources
         $('body').on('click', '#show_reg_resources', function (ev) {
@@ -49,34 +60,29 @@ var RegStatusCard = {
                 }, 700);
             }
         });
-
         // show hold details
-        $('body').on('click', '#show_reg_holds', function (ev) {
-
+        $("#show_reg_holds").text("Show " + hold_count + " holds");
+        $('body').on('click', '.reg_disclosure', function (ev) {
             ev.preventDefault();
 
             $("#reg_holds").toggleClass("slide-show");
-
             if ($("#reg_holds").hasClass("slide-show")) {
-
-                $("#show_reg_holds").text("Hide holds")
-                $("#reg_holds").attr('aria-hidden', 'false');
-                $("#show_reg_holds").attr('title', 'Collapse to hide holds information');
+                $("#show_reg_holds").hide();
+                $("#hide_reg_holds").show();
             }
             else {
-                $("#reg_holds").attr('aria-hidden', 'true');
-                $("#show_reg_holds").attr('title', 'Expand to show holds information');
-
-                setTimeout(function() {
-                    /* TODO: need to get a value for holds count */
-                    $("#show_reg_holds").text("Show 333 Holds");
+                setTimeout(function () {
+                    $("#show_reg_holds").show();
+                    $("#hide_reg_holds").hide();
                 }, 700);
             }
         });
 
         RegStatusCard.dom_target.html(template({"reg_notices": reg_notices,
+                                                "reg_holds": reg_holds,
                                                 "is_tacoma": window.user.tacoma,
                                                 "is_bothell": window.user.bothell,
-                                                "is_seattle": window.user.seattle}));
+                                                "is_seattle": window.user.seattle,
+                                                "hold_count": hold_count}));
     }
 };

@@ -7,22 +7,31 @@
                 <div class="fade-in">
                 
                     <h3>Registration</h3>
-                    
-                    <div class="card-critical-alert" role="status">
-                        <i class="fa fa-exclamation-triangle"><span class="sr-only">You have registration holds!</span></i><a id="show_reg_holds" class="todo" aria-controls="reg_holds" href="#" title="Expands to show holds information">Show 333 Holds</a> 
-                        
-                        <div id="reg_holds" class="slide-hide" aria-hidden="true" style="text-align:left;">    
-                            <h4 class="sr-only">Registration holds</h4>
-                            <div class="reg-holds">
-                            
-                                <!-- TODO: reg_card_holds -->
-                                <p class="todo">reg_card_holds</p>
-                                
+                    {{ #if hold_count }}
+                        <div class="card-critical-alert" role="status">
+                            <i class="fa fa-exclamation-triangle"><span class="sr-only">You have registration holds!</span></i>
+                            <a id="show_reg_holds" class="reg_disclosure" aria-controls="reg_holds" href="#" title="Expand to show holds information">Show {{ hold_count }} holds</a>
+                            <a id="hide_reg_holds" class="reg_disclosure" style="display: none" aria-controls="reg_holds" href="#" title="Collapse to hide holds information">Hide holds</a>
+
+                            <div id="reg_holds" class="slide-hide" aria-hidden="true" style="text-align:left;">
+                                <h4 class="sr-only">Registration holds</h4>
+                                <div class="reg-holds">
+
+                                    <p class="todo">
+                                        <ul>
+                                            {{ #each reg_holds }}
+                                                  <li>
+                                                    {{{ notice_content }}}
+                                                  </li>
+                                              {{ /each }}
+                                        </ul>
+                                    </p>
+
+                                </div>
                             </div>
+
                         </div>
-                    
-                    </div>
-                    
+                    {{ /if }}
                     <h4 class="sr-only">Registration Information</h4>    
                     <div class="est-reg-date">
                         <!-- TODO: est_reg_date -->
