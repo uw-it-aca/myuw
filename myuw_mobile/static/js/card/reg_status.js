@@ -59,8 +59,7 @@ var RegStatusCard = {
 
             if ($("#reg_holds").hasClass("slide-show")) {
 
-                /* TODO: need to get a value for holds count */
-                $("#show_reg_holds").text("Hide 333 Holds")
+                $("#show_reg_holds").text("Hide holds")
                 $("#reg_holds").attr('aria-hidden', 'false');
                 $("#show_reg_holds").attr('title', 'Collapse to hide holds information');
             }
