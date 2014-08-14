@@ -35,18 +35,18 @@
                         <p class="todo">est_reg_date</p>
                     </div>     
                     <h4 class="sr-only">Registration Resources</h4>
-                    <ul>
+                    <ul class="reg-resources-list">
                         {{ #if is_tacoma }}
-                            <li><a href="http://www.washington.edu/students/timeschd/T/">Time Schedules</a></li>
+                            <li><a href="http://www.washington.edu/students/timeschd/T/">Tacome Time Schedules</a></li>
                             <li><a href="http://www.tacoma.washington.edu/enrollment_apps/timeschedule/search.cfm">Tacoma Time Schedule Quick Search</a></li>
                         {{ /if }}
                         {{ #if is_bothell }}
-                            <li><a href="http://www.uwb.edu/registration/time">Time Schedules</a></li>
+                            <li><a href="http://www.uwb.edu/registration/time">Bothell Time Schedules</a></li>
                         {{ /if }}
                         {{ #if is_seattle }}
-                            <li><a href="http://www.washington.edu/students/timeschd/">Time Schedules</a></li>
+                            <li><a href="http://www.washington.edu/students/timeschd/">Seattle Time Schedules</a></li>
                         {{ /if }}
-                        <li><a>Registration</a></li>
+                        <li><a href="#" class="todo">Registration</a></li>
                     </ul>
 					                                                                                                
                     <div id="reg_resources" class="slide-hide" aria-hidden="true">
@@ -61,7 +61,7 @@
     	                {{/if}}
                             
                         <h4>Academic Planning Resources</h4>
-                        <ul>
+                        <ul class="reg-resources-list">
                             <li><a href="https://myplan.uw.edu">MyPlan</a></li>
                             <li><a href="https://uwstudent.washington.edu/student/myplan/audit?methodToCall=audit&viewId=DegreeAudit-FormView">Degree Audit Reporting System (DARS)</a></li>
                         </ul>
