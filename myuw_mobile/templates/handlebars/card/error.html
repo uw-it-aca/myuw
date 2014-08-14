@@ -1,15 +1,8 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "card_with_error" %}
-  <div class="row">
-    <div class="col-xs-12">
-        <div class="card">
-            <div class="error-title"><i class="icon-exclamation-sign pull-left icon-huge"></i>Unable to Load Content 
+<div class="card error-card" style="position:relative;">
+    <h3><span class="text-muted">Error</h3>
+    <p style="position:absolute; top:20px; right: 15px;" class="todo"><strong>Long Card Title Blah</strong></p>
+    <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error has occurred and we can't load this content right now. Please try again in a few minutes.</p>
 </div>
-            <p>An error has occurred and we can't load this content right now. Please try again in a few minutes.</p>
-            <div class="error-buttons">
-                <a class="btn btn-large" href="https://myuw.washington.edu/cgi-bin/contactmyuw.cgi"  target="_blank"><i class="icon-envelope"></i> Contact Us</a>
-            </div>
-        </div>
-    </div>
-  </div>
 {% endtplhandlebars %}
