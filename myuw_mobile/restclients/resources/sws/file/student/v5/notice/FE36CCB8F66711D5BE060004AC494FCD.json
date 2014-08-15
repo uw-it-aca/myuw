@@ -1,0 +1,128 @@
+{
+    "Notices": [
+        {
+            "NoticeAttributes": [
+                {
+                    "Name": "Campus",
+                    "DataType": "string",
+                    "Value": "Bothell"
+                }
+            ],
+            "NoticeCategory": "StudentALR",
+            "NoticeContent": '<span class="notice-title">ISS Check-in Required</span><span class="notice-body-with-title">You are not eligible to register until you check in with International Student Services, UW-Bothell, Husky Hall 1212.</span>',
+            "NoticeType": "IntlStuCheckIn"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "Name": "Date",
+                    "DataType": "date",
+                    "Value": "future_end"
+                },
+                {
+                    "Name": "Quarter",
+                    "DataType": "string",
+                    "Value": "Summer"
+                },
+                {
+                    "Name": "Begin",
+                    "DataType": "date",
+                    "Value": "future"
+                },
+                {
+                    "Name": "End",
+                    "DataType": "date",
+                    "Value": "future_end"
+                } 
+
+            ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": '<span class="notice-body-without-title"> Summer quarter begins <span class="date"> Mon, June 23</span>.</span>',
+            "NoticeType": "QtrBegin"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": '<span class="notice-title">Estimated Registration Date</span><span class="notice-body-with-title">Your estimated Period I Priority Registration Date for autumn quarter is <span class="date"> Thurs, May 15</span>. Registration begins at 6:00 AM. <a href="http://www.washington.edu/students/reg/priorau14.html">View your Period 1 Priority Registration Date</a>.</span>',
+            "NoticeType": "EstPd1RegDate"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "Name": "Campus",
+                    "DataType": "string",
+                    "Value": "Bothell"
+                },
+                {
+                    "Name": "Date",
+                    "DataType": "date",
+                    "Value": "yesterday"
+                }
+
+            ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": '<span class="notice-title">International Student Registration Requirement</span><span class="notice-body-with-title">You are not registered for autumn quarter. You may take a vacation quarter and remain in the U.S. if you have completed three full-time consecutive quarters and will register full-time for the quarter following the vacation. If this is summer quarter and you know you are eligible for the annual vacation quarter, you can ignore this warning. If this is autumn, winter, or spring, notify your ISS adviser of your plans to take a vacation quarter. If you are not eligible for a vacation, you must register for at least 12 credits by <span class="date"> Fri, Oct 3</span> or contact <a href="http://www.bothell.washington.edu/international-student-services">International Student Services, UW-Bothell</a>, Husky Hall 1212, to learn about other exceptions to the full-time registration rule. <strong>If you are not registered full-time by the deadline and do not have prior permission from ISS or qualify for the annual vacation quarter, then you risk violating your student visa status.</strong> Note: only one online course may count towards your full-time registration requirement.</span>',
+            "NoticeType": "IntlStuRegCutoffDate"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentGEN",
+            "NoticeContent": '<span class="notice-title">Intended Major(s)</span><span class="notice-body-with-title"> Economics <a href="https://sdb.admin.washington.edu/students/uwnetid/prefmajor.asp"> Change intended major</a></span>',
+            "NoticeType": "IntendedMajors"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "Name": "Begin",
+                    "DataType": "date",
+                    "Value": "future"
+                },
+                {
+                    "Name": "End",
+                    "DataType": "date",
+                    "Value": "future_end"
+                }
+            ],
+            "NoticeCategory": "StudentGEN",
+            "NoticeContent": '<span class="notice-title">FERPA</span><span class="notice-body-with-title">The Family Educational Rights and Privacy Act (FERPA) of 1974 protects the privacy of your education records.  However, your directory information may be released unless you inform the Registrar's Office.  For further details check the <a href="http://www.washington.edu/students/reg/ferpa.html">Family Educational Rights and Privacy Act web site</a>.</span>',
+            "NoticeType": "FERPA"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentGEN",
+            "NoticeContent": '<span class="notice-title">About Peer-to-Peer File-Sharing and Copyright Infringement</span><span class="notice-body-with-title">Under copyright law it is illegal to download or share copyrighted materials such as music or movies without the permission of the copyright owner. Your actions when downloading or sharing files are traceable and could result in a significant financial penalty to you. For more information, go to the <a href="http://www.washington.edu/students/gencat/policy/p2pshare.html">Peer-to-Peer File-Sharing and Copyright Infringement</a> page in the Student Guide.</span>',
+            "NoticeType": "RIAA"
+        }
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentGEN",
+            "NoticeContent": "The Office of the Registrar has received payment for the following fees: New Student Enrollment & Orientation Fee",
+            "NoticeType": "FeesPaid"
+        },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentGEN",
+            "NoticeContent": "Thank you for confirming your intention to enroll at the Uni
+versity of Washington for autumn quarter 2014. Your new Student Enrollment and Orientation
+ Fee has been accepted and recorded.",
+            "NoticeType": "ThankYouRemark"
+        },
+        {
+            "NoticeAttributes": [
+            {
+                 "Name": "Date",
+                 "DataType": "date",
+                 "Value": "future"
+             }
+            ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": '<span class="notice-title">Tuition Due</span><span class="notice-body-with-title">Payment of tuition and tuition-related fees for summer quarter is due <span class="date"> Fri, July 11</span>. For details, <a href="https://sdb.admin.washington.edu/students/UWNetID/tuition.asp">view your Tuition Statement</a>.</span>',
+            "NoticeType": "TuitDue"
+        }
+    ],
+    "Person": {
+        "Href": "",
+        "Name": "JAMES BOTHELL STUDENT",
+        "RegID": "FE36CCB8F66711D5BE060004AC494FCD"
+    }
+}

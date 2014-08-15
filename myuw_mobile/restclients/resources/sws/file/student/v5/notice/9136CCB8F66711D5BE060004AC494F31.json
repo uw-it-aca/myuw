@@ -1,0 +1,204 @@
+{
+    "Notices": [
+        {
+            "NoticeAttributes": [
+            {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "future"
+            },
+            {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "future_end"
+            }
+            ],
+            "NoticeCategory": "StudentGEN",
+            "NoticeContent": '<span class="notice-title">FERPA</span><span class="notice-body-with-title">The Family Educational Rights and Privacy Act (FERPA) of 1974 protects the privacy of your education records.Â  However, your directory information may be released unless you inform the Registrar's Office.Â  For further details check the <a href="http://www.washington.edu/students/reg/ferpa.html">Family Educational Rights and Privacy Act web site</a>.</span>',
+            "NoticeType": "FERPA"
+        },
+        {
+            "NoticeAttributes": [
+            {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "future"
+            },
+            {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "future_end"
+            }
+             ],
+            "NoticeCategory": "StudentGEN",
+            "NoticeContent": '<span class="notice-title">About Peer-to-Peer File-Sharing and Copyright Infringement</span><span class="notice-body-with-title">Under copyright law it is illegal to download or share copyrighted materials such as music or movies without the permission of the copyright owner. Your actions when downloading or sharing files are traceable and could result in a significant financial penalty to you. For more information, go to the <a href="http://www.washington.edu/students/gencat/policy/p2pshare.html">Peer-to-Peer File-Sharing and Copyright Infringement</a> page in the Student Guide.</span>',
+            "NoticeType": "RIAA"
+        },
+        {
+            "NoticeAttributes": [
+            {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "week"
+            },
+            {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "next_week"
+            }
+             ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": '<span class="notice-title">Deadline to Change to Audit</span><span class="notice-body-with-title">The last day to change a class on your spring quarter schedule to or from an Audit Option is <span class="date"> Fri, Apr 11</span>. <a href="http://www.washington.edu/students/reg/audit.html">About Auditing Courses',
+            "NoticeType": "LastDayAuditOpt"
+        },
+        {
+            "NoticeAttributes": [
+            {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "yesterday"
+            },
+            {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "week"
+            }
+             ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": '<span class="notice-title">Deadline to Drop Without Using Annual Drop</span><span class="notice-body-with-title">The last day to drop spring quarter classes without using your Annual Drop is <span class="date"> Sun, Apr 13</span>. <a href="http://www.washington.edu/students/reg/wdpolicy.html">About Annual Drop</a></span>',
+            "NoticeType": "LastDayWOAnnualDrop"
+        },
+        {
+            "NoticeAttributes": [
+            {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "yesterday"
+            },
+            {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "week"
+            }
+             ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": '<span class="notice-title">Deadline to Add Classes</span><span class="notice-body-with-title">The last day to add classes to your spring quarter schedule is <span class="date"> Fri, Apr 11</span>.</span>',
+            "NoticeType": "LastDayAdd"
+        },
+        {
+            "NoticeAttributes": [
+            {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "yesterday"
+            },
+            {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "week"
+            }
+             ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": '<span class="notice-title">Deadline to Change Grading Option</span><span class="notice-body-with-title">The last day to change a class on your spring quarter schedule to or from an S/NS Grading Option is <span class="date"> Sun, May 18</span>. <a href="http://www.washington.edu/students/gencat/front/Grading_Sys.html">About Grading Options</a></span>',
+            "NoticeType": "LastDayChgGradeOpt"
+        },
+        {
+            "NoticeAttributes": [
+             {
+                 "Name": "Date",
+                 "DataType": "date",
+                 "Value": "next_week"
+             },
+             {
+                "Name": "Begin",
+                "DataType": "date",
+                "Value": "week"
+             },
+             {
+                "Name": "End",
+                "DataType": "date",
+                "Value": "next_week"
+              }
+            ],
+            "NoticeCategory": "StudentGEN",
+            "NoticeContent": '<span class="notice-title">Tuition Account Balance</span><span class="notice-body-with-title">Your tuition account balance is $0.00. <a href="https://sdb.admin.washington.edu/students/uwnetid/tuition.asp">View details of your tuition account</a>. <em>UW Professional & Continuing Education fees may show in both the TuitionAccount Balance and the UW Professional & Continuing Education Account Balance</em>.</span>',
+            "NoticeType": "AcctBalance"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "Name": "Date",
+                    "DataType": "date",
+                    "Value": "future_end"
+                },
+                {
+                    "Name": "Begin",
+                    "DataType": "date",
+                    "Value": "future"
+                },
+                {
+                    "Name": "End",
+                    "DataType": "date",
+                    "Value": "future_end"
+                },
+                {
+                    "Name": "Quarter",
+                    "DataType": "string",
+                    "Value": "Summer"
+                },
+                {
+                    "Name": "Link",
+                    "DataType": "url",
+                    "Value": "http://www.uw.edu"
+                },
+                {
+                    "Name": "Bogus",
+                    "DataType": "unknown",
+                    "Value": "42"
+                }
+
+            ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": '<span class="notice-body-without-title"> Summer quarter begins <span class="date"> Mon, June 23</span>.</span>',
+            "NoticeType": "QtrBegin"
+        },
+        {
+            "NoticeAttributes": [
+             {
+                 "Name": "Date",
+                 "DataType": "date",
+                 "Value": "future_end"
+             },
+             {
+                 "Name": "Begin",
+                 "DataType": "date",
+                 "Value": "future"
+             },
+             {
+                 "Name": "End",
+                 "DataType": "date",
+                 "Value": "future_end"
+             },
+             {
+                  "Name": "Quarter",
+                  "DataType": "string",
+                  "Value": "Spring"
+             },
+             {
+                  "Name": "Link",
+                  "DataType": "url",
+                  "Value": "http://www.uw.edu"
+             }
+           ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": '<span class="notice-body-without-title"> Spring quarter ends <span class="date"> Fri, June 7</span>.</span>',
+            "NoticeType": "QtrEnd"
+        }
+
+    ],
+    "Person": {
+        "Href": "",
+        "Name": "JAMES INTERNATIONAL STUDENT",
+        "RegID": "9136CCB8F66711D5BE060004AC494F31"
+    }
+}
