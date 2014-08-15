@@ -147,7 +147,7 @@
             {
                  "Name": "Date",
                  "DataType": "date",
-                 "Value": "next_week"
+                 "Value": "future"
              }
             ],
             "NoticeCategory": "StudentDAD",

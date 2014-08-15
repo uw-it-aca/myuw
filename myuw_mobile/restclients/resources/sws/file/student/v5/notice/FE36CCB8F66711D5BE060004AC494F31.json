@@ -156,12 +156,6 @@
         },
         {
             "NoticeAttributes": [],
-            "NoticeCategory": "StudentGEN",
-            "NoticeContent": '<span class="notice-title">Tuition Due</span><span class="notice-body-with-title">Payment of tuition and tuition-related fees for summer quarter is due <span class="date"> Fri, July 11</span>. For details, <a href="https://sdb.admin.washington.edu/students/UWNetID/tuition.asp">view your Tuition Statement</a>.</span>',
-            "NoticeType": "TuitDue"
-        },
-        {
-            "NoticeAttributes": [],
             "NoticeCategory": "NewStudentGEN",
             "NoticeContent": "Thank you for confirming your intention to enroll at the University of Washington for autumn quarter 2014. Your new Student Enrollment and Orientation Fee has been accepted and recorded.",
             "NoticeType": "ThankYouRemark"

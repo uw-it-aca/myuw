@@ -117,7 +117,7 @@
              {
                 "Name": "End",
                 "DataType": "date",
-                "Value": "next_week"
+                "Value": "future"
               }
             ],
             "NoticeCategory": "StudentGEN",
