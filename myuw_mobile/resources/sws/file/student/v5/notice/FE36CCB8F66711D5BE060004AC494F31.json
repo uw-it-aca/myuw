@@ -32,7 +32,7 @@
 
             ],
             "NoticeCategory": "StudentGEN",
-            "NoticeContent": '<span class="notice-title">About Peer-to-Peer File-Sharing and Copyright Infringement</span><span class="notice-body-with-title">Under copyright law it is illegal to download or share copyrighted materials such as music or movies without the permission of the copyright owner. Your actions when downloading or sharing files are traceable and could result in a significant financial penalty to you. For more information, go to the <a href="http://www.washington.edu/students/gencat/policy/p2pshare.html">Peer-to-Peer File-Sharing and Copyright Infringement</a> page in the Student Guide.</span>',
+            "NoticeContent": "<span class=\"notice-title\">About Peer-to-Peer File-Sharing and Copyright Infringement</span><span class=\"notice-body-with-title\">Under copyright law it is illegal to download or share copyrighted materials such as music or movies without the permission of the copyright owner. Your actions when downloading or sharing files are traceable and could result in a significant financial penalty to you. For more information, go to the <a href=\"http://www.washington.edu/students/gencat/policy/p2pshare.html\">Peer-to-Peer File-Sharing and Copyright Infringement</a> page in the Student Guide.</span>",
             "NoticeType": "RIAA"
         },
         {
@@ -55,7 +55,7 @@
 
             ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": '<span class="notice-title">Deadline for Registration Changes Without Fees</span><span class="notice-body-with-title">The last day to make changes to your spring quarter schedule without incurring a $20 change fee and possible Tuition Forfeiture is <span class="date"> Sun, Apr 6</span>. <a href="href="http://f2.washington.edu/fm/sfs/tuition/forfeiture-refund/">About tuition forfeiture</a></span>',
+            "NoticeContent": "<span class=\"notice-title\">Deadline for Registration Changes Without Fees</span><span class=\"notice-body-with-title\">The last day to make changes to your spring quarter schedule without incurring a $20 change fee and possible Tuition Forfeiture is <span class=\"date\"> Sun, Apr 6</span>. <a href=\"href=\"http://f2.washington.edu/fm/sfs/tuition/forfeiture-refund/\">About tuition forfeiture</a></span>",
             "NoticeType": "LastDayRegWOChgFee"
         },
         {
@@ -77,7 +77,7 @@
                  }
             ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": '<span class="notice-title">Deadline for Registration Changes With Fees</span><span class="notice-body-with-title">There is a $20 Change of Registration Fee and possible tuition forfeiture for all changes made to your spring quarter schedule on a single day through <span class="date"> Sun, May 18</span>. <a href="http://f2.washington.edu/fm/sfs/tuition/forfeiture-refund/">About tuition forfeiture</a></span>',
+            "NoticeContent": "<span class=\"notice-title\">Deadline for Registration Changes With Fees</span><span class=\"notice-body-with-title\">There is a $20 Change of Registration Fee and possible tuition forfeiture for all changes made to your spring quarter schedule on a single day through <span class=\"date\"> Sun, May 18</span>. <a href=\"http://f2.washington.edu/fm/sfs/tuition/forfeiture-refund/\">About tuition forfeiture</a></span>",
             "NoticeType": "LastDayRegChgFee"
         },
         {
@@ -99,7 +99,7 @@
                  }
             ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": '<span class="notice-title">Insurance Plan Change Deadline</span><span class="notice-body-with-title">The last day to <a href="https://sdb.admin.washington.edu/students/UWNetID/op_charges.asp">enroll in, withdraw from, or make changes to your Student Accident and Sickness Insurance Plan</a> for springquarter is <span class="date"> Fri, Apr 18</span>. <a href="http://depts.washington.edu/ovpsl/insurance.html">Learn more about student insurance plans</a>.</span>',
+            "NoticeContent": "<span class=\"notice-title\">Insurance Plan Change Deadline</span><span class=\"notice-body-with-title\">The last day to <a href=\"https://sdb.admin.washington.edu/students/UWNetID/op_charges.asp\">enroll in, withdraw from, or make changes to your Student Accident and Sickness Insurance Plan</a> for springquarter is <span class=\"date\"> Fri, Apr 18</span>. <a href=\"http://depts.washington.edu/ovpsl/insurance.html\">Learn more about student insurance plans</a>.</span>",
             "NoticeType": "LastDayChgIns"
         },
         {
@@ -121,37 +121,37 @@
                  }
             ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": '<span class="notice-title">Deadline to Drop Without Transcript Entry</span><span class="notice-body-with-title">The last day to drop a class from your spring quarter schedule without a transcript entry is <span class="date"> Sun, Apr 13</span>.</span>',
+            "NoticeContent": "<span class=\"notice-title\">Deadline to Drop Without Transcript Entry</span><span class=\"notice-body-with-title\">The last day to drop a class from your spring quarter schedule without a transcript entry is <span class=\"date\"> Sun, Apr 13</span>.</span>",
             "NoticeType": "LastDayDropNoRecord"
         },
         {
             "NoticeAttributes": [],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": '<span class="notice-title">Deadline to Change to Audit</span><span class="notice-body-with-title">The last day to change a class on your spring quarter schedule to or from an Audit Option is <span class="date"> Fri, Apr 11</span>. <a href="http://www.washington.edu/students/reg/audit.html">About Auditing Courses',
+            "NoticeContent": "<span class=\"notice-title\">Deadline to Change to Audit</span><span class=\"notice-body-with-title\">The last day to change a class on your spring quarter schedule to or from an Audit Option is <span class=\"date\"> Fri, Apr 11</span>. <a href=\"http://www.washington.edu/students/reg/audit.html\">About Auditing Courses",
             "NoticeType": "LastDayAuditOpt"
         },
         {
             "NoticeAttributes": [],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": '<span class="notice-title">Deadline to Add Classes</span><span class="notice-body-with-title">The last day to add classes to your spring quarter schedule is <span class="date"> Fri, Apr 11</span>.</span>',
+            "NoticeContent": "<span class=\"notice-title\">Deadline to Add Classes</span><span class=\"notice-body-with-title\">The last day to add classes to your spring quarter schedule is <span class=\"date\"> Fri, Apr 11</span>.</span>",
             "NoticeType": "LastDayAdd"
         },
         {
             "NoticeAttributes": [],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": '<span class="notice-title">Deadline to Drop Without Using Annual Drop</span><span class="notice-body-with-title">The last day to drop spring quarter classes without using your Annual Drop is <span class="date"> Sun, Apr 13</span>. <a href="http://www.washington.edu/students/reg/wdpolicy.html">About Annual Drop</a></span>',
+            "NoticeContent": "<span class=\"notice-title\">Deadline to Drop Without Using Annual Drop</span><span class=\"notice-body-with-title\">The last day to drop spring quarter classes without using your Annual Drop is <span class=\"date\"> Sun, Apr 13</span>. <a href=\"http://www.washington.edu/students/reg/wdpolicy.html\">About Annual Drop</a></span>",
             "NoticeType": "LastDayWOAnnualDrop"
         },
         {
             "NoticeAttributes": [],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": '<span class="notice-title">Deadline to Change Grading Option</span><span class="notice-body-with-title">The last day to change a class on your spring quarter schedule to or from an S/NS Grading Option is <span class="date"> Sun, May 18</span>. <a href="http://www.washington.edu/students/gencat/front/Grading_Sys.html">About Grading Options</a></span>',
+            "NoticeContent": "<span class=\"notice-title\">Deadline to Change Grading Option</span><span class=\"notice-body-with-title\">The last day to change a class on your spring quarter schedule to or from an S/NS Grading Option is <span class=\"date\"> Sun, May 18</span>. <a href=\"http://www.washington.edu/students/gencat/front/Grading_Sys.html\">About Grading Options</a></span>",
             "NoticeType": "LastDayChgGradeOpt"
         },
         {
             "NoticeAttributes": [],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": '<span class="notice-title">Deadline to Withdraw</span><span class="notice-body-with-title">The last day to withdraw completely (dropping all courses) from spring quarter is <span class="date"> Fri, June 6</span>.</span>',
+            "NoticeContent": "<span class=\"notice-title\">Deadline to Withdraw</span><span class=\"notice-body-with-title\">The last day to withdraw completely (dropping all courses) from spring quarter is <span class=\"date\"> Fri, June 6</span>.</span>",
             "NoticeType": "LastDayWithdraw"
         },
         {
@@ -201,7 +201,7 @@
 
             ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": '<span class="notice-body-without-title"> Summer quarter begins <span class="date"> Mon, June 23</span>.</span>',
+            "NoticeContent": "<span class=\"notice-body-without-title\"> Summer quarter begins <span class=\"date\"> Mon, June 23</span>.</span>",
             "NoticeType": "QtrBegin"
         },
         {
@@ -233,7 +233,7 @@
              }
            ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": '<span class="notice-body-without-title"> Summer quarter begins <span class="date"> June 13</span>.</span>',
+            "NoticeContent": "<span class=\"notice-body-without-title\"> Summer quarter begins <span class=\"date\"> June 13</span>.</span>",
             "NoticeType": "QtrEnd"
         },
        {

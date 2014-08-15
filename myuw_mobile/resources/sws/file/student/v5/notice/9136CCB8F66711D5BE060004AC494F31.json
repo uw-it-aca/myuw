@@ -14,7 +14,7 @@
             }
             ],
             "NoticeCategory": "StudentGEN",
-            "NoticeContent": '<span class="notice-title">FERPA</span><span class="notice-body-with-title">The Family Educational Rights and Privacy Act (FERPA) of 1974 protects the privacy of your education records.Â  However, your directory information may be released unless you inform the Registrar\'s Office.Â  For further details check the <a href="http://www.washington.edu/students/reg/ferpa.html">Family Educational Rights and Privacy Act web site</a>.</span>',
+            "NoticeContent": "<span class=\"notice-title\">FERPA</span><span class=\"notice-body-with-title\">The Family Educational Rights and Privacy Act (FERPA) of 1974 protects the privacy of your education records. However, your directory information may be released unless you inform the Registrar's Office. For further details check the <a href=\"http://www.washington.edu/students/reg/ferpa.html\">Family Educational Rights and Privacy Act web site</a>.</span>",
             "NoticeType": "FERPA"
         },
         {
@@ -31,7 +31,7 @@
             }
              ],
             "NoticeCategory": "StudentGEN",
-            "NoticeContent": '<span class="notice-title">About Peer-to-Peer File-Sharing and Copyright Infringement</span><span class="notice-body-with-title">Under copyright law it is illegal to download or share copyrighted materials such as music or movies without the permission of the copyright owner. Your actions when downloading or sharing files are traceable and could result in a significant financial penalty to you. For more information, go to the <a href="http://www.washington.edu/students/gencat/policy/p2pshare.html">Peer-to-Peer File-Sharing and Copyright Infringement</a> page in the Student Guide.</span>',
+            "NoticeContent": "<span class=\"notice-title\">About Peer-to-Peer File-Sharing and Copyright Infringement</span><span class=\"notice-body-with-title\">Under copyright law it is illegal to download or share copyrighted materials such as music or movies without the permission of the copyright owner. Your actions when downloading or sharing files are traceable and could result in a significant financial penalty to you. For more information, go to the <a href=\"http://www.washington.edu/students/gencat/policy/p2pshare.html\">Peer-to-Peer File-Sharing and Copyright Infringement</a> page in the Student Guide.</span>",
             "NoticeType": "RIAA"
         },
         {
@@ -48,7 +48,7 @@
             }
              ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": '<span class="notice-title">Deadline to Change to Audit</span><span class="notice-body-with-title">The last day to change a class on your spring quarter schedule to or from an Audit Option is <span class="date"> Fri, Apr 11</span>. <a href="http://www.washington.edu/students/reg/audit.html">About Auditing Courses',
+            "NoticeContent": "<span class=\"notice-title\">Deadline to Change to Audit</span><span class=\"notice-body-with-title\">The last day to change a class on your spring quarter schedule to or from an Audit Option is <span class=\"date\"> Fri, Apr 11</span>. <a href=\"http://www.washington.edu/students/reg/audit.html\">About Auditing Courses",
             "NoticeType": "LastDayAuditOpt"
         },
         {
@@ -65,7 +65,7 @@
             }
              ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": '<span class="notice-title">Deadline to Drop Without Using Annual Drop</span><span class="notice-body-with-title">The last day to drop spring quarter classes without using your Annual Drop is <span class="date"> Sun, Apr 13</span>. <a href="http://www.washington.edu/students/reg/wdpolicy.html">About Annual Drop</a></span>',
+            "NoticeContent": "<span class=\"notice-title\">Deadline to Drop Without Using Annual Drop</span><span class=\"notice-body-with-title\">The last day to drop spring quarter classes without using your Annual Drop is <span class=\"date\"> Sun, Apr 13</span>. <a href=\"http://www.washington.edu/students/reg/wdpolicy.html\">About Annual Drop</a></span>",
             "NoticeType": "LastDayWOAnnualDrop"
         },
         {
@@ -82,7 +82,7 @@
             }
              ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": '<span class="notice-title">Deadline to Add Classes</span><span class="notice-body-with-title">The last day to add classes to your spring quarter schedule is <span class="date"> Fri, Apr 11</span>.</span>',
+            "NoticeContent": "<span class=\"notice-title\">Deadline to Add Classes</span><span class=\"notice-body-with-title\">The last day to add classes to your spring quarter schedule is <span class=\"date\"> Fri, Apr 11</span>.</span>",
             "NoticeType": "LastDayAdd"
         },
         {
@@ -99,7 +99,7 @@
             }
              ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": '<span class="notice-title">Deadline to Change Grading Option</span><span class="notice-body-with-title">The last day to change a class on your spring quarter schedule to or from an S/NS Grading Option is <span class="date"> Sun, May 18</span>. <a href="http://www.washington.edu/students/gencat/front/Grading_Sys.html">About Grading Options</a></span>',
+            "NoticeContent": "<span class=\"notice-title\">Deadline to Change Grading Option</span><span class=\"notice-body-with-title\">The last day to change a class on your spring quarter schedule to or from an S/NS Grading Option is <span class=\"date\"> Sun, May 18</span>. <a href=\"http://www.washington.edu/students/gencat/front/Grading_Sys.html\">About Grading Options</a></span>",
             "NoticeType": "LastDayChgGradeOpt"
         },
         {
@@ -121,7 +121,7 @@
               }
             ],
             "NoticeCategory": "StudentGEN",
-            "NoticeContent": '<span class="notice-title">Tuition Account Balance</span><span class="notice-body-with-title">Your tuition account balance is $0.00. <a href="https://sdb.admin.washington.edu/students/uwnetid/tuition.asp">View details of your tuition account</a>. <em>UW Professional & Continuing Education fees may show in both the TuitionAccount Balance and the UW Professional & Continuing Education Account Balance</em>.</span>',
+            "NoticeContent": "<span class=\"notice-title\">Tuition Account Balance</span><span class=\"notice-body-with-title\">Your tuition account balance is $0.00. <a href=\"https://sdb.admin.washington.edu/students/uwnetid/tuition.asp\">View details of your tuition account</a>. <em>UW Professional & Continuing Education fees may show in both the TuitionAccount Balance and the UW Professional & Continuing Education Account Balance</em>.</span>",
             "NoticeType": "AcctBalance"
         },
         {
@@ -159,7 +159,7 @@
 
             ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": '<span class="notice-body-without-title"> Summer quarter begins <span class="date"> Mon, June 23</span>.</span>',
+            "NoticeContent": "<span class=\"notice-body-without-title\"> Summer quarter begins <span class=\"date\"> Mon, June 23</span>.</span>",
             "NoticeType": "QtrBegin"
         },
         {
@@ -191,7 +191,7 @@
              }
            ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": '<span class="notice-body-without-title"> Spring quarter ends <span class="date"> Fri, June 7</span>.</span>',
+            "NoticeContent": "<span class=\"notice-body-without-title\"> Spring quarter ends <span class=\"date\"> Fri, June 7</span>.</span>",
             "NoticeType": "QtrEnd"
         }
 
