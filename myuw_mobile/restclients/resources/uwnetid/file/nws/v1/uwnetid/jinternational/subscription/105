@@ -1,0 +1,44 @@
+{
+  "uwNetID" : "jinternational",
+  "subscriptionList" : [
+    {
+      "subscriptionCode" : 105,
+      "subscriptionName" : "U Forwarding",
+      "permitted" : true,
+      "statusCode" : 20,
+      "statusName" : "Active",
+      "actions" : [
+        "Show"
+      ],
+      "dataField" : "FWD",
+      "dataValue" : "jinternational@gmail.com",
+      "permits" : [
+        {
+          "type" : "permit",
+          "mode" : "implicit",
+          "categoryCode" : 2,
+          "categoryName" : "Graduate",
+          "statusCode" : 1,
+          "statusName" : "current"
+        },
+        {
+          "type" : "permit",
+          "mode" : "implicit",
+          "categoryCode" : 14,
+          "categoryName" : "Student Employee",
+          "statusCode" : 1,
+          "statusName" : "current"
+        },
+        {
+          "type" : "permit",
+          "mode" : "implicit",
+          "categoryCode" : 28,
+          "categoryName" : "Development Affiliate",
+          "statusCode" : 1,
+          "statusName" : "current"
+        }
+      ]
+    }
+  ],
+  "timeStamp" : "Fri, 25 Jul 2014 13:59:33 -0700"
+}

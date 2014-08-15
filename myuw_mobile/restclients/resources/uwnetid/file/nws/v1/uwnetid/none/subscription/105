@@ -1,0 +1,35 @@
+{
+  "uwNetID" : "none",
+  "subscriptionList" : [
+    {
+      "subscriptionCode" : 105,
+      "subscriptionName" : "U Forwarding",
+      "permitted" : true,
+      "statusCode" : 24,
+      "statusName" : "Inactive",
+      "actions" : [
+        "Show"
+      ],
+      "dataField" : "FWD",
+      "permits" : [
+        {
+          "type" : "permit",
+          "mode" : "implicit",
+          "categoryCode" : 1,
+          "categoryName" : "Undergraduate",
+          "statusCode" : 3,
+          "statusName" : "former"
+        },
+        {
+          "type" : "permit",
+          "mode" : "implicit",
+          "categoryCode" : 16,
+          "categoryName" : "Alumni",
+          "statusCode" : 1,
+          "statusName" : "current"
+        }
+      ]
+    }
+  ],
+  "timeStamp" : "Fri, 25 Jul 2014 14:08:39 -0700"
+}
