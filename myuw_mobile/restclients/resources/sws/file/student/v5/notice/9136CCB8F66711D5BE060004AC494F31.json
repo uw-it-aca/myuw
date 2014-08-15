@@ -14,7 +14,7 @@
             }
             ],
             "NoticeCategory": "StudentGEN",
-            "NoticeContent": '<span class="notice-title">FERPA</span><span class="notice-body-with-title">The Family Educational Rights and Privacy Act (FERPA) of 1974 protects the privacy of your education records.Â  However, your directory information may be released unless you inform the Registrar's Office.Â  For further details check the <a href="http://www.washington.edu/students/reg/ferpa.html">Family Educational Rights and Privacy Act web site</a>.</span>',
+            "NoticeContent": '<span class="notice-title">FERPA</span><span class="notice-body-with-title">The Family Educational Rights and Privacy Act (FERPA) of 1974 protects the privacy of your education records.Â  However, your directory information may be released unless you inform the Registrar\'s Office.Â  For further details check the <a href="http://www.washington.edu/students/reg/ferpa.html">Family Educational Rights and Privacy Act web site</a>.</span>',
             "NoticeType": "FERPA"
         },
         {
