@@ -1,0 +1,164 @@
+
+{
+	"GradingSystem":"standard",
+	"CourseTitle":"ARCTIC RELATIONS",
+	"Auditors":"0",
+	"FinalExam":
+	{
+		"Building":"KNE",
+		"MeetingStatus":"3",
+		"RoomNumber":"130",
+		"StartTime":"14:30",
+		"Date":"2013-06-14",
+		"EndTime":"17:20"
+	},
+	"PrimarySection":
+	{
+		"CurriculumAbbreviation":"ARCTIC",
+		"SectionID":"A",
+		"Href":"/student/v4/course/2013,spring,ARCTIC,200/A.json",
+		"Year":"2013",
+		"Quarter":"spring",
+		"CourseNumber":"200"
+	},
+	"CourseDescription":null,
+	"LimitEstimateEnrollmentIndicator":"limit",
+	"Curriculum":
+	{
+		"TimeScheduleLinkAbbreviation":""
+	},
+	"HonorsCourse":false,
+	"Term":
+	{
+		"Quarter":"spring",
+		"Href":"/student/v4/term/2013,spring.json",
+		"Year":"2013"
+	},
+	"LimitEstimateEnrollment":"5",
+	"CourseTitleLong":"ARCTIC RELATIONS",
+	"DuplicateEnrollmentAllowed":false,
+	"CourseCampus":"Seattle",
+	"Registrations":
+	{
+		"CurriculumAbbreviation":"ARCTIC",
+		"PageSize":null,
+		"SectionID":"A",
+		"InstructorRegID":null,
+		"Href":"/student/v4/registration.json?year=2013&quarter=spring&curriculum_abbreviation=ARCTIC&course_number=200\u00a7ion_id=A\u00ae_id=&is_active=on&instructor_reg_id=",
+		"Year":"2013",
+		"RegID":null,
+		"PageStart":null,
+		"Quarter":"spring",
+		"CourseNumber":"200",
+		"IsActive":"on"
+	},
+	"SLN":"11646",
+	"LinkedSectionTypes":
+	[
+		
+	],
+	"ServiceLearning":false,
+	"SectionType":"conference",
+	"SectionID":"A",
+	"Meetings":
+	[
+		
+		{
+			"Building":"KNE",
+			"MeetingIndex":"1",
+			"RoomNumber":"130",
+			"Instructors":
+			[
+				
+				{
+					"Person":
+					{
+						"RegID":"FBB38FE46A7C11D5A4AE0004AC494FFE",
+						"Href":"/student/v4/person/FBB38FE46A7C11D5A4AE0004AC494FFE.json",
+						"Name":"TEACHER, BILL AVERAGE"
+					},
+					"TSPrint":true,
+					"FacultySequenceNumber":"",
+					"GradeRoster":
+					{
+						"Href":"/student/v4/graderoster/2013,spring,ARCTIC,200,A,FBB38FE46A7C11D5A4AE0004AC494FFE"
+					}
+				},
+				
+				{
+					"Person":
+					{
+						"RegID":"F5D57F346AF811D5BFCC0004AC494FFE",
+						"Href":"/student/v4/person/F5D57F346AF811D5BFCC0004AC494FFE.json",
+						"Name":"EIGHT CLASS INSTRUCTOR"
+					},
+					"TSPrint":true,
+					"FacultySequenceNumber":"",
+					"GradeRoster":
+					{
+						"Href":"/student/v4/graderoster/2013,spring,ARCTIC,200,A,F5D57F346AF811D5BFCC0004AC494FFE"
+					}
+				}
+			],
+			"DaysOfWeek":
+			{
+				"Text":"W F",
+				"Days":
+				[
+					
+					{
+						"Name":"Wednesday"
+					},
+					
+					{
+						"Name":"Friday"
+					}
+				]
+			},
+			"MeetingType":"conference",
+			"RoomToBeArranged":false,
+			"StartTime":"08:30",
+			"DaysOfWeekToBeArranged":false,
+			"EndTime":"12:20",
+			"BuildingToBeArranged":false
+		}
+	],
+	"DeleteFlag":"active",
+	"GeneralEducationRequirements":
+	{
+		"NaturalWorld":false,
+		"Writing":false,
+		"QuantitativeAndSymbolicReasoning":false,
+		"EnglishComposition":false,
+		"IndividualsAndSocieties":false,
+		"VisualLiteraryAndPerformingArts":true
+	},
+	"springTerm":"Full-term",
+	"Course":
+	{
+		"CourseTitleLong":"ARCTIC RELATIONS",
+		"CurriculumAbbreviation":"ARCTIC",
+		"CourseTitle":"ARCTIC RELATIONS",
+		"Href":"/student/v4/course/2013,spring,ARCTIC,200.json",
+		"Year":"2013",
+		"Quarter":"spring",
+		"CourseNumber":"200"
+	},
+	"ResearchCredit":false,
+	"GradeSubmissionDelegates":
+	[
+		
+		{
+			"DelegateLevel":"curriculum",
+			"Person":
+			{
+				"RegID":"6DF0A9206A7D11D5A4AE0004AC494FFE",
+				"Href":"/student/v4/person/6DF0A9206A7D11D5A4AE0004AC494FFE.json",
+				"Name":"TEACHER, FRED AVERAGE"
+			}
+		}
+	],
+	"SecondaryGradingOption":false,
+	"ClassWebsiteUrl":"http://www.jsis.washington.edu/arctic/minor/core.shtml",
+	"CurrentEnrollment":"0"
+}

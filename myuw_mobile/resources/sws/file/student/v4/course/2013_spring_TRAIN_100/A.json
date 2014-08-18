@@ -1,0 +1,174 @@
+
+{
+	"GradingSystem":"standard",
+	"CourseTitle":"SCRUM MASTER",
+	"Auditors":"0",
+	"FinalExam":
+	{
+		"Building":"*",
+		"MeetingStatus":"2",
+		"RoomNumber":"*",
+		"StartTime":"08:30",
+		"Date":"2013-06-10",
+		"EndTime":"10:20"
+	},
+	"PrimarySection":
+	{
+		"CurriculumAbbreviation":"TRAIN",
+		"SectionID":"A",
+		"Href":"/student/v4/course/2013,spring,TRAIN,100/A.json",
+		"Year":"2013",
+		"Quarter":"spring",
+		"CourseNumber":"100"
+	},
+	"CourseDescription":null,
+	"LimitEstimateEnrollmentIndicator":"limit",
+	"Curriculum":
+	{
+		"TimeScheduleLinkAbbreviation":""
+	},
+	"HonorsCourse":false,
+	"Term":
+	{
+		"Quarter":"spring",
+		"Href":"/student/v4/term/2013,spring.json",
+		"Year":"2013"
+	},
+	"LimitEstimateEnrollment":"0",
+	"CourseTitleLong":"NOT A COURSE FOR DUMMIES",
+	"DuplicateEnrollmentAllowed":false,
+	"CourseCampus":"Seattle",
+	"Registrations":
+	{
+		"CurriculumAbbreviation":"TRAIN",
+		"PageSize":null,
+		"SectionID":"A",
+		"InstructorRegID":null,
+		"Href":"/student/v4/registration.json?year=2013&quarter=spring&curriculum_abbreviation=TRAIN&course_number=100\u00a7ion_id=A\u00ae_id=&is_active=on&instructor_reg_id=",
+		"Year":"2013",
+		"RegID":null,
+		"PageStart":null,
+		"Quarter":"spring",
+		"CourseNumber":"100",
+		"IsActive":"on"
+	},
+	"SLN":"13830",
+	"LinkedSectionTypes":
+	[
+		
+		{
+			"Type":"quiz",
+			"LinkedSections":
+			[
+				
+				{
+					"Section":
+					{
+						"CurriculumAbbreviation":"TRAIN",
+						"SectionID":"AA",
+						"Href":"/student/v4/course/2013,spring,TRAIN,100/AA.json",
+						"Year":"2013",
+						"Quarter":"spring",
+						"CourseNumber":"100"
+					},
+					"IsPrimarySection":false
+				},
+				
+				{
+					"Section":
+					{
+						"CurriculumAbbreviation":"TRAIN",
+						"SectionID":"AB",
+						"Href":"/student/v4/course/2013,spring,TRAIN,100/AB.json",
+						"Year":"2013",
+						"Quarter":"spring",
+						"CourseNumber":"100"
+					},
+					"IsPrimarySection":false
+				}
+			]
+		}
+	],
+	"ServiceLearning":false,
+	"SectionType":"lecture",
+	"SectionID":"A",
+	"Meetings":
+	[
+		
+		{
+			"Building":"*",
+			"MeetingIndex":"1",
+			"RoomNumber":"*",
+			"Instructors":
+			[
+				
+				{
+					"Person":
+					{
+						"RegID":"260A0DEC95CB11D78BAA000629C31437",
+						"Href":"/student/v4/person/260A0DEC95CB11D78BAA000629C31437.json",
+						"Name":"STUDENT, JAMES AVERAGE"
+					},
+					"TSPrint":false,
+					"FacultySequenceNumber":"",
+					"GradeRoster":
+					{
+						"Href":"/student/v4/graderoster/2013,spring,TRAIN,100,A,260A0DEC95CB11D78BAA000629C31437"
+					}
+				}
+			],
+			"DaysOfWeek":
+			{
+				"Text":"to be arranged",
+				"Days":
+				[
+					
+				]
+			},
+			"MeetingType":"lecture",
+			"RoomToBeArranged":true,
+			"StartTime":"",
+			"DaysOfWeekToBeArranged":true,
+			"EndTime":"",
+			"BuildingToBeArranged":true
+		}
+	],
+	"DeleteFlag":"active",
+	"GeneralEducationRequirements":
+	{
+		"NaturalWorld":false,
+		"Writing":false,
+		"QuantitativeAndSymbolicReasoning":false,
+		"EnglishComposition":false,
+		"IndividualsAndSocieties":false,
+		"VisualLiteraryAndPerformingArts":false
+	},
+	"springTerm":"Full-term",
+	"Course":
+	{
+		"CourseTitleLong":"NOT A COURSE FOR DUMMIES",
+		"CurriculumAbbreviation":"TRAIN",
+		"CourseTitle":"SCRUM MASTER",
+		"Href":"/student/v4/course/2013,spring,TRAIN,100.json",
+		"Year":"2013",
+		"Quarter":"spring",
+		"CourseNumber":"100"
+	},
+	"ResearchCredit":false,
+	"GradeSubmissionDelegates":
+	[
+		
+		{
+			"DelegateLevel":"curriculum",
+			"Person":
+			{
+				"RegID":"6DF0A9206A7D11D5A4AE0004AC494FFE",
+				"Href":"/student/v4/person/6DF0A9206A7D11D5A4AE0004AC494FFE.json",
+				"Name":"STUDENT, FRED AVERAGE"
+			}
+		}
+	],
+	"SecondaryGradingOption":false,
+	"ClassWebsiteUrl":"",
+	"CurrentEnrollment":"0"
+}
