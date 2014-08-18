@@ -127,20 +127,8 @@
              }
             ],
             "NoticeCategory": "StudentGEN",
-            "NoticeContent": "<span class=\"notice-title\">Tuition Account Balance</span><span class=\"notice-body-with-title\">Your tuition account balance is $0.00. <a href=\"https://sdb.admin.washington.edu/students/uwnetid/tuition.asp\">View details of your tuition account</a>. <em>UW Professional & Continuing Education fees may show in both the TuitionAccount Balance and the UW Professional & Continuing Education Account Balance</em>.</span>",
+            "NoticeContent": "<span class=\"notice-title\">Tuition Account Balance</span><span class=\"notice-body-with-title\">Your tuition account balance is $0.00. <a href=\"https://sdb.admin.washington.edu/students/uwnetid/tuition.asp\">View details of your tuition account</a>.</span>",
             "NoticeType": "AcctBalance"
-        },
-        {
-            "NoticeAttributes": [
-            {
-                 "Name": "Date",
-                 "DataType": "date",
-                 "Value": "next_week"
-             }
-            ],
-            "NoticeCategory": "StudentGEN",
-            "NoticeContent": "<i>UW Professional & Continuing Education fees may show in both the Tuition Account Balance and the UW Professnal & Continuing Education Account Balance</i>.",
-            "NoticeType": "AcctBalEONote"
         },
        {
             "NoticeAttributes": [
