@@ -1,0 +1,51 @@
+{
+    "12637": [{
+                "isbn":"9780132830317",
+                "title":"Absolute Java",
+                "authors": [{"name":"Savitch"}],
+                "price":141.25,
+                "used_price":null,
+                "required":true,
+                "notes":null,
+                "cover_image": "http://ecx.images-amazon.com/images/I/51DH41eOcuL._SL160_.jpg"
+            },{
+                "isbn":"9780132855808",
+                "title":"DIGITAL OPTION: * ABSOLUTE JAVA (5E 13)",
+                "authors": [{"name":"Savitch"}],
+                "price":57.25,
+                "used_price":null,
+                "required":false,
+                "notes":"Choice",
+                "cover_image": null
+            }],
+    "10675": [{
+                "isbn":"9780321598202",
+                "title":"BIOLOGICAL SCIENCE (4E 11)",
+                "authors": [{"name":"Freeman"}],
+                "price":206.25,
+                "used_price":154.70,
+                "required":false,
+                "notes":"Choice",
+                "cover_image": "http://s3.amazonaws.com/semesterly/covers/f30c3eed-a58e-5dbc-b393-6181825e65d1.jpg"
+            },{
+                "isbn":"9780321840233",
+                "title":"Biological Science (4 E 11) Loose Leaf",
+                "authors": [{"name":"Freeman"}],
+                "price":120.00,
+                "used_price":null,
+                "required":true,
+                "notes":null,
+                "cover_image": null
+            },{
+                "isbn":"9781934931400",
+                "title":"Response Card Rf Lcd Radio Frequency",
+                "authors": [{"name":"Turning Technologies"}],
+                "price":44.00,
+                "used_price":null,
+                "required":true,
+                "notes":null,
+                "cover_image": "http://ecx.images-amazon.com/images/I/41mYaj%2B1sKL._SL160_.jpg"
+            }],
+    "10676": [],
+    "11162": []
+}

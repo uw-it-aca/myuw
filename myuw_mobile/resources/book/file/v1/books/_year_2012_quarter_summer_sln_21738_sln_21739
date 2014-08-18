@@ -1,0 +1,31 @@
+{
+    "21738": [{
+                "isbn":"9781133292838",
+                "title":"2 P/S V.1 Calculus Single Variable (Custom) (7 E 12) W/ Webassign",
+                "authors": [{"name":"Stewart"}],
+                "price":120.00,
+                "used_price":null,
+                "required":true,
+                "notes":null,
+                "cover_image": "http://s3.amazonaws.com/semesterly/covers/92093d45-7a04-5d77-8f33-c098e1635a76.jpg"
+            },{
+                "isbn":"9780840054203",
+                "title":"Sg T/A V.1 Calculus Single Variable (Custom) (7 E 12)",
+                "authors": [{"name":"Ira N. Levine"}],
+                "price":76.50,
+                "used_price":57.40,
+                "required":false,
+                "notes":"Optional",
+                "cover_image": "http://ecx.images-amazon.com/images/I/41H2e7E6baL._SL160_.jpg"
+            },{
+                "isbn":"9780840049346",
+                "title":"Ssm T/A Single Variable Calculus, Early Transcendentals (7 E 12)",
+                "authors": [{"name":"Stewart"}],
+                "price":83.25,
+                "used_price":62.45,
+                "required":false,
+                "notes":"Optional",
+                "cover_image": "http://ecx.images-amazon.com/images/I/41H2e7E6baL._SL160_.jpg"
+            }],
+    "21739": []
+}

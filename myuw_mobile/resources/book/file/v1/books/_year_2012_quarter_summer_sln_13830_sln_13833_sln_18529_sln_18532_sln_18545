@@ -1,0 +1,54 @@
+{
+    "13830": [],
+    "18529": [{
+                "isbn":"9781256396062",
+                "title":"2 P/S Tutorials In Introductory Physics",
+                "authors": [{"name":"Mcdermott"}],
+                "price":58.00,
+                "used_price":null,
+                "required":true,
+                "notes":null,
+                "cover_image": null
+            },{
+                "isbn":"9781464144554",
+                "title":"2 P/S V.1 Loose Leaf Physics F/ Scientists & Engineers (6 E 09) (Custom) W/ Smartphysics2",
+                "authors": [{"name":"Tipler"}],
+                "price":69.00,
+                "used_price":null,
+                "required":true,
+                "notes":null,
+                "cover_image": null
+            },{
+                "isbn":"9780738050423",
+                "title":"Phys 121, Mechanics Lab (Custom)",
+                "authors": [{"name":"Hayden Mcneil"}],
+                "price":18.50,
+                "used_price":62.45,
+                "required":true,
+                "notes":null,
+                "cover_image": null
+            },{
+                "isbn":"9788123231006",
+                "title":"Tx3100 Rf Transceiver",
+                "authors": [{"name":"H Itt"}],
+                "price":47.25,
+                "used_price":35.45,
+                "required":true,
+                "notes":null,
+                "cover_image": null
+            }],
+    "18532": [],
+    "18545": [],
+    "13833": [
+            {
+                "isbn":"978-0136131069",
+                "title":"Quantum Chemistry (6th Edition)",
+                "authors": [{"name":"Ira N. Levine"}],
+                "price":175.00,
+                "used_price":null,
+                "required":true,
+                "notes":"Not sure what would go here, other than required",
+                "cover_image": "http://s3.amazonaws.com/semesterly/covers/92093d45-7a04-5d77-8f33-c098e1635a76.jpg"
+            }
+        ]
+}
