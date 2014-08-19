@@ -3,14 +3,14 @@
         {
             "NoticeAttributes": [
             {
-               "Name": "Begin",
+               "Name": "DisplayBegin",
                "DataType": "date",
-               "Value": "future"
+               "Value": "20140920"
             },
             {
-               "Name": "End",
+               "Name": "DisplayEnd",
                "DataType": "date",
-               "Value": "future_end"
+               "Value": "20141015"
             }
             ],
             "NoticeCategory": "StudentGEN",
@@ -20,14 +20,14 @@
         {
             "NoticeAttributes": [
             {
-               "Name": "Begin",
+               "Name": "DisplayBegin",
                "DataType": "date",
-               "Value": "future"
+               "Value": "20140920"
             },
             {
-               "Name": "End",
+               "Name": "DisplayEnd",
                "DataType": "date",
-               "Value": "future_end"
+               "Value": "20141015"
             }
              ],
             "NoticeCategory": "StudentGEN",
@@ -36,70 +36,30 @@
         },
         {
             "NoticeAttributes": [
-            {
-               "Name": "Begin",
-               "DataType": "date",
-               "Value": "week"
-            },
-            {
-               "Name": "End",
-               "DataType": "date",
-               "Value": "next_week"
-            }
              ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": "<span class=\"notice-title\">Deadline to Change to Audit</span><span class=\"notice-body-with-title\">The last day to change a class on your spring quarter schedule to or from an Audit Option is <span class=\"date\"> Fri, Apr 11</span>. <a href=\"http://www.washington.edu/students/reg/audit.html\">About Auditing Courses",
+            "NoticeContent": "<span class=\"notice-title\">Deadline to Change to Audit</span><span class=\"notice-body-with-title\">The last day to change a class on your winter quarter schedule to or from an Audit Option is <span class=\"date\"></span>. <a href=\"http://www.washington.edu/students/reg/audit.html\">About Auditing Courses</a></span>",
             "NoticeType": "LastDayAuditOpt"
         },
         {
             "NoticeAttributes": [
-            {
-               "Name": "Begin",
-               "DataType": "date",
-               "Value": "yesterday"
-            },
-            {
-               "Name": "End",
-               "DataType": "date",
-               "Value": "week"
-            }
              ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": "<span class=\"notice-title\">Deadline to Drop Without Using Annual Drop</span><span class=\"notice-body-with-title\">The last day to drop spring quarter classes without using your Annual Drop is <span class=\"date\"> Sun, Apr 13</span>. <a href=\"http://www.washington.edu/students/reg/wdpolicy.html\">About Annual Drop</a></span>",
+            "NoticeContent": "<span class=\"notice-title\">Deadline to Drop Without Using Annual Drop</span><span class=\"notice-body-with-title\">The last day to drop winter quarter classes without using your Annual Drop is <span class=\"date\"></span>. <a href=\"http://www.washington.edu/students/reg/wdpolicy.html\">About Annual Drop</a></span>",
             "NoticeType": "LastDayWOAnnualDrop"
         },
         {
             "NoticeAttributes": [
-            {
-               "Name": "Begin",
-               "DataType": "date",
-               "Value": "yesterday"
-            },
-            {
-               "Name": "End",
-               "DataType": "date",
-               "Value": "week"
-            }
              ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": "<span class=\"notice-title\">Deadline to Add Classes</span><span class=\"notice-body-with-title\">The last day to add classes to your spring quarter schedule is <span class=\"date\"> Fri, Apr 11</span>.</span>",
+            "NoticeContent": "<span class=\"notice-title\">Deadline to Add Classes</span><span class=\"notice-body-with-title\">The last day to add classes to your winter quarter schedule is <span class=\"date\"></span>.</span>",
             "NoticeType": "LastDayAdd"
         },
         {
             "NoticeAttributes": [
-            {
-               "Name": "Begin",
-               "DataType": "date",
-               "Value": "yesterday"
-            },
-            {
-               "Name": "End",
-               "DataType": "date",
-               "Value": "week"
-            }
              ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": "<span class=\"notice-title\">Deadline to Change Grading Option</span><span class=\"notice-body-with-title\">The last day to change a class on your spring quarter schedule to or from an S/NS Grading Option is <span class=\"date\"> Sun, May 18</span>. <a href=\"http://www.washington.edu/students/gencat/front/Grading_Sys.html\">About Grading Options</a></span>",
+            "NoticeContent": "<span class=\"notice-title\">Deadline to Change Grading Option</span><span class=\"notice-body-with-title\">The last day to change a class on your winter quarter schedule to or from an S/NS Grading Option is <span class=\"date\"></span>. <a href=\"http://www.washington.edu/students/gencat/front/Grading_Sys.html\">About Grading Options</a></span>",
             "NoticeType": "LastDayChgGradeOpt"
         },
         {
@@ -110,18 +70,18 @@
                  "Value": "next_week"
              },
              {
-                "Name": "Begin",
+                "Name": "DisplayBegin",
                 "DataType": "date",
                 "Value": "week"
              },
              {
-                "Name": "End",
+                "Name": "DisplayEnd",
                 "DataType": "date",
                 "Value": "future"
               }
             ],
             "NoticeCategory": "StudentGEN",
-            "NoticeContent": "<span class=\"notice-title\">Tuition Account Balance</span><span class=\"notice-body-with-title\">Your tuition account balance is $0.00. <a href=\"https://sdb.admin.washington.edu/students/uwnetid/tuition.asp\">View details of your tuition account</a>. <em>UW Professional & Continuing Education fees may show in both the TuitionAccount Balance and the UW Professional & Continuing Education Account Balance</em>.</span>",
+            "NoticeContent": "<span class=\"notice-title\">Your Tuition Balance</span><span class=\"notice-body-with-title\"><a href='https://sdb.admin.washington.edu/students/uwnetid/tuition.asp'>Tuition Account Balance</A>: $350.00 CR <a href='https://sdb.admin.washington.edu/students/uwnetid/tuition.asp'>details</a></span>",
             "NoticeType": "AcctBalance"
         },
         {
@@ -150,16 +110,12 @@
                     "Name": "Link",
                     "DataType": "url",
                     "Value": "http://www.uw.edu"
-                },
-                {
-                    "Name": "Bogus",
-                    "DataType": "unknown",
-                    "Value": "42"
                 }
+                
 
             ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": "<span class=\"notice-body-without-title\"> Summer quarter begins <span class=\"date\"> Mon, June 23</span>.</span>",
+            "NoticeContent": "<span class=\"notice-title\">Quarter Begins</span><span class=\"notice-body-with-title\">Summer quarter begins <span class=\"date\">June 23, 2014</span>.</span>",
             "NoticeType": "QtrBegin"
         },
         {
