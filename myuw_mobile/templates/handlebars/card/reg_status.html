@@ -33,8 +33,11 @@
                     
                     <h4 class="sr-only">Registration Information</h4>    
                     <div class="est-reg-date">
-                        <!-- TODO: est_reg_date -->
-                        <p class="todo">est_reg_date</p>
+                        <p>
+                            {{ #each est_reg_date }}
+                                {{{ notice_content }}}
+                            {{ /each }}
+                        </p>
                     </div>     
                     <h4 class="sr-only">Registration Resources</h4>
                     <ul class="reg-resources-list">

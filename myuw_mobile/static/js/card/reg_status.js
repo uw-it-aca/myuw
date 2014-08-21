@@ -28,6 +28,7 @@ var RegStatusCard = {
         var template = Handlebars.compile(source);
         var reg_notices = Notices.get_notices_for_tag("reg_card_messages");
         var reg_holds = Notices.get_notices_for_tag("reg_card_holds");
+        var reg_date = Notices.get_notices_for_tag("est_reg_date");
 
         //Get hold count from notice attrs
         var hold_count = 0;
@@ -83,6 +84,7 @@ var RegStatusCard = {
                                                 "is_tacoma": window.user.tacoma,
                                                 "is_bothell": window.user.bothell,
                                                 "is_seattle": window.user.seattle,
-                                                "hold_count": hold_count}));
+                                                "hold_count": hold_count,
+                                                "est_reg_date": reg_date}));
     }
 };
