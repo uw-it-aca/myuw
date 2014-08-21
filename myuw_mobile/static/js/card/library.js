@@ -3,7 +3,7 @@ var LibraryCard = {
     dom_target: undefined,
 
     render_init: function() {
-        WSData.fetch_library_data(LibraryCard.render_upon_data);
+        WSData.fetch_library_data(LibraryCard.render_upon_data, LibraryCard.show_error);
     },
 
     render_upon_data: function() {
@@ -31,6 +31,10 @@ var LibraryCard = {
             return true;
         }
         return false;
+    },
+
+    show_error: function() {
+        LibraryCard.dom_target.html(CardWithError.render("Library Account"));
     }
 
 };

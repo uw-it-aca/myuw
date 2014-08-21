@@ -2,7 +2,7 @@
 {% tplhandlebars "card_with_error" %}
 <div class="card error-card" style="position:relative;">
     <h3><span class="text-muted">Error</h3>
-    <p style="position:absolute; top:20px; right: 15px;" class="todo"><strong>Long Card Title Blah</strong></p>
+    <p style="position:absolute; top:20px; right: 15px;" class="todo"><strong>{{ card_name }}</strong></p>
     <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error has occurred and we can't load this content right now. Please try again in a few minutes.</p>
 </div>
 {% endtplhandlebars %}
