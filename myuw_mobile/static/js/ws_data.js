@@ -384,7 +384,6 @@ WSData = {
     },
 
     fetch_notice_data: function(callback, err_callback, args) {
-        console.log('notice fetch');
         if (WSData._notice_data === null) {
             $.ajax({
                 url: "/mobile/api/v1/notices/",

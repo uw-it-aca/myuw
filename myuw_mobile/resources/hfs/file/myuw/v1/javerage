@@ -1,17 +1,17 @@
 {
   "student_husky_card": {
     "balance": 1.23,
-    "last_updated": "2014-06-02T15:17:16.789",
+    "last_transaction_date": "2014-06-02T15:17:16.789",
     "add_funds_url": "https://www.hfs.washington.edu/olco"
   },
   "employee_husky_card": {
     "balance": 0.56,
-    "last_updated": "2014-05-19T14:16:26.931",
+    "last_transaction_date": "2014-05-19T14:16:26.931",
     "add_funds_url": "https://www.hfs.washington.edu/olco"
   },
   "resident_dining": {
     "balance": 7.89,
-    "last_updated": "2014-06-01T13:15:36.573",
+    "last_transaction_date": "2014-06-01T13:15:36.573",
     "add_funds_url": "https://www.hfs.washington.edu/olco"
   }
 }
