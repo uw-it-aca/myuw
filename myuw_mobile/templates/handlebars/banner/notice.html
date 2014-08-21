@@ -1,15 +1,16 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "notice_banner" %}
+    <div class="notice-bar">
+        <div aria-labeledby="notice_banner" role="alert">
+            <div class="container" style="position:relative;" aria-labelledby="notice_banner">
 
-    <div aria-labeledby="notice_banner" role="alert">        
-        <div class="container" style="position:relative;" aria-labelledby="notice_banner">
+                <a href="/mobile/notices/" title="Navigate to Notices" style="display:block; position:relative; z-index:900;">
+                    <h2 class="notice-header" id="notice_banner">Notices</h2>
+                </a>
+                <div class="notice-unread"><span class="badge">{{ total_unread }} unread</span></div>
+                <div class="notice-critical">{{ total_critical }} critical</div>
 
-            <a href="/mobile/notices/" title="Navigate to Notices" style="display:block; position:relative; z-index:900;">
-                <h2 class="notice-header" id="notice_banner">Notices</h2>
-            </a>
-            <div class="notice-unread"><span class="badge">{{ total_unread }} unread</span></div>
-            <div class="notice-critical">{{ total_critical }} critical</div>
-            
+            </div>
         </div>
     </div>
     {% endtplhandlebars %}
