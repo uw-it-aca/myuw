@@ -3,7 +3,7 @@ var HfsCard = {
     dom_target: undefined,
 
     render_init: function() {
-        WSData.fetch_hfs_data(HfsCard.render_upon_data);
+        WSData.fetch_hfs_data(HfsCard.render_upon_data, HfsCard.render_error);
     },
 
     render_upon_data: function () {
@@ -44,5 +44,9 @@ var HfsCard = {
             return true;
         }
         return false;
+    },
+
+    render_error: function () {
+        HfsCard.dom_target.html(CardWithError.render("Husky Card & Dining"));
     }
 };
