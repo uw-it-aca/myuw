@@ -94,17 +94,26 @@ class StudentAccountsBalances(models.Model):
 class UserNotices(models.Model):
     notice_hash = models.CharField(max_length=32, unique=True)
     user = models.ForeignKey('User', on_delete=models.PROTECT)
+    first_viewed = models.DateTimeField(auto_now_add=True)
+    marked_read = models.DateTimeField(null=True)
     is_read = models.BooleanField(default=False)
 
-    def generate_hash(self, notice):
+    @staticmethod
+    def generate_hash(notice):
         notice_hash = hashlib.md5()
         notice_hash.update(notice.notice_type)
         notice_hash.update(notice.notice_category)
         notice_hash.update(notice.notice_content)
         return notice_hash.hexdigest()
 
-    def get_by_hash_and_user(self, notice_hash, user):
-        return UserNotices.objects.get(notice_hash=notice_hash, user=user)
+    @staticmethod
+    def mark_notices_read(notice_hashes, user):
+        notices = UserNotices.objects.filter(notice_hash__in=notice_hashes, user=user)
+        for notice in notices:
+            notice.is_read = True
+            notice.marked_read = datetime.now()
+            notice.save()
+
 
 class CategoryLinks(models.Model):
     url = models.CharField(max_length=150)

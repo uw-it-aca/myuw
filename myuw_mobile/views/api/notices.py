@@ -2,7 +2,7 @@ import logging
 import json
 from django.http import HttpResponse
 from myuw_mobile.views.rest_dispatch import RESTDispatch
-from myuw_mobile.dao.notice import get_notices_for_current_user, mark_notice_read_for_current_user
+from myuw_mobile.dao.notice import get_notices_for_current_user, mark_notices_read_for_current_user
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_success_response
 from datetime import datetime
@@ -45,6 +45,6 @@ class Notices(RESTDispatch):
 
 
     def PUT(self, request):
-        notice_hash = json.loads(request.body).get('notice_hash', None)
-        mark_notice_read_for_current_user(notice_hash)
+        notice_hashes = json.loads(request.body).get('notice_hashes', None)
+        mark_notices_read_for_current_user(notice_hashes)
         return HttpResponse('')
