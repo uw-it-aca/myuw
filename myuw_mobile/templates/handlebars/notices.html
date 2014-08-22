@@ -2,6 +2,7 @@
     {% tplhandlebars "notices" %}
 
 <div class="notices-container">
+        <button value="get in view" onclick="Notices.get_notices_in_view()" style="width: 2em; height: 2em"></button>
 	  <div class="container">
 	  
 	    <h1>Notices</h1>
@@ -16,7 +17,7 @@
 	        {{ #if holds.notices }}
 	        <!-- collapsy 1: critical -->
 	        <div class="disclosure ">
-	            
+
 	                
                 <div class="disclosure-heading disclosure-heading-critical clearfix">
                 	<!-- collapsy 1 header -->      
@@ -35,7 +36,7 @@
 	            <div id="collapseOne" class="slide-hide clearfix" aria-hidden="true">
 	                <div class="panel-body">
 	                    {{ #each holds.notices }}
-	                    <div class="notice-container {{ #unless is_read }}unread{{ /unless }}">
+	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
 		                    <div class="inner-notice-container">
 	                            {{ #if is_critical }}
 								<i class="fa fa-exclamation-triangle critical-icon"></i>
@@ -79,7 +80,7 @@
 	            <div id="collapseTwo" class="slide-hide" aria-hidden="true">
 	                <div class="panel-body"> 
 	                    {{# each today.notices }}
-	                    <div class="notice-container {{ #unless is_read }}unread{{ /unless }}">
+	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
 		                    <div class="inner-notice-container">
 	                            {{ #if is_critical }}
 								<i class="fa fa-exclamation-triangle critical-icon"></i>
@@ -125,7 +126,7 @@
 	            <div id="collapseThree" class="slide-hide" aria-hidden="true">
 	                <div class="panel-body">
 	                    {{# each week.notices }}
-	                    <div class="notice-container {{ #unless is_read }}unread{{ /unless }}">
+	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
 		                    <div class="inner-notice-container">
 	                            {{ #if is_critical }}
 								<i class="fa fa-exclamation-triangle critical-icon"></i>
@@ -169,7 +170,7 @@
 	            <div id="collapseFour" class="slide-hide" aria-hidden="true">
 	                <div class="panel-body">
 	                    {{# each next_week.notices }}
-	                    <div class="notice-container {{ #unless is_read }}unread{{ /unless }}">
+	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
 		                    <div class="inner-notice-container unread-notice">
 	                            {{ #if is_critical }}
 								<i class="fa fa-exclamation-triangle critical-icon"></i>
@@ -214,7 +215,7 @@
 	            <div id="collapseFive" class="slide-hide" aria-hidden="true">
 	                <div class="panel-body"> 
 	                    {{# each future.notices }}
-	                    <div class="notice-container {{ #unless is_read }}unread{{ /unless }}">
+	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
 		                    <div class="inner-notice-container">
 		                        <div class="notice-category">
 		                            {{ category }}
@@ -255,7 +256,7 @@
 	            <div id="collapseSix" class="slide-hide" aria-hidden="true">
 	                <div class="panel-body"> 
 	                    {{# each legal.notices }}
-	                    <div class="notice-container {{ #unless is_read }}unread{{ /unless }}">
+	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
 		                    <div class="inner-notice-container">
 		                        <div class="notice-category">
 		                            {{ category }}

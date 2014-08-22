@@ -273,5 +273,20 @@ var Notices = {
         var yearStart = new Date(d.getFullYear(),0,1);
         var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7)
         return weekNo;
-    }
+    },
+
+    get_notices_in_view: function () {
+        var notice_hashes = [];
+        $("[id^=collapse]").each(function (idx, element) {
+            if ($(element).hasClass('slide-show')) {
+                $.each($(element).children(".panel-body").first().children(), function (idx, notice) {
+                     if (isScrolledIntoView($(notice))) {
+                        notice_hashes.push($(notice).attr('id'));
+                    }
+                });
+            }
+        });
+        WSData.mark_notices_read(notice_hashes)
+    },
+
 };
