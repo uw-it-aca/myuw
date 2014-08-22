@@ -103,6 +103,9 @@ class UserNotices(models.Model):
         notice_hash.update(notice.notice_content)
         return notice_hash.hexdigest()
 
+    def get_by_hash_and_user(self, notice_hash, user):
+        return UserNotices.objects.get(notice_hash=notice_hash, user=user)
+
 class CategoryLinks(models.Model):
     url = models.CharField(max_length=150)
     title = models.CharField(max_length=150)

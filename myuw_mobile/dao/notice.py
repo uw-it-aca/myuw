@@ -263,6 +263,11 @@ def _get_notices_by_regid(user_regid):
                       timer)
     return None
 
+def mark_notice_read_for_current_user(notice_hash):
+    user = get_user_model()
+    notice = UserNotices().get_by_hash_and_user(notice_hash, user)
+    notice.is_read = True
+    notice.save()
 
 def get_notices_for_current_user():
     notices = _get_notices_by_regid(get_regid_of_current_user())
