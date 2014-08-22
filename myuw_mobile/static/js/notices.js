@@ -75,6 +75,7 @@ var Notices = {
                 $(".disclosure-meta").find("i").removeClass("fa-angle-down");
                 $(".disclosure-meta").find("i").addClass("fa-angle-up");
                 $(this).text("Collapse all");
+                Notices.get_notices_in_view_and_mark_read();
             }
 
         });
@@ -90,12 +91,12 @@ var Notices = {
             $(hidden_block).toggleClass("slide-show");
 
             if ($(hidden_block).hasClass("slide-show")) {
-            
                 $(slide_link).siblings().find("i").removeClass("fa-angle-down");
                 $(slide_link).siblings().find("i").addClass("fa-angle-up");
                 $(slide_link).attr('title', 'Show less notice information');
                 $(hidden_block).attr('aria-hidden', 'false');
                 //WSData.log_interaction("show_final_card", term);
+                Notices.get_notices_in_view_and_mark_read();
             }
             else {
                                 
@@ -108,9 +109,13 @@ var Notices = {
                 }, 700);
             }
         });
-        
-        
 
+        // Event for marking notices as read on scroll, debounced
+        $(window).scroll(function(){
+            $.doTimeout( 'scroll', 250, function(){
+                  Notices.get_notices_in_view_and_mark_read();
+            });
+        });
     },
 
     get_notices_for_category: function (category) {
@@ -275,18 +280,23 @@ var Notices = {
         return weekNo;
     },
 
-    get_notices_in_view: function () {
+    get_notices_in_view_and_mark_read: function () {
         var notice_hashes = [];
         $("[id^=collapse]").each(function (idx, element) {
             if ($(element).hasClass('slide-show')) {
                 $.each($(element).children(".panel-body").first().children(), function (idx, notice) {
-                     if (isScrolledIntoView($(notice))) {
-                        notice_hashes.push($(notice).attr('id'));
+                    if (isScrolledIntoView($(notice))) {
+                        if ($(notice).hasClass('unread')) {
+                            notice_hashes.push($(notice).attr('id'));
+                            $(notice).removeClass('unread');
+                         }
                     }
                 });
             }
         });
-        WSData.mark_notices_read(notice_hashes)
+        if (notice_hashes.length > 0 ) {
+            WSData.mark_notices_read(notice_hashes);
+        }
     },
 
 };

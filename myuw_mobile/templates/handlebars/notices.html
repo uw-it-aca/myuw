@@ -2,7 +2,6 @@
     {% tplhandlebars "notices" %}
 
 <div class="notices-container">
-        <button value="get in view" onclick="Notices.get_notices_in_view()" style="width: 2em; height: 2em"></button>
 	  <div class="container">
 	  
 	    <h1>Notices</h1>
@@ -108,7 +107,7 @@
                 <div class="disclosure-heading clearfix">
                 
                     <!-- collapsy 3 header -->
-    	            <a href="#" class="slide-link" aria-controls="collapseThree" title="Show more notice information"><h3 class="disclosure-title">This week (Week 4)</h3></a> 
+    	            <a href="#" class="slide-link" aria-controls="collapseThree" title="Show more notice information"><h3 class="disclosure-title">This week</h3></a>
                      
                     <div class="disclosure-meta clearfix">
                         {{ #if week.critical_count }}  
