@@ -2,25 +2,29 @@
     {% tplhandlebars "notice_banner" %}
     <div class="notice-bar">
         <div aria-labeledby="notice_banner" role="alert">
-            <div class="container" style="position:relative;" aria-labelledby="notice_banner">
-
-                <a href="/mobile/notices/" title="Navigate to Notices" style="display:block; position:relative; z-index:900;">
-                    <h2 class="notice-header" id="notice_banner">Notices</h2>
-                </a>
-                <div class="notice-unread">{{ total_unread }} unread</div>
-                <div class="notice-critical">{{ total_critical }} critical</div>
-
-                <div>{{ netid }}</div>
-                {{#if is_uwgmail}}
-                    <a href="http://gmail.uw.edu/" target="_blank" title="Open UW Gmail in new tab"><div class="pull-right header-email"><i class="fa fa-gmail"> UW Gmail</i></div></a>
-                {{/if}}
-
-                {{#if is_uwlive}}
-                    <a href="https://www.outlook.com/myuw.net" target="_blank" title="Open UW Outlook Live email in new tab"><div class="pull-right header-email"><i class="fa fa-windows"> UW Outlook</i></div></a>
-                {{/if}}
+            <div class="container clearfix" style="position:relative;">
+            
+                <div class="pull-left" style="width:33.33%;">
+                    {{ netid }}
+                    {{#if is_uwgmail}}
+                        <a href="http://gmail.uw.edu/" target="_blank" title="Open UW Gmail in new tab"><div class="header-email"><i class="fa fa-gmail"> UW Gmail</i></div></a>
+                    {{/if}}
+    
+                    {{#if is_uwlive}}
+                        <a href="https://www.outlook.com/myuw.net" target="_blank" title="Open UW Outlook Live email in new tab"><div class="header-email"><i class="fa fa-windows"> UW Outlook</i></div></a>
+                    {{/if}}                    
+                </div>
+                <div class="pull-left" style="width:33.33%;">
+                    NOTICES
+                    <a href="/mobile/notices/" title="Navigate to Notices" style="display:block; position:relative; z-index:900;">
+                    <span class="notice-unread">{{ total_unread }} unread</span>
+                    <span class="notice-critical">{{ total_critical }} critical</span></a>
+                </div>
+                <div class="pull-left" style="width:33.33%;">
+                    Resources
+                    <a href="#" id="categories_link" title="Scroll down to resources" style="display:block;">scroll to menu</a>
+                </div>
                 
-                <a href="#" id="categories_link" title="Scroll down to resources"><div class="header-menu"><i class="fa fa-th"> Resources</i></div></a>
-
             </div>
         </div>
     </div>
