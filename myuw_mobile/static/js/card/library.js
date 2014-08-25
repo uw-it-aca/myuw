@@ -11,7 +11,7 @@ var LibraryCard = {
         //Delay rendering until all requests are complete
         //Do something smart about not showing error if AJAX is pending
         if (!LibraryCard._has_all_data()) {
-            LibraryCard.dom_target.html(CardWithError.render());
+            LibraryCard.dom_target.html(LibraryCard.show_error());
             return;
         }
         LibraryCard._render(WSData.library_data());
