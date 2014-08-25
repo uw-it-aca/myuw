@@ -207,7 +207,7 @@ body {
 #app_header { background: @uwpurple; overflow: hidden; position: relative;
     
     // header bar
-    .header-bar { /*padding: 0px !important;*/ height: 100px;
+    .header-bar { /*padding: 0px !important;*/ height: 110px;
 
         .header-logo { display: inline-block; margin: 0; padding: 0;  font-size:32px; color: @myuw; text-transform: uppercase; position: absolute; left: -4px;
             
@@ -251,12 +251,12 @@ body {
 #app_content { min-height: 200px; /*background-color: #eee;*/ padding-bottom: 1.5em; 
         
     // notice bar
-    .notice-bar { background: #fff; margin-top: 10px;  /*border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;*/ 
+    .notice-bar { background: #fff; margin-top: 10px; margin-bottom: 20px; /*border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;*/ 
+        
+        .notice-nav-item { font-family: 'uni_sansthin_caps'; display: block; text-transform: uppercase; font-size: 18px; line-height: 30px; }
+        .notice-nav-link { font-size: 12px; display: inline-block; line-height: 30px; position: absolute; top: 20px; white-space: nowrap; }
         
         .notice-header { color: black; margin: 0; font-size: 1.8em;}
-        .notice-critical { color: #af4b1a; font-size: .8em;}
-        .notice-unread {  }
-        .badge {background-color: rgb(85,85,85); font-weight: 300;}
     
     	/****
     	.count-badge {
