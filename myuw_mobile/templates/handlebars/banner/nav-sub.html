@@ -1,14 +1,11 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "nav-sub" %}
+            
         <div id="app_header" role="navigation">
             <div class="container header-bar-thin clearfix">
-
-                <a href="/mobile/landing" title="Return to Home"><div class="pull-left header-logo" style="width:83px; text-align:center;">MYUW</div></a>
-
-                <a href="#" id="categories_link" title="Scroll to categories menu"><div class="pull-right header-menu"><i class="fa fa-bars"> Categories</i></div></a>
-
-                <div id="uwemail"></div>
-
+                <a href="/mobile/landing" title="Return to Home" class="header-logo">MYUW</a>
+                <div class="header-w"><img src="/static/images/w-logo-white.png"></div>
             </div>
         </div>
+        
     {% endtplhandlebars %}
