@@ -3,14 +3,14 @@ var RegStatusCard = {
     dom_target: undefined,
 
     render_init: function() {
-        WSData.fetch_notice_data(RegStatusCard.render_upon_data);
+        WSData.fetch_notice_data(RegStatusCard.render_upon_data,RegStatusCard.render_error);
     },
     render_upon_data: function() {
         //If more than one data source, multiple callbacks point to this function
         //Delay rendering until all requests are complete
         //Do something smart about not showing error if AJAX is pending
         if (!RegStatusCard._has_all_data()) {
-            RegStatusCard.dom_target.html(CardWithError.render());
+            RegStatusCard.render_error();
             return;
         }
         RegStatusCard._render();
@@ -21,6 +21,9 @@ var RegStatusCard = {
             return true;
         }
         return false;
+    },
+    render_error: function () {1779
+        RegStatusCard.dom_target.html(CardWithError.render("Registration"));
     },
 
     _render: function () {
