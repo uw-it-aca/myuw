@@ -16,7 +16,12 @@ var CourseCard = {
     },
 
     render_error: function() {
-        CourseCard.dom_target.html(CardWithNoCourse.render(titilizeTerm(CourseCard.term)));
+        if (CourseCard.term === "current") {
+            CourseCard.dom_target.html(CardWithNoCourse.render(titilizeTerm(CourseCard.term)));
+        } else {
+            $("#future_content").html(CardWithNoCourse.render(titilizeTerm(CourseCard.term)));
+        }
+
     },
 
     _has_all_data: function () {
