@@ -2,6 +2,10 @@
 
 @myuw: #efe2cd;
 @uwpurple: #4b2e84;
+@lighttan: #e8e3d3;
+@darktan: #85754d;
+
+
 
 @yellow: #f5d300;
 @gray: #ccc;
@@ -289,9 +293,9 @@ body {
     	margin-top: 1.1em;
     	padding: 10px;
     	
-		h3 { font-family: 'uni_sansthin_caps'; font-size: 1.8em; font-weight: 400; margin-top: .3em; }
+		h3 { font-family: 'encode_sans_normalblack'; font-size: 20px; text-transform: uppercase; margin-top: .3em; color: @darktan; }
 
-        h4 { font-family: 'uni_sansthin_caps'; color: #555; }
+        h4 { font-family: 'encode_sans_normalblack'; font-size: 20px; text-transform: uppercase; color: @darktan; }
         
         .card-content {  }
         
@@ -372,7 +376,10 @@ body {
     #CourseCard {
         .card {
             // make h4 == h3
-            h4 { font-size: 1.8em; font-weight: 400; color: #555; margin-bottom: 1em; }
+            h4 { margin-bottom: 1em; 
+                
+                .shortTitle { font-family: 'uni_sansthin_caps'; color: #444 !important; font-size: 16px !important;  }
+            }
 
             // make h5 look like h4 -- William overrode this
             h5 { color: #555; margin-top: 1.5em; margin-bottom: .3em; font-size: .9em; text-transform: uppercase;            
@@ -400,8 +407,6 @@ body {
     
     #FutureQuarterCard {
         .card {
-            // make h4 == h3
-            h4 { font-size: 1.8em; font-weight: 400; color: #333; }
             
             // make h5 look like h4
             h5 { font-size: 1.3em; color: #555; }
@@ -857,15 +862,16 @@ body {
 #app_footer { background: #fff; 
     
     // navigation bar
-    .navigation-bar { min-height: 420px; /*padding: 0;*/
+    .navigation-bar { margin-bottom: 10px;
         
-        .navigation-list {  list-style:none; padding-left:0; margin-top:15px; text-align: center;
+        .navigation-list {  list-style:none; padding-left:0; margin:0;
+            
+            li {  width: 49.6%; margin-right: 2px; margin-bottom: 2px; height: 100px; background:@lighttan; }
     
-            .navigation-item { background:#eee; height:100px; margin-bottom:1em; display: block; position: relative; color: #333;
+            .navigation-item { display: inline-block; position: relative; padding: 5px;
                                     
-                &:hover { background: #555; }
                 
-                .navigation-item-text { position: absolute; width: 100%; top: 50%; left: 0; margin-top: -10px; }
+                .navigation-item-text { font-family: 'uni_sansthin_caps'; color: #333; font-size: 18px; }
 
             }
         }
@@ -878,7 +884,7 @@ body {
         .footer-links { color: #aaa; font-size: 11px; 
         	a {color: #fff}
             ul { padding: 0; margin-bottom: .5em; line-height: 11px; list-style: none;
-                li { display: inline-block; padding-right: 5px; margin-right: 3px; border-right: solid 1px #aaa; }
+                li { display: inline-block; padding-right: 5px; margin-right: 3px; border-right: solid 1px #aaa; color: #222; }
             }
         }
     }
