@@ -19,6 +19,17 @@ var NoticeBanner = {
             });
             NoticeBanner.dom_target.html(html);
         }
+        
+        
+        // handle clicking on resources
+        $("#categories_link").bind("click", function(ev) {
+            ev.preventDefault();                
+            $('html, body').animate({
+                scrollTop: $("#categories").offset().top
+            }, "fast");
+            return false;
+        });
+    
 
     }
 };

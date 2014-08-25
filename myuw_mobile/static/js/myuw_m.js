@@ -321,14 +321,6 @@ $(document).ready(function() {
     $("#nav_visual_schedule").bind("click", function(ev) {
         WSData.log_interaction("nav_menu_visual_schedule");
     });
-    
-    $("#categories_link").bind("click", function(ev) {
-        ev.preventDefault();                
-        $('html, body').animate({
-            scrollTop: $("#categories").offset().top
-        }, "fast");
-        return false;
-    });
         
 });
 
