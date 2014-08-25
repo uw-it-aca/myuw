@@ -5,7 +5,7 @@
             <div class="container clearfix" style="position:relative;">
             
                 <div class="pull-left" style="width:33.33%; position:relative;">
-                    <span class="notice-nav-item" style="font-size:">{{ netid }}</span>
+                    <span class="notice-nav-item" style="color:#000;">{{ netid }}</span>
                     {{#if is_uwgmail}}
                         <a class="notice-nav-link text-muted" href="http://gmail.uw.edu/" target="_blank" title="Open UW Gmail in new tab">UW Gmail</a>
                     {{/if}}
@@ -17,7 +17,7 @@
                     <img src="/static/images/silhouette.png" style="width:70px;border:solid 5px #fff;position:absolute; top:-68px; left:50%; margin-left:-35px; " class="img-circle" />    
                 </div>
                 <div class="pull-left" style="width:66.66%; position:relative; height:50px; border-left:solid 1px #ddd; padding-left:15px;">
-                    <span class="notice-nav-item text-muted">NOTICES</span>
+                    <span class="notice-nav-item" style="color:#777;">NOTICES</span>
                     <a class="notice-nav-link text-danger" href="/mobile/notices/" title="Navigate to Notices">{{ total_unread }} unread and {{ total_critical }} critical notices</a>
                 </div>
                 <!--
