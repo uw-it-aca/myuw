@@ -15,7 +15,9 @@ var NoticeBanner = {
 
             var html = template({
                 "total_unread": Notices.get_total_unread(),
-                "total_critical": Notices.get_all_critical()
+                "total_critical": Notices.get_all_critical(),
+                "is_uwgmail": window.user.email_is_uwgmail,
+                "is_uwlive": window.user.email_is_uwlive
             });
             NoticeBanner.dom_target.html(html);
         }

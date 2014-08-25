@@ -86,7 +86,9 @@
         "stud_employee": {{ user.affiliations.stud_employee|yesno:"true, false" }},
         "seattle": {{ user.affiliations.seattle|yesno:"true, false" }},
         "bothell": {{ user.affiliations.bothell|yesno:"true, false" }},
-        "tacoma": {{ user.affiliations.tacoma|yesno:"true, false" }}
+        "tacoma": {{ user.affiliations.tacoma|yesno:"true, false" }},
+        "email_is_uwgmail": {{ user.email_is_uwgmail|yesno:"true, false" }},
+        "email_is_uwlive": {{ user.email_is_uwlive|yesno:"true, false" }}
     }
     </script>
 

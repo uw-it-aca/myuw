@@ -9,6 +9,7 @@ from myuw_mobile.dao.affiliation import get_all_affiliations
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_data_not_found_response, log_invalid_netid_response, log_success_response_with_affiliation
 from myuw_mobile.views.rest_dispatch import invalid_session
+from myuw_mobile.dao.uwemail import get_email_forwarding_for_current_user
 
 #@mobile_template('{mobile/}index.html')
 def index(request,
@@ -32,6 +33,11 @@ def index(request,
     if not netid:
         log_invalid_netid_response(logger, timer)
         return invalid_session()
+
+    my_uwemail_forwarding = get_email_forwarding_for_current_user()
+    if my_uwemail_forwarding.is_active():
+        context["user"]["email_is_uwgmail"] = my_uwemail_forwarding.is_uwgmail()
+        context["user"]["email_is_uwlive"] = my_uwemail_forwarding.is_uwlive()
 
     context["user"]["netid"] = netid
     if year is None or quarter is None:

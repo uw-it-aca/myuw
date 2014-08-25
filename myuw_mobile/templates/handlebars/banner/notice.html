@@ -11,7 +11,13 @@
                 <div class="notice-critical">{{ total_critical }} critical</div>
 
                 <div class="todo">NETID</div>
-                <div id="uwemail" class="todo">EMAIL LINK</div>
+                {{#if is_uwgmail}}
+                    <a href="http://gmail.uw.edu/" target="_blank" title="Open UW Gmail in new tab"><div class="pull-right header-email"><i class="fa fa-gmail"> UW Gmail</i></div></a>
+                {{/if}}
+
+                {{#if is_uwlive}}
+                    <a href="https://www.outlook.com/myuw.net" target="_blank" title="Open UW Outlook Live email in new tab"><div class="pull-right header-email"><i class="fa fa-windows"> UW Outlook</i></div></a>
+                {{/if}}
                 
                 <a href="#" id="categories_link" title="Scroll down to resources"><div class="header-menu"><i class="fa fa-th"> Resources</i></div></a>
 
