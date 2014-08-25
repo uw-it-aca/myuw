@@ -17,7 +17,8 @@ var NoticeBanner = {
                 "total_unread": Notices.get_total_unread(),
                 "total_critical": Notices.get_all_critical(),
                 "is_uwgmail": window.user.email_is_uwgmail,
-                "is_uwlive": window.user.email_is_uwlive
+                "is_uwlive": window.user.email_is_uwlive,
+                "netid": window.user.netid
             });
             NoticeBanner.dom_target.html(html);
         }
