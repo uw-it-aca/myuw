@@ -5,14 +5,19 @@ var TuitionCard = {
 
     render_init: function() {
         TuitionCard._ajax_count = 2;
-        WSData.fetch_tuition_data(TuitionCard.render_upon_data);
-        WSData.fetch_notice_data(TuitionCard.render_upon_data);
+        WSData.fetch_tuition_data(TuitionCard.render_upon_data, TuitionCard.render_error);
+        WSData.fetch_notice_data(TuitionCard.render_upon_data, TuitionCard.render_error);
+    },
+
+
+    render_error: function () {
+        $(TuitionCard.dom_target).html(CardWithError.render("Tuition & Fees"));
     },
 
     render_upon_data: function() {
         TuitionCard._ajax_count -= 1;
         if (!TuitionCard._has_all_data() && TuitionCard._ajax_count === 0){
-            TuitionCard.dom_target.html(CardWithError.render());
+            TuitionCard.dom_target.html(TuitionCard.render_error());
             return;
         } else if (TuitionCard._has_all_data()) {
             TuitionCard._render();
