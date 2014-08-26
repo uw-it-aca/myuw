@@ -252,10 +252,10 @@ body {
 
 /*** content ***/
 
-#app_content { min-height: 200px; /*background-color: #eee;*/ padding-bottom: 1.5em; 
+#app_content { min-height: 200px; /*background-color: #eee;*/ 
         
     // notice bar
-    .notice-bar { background: #fff; margin-top: 10px; margin-bottom: 20px; /*border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;*/ 
+    .notice-bar { background: #fff; margin-top: 10px; margin-bottom: 0px; /*border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;*/ 
         
         .notice-nav-item { font-family: 'uni_sansthin_caps'; display: block; text-transform: uppercase; font-size: 18px; line-height: 30px; }
         .notice-nav-link { font-size: 12px; display: inline-block; line-height: 30px; position: absolute; top: 20px; white-space: nowrap; text-decoration: underline; }
@@ -291,15 +291,17 @@ body {
     // cards
     .card {  
         
+        border: 1px solid;
+        border-color: #e5e6e9 #dfe0e4 #d0d1d5;
         position: relative; 	
         background-color: #fff;
-    	box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 3px 0px;
+    	/*box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 3px 0px;*/
     	margin-top: 1.1em;
     	padding: 10px;
     	
-		h3 { font-family: 'encode_sans_normalblack'; font-size: 20px; text-transform: uppercase; margin-top: .3em; color: @darktan; }
+		h3 { font-family: 'uni_sansthin_caps'; font-size: 20px; text-transform: uppercase; margin-top: .3em; color: @darktan; }
 
-        h4 { font-family: 'encode_sans_normalblack'; font-size: 20px; text-transform: uppercase; color: @darktan; }
+        h4 { font-family: 'uni_sansthin_caps'; font-size: 20px; text-transform: uppercase; color: @darktan; }
         
         .card-content {  }
         
@@ -863,7 +865,7 @@ body {
 
 /*** footer ***/
 
-#app_footer { background: #fff; 
+#app_footer { background: #fff; margin-top: 10px;
     
     // navigation bar
     .navigation-bar { margin-bottom: 10px;
@@ -874,8 +876,7 @@ body {
     
             .navigation-item { display: inline-block; position: relative; padding: 5px;
                                     
-                
-                .navigation-item-text { font-family: 'uni_sansthin_caps'; color: @uwpurple; font-size: 20px; text-decoration: underline; }
+                .navigation-item-text { font-family: 'uni_sansthin_caps'; color: @uwpurple; font-size: 18px; }
 
             }
         }
