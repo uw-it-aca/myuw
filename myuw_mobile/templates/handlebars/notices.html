@@ -2,6 +2,7 @@
     {% tplhandlebars "notices" %}
 
 <div class="notices-container">
+	  
 	  <div class="container">
 	  
 	    <h1>Notices</h1>
@@ -10,14 +11,14 @@
 		    <div class="toggle">
 		      <a id="expand_collapse" href="#" title="Show all notice information">Expand all</a>
 		    </div>
-		</div>	    
+		</div>	  
+		  
 	    <!-- collapsy areas -->
-	    <div id="accordion">
+	    <div id="accordion" class="card">
 	        {{ #if holds.notices }}
 	        <!-- collapsy 1: critical -->
-	        <div class="disclosure ">
+	        <div class="disclosure">
 
-	                
                 <div class="disclosure-heading disclosure-heading-critical clearfix">
                 	<!-- collapsy 1 header -->      
     	            <a class="slide-link" href="#" aria-controls="collapseOne" title="Show more notice information"><h3 class="disclosure-title">{{ holds.critical_count }} Critical</h3></a>   
@@ -192,7 +193,6 @@
 	      {{ #if future.notices }}
 	      <!-- collapsy 5: future -->      
 	        <div class="disclosure">
-	            
 	            
                 <div class="disclosure-heading clearfix">
                     <!-- collapsy 5 header -->      

@@ -7,6 +7,8 @@
         <h1><span style="text-transform:uppercase;">{{quarter}} {{year}} {{summer_term}}</span> Textbooks</h1>
         <h2 id="future_cards_header" class="sr-only">Books</h2>
  
+ <div class="card">
+ 
         {{#if verba_link }}
               <p><a target=_blank href="{{verba_link}}"><button class="btn btn-block" type="button">Compare Prices and Buy Books</button></a></p>
               <p style="line-height:12px;" class="muted"><small>Read the University Book Store's <a href="http://uw-seattle.verbacompare.com/" target="_blank" style="font-size:12px;">price comparison policies</a></small></p>
@@ -17,13 +19,13 @@
         {{#each sections}}
         
         
-        <div class="books-list"><a name="{{curriculum}}{{course_number}}{{section_id}}" /><h3 class="c{{color_id}}Border">{{curriculum}} {{course_number}}{{section_id}}</h3></div>
+        <div class="books-list"><a name="{{curriculum}}{{course_number}}{{section_id}}" /> <h3><i class="fa fa-square c{{color_id}}Color"></i> {{curriculum}} {{course_number}}{{section_id}}</h3></div>
         
         {{#if books}}
       
             {{#eachWithIndex books}}
             
-	 		{{#if index}}<hr class="book-divider">{{/if}}
+	 		{{#if index}}<hr class="book-divider" />{{/if}}
 	 		
           <div class="clearfix book-image">
           	<h4>{{title}}</h4>
@@ -75,7 +77,7 @@
               {{/eachWithIndex}}
                
         {{else}}
-        <p>No textbook requirement has been received for this course. Please check with <a class="base-font-size show_instructors" href="/mobile/" rel="{{index}}">your instructor.</a></p>
+        <div style="margin-bottom:25px;">No textbook requirement has been received for this course. Please check with <a class="base-font-size show_instructors" href="/mobile/" rel="{{index}}">your instructor.</a></div>
         {{/if}}
         
         {{/each}}
@@ -85,8 +87,9 @@
               <p style="line-height:12px;" class="muted"><small>Read the University Book Store's <a href="http://uw-seattle.verbacompare.com/" target="_blank" style="font-size:12px;">price comparison policies</a></small></p>
         {{/if}}
 
+	 		</div>
 
-        <div style="margin-top:20px;"><p class="muted">Information on course textbooks is collected by and provided courtesy of <a target="_blank" href="http://www.bookstore.washington.edu">University Book Store</a> and is subject to change regularly and without notice.</p>
+        <div style="margin-top:20px;"><p class="text-muted">Information on course textbooks is collected by and provided courtesy of <a target="_blank" href="http://www.bookstore.washington.edu">University Book Store</a> and is subject to change regularly and without notice.</p>
         </div>
 
 

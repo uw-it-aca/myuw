@@ -28,6 +28,42 @@
 
 
 @font-face {
+    font-family: 'encode_sans_normalsemibold';
+    src: url('fonts/encodesansnormal-600-semibold-webfont.eot');
+    src: url('fonts/encodesansnormal-600-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/encodesansnormal-600-semibold-webfont.woff') format('woff'),
+         url('fonts/encodesansnormal-600-semibold-webfont.ttf') format('truetype'),
+         url('fonts/encodesansnormal-600-semibold-webfont.svg#encode_sans_normalsemibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'encode_sans_normalbold';
+    src: url('fonts/encodesansnormal-700-bold-webfont.eot');
+    src: url('fonts/encodesansnormal-700-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/encodesansnormal-700-bold-webfont.woff') format('woff'),
+         url('fonts/encodesansnormal-700-bold-webfont.ttf') format('truetype'),
+         url('fonts/encodesansnormal-700-bold-webfont.svg#encode_sans_normalbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'encode_sans_normalextrabold';
+    src: url('fonts/encodesansnormal-800-extrabold-webfont.eot');
+    src: url('fonts/encodesansnormal-800-extrabold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/encodesansnormal-800-extrabold-webfont.woff') format('woff'),
+         url('fonts/encodesansnormal-800-extrabold-webfont.ttf') format('truetype'),
+         url('fonts/encodesansnormal-800-extrabold-webfont.svg#encode_sans_normalextrabold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
     font-family: 'encode_sans_normalblack';
     src: url('fonts/encodesansnormal-900-black-webfont.eot');
     src: url('fonts/encodesansnormal-900-black-webfont.eot?#iefix') format('embedded-opentype'),
@@ -38,9 +74,6 @@
     font-style: normal;
 
 }
-
-
-
 
 @font-face {
     font-family: 'uni_sansthin_caps';
@@ -170,6 +203,54 @@ body {
     .c8aBorder {
       border-top: 6px solid #94d6c9;
     }
+    .c1Color {
+      color: #c8a26f;
+    }
+    .c1aColor {
+      color: #d6ba94;
+    }
+    .c2Color {
+      color: #84b782;
+    }
+    .c2aColor {
+      color: #a4caa2;
+    }
+    .c3Color {
+      color: #6d8db4;
+    }
+    .c3aColor {
+      color: #8fa7c5;
+    }
+    .c4Color {
+      color: #c86f6f;
+    }
+    .c4aColor {
+      color: #d69494;
+    }
+    .c5Color {
+      color: #998577;
+    }
+    .c5aColor {
+      color: #af9f94;
+    }
+    .c6Color {
+      color: #a58dce;
+    }
+    .c6aColor {
+      color: #c1b1dd;
+    }
+    .c7Color {
+      color: #c8c36f;
+    }
+    .c7aColor {
+      color: #d6d294;
+    }
+    .c8Color {
+      color: #6fc8b6;
+    }
+    .c8aColor {
+      color: #94d6c9;
+    }
 
 }
 
@@ -216,7 +297,7 @@ body {
     
     .header-bar-thin { height: 40px;
         
-        .header-logo {font-family: 'encode_sans_normalblack'; display: inline-block; margin: 0; padding: 0;  font-size:26px; color: @myuw; text-transform: uppercase; position: absolute; left: 5px; }
+        .header-logo {font-family: 'encode_sans_normalblack'; display: inline-block; margin: 0; padding: 0;  font-size:18px; color: @myuw; text-transform: uppercase; position: absolute; left: 5px; }
         .header-w { position: absolute; bottom: -7px; right: 10px; line-height: 0; }
         
     }
@@ -272,9 +353,8 @@ body {
     	margin-top: 1.1em;
     	padding: 10px;
     	
-		h3 { font-family: 'uni_sansthin_caps'; font-size: 22px; text-transform: uppercase; margin-top: .3em; color: @darktan; }
-
-        h4 { font-family: 'uni_sansthin_caps'; font-size: 20px; text-transform: uppercase; color: @darktan; }
+		h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; margin-top: 10px; margin-bottom: 15px; color: @darktan; }
+        h4 { font-family: 'uni_sansthin_caps'; font-size: @font-header-small; text-transform: uppercase; color: #444; }
         
         .card-content {  }
         
@@ -353,16 +433,15 @@ body {
     // course cards (custom style)
     
     #CourseCard {
+    
         .card {
-            // make h4 == h3
-            h4 { font-size:22px; margin-bottom: 1em; 
+
+            h4 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; margin-bottom: 1em; 
                 
-                .shortTitle { font-family: 'uni_sansthin_caps'; color: #444 !important; font-size: 16px !important;  }
+                .shortTitle { font-family: 'uni_sansthin_caps'; color: #444 !important; font-size: 16px !important; margin-top: 5px; }
             }
 
-            // make h5 look like h4 -- William overrode this
-            h5 { color: #555; margin-top: 1.5em; margin-bottom: .3em; font-size: .9em; text-transform: uppercase;            
-            }
+            h5 { color: #555; margin-top: 1.5em; margin-bottom: .5em; font-size: .9em; text-transform: uppercase; }
             
 			h6 {font-size: .8em; font-weight: bold;}
 
@@ -387,7 +466,7 @@ body {
     #FutureQuarterCard {
         .card {
             
-            h4 { font-size: 22px; }
+            h4 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; }
             
             // make h5 look like h4
             h5 { font-size: 20px; color: #555; }
@@ -681,7 +760,9 @@ body {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
 		
-		h1 { font-size: 1.8em; }
+		h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; }
+		h3 { font-family: 'encode_sans_normalsemibold'; font-size: 16px; line-height: 30px; margin: 0; }
+		h4 { font-size: 16px; }
     }
     
     
@@ -694,13 +775,12 @@ body {
 		background-color: #fff;
 		        
         // category content
-        .category-content { margin-bottom: 2em; 
-            
-            .category-header { color: #333; font-size: 2.2em; }
-            .category-sub-header { color: #666; font-size: 1.8em; font-weight: 400; }
+        .category-content { 
             .category-links { padding-left: 0; list-style: none; }
         }
-    
+        
+        h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; }
+        h2 { font-family: 'uni_sansthin_caps'; font-size: @font-header-small; } 
     }
     // future quarters page
     
@@ -708,7 +788,7 @@ body {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
         
-        h1 { font-size: 1.8em; }
+        h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; }
     }
 	    
 	//notices page 
@@ -719,8 +799,9 @@ body {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
 
-		h1 { font-family: 'encode_sans_normalblack'; font-size: @font-header-large; text-transform: uppercase; }
-
+		h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; }
+        h3 { color: #333; margin-top: 0; margin-bottom:0; font-family: 'uni_sansthin_caps'; }
+        
 		.notice-count { }
 
 		.notice-header-metadata {
@@ -729,7 +810,7 @@ body {
 			font-size:.8em;
 		}
 
-		h3 { color: #333; margin-top: 0; margin-bottom:0; font-family: 'uni_sansthin_caps'; }
+		
 		
 	    
 		.disclosure {
@@ -845,11 +926,13 @@ body {
         
         .navigation-list {  list-style:none; padding-left:0; margin:0;
             
-            li {  width: 49.6%; margin-right: 2px; margin-bottom: 2px; height: 100px; background:@lighttan; }
+            li {  width: 49.5%; margin-right: 1%; margin-bottom: 1%; height: 100px; background:@lighttan; }
+            
+            li:nth-child(even) { margin-right: 0; }
     
             .navigation-item { display: inline-block; position: relative; padding: 5px;
                                     
-                .navigation-item-text { font-family: 'uni_sansthin_caps'; color: @uwpurple; font-size: 18px; }
+                .navigation-item-text { font-family: 'uni_sansthin_caps'; font-family: 'encode_sans_normalsemibold'; color: #777; font-size: @font-base; text-transform: uppercase; }
 
             }
         }

@@ -5,7 +5,10 @@
 <div aria-labeledby="your_courses">
 
     {{#each sections}}
-    <div class="card c{{color_id}}Border">
+    <div class="card" style="position:relative;">
+    
+    <div class=" c{{color_id}}Border" style="position:absolute; top:0; left:0; right:0;">&nbsp;</div>
+    
     <div class="fade-in">
     
         <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
