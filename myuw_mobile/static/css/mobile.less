@@ -370,7 +370,7 @@ body {
         
         .card-badge-container {
                 
-            .card-badge {  padding: 8px 10px 10px 5px; position: relative;
+            .card-badge {  padding: 8px 10px 10px 0px; position: relative;
                 
                 .card-badge-label { display: block; font-weight: normal; line-height: 35px; }
                 .card-badge-action { display: block; font-weight: normal; line-height: 35px; margin-top: -10px;
@@ -378,7 +378,7 @@ body {
                 }
                 
                 .card-badge-value { display: block; font-size: 22px; font-weight: bold; line-height: 35px; }
-                .card-badge-note { font-weight: normal; font-style: italic; color: #888; margin-top: 35px; position: absolute; bottom: -3px; }
+                .card-badge-note { font-weight: normal; font-style: italic; color: #888; margin-top: 35px; position: absolute; bottom: -3px; font-size: 13px; }
             }
         }
         
@@ -437,7 +437,6 @@ body {
         .card {
 
             h4 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; margin-bottom: 1em; 
-                
                 .shortTitle { font-family: 'uni_sansthin_caps'; color: #444 !important; font-size: 16px !important; margin-top: 5px; }
             }
 
@@ -466,6 +465,8 @@ body {
     #FutureQuarterCard {
         .card {
             
+            
+            
             h4 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; }
             
             // make h5 look like h4
@@ -483,7 +484,9 @@ body {
         
         .card {
             
-            h3 { font-size: 1.8em; font-weight: 400; color: #333; }
+            h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; 
+                .shortTitle { font-family: 'uni_sansthin_caps'; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
+            }
             
             .textbook-card {
     			display: block; position: relative; z-index: 900;
@@ -762,7 +765,15 @@ body {
 		
 		h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; }
 		h3 { font-family: 'encode_sans_normalsemibold'; font-size: 16px; line-height: 30px; margin: 0; }
-		h4 { font-size: 16px; }
+		h4 { font-family: 'Open Sans', sans-serif; font-size: 16px; }
+		
+		.book-cover { margin-right: 10px; }
+		.dl-books { font-size: 13px; 
+    		
+    		dt { color: #777; text-transform: uppercase; font-size: 12px; }
+    		dd { color: #222; margin-bottom: 7px; }
+		}
+		
     }
     
     
@@ -789,6 +800,8 @@ body {
 		padding-bottom: 3em;
         
         h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; }
+        
+        .shortTitle { font-family: 'uni_sansthin_caps'; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
     }
 	    
 	//notices page 

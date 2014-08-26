@@ -18,17 +18,15 @@
         
         {{#each sections}}
         
-        
         <div class="books-list"><a name="{{curriculum}}{{course_number}}{{section_id}}" /> <h3><i class="fa fa-square c{{color_id}}Color"></i> {{curriculum}} {{course_number}}{{section_id}}</h3></div>
         
         {{#if books}}
       
-            {{#eachWithIndex books}}
+            {{#eachWithIndex books}} 
             
-	 		{{#if index}}<hr class="book-divider" />{{/if}}
 	 		
           <div class="clearfix book-image">
-          	<h4>{{title}}</h4>
+          	<h4>{{title}} {{#if is_required}}<span class="text-danger" style="font-size:12px;">Required</span>{{/if}}</h4>
             
             {{#if cover_image_url}}
                 <div class="book-cover pull-left"><img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{cover_image_url}}" alt="{{title}} book cover" width="80px" /></div>
@@ -78,7 +76,10 @@
                
         {{else}}
         <div style="margin-bottom:25px;">No textbook requirement has been received for this course. Please check with <a class="base-font-size show_instructors" href="/mobile/" rel="{{index}}">your instructor.</a></div>
+        
         {{/if}}
+        
+        <hr />
         
         {{/each}}
           	
