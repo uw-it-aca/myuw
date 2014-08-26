@@ -2,11 +2,10 @@
     {% tplhandlebars "library_card_content" %}
     
     {{#if mylibaccount}}
-    <div class="row">
+
     
         {{#with mylibaccount}}
-        <div class="col-xs-12">
-            
+
             <div class="card">
             
                 <h3>Library Account</h3>
@@ -19,7 +18,7 @@
         
                 <div class="row card-badge-container">
                     {{#if items_loaned }}
-                    <div class="col-xs-12">    
+                    <div>    
                         <div class="card-badge clearfix">     
                             <div class="pull-left">                   
                                 <span class="card-badge-label" style="font-size: 18px;">Items out</span>
@@ -35,7 +34,7 @@
                     </div>
                     
                     {{#if next_due }}        
-                    <div class="col-xs-12" style="margin-top:10px;">
+                    <div style="margin-top:10px;">
                         <div class="card-badge clearfix">         
                             <div class="pull-left"> 
                                 <span class="card-badge-label" style="font-size: 18px;">Next item due</span>
@@ -49,7 +48,7 @@
                     {{/if}}
                         
                     {{#if fines}}
-                    <div class="col-xs-12" style="margin-top:10px;">
+                    <div style="margin-top:10px;">
                         <div class="card-badge clearfix">  
                             <div class="pull-left"> 
                                 <span class="card-badge-label" style="font-size: 18px;">You owe</span>
@@ -64,11 +63,9 @@
                 </div>
             
             </div>
-            
-        </div> 
+
         {{/with}}
-        
-    </div>                   
+                 
     {{/if}}
 
     {% endtplhandlebars %}

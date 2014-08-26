@@ -14,6 +14,8 @@
 
 /*** font size ***/
 @font-base: 14px;
+@font-meta: 12px; 
+
 @font-header-large: 22px;
 @font-header-medium: 20px;
 @font-header-small: 18px;
@@ -57,42 +59,8 @@
 body {
     
     // body fonts
-    
     font-family: 'Open Sans', sans-serif;
-    
-    /**
-    (font-family: 'Arimo', sans-serif;
-	font-family: 'helvetica', sans-serif;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-family: 'Noto Sans', sans-serif;
-    font-family: 'Droid Sans', sans-serif;
-    font-family: 'PT Sans', sans-serif;
-    font-family: 'Istok Web', sans-serif;
-    font-family: 'Arimo', sans-serif;
-    font-family: 'Gudea', sans-serif;
-    font-family: 'Muli', sans-serif;
-    font-family: 'Open Sans', sans-serif;
-    font-family: 'Pontano Sans', sans-serif;
- **/
-    
-    // header fonts
-    h1, h2, h3, h4, h5, h6 {
-/**
-        font-family: 'Source Sans Pro', sans-serif;
-        font-family: 'Noto Sans', sans-serif;
-        font-family: 'Droid Sans', sans-serif;
-        font-family: 'PT Sans', sans-serif;
-        font-family: 'Istok Web', sans-serif;
-        font-family: 'Arimo', sans-serif;
- **/
-        font-family: 'Gudea', sans-serif;
-/**
-        font-family: 'Muli', sans-serif;
-        font-family: 'Open Sans', sans-serif;
-        font-family: 'Pontano Sans', sans-serif;
-**/        
-    }
-    
+
     a { text-decoration: none; 
         &:hover { text-decoration: none; }
         &:active { text-decoration: none; }
@@ -219,7 +187,6 @@ body {
             
             /*font-family: 'encode_sans_normalblack';*/
             font-family: 'uni_sansthin_caps';
-            
             
             /* greyscale */
             /**
@@ -752,7 +719,7 @@ body {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
 
-		h1 { font-size: 2.2em; }
+		h1 { font-family: 'encode_sans_normalblack'; font-size: @font-header-large; text-transform: uppercase; }
 
 		.notice-count { }
 
@@ -762,9 +729,7 @@ body {
 			font-size:.8em;
 		}
 
-		h3 {
-			font-weight: 400; color: #333; margin-top: 0; margin-bottom:0;
-		}
+		h3 { color: #333; margin-top: 0; margin-bottom:0; font-family: 'uni_sansthin_caps'; }
 		
 	    
 		.disclosure {
