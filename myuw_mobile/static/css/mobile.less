@@ -449,17 +449,14 @@ body {
     #FutureQuarterCard {
         .card {
             
-            
-            
             h4 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; }
             
             // make h5 look like h4
             h5 { font-size: 20px; color: #555; }
             
-            .future-quarter-card {
-    			height:90px; display: block; position: relative; z-index: 900;
-			}
-			
+			.destination-arrow { position:absolute; top: 50%; right: 0; margin-top:-14px; 
+                .future-quarter-card { display:inline-block; width:40px; line-height: 40px; text-align:center; color:#777; }
+            }
 			
         }
     }
@@ -472,9 +469,10 @@ body {
                 .shortTitle { font-family: 'uni_sansthin_caps'; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
             }
             
-            .textbook-card {
-    			display: block; position: relative; z-index: 900;
-			}
+            .destination-arrow { position:absolute; top: 50%; right: 0; margin-top:-14px; 
+                .show_textbooks { display:inline-block; width:40px; line-height: 40px; text-align:center; color:#777; }
+            }
+
         }
      }
      

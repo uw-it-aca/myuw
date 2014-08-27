@@ -5,21 +5,22 @@
 <div aria-labeledby="future_quarters">
   
     {{ #each terms }}
-    <div class="card">
-        <div class="fade-in" style="position:relative;">
+    <div class="card" style="position:relative;">
+        <div class="fade-in">
             
-            <a class="future-quarter-card" title="View {{ quarter }} {{ year }}{{ #if summer_term }} {{ summer_term }} {{ /if }} information" href="../future_quarters{{ url }}">
-                <h4 class="">{{ quarter }} {{ year }}{{ #if summer_term }} {{ summer_term }} {{ /if }}</h4>
-            </a>
+            <h4 class="">{{ quarter }} {{ year }}{{ #if summer_term }} {{ summer_term }} {{ /if }}</h4>
             
-            <div style="position:absolute; top: 35px; width: 99%;">
+            
+            <div>
                 <p class="text-muted">You have registered for {{ credits }} credits <br/> ({{ section_count }} sections) for {{ quarter }} {{ year }}{{ #if summer_term }}: {{ summer_term }}{{ /if }}.</p>
             </div>
 
-            <div style="position:absolute; top: 50%; right: 0; margin-top:-14px;">
-                <i class="fa fa-chevron-right"></i>
+   
+            <div class="destination-arrow">
+                 <a class="future-quarter-card" title="View {{ quarter }} {{ year }}{{ #if summer_term }} {{ summer_term }} {{ /if }} information" href="../future_quarters{{ url }}"><i class="fa fa-chevron-right"></i></a>
             </div>
-      
+        
+        
         </div>
     </div>
     {{ /each }}
