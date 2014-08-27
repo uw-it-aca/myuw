@@ -10,12 +10,8 @@
             
             <h4 class="">{{ quarter }} {{ year }}{{ #if summer_term }} {{ summer_term }} {{ /if }}</h4>
             
-            
-            <div>
-                <p class="text-muted">You have registered for {{ credits }} credits <br/> ({{ section_count }} sections) for {{ quarter }} {{ year }}{{ #if summer_term }}: {{ summer_term }}{{ /if }}.</p>
-            </div>
+            <p>You have registered for {{ credits }} credits <br/> ({{ section_count }} sections) for {{ quarter }} {{ year }}{{ #if summer_term }}: {{ summer_term }}{{ /if }}.</p>
 
-   
             <div class="destination-arrow">
                  <a class="future-quarter-card" title="View {{ quarter }} {{ year }}{{ #if summer_term }} {{ summer_term }} {{ /if }} information" href="../future_quarters{{ url }}"><i class="fa fa-chevron-right"></i></a>
             </div>

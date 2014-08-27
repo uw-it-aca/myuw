@@ -92,16 +92,16 @@
                     <ol>
                         {{#each instructors}}
                         <li class="instructor-container">
-                            <h6>{{full_name}}</h6>
-                            
                             
                             <div class="contact-info-container">
+                                <div><strong>{{full_name}}</strong></div>
+                                
                                 {{# if whitepages_publish}}
-                                <span style="display: block;">{{title1}}</span>
-                                <span style="display: block;"><a href="mailto:{{email1}}">{{email1}}</a>
-                                <span style="display: block;"><a href="tel:+1{{phone1}}">{{phone1}}</a><br />
+                                <span class="text-muted" style="display: block;">{{title1}}</span>
+                                <span style="display: block;"><a href="mailto:{{email1}}">{{email1}}</a></span>
+                                <span style="display: block;"><a href="tel:+1{{phone1}}">{{phone1}}</a></span>
                                     {{# if phone2}}
-                                    <a href="tel:+1{{phone2}}">{{phone2}}</a></span>
+                                    <span style="display: block;"><a href="tel:+1{{phone2}}">{{phone2}}</a></span>
                                     {{/if}}
                                 <span style="display: block;">{{address1}}</span>
                                 {{else}}
