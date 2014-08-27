@@ -7,6 +7,7 @@ var TuitionCard = {
         TuitionCard._ajax_count = 2;
         WSData.fetch_tuition_data(TuitionCard.render_upon_data, TuitionCard.render_error);
         WSData.fetch_notice_data(TuitionCard.render_upon_data, TuitionCard.render_error);
+        WSData.fetch_course_data_for_term('current', TuitionCard.render_upon_data, CourseCard.render_error);
     },
 
 
@@ -29,6 +30,14 @@ var TuitionCard = {
             tuition_due_notice,
             display_date,
             due_date;
+
+        //Do not show card if no sections are registered for the current quarter AND balance is 0
+        if (parseInt(template_data['tuition_accbalance']) === 0
+                && WSData.normalized_course_data().sections.length === 0) {
+            $(TuitionCard.dom_target).html('');
+            return;
+        }
+
 
         template_data['pce_tuition_dup'] = Notices.get_notices_for_tag("pce_tuition_dup");
         template_data['is_pce'] = false;
@@ -69,7 +78,7 @@ var TuitionCard = {
     },
 
     _has_all_data: function () {
-        if (WSData.tuition_data() && WSData.notice_data()) {
+        if (WSData.tuition_data() && WSData.notice_data() && WSData.normalized_course_data()) {
             return true;
         }
         return false;
