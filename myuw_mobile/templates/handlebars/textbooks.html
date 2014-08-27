@@ -7,7 +7,6 @@
         <h1><span style="text-transform:uppercase;">{{quarter}} {{year}} {{summer_term}}</span> Textbooks</h1>
         <h2 id="future_cards_header" class="sr-only">Books</h2>
  
- <div class="card">
  
         {{#if verba_link }}
               <p><a target=_blank href="{{verba_link}}"><button class="btn btn-block" type="button">Compare Prices and Buy Books</button></a></p>
@@ -26,7 +25,7 @@
             
 	 		
           <div class="clearfix book-image">
-          	<h4>{{title}} {{#if is_required}}<span class="text-danger" style="font-size:12px;">Required</span>{{/if}}</h4>
+          	<h4>{{title}} {{#if is_required}}<span class="text-danger">Required</span>{{/if}}</h4>
             
             {{#if cover_image_url}}
                 <div class="book-cover pull-left"><img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{cover_image_url}}" alt="{{title}} book cover" width="80px" /></div>
@@ -88,7 +87,6 @@
               <p style="line-height:12px;" class="muted"><small>Read the University Book Store's <a href="http://uw-seattle.verbacompare.com/" target="_blank" style="font-size:12px;">price comparison policies</a></small></p>
         {{/if}}
 
-	 		</div>
 
         <div style="margin-top:20px;"><p class="text-muted">Information on course textbooks is collected by and provided courtesy of <a target="_blank" href="http://www.bookstore.washington.edu">University Book Store</a> and is subject to change regularly and without notice.</p>
         </div>
