@@ -1,32 +1,9 @@
 {% load templatetag_handlebars %}
-    {% tplhandlebars "notice_banner" %}
-    <div class="notice-bar" role="navigation">
-        <div aria-labeledby="notice_banner" role="alert">
-            <div class="container clearfix" style="position:relative;">
+{% tplhandlebars "notice_banner" %}
+
+<div style="width:65%; position:relative; height:50px; border-left:solid 1px #ddd; padding-left:15px;">
+    <span class="notice-header" style="color:#777;">NOTICES</span>
+    <a class="notice-information text-danger" href="/mobile/notices/" title="Navigate to Notices">{{ total_unread }} unread and {{ total_critical }} critical notices</a>
+</div>
             
-                <div class="pull-left" style="width:35%; position:relative;">
-                    <span class="notice-nav-item" style="color:#000;">{{ netid }}</span>
-                    {{#if is_uwgmail}}
-                        <a class="notice-nav-link text-muted" href="http://gmail.uw.edu/" target="_blank" title="Open UW Gmail in new tab">UW Gmail</a>
-                    {{/if}}
-    
-                    {{#if is_uwlive}}
-                        <a class="notice-nav-link text-muted" href="https://www.outlook.com/myuw.net" target="_blank" title="Open UW Outlook Live email in new tab">UW Outlook</a>
-                    {{/if}}   
-                    
-                    <img src="/static/images/silhouette.png" style="width:70px;border:solid 5px #fff;position:absolute; top:-68px; left:50%; margin-left:-35px; " class="img-circle" />    
-                </div>
-                <div class="pull-left" style="width:65%; position:relative; height:50px; border-left:solid 1px #ddd; padding-left:15px;">
-                    <span class="notice-nav-item" style="color:#777;">NOTICES</span>
-                    <a class="notice-nav-link text-danger" href="/mobile/notices/" title="Navigate to Notices">{{ total_unread }} unread and {{ total_critical }} critical notices</a>
-                </div>
-                <!--
-                <div class="pull-left" style="width:33.33%; position:relative;">
-                    <span class="notice-nav-item" >RESOURCES</span>
-                    <a class="notice-nav-link" href="#" id="categories_link" title="Scroll down to resources">scroll to menu</a>
-                </div>
-                -->
-            </div>
-        </div>
-    </div>
-    {% endtplhandlebars %}
+{% endtplhandlebars %}

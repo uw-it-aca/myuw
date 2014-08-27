@@ -1,9 +1,31 @@
 {% load static %}
 {% load templatetag_handlebars %}
     {% tplhandlebars "nav" %}
+    
         <div id="app_header">
             <div class="container header-bar clearfix">
                 <div class="header-w"><img src="/static/images/w-logo-white.png" style="width:45px;"></div>
             </div>
         </div>
+        
+        <div id="app_navigation" role="navigation">
+        
+            <div>
+                <div class="container clearfix" style="position:relative;">
+                
+                    <div id="profile_container" class="pull-left" style="width:35%; position:relative;">
+                       
+                        <div class="netid-header" style="color:#000;">MYNETID</div>
+                        <div id="email_container">put email.html in this div</div>                       
+                        <img src="/static/images/silhouette.png" style="width:70px;border:solid 5px #fff;position:absolute; top:-68px; left:50%; margin-left:-35px; " class="img-circle" />    
+                    </div>
+                    
+                    <div id="notice_container" class="pull-left">
+                        put notice.html in this div
+                    </div>
+   
+                </div>
+            </div>
+        </div>
+
     {% endtplhandlebars %}
