@@ -9,7 +9,7 @@ from myuw_mobile.dao.gws import is_grad_student, is_undergrad_student
 from myuw_mobile.dao.gws import is_pce_student, is_student_employee
 from myuw_mobile.dao.gws import is_seattle_student, is_bothell_student
 from myuw_mobile.dao.gws import is_tacoma_student
-
+from myuw_mobile.dao.enrollment import get_main_campus
 
 logger = logging.getLogger(__name__)
 
@@ -27,7 +27,14 @@ def get_all_affiliations():
                  in the current quarter.             
     ["tacoma"]: True if the user is an UW Tacoma student
                 in the current quarter.
+    ["official_seattle"]: True if the user is an UW Seattle student
+                 according to the SWS Enrollment.
+    ["official_bothell"]: True if the user is an UW Bothell student
+                 according to the SWS Enrollment.
+    ["official_tacoma"]: True if the user is an UW Tacoma student
+                according to the SWS Enrollment.
     """
+
     enrolled_campuses = get_current_quarter_course_campuses()
     data = {"grad": is_grad_student(),
             "undergrad": is_undergrad_student(),
@@ -35,8 +42,11 @@ def get_all_affiliations():
             "stud_employee": is_student_employee(),
             "seattle": enrolled_campuses["seattle"] or is_seattle_student(),
             "bothell": enrolled_campuses["bothell"] or is_bothell_student(),
-            "tacoma": enrolled_campuses["tacoma"] or is_tacoma_student()
+            "tacoma": enrolled_campuses["tacoma"] or is_tacoma_student(),
             }
+    #add 'official' campus info
+    official_campuses = _get_official_campuses(get_main_campus())
+    data = dict(data.items() + official_campuses.items())
     # Note:
     #    As the UW Affiliation group (gws) only knows about one campus,
     #    we use registered sections in the current quarter
@@ -70,6 +80,18 @@ def _get_campuses_by_schedule(schedule):
                 pass
     return campuses
 
+def _get_official_campuses(campuses):
+    official_campuses = {'official_seattle': False,
+                         'official_bothell': False,
+                         'official_tacoma': False}
+    for campus in campuses:
+        if campus == "Seattle":
+            official_campuses['official_seattle'] = True
+        if campus == "Tacoma":
+            official_campuses['official_tacoma'] = True
+        if campus == "Bothell":
+            official_campuses['official_bothell'] = True
+    return official_campuses
 
 def get_current_quarter_course_campuses():
     """
@@ -77,4 +99,3 @@ def get_current_quarter_course_campuses():
     has enrolled in the current quarter.
     """
     return _get_campuses_by_schedule(get_current_quarter_schedule())
-
