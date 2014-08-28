@@ -1,0 +1,35 @@
+{
+    "Current":
+    {
+        "Href":"\/student\/v4\/registration.json?year=2013&quarter=autumn&curriculum_abbreviation=&course_number=&section_id=&reg_id=9136CCB8F66711D5BE060004AC494FFE&is_active=&instructor_reg_id=",
+        "CourseNumber":null,
+        "CurriculumAbbreviation":null,
+        "InstructorRegID":null,
+        "IsActive":null,
+        "PageSize":null,
+        "PageStart":null,
+        "Quarter":"autumn",
+        "RegID":"9136CCB8F66711D5BE060004AC494FFE",
+        "SectionID":null,
+        "Year":"2013"
+    },
+    "Next":null,
+    "PageSize":"10",
+    "PageStart":"1",
+    "Previous":null,
+    "Registrations":
+    [
+        {
+            "Href": "\/student\/v4\/registration\/2013,autumn,ENGL,207,A,9136CCB8F66711D5BE060004AC494FFE.json",
+            "CourseNumber":"207",
+            "CurriculumAbbreviation":"ENGL",
+            "DuplicateCode":"1",
+            "Instructor":null,
+            "Quarter":"autumn",
+            "RegID":"9136CCB8F66711D5BE060004AC494FFE",
+            "SectionID":"A",
+            "Year":"2013"
+        }
+    ],
+    "TotalCount":"1"
+}

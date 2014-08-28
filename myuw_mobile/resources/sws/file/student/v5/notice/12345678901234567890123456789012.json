@@ -1,0 +1,192 @@
+{
+    "Notices": [
+        {
+            "NoticeAttributes": [
+                {
+                    "Name": "Campus",
+                    "DataType": "string",
+                    "Value": "Seattle"
+                },
+                {       
+                    "Name": "Date",
+                    "DataType": "date",
+                    "Value": "yesterday"
+                }
+            ],
+            "NoticeCategory": "StudentALR",
+            "NoticeContent": "<span class=\"notice-title\">Online ISS information session required before registration</span><span class=\"notice-body-with-title\">All new international students are required to complete the <a href=\"https://catalysttools.washington.edu/webq/survey/torre/79003\">International Student Services (ISS) Online Information Session</a> before registering for classes. You will need your UW NetID and password to access the online ISS information session. After you arrive on campus, the International Student Services (ISS) must collect copies of your immigration documents.</span>",
+            "NoticeType": "IntlStuCheckIn"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "Name": "Date",
+                    "DataType": "date",
+                    "Value": "future_end"
+                },
+                {
+                    "Name": "Begin",
+                    "DataType": "date",
+                    "Value": "future"
+                },
+                {
+                    "Name": "End",
+                    "DataType": "date",
+                    "Value": "future_end"
+                },
+                {
+                    "Name": "Quarter",
+                    "DataType": "string",
+                    "Value": "Summer"
+                },
+                {
+                    "Name": "Link",
+                    "DataType": "url",
+                    "Value": "http://www.uw.edu"
+                },
+                {
+                    "Name": "Bogus",
+                    "DataType": "unknown",
+                    "Value": "42"
+                }
+
+            ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": "<span class=\"notice-body-without-title\"> Summer quarter begins <span class=\"date\"> Mon, June 23</span>.</span>",
+            "NoticeType": "QtrBegin"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "Name": "Date",
+                    "DataType": "date",
+                    "Value": "next_week"
+                }   
+            ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": "<span class=\"notice-title\">Estimated Registration Date</span><span class=\"notice-body-with-title\">Your estimated Period I Priority Registration Date for autumn quarter is <span class=\"date\"> Thurs, May 15</span>. Registration begins at 6:00 AM. <a href=\"http://www.washington.edu/students/reg/priorau14.html\">View your Period 1 Priority Registration Date</a>.</span>",
+            "NoticeType": "EstPd1RegDate"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "Name": "Date",
+                    "DataType": "date",
+                    "Value": "today"
+                },
+                {
+                    "Name": "Begin",
+                    "DataType": "date",
+                    "Value": "yesterday"
+                },
+                {
+                    "Name": "End",
+                    "DataType": "date",
+                    "Value": "week"
+                },
+                {
+                    "Name": "Quarter",
+                    "DataType": "string",
+                    "Value": "Summer"
+                }
+            ],
+            "NoticeCategory": "StudentALR",
+            "NoticeContent": "<span class=\"notice-title\">Pre-Registration Requirement</span><span class=\"notice-body-with-title\">Beginning one week prior to each quarter's registration period you can make all the required Notices and Insurance&#47Optional Charges selections. You will then be able to go directly into Web Registration when your priority registration period begins. If you have not already done so <a href=\"https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp\">go to the Insurance&#47Optional Charges</a> services now to complete these requirements prior to registering for autumn quarter.</span>",
+            "NoticeType": "PreRegNow"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "Name": "Date",
+                    "DataType": "date",
+                    "Value": "week"
+                }
+            ],
+            "NoticeCategory": "StudentALR",
+            "NoticeContent": "<span class=\"notice-title\">Pre-Registration Requirement</span><span class=\"notice-body-with-title\">Beginning one week prior to each quarter's registration period you can make all the required Notices and Insurance&#47Optional Charges selections. You will then be able to go directly into Web Registration when your priority registration period begins. If you have not already done so <a href=\"https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp\">go to the Insurance&#47Optional Charges</a> services now to complete these requirements prior to registering for autumn quarter.</span>",
+            "NoticeType": "PreRegNow"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentALR",
+            "NoticeContent": "<span class=\"notice-title\">Online ISS information session required before registration</span><span class=\"notice-body-with-title\">All new international students are required to complete the <a href=\"https://catalysttools.washington.edu/webq/survey/torre/79003\">International Student Services (ISS) Online Information Session</a> before registering for classes. You will need your UW NetID and password to access the online ISS information session. After you arrive on campus, the International Student Services (ISS) must collect copies of your immigration documents.</span>",
+            "NoticeType": "IntlStuCheckIn"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentALR",
+            "NoticeContent": "<span class=\"notice-title\">Registration/Transcript Holds</span><span class=\"notice-body-with-title\">The following offices have placed administrative holds on your academic record. These will prevent registration and/or ordering official transcripts. To resolve these holds, contact the office(s) listed below.</span><ul class=\"notice-list\"> <li>Registration and Transcript hold(s) placed by Graduation and Academic Records, 264 Schmitz Hall, 206-543-1803</li><li>Registration hold(s) placed by College of Architecture and Urban Planning, 208 Gould Hall, 206-685-8407</li><li>Transcript hold(s) placed by Department of Chemistry, 109 Bagley Hall, 206-543-1607</li></ul><span class=\"notice-body-with-title\"><a href=\"http://www.washington.edu/students/reg/regrest.html#Q2\">What is an administrative hold?</a></span>",
+            "NoticeType": "AdminHolds"
+        },
+        {
+            "NoticeAttributes": [
+            {
+                 "Name": "Date",
+                 "DataType": "date",
+                 "Value": "next_week"
+             }
+            ],
+            "NoticeCategory": "StudentGEN",
+            "NoticeContent": "<span class=\"notice-title\">Tuition Account Balance</span><span class=\"notice-body-with-title\">Your tuition account balance is $0.00. <a href=\"https://sdb.admin.washington.edu/students/uwnetid/tuition.asp\">View details of your tuition account</a>.</span>",
+            "NoticeType": "AcctBalance"
+        },
+       {
+            "NoticeAttributes": [
+            {
+                 "Name": "Date",
+                 "DataType": "date",
+                 "Value": "today"
+             }
+            ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": "<span class=\"notice-title\">Tuition Due</span><span class=\"notice-body-with-title\">Payment of tuition and tuition-related fees for summer quarter is due <span class=\"date\"> Fri, July 11</span>. For details, <a href=\"https://sdb.admin.washington.edu/students/UWNetID/tuition.asp\">view your Tuition Statement</a>.</span>",
+            "NoticeType": "TuitDue"
+        },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentGEN",
+            "NoticeContent": "Thank you for confirming your intention to enroll at the University of Washington for autumn quarter 2014. Your new Student Enrollment and Orientation Fee has been accepted and recorded.",
+            "NoticeType": "ThankYouRemark"
+        },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentGEN",
+            "NoticeContent": "The Office of the Registrar has received payment for the following fees: New Student Enrollment & Orientation Fee",
+            "NoticeType": "FeesPaid"
+        },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentCLIST",
+            "NoticeContent": "You can <a href=\"https://sdb.admin.washington.edu/students/uwnetid/finaidstatus.asp\">review the status</a> of your financial aid application online.",
+            "NoticeType": "FinAid"
+        },
+        {
+            "NoticeAttributes": [
+             {
+                 "Name": "Date",
+                 "DataType": "date",
+                 "Value": "future_end"
+             },
+             {
+                 "Name": "Begin",
+                 "DataType": "date",
+                 "Value": "future"
+             },
+             {
+                 "Name": "End",
+                 "DataType": "date",
+                 "Value": "future_end"
+             }
+
+           ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": "<span class=\"notice-body-without-title\"> Spring quarter ends <span class=\"date\"> Friday, June 6</span>.</span>",
+            "NoticeType": "QtrEnd"
+        }
+    ],
+    "Person": {
+        "Href": "",
+        "Name": "EIGHT",
+        "RegID": "1234567890123456789012"
+    }
+}

@@ -1,0 +1,272 @@
+{
+	"Notices": [
+		{
+			"NoticeAttributes": [
+				{
+					"DataType": "string", 
+					"Name": "Quarter", 
+					"Value": "Summer"
+				}, 
+				{
+					"DataType": "date", 
+					"Name": "DisplayBegin", 
+					"Value": "20140407"
+				}, 
+				{
+					"DataType": "date", 
+					"Name": "DisplayEnd", 
+					"Value": "20140414"
+				}
+			], 
+			"NoticeCategory": "StudentALR", 
+			"NoticeContent": "<span class=\"notice-title\">Pre-Registration Requirement</span><span class=\"notice-body-with-title\">Beginning one week prior to each quarter's registration period, you can make all the required Notices and Insurance/Optional Charges selections. You will then be able to go directly into Web Registration when your priority registration period begins. If you have not already done so, <a href=\"https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp\">go to the Insurance/Optional Charges</a> services now to complete these requirements prior to registering for summer quarter.</span>", 
+			"NoticeType": "PreRegNow"
+		}, 
+		{
+			"NoticeAttributes": [
+				{
+					"DataType": "date", 
+					"Name": "DisplayBegin", 
+					"Value": "20140920"
+				}, 
+				{
+					"DataType": "date", 
+					"Name": "DisplayEnd", 
+					"Value": "20141015"
+				}
+			], 
+			"NoticeCategory": "StudentGEN", 
+			"NoticeContent": "<span class=\"notice-title\">FERPA</span><span class=\"notice-body-with-title\">The Family Educational Rights and Privacy Act (FERPA) of 1974 protects the privacy of your education records. However, your directory information may be released unless you inform the Registrar's Office. For further details check the <a href=\"http://www.washington.edu/students/reg/ferpa.html\">Family Educational Rights and Privacy Act web site</a>.</span>", 
+			"NoticeType": "FERPA"
+		}, 
+		{
+			"NoticeAttributes": [
+				{
+					"DataType": "date", 
+					"Name": "DisplayBegin", 
+					"Value": "20140920"
+				}, 
+				{
+					"DataType": "date", 
+					"Name": "DisplayEnd", 
+					"Value": "20141015"
+				}
+			], 
+			"NoticeCategory": "StudentGEN", 
+			"NoticeContent": "<span class=\"notice-title\">About Peer-to-Peer File-Sharing and Copyright Infringement</span><span class=\"notice-body-with-title\">Under copyright law it is illegal to download or share copyrighted materials such as music or movies without the permission of the copyright owner. Your actions when downloading or sharing files are traceable and could result in a significant financial penalty to you. For more information, go to the <a href=\"http://www.washington.edu/students/gencat/policy/p2pshare.html\">Peer-to-Peer File-Sharing and Copyright Infringement</a> page in the Student Guide.</span>", 
+			"NoticeType": "RIAA"
+		}, 
+		{
+			"NoticeAttributes": [
+				{
+					"DataType": "date", 
+					"Name": "Date", 
+					"Value": "20140112"
+				}, 
+				{
+					"DataType": "date", 
+					"Name": "DisplayBegin", 
+					"Value": "20140106"
+				}, 
+				{
+					"DataType": "date", 
+					"Name": "DisplayEnd", 
+					"Value": "20140112"
+				}
+			], 
+			"NoticeCategory": "StudentDAD", 
+			"NoticeContent": "<span class=\"notice-title\">Deadline for Registration Changes Without Fees</span><span class=\"notice-body-with-title\">The last day to make changes to your winter quarter schedule without incurring a $20 change fee and possible tuition forfeiture is <span class=\"date\">January 12, 2014</span>.</span>", 
+			"NoticeType": "LastDayRegWOChgFee"
+		}, 
+		{
+			"NoticeAttributes": [
+				{
+					"DataType": "date", 
+					"Name": "Date", 
+					"Value": "20140223"
+				}, 
+				{
+					"DataType": "date", 
+					"Name": "DisplayBegin", 
+					"Value": "20140113"
+				}, 
+				{
+					"DataType": "date", 
+					"Name": "DisplayEnd", 
+					"Value": "20140223"
+				}
+			], 
+			"NoticeCategory": "StudentDAD", 
+			"NoticeContent": "<span class=\"notice-title\">Deadline for Registration Changes With Fees</span><span class=\"notice-body-with-title\">There is a $20 Change of Registration Fee and possible <a href=\"http://f2.washington.edu/fm/sfs/tuition/forfeiture-refund/\">tuition forfeiture</a> for all changes made to your winter quarter schedule on a single day through <span class=\"date\">February 23, 2013</span>.</span>", 
+			"NoticeType": "LastDayRegChgFee"
+		}, 
+		{
+			"NoticeAttributes": [
+				{
+					"DataType": "date", 
+					"Name": "Date", 
+					"Value": "20140124"
+				}, 
+				{
+					"DataType": "date", 
+					"Name": "DisplayBegin", 
+					"Value": "20140106"
+				}, 
+				{
+					"DataType": "date", 
+					"Name": "DisplayEnd", 
+					"Value": "20140124"
+				}
+			], 
+			"NoticeCategory": "StudentDAD", 
+			"NoticeContent": "<span class=\"notice-title\">Insurance Plan Change Deadline</span><span class=\"notice-body-with-title\">The last day to <a href=\"https://sdb.admin.washington.edu/students/UWNetID/op_charges.asp\">enroll in, withdraw from, or make changes to your Student Accident and Sickness Insurance Plan</a> for winter quarter is <span class=\"date\">January 24, 2014</span>. <a href=\"http://depts.washington.edu/ovpsl/insurance.html\">Learn more about student insurance plans.</a></span>", 
+			"NoticeType": "LastDayChgIns"
+		}, 
+		{
+			"NoticeAttributes": [
+				{
+					"DataType": "date", 
+					"Name": "Date", 
+					"Value": "20140119"
+				}, 
+				{
+					"DataType": "date", 
+					"Name": "DisplayBegin", 
+					"Value": "20140113"
+				}, 
+				{
+					"DataType": "date", 
+					"Name": "DisplayEnd", 
+					"Value": "20140119"
+				}
+			], 
+			"NoticeCategory": "StudentDAD", 
+			"NoticeContent": "<span class=\"notice-title\">Deadline to Drop Without Transcript Entry</span><span class=\"notice-body-with-title\">The last day to drop a class from your winter quarter schedule without a transcript entry is <span class=\"date\">January 19, 2014</span>.</span>", 
+			"NoticeType": "LastDayDropNoRecord"
+		}, 
+		{
+			"NoticeAttributes": [], 
+			"NoticeCategory": "StudentDAD", 
+			"NoticeContent": "<span class=\"notice-title\">Deadline to Change to Audit</span><span class=\"notice-body-with-title\">The last day to change a class on your winter quarter schedule to or from an Audit Option is <span class=\"date\"></span>. <a href=\"http://www.washington.edu/students/reg/audit.html\">About Auditing Courses</a></span>", 
+			"NoticeType": "LastDayAuditOpt"
+		}, 
+		{
+			"NoticeAttributes": [], 
+			"NoticeCategory": "StudentDAD", 
+			"NoticeContent": "<span class=\"notice-title\">Deadline to Drop Without Using Annual Drop</span><span class=\"notice-body-with-title\">The last day to drop spring quarter classes without using your Annual Drop is <span class=\"date\"> Sun, Apr 13</span>. <a href=\"http://www.washington.edu/students/reg/wdpolicy.html\">About Annual Drop</a></span>", 
+			"NoticeType": "LastDayWOAnnualDrop"
+		}, 
+		{
+			"NoticeAttributes": [], 
+			"NoticeCategory": "StudentDAD", 
+			"NoticeContent": "<span class=\"notice-title\">Deadline to Add Classes</span><span class=\"notice-body-with-title\">The last day to add classes to your spring quarter schedule is <span class=\"date\"> Fri, Apr 11</span>.</span>", 
+			"NoticeType": "LastDayAdd"
+		}, 
+		{
+			"NoticeAttributes": [], 
+			"NoticeCategory": "StudentDAD", 
+			"NoticeContent": "<span class=\"notice-title\">Deadline to Change Grading Option</span><span class=\"notice-body-with-title\">The last day to change a class on your spring quarter schedule to or from an S/NS Grading Option is <span class=\"date\"> Sun, May 18</span>. <a href=\"http://www.washington.edu/students/gencat/front/Grading_Sys.html\">About Grading Options</a></span>", 
+			"NoticeType": "LastDayChgGradeOpt"
+		}, 
+		{
+			"NoticeAttributes": [], 
+			"NoticeCategory": "StudentDAD", 
+			"NoticeContent": "<span class=\"notice-title\">Deadline to Withdraw</span><span class=\"notice-body-with-title\">The last day to withdraw completely (dropping all courses) from spring quarter is <span class=\"date\"> Fri, June 6</span>.</span>", 
+			"NoticeType": "LastDayWithdraw"
+		}, 
+		{
+			"NoticeAttributes": [], 
+			"NoticeCategory": "StudentDAD", 
+			"NoticeContent": "<span class=\"notice-title\">Tuition Due</span><span class=\"notice-body-with-title\">Payment of tuition and tuition-related fees for winter quarter is due <span class=\"date\"></span>. For details, <a href=\"https://sdb.admin.washington.edu/students/UWNetID/tuition.asp\">view your Tuition Statement</a>.</span>", 
+			"NoticeType": "TuitDue",
+      "Critical": true
+		}, 
+		{
+			"NoticeAttributes": [], 
+			"NoticeCategory": "NewStudentGEN", 
+			"NoticeContent": "Thank you for confirming your intention to enroll at the University of Washington for autumn quarter 2014. Your new Student Enrollment and Orientation Fee has been accepted and recorded.", 
+			"NoticeType": "ThankYouRemark"
+		}, 
+		{
+			"NoticeAttributes": [], 
+			"NoticeCategory": "NewStudentGEN", 
+			"NoticeContent": "Here is a summary of your expected status at the University:<br/>Campus: SEATTLE <br/>Class Standing: FRESHMAN <br/>School/College: Arts and Sciences <br/> Department: PRE MAJOR (A&S) <br/>Student Number: 1033333 <br/>Residency Status: RESIDENT<br/><a href='http://www.washington.edu/students/reg/whatsthis.html'><small>Notes and Definitions</small></a>", 
+			"NoticeType": "StatusSummary"
+		}, 
+		{
+			"NoticeAttributes": [
+				{
+					"DataType": "date", 
+					"Name": "Date", 
+					"Value": "future_end"
+				}, 
+				{
+					"DataType": "date", 
+					"Name": "Begin", 
+					"Value": "future"
+				}, 
+				{
+					"DataType": "date", 
+					"Name": "End", 
+					"Value": "future_end"
+				}, 
+				{
+					"DataType": "string", 
+					"Name": "Quarter", 
+					"Value": "Summer"
+				}, 
+				{
+					"DataType": "url", 
+					"Name": "Link", 
+					"Value": "http://www.uw.edu"
+				}
+			], 
+			"NoticeCategory": "StudentDAD", 
+			"NoticeContent": "<span class=\"notice-title\">Quarter Begins</span><span class=\"notice-body-with-title\">Summer quarter begins <span class=\"date\">June 23, 2014</span>.</span>", 
+			"NoticeType": "QtrBegin"
+		}, 
+		{
+			"NoticeAttributes": [
+				{
+					"DataType": "date", 
+					"Name": "Date", 
+					"Value": "future_end"
+				}, 
+				{
+					"DataType": "date", 
+					"Name": "Begin", 
+					"Value": "future"
+				}, 
+				{
+					"DataType": "date", 
+					"Name": "End", 
+					"Value": "future_end"
+				}, 
+				{
+					"DataType": "string", 
+					"Name": "Quarter", 
+					"Value": "Spring"
+				}, 
+				{
+					"DataType": "url", 
+					"Name": "Link", 
+					"Value": "http://www.uw.edu"
+				}
+			], 
+			"NoticeCategory": "StudentDAD", 
+			"NoticeContent": "<span class=\"notice-body-without-title\"> Summer quarter begins <span class=\"date\"> June 13</span>.</span>", 
+			"NoticeType": "QtrEnd"
+		}, 
+		{
+			"NoticeAttributes": [], 
+			"NoticeCategory": "NewStudentCLIST", 
+			"NoticeContent": "You can <a href=\"https://sdb.admin.washington.edu/students/uwnetid/finaidstatus.asp\">review the status</a> of your financial aid application online.", 
+			"NoticeType": "FinAid"
+		}
+	], 
+	"Person": {
+		"Href": "", 
+		"Name": "JAMES NEW STUDENT", 
+		"RegID": "FE36CCB8F66711D5BE060004AC494F31"
+	}
+}

@@ -1,0 +1,28 @@
+{
+  "uwNetID" : "jbothell",
+  "subscriptionList" : [
+    {
+      "subscriptionCode" : 105,
+      "subscriptionName" : "U Forwarding",
+      "permitted" : true,
+      "statusCode" : 20,
+      "statusName" : "Active",
+      "actions" : [
+        "Show"
+      ],
+      "dataField" : "FWD",
+      "dataValue" : "jbothell@ol.uw.edu",
+      "permits" : [
+        {
+          "type" : "permit",
+          "mode" : "implicit",
+          "categoryCode" : 1,
+          "categoryName" : "Undergraduate",
+          "statusCode" : 1,
+          "statusName" : "current"
+        }
+      ]
+    }
+  ],
+  "timeStamp" : "Fri, 25 Jul 2014 14:35:57 -0700"
+}

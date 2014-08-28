@@ -1,0 +1,28 @@
+{
+  "uwNetID" : "jnewstudent",
+  "subscriptionList" : [
+    {
+      "subscriptionCode" : 105,
+      "subscriptionName" : "U Forwarding",
+      "permitted" : true,
+      "statusCode" : 20,
+      "statusName" : "Active",
+      "actions" : [
+        "Show"
+      ],
+      "dataField" : "FWD",
+      "dataValue" : "jnewstudent@gamail.uw.edu",
+      "permits" : [
+        {
+          "type" : "permit",
+          "mode" : "implicit",
+          "categoryCode" : 1,
+          "categoryName" : "Undergraduate",
+          "statusCode" : 1,
+          "statusName" : "current"
+        }
+      ]
+    }
+  ],
+  "timeStamp" : "Fri, 25 Jul 2014 14:02:33 -0700"
+}

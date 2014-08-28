@@ -1,0 +1,23 @@
+{
+    "14313": [{
+                "isbn":"9780324542905",
+                "title":"Business Communication (6 E 07)",
+                "authors": [{"name":"Guffey"}],
+                "price":182.00,
+                "used_price":null,
+                "required":false,
+                "notes":"Optional",
+                "cover_image": "http://s3.amazonaws.com/semesterly/covers/f28f31dc-f531-5002-9d36-b9b136001d24.jpg"
+            }],
+    "13748": [],
+    "13790": [{
+                "isbn":"9780321897206",
+                "title":"2 P/S Elem Statistics W/ Mystatlab (8 E 12)",
+                "authors": [{"name":"Weiss"}],
+                "price":174.00,
+                "used_price":null,
+                "required":true,
+                "notes":null,
+                "cover_image": "http://ecx.images-amazon.com/images/I/41v6hK8X-7L._SL160_.jpg"
+            }]
+}

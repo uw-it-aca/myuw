@@ -1,0 +1,79 @@
+{
+    "Current":
+    {
+        "Href":"\/student\/v4\/registration.json?year=2013&quarter=spring&curriculum_abbreviation=&course_number=&section_id=&reg_id=9136CCB8F66711D5BE060004AC494FFE&is_active=&instructor_reg_id=",
+        "CourseNumber":null,
+        "CurriculumAbbreviation":null,
+        "InstructorRegID":null,
+        "IsActive":null,
+        "PageSize":null,
+        "PageStart":null,
+        "Quarter":"spring",
+        "RegID":"9136CCB8F66711D5BE060004AC494FFE",
+        "SectionID":null,
+        "Year":"2013"
+    },
+    "Next":null,
+    "PageSize":"10",
+    "PageStart":"1",
+    "Previous":null,
+    "Registrations":
+    [
+        {
+            "Href": "\/student\/v4\/registration\/2013,spring,TRAIN,100,A,9136CCB8F66711D5BE060004AC494FFE.json",
+            "CourseNumber":"100",
+            "CurriculumAbbreviation":"TRAIN",
+            "DuplicateCode":"1",
+            "Instructor":null,
+            "Quarter":"spring",
+            "RegID":"9136CCB8F66711D5BE060004AC494FFE",
+            "SectionID":"A",
+            "Year":"2013"
+        },
+        {
+            "Href": "\/student\/v4\/registration\/2013,spring,TRAIN,101,A,9136CCB8F66711D5BE060004AC494FFE.json",
+            "CourseNumber":"101",
+            "CurriculumAbbreviation":"TRAIN",
+            "DuplicateCode":"1",
+            "Instructor":null,
+            "Quarter":"spring",
+            "RegID":"9136CCB8F66711D5BE060004AC494FFE",
+            "SectionID":"A",
+            "Year":"2013"
+        },
+        {
+            "Href": "\/student\/v4\/registration\/2013,spring,PHYS,121,A,9136CCB8F66711D5BE060004AC494FFE.json",
+            "CourseNumber":"121",
+            "CurriculumAbbreviation":"PHYS",
+            "DuplicateCode":"1",
+            "Instructor":null,
+            "Quarter":"spring",
+            "RegID":"9136CCB8F66711D5BE060004AC494FFE",
+            "SectionID":"A",
+            "Year":"2013"
+        },
+        {
+            "Href": "\/student\/v4\/registration\/2013,spring,PHYS,121,AC,9136CCB8F66711D5BE060004AC494FFE.json",
+            "CourseNumber":"121",
+            "CurriculumAbbreviation":"PHYS",
+            "DuplicateCode":"2",
+            "Instructor":null,
+            "Quarter":"spring",
+            "RegID":"9136CCB8F66711D5BE060004AC494FFE",
+            "SectionID":"AC",
+            "Year":"2013"
+        },
+        {
+            "Href": "\/student\/v4\/registration\/2013,spring,PHYS,121,AQ,9136CCB8F66711D5BE060004AC494FFE.json",
+            "CourseNumber":"121",
+            "CurriculumAbbreviation":"PHYS",
+            "DuplicateCode":"2",
+            "Instructor":null,
+            "Quarter":"spring",
+            "RegID":"9136CCB8F66711D5BE060004AC494FFE",
+            "SectionID":"AQ",
+            "Year":"2013"
+        }
+    ],
+    "TotalCount":"5"
+}
