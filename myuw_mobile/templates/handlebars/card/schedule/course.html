@@ -39,7 +39,7 @@
                     {{#each meetings}} 
                     <tr>
                         {{#if days_tbd }}
-                        <td colspan="2" class="text-muted">Days and times to be arranged</td>
+                        <td colspan="2" class="text-muted" style="font-size:12px;">Days and times to<br/> be arranged</td>
                         {{else}}
                         <td>
                             {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
@@ -53,7 +53,7 @@
                         <td>{{formatTime start_time}} - {{formatTimeAMPM end_time}}</td>
                         {{/if}}
                         {{#if building_tbd}}
-                        <td style="width:100px;" class="text-muted">Room to be arranged</td>
+                        <td style="width:100px; font-size:12px;" class="text-muted">Room to be arranged</td>
                         {{else}}
                         <td style="width:100px;">
                             {{#if latitude}}
