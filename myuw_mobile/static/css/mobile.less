@@ -350,28 +350,27 @@ body {
 
         .card-noncritical-alert { background: rgb(221,229,239); padding: 8px; margin-bottom: 1em; color: #555; text-align: center;
 	        i {font-size: 1.5em; vertical-align: middle; margin-right: .2em;}	        
-			a {padding-left: 2em; color:white; text-decoration: underline;}
+			a { padding-left: 2em; color:white; text-decoration: underline;}
         }
         
         .card-badge-container {
                 
             .card-badge {  padding: 8px 10px 10px 0px; position: relative;
                 
-                .card-badge-label { display: block; font-weight: normal; line-height: 35px; }
-                .card-badge-action { display: block; font-weight: normal; line-height: 35px; margin-top: -10px;
-                    a { display: block; }
+                .card-badge-label { display: block; font-weight: bold; line-height: 35px; /* font-family: 'uni_sansthin_caps'; font-size: 16px; color: @darktan; */ }
+                .card-badge-action { display: block; font-weight: normal; line-height: 35px; margin-top: -10px; 
+                    a { display: block; text-decoration: underline;  color: @darktan; }
                 }
                 
                 .card-badge-value { display: block; font-size: 22px; font-weight: bold; line-height: 35px; }
-                .card-badge-note { font-weight: normal; font-style: italic; color: #888; margin-top: 35px; position: absolute; bottom: -3px; font-size: 13px; }
+                .card-badge-note { font-weight: normal; /*ont-style: italic;*/ color: #888; margin-top: 35px; position: absolute; bottom: -3px; font-size: 12px; }
             }
         }
         
-        .card-related-messages { margin: 1em 0; 
+        .card-related-messages { margin: 1em 0; font-size: 12px;
             
             // override pce message
             .pce-message { color: #888; margin-top: 1em; }
-            
             
         }
         
@@ -383,7 +382,7 @@ body {
             
         }
         
-        ul.unstyled-list, ol.unstyled-list { padding-left: 0px; list-style-type: none; }
+        ul.unstyled-list, ol.unstyled-list { padding-left: 0px; list-style-type: none; line-height: 23px; }
         
         .card-disclosure {  margin-left: -10px; margin-right: -10px; margin-bottom: -10px; margin-top: 1em; padding-left: 10px; border-top: solid 1px #eee; text-transform: uppercase; text-align: center; font-size: .8em;
             a { color: #444; display:block; line-height:40px; }
@@ -461,7 +460,8 @@ body {
         }
     }
     
-     #TextbookCard {
+    // textbook card
+    #TextbookCard {
         
         .card {
             
@@ -474,6 +474,13 @@ body {
             }
 
         }
+     }
+     
+     // HFS card
+     
+     #HFSCard {
+         
+         .card-badge { margin-bottom: 15px; }
      }
      
     // visual schedule

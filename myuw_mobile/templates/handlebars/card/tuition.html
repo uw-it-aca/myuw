@@ -1,7 +1,6 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "tuition_card" %}
-    <div class="row ">
-        <div class="col-xs-12">
+
             <div class="card">
 
                         {{ #if is_pce}}
@@ -27,24 +26,21 @@
                         <!-- end if --> 
                         {{ #unless has_balance }}
                         <!-- if tuition balance is 0 -->
-                        <div class="row card-badge-container">
-                            <div class="col-xs-12">
+                        <div class="card-badge-container">
                                 <div class="card-badge">
                                     <span class="card-badge-label">{{ #if is_pce}}Your PCE tuition has been paid{{ else  }}Your tuition and fees have been paid.{{ /if }}</span>
                                     <span class="card-badge-label"><a href="https://sdb.admin.washington.edu/sisStudents/uwnetid/tuition.aspx">See tuition statement</a></span>
                                 </div>
-                            </div>
                         </div>
 
                         {{ /unless }}
 
                         {{ #if has_balance }}
                         <!-- else, there is a balance -->
-                        <div class="row card-badge-container">
-                            <div class="col-xs-12">
+                        <div class="card-badge-container">
                                 <div class="card-badge clearfix">
                                      <div class="pull-left">
-                                         <span class="card-badge-label" style="font-size: 18px;">You owe</span>
+                                         <span class="card-badge-label">You owe</span>
                                     </div>
                                     <div class="pull-right">
                                         <span class="card-badge-value text-danger">${{ tuition_accbalance }}</span>
@@ -52,18 +48,15 @@
 
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xs-12" style="margin-top:10px;">
                                 <div class="card-badge clearfix">
                                     <div class="pull-left">  
-                                        <span class="card-badge-label" style="font-size: 18px;">Tuition due </span>
+                                        <span class="card-badge-label">Tuition due </span>
                                     </div>
                                     <div class="pull-right">
                                         <span class="card-badge-value"> {{ tuition_date }}</span>
                                         <span class="card-badge-action pull-right">in {{ tuition_date_offset }} days</span>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                         <!-- end if -->
                         {{ /if }}
@@ -79,7 +72,6 @@
                         </div>       
                                        
             </div>
-       </div>      
-    </div>   
+
     
     {% endtplhandlebars %}

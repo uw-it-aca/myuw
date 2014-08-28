@@ -16,47 +16,42 @@
                 </div>
                 {{/if}}
         
-                <div class="row card-badge-container">
+                <div class="card-badge-container">
+
                     {{#if items_loaned }}
-                    <div>    
-                        <div class="card-badge clearfix">     
-                            <div class="pull-left">                   
-                                <span class="card-badge-label" style="font-size: 18px;">Items out</span>
-                                
-                            </div>
-                            <div class="pull-right">
-                                <span class="card-badge-value">{{ items_loaned }} items</span>
-                                <span class="card-badge-action pull-right"><a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount">See account</a></span>
-                            </div>
+                    <div class="card-badge clearfix">     
+                        <div class="pull-left">                   
+                            <span class="card-badge-label">Items out</span>
                             
                         </div>
-                        {{/if}}
+                        <div class="pull-right">
+                            <span class="card-badge-value">{{ items_loaned }} items</span>
+                            <span class="card-badge-action pull-right"><a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount">See account</a></span>
+                        </div>
+                        
                     </div>
+                    {{/if}}
                     
                     {{#if next_due }}        
-                    <div style="margin-top:10px;">
-                        <div class="card-badge clearfix">         
-                            <div class="pull-left"> 
-                                <span class="card-badge-label" style="font-size: 18px;">Next item due</span>
-                            </div>
-                            <div class="pull-right">
-                                <span class="card-badge-value">{{ next_due }}</span>
-                                <span class="card-badge-action pull-right">in 7 days</span>
-                            </div>
+                    <div class="card-badge clearfix">         
+                        <div class="pull-left"> 
+                            <span class="card-badge-label">Next item due</span>
+                        </div>
+                        <div class="pull-right">
+                            <span class="card-badge-value">{{ next_due }}</span>
+                            <span class="card-badge-action pull-right">in 7 days</span>
                         </div>
                     </div>
                     {{/if}}
                         
                     {{#if fines}}
-                    <div style="margin-top:10px;">
-                        <div class="card-badge clearfix">  
-                            <div class="pull-left"> 
-                                <span class="card-badge-label" style="font-size: 18px;">You owe</span>
-                            </div>
-                            <div class="pull-right">
-                                <span class="card-badge-value text-danger">${{ formatPrice fines }}</span> 
-                                <span class="card-badge-action pull-right"><a href="https://p.lib.washington.edu/payfines/">Pay fees</a></span>
-                            </div>
+                    <div class="card-badge clearfix">  
+                        <div class="pull-left"> 
+                            <span class="card-badge-label">You owe</span>
+                        </div>
+                        <div class="pull-right">
+                            <span class="card-badge-value text-danger">${{ formatPrice fines }}</span> 
+                            <span class="card-badge-action pull-right"><a href="https://p.lib.washington.edu/payfines/">Pay fees</a></span>
                         </div>
                     </div>
                     {{/if}}

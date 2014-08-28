@@ -9,63 +9,55 @@
     <div class="card-badge-container">
         
         {{#if hfs_data.student_husky_card}}
-        <div>
             
-            <div class="card-badge clearfix">
-                {{#with hfs_data.student_husky_card}}
-                <div class="pull-left">
-                    <span class="card-badge-label" style="font-size: 18px;">Student Husky Card</span>
-                </div>
-                <div class="pull-right">
-                    <span class="card-badge-value">${{ formatPrice balance }}</span>
-                </div>  
-                <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
-
-                {{/with}}
+        <div class="card-badge clearfix">
+            {{#with hfs_data.student_husky_card}}
+            <div class="pull-left">
+                <span class="card-badge-label">Student Husky Card</span>
             </div>
-            
+            <div class="pull-right">
+                <span class="card-badge-value">${{ formatPrice balance }}</span>
+            </div>  
+            <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
+
+            {{/with}}
         </div>
+            
         {{/if}}
         
         {{#if hfs_data.employee_husky_card}}
-        <div style="margin-top:10px;">
             
-            <div class="card-badge clearfix">
-                {{#with hfs_data.employee_husky_card}}
-                <div class="pull-left">
-                    <span class="card-badge-label" style="font-size: 18px;">Employee Husky Card</span>
-                </div>
-                <div class="pull-right">
-                    <span class="card-badge-value">${{ formatPrice balance }}</span>
-                </div>   
-                <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
-
-                {{/with}}
+        <div class="card-badge clearfix">
+            {{#with hfs_data.employee_husky_card}}
+            <div class="pull-left">
+                <span class="card-badge-label">Employee Husky Card</span>
             </div>
-            
+            <div class="pull-right">
+                <span class="card-badge-value">${{ formatPrice balance }}</span>
+            </div>   
+            <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
+
+            {{/with}}
         </div>
+            
         {{/if}}
         
         {{#if hfs_data.resident_dining}}
-        <div style="margin-top:10px;">
-
-            <div class="card-badge clearfix">
-                {{#with hfs_data.resident_dining}}
-                <div class="pull-left">
-                    <span class="card-badge-label" style="font-size: 18px;">Resident Dining</span>
-                </div>
-                <div class="pull-right">
-                    <span class="card-badge-value">${{ formatPrice balance }}</span>
-                </div>
-                <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
-                {{/with}}
+        <div class="card-badge clearfix">
+            {{#with hfs_data.resident_dining}}
+            <div class="pull-left">
+                <span class="card-badge-label">Resident Dining</span>
             </div>
-            
+            <div class="pull-right">
+                <span class="card-badge-value">${{ formatPrice balance }}</span>
+            </div>
+            <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
+            {{/with}}
         </div>
         {{/if}}
         
-        <div class="card-badge pull-right">
-            <span class="card-badge-action" style=" margin-top:0;"><a href="{{ hfs_data.student_husky_card.add_funds_url }}" style="display:block; line-height:40px;">Add funds to your accounts</a></p>
+        <div class="card-badge pull-right" style="margin:0; padding-bottom:0;">
+            <div class="card-badge-action"><a href="{{ hfs_data.student_husky_card.add_funds_url }}">Add funds to your accounts</a></p>
         </div>
     
     </div>
