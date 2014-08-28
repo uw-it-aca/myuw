@@ -295,38 +295,32 @@ body {
         }        
     }
     
-    .header-bar-thin { height: 40px;
+    .header-bar-thin { height: 45px;
         
-        .header-logo {font-family: 'encode_sans_normalblack'; display: inline-block; margin: 0; padding: 0;  font-size:18px; color: @myuw; text-transform: uppercase; position: absolute; left: 5px; }
-        .header-w { position: absolute; bottom: -7px; right: 10px; line-height: 0; }
+        .header-logo {font-family: 'encode_sans_normalblack'; display: inline-block; margin: 0; padding: 0;  font-size:18px; color: @myuw; position: absolute; left: 5px; line-height: 40px; }
+       
+        .header-w { font-family: 'uni_sansthin_caps'; font-size: 20px; color: #aaa; line-height: 45px;
+            a { color: @lighttan; }
+        }
         
+        .header-email {  font-family: 'uni_sansthin_caps'; font-size: 14px; line-height: 45px; 
+            a {color: #fff; }
+        }
     }
     
 }
 
-#app_navigation { margin-top: 10px;
+/*** notice banner ***/
+#app_notices { margin: 15px 10px; position: relative;
     
-    .netid-header { font-family: 'uni_sansthin_caps'; display: block; text-transform: uppercase; font-size: 18px; line-height: 30px;  }
-    .netid-link { font-size: 12px; display: inline-block; line-height: 30px; position: absolute; top: 20px; white-space: nowrap; text-decoration: underline; }
-    
-    .notice-header { font-family: 'uni_sansthin_caps'; display: block; text-transform: uppercase; font-size: 18px; line-height: 30px;  }
+    .notice-header { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; display: block; line-height: 30px; margin: 0; }
     .notice-information { font-size: 12px; display: inline-block; line-height: 30px; position: absolute; top: 20px; white-space: nowrap; text-decoration: underline;  }
 }
 
 /*** content ***/
 
 #app_content { min-height: 200px; /*background-color: #eee;*/ 
-        
-    // notice bar
-    .notice-bar { background: #fff; margin-top: 10px; margin-bottom: 0px; /*border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;*/ 
-        
-        .notice-nav-item { font-family: 'uni_sansthin_caps'; display: block; text-transform: uppercase; font-size: 18px; line-height: 30px; }
-        .notice-nav-link { font-size: 12px; display: inline-block; line-height: 30px; position: absolute; top: 20px; white-space: nowrap; text-decoration: underline; }
-        
-        .notice-header { color: black; margin: 0; font-size: 1.8em;}
-
-    }
-            
+          
     // cards
     .card {  
         
@@ -811,15 +805,8 @@ body {
         
 		.notice-count { }
 
-		.notice-header-metadata {
-			margin-top: -0.9em;
-			color: black;
-			font-size:.8em;
-		}
-
+		.notice-header-metadata { font-size: 12px; margin-top: -8px; color: #777; }
 		
-		
-	    
 		.disclosure {
 			border-bottom: 1px solid #ccc; 
 			padding: 5px 0;
