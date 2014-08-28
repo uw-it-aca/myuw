@@ -84,6 +84,8 @@ def _get_official_campuses(campuses):
     official_campuses = {'official_seattle': False,
                          'official_bothell': False,
                          'official_tacoma': False}
+    if campuses is None:
+        return {}
     for campus in campuses:
         if campus == "Seattle":
             official_campuses['official_seattle'] = True
