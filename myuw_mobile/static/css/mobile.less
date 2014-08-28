@@ -311,7 +311,7 @@ body {
 }
 
 /*** notice banner ***/
-#app_notices { margin: 15px 10px; position: relative;
+#app_notices { margin: 15px 0 20px 0; position: relative;
     
     .notice-header { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; display: block; line-height: 30px; margin: 0; }
     .notice-information { font-size: 12px; display: inline-block; line-height: 30px; position: absolute; top: 20px; white-space: nowrap; text-decoration: underline;  }
@@ -329,7 +329,7 @@ body {
         position: relative; 	
         background-color: #fff;
     	/*box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 3px 0px;*/
-    	margin-top: 1.1em;
+    	margin-top: 20px;
     	padding: 10px;
     	
 		h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; margin-top: 10px; margin-bottom: 15px; color: @darktan; }
@@ -737,6 +737,10 @@ body {
         .course-info { text-align:center; color:#fff; padding:2px; }
     }
     
+    // error container 
+    .error-container {
+        h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; }
+    }
     
     
     // textbooks page
@@ -975,7 +979,7 @@ body {
 
 /*** bootstrap overrides ***/
 
-.container { margin-left: 5px; margin-right: 5px; padding-left: 5px; padding-right: 5px; 
+.container {
     
     // make margins auto at 768px
      @media @medium {
