@@ -1,8 +1,10 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "notice_banner" %}
     
-    <div id="app_notices" class="container">
+    <div id="app_notices">
+        <div class="container">
         <h2 class="notice-header" style="color:#777;" role="alert">Notices</h2>
         <a class="notice-information text-danger" href="/mobile/notices/" title="Navigate to Notices">{{ total_unread }} unread and {{ total_critical }} critical notices</a>
+        </div>
     </div>        
 {% endtplhandlebars %}
