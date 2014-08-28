@@ -1,3 +1,4 @@
+{% load static %}
 {% load templatetag_handlebars %}
     {% tplhandlebars "nav-sub" %}
             
@@ -5,7 +6,7 @@
             <div class="container header-bar-thin clearfix">
                 <div class="header-w">
                     <a href="/mobile/landing" title="Return to Home">
-                        <span style="border-right: solid 1px #999; padding-right: 10px;"><img src="/static/images/w-logo-white.png" style="width:30px;"></span>
+                        <span style="border-right: solid 1px #999; padding-right: 10px;"><img src="{% static 'images/w-logo-white.png' %}" style="width:30px;"></span>
                         <span style="display:inline-block; margin-left:5px;">MYNETID</span>
                     </a>
                 </div>
