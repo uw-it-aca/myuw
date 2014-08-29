@@ -18,6 +18,9 @@ def get_canvas_enrolled_courses():
         return _indexed_by_course_id(
             CanvasEnrollments().get_enrollments_for_regid(
                 get_regid_of_current_user()))
+    except AttributeError:
+        #If course is not in canvas, skip
+        pass
     except Exception as ex:
         log_exception(logger,
                       'get_canvas_enrolled_courses',
