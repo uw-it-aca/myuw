@@ -34,7 +34,8 @@ var LibraryCard = {
     },
 
     show_error: function() {
-        LibraryCard.dom_target.html(CardWithError.render("Library Account"));
+        // don't show card if no account
+        LibraryCard.dom_target.html('');
     }
 
 };
