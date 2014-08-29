@@ -14,14 +14,15 @@ var Notices = {
             expanded = false;
 
         notices = Notices.get_notices_by_date();
-        notices['holds'] = Notices.get_notices_for_category("Holds");
-        notices['legal'] = Notices.get_notices_for_category("Legal");
 
         var total_notices = 0;
         for (var group in notices) {
             total_notices += notices[group].notices.length;
         }
         notices['total_notices'] = total_notices;
+        notices['holds'] = Notices.get_notices_for_category("Holds");
+        notices['legal'] = Notices.get_notices_for_category("Legal");
+
         source = $("#notices").html();
         template = Handlebars.compile(source);
         $("#main-content").html(template(notices));
@@ -173,9 +174,11 @@ var Notices = {
 
         for (i = 0; i < notices.length; i += 1) {
             notice = notices[i];
+            var notice_has_date = false;
             if (notice['attributes'] !== null && notice['attributes'].length > 0) {
                 for (j = 0; j < notice['attributes'].length; j += 1){
                     if (notice['attributes'][j]['name'] === "Date"){
+                        notice_has_date = true;
                         date = notice['attributes'][j]['value'].replace(/-/g, "/");
                         date = date.replace("+00:00", " GMT");
                         date = new Date(date);
@@ -191,6 +194,9 @@ var Notices = {
                         }
                     }
                 }
+            }
+            if (!notice_has_date) {
+                notices_future.push(notice);
             }
         }
         return {"today":
