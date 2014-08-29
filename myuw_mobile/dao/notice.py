@@ -230,7 +230,7 @@ NOTICE_MAPPING = {
           },
           "StudentDAD_QtrBegin": {
               "myuw_category": "",
-              "location_tags": None,
+              "location_tags": ['quarter_begins'],
               "critical": False
           }
 }

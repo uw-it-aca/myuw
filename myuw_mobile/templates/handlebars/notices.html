@@ -45,7 +45,7 @@
 	            <div id="collapseOne" class="slide-hide clearfix" aria-hidden="true">
 	                <div class="disclosure-content">
 	                    {{ #each holds.notices }}
-	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
+	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 		                    <div class="inner-notice-container">
 	                            {{ #if is_critical }}
 								<i class="fa fa-exclamation-triangle critical-icon"></i>
@@ -89,7 +89,7 @@
 	            <div id="collapseTwo" class="slide-hide" aria-hidden="true">
 	                <div class="disclosure-content"> 
 	                    {{# each today.notices }}
-	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
+	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 		                    <div class="inner-notice-container">
 	                            {{ #if is_critical }}
 								<i class="fa fa-exclamation-triangle critical-icon"></i>
@@ -135,7 +135,7 @@
 	            <div id="collapseThree" class="slide-hide" aria-hidden="true">
 	                <div class="disclosure-content">
 	                    {{# each week.notices }}
-	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
+	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 		                    <div class="inner-notice-container">
 	                            {{ #if is_critical }}
 								<i class="fa fa-exclamation-triangle critical-icon"></i>
@@ -179,7 +179,7 @@
 	            <div id="collapseFour" class="slide-hide" aria-hidden="true">
 	                <div class="disclosure-content">
 	                    {{# each next_week.notices }}
-	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
+	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 		                    <div class="inner-notice-container unread-notice">
 	                            {{ #if is_critical }}
 								<i class="fa fa-exclamation-triangle critical-icon"></i>
@@ -223,7 +223,7 @@
 	            <div id="collapseFive" class="slide-hide" aria-hidden="true">
 	                <div class="disclosure-content"> 
 	                    {{# each future.notices }}
-	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
+	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 		                    <div class="inner-notice-container">
 		                        <div class="notice-category">
 		                            {{ category }}
@@ -264,7 +264,7 @@
 	            <div id="collapseSix" class="slide-hide" aria-hidden="true">
 	                <div class="disclosure-content"> 
 	                    {{# each legal.notices }}
-	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
+	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 		                    <div class="inner-notice-container">
 		                        <div class="notice-category">
 		                            {{ category }}
