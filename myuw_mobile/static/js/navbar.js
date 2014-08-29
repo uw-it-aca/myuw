@@ -7,6 +7,6 @@ var Navbar = {
             source = $("#nav").html();
         }
         template = Handlebars.compile(source);
-        $("#navbar").html(template());
+        $("#navbar").html(template({'netid': window.user.netid}));
     }
 }
