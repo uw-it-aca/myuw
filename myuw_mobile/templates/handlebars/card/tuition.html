@@ -24,18 +24,19 @@
                             </div>
                         {{ /if }}
                         <!-- end if --> 
+                        
                         {{ #unless has_balance }}
                         <!-- if tuition balance is 0 -->
                         <div class="card-badge-container">
-                                <div class="card-badge">
-                                    <span class="card-badge-label">{{ #if is_pce}}Your PCE tuition has been paid{{ else  }}Your tuition and fees have been paid.{{ /if }}</span>
-                                    <span class="card-badge-label"><a href="https://sdb.admin.washington.edu/sisStudents/uwnetid/tuition.aspx">See tuition statement</a></span>
-                                </div>
+                            <div class="card-badge">
+                                <span class="card-badge-label" style="line-height:20px;">{{ #if is_pce}}Your PCE tuition<br/> has been paid{{ else  }}Your tuition and fees<br/> have been paid{{ /if }}</span>
+                                <div class="card-badge-action" style="margin-top:10px; text-align:right;"><a href="https://sdb.admin.washington.edu/sisStudents/uwnetid/tuition.aspx">See tuition statement</a></div>
+                            </div>
                         </div>
-
                         {{ /unless }}
-
+                        
                         {{ #if has_balance }}
+                        
                         <!-- else, there is a balance -->
                         <div class="card-badge-container">
                                 <div class="card-badge clearfix">
@@ -60,10 +61,8 @@
                         </div>
                         <!-- end if -->
                         {{ /if }}
-                        
-                        
-                        <div class="card-related-messages">
 
+                        <div class="card-related-messages">
                             <p><a href="https://sdb.admin.washington.edu/sisStudents/uwnetid/release.aspx">Give access to your tuition account and financial aid information</a> to parents or other third parties.</p>
                             
                             {{ #each pce_tuition_dup }}
