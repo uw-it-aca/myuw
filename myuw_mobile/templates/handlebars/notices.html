@@ -12,17 +12,9 @@
 		      <a id="expand_collapse" href="#" title="Show all notice information">Expand all</a>
 		    </div>
 		</div>	  
-		
-	    <!-- TODO: implement display logic for zero notices condition -->
-	    
-	    <!-- IF NO NOTICES -->
-        <div class="card todo">
-            <h2>No Notices Found</h2>
-            <p>You don&rsquo;t appear to have any notices to display at the moment.</p>
-        </div>
 
-	    <!-- ELSE SHOW THE NOTICES -->
-	    <div id="accordion" class="notice-accordian">
+	    {{ #if total_notices }}
+        <div id="accordion" class="notice-accordian">
 	    
 	        {{ #if holds.notices }}
 	        <!-- collapsy 1: critical -->
@@ -281,6 +273,12 @@
 	        {{ /if }}
 	      <!-- end collapsy legal -->
     </div>
+        {{ else }}
+            <div class="card">
+                <h2>No Notices Found</h2>
+                <p>You don&rsquo;t appear to have any notices to display at the moment.</p>
+            </div>
+        {{ /if }}
 </div> 
 <!-- end notices container  --> 
  
