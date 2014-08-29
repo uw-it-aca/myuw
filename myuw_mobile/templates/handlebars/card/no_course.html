@@ -1,13 +1,11 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "card_with_no_course" %}
-<div class="row">
-    <div class="col-xs-12">
+
         <div class="card">
             <h3>No Registration Found</h3>
             <p>You don't appear to be registered for credit courses for <span>{{ term }}</span>.</p>
             <p>If you are not registered, you can <a href="../category/academics" class="todo">access some resources about registering</a>.</p>
             <p>If you think this is an error, please <a href="/cgi-bin/contactmyuw.cgi" target="_blank" title="Contact MyUW">contact MyUW</a>.</p>
         </div>
-    </div>
-</div>
+
 {% endtplhandlebars %}
