@@ -8,9 +8,11 @@
 	    <h1>Notices</h1>
 		<div class="notice-header-metadata">
 		    <span class="notice-count">{{ total_notices }} notices total</span>
+		    {{ #if total_notices }}
 		    <div class="toggle">
 		      <a id="expand_collapse" href="#" title="Show all notice information">Expand all</a>
 		    </div>
+		    {{ /if }}
 		</div>	  
 
 	    {{ #if total_notices }}
@@ -273,12 +275,13 @@
 	        {{ /if }}
 	      <!-- end collapsy legal -->
     </div>
-        {{ else }}
-            <div class="card">
-                <h2>No Notices Found</h2>
-                <p>You don&rsquo;t appear to have any notices to display at the moment.</p>
-            </div>
-        {{ /if }}
+    {{ else }}
+    <div class="card">
+        <h2>No Notices Found</h2>
+        <p>You don&rsquo;t appear to have any notices to display at the moment.</p>
+    </div>
+    {{ /if }}
+    
 </div> 
 <!-- end notices container  --> 
  
