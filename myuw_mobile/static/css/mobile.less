@@ -718,6 +718,7 @@ body {
     	bottom: 0px;
     	color: #555;
     	text-align: center;
+    	white-space: nowrap;
     	a { 
     			color: #0088cc;
     	}
@@ -811,10 +812,9 @@ body {
 		.notice-count { }
 
 		.notice-header-metadata { font-size: 12px; margin-top: -8px; color: #777; }
+		.notice-accordian { margin: 20px 0; }
 		
-		.disclosure {
-			border-bottom: 1px solid #ccc; 
-			padding: 5px 0;
+		.disclosure { border-top: 1px solid #ddd;
 			
 			.disclosure-heading { 
 	            background: none;  
@@ -827,8 +827,8 @@ body {
     	       	
     	       	.disclosure-meta {  position: absolute; top: 50%; left: 0; right: 0; z-index: 1; line-height: 30px; margin-top: -15px;
         	       	
-        	       	.disclosure-unread { background-color: #555555; font-weight: 300; font-size:1em; position: absolute; right: 25px; top: 5px; }
-        	       	.disclosure-critical { position: absolute; bottom: -23px; color: #888; }
+        	       	.disclosure-unread { background-color: #555555; font-weight: 300; font-size:1em; position: absolute; right: 25px; top: 5px; z-index: 9999; }
+        	       	.disclosure-critical { position: absolute; bottom: -23px; color: #888; font-size: 12px; }
     	       	}
     	    }
     	    
@@ -844,13 +844,14 @@ body {
         			.disclosure-unread { background-color: #af4b1a; }
                 }
     	    }
+    	    
+    	    .disclosure-content {
+        	    padding: 0 15px 15px 15px;
+    	    }
 
 		}
 		
-	    .notice-container { 
-	        
-	        padding: 1px 0; 
-	        border-top: 1px dotted #bbb; 
+	    .notice-container {
 
 	        .critical-icon {
 		        display: inline;
@@ -862,33 +863,25 @@ body {
 	    .inner-notice-container {
 			margin: 0px -4px;
 			padding: 9px 4px;
+			border-top: 1px dotted #bbb; 
 	    }
 	
 		 // - class for read notices - //
-		.unread-notice {
-			background: rgb(236,232,196);
-	        color: black;		
-		}
+		.unread-notice { background: @lighttan; }
 
-	    .notice-category { 
-	        font-size: .8em; 
-	        /*color: rgb(108,108,108);*/
-	        color: silver;
-	        display: inline; 
-	    } 
+	    .notice-category { font-size: 12px; color: #777; display: block; margin-bottom: 5px; } 
 	    
-	    .notice-content { 
-	        font-weight: normal; 
+	    .notice-content { font-weight: normal; 
 	        
-	        .notice-title {  color: fuchsia; }
-	        .notice-body-with-title { color: lime; }
-	        .notice-body-without-title { color: purple; }
-	        .notice-list { color: olive; }
-	        .date { color: maroon; }
-	        a { color: blue; text-decoration: underline; }
+	        .notice-title {  color: #222; font-weight: bold; display: block; margin-bottom: 5px; }
+	        .notice-body-with-title { color: #444; }
+	        .notice-body-without-title { }
+	        .notice-list { margin-top: 5px; }
+	        .date { }
+	        a { text-decoration: underline; }
 	    }
 	        
-	    .hold-container, { 
+	    .hold-container { 
 	        padding: 5px 0 5px 30px;
 	    }
 		
@@ -897,22 +890,6 @@ body {
 			display:inline-block; 
 		}
 	}
-	
-	/*	
-	.disclosure-title-metadata {
-		display: block;
-		clear:both;
-		font-size: .8em;
-	}  		
-	
-	.badge {
-		background-color: #555555;
-		font-weight: 300;
-		font-size:1em;
-	}
-
-    */
-
 
 }
 

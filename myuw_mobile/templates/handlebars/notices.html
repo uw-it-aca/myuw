@@ -14,7 +14,8 @@
 		</div>	  
 		  
 	    <!-- collapsy areas -->
-	    <div id="accordion">
+	    <div id="accordion" class="notice-accordian">
+	    
 	        {{ #if holds.notices }}
 	        <!-- collapsy 1: critical -->
 	        <div class="disclosure">
@@ -34,7 +35,7 @@
 	            
 	            <!-- collapsy 1 content -->
 	            <div id="collapseOne" class="slide-hide clearfix" aria-hidden="true">
-	                <div class="panel-body">
+	                <div class="disclosure-content">
 	                    {{ #each holds.notices }}
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
 		                    <div class="inner-notice-container">
@@ -78,7 +79,7 @@
 	            
 	            <!-- collapsy 2 content -->
 	            <div id="collapseTwo" class="slide-hide" aria-hidden="true">
-	                <div class="panel-body"> 
+	                <div class="disclosure-content"> 
 	                    {{# each today.notices }}
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
 		                    <div class="inner-notice-container">
@@ -124,7 +125,7 @@
 	            
 	            <!-- collapsy 3 content -->
 	            <div id="collapseThree" class="slide-hide" aria-hidden="true">
-	                <div class="panel-body">
+	                <div class="disclosure-content">
 	                    {{# each week.notices }}
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
 		                    <div class="inner-notice-container">
@@ -168,7 +169,7 @@
 	            
 	            <!-- collapsy 4 content -->
 	            <div id="collapseFour" class="slide-hide" aria-hidden="true">
-	                <div class="panel-body">
+	                <div class="disclosure-content">
 	                    {{# each next_week.notices }}
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
 		                    <div class="inner-notice-container unread-notice">
@@ -212,7 +213,7 @@
 	            
 	            <!-- collapsy 5 content -->
 	            <div id="collapseFive" class="slide-hide" aria-hidden="true">
-	                <div class="panel-body"> 
+	                <div class="disclosure-content"> 
 	                    {{# each future.notices }}
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
 		                    <div class="inner-notice-container">
@@ -253,7 +254,7 @@
 	            
 	            <!-- collapsy legal content -->
 	            <div id="collapseSix" class="slide-hide" aria-hidden="true">
-	                <div class="panel-body"> 
+	                <div class="disclosure-content"> 
 	                    {{# each legal.notices }}
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }}">
 		                    <div class="inner-notice-container">
