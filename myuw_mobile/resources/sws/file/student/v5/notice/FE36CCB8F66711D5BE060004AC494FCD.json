@@ -52,7 +52,7 @@
                     "Name": "Date",
                     "DataType": "date",
                     "Value": "20140117"
-                }
+                },
                 {
                     "Name": "Campus",
                     "DataType": "string",
@@ -97,7 +97,7 @@
             "NoticeCategory": "StudentGEN",
             "NoticeContent": "<span class=\"notice-title\">About Peer-to-Peer File-Sharing and Copyright Infringement</span><span class=\"notice-body-with-title\">Under copyright law it is illegal to download or share copyrighted materials such as music or movies without the permission of the copyright owner. Your actions when downloading or sharing files are traceable and could result in a significant financial penalty to you. For more information, go to the <a href=\"http://www.washington.edu/students/gencat/policy/p2pshare.html\">Peer-to-Peer File-Sharing and Copyright Infringement</a> page in the Student Guide.</span>",
             "NoticeType": "RIAA"
-        }
+        },
         {
             "NoticeAttributes": [],
             "NoticeCategory": "NewStudentGEN",
