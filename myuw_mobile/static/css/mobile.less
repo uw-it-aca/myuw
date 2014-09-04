@@ -282,10 +282,11 @@ body {
 }
 
 /*** notice banner ***/
-#app_notices { margin: 15px 0 20px 0; position: relative;
-    
-    .notice-header { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; display: block; line-height: 30px; margin: 0; }
-    .notice-information { font-size: 12px; display: inline-block; line-height: 30px; position: absolute; top: 20px; white-space: nowrap; text-decoration: underline;  }
+#app_notices { margin: 15px 0 0px 0; position: relative; border-bottom: 1px solid #ddd; padding-bottom: 20px; 
+    .notice-header { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; line-height: 30px; margin: 0; }
+       .badge { background-color: white; color:#999; font-weight:normal; border:1px solid #999; float:right; display: inline-block; margin: 5px 0;}
+       h2 {display: inline-block;}
+    .notice-information { font-size: 11px; display: block; white-space: nowrap; margin-top: -7px;}
 }
 
 /*** content ***/
@@ -299,7 +300,7 @@ body {
         border-color: #e5e6e9 #dfe0e4 #d0d1d5;
         position: relative; 	
         background-color: #fff;
-    	/*box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 3px 0px;*/
+   	    box-shadow: rgba(0, 0, 0, 0.25) 1px 1px 2px -1px;
     	margin-top: 20px;
     	padding: 10px;
     	
