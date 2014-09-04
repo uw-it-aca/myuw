@@ -2,15 +2,10 @@
     "Notices": [
         {
             "NoticeAttributes": [
-                {
-                    "Name": "Campus",
-                    "DataType": "string",
-                    "Value": "Seattle"
-                },
                 {       
                     "Name": "Date",
                     "DataType": "date",
-                    "Value": "yesterday"
+                    "Value": "week"
                 }
             ],
             "NoticeCategory": "StudentALR",
@@ -73,44 +68,11 @@
                     "Name": "Date",
                     "DataType": "date",
                     "Value": "week"
-                },
-                {
-                    "Name": "DisplayBegin",
-                    "DataType": "date",
-                    "Value": "yesterday"
-                },
-                {
-                    "Name": "End",
-                    "DataType": "date",
-                    "Value": "week"
-                },
-                {
-                    "Name": "Quarter",
-                    "DataType": "string",
-                    "Value": "Summer"
-                }
-            ],
-            "NoticeCategory": "StudentALR",
-            "NoticeContent": "<span class=\"notice-title\">Pre-Registration Requirement</span><span class=\"notice-body-with-title\">Beginning one week prior to each quarter's registration period, you can make all the required Notices and Insurance/Optional Charges selections. You will then be able to go directly into Web Registration when your priority registration period begins. If you have not already done so, <a href=\"https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp\">go to the Insurance&#470Optional Charges</a> services now to complete these requirements prior to registering for summer quarter.</span>",
-            "NoticeType": "PreRegNow"
-        },
-        {
-            "NoticeAttributes": [
-                {
-                    "Name": "Date",
-                    "DataType": "date",
-                    "Value": "week"
                 }
             ],
             "NoticeCategory": "StudentALR",
             "NoticeContent": "<span class=\"notice-title\">Pre-Registration Requirement</span><span class=\"notice-body-with-title\">Beginning one week prior to each quarter's registration period you can make all the required Notices and Insurance&#47Optional Charges selections. You will then be able to go directly into Web Registration when your priority registration period begins. If you have not already done so <a href=\"https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp\">go to the Insurance&#47Optional Charges</a> services now to complete these requirements prior to registering for autumn quarter.</span>",
             "NoticeType": "PreRegNow"
-        },
-        {
-            "NoticeAttributes": [],
-            "NoticeCategory": "StudentALR",
-            "NoticeContent": "<p>Online ISS information session required before registration</p>All new international students are required to complete the <a href='https://catalysttools.washington.edu/webq/survey/torre/79003'>International Student Services(ISS) Online Information Session</a> before registering for classes. You will need your UW NetID and password to access the online ISS information session. After you arrive on campus the International Student Services(ISS) must collect copies of your immigration documents.",
-            "NoticeType": "IntlStuCheckIn"
         },
         {
             "NoticeAttributes": [],
