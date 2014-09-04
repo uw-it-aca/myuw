@@ -255,56 +255,27 @@ body {
 }
 
 
-
-
 /*** header ***/
 
 #app_header { background: @uwpurple; overflow: hidden; position: relative;
     
-    // header bar
-    .header-bar { /*padding: 0px !important;*/ height: 70px;
-
-        .header-logo { display: inline-block; margin: 0; padding: 0;  font-size:32px; color: #eee; text-transform: lowercase; position: absolute; left: 80px;
-            
-            /*font-family: 'encode_sans_normalblack';*/
-            font-family: 'uni_sansthin_caps';
-            
-            /* greyscale */
-            /**
-            -webkit-filter: grayscale(100%);
-            -moz-filter: grayscale(100%);
-            filter: grayscale(100%);
-            **/
-        }
+    // header bar    
+    .header-bar { height: 80px;
         
-        .header-w { position: absolute; bottom: -7px; right: 10px; line-height: 0; }
-        
-        .header-menu { color: #fff; margin-left: 1em;}
-        
-        .header-email { position: relative; color: #fff;
-            
-            .header-email-link { display:inline-block; line-height:60px; color: #fff; }
-            .header-email-menu { line-height:40px; color: red; padding: 8px; top:40px !important; 
-                //li:first-child { color:#bbb; line-height: 20px; padding-left: 20px; font-size: 80%; text-transform: uppercase; }
-                li { padding: 0;
-                    a { padding: 0; line-height: 35px; color: #428bca;
-                        i { color: #aaa; width:17px; text-align:center; }
-                    }
-                }
-            }        
-        }        
-    }
-    
-    .header-bar-thin { height: 45px;
-        
-        .header-logo {font-family: 'encode_sans_normalblack'; display: inline-block; margin: 0; padding: 0;  font-size:18px; color: @myuw; position: absolute; left: 5px; line-height: 40px; }
+        .header-myuw {font-family: 'encode_sans_normalblack'; display: inline-block; margin: 0; padding: 0;  font-size:18px; color: @myuw;  line-height: 30px; }
        
-        .header-w { font-family: 'uni_sansthin_caps'; font-size: 20px; color: #aaa; line-height: 45px;
-            a { color: @lighttan; display: inline-block; line-height: 45px; }
+        .header-w { position:absolute; right:10px; bottom: 0; }
+        
+        .header-netid { font-family: 'uni_sansthin_caps'; font-size: 30px; position: absolute; bottom: 0; left: 10px;
+            a { color: @lighttan; }
         }
         
-        .header-email { /*font-family: 'uni_sansthin_caps';*/ font-size: 12px; line-height: 45px; 
-            a { color: #fff; display: inline-block; line-height: 45px; }
+        .header-resources { display: inline-block; font-size: 12px; line-height: 30px; margin-left: 20px;
+            a { color: #fff; display: inline-block; line-height: 30px; }
+        }
+
+        .header-email { display: inline-block; font-size: 12px; line-height: 30px; 
+            a { color: #fff; display: inline-block; line-height: 30px; }
         }
     }
     
