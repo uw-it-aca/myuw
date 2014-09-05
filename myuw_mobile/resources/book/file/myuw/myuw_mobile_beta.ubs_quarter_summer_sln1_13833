@@ -1,0 +1,12 @@
+{
+    "13833": [{
+                "isbn":"9781256396062",
+                "title":"2 P/S Tutorials In Introductory Physics",
+                "authors": [{"name":"Mcdermott"}],
+                "price":58.00,
+                "used_price":null,
+                "required":true,
+                "notes":null,
+                "cover_image": null
+            }]
+}
