@@ -3,7 +3,7 @@
 var Notices = {
     show_notices: function () {
         "use strict";
-        Navbar.render_navbar("nav-sub");
+        //Navbar.render_navbar("nav-sub");
         WSData.fetch_notice_data(Notices.render_notices);
         UwEmail.render_init();
     },
