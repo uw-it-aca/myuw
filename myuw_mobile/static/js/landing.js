@@ -1,6 +1,6 @@
 var Landing = {
     render: function() {
-        Navbar.render_navbar();
+        //Navbar.render_navbar();
         showLoading();
         UwEmail.render_init();
         Landing.make_html();
@@ -21,7 +21,6 @@ var Landing = {
                      TuitionCard,
                      LibraryCard,
                      RegStatusCard];
-
 
         Cards.load_cards_in_order(cards, $("#landing_content"));
 
