@@ -260,26 +260,32 @@ body {
 #app_header { background: @uwpurple; overflow: hidden; position: relative;
     
     // header bar    
-    .header-bar { height: 80px; position: relative;
+    .header-bar { /*height: 80px;*/ position: relative;
         
-        .header-myuw { font-family: 'encode_sans_normalsemibold'; display: inline-block; margin: 0; padding: 0;  font-size:20px; color: @myuw;  line-height: 30px; 
+        .header-myuw { font-family: 'encode_sans_normalsemibold'; display: inline-block; margin: 0; padding: 0;  font-size:16px; color: @myuw;  line-height: 30px; 
             a { color: @lighttan; }
             span { color: darken(@lighttan, 20%); }
         }
        
-        .header-w { position:absolute; right:10px; bottom: -3px; }
-        
-        .header-netid { font-family: 'uni_sansthin_caps'; font-size: 30px; position: absolute; bottom: 0px; left: 10px; color: #fff; text-transform: uppercase; }
-        
+                
         .header-resources { display: inline-block; font-size: 12px; line-height: 30px; margin-left: 10px;
-            i { color: lighten(@uwpurple, 15%);  }
+            i { color: lighten(@uwpurple, 10%);  }
             a { color: @lighttan; display: inline-block; line-height: 30px; }
         }
 
         .header-email { display: inline-block; font-size: 12px; line-height: 30px; 
-            i { color: lighten(@uwpurple, 15%); }
+            i { color: lighten(@uwpurple, 10%); }
             a { color: @lighttan; display: inline-block; line-height: 30px; }
         }
+    }
+    
+    .header-cover { height: 70px; background: lighten(@uwpurple, 2%);
+        
+        .header-w { position:absolute; right:10px; bottom: -3px; }
+        .header-netid { /*font-family: 'Roboto', sans-serif; font-weight: 300;*/ font-family: 'uni_sansthin_caps'; font-size: 28px; position: absolute; bottom: 0px; left: 10px; color: @lighttan; text-transform: uppercase; 
+            /*text-shadow: 1px 0px 7px rgba(150, 150, 150, 1);*/
+        }
+
     }
     
 }
