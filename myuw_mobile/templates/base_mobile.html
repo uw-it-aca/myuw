@@ -44,7 +44,7 @@
     
     <div id="app_header" role="navigation">
         
-        <div class="header-bar" style="height:30px;" >
+        <div class="header-bar">
             <div class="container clearfix">
                 <div class="pull-left header-myuw"><a href="/mobile/landing" title="Return to Home">MY<span>UW</span></a></div>
                 <div class="pull-right">
@@ -55,10 +55,10 @@
         </div>
             
         <div class="header-cover">
-            <div class="header-netid">
-                <span style="display:inline-block; margin-left:5px;">{{ user.netid }}</span>
+            <div class="container clearfix" style="position:relative;height:50px;">
+                <div class="header-netid"><span style="display:inline-block; margin-left:5px;">{{ user.netid }}</span></div>
+                <div class="header-w"><img src="{% static 'images/w-logo-white.png' %}"></div>
             </div>
-            <div class="header-w"><img src="{% static 'images/w-logo-white.png' %}"></div>
         </div>
             
     </div>

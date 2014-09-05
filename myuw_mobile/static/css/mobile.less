@@ -259,8 +259,8 @@ body {
 
 #app_header { background: @uwpurple; overflow: hidden; position: relative;
     
-    // header bar    
-    .header-bar { /*height: 80px;*/ position: relative;
+    // header bar (thin)    
+    .header-bar { position: relative; height: 30px;
         
         .header-myuw { font-family: 'encode_sans_normalsemibold'; display: inline-block; margin: 0; padding: 0;  font-size:16px; color: @myuw;  line-height: 30px; 
             a { color: @lighttan; }
@@ -278,6 +278,7 @@ body {
         }
     }
     
+    // header cover (purple)
     .header-cover { height: 50px; background: lighten(@uwpurple, 2%);
         
         .header-w { position:absolute; right:15px; bottom: -3px; 
