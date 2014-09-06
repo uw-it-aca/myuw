@@ -24,7 +24,7 @@
 
                 <div class="disclosure-heading disclosure-heading-critical clearfix">
                 	<!-- collapsy 1 header -->      
-    	            <a class="slide-link" href="#" aria-controls="collapseOne" title="Show more notice information"><h3 class="disclosure-title">{{ holds.critical_count }} Critical</h3></a>   
+    	            <a class="slide-link" href="#" aria-controls="collapseOne" title="Show more notice information"><h3 class="disclosure-title">{{ holds.critical_count }} Critical</h3></a>
     	            
 					<div class="disclosure-meta clearfix">
                         {{ #if holds.unread_count }}
@@ -243,9 +243,9 @@
     	            <a href="#" class="slide-link" aria-controls="collapseSix" title="Show more notice information"><h3 class="disclosure-title">Legal</h3></a>  
     	            
     	            <div class="disclosure-meta clearfix">  
-    	                <!-- TODO: {{ #if variable: number of legal critical }} -->
-						<span class="disclosure-critical">[variable: number of legal critical] critical</span>
-						<! -- {{ /if }} -->
+    	                {{ #if legal.critical_count }}
+						<span class="disclosure-critical">{{ legal.critical_count }} critical</span>
+						{{ /if }}
                         {{ #if legal.unread_count }}
 						 <span class="badge disclosure-unread">{{ legal.unread_count }} unread</span>
                         {{ /if }}
