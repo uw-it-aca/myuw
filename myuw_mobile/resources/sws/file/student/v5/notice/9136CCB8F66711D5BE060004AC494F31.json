@@ -149,6 +149,62 @@
             "NoticeCategory": "StudentDAD",
             "NoticeContent": "<span class=\"notice-body-without-title\"> Spring quarter ends <span class=\"date\"> Fri, June 7</span>.</span>",
             "NoticeType": "QtrEnd"
+        },
+        {
+            "NoticeAttributes": [
+             {
+                 "Name": "Date",
+                 "DataType": "date",
+                 "Value": "next_week"
+             }
+            ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": "<span class=\"notice-title\">Your Tuition Balance is due</span><span class=\"notice-body-with-title\"><a href='https://sdb.admin.washington.edu/students/uwnetid/tuition.asp'>Tuition Account Balance</A>: $350.00 CR <a href='https://sdb.admin.washington.edu/students/uwnetid/tuition.asp'>details</a></span>",
+            "NoticeType": "TuitDue"
+        },
+        {
+            "NoticeAttributes": [
+             {
+                 "Name": "Date",
+                 "DataType": "date",
+                 "Value": "next_week"
+             },
+             {
+                "Name": "DisplayBegin",
+                "DataType": "date",
+                "Value": "week"
+             },
+             {
+                "Name": "DisplayEnd",
+                "DataType": "date",
+                "Value": "future"
+              }
+            ],
+            "NoticeCategory": "StudentALR",
+            "NoticeContent": "<span class=\"notice-title\">International Check in</span><span class=\"notice-body-with-title\">Yo dawg, it's time to check in.</span>",
+            "NoticeType": "IntlStuCheckIn"
+        },
+        {
+            "NoticeAttributes": [
+             {
+                 "Name": "Date",
+                 "DataType": "date",
+                 "Value": "next_week"
+             },
+             {
+                "Name": "DisplayBegin",
+                "DataType": "date",
+                "Value": "week"
+             },
+             {
+                "Name": "DisplayEnd",
+                "DataType": "date",
+                "Value": "future"
+              }
+            ],
+            "NoticeCategory": "StudentALR",
+            "NoticeContent": "<span class=\"notice-title\">You have holds</span><span class=\"notice-body-with-title\">Yes you do</span>",
+            "NoticeType": "AdminHolds"
         }
 
     ],
