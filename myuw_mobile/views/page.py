@@ -35,7 +35,7 @@ def index(request,
         return invalid_session()
 
     my_uwemail_forwarding = get_email_forwarding_for_current_user()
-    if my_uwemail_forwarding.is_active():
+    if my_uwemail_forwarding is not None and my_uwemail_forwarding.is_active():
         context["user"]["email_is_uwgmail"] = my_uwemail_forwarding.is_uwgmail()
         context["user"]["email_is_uwlive"] = my_uwemail_forwarding.is_uwlive()
 
