@@ -76,7 +76,6 @@
 }
 
 @font-face {
-    font-family: 'uni_sansthin_caps';
     src: url('fonts/uni_sans_thin-webfont.eot');
     src: url('fonts/uni_sans_thin-webfont.eot?#iefix') format('embedded-opentype'),
          url('fonts/uni_sans_thin-webfont.woff') format('woff'),
@@ -319,10 +318,10 @@ body {
     // header cover (purple)
     .header-cover { height: 50px; background: lighten(@uwpurple, 2%);
         
-        .header-w { position:absolute; right:15px; bottom: -3px; 
+        .header-w { position:absolute; right:15px; bottom: 0px; 
             img { width: 35px; }
         }
-        .header-netid { font-family: 'uni_sansthin_caps'; font-size: 26px; position: absolute; bottom: 0px; left: 10px; color: @lighttan; text-transform: uppercase; }
+        .header-netid { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 300; font-size: 26px; position: absolute; bottom: 0px; left: 10px; color: @lighttan; text-transform: uppercase; }
     }
     
 }
@@ -351,7 +350,7 @@ body {
     	padding: 10px;
     	
 		h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; margin-top: 10px; margin-bottom: 15px; color: @darktan; }
-        h4 { font-family: 'uni_sansthin_caps'; font-size: 16px; text-transform: uppercase; color: #444; }
+        h4 { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; font-size: 16px; text-transform: uppercase; color: #444; }
         
         .card-content {  }
         
@@ -439,10 +438,10 @@ body {
         .card {
 
             h4 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; margin-bottom: 1em; 
-                .shortTitle { font-family: 'uni_sansthin_caps'; color: #444 !important; font-size: 16px !important; margin-top: 5px; }
+                .shortTitle { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; }
             }
 
-            h5 { font-family: 'uni_sansthin_caps'; color: @darktan; margin-top: 1.5em; margin-bottom: .5em; font-size: 16px; text-transform: uppercase; }
+            h5 { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; color: @darktan; margin-top: 1.5em; margin-bottom: .5em; font-size: 16px; text-transform: uppercase; }
             
         
 			.instructor-container {list-style-type: none; padding: 0; margin-bottom: 1em;
@@ -484,7 +483,7 @@ body {
         .card {
             
             h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; 
-                .shortTitle { font-family: 'uni_sansthin_caps'; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
+                .shortTitle { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
             }
             
             .destination-arrow { position:absolute; top: 50%; right: 0; margin-top:-14px; 
@@ -778,7 +777,7 @@ body {
 		padding-bottom: 3em;
 		
 		h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; }
-		h3 { font-family: 'uni_sansthin_caps'; font-size: 16px; line-height: 30px; margin: 0; color: #222; }
+		h3 { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; font-size: 16px; line-height: 30px; margin: 0; color: #222; }
 		h4 { font-family: 'Open Sans', sans-serif; font-size: 14px; 
     		span { text-transform: uppercase; font-size: 11px; }
 		}
@@ -810,7 +809,7 @@ body {
         }
         
         h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; }
-        h2 { font-family: 'uni_sansthin_caps'; font-size: 16px; } 
+        h2 { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; font-size: 16px; } 
     }
     // future quarters page
     
@@ -820,7 +819,7 @@ body {
         
         h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; }
         
-        .shortTitle { font-family: 'uni_sansthin_caps'; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
+        .shortTitle { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
     }
 	    
 	//notices page 
@@ -833,7 +832,7 @@ body {
 
 		h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; }
 		h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; text-transform: uppercase; margin-top: 10px; }
-        h3 { color: #333; margin-top: 0; margin-bottom:0; font-family: 'uni_sansthin_caps'; }
+        h3 { color: #333; margin-top: 0; margin-bottom:0; font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; }
         
 		.notice-count { }
 
@@ -945,7 +944,7 @@ body {
     
             .navigation-item { display: inline-block; position: relative; padding: 5px;
                                     
-                .navigation-item-text { font-family: 'uni_sansthin_caps'; font-family: 'encode_sans_normalsemibold'; color: #777; font-size: @font-base; text-transform: uppercase; }
+                .navigation-item-text { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; font-family: 'encode_sans_normalsemibold'; color: #777; font-size: @font-base; text-transform: uppercase; }
 
             }
         }
