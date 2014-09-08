@@ -305,12 +305,12 @@ body {
         }
        
         .header-resources { display: inline-block; font-size: 12px; line-height: 30px; margin-left: 10px;
-            i { color: lighten(@uwpurple, 10%);  }
+            i { color: @lighttan; opacity:0.6; filter: Alpha(opacity=60); /* IE8 and earlier */}
             a { color: @lighttan; display: inline-block; line-height: 30px; }
         }
 
         .header-email { display: inline-block; font-size: 12px; line-height: 30px; 
-            i { color: lighten(@uwpurple, 10%); }
+            i { color: @lighttan; opacity:0.6; filter: Alpha(opacity=60); /* IE8 and earlier */}
             a { color: @lighttan; display: inline-block; line-height: 30px; }
         }
     }
