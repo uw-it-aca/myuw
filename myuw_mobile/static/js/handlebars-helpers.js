@@ -137,6 +137,9 @@ Handlebars.registerHelper("formatPrice", function(price) {
     if (formatted[1] && formatted[1].length == 1) {
         formatted[1] += "0";
     }
+    if (!formatted[1] || formatted[1].length == 0) {
+        formatted[1] = "00";
+    }
     return formatted.join(".");
 });
 
