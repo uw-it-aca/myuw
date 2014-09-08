@@ -40,7 +40,6 @@ var VisualScheduleCard = {
     },
         
     render_schedule: function(course_data, term) {
-        console.log("In render_schedule");
         VisualScheduleCard.shown_am_marker = false;
         var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
         var visual_data = {
