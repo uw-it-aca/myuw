@@ -1,0 +1,23 @@
+{
+    "13833": [{
+                "isbn":"9781256396062",
+                "title":"Tutorials In Introductory Physics I",
+                "authors": [{"name":"Mcdermott"}],
+                "price":58.00,
+                "used_price":null,
+                "required":true,
+                "notes":null,
+                "cover_image": null
+            }],
+    "10675": [{
+                "isbn":"9781256396062",
+                "title":"Tutorials In Introductory Physics II",
+                "authors": [{"name":"Mcdermott"}],
+                "price":58.00,
+                "used_price":null,
+                "required":true,
+                "notes":null,
+                "cover_image": null
+            }]
+
+}

@@ -1,0 +1,85 @@
+{
+ "13833": [
+
+  {
+ "isbn":"9780312666781",
+ "title":"2 P/s Brief Ed, Acts Of Inquiry W/ Getting The Picture",
+ "authors": [
+  {"name":"Bawarshi" }
+ ],
+ "price":36.00,
+ "used_price":null,
+ "required":true,
+ "notes":"required",
+ "cover_image":"www7.bookstore.washington.edu/MyUWImage.taf?isbn=9780312666781&key=ba57b128a107b6e1a20471cceb9d771f"
+ },
+
+  {
+ "isbn":"9781457600043",
+ "title":"Everyday Writer (5e 13)",
+ "authors": [
+  {"name":"Lunsford" }
+ ],
+ "price":null,
+ "used_price":null,
+ "required":false,
+ "notes":"",
+ "cover_image":"www7.bookstore.washington.edu/MyUWImage.taf?isbn=9781457600043&key=37cf9eee8ed81537adeae52f206bef0f"
+ },
+
+  {
+ "isbn":"9780312591564",
+ "title":"Four Year Access Card Writers Help ( Writer's )",
+ "authors": [
+  {"name":"Hacker" }
+ ],
+ "price":39.50,
+ "used_price":null,
+ "required":false,
+ "notes":"",
+ "cover_image":"www7.bookstore.washington.edu/MyUWImage.taf?isbn=9780312591564&key=3267f72397de9087518530eee30209a4"
+ }
+ ],
+ "10675": [
+
+  {
+ "isbn":"9780521600491",
+ "title":"History Of Archaeological Thought (2e 06)",
+ "authors": [
+  {"name":"Trigger" }
+ ],
+ "price":null,
+ "used_price":null,
+ "required":true,
+ "notes":"required",
+ "cover_image":"www7.bookstore.washington.edu/MyUWImage.taf?isbn=9780521600491&key=af522945d076d3aadf662dccf381755b"
+ },
+
+  {
+ "isbn":"9781859734940",
+ "title":"Social History Of Anthropology In United States",
+ "authors": [
+  {"name":"Patterson" }
+ ],
+ "price":null,
+ "used_price":null,
+ "required":false,
+ "notes":"recommend",
+ "cover_image":"www7.bookstore.washington.edu/MyUWImage.taf?isbn=9781859734940&key=c696beea25331868057b4168b956ac1c"
+ },
+
+  {
+ "isbn":"9780155008243",
+ "title":"Toward Social History Of Archaeology In U.s.",
+ "authors": [
+  {"name":"Patterson" }
+ ],
+ "price":null,
+ "used_price":null,
+ "required":false,
+ "notes":"recommend",
+ "cover_image":"www7.bookstore.washington.edu/MyUWImage.taf?isbn=9780155008243&key=ed85131a5f5d4943adffb4c7014f232f"
+ }
+ ]
+ }
+
