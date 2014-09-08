@@ -68,6 +68,7 @@ function displayAlert(objAlertData)
         }
 
     }
+
     // Banners must have an actual color
     if (strAlertColor)
     {
@@ -90,25 +91,20 @@ function addElement(strAlertTitle,strAlertLink,strAlertColor,strAlertMessage)
 
   var alertIcon = document.createElement('i');
   alertIcon.setAttribute('class', 'icon-warning-sign icon-large');
-  
+
   var header1 = document.createElement('h1');
-  var header1Text = document.createTextNode(strAlertTitle);
+
+  var jq_h1 = $(header1);
+  jq_h1.html($("<div></div>").html(strAlertTitle).text());
   header1.appendChild(alertIcon);
-  header1.appendChild(header1Text);
 
   var alertTextP = document.createElement('p');
 
-  var div = document.createElement("div");
-  div.innerHTML = strAlertMessage;
-  // Strip out html that wordpress.com gives us
-  var alertTextMessage = div.textContent || div.innerText || "";
-  // Build alert text node and cut of max characters
-  var alertText = document.createTextNode(
-    alertTextMessage.substring(0,360) + 
-    (alertTextMessage.length >= 360 ? '... ' : ' ')
-  );
-  alertTextP.appendChild(alertText);
+  var jq_atp = $(alertTextP);
 
+  var message_text = $("<div></div>").html(strAlertMessage).text();
+
+  jq_atp.html(message_text.substring(0, 360) + (message_text.length >= 360 ? '... ' : ' '));
 
   var alertLink = document.createElement('a');
   alertLink.setAttribute('href', strAlertLink);
