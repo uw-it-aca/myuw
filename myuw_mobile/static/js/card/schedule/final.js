@@ -185,12 +185,15 @@ var FinalExamCard = {
         }
 
         var i = 0;
+        var position_index = 0;
         // We don't want to add the last hour - it's just off the end of the visual schedule
         for (i = visual_data.start_time; i <= visual_data.end_time - 1; i += 60) {
             visual_data.display_hours.push({
                 hour: (i / 60),
-                position: i
+                position: i,
+                hour_count: position_index
             });
+            position_index += 1;
         }
 
         visual_data.total_hours = (visual_data.end_time - visual_data.start_time) / 60;
