@@ -232,7 +232,13 @@ NOTICE_MAPPING = {
               "myuw_category": "",
               "location_tags": ['quarter_begins'],
               "critical": False
-          }
+          },
+          "StudentDAD_QtrEnd": {
+              "myuw_category": "Quarter Ends",
+              "location_tags": ['quarter_ends'],
+              "critical": False
+          },
+
 }
 
 UNKNOWN_CATEGORY_NAME = "Uncategorized"
