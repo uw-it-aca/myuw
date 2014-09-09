@@ -470,9 +470,11 @@ WSData = {
                         }
                     },
                     error: function(xhr, status, error) {
-                        err_callback.call(null, status, error);
+                        if (err_callback) {
+                            err_callback.call(null, status, error);
                         }
-                    });
+                    }
+                 });
               }
         else {
             window.setTimeout(function() {
