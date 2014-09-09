@@ -32,8 +32,11 @@ var TuitionCard = {
             due_date;
 
         //Do not show card if no sections are registered for the current quarter AND balance is 0
+        // *AND* there's no due date.  For people who have already paid their tuition.
+        // The finanance resource gives a 0.00 balance for everyone.
         if (parseInt(template_data['tuition_accbalance']) === 0
-                && WSData.normalized_course_data().sections.length === 0) {
+                && WSData.normalized_course_data().sections.length === 0
+                && (!template_data["tuition_due"] || !(template_data["tuition_due"].match(/\d+/)))) {
             $(TuitionCard.dom_target).html('');
             return;
         }
