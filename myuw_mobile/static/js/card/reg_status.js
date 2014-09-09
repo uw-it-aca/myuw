@@ -22,7 +22,7 @@ var RegStatusCard = {
         }
         return false;
     },
-    render_error: function () {1779
+    render_error: function () {
         RegStatusCard.dom_target.html(CardWithError.render("Registration"));
     },
 
