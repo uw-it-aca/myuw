@@ -5,12 +5,7 @@
                 {
                     "Name": "Campus",
                     "DataType": "string",
-                    "Value": "Seattle"
-                },
-                {       
-                    "Name": "Date",
-                    "DataType": "date",
-                    "Value": "yesterday"
+                    "Value": "Tacoma"
                 }
             ],
             "NoticeCategory": "StudentALR",
@@ -20,39 +15,47 @@
         {
             "NoticeAttributes": [
                 {
+                    "Name": "Campus",
+                    "DataType": "string",
+                    "Value": "Tacoma"
+                }
+            ],
+            "NoticeCategory": "StudentALR",
+            "NoticeContent": "<span class=\"notice-title\">International Student Services Office Check-in Required</span><span class=\"notice-body-with-title\">You are not eligible to register until you check in with the UW Tacoma International Student Services Office (MAT 203). Please email uwtiss@uw.edu or call (253) 692-4762 for assistance.</span>",
+            "NoticeType": "IntlStuCheckIn"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentALR",
+            "NoticeContent": "<span class=\"notice-title\">Satisfactory Progress Registration Block</span><span class=\"notice-body-with-title\">You currently have a satisfactory progress registration block on your academic record. This will prevent further registration in any quarter but summer. <a href=\"http://www.washington.edu/students/reg/regpol.html#progress\">Learn how to resolve satisfactory progress registration blocks</a>.</span>",
+            "NoticeType": "SatProgBlock"
+        },
+        {
+            "NoticeAttributes": [
+                {
                     "Name": "Date",
                     "DataType": "date",
                     "Value": "future_end"
                 },
                 {
-                    "Name": "Begin",
+                    "Name": "DisplayBegin",
                     "DataType": "date",
                     "Value": "future"
                 },
                 {
-                    "Name": "End",
+                    "Name": "DisplayEnd",
                     "DataType": "date",
                     "Value": "future_end"
                 },
                 {
                     "Name": "Quarter",
                     "DataType": "string",
-                    "Value": "Summer"
-                },
-                {
-                    "Name": "Link",
-                    "DataType": "url",
-                    "Value": "http://www.uw.edu"
-                },
-                {
-                    "Name": "Bogus",
-                    "DataType": "unknown",
-                    "Value": "42"
+                    "Value": "Autumn"
                 }
 
             ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": "<span class=\"notice-body-without-title\"> Summer quarter begins <span class=\"date\"> Mon, June 23</span>.</span>",
+            "NoticeContent": "<span class=\"notice-body-without-title\">Autumn quarter begins <span class=\"date\"> Wed, Sept 24</span>.</span>",
             "NoticeType": "QtrBegin"
         },
         {
@@ -60,8 +63,24 @@
                 {
                     "Name": "Date",
                     "DataType": "date",
-                    "Value": "next_week"
-                }   
+                    "Value": "next-week"
+                },
+                {
+                    "Name": "DisplayBegin",
+                    "DataType": "date",
+                    "Value": "yesterday"
+                },
+                {
+                    "Name": "DisplayEnd",
+                    "DataType": "date",
+                    "Value": "next-week"
+                },
+                {
+                    "Name": "Quarter",
+                    "DataType": "string",
+                    "Value": "Autumn"
+                }
+   
             ],
             "NoticeCategory": "StudentDAD",
             "NoticeContent": "<span class=\"notice-title\">Estimated Registration Date</span><span class=\"notice-body-with-title\">Your estimated Period I Priority Registration Date for autumn quarter is <span class=\"date\"> Thurs, May 15</span>. Registration begins at 6:00 AM. <a href=\"http://www.washington.edu/students/reg/priorau14.html\">View your Period 1 Priority Registration Date</a>.</span>",
@@ -72,45 +91,27 @@
                 {
                     "Name": "Date",
                     "DataType": "date",
-                    "Value": "today"
+                    "Value": "week"
                 },
                 {
-                    "Name": "Begin",
+                    "Name": "DisplayBegin",
                     "DataType": "date",
                     "Value": "yesterday"
                 },
                 {
-                    "Name": "End",
+                    "Name": "DisplayEnd",
                     "DataType": "date",
                     "Value": "week"
                 },
                 {
                     "Name": "Quarter",
                     "DataType": "string",
-                    "Value": "Summer"
+                    "Value": "Autumn"
                 }
             ],
             "NoticeCategory": "StudentALR",
             "NoticeContent": "<span class=\"notice-title\">Pre-Registration Requirement</span><span class=\"notice-body-with-title\">Beginning one week prior to each quarter's registration period you can make all the required Notices and Insurance&#47Optional Charges selections. You will then be able to go directly into Web Registration when your priority registration period begins. If you have not already done so <a href=\"https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp\">go to the Insurance&#47Optional Charges</a> services now to complete these requirements prior to registering for autumn quarter.</span>",
             "NoticeType": "PreRegNow"
-        },
-        {
-            "NoticeAttributes": [
-                {
-                    "Name": "Date",
-                    "DataType": "date",
-                    "Value": "week"
-                }
-            ],
-            "NoticeCategory": "StudentALR",
-            "NoticeContent": "<span class=\"notice-title\">Pre-Registration Requirement</span><span class=\"notice-body-with-title\">Beginning one week prior to each quarter's registration period you can make all the required Notices and Insurance&#47Optional Charges selections. You will then be able to go directly into Web Registration when your priority registration period begins. If you have not already done so <a href=\"https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp\">go to the Insurance&#47Optional Charges</a> services now to complete these requirements prior to registering for autumn quarter.</span>",
-            "NoticeType": "PreRegNow"
-        },
-        {
-            "NoticeAttributes": [],
-            "NoticeCategory": "StudentALR",
-            "NoticeContent": "<span class=\"notice-title\">Online ISS information session required before registration</span><span class=\"notice-body-with-title\">All new international students are required to complete the <a href=\"https://catalysttools.washington.edu/webq/survey/torre/79003\">International Student Services (ISS) Online Information Session</a> before registering for classes. You will need your UW NetID and password to access the online ISS information session. After you arrive on campus, the International Student Services (ISS) must collect copies of your immigration documents.</span>",
-            "NoticeType": "IntlStuCheckIn"
         },
         {
             "NoticeAttributes": [],
@@ -120,45 +121,30 @@
         },
         {
             "NoticeAttributes": [
-            {
-                 "Name": "Date",
-                 "DataType": "date",
-                 "Value": "next_week"
-             }
-            ],
-            "NoticeCategory": "StudentGEN",
-            "NoticeContent": "<span class=\"notice-title\">Tuition Account Balance</span><span class=\"notice-body-with-title\">Your tuition account balance is $0.00. <a href=\"https://sdb.admin.washington.edu/students/uwnetid/tuition.asp\">View details of your tuition account</a>.</span>",
-            "NoticeType": "AcctBalance"
-        },
-       {
-            "NoticeAttributes": [
-            {
-                 "Name": "Date",
-                 "DataType": "date",
-                 "Value": "today"
-             }
+                {
+                   "Name": "Date",
+                   "DataType": "date",
+                   "Value": "today"
+                },
+                {
+                    "Name": "DisplayBegin",
+                    "DataType": "date",
+                    "Value": "yesterday"
+                },
+                {
+                    "Name": "DisplayEnd",
+                    "DataType": "date",
+                    "Value": "today"
+                },
+                {
+                    "Name": "Quarter",
+                    "DataType": "string",
+                    "Value": "Summer"
+                }
             ],
             "NoticeCategory": "StudentDAD",
             "NoticeContent": "<span class=\"notice-title\">Tuition Due</span><span class=\"notice-body-with-title\">Payment of tuition and tuition-related fees for summer quarter is due <span class=\"date\"> Fri, July 11</span>. For details, <a href=\"https://sdb.admin.washington.edu/students/UWNetID/tuition.asp\">view your Tuition Statement</a>.</span>",
             "NoticeType": "TuitDue"
-        },
-       {
-            "NoticeAttributes": [],
-            "NoticeCategory": "NewStudentGEN",
-            "NoticeContent": "Thank you for confirming your intention to enroll at the University of Washington for autumn quarter 2014. Your new Student Enrollment and Orientation Fee has been accepted and recorded.",
-            "NoticeType": "ThankYouRemark"
-        },
-       {
-            "NoticeAttributes": [],
-            "NoticeCategory": "NewStudentGEN",
-            "NoticeContent": "The Office of the Registrar has received payment for the following fees: New Student Enrollment & Orientation Fee",
-            "NoticeType": "FeesPaid"
-        },
-       {
-            "NoticeAttributes": [],
-            "NoticeCategory": "NewStudentCLIST",
-            "NoticeContent": "You can <a href=\"https://sdb.admin.washington.edu/students/uwnetid/finaidstatus.asp\">review the status</a> of your financial aid application online.",
-            "NoticeType": "FinAid"
         },
         {
             "NoticeAttributes": [
@@ -168,16 +154,20 @@
                  "Value": "future_end"
              },
              {
-                 "Name": "Begin",
+                 "Name": "DisplayBegin",
                  "DataType": "date",
                  "Value": "future"
              },
              {
-                 "Name": "End",
+                 "Name": "DisplayEnd",
                  "DataType": "date",
                  "Value": "future_end"
+             },
+             {
+                 "Name": "Quarter",
+                 "DataType": "string",
+                 "Value": "Spring"
              }
-
            ],
             "NoticeCategory": "StudentDAD",
             "NoticeContent": "<span class=\"notice-body-without-title\"> Spring quarter ends <span class=\"date\"> Friday, June 6</span>.</span>",
