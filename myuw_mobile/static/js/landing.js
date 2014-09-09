@@ -3,12 +3,7 @@ var Landing = {
         //Navbar.render_navbar();
         showLoading();
         UwEmail.render_init();
-        
-        // wait 1/2 second before loading cards
-        setTimeout(function() {
-              Landing.make_html();
-        }, 500);
-        
+        Landing.make_html();
     },
 
     make_html: function () {
@@ -17,7 +12,7 @@ var Landing = {
         var template = Handlebars.compile(landing_source);
         
         $("#main-content").html(template());
-
+        
         NoticeBanner.render_init($("#notice_banner_location"));
         var cards = [FutureQuarterCard,
                      VisualScheduleCard,
@@ -26,9 +21,6 @@ var Landing = {
                      TuitionCard,
                      LibraryCard,
                      RegStatusCard];
-        
-        // hide the loading message before loading content           
-        $("#app_loading").hide();
         
         Cards.load_cards_in_order(cards, $("#landing_content"));
  
