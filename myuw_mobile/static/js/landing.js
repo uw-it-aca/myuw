@@ -1,5 +1,5 @@
 var Landing = {
-    render: function() {
+    render: function() {        
         //Navbar.render_navbar();
         showLoading();
         UwEmail.render_init();
@@ -7,6 +7,7 @@ var Landing = {
     },
 
     make_html: function () {
+        
         $('html,body').animate({scrollTop: 0}, 'fast');
         var landing_source = $("#landing").html();
         var template = Handlebars.compile(landing_source);
@@ -23,6 +24,6 @@ var Landing = {
                      RegStatusCard];
         
         Cards.load_cards_in_order(cards, $("#landing_content"));
- 
+                
     }
 };
