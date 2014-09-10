@@ -43,6 +43,13 @@ var RegStatusCard = {
             });
         });
 
+
+        // For initial release, the registration card will display whenever either StudentDAD_EstPd1RegDate OR any registration holds are coming to us from the notice resource.
+        if (hold_count === 0 && reg_date.length === 0) {
+            $("#RegStatusCard").hide();
+            return;
+        }
+
         // show registration resources
         $('body').on('click', '#show_reg_resources', function (ev) {
 
