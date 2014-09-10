@@ -25,7 +25,7 @@ var CourseCard = {
     },
 
     _has_all_data: function () {
-        if (WSData.normalized_course_data()) {
+        if (WSData.normalized_course_data(CourseCard.term)) {
             return true;
         }
         return false;
