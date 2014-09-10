@@ -51,12 +51,6 @@ def _get_registered_future_quarters(next_quar_sche,
     Return the list of future quarters that 
     has actively enrolled sections
 
-    Summer terms that must be displayed separately if exist:
-    a-term, b-term and full-term or 
-    a-term and full-term or 
-    b-term and full-term or 
-    a-term and b-term
-
     @param next_quar_sche: ClassSchedule object of a future quarter
     @param next_autumn_quar_sche: ClassSchedule object of the future
            autumn quarter if the next_quar_sche is of summer quarter 
@@ -124,8 +118,14 @@ def _must_displayed_separately (schedule):
     """
     Return True if the summer terms in the schedule sections
     need to be displayed separately
+
+    Summer terms that must be displayed separately if exist:
+    a-term and full-term or 
+    b-term and full-term or 
+    a-term and b-term
+
     """
     sumr_tms = _get_registered_summer_terms(schedule.sections)
-    return sumr_tms[A_TERM] and sumr_tms[B_TERM] and sumr_tms[FULL_TERM] or sumr_tms[A_TERM] and sumr_tms[FULL_TERM] or sumr_tms[B_TERM] and sumr_tms[FULL_TERM] or sumr_tms[A_TERM] and sumr_tms[B_TERM]
+    return sumr_tms[A_TERM] and sumr_tms[FULL_TERM] or sumr_tms[B_TERM] and sumr_tms[FULL_TERM] or sumr_tms[A_TERM] and sumr_tms[B_TERM]
   
 
