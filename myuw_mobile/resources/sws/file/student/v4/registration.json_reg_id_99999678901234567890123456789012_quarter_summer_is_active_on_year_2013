@@ -1,0 +1,30 @@
+{ "Current" : { "CourseNumber" : null,
+      "CurriculumAbbreviation" : null,
+      "Href" : "\/student\/v4\/registration.json?year=2013&quarter=summer&curriculum_abbreviation=&course_number=§ion_id=®_id=99999678901234567890123456789012&is_active=&instructor_reg_id=",
+      "InstructorRegID" : null,
+      "IsActive" : true,
+      "PageSize" : null,
+      "PageStart" : null,
+      "Quarter" : "summer",
+      "RegID" : "99999678901234567890123456789012",
+      "SectionID" : null,
+      "Year" : "2013"
+    },
+  "Next" : null,
+  "PageSize" : "10",
+  "PageStart" : "1",
+  "Previous" : null,
+  "Registrations" : [
+      { "CourseNumber" : "101",
+        "CurriculumAbbreviation" : "CSE",
+        "DuplicateCode" : "1",
+        "Href" : "\/student\/v4\/registration\/2013,summer,CSE,101,A,99999678901234567890123456789012.json",
+        "Instructor" : null,
+        "Quarter" : "summer",
+        "RegID" : "99999678901234567890123456789012",
+        "SectionID" : "A",
+        "Year" : "2013"
+      }
+    ],
+  "TotalCount":"1"
+}
