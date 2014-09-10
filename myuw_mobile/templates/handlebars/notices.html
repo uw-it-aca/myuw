@@ -18,17 +18,17 @@
 	    {{ #if total_notices }}
         <div id="accordion" class="notice-accordian">
 	    
-	        {{ #if holds.notices }}
+	        {{ #if critical.count }}
 	        <!-- collapsy 1: critical -->
 	        <div class="disclosure">
 
                 <div class="disclosure-heading disclosure-heading-critical clearfix">
                 	<!-- collapsy 1 header -->      
-    	            <a class="slide-link" href="#" aria-controls="collapseOne" title="Show more notice information"><h3 class="disclosure-title">{{ holds.critical_count }} Critical</h3></a>
+    	            <a class="slide-link" href="#" aria-controls="collapseOne" title="Show more notice information"><h3 class="disclosure-title">{{ critical.count }} Critical</h3></a>
     	            
 					<div class="disclosure-meta clearfix">
-                        {{ #if holds.unread_count }}
-	                        <span class="badge disclosure-unread">{{ holds.unread_count }} unread</span>
+                        {{ #if critical.unread_count }}
+	                        <span class="badge disclosure-unread">{{ critical.unread_count }} unread</span>
                         {{ /if }}
                         <i class="fa fa-angle-down fa-2x pull-right"></i>
 					</div>
@@ -38,12 +38,10 @@
 	            <!-- collapsy 1 content -->
 	            <div id="collapseOne" class="slide-hide clearfix" aria-hidden="true">
 	                <div class="disclosure-content">
-	                    {{ #each holds.notices }}
+	                    {{ #each critical .notices }}
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 		                    <div class="inner-notice-container">
-	                            {{ #if is_critical }}
 								<i class="fa fa-exclamation-triangle critical-icon"></i>
-	                            {{ /if }}
 		                        <div class="notice-category">
 		                            {{ category }}
 		                        </div>

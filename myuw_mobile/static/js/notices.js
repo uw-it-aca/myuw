@@ -15,13 +15,23 @@ var Notices = {
 
         notices = Notices.get_notices_by_date();
 
+        // For MUWM-1918
+        var all_notices = []
         var total_notices = 0;
         for (var group in notices) {
             total_notices += notices[group].notices.length;
+            all_notices = all_notices.concat(notices[group].notices);
         }
+
+        var critical_notices = Notices._get_critical(all_notices);
         notices['total_notices'] = total_notices;
         notices['holds'] = Notices.get_notices_for_category("Holds");
         notices['legal'] = Notices.get_notices_for_category("Legal");
+        notices['critical'] = {
+            "count": critical_notices.length,
+            "notices": critical_notices,
+            "unread_count": Notices._get_unread_count(critical_notices)
+        };
 
         source = $("#notices").html();
         template = Handlebars.compile(source);
@@ -261,15 +271,19 @@ var Notices = {
         return unread_count;
     },
 
-    _get_critical_count: function (notices) {
-        var critical_count = 0;
+    _get_critical: function(notices) {
+        var critical = [];
         for (i = 0; i < notices.length; i += 1) {
             notice = notices[i];
             if (notice["is_critical"]) {
-                    critical_count += 1;
+                    critical.push(notice);
             }
         }
-        return critical_count;
+        return critical;
+    },
+
+    _get_critical_count: function (notices) {
+        return Notices._get_critical(notices).length;
     },
 
     _get_utc_date: function (date) {
