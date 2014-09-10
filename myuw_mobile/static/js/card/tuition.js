@@ -45,7 +45,7 @@ var TuitionCard = {
         template_data['pce_tuition_dup'] = Notices.get_notices_for_tag("pce_tuition_dup");
         template_data['is_pce'] = false;
 
-        tuition_due_notice = Notices.get_notices_for_tag("tuition_balance")[0];
+        tuition_due_notice = Notices.get_notices_for_tag("tuition_due_date")[0];
         if (tuition_due_notice !== undefined) {
             for (var i = 0; i < tuition_due_notice.attributes.length; i += 1) {
                 if (tuition_due_notice.attributes[i].name === "Date") {
