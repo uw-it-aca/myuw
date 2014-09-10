@@ -18,8 +18,8 @@
   "RequestDate" : "",
   "RequestStatus" : "",
   "Section" : { "CourseNumber" : "102",
-      "CurriculumAbbreviation" : "ESS",
-      "Href" : "\/student\/v4\/course\/2013,spring,ESS,102\/A.json",
+      "CurriculumAbbreviation" : "BESS",
+      "Href" : "\/student\/v4\/course\/2013,spring,BESS,102\/A.json",
       "Quarter" : "spring",
       "SectionID" : "A",
       "Year" : "2013"

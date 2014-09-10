@@ -20,4 +20,5 @@ def _get_campus():
         campus = "bothell"
     if affiliations["seattle"]:
         campus = "seattle"
+
     return campus
