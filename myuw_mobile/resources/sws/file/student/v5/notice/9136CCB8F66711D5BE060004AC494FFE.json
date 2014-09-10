@@ -75,7 +75,13 @@
             "NoticeType": "PreRegNow"
         },
         {
-            "NoticeAttributes": [],
+            "NoticeAttributes": [
+                {
+                    "Name": "Holds",
+                    "DataType": "string",
+                    "Value": "3"
+                }
+            ],
             "NoticeCategory": "StudentALR",
             "NoticeContent": "<span class=\"notice-title\">Registration/Transcript Holds</span><span class=\"notice-body-with-title\">The following offices have placed administrative holds on your academic record. These will prevent registration and/or ordering official transcripts. To resolve these holds, contact the office(s) listed below.</span><ul class=\"notice-list\"><li>Registration and Transcript hold(s) placed by Library Account Services, Suzzallo, 1st Floor 206-543-1174</li><li>Registration and Transcript hold(s) placed by Student Fiscal Services, 129 Schmitz, 206-543-4694</li><li>Registration hold(s) placed by Financial Aid Office, 105 Schmitz, 206-543-6101</li></ul><span class=\"notice-body-with-title\"><a href=\"http://www.washington.edu/students/reg/regrest.html#Q2\">What is an administrative hold?</a></span>",
             "NoticeType": "AdminHolds"
