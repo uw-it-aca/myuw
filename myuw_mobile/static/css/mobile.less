@@ -326,11 +326,15 @@ body {
 }
 
 /*** notice banner ***/
-#app_notices { margin: 15px 0 0px 0; position: relative; border-bottom: 1px solid #ddd; padding-bottom: 20px; 
-    .notice-header { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; /*text-transform: uppercase;*/ line-height: 30px; margin: 0; }
-       .badge { background-color: white; color:#444; font-weight:normal; border:1px solid #444; float:right; display: inline-block; margin: 5px 0;}
-       h2 {display: inline-block; color: #444;}
-    .notice-information { font-size: 11px; display: block; white-space: nowrap; margin-top: -7px;}
+#app_notices { margin: 0; border-bottom: 1px solid #ddd; position: relative; padding-bottom: 15px;
+    
+    .notice-header { font-size: @font-header-small; line-height: 50px; margin: 0;
+        a {font-family: 'encode_sans_normalbold'; color: #444;}
+    }
+    
+    .notice-unread { background-color: white; color:#444; font-weight:normal; border:1px solid #444; position: absolute; right: 15px; top: 50%; margin-top: -10px; z-index: -1; }
+    
+    .notice-information { font-size: 11px; font-weight:normal; display: block; white-space: nowrap; margin-top: -15px; line-height: normal; }
 }
 
 /*** content ***/

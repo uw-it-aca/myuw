@@ -2,10 +2,10 @@
 {% tplhandlebars "notice_banner" %}
     
     <div id="app_notices">
-        <div class="container">
-        <h2 class="notice-header" role="alert">Notices</h2>
-		<div class="badge">{{ total_unread }} unread</div>
-        <a class="notice-information text-danger" href="/mobile/notices/" title="Navigate to Notices">{{ total_critical }} critical notices</a>
+        <div class="container notice-header">
+            <a href="/mobile/notices/" title="Navigate to Notices"><h2 class="notice-header" role="alert">Notices</h2></a>
+    		<div class="notice-unread badge">{{ total_unread }} unread</div>
+            <div class="notice-information">{{ total_critical }} critical notices</div>
         </div>
     </div>        
 {% endtplhandlebars %}
