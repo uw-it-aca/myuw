@@ -70,7 +70,6 @@ def _get_campuses_by_schedule(schedule):
 
     if schedule is not None and len(schedule.sections) > 0:
         for section in schedule.sections:
-            print "S: ", section.curriculum_abbr, section.course_campus
             if section.course_campus == "Seattle":
                 campuses["seattle"]=True
             elif section.course_campus == "Bothell":
