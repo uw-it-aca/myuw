@@ -60,10 +60,19 @@
         <input type="submit" value="Go" />
     </form>
 
-    {% url 'restclients.views.proxy' 'uwnetid' '/v1/uwnetid' as url %}
+    {% url 'restclients.views.proxy' 'uwnetid' '/nws/v1/uwnetid' as url %}
     {% if url %}
     <h4>Netid Web Service:</h4>
-    <input type="text" id="netid_service_input"> <button id="netid_go">Go</button>
+    <script>
+        function direct_to_netid_service() {
+            var netid = document.getElementById("netid_service_input").value;
+            window.location.href = "{% url 'restclients.views.proxy' 'uwnetid' '/nws/v1/uwnetid' %}/" + netid + "/subscription/105";
+            return false;
+        }
+    </script>
+    <form onsubmit="return direct_to_netid_service()">
+    <input type="text" id="netid_service_input"> <input type="submit" value="Go" />
+    </form>
 
     {% endif %}
 
