@@ -1,4 +1,5 @@
 
+
 Handlebars.registerHelper("toLowerCase", function(str) {
     if (str) {
         return str.toLowerCase();
@@ -16,12 +17,17 @@ Handlebars.registerHelper("termNoYear", function(term) {
     return str;
 });
 
-// convert term string from "2013,summer,a-term" to "summer 2013 a-term"
-Handlebars.registerHelper("formatTerm", function(term) {
+
+Handlebars.registerHelper("capitalizeString", function(str) {
+    return capitalizeString(str);
+});
+
+// convert term string from "2013,summer,a-term" to "Summer 2013 A-Term"
+Handlebars.registerHelper("titleFormatTerm", function(term) {
     value = term.split(",");
-    str = value[1] + " " + value[0];
+    str = capitalizeString(value[1]) + " " + value[0];
     if (value[2]) {
-        str += " " + value[2];
+        str += " " + capitalizeString(value[2]);
     }
     return str;
 });

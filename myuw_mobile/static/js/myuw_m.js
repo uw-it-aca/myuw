@@ -347,17 +347,22 @@ var date_from_string = function(date_string) {
 };
 
 var titilizeTerm = function(term) {
-    //Takes a term string (Eg 2032,summer,b-term) and returns a title (Eg Summer 2032: B-term)
+    //Takes a term string (Eg 2032,summer,b-term) and 
+    //returns a title (Eg Summer 2032 B-term)
     var pieces = term.split(",");
-    var string = _capitalizeString(pieces[1]) + " " + pieces[0];
+    var string = capitalizeString(pieces[1]) + " " + pieces[0];
     if (pieces.length > 2) {
-        string += ": " + _capitalizeString(pieces[2]);
+        string += " " + capitalizeString(pieces[2]);
     }
     return string
 
 }
 
-var _capitalizeString = function(string) {
+var capitalizeString = function(string) {
+    if (string.match(/^[ab]-term$/gi)) {
+        value = string.split("-");
+        return value[0].toUpperCase() + "-" + value[1].charAt(0).toUpperCase() + value[1].slice(1);
+    }
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
