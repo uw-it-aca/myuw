@@ -41,5 +41,4 @@ urlpatterns = patterns('myuw_mobile.views',
     url(r'^api/v1/current_week/$', Weekly().run),
     url(r'^api/v1/grades/(?P<year>[0-9]{4}),(?P<quarter>[a-z]+)$', Grades().run),
     url(r'.*', 'page.index'),
-    url(r'^support/', include('userservice.urls')),
 )

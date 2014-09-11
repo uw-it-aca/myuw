@@ -105,12 +105,11 @@ $(document).ready(function() {
 
         var hist = window.History;
 
-        // The replaceState is for MUWM-368
         if (path === "/mobile/") {
             hist.replaceState({
-                state: "course_list",
-                }, "", "/mobile"
-            );
+                state: "landing",
+            },  "", "/mobile/landing/");
+            return;
         }
         else if (path.match(/^\/mobile\/[0-9]{4},[a-z]+[,-abterm]*$/)) {
             var matches = path.match(/^\/mobile\/([0-9]{4},[a-z]+[,-abterm]*)$/);
