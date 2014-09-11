@@ -92,10 +92,10 @@ class StudentAccountsBalances(models.Model):
 
 
 class UserNotices(models.Model):
-    notice_hash = models.CharField(max_length=32, unique=True)
+    notice_hash = models.CharField(max_length=32)
     user = models.ForeignKey('User', on_delete=models.PROTECT)
-    # first_viewed = models.DateTimeField(auto_now_add=True)
-    # marked_read = models.DateTimeField(null=True)
+    first_viewed = models.DateTimeField(auto_now_add=True)
+    marked_read = models.DateTimeField(null=True)
     is_read = models.BooleanField(default=False)
 
     @staticmethod

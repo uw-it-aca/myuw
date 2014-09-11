@@ -287,11 +287,11 @@ def get_notices_for_current_user():
 
 def _get_user_notice(notice):
     notice_hash = UserNotices().generate_hash(notice)
+    user = get_user_model()
     user_notice = None
     try:
-        user_notice = UserNotices.objects.get(notice_hash=notice_hash)
+        user_notice = UserNotices.objects.get(notice_hash=notice_hash, user=user)
     except ObjectDoesNotExist:
-        user = get_user_model()
         user_notice = UserNotices()
         user_notice.notice_hash = notice_hash
         user_notice.user = user
