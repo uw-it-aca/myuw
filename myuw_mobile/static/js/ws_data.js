@@ -11,6 +11,66 @@ WSData = {
     _link_data: null,
     _oquarter_data: null,
     _category_link_data: {},
+    _success_callbacks: {},
+    _error_callbacks: {},
+    _callback_args: {},
+
+    // MUWM-1894 - enqueue callbacks for multiple callers of urls.
+    _is_running_url: function(url) {
+        if (WSData._success_callbacks[url] && WSData._success_callbacks[url].length) {
+            return true;
+        }
+        return false;
+    },
+    _enqueue_callbacks_for_url: function(url, success, error, args) {
+        if (!WSData._success_callbacks[url]) {
+            WSData._success_callbacks[url] = [];
+            WSData._error_callbacks[url] = [];
+            WSData._callback_args[url] = [];
+        }
+        // Even if these are null, push them so the lists stay in sync.
+        WSData._success_callbacks[url].push(success);
+        WSData._error_callbacks[url].push(error);
+        WSData._callback_args[url].push(args);
+    },
+
+    _run_success_callbacks_for_url: function(url) {
+        var i,
+            callback,
+            args;
+
+        for (i = 0; i < WSData._success_callbacks[url].length; i++) {
+            callback = WSData._success_callbacks[url][i];
+            args = WSData._callback_args[url][i];
+
+            if (callback) {
+                callback.apply(null, args);
+            }
+        }
+
+        delete WSData._success_callbacks[url];
+        delete WSData._error_callbacks[url];
+        delete WSData._callback_args[url];
+    },
+
+    _run_error_callbacks_for_url: function(url) {
+        var i,
+            callback,
+            args;
+        for (i = 0; i < WSData._error_callbacks[url]; i++) {
+            callback = WSData._error_callbacks[url][i];
+            args = WSData._callback_args[url][i];
+
+            if (callback) {
+                callback.apply(null, args);
+            }
+        }
+
+        delete WSData._success_callbacks[url];
+        delete WSData._error_callbacks[url];
+        delete WSData._callback_args[url];
+    },
+
 
     book_data: function(term) {
         return WSData._book_data[term];
@@ -87,20 +147,26 @@ WSData = {
 
     fetch_book_data: function(term, callback, err_callback, args) {
         if (!WSData._book_data[term]) {
+            var url = "/mobile/api/v1/book/" + term;
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
             $.ajax({
-                url: "/mobile/api/v1/book/" + term,
+                url: url,
                 dataType: "JSON",
 
                 type: "GET",
                 accepts: {html: "text/html"},
                 success: function(results) {
                     WSData._book_data[term] = results;
-                    callback.apply(null, args);
+                    WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {
-                    if (err_callback !== undefined){
-                        err_callback.call(null, args);
-                    }
+                    WSData._run_error_callbacks_for_url(url);
                 }
                 });
             }
@@ -118,8 +184,17 @@ WSData = {
 
     fetch_course_data_for_term: function(term, callback, err_callback, args) {
         if (!WSData._course_data[term]) {
+            var url = "/mobile/api/v1/schedule/"+term;
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+
             $.ajax({
-                url: "/mobile/api/v1/schedule/"+term,
+                url: url,
                 dataType: "JSON",
 
                 type: "GET",
@@ -146,12 +221,10 @@ WSData = {
                         }
                     }
                     WSData._course_data[term] = results;
-                    if (callback !== null) {
-                        callback.apply(null, args);
-                    }
+                    WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {
-                    err_callback.call(null, status, error);
+                    WSData._run_error_callbacks_for_url(url);
                 }
             });
         }
@@ -385,18 +458,27 @@ WSData = {
 
     fetch_notice_data: function(callback, err_callback, args) {
         if (WSData._notice_data === null) {
+            var url = "/mobile/api/v1/notices/";
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+
             $.ajax({
-                url: "/mobile/api/v1/notices/",
+                url: url,
                 dataType: "JSON",
 
                 type: "GET",
                 accepts: {html: "text/html"},
                 success: function(results) {
                     WSData._notice_data = results;
-                    callback.apply(null, args);
+                    WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {
-                    err_callback.call(null, status, error);
+                    WSData._run_error_callbacks_for_url(url);
                 }
             });
         }
