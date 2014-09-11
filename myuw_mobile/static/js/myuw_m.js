@@ -25,7 +25,6 @@ $(document).ready(function() {
         $("#landing").removeClass("active");
         $("#nav_course_list").removeClass("active");
         $("#nav_visual_schedule").removeClass("active");
-        $("#nav_mylinks").removeClass("active");
         $("#nav_finabala").removeClass("active");
 
         // Page titles are defined in templates/index.html
@@ -55,11 +54,6 @@ $(document).ready(function() {
         else if (state === "textbooks") {
             TextBooks.show_books(data.term, data.textbook);
             document.title = window.page_titles["textbooks"];
-        }
-        else if (state === "quicklinks") {
-            QuickLinks.show_links();
-            $("#nav_mylinks").addClass("active");
-            document.title = window.page_titles["links"];
         }
         else if (state === "finabala") {
             HfsAccounts.show_balances();
@@ -173,11 +167,6 @@ $(document).ready(function() {
                 term: "current"
             },  "", path);
         }
-        else if (path === "/mobile/links") {
-            hist.replaceState({
-                state: "quicklinks"
-            },  "", "/mobile/links");
-        }
         else if (path === "/mobile/finabala") {
             hist.replaceState({
                 state: "finabala"
@@ -287,16 +276,6 @@ $(document).ready(function() {
     if (test_alert_color) {
         window.location.hash = test_alert_color;
     }
-
-    $(".quicklinks").bind("click", function(ev) {
-        $("#myuw_nav").collapse('hide');
-        var hist = window.History;
-        hist.pushState({
-            state: "quicklinks",
-        },  "", "/mobile/links");
-
-        return false;
-    });
 
     $(".finabala").bind("click", function(ev) {
         $("#myuw_nav").collapse('hide');

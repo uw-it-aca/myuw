@@ -32,31 +32,6 @@ class User(models.Model):
     last_visit = models.DateTimeField(default=datetime.now())
 
 
-class UserMyLink(models.Model):
-    user = models.ForeignKey(User,
-                             on_delete=models.PROTECT)
-    linkid = models.PositiveSmallIntegerField()
-    is_on = models.BooleanField()
-    class Meta:
-        unique_together = ('user',
-                           'linkid')
-
-class Link(models.Model):
-    json_id = models.PositiveIntegerField(db_index=True,
-                                          unique=True)
-    title = models.CharField(max_length=150)
-    url = models.CharField(max_length=150)
-    is_on = models.BooleanField()
-
-    def json_data(self):
-        data = {
-            "id": self.json_id,
-            "title": self.title,
-            "url": self.url,
-            "is_on": self.is_on
-        }
-        return data
-
 class Building(models.Model):
     code = models.CharField(max_length=6, db_index=True)
     latititude = models.CharField(max_length=40)
