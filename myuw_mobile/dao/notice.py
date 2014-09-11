@@ -277,27 +277,24 @@ def get_notices_for_current_user():
     notices = _get_notices_by_regid(get_regid_of_current_user())
     if notices is None:
         return []
-    for notice in notices:
-        user_notice = _get_user_notice(notice)
-        notice.id_hash = user_notice.notice_hash
-        notice.is_read = user_notice.is_read
+    return _get_user_notices(notices)
 
-    return notices
-
-
-def _get_user_notice(notice):
-    notice_hash = UserNotices().generate_hash(notice)
+def _get_user_notices(notices):
+    user_notices = []
     user = get_user_model()
-    user_notice = None
-    try:
-        user_notice = UserNotices.objects.get(notice_hash=notice_hash, user=user)
-    except ObjectDoesNotExist:
-        user_notice = UserNotices()
-        user_notice.notice_hash = notice_hash
-        user_notice.user = user
-        user_notice.save()
-    notice.id_hash = user_notice.notice_hash
-    return user_notice
+    for notice in notices:
+        notice_hash = UserNotices().generate_hash(notice)
+        try:
+            user_notice = UserNotices.objects.get(notice_hash=notice_hash, user=user)
+        except ObjectDoesNotExist:
+            user_notice = UserNotices()
+            user_notice.notice_hash = notice_hash
+            user_notice.user = user
+            user_notices.append(user_notice)
+        notice.is_read = user_notice.is_read
+        notice.id_hash = user_notice.notice_hash
+    UserNotices.objects.bulk_create(user_notices)
+    return notices
 
 def _categorize_notices(notices):
     for notice in notices:
