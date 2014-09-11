@@ -255,19 +255,20 @@ body {
 
 /*** uw alert ***/
 
-#uwalert-alert-message { margin: 0; }
+#uwalert-alert-message { margin: 0; position: relative; border-top: solid 2px @uwpurple; }
 
 .icon-warning-sign:before {
     font-family: FontAwesome;
     font-style: normal;
     content: "\f071";
     position: absolute;
-    right: 15px;
+    left: 15px;
+    top: 15px;
 }
 
 .alert {
-    h1 { font-size: 16px; margin: 0; margin-bottom: 8px; }
-    p { font-size: 12px; }
+    h1 { font-size: 16px; margin: 0; margin-bottom: 8px; margin-left: 23px; }
+    p { font-size: 12px;  margin-left: 23px; }
     a { font-size: 11px; text-decoration: underline; }
 }
 
@@ -283,6 +284,8 @@ body {
     border: none;
     border-radius: 0;
     color: #b94a48;
+    
+    
 }
 
 .uwalert-steel {
@@ -290,6 +293,9 @@ body {
     border: none;
     border-radius: 0;
     color: #3a87ad;
+    
+    i { display: none; }
+    h1, p { margin-left: 0; }
 }
 
 
