@@ -8,13 +8,24 @@ import os
 def _get_campus():
     campus = ""
     affiliations = get_all_affiliations()
-
-    if affiliations["official_tacoma"]:
-        campus = "tacoma"
-    if affiliations["official_bothell"]:
-        campus = "bothell"
-    if affiliations["official_seattle"]:
-        campus = "seattle"
+    try:
+        if affiliations["official_tacoma"]:
+            campus = "tacoma"
+        if affiliations["official_bothell"]:
+            campus = "bothell"
+        if affiliations["official_seattle"]:
+            campus = "seattle"
+    except KeyError:
+        try:
+            if affiliations["tacoma"]:
+                campus = "tacoma"
+            if affiliations["bothell"]:
+                campus = "bothell"
+            if affiliations["seattle"]:
+                campus = "seattle"
+        except KeyError:
+            campus = ""
+            pass
     return campus
 
 
@@ -22,7 +33,7 @@ def _get_campus():
 
 def get_links_for_category(search_category_id):
     campus = _get_campus()
-    print campus
+
     links = []
     path = os.path.join(
         os.path.dirname( __file__ ),
