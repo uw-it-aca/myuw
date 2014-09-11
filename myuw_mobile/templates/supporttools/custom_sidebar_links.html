@@ -1,0 +1,57 @@
+<h3>General</h3>
+<ul>
+    {% url 'userservice.views.support' as user_override_url %}
+    {% if user_override_url %}
+    <li><a href="{{ user_override_url }}">{{ userservice_link|default:"User Override" }}</a></li>
+    {% endif %}
+</ul>
+
+<h3>Web Services</h3>
+<ul>
+    {% url 'restclients.views.proxy' 'sws' 'student/v4' as sws_url %}
+    {% if sws_url %}
+    <li><a href="{{ sws_url }}">{{ restclients_sws_link|default:"Browse Student Web Service" }}</a></li>
+    {% endif %}
+    {% url 'restclients.views.proxy' 'sws' 'student/v5' as sws_url %}
+    {% if sws_url %}
+    <li><a href="{{ sws_url }}">New SWS resources, eg: notice</a></li>
+    {% endif %}
+    {% url 'restclients.views.proxy' 'pws' 'identity/v1' as pws_url %}
+    {% if pws_url %}
+    <li><a href="{{ pws_url }}">{{ restclients_pws_link|default:"Browse Person Web Service" }}</a></li>
+    {% endif %}
+    {% url 'restclients.views.proxy' 'gws' '' as url %}
+    {% if url %}
+    <li><a href="{{ url }}">UW Groups Web Service</a></li>
+    {% endif %}
+
+    {% url 'restclients.views.proxy' 'canvas' '' as url %}
+    {% if url %}
+    <li><a href="{{ url }}">Canvas Web Service</a></li>
+    {% endif %}
+
+
+    {% url 'restclients.views.proxy' 'hfs' 'myuw/v1' as url %}
+    {% if url %}
+    <li><a href="{{ url }}">HFS Web Service</a></li>
+    {% endif %}
+
+    {% url 'restclients.views.proxy' 'libraries' '' as url %}
+    {% if url %}
+    <li><a href="{{ url }}">Libraries Web Service</a></li>
+    {% endif %}
+
+    {% url 'restclients.views.proxy' 'book' '' as url %}
+    {% if url %}
+    <li><a href="{{ url }}">UW Bookstore Web Service</a></li>
+    {% endif %}
+
+    {% url 'restclients.views.proxy' 'uwnetid' '/v1/uwnetid' as url %}
+    {% if url %}
+    Netid Web Service:
+    <input type="text" id="netid_service_input"> <button id="netid_go">Go</button>
+
+    {% endif %}
+
+
+</ul>

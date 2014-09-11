@@ -12,3 +12,4 @@ Django-UserService==1.0.2
 -e svn+https://svn.cac.washington.edu/svn/restclients/trunk#egg=RestClients
 -e git://github.com/vegitron/django-handlebars-i18n#egg=Django-Handlebars-I18N
 -e git+https://github.com/abztrakt/django-mobileesp/#egg=django_mobileesp
+-e git+https://github.com/charlon/django-supporttools.git#egg=SupportTools
