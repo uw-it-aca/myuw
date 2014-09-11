@@ -316,12 +316,16 @@ body {
         }    }
     
     // header cover (purple)
-    .header-cover { height: 50px; background: lighten(@uwpurple, 2%);
+    .header-cover { background: lighten(@uwpurple, 2%);
         
-        .header-w { position:absolute; right:15px; bottom: -1px; 
-            img { width: 35px; }
+        .container { height: 50px; position: relative; 
+            
+            .header-w { position:absolute; right:15px; bottom: -1px; 
+                img { width: 35px; }
+            }
+            .header-netid { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 300; font-size: 26px; position: absolute; bottom: 0px; left: 15px; opacity: .6; color: @lighttan; /*text-transform: uppercase;*/ }
+        
         }
-        .header-netid { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 300; font-size: 26px; position: absolute; bottom: 0px; left: 15px; opacity: .6; color: @lighttan; /*text-transform: uppercase;*/ }
     }
     
 }
@@ -718,7 +722,6 @@ body {
       text-align: center;
       color: #3c3c3c;
       top: 0px;
-      //margin-top: -2px;
     }
     .visual-course {
       width: 100%;
@@ -729,9 +732,6 @@ body {
     }
     .visual-info {
     	width: 100%;
-    /**  display: table-cell;
-      vertical-align: middle;
-      text-align: left; **/
     }
     .visual-course-id {
     	position: absolute;

@@ -44,24 +44,22 @@
     {% csrf_token %}
 
     <div id="app_header" role="navigation">
-        
-        <div class="header-bar">
-            <div class="container clearfix">
-                <div class="pull-left header-myuw"><a href="/mobile/landing" title="Return to Home">MYUW</a></div>
-                <div class="pull-right">
-                    <div class="header-email" id="uwemail"></div>
-                    <div class="header-resources"><a href="#" id="categories_link"><i class="fa fa-th"></i> Resources</a></div>
+            <div class="header-bar">
+                <div class="container clearfix">
+                    <div class="pull-left header-myuw"><a href="/mobile/landing" title="Return to Home">MYUW</a></div>
+                    <div class="pull-right">
+                        <div class="header-email" id="uwemail"></div>
+                        <div class="header-resources"><a href="#" id="categories_link"><i class="fa fa-th"></i> Resources</a></div>
+                    </div>
                 </div>
             </div>
-        </div>
-            
-        <div class="header-cover">
-            <div class="container clearfix">
-                <div class="header-netid"><span>{{ user.netid }}</span></div>
-                <div class="header-w"><img src="{% static 'images/w-logo-white.png' %}"></div>
+                
+            <div class="header-cover">
+                <div class="container clearfix">
+                    <div class="header-netid"><span>{{ user.netid }}</span></div>
+                    <div class="header-w"><img src="{% static 'images/w-logo-white.png' %}"></div>
+                </div>
             </div>
-        </div>
-            
     </div>
             
     <div id="page-modal"></div>
