@@ -38,7 +38,10 @@
 
     {% url 'restclients.views.proxy' 'libraries' '' as url %}
     {% if url %}
-    <li><a href="{{ url }}">Libraries Web Service</a></li>
+    Library Web Service:
+    <form action="{% url 'restclients.views.proxy' 'libraries' 'mylibinfo/v1/' %}" method="GET">
+        <input type="text" name="id" /> <input type="submit" value="go" />
+    </form>
     {% endif %}
 
     {% url 'restclients.views.proxy' 'book' '' as url %}
