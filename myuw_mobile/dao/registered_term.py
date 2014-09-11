@@ -35,7 +35,7 @@ def get_current_summer_term_in_schedule(schedule):
             if _must_displayed_separately(schedule):
                 summer_term = get_current_summer_term()
             else:
-                summer_term = "Full-term"
+                summer_term = "full-term"
     return summer_term
 
 
@@ -71,15 +71,18 @@ def _get_registered_future_quarters(next_quar_sche,
             
             if sumr_tms[A_TERM] or sumr_tms[FULL_TERM] and sumr_tms[B_TERM]:
                 terms.append(_get_future_term_json(next_quarter,
-                                                   "A-term", sumr_tms))
+                                                   "a-term",
+                                                   sumr_tms))
 
             if sumr_tms[B_TERM] or sumr_tms[FULL_TERM] and sumr_tms[A_TERM]:
                 terms.append(_get_future_term_json(next_quarter,
-                                                   "B-term", sumr_tms))
+                                                   "b-term",  
+                                                   sumr_tms))
 
             if sumr_tms[FULL_TERM] and not sumr_tms[A_TERM] and not sumr_tms[B_TERM]:
                 terms.append(_get_future_term_json(next_quarter,
-                                                   "Full-term", sumr_tms))
+                                                   "full-term",
+                                                   sumr_tms))
         else:
             terms.append(_get_future_term_json(next_quarter,""))
 
@@ -95,13 +98,13 @@ def _get_future_term_json(term, summer_term, summer_term_data=None):
     if len(summer_term) > 0:
         url = url + "," + summer_term.lower()
 
-        if summer_term == "A-term":
+        if is_a_term(summer_term):
             return_json["credits"] = str(summer_term_data[FULL_TERM_CREDITS] + summer_term_data[A_TERM_CREDITS])
             return_json["section_count"] = summer_term_data[FULL_TERM_SECTIONS] + summer_term_data[A_TERM_SECTIONS]
-        elif summer_term == "B-term":
+        elif is_b_term(summer_term):
             return_json["credits"] = str(summer_term_data[FULL_TERM_CREDITS] + summer_term_data[B_TERM_CREDITS])
             return_json["section_count"] = summer_term_data[FULL_TERM_SECTIONS] + summer_term_data[B_TERM_SECTIONS]
-        elif summer_term == "Full-term":
+        elif is_full_summer_term(summer_term):
             return_json["credits"] = str(summer_term_data[FULL_TERM_CREDITS])
             return_json["section_count"] = summer_term_data[FULL_TERM_SECTIONS]
     else:

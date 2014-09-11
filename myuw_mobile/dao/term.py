@@ -35,13 +35,13 @@ def get_current_quarter():
 
 def get_current_summer_term():
     """
-    Return a string of the current summer A-term or B-term
+    Return a string of the current summer a-term or b-term
     """
     term = get_current_quarter()
     if date.today() > term.aterm_last_date:
-        return "B-term"
+        return "b-term"
     else:
-        return "A-term"
+        return "a-term"
 
 
 def get_next_quarter():
