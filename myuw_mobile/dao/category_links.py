@@ -68,7 +68,6 @@ def get_links_for_category(search_category_id):
                 links.append(link)
 
             if len(seattle_url) > 0 and campus == "seattle":
-                print 'adding campus'
                 link = CategoryLinks(
                     url=seattle_url,
                     title=seattle_title,
