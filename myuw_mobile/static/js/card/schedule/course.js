@@ -45,7 +45,9 @@ var CourseCard = {
             if (course_data.sections[index].class_website_url || course_data.sections[index].canvas_url) {
                 course_data.sections[index].has_resources = true;
             }
+            course_data.sections[index].summer_term = course_data.summer_term;
         }
+
         var source = $("#course_card_content").html();
         var courses_template = Handlebars.compile(source);
 

@@ -1,3 +1,7 @@
+Handlebars.registerHelper("toUrlSafe", function(str) {
+    return str.replace(/ /g, "%20");
+});
+
 
 
 Handlebars.registerHelper("toLowerCase", function(str) {

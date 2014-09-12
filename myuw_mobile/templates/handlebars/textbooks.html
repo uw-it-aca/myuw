@@ -10,7 +10,7 @@
  
         {{#each sections}}
         
-        <div class="books-list"><a name="{{curriculum}}{{course_number}}{{section_id}}" /> <h3><i class="fa fa-square c{{color_id}}Color"></i> {{curriculum}} {{course_number}}{{section_id}}</h3></div>
+        <div class="books-list"><a name="{{toUrlSafe curriculum}}{{course_number}}{{section_id}}" /> <h3><i class="fa fa-square c{{color_id}}Color"></i> {{curriculum}} {{course_number}}{{section_id}}</h3></div>
         
         {{#if books}}
       

@@ -146,16 +146,16 @@ $(document).ready(function() {
                 state: "landing",
             },  "", "/mobile/landing/");
         }
-        else if (path.match(/^\/mobile\/textbooks\/[0-9]{4}[-,a-z]+\/[A-Z0-9]+$/)) {
-            var matches = path.match(/^\/mobile\/textbooks\/([0-9]{4}[-,a-z]+)\/([A-Z0-9]+)$/);
+        else if (path.match(/^\/mobile\/textbooks\/[0-9]{4}[-,a-z]+\/[%A-Z0-9]+$/)) {
+            var matches = path.match(/^\/mobile\/textbooks\/([0-9]{4}[-,a-z]+)\/([%A-Z0-9]+)$/);
             hist.replaceState({
                 state: "textbooks",
                 term: matches[1],
                 textbook: matches[2]
             },  "", path);
         }
-        else if (path.match(/^\/mobile\/textbooks\/[0-9]{4}[-,a-z]+$/i)) {
-             var matches = path.match(/^\/mobile\/textbooks\/([0-9]{4}[-,a-z]+)$/i);
+        else if (path.match(/^\/mobile\/textbooks\/[0-9]{4}[-,a-z]+\/?$/i)) {
+             var matches = path.match(/^\/mobile\/textbooks\/([0-9]{4}[-,a-z]+)\/?$/i);
              hist.replaceState({
                  state: "textbooks",
                  term: matches[1]
