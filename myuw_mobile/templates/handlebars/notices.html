@@ -217,6 +217,9 @@
 	                    {{# each future.notices }}
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 		                    <div class="inner-notice-container">
+	                            {{ #if is_critical }}
+								<i class="fa fa-exclamation-triangle critical-icon"></i>
+	                            {{ /if }}
 		                        <div class="notice-category">
 		                            {{ category }}
 		                        </div>
