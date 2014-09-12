@@ -99,7 +99,7 @@ $(document).ready(function() {
 
         var hist = window.History;
 
-        if (path === "/mobile/") {
+        if (path === "/mobile/" || path === "/mobile") {
             hist.replaceState({
                 state: "landing",
             },  "", "/mobile/landing/");
