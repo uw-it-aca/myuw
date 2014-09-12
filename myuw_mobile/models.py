@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.utils import timezone
 import hashlib
 
 
@@ -29,7 +30,7 @@ class User(models.Model):
                                db_index=True,
                                unique=True)
 
-    last_visit = models.DateTimeField(default=datetime.now())
+    last_visit = models.DateTimeField(default=timezone.now())
 
 
 class Building(models.Model):
@@ -113,4 +114,4 @@ class CategoryLinks(models.Model):
 class TuitionDate(models.Model):
     user = models.ForeignKey('User', on_delete=models.PROTECT, unique=True)
     date_stored = models.DateTimeField(auto_now=True)
-    date = models.DateTimeField()
+    date = models.DateField()
