@@ -98,11 +98,13 @@ class CategoryLinks(models.Model):
     category_id = models.CharField(max_length=80)
     category_name = models.CharField(max_length=80)
     sub_category = models.CharField(max_length=80)
+    new_tab = models.BooleanField()
 
     def json_data(self):
         data = {
             "title": self.title,
-            "url": self.url
+            "url": self.url,
+            "new_tab": self.new_tab
         }
         return data
 

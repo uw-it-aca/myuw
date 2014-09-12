@@ -38,7 +38,7 @@ def get_links_for_category(search_category_id):
     path = os.path.join(
         os.path.dirname( __file__ ),
         '..', 'data', 'category_links_import.csv')
-    with open(path, 'rb') as csvfile:
+    with open(path, 'rbU') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
 
         for row in reader:
@@ -53,6 +53,11 @@ def get_links_for_category(search_category_id):
             bothell_title = row[7]
             tacoma_url = row[8]
             tacoma_title = row[9]
+
+            new_tab = False
+            if row[10] == "yes":
+                new_tab = True
+
             if (category_id != search_category_id):
                 continue
 
@@ -61,7 +66,8 @@ def get_links_for_category(search_category_id):
                     url=central_url,
                     title=central_title,
                     category_name=category,
-                    sub_category=subcategory
+                    sub_category=subcategory,
+                    new_tab=new_tab
                 )
                 if len(central_title) == 0:
                     link.title = link.url
@@ -73,7 +79,8 @@ def get_links_for_category(search_category_id):
                     title=seattle_title,
                     category_name=category,
                     sub_category=subcategory,
-                    campus="seattle"
+                    campus="seattle",
+                    new_tab=new_tab
                 )
                 if len(seattle_title) == 0:
                     link.title = link.url
@@ -85,7 +92,8 @@ def get_links_for_category(search_category_id):
                     title=bothell_title,
                     category_name=category,
                     sub_category=subcategory,
-                    campus="bothell"
+                    campus="bothell",
+                    new_tab=new_tab
                 )
                 if len(bothell_title) == 0:
                     link.title = link.url
@@ -97,7 +105,8 @@ def get_links_for_category(search_category_id):
                     title=tacoma_title,
                     category_name=category,
                     sub_category=subcategory,
-                    campus="tacoma"
+                    campus="tacoma",
+                    new_tab=new_tab
                 )
                 if len(tacoma_title) == 0:
                     link.title = link.url
