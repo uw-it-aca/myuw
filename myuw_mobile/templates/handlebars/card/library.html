@@ -56,11 +56,12 @@
                     </div>
                     {{/if}}
                 </div>
+                {{#unless items_loaned }}
+                <a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount">See account</a>
+                {{/unless}}
             
             </div>
-
         {{/with}}
-                 
     {{/if}}
 
     {% endtplhandlebars %}
