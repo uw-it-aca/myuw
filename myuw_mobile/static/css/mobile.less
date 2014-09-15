@@ -969,9 +969,11 @@ body {
     
             .navigation-item { display: inline-block; position: relative; padding: 5px;
                                     
-                .navigation-item-text { font-family: 'Roboto', sans-serif; font-weight: 400; font-family: 'encode_sans_normalsemibold'; color: #555; font-size: @font-base; /*text-transform: uppercase;*/ }
-
+                .navigation-item-text { font-family: 'Roboto', sans-serif; font-weight: 400; font-family: 'encode_sans_normalsemibold'; color: #555; font-size: @font-base; /*text-transform: uppercase;*/ }                
             }
+            
+            // handle :hover state as mobile touch
+            .hover:hover { background: darken(@lighttan, 15%); }
         }
         
     }
