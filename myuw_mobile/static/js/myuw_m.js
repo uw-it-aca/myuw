@@ -309,6 +309,9 @@ $(document).ready(function() {
         }, "fast");
         return false;
     });
+    
+    // handle touchstart to mimic :hover event for mobile touch
+    $('body').bind('touchstart', function() {});
         
 });
 
