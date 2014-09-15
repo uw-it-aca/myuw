@@ -46,29 +46,34 @@ var TextbookCard = {
 
     _render: function () {
         var term = TextbookCard.term;
-        var textbook_data  = TextBooks.process_book_data(WSData.book_data(term), WSData.course_data_for_term(term));
-
+        var course_data = WSData.course_data_for_term(term);
+        var registered = true;
         var section_book_data = [];
-        $.each(textbook_data.sections, function (sec_idx, section) {
-            var required = 0;
-            var optional = 0;
-            $.each(section.books, function (book_idx, book, section) {
-                if (book.is_required) {
-                    required += 1;
-                } else {
-                    optional += 1;
-                }
+        if (course_data.sections.length == 0) {
+            registered = false;
+        } else {
+            var textbook_data  = TextBooks.process_book_data(WSData.book_data(term), course_data);
+            $.each(textbook_data.sections, function (sec_idx, section) {
+                var required = 0;
+                var optional = 0;
+                $.each(section.books, function (book_idx, book, section) {
+                    if (book.is_required) {
+                        required += 1;
+                    } else {
+                        optional += 1;
+                    }
+                });
+                var course_id = section.curriculum + " " + section.course_number + " " + section.section_id;
+
+                var section_data = {"course_id": course_id,
+                                    "required": required,
+                                    "optional": optional
+                                   };
+                section_book_data.push(section_data);
             });
-            var course_id = section.curriculum + " " + section.course_number + " " + section.section_id;
-
-            var section_data = {"course_id": course_id,
-                                "required": required,
-                                "optional": optional
-            };
-            section_book_data.push(section_data);
-        });
-
-        var template_data = {"term": term,
+        }
+        var template_data = {"registered": registered,
+                             "term": term,
                              "sections": section_book_data}
 
         var source = $("#textbook_card").html();
