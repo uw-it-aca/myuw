@@ -6,8 +6,11 @@ var Category = {
     },
 
     render_category_page: function(category, topic) {
-        data = WSData.category_link_data(category);
-        document.title = data.category_name;
+        var data = WSData.category_link_data(category);
+
+        var title = window.page_titles["category_page"].replace("Category", data.category_name);
+
+        document.title = title;
         source = $("#category_page").html();
         template = Handlebars.compile(source);
 

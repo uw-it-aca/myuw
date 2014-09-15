@@ -87,7 +87,8 @@ $(document).ready(function() {
         }
         else if (state === "category_page") {
             Category.show_category_page(data.category, data.topic);
-            document.title = window.page_titles["category_page"];
+            // Document title is set in the category.js file - custom per category
+            //document.title = window.page_titles["category_page"];
         }
 
 
