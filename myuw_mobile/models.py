@@ -90,6 +90,8 @@ class UserNotices(models.Model):
             # notice.marked_read = datetime.now()
             notice.save()
 
+    class Meta:
+        unique_together = (("notice_hash", "user"),)
 
 class CategoryLinks(models.Model):
     url = models.CharField(max_length=150)
@@ -98,7 +100,7 @@ class CategoryLinks(models.Model):
     category_id = models.CharField(max_length=80)
     category_name = models.CharField(max_length=80)
     sub_category = models.CharField(max_length=80)
-    new_tab = models.BooleanField()
+    new_tab = models.BooleanField(default=False)
 
     def json_data(self):
         data = {
