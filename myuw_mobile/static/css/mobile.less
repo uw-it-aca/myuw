@@ -75,17 +75,6 @@
 
 }
 
-@font-face {
-    src: url('fonts/uni_sans_thin-webfont.eot');
-    src: url('fonts/uni_sans_thin-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/uni_sans_thin-webfont.woff') format('woff'),
-         url('fonts/uni_sans_thin-webfont.ttf') format('truetype'),
-         url('fonts/uni_sans_thin-webfont.svg#uni_sansthin_caps') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
 /*** global ***/
 
 body {
@@ -306,7 +295,7 @@ body {
     // header bar (thin)    
     .header-bar { position: relative; height: 30px;
         
-        .header-myuw { font-family: 'encode_sans_normalsemibold'; display: inline-block; margin: 0; padding: 0;  font-size:16px; color: @myuw;  line-height: 30px; 
+        .header-myuw { font-family: 'Roboto'; font-weight: 300; display: inline-block; margin: 0; padding: 0;  font-size:16px; color: @myuw;  line-height: 30px; 
             a { color: @lighttan; }
             span { color: darken(@lighttan, 20%); }
         }
@@ -329,7 +318,7 @@ body {
             .header-w { position:absolute; right:15px; bottom: -1px; 
                 img { width: 35px; }
             }
-            .header-netid { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 300; font-size: 26px; position: absolute; bottom: 0px; left: 15px; opacity: .6; color: @lighttan; /*text-transform: uppercase;*/ }
+            .header-netid { font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 26px; position: absolute; bottom: 0px; left: 15px; opacity: .6; color: @lighttan; /*text-transform: uppercase;*/ }
         
         }
     }
@@ -364,7 +353,7 @@ body {
     	padding: 10px;
     	
 		h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; /*text-transform: uppercase;*/ margin-top: 10px; margin-bottom: 15px; color: @darktan; }
-        h4 { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; font-size: 16px; /*text-transform: uppercase;*/ color: #444; }
+        h4 { font-family:'Roboto'; font-weight: 400; font-size: 16px; /*text-transform: uppercase;*/ color: #444; }
         
         .card-content {  }
         
@@ -382,13 +371,13 @@ body {
                 
             .card-badge {  padding: 8px 10px 10px 0px; position: relative;
                 
-                .card-badge-label { display: block; font-weight: bold; line-height: 35px; /* font-family: 'uni_sansthin_caps'; font-size: 16px; color: @darktan; */ }
+                .card-badge-label { display: block; font-weight: bold; line-height: 35px; }
                 .card-badge-action { display: block; font-weight: normal; line-height: 35px; margin-top: -10px; 
-                    a { display: block; /*text-decoration: underline;  color: @darktan;*/ }
+                    a { display: block; }
                 }
                 
                 .card-badge-value { display: block; font-size: 22px; font-weight: bold; line-height: 35px; text-align: right; }
-                .card-badge-note { font-weight: normal; /*ont-style: italic;*/ color: #888; margin-top: 35px; position: absolute; bottom: -3px; font-size: 12px; }
+                .card-badge-note { font-weight: normal; color: #888; margin-top: 35px; position: absolute; bottom: -3px; font-size: 12px; }
             }
         }
         
@@ -461,10 +450,10 @@ body {
         .card {
 
             h4 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; margin-bottom: 1em; 
-                .shortTitle { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; }
+                .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; }
             }
 
-            h5 { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; color: @darktan; margin-top: 1.5em; margin-bottom: .5em; font-size: 16px; /*text-transform: uppercase;*/ }
+            h5 { font-family: 'Roboto', sans-serif; font-weight: 400; color: @darktan; margin-top: 1.5em; margin-bottom: .5em; font-size: 16px; /*text-transform: uppercase;*/ }
             
         
 			.instructor-container {list-style-type: none; padding: 0; margin-bottom: 1em;
@@ -509,7 +498,7 @@ body {
         .card {
             
             h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; 
-                .shortTitle { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
+                .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
             }
             
             .destination-arrow { position:absolute; top: 50%; right: 0; margin-top:-14px; 
@@ -810,7 +799,7 @@ body {
 		padding-bottom: 3em;
 		
 		h1 { font-family: 'encode_sans_normalbold'; color: #444; font-size: @font-header-small; /*text-transform: uppercase;*/ }
-		h3 { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; font-size: 16px; line-height: 30px; margin: 0; color: #222; }
+		h3 { font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 16px; line-height: 30px; margin: 0; color: #222; }
 		h4 { font-family: 'Open Sans', sans-serif; font-size: 14px; 
     		span { text-transform: uppercase; font-size: 11px; }
 		}
@@ -842,7 +831,7 @@ body {
         }
         
         h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; /*text-transform: uppercase;*/ }
-        h2 { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; font-size: 16px; } 
+        h2 { font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 16px; } 
     }
     // future quarters page
     
@@ -852,7 +841,7 @@ body {
         
         h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; /*text-transform: uppercase;*/ }
         
-        .shortTitle { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
+        .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
     }
 	    
 	//notices page 
@@ -863,9 +852,9 @@ body {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
 
-		h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444; /*text-transform: uppercase;*/ }
-		h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; /*text-transform: uppercase;*/ margin-top: 10px; }
-        h3 { color: #333; margin-top: 0; margin-bottom:0; font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; }
+		h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444; }
+		h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; margin-top: 10px; }
+        h3 { color: #333; margin-top: 0; margin-bottom:0; font-family: 'Roboto', sans-serif; font-weight: 400; }
         
 		.notice-count { }
 
@@ -979,7 +968,7 @@ body {
     
             .navigation-item { display: inline-block; position: relative; padding: 5px;
                                     
-                .navigation-item-text { font-family:'roboto' /* 'uni_sansthin_caps' */; font-weight: 400; font-family: 'encode_sans_normalsemibold'; color: #555; font-size: @font-base; /*text-transform: uppercase;*/ }
+                .navigation-item-text { font-family: 'Roboto', sans-serif; font-weight: 400; font-family: 'encode_sans_normalsemibold'; color: #555; font-size: @font-base; /*text-transform: uppercase;*/ }
 
             }
         }
