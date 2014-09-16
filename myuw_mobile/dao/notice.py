@@ -299,6 +299,7 @@ def _get_user_notices(notices):
 def _categorize_notices(notices):
     for notice in notices:
         _map_notice(notice)
+    notices[:] = [notice for notice in notices if notice.custom_category != "not a notice"]
     return notices
 
 def _map_notice(notice):
