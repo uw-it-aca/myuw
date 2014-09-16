@@ -12,6 +12,7 @@ from myuw_mobile.dao.pws import get_regid_of_current_user
 from myuw_mobile.models import UserNotices, TuitionDate
 from myuw_mobile.dao import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
+from django.db import IntegrityError
 
 
 logger = logging.getLogger(__name__)
@@ -305,7 +306,14 @@ def _get_user_notices(notices):
         user_notice.notice_hash = notice.id_hash
         user_notice.user = user
         user_notices_to_create.append(user_notice)
-    UserNotices.objects.bulk_create(user_notices_to_create)
+
+    try:
+        UserNotices.objects.bulk_create(user_notices_to_create)
+    except IntegrityError:
+        # MUWM-2016.  This should be rare - 2 processes running at just about
+        # exactly the same time.  In that case especially, the bulk create list
+        # should be the same.  And if it isn't, big deal?
+        pass
 
     # Add newly created UserNotices into returned list
     notices_with_read_status = notices_with_read_status + notice_dict.values()
