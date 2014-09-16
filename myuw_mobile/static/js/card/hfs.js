@@ -8,7 +8,6 @@ var HfsCard = {
 
     render_upon_data: function () {
         if (!HfsCard._has_all_data()) {
-            HfsCard.dom_target.html(HfsCard.render_error());
             return;
         }
         HfsCard._render();

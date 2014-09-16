@@ -5,7 +5,7 @@ var VisualScheduleCard = {
 
     render_init: function(term, course_index) {
         WSData.fetch_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_upon_data, VisualScheduleCard.render_error)
-        WSData.fetch_current_course_data(VisualScheduleCard.render_upon_data);
+        WSData.fetch_current_course_data(VisualScheduleCard.render_upon_data, VisualScheduleCard.render_error);
     },
 
     _has_all_data: function () {
@@ -21,7 +21,6 @@ var VisualScheduleCard = {
 
     render_upon_data: function(course_index) {
         if (!VisualScheduleCard._has_all_data()) {
-            VisualScheduleCard.dom_target.html(CardWithError.render());
             return;
         }
         VisualScheduleCard._render();

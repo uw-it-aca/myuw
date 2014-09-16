@@ -4,21 +4,20 @@ var PCETuitionCard = {
     _ajax_count: 0,
 
     render_init: function() {
-        PCETuitionCard._ajax_count = 2;
-        WSData.fetch_tuition_data(PCETuitionCard.render_upon_data);
-        WSData.fetch_notice_data(PCETuitionCard.render_upon_data);
+        WSData.fetch_tuition_data(PCETuitionCard.render_upon_data, PCETuitionCard.render_error);
+        WSData.fetch_notice_data(PCETuitionCard.render_upon_data, PCETuitionCard.render_error);
+    },
+
+
+    render_error: function () {
+        PCETuitionCard.dom_target.html(CardWithError.render());
     },
 
     render_upon_data: function() {
-        PCETuitionCard._ajax_count -= 1;
-        if(!PCETuitionCard._has_all_data()  && PCETuitionCard._ajax_count === 0){
-            PCETuitionCard.dom_target.html(CardWithError.render());
+        if(!PCETuitionCard._has_all_data()){
             return;
         }
-        else if(PCETuitionCard._has_all_data()){
-            PCETuitionCard._render();
-        }
-
+        PCETuitionCard._render();
     },
 
     _render: function () {

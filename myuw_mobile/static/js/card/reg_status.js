@@ -10,7 +10,6 @@ var RegStatusCard = {
         //Delay rendering until all requests are complete
         //Do something smart about not showing error if AJAX is pending
         if (!RegStatusCard._has_all_data()) {
-            $(RegStatusCard.dom_target).html(RegStatusCard.render_error());
             return;
         }
         RegStatusCard._render();

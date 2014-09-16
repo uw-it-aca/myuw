@@ -9,7 +9,6 @@ var CourseCard = {
 
     render_upon_data: function() {
         if (!CourseCard._has_all_data()) {
-            CourseCard.render_error();
             return;
         }
         CourseCard._render();

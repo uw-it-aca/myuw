@@ -16,13 +16,10 @@ var TuitionCard = {
     },
 
     render_upon_data: function() {
-        TuitionCard._ajax_count -= 1;
-        if (!TuitionCard._has_all_data() && TuitionCard._ajax_count === 0){
-            TuitionCard.dom_target.html(TuitionCard.render_error());
+        if (!TuitionCard._has_all_data()) {
             return;
-        } else if (TuitionCard._has_all_data()) {
-            TuitionCard._render();
         }
+        TuitionCard._render();
     },
 
     _render: function () {

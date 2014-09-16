@@ -7,7 +7,7 @@ var TextbookCard = {
     render_init: function() {
         var term =  (TextbookCard.term === undefined) ? 'current' : TextbookCard.term;
         WSData.fetch_book_data(term, TextbookCard.render_upon_data, TextbookCard.textbook_error);
-        WSData.fetch_course_data_for_term(term, TextbookCard.render_upon_data, TextbookCard.textbook_error);
+        WSData.fetch_course_data_for_term(term, TextbookCard.render_upon_data, TextbookCard._render_error);
         // may need to add a missing_course_error
     },
 
@@ -20,28 +20,27 @@ var TextbookCard = {
         //If more than one data source, multiple callbacks point to this function
         //Delay rendering until all requests are complete
         //Do something smart about not showing error if AJAX is pending
-        if (!TextbookCard.missing_book_error && !TextbookCard._has_all_data()) {
-            TextbookCard.dom_target.html(CardWithError.render());
+        if (!TextbookCard._has_all_data()) {
             return;
         }
-        if (TextbookCard.missing_book_error) {
-            TextbookCard._render_error();
-        } else {
-            TextbookCard._render();
-        }
-
+        TextbookCard._render();
     },
 
     textbook_error: function() {
         TextbookCard.missing_book_error = true;
+        TextbookCard._render_error();
     },
 
     _render_error: function() {
-        var source = $("#textbook_card").html();
-        var template = Handlebars.compile(source);
-        TextbookCard.dom_target.html(template({'no_books': true,
+        if (TextbookCard.missing_book_error) {
+        }
+        else {
+            var source = $("#textbook_card").html();
+            var template = Handlebars.compile(source);
+            TextbookCard.dom_target.html(template({'no_books': true,
                                                'term': TextbookCard.term}
                                              ));
+        }
     },
 
     _render: function () {
