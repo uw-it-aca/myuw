@@ -1,0 +1,73 @@
+{
+    "ClassLevel": "SENIOR",
+    "FullName": "New,JAMES",
+    "HonorsProgram": false,
+    "LeaveEndQuarter": 0,
+    "LeaveEndYear": 0,
+    "Majors": [
+        {
+            "Abbreviation": "ACMS",
+            "Campus": "Seattle",
+            "DegreeLevel": 1,
+            "DegreeName": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
+            "DegreeType": 5,
+            "FullName": "App & Comp Math Sci (Social & Behav Sci)",
+            "MajorName": "ACMS (SOC & BEH SCI)",
+            "Pathway": 80,
+            "ShortName": "ACMS (SBS)"
+        }
+    ],
+    "PendingClassChange": false,
+    "PendingHonorsChange": false,
+    "PendingMajorChange": false,
+    "PendingResidentChange": false,
+    "PendingSpecialProgramChange": false,
+    "Person": {
+        "Href": "/student/v4/person/FE36CCB8F66711D5BE060004AC494F31.json",
+        "Name": "NEW,JAMES",
+        "RegID": "FE36CCB8F66711D5BE060004AC494F31"
+    },
+    "QtrGradePoints": 30,
+    "QtrGradedAttmp": 10,
+    "QtrNonGrdEarned": 2,
+    "RegID": "FE36CCB8F66711D5BE060004AC494F31",
+    "Registrations": [
+        {
+            "AddAccessCode": "",
+            "Auditor": false,
+            "Credits": " 2.0",
+            "DropAccessCode": "",
+            "DuplicateCode": "0",
+            "FacultySequenceNumber": "",
+            "FeeBaseType": "",
+            "Grade": "CR",
+            "GradeDate": "",
+            "GradeDocumentID": "061102100",
+            "HonorsCourse": false,
+            "IsActive": true,
+            "Person": {
+                "Href": "/student/v4/person/FE36CCB8F66711D5BE060004AC494F31.json",
+                "Name": "AVERAGE,JAMES",
+                "RegID": "FE36CCB8F66711D5BE060004AC494F31"
+            },
+            "RepeatCourse": false,
+            "RequestDate": "",
+            "RequestStatus": "",
+            "Section": {
+                "Href": "/student/v4/course/2013,spring,TRAIN,101/A.json",
+                "CourseNumber": "101",
+                "CurriculumAbbreviation": "TRAIN",
+                "Quarter": "spring",
+                "SectionID": "A",
+                "Year": "2013"
+            },
+            "VariableCredit": false,
+            "WritingCourse": false
+        }
+    ],
+    "Term": {
+        "Href": "/student/v4/term/2013,spring.json",
+        "Quarter": "spring",
+        "Year": "2013"
+    }
+}
