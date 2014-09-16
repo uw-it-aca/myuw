@@ -956,24 +956,24 @@ body {
 
 /*** footer ***/
 
-#app_footer { background: #fff; margin-top: 10px;
+#app_footer { background: darken(@lighttan, 5%); margin-top: 10px; padding-top: 15px;
     
     // navigation bar
     .navigation-bar { margin-bottom: 10px;
         
         .navigation-list {  list-style:none; padding-left:0; margin:0;
             
-            li {  width: 49.5%; margin-right: 1%; margin-bottom: 1%; height: 100px; background:@lighttan; }
+            li {  width: 49%; margin-right: 2%; margin-bottom: 2%; height: 100px; background:@lighttan; }
             
             li:nth-child(even) { margin-right: 0; }
     
-            .navigation-item { display: inline-block; position: relative; padding: 5px;
+            .navigation-item { display: inline-block; position: relative; padding: 5px; height: 100px; width: 100%;
                                     
                 .navigation-item-text { font-family: 'Roboto', sans-serif; font-weight: 400; font-family: 'encode_sans_normalsemibold'; color: #555; font-size: @font-base; /*text-transform: uppercase;*/ }                
             }
             
             // handle :hover state as mobile touch
-            .hover:hover { background: darken(@lighttan, 15%); }
+            .hover:hover { background: darken(@lighttan, 20%); }
         }
         
     }
