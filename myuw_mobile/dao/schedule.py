@@ -60,6 +60,9 @@ def get_next_quarter_schedule():
     """ 
     Return the actively enrolled sections in the next quarter 
     """
+    # MUWM-1981
+    if get_next_quarter() == get_current_quarter():
+        return None
     return get_schedule_by_term(get_next_quarter())
 
 
@@ -67,6 +70,9 @@ def get_next_autumn_quarter_schedule():
     """
     Return the actively enrolled sections in the next autumn quarter 
     """
+    # MUWM-1981
+    if get_next_autumn_quarter() == get_current_quarter():
+        return None
     return get_schedule_by_term(get_next_autumn_quarter())
 
 
