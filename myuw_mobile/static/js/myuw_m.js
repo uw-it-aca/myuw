@@ -254,12 +254,10 @@ $(document).ready(function() {
             },  "", "/mobile/resource/" + slug );
         }
         else {
-            // Just fall back to the course list?
+            // Now we fall back to the landing page
             hist.replaceState({
-                state: "course_list",
-                }, "", "/mobile"
-            );
-            //CourseList.show_list();
+                state: "landing",
+            },  "", "/mobile/landing/");
         }
 
 
