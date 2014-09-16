@@ -25,7 +25,6 @@ var Notices = {
 
         var critical_notices = Notices._get_critical(all_notices);
         notices['total_notices'] = total_notices;
-        notices['holds'] = Notices.get_notices_for_category("Holds");
         notices['legal'] = Notices.get_notices_for_category("Legal");
         notices['critical'] = {
             "count": critical_notices.length,
