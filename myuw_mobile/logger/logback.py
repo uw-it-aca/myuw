@@ -30,7 +30,8 @@ def log_resp_time(logger, action, timer):
 def get_logging_userid():
     """
     Return <actual user netid> acting_as: <override user netid> if
-    the user is acting as someone else, otherwise <actual user netid>
+    the user is acting as someone else, otherwise
+    <actual user netid> no_override: <actual user netid>
     """
     user_svc = UserService()
     override_userid = user_svc.get_override_user()
@@ -38,6 +39,6 @@ def get_logging_userid():
     if override_userid:
         log_userid = actual_userid + ' acting_as: ' + override_userid
     else:
-        log_userid = actual_userid
+        log_userid = actual_userid + ' no_override: ' + actual_userid
     return log_userid
 
