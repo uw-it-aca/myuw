@@ -37,8 +37,8 @@ def get_logging_userid():
     override_userid = user_svc.get_override_user()
     actual_userid = user_svc.get_original_user()
     if override_userid:
-        log_userid = actual_userid + ' acting_as: ' + override_userid
+        log_userid = 'base_user: ' + actual_userid + ' acting_user: ' + override_userid + ' is_override: true'
     else:
-        log_userid = actual_userid + ' no_override: ' + actual_userid
+        log_userid = 'base_user: ' + actual_userid + ' acting_user: ' + actual_userid + ' is_override: false '
     return log_userid
 
