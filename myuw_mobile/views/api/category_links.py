@@ -33,6 +33,7 @@ class CategoryLinks(RESTDispatch):
 
 
     def _group_links_by_subcategory(self, links):
+        ordered_subcategories = []
         subcategory_data = {}
         link_output = []
         for link in links:
@@ -42,12 +43,13 @@ class CategoryLinks(RESTDispatch):
             if sub_cat in subcategory_data:
                 subcategory_data[sub_cat]['links'].append(link.json_data())
             else:
+                ordered_subcategories.append(sub_cat)
                 subcategory_data[sub_cat] = {}
                 subcategory_data[sub_cat]['links'] = [link.json_data()]
                 subcategory_data[sub_cat]['subcategory'] = sub_cat
                 subcategory_data[sub_cat]['subcat_slug'] = sub_cat_slug
 
-        for subcat_group in subcategory_data:
+        for subcat_group in ordered_subcategories:
             subcategory_data[subcat_group]['links'] = sorted(subcategory_data[subcat_group]['links'],
                                                           key=lambda k: k['title'])
             link_output.append(subcategory_data[subcat_group])
