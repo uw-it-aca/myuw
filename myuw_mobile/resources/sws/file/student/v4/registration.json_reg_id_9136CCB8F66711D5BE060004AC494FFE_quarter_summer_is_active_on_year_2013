@@ -20,7 +20,7 @@
     "Registrations":
     [
         {
-            "Href": "\/student\/v4\/registration\/2013,summer,ELCBUS,451,A,9136CCB8F66711D5BE060004AC494FFE.json",
+            "Href": "\/student\/v4\/registration\/2013,summer,ELCBUS,451,A,9136CCB8F66711D5BE060004AC494FFE,.json",
             "CourseNumber":"451",
             "CurriculumAbbreviation":"ELCBUS",
             "DuplicateCode":"1",
@@ -31,7 +31,7 @@
             "Year":"2013"
         },
         {
-            "Href": "\/student\/v4\/registration\/2013,summer,TRAIN,101,A,9136CCB8F66711D5BE060004AC494FFE.json",
+            "Href": "\/student\/v4\/registration\/2013,summer,TRAIN,101,A,9136CCB8F66711D5BE060004AC494FFE,.json",
             "CourseNumber":"101",
             "CurriculumAbbreviation":"TRAIN",
             "DuplicateCode":"1",

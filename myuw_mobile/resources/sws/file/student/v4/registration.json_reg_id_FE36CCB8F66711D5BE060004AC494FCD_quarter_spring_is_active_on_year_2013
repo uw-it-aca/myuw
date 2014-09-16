@@ -20,7 +20,7 @@
     "Registrations":
     [
         {
-            "Href":"\/student\/v4\/registration\/2013,spring,BISSEB,259,A,FE36CCB8F66711D5BE060004AC494FCD.json",
+            "Href":"\/student\/v4\/registration\/2013,spring,BISSEB,259,A,FE36CCB8F66711D5BE060004AC494FCD,.json",
             "CourseNumber":"259",
             "CurriculumAbbreviation":"BISSEB",
             "DuplicateCode":"1",
@@ -31,7 +31,7 @@
             "Year":"2013"
         },
         {
-            "Href":"\/student\/v4\/registration\/2013,spring,BCWRIT,500,A,FE36CCB8F66711D5BE060004AC494FCD.json",
+            "Href":"\/student\/v4\/registration\/2013,spring,BCWRIT,500,A,FE36CCB8F66711D5BE060004AC494FCD,.json",
             "CourseNumber":"500",
             "CurriculumAbbreviation":"BCWRIT",
             "DuplicateCode":"1",
@@ -42,7 +42,7 @@
             "Year":"2013"
         },
         {
-            "Href":"\/student\/v4\/registration\/2013,spring,BESS,102,A,FE36CCB8F66711D5BE060004AC494FCD.json",
+            "Href":"\/student\/v4\/registration\/2013,spring,BESS,102,A,FE36CCB8F66711D5BE060004AC494FCD,.json",
             "CourseNumber":"102",
             "CurriculumAbbreviation":"BESS",
             "DuplicateCode":"1",
@@ -53,7 +53,7 @@
             "Year":"2013"
         },
         {
-            "Href":"\/student\/v4\/registration\/2013,spring,BESS,102,AB,FE36CCB8F66711D5BE060004AC494FCD.json",
+            "Href":"\/student\/v4\/registration\/2013,spring,BESS,102,AB,FE36CCB8F66711D5BE060004AC494FCD,.json",
             "CourseNumber":"102",
             "CurriculumAbbreviation":"BESS",
             "DuplicateCode":"1",

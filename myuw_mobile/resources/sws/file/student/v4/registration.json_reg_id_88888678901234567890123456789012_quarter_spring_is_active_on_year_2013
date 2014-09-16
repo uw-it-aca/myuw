@@ -18,7 +18,7 @@
       { "CourseNumber" : "207",
         "CurriculumAbbreviation" : "ENGL",
         "DuplicateCode" : "1",
-        "Href" : "\/student\/v4\/registration\/2013,spring,ENGL,207,A,88888678901234567890123456789012.json",
+        "Href" : "\/student\/v4\/registration\/2013,spring,ENGL,207,A,88888678901234567890123456789012,.json",
         "Instructor" : null,
         "Quarter" : "spring",
         "RegID" : "88888678901234567890123456789012",
