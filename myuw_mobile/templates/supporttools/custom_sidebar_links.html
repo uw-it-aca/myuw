@@ -29,13 +29,24 @@
     {% if url %}
     <li><a href="{{ url }}">Canvas Web Service</a></li>
     {% endif %}
+    </ul>
 
 
     {% url 'restclients.views.proxy' 'hfs' 'myuw/v1' as url %}
     {% if url %}
-    <li><a href="{{ url }}">HFS Web Service</a></li>
+    <h4>HFS Web Service:</h4>
+    <script>
+        function direct_to_hfs_service() {
+            var netid = document.getElementById("hfs_service_input").value;
+            window.location.href = "{% url 'restclients.views.proxy' 'hfs' '/myuw/v1/' %}/" + netid;
+            return false;
+        }
+    </script>
+    <form onsubmit="return direct_to_hfs_service()">
+    <input type="text" id="hfs_service_input"> <input type="submit" value="Go" />
+    </form>
+
     {% endif %}
-    </ul>
 
     {% url 'restclients.views.proxy' 'libraries' '' as url %}
     {% if url %}
