@@ -280,21 +280,36 @@ def get_notices_for_current_user():
     return _get_user_notices(notices)
 
 def _get_user_notices(notices):
-    user_notices = []
     user = get_user_model()
+    notice_dict = {}
+    notices_with_read_status = []
+    # Get all notice hashes
     for notice in notices:
         notice_hash = UserNotices().generate_hash(notice)
-        try:
-            user_notice = UserNotices.objects.get(notice_hash=notice_hash, user=user)
-        except ObjectDoesNotExist:
-            user_notice = UserNotices()
-            user_notice.notice_hash = notice_hash
-            user_notice.user = user
-            user_notices.append(user_notice)
-        notice.is_read = user_notice.is_read
-        notice.id_hash = user_notice.notice_hash
-    UserNotices.objects.bulk_create(user_notices)
-    return notices
+        notice.id_hash = notice_hash
+        notice.is_read = False
+        notice_dict[notice_hash] = notice
+
+    # Set read status for notices already in db
+    user_notices = UserNotices.objects.filter(user=user, notice_hash__in=notice_dict.keys())
+    for user_notice in user_notices:
+        matched_notice = notice_dict[user_notice.notice_hash]
+        matched_notice.is_read = user_notice.is_read
+        notices_with_read_status.append(matched_notice)
+        del notice_dict[user_notice.notice_hash]
+
+    # Create UserNotices for new notices
+    user_notices_to_create = []
+    for notice in notice_dict.values():
+        user_notice = UserNotices()
+        user_notice.notice_hash = notice.id_hash
+        user_notice.user = user
+        user_notices_to_create.append(user_notice)
+    UserNotices.objects.bulk_create(user_notices_to_create)
+
+    # Add newly created UserNotices into returned list
+    notices_with_read_status = notices_with_read_status + notice_dict.values()
+    return notices_with_read_status
 
 def _categorize_notices(notices):
     for notice in notices:
