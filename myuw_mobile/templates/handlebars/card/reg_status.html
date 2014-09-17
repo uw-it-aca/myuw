@@ -10,8 +10,8 @@
                 <div class="card-critical-alert" role="status">
                     
                     <i class="fa fa-exclamation-triangle"><span class="sr-only">You have registration holds!</span></i>
-                    <a id="show_reg_holds" class="reg_disclosure" aria-controls="reg_holds" href="#" title="Expand to show holds information">Show {{ hold_count }} hold(s)</a>
-                    <a id="hide_reg_holds" class="reg_disclosure" style="display: none" aria-controls="reg_holds" href="#" title="Collapse to hide holds information">Hide {{ hold_count }} hold(s)</a>
+                    <a id="show_reg_holds" class="reg_disclosure" aria-controls="reg_holds" href="#" title="Expand to show holds information">Show {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
+                    <a id="hide_reg_holds" class="reg_disclosure" style="display: none" aria-controls="reg_holds" href="#" title="Collapse to hide holds information">Hide {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
 
                     <div id="reg_holds" class="slide-hide" aria-hidden="true" style="text-align:left;">
                         <h4 class="sr-only">Registration holds</h4>
