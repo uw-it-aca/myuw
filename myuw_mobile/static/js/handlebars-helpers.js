@@ -256,3 +256,13 @@ Handlebars.registerHelper('pluralize', function(number, single, plural) {
     return plural;
 });
 
+Handlebars.registerHelper('greater_than', function(value1, value2, options) {
+    if (arguments.length < 3)
+        throw new Error("Handlebars Helper greater_than needs 2 parameters");
+    if(value1 > value2) {
+        return options.inverse(this);
+    }
+    else {
+        return options.fn(this);
+    }
+});
