@@ -116,17 +116,17 @@
  
     {% load handlebars_i18n %}
     
-     <!-- do not compress -->
+     <!-- do not compress - lack of trailing semicolons breaks concatenation -->
     <script src="{% static 'vendor/js/jquery-1.11.0.min.js' %}"></script>
     <script src="{% static 'vendor/js/bootstrap-3.1.1.min.js' %}"></script>
     
-    {% compress js %}
     <script src="{% static 'vendor/js/jquery.cookie-1.4.1.min.js' %}"></script>
     <script src="{% static 'vendor/js/ios-orientationchange-fix.min.js' %}"></script>
     <script src="{% static 'vendor/js/handlebars-1.0.0.min.js' %}"></script>
     <script src="{% static 'vendor/js/jquery.history-1.8.0.min.js' %}"></script>
     <script src="{% static 'vendor/js/jquery.ba-dotimeout-1.0.js' %}"></script>
      
+    {% compress js %}
     <!-- app files -->
     <script src="{% static 'js/modal.js' %}"></script>
     <script src="{% static 'js/ws_data.js' %}"></script>
