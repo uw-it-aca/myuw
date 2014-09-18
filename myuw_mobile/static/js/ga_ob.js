@@ -1,6 +1,6 @@
 var myuwUaId="";
 
-if (location.hostname=='myuw.washington.edu') {
+if (location.hostname=='my.uw.edu') {
   myuwUaId='UA-22539974-7'; 
 } else if (location.hostname=='my-test.s.uw.edu') { 
   myuwUaId='UA-22539974-8'; 
