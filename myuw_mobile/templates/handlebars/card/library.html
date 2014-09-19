@@ -25,7 +25,7 @@
                             
                         </div>
                         <div class="pull-right">
-                            <span class="card-badge-value">{{ items_loaned }} items</span>
+                            <span class="card-badge-value">{{ items_loaned }} {{ pluralize items_loaned "item" "items"}}</span>
                             <span class="card-badge-action pull-right"><a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount">See account</a></span>
                         </div>
                         
@@ -39,7 +39,7 @@
                         </div>
                         <div class="pull-right">
                             <span class="card-badge-value">{{ next_due }}</span>
-                            <span class="card-badge-action pull-right">in 7 days</span>
+                            <span class="card-badge-action pull-right todo">in 7 days</span>
                         </div>
                     </div>
                     {{/if}}
