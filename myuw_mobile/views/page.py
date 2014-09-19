@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
+from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.conf import settings
 import logging
@@ -12,6 +13,7 @@ from myuw_mobile.views.rest_dispatch import invalid_session
 from myuw_mobile.dao.uwemail import get_email_forwarding_for_current_user
 
 #@mobile_template('{mobile/}index.html')
+@login_required
 def index(request,
           year=None, 
           quarter=None,
