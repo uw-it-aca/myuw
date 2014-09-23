@@ -18,8 +18,9 @@
             <div class="pull-right">
                 <span class="card-badge-value">${{ formatPrice balance }}</span>
             </div>  
-            <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
-
+            {{#if last_updated }}
+                <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
+            {{/if}}
             {{/with}}
         </div>
             
@@ -35,8 +36,9 @@
             <div class="pull-right">
                 <span class="card-badge-value">${{ formatPrice balance }}</span>
             </div>   
-            <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
-
+            {{#if last_updated }}
+                <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
+            {{/if}}
             {{/with}}
         </div>
             
@@ -51,7 +53,9 @@
             <div class="pull-right">
                 <span class="card-badge-value">${{ formatPrice balance }}</span>
             </div>
-            <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
+            {{#if last_updated }}
+                <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
+            {{/if}}
             {{/with}}
         </div>
         {{/if}}
