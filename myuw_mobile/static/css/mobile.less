@@ -72,12 +72,12 @@ body {
         
     // body fonts
     font-family: 'Open Sans', sans-serif;
-
+    
     a { text-decoration: none; color: #4d66ca; 
         &:hover { text-decoration: none; color: #334baa; }
         &:active { text-decoration: none; }
     }
-
+    
 	// positioning 
 	
 	.relative {
@@ -238,7 +238,7 @@ body {
 #uwalert-alert-message { margin: 0; position: relative; border-top: solid 2px @uwpurple; }
 
 .icon-warning-sign:before {
-    font-family: FontAwesome;
+    font-family: 'FontAwesome';
     font-style: normal;
     content: "\f071";
     position: absolute;
@@ -281,7 +281,7 @@ body {
 
 #app_header { background: @uwpurple; overflow: hidden; position: relative;
     
-    // header bar (thin)    
+    // header bar (thin dark purple)    
     .header-bar { position: relative; height: 30px;
         
         .header-myuw { font-family: 'Roboto'; font-weight: 300; display: inline-block; margin: 0; padding: 0;  font-size:16px; color: @myuw;  line-height: 30px; 
@@ -299,7 +299,7 @@ body {
             a { color: @lighttan; display: inline-block; line-height: 30px; }
         }    }
     
-    // header cover (purple)
+    // header cover (uw purple)
     .header-cover { background: lighten(@uwpurple, 2%);
         
         .container { height: 50px; position: relative; 
@@ -307,7 +307,7 @@ body {
             .header-w { position:absolute; right:15px; bottom: -1px; 
                 img { width: 35px; }
             }
-            .header-netid { font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 26px; position: absolute; bottom: 0px; left: 15px; opacity: .6; color: @lighttan; /*text-transform: uppercase;*/ }
+            .header-netid { font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 26px; position: absolute; bottom: 0px; left: 15px; opacity: .6; color: @lighttan;  }
         
         }
     }
@@ -341,8 +341,8 @@ body {
     	margin-top: 20px;
     	padding: 10px;
     	
-		h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; /*text-transform: uppercase;*/ margin-top: 10px; margin-bottom: 15px; color: @darktan; }
-        h4 { font-family:'Roboto'; font-weight: 400; font-size: 16px; /*text-transform: uppercase;*/ color: #444; }
+		h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small;  margin-top: 10px; margin-bottom: 15px; color: @darktan; }
+        h4 { font-family:'Roboto'; font-weight: 400; font-size: 16px;  color: #444; }
         
         .card-content {  }
         
@@ -442,7 +442,7 @@ body {
                 .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; }
             }
 
-            h5 { font-family: 'Roboto', sans-serif; font-weight: 400; color: @darktan; margin-top: 1.5em; margin-bottom: .5em; font-size: 16px; /*text-transform: uppercase;*/ }
+            h5 { font-family: 'Roboto', sans-serif; font-weight: 400; color: @darktan; margin-top: 1.5em; margin-bottom: .5em; font-size: 16px;  }
             
         
 			.instructor-container {list-style-type: none; padding: 0; margin-bottom: 1em;
@@ -778,7 +778,7 @@ body {
     
     // error container 
     .error-container {
-        h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; /*text-transform: uppercase;*/ }
+        h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small;  }
     }
     
     
@@ -790,7 +790,7 @@ body {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
 		
-		h1 { font-family: 'encode_sans_normalbold'; color: #444; font-size: @font-header-small; /*text-transform: uppercase;*/ }
+		h1 { font-family: 'encode_sans_normalbold'; color: #444; font-size: @font-header-small;  }
 		h3 { font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 16px; line-height: 30px; margin: 0; color: #222; }
 		h4 { font-family: 'Open Sans', sans-serif; font-size: 14px; 
     		span { text-transform: uppercase; font-size: 11px; }
@@ -822,7 +822,7 @@ body {
             .category-links { padding-left: 0; list-style: none; }
         }
         
-        h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; /*text-transform: uppercase;*/ }
+        h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; }
         h2 { font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 16px; } 
     }
     // future quarters page
@@ -831,7 +831,7 @@ body {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
         
-        h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; /*text-transform: uppercase;*/ }
+        h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; }
         
         .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
     }
@@ -911,8 +911,8 @@ body {
 			.notice-new {padding:0 5px; background:#f5d300; float:right; border-radius: 4px; margin-right:20px;}
 	    }
 	
-		 // - class for read notices - //
-		.unread-notice { /*background: #eee;*/ }
+        // - class for read notices
+        .unread-notice { }
 
 	    .notice-category { font-size: 12px; color: #777; display: block; margin-bottom: 5px; } 
 	    
@@ -962,7 +962,7 @@ body {
     
             .navigation-item { display: inline-block; position: relative; padding: 5px; height: 100px; width: 100%;
                                     
-                .navigation-item-text { font-family: 'Roboto', sans-serif; font-weight: 400; font-family: 'encode_sans_normalsemibold'; color: #555; font-size: @font-base; /*text-transform: uppercase;*/ }                
+                .navigation-item-text { font-family: 'Roboto', sans-serif; font-weight: 400; font-family: 'encode_sans_normalsemibold'; color: #555; font-size: @font-base;  }                
             }
             
             // handle :hover state as mobile touch
@@ -1032,13 +1032,12 @@ body {
 
 .fade-in {
     
-        	animation: fadein 2s;
+    animation: fadein 2s;
     -moz-animation: fadein 2s; /* Firefox */
     -webkit-animation: fadein 2s; /* Safari and Chrome */
     -o-animation: fadein 2s; /* Opera */
     
 }
-
 
 @keyframes fadein {
     from {
