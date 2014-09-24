@@ -47,7 +47,7 @@
 		                           {{ category }}{{ #unless is_read }}<span class="notice-new">New</span>{{ /unless }}  
 		                        </div>
 		                        <div class="notice-content">
-		                           {{{ notice_content }}}
+		                           {{ #unless is_read }}<span class="sr-only">New Notice:</span>{{ /unless }}{{{ notice_content }}}
 		                        </div>
 		                    </div>
 	                    </div>
@@ -91,7 +91,7 @@
 		                            {{ category }}{{ #unless is_read }}<span class="notice-new">New</span>{{ /unless }}
 		                        </div>
 		                        <div class="notice-content">
-		                            {{{ notice_content }}}
+		                            {{ #unless is_read }}<span class="sr-only">New Notice:</span>{{ /unless }}{{{ notice_content }}}
 		                        </div>
 		                    </div>
 	                    </div>
@@ -137,7 +137,7 @@
 		                            {{ category }}{{ #unless is_read }}<span class="notice-new">New</span>{{ /unless }}
 		                        </div>
 		                        <div class="notice-content">
-		                            {{{ notice_content }}}
+		                            {{ #unless is_read }}<span class="sr-only">New Notice:</span>{{ /unless }}{{{ notice_content }}}
 		                        </div>
 		                    </div>
 	                    </div>
@@ -181,7 +181,7 @@
 		                            {{ category }}{{ #unless is_read }}<span class="notice-new">New</span>{{ /unless }}
 		                        </div>
 		                        <div class="notice-content">
-		                            {{{ notice_content }}}
+		                            {{ #unless is_read }}<span class="sr-only">New Notice:</span>{{ /unless }}{{{ notice_content }}}
 		                        </div>
 		                    </div>
 	                    </div>
@@ -225,7 +225,7 @@
 		                            {{ category }}{{ #unless is_read }}<span class="notice-new">New</span>{{ /unless }}
 		                        </div>
 		                        <div class="notice-content">
-		                            {{{ notice_content }}}
+		                            {{ #unless is_read }}<span class="sr-only">New Notice:</span>{{ /unless }}{{{ notice_content }}}
 		                        </div>
 		                    </div>
 	                    </div>
@@ -266,7 +266,7 @@
 		                            {{ category }}{{ #unless is_read }}<span class="notice-new">New</span>{{ /unless }}
 		                        </div>
 		                        <div class="notice-content">
-		                            {{{ notice_content }}}
+		                            {{ #unless is_read }}<span class="sr-only">New Notice:</span>{{ /unless }}{{{ notice_content }}}
 		                        </div>
 		                    </div>
 	                    </div>
