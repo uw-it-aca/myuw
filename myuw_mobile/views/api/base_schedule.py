@@ -57,7 +57,9 @@ def load_schedule(schedule, summer_term=""):
 
     buildings = get_buildings_by_schedule(schedule)
 
-    canvas_data_by_course_id = get_canvas_enrolled_courses()
+    # Removing call to Canvas pending MUWM-2106
+    # canvas_data_by_course_id = get_canvas_enrolled_courses()
+    canvas_data_by_course_id = []
 
     # Since the schedule is restclients, and doesn't know
     # about color ids, backfill that data
