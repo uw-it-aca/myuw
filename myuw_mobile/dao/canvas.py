@@ -15,9 +15,13 @@ def get_canvas_enrolled_courses():
     """
     timer = Timer()
     try:
+        regid = get_regid_of_current_user()
         return _indexed_by_course_id(
             CanvasEnrollments().get_enrollments_for_regid(
-                get_regid_of_current_user()))
+                regid,
+                {'state': "active",
+                'as_user': CanvasEnrollments().sis_user_id(regid)})
+        )
     except AttributeError:
         #If course is not in canvas, skip
         pass
