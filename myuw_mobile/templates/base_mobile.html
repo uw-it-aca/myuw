@@ -26,12 +26,10 @@
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,500,300,100' rel='stylesheet' type='text/css'>
     
-    <!-- Les fav and touch icons -->
-    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
-    
-    <!-- for android -->
-    <link rel="shortcut icon" sizes="196x196" href="{% static 'images/favicon-196x196.png' %}">
-    
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+    <!-- ios icons -->
     <link rel="apple-touch-icon-precomposed" sizes="180x180" href="{% static 'images/apple-touch-icon-180x180-precomposed.png' %}">
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{% static 'images/apple-touch-icon-152x152-precomposed.png' %}">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/apple-touch-icon-144x144-precomposed.png' %}">
@@ -41,7 +39,18 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/apple-touch-icon-72x72-precomposed.png' %}">
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'images/apple-touch-icon-57x57-precomposed.png' %}">
     <link rel="apple-touch-icon-precomposed" href="{% static 'images/apple-touch-icon-precomposed.png' %}">
-
+    
+    <!-- android icons -->
+    <link rel="shortcut icon" sizes="196x196" href="{% static 'images/android-196x196.png' %}">
+    
+    <!-- windows8 tile icons -->
+    <meta name="msapplication-TileColor" content="#4b2e84">
+    <meta name="msapplication-TileImage" content="/win8-144x144.png">
+    <meta name="msapplication-square70x70logo" content="win8-70x70.png" />
+	<meta name="msapplication-square150x150logo" content="win8-150x150.png" />
+	<meta name="msapplication-wide310x150logo" content="win8-310x150.png" />
+	<meta name="msapplication-square310x310logo" content="win8-310x310.png" />
+	    
     {% load templatetag_handlebars %}
   </head>
   
