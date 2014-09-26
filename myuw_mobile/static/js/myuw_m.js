@@ -308,10 +308,15 @@ $(document).ready(function() {
         
         if ($("#my_profile").hasClass("slide-show")) {
             $("#my_profile").attr('aria-hidden', 'false');
+            
+            $("#my_profile_arrow").removeClass('fa-chevron-down');
+            $("#my_profile_arrow").addClass('fa-chevron-up');
+            
         } else {
             $("#my_profile").attr('aria-hidden', 'true');
             setTimeout(function() {
-                // change the chevron icon here
+                $("#my_profile_arrow").removeClass('fa-chevron-up');
+                $("#my_profile_arrow").addClass('fa-chevron-down');
             }, 700);
         }
             
