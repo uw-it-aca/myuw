@@ -299,6 +299,24 @@ $(document).ready(function() {
         WSData.log_interaction("nav_menu_visual_schedule");
     });
     
+    // handle my profile disclosure
+    $("#toggle_my_profile").bind("click", function(ev) {
+
+        ev.preventDefault();
+
+        $("#my_profile").toggleClass("slide-show");
+        
+        if ($("#my_profile").hasClass("slide-show")) {
+            $("#my_profile").attr('aria-hidden', 'false');
+        } else {
+            $("#my_profile").attr('aria-hidden', 'true');
+            setTimeout(function() {
+                // change the chevron icon here
+            }, 700);
+        }
+            
+    });
+    
     // handle clicking on resources
     $("#categories_link").bind("click", function(ev) {
         ev.preventDefault();                

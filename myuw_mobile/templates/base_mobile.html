@@ -63,7 +63,10 @@
                 
             <div class="header-cover">
                 <div class="container clearfix">
-                    <div class="header-netid"><span>{{ user.netid }}</span></div>
+                    <div class="header-netid"><a href="#" id="toggle_my_profile">{{ user.netid }}</a></div>
+                    <div class="header-profile slide-hide" id="my_profile" aria-hidden="true">
+                        <div style="min-height: 300px;">klasdfj alsdf jlaksd flaksdjfasdlkfjdsaflkj</div>
+                    </div>
                     <div class="header-w"><img src="{% static 'images/w-logo-white.png' %}"></div>
                 </div>
             </div>

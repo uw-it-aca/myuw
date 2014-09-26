@@ -304,12 +304,18 @@ body {
     // header cover (uw purple)
     .header-cover { background: lighten(@uwpurple, 2%);
         
-        .container { height: 50px; position: relative; 
+        .container { min-height: 50px; position: relative; 
             
             .header-w { position:absolute; right:15px; bottom: -1px; 
                 img { width: 35px; }
             }
-            .header-netid { font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 26px; position: absolute; bottom: 0px; left: 15px; opacity: .6; color: @lighttan;  }
+            
+            .header-netid { font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 26px; opacity: .6;  line-height: 50px; 
+                
+                a { color: @lighttan; }
+            }
+            
+            .header-profile { color: #fff; }
         
         }
     }
