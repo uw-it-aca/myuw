@@ -43,7 +43,9 @@
         }
     </script>
     <form onsubmit="return direct_to_hfs_service()">
-    <input type="text" id="hfs_service_input"> <input type="submit" value="Go" />
+        <div class="form-group">    
+            <input type="text" id="hfs_service_input" class="form-control">&nbsp;<input type="submit" value="Go" class="btn btn-primary btn-sm" />
+        </div>
     </form>
 
     {% endif %}
@@ -52,23 +54,26 @@
     {% if url %}
     <h4>Library Web Service:</h4>
     <form action="{% url 'restclients.views.proxy' 'libraries' 'mylibinfo/v1/' %}" method="GET">
-        <input type="text" name="id" /> <input type="submit" value="go" />
+        <div class="form-group">
+            <input type="text" name="id" class="form-control" />&nbsp;<input type="submit" value="go" class="btn btn-primary btn-sm" />
+        </div>
     </form>
     {% endif %}
 
     {% url 'restclients.views.proxy' 'book' '' as url %}
     <h4>UW Bookstore Web Service:</h4>
     <form action="{% url 'restclients.views.proxy' 'book' 'myuw/myuw_mobile_beta.ubs' %}" method="GET">
-        Term: <select name="quarter">
+        
+        <div class="form-group">
+        Term: <select name="quarter" class="form-control">
             <option value="spring">spring</option>
             <option value="summer">summer</option>
             <option value="autumn">autumn</option>
             <option value="winter">winter</option>
         </select>
-
-        SLN: <input type="text" name="sln" />
-
-        <input type="submit" value="Go" />
+        SLN: <br/>
+            <input type="text" name="sln" class="form-control" />&nbsp;<input type="submit" value="Go" class="btn btn-primary btn-sm" />
+        </div>
     </form>
 
     {% url 'restclients.views.proxy' 'uwnetid' '/nws/v1/uwnetid' as url %}
@@ -81,9 +86,12 @@
             return false;
         }
     </script>
+    
     <form onsubmit="return direct_to_netid_service()">
-    <input type="text" id="netid_service_input"> <input type="submit" value="Go" />
+        <div class="form-group">    
+            <input type="text" id="netid_service_input" class="form-control">&nbsp;<input type="submit" value="Go" class="btn btn-primary btn-sm" />
+        </div>
     </form>
-
+        
     {% endif %}
 
