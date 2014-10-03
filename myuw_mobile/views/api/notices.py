@@ -20,12 +20,9 @@ class Notices(RESTDispatch):
         timer = Timer()
         logger = logging.getLogger(__name__)
 
-        # MYUW NOTICE REMOVAL
-        # notices = get_notices_for_current_user()
-        # notice_json = self._get_json(notices)
-        # logger.debug(notice_json)
-        # log_success_response(logger, timer)
-        notice_json = []
+        notices = get_notices_for_current_user()
+        notice_json = self._get_json(notices)
+        log_success_response(logger, timer)
 
         return HttpResponse(json.dumps(notice_json))
 

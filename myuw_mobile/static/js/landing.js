@@ -19,6 +19,7 @@ var Landing = {
                      VisualScheduleCard,
                      CourseCard,
                      HfsCard,
+                     TuitionCard,
                      LibraryCard,
                      RegStatusCard];
         
