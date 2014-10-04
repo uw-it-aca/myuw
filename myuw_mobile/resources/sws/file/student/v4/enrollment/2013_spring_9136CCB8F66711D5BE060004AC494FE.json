@@ -4,8 +4,7 @@
     "HonorsProgram": false,
     "LeaveEndQuarter": 0,
     "LeaveEndYear": 0,
-    "Majors": [
-        {
+    "Majors": [{
             "Abbreviation": "ACMS",
             "Campus": "Seattle",
             "DegreeLevel": 1,
@@ -15,8 +14,16 @@
             "MajorName": "ACMS (SOC & BEH SCI)",
             "Pathway": 80,
             "ShortName": "ACMS (SBS)"
-        }
-    ],
+        }],
+    "Minors":[{"Abbreviation":"C SCI",
+        "Campus":"Seattle",
+        "DegreeLevel":1,
+        "DegreeName":"BACHELOR OF SCIENCE (COMPUTER SCIENCE)",
+        "DegreeType":5,
+        "FullName":"Computer Science",
+        "MajorName":"COMPUTER SCIENCE",
+        "Pathway":0,
+        "ShortName":"COMPUTER SCI"}],
     "PendingClassChange": false,
     "PendingHonorsChange": false,
     "PendingMajorChange": false,
