@@ -80,6 +80,7 @@ def _get_campuses_by_schedule(schedule):
                 pass
     return campuses
 
+
 def _get_official_campuses(campuses):
     official_campuses = {'official_seattle': False,
                          'official_bothell': False,
@@ -95,9 +96,38 @@ def _get_official_campuses(campuses):
             official_campuses['official_bothell'] = True
     return official_campuses
 
+
 def get_current_quarter_course_campuses():
     """
     Returns a dictionary indicating the campuses that the student
     has enrolled in the current quarter.
     """
     return _get_campuses_by_schedule(get_current_quarter_schedule())
+
+
+def get_base_campus():
+    """
+    Return one currently enrolled campus.
+    If not exist, return one affiliated campus.
+    """
+    campus = ""
+    affiliations = get_all_affiliations()
+    try:
+        if affiliations["official_seattle"]:
+            campus = "seattle"
+        if affiliations["official_bothell"]:
+            campus = "bothell"
+        if affiliations["official_tacoma"]:
+            campus = "tacoma"
+    except KeyError:
+        try:
+            if affiliations["seattle"]:
+                campus = "seattle"
+            if affiliations["bothell"]:
+                campus = "bothell"
+            if affiliations["tacoma"]:
+                campus = "tacoma"
+        except KeyError:
+            campus = ""
+            pass
+    return campus

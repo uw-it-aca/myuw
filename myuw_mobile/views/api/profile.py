@@ -3,7 +3,7 @@ from django.http import HttpResponse
 import json
 from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.dao.student_profile import get_profile_of_current_user
-from myuw_mobile.dao.enrollment import get_main_campus
+from myuw_mobile.dao.affiliation import get_base_campus
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_data_not_found_response, log_success_response
 
@@ -28,10 +28,7 @@ class MyProfile(RESTDispatch):
 
         log_success_response(logger, timer)
         logger.debug(profile.json_data())
-
         response = profile.json_data()
-        campuses = get_main_campus()
-        if campuses is not None and len(campuses) > 0:
-            response['campus'] = campuses[0]
+        response['campus'] = get_base_campus()
         return HttpResponse(json.dumps(response))
 
