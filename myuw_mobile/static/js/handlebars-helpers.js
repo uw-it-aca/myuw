@@ -1,4 +1,10 @@
-
+// used in profile banner
+Handlebars.registerHelper("formatPhoneNumber", function(str) {
+    if (str.length == 10) {
+        return str.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+    }
+    return str
+});
 
 
 // used on Library card

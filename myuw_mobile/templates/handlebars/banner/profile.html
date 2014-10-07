@@ -46,7 +46,7 @@
                 {{/if}}
                 {{/with}}
                 {{#if local_phone}}
-                    <div>Phone: <span class="">{{local_phone}}</span></div>
+                    <div>Phone: <span class="">{{formatPhoneNumber local_phone}}</span></div>
                 {{/if}}
             </div>
             {{/if}}
@@ -78,7 +78,7 @@
                 {{/if}}
                 {{/with}}
                 {{#if permanent_phone}}
-                    <div>Phone: <span class="">{{permanent_phone}}</span></div>
+                    <div>Phone: <span class="">{{formatPhoneNumber permanent_phone}}</span></div>
                 {{/if}}
             </div>
             {{/if}}
