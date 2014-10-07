@@ -21,6 +21,7 @@ var Landing = {
                      HfsCard,
                      TuitionCard,
                      LibraryCard,
+                     TuitionCard,
                      RegStatusCard];
         
         Cards.load_cards_in_order(cards, $("#landing_content"));
