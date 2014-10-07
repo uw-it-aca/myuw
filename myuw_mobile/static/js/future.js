@@ -1,8 +1,7 @@
 var FutureQuarter = {
     render: function(term) {
-        //Navbar.render_navbar();
-        UwEmail.render_init();
         showLoading();
+        CommonLoading.render_init();
         FutureQuarter.make_html(term);
     },
 

@@ -1,0 +1,83 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "profile-content" %}
+
+    <div class="header-netid"><a href="#" id="toggle_my_profile">{{ uwnetid }} <i id="my_profile_arrow" class="fa fa-chevron-down"></i></a></div>
+    <div class="header-profile slide-hide" id="my_profile" aria-hidden="true">
+        <div style="margin-top:20px; margin-bottom: 60px;">
+            <div>
+                <span class="">{{first_name}} {{last_name}}</span><br/>
+                {{#if student_number}}
+                    Student Number: <span class="">{{student_number}}</span><br/>
+                {{/if}}
+                {{#if campus}}
+                    Campus: <span class="">{{campus}}</span>
+                {{/if}}
+            </div>
+
+            <div style="border-top:solid 1px #eee; margin-top: 15px; padding-top: 15px;">
+                <p>Your directory information is {{#unless directory_release}}not{{/unless}} public</p>
+                <p><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Change Directory Release</a></p>
+            </div>
+
+            {{#if local_address}}
+            <div style="margin-top: 15px;">
+                <h3>Local Address</h3>
+                {{#with local_address}}
+                {{#if street_line2}}
+                    <div>Apartment #: <span class="">{{street_line2}}</span></div>
+                {{/if}}
+                {{#if street_line1}}
+                    <div>Street: <span class="">{{street_line1}}</span></div>
+                {{/if}}
+                {{#if city}}
+                    <div>City: <span class="">{{city}}</span></div>
+                {{/if}}
+                {{#if state}}
+                    <div>State/Province: <span class="">{{state}}</span></div>
+                {{/if}}
+                {{#if zip_code}}
+                    <div>Zip/Postal Code: <span class="">{{zip_code}}</span></div>
+                {{/if}}
+                {{#if country}}
+                    <div>Country: <span class="">{{country}}</span></div>
+                {{/if}}
+                {{#if local_phone}}
+                    <div>Phone: <span class="">{{local_phone}}</span></div>
+                {{/if}}
+                {{/with}}
+            </div>
+            {{/if}}
+
+            {{#if permanent_address}}
+            <div style="margin-top: 15px;">
+                <h3>Permanent Address</h3>
+                {{#with permanent_address}}
+                {{#if street_line2}}
+                    <div>Apartment #: <span class="">{{street_line2}}</span></div>
+                {{/if}}
+                {{#if street_line1}}
+                    <div>Street: <span class="">{{street_line1}}</span></div>
+                {{/if}}
+                {{#if city}}
+                    <div>City: <span class="">{{city}}</span></div>
+                {{/if}}
+                {{#if state}}
+                    <div>State/Province: <span class="">{{state}}</span></div>
+                {{/if}}
+                {{#if zip_code}}
+                    <div>Zip/Postal Code: <span class="">{{zip_code}}</span></div>
+                {{/if}}
+                {{#if country}}
+                    <div>Country: <span class="">{{country}}</span></div>
+                {{/if}}
+                {{#if permanent_phone}}
+                    <div>Phone: <span class="">{{permanent_phone}}</span></div>
+                {{/if}}
+                {{/with}}
+            </div>
+            {{/if}}
+
+            <div style="margin-top:10px;"><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Edit your address information</a></div>
+        </div>
+    </div>
+{% endtplhandlebars %}

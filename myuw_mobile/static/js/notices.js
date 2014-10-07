@@ -4,8 +4,8 @@ var Notices = {
     show_notices: function () {
         "use strict";
         //Navbar.render_navbar("nav-sub");
+        CommonLoading.render_init();
         WSData.fetch_notice_data(Notices.render_notices);
-        UwEmail.render_init();
     },
 
     render_notices: function () {

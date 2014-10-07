@@ -1,7 +1,7 @@
 var Category = {
     show_category_page: function(category, topic) {
         //Navbar.render_navbar("nav-sub");
-        UwEmail.render_init();
+        CommonLoading.render_init();
         WSData.fetch_category_links(Category.render_category_page, Category.render_error, [category, topic]);
     },
 

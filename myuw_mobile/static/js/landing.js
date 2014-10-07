@@ -2,7 +2,7 @@ var Landing = {
     render: function() {        
         //Navbar.render_navbar();
         showLoading();
-        UwEmail.render_init();
+        CommonLoading.render_init();
         Landing.make_html();
     },
 

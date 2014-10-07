@@ -47,48 +47,20 @@
     {% csrf_token %}
 
     <div id="app_header" role="navigation">
-            <div class="header-bar">
-                <div class="container clearfix">
-                    <div class="pull-left header-myuw"><a href="/mobile/landing" title="Return to Home">MYUW</a></div>
-                    <div class="pull-right">
-                        <div class="header-email" id="uwemail"></div>
-                        <div class="header-resources"><a href="#" id="categories_link"><i class="fa fa-th"></i> Resources</a></div>
-                    </div>
+        <div class="header-bar">
+            <div class="container clearfix">
+                <div class="pull-left header-myuw"><a href="/mobile/landing" title="Return to Home">MYUW</a></div>
+                <div class="pull-right">
+                    <div class="header-email" id="uwemail"></div>
+                    <div class="header-resources"><a href="#" id="categories_link"><i class="fa fa-th"></i> Resources</a></div>
                 </div>
             </div>
+        </div>
                 
-            <div class="header-cover">
-                <div class="container clearfix">
-                    <div class="header-netid"><a href="#" id="toggle_my_profile">{{ user.netid }} <i id="my_profile_arrow" class="fa fa-chevron-down"></i></a></div>
-                    <div class="header-profile slide-hide" id="my_profile" aria-hidden="true">
-                        <div style="margin-top:20px; margin-bottom: 60px;">
-                            
-                            <div>
-                                <span class="todo">James Joseph Average</span><br/>
-                                Campus: <span class="todo">Seattle</span>
-                            </div>
-                            
-                            <div style="border-top:solid 1px #eee; margin-top: 15px; padding-top: 15px;">
-                                <p>Your directory information is <span class="todo">public</span></p>
-                                <p><a href="#">Change what is released</a></p>
-                            </div>
-                            
-                            <div style="margin-top: 15px;">
-                                <div>Apartment #: <span class="todo">A210</span></div>
-                                <div>Street: <span class="todo">1010 Center St</span></div>
-                                <div>City: <span class="todo">askfdj</span></div>
-                                <div>State/Province: <span class="todo">adfasdf</span></div>
-                                <div>Zip/Postal Code: <span class="todo">12345</span></div>
-                                <div>Country: <span class="todo">Canada</span></div>
-                                <div>Phone: <span class="todo">206-555-1234</span></div>
-                                <div style="margin-top:10px;"><a href="#">Edit directory information</a></div>    
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <div class="header-w"><img src="{% static 'images/w-logo-white.png' %}"></div>
-                </div>
-            </div>
+        <div class="header-cover">
+            <div class="container clearfix" id="profile"></div>
+            <div class="header-w"><img src="{% static 'images/w-logo-white.png' %}"></div>
+        </div>
     </div>
             
     <div id="page-modal"></div>
@@ -186,6 +158,8 @@
     <script src="{% static 'js/future.js' %}"></script>
     <script src="{% static 'js/navbar.js' %}"></script>
     <script src="{% static 'js/banner/email.js' %}"></script>
+    <script src="{% static 'js/banner/common_loading.js' %}"></script>
+    <script src="{% static 'js/banner/profile.js' %}"></script>
     <script src="{% static 'js/banner/notice.js' %}"></script>
     <script src="{% static 'js/card/error.js' %}"></script>
     <script src="{% static 'js/card/fin_aid.js' %}"></script>

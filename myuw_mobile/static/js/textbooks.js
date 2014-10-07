@@ -6,8 +6,8 @@ var TextBooks = {
         //Navbar.render_navbar("nav-sub");
         TextBooks.term = term;
         TextBooks.anchor_textbook = textbook;
-        UwEmail.render_init();
         showLoading();
+        CommonLoading.render_init();
         WSData.fetch_book_data(term, TextBooks._fetch_course_data);
     },
 
