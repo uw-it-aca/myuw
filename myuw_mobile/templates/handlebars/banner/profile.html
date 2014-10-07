@@ -10,7 +10,7 @@
                     Student Number: <span class="">{{student_number}}</span><br/>
                 {{/if}}
                 {{#if campus}}
-                    Campus: <span class="">{{campus}}</span>
+                    Campus: <span class="">{{capitalizeString campus}}</span>
                 {{/if}}
             </div>
 
@@ -44,10 +44,10 @@
                 {{#if country}}
                     <div>Country: <span class="">{{country}}</span></div>
                 {{/if}}
+                {{/with}}
                 {{#if local_phone}}
                     <div>Phone: <span class="">{{local_phone}}</span></div>
                 {{/if}}
-                {{/with}}
             </div>
             {{/if}}
 
@@ -76,14 +76,14 @@
                 {{#if country}}
                     <div>Country: <span class="">{{country}}</span></div>
                 {{/if}}
+                {{/with}}
                 {{#if permanent_phone}}
                     <div>Phone: <span class="">{{permanent_phone}}</span></div>
                 {{/if}}
-                {{/with}}
             </div>
             {{/if}}
 
-            <div style="margin-top:10px;"><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Edit your address information</a></div>
+            <div style="margin-top:10px;"><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Update Your Address</a></div>
         </div>
     </div>
 {% endtplhandlebars %}
