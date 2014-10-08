@@ -299,29 +299,6 @@ $(document).ready(function() {
         WSData.log_interaction("nav_menu_visual_schedule");
     });
     
-    // handle my profile disclosure
-    $("#toggle_my_profile").bind("click", function(ev) {
-
-        ev.preventDefault();
-
-        $("#my_profile").toggleClass("slide-show");
-        
-        if ($("#my_profile").hasClass("slide-show")) {
-            $("#my_profile").attr('aria-hidden', 'false');
-            
-            $("#my_profile_arrow").removeClass('fa-chevron-down');
-            $("#my_profile_arrow").addClass('fa-chevron-up');
-            
-        } else {
-            $("#my_profile").attr('aria-hidden', 'true');
-            setTimeout(function() {
-                $("#my_profile_arrow").removeClass('fa-chevron-up');
-                $("#my_profile_arrow").addClass('fa-chevron-down');
-            }, 700);
-        }
-            
-    });
-    
     // handle clicking on resources
     $("#categories_link").bind("click", function(ev) {
         ev.preventDefault();                

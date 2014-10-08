@@ -22,7 +22,7 @@ var Profile = {
 
                 setTimeout(function() {
                     $("#my_profile_arrow").attr('class', 'fa fa-chevron-down');
-                }, 700);
+                }, 900);
             }
         });
     },
