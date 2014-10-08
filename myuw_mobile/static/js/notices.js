@@ -58,14 +58,14 @@ var Notices = {
                 expanded = false;
                 
                 // update all individual disclosure links
-                $(".slide-hide").removeClass("slide-show");
-                $(".slide-hide").attr('aria-hidden', 'true');
-                $(".slide-link").attr('title', 'Show more notice information');
+                $(".notices-container .slide-hide").removeClass("slide-show");
+                $(".notices-container .slide-hide").attr('aria-hidden', 'true');
+                $(".notices-container .slide-link").attr('title', 'Show more notice information');
                 
                 $(this).attr('title', 'Show all notice information');
                 
-                $(".disclosure-meta").find("i").removeClass("fa-angle-up");
-                $(".disclosure-meta").find("i").addClass("fa-angle-down");
+                $(".notices-container .disclosure-meta").find("i").removeClass("fa-angle-up");
+                $(".notices-container .disclosure-meta").find("i").addClass("fa-angle-down");
                 
                 setTimeout(function() {
                       $("#expand_collapse").text("Expand all");
@@ -76,14 +76,14 @@ var Notices = {
                 expanded = true;
                 
                 // update all individual disclosure links
-                $(".slide-hide").addClass("slide-show");
-                $(".slide-hide").attr('aria-hidden', 'false');
-                $(".slide-link").attr('title', 'Show less notice information');
+                $(".notices-container .slide-hide").addClass("slide-show");
+                $(".notices-container .slide-hide").attr('aria-hidden', 'false');
+                $(".notices-container .slide-link").attr('title', 'Show less notice information');
                 
                 $(this).attr('title', 'Hide all notice information');
                 
-                $(".disclosure-meta").find("i").removeClass("fa-angle-down");
-                $(".disclosure-meta").find("i").addClass("fa-angle-up");
+                $(".notices-container .disclosure-meta").find("i").removeClass("fa-angle-down");
+                $(".notices-container .disclosure-meta").find("i").addClass("fa-angle-up");
                 $(this).text("Collapse all");
                 Notices.get_notices_in_view_and_mark_read();
             }
