@@ -12,15 +12,21 @@
                 {{#if campus}}
                     Campus: <span class="">{{capitalizeString campus}}</span>
                 {{/if}}
-
-                <p style="margin-top: 15px;">Your FERPA (directory) information is currently <span class="badge">{{#unless directory_release}}not{{/unless}} public</span></p>
-                <p><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Change Directory Release</a></p>
+            </div>
+            
+            <div style="border-top:solid 1px #ccc; margin-top: 15px; padding-top: 15px;">                
+                {{#if directory_release}}
+                <p>Your profile information is currently <span class="badge">public</span>. <em>Name, phone number, email, major, and class standing</em> is published in the UW Directory. Additional information such as date of birth, street address, and dates of attendance can be released to the public by the Office of the Registrar. <a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a> or <a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">change your release settings</a>.</p> 
+                {{else}}
+                <p>Your profile information is currently <span class="badge">private</span> (not releasable). Information about you cannot be released or displayed publicly in the UW Directory without your consent. <a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a> or <a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">change your release settings</a>.</p>
+                {{/if}}
+                
             </div>
 
             {{#if local_address}}
-            <div style="border-top:solid 1px #eee; margin-top: 15px; padding-top: 15px;">
+            <div style="border-top:solid 1px #ccc; margin-top: 15px; padding-top: 15px;">
                 
-                <p>The UW uses the following address information to send important mailings. Please verify that the addresses are up to date!</p>
+                <p><strong>Receiving UW mail:</strong> The UW uses the following address information to send important mailings (e.g. <em>tuition-related, financial aid, diploma</em>). Verify that your addresses are correct or <a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">update addresses and their usage</a>. </p>
                     
                 <h4>Local Address</h4>
                 {{#with local_address}}
@@ -84,7 +90,6 @@
             </div>
             {{/if}}
 
-            <div style="margin-top:10px;"><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Update Address Information</a></div>
         </div>
     </div>
 {% endtplhandlebars %}
