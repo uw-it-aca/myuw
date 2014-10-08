@@ -12,16 +12,17 @@
                 {{#if campus}}
                     Campus: <span class="">{{capitalizeString campus}}</span>
                 {{/if}}
-            </div>
 
-            <div style="border-top:solid 1px #eee; margin-top: 15px; padding-top: 15px;">
-                <p>Your directory information is {{#unless directory_release}}not{{/unless}} public</p>
+                <p style="margin-top: 15px;">Your FERPA (directory) information is currently {{#unless directory_release}}not{{/unless}} public</p>
                 <p><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Change Directory Release</a></p>
             </div>
 
             {{#if local_address}}
-            <div style="margin-top: 15px;">
-                <h3>Local Address</h3>
+            <div style="border-top:solid 1px #eee; margin-top: 15px; padding-top: 15px;">
+                
+                <p>The UW uses the following address information to send important mailings. Please verify that the addresses are up to date!</p>
+                    
+                <h4>Local Address</h4>
                 {{#with local_address}}
                 {{#if street_line2}}
                     <div>Apartment #: <span class="">{{street_line2}}</span></div>
@@ -53,7 +54,7 @@
 
             {{#if permanent_address}}
             <div style="margin-top: 15px;">
-                <h3>Permanent Address</h3>
+                <h4>Permanent Address</h4>
                 {{#with permanent_address}}
                 {{#if street_line2}}
                     <div>Apartment #: <span class="">{{street_line2}}</span></div>
