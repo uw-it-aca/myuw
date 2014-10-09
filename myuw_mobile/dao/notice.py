@@ -24,221 +24,347 @@ criticality based on the category & type coming from the notice resource
 
 
 NOTICE_MAPPING = {
-        "UGApplGEN_ThankYouForApplying": {
-              "myuw_category": "Admission",
-              "location_tags": None,
-              "critical": False
-          },
-          "UGApplGEN_ApplInfoLinks": {
-              "myuw_category": "Admission",
-              "location_tags": None,
-              "critical": False
-          },
-          "UGApplGEN_AdmWebSites": {
-              "myuw_category": "Admission",
-              "location_tags": None,
-              "critical": False
-          },
-          "NewStudentFOOT_FIUTS": {
-              "myuw_category": "Advising? Orientation?",
-              "location_tags": None,
-              "critical": False
-          },
-          "StudentGEN_AcctBalance": {
-              "myuw_category": "Fees & Finances",
-              "location_tags": ['tuition_balance', 'finance_card'],
-              "critical": False
-          },
-          "StudentGEN_AcctBalEONote": {
-              "myuw_category": "Fees & Finances",
-              "location_tags": ['pce_tuition_dup', 'finance_card'],
-              "critical": False
-          },
-          "StudentDAD_TuitDue": {
-              "myuw_category": "Fees & Finances",
-              "location_tags": ['tuition_due_date', 'finance_card', 'notice_date_sort'],
-              "critical": True
-          },
-          "NewStudentGEN_ThankYouRemark": {
-              "myuw_category": "Fees & Finances",
-              "location_tags": None,
-              "critical": False
-          },
-          "NewStudentGEN_FeesPaid": {
-              "myuw_category": "Fees & Finances",
-              "location_tags": None,
-              "critical": False
-          },
-          "NewStudentCLIST_FinAid": {
-              "myuw_category": "Fees & Finances",
-              "location_tags": ['finance_card_finaid'],
-              "critical": False
-          },
-          "StudentGEN_DegreeAppl": {
-              "myuw_category": "Graduation",
-              "location_tags": None,
-              "critical": False
-          },
-          "StudentDAD_Commencement": {
-              "myuw_category": "Graduation",
-              "location_tags": None,
-              "critical": False
-          },
-          "StudentALR_IntlStuCheckIn": {
-              "myuw_category": "Holds",
-              "location_tags": ['notices_holds', 'reg_card_holds'],
-              "critical": True
-          },
-          "StudentALR_AdminHolds": {
-              "myuw_category": "Holds",
-              "location_tags": ['notices_holds', 'reg_card_holds'],
-              "critical": True
-          },
-          "StudentALR_SatProgBlock": {
-              "myuw_category": "Holds",
-              "location_tags": ['notices_holds', 'reg_card_holds'],
-              "critical": True
-          },
-          "StudentDAD_LastDayChgIns": {
-              "myuw_category": "Insurance",
-              "location_tags": None,
-              "critical": False
-          },
-          "StudentGEN_FERPA": {
-              "myuw_category": "Legal",
-              "location_tags": ['notices_legal'],
-              "critical": False
-          },
-          "StudentGEN_IntendedMajors": {
-              "myuw_category": "not a notice",
-              "location_tags": None,
-              "critical": False
-          },
-          "StudentGEN_MajorsMinors": {
-              "myuw_category": "not a notice",
-              "location_tags": None,
-              "critical": False
-          },
-          "NewStudentGEN_StatusSummary": {
-              "myuw_category": "not a notice",
-              "location_tags": None,
-              "critical": False
-          },
-          "NewStudentCLIST_IntendedMajor": {
-              "myuw_category": "not a notice",
-              "location_tags": None,
-              "critical": False
-          },
-          "StudentALR_PreRegNow": {
-              "myuw_category": "Registration",
-              "location_tags": ['reg_card_messages'],
-              "critical": True
-          },
-          "StudentDAD_EstPd1RegDate": {
-              "myuw_category": "Registration",
-              "location_tags": ['est_reg_date', 'notices_date_sort'],
-              "critical": True
-          },
-          "StudentDAD_IntlStuFTRegCutoffDate": {
-              "myuw_category": "Registration",
-              "location_tags": ['notices_date_sort'],
-              "critical": True
-          },
-          "StudentDAD_LastDayRegWOChgFee": {
-              "myuw_category": "Registration",
-              "location_tags": ['notices_date_sort'],
-              "critical": False
-          },
-          "StudentDAD_LastDayRegChgFee": {
-              "myuw_category": "Registration",
-              "location_tags": ['notices_date_sort'],
-              "critical": False
-          },
-          "StudentDAD_LastDayDropNoRecord": {
-              "myuw_category": "Registration",
-              "location_tags": ['notices_date_sort'],
-              "critical": False
-          },
-          "StudentDAD_LastDayAuditOpt": {
-              "myuw_category": "Registration",
-              "location_tags": ['notices_date_sort'],
-              "critical": False
-          },
-          "StudentDAD_LastDayWOAnnualDrop": {
-              "myuw_category": "Registration",
-              "location_tags": ['notices_date_sort'],
-              "critical": False
-          },
-          "StudentDAD_LastDayDrop": {
-              "myuw_category": "Registration",
-              "location_tags": ['notices_date_sort'],
-              "critical": False
-          },
-          "StudentDAD_LastDayAdd": {
-              "myuw_category": "Registration",
-              "location_tags": ['notices_date_sort'],
-              "critical": False
-          },
-          "StudentDAD_LastDayAnnualDrop": {
-              "myuw_category": "Registration",
-              "location_tags": ['notices_date_sort'],
-              "critical": False
-          },
-          "StudentDAD_LastDayChgGradeOpt": {
-              "myuw_category": "Registration",
-              "location_tags": ['notices_date_sort'],
-              "critical": False
-          },
-          "StudentDAD_LastDayWithdraw": {
-              "myuw_category": "Registration",
-              "location_tags": ['notices_date_sort'],
-              "critical": False
-          },
-          "NewStudentCLIST_IntlStuCheckIn": {
-              "myuw_category": "Registration",
-              "location_tags": ['notices_holds'],
-              "critical": False
-          },
-          "NewStudentCLIST_AdvOrientRegDate": {
-              "myuw_category": "Registration",
-              "location_tags": ['notices_date_sort', 'reg_card_messages'],
-              "critical": False
-          },
-          "NewStudentCLIST_Measles": {
-              "myuw_category": "Registration",
-              "location_tags": ['?'],
-              "critical": False
-          },
-          "NewStudentFOOT_SummerRegInfo": {
-              "myuw_category": "Registration",
-              "location_tags": ['reg_card_messages'],
-              "critical": False
-          },
-          "NewStudentFOOT_NextStep": {
-              "myuw_category": "Registration? Advising? ",
-              "location_tags": ['?'],
-              "critical": False
-          },
-          "StudentDAD_IntlStuRegCutoffDate": {
-              "myuw_category": "Visa",
-              "location_tags": None,
-              "critical": True
-          },
-          "StudentGEN_RIAA": {
-              "myuw_category": "Legal",
-              "location_tags": ['notices_legal'],
-              "critical": False
-          },
-          "StudentDAD_QtrBegin": {
-              "myuw_category": "",
-              "location_tags": ['quarter_begins'],
-              "critical": False
-          },
-          "StudentDAD_QtrEnd": {
-              "myuw_category": "Quarter Ends",
-              "location_tags": ['quarter_ends'],
-              "critical": False
-          },
+        "StudentALR_IntlStuCheckIn": {
+            "myuw_category": "Holds",
+            "location_tags": ['notices_holds', 'reg_card_holds'],
+            "critical": True
+        },"StudentALR_IntlStuCheckIn": {
+            "myuw_category": "Holds",
+            "location_tags": ['notices_holds', 'reg_card_holds'],
+            "critical": True
+        },"StudentALR_IntlStuCheckIn": {
+            "myuw_category": "Holds",
+            "location_tags": ['notices_holds', 'reg_card_holds'],
+            "critical": True
+        },"StudentALR_AdminHolds": {
+            "myuw_category": "Holds",
+            "location_tags": ['notices_holds', 'reg_card_holds'],
+            "critical": True
+        },"StudentALR_SatProgBlock": {
+            "myuw_category": "Holds",
+            "location_tags": ['notices_holds', 'reg_card_holds'],
+            "critical": True
+        },"StudentALR_PreRegNow": {
+            "myuw_category": "Registration",
+            "location_tags": ['reg_card_messages'],
+            "critical": True
+        },"StudentGEN_FERPA": {
+            "myuw_category": "Legal",
+            "location_tags": ['notices_legal'],
+            "critical": False
+        },"StudentGEN_RIAA": {
+            "myuw_category": "Legal",
+            "location_tags": ['notices_legal'],
+            "critical": False
+        },"StudentGEN_AcctBalance": {
+            "myuw_category": "not a notice",
+            "location_tags": ['tuition_balance', 'finance_card'],
+            "critical": False
+        },"StudentGEN_AcctBalEONote": {
+            "myuw_category": "Fees & Finances",
+            "location_tags": ['pce_tuition_dup', 'finance_card'],
+            "critical": False
+        },"StudentGEN_IntendedMajors": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"StudentGEN_MajorsMinors": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"StudentGEN_DegreeAppl": {
+            "myuw_category": "Graduation",
+            "location_tags": [],
+            "critical": True
+        },"StudentDAD_QtrBegin": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"StudentDAD_IntlStuRegCutoffDate": {
+            "myuw_category": "Visa",
+            "location_tags": ['notices_date_sort'],
+            "critical": True
+        },"StudentDAD_IntlStuRegCutoffDate": {
+            "myuw_category": "Visa",
+            "location_tags": ['notices_date_sort'],
+            "critical": True
+        },"StudentDAD_IntlStuRegCutoffDate": {
+            "myuw_category": "Visa",
+            "location_tags": ['notices_date_sort'],
+            "critical": True
+        },"StudentDAD_IntlStuFTRegCutoffDate": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": True
+        },"StudentDAD_IntlStuFTRegCutoffDate": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": True
+        },"StudentDAD_IntlStuFTRegCutoffDate": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": True
+        },"StudentDAD_LastDayRegWOChgFee": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayRegWOChgFee": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayRegWOChgFee": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayRegWOChgFee": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayRegChgFee": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayRegChgFee": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayRegChgFee": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayRegChgFee": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayChgIns": {
+            "myuw_category": "Insurance",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayChgIns": {
+            "myuw_category": "Insurance",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayDropNoRecord": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayDropNoRecord": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayDropNoRecord": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayDropNoRecord": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayAuditOpt": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayAuditOpt": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayAuditOpt": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayAuditOpt": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayWOAnnualDrop": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayWOAnnualDrop": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayWOAnnualDrop": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayWOAnnualDrop": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayDrop": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayDrop": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayDrop": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayDrop": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayAdd": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayAdd": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayAdd": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayAdd": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayAnnualDrop": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayAnnualDrop": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayAnnualDrop": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayAnnualDrop": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayChgGradeOpt": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayChgGradeOpt": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayChgGradeOpt": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"notices_date_sort": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayWithdraw": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayWithdraw": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayWithdraw": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_LastDayWithdraw": {
+            "myuw_category": "Registration",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"StudentDAD_TuitDue": {
+            "myuw_category": "Fees & Finances",
+            "location_tags": ['tuition_due_date', 'finance_card', 'notices_date_sort'],
+            "critical": True
+        },"StudentDAD_Commencement": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"StudentDAD_EstPd1RegDate": {
+            "myuw_category": "Registration",
+            "location_tags": ['est_reg_date', 'notices_date_sort'],
+            "critical": True
+        },"NewStudentGEN_ThankYouRemark": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"NewStudentGEN_StatusSummary": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"NewStudentGEN_FeesPaid": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"NewStudentCLIST_IntlStuCheckIn": {
+            "myuw_category": "not a notice",
+            "location_tags": ['notices_holds'],
+            "critical": False
+        },"NewStudentCLIST_IntlStuCheckIn": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"NewStudentCLIST_AdvOrientRegDate": {
+            "myuw_category": "not a notice",
+            "location_tags": ['notices_date_sort'],
+            "critical": False
+        },"NewStudentCLIST_AdvOrientRegDate": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"NewStudentCLIST_AdvOrientRegDate": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"NewStudentCLIST_Measles": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"NewStudentCLIST_Measles": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"NewStudentCLIST_IntendedMajor": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"NewStudentCLIST_IntendedMajor": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"NewStudentCLIST_FinAid": {
+            "myuw_category": "not a notice",
+            "location_tags": ['finance_card_finaid'],
+            "critical": False
+        },"NewStudentCLIST_EmailServices": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"NewStudentFOOT_FIUTS": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"NewStudentFOOT_SummerRegInfo": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"NewStudentFOOT_NextStep": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"UGApplGEN_ThankYouForApplying": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"UGApplGEN_ApplInfoLinks": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },"UGApplGEN_AdmWebSites": {
+            "myuw_category": "not a notice",
+            "location_tags": [],
+            "critical": False
+        },
 
 }
 

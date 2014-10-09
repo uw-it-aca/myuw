@@ -3,7 +3,6 @@
 var Notices = {
     show_notices: function () {
         "use strict";
-        //Navbar.render_navbar("nav-sub");
         CommonLoading.render_init();
         WSData.fetch_notice_data(Notices.render_notices);
     },
@@ -15,7 +14,6 @@ var Notices = {
 
         notices = Notices.get_notices_by_date();
 
-        // For MUWM-1918
         var all_notices = []
         var total_notices = 0;
         for (var group in notices) {
@@ -23,8 +21,9 @@ var Notices = {
             all_notices = all_notices.concat(notices[group].notices);
         }
 
-        var critical_notices = Notices._get_critical(all_notices);
-        notices['total_notices'] = total_notices;
+        var critical_notices = Notices._get_critical(WSData.notice_data());
+
+        notices['total_notices'] = Notices.get_notice_page_notices().length;
         notices['legal'] = Notices.get_notices_for_category("Legal");
         notices['critical'] = {
             "count": critical_notices.length,
@@ -121,10 +120,9 @@ var Notices = {
         });
 
         // Event for marking notices as read on scroll, debounced
-        $(window).scroll(function(){
-            $.doTimeout( 'scroll', 250, function(){
+        de_bouncer(jQuery,'smartscroll', 'scroll', 100);
+        $(window).smartscroll(function() {
                   Notices.get_notices_in_view_and_mark_read();
-            });
         });
     },
 
@@ -173,7 +171,7 @@ var Notices = {
             j,
             notice,
             date,
-            notices = WSData.notice_data(),
+            notices = Notices.get_notices_for_tag('notices_date_sort'),
             today,
             notices_today = [],
             notices_week = [],
@@ -232,7 +230,7 @@ var Notices = {
     },
 
     get_total_unread: function (){
-        return Notices._get_unread_count(WSData.notice_data());
+        return Notices._get_unread_count(Notices.get_notice_page_notices());
     },
 
     get_unread_count_by_category: function () {
@@ -252,10 +250,7 @@ var Notices = {
     },
 
     get_all_critical: function () {
-        var notices_by_date = Notices.get_notices_by_date();
-        var notices = notices_by_date.week.notices.concat(notices_by_date.today.notices)
-            .concat(notices_by_date.next_week.notices)
-            .concat(notices_by_date.future.notices);
+        var notices = WSData.notice_data();
         return Notices._get_critical_count(notices);
     },
 
@@ -263,7 +258,7 @@ var Notices = {
         var unread_count = 0;
         for (i = 0; i < notices.length; i += 1) {
             notice = notices[i];
-            if (!notice["is_read"]) {
+            if (!notice["is_read"] && notice["category"] !== "not a notice") {
                     unread_count += 1;
             }
         }
@@ -318,4 +313,33 @@ var Notices = {
         }
     },
 
+    get_notice_page_notices: function () {
+        var page_notices = [];
+        var unique_notices = [];
+        var notices = WSData.notice_data();
+        var critical = Notices._get_critical(notices);
+        var legal = Notices.get_notices_for_category("Legal").notices;
+        var date_sort = Notices.get_notices_for_tag('notices_date_sort');
+
+        page_notices = page_notices.concat(critical);
+        if(legal !== undefined) {
+            page_notices = page_notices.concat(legal);
+        }
+        if(date_sort !== undefined) {
+            page_notices = page_notices.concat(date_sort);
+        }
+        $(page_notices).each(function (i, notice) {
+            var unmatched = true;
+            $(unique_notices).each(function (i, unique_notice){
+                if(unique_notice.id_hash === notice.id_hash) {
+                    unmatched = false;
+                }
+            });
+            if (unmatched) {
+                unique_notices.push(notice);
+            }
+        });
+        return unique_notices;
+    }
 };
+
