@@ -5,17 +5,25 @@
     "LeaveEndQuarter": 0,
     "LeaveEndYear": 0,
     "Majors": [
-        {
-            "Abbreviation": "ACMS",
-            "Campus": "Tacoma",
-            "DegreeLevel": 1,
-            "DegreeName": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
-            "DegreeType": 5,
-            "FullName": "App & Comp Math Sci (Social & Behav Sci)",
-            "MajorName": "ACMS (SOC & BEH SCI)",
-            "Pathway": 80,
-            "ShortName": "ACMS (SBS)"
-        }
+    {"Abbreviation":"ECON",
+        "Campus":"Tacoma",
+        "DegreeLevel":1,
+        "DegreeName":"BACHELOR OF SCIENCE (ECONOMICS)",
+        "DegreeType":5,
+        "FullName":"Economics",
+        "MajorName":"ECONOMICS",
+        "Pathway":0,
+        "ShortName":"ECONOMICS"},
+        {"Abbreviation":"MATH",
+        "Campus":"Tacoma",
+        "DegreeLevel":1,
+        "DegreeName":"BACHELOR OF SCIENCE (MATHEMATICS)",
+        "DegreeType":5,
+        "FullName":"Mathematics",
+        "MajorName":"MATHEMATICS",
+        "Pathway":0,
+        "ShortName":"MATH"}
+
     ],
     "PendingClassChange": false,
     "PendingHonorsChange": false,
