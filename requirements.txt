@@ -9,7 +9,7 @@ AuthZ-Group==1.1.2
 Django-UserService==1.0.2
 # If you're using a MySQL database, you may also need mysql-python
 # mysql-python
--e svn+https://svn.cac.washington.edu/svn/restclients/trunk#egg=RestClients
+-e svn+https://svn.cac.washington.edu/svn/restclients/branches/v5_migration#egg=RestClients
 -e git://github.com/vegitron/django-handlebars-i18n#egg=Django-Handlebars-I18N
 -e git+https://github.com/abztrakt/django-mobileesp/#egg=django_mobileesp
 -e git+https://github.com/charlon/django-supporttools.git#egg=SupportTools
