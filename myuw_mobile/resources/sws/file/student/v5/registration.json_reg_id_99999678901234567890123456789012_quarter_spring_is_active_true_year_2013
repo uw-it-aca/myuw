@@ -1,0 +1,30 @@
+{ "Current" : { "CourseNumber" : null,
+      "CurriculumAbbreviation" : null,
+      "Href" : "\/student\/v5\/registration.json?year=2013&quarter=spring&curriculum_abbreviation=&course_number=§ion_id=®_id=99999678901234567890123456789012&is_active=&instructor_reg_id=",
+      "InstructorRegID" : null,
+      "IsActive" : true,
+      "PageSize" : null,
+      "PageStart" : null,
+      "Quarter" : "spring",
+      "RegID" : "99999678901234567890123456789012",
+      "SectionID" : null,
+      "Year" : "2013"
+    },
+  "Next" : null,
+  "PageSize" : "10",
+  "PageStart" : "1",
+  "Previous" : null,
+  "Registrations" : [
+      { "CourseNumber" : "207",
+        "CurriculumAbbreviation" : "ENGL",
+        "DuplicateCode" : "1",
+        "Href" : "\/student\/v5\/registration\/2013,spring,ENGL,207,A,99999678901234567890123456789012,.json",
+        "Instructor" : null,
+        "Quarter" : "spring",
+        "RegID" : "99999678901234567890123456789012",
+        "SectionID" : "A",
+        "Year" : "2013"
+      }
+    ],
+  "TotalCount":"1"
+}
