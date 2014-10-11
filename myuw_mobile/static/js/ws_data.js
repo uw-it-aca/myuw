@@ -549,22 +549,26 @@ WSData = {
 
     fetch_profile_data: function(callback, err_callback, args) {
         if (WSData._profile_data === null) {
+            var url = "/mobile/api/v1/profile/";
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
             $.ajax({
-                    url: "/mobile/api/v1/profile/",
+                url: url,
                     dataType: "JSON",
 
                     type: "GET",
                     accepts: {html: "text/html"},
                     success: function(results) {
                         WSData._profile_data = results;
-                        if (callback !== null) {
-                            callback.apply(null, args);
-                        }
+                        WSData._run_success_callbacks_for_url(url);
                     },
                     error: function(xhr, status, error) {
-                        if (err_callback) {
-                            err_callback.call(null, status, error);
-                        }
+                        WSData._run_error_callbacks_for_url(url);
                     }
                  });
               }

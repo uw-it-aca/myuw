@@ -15,14 +15,17 @@ var Landing = {
         $("#main-content").html(template());
         
         NoticeBanner.render_init($("#notice_banner_location"));
-        var cards = [FutureQuarterCard,
+        var cards = [
+                     FutureQuarterCard,
                      VisualScheduleCard,
                      CourseCard,
+                     AcademicCard,
                      HfsCard,
                      TuitionCard,
                      LibraryCard,
                      TuitionCard,
-                     RegStatusCard];
+                     RegStatusCard
+                    ];
         
         Cards.load_cards_in_order(cards, $("#landing_content"));
                 
