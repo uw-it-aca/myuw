@@ -77,8 +77,8 @@ NOTICE_MAPPING = {
             "location_tags": [],
             "critical": True
         },"StudentDAD_QtrBegin": {
-            "myuw_category": "not a notice",
-            "location_tags": [],
+            "myuw_category": "Quarter Begins",
+            "location_tags": ['notices_date_sort', 'quarter_begins'],
             "critical": False
         },"StudentDAD_IntlStuRegCutoffDate": {
             "myuw_category": "Visa",
