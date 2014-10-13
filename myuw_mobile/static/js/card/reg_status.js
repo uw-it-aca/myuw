@@ -33,15 +33,7 @@ var RegStatusCard = {
         var reg_date = Notices.get_notices_for_tag("est_reg_date");
 
         //Get hold count from notice attrs
-        var hold_count = 0;
-        $.each(reg_holds, function(idx, notice) {
-            $.each(notice['attributes'], function(idx, attribute){
-                if (attribute['name'] === "Holds") {
-                    hold_count = attribute['value'];
-                }
-            });
-        });
-
+        var hold_count = reg_holds.length;
 
         // For initial release, the registration card will display whenever either StudentDAD_EstPd1RegDate OR any registration holds are coming to us from the notice resource.
         if (hold_count === 0 && reg_date.length === 0) {
