@@ -228,7 +228,42 @@
 			"NoticeCategory": "NewStudentCLIST", 
 			"NoticeContent": "You can <a href=\"https://sdb.admin.washington.edu/students/uwnetid/finaidstatus.asp\">review the status</a> of your financial aid application online.", 
 			"NoticeType": "FinAid"
-		}
+		},
+
+        {
+            "NoticeAttributes": [
+            {
+               "Name": "DisplayBegin",
+               "DataType": "date",
+               "Value": "20140920"
+            },
+            {
+               "Name": "DisplayEnd",
+               "DataType": "date",
+               "Value": "20141015"
+            }
+             ],
+            "NoticeCategory": "StudentGEN",
+            "NoticeContent": "<span class=\"notice-title\">About Peer-to-Peer File-Sharing and Copyright Infringement</span><span class=\"notice-body-with-title\">Under copyright law it is illegal to download or share copyrighted materials such as music or movies without the permission of the copyright owner. Your actions when downloading or sharing files are traceable and could result in a significant financial penalty to you. For more information, go to the <a href=\"http://www.washington.edu/students/gencat/policy/p2pshare.html\">Peer-to-Peer File-Sharing and Copyright Infringement</a> page in the Student Guide.</span>",
+            "NoticeType": "RIAA"
+        },
+        {
+            "NoticeAttributes": [
+            {
+               "Name": "DisplayBegin",
+               "DataType": "date",
+               "Value": "20140920"
+            },
+            {
+               "Name": "DisplayEnd",
+               "DataType": "date",
+               "Value": "20141015"
+            }
+            ],
+            "NoticeCategory": "StudentGEN",
+            "NoticeContent": "<span class=\"notice-title\">FERPA</span><span class=\"notice-body-with-title\">The Family Educational Rights and Privacy Act (FERPA) of 1974 protects the privacy of your education records. However, your directory information may be released unless you inform the Registrar's Office. For further details check the <a href=\"http://www.washington.edu/students/reg/ferpa.html\">Family Educational Rights and Privacy Act web site</a>.</span>",
+            "NoticeType": "FERPA"
+        }
 	], 
 	"Person": {
 		"Href": "", 
