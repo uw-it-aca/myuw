@@ -23,7 +23,6 @@ var Landing = {
                      HfsCard,
                      TuitionCard,
                      LibraryCard,
-                     TuitionCard,
                      RegStatusCard
                     ];
         
