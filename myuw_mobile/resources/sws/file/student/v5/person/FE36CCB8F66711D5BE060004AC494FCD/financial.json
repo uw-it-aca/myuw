@@ -2,6 +2,6 @@
  "Person":{"Href":"",
            "Name":"",
            "RegID": "FE36CCB8F66711D5BE060004AC494FCD"},
- "AccountBalance": "1.00",
- "PCEAccountBalance": "0.00"
+ "AccountBalance": "$1.00",
+ "PCEAccountBalance": "$0.00"
 }
