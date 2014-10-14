@@ -49,6 +49,7 @@
 
                                     </div>
                                 </div>
+                                {{ #if tuition_date }}
                                 <div class="card-badge clearfix">
                                     <div class="pull-left">  
                                         <span class="card-badge-label">Tuition due </span>
@@ -58,6 +59,7 @@
                                         <span class="card-badge-action pull-right">in {{ tuition_date_offset }} days</span>
                                     </div>
                                 </div>
+                                {{ /if }}
                         </div>
                         <!-- end if -->
                         {{ /if }}
