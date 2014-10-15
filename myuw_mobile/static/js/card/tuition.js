@@ -36,12 +36,12 @@ var TuitionCard = {
             for (var i = 0; i < tuition_due_notice.attributes.length; i += 1) {
                 if (tuition_due_notice.attributes[i].name === "Date") {
                     due_date = new Date(tuition_due_notice.attributes[i].value.replace(/-/g, "/"));
-                    display_date = tuition_due_notice.attributes[i].formatted_value;
+                    display_date = tuition_due_notice.attributes[i].formatted_value
                 }
             }
         }
         if (due_date !== undefined) {
-            template_data['tuition_date'] = display_date;
+            template_data['tuition_date'] = display_date
             template_data['tuition_date_offset'] = TuitionCard._days_from_today(due_date);
 
             //Alert banners
