@@ -10,7 +10,7 @@
                 {{#if student_number}}
                     Student Number: <span class="">{{student_number}}</span>
                 {{/if}}
-<!--                {{#if campus}}
+                <!-- {{#if campus}}
                     Campus: <span class="">{{capitalizeString campus}}</span>
                 {{/if}} -->
             </div>
@@ -21,8 +21,8 @@
             <div class="profile-release">
                 <strong>Receiving UW mail</strong></br> 
                 <ul>
-                	<li>To receive important mailings from the UW, verify that your addresses are correct.</li> 
-                	<li><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Update addresses and usage settings</a></li> 
+                    <li>To receive important mailings from the UW, verify that your addresses are correct.</li> 
+                    <li><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Update addresses and usage settings</a></li> 
                 </ul>	                    
                 <h5>Local Address</h5>
                 {{#with local_address}}
@@ -65,22 +65,21 @@
                 {{#if directory_release}}
                 <strong>Your profile information is currently <em>public</em></strong>
                 <ul>
-                	<li><strong>Published in the UW Directory</strong> &ndash; <em>Name, phone number, email, major, and class standing</em></li> 
-                	<li><strong>Releasable by Office of the Registrar</strong> &ndash; Information such as <em>date of birth, street address, and dates of attendance</em></li>
-                	<li><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Change your release settings</a></li>	
-                	<li><a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
-				</ul>
+                    <li><strong>Published in the UW Directory</strong> &ndash; <em>Name, phone number, email, major, and class standing</em></li> 
+                    <li><strong>Releasable by Office of the Registrar</strong> &ndash; Information such as <em>date of birth, street address, and dates of attendance</em></li>
+                    <li><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Change your release settings</a></li>	
+                    <li><a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
+		</ul>
                 {{else}}
                 <strong>Your profile information is currently <em>private</em></strong> (not releasable)
                 <ul>
-                	<li><strong>Information about you cannot be released or displayed publicly in the UW Directory without your consent.</li>
-                	<li><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Change your release settings</a></li>	
-                	<li><a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
-				</ul>
+                    <li><strong>Information about you cannot be released or displayed publicly in the UW Directory without your consent.</li>
+                    <li><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Change your release settings</a></li>	
+                    <li><a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
+		</ul>
+                {{/if}}
 				{{/if}}
             </div>
-
-
         </div>
     </div>
 {% endtplhandlebars %}
