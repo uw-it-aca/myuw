@@ -3,7 +3,12 @@ var RegStatusCard = {
     dom_target: undefined,
 
     render_init: function() {
-        WSData.fetch_notice_data(RegStatusCard.render_upon_data,RegStatusCard.render_error);
+        if (window.card_display_dates.is_after_start_of_registration_display_period) {
+            WSData.fetch_notice_data(RegStatusCard.render_upon_data,RegStatusCard.render_error);
+        }
+        else {
+            $("#RegStatusCard").hide();
+        }
     },
     render_upon_data: function() {
         //If more than one data source, multiple callbacks point to this function

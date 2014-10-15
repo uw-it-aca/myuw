@@ -11,6 +11,7 @@ from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_data_not_found_response, log_invalid_netid_response, log_success_response_with_affiliation
 from myuw_mobile.views.rest_dispatch import invalid_session
 from myuw_mobile.dao.uwemail import get_email_forwarding_for_current_user
+from myuw_mobile.dao.card_display_dates import get_card_visibilty_date_values
 
 #@mobile_template('{mobile/}index.html')
 @login_required
@@ -29,7 +30,9 @@ def index(request,
                "user": {
                    "netid": None,
                    "affiliations": get_all_affiliations()
-               }}
+               },
+               "card_display_dates": get_card_visibilty_date_values(),
+            }
 
     netid = UserService().get_user()
     if not netid:

@@ -4,8 +4,13 @@ var VisualScheduleCard = {
     term: 'current',
 
     render_init: function(term, course_index) {
-        WSData.fetch_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_upon_data, VisualScheduleCard.render_error)
-        WSData.fetch_current_course_data(VisualScheduleCard.render_upon_data, VisualScheduleCard.render_error);
+        if (window.card_display_dates.is_before_last_day_of_classes) {
+            WSData.fetch_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_upon_data, VisualScheduleCard.render_error)
+            WSData.fetch_current_course_data(VisualScheduleCard.render_upon_data, VisualScheduleCard.render_error);
+        }
+        else {
+            $("#VisualScheduleCard").hide();
+        }
     },
 
     _has_all_data: function () {
