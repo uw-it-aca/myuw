@@ -28,17 +28,6 @@ var TuitionCard = {
             display_date,
             due_date;
 
-        //Do not show card if no sections are registered for the current quarter AND balance is 0
-        // *AND* there's no due date.  For people who have already paid their tuition.
-        // The finanance resource gives a 0.00 balance for everyone.
-        if (parseInt(template_data['tuition_accbalance']) === 0
-                && WSData.normalized_course_data().sections.length === 0
-                && (!template_data["tuition_due"] || !(template_data["tuition_due"].match(/\d+/)))) {
-            $(TuitionCard.dom_target).html('');
-            return;
-        }
-
-
         template_data['pce_tuition_dup'] = Notices.get_notices_for_tag("pce_tuition_dup");
         template_data['is_pce'] = false;
 
@@ -47,12 +36,12 @@ var TuitionCard = {
             for (var i = 0; i < tuition_due_notice.attributes.length; i += 1) {
                 if (tuition_due_notice.attributes[i].name === "Date") {
                     due_date = new Date(tuition_due_notice.attributes[i].value.replace(/-/g, "/"));
-                    display_date = tuition_due_notice.attributes[i].formatted_value
+                    display_date = tuition_due_notice.attributes[i].formatted_value;
                 }
             }
         }
         if (due_date !== undefined) {
-            template_data['tuition_date'] = display_date
+            template_data['tuition_date'] = display_date;
             template_data['tuition_date_offset'] = TuitionCard._days_from_today(due_date);
 
             //Alert banners

@@ -377,6 +377,7 @@ var isScrolledIntoView = function(elem) {
 
     return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
 }
+
 var de_bouncer = function($,cf,of, interval){
     var debounce = function (func, threshold, execAsap) {
         var timeout;
