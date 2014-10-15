@@ -1,87 +1,59 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "profile-content" %}
 
+    <h3 id="profile" class="sr-only">Profile Information and Release Settings</h3>
     <div class="header-netid"><a href="#" id="toggle_my_profile">{{ uwnetid }} <i id="my_profile_arrow" class="fa fa-chevron-down"></i></a></div>
     <div class="header-profile slide-hide" id="my_profile" aria-hidden="true">
-        <div style="margin-top:20px; margin-bottom: 60px;">
+        <div style="margin-bottom: 60px;">
             <div>
-                <span class="">{{first_name}} {{last_name}}</span><br/>
+                <span class="profile_name">{{first_name}} {{last_name}}</span><br/>
                 {{#if student_number}}
-                    Student Number: <span class="">{{student_number}}</span><br/>
+                    Student Number: <span class="">{{student_number}}</span>
                 {{/if}}
-                {{#if campus}}
+<!--                {{#if campus}}
                     Campus: <span class="">{{capitalizeString campus}}</span>
-                {{/if}}
+                {{/if}} -->
             </div>
             
-            <div style="border-top:solid 1px #ccc; margin-top: 15px; padding-top: 15px;">                
-                {{#if directory_release}}
-                <p>Your profile information is currently <span class="badge">public</span>. <em>Name, phone number, email, major, and class standing</em> is published in the UW Directory. Additional information such as date of birth, street address, and dates of attendance can be released to the public by the Office of the Registrar. <a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a> or <a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">change your release settings</a>.</p> 
-                {{else}}
-                <p>Your profile information is currently <span class="badge">private</span> (not releasable). Information about you cannot be released or displayed publicly in the UW Directory without your consent. <a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a> or <a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">change your release settings</a>.</p>
-                {{/if}}
-                
-            </div>
 
             {{#if local_address}}
-            <div style="border-top:solid 1px #ccc; margin-top: 15px; padding-top: 15px;">
-                
-                <p><strong>Receiving UW mail:</strong> The UW uses the following address information to send important mailings (e.g. <em>tuition-related, financial aid, diploma</em>). Verify that your addresses are correct or <a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">update addresses and their usage</a>. </p>
-                    
-                <h4>Local Address</h4>
+ 
+            <div class="profile-release">
+                <strong>Receiving UW mail</strong></br> 
+                <ul>
+                	<li>To receive important mailings from the UW, verify that your addresses are correct.</li> 
+                	<li><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Update addresses and usage settings</a></li> 
+                </ul>	                    
+                <h5>Local Address</h5>
                 {{#with local_address}}
                 {{#if street_line2}}
-                    <div>Apartment #: <span class="">{{street_line2}}</span></div>
+                    <div><span class="">{{street_line2}}</span></div>
                 {{/if}}
                 {{#if street_line1}}
-                    <div>Street: <span class="">{{street_line1}}</span></div>
+                    <div><span class="">{{street_line1}}</span></div>
                 {{/if}}
-                {{#if city}}
-                    <div>City: <span class="">{{city}}</span></div>
-                {{/if}}
-                {{#if state}}
-                    <div>State/Province: <span class="">{{state}}</span></div>
-                {{/if}}
-                {{#if postal_code}}
-                    <div>Postal Code: <span class="">{{postal_code}}</span></div>
-                {{/if}}
-                {{#if zip_code}}
-                    <div>Zip Code: <span class="">{{zip_code}}</span></div>
-                {{/if}}
+                {{#if city}}<span class="">{{city}}</span>{{/if}}{{#if state}}<span class="">, {{state}}</span>{{/if}}{{#if postal_code}} <span class="">{{postal_code}}</span>{{/if}}{{#if zip_code}} <span class="">{{zip_code}}</span>{{/if}}
                 {{#if country}}
-                    <div>Country: <span class="">{{country}}</span></div>
+                    <div><span class="">{{country}}</span></div>
                 {{/if}}
                 {{/with}}
                 {{#if local_phone}}
                     <div>Phone: <span class="">{{formatPhoneNumber local_phone}}</span></div>
                 {{/if}}
-            </div>
             {{/if}}
 
             {{#if permanent_address}}
-            <div style="margin-top: 15px;">
-                <h4>Permanent Address</h4>
+                <h5>Permanent Address</h5>
                 {{#with permanent_address}}
                 {{#if street_line2}}
-                    <div>Apartment #: <span class="">{{street_line2}}</span></div>
+                    <div><span class="">{{street_line2}}</span></div>
                 {{/if}}
                 {{#if street_line1}}
-                    <div>Street: <span class="">{{street_line1}}</span></div>
+                    <div><span class="">{{street_line1}}</span></div>
                 {{/if}}
-                {{#if city}}
-                    <div>City: <span class="">{{city}}</span></div>
-                {{/if}}
-                {{#if state}}
-                    <div>State/Province: <span class="">{{state}}</span></div>
-                {{/if}}
-                {{#if postal_code}}
-                    <div>Postal Code: <span class="">{{postal_code}}</span></div>
-                {{/if}}
-                {{#if zip_code}}
-                    <div>Zip Code: <span class="">{{zip_code}}</span></div>
-                {{/if}}
+                 {{#if city}}<span class="">{{city}}</span>{{/if}}{{#if state}}<span class="">, {{state}}</span>{{/if}}{{#if postal_code}} <span class="">{{postal_code}}</span>{{/if}}{{#if zip_code}} <span class="">{{zip_code}}</span>{{/if}}
                 {{#if country}}
-                    <div>Country: <span class="">{{country}}</span></div>
+                    <div><span class="">{{country}}</span></div>
                 {{/if}}
                 {{/with}}
                 {{#if permanent_phone}}
@@ -89,6 +61,24 @@
                 {{/if}}
             </div>
             {{/if}}
+            <div class="profile-section profile-release">                
+                {{#if directory_release}}
+                <strong>Your profile information is currently <em>public</em></strong>
+                <ul>
+                	<li><strong>Published in the UW Directory</strong> &ndash; <em>Name, phone number, email, major, and class standing</em></li> 
+                	<li><strong>Releasable by Office of the Registrar</strong> &ndash; Information such as <em>date of birth, street address, and dates of attendance</em></li>
+                	<li><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Change your release settings</a></li>	
+                	<li><a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
+				</ul>
+                {{else}}
+                <strong>Your profile information is currently <em>private</em></strong> (not releasable)
+                <ul>
+                	<li><strong>Information about you cannot be released or displayed publicly in the UW Directory without your consent.</li>
+                	<li><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Change your release settings</a></li>	
+                	<li><a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
+				</ul>
+            </div>
+
 
         </div>
     </div>

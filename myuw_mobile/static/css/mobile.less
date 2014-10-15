@@ -299,7 +299,8 @@ body {
         .header-email { display: inline-block; font-size: 12px; line-height: 30px; 
             i { color: @lighttan; opacity:0.7; filter: Alpha(opacity=60); /* IE8 and earlier */}
             a { color: @lighttan; display: inline-block; line-height: 30px; }
-        }    }
+        }    
+    }
     
     // header cover (uw purple)
     .header-cover { background: lighten(@uwpurple, 2%);
@@ -312,14 +313,22 @@ body {
                 i { font-size: 14px; }
             }
             
-            .header-profile { color: lighten(@darktan, 30%); font-size: 12px; 
+            .header-profile { color: #fff; font-size: 12px; 
                 
-                a { color: #fff; text-decoration: underline; }
+                a { color: #c9bea2; text-decoration: underline; }
+            	.profile-name { font-weight: bold; font-size: 18.4px;}
+	            .profile-section {margin-top: 15px; padding-top: 15px;}	           
+				.profile-release {background: lighten(@uwpurple, 10%); padding:10px; margin-top: 20px;}
+				h5 {text-transform: uppercase;font-size: 12px; margin-bottom: 5px; margin-top: 15px;}
             }
             
+             
             .header-w { position:absolute; right:15px; bottom: -1px; 
                 img { width: 35px; }
             }
+
+			ul {margin-top: 5px; margin-bottom: 10px;}
+			li {margin-left: -20px;}
         }
         
         
