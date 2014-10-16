@@ -1,14 +1,13 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "academic_card_content" %}
-    
+
+    {{#if class_level}}
         <div aria-labeledby="my_academics">
             <div class="card">
                 <div class="fade-in">
                 
                     <h3>Academics</h3>
-                    {{#if class_level}}
                         <div>Class: <span class="">{{class_level}}</span></div>
-                    {{/if}}
                     {{#if majors}}
                         <div>Major:
                             <ul>
@@ -44,4 +43,5 @@
                 </div>
             </div>     
         </div>
-    {% endtplhandlebars %}
+    {{/if}}
+{% endtplhandlebars %}
