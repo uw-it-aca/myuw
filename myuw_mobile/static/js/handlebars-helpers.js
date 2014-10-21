@@ -273,6 +273,13 @@ Handlebars.registerHelper('pluralize', function(number, single, plural) {
     return plural;
 });
 
+Handlebars.registerHelper('pluralize_by_size', function(list, single, plural) {
+    if (list.length === 1) {
+        return single;
+    }
+    return plural;
+});
+
 Handlebars.registerHelper('greater_than', function(value1, value2, options) {
     if (arguments.length < 3)
         throw new Error("Handlebars Helper greater_than needs 2 parameters");

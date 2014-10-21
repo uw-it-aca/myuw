@@ -9,7 +9,7 @@
                     <h3>Academics</h3>
                         <div><strong>Class standing:</strong> <span class="">{{class_level}}</span></div>
                     {{#if majors}}
-                        <div>{{ pluralize majors "Major:" "Majors:"}}
+                        <div><h4>{{ pluralize_by_size majors "Major:" "Majors:"}}</h4>
                             <ul>
                               {{#each majors}}  
                               <li>{{full_name}}</li>
@@ -18,7 +18,7 @@
                         </div>
                     {{/if}}
                     {{#if minors}}
-                        <div>{{ pluralize minors "Minor:" "Minors:"}}
+                        <div><h4>{{ pluralize_by_size minors "Minor:" "Minors:"}}</h4>
                             <ul>
                               {{#each minors}}  
                               <li>{{full_name}}</li>
