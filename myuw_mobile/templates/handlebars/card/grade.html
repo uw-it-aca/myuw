@@ -4,32 +4,47 @@
 {{#if display_grade_card}}
     <div class="card clearfix">
                         
-        <h3>Grade</h3>
-    
+        <h3>Final Grades</h3>
+
         {{ #if display_grades }}
+        <div class="card-badge-container">		
             <ul class="unstyled-list">
                 {{ #each sections }}
-                <li><span class="c{{color_id}}Border">&nbsp;</span>
-                    <span class="courseIDtitle">{{curriculum_abbr }}
-                        {{course_number}}
-                        {{section_id}}:</span>
-                    <span class="">{{ grade }}</span>
+                <li class="clearfix">
+                        <div class="card-badge">		
+		                	<div class="pull-left">
+		                		<!--i class="fa fa-check-square c{{color_id}}Color"></i -->
+								<div class="c{{color_id}} simplesquare" aria-hidden="true"></div>
+								<span class="card-badge-inline-label">{{curriculum_abbr }}
+		                        	{{course_number}}
+									{{section_id}}</span>
+		                	</div>
+		                	<div class="pull-right">
+								<span class="card-badge-value">{{ grade }}</span>
+							</div>
+                        </div>
                 </li>
                 {{ /each }}
             </ul>
+        </div>
         {{ /if }}
-        
-        <div id="grade_card_resources" class="slide-hide" aria-hidden="true">
-            <h4>Resources</h4>
-            <ul class="reg-resources-list">
-                <li><a href="https://sdb.admin.washington.edu/students/uwnetid/grades.asp">Grade Report</a></li>
-                <li><a href="https://uwstudent.washington.edu/student/myplan/audit?methodToCall=audit&viewId=DegreeAudit-FormView">Degree Audit Reporting System (DARS)</a></li>
-                <li><a href="https://sdb.admin.washington.edu/students/uwnetid/unofficial.asp">Unofficial Transcript</a></li>
+
+        <div>
+            <ul class="unstyled-list">
+                <li><a href="https://sdb.admin.washington.edu/students/uwnetid/grades.asp">View credits and GPA</a></li>
             </ul>
         </div>
+		<div id="grade_card_resources" class="slide-hide" aria-hidden="true">
+            <h4 class="sr-only">Other things you can do</h4>
+			<ul class="unstyled-list">
+                <li><a href="https://uwstudent.washington.edu/student/myplan/audit?methodToCall=audit&viewId=DegreeAudit-FormView">Run degree audit (DARS)</a></li>
+                <li><a href="https://sdb.admin.washington.edu/students/uwnetid/unofficial.asp">View unofficial transcript</a></li>
+            </ul>
+		</div>
+		
         <div class="card-disclosure">
             <a id="toggle_grade_card_resources" 
-               aria-controls="reg_resources" href="#" 
+               aria-controls="grade_card_resources" href="#" 
                title="Expand to show additional grade resources">SHOW MORE</a>
         </div>
 
