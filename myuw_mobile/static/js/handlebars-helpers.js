@@ -1,3 +1,15 @@
+// for Grade card
+Handlebars.registerHelper('translate_grade', function(grade) {
+    if (grade === "X") {
+        return "No grade";
+    }
+    if (grade.indexOf("W") > -1) {
+        return "Official withdrawal/drop";
+    }
+    return grade;
+});
+
+
 // used in profile banner
 Handlebars.registerHelper("formatPhoneNumber", function(str) {
     if (str.length == 10) {
