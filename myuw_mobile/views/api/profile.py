@@ -5,6 +5,7 @@ from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.dao.affiliation import get_base_campus
 from myuw_mobile.dao.enrollment import get_current_quarter_enrollment
 from myuw_mobile.dao.student_profile import get_profile_of_current_user
+from myuw_mobile.dao.gws import is_grad_student
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_data_not_found_response, log_success_response
 
@@ -34,6 +35,7 @@ class MyProfile(RESTDispatch):
 
         enrollment = get_current_quarter_enrollment()
         if enrollment is not None:
+            response['is_grad_student'] = is_grad_student() 
             response['class_level'] = enrollment.class_level
             if len(enrollment.majors) > 0: 
                 response['majors'] = []

@@ -6,6 +6,7 @@ from myuw_mobile.dao.building import get_buildings_by_schedule
 from myuw_mobile.dao.canvas import get_canvas_enrolled_courses
 from myuw_mobile.dao.course_color import get_colors_by_schedule
 from myuw_mobile.dao.pws import get_contact
+from myuw_mobile.dao.gws import is_grad_student
 from myuw_mobile.dao.schedule import get_schedule_by_term
 from myuw_mobile.dao.schedule import filter_schedule_sections_by_summer_term
 from myuw_mobile.dao.registered_term import get_current_summer_term_in_schedule
@@ -39,7 +40,6 @@ class StudClasSche(RESTDispatch):
             return data_not_found()
 
         log_success_response(logger, timer)
-        logger.debug(resp_data)
         return HttpResponse(json.dumps(resp_data))
 
 
@@ -121,4 +121,5 @@ def load_schedule(schedule, summer_term=""):
                                                   'course_number',
                                                   'section_id',
                                                   ))
+    json_data["is_grad_student"] = is_grad_student()
     return json_data
