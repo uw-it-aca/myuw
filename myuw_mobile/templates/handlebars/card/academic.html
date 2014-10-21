@@ -7,9 +7,9 @@
                 <div class="fade-in">
                 
                     <h3>Academics</h3>
-                        <div>Class: <span class="">{{class_level}}</span></div>
+                        <div><strong>Class standing:</strong> <span class="">{{class_level}}</span></div>
                     {{#if majors}}
-                        <div>Major:
+                        <div>{{ pluralize majors "Major:" "Majors:"}}
                             <ul>
                               {{#each majors}}  
                               <li>{{full_name}}</li>
@@ -18,7 +18,7 @@
                         </div>
                     {{/if}}
                     {{#if minors}}
-                        <div>Minor:
+                        <div>{{ pluralize minors "Minor:" "Minors:"}}
                             <ul>
                               {{#each minors}}  
                               <li>{{full_name}}</li>
