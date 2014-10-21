@@ -46,13 +46,13 @@ var GradeCard = {
 
             if ($("#grade_card_resources").hasClass("slide-show")) {
                 $("#toggle_grade_card_resources").text("SHOW LESS");
-                $("#toggle_grade_card_resources").attr("title", "Hide additional grades resources");
+                $("#toggle_grade_card_resources").attr("title", "Hide additional grade resources");
                 $("#grade_card_resources").attr("aria-hidden", "false");
                 WSData.log_interaction("show_grade_card_resources");
             }
             else {
                 $("#toggle_grade_card_resources").text("SHOW MORE");
-                $("#toggle_grade_card_resources").attr("title", "Expand to show additional grades resources");
+                $("#toggle_grade_card_resources").attr("title", "Expand to show additional grade resources");
                 $("#grade_card_resources").attr("aria-hidden", "true");
 
                 setTimeout(function() {

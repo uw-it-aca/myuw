@@ -34,13 +34,13 @@ var AcademicCard = {
 
             if ($("#academic_card_resources").hasClass("slide-show")) {
                 $("#toggle_academic_card_resources").text("SHOW LESS");
-                $("#toggle_academic_card_resources").attr("title", "Hide additional academics resources");
+                $("#toggle_academic_card_resources").attr("title", "Hide additional academic resources");
                 $("#academic_card_resources").attr("aria-hidden", "false");
                 WSData.log_interaction("show_academic_card_resources");
             }
             else {
                 $("#toggle_academic_card_resources").text("SHOW MORE");
-                $("#toggle_academic_card_resources").attr("title", "Expand to show additional academics resources");
+                $("#toggle_academic_card_resources").attr("title", "Expand to show additional academic resources");
                 $("#academic_card_resources").attr("aria-hidden", "true");
 
                 setTimeout(function() {
