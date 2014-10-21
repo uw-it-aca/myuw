@@ -1,0 +1,34 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "grade_card_content" %}
+
+{{#if display_grade_card}}
+    <div class="card clearfix">
+                        
+        <h3>Grade</h3>
+    
+        {{ #if display_grades }}
+            <ul class="unstyled-list">
+                {{ #each sections }}
+                <li><span class="c{{color_id}}Border">&nbsp;</span>
+                    <span class="courseIDtitle">{{curriculum_abbr }}
+                        {{course_number}}
+                        {{section_id}}:</span>
+                    <span class="">{{ grade }}</span>
+                </li>
+                {{ /each }}
+            </ul>
+        {{ /if }}
+        
+        <div id="grade_card_resources" class="slide-hide" aria-hidden="true">
+            <h4>Resources</h4>
+            <a class="" href="" title=""></a>
+        </div>
+        <div class="card-disclosure">
+            <a id="toggle_grade_card_resources" 
+               aria-controls="reg_resources" href="#" 
+               title="Expand to show additional grade resources">SHOW MORE</a>
+        </div>
+
+    </div>
+{{ /if }}
+{% endtplhandlebars %}
