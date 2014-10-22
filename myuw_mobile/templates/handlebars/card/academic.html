@@ -10,32 +10,34 @@
                     
                     <h4 class="sr-only">Academic Standing</h4> 
                      
-                    <h5>Class standing</h5>
-                    <p>{{ class_level }}</p>
-                    
-                    {{#if majors}}
-                        <h5>{{ pluralize_by_size majors "Major" "Majors"}}</h5>
+                    <div class="class-standing">
+                        <h5>Class standing</h5>
+                        <p>{{ class_level }}</p>
+                        
+                        {{#if majors}}
+                            <h5>{{ pluralize_by_size majors "Major" "Majors"}}</h5>
                             <ul>
                               {{#each majors}}  
                               <li>{{full_name}}</li>
                               {{/each}}
                             </ul>
-                    {{/if}}
-                    {{#if minors}}
-                        <h5>{{ pluralize_by_size minors "Minor" "Minors"}}</h5>
+                        {{/if}}
+                        {{#if minors}}
+                            <h5>{{ pluralize_by_size minors "Minor" "Minors"}}</h5>
                             <ul>
                               {{#each minors}}  
                               <li>{{full_name}}</li>
                               {{/each}}
                             </ul>
-                    {{/if}}
+                        {{/if}}
+                     </div>
+                     
                     <div id="academic_card_resources" class="slide-hide" aria-hidden="true">
                         <h4>Resources</h4>
                         <ul class="reg-resources-list">
-                            <li><a href="https://myplan.uw.edu">MyPlan</a></li>
+                            <li><a href="https://myplan.uw.edu">MyPlan</a> (Academic Planning)</li>
                             <li><a href="https://uwstudent.washington.edu/student/myplan/audit?methodToCall=audit&viewId=DegreeAudit-FormView">Degree Audit Reporting System (DARS)</a></li>
                             <li>Change major</li>
-                            <li>Academic planning</li>
                         </ul>
                     </div>
                     
