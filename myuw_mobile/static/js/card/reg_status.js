@@ -35,8 +35,10 @@ var RegStatusCard = {
         var template = Handlebars.compile(source);
         var reg_notices = Notices.get_notices_for_tag("reg_card_messages");
         var reg_holds = Notices.get_notices_for_tag("reg_card_holds");
-        var reg_date = Notices.get_notices_for_tag("est_reg_date");
-
+        var reg_date = Notices.get_notices_for_tag("est_reg_date");     
+        
+        var reg_next_quarter = "NEXT_QUARTER 20xx"
+        
         //Get hold count from notice attrs
         var hold_count = reg_holds.length;
 
@@ -67,6 +69,7 @@ var RegStatusCard = {
                 }, 700);
             }
         });
+        
         // show hold details
         $("#show_reg_holds").text("Show " + hold_count + " holds");
         $('body').on('click', '.reg_disclosure', function (ev) {
@@ -91,6 +94,7 @@ var RegStatusCard = {
                                                 "is_bothell": window.user.bothell,
                                                 "is_seattle": window.user.seattle,
                                                 "hold_count": hold_count,
-                                                "est_reg_date": reg_date}));
+                                                "est_reg_date": reg_date,
+                                                "reg_next_quarter" : reg_next_quarter}));
     }
 };
