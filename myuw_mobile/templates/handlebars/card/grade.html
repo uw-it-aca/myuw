@@ -7,7 +7,7 @@
         <h3>Final Grades</h3>
 
         {{ #if display_grades }}
-        <div class="card-badge-container">		
+        <div class="card-badge-container clearfix">		
             <ul class="unstyled-list">
                 {{ #each sections }}
                 <li class="clearfix">
@@ -27,19 +27,19 @@
                 {{ /each }}
             </ul>
             <span style="display: block; font-style: italic; color: #595959; margin-bottom: 20px;"><strong>Note:</strong> Official grades are posted to transcript midnight on <span class="todo">GradeSubmissionDeadline</span>.</span>
+	        <div class="card-badge pull-right">
+	            <ul class="unstyled-list">
+	                <li><a href="https://sdb.admin.washington.edu/students/uwnetid/grades.asp">View credits and GPA</a></li>
+	            </ul>
+	        </div>
         </div>
         {{ /if }}
 
-        <div>
-            <ul class="unstyled-list">
-                <li><a href="https://sdb.admin.washington.edu/students/uwnetid/grades.asp">View credits and GPA</a></li>
-            </ul>
-        </div>
 	<div id="grade_card_resources" class="slide-hide" aria-hidden="true">
-            <h4 class="sr-only">Other things you can do</h4>
+            <h4>Resources</h4>
 	    <ul class="unstyled-list">
-                <li><a href="https://uwstudent.washington.edu/student/myplan/audit?methodToCall=audit&viewId=DegreeAudit-FormView">Run degree audit (DARS)</a></li>
-                <li><a href="https://sdb.admin.washington.edu/students/uwnetid/unofficial.asp">View unofficial transcript</a></li>
+                <li><a href="https://uwstudent.washington.edu/student/myplan/audit?methodToCall=audit&viewId=DegreeAudit-FormView">Degree Audit Reporting System (DARS)</a></li>
+                <li><a href="https://sdb.admin.washington.edu/students/uwnetid/unofficial.asp">Unofficial Transcript</a></li>
             </ul>
 	</div>
 		
