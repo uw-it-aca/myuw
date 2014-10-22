@@ -8,51 +8,41 @@
                 
                     <h3>Academics</h3>
                     
-                    <div class="card-badge-container">
-                                            
-                        <div class="card-badge clearfix">  
-                            <div class="pull-left"> 
-                                <span class="card-badge-label">Class standing</span>
-                            </div>
-                            <div class="pull-right">
-                                <span class="card-badge-value">{{ class_level }}</span> 
-                            </div>
-                        </div>
-                        
-                        
-                        {{#if majors}}
-                            <div><h4>{{ pluralize_by_size majors "Major:" "Majors:"}}</h4>
-                                <ul>
-                                  {{#each majors}}  
-                                  <li>{{full_name}}</li>
-                                  {{/each}}
-                                </ul>
-                            </div>
-                        {{/if}}
-                        {{#if minors}}
-                            <div><h4>{{ pluralize_by_size minors "Minor:" "Minors:"}}</h4>
-                                <ul>
-                                  {{#each minors}}  
-                                  <li>{{full_name}}</li>
-                                  {{/each}}
-                                </ul>
-                            </div>
-                        {{/if}}
-                        <div id="academic_card_resources" class="slide-hide" aria-hidden="true">
-                            <h4>Resources</h4>
-                            <ul class="reg-resources-list">
-                                <li><a href="https://myplan.uw.edu">MyPlan</a></li>
-                                <li><a href="https://uwstudent.washington.edu/student/myplan/audit?methodToCall=audit&viewId=DegreeAudit-FormView">Degree Audit Reporting System (DARS)</a></li>
-                                <li>Change major</li>
-                                <li>Academic planning</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="card-disclosure">
-                            <a id="toggle_academic_card_resources" aria-controls="reg_resources" href="#" title="Expand to show additional academic resources">SHOW MORE</a>
-                        </div>
+                    <h4 class="sr-only">Academic Standing</h4> 
+                     
+                    <h5>Class standing</h5>
+                    <p>{{ class_level }}</p>
                     
+                    {{#if majors}}
+                        <h5>{{ pluralize_by_size majors "Major" "Majors"}}</h5>
+                            <ul>
+                              {{#each majors}}  
+                              <li>{{full_name}}</li>
+                              {{/each}}
+                            </ul>
+                    {{/if}}
+                    {{#if minors}}
+                        <h5>{{ pluralize_by_size minors "Minor" "Minors"}}</h5>
+                            <ul>
+                              {{#each minors}}  
+                              <li>{{full_name}}</li>
+                              {{/each}}
+                            </ul>
+                    {{/if}}
+                    <div id="academic_card_resources" class="slide-hide" aria-hidden="true">
+                        <h4>Resources</h4>
+                        <ul class="reg-resources-list">
+                            <li><a href="https://myplan.uw.edu">MyPlan</a></li>
+                            <li><a href="https://uwstudent.washington.edu/student/myplan/audit?methodToCall=audit&viewId=DegreeAudit-FormView">Degree Audit Reporting System (DARS)</a></li>
+                            <li>Change major</li>
+                            <li>Academic planning</li>
+                        </ul>
                     </div>
+                    
+                    <div class="card-disclosure">
+                        <a id="toggle_academic_card_resources" aria-controls="reg_resources" href="#" title="Expand to show additional academic resources">SHOW MORE</a>
+                    </div>
+                    
                 
                 </div>
             </div>     
