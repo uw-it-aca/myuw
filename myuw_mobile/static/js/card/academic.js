@@ -31,17 +31,19 @@ var AcademicCard = {
         $("#toggle_academic_card_resources").on("click", function(ev) {
             ev.preventDefault();
             $("#academic_card_resources").toggleClass("slide-show");
+            var card = $(ev.target).closest("[data-type='card']");
 
             if ($("#academic_card_resources").hasClass("slide-show")) {
                 $("#toggle_academic_card_resources").text("SHOW LESS");
                 $("#toggle_academic_card_resources").attr("title", "Hide additional academic resources");
                 $("#academic_card_resources").attr("aria-hidden", "false");
-                WSData.log_interaction("show_academic_card_resources");
+                window.myuw_log.log_card(card, "expand");
             }
             else {
                 $("#toggle_academic_card_resources").text("SHOW MORE");
                 $("#toggle_academic_card_resources").attr("title", "Expand to show additional academic resources");
                 $("#academic_card_resources").attr("aria-hidden", "true");
+                window.myuw_log.log_card(card, "collapse");
 
                 setTimeout(function() {
                     $("#toggle_academic_card_resources").text("SHOW MORE");

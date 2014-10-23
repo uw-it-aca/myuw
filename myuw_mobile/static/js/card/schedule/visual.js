@@ -236,16 +236,16 @@ var VisualScheduleCard = {
         $("#toggle_finalexams").on("click", function(ev) {
             ev.preventDefault();
             $("#final_exam_schedule_card").toggleClass("slide-show");
-
             if ($("#final_exam_schedule_card").hasClass("slide-show")) {
                 $("#toggle_finalexams").text("Hide Final Exam Schedule")
                 $("#toggle_finalexams").attr('title', 'Hide Final Exam Schedule');
                 $("#final_exam_schedule_card").attr('aria-hidden', 'false');
-                WSData.log_interaction("show_final_card", term);
+                window.myuw_log.log_card("FinalExam", "expand");
             }
             else {
                 $("#toggle_finalexams").attr('title', 'Show Final Exam Schedule');
                 $("#final_exam_schedule_card").attr('aria-hidden', 'true');
+                window.myuw_log.log_card("FinalExam", "collapse");
                 
                 setTimeout(function() {
                       $("#toggle_finalexams").text("Show Final Exam Schedule");

@@ -2,7 +2,7 @@
 var data;
 
 $(document).ready(function() {
-
+    init_logging();
     var course_data = null;
     var book_data = null;
     // This is to prevent multiple events on load from making
@@ -396,3 +396,98 @@ var de_bouncer = function($,cf,of, interval){
     };
     jQuery.fn[cf] = function(fn){  return fn ? this.bind(of, debounce(fn)) : this.trigger(cf); };
 };
+var get_links_in_view = function(){
+    var links = [];
+    $("a").each(function (i, link_elm) {
+        var href = $(link_elm).attr('href');
+        if (href !== "#"){
+            if(isScrolledIntoView(link_elm)){
+                //Ensure link or parents aren't hidden
+                if ($(link_elm).attr("aria-hidden") !== true &&
+                        $(link_elm).parents('*[aria-hidden="true"]').length === 0){
+                    links.push(link_elm);
+                }
+            }
+        }
+    });
+    return links;
+};
+
+var get_new_visible_links = function () {
+    var links = get_links_in_view();
+    $(links).each(function(i, link) {
+        var href = $(link).attr('href');
+        if(!window.viewed_links.hasOwnProperty(href)){
+            window.viewed_links[href] = link;
+            window.myuw_log.log_link(link, "view");
+        }
+
+    });
+};
+
+var get_new_visible_cards = function(){
+    var cards = get_all_cards(),
+        card_id;
+
+    $(cards).each(function(i, card){
+        if(isScrolledIntoView(card)){
+            card_id = $(card).attr('data-name') +
+                ($(card).attr('data-identifier') === undefined ? "" : $(card).attr('data-identifier'));
+            if(!window.viewed_cards.hasOwnProperty(card_id)){
+                window.viewed_cards[card_id] = card;
+                window.myuw_log.log_card(card, "view");
+            }
+        }
+
+    });
+};
+
+var get_all_cards = function(){
+    var cards = [];
+    $("div").find("[data-type='card']").each(function (i, card) {
+        var id = $(card).attr('data-identifier');
+        cards.push(card);
+    });
+    return cards;
+};
+
+var log_loaded_cards = function(){
+    var cards = get_all_cards();
+    $(cards).each(function(i, card){
+        window.myuw_log.log_card(card, "loaded");
+    })
+}
+
+var init_logging = function () {
+    myuwlog = new MyuwLog();
+
+    myuwlog.init();
+    window.myuw_log = myuwlog;
+    _init_link_logging();
+    _init_card_logging();
+};
+
+var _init_link_logging = function() {
+    $(document).on("click", "a", function () {
+        window.myuw_log.log_link(this, "click");
+        window.myuw_log.send_links();
+    });
+    de_bouncer(jQuery,'smartscroll', 'scroll', 100);
+    window.viewed_links = {};
+    $(window).smartscroll(function(e) {
+        get_new_visible_links();
+    });
+    //To pick up links visible before scrolling (waiting 2s so content can load)
+    window.setTimeout(get_new_visible_links, 2000);
+};
+
+var _init_card_logging = function() {
+    window.setTimeout(log_loaded_cards, 4000);
+    window.viewed_cards = {};
+    de_bouncer(jQuery,'smartscroll', 'scroll', 100);
+    $(window).smartscroll(function(e) {
+        get_new_visible_cards();
+    });
+};
+
+

@@ -136,6 +136,7 @@
     <!-- app files -->
     <script src="{% static 'js/modal.js' %}"></script>
     <script src="{% static 'js/ws_data.js' %}"></script>
+    <script src="{% static 'js/myuw_log.js' %}"></script>
     <script src="{% static 'js/panel/addi_course_links.js' %}"></script>
     <script src="{% static 'js/panel/no_courses.js' %}"></script>
     <script src="{% static 'js/course_list.js' %}"></script>
@@ -203,6 +204,8 @@
     
     </script>
     {% endif %}
+    {% include 'logger.html' %}
+
 
   </body>
 </html>

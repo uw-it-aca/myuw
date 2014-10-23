@@ -52,6 +52,7 @@ var RegStatusCard = {
         $('body').on('click', '#show_reg_resources', function (ev) {
 
             ev.preventDefault();
+            var card = $(ev.target).closest("[data-type='card']");
 
             $("#reg_resources").toggleClass("slide-show");
 
@@ -59,10 +60,12 @@ var RegStatusCard = {
                 $("#show_reg_resources").text("Show less")
                 $("#reg_resources").attr('aria-hidden', 'false');
                 $("#show_reg_resources").attr('title', 'Collapse to hide additional registration resources');
+                window.myuw_log.log_card(card, "expand");
             } else {
 
                 $("#reg_resources").attr('aria-hidden', 'true');
                 $("#show_reg_resources").attr('title', 'Expand to show additional registration resources');
+                window.myuw_log.log_card(card, "collapse");
 
                 setTimeout(function() {
                     $("#show_reg_resources").text("Show more");
@@ -79,8 +82,10 @@ var RegStatusCard = {
             if ($("#reg_holds").hasClass("slide-show")) {
                 $("#show_reg_holds").hide();
                 $("#hide_reg_holds").show();
+                window.myuw_log.log_card("RegHolds", "expand");
             }
             else {
+                window.myuw_log.log_card("RegHolds", "collapse");
                 setTimeout(function () {
                     $("#show_reg_holds").show();
                     $("#hide_reg_holds").hide();

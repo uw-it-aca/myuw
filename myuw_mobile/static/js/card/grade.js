@@ -42,18 +42,20 @@ var GradeCard = {
     add_events: function(term) {
         $("#toggle_grade_card_resources").on("click", function(ev) {
             ev.preventDefault();
+            var card = $(ev.target).closest("[data-type='card']");
             $("#grade_card_resources").toggleClass("slide-show");
 
             if ($("#grade_card_resources").hasClass("slide-show")) {
                 $("#toggle_grade_card_resources").text("SHOW LESS");
                 $("#toggle_grade_card_resources").attr("title", "Hide additional grade resources");
                 $("#grade_card_resources").attr("aria-hidden", "false");
-                WSData.log_interaction("show_grade_card_resources");
+                window.myuw_log.log_card(card, "expand");
             }
             else {
                 $("#toggle_grade_card_resources").text("SHOW MORE");
                 $("#toggle_grade_card_resources").attr("title", "Expand to show additional grade resources");
                 $("#grade_card_resources").attr("aria-hidden", "true");
+                window.myuw_log.log_card(card, "collapse");
 
                 setTimeout(function() {
                     $("#toggle_grade_card_resources").text("SHOW MORE");

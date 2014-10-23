@@ -66,10 +66,6 @@ var CourseCard = {
     },
 
     add_events: function(term) {
-        $('.canvasGradeBox').popover({content: gettext('canvas_grade_tip'),
-                                      selector: '.canvasGradeLabel',
-                                      placement: 'bottom'});
-
         $(".course_website").on("click", function(ev) {
             var course_id = ev.currentTarget.getAttribute("rel");
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');
@@ -97,22 +93,21 @@ var CourseCard = {
             var slide_link = this;
                         
             $(hidden_block).toggleClass("slide-show");
+            var card = $(ev.target).closest("[data-type='card']");
 
             if ($(hidden_block).hasClass("slide-show")) {
                 $(slide_link).text("SHOW LESS");
                 $(slide_link).attr("title", "Show less course information");
                 $(hidden_block).attr("aria-hidden", "false");
-                //WSData.log_interaction("show_final_card", term);
+                 window.myuw_log.log_card(card, "expand");
             }
             else {
-                
                 $(slide_link).attr("title", "Show more course information");
                 $(hidden_block).attr("aria-hidden", "true");
-                
                 setTimeout(function() {
                       $(slide_link).text("SHOW MORE");
                 }, 700);
- 
+                window.myuw_log.log_card(card, "collapse");
             }
         });
 
