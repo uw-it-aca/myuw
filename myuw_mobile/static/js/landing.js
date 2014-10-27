@@ -21,8 +21,8 @@ var Landing = {
                      RegStatusCard,
                      VisualScheduleCard,
                      CourseCard,
-                     TuitionCard,
                      HfsCard,
+                     TuitionCard,
                      LibraryCard,
                      AcademicCard,
                      FutureQuarterCard1
