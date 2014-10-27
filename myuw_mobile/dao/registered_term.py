@@ -169,7 +169,8 @@ def should_highlight_future_quarters(schedule):
                                                                 )
 
         days_diff = (now - model.first_seen_date).days
-        if days_diff == 0:
+        print "DD: ", days_diff
+        if days_diff < 1:
             should_highlight = True
 
     return should_highlight
