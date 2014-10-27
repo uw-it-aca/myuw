@@ -4,7 +4,13 @@ var GradeCard = {
     term: 'current',
 
     render_init: function() {
-        WSData.fetch_course_data_for_term(GradeCard.term, GradeCard.render_upon_data, GradeCard.render_error);
+        if (window.card_display_dates.is_after_last_day_of_classes &&
+            window.card_display_dates.is_before_first_day_of_current_term) {
+            WSData.fetch_course_data_for_term(GradeCard.term, GradeCard.render_upon_data, GradeCard.render_error);
+        }
+        else {
+            GradeCard.dom_target.hide();
+        }
     },
 
     render_upon_data: function() {
