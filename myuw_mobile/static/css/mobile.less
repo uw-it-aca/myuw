@@ -524,7 +524,7 @@ body {
         
     }
     
-    // course cards (custom style)
+    // course cards
     
     #CourseCard {
     
@@ -553,9 +553,9 @@ body {
         }
     }
     
-    // future quarter cards (custom style)
+    // future quarter cards
     
-    .future_quarter_basics {
+    #FutureQuarterCardA, #FutureQuarterCard1 {
         .card {
             
             h4 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; }
@@ -572,15 +572,16 @@ body {
         }
 
     }
-
-    #FutureQuarterCardA {
-        .future_quarter_basics { 
-            
+    
+    // future quarter card overrides
+    #FutureQuarterCardA { 
+        .card {
+            h4 { }
         }
     }
     
-    #FutureQuarterCard1 {
-        .future_quarter_basics { 
+    #FutureQuarterCard1 { 
+        .card {
             
         }
     }
