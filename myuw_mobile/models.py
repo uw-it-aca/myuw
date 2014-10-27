@@ -119,3 +119,14 @@ class TuitionDate(models.Model):
     user = models.ForeignKey('User', on_delete=models.PROTECT, unique=True)
     date_stored = models.DateTimeField(auto_now=True)
     date = models.DateField()
+
+
+class SeenRegistration(models.Model):
+    user = models.ForeignKey('User', on_delete=models.PROTECT)
+    year = models.PositiveSmallIntegerField(db_index=True)
+    quarter = models.CharField(max_length=10, db_index=True)
+    summer_term = models.CharField(max_length=1)
+    first_seen_date = models.DateTimeField(auto_now_add=True)
+
+    unique_together = (("user", "year", "quarter", "summer_term", "first_seen_date"),)
+

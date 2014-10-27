@@ -11,8 +11,14 @@ var FutureQuarterCard = {
             return;
         }
 
-        FutureQuarterCard.dom_target = $('#FutureQuarterCardA');
-        $("#FutureQuarterCard1").hide();
+        if (WSData.oquarter_data().highlight_future_quarters) {
+            FutureQuarterCard.dom_target = $('#FutureQuarterCardA');
+            $("#FutureQuarterCard1").hide();
+        }
+        else {
+            FutureQuarterCard.dom_target = $('#FutureQuarterCard1');
+            $("#FutureQuarterCardA").hide();
+        }
 
         FutureQuarterCard._render(WSData.oquarter_data());
     },
