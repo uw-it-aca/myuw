@@ -15,49 +15,51 @@
                 {{/if}} -->
             </div>
             
-
             {{#if local_address}}
- 
             <div class="profile-release">
                 <strong>Receiving UW mail</strong></br> 
                 <ul>
                     <li>To receive important mailings from the UW, verify that your addresses are correct.</li> 
                     <li><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Update addresses and usage settings</a></li> 
                 </ul>	                    
+            </div>
+            <div class="">
                 <h5>Local Address</h5>
                 {{#with local_address}}
-                {{#if street_line2}}
+                    {{#if street_line2}}
                     <div><span class="">{{street_line2}}</span></div>
-                {{/if}}
-                {{#if street_line1}}
+                    {{/if}}
+                    {{#if street_line1}}
                     <div><span class="">{{street_line1}}</span></div>
-                {{/if}}
-                {{#if city}}<span class="">{{city}}</span>{{/if}}{{#if state}}<span class="">, {{state}}</span>{{/if}}{{#if postal_code}} <span class="">{{postal_code}}</span>{{/if}}{{#if zip_code}} <span class="">{{zip_code}}</span>{{/if}}
-                {{#if country}}
+                    {{/if}}
+                    {{#if city}}<span class="">{{city}}</span>{{/if}}{{#if state}}<span class="">, {{state}}</span>{{/if}}{{#if postal_code}} <span class="">{{postal_code}}</span>{{/if}}{{#if zip_code}} <span class="">{{zip_code}}</span>{{/if}}
+                    {{#if country}}
                     <div><span class="">{{country}}</span></div>
-                {{/if}}
+                    {{/if}}
                 {{/with}}
                 {{#if local_phone}}
-                    <div>Phone: <span class="">{{formatPhoneNumber local_phone}}</span></div>
+                <div>Phone: <span class="">{{formatPhoneNumber local_phone}}</span></div>
                 {{/if}}
+            </div>
             {{/if}}
 
             {{#if permanent_address}}
+            <div class="">
                 <h5>Permanent Address</h5>
                 {{#with permanent_address}}
-                {{#if street_line2}}
+                    {{#if street_line2}}
                     <div><span class="">{{street_line2}}</span></div>
-                {{/if}}
-                {{#if street_line1}}
+                    {{/if}}
+                    {{#if street_line1}}
                     <div><span class="">{{street_line1}}</span></div>
-                {{/if}}
-                 {{#if city}}<span class="">{{city}}</span>{{/if}}{{#if state}}<span class="">, {{state}}</span>{{/if}}{{#if postal_code}} <span class="">{{postal_code}}</span>{{/if}}{{#if zip_code}} <span class="">{{zip_code}}</span>{{/if}}
-                {{#if country}}
+                    {{/if}}
+                    {{#if city}}<span class="">{{city}}</span>{{/if}}{{#if state}}<span class="">, {{state}}</span>{{/if}}{{#if postal_code}} <span class="">{{postal_code}}</span>{{/if}}{{#if zip_code}} <span class="">{{zip_code}}</span>{{/if}}
+                    {{#if country}}
                     <div><span class="">{{country}}</span></div>
-                {{/if}}
+                    {{/if}}
                 {{/with}}
                 {{#if permanent_phone}}
-                    <div>Phone: <span class="">{{formatPhoneNumber permanent_phone}}</span></div>
+                <div>Phone: <span class="">{{formatPhoneNumber permanent_phone}}</span></div>
                 {{/if}}
             </div>
             {{/if}}
