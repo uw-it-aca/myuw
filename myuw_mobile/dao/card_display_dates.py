@@ -36,6 +36,9 @@ def get_card_visibilty_date_values():
     if now > d + timedelta(days=1):
         is_after_last_day_of_classes = True
 
+    # XXX - this will be a bug when summer quarter comes around
+    # because there will need to be a summer term + a next non-summer term
+    # version of this.  We're holding off on the summer term card though...
     if now - timedelta(days=7) > next_term.registration_services_start:
         is_after_start_of_registration_display_period = True
 
