@@ -63,6 +63,14 @@ def get_next_quarter():
     return None
 
 
+def get_next_non_summer_quarter():
+    term = get_next_quarter()
+    if term.quarter == "summer":
+        return get_next_autumn_quarter()
+
+    return term
+
+
 def get_next_autumn_quarter():
     """
     Return the Term object for the next autumn quarter in the same year

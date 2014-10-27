@@ -74,7 +74,6 @@ class ByWeek(File):
         if re.match("/student/v\d/term/next.json", url) or re.match("/student/v\d/term/2013,summer.json", url):
             if period2_start_offset:
                 start_day = now + timedelta(days=period2_start_offset)
-                print "DS: ", start_day
                 json_data["RegistrationPeriods"][1]["StartDate"] = start_day.strftime(day_format)
 
             response.data = json.dumps(json_data)

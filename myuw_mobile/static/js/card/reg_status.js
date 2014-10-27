@@ -6,6 +6,7 @@ var RegStatusCard = {
         if (window.card_display_dates.is_after_start_of_registration_display_period &&
             window.card_display_dates.is_before_end_of_registration_display_period) {
             WSData.fetch_notice_data(RegStatusCard.render_upon_data,RegStatusCard.render_error);
+            WSData.fetch_oquarter_data(RegStatusCard.render_upon_data, RegStatusCard.render_error);
         }
         else {
             $("#RegStatusCard").hide();
@@ -22,7 +23,7 @@ var RegStatusCard = {
     },
 
     _has_all_data: function () {
-        if (WSData.notice_data()) {
+        if (WSData.notice_data() && WSData.oquarter_data()) {
             return true;
         }
         return false;
@@ -38,16 +39,18 @@ var RegStatusCard = {
         var reg_holds = Notices.get_notices_for_tag("reg_card_holds");
         var reg_date = Notices.get_notices_for_tag("est_reg_date");     
         
-        var reg_next_quarter = "NEXT_QUARTER 20xx"
+        var next_term_data = WSData.oquarter_data()["next_term_data"];
+        var reg_next_quarter = next_term_data["quarter"];
+        var reg_next_year = next_term_data["year"];
+        var has_registration = next_term_data["has_registration"];
+
+        if (has_registration) {
+            RegStatusCard.dom_target.hide();
+            return;
+        }
         
         //Get hold count from notice attrs
         var hold_count = reg_holds.length;
-
-        // For initial release, the registration card will display whenever either StudentDAD_EstPd1RegDate OR any registration holds are coming to us from the notice resource.
-        if (hold_count === 0 && reg_date.length === 0) {
-            $("#RegStatusCard").hide();
-            return;
-        }
 
         // show registration resources
         $('body').on('click', '#show_reg_resources', function (ev) {
@@ -101,6 +104,8 @@ var RegStatusCard = {
                                                 "is_seattle": window.user.seattle,
                                                 "hold_count": hold_count,
                                                 "est_reg_date": reg_date,
-                                                "reg_next_quarter" : reg_next_quarter}));
+                                                "reg_next_quarter" : reg_next_quarter,
+                                                "reg_next_year": reg_next_year
+                                                }));
     }
 };
