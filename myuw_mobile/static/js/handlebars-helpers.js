@@ -1,12 +1,11 @@
 // for Grade card
-Handlebars.registerHelper('translate_grade', function(grade) {
+Handlebars.registerHelper("classByGrade", function(grade, normal_class, no_grade_class) {
+    if (arguments.length < 3)
+        throw new Error("Handlebars Helper classByGrade needs 3 parameters");
     if (grade === "X") {
-        return "No grade";
+        return no_grade_class;
     }
-    if (grade.indexOf("W") > -1) {
-        return "Official withdrawal/drop";
-    }
-    return grade;
+    return normal_class;
 });
 
 
