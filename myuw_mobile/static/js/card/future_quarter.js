@@ -10,6 +10,10 @@ var FutureQuarterCard = {
         if (!FutureQuarterCard._has_all_data()) {
             return;
         }
+
+        FutureQuarterCard.dom_target = $('#FutureQuarterCardA');
+        $("#FutureQuarterCard1").hide();
+
         FutureQuarterCard._render(WSData.oquarter_data());
     },
 
@@ -31,3 +35,16 @@ var FutureQuarterCard = {
     }
 
 };
+
+
+// One of these 2 needs to actually call render_init - A for arbitrary.
+var FutureQuarterCardA = {
+    name: 'FutureQuarterCardA',
+    render_init: function() { FutureQuarterCard.render_init(); }
+};
+
+var FutureQuarterCard1 = {
+    name: 'FutureQuarterCard1',
+    render_init: function() {}
+};
+

@@ -555,7 +555,7 @@ body {
     
     // future quarter cards (custom style)
     
-    #FutureQuarterCard {
+    .future_quarter_basics {
         .card {
             
             h4 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; }
@@ -569,10 +569,18 @@ body {
             
             // handle :hover for mobile touch devices
             .hover:hover { background: lighten(#4d66ca, 42%); }
-			
         }
+
+    }
+
+    #FutureQuarterCardA {
+        .future_quarter_basics
     }
     
+    #FutureQuarterCard1 {
+        .future_quarter_basics
+    }
+
     // textbook card
     #TextbookCard {
         
