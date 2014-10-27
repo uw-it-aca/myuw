@@ -20,6 +20,13 @@ class ByWeek(File):
         registration_offset = getattr(settings, "MYUW_REGISTRATION_SERVICES_START_OFFSET_DAYS", 0)
         final_exam_end_offset = getattr(settings, "MYUW_FINAL_EXAM_LAST_DAY_OFFSET_DAYS", 0)
         first_day_offset = getattr(settings, "MYUW_FIRST_DAY_OFFSET", 0)
+        period2_start_offset = getattr(settings, "MYUW_PERIOD2_START_OFFSET", 0)
+
+        strptime = datetime.strptime
+        now = datetime.now()
+        json_data = json.loads(response.data)
+        day_format = "%Y-%m-%d"
+        datetime_format = "%Y-%m-%dT%H:%M:%S"
 
         # This is to enable mock data grading.
         if re.match("/student/v\d/term/current.json", url) or re.match("/student/v\d/term/2013,spring.json", url):
@@ -37,12 +44,6 @@ class ByWeek(File):
 #
 #
 #            json_data["FirstDay"] = start_date.strftime("%Y-%m-%d")
-
-            strptime = datetime.strptime
-            now = datetime.now()
-            json_data = json.loads(response.data)
-            day_format = "%Y-%m-%d"
-            datetime_format = "%Y-%m-%dT%H:%M:%S"
 
             if submission_offset:
                 submission_deadline = now + timedelta(minutes=submission_offset)
@@ -63,6 +64,18 @@ class ByWeek(File):
             if first_day_offset:
                 first_day = now + timedelta(days=first_day_offset)
                 json_data["FirstDay"] = first_day.strftime(day_format)
+
+            if period2_start_offset:
+                start_day = now + timedelta(days=first_day_offset)
+                json_data["RegistrationPeriods"][1]["StartDate"] = first_day.strftime(day_format)
+
+            response.data = json.dumps(json_data)
+
+        if re.match("/student/v\d/term/next.json", url) or re.match("/student/v\d/term/2013,summer.json", url):
+            if period2_start_offset:
+                start_day = now + timedelta(days=period2_start_offset)
+                print "DS: ", start_day
+                json_data["RegistrationPeriods"][1]["StartDate"] = start_day.strftime(day_format)
 
             response.data = json.dumps(json_data)
 

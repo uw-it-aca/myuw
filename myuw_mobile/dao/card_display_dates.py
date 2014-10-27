@@ -1,5 +1,5 @@
 """
-Generates the 6 booleans used to determine card visibility, based on dates in
+Generates the 7 booleans used to determine card visibility, based on dates in
 either the current, next, or previous term.
 
 https://docs.google.com/a/uw.edu/document/d/14q26auOLPU34KFtkUmC_bkoo5dAwegRzgpwmZEQMhaU/edit
@@ -24,6 +24,7 @@ def get_card_visibilty_date_values():
     is_before_first_day_of_current_term = False
     is_before_end_of_finals_week = False
     is_before_last_day_of_classes = False
+    is_before_end_of_registration_display_period = False
 
     now = datetime.now()
 
@@ -37,6 +38,9 @@ def get_card_visibilty_date_values():
 
     if now - timedelta(days=7) > next_term.registration_services_start:
         is_after_start_of_registration_display_period = True
+
+    if now < next_term.registration_period2_start + timedelta(days=7):
+        is_before_end_of_registration_display_period = True
 
     raw_date = current_term.first_day_quarter
     d = datetime(raw_date.year, raw_date.month, raw_date.day)
@@ -60,5 +64,6 @@ def get_card_visibilty_date_values():
         "is_before_first_day_of_current_term": is_before_first_day_of_current_term,
         "is_before_end_of_finals_week": is_before_end_of_finals_week,
         "is_before_last_day_of_classes": is_before_last_day_of_classes,
+        "is_before_end_of_registration_display_period": is_before_end_of_registration_display_period,
     }
 

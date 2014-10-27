@@ -3,7 +3,8 @@ var RegStatusCard = {
     dom_target: undefined,
 
     render_init: function() {
-        if (window.card_display_dates.is_after_start_of_registration_display_period) {
+        if (window.card_display_dates.is_after_start_of_registration_display_period &&
+            window.card_display_dates.is_before_end_of_registration_display_period) {
             WSData.fetch_notice_data(RegStatusCard.render_upon_data,RegStatusCard.render_error);
         }
         else {
