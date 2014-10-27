@@ -23,7 +23,7 @@ Handlebars.registerHelper("toFromNowDate", function(str) {
     return moment(new Date(str)).fromNow();
 });
 
-// used on Library card
+// used on Grade, Library card 
 Handlebars.registerHelper("toFriendlyDate", function(str) {
     return moment(new Date(str)).format("ddd, MMM D");
 });
