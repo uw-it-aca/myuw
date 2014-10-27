@@ -5,7 +5,8 @@
     <div class="header-netid"><a href="#" id="toggle_my_profile">{{ uwnetid }} <i id="my_profile_arrow" class="fa fa-chevron-down"></i></a></div>
     <div class="header-profile slide-hide" id="my_profile" aria-hidden="true">
         <div style="margin-bottom: 60px;">
-            <div>
+            
+            <div class="profile-student-info">
                 <span class="profile_name">{{first_name}} {{last_name}}</span><br/>
                 {{#if student_number}}
                     Student Number: <span class="">{{student_number}}</span>
@@ -23,7 +24,8 @@
                     <li><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Update addresses and usage settings</a></li> 
                 </ul>	                    
             </div>
-            <div class="">
+            
+            <div class="profile-local-address">
                 <h5>Local Address</h5>
                 {{#with local_address}}
                     {{#if street_line2}}
@@ -44,7 +46,7 @@
             {{/if}}
 
             {{#if permanent_address}}
-            <div class="">
+            <div class="profile-perm-address">
                 <h5>Permanent Address</h5>
                 {{#with permanent_address}}
                     {{#if street_line2}}
@@ -71,14 +73,14 @@
                     <li><strong>Releasable by Office of the Registrar</strong> &ndash; Information such as <em>date of birth, street address, and dates of attendance</em></li>
                     <li><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Change your release settings</a></li>	
                     <li><a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
-		</ul>
+		        </ul>
                 {{else}}
                 <strong>Your profile information is currently <em>private</em></strong> (not releasable)
                 <ul>
                     <li><strong>Information about you cannot be released or displayed publicly in the UW Directory without your consent.</li>
                     <li><a href="https://sdb.admin.washington.edu/students/uwnetid/address.asp">Change your release settings</a></li>	
                     <li><a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
-		</ul>
+		        </ul>
                 {{/if}}
             </div>
         </div>
