@@ -6,6 +6,7 @@ https://docs.google.com/a/uw.edu/document/d/14q26auOLPU34KFtkUmC_bkoo5dAwegRzgpw
 """
 
 from restclients.sws import term
+from django.conf import settings
 from datetime import datetime, timedelta
 
 def get_card_visibilty_date_values():
@@ -26,7 +27,7 @@ def get_card_visibilty_date_values():
     is_before_last_day_of_classes = False
     is_before_end_of_registration_display_period = False
 
-    now = datetime.now()
+    now = get_comparison_date()
 
     if now > last_term.grade_submission_deadline:
         is_after_start_of_registration_display_period = True
@@ -69,4 +70,18 @@ def get_card_visibilty_date_values():
         "is_before_last_day_of_classes": is_before_last_day_of_classes,
         "is_before_end_of_registration_display_period": is_before_end_of_registration_display_period,
     }
+
+
+def get_comparison_date():
+    """
+    Allows us to pretend we're at various points in the term,
+    so we can test against live data sources at various points in the year.
+    """
+
+    override_date = getattr(settings, "MYUW_CARD_DISPLAY_DATE_OVERRIDE", None)
+
+    if override_date:
+        return datetime.strptime(override_date, "%Y-%m-%d")
+
+    return datetime.now()
 
