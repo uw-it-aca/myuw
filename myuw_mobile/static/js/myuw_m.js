@@ -459,15 +459,12 @@ var log_loaded_cards = function(){
 }
 
 var init_logging = function () {
-    
-    // SORRY STEVEN... HAD TO COMMENT THIS OUT TO GET THE MAIN BUILD WORKING AGAIN
-    
-    //myuwlog = new MyuwLog();
+    myuwlog = new MyuwLog();
 
-    //myuwlog.init();
-    //window.myuw_log = myuwlog;
-    //_init_link_logging();
-    //_init_card_logging();
+    myuwlog.init();
+    window.myuw_log = myuwlog;
+    _init_link_logging();
+    _init_card_logging();
 };
 
 var _init_link_logging = function() {
