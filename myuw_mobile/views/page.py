@@ -12,6 +12,7 @@ from myuw_mobile.logger.logresp import log_data_not_found_response, log_invalid_
 from myuw_mobile.views.rest_dispatch import invalid_session
 from myuw_mobile.dao.uwemail import get_email_forwarding_for_current_user
 from myuw_mobile.dao.card_display_dates import get_card_visibilty_date_values
+from myuw_mobile.logger.session_log import log_session
 
 #@mobile_template('{mobile/}index.html')
 @login_required
@@ -38,7 +39,8 @@ def index(request,
     if not netid:
         log_invalid_netid_response(logger, timer)
         return invalid_session()
-
+    context["user"]["session_key"] = request.session.session_key
+    log_session(netid, request.session.session_key)
     my_uwemail_forwarding = get_email_forwarding_for_current_user()
     if my_uwemail_forwarding is not None and my_uwemail_forwarding.is_active():
         context["user"]["email_is_uwgmail"] = my_uwemail_forwarding.is_uwgmail()

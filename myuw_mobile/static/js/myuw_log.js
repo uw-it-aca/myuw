@@ -61,7 +61,7 @@ function MyuwLog()  {
         var json_layout = new log4javascript.JsonLayout(true);
         var ajax_append = new log4javascript.AjaxAppender('/logging/log');
         ajax_append.setLayout(json_layout);
-        ajax_append.setBatchSize(1);
+        ajax_append.setBatchSize(20);
         ajax_append.addHeader("X-CSRFToken", csrf_token);
         return ajax_append;
     };
