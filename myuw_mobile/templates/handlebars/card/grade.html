@@ -24,7 +24,10 @@
                 </li>
                 {{ /each }}
             </ul>
-            <span style="display: block; font-style: italic; color: #595959; margin-bottom: 20px;"><strong>Note:</strong> Official grades are posted to transcript midnight on {{toFriendlyDate term.grade_submission_deadline}}.</span>
+
+            {{ #if display_note }}
+            <span style="display: block; font-style: italic; color: #595959; margin-bottom: 20px;"><strong>Note:</strong>These grades aren't official on your transcript before midnight on {{toFriendlyDate term.grade_submission_deadline}}.</span>
+            {{ /if }}
 	        <div class="card-badge pull-right">
 	            <ul class="unstyled-list">
 	                <li><a href="https://sdb.admin.washington.edu/students/uwnetid/grades.asp">View credits and GPA</a></li>

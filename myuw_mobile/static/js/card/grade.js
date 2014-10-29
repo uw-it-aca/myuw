@@ -36,8 +36,12 @@ var GradeCard = {
         var course_data = WSData.normalized_course_data(term);
         course_data['display_grade_card'] = true;
         course_data['display_grades'] = true;
+        course_data['display_note'] = true;
         if (course_data.sections.length == 0) {
             course_data['display_grade_card'] = false;
+        }
+        if (window.card_display_dates.is_after_grade_submission_deadline) {
+            course_data['display_note'] = false;
         }
         var source = $("#grade_card_content").html();
         var grades_template = Handlebars.compile(source);
