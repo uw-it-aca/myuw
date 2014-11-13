@@ -6,6 +6,10 @@
                         
         <h3>Final Grades</h3>
 
+        {{ #if display_note }}
+        <span class="official-note">These grades are not official until midnight on {{toFriendlyDate term.grade_submission_deadline}}.</span>
+        {{ /if }}
+
         {{ #if display_grades }}
         <div class="card-badge-container clearfix">		
             <ul class="unstyled-list">
@@ -18,16 +22,13 @@
 			    <span class="card-badge-inline-label">{{curriculum_abbr }} {{course_number}} {{section_id}}</span>
 		        </div>
 		        <div class="pull-right">
-			    <span class="{{classByGrade grade 'card-badge-value' 'card-badge-nograde-value'}}">{{explainNoGrade grade "X (no grade submitted)"}}</span>
+			    <span class="{{classByGrade grade 'card-badge-value' 'card-badge-nograde-value'}}">{{explainNoGrade grade "X"}}</span>
 			</div>
                     </div>
                 </li>
                 {{ /each }}
             </ul>
 
-            {{ #if display_note }}
-            <span style="display: block; font-style: italic; color: #595959; margin-bottom: 20px;"><strong>Note: </strong>These grades are not official until midnight on {{toFriendlyDate term.grade_submission_deadline}}.</span>
-            {{ /if }}
 	        <div class="card-badge pull-right">
 	            <ul class="unstyled-list">
 	                <li><a href="https://sdb.admin.washington.edu/students/uwnetid/grades.asp">View credits and GPA</a></li>
