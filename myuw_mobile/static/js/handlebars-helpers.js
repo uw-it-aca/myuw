@@ -8,16 +8,6 @@ Handlebars.registerHelper("classByGrade", function(grade, normal_class, no_grade
     return normal_class;
 });
 
-Handlebars.registerHelper("explainNoGrade", function(grade, no_grade_text) {
-    if (arguments.length < 2)
-        throw new Error("Handlebars Helper explainGrade needs 2 parameters");
-    if (grade === "X") {
-        return no_grade_text;
-    }
-    return grade;
-});
-
-
 // used in profile banner
 Handlebars.registerHelper("formatPhoneNumber", function(str) {
     if (str.length == 10) {
