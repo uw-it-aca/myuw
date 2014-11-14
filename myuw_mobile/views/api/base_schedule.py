@@ -58,8 +58,9 @@ def load_schedule(schedule, summer_term=""):
     buildings = get_buildings_by_schedule(schedule)
 
     # Removing call to Canvas pending MUWM-2106
-    # canvas_data_by_course_id = get_canvas_enrolled_courses()
-    canvas_data_by_course_id = []
+    # Too much!  MUWM-2270
+    # canvas_data_by_course_id = []
+    canvas_data_by_course_id = get_canvas_enrolled_courses()
 
     # Since the schedule is restclients, and doesn't know
     # about color ids, backfill that data
@@ -74,10 +75,10 @@ def load_schedule(schedule, summer_term=""):
             enrollment = canvas_data_by_course_id[section.section_label()]
             canvas_url = enrollment.course_url
             canvas_name = enrollment.course_name
-            canvas_grade = enrollment.final_grade
+            #canvas_grade = enrollment.final_grade
             section_data["canvas_url"] = canvas_url
             section_data["canvas_name"] = canvas_name
-            section_data["canvas_grade"] = canvas_grade
+            #section_data["canvas_grade"] = canvas_grade
 
         # MUWM-596
         if section.final_exam and section.final_exam.building:
