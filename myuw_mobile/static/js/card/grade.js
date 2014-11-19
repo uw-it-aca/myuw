@@ -43,6 +43,14 @@ var GradeCard = {
         if (window.card_display_dates.is_after_grade_submission_deadline) {
             course_data['display_note'] = false;
         }
+        var index;
+        for (index = 0; index < course_data.sections.length; index += 1) {
+            if (course_data.sections[index].grade === 'X') {
+                course_data.sections[index]['no_grade'] = true;
+            } else {
+                course_data.sections[index]['no_grade'] = false;
+            }
+        }
         var source = $("#grade_card_content").html();
         var grades_template = Handlebars.compile(source);
         GradeCard.dom_target.html(grades_template(course_data));

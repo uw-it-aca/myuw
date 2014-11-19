@@ -1,13 +1,3 @@
-// for Grade card
-Handlebars.registerHelper("classByGrade", function(grade, normal_class, no_grade_class) {
-    if (arguments.length < 3)
-        throw new Error("Handlebars Helper classByGrade needs 3 parameters");
-    if (grade === "X") {
-        return no_grade_class;
-    }
-    return normal_class;
-});
-
 // used in profile banner
 Handlebars.registerHelper("formatPhoneNumber", function(str) {
     if (str.length == 10) {
