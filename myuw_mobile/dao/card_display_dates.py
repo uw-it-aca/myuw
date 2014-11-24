@@ -34,7 +34,7 @@ def get_card_visibilty_date_values():
 
     raw_date = current_term.last_day_instruction
     d = datetime(raw_date.year, raw_date.month, raw_date.day)
-    if now > d + timedelta(days=1):
+    if now >= d + timedelta(days=1):
         is_after_last_day_of_classes = True
 
     # XXX - this will be a bug when summer quarter comes around
