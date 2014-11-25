@@ -6,16 +6,32 @@ Handlebars.registerHelper("formatPhoneNumber", function(str) {
     return str
 });
 
+(function() {
 
-// used on Library card
-Handlebars.registerHelper("toFromNowDate", function(str) {
-    return moment(new Date(str)).fromNow();
-});
+    function parse_date(str) {
+        // MUWM-2289.  Our dates come in looking like:
+        // 2014-11-26 23:59:59
+        // sometimes.  Rather than hunt all of those down, we can just convert
+        // that to ISO-8601
+        // If that's still invalid - write more code.
+        var d = new Date(str);
+        if (isNaN(d.getYear())) {
+            d = new Date(str.replace(" ", "T"));
+        }
+        return d;
+    }
 
-// used on Grade, Library card 
-Handlebars.registerHelper("toFriendlyDate", function(str) {
-    return moment(new Date(str)).format("ddd, MMM D");
-});
+    // used on Library card
+    Handlebars.registerHelper("toFromNowDate", function(str) {
+        return moment(parse_date(str)).fromNow();
+    });
+
+    // used on Grade, Library card 
+    Handlebars.registerHelper("toFriendlyDate", function(str) {
+        return moment(parse_date(str)).format("ddd, MMM D");
+    });
+
+})();
 
 Handlebars.registerHelper("toUrlSafe", function(str) {
     return str.replace(/ /g, "%20");
