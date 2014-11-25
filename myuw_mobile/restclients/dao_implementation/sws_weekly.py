@@ -4,6 +4,7 @@ week of the term
 """
 
 from restclients.dao_implementation.sws import File, Live
+from restclients.mock_http import MockHTTP
 from django.conf import settings
 from datetime import datetime, timedelta
 import json
@@ -76,14 +77,30 @@ def _update_term_with_offsets(url, response):
             start_day = now + timedelta(days=first_day_offset)
             json_data["RegistrationPeriods"][1]["StartDate"] = first_day.strftime(day_format)
 
-        response.data = json.dumps(json_data)
+        return_response = MockHTTP()
+        return_response.status = response.status
+        return_response.data = json.dumps(json_data)
+        headers = {}
+        for header in response.headers:
+            headers[header] = response.getheader(header)
+
+        return_response.headers = headers
+        return return_response
 
     if re.match("/student/v\d/term/next.json", url) or re.match("/student/v\d/term/2013,summer.json", url):
         if period2_start_offset:
             start_day = now + timedelta(days=period2_start_offset)
             json_data["RegistrationPeriods"][1]["StartDate"] = start_day.strftime(day_format)
 
-        response.data = json.dumps(json_data)
+        return_response = MockHTTP()
+        return_response.status = response.status
+        return_response.data = json.dumps(json_data)
+        headers = {}
+        for header in response.headers:
+            headers[header] = response.getheader(header)
+
+        return_response.headers = headers
+        return return_response
 
     return response
 
