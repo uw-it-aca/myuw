@@ -19,7 +19,6 @@ class TestRegisteredTerm(TestCase):
             term = _get_term_by_year_and_quarter(2013, "summer")
             schedule = _get_schedule(regid, term)
             data = _get_registered_summer_terms(schedule.sections)
-            self.assertFalse(data["F"])
             self.assertTrue(data["B"])
             self.assertTrue(data["A"])
 
@@ -41,7 +40,7 @@ class TestRegisteredTerm(TestCase):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term1 = _get_term_by_year_and_quarter(2013, "summer")
             schedule1 = _get_schedule(regid, term1)
-            self.assertEqual(len(schedule1.sections), 2)
+            self.assertEqual(len(schedule1.sections), 3)
 
             term2 = _get_term_by_year_and_quarter(2013, "autumn")
             schedule2 = _get_schedule(regid, term2)

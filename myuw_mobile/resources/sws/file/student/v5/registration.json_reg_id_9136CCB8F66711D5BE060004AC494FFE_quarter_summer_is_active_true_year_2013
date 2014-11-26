@@ -40,6 +40,17 @@
             "RegID":"9136CCB8F66711D5BE060004AC494FFE",
             "SectionID":"A",
             "Year":"2013"
+        },
+        {
+            "Href": "\/student\/v4\/registration\/2013,summer,TRAIN,102,A,9136CCB8F66711D5BE060004AC494FFE,.json",
+            "CourseNumber":"102",
+            "CurriculumAbbreviation":"TRAIN",
+            "DuplicateCode":"1",
+            "Instructor":null,
+            "Quarter":"summer",
+            "RegID":"9136CCB8F66711D5BE060004AC494FFE",
+            "SectionID":"A",
+            "Year":"2013"
         }
     ],
     "TotalCount":"2"

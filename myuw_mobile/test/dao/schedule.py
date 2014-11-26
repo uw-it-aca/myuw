@@ -32,13 +32,31 @@ class TestSchedule(TestCase):
             term.year = 2013
             term.quarter = "summer"
             schedule = _get_schedule(regid, term)
-            #it has a B-term section
+            #ensure it has both A and B terms
+            has_a_term = False
+            has_b_term = False
             for section in schedule.sections:
-                self.assertFalse(section.summer_term=="A-term")
+                if section.summer_term == "A-term":
+                    has_a_term = True
+                if section.summer_term == "B-term":
+                    has_b_term = True
+            self.assertTrue(has_a_term)
+            self.assertTrue(has_b_term)
 
             filter_schedule_sections_by_summer_term(schedule, "A-term")
             # the B-term section no longer exists
+            filtered_has_b_term = False
+            filtered_has_a_term = False
+            filtered_has_full_term = False
             for section in schedule.sections:
-                self.assertFalse(section.summer_term=="B-term")
-                self.assertTrue(section.summer_term=="Full-term")
+                if section.summer_term == "A-term":
+                    filtered_has_a_term = True
+                if section.summer_term == "B-term":
+                    filtered_has_b_term = True
+                if section.summer_term == "Full-term":
+                    filtered_has_full_term = True
+
+            self.assertFalse(filtered_has_b_term)
+            self.assertTrue(filtered_has_full_term)
+            self.assertTrue(filtered_has_a_term)
 
