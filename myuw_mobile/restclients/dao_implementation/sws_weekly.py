@@ -32,7 +32,11 @@ def _update_term_with_offsets(url, response):
 
     strptime = datetime.strptime
     now = datetime.now()
-    json_data = json.loads(response.data)
+    try:
+        json_data = json.loads(response.data)
+    except Exception as ex:
+        return response
+
     day_format = "%Y-%m-%d"
     datetime_format = "%Y-%m-%dT%H:%M:%S"
 
