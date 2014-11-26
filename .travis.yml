@@ -10,7 +10,7 @@ before_script:
   - cp travis-ci/manage.py manage.py
   - python manage.py syncdb --noinput
 script:
-  - pep8 myuw_mobile/
+  - pep8 --exclude=migrations myuw_mobile/
   - coverage run --source=myuw_mobile/ manage.py test myuw_mobile
 after_script:
   - coveralls
