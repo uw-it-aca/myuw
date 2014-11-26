@@ -14,7 +14,6 @@ class TestTerm(TestCase):
             term = _get_term_by_year_and_quarter(2013, "summer")
             self.assertEqual(term.year, 2013)
             self.assertEqual(term.quarter, "summer")
-            //print term.json_data()
             self.assertTrue(is_past(term))
 
             
@@ -25,6 +24,5 @@ class TestTerm(TestCase):
             term = _get_term_by_year_and_quarter(2014, "winter")
             self.assertEqual(term.year, 2014)
             self.assertEqual(term.quarter, "winter")
-            //print term.json_data()
             self.assertTrue(is_past(term))
 
