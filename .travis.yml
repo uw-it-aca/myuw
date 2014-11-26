@@ -7,13 +7,11 @@ before_script:
   - pip install coverage
   - pip install python-coveralls
   - pip install pep8
-  - npm install jslint
   - cp travis-ci/manage.py manage.py
   - python manage.py syncdb --noinput
 script:
   - pep8 --exclude=migrations myuw_mobile/
   - coverage run --source=myuw_mobile/ manage.py test myuw_mobile
-  - find myuw_mobile/static/js/ -path myuw_mobile/static/js/vendor -prune -o -type f -exec jslint  {} \;
 after_script:
   - coveralls
 notifications:
