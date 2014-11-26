@@ -1,5 +1,6 @@
 Django==1.6
 South
+ordereddict
 simplejson
 django-compressor
 BeautifulSoup
