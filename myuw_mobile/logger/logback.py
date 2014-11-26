@@ -36,9 +36,12 @@ def get_logging_userid():
     user_svc = UserService()
     override_userid = user_svc.get_override_user()
     actual_userid = user_svc.get_original_user()
-    if override_userid:
-        log_userid = 'base_user: ' + actual_userid + ' acting_user: ' + override_userid + ' is_override: true'
-    else:
-        log_userid = 'base_user: ' + actual_userid + ' acting_user: ' + actual_userid + ' is_override: false '
+    try:
+        if override_userid:
+            log_userid = 'base_user: ' + actual_userid + ' acting_user: ' + override_userid + ' is_override: true'
+        else:
+            log_userid = 'base_user: ' + actual_userid + ' acting_user: ' + actual_userid + ' is_override: false '
+    except TypeError:
+        return None
     return log_userid
 
