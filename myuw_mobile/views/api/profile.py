@@ -7,7 +7,8 @@ from myuw_mobile.dao.enrollment import get_current_quarter_enrollment
 from myuw_mobile.dao.student_profile import get_profile_of_current_user
 from myuw_mobile.dao.gws import is_grad_student
 from myuw_mobile.logger.timer import Timer
-from myuw_mobile.logger.logresp import log_data_not_found_response, log_success_response
+from myuw_mobile.logger.logresp import log_data_not_found_response
+from myuw_mobile.logger.logresp import log_success_response
 
 
 class MyProfile(RESTDispatch):
@@ -16,8 +17,8 @@ class MyProfile(RESTDispatch):
     """
 
     def GET(self, request):
-        """ 
-        GET returns 200 with the student account balances 
+        """
+        GET returns 200 with the student account balances
         of the current user
         """
 
@@ -35,18 +36,17 @@ class MyProfile(RESTDispatch):
 
         enrollment = get_current_quarter_enrollment()
         if enrollment is not None:
-            response['is_grad_student'] = is_grad_student() 
+            response['is_grad_student'] = is_grad_student()
             response['class_level'] = enrollment.class_level
-            if len(enrollment.majors) > 0: 
+            if len(enrollment.majors) > 0:
                 response['majors'] = []
                 for major in enrollment.majors:
                     response['majors'].append(major.json_data())
 
-            if len(enrollment.minors) > 0: 
+            if len(enrollment.minors) > 0:
                 response['minors'] = []
                 for minor in enrollment.minors:
                     response['minors'].append(minor.json_data())
 
         logger.debug(response)
         return HttpResponse(json.dumps(response))
-
