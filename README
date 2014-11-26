@@ -1,6 +1,6 @@
 Install instructions at:
 
-https://wiki.cac.washington.edu/display/aca/Installation+Instructions+-+MyUW+Mobile
+https://github.com/uw-it-aca/myuw/wiki/Installation
 
 To sync DB after updates:
 
@@ -8,7 +8,3 @@ bash
 source bin/activate
 python manage.py syncdb
 python manage.py migrate
-
-
-To reload mobile app on myuw servers:
-bash /usr/local/apache/bin/ap-reload
