@@ -17,13 +17,13 @@ class TestNotce(TestCase):
             #location tags
             self.assertEquals(notices[0].location_tags, ['notices_holds', 'reg_card_holds'])
 
-            self.assertEquals(notices[1].location_tags, None)
+            self.assertEquals(notices[6].location_tags, None)
 
 
             #criticality
             self.assertEquals(notices[0].is_critical, True)
             #no category
-            self.assertEquals(notices[1].custom_category, UNKNOWN_CATEGORY_NAME)
+            self.assertEquals(notices[6].custom_category, UNKNOWN_CATEGORY_NAME)
 
             #no regid
             notices = _get_notices_by_regid(None)
