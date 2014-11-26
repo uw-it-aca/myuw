@@ -1,0 +1,20 @@
+language: python
+python:
+  - "2.7"
+  - "2.6"
+install: pip install -r requirements.txt
+before_script:
+  - pip install coverage
+  - pip install python-coveralls
+  - pip install pep8
+  - cp travis-ci/manage.py manage.py
+  - python manage.py syncdb --noinput
+script:
+  - pep8 myuw_mobile/
+  - coverage run --source=myuw_mobile/ manage.py test myuw_mobile
+after_script:
+  - coveralls
+notifications:
+  webhooks:
+      urls:
+        - https://yarn.cac.washington.edu/rest/botalyst/v1/travis-ci
