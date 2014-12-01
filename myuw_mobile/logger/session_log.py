@@ -6,6 +6,7 @@ import json
 
 logger = logging.getLogger('session')
 
+
 def log_session(netid, session_key):
     log_entry = {'netid': netid,
                  'session_key': session_key,
