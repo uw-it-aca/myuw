@@ -15,6 +15,6 @@ class StudClasScheCurQuar(StudClasSche):
         GET returns 200 with the current quarter course section schedule
         """
         return self.make_http_resp(
-            logging.getLogger(__name__), 
+            logging.getLogger(__name__),
             Timer(),
             get_current_quarter())

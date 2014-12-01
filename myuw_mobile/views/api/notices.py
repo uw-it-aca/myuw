@@ -2,7 +2,8 @@ import logging
 import json
 from django.http import HttpResponse
 from myuw_mobile.views.rest_dispatch import RESTDispatch
-from myuw_mobile.dao.notice import get_notices_for_current_user, mark_notices_read_for_current_user
+from myuw_mobile.dao.notice import get_notices_for_current_user
+from myuw_mobile.dao.notice import mark_notices_read_for_current_user
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_success_response
 from datetime import datetime
@@ -12,7 +13,6 @@ class Notices(RESTDispatch):
     """
     Performs actions on resource at /api/v1/notices/.
     """
-
     def GET(self, request):
         """
         GET returns 200 with a list of notices for the current user
@@ -25,8 +25,6 @@ class Notices(RESTDispatch):
         log_success_response(logger, timer)
 
         return HttpResponse(json.dumps(notice_json))
-
-
 
     def _get_json(self, notices):
         return self._get_json_for_date(notices, datetime.now())
@@ -43,7 +41,6 @@ class Notices(RESTDispatch):
             data['location_tags'] = notice.location_tags
             notice_json.append(data)
         return notice_json
-
 
     def PUT(self, request):
         notice_hashes = json.loads(request.body).get('notice_hashes', None)

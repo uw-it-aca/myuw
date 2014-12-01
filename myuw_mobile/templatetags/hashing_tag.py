@@ -3,6 +3,7 @@ import hashlib
 
 register = template.Library()
 
+
 @register.simple_tag
 def hash_netid(netid):
     if netid is not None:

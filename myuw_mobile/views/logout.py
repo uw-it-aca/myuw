@@ -1,6 +1,7 @@
 from django.views.generic import View
 from django.http import HttpResponseRedirect
 
+
 class Logout(View):
     def post(self, request):
         request.session.flush()

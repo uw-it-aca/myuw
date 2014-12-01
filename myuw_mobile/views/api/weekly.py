@@ -9,6 +9,7 @@ from myuw_mobile.views.rest_dispatch import RESTDispatch
 from myuw_mobile.views.api.base_schedule import load_schedule
 import logging
 
+
 class Weekly(RESTDispatch):
     """
     Handles /api/v1/grades/
@@ -33,4 +34,4 @@ class Weekly(RESTDispatch):
         }
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(json_data),
-                            { "Content-Type": "application/json" })
+                            {"Content-Type": "application/json"})

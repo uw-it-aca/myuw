@@ -5,7 +5,8 @@ import json
 from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.dao.hfs import get_account_balances_for_current_user
 from myuw_mobile.logger.timer import Timer
-from myuw_mobile.logger.logresp import log_data_not_found_response, log_success_response
+from myuw_mobile.logger.logresp import log_data_not_found_response
+from myuw_mobile.logger.logresp import log_success_response
 
 
 class HfsBalances(RESTDispatch):
@@ -14,8 +15,8 @@ class HfsBalances(RESTDispatch):
     """
 
     def GET(self, request):
-        """ 
-        GET returns 200 with the HFS account balances 
+        """
+        GET returns 200 with the HFS account balances
         of the current user
         """
 
@@ -31,4 +32,3 @@ class HfsBalances(RESTDispatch):
         resp_json = balances.json_data(use_custom_date_format=True)
         logger.debug(resp_json)
         return HttpResponse(json.dumps(resp_json))
-
