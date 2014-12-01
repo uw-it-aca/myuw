@@ -8,32 +8,35 @@ from userservice.user import UserService
 from myuw_mobile.dao.term import get_current_quarter
 from myuw_mobile.dao.affiliation import get_all_affiliations
 from myuw_mobile.logger.timer import Timer
-from myuw_mobile.logger.logresp import log_data_not_found_response, log_invalid_netid_response, log_success_response_with_affiliation
+from myuw_mobile.logger.logresp import log_data_not_found_response
+from myuw_mobile.logger.logresp import log_invalid_netid_response
+from myuw_mobile.logger.logresp import log_success_response_with_affiliation
 from myuw_mobile.views.rest_dispatch import invalid_session
 from myuw_mobile.dao.uwemail import get_email_forwarding_for_current_user
 from myuw_mobile.dao.card_display_dates import get_card_visibilty_date_values
 from myuw_mobile.logger.session_log import log_session
 
-#@mobile_template('{mobile/}index.html')
+
 @login_required
 def index(request,
-          year=None, 
+          year=None,
           quarter=None,
           summer_term=None):
     timer = Timer()
     logger = logging.getLogger('myuw_mobile.views.page.index')
 
-    context = {"year": year,
-               "quarter": quarter,
-               "summer_term": summer_term,
-               "home_url": "/mobile",
-               "err": None,
-               "user": {
-                   "netid": None,
-                   "affiliations": get_all_affiliations()
-               },
-               "card_display_dates": get_card_visibilty_date_values(),
-            }
+    context = {
+        "year": year,
+        "quarter": quarter,
+        "summer_term": summer_term,
+        "home_url": "/mobile",
+        "err": None,
+        "user": {
+            "netid": None,
+            "affiliations": get_all_affiliations()
+        },
+        "card_display_dates": get_card_visibilty_date_values(),
+    }
 
     netid = UserService().get_user()
     if not netid:
@@ -43,8 +46,9 @@ def index(request,
     log_session(netid, request.session.session_key)
     my_uwemail_forwarding = get_email_forwarding_for_current_user()
     if my_uwemail_forwarding is not None and my_uwemail_forwarding.is_active():
-        context["user"]["email_is_uwgmail"] = my_uwemail_forwarding.is_uwgmail()
-        context["user"]["email_is_uwlive"] = my_uwemail_forwarding.is_uwlive()
+        c_user = context["user"]
+        c_user["email_is_uwgmail"] = my_uwemail_forwarding.is_uwgmail()
+        c_user["email_is_uwlive"] = my_uwemail_forwarding.is_uwlive()
 
     context["user"]["netid"] = netid
     if year is None or quarter is None:
@@ -61,7 +65,3 @@ def index(request,
     return render_to_response("index.html",
                               context,
                               context_instance=RequestContext(request))
-
-
-
-
