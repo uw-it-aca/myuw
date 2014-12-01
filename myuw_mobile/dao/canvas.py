@@ -20,10 +20,10 @@ def get_canvas_enrolled_courses():
             CanvasEnrollments().get_enrollments_for_regid(
                 regid,
                 {'state': "active",
-                'as_user': CanvasEnrollments().sis_user_id(regid)})
+                 'as_user': CanvasEnrollments().sis_user_id(regid)})
         )
     except AttributeError:
-        #If course is not in canvas, skip
+        # If course is not in canvas, skip
         pass
     except Exception as ex:
         log_exception(logger,

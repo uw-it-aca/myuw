@@ -10,7 +10,7 @@ def get_links_for_category(search_category_id):
 
     links = []
     path = os.path.join(
-        os.path.dirname( __file__ ),
+        os.path.dirname(__file__),
         '..', 'data', 'category_links_import.csv')
     with open(path, 'rbU') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
