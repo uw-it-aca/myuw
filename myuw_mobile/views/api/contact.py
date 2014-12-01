@@ -1,11 +1,14 @@
 import logging
 from django.http import HttpResponse
 import json
-from myuw_mobile.views.rest_dispatch import RESTDispatch, invalid_arg, data_not_found
+from myuw_mobile.views.rest_dispatch import RESTDispatch, invalid_arg
+from myuw_mobile.views.rest_dispatch import data_not_found
 from myuw_mobile.dao.pws import get_contact
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_invalid_regid_response
-from myuw_mobile.logger.logresp import log_data_not_found_response, log_success_response
+from myuw_mobile.logger.logresp import log_data_not_found_response
+from myuw_mobile.logger.logresp import log_success_response
+
 
 class InstructorContact(RESTDispatch):
     """
@@ -13,7 +16,7 @@ class InstructorContact(RESTDispatch):
     """
 
     def GET(self, request, regid):
-        """ 
+        """
         GET returns 200 with the whitepage information of the given person.
         """
 
@@ -31,4 +34,3 @@ class InstructorContact(RESTDispatch):
 
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(contact))
-

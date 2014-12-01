@@ -4,7 +4,8 @@ import logging
 import re
 from myuw_mobile.dao.category_links import get_links_for_category
 from myuw_mobile.logger.timer import Timer
-from myuw_mobile.logger.logresp import log_data_not_found_response, log_success_response
+from myuw_mobile.logger.logresp import log_data_not_found_response
+from myuw_mobile.logger.logresp import log_success_response
 from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
 
 
@@ -31,7 +32,6 @@ class CategoryLinks(RESTDispatch):
         return HttpResponse(json.dumps({"link_data": link_data,
                                         "category_name": category_name}))
 
-
     def _group_links_by_subcategory(self, links):
         ordered_subcategories = []
         subcategory_data = {}
@@ -39,7 +39,7 @@ class CategoryLinks(RESTDispatch):
         for link in links:
             sub_cat = link.sub_category
             sub_cat_slug = re.sub(r'\W+', '', sub_cat).lower()
-            
+
             if sub_cat in subcategory_data:
                 subcategory_data[sub_cat]['links'].append(link.json_data())
             else:
@@ -50,7 +50,9 @@ class CategoryLinks(RESTDispatch):
                 subcategory_data[sub_cat]['subcat_slug'] = sub_cat_slug
 
         for subcat_group in ordered_subcategories:
-            subcategory_data[subcat_group]['links'] = sorted(subcategory_data[subcat_group]['links'],
-                                                          key=lambda k: k['title'])
+            data = sorted(subcategory_data[subcat_group]['links'],
+                          key=lambda k: k['title']
+                          )
+            subcategory_data[subcat_group]['links'] = data
             link_output.append(subcategory_data[subcat_group])
         return link_output

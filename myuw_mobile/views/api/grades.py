@@ -23,7 +23,7 @@ class Grades(RESTDispatch):
         term is used.
         """
         timer = Timer()
-        logger = logging.getLogger(__name__) 
+        logger = logging.getLogger(__name__)
         term = get_quarter(year, quarter)
         if term is None:
             log_data_not_found_response(logger, timer)
@@ -58,15 +58,18 @@ class Grades(RESTDispatch):
             section_index += 1
 
         json_data["sections"] = sorted(json_data["sections"],
-                                   key=itemgetter('curriculum_abbr',
-                                                  'course_number',
-                                                  'section_id',
-                                                  ))
+                                       key=itemgetter('curriculum_abbr',
+                                                      'course_number',
+                                                      'section_id',
+                                                      )
+                                       )
 
+        return HttpResponse(json.dumps(json_data),
+                            {"Content-Type": "application/json"}
+                            )
 
-        return HttpResponse(json.dumps(json_data), { "Content-Type": "application/json" })
-
-    def _add_grades(self, source_data, section_data, section_label, source_key, source_name):
+    def _add_grades(self, source_data, section_data, section_label,
+                    source_key, source_name):
         if section_label in source_data:
             section_grades = source_data[section_label]
 
@@ -75,7 +78,7 @@ class Grades(RESTDispatch):
             for grades in section_grades:
                 data.append(grades.json_data())
 
-            if not "assignments" in section_data:
+            if "assignments" not in section_data:
                 section_data["assignments"] = []
 
             section_data["assignments"].append({
@@ -83,4 +86,3 @@ class Grades(RESTDispatch):
                 "source_name": source_name,
                 "data": data
             })
-

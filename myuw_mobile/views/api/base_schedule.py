@@ -17,7 +17,7 @@ from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
 
 class StudClasSche(RESTDispatch):
 
-    def make_http_resp (self, logger, timer, term, summer_term=None):
+    def make_http_resp(self, logger, timer, term, summer_term=None):
         if term is None:
             log_data_not_found_response(logger, timer)
             return data_not_found()
@@ -46,8 +46,8 @@ class StudClasSche(RESTDispatch):
 def load_schedule(schedule, summer_term=""):
     filter_schedule_sections_by_summer_term(schedule, summer_term)
     json_data = schedule.json_data()
-    json_data["summer_term"]=summer_term
-    
+    json_data["summer_term"] = summer_term
+
     if len(schedule.sections) == 0:
         return json_data
 
@@ -75,10 +75,10 @@ def load_schedule(schedule, summer_term=""):
             enrollment = canvas_data_by_course_id[section.section_label()]
             canvas_url = enrollment.course_url
             canvas_name = enrollment.course_name
-            #canvas_grade = enrollment.final_grade
+            # canvas_grade = enrollment.final_grade
             section_data["canvas_url"] = canvas_url
             section_data["canvas_name"] = canvas_name
-            #section_data["canvas_grade"] = canvas_grade
+            # section_data["canvas_grade"] = canvas_grade
 
         # MUWM-596
         if section.final_exam and section.final_exam.building:
@@ -101,16 +101,17 @@ def load_schedule(schedule, summer_term=""):
                         mdata["building_name"] = building.name
 
                 for instructor in mdata["instructors"]:
-                    if not instructor[
-                        "email1"] and not instructor[
-                        "email2"] and not instructor[
-                        "phone1"] and not instructor[
-                        "phone2"] and not instructor[
-                        "voicemail"] and not instructor[
-                        "fax"] and not instructor[
-                        "touchdial"] and not instructor[
-                        "address1"] and not instructor[
-                        "address2"]:
+                    if (
+                            not instructor["email1"] and
+                            not instructor["email2"] and
+                            not instructor["phone1"] and
+                            not instructor["phone2"] and
+                            not instructor["voicemail"] and
+                            not instructor["fax"] and
+                            not instructor["touchdial"] and
+                            not instructor["address1"] and
+                            not instructor["address2"]
+                            ):
                         instructor["whitepages_publish"] = False
                 meeting_index += 1
             except IndexError as ex:

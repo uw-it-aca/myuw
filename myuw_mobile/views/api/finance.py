@@ -5,7 +5,8 @@ from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.dao.finance import get_account_balances_for_current_user
 from myuw_mobile.dao.notice import get_tuition_due_date
 from myuw_mobile.logger.timer import Timer
-from myuw_mobile.logger.logresp import log_data_not_found_response, log_success_response
+from myuw_mobile.logger.logresp import log_data_not_found_response
+from myuw_mobile.logger.logresp import log_success_response
 
 
 class Finance(RESTDispatch):
@@ -14,8 +15,8 @@ class Finance(RESTDispatch):
     """
 
     def GET(self, request):
-        """ 
-        GET returns 200 with the student account balances 
+        """
+        GET returns 200 with the student account balances
         of the current user
         """
 
@@ -32,6 +33,4 @@ class Finance(RESTDispatch):
         response = balances.json_data()
         response['tuition_due'] = str(date)
 
-
         return HttpResponse(json.dumps(response))
-

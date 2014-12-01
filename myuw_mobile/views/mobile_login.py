@@ -6,8 +6,10 @@ import logging
 from userservice.user import UserService
 from myuw_mobile.dao.pws import is_student
 from myuw_mobile.logger.timer import Timer
-from myuw_mobile.logger.logresp import log_invalid_netid_response, log_response_time
+from myuw_mobile.logger.logresp import log_invalid_netid_response
+from myuw_mobile.logger.logresp import log_response_time
 from myuw_mobile.views.rest_dispatch import invalid_session
+
 
 @login_required
 def user_login(request):

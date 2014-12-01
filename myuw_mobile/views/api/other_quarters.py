@@ -15,8 +15,8 @@ class RegisteredFutureQuarters(RESTDispatch):
     """
 
     def GET(self, request):
-        """ 
-        GET returns 200 with the registered future quarters 
+        """
+        GET returns 200 with the registered future quarters
         of the current user
         """
 
@@ -27,14 +27,17 @@ class RegisteredFutureQuarters(RESTDispatch):
             "terms": future_quarters
             }
 
-
         next_non_summer = get_next_non_summer_quarter()
         next_year = next_non_summer.year
         next_quarter = next_non_summer.quarter
 
         has_registration_for_next_term = False
         for term in future_quarters:
-            if term["quarter"].lower() == next_quarter and term["year"] == next_year and term["section_count"] > 0:
+            if (
+                    term["quarter"].lower() == next_quarter and
+                    term["year"] == next_year and
+                    term["section_count"] > 0
+                    ):
                 has_registration_for_next_term = True
 
         resp_data["next_term_data"] = {
@@ -43,7 +46,7 @@ class RegisteredFutureQuarters(RESTDispatch):
             "has_registration": has_registration_for_next_term,
         }
 
-        resp_data["highlight_future_quarters"] = should_highlight_future_quarters(future_quarters)
+        highlight = should_highlight_future_quarters(future_quarters)
+        resp_data["highlight_future_quarters"] = highlight
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(resp_data))
-
