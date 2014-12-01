@@ -1,4 +1,4 @@
-""" 
+"""
 This module encapsulates the access of the term data
 (including registered summer terms, registered future terms).
 """
@@ -11,7 +11,7 @@ import restclients.sws.term as sws_term
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logback import log_resp_time, log_exception
 
-logger =  logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 def get_current_quarter():
@@ -23,11 +23,11 @@ def get_current_quarter():
     try:
         return sws_term.get_current_term()
     except Exception as ex:
-        log_exception(logger, 
-                      'get_current_term', 
+        log_exception(logger,
+                      'get_current_term',
                       traceback.format_exc())
     finally:
-        log_resp_time(logger, 
+        log_resp_time(logger,
                       'get_current_term',
                       timer)
     return None
@@ -53,11 +53,11 @@ def get_next_quarter():
     try:
         return sws_term.get_next_term()
     except Exception as ex:
-        log_exception(logger, 
-                      'get_next_term', 
+        log_exception(logger,
+                      'get_next_term',
                       traceback.format_exc())
     finally:
-        log_resp_time(logger, 
+        log_resp_time(logger,
                       'get_next_term',
                       timer)
     return None
@@ -85,17 +85,17 @@ def _get_term_by_year_and_quarter(year, quarter):
     Returns Term object by the given year and quarter.
     If year and quarter are None, return the current term
     """
-    logid = ('get_term_by_year_and_quarter ' + 
-             str(year) + "," + quarter);
+    logid = ('get_term_by_year_and_quarter ' +
+             str(year) + "," + quarter)
     timer = Timer()
     try:
         return sws_term.get_term_by_year_and_quarter(year, quarter)
     except Exception as ex:
-        log_exception(logger, 
+        log_exception(logger,
                       logid,
                       traceback.format_exc())
     finally:
-        log_resp_time(logger, 
+        log_resp_time(logger,
                       logid,
                       timer)
     return None
@@ -145,5 +145,3 @@ def is_past(term):
     return true if the term is in the past
     """
     return term.last_final_exam_date < date.today()
-
-
