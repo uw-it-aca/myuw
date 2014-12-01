@@ -7,3 +7,4 @@ from myuw_mobile.test.models import TestUserNotices
 from myuw_mobile.test.dao.term import TestTerm
 from myuw_mobile.test.userservice_validation import TestValidation
 from myuw_mobile.test.dao.hfs import TestHFS
+from myuw_mobile.test.dao.library import TestLibrary
