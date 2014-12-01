@@ -5,12 +5,14 @@ from restclients.dao_implementation.live import get_con_pool, get_live_url
 from myuw_mobile.logger.logback import log_info
 from myuw_mobile.restclients.dao_implementation.mock import get_mockdata_url
 
+
 class File(object):
     """
-    This implementation returns mock/static content.  
+    This implementation returns mock/static content.
     Use this DAO with this configuration:
 
-    RESTCLIENTS_HFS_DAO_CLASS = 'myuw_mobile.restclients.dao_implementation.hfs.File'
+    RESTCLIENTS_HFS_DAO_CLASS =
+        'myuw_mobile.restclients.dao_implementation.hfs.File'
     """
     def getURL(self, url, headers):
         """
@@ -22,12 +24,13 @@ class File(object):
         log_info(Live.logger, "HFS File url=%s" % file_url)
         return get_mockdata_url("hfs", "file", file_url, headers)
 
+
 class Live(object):
     """
     This DAO provides real data.
     Access is restricted to localhost.
     """
-    logger = logging.getLogger('myuw_mobile.restclients.dao_implementation.hfs.Live')
+    logger = logging.getLogger(__name__)
     pool = None
 
     def getURL(self, url, headers):
@@ -42,5 +45,5 @@ class Live(object):
                                      socket_timeout=5.0,
                                      max_pool_size=5)
         log_info(Live.logger, Live.pool)
-        return get_live_url (Live.pool, 'GET',
-                             host, url, headers=headers)
+        return get_live_url(Live.pool, 'GET',
+                            host, url, headers=headers)
