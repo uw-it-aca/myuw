@@ -17,8 +17,12 @@ class CourseColor(models.Model):
 
     def section_label(self):
         return "%s,%s,%s,%s/%s" % (self.year,
-            self.quarter, self.curriculum_abbr,
-            self.course_number, self.section_id)
+                                   self.quarter,
+                                   self.curriculum_abbr,
+                                   self.course_number,
+                                   self.section_id
+                                   )
+
 
 class User(models.Model):
     uwnetid = models.SlugField(max_length=16,
@@ -38,6 +42,7 @@ class Building(models.Model):
     latititude = models.CharField(max_length=40)
     longitude = models.CharField(max_length=40)
     name = models.CharField(max_length=200)
+
 
 class StudentAccountsBalances(models.Model):
     student_number = models.CharField(max_length=10,
@@ -84,7 +89,8 @@ class UserNotices(models.Model):
 
     @staticmethod
     def mark_notices_read(notice_hashes, user):
-        notices = UserNotices.objects.filter(notice_hash__in=notice_hashes, user=user)
+        notices = UserNotices.objects.filter(notice_hash__in=notice_hashes,
+                                             user=user)
         for notice in notices:
             notice.is_read = True
             # notice.marked_read = datetime.now()
@@ -92,6 +98,7 @@ class UserNotices(models.Model):
 
     class Meta:
         unique_together = (("notice_hash", "user"),)
+
 
 class CategoryLinks(models.Model):
     url = models.CharField(max_length=150)
@@ -115,6 +122,7 @@ class CategoryLinks(models.Model):
         category_id = "".join(c for c in category_id if c.isalpha())
         self.category_id = category_id
 
+
 class TuitionDate(models.Model):
     user = models.ForeignKey('User', on_delete=models.PROTECT, unique=True)
     date_stored = models.DateTimeField(auto_now=True)
@@ -128,5 +136,10 @@ class SeenRegistration(models.Model):
     summer_term = models.CharField(max_length=1)
     first_seen_date = models.DateTimeField(auto_now_add=True)
 
-    unique_together = (("user", "year", "quarter", "summer_term", "first_seen_date"),)
-
+    unique_together = (("user",
+                        "year",
+                        "quarter",
+                        "summer_term",
+                        "first_seen_date"
+                        ),
+                       )
