@@ -1,5 +1,5 @@
 """
-This class encapsulates the interactions with 
+This class encapsulates the interactions with
 the SWS Enrollment resource.
 """
 
@@ -39,5 +39,3 @@ def get_main_campus():
     for major in enrollment.majors:
         campuses.append(major.campus)
         return campuses
-
-

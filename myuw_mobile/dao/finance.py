@@ -1,5 +1,5 @@
 """
-This class encapsulates the interactions with 
+This class encapsulates the interactions with
 the SWS Personal Financial resource.
 """
 
@@ -12,6 +12,7 @@ from myuw_mobile.dao.pws import get_regid_of_current_user
 
 logger = logging.getLogger(__name__)
 
+
 def _get_account_balances_by_regid(user_regid):
     """
     returns restclients.models.sws.Finance object for a given regid
@@ -21,7 +22,7 @@ def _get_account_balances_by_regid(user_regid):
         return None
 
     timer = Timer()
-    id = "%s %s" % ('_get_account_balances_by_regid', user_regid) 
+    id = "%s %s" % ('_get_account_balances_by_regid', user_regid)
     try:
         return get_account_balances_by_regid(user_regid)
     except Exception:
