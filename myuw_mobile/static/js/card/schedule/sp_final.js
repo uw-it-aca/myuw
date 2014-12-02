@@ -32,7 +32,7 @@ var FinalExamCard = {
         source = $("#final_exam_card_content").html();
         template = Handlebars.compile(source);
         FinalExamCard.dom_target.html(template(course_data));
-        FinalExamSchedule.render(course_data, FinalExamCard.term);
+        FinalExamSchedule.render(course_data, FinalExamCard.term, false);
     }
 
 };
