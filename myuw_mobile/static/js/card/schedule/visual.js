@@ -39,7 +39,7 @@ var VisualScheduleCard = {
             return;
         }
         VisualScheduleCard.render_schedule(course_data, term);
-        FinalExamSchedule.render(course_data, term);
+        FinalExamSchedule.render(course_data, term, true);
     },
         
     render_schedule: function(course_data, term) {

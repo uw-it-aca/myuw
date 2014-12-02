@@ -10,7 +10,7 @@ var FinalExamSchedule = {
         return a_date - b_date;
     },
 
-    render: function(course_data, term) {
+    render: function(course_data, term, show_title) {
         var index = 0;
         var tbd_or_nonexistent = [];
         var scheduled_finals = [];
@@ -80,6 +80,7 @@ var FinalExamSchedule = {
         }
 
         var template_data = {
+            show_title: show_title,
             term: term,
             tbd: tbd_or_nonexistent,
             list_data: list_data,
