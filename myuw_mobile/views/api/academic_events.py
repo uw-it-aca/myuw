@@ -4,6 +4,7 @@ from django.http import HttpResponse
 import json
 import re
 
+
 class AcademicEvents(RESTDispatch):
     """
     Performs actions on /api/v1/academic_events
@@ -11,14 +12,13 @@ class AcademicEvents(RESTDispatch):
     def GET(self, request):
         events = []
 
-        calendars = [get_calendar_by_name('sea_acad-cal'),]
+        calendars = [get_calendar_by_name('sea_acad-cal'), ]
 
         for calendar in calendars:
             for event in calendar.walk('vevent'):
                 events.append(self.json_for_event(event))
 
         return HttpResponse(json.dumps(events))
-
 
     def json_for_event(self, event):
         year, quarter = self.parse_year_quarter(event)
@@ -57,5 +57,6 @@ class AcademicEvents(RESTDispatch):
                 return matches.group(1), None
 
         return None, None
+
     def format_datetime(self, dt):
         return str(dt.dt)
