@@ -6,8 +6,11 @@ import os
 
 
 def get_links_for_category(search_category_id):
-    campus = get_base_campus()
+    return _get_links_by_category_and_campus(search_category_id,
+                                             get_base_campus())
 
+
+def _get_links_by_category_and_campus(search_category_id, campus):
     links = []
     path = os.path.join(
         os.path.dirname( __file__ ),
