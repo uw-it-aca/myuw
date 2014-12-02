@@ -1,4 +1,4 @@
-var FinalExamCard = {
+var FinalExamSchedule = {
     FRIDAY: 5,
     SATURDAY: 6,
     SUNDAY: 0,
@@ -76,7 +76,7 @@ var FinalExamCard = {
 
         if (course_data.quarter != "summer") {
             // summer quarter doesn't have properly scheduled finals
-            visual_data = FinalExamCard._build_visual_schedule_data(scheduled_finals, course_data.term);
+            visual_data = FinalExamSchedule._build_visual_schedule_data(scheduled_finals, course_data.term);
         }
 
         var template_data = {
@@ -87,10 +87,10 @@ var FinalExamCard = {
             visual_data: visual_data,
         };
 
-        var source = $("#final_exam_schedule_card_content").html();
+        var source = $("#final_exam_schedule_content").html();
         var template = Handlebars.compile(source);
-        $("#final_exam_schedule_card").html(template(template_data));
-        FinalExamCard.add_events(term);
+        $("#final_exam_schedule_panel").html(template(template_data));
+        FinalExamSchedule.add_events(term);
     },
 
     add_events: function(term) {
