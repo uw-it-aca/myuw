@@ -34,6 +34,7 @@ var GradeCard = {
     _render: function () {
         var term = GradeCard.term;
         var course_data = WSData.normalized_course_data(term);
+        var has_section_to_display = false;
         course_data['display_grade_card'] = true;
         course_data['display_grades'] = true;
         course_data['display_note'] = true;
@@ -45,12 +46,23 @@ var GradeCard = {
         }
         var index;
         for (index = 0; index < course_data.sections.length; index += 1) {
+            if (course_data.sections[index].is_primary_section) {
+                course_data.sections[index]['display_grade'] = true;
+                has_section_to_display = true;
+            } else {
+                course_data.sections[index]['display_grade'] = false;
+            }
+
             if (course_data.sections[index].grade === 'X') {
                 course_data.sections[index]['no_grade'] = true;
             } else {
                 course_data.sections[index]['no_grade'] = false;
             }
         }
+        if (!has_section_to_display) {
+            course_data['display_grade_card'] = false;
+        }
+
         var source = $("#grade_card_content").html();
         var grades_template = Handlebars.compile(source);
         GradeCard.dom_target.html(grades_template(course_data));
