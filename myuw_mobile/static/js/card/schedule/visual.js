@@ -5,8 +5,7 @@ var VisualScheduleCard = {
 
     render_init: function(term, course_index) {
         if (window.card_display_dates.is_before_last_day_of_classes) {
-            WSData.fetch_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_upon_data, VisualScheduleCard.render_error)
-            WSData.fetch_current_course_data(VisualScheduleCard.render_upon_data, VisualScheduleCard.render_error);
+            WSData.fetch_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_upon_data, VisualScheduleCard.render_error);
         }
         else {
             $("#VisualScheduleCard").hide();
@@ -40,7 +39,7 @@ var VisualScheduleCard = {
             return;
         }
         VisualScheduleCard.render_schedule(course_data, term);
-        FinalExamCard.render(course_data, term);
+        FinalExamSchedule.render(course_data, term, true);
     },
         
     render_schedule: function(course_data, term) {
@@ -235,16 +234,16 @@ var VisualScheduleCard = {
         
         $("#toggle_finalexams").on("click", function(ev) {
             ev.preventDefault();
-            $("#final_exam_schedule_card").toggleClass("slide-show");
-            if ($("#final_exam_schedule_card").hasClass("slide-show")) {
+            $("#final_exam_schedule_panel").toggleClass("slide-show");
+            if ($("#final_exam_schedule_panel").hasClass("slide-show")) {
                 $("#toggle_finalexams").text("Hide Final Exam Schedule")
                 $("#toggle_finalexams").attr('title', 'Hide Final Exam Schedule');
-                $("#final_exam_schedule_card").attr('aria-hidden', 'false');
+                $("#final_exam_schedule_panel").attr('aria-hidden', 'false');
                 window.myuw_log.log_card("FinalExam", "expand");
             }
             else {
                 $("#toggle_finalexams").attr('title', 'Show Final Exam Schedule');
-                $("#final_exam_schedule_card").attr('aria-hidden', 'true');
+                $("#final_exam_schedule_panel").attr('aria-hidden', 'true');
                 window.myuw_log.log_card("FinalExam", "collapse");
                 
                 setTimeout(function() {
