@@ -13,3 +13,4 @@ from myuw_mobile.test.dao.category_links import TestCategoryLinks
 from myuw_mobile.test.dao.finance import TestFinance
 from myuw_mobile.test.dao.final_grade import TestFinalGrade
 from myuw_mobile.test.dao.textbook import TestTextbooks
+from myuw_mobile.test.dao.uwemail import TestUwEmail
