@@ -16,6 +16,7 @@ from myuw_mobile.views.api.weekly import Weekly
 from myuw_mobile.views.api.term import Term
 from myuw_mobile.views.logout import Logout
 from myuw_mobile.views.api.notices import Notices
+from myuw_mobile.views.api.academic_events import AcademicEvents
 from myuw_mobile.views.page import index
 from django.contrib.auth.decorators import login_required
 
@@ -57,5 +58,6 @@ urlpatterns = patterns(
     url(r'^api/v1/grades/(?P<year>[0-9]{4}),(?P<quarter>[a-z]+)$',
         login_required(Grades().run)
         ),
+    url(r'^api/v1/academic_events$', login_required(AcademicEvents().run)),
     url(r'.*', 'page.index'),
 )

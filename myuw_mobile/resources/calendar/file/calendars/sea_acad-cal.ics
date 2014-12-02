@@ -1,0 +1,3430 @@
+BEGIN:VCALENDAR
+PRODID:-//Trumba Corporation//Trumba Calendar Services 0.11.11919//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+X-WR-CALNAME:UW Seattle Academic Calendar
+X-WR-TIMEZONE:America/Los_Angeles
+METHOD:PUBLISH
+BEGIN:VEVENT
+SUMMARY:$20 Change of Registration Fee Period Autumn
+DTSTART;VALUE=DATE:20141001
+DTEND;VALUE=DATE:20141206
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2014\nQuarter: Autumn\n\nApplies to adds\, drops\, or 
+ changes to courses\, including changes to and from S/NS grade option. Ad
+ ditional tuition or tuition forfeiture may also be charged.
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866524
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Late Add Period Autumn
+DTSTART;VALUE=DATE:20141001
+DTEND;VALUE=DATE:20141206
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2014\nQuarter: Autumn\nLink: http://www.washington.edu
+ /students/reg/addpolicy.html\n\n$20 fee applies\, add code required for 
+ all courses
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866525
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$75 Late Registration Fee Period Autumn
+DTSTART;VALUE=DATE:20141008
+DTEND;VALUE=DATE:20141206
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2014\nQuarter: Autumn\nLink: http://www.washington.edu
+ /students/reg/latereg.html\n\nRegistrations after this period must be do
+ ne in person and a late registration fee may still be imposed
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866528
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Late Payment Fee Period Autumn
+DTSTART;VALUE=DATE:20141013
+DTEND;VALUE=DATE:20141206
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2014\nQuarter: Autumn
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866501
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Full Tuition Due if Withdrawing Autumn
+DTSTART;VALUE=DATE:20141024
+DTEND;VALUE=DATE:20141206
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2014\nQuarter: Autumn
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866505
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 2 Winter
+DTSTART;VALUE=DATE:20141124
+DTEND;VALUE=DATE:20150105
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20141007T122815Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://www.washington.edu
+ /students/reg/addpolicy.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866533
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Freshmen Admission Due Summer
+DTSTART;VALUE=DATE:20141201
+DTEND;VALUE=DATE:20141202
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://admit.washington.edu/Admission/Freshmen
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://admit.washington.e
+ du/Admission/Freshmen
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866436
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for International Freshmen Undergraduate Admission 
+ Due for Summer
+DTSTART;VALUE=DATE:20141201
+DTEND;VALUE=DATE:20141202
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://admit.washington.edu/Admission/International
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://admit.washington.e
+ du/Admission/International
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866438
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Ends Autumn Quarter
+DTSTART;VALUE=DATE:20141205
+DTEND;VALUE=DATE:20141206
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140121T144110Z
+DESCRIPTION:Year: 2014\nQuarter: Autumn
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108206447
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Autumn Quarter
+DTSTART;VALUE=DATE:20141205
+DTEND;VALUE=DATE:20141206
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20131118T113831Z
+DESCRIPTION:Year: 2014\nQuarter: Autumn
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108014814
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day to Withdraw/Drop All Classes for Autumn
+DTSTART;VALUE=DATE:20141205
+DTEND;VALUE=DATE:20141206
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2014\nQuarter: Autumn
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866534
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Variable Credit Grade Option Deadline Autumn
+DTSTART;VALUE=DATE:20141205
+DTEND;VALUE=DATE:20141206
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2014\nQuarter: Autumn\n\nMust be done in person at Reg
+ istration Office: 225 Schmitz Hall
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866535
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Final Examination Week - Autumn Quarter
+DTSTART;VALUE=DATE:20141208
+DTEND;VALUE=DATE:20141213
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140121T144110Z
+DESCRIPTION:Year: 2014\nQuarter: Autumn
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108206457
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:*Winter break
+DTSTART;VALUE=DATE:20141213
+DTEND;VALUE=DATE:20150105
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20131122T091819Z
+DESCRIPTION:Year: 2015\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108067796
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Grades Due from Faculty for Autumn
+DTSTART;VALUE=DATE:20141216
+DTEND;VALUE=DATE:20141217
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://depts.washington.edu/registra/learning/grading-resources/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140206T120549Z
+DESCRIPTION:Year: 2014\nQuarter: Autumn\nLink: http://depts.washington.e
+ du/registra/learning/grading-resources/\n\nOnline grade submission close
+ s at 5pm
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/109078470
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:First day grades are posted to transcript and GPAs are available
+  on MyUW\, Autumn
+DTSTART;VALUE=DATE:20141217
+DTEND;VALUE=DATE:20141218
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140206T120549Z
+DESCRIPTION:Year: 2014\nQuarter: Autumn
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/109078478
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Tuition Exempt Forms Due for Winter
+DTSTART;VALUE=DATE:20141222
+DTEND;VALUE=DATE:20141223
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/tuition_exempt.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://www.washington.edu
+ /students/reg/tuition_exempt.html
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866439
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Christmas (no classes)
+DTSTART;VALUE=DATE:20141225
+DTEND;VALUE=DATE:20141226
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20130806T100041Z
+DESCRIPTION:Year: 2014\nQuarter: Autumn\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271651
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:New Year's Day (no classes)
+DTSTART;VALUE=DATE:20150101
+DTEND;VALUE=DATE:20150102
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20130806T100058Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271652
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Tuition Statement available on MyUW Winter
+DTSTART;VALUE=DATE:20150102
+DTEND;VALUE=DATE:20150103
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://sdb.admin.washington.edu/students/uwnetid/tuition.asp
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: https://sdb.admin.washing
+ ton.edu/students/uwnetid/tuition.asp
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866485
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins - Winter Quarter
+DTSTART;VALUE=DATE:20150105
+DTEND;VALUE=DATE:20150106
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20131118T114154Z
+DESCRIPTION:Year: 2015\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108014902
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$25 Late Registration Fee Period Winter
+DTSTART;VALUE=DATE:20150105
+DTEND;VALUE=DATE:20150119
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://www.washington.edu
+ /students/reg/latereg.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866536
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 3 Winter
+DTSTART;VALUE=DATE:20150105
+DTEND;VALUE=DATE:20150112
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20141007T122829Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://www.washington.edu
+ /students/reg/addpolicy.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866537
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for Tuition Exempt (UW Faculty/Staff) Winter
+DTSTART;VALUE=DATE:20150107
+DTEND;VALUE=DATE:20150108
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/tuition_exempt.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://www.washington.edu
+ /students/reg/tuition_exempt.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866538
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for UW Access Program Winter
+DTSTART;VALUE=DATE:20150107
+DTEND;VALUE=DATE:20150108
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/access.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://www.washington.edu
+ /students/reg/access.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866539
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Winter Quarter Cancellation based on Autumn Quarter low scholars
+ hip
+DTSTART;VALUE=DATE:20150107
+DTEND;VALUE=DATE:20150108
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/gencat/front/Low_Scholarship.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140206T120549Z
+DESCRIPTION:Year: 2014\nQuarter: Autumn\nLink: http://www.washington.edu
+ /students/gencat/front/Low_Scholarship.html
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/109078474
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for Tuition Exempt (WA State Emp) Winter
+DTSTART;VALUE=DATE:20150108
+DTEND;VALUE=DATE:20150109
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/tuition_exempt.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://www.washington.edu
+ /students/reg/tuition_exempt.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866540
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$20 Change of Registration Fee Period Winter
+DTSTART;VALUE=DATE:20150112
+DTEND;VALUE=DATE:20150314
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\n\nApplies to adds\, drops\, or 
+ changes to courses\, including changes to and from S/NS grade option. Ad
+ ditional tuition or tuition forfeiture may also be charged.
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866541
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Late Add Period Winter
+DTSTART;VALUE=DATE:20150112
+DTEND;VALUE=DATE:20150314
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/audit.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://www.washington.edu
+ /students/reg/audit.html\n\n$20 fee applies\, add code required for all 
+ courses
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866542
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Unrestricted Drop Period Winter
+DTSTART;VALUE=DATE:20150112
+DTEND;VALUE=DATE:20150119
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/wdpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://www.washington.edu
+ /students/reg/wdpolicy.html\n\n$20 fee applies\, add code required for a
+ ll courses
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866543
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Half Tuition Due if Withdrawing Winter
+DTSTART;VALUE=DATE:20150112
+DTEND;VALUE=DATE:20150204
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Winter
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866493
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Credit by Examination Due for Winter
+DTSTART;VALUE=DATE:20150116
+DTEND;VALUE=DATE:20150117
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/credbyexam.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T152404Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://www.washington.edu
+ /students/reg/credbyexam.html\n\nSigned forms and payment of $25 for eac
+ h course to be challenged must be submitted by Friday of the second week
+  of the quarter to the Graduation and Academic Records Office
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866416
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Audit Grade Option Deadline Winter
+LOCATION:http://www.washington.edu/students/reg/addpolicy.html
+DTSTART;VALUE=DATE:20150116
+DTEND;VALUE=DATE:20150117
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\n\nLast day to change to or from
+  audit grade option\, $20 fee applies
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866544
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$75 Late Registration Fee Period Winter
+DTSTART;VALUE=DATE:20150119
+DTEND;VALUE=DATE:20150314
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://www.washington.edu
+ /students/reg/latereg.html\n\nRegistrations after this period must be do
+ ne in person and a late registration fee may still be imposed
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866545
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Late Course Drop Period Winter
+DTSTART;VALUE=DATE:20150119
+DTEND;VALUE=DATE:20150223
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/wdpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://www.washington.edu
+ /students/reg/wdpolicy.html\n\n$20 fee applies. Use of annual drop requi
+ red\, W grade and week number designated for dropped courses
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866546
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Martin Luther King Day (no classes)
+DTSTART;VALUE=DATE:20150119
+DTEND;VALUE=DATE:20150120
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20130806T100113Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271653
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Graduation for Baccalaureate Degrees Due for Wi
+ nter
+DTSTART;VALUE=DATE:20150123
+DTEND;VALUE=DATE:20150124
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/grad.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://www.washington.edu
+ /students/reg/grad.html\n\nUndergraduate students must complete an appli
+ cation for graduation with their departmental adviser by the third Frida
+ y of the quarter in which the student intends to graduate.
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866440
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Student Insurance Deadline Winter
+DTSTART;VALUE=DATE:20150123
+DTEND;VALUE=DATE:20150124
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://depts.washington.edu/ovpsl/insurance/index.shtml
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://depts.washington.e
+ du/ovpsl/insurance/index.shtml\n\nCancellation of coverage not allowed a
+ fter this date\, for Winter quarter 2014
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866489
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Tuition Payment  Deadline Winter
+DTSTART;VALUE=DATE:20150123
+DTEND;VALUE=DATE:20150124
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Winter
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866498
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day to Add a Course through MyUW Winter
+DTSTART;VALUE=DATE:20150125
+DTEND;VALUE=DATE:20150126
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140127T153221Z
+DESCRIPTION:Year: 2015\nQuarter: Winter
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866547
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Late Payment Fee Period Winter
+DTSTART;VALUE=DATE:20150126
+DTEND;VALUE=DATE:20150314
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Winter
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866502
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Evening Degree Program Admission Due for Spring
+DTSTART;VALUE=DATE:20150131
+DTEND;VALUE=DATE:20150201
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.outreach.washington.edu/edp/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.outreach.washi
+ ngton.edu/edp/
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866441
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Returning Student Admission Due for Spring
+DTSTART;VALUE=DATE:20150201
+DTEND;VALUE=DATE:20150202
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/returning.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/returning.html
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866442
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for WA State Residency Status Due for Winter
+DTSTART;VALUE=DATE:20150203
+DTEND;VALUE=DATE:20150204
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/residency/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://www.washington.edu
+ /students/reg/residency/
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866443
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Full Tuition Due if Withdrawing  Winter
+DTSTART;VALUE=DATE:20150204
+DTEND;VALUE=DATE:20150314
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Winter
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866506
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Graduation with Senior Priority Status Due for 
+ Spring
+DTSTART;VALUE=DATE:20150211
+DTEND;VALUE=DATE:20150212
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/regrest.html#gradSenior
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/regrest.html#gradSenior
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866444
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 1 Priority Spring
+DTSTART;VALUE=DATE:20150213
+DTEND;VALUE=DATE:20150302
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/priorsp15.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20141007T122910Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/priorsp15.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866548
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for International Transfer and Postbaccalaureate Un
+ dergraduate Admission Due for Summer
+DTSTART;VALUE=DATE:20150215
+DTEND;VALUE=DATE:20150216
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://admit.washington.edu/Admission/International
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://admit.washington.e
+ du/Admission/International
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866445
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Transfer and Postbaccalaureate Student Admissio
+ n Due for Summer
+DTSTART;VALUE=DATE:20150215
+DTEND;VALUE=DATE:20150216
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://admit.washington.edu/Admission/Transfer
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T170604Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://admit.washington.e
+ du/Admission/Transfer
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866418
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:President's Day (no classes)
+DTSTART;VALUE=DATE:20150216
+DTEND;VALUE=DATE:20150217
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20130806T100126Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271654
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:S/NS Grade Option Deadline Winter
+LOCATION:http://www.washington.edu/students/reg/regchang.html
+DTSTART;VALUE=DATE:20150222
+DTEND;VALUE=DATE:20150223
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\n\nLast day to change to or from
+  S/NS grade option\, $20 fee applies
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866549
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Grades Submission Period Starts for Winter Quarter
+DTSTART;VALUE=DATE:20150223
+DTEND;VALUE=DATE:20150224
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://depts.washington.edu/registra/learning/grading-resources/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140206T145403Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://depts.washington.e
+ du/registra/learning/grading-resources/
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/109080734
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 2 Spring
+DTSTART;VALUE=DATE:20150302
+DTEND;VALUE=DATE:20150330
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/addpolicy.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866550
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Ends Winter Quarter
+DTSTART;VALUE=DATE:20150313
+DTEND;VALUE=DATE:20150314
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140121T144110Z
+DESCRIPTION:Year: 2015\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108206497
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Winter Quarter
+DTSTART;VALUE=DATE:20150313
+DTEND;VALUE=DATE:20150314
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20131118T114239Z
+DESCRIPTION:Year: 2015\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108014916
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day to Withdraw/Drop All Classes for Winter
+DTSTART;VALUE=DATE:20150313
+DTEND;VALUE=DATE:20150314
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Winter
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866551
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Variable Credit Grade Option Deadline Winter
+DTSTART;VALUE=DATE:20150313
+DTEND;VALUE=DATE:20150314
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140127T142343Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\n\nMust be done in person at Reg
+ istration Office: 225 Schmitz Hall
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866552
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Tuition Exempt Forms Due for Spring
+DTSTART;VALUE=DATE:20150316
+DTEND;VALUE=DATE:20150317
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/tuition_exempt.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/tuition_exempt.html
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866446
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Finals -Winter Quarter
+DTSTART;VALUE=DATE:20150316
+DTEND;VALUE=DATE:20150321
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140121T144110Z
+DESCRIPTION:Year: 2015\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108206510
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:*Spring break
+DTSTART;VALUE=DATE:20150321
+DTEND;VALUE=DATE:20150330
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20131122T091718Z
+DESCRIPTION:Year: 2015\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108067803
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Grades Due from Faculty for Winter
+DTSTART;VALUE=DATE:20150324
+DTEND;VALUE=DATE:20150325
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://depts.washington.edu/registra/learning/grading-resources/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140206T120549Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://depts.washington.e
+ du/registra/learning/grading-resources/\n\nOnline grade submission close
+ s at 5pm
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/109078471
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:First day grades are posted to transcript and GPAs are available
+  on MyUW\, Winter
+DTSTART;VALUE=DATE:20150325
+DTEND;VALUE=DATE:20150326
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140206T120549Z
+DESCRIPTION:Year: 2015\nQuarter: Winter
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/109078479
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Tuition Statement available on MyUW Spring
+DTSTART;VALUE=DATE:20150327
+DTEND;VALUE=DATE:20150328
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://sdb.admin.washington.edu/students/uwnetid/tuition.asp
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: https://sdb.admin.washing
+ ton.edu/students/uwnetid/tuition.asp
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866486
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins- Spring Quarter
+DTSTART;VALUE=DATE:20150330
+DTEND;VALUE=DATE:20150331
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20131206T101038Z
+DESCRIPTION:Year: 2015\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108067488
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$25 Late Registration Fee Period Spring
+DTSTART;VALUE=DATE:20150330
+DTEND;VALUE=DATE:20150413
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/latereg.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866553
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 3 Spring
+DTSTART;VALUE=DATE:20150330
+DTEND;VALUE=DATE:20150406
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/addpolicy.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866554
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for Tuition Exempt (UW Faculty/Staff) Spring
+DTSTART;VALUE=DATE:20150401
+DTEND;VALUE=DATE:20150402
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/tuition_exempt.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/tuition_exempt.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866555
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for UW Access Program Spring
+DTSTART;VALUE=DATE:20150401
+DTEND;VALUE=DATE:20150402
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/access.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/access.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866556
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Spring Quarter Cancellation based for Winter Quarter low scholar
+ ship
+DTSTART;VALUE=DATE:20150401
+DTEND;VALUE=DATE:20150402
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/gencat/front/Low_Scholarship.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140206T120549Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\nLink: http://www.washington.edu
+ /students/gencat/front/Low_Scholarship.html
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/109078475
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for Tuition Exempt (WA State Emp) Spring
+DTSTART;VALUE=DATE:20150402
+DTEND;VALUE=DATE:20150403
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/tuition_exempt.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/tuition_exempt.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866557
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$20 Change of Registration Fee Period Spring
+DTSTART;VALUE=DATE:20150406
+DTEND;VALUE=DATE:20150606
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140127T134346Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\n\nApplies to adds\, drops\, or 
+ changes to courses\, including changes to and from S/NS grade option. Ad
+ ditional tuition or tuition forfeiture may also be charged.
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866558
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Late Add Period Spring
+DTSTART;VALUE=DATE:20150406
+DTEND;VALUE=DATE:20150606
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/addpolicy.html\n\n$20 fee applies\, add code required for 
+ all courses
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866559
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Unrestricted Drop Period Spring
+DTSTART;VALUE=DATE:20150406
+DTEND;VALUE=DATE:20150413
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/wdpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/wdpolicy.html\n\n$20 fee applies\, add code required for a
+ ll courses
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866560
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Half Tuition Due if Withdrawing Spring
+DTSTART;VALUE=DATE:20150406
+DTEND;VALUE=DATE:20150429
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Spring
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866494
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Graduation with Senior Priority Status Due for 
+ Summer
+DTSTART;VALUE=DATE:20150408
+DTEND;VALUE=DATE:20150409
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/regrest.html#gradSenior
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/regrest.html#gradSenior
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866447
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Credit by Examination Due for Spring
+DTSTART;VALUE=DATE:20150410
+DTEND;VALUE=DATE:20150411
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/credbyexam.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/credbyexam.html\n\nSigned forms and payment of $25 for eac
+ h course to be challenged must be submitted by Friday of the second week
+  of the quarter to the Graduation and Academic Records Office
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866448
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Audit Grade Option Deadline Spring
+LOCATION:http://www.washington.edu/students/reg/addpolicy.html
+DTSTART;VALUE=DATE:20150410
+DTEND;VALUE=DATE:20150411
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\n\nLast day to change to or from
+  audit grade option\, $20 fee applies
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866561
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$75 Late Registration Fee Period Spring
+DTSTART;VALUE=DATE:20150413
+DTEND;VALUE=DATE:20150606
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/latereg.html\n\nRegistrations after this period must be do
+ ne in person and a late registration fee may still be imposed
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866562
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Late Course Drop Period Spring
+DTSTART;VALUE=DATE:20150413
+DTEND;VALUE=DATE:20150518
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/wdpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/wdpolicy.html\n\n$20 fee applies. Use of annual drop requi
+ red\, W grade and week number designated for dropped courses
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866563
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 1 Priority  Summer\, all terms
+DTSTART;VALUE=DATE:20150413
+DTEND;VALUE=DATE:20150521
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/priorsu14.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/priorsu14.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866564
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Graduation for Baccalaureate Degrees Due for Sp
+ ring
+DTSTART;VALUE=DATE:20150417
+DTEND;VALUE=DATE:20150418
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/grad.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/grad.html\n\nUndergraduate students must complete an appli
+ cation for graduation with their departmental adviser by the third Frida
+ y of the quarter in which the student intends to graduate.
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866449
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Student Insurance Deadline Spring
+DTSTART;VALUE=DATE:20150417
+DTEND;VALUE=DATE:20150418
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://depts.washington.edu/ovpsl/insurance/index.shtml
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://depts.washington.e
+ du/ovpsl/insurance/index.shtml\n\nCancellation of coverage not allowed a
+ fter this date\, for Spring quarter 2014
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866490
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Tuition Payment Deadline Spring
+DTSTART;VALUE=DATE:20150417
+DTEND;VALUE=DATE:20150418
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Spring
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866499
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day to Add a Course through MyUW Spring
+DTSTART;VALUE=DATE:20150419
+DTEND;VALUE=DATE:20150420
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/regchang.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140127T153229Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/regchang.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866565
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Late Payment Fee Period Spring
+DTSTART;VALUE=DATE:20150420
+DTEND;VALUE=DATE:20150606
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Spring
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866503
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for WA State Residency Status Due for Spring
+DTSTART;VALUE=DATE:20150428
+DTEND;VALUE=DATE:20150429
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/residency/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/reg/residency/
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866450
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Full Tuition Due if Withdrawing  Spring
+DTSTART;VALUE=DATE:20150429
+DTEND;VALUE=DATE:20150606
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Spring
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866507
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Evening Degree Program Admission Due for Summer
+DTSTART;VALUE=DATE:20150515
+DTEND;VALUE=DATE:20150516
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.outreach.washington.edu/edp/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.outreach.washi
+ ngton.edu/edp/
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866451
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:S/NS Grade Option Deadline Spring
+LOCATION:http://www.washington.edu/students/reg/regchang.html
+DTSTART;VALUE=DATE:20150517
+DTEND;VALUE=DATE:20150518
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\n\nLast day to change to or from
+  S/NS grade option\, $20 fee applies
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866566
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 2 Summer\, all terms
+DTSTART;VALUE=DATE:20150521
+DTEND;VALUE=DATE:20150622
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/addpolicy.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866567
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Grades Submission Period Starts for Spring Quarter
+DTSTART;VALUE=DATE:20150525
+DTEND;VALUE=DATE:20150526
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://depts.washington.edu/registra/learning/grading-resources/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140206T145403Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://depts.washington.e
+ du/registra/learning/grading-resources/
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/109080735
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Memorial Day (no classes)
+DTSTART;VALUE=DATE:20150525
+DTEND;VALUE=DATE:20150526
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20130806T100140Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271655
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Returning Student Admission Due for Summer
+DTSTART;VALUE=DATE:20150601
+DTEND;VALUE=DATE:20150602
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/returning.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/returning.html
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866454
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Summer-Only Non-Matriculated Students Due
+DTSTART;VALUE=DATE:20150601
+DTEND;VALUE=DATE:20150602
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.summer.washington.edu/summer/enroll/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140127T162123Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.summer.washing
+ ton.edu/summer/enroll/\n\nAfter this date applications must be submitted
+  in person to the UW Registration Office\, 225 Schmitz Hall.
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866452
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Spring Quarter
+DTSTART;VALUE=DATE:20150605
+DTEND;VALUE=DATE:20150606
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20131122T085800Z
+DESCRIPTION:Year: 2015\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108067550
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day to Withdraw/Drop All Classes for Spring
+DTSTART;VALUE=DATE:20150605
+DTEND;VALUE=DATE:20150606
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Spring
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866568
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Variable Credit Grade Option Deadline Spring
+DTSTART;VALUE=DATE:20150605
+DTEND;VALUE=DATE:20150606
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\n\nMust be done in person at Reg
+ istration Office: 225 Schmitz Hall
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866569
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Finals -Spring Quarter
+DTSTART;VALUE=DATE:20150606
+DTEND;VALUE=DATE:20150613
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20131211T104940Z
+DESCRIPTION:Year: 2015\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108067601
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Tuition Exempt Forms Due for Summer
+DTSTART;VALUE=DATE:20150608
+DTEND;VALUE=DATE:20150609
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/tuition_exempt.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/tuition_exempt.html
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866455
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:*Summer break
+DTSTART;VALUE=DATE:20150613
+DTEND;VALUE=DATE:20150622
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140121T144002Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108330602
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Commencement for Seattle Campus
+DTSTART;VALUE=DATE:20150613
+DTEND;VALUE=DATE:20150614
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/graduation/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140121T144710Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /graduation/
+CATEGORIES:Commencement
+UID:http://uid.trumba.com/event/108207677
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Grades Due from Faculty for Spring
+DTSTART;VALUE=DATE:20150616
+DTEND;VALUE=DATE:20150617
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://depts.washington.edu/registra/learning/grading-resources/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140206T120549Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://depts.washington.e
+ du/registra/learning/grading-resources/\n\nOnline grade submission close
+ s at 5pm
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/109078472
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:First day grades are posted to transcript and GPAs are available
+  on MyUW\, Spring
+DTSTART;VALUE=DATE:20150617
+DTEND;VALUE=DATE:20150618
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140206T120549Z
+DESCRIPTION:Year: 2015\nQuarter: Spring
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/109078480
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Tuition Statement available on MyUW Summer\, all terms
+DTSTART;VALUE=DATE:20150619
+DTEND;VALUE=DATE:20150620
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://sdb.admin.washington.edu/students/uwnetid/tuition.asp
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: https://sdb.admin.washing
+ ton.edu/students/uwnetid/tuition.asp
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866487
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins Full term and A-term
+DTSTART;VALUE=DATE:20150622
+DTEND;VALUE=DATE:20150623
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20131122T092845Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108067979
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$25 Late Registration Fee Period Summer Full-term and A-term
+DTSTART;VALUE=DATE:20150622
+DTEND;VALUE=DATE:20150706
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/latereg.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866570
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 3 Summer B-term
+DTSTART;VALUE=DATE:20150622
+DTEND;VALUE=DATE:20150730
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/addpolicy.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866571
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 3 Summer Full-term and A-term
+DTSTART;VALUE=DATE:20150622
+DTEND;VALUE=DATE:20150629
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/addpolicy.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866572
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for Tuition Exempt (UW Faculty/Staff) Summer\, all 
+ terms
+DTSTART;VALUE=DATE:20150624
+DTEND;VALUE=DATE:20150625
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/tuition_exempt.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/tuition_exempt.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866573
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for UW Access Program Summer\, all terms
+DTSTART;VALUE=DATE:20150624
+DTEND;VALUE=DATE:20150625
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/access.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/access.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866574
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Summer Quarter Cancellation based on Spring Quarter low scholars
+ hip
+DTSTART;VALUE=DATE:20150624
+DTEND;VALUE=DATE:20150625
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/gencat/front/Low_Scholarship.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140206T120549Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /students/gencat/front/Low_Scholarship.html
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/109078476
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for Tuition Exempt (WA State Emp) Summer\, all term
+ s
+DTSTART;VALUE=DATE:20150625
+DTEND;VALUE=DATE:20150626
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/tuition_exempt.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/tuition_exempt.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866575
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Audit Grade Option Deadline Summer A-term
+LOCATION:http://www.washington.edu/students/reg/wdpolicy.html
+DTSTART;VALUE=DATE:20150626
+DTEND;VALUE=DATE:20150627
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140127T134826Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\n\nLast day to change to or from
+  audit grade option\, $20 fee applies
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866576
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$20 Change of Registration Fee Period Summer A-term
+DTSTART;VALUE=DATE:20150629
+DTEND;VALUE=DATE:20150723
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\n\nApplies to adds\, drops\, or 
+ changes to courses\, including changes to and from S/NS grade option. Ad
+ ditional tuition or tuition forfeiture may also be charged.
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866577
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$20 Change of Registration Fee Period Summer Full-term
+DTSTART;VALUE=DATE:20150629
+DTEND;VALUE=DATE:20150822
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\n\nApplies to adds\, drops\, or 
+ changes to courses\, including changes to and from S/NS grade option. Ad
+ ditional tuition or tuition forfeiture may also be charged.
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866578
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Late Add Period Summer Full-term and A-term
+DTSTART;VALUE=DATE:20150629
+DTEND;VALUE=DATE:20150822
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/addpolicy.html\n\n$20 fee applies\, add code required for 
+ all courses
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866579
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Late Course Drop Period Summer A-term
+DTSTART;VALUE=DATE:20150629
+DTEND;VALUE=DATE:20150713
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/wdpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/wdpolicy.html\n\n$20 fee applies. Use of annual drop requi
+ red\, W grade and week number designated for dropped courses
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866580
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Unrestricted Drop Period  Summer Full-term
+DTSTART;VALUE=DATE:20150629
+DTEND;VALUE=DATE:20150706
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/wddpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/wddpolicy.html\n\n$20 fee applies\, add code required for 
+ all courses
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866581
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Half Tuition Due if Withdrawing Summer Full and A-term
+DTSTART;VALUE=DATE:20150629
+DTEND;VALUE=DATE:20150713
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866495
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Credit by Examination Due for Summer
+DTSTART;VALUE=DATE:20150702
+DTEND;VALUE=DATE:20150703
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/credbyexam.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/credbyexam.html\n\nSigned forms and payment of $25 for eac
+ h course to be challenged must be submitted by Friday of the second week
+  of the quarter to the Graduation and Academic Records Office
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866457
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Audit Grade Option Deadline Summer Full-term
+LOCATION:http://www.washington.edu/students/reg/wdpolicy.html
+DTSTART;VALUE=DATE:20150702
+DTEND;VALUE=DATE:20150703
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140127T142543Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\n\nLast day to change to or from
+  audit grade option\, $20 fee applies
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866582
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Independence Day OBSERVED (no classes)
+DTSTART;VALUE=DATE:20150703
+DTEND;VALUE=DATE:20150704
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20131104T110927Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271656
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$75 Late Registration Fee Period Summer A-term
+DTSTART;VALUE=DATE:20150706
+DTEND;VALUE=DATE:20150723
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/latereg.html\n\nRegistrations after this period must be do
+ ne in person and a late registration fee may still be imposed
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866583
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$75 Late Registration Fee Period Summer Full-term
+DTSTART;VALUE=DATE:20150706
+DTEND;VALUE=DATE:20150822
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/latereg.html\n\nRegistrations after this period must be do
+ ne in person and a late registration fee may still be imposed
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866584
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Late Course Drop Period Summer Full-term
+DTSTART;VALUE=DATE:20150706
+DTEND;VALUE=DATE:20150810
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/wdpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/wdpolicy.html\n\n$20 fee applies. Use of annual drop requi
+ red\, W grade and week number designated for dropped courses
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866585
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for Graduation for Baccalaureate Degrees Due for Su
+ mmer
+DTSTART;VALUE=DATE:20150710
+DTEND;VALUE=DATE:20150711
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/grad.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/grad.html\n\nUndergraduate students must complete an appli
+ cation for graduation with their departmental adviser by the third Frida
+ y of the quarter in which the student intends to graduate.  Students gra
+ duating in Summer Quarter who plan to attend the Commencement cere
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866458
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Student Insurance Deadline Summer\, all terms
+DTSTART;VALUE=DATE:20150710
+DTEND;VALUE=DATE:20150711
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://depts.washington.edu/ovpsl/insurance/index.shtml
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://depts.washington.e
+ du/ovpsl/insurance/index.shtml\n\nCancellation of coverage not allowed a
+ fter this date\, for Summer quarter (Full\, A and B terms) 2014
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866491
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Tuition Payment Deadline Summer\, all terms
+DTSTART;VALUE=DATE:20150710
+DTEND;VALUE=DATE:20150711
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866500
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day to Add a Course through MyUW Summer Full-term and A-ter
+ m
+DTSTART;VALUE=DATE:20150712
+DTEND;VALUE=DATE:20150713
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/regchang.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140813T160416Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/regchang.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/110882207
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:S/NS Grade Option Deadline Summer A-term
+DTSTART;VALUE=DATE:20150712
+DTEND;VALUE=DATE:20150713
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140127T142556Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\n\nLast day to change to or from
+  S/NS grade option\, $20 fee applies
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866586
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Full Tuition Due if Withdrawing  Summer A-term
+DTSTART;VALUE=DATE:20150713
+DTEND;VALUE=DATE:20150723
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866509
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Full Tuition Due if Withdrawing  Summer Full-term
+DTSTART;VALUE=DATE:20150713
+DTEND;VALUE=DATE:20150822
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866508
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Late Payment Fee Period Summer\, all terms
+DTSTART;VALUE=DATE:20150713
+DTEND;VALUE=DATE:20150815
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866504
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day to Withdraw/Drop All Classes for Summer A-term
+DTSTART;VALUE=DATE:20150715
+DTEND;VALUE=DATE:20150716
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140127T142636Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866588
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Variable Credit Grade Option Deadline Summer A-term
+DTSTART;VALUE=DATE:20150715
+DTEND;VALUE=DATE:20150716
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140127T142608Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\n\nMust be done in person at Reg
+ istration Office: 225 Schmitz Hall
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866587
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Grades Sumission Period Starts for Summer A Term
+DTSTART;VALUE=DATE:20150716
+DTEND;VALUE=DATE:20150717
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://depts.washington.edu/registra/learning/grading-resources/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140206T145524Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://depts.washington.e
+ du/registra/learning/grading-resources/
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/109080736
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Applications for WA State Residency Status Due for Summer
+DTSTART;VALUE=DATE:20150721
+DTEND;VALUE=DATE:20150722
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/residency/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130401Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/residency/
+CATEGORIES:Application Deadlines
+UID:http://uid.trumba.com/event/108866459
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Finals- Summer Quarter A-term
+DTSTART;VALUE=DATE:20150722
+DTEND;VALUE=DATE:20150723
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20131122T094047Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108068299
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Summer Quarter A-term
+DTSTART;VALUE=DATE:20150722
+DTEND;VALUE=DATE:20150723
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20131122T093316Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108068034
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins B-term
+DTSTART;VALUE=DATE:20150723
+DTEND;VALUE=DATE:20150724
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20131122T092928Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108067990
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$25 Late Registration Fee Period Summer B-term
+DTSTART;VALUE=DATE:20150723
+DTEND;VALUE=DATE:20150724
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/latereg.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866589
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Audit Grade Option Deadline Summer B-term
+LOCATION:http://www.washington.edu/students/reg/wdpolicy.html
+DTSTART;VALUE=DATE:20150729
+DTEND;VALUE=DATE:20150730
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140127T142726Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\n\nLast day to change to or from
+  audit grade option\, $20 fee applies
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866591
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day to Add a Course through MyUW Summer B-term
+DTSTART;VALUE=DATE:20150729
+DTEND;VALUE=DATE:20150730
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/regchang.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140127T153237Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/regchang.html
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866592
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$20 Change of Registration Fee Period Summer B-term
+DTSTART;VALUE=DATE:20150730
+DTEND;VALUE=DATE:20150822
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140127T142712Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\n\nApplies to adds\, drops\, or 
+ changes to courses\, including changes to and from S/NS grade option. Ad
+ ditional tuition or tuition forfeiture may also be charged.
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866590
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$75 Late Registration Fee Period Summer B-term
+DTSTART;VALUE=DATE:20150730
+DTEND;VALUE=DATE:20150822
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/reg/latereg.html\n\nRegistrations after this period must be do
+ ne in person and a late registration fee may still be imposed
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866593
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Late Course Drop Period Summer B-term
+DTSTART;VALUE=DATE:20150730
+DTEND;VALUE=DATE:20150813
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130924Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\n\n$20 fee applies. Use of annua
+ l drop required\, W grade and week number designated for dropped courses
+ 
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866594
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Half Tuition Due if Withdrawing Summer B-term
+DTSTART;VALUE=DATE:20150730
+DTEND;VALUE=DATE:20150813
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866496
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:S/NS Grade Option Deadline Summer Full-term
+DTSTART;VALUE=DATE:20150809
+DTEND;VALUE=DATE:20150810
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140127T142817Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\n\nLast day to change to or from
+  S/NS grade option\, $20 fee applies
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866595
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:S/NS Grade Option Deadline Summer B-term
+DTSTART;VALUE=DATE:20150812
+DTEND;VALUE=DATE:20150813
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140127T142828Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\n\nLast day to change to or from
+  S/NS grade option\, $20 fee applies
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866596
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Full Tuition Due if Withdrawing  Summer B-term
+DTSTART;VALUE=DATE:20150813
+DTEND;VALUE=DATE:20150822
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140123T130838Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Tuition and Fee Deadlines
+UID:http://uid.trumba.com/event/108866510
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day to Withdraw/Drop All Classes for Summer Full-term and B
+ -term
+DTSTART;VALUE=DATE:20150814
+DTEND;VALUE=DATE:20150815
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140127T142940Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866599
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Variable Credit Grade Option Deadline Summer B-term
+DTSTART;VALUE=DATE:20150814
+DTEND;VALUE=DATE:20150815
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140127T142840Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\n\nMust be done in person at Reg
+ istration Office: 225 Schmitz Hall
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866597
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Variable Credit Grade Option Deadline Summer Full-term
+DTSTART;VALUE=DATE:20150814
+DTEND;VALUE=DATE:20150815
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140127T142849Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\n\nMust be done in person at Reg
+ istration Office: 225 Schmitz Hall
+CATEGORIES:Registration Deadlines
+UID:http://uid.trumba.com/event/108866598
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Grades Submission Period Starts for Summer B and Full Term
+DTSTART;VALUE=DATE:20150814
+DTEND;VALUE=DATE:20150815
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://depts.washington.edu/registra/learning/grading-resources/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140206T145536Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://depts.washington.e
+ du/registra/learning/grading-resources/
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/109080737
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Finals- Summer Quarter Full and B-term
+DTSTART;VALUE=DATE:20150821
+DTEND;VALUE=DATE:20150822
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20131122T094108Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108068290
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Summer Quarter B-term
+DTSTART;VALUE=DATE:20150821
+DTEND;VALUE=DATE:20150822
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20131122T093427Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108068194
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Summer Quarter Full term
+DTSTART;VALUE=DATE:20150821
+DTEND;VALUE=DATE:20150822
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+DTSTAMP:20131122T093205Z
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108068008
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:*Autumn break
+DTSTART;VALUE=DATE:20150822
+DTEND;VALUE=DATE:20150930
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20131211T105118Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108068529
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Grades Due from Faculty for Summer all terms
+DTSTART;VALUE=DATE:20150825
+DTEND;VALUE=DATE:20150826
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://depts.washington.edu/registra/learning/grading-resources/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140206T120549Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://depts.washington.e
+ du/registra/learning/grading-resources/\n\nOnline grade submission close
+ s at 5pm
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/109078473
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:First day grades are posted to transcript and GPAs are available
+  on MyUW\, Summer all Terms
+DTSTART;VALUE=DATE:20150826
+DTEND;VALUE=DATE:20150827
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140206T120549Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/109078481
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Labor Day (no classes)
+DTSTART;VALUE=DATE:20150907
+DTEND;VALUE=DATE:20150908
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+DTSTAMP:20130806T100212Z
+DESCRIPTION:Year: 2015\n\nUniversity holiday\, no classes
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271657
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins- Autumn Quarter
+DTSTART;VALUE=DATE:20150930
+DTEND;VALUE=DATE:20151001
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140121T143734Z
+DESCRIPTION:Year: 2014\nQuarter: Autumn
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108206443
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Autumn Quarter Cancellation based on Summer Quarter low scholars
+ hip
+DTSTART;VALUE=DATE:20151002
+DTEND;VALUE=DATE:20151003
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/gencat/front/Low_Scholarship.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140206T120549Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\nLink: http://www.washington.edu
+ /students/gencat/front/Low_Scholarship.html
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/109078477
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Veteran's Day (no classes)
+DTSTART;VALUE=DATE:20151111
+DTEND;VALUE=DATE:20151112
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20130806T100229Z
+DESCRIPTION:Year: 2015\nQuarter: Autumn\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271658
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Thanksgiving (no classes)
+DTSTART;VALUE=DATE:20151126
+DTEND;VALUE=DATE:20151128
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20130806T100242Z
+DESCRIPTION:Year: 2015\nQuarter: Autumn\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271659
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Autumn Quarter
+DTSTART;VALUE=DATE:20151211
+DTEND;VALUE=DATE:20151212
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140121T143734Z
+DESCRIPTION:Year: 2015\nQuarter: Autumn
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208537
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Finals - Autumn Quarter
+DTSTART;VALUE=DATE:20151212
+DTEND;VALUE=DATE:20151219
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140121T143734Z
+DESCRIPTION:Year: 2015\nQuarter: Autumn
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208555
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Christmas (no classes)
+DTSTART;VALUE=DATE:20151225
+DTEND;VALUE=DATE:20151226
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20130806T100256Z
+DESCRIPTION:Year: 2015\nQuarter: Autumn\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271660
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:New Year's Day (no classes)
+DTSTART;VALUE=DATE:20160101
+DTEND;VALUE=DATE:20160102
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20130806T100309Z
+DESCRIPTION:Year: 2016\nQuarter: Winter\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271661
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins - Winter Quarter
+DTSTART;VALUE=DATE:20160104
+DTEND;VALUE=DATE:20160105
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140121T143734Z
+DESCRIPTION:Year: 2016\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208560
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Martin Luther King Day (no classes)
+DTSTART;VALUE=DATE:20160118
+DTEND;VALUE=DATE:20160119
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20130806T100323Z
+DESCRIPTION:Year: 2016\nQuarter: Winter\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271662
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:President's Day (no classes)
+DTSTART;VALUE=DATE:20160215
+DTEND;VALUE=DATE:20160216
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20130806T100340Z
+DESCRIPTION:Year: 2016\nQuarter: Winter\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271663
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Winter Quarter
+DTSTART;VALUE=DATE:20160311
+DTEND;VALUE=DATE:20160312
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140121T143734Z
+DESCRIPTION:Year: 2016\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208565
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Finals -Winter Quarter
+DTSTART;VALUE=DATE:20160312
+DTEND;VALUE=DATE:20160319
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140121T143734Z
+DESCRIPTION:Year: 2016\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208579
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins- Spring Quarter
+DTSTART;VALUE=DATE:20160328
+DTEND;VALUE=DATE:20160329
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140121T143734Z
+DESCRIPTION:Year: 2016\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208589
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Memorial Day (no classes)
+DTSTART;VALUE=DATE:20160530
+DTEND;VALUE=DATE:20160531
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20130806T100354Z
+DESCRIPTION:Year: 2016\nQuarter: Spring\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271664
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Spring Quarter
+DTSTART;VALUE=DATE:20160603
+DTEND;VALUE=DATE:20160604
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140121T143734Z
+DESCRIPTION:Year: 2016\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208602
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Finals -Spring Quarter
+DTSTART;VALUE=DATE:20160604
+DTEND;VALUE=DATE:20160611
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140121T143734Z
+DESCRIPTION:Year: 2016\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208621
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Commencement- Tacoma
+DTSTART;VALUE=DATE:20160610
+DTEND;VALUE=DATE:20160611
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140121T143734Z
+DESCRIPTION:Year: 2016\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208628
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Commencement for Seattle Campus
+DTSTART;VALUE=DATE:20160610
+DTEND;VALUE=DATE:20160611
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/graduation/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140121T145414Z
+DESCRIPTION:Year: 2016\nQuarter: Spring\nLink: http://www.washington.edu
+ /graduation/
+CATEGORIES:Commencement
+UID:http://uid.trumba.com/event/108848406
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Commencement- Seattle
+DTSTART;VALUE=DATE:20160611
+DTEND;VALUE=DATE:20160612
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140121T143734Z
+DESCRIPTION:Year: 2016\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208632
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Commencement- Bothell
+DTSTART;VALUE=DATE:20160612
+DTEND;VALUE=DATE:20160613
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140121T143734Z
+DESCRIPTION:Year: 2016\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208638
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins Full term and A-term
+DTSTART;VALUE=DATE:20160620
+DTEND;VALUE=DATE:20160621
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140121T143924Z
+DESCRIPTION:Year: 2016\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208645
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Independence Day (no classes)
+DTSTART;VALUE=DATE:20160704
+DTEND;VALUE=DATE:20160705
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20130806T100408Z
+DESCRIPTION:Year: 2016\nQuarter: Summer\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271665
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins B-term
+DTSTART;VALUE=DATE:20160716
+DTEND;VALUE=DATE:20160717
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2016\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208665
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Summer Quarter A-term
+DTSTART;VALUE=DATE:20160720
+DTEND;VALUE=DATE:20160721
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2016\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208650
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Summer Quarter Full and B-term
+DTSTART;VALUE=DATE:20160819
+DTEND;VALUE=DATE:20160820
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2016\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208656
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Labor Day (no classes)
+DTSTART;VALUE=DATE:20160905
+DTEND;VALUE=DATE:20160906
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+DTSTAMP:20130806T100422Z
+DESCRIPTION:Year: 2016\n\nUniversity holiday\, no classes
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271666
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins- Autumn Quarter
+DTSTART;VALUE=DATE:20160928
+DTEND;VALUE=DATE:20160929
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2016\nQuarter: Autumn
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108217932
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Veteran's Day (no classes)
+DTSTART;VALUE=DATE:20161111
+DTEND;VALUE=DATE:20161112
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20130806T100434Z
+DESCRIPTION:Year: 2016\nQuarter: Autumn\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271667
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Thanksgiving (no classes)
+DTSTART;VALUE=DATE:20161124
+DTEND;VALUE=DATE:20161126
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20130806T100448Z
+DESCRIPTION:Year: 2016\nQuarter: Autumn\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271668
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Autumn Quarter
+DTSTART;VALUE=DATE:20161209
+DTEND;VALUE=DATE:20161210
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2016\nQuarter: Autumn
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208684
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Finals - Autumn Quarter
+DTSTART;VALUE=DATE:20161210
+DTEND;VALUE=DATE:20161217
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2016\nQuarter: Autumn
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208699
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Christmas OBSERVED (no classes)
+DTSTART;VALUE=DATE:20161226
+DTEND;VALUE=DATE:20161227
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2016
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20131104T111044Z
+DESCRIPTION:Year: 2016\nQuarter: Autumn\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271669
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:New Year's Day OBSERVED (no classes)
+DTSTART;VALUE=DATE:20170102
+DTEND;VALUE=DATE:20170103
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20131104T111105Z
+DESCRIPTION:Year: 2017\nQuarter: Winter\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271670
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins - Winter Quarter
+DTSTART;VALUE=DATE:20170103
+DTEND;VALUE=DATE:20170104
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2017\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108208708
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Martin Luther King Day (no classes)
+DTSTART;VALUE=DATE:20170116
+DTEND;VALUE=DATE:20170117
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20130806T100529Z
+DESCRIPTION:Year: 2017\nQuarter: Winter\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271671
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:President's Day (no classes)
+DTSTART;VALUE=DATE:20170220
+DTEND;VALUE=DATE:20170221
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20130806T100541Z
+DESCRIPTION:Year: 2017\nQuarter: Winter\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271672
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Winter Quarter
+DTSTART;VALUE=DATE:20170310
+DTEND;VALUE=DATE:20170311
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2017\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108217954
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Finals -Winter Quarter
+DTSTART;VALUE=DATE:20170311
+DTEND;VALUE=DATE:20170318
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2017\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218019
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins- Spring Quarter
+DTSTART;VALUE=DATE:20170327
+DTEND;VALUE=DATE:20170328
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2017\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218031
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Memorial Day (no classes)
+DTSTART;VALUE=DATE:20170529
+DTEND;VALUE=DATE:20170530
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20130806T100556Z
+DESCRIPTION:Year: 2017\nQuarter: Spring\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271673
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Spring Quarter
+DTSTART;VALUE=DATE:20170602
+DTEND;VALUE=DATE:20170603
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2017\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218036
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Finals -Spring Quarter
+DTSTART;VALUE=DATE:20170603
+DTEND;VALUE=DATE:20170610
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2017\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218045
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Commencement for Seattle Campus
+DTSTART;VALUE=DATE:20170610
+DTEND;VALUE=DATE:20170611
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/graduation/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140121T144728Z
+DESCRIPTION:Year: 2017\nQuarter: Spring\nLink: http://www.washington.edu
+ /graduation/
+CATEGORIES:Commencement
+UID:http://uid.trumba.com/event/108218057
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins Full term and A-term
+DTSTART;VALUE=DATE:20170619
+DTEND;VALUE=DATE:20170620
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2017\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218065
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Independence Day (no classes)
+DTSTART;VALUE=DATE:20170704
+DTEND;VALUE=DATE:20170705
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20130806T100611Z
+DESCRIPTION:Year: 2017\nQuarter: Summer\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271674
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Summer Quarter A-term
+DTSTART;VALUE=DATE:20170719
+DTEND;VALUE=DATE:20170720
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2017\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218075
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins B-term
+DTSTART;VALUE=DATE:20170720
+DTEND;VALUE=DATE:20170721
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2017\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218068
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Summer Quarter Full term
+DTSTART;VALUE=DATE:20170818
+DTEND;VALUE=DATE:20170819
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2017\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218072
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Summer Quarter B-term
+DTSTART;VALUE=DATE:20170819
+DTEND;VALUE=DATE:20170820
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2017\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218080
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins- Autumn Quarter
+DTSTART;VALUE=DATE:20170927
+DTEND;VALUE=DATE:20170928
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2017\nQuarter: Autumn
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218097
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Autumn Quarter
+DTSTART;VALUE=DATE:20171208
+DTEND;VALUE=DATE:20171209
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2017\nQuarter: Autumn
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218100
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Finals - Autumn Quarter
+DTSTART;VALUE=DATE:20171209
+DTEND;VALUE=DATE:20171216
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2017\nQuarter: Autumn
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218119
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins - Winter Quarter
+DTSTART;VALUE=DATE:20180103
+DTEND;VALUE=DATE:20180104
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2018
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2018\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218126
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Winter Quarter
+DTSTART;VALUE=DATE:20180309
+DTEND;VALUE=DATE:20180310
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2018
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2018\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218131
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Finals -Winter Quarter
+DTSTART;VALUE=DATE:20180310
+DTEND;VALUE=DATE:20180317
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2018
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2018\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218136
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins- Spring quarter
+DTSTART;VALUE=DATE:20180326
+DTEND;VALUE=DATE:20180327
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2018
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2018\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218153
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Spring Quarter
+DTSTART;VALUE=DATE:20180601
+DTEND;VALUE=DATE:20180602
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2018
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2018\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218157
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Finals -Spring Quarter
+DTSTART;VALUE=DATE:20180602
+DTEND;VALUE=DATE:20180609
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2018
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2018\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218169
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Commencement for Seattle Campus
+DTSTART;VALUE=DATE:20180609
+DTEND;VALUE=DATE:20180610
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/graduation/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2018
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20140121T144745Z
+DESCRIPTION:Year: 2018\nQuarter: Spring\nLink: http://www.washington.edu
+ /graduation/
+CATEGORIES:Commencement
+UID:http://uid.trumba.com/event/108218177
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins Full term and A-term
+DTSTART;VALUE=DATE:20180618
+DTEND;VALUE=DATE:20180619
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2018
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2018\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218188
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Summer Quarter A-term
+DTSTART;VALUE=DATE:20180718
+DTEND;VALUE=DATE:20180719
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2018
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2018\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218193
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Summer Quarter Full and B-term
+DTSTART;VALUE=DATE:20180817
+DTEND;VALUE=DATE:20180818
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2018
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20140121T143841Z
+DESCRIPTION:Year: 2018\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108218190
+END:VEVENT
+END:VCALENDAR
