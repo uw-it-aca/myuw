@@ -22,6 +22,10 @@ def get_grades_by_term(term):
     for the current user in the given term/quarter
     """
     regid = get_regid_of_current_user()
+    return _get_grades_by_regid_and_term(regid, term)
+
+
+def _get_grades_by_regid_and_term(regid, term):
     if regid is None or term is None:
         return None
     logid = ('get_grades_by_regid_and_term ' +
