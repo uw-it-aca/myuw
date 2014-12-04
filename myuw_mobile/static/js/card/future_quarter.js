@@ -4,10 +4,6 @@ var FutureQuarterCard = {
 
     render_init: function() {
         WSData.fetch_oquarter_data(FutureQuarterCard.render_upon_data, FutureQuarterCard.render_error);
-        else {
-            $("#FutureQuarterCard1").hide();
-            $("#FutureQuarterCardA").hide();
-        }
     },
 
     render_upon_data: function() {
