@@ -24,7 +24,7 @@ def get_all_affiliations():
     ["seattle"]: True if the user is an UW Seattle student
                  in the current quarter.
     ["bothell"]: True if the user is an UW Bothell student
-                 in the current quarter.             
+                 in the current quarter.
     ["tacoma"]: True if the user is an UW Tacoma student
                 in the current quarter.
     ["official_seattle"]: True if the user is an UW Seattle student
@@ -44,7 +44,7 @@ def get_all_affiliations():
             "bothell": enrolled_campuses["bothell"] or is_bothell_student(),
             "tacoma": enrolled_campuses["tacoma"] or is_tacoma_student(),
             }
-    #add 'official' campus info
+    # add 'official' campus info
     official_campuses = _get_official_campuses(get_main_campus())
     data = dict(data.items() + official_campuses.items())
     # Note:
@@ -59,9 +59,9 @@ def _get_campuses_by_schedule(schedule):
     """
     Returns a dictionary indicating the campuses that the student
     has enrolled in the given schedule:
-     { seattle: false|true, 
+     { seattle: false|true,
        bothell: false|true,
-       tacoma: false|true } 
+       tacoma: false|true }
     True if the user is registered on that campus.
     """
     campuses = {"seattle": False,
@@ -71,11 +71,11 @@ def _get_campuses_by_schedule(schedule):
     if schedule is not None and len(schedule.sections) > 0:
         for section in schedule.sections:
             if section.course_campus == "Seattle":
-                campuses["seattle"]=True
+                campuses["seattle"] = True
             elif section.course_campus == "Bothell":
-                campuses["bothell"]=True
+                campuses["bothell"] = True
             elif section.course_campus == "Tacoma":
-                campuses["tacoma"]=True
+                campuses["tacoma"] = True
             else:
                 pass
     return campuses

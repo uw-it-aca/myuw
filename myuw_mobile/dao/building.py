@@ -1,17 +1,17 @@
 """
-This module gives access to building data 
+This module gives access to building data
 """
-
 import json
 import os
 from myuw_mobile.models import Building
 
+
 def get_building_by_code(code):
     """
-    Returns a Building model for the given code, or None 
+    Returns a Building model for the given code, or None
     """
     path = os.path.join(
-        os.path.dirname( __file__ ),
+        os.path.dirname(__file__),
         '..', 'data', 'buildings.json')
 
     f = open(path)
@@ -39,17 +39,15 @@ def get_buildings_by_schedule(schedule):
     for section in schedule.sections:
         if section.final_exam and section.final_exam.building:
             code = section.final_exam.building
-            if not code in buildings:
+            if code not in buildings:
                 building = get_building_by_code(code)
                 buildings[code] = building
 
         for meeting in section.meetings:
             if not meeting.building_to_be_arranged:
-                if not meeting.building in buildings:
+                if meeting.building not in buildings:
                     code = meeting.building
                     building = get_building_by_code(code)
                     buildings[code] = building
 
     return buildings
-
-

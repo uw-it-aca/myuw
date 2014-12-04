@@ -2,12 +2,13 @@
 Generates the 7 booleans used to determine card visibility, based on dates in
 either the current, next, or previous term.
 
-https://docs.google.com/a/uw.edu/document/d/14q26auOLPU34KFtkUmC_bkoo5dAwegRzgpwmZEQMhaU/edit
+https://docs.google.com/document/d/14q26auOLPU34KFtkUmC_bkoo5dAwegRzgpwmZEQMhaU
 """
 
 from restclients.sws import term
 from django.conf import settings
 from datetime import datetime, timedelta
+
 
 def get_card_visibilty_date_values():
     current_term = term.get_current_term()
@@ -61,14 +62,18 @@ def get_card_visibilty_date_values():
     if now < d + timedelta(days=1):
         is_before_last_day_of_classes = True
 
+    after_submission = is_after_grade_submission_deadline
+    after_registration = is_after_start_of_registration_display_period
+    before_first = is_before_first_day_of_current_term
+    before_reg_end = is_before_end_of_registration_display_period
     return {
-        "is_after_grade_submission_deadline": is_after_grade_submission_deadline,
+        "is_after_grade_submission_deadline": after_submission,
         "is_after_last_day_of_classes": is_after_last_day_of_classes,
-        "is_after_start_of_registration_display_period": is_after_start_of_registration_display_period,
-        "is_before_first_day_of_current_term": is_before_first_day_of_current_term,
+        "is_after_start_of_registration_display_period": after_registration,
+        "is_before_first_day_of_current_term": before_first,
         "is_before_end_of_finals_week": is_before_end_of_finals_week,
         "is_before_last_day_of_classes": is_before_last_day_of_classes,
-        "is_before_end_of_registration_display_period": is_before_end_of_registration_display_period,
+        "is_before_end_of_registration_display_period": before_reg_end,
     }
 
 
@@ -84,4 +89,3 @@ def get_comparison_date():
         return datetime.strptime(override_date, "%Y-%m-%d")
 
     return datetime.now()
-
