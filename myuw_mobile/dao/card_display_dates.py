@@ -27,7 +27,6 @@ def get_values_by_date(now):
     last_term = term.get_term_before(current_term)
     next_term = term.get_term_after(current_term)
 
-
     is_after_grade_submission_deadline = False
     is_after_last_day_of_classes = False
     is_after_start_of_registration_display_period = False
@@ -82,11 +81,11 @@ def get_values_by_date(now):
         "is_before_end_of_registration_display_period": before_reg_end,
     }
 
+
 def set_js_overrides(request, values):
     after_reg = 'is_after_start_of_registration_display_period'
     before_reg = 'is_before_end_of_registration_display_period'
-    MAP = {
-           'myuw_after_submission': 'is_after_grade_submission_deadline',
+    MAP = {'myuw_after_submission': 'is_after_grade_submission_deadline',
            'myuw_after_last_day': 'is_after_last_day_of_classes',
            'myuw_after_reg': after_reg,
            'myuw_before_start': 'is_before_first_day_of_current_term',
@@ -98,6 +97,7 @@ def set_js_overrides(request, values):
     for key, value in MAP.iteritems():
         if key in request.session:
             values[value] = request.session[key]
+
 
 def get_comparison_date(request):
     """

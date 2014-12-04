@@ -13,8 +13,9 @@ from myuw_mobile.dao.card_display_dates import get_comparison_date
 from myuw_mobile.dao.card_display_dates import get_card_visibilty_date_values
 
 DATE_KEYS = ['myuw_after_submission', 'myuw_after_last_day', 'myuw_after_reg',
-                    'myuw_before_start', 'myuw_before_finals_end',
-                    'myuw_before_last_day', 'myuw_before_end_of_reg_display']
+             'myuw_before_start', 'myuw_before_finals_end',
+             'myuw_before_last_day', 'myuw_before_end_of_reg_display']
+
 
 @login_required
 def override(request):
@@ -38,7 +39,7 @@ def override(request):
     g = Group()
     group_name = settings.USERSERVICE_ADMIN_GROUP
     is_admin = g.is_member_of_group(actual_user, group_name)
-    if is_admin == False:
+    if is_admin is False:
         return render_to_response('no_access.html', {})
 
     context = {}
@@ -46,7 +47,8 @@ def override(request):
         _handle_post(request, context)
 
     try:
-        template.loader.get_template("userservice/user_override_extra_info.html")
+        extra_template = "userservice/user_override_extra_info.html"
+        template.loader.get_template(extra_template)
         context['has_extra_template'] = True
         context['extra_template'] = 'userservice/user_override_extra_info.html'
     except template.TemplateDoesNotExist:
@@ -65,7 +67,7 @@ def override(request):
 
     add_session_context(request, context)
     return render_to_response("display_dates/override.html", context,
-                                  context_instance=RequestContext(request))
+                              context_instance=RequestContext(request))
 
 
 def _handle_post(request, context):
@@ -100,7 +102,7 @@ def add_session_context(request, context):
 
     for val in DATE_KEYS:
         if val in request.session:
-            if request.session[val] == True:
+            if request.session[val] is True:
                 context["%s_true" % val] = True
             else:
                 context["%s_false" % val] = True
