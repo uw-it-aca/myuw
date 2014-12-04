@@ -3,9 +3,7 @@ var FutureQuarterCard = {
     dom_target: undefined,
 
     render_init: function() {
-        if (window.card_display_dates.is_before_first_day_of_current_term) {
-            WSData.fetch_oquarter_data(FutureQuarterCard.render_upon_data, FutureQuarterCard.render_error);
-        }
+        WSData.fetch_oquarter_data(FutureQuarterCard.render_upon_data, FutureQuarterCard.render_error);
         else {
             $("#FutureQuarterCard1").hide();
             $("#FutureQuarterCardA").hide();
