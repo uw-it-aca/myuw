@@ -14,19 +14,21 @@
         <div class="card-badge-container clearfix">		
             <ul class="unstyled-list">
                 {{ #each sections }}
-                <li class="clearfix">
-                    <div class="card-badge">		
-		        <div class="pull-left">
-		            <!--i class="fa fa-check-square c{{color_id}}Color"></i -->
-			    <div class="c{{color_id}} simplesquare" aria-hidden="true"></div>
-			    <span class="card-badge-inline-label">{{curriculum_abbr }} {{course_number}} {{section_id}}</span>
-		        </div>
-		        <div class="pull-right">
-                            {{ #if no_grade }}<span class="card-badge-nograde-value">No grade yet</span> {{ /if }}
-			    <span class="card-badge-value pull-right">{{grade}}</span>
-			</div>
-                    </div>
-                </li>
+                    {{ #if display_grade }}
+                    <li class="clearfix">
+                        <div class="card-badge">		
+		            <div class="pull-left">
+		                <!--i class="fa fa-check-square c{{color_id}}Color"></i -->
+			        <div class="c{{color_id}} simplesquare" aria-hidden="true"></div>
+			        <span class="card-badge-inline-label">{{curriculum_abbr }} {{course_number}}</span>
+		            </div>
+		            <div class="pull-right">
+                                {{ #if no_grade }}<span class="card-badge-nograde-value">No grade yet</span> {{ /if }}
+			        <span class="card-badge-value pull-right">{{grade}}</span>
+			    </div>
+                        </div>
+                    </li>
+                    {{ /if }}
                 {{ /each }}
             </ul>
 
