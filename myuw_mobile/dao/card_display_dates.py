@@ -10,7 +10,14 @@ from django.conf import settings
 from datetime import datetime, timedelta
 
 
-def get_card_visibilty_date_values():
+def get_card_visibilty_date_values(request=None):
+    now = get_comparison_date(request)
+    values = get_values_by_date(now)
+    set_js_overrides(request, values)
+    return values
+
+
+def get_values_by_date(now):
     current_term = term.get_current_term()
 
     # Doing this instead of get_next/get_previous,
@@ -20,6 +27,7 @@ def get_card_visibilty_date_values():
     last_term = term.get_term_before(current_term)
     next_term = term.get_term_after(current_term)
 
+
     is_after_grade_submission_deadline = False
     is_after_last_day_of_classes = False
     is_after_start_of_registration_display_period = False
@@ -27,8 +35,6 @@ def get_card_visibilty_date_values():
     is_before_end_of_finals_week = False
     is_before_last_day_of_classes = False
     is_before_end_of_registration_display_period = False
-
-    now = get_comparison_date()
 
     if now > last_term.grade_submission_deadline:
         is_after_start_of_registration_display_period = True
@@ -76,14 +82,40 @@ def get_card_visibilty_date_values():
         "is_before_end_of_registration_display_period": before_reg_end,
     }
 
+def set_js_overrides(request, values):
+    after_reg = 'is_after_start_of_registration_display_period'
+    before_reg = 'is_before_end_of_registration_display_period'
+    MAP = {
+           'myuw_after_submission': 'is_after_grade_submission_deadline',
+           'myuw_after_last_day': 'is_after_last_day_of_classes',
+           'myuw_after_reg': after_reg,
+           'myuw_before_start': 'is_before_first_day_of_current_term',
+           'myuw_before_finals_end': 'is_before_end_of_finals_week',
+           'myuw_before_last_day': 'is_before_last_day_of_classes',
+           'myuw_before_end_of_reg_display': before_reg,
+           }
 
-def get_comparison_date():
+    for key, value in MAP.iteritems():
+        if key in request.session:
+            values[value] = request.session[key]
+
+def get_comparison_date(request):
     """
     Allows us to pretend we're at various points in the term,
     so we can test against live data sources at various points in the year.
     """
+    FORMAT = "%Y-%m-%d"
 
     override_date = getattr(settings, "MYUW_CARD_DISPLAY_DATE_OVERRIDE", None)
+
+    if request:
+        if "myuw_override_date" in request.session:
+            try:
+                val = request.session["myuw_override_date"]
+                test_date = datetime.strptime(val, FORMAT)
+                override_date = val
+            except Exception as ex:
+                pass
 
     if override_date:
         return datetime.strptime(override_date, "%Y-%m-%d")

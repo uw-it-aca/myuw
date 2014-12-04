@@ -35,7 +35,7 @@ def index(request,
             "netid": None,
             "affiliations": get_all_affiliations()
         },
-        "card_display_dates": get_card_visibilty_date_values(),
+        "card_display_dates": get_card_visibilty_date_values(request),
     }
 
     netid = UserService().get_user()
