@@ -43,15 +43,15 @@ def get_current_summer_term_in_schedule(schedule):
     return summer_term
 
 
-def get_registered_future_quarters():
+def get_registered_future_quarters(request):
     """
     Return the list of future quarters that
     has actively enrolled sections
     """
-    next_quar_sche = get_next_quarter_schedule()
+    next_quar_sche = get_next_quarter_schedule(request)
     next_autumn_sche = None
     if next_quar_sche and next_quar_sche.term.quarter == 'summer':
-        next_autumn_sche = get_next_autumn_quarter_schedule()
+        next_autumn_sche = get_next_autumn_quarter_schedule(request)
     return _get_registered_future_quarters(next_quar_sche,
                                            next_autumn_sche)
 

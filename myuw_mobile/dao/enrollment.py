@@ -13,13 +13,14 @@ from myuw_mobile.dao.term import get_current_quarter
 logger = logging.getLogger(__name__)
 
 
-def get_current_quarter_enrollment():
+def get_current_quarter_enrollment(request):
     regid = get_regid_of_current_user()
 
     timer = Timer()
     id = "%s %s" % ('get enrollment by regid', regid)
     try:
-        return get_enrollment_by_regid_and_term(regid, get_current_quarter())
+        return get_enrollment_by_regid_and_term(regid,
+                                                get_current_quarter(request))
     except Exception:
         log_exception(logger,
                       id,
@@ -31,8 +32,8 @@ def get_current_quarter_enrollment():
     return None
 
 
-def get_main_campus():
-    enrollment = get_current_quarter_enrollment()
+def get_main_campus(request):
+    enrollment = get_current_quarter_enrollment(request)
     if enrollment is None:
         return None
     campuses = []

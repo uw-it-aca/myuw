@@ -24,6 +24,7 @@ urlpatterns = patterns(
     'myuw_mobile.views',
     url(r'login', 'mobile_login.user_login'),
     url(r'test', 'test.index'),
+    url(r'admin/dates', 'display_dates.override'),
     url(r'^logger/(?P<interaction_type>\w+)$', 'logger.log_interaction'),
     url(r'logout', login_required(Logout.as_view())),
     url(r'^api/v1/book/(current|(?P<year>\d{4}),(?P<quarter>[a-z]+)'

@@ -1,13 +1,13 @@
 from django.db.models import Q
 from myuw_mobile.models import CategoryLinks
-from myuw_mobile.dao.affiliation import get_all_affiliations, get_base_campus
+from myuw_mobile.dao.affiliation import get_base_campus
 import csv
 import os
 
 
-def get_links_for_category(search_category_id):
+def get_links_for_category(search_category_id, request):
     return _get_links_by_category_and_campus(search_category_id,
-                                             get_base_campus())
+                                             get_base_campus(request))
 
 
 def _get_links_by_category_and_campus(search_category_id, campus):

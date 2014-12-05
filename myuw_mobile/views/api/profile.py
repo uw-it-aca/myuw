@@ -32,9 +32,9 @@ class MyProfile(RESTDispatch):
         log_success_response(logger, timer)
 
         response = profile.json_data()
-        response['campus'] = get_base_campus()
+        response['campus'] = get_base_campus(request)
 
-        enrollment = get_current_quarter_enrollment()
+        enrollment = get_current_quarter_enrollment(request)
         if enrollment is not None:
             response['is_grad_student'] = is_grad_student()
             response['class_level'] = enrollment.class_level
