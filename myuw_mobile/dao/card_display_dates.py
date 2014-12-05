@@ -43,7 +43,7 @@ def get_values_by_date(now, request):
     # XXX - this will be a bug when summer quarter comes around
     # because there will need to be a summer term + a next non-summer term
     # version of this.  We're holding off on the summer term card though...
-    if now - timedelta(days=7) > next_term.registration_services_start:
+    if now >= next_term.registration_services_start - timedelta(days=7):
         is_after_start_of_registration_display_period = True
 
     if now < next_term.registration_period2_start + timedelta(days=7):
