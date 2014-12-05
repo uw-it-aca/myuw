@@ -31,11 +31,6 @@ Is after the start of the registration display period: <br />
 <label><input type="radio" name="myuw_after_reg" value="no" {% if myuw_after_reg_false %}checked="checked"{% endif %} > No </label>
 <label><input type="radio" name="myuw_after_reg" value="" {% if myuw_after_reg_unset %}checked="checked"{% endif %} > Unset</label>
 <br/>
-Is before the first day of the current term: <br />
-<label><input type="radio" name="myuw_before_start" value="yes" {% if myuw_before_start_true %}checked="checked"{% endif %} > Yes </label>
-<label><input type="radio" name="myuw_before_start" value="no" {% if myuw_before_start_false %}checked="checked"{% endif %} > No </label>
-<label><input type="radio" name="myuw_before_start" value="" {% if myuw_before_start_unset %}checked="checked"{% endif %} > Unset</label>
-<br/>
 Is before the end of finals week: <br />
 <label><input type="radio" name="myuw_before_finals_end" value="yes" {% if myuw_before_finals_end_true %}checked="checked"{% endif %} > Yes </label>
 <label><input type="radio" name="myuw_before_finals_end" value="no" {% if myuw_before_finals_end_false %}checked="checked"{% endif %} > No </label>
@@ -87,7 +82,6 @@ it so you don't always need to override the current date to see data.
         <tr><td>is_after_grade_submission_deadline</td><td>{{ values_used.is_after_grade_submission_deadline}}</td><td>{{ values_now.is_after_grade_submission_deadline}}</td></tr>
         <tr><td>is_after_last_day_of_classes</td><td>{{ values_used.is_after_last_day_of_classes}}</td><td>{{ values_now.is_after_last_day_of_classes}}</td></tr>
         <tr><td>is_after_start_of_registration_display_period</td><td>{{ values_used.is_after_start_of_registration_display_period}}</td><td>{{ values_now.is_after_start_of_registration_display_period}}</td></tr>
-        <tr><td>is_before_first_day_of_current_term</td><td>{{ values_used.is_before_first_day_of_current_term}}</td><td>{{ values_now.is_before_first_day_of_current_term}}</td></tr>
         <tr><td>is_before_end_of_finals_week</td><td>{{ values_used.is_before_end_of_finals_week}}</td><td>{{ values_now.is_before_end_of_finals_week}}</td></tr>
         <tr><td>is_before_last_day_of_classes</td><td>{{ values_used.is_before_last_day_of_classes}}</td><td>{{ values_now.is_before_last_day_of_classes}}</td></tr>
         <tr><td>is_before_end_of_registration_display_period</td><td>{{ values_used.is_before_end_of_registration_display_period}}</td><td>{{ values_now.is_before_end_of_registration_display_period}}</td></tr>

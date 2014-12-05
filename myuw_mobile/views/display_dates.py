@@ -137,6 +137,7 @@ def add_session_context(request, context):
             context["%s_unset" % val] = True
 
     now_request = RequestFactory().get("/")
+    now_request.session = {}
     context["values_used"] = get_card_visibilty_date_values(request)
 
     now = datetime.now()
