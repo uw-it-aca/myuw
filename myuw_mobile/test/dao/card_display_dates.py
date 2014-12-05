@@ -171,3 +171,39 @@ class TestDisplayValues(TestCase):
             # This is a poorly named value - it's really last day + 1
             self.assertTrue(values["is_before_last_day_of_classes"])
             self.assertFalse(values["is_before_end_of_registration_display_period"])
+
+    def test_day_of_grade_submission_deadline(self):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
+            # We need to test in winter, because spring's grade submission
+            # deadline is replaced to test grade submission
+            now_request.session["myuw_override_date"] = "2013-03-26"
+
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_after_grade_submission_deadline"])
+            self.assertTrue(values["is_after_last_day_of_classes"])
+            self.assertTrue(values["is_after_start_of_registration_display_period"])
+            self.assertFalse(values["is_before_end_of_finals_week"])
+            # This is a poorly named value - it's really last day + 1
+            self.assertFalse(values["is_before_last_day_of_classes"])
+            self.assertFalse(values["is_before_end_of_registration_display_period"])
+
+
+    def test_day_after_grade_submission_deadline(self):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
+            # We need to test in winter, because spring's grade submission
+            # deadline is replaced to test grade submission
+            now_request.session["myuw_override_date"] = "2013-03-27"
+
+            values = get_card_visibilty_date_values(now_request)
+            self.assertTrue(values["is_after_grade_submission_deadline"])
+            self.assertTrue(values["is_after_last_day_of_classes"])
+            self.assertTrue(values["is_after_start_of_registration_display_period"])
+            self.assertFalse(values["is_before_end_of_finals_week"])
+            # This is a poorly named value - it's really last day + 1
+            self.assertFalse(values["is_before_last_day_of_classes"])
+            self.assertFalse(values["is_before_end_of_registration_display_period"])
+

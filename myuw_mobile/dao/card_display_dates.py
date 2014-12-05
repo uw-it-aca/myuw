@@ -33,7 +33,7 @@ def get_values_by_date(now, request):
     is_before_end_of_registration_display_period = False
 
     if now > current_term.grade_submission_deadline:
-        is_after_start_of_registration_display_period = True
+        is_after_grade_submission_deadline = True
 
     raw_date = current_term.last_day_instruction
     d = datetime(raw_date.year, raw_date.month, raw_date.day)
