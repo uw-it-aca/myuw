@@ -50,31 +50,31 @@ def get_schedule_by_term(term):
     return _get_schedule(get_regid_of_current_user(), term)
 
 
-def get_current_quarter_schedule():
+def get_current_quarter_schedule(request):
     """
     Return the actively enrolled sections in the current quarter
     """
-    return get_schedule_by_term(get_current_quarter())
+    return get_schedule_by_term(get_current_quarter(request))
 
 
-def get_next_quarter_schedule():
+def get_next_quarter_schedule(request):
     """
     Return the actively enrolled sections in the next quarter
     """
     # MUWM-1981
-    if get_next_quarter() == get_current_quarter():
+    if get_next_quarter(request) == get_current_quarter(request):
         return None
-    return get_schedule_by_term(get_next_quarter())
+    return get_schedule_by_term(get_next_quarter(request))
 
 
-def get_next_autumn_quarter_schedule():
+def get_next_autumn_quarter_schedule(request):
     """
     Return the actively enrolled sections in the next autumn quarter
     """
     # MUWM-1981
-    if get_next_autumn_quarter() == get_current_quarter():
+    if get_next_autumn_quarter() == get_current_quarter(request):
         return None
-    return get_schedule_by_term(get_next_autumn_quarter())
+    return get_schedule_by_term(get_next_autumn_quarter(request))
 
 
 def filter_schedule_sections_by_summer_term(schedule, summer_term):

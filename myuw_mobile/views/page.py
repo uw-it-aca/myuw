@@ -33,7 +33,7 @@ def index(request,
         "err": None,
         "user": {
             "netid": None,
-            "affiliations": get_all_affiliations()
+            "affiliations": get_all_affiliations(request)
         },
         "card_display_dates": get_card_visibilty_date_values(request),
     }
@@ -43,7 +43,7 @@ def index(request,
         log_invalid_netid_response(logger, timer)
         return invalid_session()
     context["user"]["session_key"] = request.session.session_key
-    log_session(netid, request.session.session_key)
+    log_session(netid, request.session.session_key, request)
     my_uwemail_forwarding = get_email_forwarding_for_current_user()
     if my_uwemail_forwarding is not None and my_uwemail_forwarding.is_active():
         c_user = context["user"]
@@ -52,7 +52,7 @@ def index(request,
 
     context["user"]["netid"] = netid
     if year is None or quarter is None:
-        cur_term = get_current_quarter()
+        cur_term = get_current_quarter(request)
         if cur_term is None:
             context["err"] = "No current quarter data!"
             log_data_not_found_response(logger, timer)
@@ -61,7 +61,7 @@ def index(request,
             context["quarter"] = cur_term.quarter
     else:
         pass
-    log_success_response_with_affiliation(logger, timer)
+    log_success_response_with_affiliation(logger, timer, request)
     return render_to_response("index.html",
                               context,
                               context_instance=RequestContext(request))

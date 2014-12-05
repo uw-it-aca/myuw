@@ -7,18 +7,19 @@ import json
 logger = logging.getLogger('session')
 
 
-def log_session(netid, session_key):
+def log_session(netid, session_key, request):
     log_entry = {'netid': netid,
                  'session_key': session_key,
                  'class_level': None,
                  'is_grad': None,
                  'campus': None}
     try:
-        log_entry['class_level'] = get_current_quarter_enrollment().class_level
+        level = get_current_quarter_enrollment(request).class_level
+        log_entry['class_level'] = level
     except AttributeError:
         pass
     log_entry['is_grad'] = is_grad_student()
     log_entry['is_ugrad'] = is_undergrad_student()
-    log_entry['campus'] = get_base_campus()
+    log_entry['campus'] = get_base_campus(request)
 
     logger.info(json.dumps(log_entry))

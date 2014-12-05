@@ -109,6 +109,5 @@ def add_session_context(request, context):
         else:
             context["%s_unset" % val] = True
 
-    print "C: ", context
     context["values_used"] = get_card_visibilty_date_values(request)
     context["values_now"] = get_values_by_date(datetime.now())

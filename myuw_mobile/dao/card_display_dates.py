@@ -8,11 +8,13 @@ https://docs.google.com/document/d/14q26auOLPU34KFtkUmC_bkoo5dAwegRzgpwmZEQMhaU
 from restclients.sws import term
 from django.conf import settings
 from datetime import datetime, timedelta
+from myuw_mobile.dao.term import get_comparison_date
 
 
 def get_card_visibilty_date_values(request=None):
     now = get_comparison_date(request)
-    values = get_values_by_date(now)
+    n2 = datetime(now.year, now.month, now.day, 0, 0, 0)
+    values = get_values_by_date(n2)
     set_js_overrides(request, values)
     return values
 
@@ -97,27 +99,3 @@ def set_js_overrides(request, values):
     for key, value in MAP.iteritems():
         if key in request.session:
             values[value] = request.session[key]
-
-
-def get_comparison_date(request):
-    """
-    Allows us to pretend we're at various points in the term,
-    so we can test against live data sources at various points in the year.
-    """
-    FORMAT = "%Y-%m-%d"
-
-    override_date = getattr(settings, "MYUW_CARD_DISPLAY_DATE_OVERRIDE", None)
-
-    if request:
-        if "myuw_override_date" in request.session:
-            try:
-                val = request.session["myuw_override_date"]
-                test_date = datetime.strptime(val, FORMAT)
-                override_date = val
-            except Exception as ex:
-                pass
-
-    if override_date:
-        return datetime.strptime(override_date, "%Y-%m-%d")
-
-    return datetime.now()

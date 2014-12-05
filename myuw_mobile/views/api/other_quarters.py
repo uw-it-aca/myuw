@@ -20,7 +20,7 @@ class RegisteredFutureQuarters(RESTDispatch):
         of the current user
         """
 
-        future_quarters = get_registered_future_quarters()
+        future_quarters = get_registered_future_quarters(request)
         timer = Timer()
         logger = logging.getLogger(__name__)
         resp_data = {

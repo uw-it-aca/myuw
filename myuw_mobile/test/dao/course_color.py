@@ -2,8 +2,7 @@ from django.test import TestCase
 from django.conf import settings
 
 from myuw_mobile.dao.course_color import get_colors_by_regid_and_schedule
-from myuw_mobile.dao.term import get_current_quarter
-from myuw_mobile.dao.schedule import _get_schedule, get_current_quarter_schedule
+from myuw_mobile.dao.schedule import _get_schedule
 from restclients.models import ClassSchedule, Term, Section, Person
 
 class TestCourseColors(TestCase):
