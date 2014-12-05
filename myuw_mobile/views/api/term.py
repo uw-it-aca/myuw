@@ -14,4 +14,5 @@ class Term(RESTDispatch):
         """
         GET returns 200 with the current quarter term data
         """
-        return HttpResponse(json.dumps(get_current_quarter(request).json_data()))
+        data = json.dumps(get_current_quarter(request).json_data())
+        return HttpResponse(data)

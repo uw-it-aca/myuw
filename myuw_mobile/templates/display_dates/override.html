@@ -1,16 +1,17 @@
 {% extends wrapper_template %}
 {% block content %}
 
+<h2>Override card display values</h2>
+<h3>Set the date</h3>
 <form action="{% url 'myuw_mobile.views.display_dates.override' %}" method="POST">
 {% csrf_token %}
 
-<p>Date format: YYYY-MM-DD<p>
-Override date: <input type="text" name="date" value="{{ myuw_override_date }}" />
+Override date: <input type="text" name="date" value="{{ myuw_override_date }}" placeholder="YYYY-MM-DD"/>
 {% if date_error %}
 <p>Error with date: {{ date_error }}</p>
 {% endif %}
 
-
+<h3>Set individual values - overrides the date above</h3>
 <p>
 These checkboxes will test the javascript code, but they don't mean server-side date logic is correct:
 </p>
@@ -57,8 +58,24 @@ Is before the end of the registration display period: <br />
 
 </form>
 
-<p>Debugging Info:</p>
+<h2>Debugging Info:</h2>
 
+{% if is_using_mock_data %}
+<div style="border: 1px solid red;">
+Using mock data.  "Now" is artificially set to {{ actual_now_date }} to make
+it so you don't always need to override the current date to see data.
+</div>
+{% endif %}
+
+<h3>Dates and terms</h3>
+<p>Actual:</p>
+{{ actual_now_date }} - {{ actual_now_term_quarter }} {{ actual_now_term_year }}
+
+<p>Effective:</p>
+{{ effective_now_date }} - {{ effective_now_term_quarter }} {{ effective_now_term_year }}
+
+
+<h3>Values used - for now, and based on your overrides above</h3>
 
 <table style="border-spacing: 10px 0px; border-collapse: separate;">
     <thead>

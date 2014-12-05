@@ -9,8 +9,11 @@ import logging
 from django import template
 from django.contrib.auth.decorators import login_required
 from myuw_mobile.dao.card_display_dates import get_values_by_date
-from myuw_mobile.dao.card_display_dates import get_comparison_date
 from myuw_mobile.dao.card_display_dates import get_card_visibilty_date_values
+from myuw_mobile.dao.term import get_comparison_date, is_using_file_dao
+from myuw_mobile.dao.term import get_default_date
+from django.test.client import RequestFactory
+from restclients.sws.term import get_term_by_date
 
 DATE_KEYS = ['myuw_after_submission', 'myuw_after_last_day', 'myuw_after_reg',
              'myuw_before_start', 'myuw_before_finals_end',
@@ -66,6 +69,7 @@ def override(request):
         pass
 
     add_session_context(request, context)
+    add_date_term_info(request, context)
     return render_to_response("display_dates/override.html", context,
                               context_instance=RequestContext(request))
 
@@ -96,6 +100,29 @@ def _handle_post(request, context):
                 del request.session[val]
 
 
+def add_date_term_info(request, context):
+    actual_now = get_default_date()
+    used_now = get_comparison_date(request)
+
+    context["actual_now_date"] = str(actual_now)
+    context["effective_now_date"] = str(used_now)
+    context["is_using_mock_data"] = is_using_file_dao()
+
+    try:
+        actual_term = get_term_by_date(actual_now)
+        context["actual_now_term_year"] = actual_term.year
+        context["actual_now_term_quarter"] = actual_term.quarter
+    except Exception as ex:
+        pass
+
+    try:
+        used_term = get_term_by_date(used_now)
+        context["effective_now_term_year"] = used_term.year
+        context["effective_now_term_quarter"] = used_term.quarter
+    except Exception as ex:
+        pass
+
+
 def add_session_context(request, context):
     if "myuw_override_date" in request.session:
         context["myuw_override_date"] = request.session["myuw_override_date"]
@@ -109,5 +136,12 @@ def add_session_context(request, context):
         else:
             context["%s_unset" % val] = True
 
+    now_request = RequestFactory().get("/")
     context["values_used"] = get_card_visibilty_date_values(request)
-    context["values_now"] = get_values_by_date(datetime.now())
+
+    now = datetime.now()
+    default = get_default_date()
+
+    used_date = datetime(default.year, default.month, default.day, now.hour,
+                         now.minute, now.second)
+    context["values_now"] = get_values_by_date(used_date, now_request)

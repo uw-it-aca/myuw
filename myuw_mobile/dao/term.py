@@ -3,13 +3,14 @@ This module encapsulates the access of the term data
 (including registered summer terms, registered future terms).
 """
 
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 import logging
 import traceback
 from django.conf import settings
 import restclients.sws.term as sws_term
+from restclients.dao import SWS_DAO
 from restclients.sws.term import get_term_by_date, get_term_after
-from restclients.sws.term import get_term_before
+from restclients.sws.term import get_term_before, get_current_term
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logback import log_resp_time, log_exception
 
@@ -36,7 +37,27 @@ def get_comparison_date(request):
     if override_date:
         return datetime.strptime(override_date, "%Y-%m-%d").date()
 
+    return get_default_date()
+
+
+def get_default_date():
+    """
+    A hook to help with mock data testing - put the default date
+    right in the middle of the "current" term.
+    """
+    if is_using_file_dao():
+        term = get_current_term()
+        first_day = term.first_day_quarter
+
+        return first_day + timedelta(days=14)
     return datetime.now().date()
+
+
+def is_using_file_dao():
+    dao = SWS_DAO()._getDAO()
+    class_name = dao.__class__.__name__
+    return class_name == "File"
+
 
 def get_current_quarter(request):
     """

@@ -8,26 +8,21 @@ https://docs.google.com/document/d/14q26auOLPU34KFtkUmC_bkoo5dAwegRzgpwmZEQMhaU
 from restclients.sws import term
 from django.conf import settings
 from datetime import datetime, timedelta
-from myuw_mobile.dao.term import get_comparison_date
+from myuw_mobile.dao.term import get_comparison_date, get_current_quarter
+from myuw_mobile.dao.term import get_next_quarter
 
 
 def get_card_visibilty_date_values(request=None):
     now = get_comparison_date(request)
     n2 = datetime(now.year, now.month, now.day, 0, 0, 0)
-    values = get_values_by_date(n2)
+    values = get_values_by_date(n2, request)
     set_js_overrides(request, values)
     return values
 
 
-def get_values_by_date(now):
-    current_term = term.get_current_term()
-
-    # Doing this instead of get_next/get_previous,
-    # because of this in get_current_term:
-    # if datetime.now() > term.grade_submission_deadline:
-    #     return get_next_term()
-    last_term = term.get_term_before(current_term)
-    next_term = term.get_term_after(current_term)
+def get_values_by_date(now, request):
+    current_term = get_current_quarter(request)
+    next_term = get_next_quarter(request)
 
     is_after_grade_submission_deadline = False
     is_after_last_day_of_classes = False
@@ -37,7 +32,7 @@ def get_values_by_date(now):
     is_before_last_day_of_classes = False
     is_before_end_of_registration_display_period = False
 
-    if now > last_term.grade_submission_deadline:
+    if now > current_term.grade_submission_deadline:
         is_after_start_of_registration_display_period = True
 
     raw_date = current_term.last_day_instruction
@@ -54,11 +49,6 @@ def get_values_by_date(now):
     if now < next_term.registration_period2_start + timedelta(days=7):
         is_before_end_of_registration_display_period = True
 
-    raw_date = current_term.first_day_quarter
-    d = datetime(raw_date.year, raw_date.month, raw_date.day)
-    if now < d:
-        is_before_first_day_of_current_term = True
-
     raw_date = current_term.last_final_exam_date
     d = datetime(raw_date.year, raw_date.month, raw_date.day)
     if now < d:
@@ -71,13 +61,11 @@ def get_values_by_date(now):
 
     after_submission = is_after_grade_submission_deadline
     after_registration = is_after_start_of_registration_display_period
-    before_first = is_before_first_day_of_current_term
     before_reg_end = is_before_end_of_registration_display_period
     return {
         "is_after_grade_submission_deadline": after_submission,
         "is_after_last_day_of_classes": is_after_last_day_of_classes,
         "is_after_start_of_registration_display_period": after_registration,
-        "is_before_first_day_of_current_term": before_first,
         "is_before_end_of_finals_week": is_before_end_of_finals_week,
         "is_before_last_day_of_classes": is_before_last_day_of_classes,
         "is_before_end_of_registration_display_period": before_reg_end,

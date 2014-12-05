@@ -27,7 +27,7 @@ class RegisteredFutureQuarters(RESTDispatch):
             "terms": future_quarters
             }
 
-        next_non_summer = get_next_non_summer_quarter()
+        next_non_summer = get_next_non_summer_quarter(request)
         next_year = next_non_summer.year
         next_quarter = next_non_summer.quarter
 
