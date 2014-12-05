@@ -207,3 +207,22 @@ class TestDisplayValues(TestCase):
             self.assertFalse(values["is_before_last_day_of_classes"])
             self.assertFalse(values["is_before_end_of_registration_display_period"])
 
+
+    def test_js_overrides(self):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-04-01"
+
+            # Swapping one true, and one false value from the test_first_day test
+            now_request.session["myuw_after_submission"] = True
+            now_request.session["myuw_after_reg"] = False
+
+            values = get_card_visibilty_date_values(now_request)
+            self.assertTrue(values["is_after_grade_submission_deadline"])
+            self.assertFalse(values["is_after_last_day_of_classes"])
+            self.assertFalse(values["is_after_start_of_registration_display_period"])
+            self.assertTrue(values["is_before_end_of_finals_week"])
+            self.assertTrue(values["is_before_last_day_of_classes"])
+            self.assertTrue(values["is_before_end_of_registration_display_period"])
+
