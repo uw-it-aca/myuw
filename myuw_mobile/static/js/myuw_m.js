@@ -92,7 +92,7 @@ $(document).ready(function() {
         }
         else if (state === "academic_calendar") {
             AcademicCalendar.show_events();
-            document.title = window.page_titles["academic_calendar"];
+            document.title = window.page_titles.academic_calendar;
         }
 
         loaded_url = state_url;
