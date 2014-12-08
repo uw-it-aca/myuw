@@ -11,20 +11,24 @@ from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logback import log_resp_time, log_exception
 
 
-logger =  logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 def get_grades_by_term(term):
-    """ 
-    @return a dictionary of section label and 
+    """
+    @return a dictionary of section label and
     restclients.models.sws.StudentGrades object
     Returns a final grades indexed by section label
-    for the current user in the given term/quarter 
+    for the current user in the given term/quarter
     """
     regid = get_regid_of_current_user()
+    return _get_grades_by_regid_and_term(regid, term)
+
+
+def _get_grades_by_regid_and_term(regid, term):
     if regid is None or term is None:
         return None
-    logid = ('get_grades_by_regid_and_term ' + 
+    logid = ('get_grades_by_regid_and_term ' +
              str(regid) + ',' + str(term.year) + ',' + term.quarter)
     timer = Timer()
     try:

@@ -33,7 +33,7 @@ var CourseCard = {
     _render: function () {
         var term = CourseCard.term;
         var course_data = WSData.normalized_course_data(term);
-        if (course_data.sections.length == 0) {
+        if (course_data.sections.length === 0) {
             CourseCard.dom_target.html(CardWithNoCourse.render(term));
             return;
         }

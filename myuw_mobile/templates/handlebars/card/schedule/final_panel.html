@@ -1,8 +1,8 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "final_exam_schedule_content" %}
-
-    <h4 style="margin-top:20px; margin-bottom: 15px;">Final Exam Schedule</h4>
-
+    {{#if show_title}}
+        <h4 style="margin-top:20px; margin-bottom: 15px;">Final Exam Schedule</h4>
+    {{/if}}
     {{#if is_summer}}
         <div class="alert alert-info">
             Unlike Autumn, Winter and Spring quarters, the Summer quarter does not have a week set aside exclusively for final examinations. Most Summer quarter final examinations are given on the final meeting day of the course. Consult with your instructors on when your final examinations will be given.

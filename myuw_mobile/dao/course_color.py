@@ -10,7 +10,7 @@ from myuw_mobile.dao.pws import get_regid_of_current_user
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logback import log_resp_time, log_exception
 
-logger =  logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 TOTAL_COURSE_COLORS = 8
 
 
@@ -29,18 +29,18 @@ def get_colors_by_regid_and_schedule(regid, schedule):
                 regid=regid,
                 year=schedule.term.year,
                 quarter=schedule.term.quarter),
-            regid, 
+            regid,
             schedule)
     except Exception as ex:
-        log_exception(logger, 
+        log_exception(logger,
                       'query CourseColor',
                       traceback.format_exc())
     finally:
-        log_resp_time(logger, 
+        log_resp_time(logger,
                       'query CourseColor',
                       timer)
     return None
-        
+
 
 def _indexed_colors_by_section_label(query, regid, schedule):
     colors = {}
@@ -84,7 +84,7 @@ def _indexed_colors_by_section_label(query, regid, schedule):
         label = section.section_label()
         primary_label = section.primary_section_label()
 
-        if colors[primary_label] == None:
+        if colors[primary_label] is None:
             # ... uh oh
             pass
 
@@ -97,7 +97,8 @@ def _indexed_colors_by_section_label(query, regid, schedule):
 
     return colors
 
-def _get_section_color(existing_sections, active, 
+
+def _get_section_color(existing_sections, active,
                        schedule, section, regid):
     color = CourseColor()
     color.regid = regid
@@ -114,7 +115,7 @@ def _get_section_color(existing_sections, active,
             total = next_color + add
             test_color = (total % TOTAL_COURSE_COLORS) + 1
 
-            if not test_color in active:
+            if test_color not in active:
                 next_color = test_color
                 break
 
@@ -125,5 +126,3 @@ def _get_section_color(existing_sections, active,
     color.save()
 
     return color
-
-

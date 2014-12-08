@@ -48,7 +48,7 @@ var TextbookCard = {
         var course_data = WSData.course_data_for_term(term);
         var registered = true;
         var section_book_data = [];
-        if (course_data.sections.length == 0) {
+        if (course_data.sections.length === 0) {
             registered = false;
         } else {
             var textbook_data  = TextBooks.process_book_data(WSData.book_data(term), course_data);
@@ -73,7 +73,7 @@ var TextbookCard = {
         }
         var template_data = {"registered": registered,
                              "term": term,
-                             "sections": section_book_data}
+                             "sections": section_book_data};
 
         var source = $("#textbook_card").html();
         var template = Handlebars.compile(source);

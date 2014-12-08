@@ -18,7 +18,7 @@ class Weekly(RESTDispatch):
         timer = Timer()
         logger = logging.getLogger(__name__)
 
-        term = get_current_quarter()
+        term = get_current_quarter(request)
         schedule = get_schedule_by_term(term)
         if schedule is None:
             log_data_not_found_response(logger, timer)

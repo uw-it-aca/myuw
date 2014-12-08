@@ -10,7 +10,7 @@ var FinalExamSchedule = {
         return a_date - b_date;
     },
 
-    render: function(course_data, term) {
+    render: function(course_data, term, show_title) {
         var index = 0;
         var tbd_or_nonexistent = [];
         var scheduled_finals = [];
@@ -32,10 +32,10 @@ var FinalExamSchedule = {
                 var start_date = date_from_string(final_exam.start_date);
 
                 if (final_exam.start_date) {
-                    if (max_date == null || max_date < start_date) {
+                    if (max_date === null || max_date < start_date) {
                         max_date = start_date;
                     }
-                    if (min_date == null || min_date > start_date) {
+                    if (min_date === null || min_date > start_date) {
                         min_date = start_date;
                     }
                     if (start_date > last_day_of_finals) {
@@ -80,6 +80,7 @@ var FinalExamSchedule = {
         }
 
         var template_data = {
+            show_title: show_title,
             term: term,
             tbd: tbd_or_nonexistent,
             list_data: list_data,
@@ -121,7 +122,10 @@ var FinalExamSchedule = {
             end_date: term.last_final_exam_date
         };
 
-        var index = 0;
+        var index = 0,
+            day,
+            top,
+            height;
         for (index = 0; index < sections_with_finals.length; index++) {
             var section = sections_with_finals[index];
             var final_exam = section.final_exam;
@@ -163,7 +167,7 @@ var FinalExamSchedule = {
                 longitude: final_exam.longitude
             };
 
-            var day = start_date.getDay();
+            day = start_date.getDay();
             visual_data[days[day]].push(exam_info);
         }
 
@@ -211,15 +215,15 @@ var FinalExamSchedule = {
 
         var weekends = days.length;
         if (!visual_data.has_7_days) {
-            weekends = 6
+            weekends = 6;
         }
         var day_index;
         for (day_index = 0; day_index < weekends; day_index++) {
-            var day = days[day_index];
-            var i = 0;
+            day = days[day_index];
+            i = 0;
             while (i < visual_data[day].length) {
-                var top = VisualScheduleCard.get_scaled_percentage(visual_data[day][i].start, visual_data.start_time, visual_data.end_time);
-                var height =  VisualScheduleCard.get_scaled_percentage(visual_data[day][i].end, visual_data.start_time, visual_data.end_time) - top;
+                top = VisualScheduleCard.get_scaled_percentage(visual_data[day][i].start, visual_data.start_time, visual_data.end_time);
+                height =  VisualScheduleCard.get_scaled_percentage(visual_data[day][i].end, visual_data.start_time, visual_data.end_time) - top;
                 visual_data[day][i].top=top;
                 visual_data[day][i].height=height;
                 i += 1;
@@ -229,8 +233,8 @@ var FinalExamSchedule = {
             var position_start = visual_data.start_time;
             while (position_start < visual_data.end_time) {
                 var position_end = position_start + 30;
-                var top = VisualScheduleCard.get_scaled_percentage(position_start, visual_data.start_time, visual_data.end_time);
-                var height =  VisualScheduleCard.get_scaled_percentage(position_end, visual_data.start_time, visual_data.end_time) - top;
+                top = VisualScheduleCard.get_scaled_percentage(position_start, visual_data.start_time, visual_data.end_time);
+                height =  VisualScheduleCard.get_scaled_percentage(position_end, visual_data.start_time, visual_data.end_time) - top;
                 visual_data[day].push({
                     is_meeting: false,
                     start_at_hr: start_at_hr,
