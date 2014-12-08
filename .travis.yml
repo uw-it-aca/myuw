@@ -7,6 +7,7 @@ before_script:
   - pip install coverage
   - pip install python-coveralls
   - pip install pep8
+  - npm install jshint
   - cp travis-ci/manage.py manage.py
   - python manage.py syncdb --noinput
 script:
