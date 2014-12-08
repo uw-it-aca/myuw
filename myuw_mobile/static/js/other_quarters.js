@@ -13,7 +13,7 @@ var Quarters = {
 
         var data = WSData.oquarter_data();
 
-        if (data.terms.length == 0) {
+        if (data.terms.length === 0) {
             $("#main-content").no_courses({
                 "which_quarter_or_term" : "in future quarters",
                 "show_future_link" : false
@@ -25,7 +25,7 @@ var Quarters = {
         var path = window.location.pathname;
         var matches = path.match(/^\/mobile\/future_quarters(\/.*)$/);
         if (matches) {
-            urlprefix = urlprefix + matches[1]
+            urlprefix = urlprefix + matches[1];
         }
 
         var is_visual = false;
