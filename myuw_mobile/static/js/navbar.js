@@ -9,4 +9,4 @@ var Navbar = {
         template = Handlebars.compile(source);
         $("#navbar").html(template({'netid': window.user.netid}));
     }
-}
+};

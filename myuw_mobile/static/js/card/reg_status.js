@@ -39,10 +39,10 @@ var RegStatusCard = {
         var reg_holds = Notices.get_notices_for_tag("reg_card_holds");
         var reg_date = Notices.get_notices_for_tag("est_reg_date");     
         
-        var next_term_data = WSData.oquarter_data()["next_term_data"];
-        var reg_next_quarter = next_term_data["quarter"];
-        var reg_next_year = next_term_data["year"];
-        var has_registration = next_term_data["has_registration"];
+        var next_term_data = WSData.oquarter_data().next_term_data;
+        var reg_next_quarter = next_term_data.quarter;
+        var reg_next_year = next_term_data.year;
+        var has_registration = next_term_data.has_registration;
 
         if (has_registration) {
             RegStatusCard.dom_target.hide();
@@ -61,7 +61,7 @@ var RegStatusCard = {
             $("#reg_resources").toggleClass("slide-show");
 
             if ($("#reg_resources").hasClass("slide-show")) {
-                $("#show_reg_resources").text("Show less")
+                $("#show_reg_resources").text("Show less");
                 $("#reg_resources").attr('aria-hidden', 'false');
                 $("#show_reg_resources").attr('title', 'Collapse to hide additional registration resources');
                 window.myuw_log.log_card(card, "expand");

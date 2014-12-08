@@ -34,56 +34,56 @@ $(document).ready(function() {
         }
         else if (state === "landing") {
             Landing.render(data.term, data.course_index);
-            $("#landing").addClass("active")
-            document.title = window.page_titles["landing"];
+            $("#landing").addClass("active");
+            document.title = window.page_titles.landing;
         }
         else if (state === "course_list") {
             // Figure out what to do from the url
             CourseList.show_list(data.term, data.course_index);
             $("#nav_course_list").addClass("active");
-            document.title = window.page_titles["course_list"];
+            document.title = window.page_titles.course_list;
         }
         else if (state === "instructor") {
             Instructor.show_instructor(data.term, data.instructor);
-            document.title = window.page_titles["instructor"];
+            document.title = window.page_titles.instructor;
         }
         else if (state === "future_quarters") {
             FutureQuarter.render(data.term);
-            document.title = window.page_titles["future_quarters"];
+            document.title = window.page_titles.future_quarters;
         }
         else if (state === "textbooks") {
             TextBooks.show_books(data.term, data.textbook);
-            document.title = window.page_titles["textbooks"];
+            document.title = window.page_titles.textbooks;
         }
         else if (state === "finabala") {
             HfsAccounts.show_balances();
             $("#nav_finabala").addClass("active");
-            document.title = window.page_titles["finabala"];
+            document.title = window.page_titles.finabala;
         }
         else if (state === "visual") {
             VisualSchedule.show_visual_schedule(data.term, data.course_index);
             $("#nav_visual_schedule").addClass("active");
-            document.title = window.page_titles["visual"];
+            document.title = window.page_titles.visual;
         }
         else if (state === "final_exams") {
             FinalExams.show_finals(data.term, data.course_index);
-            document.title = window.page_titles["finals"];
+            document.title = window.page_titles.finals;
         }
         else if (state === "grades") {
             Grades.show_grades(data.term);
-            document.title = window.page_titles["grades"];
+            document.title = window.page_titles.grades;
         }
         else if (state === "weekly") {
             Weekly.show_current_week(data);
-            document.title = window.page_titles["weekly"];
+            document.title = window.page_titles.weekly;
         }
         else if (state === "libraries") {
             Libraries.show_card();
-            document.title = window.page_titles["libraries"];
+            document.title = window.page_titles.libraries;
         }
         else if (state === "notices") {
             Notices.show_notices();
-            document.title = window.page_titles["notices"];
+            document.title = window.page_titles.notices;
         }
         else if (state === "category_page") {
             Category.show_category_page(data.category, data.topic);
@@ -98,7 +98,8 @@ $(document).ready(function() {
     function show_page_from_url() {
         var path = window.location.pathname;
 
-        var hist = window.History;
+        var hist = window.History,
+            matches;
 
         if (path === "/mobile/" || path === "/mobile") {
             hist.replaceState({
@@ -107,7 +108,7 @@ $(document).ready(function() {
             return;
         }
         else if (path.match(/^\/mobile\/[0-9]{4},[a-z]+[,-abterm]*$/)) {
-            var matches = path.match(/^\/mobile\/([0-9]{4},[a-z]+[,-abterm]*)$/);
+            matches = path.match(/^\/mobile\/([0-9]{4},[a-z]+[,-abterm]*)$/);
             var state = "course_list";
             var term = matches[1];
             hist.replaceState({
@@ -116,7 +117,7 @@ $(document).ready(function() {
             }, "", "/mobile/"+matches[1]);
         }
         else if (path.match(/^\/mobile\/visual\/[^\/]+\/[0-9]+$/)) {
-            var matches = path.match(/^\/mobile\/visual\/([^\/]+)\/([0-9]+)/);
+            matches = path.match(/^\/mobile\/visual\/([^\/]+)\/([0-9]+)/);
             hist.replaceState({
                 state: "visual",
                 term: matches[1],
@@ -124,14 +125,14 @@ $(document).ready(function() {
             },  "", "/mobile/visual/"+matches[1]+"/"+matches[2]);
         }
         else if (path.match(/^\/mobile\/visual\/[0-9]{4},[a-z]+[,-abterm]*$/)) {
-            var matches = path.match(/^\/mobile\/visual\/([0-9]{4},[a-z]+[,-abterm]*)$/);
+            matches = path.match(/^\/mobile\/visual\/([0-9]{4},[a-z]+[,-abterm]*)$/);
             hist.replaceState({
                 state: "visual",
                 term: matches[1]
             },  "", "/mobile/visual/"+matches[1]);
         } 
         else if (path.match(/^\/mobile\/visual\/[0-9]+$/)) {
-            var matches = path.match(/^\/mobile\/visual\/([0-9]+)/);
+            matches = path.match(/^\/mobile\/visual\/([0-9]+)/);
             hist.replaceState({
                 state: "visual",
                 course_index: matches[1]
@@ -148,7 +149,7 @@ $(document).ready(function() {
             },  "", "/mobile/landing/");
         }
         else if (path.match(/^\/mobile\/textbooks\/[0-9]{4}[-,a-z]+\/[%A-Z0-9]+$/)) {
-            var matches = path.match(/^\/mobile\/textbooks\/([0-9]{4}[-,a-z]+)\/([%A-Z0-9]+)$/);
+            matches = path.match(/^\/mobile\/textbooks\/([0-9]{4}[-,a-z]+)\/([%A-Z0-9]+)$/);
             hist.replaceState({
                 state: "textbooks",
                 term: matches[1],
@@ -156,11 +157,11 @@ $(document).ready(function() {
             },  "", path);
         }
         else if (path.match(/^\/mobile\/textbooks\/[0-9]{4}[-,a-z]+\/?$/i)) {
-             var matches = path.match(/^\/mobile\/textbooks\/([0-9]{4}[-,a-z]+)\/?$/i);
-             hist.replaceState({
-                 state: "textbooks",
-                 term: matches[1]
-             },  "", path);
+            matches = path.match(/^\/mobile\/textbooks\/([0-9]{4}[-,a-z]+)\/?$/i);
+            hist.replaceState({
+                state: "textbooks",
+                term: matches[1]
+            },  "", path);
         }
         else if (path.match(/^\/mobile\/textbooks\/?/)) {
             hist.replaceState({
@@ -174,7 +175,7 @@ $(document).ready(function() {
             },  "", "/mobile/finabala");
         }
         else if (path.match(/^\/mobile\/future_quarters\/[0-9]{4},[-,a-z]+/)) {
-            var matches = path.match(/^\/mobile\/future_quarters\/([0-9]{4},[-,a-z]+)/);
+            matches = path.match(/^\/mobile\/future_quarters\/([0-9]{4},[-,a-z]+)/);
             hist.replaceState({
                 state: "future_quarters",
                 term: matches[1],
@@ -186,14 +187,14 @@ $(document).ready(function() {
             },  "", "/mobile/final_exams");
         }
         else if (path.match("/mobile/final_exams/[0-9]+$")) {
-            var matches = path.match(/^\/mobile\/final_exams\/([0-9]+)/);
+            matches = path.match(/^\/mobile\/final_exams\/([0-9]+)/);
             hist.replaceState({
                 state: "final_exams",
                 course_index: matches[1]
             },  "", "/mobile/final_exams/"+matches[1]);
         }
         else if (path.match(/^\/mobile\/final_exams\/[^\/]+\/[0-9]+/)) {
-            var matches = path.match(/^\/mobile\/final_exams\/([^\/]+)\/([0-9]+)/);
+            matches = path.match(/^\/mobile\/final_exams\/([^\/]+)\/([0-9]+)/);
             hist.replaceState({
                 state: "final_exams",
                 term: matches[1],
@@ -201,26 +202,25 @@ $(document).ready(function() {
             },  "", "/mobile/final_exams/"+matches[1]+"/"+matches[2]);
         }
         else if (path.match(/^\/mobile\/final_exams\/[^\/]+/)) {
-            var matches = path.match(/^\/mobile\/final_exams\/([^\/]+)/);
+            matches = path.match(/^\/mobile\/final_exams\/([^\/]+)/);
             hist.replaceState({
                 state: "final_exams",
                 term: matches[1],
             },  "", "/mobile/final_exams/"+matches[1]);
         }
         else if (path.match(/^\/mobile\/instructor\/[A-Z0-9]+/)) {
-            var matches = path.match(/^\/mobile\/instructor\/([A-Z0-9]+)/);
+            matches = path.match(/^\/mobile\/instructor\/([A-Z0-9]+)/);
             hist.pushState({
                 state: "instructor",
                 instructor: matches[1]
             },  "", "/mobile/instructor/"+matches[1]);
         }
         else if (path.match(/^\/mobile\/grades/)) {
-            var matches = path.match(/^\/mobile\/grades\/([0-9,a-z]+)/);
+            matches = path.match(/^\/mobile\/grades\/([0-9,a-z]+)/);
             hist.replaceState({
                 state: "grades",
                 term: (matches ? matches[1] : "")
-            },  "", "/mobile/grades/" + (matches
-                                                 ? matches[1]
+            },  "", "/mobile/grades/" + (matches ? matches[1]
                                                  : ""));
         }
         else if (path.match(/^\/mobile\/weekly/)) {
@@ -239,10 +239,11 @@ $(document).ready(function() {
             },  "", "/mobile/notices/");
         }
         else if (path.match(/^\/mobile\/resource\/([a-z]+)/)) {
-            var matches = path.match(/^\/mobile\/resource\/([a-z]+)\/?([a-z]+)?/),
-                category = (matches ? matches[1] : ""),
-                topic = (matches ? matches[2] : undefined);
-            var slug = category;
+            matches = path.match(/^\/mobile\/resource\/([a-z]+)\/?([a-z]+)?/);
+
+            var category = (matches ? matches[1] : ""),
+                topic = (matches ? matches[2] : undefined),
+                slug = category;
             if (topic !== undefined) {
                 slug += "/" + topic;
             }
@@ -356,9 +357,9 @@ var titilizeTerm = function(term) {
     if (pieces.length > 2) {
         string += " " + capitalizeString(pieces[2]);
     }
-    return string
+    return string;
 
-}
+};
 
 var capitalizeString = function(string) {
     if (string.match(/^[ab]-term$/gi)) {
@@ -366,7 +367,7 @@ var capitalizeString = function(string) {
         return value[0].toUpperCase() + "-" + value[1].charAt(0).toUpperCase() + value[1].slice(1);
     }
     return string.charAt(0).toUpperCase() + string.slice(1);
-}
+};
 
 var isScrolledIntoView = function(elem) {
     var docViewTop = $(window).scrollTop();
@@ -376,7 +377,7 @@ var isScrolledIntoView = function(elem) {
     var elemBottom = elemTop + $(elem).height();
 
     return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
-}
+};
 var de_bouncer = function($,cf,of, interval){
     var debounce = function (func, threshold, execAsap) {
         var timeout;
@@ -455,8 +456,8 @@ var log_loaded_cards = function(){
     var cards = get_all_cards();
     $(cards).each(function(i, card){
         window.myuw_log.log_card(card, "loaded");
-    })
-}
+    });
+};
 
 var init_logging = function () {
     myuwlog = new MyuwLog();

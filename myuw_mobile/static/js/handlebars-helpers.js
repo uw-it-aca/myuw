@@ -3,7 +3,7 @@ Handlebars.registerHelper("formatPhoneNumber", function(str) {
     if (str.length == 10) {
         return str.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
     }
-    return str
+    return str;
 });
 
 (function() {
@@ -180,7 +180,7 @@ Handlebars.registerHelper("formatPrice", function(price) {
     if (formatted[1] && formatted[1].length == 1) {
         formatted[1] += "0";
     }
-    if (!formatted[1] || formatted[1].length == 0) {
+    if (!formatted[1] || formatted[1].length === 0) {
         formatted[1] = "00";
     }
     return formatted.join(".");

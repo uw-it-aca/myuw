@@ -26,19 +26,19 @@ var TextBooks = {
         var index = 0;
         for (index = 0; index < course_data.sections.length; index++) {
             var section = course_data.sections[index];
-            template_data["sections"].push({
+            template_data.sections.push({
                 index: index,
-                section_title: section["course_title"],
-                curriculum: section["curriculum_abbr"],
-                course_number: section["course_number"],
-                section_id: section["section_id"],
-                color_id: section["color_id"],
-                sln: section["sln"],
-                books: book_data[section["sln"]],
+                section_title: section.course_title,
+                curriculum: section.curriculum_abbr,
+                course_number: section.course_number,
+                section_id: section.section_id,
+                color_id: section.color_id,
+                sln: section.sln,
+                books: book_data[section.sln],
             });
         }
 
-        template_data["verba_link"] = book_data["verba_link"]
+        template_data.verba_link = book_data.verba_link;
         return template_data;
     },
 
@@ -47,7 +47,7 @@ var TextBooks = {
         $('html,body').animate({scrollTop: 0}, 'fast');
         var source   = $("#textbooks").html();
         var template = Handlebars.compile(source);
-        var template_data = TextBooks.process_book_data(WSData.book_data(term), WSData.course_data_for_term(term))
+        var template_data = TextBooks.process_book_data(WSData.book_data(term), WSData.course_data_for_term(term));
         $("#main-content").html(template(template_data));
 
         // Scroll to correct section

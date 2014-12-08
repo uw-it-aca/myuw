@@ -14,7 +14,7 @@ var Notices = {
 
         notices = Notices.get_notices_by_date();
 
-        var all_notices = []
+        var all_notices = [];
         var total_notices = 0;
         for (var group in notices) {
             total_notices += notices[group].notices.length;
@@ -23,9 +23,9 @@ var Notices = {
 
         var critical_notices = Notices._get_critical(WSData.notice_data());
 
-        notices['total_notices'] = Notices.get_notice_page_notices().length;
-        notices['legal'] = Notices.get_notices_for_category("Legal");
-        notices['critical'] = {
+        notices.total_notices = Notices.get_notice_page_notices().length;
+        notices.legal = Notices.get_notices_for_category("Legal");
+        notices.critical = {
             "count": critical_notices.length,
             "notices": critical_notices,
             "unread_count": Notices._get_unread_count(critical_notices)
@@ -134,7 +134,7 @@ var Notices = {
             filtered_notices = [];
         for (i = 0; i < notices.length; i += 1) {
             notice = notices[i];
-            if (notice["category"] === category) {
+            if (notice.category === category) {
                 filtered_notices.push(notice);
             }
         }
@@ -152,7 +152,7 @@ var Notices = {
             notices = WSData.notice_data(),
             filtered_notices = [];
         for (i = 0; i < notices.length; i += 1) {
-            notice_tags = notices[i]["location_tags"];
+            notice_tags = notices[i].location_tags;
             if (notice_tags === null) {
                 continue;
             }
@@ -182,11 +182,11 @@ var Notices = {
         for (i = 0; i < notices.length; i += 1) {
             notice = notices[i];
             var notice_has_date = false;
-            if (notice['attributes'] !== null && notice['attributes'].length > 0) {
-                for (j = 0; j < notice['attributes'].length; j += 1){
-                    if (notice['attributes'][j]['name'] === "Date"){
+            if (notice.attributes !== null && notice.attributes.length > 0) {
+                for (j = 0; j < notice.attributes.length; j += 1){
+                    if (notice.attributes[j].name === "Date"){
                         notice_has_date = true;
-                        date = notice['attributes'][j]['value'].replace(/-/g, "/");
+                        date = notice.attributes[j].value.replace(/-/g, "/");
                         date = date.replace("+00:00", " GMT");
                         date = new Date(date);
 
@@ -238,11 +238,11 @@ var Notices = {
             category_counts = {},
             notices = WSData.notice_data();
         for (i = 0; i < notices.length; i += 1) {
-            if (!notices[i]['is_read'] && notices[i]["category"] !== null) {
-                if (notices[i]["category"] in category_counts) {
-                    category_counts[notices[i]["category"]] += 1;
+            if (!notices[i].is_read && notices[i].category !== null) {
+                if (notices[i].category in category_counts) {
+                    category_counts[notices[i].category] += 1;
                 } else {
-                    category_counts[notices[i]["category"]] = 1;
+                    category_counts[notices[i].category] = 1;
                 }
             }
         }
@@ -258,7 +258,7 @@ var Notices = {
         var unread_count = 0;
         for (i = 0; i < notices.length; i += 1) {
             notice = notices[i];
-            if (!notice["is_read"] && notice["category"] !== "not a notice") {
+            if (!notice.is_read && notice.category !== "not a notice") {
                     unread_count += 1;
             }
         }
@@ -269,7 +269,7 @@ var Notices = {
         var critical = [];
         for (i = 0; i < notices.length; i += 1) {
             notice = notices[i];
-            if (notice["is_critical"]) {
+            if (notice.is_critical) {
                     critical.push(notice);
             }
         }
@@ -290,7 +290,7 @@ var Notices = {
         d.setHours(0,0,0);
         d.setDate(d.getDate() + 4 - (d.getDay()||7));
         var yearStart = new Date(d.getFullYear(),0,1);
-        var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7)
+        var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
         return weekNo;
     },
 

@@ -80,10 +80,10 @@ var FinalExams = {
                 var start_date = date_from_string(final_exam.start_date);
 
                 if (final_exam.start_date) {
-                    if (max_date == null || max_date < start_date) {
+                    if (max_date === null || max_date < start_date) {
                         max_date = start_date;
                     }
-                    if (min_date == null || min_date > start_date) {
+                    if (min_date === null || min_date > start_date) {
                         min_date = start_date;
                     }
                     if (start_date > last_day_of_finals) {
@@ -136,8 +136,8 @@ var FinalExams = {
             visual_data: visual_data,
         };
 
-        var source = $("#final_exams").html();
-        var template = Handlebars.compile(source);
+        source = $("#final_exams").html();
+        template = Handlebars.compile(source);
         $("#main-content").html(template(template_data));
 
         if (!course_index) {
