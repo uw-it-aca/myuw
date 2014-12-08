@@ -12,7 +12,12 @@ class AcademicEvents(RESTDispatch):
     def GET(self, request):
         events = []
 
-        calendars = [get_calendar_by_name('sea_acad-cal'), ]
+        cal_names = ['sea_acad-cal', 'sea_acad-comm', 'sea_acad-inst',
+                     'sea_acad-holidays']
+
+        calendars = []
+        for cal in cal_names:
+            calendars.append(get_calendar_by_name(cal))
 
         for calendar in calendars:
             for event in calendar.walk('vevent'):
@@ -24,6 +29,7 @@ class AcademicEvents(RESTDispatch):
         year, quarter = self.parse_year_quarter(event)
         start, end = self.parse_dates(event)
         category = self.parse_category(event)
+        event_url = self.parse_event_url(event)
 
         return {
             "summary": event.get('summary'),
@@ -32,10 +38,25 @@ class AcademicEvents(RESTDispatch):
             "year": year,
             "quarter": quarter,
             "category": category,
+            "event_url": event_url,
         }
 
     def parse_category(self, event):
         return event.get('categories')
+
+    def parse_event_url(self, event):
+        uid = event.get('uid')
+
+        matches = re.match('.*?(\d+)$', uid)
+        if not matches:
+            return
+
+        event_id = matches.group(1)
+
+        url = ("http://www.washington.edu/calendar/academic/"
+               "?trumbaEmbed=view%%3Devent%%26eventid%%3D%s" % (event_id))
+
+        return url
 
     def parse_dates(self, event):
         return (self.format_datetime(event.get('dtstart')),

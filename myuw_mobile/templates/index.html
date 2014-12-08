@@ -48,6 +48,7 @@
     {% include "handlebars/other_quarters.html" %}
     {% include "handlebars/quarter_books.html" %}
     {% include "handlebars/visual_schedule.html" %}
+    {% include "handlebars/academic_calendar.html" %}
     {% include "handlebars/category_page.html" %}
     
     {% include "handlebars/weekly/other.html" %}
@@ -77,6 +78,7 @@
         "grades": "Grades",
         "notices": "MyUW: Notices",
         "category_page": "MyUW: Category",
+        "academic_calendar": "Academic Calendar"
     };
     window.user = {
         "grad": {{ user.affiliations.grad|yesno:"true, false" }},

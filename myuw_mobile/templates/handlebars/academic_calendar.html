@@ -1,0 +1,13 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "calendar_events" %}
+    {{ #each events }}
+        <div style="border: 1px solid lightblue;">
+            <a href="{{ event_url }}">{{ summary }}</a><br />
+            {{ category }} <br />
+            {{ start }} -- {{ end }} <br />
+            {{ quarter }} {{ year}} <br />
+
+        </div>
+    {{ /each }}
+    {% endtplhandlebars %}
+
