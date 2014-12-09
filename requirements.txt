@@ -8,6 +8,7 @@ urllib3
 django-templatetag-handlebars
 AuthZ-Group==1.1.2
 Django-UserService==1.0.2
+unittest2
 # If you're using a MySQL database, you may also need mysql-python
 # mysql-python
 -e git://github.com/uw-it-aca/uw-restclients.git@develop#egg=RestClients
