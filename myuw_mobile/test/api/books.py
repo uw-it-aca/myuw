@@ -40,5 +40,7 @@ class TestBooks(TestCase):
         self.assertEquals(data["18545"][0]["is_required"], True)
         self.assertEquals(data["18545"][0]["price"], None)
         self.assertEquals(data["18545"][0]["used_price"], None)
+        self.assertEquals(data["18545"][0]["isbn"], '9780878935970')
+        self.assertEquals(data["18545"][0]["notes"], 'required')
 
         self.assertEquals(data["18545"][1]["price"], 44.0)
