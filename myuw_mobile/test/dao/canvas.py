@@ -14,6 +14,9 @@ class TestCanvas(TestCase):
             physics = data['2013,spring,PHYS,121/A']
             self.assertEquals(physics.course_url, 'https://canvas.uw.edu/courses/149650')
 
+            has_section_a = '2013,spring,TRAIN,100/A' in data
+            self.assertFalse(has_section_a)
+
             train = data['2013,spring,TRAIN,100/B']
             self.assertEquals(train.course_url, 'https://canvas.uw.edu/courses/249650')
 
