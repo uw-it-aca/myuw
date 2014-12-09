@@ -4,8 +4,7 @@ var GradeCard = {
     term: 'current',
 
     render_init: function() {
-        if (window.card_display_dates.is_after_last_day_of_classes &&
-            window.card_display_dates.is_before_first_day_of_current_term) {
+        if (window.card_display_dates.is_after_last_day_of_classes) {
             WSData.fetch_course_data_for_term(GradeCard.term, GradeCard.render_upon_data, GradeCard.render_error);
         }
         else {

@@ -16,8 +16,8 @@ from django.test.client import RequestFactory
 from restclients.sws.term import get_term_by_date
 
 DATE_KEYS = ['myuw_after_submission', 'myuw_after_last_day', 'myuw_after_reg',
-             'myuw_before_start', 'myuw_before_finals_end',
-             'myuw_before_last_day', 'myuw_before_end_of_reg_display']
+             'myuw_before_finals_end', 'myuw_before_last_day',
+             'myuw_before_end_of_reg_display']
 
 
 @login_required

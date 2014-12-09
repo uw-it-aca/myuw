@@ -27,7 +27,6 @@ def get_values_by_date(now, request):
     is_after_grade_submission_deadline = False
     is_after_last_day_of_classes = False
     is_after_start_of_registration_display_period = False
-    is_before_first_day_of_current_term = False
     is_before_end_of_finals_week = False
     is_before_last_day_of_classes = False
     is_before_end_of_registration_display_period = False
@@ -78,7 +77,6 @@ def set_js_overrides(request, values):
     MAP = {'myuw_after_submission': 'is_after_grade_submission_deadline',
            'myuw_after_last_day': 'is_after_last_day_of_classes',
            'myuw_after_reg': after_reg,
-           'myuw_before_start': 'is_before_first_day_of_current_term',
            'myuw_before_finals_end': 'is_before_end_of_finals_week',
            'myuw_before_last_day': 'is_before_last_day_of_classes',
            'myuw_before_end_of_reg_display': before_reg,
