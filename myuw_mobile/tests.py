@@ -18,3 +18,4 @@ from myuw_mobile.test.dao.textbook import TestTextbooks
 from myuw_mobile.test.dao.uwemail import TestUwEmail
 from myuw_mobile.test.api.schedule import TestSchedule as APISchedule
 from myuw_mobile.test.api.books import TestBooks
+from myuw_mobile.test.template_tags import TestNetidHash
