@@ -541,6 +541,8 @@ def _categorize_notices(notices):
     for notice in notices:
         _map_notice(notice)
     notices[:] = [n for n in notices if n.custom_category != "not a notice"]
+    #Removing uncategorized notices for MUWM-2343
+    notices[:] = [n for n in notices if n.custom_category != UNKNOWN_CATEGORY_NAME]
     return notices
 
 
