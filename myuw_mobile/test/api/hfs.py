@@ -7,6 +7,16 @@ import json
 from myuw_mobile.test.api import missing_url, get_user, get_user_pass
 
 @override_settings(RESTCLIENTS_HFS_DAO_CLASS='myuw_mobile.restclients.dao_implementation.hfs.File',
+                   MIDDLEWARE_CLASSES = (
+                                'django.contrib.sessions.middleware.SessionMiddleware',
+                                'django.middleware.common.CommonMiddleware',
+                                'django.middleware.csrf.CsrfViewMiddleware',
+                                'django.contrib.auth.middleware.AuthenticationMiddleware',
+                                'django.contrib.auth.middleware.RemoteUserMiddleware',
+                                'django.contrib.messages.middleware.MessageMiddleware',
+                                'django.middleware.clickjacking.XFrameOptionsMiddleware',
+                                'userservice.user.UserServiceMiddleware',
+                                ),
                    AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
                    )
 class TestHFS(TestCase):
