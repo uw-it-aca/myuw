@@ -27,10 +27,12 @@ urlpatterns = patterns(
     url(r'admin/dates', 'display_dates.override'),
     url(r'^logger/(?P<interaction_type>\w+)$', 'logger.log_interaction'),
     url(r'logout', login_required(Logout.as_view())),
-    url(r'^api/v1/book/(current|(?P<year>\d{4}),(?P<quarter>[a-z]+)'
-        r'(?P<summer_term>[-,abterm]*))$',
-        login_required(Textbook().run)
+    url(r'^api/v1/book/(?P<year>\d{4}),(?P<quarter>[a-z]+)'
+        r'(?P<summer_term>[-,abterm]*)$',
+        login_required(Textbook().run),
+        name="myuw_book_api"
         ),
+
     url(r'^api/v1/categorylinks/(?P<category_id>.*?)$',
         login_required(CategoryLinks().run)
         ),
@@ -59,5 +61,5 @@ urlpatterns = patterns(
     url(r'^api/v1/grades/(?P<year>[0-9]{4}),(?P<quarter>[a-z]+)$',
         login_required(Grades().run)
         ),
-    url(r'.*', 'page.index'),
+    url(r'.*', 'page.index', name="myuw_home"),
 )

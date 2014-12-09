@@ -44,9 +44,6 @@ class TestSchedule(TestCase):
         url = reverse("myuw_current_schedule")
         get_user('none')
         self.client.login(username='none', password=get_user_pass('none'))
-#        session = self.client.session
-#        session["myuw_override_date"] = "2013-07-06"
-#        session.save()
         response = self.client.get(url)
 
         self.assertEquals(response.status_code, 200)
