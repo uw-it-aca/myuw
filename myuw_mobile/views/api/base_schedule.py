@@ -33,7 +33,8 @@ class StudClasSche(RESTDispatch):
             return HttpResponse({})
 
         if summer_term is None:
-            summer_term = get_current_summer_term_in_schedule(schedule, request)
+            summer_term = get_current_summer_term_in_schedule(schedule,
+                                                              request)
 
         resp_data = load_schedule(schedule, summer_term)
         if resp_data is None:
