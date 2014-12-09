@@ -19,7 +19,6 @@ import json
                                 ),
                    AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
                    )
-
 class TestBooks(TestCase):
     def setUp(self):
         self.client = Client()
