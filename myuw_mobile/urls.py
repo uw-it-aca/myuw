@@ -40,7 +40,8 @@ urlpatterns = patterns(
     url(r'^api/v1/grades/$', login_required(Grades().run)),
     url(r'^api/v1/hfs/$', login_required(HfsBalances().run),
         name="myuw_hfs_api"),
-    url(r'^api/v1/library/$', login_required(MyLibInfo().run)),
+    url(r'^api/v1/library/$', login_required(MyLibInfo().run),
+        name="myuw_library_api"),
     url(r'^api/v1/oquarters/$',
         login_required(RegisteredFutureQuarters().run)
         ),
