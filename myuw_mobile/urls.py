@@ -1,6 +1,5 @@
 from django.conf.urls import patterns, include, url
 from myuw_mobile.views.mobile_login import user_login
-from myuw_mobile.views.api.contact import InstructorContact
 from myuw_mobile.views.api.current_schedule import StudClasScheCurQuar
 from myuw_mobile.views.api.finance import Finance
 from myuw_mobile.views.api.hfs import HfsBalances
@@ -44,8 +43,6 @@ urlpatterns = patterns(
     url(r'^api/v1/oquarters/$',
         login_required(RegisteredFutureQuarters().run)
         ),
-    url(r'^api/v1/person/(?P<regid>[0-9A-F]{32})$',
-        login_required(InstructorContact().run)),
     url(r'^api/v1/profile/$', login_required(MyProfile().run),
         name="myuw_profile_api"),
     url(r'^api/v1/notices/$', login_required(Notices().run)),
