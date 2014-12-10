@@ -34,8 +34,8 @@ urlpatterns = patterns(
         ),
 
     url(r'^api/v1/categorylinks/(?P<category_id>.*?)$',
-        login_required(CategoryLinks().run)
-        ),
+        login_required(CategoryLinks().run),
+        name="myuw_links_api"),
     url(r'^api/v1/finance/$', login_required(Finance().run)),
     url(r'^api/v1/grades/$', login_required(Grades().run)),
     url(r'^api/v1/hfs/$', login_required(HfsBalances().run),
