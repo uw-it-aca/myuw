@@ -3,7 +3,7 @@ import logging
 import re
 from restclients.dao_implementation.live import get_con_pool, get_live_url
 from myuw_mobile.logger.logback import log_info
-from myuw_mobile.restclients.dao_implementation.mock import get_mockdata_url
+from restclients.dao_implementation.mock import get_mockdata_url
 
 
 class File(object):

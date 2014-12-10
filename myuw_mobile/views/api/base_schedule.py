@@ -18,7 +18,7 @@ from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
 
 class StudClasSche(RESTDispatch):
 
-    def make_http_resp(self, logger, timer, term, summer_term=None):
+    def make_http_resp(self, logger, timer, term, request, summer_term=None):
         if term is None:
             log_data_not_found_response(logger, timer)
             return data_not_found()
@@ -33,7 +33,8 @@ class StudClasSche(RESTDispatch):
             return HttpResponse({})
 
         if summer_term is None:
-            summer_term = get_current_summer_term_in_schedule(schedule)
+            summer_term = get_current_summer_term_in_schedule(schedule,
+                                                              request)
 
         resp_data = load_schedule(schedule, summer_term)
         if resp_data is None:

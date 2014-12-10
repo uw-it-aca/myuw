@@ -83,7 +83,7 @@ def get_current_summer_term(request):
     Return a string of the current summer a-term or b-term
     """
     term = get_current_quarter(request)
-    if date.today() > term.aterm_last_date:
+    if get_comparison_date(request) > term.aterm_last_date:
         return "b-term"
     else:
         return "a-term"

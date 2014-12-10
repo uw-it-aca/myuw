@@ -17,4 +17,6 @@ class StudClasScheCurQuar(StudClasSche):
         return self.make_http_resp(
             logging.getLogger(__name__),
             Timer(),
-            get_current_quarter(request))
+            get_current_quarter(request),
+            request
+            )
