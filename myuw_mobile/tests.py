@@ -22,5 +22,6 @@ from myuw_mobile.test.api.hfs import TestHFS as TestHFSAPI
 from myuw_mobile.test.api.profile import TestProfile
 from myuw_mobile.test.api.library import TestLibrary as TestLibraryAPI
 from myuw_mobile.test.api.category_links import TestLinks
+from myuw_mobile.test.api.finance import TestFinance as TestFinanceAPI
 from myuw_mobile.test.template_tags import TestNetidHash
 from myuw_mobile.test.context_processors import TestContextProcessors
