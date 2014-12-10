@@ -11,7 +11,6 @@ from myuw_mobile.views.api.other_quarters import RegisteredFutureQuarters
 from myuw_mobile.views.api.uwemail import UwEmail
 from myuw_mobile.views.api.textbook import Textbook
 from myuw_mobile.views.api.weekly import Weekly
-from myuw_mobile.views.api.term import Term
 from myuw_mobile.views.logout import Logout
 from myuw_mobile.views.api.notices import Notices
 from myuw_mobile.views.page import index
@@ -63,6 +62,5 @@ urlpatterns = patterns(
         login_required(StudClasScheFutureQuar().run),
         name="myuw_future_schedule_api"
         ),
-    url(r'^api/v1/term/current/$', login_required(Term().run)),
     url(r'.*', 'page.index', name="myuw_home"),
 )

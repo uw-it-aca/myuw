@@ -1,5 +1,4 @@
 WSData = {
-    _term: null, // current term
     _book_data: {},
     _course_data: {},
     _profile_data: null,
@@ -137,10 +136,6 @@ WSData = {
 
     category_link_data: function(category) {
         return WSData._category_link_data[category];
-    },
-
-    term_data: function() {
-        return WSData._term;
     },
 
     tuition_data: function() {
@@ -606,34 +601,6 @@ WSData = {
             }, 0);
         }
     },
-
-    fetch_term_data: function(callback, err_callback, args) {
-        if (WSData._term_data === null) {
-            $.ajax({
-                url: "/mobile/api/v1/term/current/",
-                dataType: "JSON",
-                type: "GET",
-                accepts: {html: "text/html"},
-                success: function(results) {
-                    WSData._term_data = results;
-                    if (callback !== null) {
-                        callback.apply(null, args);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    if (err_callback) {
-                        err_callback.call(null, status, error);
-                    }
-                }
-            });
-        }
-        else {
-            window.setTimeout(function() {
-                callback.apply(null, args);
-            }, 0);
-        }
-    },
-
 
     save_links: function(links) {
         var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;
