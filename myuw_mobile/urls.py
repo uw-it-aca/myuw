@@ -41,7 +41,8 @@ urlpatterns = patterns(
     url(r'^api/v1/library/$', login_required(MyLibInfo().run),
         name="myuw_library_api"),
     url(r'^api/v1/oquarters/$',
-        login_required(RegisteredFutureQuarters().run)
+        login_required(RegisteredFutureQuarters().run),
+        name="myuw_other_quarters_api"
         ),
     url(r'^api/v1/profile/$', login_required(MyProfile().run),
         name="myuw_profile_api"),

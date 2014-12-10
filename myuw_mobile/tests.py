@@ -23,5 +23,6 @@ from myuw_mobile.test.api.library import TestLibrary as TestLibraryAPI
 from myuw_mobile.test.api.category_links import TestLinks
 from myuw_mobile.test.api.finance import TestFinance as TestFinanceAPI
 from myuw_mobile.test.api.future_schedule import TestFutureSchedule
+from myuw_mobile.test.api.other_quarters import TestOtherQuarters
 from myuw_mobile.test.template_tags import TestNetidHash
 from myuw_mobile.test.context_processors import TestContextProcessors

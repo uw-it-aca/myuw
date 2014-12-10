@@ -100,9 +100,9 @@ def _get_registered_future_quarters(next_quar_sche,
 def _get_future_term_json(term, summer_term, summer_term_data=None):
     return_json = term.json_data()
     return_json["summer_term"] = summer_term
-    url = "/" + str(term.year) + ", " + term.quarter
+    url = "/" + str(term.year) + "," + term.quarter
     if len(summer_term) > 0:
-        url = url + ", " + summer_term.lower()
+        url = url + "," + summer_term.lower()
 
         if is_a_term(summer_term):
             return_json["credits"] = str(summer_term_data[FULL_TERM_CREDITS] +
