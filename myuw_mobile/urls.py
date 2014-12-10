@@ -52,9 +52,14 @@ urlpatterns = patterns(
         login_required(StudClasScheCurQuar().run),
         name="myuw_current_schedule"
         ),
-    url(r'^api/v1/schedule/(?P<year>\d{4}),(?P<quarter>[a-z]+)'
+    url(r'^api/v1/schedule/(?P<year>\d{4}),(?P<quarter>[a-z]+),'
         r'(?P<summer_term>[-,abterm]*)$',
-        login_required(StudClasScheFutureQuar().run)
+        login_required(StudClasScheFutureQuar().run),
+        name="myuw_future_summer_schedule_api"
+        ),
+    url(r'^api/v1/schedule/(?P<year>\d{4}),(?P<quarter>[a-z]+)',
+        login_required(StudClasScheFutureQuar().run),
+        name="myuw_future_schedule_api"
         ),
     url(r'^api/v1/term/current/$', login_required(Term().run)),
     url(r'.*', 'page.index', name="myuw_home"),

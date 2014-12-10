@@ -10,7 +10,7 @@ class StudClasScheFutureQuar(StudClasSche):
     Performs actions on resource at
     /api/v1/schedule/<year>,<quarter>(,<summer_term>)?
     """
-    def GET(self, request, year, quarter, summer_term):
+    def GET(self, request, year, quarter, summer_term=None):
         """
         GET returns 200 with course section schedule details of
         the given year, quarter.
@@ -20,10 +20,11 @@ class StudClasScheFutureQuar(StudClasSche):
         timer = Timer()
         smr_term = ""
         if summer_term and len(summer_term) > 1:
-            smr_term = summer_term[1:].title()
+            smr_term = summer_term.title()
 
         return self.make_http_resp(
             logging.getLogger(__name__),
             timer,
             get_quarter(year, quarter),
+            request,
             smr_term)
