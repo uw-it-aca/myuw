@@ -24,7 +24,7 @@ class TestFinance(TestCase):
         self.client = Client()
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
-    def test_academics_links(self):
+    def test_javerage(self):
         url = reverse("myuw_finance_api")
         get_user('javerage')
         self.client.login(username='javerage', password=get_user_pass('javerage'))
