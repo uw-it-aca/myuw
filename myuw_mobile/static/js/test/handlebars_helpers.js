@@ -1,4 +1,4 @@
-Handlebars = require("../vendor/handlebars-v2.0.0.js");
+Handlebars = require("../../vendor/js/handlebars-v2.0.0.js");
 require("../handlebars-helpers.js");
 
 var assert = require("assert")
