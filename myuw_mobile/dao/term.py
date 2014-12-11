@@ -56,7 +56,7 @@ def get_default_date():
 def is_using_file_dao():
     dao = SWS_DAO()._getDAO()
     class_name = dao.__class__.__name__
-    return class_name == "File"
+    return class_name == "File" or class_name == "ByWeek"
 
 
 def get_current_quarter(request):

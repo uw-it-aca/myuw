@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from unittest2 import skipIf
 from myuw_mobile.test.api import missing_url, get_user, get_user_pass
 from django.test.utils import override_settings
+from datetime import datetime
 import json
 
 @override_settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File',
@@ -35,4 +36,8 @@ class TestFinance(TestCase):
 
         self.assertEquals(data['tuition_accbalance'], '12345.00')
         self.assertEquals(data['pce_accbalance'], '0.00')
-        self.assertEquals(data['tuition_due'], '2014-12-31')
+
+        # this date is set to future = today + timedelta(weeks=3) in
+        # dao_implementation/sws.py's File implementation
+        compare = datetime.strptime(data['tuition_due'], "%Y-%m-%d").date()
+        self.assertTrue(compare > datetime.now().date())
