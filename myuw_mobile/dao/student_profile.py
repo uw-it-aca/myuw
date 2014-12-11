@@ -11,7 +11,7 @@ from myuw_mobile.dao.pws import get_regid_of_current_user
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logback import log_resp_time, log_exception, log_info
 
-logger =  logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 def get_profile_of_current_user():
@@ -30,4 +30,3 @@ def get_profile_of_current_user():
                       id,
                       timer)
     return None
-

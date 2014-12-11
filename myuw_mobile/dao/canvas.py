@@ -1,4 +1,6 @@
 from restclients.canvas.enrollments import Enrollments as CanvasEnrollments
+from restclients.canvas.sections import Sections
+from restclients.canvas.courses import Courses
 from myuw_mobile.dao.pws import get_regid_of_current_user
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logback import log_resp_time, log_exception
@@ -16,14 +18,9 @@ def get_canvas_enrolled_courses():
     timer = Timer()
     try:
         regid = get_regid_of_current_user()
-        return _indexed_by_course_id(
-            CanvasEnrollments().get_enrollments_for_regid(
-                regid,
-                {'state': "active",
-                'as_user': CanvasEnrollments().sis_user_id(regid)})
-        )
+        return get_indexed_data_for_regid(regid)
     except AttributeError:
-        #If course is not in canvas, skip
+        # If course is not in canvas, skip
         pass
     except Exception as ex:
         log_exception(logger,
@@ -34,6 +31,35 @@ def get_canvas_enrolled_courses():
                       'get_canvas_enrolled_courses',
                       timer)
     return []
+
+
+def get_indexed_data_for_regid(regid):
+    return _indexed_by_course_id(
+        CanvasEnrollments().get_enrollments_for_regid(
+            regid,
+            {'state': "active",
+             'as_user': CanvasEnrollments().sis_user_id(regid)})
+        )
+
+
+def get_indexed_by_decrosslisted(by_primary, sws_sections):
+
+    for section in sws_sections:
+        alternate_id = None
+        try:
+            sis_id = section.canvas_section_sis_id()
+            canvas_section = Sections().get_section_by_sis_id(sis_id)
+            primary_course = Courses().get_course(canvas_section.course_id)
+            alternate_id = primary_course.sws_course_id()
+        except Exception as ex:
+            alternate_id = section.section_label()
+
+        base_id = section.section_label()
+
+        if base_id not in by_primary:
+            if alternate_id in by_primary:
+                by_primary[base_id] = by_primary[alternate_id]
+    return by_primary
 
 
 def _indexed_by_course_id(enrollments):

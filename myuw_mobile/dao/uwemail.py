@@ -1,5 +1,5 @@
 """
-This class encapsulates the interactions with 
+This class encapsulates the interactions with
 the uwnetid subscription resource.
 """
 
@@ -16,14 +16,14 @@ logger = logging.getLogger(__name__)
 
 def _get_email_forwarding_by_uwnetid(uwnetid):
     """
-    returns restclients.models.uwnetid.UwEmailForwarding object 
+    returns restclients.models.uwnetid.UwEmailForwarding object
     for a given uwnetid
     """
 
     if uwnetid is None:
         return None
 
-    id = "%s %s" % ('_get_email_forwarding_by_uwnetid', uwnetid) 
+    id = "%s %s" % ('_get_email_forwarding_by_uwnetid', uwnetid)
     try:
         return get_email_forwarding(uwnetid)
     except Exception:

@@ -86,7 +86,7 @@ var VisualSchedule = {
         };
 
         // Handle the case of no courses
-        if (course_data.sections.length == 0) {
+        if (course_data.sections.length === 0) {
             $("#main-content").no_courses({
                 visual: "/visual",
                 show_future_link: term ? false : true
@@ -145,7 +145,7 @@ var VisualSchedule = {
                     }
                 }
                 else {
-                    visual_data["courses_meeting_tbd"].push({
+                    visual_data.courses_meeting_tbd.push({
                         color_id: section.color_id,
                         curriculum: section.curriculum_abbr,
                         course_number: section.course_number,

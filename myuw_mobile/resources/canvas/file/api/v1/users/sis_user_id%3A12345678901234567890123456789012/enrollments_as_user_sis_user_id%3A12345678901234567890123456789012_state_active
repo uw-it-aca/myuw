@@ -51,5 +51,37 @@
             "name": "EIGHT AVERAGE STUDENT",
             "sis_login_id": "eight"
         }
+    },
+    {
+        "associated_user_id": null,
+        "course_id": 249650,
+        "course_section_id": 425705,
+        "id": 15741787,
+        "limit_privileges_to_course_section": false,
+        "root_account_id": 83919,
+        "type": "StudentEnrollment",
+        "updated_at": "2013-12-18T21:41:03Z",
+        "user_id": 496168,
+        "enrollment_state": "active",
+        "role": "StudentEnrollment",
+        "last_activity_at": null,
+        "grades": {
+            "html_url": "https://uw.test.instructure.com/courses/862539/grades/496164",
+            "current_score": 23.0,
+            "final_score": 66.15,
+            "current_grade": 88.2,
+            "final_grade": 56.14
+        },
+        "html_url": "https://uw.test.instructure.com/courses/862539/users/496164",
+        "user": {
+            "login_id": "eight",
+            "sis_user_id": "12345678901234567890123456789012",
+            "sortable_name": "STUDENT, EIGHT AVERAGE",
+            "short_name": "EIGHT AVERAGE STUDENT",
+            "id": 496168,
+            "name": "EIGHT AVERAGE STUDENT",
+            "sis_login_id": "eight"
+        }
     }
+
 ]

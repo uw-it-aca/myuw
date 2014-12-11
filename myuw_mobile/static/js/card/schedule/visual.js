@@ -33,8 +33,8 @@ var VisualScheduleCard = {
     // The course_index will be given when a modal is shown.
     _render: function() {
         var term = VisualScheduleCard.term;
-        var course_data = WSData.normalized_course_data(term)
-        if (course_data.sections.length == 0) {
+        var course_data = WSData.normalized_course_data(term);
+        if (course_data.sections.length === 0) {
             VisualScheduleCard.dom_target.html(CardWithNoCourse.render(term));
             return;
         }
@@ -63,6 +63,7 @@ var VisualScheduleCard = {
             has_6_days: false,
             courses_meeting_tbd: []
         };
+        var day, day_index, i, height, top;
 
         var index = 0;
         for (index = 0; index < course_data.sections.length; index++) {
@@ -106,9 +107,9 @@ var VisualScheduleCard = {
                         longitude: meeting.longitude
                     };
 
-                    var day_index = 0;
+                    day_index = 0;
                     for (day_index = 0; day_index < days.length; day_index++) {
-                        var day = days[day_index];
+                        day = days[day_index];
 
                         if (meeting.meeting_days[day]) {
                             if (day === "saturday") {
@@ -119,7 +120,7 @@ var VisualScheduleCard = {
                     }
                 }
                 else {
-                    visual_data["courses_meeting_tbd"].push({
+                    visual_data.courses_meeting_tbd.push({
                         color_id: section.color_id,
                         curriculum: section.curriculum_abbr,
                         course_number: section.course_number,
@@ -147,7 +148,7 @@ var VisualScheduleCard = {
             visual_data.end_time = (end_hour * 60);
         }
 
-        var i = 0;
+        i = 0;
         var position_index = 0;
         // We don't want to add the last hour - it's just off the end of the visual schedule
         for (i = visual_data.start_time; i <= visual_data.end_time - 1; i += 60) {
@@ -174,15 +175,14 @@ var VisualScheduleCard = {
 
         var weekends = days.length;
         if (!visual_data.has_6_days) {
-            weekends = 5
+            weekends = 5;
         }
-        var day_index;
         for (day_index = 0; day_index < weekends; day_index++) {
-            var day = days[day_index];
-            var i = 0;
+            day = days[day_index];
+            i = 0;
             while (i < visual_data[day].length) {
-                var top = VisualScheduleCard.get_scaled_percentage(visual_data[day][i].start, visual_data.start_time, visual_data.end_time);
-                var height =  VisualScheduleCard.get_scaled_percentage(visual_data[day][i].end, visual_data.start_time, visual_data.end_time) - top;
+                top = VisualScheduleCard.get_scaled_percentage(visual_data[day][i].start, visual_data.start_time, visual_data.end_time);
+                height =  VisualScheduleCard.get_scaled_percentage(visual_data[day][i].end, visual_data.start_time, visual_data.end_time) - top;
                 visual_data[day][i].top=top;
                 visual_data[day][i].height=height;
                 i += 1;
@@ -192,8 +192,8 @@ var VisualScheduleCard = {
             var position_start = visual_data.start_time;
             while (position_start < visual_data.end_time) {
                 var position_end = position_start + 30;
-                var top = VisualScheduleCard.get_scaled_percentage(position_start, visual_data.start_time, visual_data.end_time);
-                var height =  VisualScheduleCard.get_scaled_percentage(position_end, visual_data.start_time, visual_data.end_time) - top;
+                top = VisualScheduleCard.get_scaled_percentage(position_start, visual_data.start_time, visual_data.end_time);
+                height =  VisualScheduleCard.get_scaled_percentage(position_end, visual_data.start_time, visual_data.end_time) - top;
                 visual_data[day].push({
                     is_meeting: false,
                     start_at_hr: start_at_hr,
@@ -236,7 +236,7 @@ var VisualScheduleCard = {
             ev.preventDefault();
             $("#final_exam_schedule_panel").toggleClass("slide-show");
             if ($("#final_exam_schedule_panel").hasClass("slide-show")) {
-                $("#toggle_finalexams").text("Hide Final Exam Schedule")
+                $("#toggle_finalexams").text("Hide Final Exam Schedule");
                 $("#toggle_finalexams").attr('title', 'Hide Final Exam Schedule');
                 $("#final_exam_schedule_panel").attr('aria-hidden', 'false');
                 window.myuw_log.log_card("FinalExam", "expand");

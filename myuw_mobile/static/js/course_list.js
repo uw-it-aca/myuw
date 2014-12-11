@@ -41,7 +41,7 @@ var CourseList = {
         Modal.hide();
 
         // Handle the case of no courses
-        if (course_data.sections.length == 0) {
+        if (course_data.sections.length === 0) {
             $("#main-content").no_courses({
                 show_future_link: term ? false : true
             });
