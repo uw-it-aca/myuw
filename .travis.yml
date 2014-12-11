@@ -15,7 +15,7 @@ script:
   - pep8 myuw_mobile/ --exclude=migrations,myuw_mobile/test,myuw_mobile/management
   - jshint myuw_mobile/static/js/  --verbose
   - mocha myuw_mobile/static/js/test/ --recursive
-  - coverage run --source=myuw_mobile/ manage.py test myuw_mobile
+  - coverage run --source=myuw_mobile/ --omit=myuw_mobile/migrations/* manage.py test myuw_mobile
 after_script:
   - coveralls
 notifications:
