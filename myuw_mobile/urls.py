@@ -10,7 +10,6 @@ from myuw_mobile.views.api.category_links import CategoryLinks
 from myuw_mobile.views.api.other_quarters import RegisteredFutureQuarters
 from myuw_mobile.views.api.uwemail import UwEmail
 from myuw_mobile.views.api.textbook import Textbook
-from myuw_mobile.views.api.weekly import Weekly
 from myuw_mobile.views.logout import Logout
 from myuw_mobile.views.api.notices import Notices
 from myuw_mobile.views.page import index
@@ -49,7 +48,6 @@ urlpatterns = patterns(
         name="myuw_notices_api"),
     url(r'^api/v1/uwemail/$', login_required(UwEmail().run),
         name="myuw_email_api"),
-    url(r'^api/v1/current_week/$', login_required(Weekly().run)),
     url(r'^api/v1/schedule/current/?$',
         login_required(StudClasScheCurQuar().run),
         name="myuw_current_schedule"
