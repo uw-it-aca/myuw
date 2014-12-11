@@ -30,6 +30,8 @@ class AcademicEvents(RESTDispatch):
         category = self.parse_category(event)
         event_url = self.parse_event_url(event)
 
+        is_all_day = self.parse_event_is_all_day(event)
+
         return {
             "summary": event.get('summary'),
             "start": start,
@@ -38,7 +40,18 @@ class AcademicEvents(RESTDispatch):
             "quarter": quarter,
             "category": category,
             "event_url": event_url,
+            "is_all_day": is_all_day,
         }
+
+    def parse_event_is_all_day(self, event):
+        start = event.get('dtstart')
+        end = event.get('dtend')
+
+        diff = end.dt - start.dt
+        if diff.days == 1 and diff.seconds == 0:
+            return True
+
+        return False
 
     def parse_category(self, event):
         return event.get('categories')
