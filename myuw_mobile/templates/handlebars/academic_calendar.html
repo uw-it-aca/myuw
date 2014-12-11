@@ -1,13 +1,17 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "calendar_events" %}
-    {{ #each events }}
-        <div style="border: 1px solid lightblue;">
-            <a href="{{ event_url }}">{{ summary }}</a><br />
-            {{ category }} <br />
-            {{ start }} -- {{ end }} <br />
-            {{ quarter }} {{ year}} <br />
-
-        </div>
-    {{ /each }}
+    <div class="academic_cal-container">
+	   <div class="container">
+		   <h1>Academic Calendar</h1>
+		   {{ #each events }}
+		    	<div style="border: 1px solid lightblue;">
+					<a href="{{ event_url }}">{{ summary }}</a><br />
+	            {{ category }} <br />
+	            {{ start }} -- {{ end }} <br />
+	            {{ quarter }} {{ year}} <br />
+        		</div>
+			{{ /each }}
+    	</div>	   
+    </div>
     {% endtplhandlebars %}
 
