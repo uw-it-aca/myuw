@@ -15,7 +15,7 @@ class HfsAccounts(object):
     """
     Currently return the husky and dining balances for the user
     """
-    _logger = logging.getLogger('myuw_mobile.restclients.hfs_account.HfsAccounts')
+    _logger = logging.getLogger(__name__)
 
     _most_recent_update_datetime = datetime(2012, 11, 1, 1, 1)
 
@@ -34,7 +34,8 @@ class HfsAccounts(object):
         if not re.match(r'^[0-9]{9,10}$', employee_id):
             raise InvalidEmployeeId(employee_id)
 
-        url = "/hfs/servlet/hfservices?sn=%s&eid=%s" % (student_number, employee_id)
+        url = "/hfs/servlet/hfservices?sn=%s&eid=%s" % (student_number,
+                                                        employee_id)
 
         dao = Hfs_DAO()
         response = dao.getURL(url, {"Accept": "text/html"})
@@ -56,7 +57,8 @@ class HfsAccounts(object):
 
         # "11/06/2012 at 6:40 a.m."
         timespec = re.search(
-            '([0-9]{1,2})/([0-9]{1,2})/([1-9][0-9]{3}) at ([0-9]{1,2}):([0-9]{1,2}) ([ap]\.m)\.',
+            '([0-9]{1,2})/([0-9]{1,2})/([1-9][0-9]{3}) at '
+            '([0-9]{1,2}):([0-9]{1,2}) ([ap]\.m)\.',
             data, re.I)
         if timespec is not None:
 

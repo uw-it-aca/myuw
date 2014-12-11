@@ -35,7 +35,7 @@ var WSData = {
         }
         return notices;
     }
-}
+};
 
 
 test( "get_notices_for_category", function() {
@@ -58,7 +58,7 @@ test ("get_total_unread", function() {
 
 test ("get_unread_count_by_category", function() {
     unread_count = Notices.get_unread_count_by_category("reg_card_messages");
-    equal (unread_count["Registration"], "3", "Passed!");
+    equal (unread_count.Registration, "3", "Passed!");
     equal (unread_count["Fees & Finances"], "6", "Passed!");
 });
 

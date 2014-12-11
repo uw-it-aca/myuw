@@ -4,6 +4,7 @@ from operator import itemgetter
 import json
 from myuw_mobile.dao.building import get_buildings_by_schedule
 from myuw_mobile.dao.canvas import get_canvas_enrolled_courses
+from myuw_mobile.dao.canvas import get_indexed_by_decrosslisted
 from myuw_mobile.dao.course_color import get_colors_by_schedule
 from myuw_mobile.dao.pws import get_contact
 from myuw_mobile.dao.gws import is_grad_student
@@ -17,7 +18,7 @@ from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
 
 class StudClasSche(RESTDispatch):
 
-    def make_http_resp(self, logger, timer, term, summer_term=None):
+    def make_http_resp(self, logger, timer, term, request, summer_term=None):
         if term is None:
             log_data_not_found_response(logger, timer)
             return data_not_found()
@@ -32,7 +33,8 @@ class StudClasSche(RESTDispatch):
             return HttpResponse({})
 
         if summer_term is None:
-            summer_term = get_current_summer_term_in_schedule(schedule)
+            summer_term = get_current_summer_term_in_schedule(schedule,
+                                                              request)
 
         resp_data = load_schedule(schedule, summer_term)
         if resp_data is None:
@@ -60,7 +62,11 @@ def load_schedule(schedule, summer_term=""):
     # Removing call to Canvas pending MUWM-2106
     # Too much!  MUWM-2270
     # canvas_data_by_course_id = []
-    canvas_data_by_course_id = get_canvas_enrolled_courses()
+    canvas_data_by_primary_course_id = get_canvas_enrolled_courses()
+
+    primary = canvas_data_by_primary_course_id
+    canvas_data_by_course_id = get_indexed_by_decrosslisted(primary,
+                                                            schedule.sections)
 
     # Since the schedule is restclients, and doesn't know
     # about color ids, backfill that data

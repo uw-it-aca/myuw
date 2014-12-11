@@ -20,7 +20,7 @@ class CategoryLinks(RESTDispatch):
         """
         timer = Timer()
         logger = logging.getLogger('views.api.CategoryLinks.GET')
-        links = get_links_for_category(category_id)
+        links = get_links_for_category(category_id, request)
         if not links:
             log_data_not_found_response(logger, timer)
             return data_not_found()

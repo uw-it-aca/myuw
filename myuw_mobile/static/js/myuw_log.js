@@ -31,7 +31,7 @@ function MyuwLog()  {
             var message = {href: $(link).attr('href'),
                            action: action};
             if (href.indexOf("notices") > -1) {
-                message['unread_notice_count'] = Notices.get_total_unread();
+                message.unread_notice_count = Notices.get_total_unread();
             }
             this.link_logger.info(JSON.stringify(message));
         }

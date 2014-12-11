@@ -16,9 +16,9 @@ var AcademicCard = {
     _render: function (academic_data) {
         var source = $("#academic_card_content").html();
         var template = Handlebars.compile(source);
-        academic_data['display_card'] = true;
+        academic_data.display_card = true;
         if (!academic_data.class_level || academic_data.class_level === "NON_MATRIC") {
-            academic_data['display_card'] = false;
+            academic_data.display_card = false;
         }
         AcademicCard.dom_target.html(template(academic_data));
         AcademicCard.add_events();
