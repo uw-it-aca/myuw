@@ -45,7 +45,7 @@ var GradeCard = {
         }
         var index;
         for (index = 0; index < course_data.sections.length; index += 1) {
-            if (course_data.sections[index].is_primary_section) {
+            if (course_data.sections[index].is_primary_section && !course_data.sections[index].is_auditor) {
                 course_data.sections[index].display_grade = true;
                 has_section_to_display = true;
             } else {
