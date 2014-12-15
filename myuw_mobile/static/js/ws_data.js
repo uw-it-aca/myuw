@@ -1,5 +1,4 @@
 WSData = {
-    _term: null, // current term
     _book_data: {},
     _course_data: {},
     _profile_data: null,
@@ -92,7 +91,7 @@ WSData = {
     },
 
     current_course_data: function() {
-        return WSData._course_data["current"];
+        return WSData._course_data.current;
     },
 
     course_data: function() {
@@ -137,10 +136,6 @@ WSData = {
 
     category_link_data: function(category) {
         return WSData._category_link_data[category];
-    },
-
-    term_data: function() {
-        return WSData._term;
     },
 
     tuition_data: function() {
@@ -216,17 +211,17 @@ WSData = {
                     for (var index = 0; index < section_count; index++) {
                         section = sections[index];
 
-                        var canvas_url = section["canvas_url"];
+                        var canvas_url = section.canvas_url;
                         if (canvas_url) {
-                            if (section["class_website_url"] == canvas_url) {
-                                section["class_website_url"] = null;
+                            if (section.class_website_url == canvas_url) {
+                                section.class_website_url = null;
                             }
                             var matches = canvas_url.match(/\/([0-9]+)$/);
                             var canvas_id = matches[1];
                             var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
 
-                            if (section["class_website_url"] == alternate_url) {
-                                section["class_website_url"] = null;
+                            if (section.class_website_url == alternate_url) {
+                                section.class_website_url = null;
                             }
                         }
                     }
@@ -606,34 +601,6 @@ WSData = {
             }, 0);
         }
     },
-
-    fetch_term_data: function(callback, err_callback, args) {
-        if (WSData._term_data === null) {
-            $.ajax({
-                url: "/mobile/api/v1/term/current/",
-                dataType: "JSON",
-                type: "GET",
-                accepts: {html: "text/html"},
-                success: function(results) {
-                    WSData._term_data = results;
-                    if (callback !== null) {
-                        callback.apply(null, args);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    if (err_callback) {
-                        err_callback.call(null, status, error);
-                    }
-                }
-            });
-        }
-        else {
-            window.setTimeout(function() {
-                callback.apply(null, args);
-            }, 0);
-        }
-    },
-
 
     save_links: function(links) {
         var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;

@@ -1,5 +1,5 @@
 """
-This class encapsulates the interactions with 
+This class encapsulates the interactions with
 the SWS Personal Financial resource.
 """
 
@@ -16,14 +16,14 @@ logger = logging.getLogger(__name__)
 
 def _get_account_by_uwnetid(uwnetid):
     """
-    returns restclients.models.library.MyLibAccount object 
+    returns restclients.models.library.MyLibAccount object
     for a given uwnetid
     """
 
     if uwnetid is None:
         return None
 
-    id = "%s %s" % ('_get_account_by_uwnetid', uwnetid) 
+    id = "%s %s" % ('_get_account_by_uwnetid', uwnetid)
     try:
         return get_account(uwnetid)
     except Exception:

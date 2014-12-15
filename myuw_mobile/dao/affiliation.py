@@ -14,7 +14,7 @@ from myuw_mobile.dao.enrollment import get_main_campus
 logger = logging.getLogger(__name__)
 
 
-def get_all_affiliations():
+def get_all_affiliations(request):
     """
     return a dictionary of affiliation indicators.
     ["grad"]: True if the user is currently an UW graduate student.
@@ -24,7 +24,7 @@ def get_all_affiliations():
     ["seattle"]: True if the user is an UW Seattle student
                  in the current quarter.
     ["bothell"]: True if the user is an UW Bothell student
-                 in the current quarter.             
+                 in the current quarter.
     ["tacoma"]: True if the user is an UW Tacoma student
                 in the current quarter.
     ["official_seattle"]: True if the user is an UW Seattle student
@@ -35,7 +35,7 @@ def get_all_affiliations():
                 according to the SWS Enrollment.
     """
 
-    enrolled_campuses = get_current_quarter_course_campuses()
+    enrolled_campuses = get_current_quarter_course_campuses(request)
     data = {"grad": is_grad_student(),
             "undergrad": is_undergrad_student(),
             "pce": is_pce_student(),
@@ -44,8 +44,8 @@ def get_all_affiliations():
             "bothell": enrolled_campuses["bothell"] or is_bothell_student(),
             "tacoma": enrolled_campuses["tacoma"] or is_tacoma_student(),
             }
-    #add 'official' campus info
-    official_campuses = _get_official_campuses(get_main_campus())
+    # add 'official' campus info
+    official_campuses = _get_official_campuses(get_main_campus(request))
     data = dict(data.items() + official_campuses.items())
     # Note:
     #    As the UW Affiliation group (gws) only knows about one campus,
@@ -59,9 +59,9 @@ def _get_campuses_by_schedule(schedule):
     """
     Returns a dictionary indicating the campuses that the student
     has enrolled in the given schedule:
-     { seattle: false|true, 
+     { seattle: false|true,
        bothell: false|true,
-       tacoma: false|true } 
+       tacoma: false|true }
     True if the user is registered on that campus.
     """
     campuses = {"seattle": False,
@@ -71,11 +71,11 @@ def _get_campuses_by_schedule(schedule):
     if schedule is not None and len(schedule.sections) > 0:
         for section in schedule.sections:
             if section.course_campus == "Seattle":
-                campuses["seattle"]=True
+                campuses["seattle"] = True
             elif section.course_campus == "Bothell":
-                campuses["bothell"]=True
+                campuses["bothell"] = True
             elif section.course_campus == "Tacoma":
-                campuses["tacoma"]=True
+                campuses["tacoma"] = True
             else:
                 pass
     return campuses
@@ -97,21 +97,21 @@ def _get_official_campuses(campuses):
     return official_campuses
 
 
-def get_current_quarter_course_campuses():
+def get_current_quarter_course_campuses(request):
     """
     Returns a dictionary indicating the campuses that the student
     has enrolled in the current quarter.
     """
-    return _get_campuses_by_schedule(get_current_quarter_schedule())
+    return _get_campuses_by_schedule(get_current_quarter_schedule(request))
 
 
-def get_base_campus():
+def get_base_campus(request):
     """
     Return one currently enrolled campus.
     If not exist, return one affiliated campus.
     """
     campus = ""
-    affiliations = get_all_affiliations()
+    affiliations = get_all_affiliations(request)
     try:
         if affiliations["official_seattle"]:
             campus = "seattle"

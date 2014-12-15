@@ -1,5 +1,5 @@
 """
-This class encapsulates the interactions with 
+This class encapsulates the interactions with
 the student account balances (MyUW HFS) web service.
 """
 
@@ -26,11 +26,11 @@ def get_account_balances_by_uwnetid(uwnetid):
     try:
         return get_hfs_accounts(uwnetid)
     except Exception as ex:
-        log_exception(logger, 
-                     id,
+        log_exception(logger,
+                      id,
                       traceback.format_exc())
     return None
-        
+
 
 def get_account_balances_for_current_user():
     return get_account_balances_by_uwnetid(get_netid_of_current_user())

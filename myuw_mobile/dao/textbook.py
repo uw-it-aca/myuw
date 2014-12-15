@@ -22,8 +22,8 @@ def get_textbook_by_schedule(schedule):
         try:
             return Bookstore().get_books_for_schedule(schedule)
         except Exception as ex:
-            log_exception(logger, 
-                          'get_books_for_schedule', 
+            log_exception(logger,
+                          'get_books_for_schedule',
                           traceback.format_exc())
         finally:
             log_resp_time(logger,
@@ -49,4 +49,3 @@ def get_verba_link_by_schedule(schedule):
                           'get_verba_link',
                           timer)
     return None
-

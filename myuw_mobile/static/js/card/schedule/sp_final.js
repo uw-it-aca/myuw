@@ -28,7 +28,7 @@ var FinalExamCard = {
         if (!FinalExamCard._has_all_data()) {
             return;
         }
-        var course_data = WSData.normalized_course_data(FinalExamCard.term)
+        var course_data = WSData.normalized_course_data(FinalExamCard.term);
         source = $("#final_exam_card_content").html();
         template = Handlebars.compile(source);
         FinalExamCard.dom_target.html(template(course_data));
