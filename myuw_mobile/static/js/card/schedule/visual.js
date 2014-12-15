@@ -20,7 +20,15 @@ var VisualScheduleCard = {
     },
 
     render_error: function() {
-        VisualScheduleCard.dom_target.html(CardWithNoCourse.render(titilizeTerm(VisualScheduleCard.term)));
+        var error_code = WSData.course_data_error_code();
+        if (error_code == 410) {
+            var page_source = $("#future_410_error").html();
+            var template = Handlebars.compile(page_source);
+            $("#main-content").html(template({}));
+        }
+        else {
+            VisualScheduleCard.dom_target.html(CardWithNoCourse.render(titilizeTerm(VisualScheduleCard.term)));
+        }
     },
 
     render_upon_data: function(course_index) {

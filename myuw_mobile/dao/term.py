@@ -183,8 +183,8 @@ def is_same_summer_term(summer_term1, summer_term2):
     return summer_term1.lower() == summer_term2.lower()
 
 
-def is_past(term):
+def is_past(term, request):
     """
     return true if the term is in the past
     """
-    return term.last_final_exam_date < date.today()
+    return term.last_final_exam_date < get_comparison_date(request)
