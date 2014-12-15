@@ -6,6 +6,10 @@ Handlebars.registerHelper("formatPhoneNumber", function(str) {
     return str;
 });
 
+Handlebars.registerHelper("formatStudentCredits", function(str) {
+    return parseInt(str, 10);
+});
+
 (function() {
 
     function parse_date(str) {
