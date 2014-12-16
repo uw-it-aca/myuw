@@ -34,18 +34,16 @@ def get_values_by_date(now, request):
     is_before_end_of_registration_display_period = False
     is_before_first_day_of_term = False
 
-    # We need to see if we're before this term's 1st day - the term
-    # switches at the grade submission deadline.
     if now.date() < current_term.first_day_quarter:
+        is_before_first_day_of_term = True
+        # We need to see if we're before this term's 1st day - the term
+        # switches at the grade submission deadline.
         is_after_grade_submission_deadline = True
 
     raw_date = current_term.last_day_instruction
     d = datetime(raw_date.year, raw_date.month, raw_date.day)
     if now >= d + timedelta(days=1):
         is_after_last_day_of_classes = True
-
-    if now.date() < current_term.first_day_quarter:
-        is_before_first_day_of_term = True
 
     # XXX - this will be a bug when summer quarter comes around
     # because there will need to be a summer term + a next non-summer term
