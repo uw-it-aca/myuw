@@ -3,16 +3,21 @@
     
 	<div id="app_acal">
         <div class="container acal-header">
-            <a href="/mobile/academic_calendar/" title="Navigate to Notices"><h2 class="notice-header" role="alert">Academic Calendar</h2></a>
-            <div style="font-size: 12px;line-height: 24px;margin-top:10px;">
-	            <ul style="list-style-type: none;padding-left: 0;">
+            <a href="/mobile/academic_calendar/" title="Navigate to Notices">
+	            <h2 class="pull-left" role="alert">Academic Calendar</h2>
+				<div class="pull-right view-all">View all</div>
+			</a>
+	        <div class="acal-banner-events">
+	            <ul class="acal-banner-list">
 		            {{ #each events }}
-		            <li>{{ start }} {{ end }} <a href="{{ event_url }}" style="text-decoration: none;color: #4d66ca;font-weight:normal;">{{ summary }}</a></li>
-                    {{ /each }}
+		            <li class="acal-banner-list-item">
+		            	<div class="acal-banner-date">{{ start }} {{ end }}</div>
+		            	<a href="{{ event_url }}">{{ summary }}</a>
+		            </li>
+	                {{ /each }}
 	            </ul>
-            </div>
-            <div class="pull-right" style="border:none;font-size: 12px;color: #4d66ca;"><a href="#">View all</a></div>
-        </div>
+	        </div>
+        </div>        
     </div>        
 {% endtplhandlebars %}
 
