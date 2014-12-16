@@ -73,10 +73,6 @@ $(document).ready(function() {
             Grades.show_grades(data.term);
             document.title = window.page_titles.grades;
         }
-        else if (state === "weekly") {
-            Weekly.show_current_week(data);
-            document.title = window.page_titles.weekly;
-        }
         else if (state === "libraries") {
             Libraries.show_card();
             document.title = window.page_titles.libraries;
@@ -222,11 +218,6 @@ $(document).ready(function() {
                 term: (matches ? matches[1] : "")
             },  "", "/mobile/grades/" + (matches ? matches[1]
                                                  : ""));
-        }
-        else if (path.match(/^\/mobile\/weekly/)) {
-            hist.replaceState({
-                state: "weekly",
-            },  "", "/mobile/weekly/");
         }
         else if (path.match(/^\/mobile\/libraries/)) {
             hist.replaceState({
