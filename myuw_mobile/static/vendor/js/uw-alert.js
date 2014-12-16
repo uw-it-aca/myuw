@@ -90,7 +90,7 @@ function addElement(strAlertTitle,strAlertLink,strAlertColor,strAlertMessage)
   var alertBoxTextDiv = document.createElement('div');
 
   var alertIcon = document.createElement('i');
-  alertIcon.setAttribute('class', 'icon-warning-sign icon-large');
+  alertIcon.setAttribute('class', 'fa fa-exclamation-triangle fa-large');
 
   var header1 = document.createElement('h1');
 
