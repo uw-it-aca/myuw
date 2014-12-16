@@ -1,10 +1,19 @@
 var GradeCard = {
     name: 'GradeCard',
     dom_target: undefined,
-    term: 'current',
+    term: null,
 
     render_init: function() {
         if (window.card_display_dates.is_after_last_day_of_classes) {
+            GradeCard.term = 'current';
+        }
+        else if (window.card_display_dates.is_before_first_day_of_term) {
+            // Fetch previous term's data...
+            GradeCard.term = window.card_display_dates.last_term;
+        }
+
+        if (GradeCard.term) {
+            console.log("Fetching: ", GradeCard.term);
             WSData.fetch_course_data_for_term(GradeCard.term, GradeCard.render_upon_data, GradeCard.render_error);
         }
         else {
