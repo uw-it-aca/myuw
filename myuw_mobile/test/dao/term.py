@@ -63,9 +63,6 @@ class TestTerm(TestCase):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
             self.assertTrue(is_using_file_dao())
 
-        with self.settings(RESTCLIENTS_SWS_DAO_CLASS='myuw_mobile.restclients.dao_implementation.sws_weekly.ByWeek'):
-            self.assertTrue(is_using_file_dao())
-
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.Live'):
             self.assertFalse(is_using_file_dao())
 
