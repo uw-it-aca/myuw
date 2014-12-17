@@ -2,28 +2,26 @@
     {% tplhandlebars "calendar_events" %}
     <div class="academic_cal-container">
 	   <div class="container">
-		   <h1>Academic Calendar</h1>
-		   <a href="#">View detailed</a> | <a href="#">Subscribe to detailed</a>
-		    <div class="btn-group btn-group-justified" role="group" aria-label="..." style="padding:10px 10px;margin-bottom:15px;margin-top:15px;">
+		    <h1>Academic Calendar</h1>
+		    <a href="//www.washington.edu/students/reg/calendar.html">View detailed</a> | <a href="//www.washington.edu/calendar/academic/">Subscribe to detailed</a>
+		    <div class="btn-group btn-group-justified acal-page-filters" role="group" aria-label="...">
 			    <div class="btn-group" role="group">
-			    <button type="button" class="btn btn-default">All</button>
+			    	<button type="button" class="btn btn-default">All</button>
 			    </div>
 			    <div class="btn-group" role="group">
-			    <button type="button" class="btn btn-default">Breaks</button>
+			    	<button type="button" class="btn btn-default">Breaks</button>
 			    </div>
 			    <div class="btn-group" role="group">
-			    <button type="button" class="btn btn-default">Classes</button>
+			    	<button type="button" class="btn btn-default">Classes</button>
 			    </div>
 			</div>
 		   
-		   <div>
-				<ul style="list-style-type: none;padding-left: 0;">
+		   <div class="acal-page-events">
+				<ul class="acal-page-event-list">
 		   {{ #each events }}
-					<li style="margin-bottom:10px;">
-						<div style="border-bottom: 1px solid lightblue;">
-							<div><strong>{{ start }} -- {{ end }}</strong></div>
-							<div><a href="{{ event_url }}">{{ summary }}</a></div>
-        				</div>
+					<li class="acal-page-event-list-item">						
+							<div class="acal-page-event-date"><strong>{{ start }} - {{ end }}</strong></div>
+							<div class="acal-page-event-title"><a href="{{ event_url }}">{{ summary }}</a></div>
 					</li>
 			{{ /each }}
 				</ul>
