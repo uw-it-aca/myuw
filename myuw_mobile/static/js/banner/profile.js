@@ -2,8 +2,7 @@ var Profile = {
     render_upon_data: function() {
         var source = $("#profile-content").html();
         var template = Handlebars.compile(source);
-        $("#profile").html(template(WSData.profile_data()));
-        Profile.add_events();
+        $("#my_profile").html(template(WSData.profile_data()));
     },
 
     add_events: function() {
