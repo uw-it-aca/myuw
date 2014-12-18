@@ -66,8 +66,16 @@ def get_current_quarter(request):
     """
     timer = Timer()
     try:
-        return get_term_by_date(get_comparison_date(request))
+        comparison_date = get_comparison_date(request)
+        term = get_term_by_date(comparison_date)
+        after = get_term_after(term)
+
+        if comparison_date > term.grade_submission_deadline.date():
+            return after
+
+        return term
     except Exception as ex:
+        print ex
         log_exception(logger,
                       'get_current_term',
                       traceback.format_exc())
