@@ -43,10 +43,6 @@ $(document).ready(function() {
             $("#nav_course_list").addClass("active");
             document.title = window.page_titles.course_list;
         }
-        else if (state === "instructor") {
-            Instructor.show_instructor(data.term, data.instructor);
-            document.title = window.page_titles.instructor;
-        }
         else if (state === "future_quarters") {
             FutureQuarter.render(data.term);
             document.title = window.page_titles.future_quarters;
@@ -54,16 +50,6 @@ $(document).ready(function() {
         else if (state === "textbooks") {
             TextBooks.show_books(data.term, data.textbook);
             document.title = window.page_titles.textbooks;
-        }
-        else if (state === "finabala") {
-            HfsAccounts.show_balances();
-            $("#nav_finabala").addClass("active");
-            document.title = window.page_titles.finabala;
-        }
-        else if (state === "visual") {
-            VisualSchedule.show_visual_schedule(data.term, data.course_index);
-            $("#nav_visual_schedule").addClass("active");
-            document.title = window.page_titles.visual;
         }
         else if (state === "final_exams") {
             FinalExams.show_finals(data.term, data.course_index);
@@ -112,33 +98,6 @@ $(document).ready(function() {
                 term: matches[1]
             }, "", "/mobile/"+matches[1]);
         }
-        else if (path.match(/^\/mobile\/visual\/[^\/]+\/[0-9]+$/)) {
-            matches = path.match(/^\/mobile\/visual\/([^\/]+)\/([0-9]+)/);
-            hist.replaceState({
-                state: "visual",
-                term: matches[1],
-                course_index: matches[2]
-            },  "", "/mobile/visual/"+matches[1]+"/"+matches[2]);
-        }
-        else if (path.match(/^\/mobile\/visual\/[0-9]{4},[a-z]+[,-abterm]*$/)) {
-            matches = path.match(/^\/mobile\/visual\/([0-9]{4},[a-z]+[,-abterm]*)$/);
-            hist.replaceState({
-                state: "visual",
-                term: matches[1]
-            },  "", "/mobile/visual/"+matches[1]);
-        } 
-        else if (path.match(/^\/mobile\/visual\/[0-9]+$/)) {
-            matches = path.match(/^\/mobile\/visual\/([0-9]+)/);
-            hist.replaceState({
-                state: "visual",
-                course_index: matches[1]
-            },  "", "/mobile/visual/"+matches[1]);
-        }
-        else if (path.match(/^\/mobile\/visual\/?/)) {
-            hist.replaceState({
-                state: "visual"
-            },  "", "/mobile/visual");
-        }
         else if (path.match(/^\/mobile\/landing/)) {
             hist.replaceState({
                 state: "landing",
@@ -164,11 +123,6 @@ $(document).ready(function() {
                 state: "textbooks",
                 term: "current"
             },  "", path);
-        }
-        else if (path === "/mobile/finabala") {
-            hist.replaceState({
-                state: "finabala"
-            },  "", "/mobile/finabala");
         }
         else if (path.match(/^\/mobile\/future_quarters\/[0-9]{4},[-,a-z]+/)) {
             matches = path.match(/^\/mobile\/future_quarters\/([0-9]{4},[-,a-z]+)/);
@@ -203,13 +157,6 @@ $(document).ready(function() {
                 state: "final_exams",
                 term: matches[1],
             },  "", "/mobile/final_exams/"+matches[1]);
-        }
-        else if (path.match(/^\/mobile\/instructor\/[A-Z0-9]+/)) {
-            matches = path.match(/^\/mobile\/instructor\/([A-Z0-9]+)/);
-            hist.pushState({
-                state: "instructor",
-                instructor: matches[1]
-            },  "", "/mobile/instructor/"+matches[1]);
         }
         else if (path.match(/^\/mobile\/grades/)) {
             matches = path.match(/^\/mobile\/grades\/([0-9,a-z]+)/);
