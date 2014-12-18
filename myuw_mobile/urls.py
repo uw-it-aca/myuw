@@ -18,7 +18,7 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns = patterns(
     'myuw_mobile.views',
-    url(r'login', 'mobile_login.user_login'),
+    url(r'login', 'mobile_login.user_login', name="myuw_login"),
     url(r'admin/dates', 'display_dates.override'),
     url(r'^logger/(?P<interaction_type>\w+)$', 'logger.log_interaction'),
     url(r'logout', login_required(Logout.as_view())),
