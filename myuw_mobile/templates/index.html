@@ -34,6 +34,7 @@
     <!-- page content templates -->
     {% include "handlebars/landing.html" %}
     {% include "handlebars/future.html" %}
+    {% include "handlebars/future_410_error.html" %}
     {% include "handlebars/textbooks.html" %}
     {% include "handlebars/course_list.html" %}
     {% include "handlebars/course_modal.html" %}
@@ -82,7 +83,9 @@
         "is_after_start_of_registration_display_period": {{ card_display_dates.is_after_start_of_registration_display_period|yesno:"true, false" }},
         "is_before_end_of_finals_week": {{ card_display_dates.is_before_end_of_finals_week|yesno:"true, false" }},
         "is_before_last_day_of_classes": {{ card_display_dates.is_before_last_day_of_classes|yesno:"true, false" }},
-        "is_before_end_of_registration_display_period": {{ card_display_dates.is_before_end_of_registration_display_period|yesno:"true, false" }}
+        "is_before_end_of_registration_display_period": {{ card_display_dates.is_before_end_of_registration_display_period|yesno:"true, false" }},
+        "is_before_first_day_of_term": {{ card_display_dates.is_before_first_day_of_term|yesno:"true, false" }},
+        "last_term": "{{ card_display_dates.last_term }}"
     };
     </script>
 

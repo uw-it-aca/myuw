@@ -50,3 +50,9 @@ class TestFutureSchedule(TestCase):
         data = json.loads(response.content)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(len(data["sections"]), 2)
+
+        url = reverse("myuw_future_schedule_api", kwargs={'year': 2013, 'quarter':'winter'})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 410)
+
+
