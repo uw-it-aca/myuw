@@ -17,6 +17,7 @@ WSData = {
     _error_callbacks: {},
     _callback_args: {},
     _academic_calendar_data: null,
+    _current_academic_calendar_data: null,
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
     _is_running_url: function(url) {
@@ -160,6 +161,10 @@ WSData = {
         return WSData._academic_calendar_data;
     },
 
+    current_academic_calendar_data: function() {
+        return WSData._current_academic_calendar_data;
+    },
+
     fetch_academic_calendar_events: function(callback, err_callback, args) {
         if (!WSData._academic_calendar_data) {
             var url = "/mobile/api/v1/academic_events";
@@ -178,6 +183,38 @@ WSData = {
                 accepts: {html: "text/html"},
                 success: function(results) {
                     WSData._academic_calendar_data = results;
+                    WSData._run_success_callbacks_for_url(url);
+                },
+                error: function(xhr, status, error) {
+                    WSData._run_error_callbacks_for_url(url);
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
+    fetch_current_academic_calendar_events: function(callback, err_callback, args) {
+        if (!WSData._current_academic_calendar_data) {
+            var url = "/mobile/api/v1/academic_events/current/";
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+            $.ajax({
+                url: url,
+                dataType: "JSON",
+
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    WSData._current_academic_calendar_data = results;
                     WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {

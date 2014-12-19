@@ -3,17 +3,17 @@ var CalendarBanner = {
 
     render_init: function(dom_taget) {
         CalendarBanner.dom_target  = dom_taget;
-        WSData.fetch_academic_calendar_events(CalendarBanner.render);
+        WSData.fetch_current_academic_calendar_events(CalendarBanner.render);
     },
 
     render: function () {
-        var calendar_data = WSData.academic_calendar_data();
+        var calendar_data = WSData.current_academic_calendar_data();
 
         if (calendar_data.length > 0) {
             var source = $("#calendar_banner").html();
             var template = Handlebars.compile(source);
 
-            var events = CalendarBanner.refine_event_fields(CalendarBanner.filter_events(calendar_data));
+            var events = CalendarBanner.refine_event_fields(calendar_data);
             var html = template({events: events});
             CalendarBanner.dom_target.html(html);
         }
