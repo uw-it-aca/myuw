@@ -61,8 +61,10 @@ urlpatterns = patterns(
         login_required(StudClasScheFutureQuar().run),
         name="myuw_future_schedule_api"
         ),
-    url(r'^api/v1/academic_events$', login_required(AcademicEvents().run)),
+    url(r'^api/v1/academic_events$', login_required(AcademicEvents().run),
+        name="myuw_academic_calendar"),
     url(r'^api/v1/academic_events/current/$',
-        login_required(AcademicEvents().run), {'current': True}),
+        login_required(AcademicEvents().run), {'current': True},
+        name="myuw_academic_calendar_current"),
     url(r'.*', 'page.index', name="myuw_home"),
 )
