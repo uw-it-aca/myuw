@@ -3,15 +3,18 @@ from myuw_mobile.dao.term import get_comparison_date, get_current_quarter
 from restclients.trumba import get_calendar_by_name
 from restclients.sws.term import get_term_after
 from django.http import HttpResponse
+from datetime import timedelta
 import json
 import re
+
+CURRENT_LIST_MAX_DAYS = 3
 
 
 class AcademicEvents(RESTDispatch):
     """
     Performs actions on /api/v1/academic_events
     """
-    def GET(self, request):
+    def GET(self, request, current=False):
         events = []
 
         cal_names = ['sea_acad-comm', 'sea_acad-inst', 'sea_acad-holidays']
@@ -28,7 +31,11 @@ class AcademicEvents(RESTDispatch):
         raw_events = self.sort_events(raw_events)
 
         raw_events = self.filter_past_events(request, raw_events)
-        raw_events = self.filter_too_future_events(request, raw_events)
+
+        if current:
+            raw_events = self.filter_non_current(request, raw_events)
+        else:
+            raw_events = self.filter_too_future_events(request, raw_events)
 
         for event in raw_events:
             events.append(self.json_for_event(event))
@@ -103,7 +110,10 @@ class AcademicEvents(RESTDispatch):
         return None, None
 
     def format_datetime(self, dt):
-        return str(dt.dt)
+        return self.format_native_datetime(dt.dt)
+
+    def format_native_datetime(self, dt):
+        return str(dt)
 
     def sort_events(self, events):
         return sorted(events,
@@ -132,3 +142,57 @@ class AcademicEvents(RESTDispatch):
                 not_too_future.append(event)
 
         return not_too_future
+
+    def filter_non_current(self, request, events):
+        comparison_date = get_comparison_date(request)
+        last_date = comparison_date + timedelta(days=7*4)
+
+        ok_overlaps = {}
+        round1 = []
+        for event in events:
+            if event.get('dtstart').dt <= last_date:
+                # The comparison date is the first date of the event in
+                # the ideal event window (now -> 4 weeks from now)
+                start = event.get('dtstart').dt
+                if start < comparison_date:
+                    start = comparison_date
+
+                date_string = self.format_native_datetime(start)
+                # We only want to show events from the first 3 days that
+                # overlap though
+                if date_string not in ok_overlaps:
+                    if len(ok_overlaps.keys()) >= CURRENT_LIST_MAX_DAYS:
+                        # We've hit our 4th day -
+                        # return the values we've collected
+                        return round1
+                    else:
+                        # Track the new date
+                        ok_overlaps[date_string] = True
+
+                # This event is in that first 3 matching days
+                round1.append(event)
+            else:
+                start = event.get('dtstart')
+                date_string = self.format_datetime(start)
+                # There's an event outside of 4 weeks.  3 things can happen:
+                # 1) we already have events, and the event's start date isn't
+                #    in the ok_overlaps lookup
+                #    - return what we have, we're outside the window
+                # 2) we don't have any events
+                #    - this is the first event, and it's outside the ideal
+                #      window.  we want to show all events from this day
+                # 3) we have events, and today's date is in ok_overlaps.
+                #    - this is not the first event of the day, but it is a day
+                #      of events we want to include.
+                if len(round1) == 0:
+                    # Case 2
+                    ok_overlaps[date_string] = True
+                if date_string in ok_overlaps:
+                    # Case 3, or a continuation of case 2
+                    round1.append(event)
+                else:
+                    # Case 1
+                    return round1
+
+        # If all of our events were in the first 3 days...
+        return round1
