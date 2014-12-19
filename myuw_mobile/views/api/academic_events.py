@@ -122,11 +122,13 @@ class AcademicEvents(RESTDispatch):
 
     def filter_too_future_events(self, request, events):
         current = get_current_quarter(request)
-        last = get_term_after(get_term_after(get_term_after(get_term_after(current))))
+        after = get_term_after
+        last = after(after(after(after(current))))
 
         not_too_future = []
         for event in events:
-            if event.get('dtstart').dt <= last.grade_submission_deadline.date():
+            start = event.get('dtstart').dt
+            if start <= last.grade_submission_deadline.date():
                 not_too_future.append(event)
 
         return not_too_future
