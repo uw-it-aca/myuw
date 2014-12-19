@@ -10,7 +10,6 @@ from myuw_mobile.views.api.category_links import CategoryLinks
 from myuw_mobile.views.api.other_quarters import RegisteredFutureQuarters
 from myuw_mobile.views.api.uwemail import UwEmail
 from myuw_mobile.views.api.textbook import Textbook
-from myuw_mobile.views.logout import Logout
 from myuw_mobile.views.api.notices import Notices
 from myuw_mobile.views.page import index
 from django.contrib.auth.decorators import login_required
@@ -21,7 +20,6 @@ urlpatterns = patterns(
     url(r'login', 'mobile_login.user_login', name="myuw_login"),
     url(r'admin/dates', 'display_dates.override'),
     url(r'^logger/(?P<interaction_type>\w+)$', 'logger.log_interaction'),
-    url(r'logout', login_required(Logout.as_view())),
     url(r'^api/v1/book/(?P<year>\d{4}),(?P<quarter>[a-z]+)'
         r'(?P<summer_term>[-,abterm]*)$',
         login_required(Textbook().run),
