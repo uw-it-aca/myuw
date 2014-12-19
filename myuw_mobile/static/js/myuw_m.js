@@ -37,12 +37,6 @@ $(document).ready(function() {
             $("#landing").addClass("active");
             document.title = window.page_titles.landing;
         }
-        else if (state === "course_list") {
-            // Figure out what to do from the url
-            CourseList.show_list(data.term, data.course_index);
-            $("#nav_course_list").addClass("active");
-            document.title = window.page_titles.course_list;
-        }
         else if (state === "future_quarters") {
             FutureQuarter.render(data.term);
             document.title = window.page_titles.future_quarters;
@@ -50,18 +44,6 @@ $(document).ready(function() {
         else if (state === "textbooks") {
             TextBooks.show_books(data.term, data.textbook);
             document.title = window.page_titles.textbooks;
-        }
-        else if (state === "final_exams") {
-            FinalExams.show_finals(data.term, data.course_index);
-            document.title = window.page_titles.finals;
-        }
-        else if (state === "grades") {
-            Grades.show_grades(data.term);
-            document.title = window.page_titles.grades;
-        }
-        else if (state === "libraries") {
-            Libraries.show_card();
-            document.title = window.page_titles.libraries;
         }
         else if (state === "notices") {
             Notices.show_notices();
@@ -88,15 +70,6 @@ $(document).ready(function() {
                 state: "landing",
             },  "", "/mobile/landing/");
             return;
-        }
-        else if (path.match(/^\/mobile\/[0-9]{4},[a-z]+[,-abterm]*$/)) {
-            matches = path.match(/^\/mobile\/([0-9]{4},[a-z]+[,-abterm]*)$/);
-            var state = "course_list";
-            var term = matches[1];
-            hist.replaceState({
-                state: "course_list",
-                term: matches[1]
-            }, "", "/mobile/"+matches[1]);
         }
         else if (path.match(/^\/mobile\/landing/)) {
             hist.replaceState({
@@ -130,46 +103,6 @@ $(document).ready(function() {
                 state: "future_quarters",
                 term: matches[1],
             },  "", path);
-        }
-        else if (path === "/mobile/final_exams") {
-            hist.replaceState({
-                state: "final_exams"
-            },  "", "/mobile/final_exams");
-        }
-        else if (path.match("/mobile/final_exams/[0-9]+$")) {
-            matches = path.match(/^\/mobile\/final_exams\/([0-9]+)/);
-            hist.replaceState({
-                state: "final_exams",
-                course_index: matches[1]
-            },  "", "/mobile/final_exams/"+matches[1]);
-        }
-        else if (path.match(/^\/mobile\/final_exams\/[^\/]+\/[0-9]+/)) {
-            matches = path.match(/^\/mobile\/final_exams\/([^\/]+)\/([0-9]+)/);
-            hist.replaceState({
-                state: "final_exams",
-                term: matches[1],
-                course_index: matches[2]
-            },  "", "/mobile/final_exams/"+matches[1]+"/"+matches[2]);
-        }
-        else if (path.match(/^\/mobile\/final_exams\/[^\/]+/)) {
-            matches = path.match(/^\/mobile\/final_exams\/([^\/]+)/);
-            hist.replaceState({
-                state: "final_exams",
-                term: matches[1],
-            },  "", "/mobile/final_exams/"+matches[1]);
-        }
-        else if (path.match(/^\/mobile\/grades/)) {
-            matches = path.match(/^\/mobile\/grades\/([0-9,a-z]+)/);
-            hist.replaceState({
-                state: "grades",
-                term: (matches ? matches[1] : "")
-            },  "", "/mobile/grades/" + (matches ? matches[1]
-                                                 : ""));
-        }
-        else if (path.match(/^\/mobile\/libraries/)) {
-            hist.replaceState({
-                state: "libraries",
-            },  "", "/mobile/libraries/");
         }
         else if (path.match(/^\/mobile\/notices/)) {
             hist.replaceState({
