@@ -1,11 +1,19 @@
 var GradeCard = {
     name: 'GradeCard',
     dom_target: undefined,
-    term: 'current',
+    term: null,
 
     render_init: function() {
-        if (window.card_display_dates.is_after_last_day_of_classes &&
-            window.card_display_dates.is_before_first_day_of_current_term) {
+        GradeCard.term = null;
+        if (window.card_display_dates.is_after_last_day_of_classes) {
+            GradeCard.term = 'current';
+        }
+        else if (window.card_display_dates.is_before_first_day_of_term) {
+            // Fetch previous term's data...
+            GradeCard.term = window.card_display_dates.last_term;
+        }
+
+        if (GradeCard.term) {
             WSData.fetch_course_data_for_term(GradeCard.term, GradeCard.render_upon_data, GradeCard.render_error);
         }
         else {
@@ -46,7 +54,7 @@ var GradeCard = {
         }
         var index;
         for (index = 0; index < course_data.sections.length; index += 1) {
-            if (course_data.sections[index].is_primary_section) {
+            if (course_data.sections[index].is_primary_section && !course_data.sections[index].is_auditor) {
                 course_data.sections[index].display_grade = true;
                 has_section_to_display = true;
             } else {

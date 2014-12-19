@@ -1,7 +1,7 @@
 WSData = {
-    _term: null, // current term
     _book_data: {},
     _course_data: {},
+    _course_data_error_status: null,
     _profile_data: null,
     _uwemail_data: null,
     _hfs_data: null,
@@ -60,7 +60,8 @@ WSData = {
         var i,
             callback,
             args;
-        for (i = 0; i < WSData._error_callbacks[url]; i++) {
+
+        for (i = 0; i < WSData._error_callbacks[url].length; i++) {
             callback = WSData._error_callbacks[url][i];
             args = WSData._callback_args[url][i];
 
@@ -79,6 +80,9 @@ WSData = {
         return WSData._book_data[term];
     },
 
+    course_data_error_code: function() {
+        return WSData._course_data_error_status;
+    },
     normalized_course_data: function(term) {
         var course_data;
         if (term) {
@@ -138,10 +142,6 @@ WSData = {
 
     category_link_data: function(category) {
         return WSData._category_link_data[category];
-    },
-
-    term_data: function() {
-        return WSData._term;
     },
 
     tuition_data: function() {
@@ -267,10 +267,12 @@ WSData = {
                             }
                         }
                     }
+                    WSData._course_data_error_status = null;
                     WSData._course_data[term] = results;
                     WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {
+                    WSData._course_data_error_status = xhr.status;
                     WSData._run_error_callbacks_for_url(url);
                 }
             });
@@ -643,34 +645,6 @@ WSData = {
             }, 0);
         }
     },
-
-    fetch_term_data: function(callback, err_callback, args) {
-        if (WSData._term_data === null) {
-            $.ajax({
-                url: "/mobile/api/v1/term/current/",
-                dataType: "JSON",
-                type: "GET",
-                accepts: {html: "text/html"},
-                success: function(results) {
-                    WSData._term_data = results;
-                    if (callback !== null) {
-                        callback.apply(null, args);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    if (err_callback) {
-                        err_callback.call(null, status, error);
-                    }
-                }
-            });
-        }
-        else {
-            window.setTimeout(function() {
-                callback.apply(null, args);
-            }, 0);
-        }
-    },
-
 
     save_links: function(links) {
         var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;

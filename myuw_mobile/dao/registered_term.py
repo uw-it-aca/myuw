@@ -28,7 +28,7 @@ A_TERM_SECTIONS = "AS"
 B_TERM_SECTIONS = "BS"
 
 
-def get_current_summer_term_in_schedule(schedule):
+def get_current_summer_term_in_schedule(schedule, request):
     """
     If the summer terms needs to be displayed separately,
     return the current summer term
@@ -37,7 +37,7 @@ def get_current_summer_term_in_schedule(schedule):
     if schedule.term.quarter == 'summer':
         if has_summer_quarter_section(schedule):
             if _must_displayed_separately(schedule):
-                summer_term = get_current_summer_term()
+                summer_term = get_current_summer_term(request)
             else:
                 summer_term = "full-term"
     return summer_term
@@ -100,9 +100,9 @@ def _get_registered_future_quarters(next_quar_sche,
 def _get_future_term_json(term, summer_term, summer_term_data=None):
     return_json = term.json_data()
     return_json["summer_term"] = summer_term
-    url = "/" + str(term.year) + ", " + term.quarter
+    url = "/" + str(term.year) + "," + term.quarter
     if len(summer_term) > 0:
-        url = url + ", " + summer_term.lower()
+        url = url + "," + summer_term.lower()
 
         if is_a_term(summer_term):
             return_json["credits"] = str(summer_term_data[FULL_TERM_CREDITS] +

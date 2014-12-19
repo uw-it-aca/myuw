@@ -1,7 +1,7 @@
 import logging
 import time
 from django.http import HttpResponse
-import json
+import simplejson as json
 from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
 from myuw_mobile.dao.hfs import get_account_balances_for_current_user
 from myuw_mobile.logger.timer import Timer
