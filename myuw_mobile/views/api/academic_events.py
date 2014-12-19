@@ -1,5 +1,7 @@
 from myuw_mobile.views.rest_dispatch import RESTDispatch
+from myuw_mobile.dao.term import get_comparison_date, get_current_quarter
 from restclients.trumba import get_calendar_by_name
+from restclients.sws.term import get_term_after
 from django.http import HttpResponse
 import json
 import re
@@ -18,9 +20,18 @@ class AcademicEvents(RESTDispatch):
         for cal in cal_names:
             calendars.append(get_calendar_by_name(cal))
 
+        raw_events = []
         for calendar in calendars:
             for event in calendar.walk('vevent'):
-                events.append(self.json_for_event(event))
+                raw_events.append(event)
+
+        raw_events = self.sort_events(raw_events)
+
+        raw_events = self.filter_past_events(request, raw_events)
+        raw_events = self.filter_too_future_events(request, raw_events)
+
+        for event in raw_events:
+            events.append(self.json_for_event(event))
 
         return HttpResponse(json.dumps(events))
 
@@ -93,3 +104,29 @@ class AcademicEvents(RESTDispatch):
 
     def format_datetime(self, dt):
         return str(dt.dt)
+
+    def sort_events(self, events):
+        return sorted(events,
+                      key=lambda e: e.get('dtstart').dt
+                      )
+
+    def filter_past_events(self, request, events):
+        comparison_date = get_comparison_date(request)
+
+        non_past = []
+        for event in events:
+            if event.get('dtend').dt >= comparison_date:
+                non_past.append(event)
+
+        return non_past
+
+    def filter_too_future_events(self, request, events):
+        current = get_current_quarter(request)
+        last = get_term_after(get_term_after(get_term_after(get_term_after(current))))
+
+        not_too_future = []
+        for event in events:
+            if event.get('dtstart').dt <= last.grade_submission_deadline.date():
+                not_too_future.append(event)
+
+        return not_too_future
