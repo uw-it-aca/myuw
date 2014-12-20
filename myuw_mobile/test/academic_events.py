@@ -34,6 +34,45 @@ class TestAcademicEvents(TestCase):
         self.assertEquals(year, '2018')
         self.assertEquals(quarter, 'Winter')
 
+    def test_categorize_event(self):
+        event = Event()
+
+        categories = AcademicEvents().get_event_categories(event)
+        self.assertEquals(len(categories.keys()), 1)
+        self.assertTrue(categories['all'])
+
+
+        event['calendar_name'] = 'sea_acad-holidays'
+        categories = AcademicEvents().get_event_categories(event)
+        self.assertEquals(len(categories.keys()), 2)
+        self.assertTrue(categories['all'])
+        self.assertTrue(categories['breaks'])
+
+        event['calendar_name'] = 'sea_acad-inst'
+        categories = AcademicEvents().get_event_categories(event)
+        self.assertEquals(len(categories.keys()), 2)
+        self.assertTrue(categories['all'])
+        self.assertTrue(categories['classes'])
+
+        event['calendar_name'] = 'sea_acad-rand'
+        event['summary'] = '* Winter break'
+        categories = AcademicEvents().get_event_categories(event)
+        self.assertEquals(len(categories.keys()), 1)
+        self.assertTrue(categories['all'])
+
+        event['calendar_name'] = 'sea_acad-inst'
+        categories = AcademicEvents().get_event_categories(event)
+        self.assertEquals(len(categories.keys()), 3)
+        self.assertTrue(categories['all'])
+        self.assertTrue(categories['classes'])
+        self.assertTrue(categories['breaks'])
+
+        events = AcademicEvents().categorize_events([event])
+
+        categories = AcademicEvents().parse_myuw_categories(events[0])
+        self.assertEquals(len(categories.keys()), 3)
+
+
     def test_filter_past(self):
         request = RequestFactory().get("/")
         request.session = {}

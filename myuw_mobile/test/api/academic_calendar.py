@@ -43,10 +43,10 @@ class TestCalendarAPI(TestCase):
         self.assertEquals(response.status_code, 200)
 
         data = json.loads(response.content)
-        self.assertEquals(len(data))
+        self.assertEquals(len(data), 21)
 
     @skipIf(missing_url("myuw_current_schedule"), "myuw urls not configured")
-    def test_all_events(self):
+    def test_current_events(self):
         url = reverse("myuw_academic_calendar_current")
         get_user('javerage')
         self.client.login(username='javerage', password=get_user_pass('javerage'))

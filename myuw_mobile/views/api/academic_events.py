@@ -24,11 +24,16 @@ class AcademicEvents(RESTDispatch):
             calendars.append(get_calendar_by_name(cal))
 
         raw_events = []
+        index = 0
         for calendar in calendars:
             for event in calendar.walk('vevent'):
+                event.add("calendar_name", cal_names[index])
                 raw_events.append(event)
+            index = index + 1
 
         raw_events = self.sort_events(raw_events)
+
+        raw_events = self.categorize_events(raw_events)
 
         raw_events = self.filter_past_events(request, raw_events)
 
@@ -46,6 +51,7 @@ class AcademicEvents(RESTDispatch):
         year, quarter = self.parse_year_quarter(event)
         start, end = self.parse_dates(event)
         category = self.parse_category(event)
+        categories = self.parse_myuw_categories(event)
         event_url = self.parse_event_url(event)
 
         is_all_day = self.parse_event_is_all_day(event)
@@ -57,9 +63,13 @@ class AcademicEvents(RESTDispatch):
             "year": year,
             "quarter": quarter,
             "category": category,
+            "myuw_categories": categories,
             "event_url": event_url,
             "is_all_day": is_all_day,
         }
+
+    def parse_myuw_categories(self, event):
+        return json.loads(event.get('myuw_categories'))
 
     def parse_event_is_all_day(self, event):
         start = event.get('dtstart')
@@ -114,6 +124,29 @@ class AcademicEvents(RESTDispatch):
 
     def format_native_datetime(self, dt):
         return str(dt)
+
+    def categorize_events(self, events):
+        for event in events:
+            categories = json.dumps(self.get_event_categories(event))
+            event.add("myuw_categories", categories)
+        return events
+
+    def get_event_categories(self, event):
+        categories = {'all': True}
+
+        calendar_name = event.get("calendar_name")
+
+        if "sea_acad-holidays" == calendar_name:
+            categories["breaks"] = True
+
+        if "sea_acad-inst" == calendar_name:
+            categories["classes"] = True
+
+            summary = event.get('summary')
+            if summary and re.match(r'.*break.*', summary):
+                categories["breaks"] = True
+
+        return categories
 
     def sort_events(self, events):
         return sorted(events,
