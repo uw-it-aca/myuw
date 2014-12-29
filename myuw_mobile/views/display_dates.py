@@ -21,7 +21,7 @@ import pytz
 
 DATE_KEYS = ['myuw_after_submission', 'myuw_after_last_day', 'myuw_after_reg',
              'myuw_before_finals_end', 'myuw_before_last_day',
-             'myuw_before_end_of_reg_display']
+             'myuw_before_end_of_reg_display', 'myuw_before_first_day']
 
 
 @login_required

@@ -103,6 +103,7 @@ def set_js_overrides(request, values):
            'myuw_before_finals_end': 'is_before_end_of_finals_week',
            'myuw_before_last_day': 'is_before_last_day_of_classes',
            'myuw_before_end_of_reg_display': before_reg,
+           'myuw_before_first_day': 'is_before_first_day_of_term',
            }
 
     for key, value in MAP.iteritems():

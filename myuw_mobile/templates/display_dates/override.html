@@ -47,6 +47,12 @@ Is before the end of the registration display period: <br />
 <label><input type="radio" name="myuw_before_end_of_reg_display" value="" {% if myuw_before_end_of_reg_display_unset %}checked="checked"{% endif %} > Unset</label>
 <br/>
 
+Is before first day of the term: <br />
+<label><input type="radio" name="myuw_before_first_day" value="yes" {% if myuw_before_first_day_true %}checked="checked"{% endif %} > Yes </label>
+<label><input type="radio" name="myuw_before_first_day" value="no" {% if myuw_before_first_day_false %}checked="checked"{% endif %} > No </label>
+<label><input type="radio" name="myuw_before_first_day" value="" {% if myuw_before_first_day_unset %}checked="checked"{% endif %} > Unset</label>
+<br/>
+
 <p>
 <input type="submit" value="Go!"/>
 </p>
@@ -94,6 +100,7 @@ it so you don't always need to override the current date to see data.
         <tr><td>is_before_end_of_finals_week</td><td>{{ values_used.is_before_end_of_finals_week}}</td><td>{{ values_now.is_before_end_of_finals_week}}</td></tr>
         <tr><td>is_before_last_day_of_classes</td><td>{{ values_used.is_before_last_day_of_classes}}</td><td>{{ values_now.is_before_last_day_of_classes}}</td></tr>
         <tr><td>is_before_end_of_registration_display_period</td><td>{{ values_used.is_before_end_of_registration_display_period}}</td><td>{{ values_now.is_before_end_of_registration_display_period}}</td></tr>
+        <tr><td>is_before_first_day_of_term</td><td>{{ values_used.is_before_first_day_of_term}}</td><td>{{ values_now.is_before_first_day_of_term}}</td></tr>
     </tbody>
 </table>
 
