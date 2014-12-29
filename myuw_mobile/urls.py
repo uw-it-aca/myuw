@@ -21,7 +21,7 @@ urlpatterns = patterns(
     url(r'admin/dates', 'display_dates.override'),
     url(r'^logger/(?P<interaction_type>\w+)$', 'logger.log_interaction'),
     url(r'^api/v1/book/(?P<year>\d{4}),(?P<quarter>[a-z]+)'
-        r'(?P<summer_term>[-,abterm]*)$',
+        r'(?P<summer_term>[-,fulabterm]*)$',
         login_required(Textbook().run),
         name="myuw_book_api"
         ),
