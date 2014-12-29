@@ -46,7 +46,7 @@ class RegisteredFutureQuarters(RESTDispatch):
             "has_registration": has_registration_for_next_term,
         }
 
-        highlight = should_highlight_future_quarters(future_quarters)
+        highlight = should_highlight_future_quarters(future_quarters, request)
         resp_data["highlight_future_quarters"] = highlight
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(resp_data))
