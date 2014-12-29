@@ -69,6 +69,15 @@ it so you don't always need to override the current date to see data.
 <p>Effective:</p>
 {{ effective_now_date }} - {{ effective_now_term_quarter }} {{ effective_now_term_year }}
 
+<h3>Seen Registration Periods</h3>
+<p>Shows all seen registration periods, and the date they were first seen.  You can override the date to before/on/after this as needed for testing.</p>
+
+{% for reg in seen_registrations %}
+ <div>
+    <h4>{{ reg.year }} {{ reg.quarter }} {{ reg.summer }}</h4>
+    <p>{{ reg.date_seen }}</p>
+ </div>
+{% endfor %}
 
 <h3>Values used - for now, and based on your overrides above</h3>
 
