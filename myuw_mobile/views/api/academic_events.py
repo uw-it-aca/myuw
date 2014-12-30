@@ -33,6 +33,7 @@ class AcademicEvents(RESTDispatch):
 
         raw_events = self.sort_events(raw_events)
 
+
         raw_events = self.categorize_events(raw_events)
 
         raw_events = self.filter_past_events(request, raw_events)
@@ -105,19 +106,25 @@ class AcademicEvents(RESTDispatch):
     def parse_year_quarter(self, event):
         desc = event.get('description')
 
+        year = None
+        quarter = None
         if not desc:
-            return None, None
+            return year, quarter
 
         matches = re.match(".*Year: (\d{4})\s+Quarter: (\w+).*", desc)
         if matches:
-            return matches.group(1), matches.group(2)
+            year = matches.group(1)
+            quarter = matches.group(2)
 
         else:
             matches = re.match(".*Year: (\d{4}).*", desc)
             if matches:
-                return matches.group(1), None
+                year = matches.group(1)
 
-        return None, None
+        override = event.get('override_quarter')
+        if override:
+            quarter = override
+        return year, quarter
 
     def format_datetime(self, dt):
         return self.format_native_datetime(dt.dt)
@@ -129,6 +136,15 @@ class AcademicEvents(RESTDispatch):
         for event in events:
             categories = json.dumps(self.get_event_categories(event))
             event.add("myuw_categories", categories)
+
+            # Breaks are clustered around winter and summer terms.
+            # That's not convenient for us, so put them on the term we want!
+            if 'term_breaks' in categories:
+                summary = event.get('summary')
+                matches = re.match(r'.*?([a-zA-Z]+) break.*', summary)
+                quarter = matches.group(1)
+                event.add("override_quarter", quarter)
+
         return events
 
     def get_event_categories(self, event):
@@ -145,6 +161,7 @@ class AcademicEvents(RESTDispatch):
             summary = event.get('summary')
             if summary and re.match(r'.*break.*', summary):
                 categories["breaks"] = True
+                categories["term_breaks"] = True
 
         return categories
 

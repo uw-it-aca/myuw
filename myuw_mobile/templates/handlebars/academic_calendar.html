@@ -18,15 +18,28 @@
 
            <div class="acal-page-events">
                 {{#each terms }}
+                {{#if term_break }}
+                {{ #each events }}
+                <div>
+                    <center>
+                        <div class="acal-page-event-date"><strong>{{ start }} - {{ end }}</strong></div>
+                        <div class="acal-page-event-title"><a href="{{ event_url }}">{{ summary }}</a></div>
+
+                    </center>
+                </div>
+                {{/each}}
+
+                {{else}}
                 <h2>{{ quarter }} {{ year }}</h2>
                 <ul class="acal-page-event-list">
-                   {{ #each events }}
+                    {{ #each events }}
                     <li class="acal-page-event-list-item">
                             <div class="acal-page-event-date"><strong>{{ start }} - {{ end }}</strong></div>
                             <div class="acal-page-event-title"><a href="{{ event_url }}">{{ summary }}</a></div>
                     </li>
                     {{ /each }}
                 </ul>
+                {{/if}}
                 {{ /each }}
            </div>
         </div>

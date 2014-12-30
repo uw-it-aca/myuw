@@ -23,7 +23,15 @@ var AcademicCalendar = {
 
             var term_name = ev.year + " " + ev.quarter;
 
-            if (term_name != current_term) {
+            if (ev.myuw_categories.term_breaks) {
+                groups.push({
+                    year: ev.year,
+                    quarter: ev.quarter,
+                    events: [],
+                    term_break: true
+                });
+            }
+            else if (term_name != current_term) {
                 current_term = term_name;
                 groups.push({
                     year: ev.year,
