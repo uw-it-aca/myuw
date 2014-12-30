@@ -1,32 +1,35 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "calendar_events" %}
     <div class="academic_cal-container">
-	   <div class="container">
-		    <h1>Academic Calendar</h1>
-		    <a href="//www.washington.edu/students/reg/calendar.html">View detailed</a> | <a href="//www.washington.edu/calendar/academic/">Subscribe to detailed</a>
-		    <div class="btn-group btn-group-justified acal-page-filters" role="group" aria-label="...">
-			    <div class="btn-group" role="group">
-			    	<button type="button" class="btn btn-default">All</button>
-			    </div>
-			    <div class="btn-group" role="group">
-			    	<button type="button" class="btn btn-default">Breaks</button>
-			    </div>
-			    <div class="btn-group" role="group">
-			    	<button type="button" class="btn btn-default">Classes</button>
-			    </div>
-			</div>
-		   
-		   <div class="acal-page-events">
-				<ul class="acal-page-event-list">
-		   {{ #each events }}
-					<li class="acal-page-event-list-item">						
-							<div class="acal-page-event-date"><strong>{{ start }} - {{ end }}</strong></div>
-							<div class="acal-page-event-title"><a href="{{ event_url }}">{{ summary }}</a></div>
-					</li>
-			{{ /each }}
-				</ul>
-		   </div>
-    	</div>	   
+       <div class="container">
+            <h1>Academic Calendar</h1>
+            <a href="//www.washington.edu/students/reg/calendar.html">View detailed</a> | <a href="//www.washington.edu/calendar/academic/">Subscribe to detailed</a>
+            <div class="btn-group btn-group-justified acal-page-filters" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default">All</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default">Breaks</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default">Classes</button>
+                </div>
+            </div>
+
+           <div class="acal-page-events">
+                {{#each terms }}
+                <h2>{{ quarter }} {{ year }}</h2>
+                <ul class="acal-page-event-list">
+                   {{ #each events }}
+                    <li class="acal-page-event-list-item">
+                            <div class="acal-page-event-date"><strong>{{ start }} - {{ end }}</strong></div>
+                            <div class="acal-page-event-title"><a href="{{ event_url }}">{{ summary }}</a></div>
+                    </li>
+                    {{ /each }}
+                </ul>
+                {{ /each }}
+           </div>
+        </div>
     </div>
     {% endtplhandlebars %}
 

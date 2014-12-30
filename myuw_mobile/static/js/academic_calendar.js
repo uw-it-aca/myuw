@@ -11,6 +11,30 @@ var AcademicCalendar = {
 
         var source = $("#calendar_events").html();
         var template = Handlebars.compile(source);
-        $("#main-content").html(template({events: events}));
+        var grouped = AcademicCalendar.group_events_by_term(events);
+        $("#main-content").html(template({terms: grouped}));
+    },
+
+    group_events_by_term: function(events) {
+        var groups = [];
+        var current_term = "";
+        for (var i = 0; i < events.length; i++) {
+            var ev = events[i];
+
+            var term_name = ev.year + " " + ev.quarter;
+
+            if (term_name != current_term) {
+                current_term = term_name;
+                groups.push({
+                    year: ev.year,
+                    quarter: ev.quarter,
+                    events: []
+                });
+            }
+
+            groups[groups.length-1].events.push(ev);
+        }
+
+        return groups;
     }
 };
