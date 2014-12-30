@@ -62,15 +62,16 @@ class TestAcademicEvents(TestCase):
 
         event['calendar_name'] = 'sea_acad-inst'
         categories = AcademicEvents().get_event_categories(event)
-        self.assertEquals(len(categories.keys()), 3)
+        self.assertEquals(len(categories.keys()), 4)
         self.assertTrue(categories['all'])
         self.assertTrue(categories['classes'])
         self.assertTrue(categories['breaks'])
+        self.assertTrue(categories['term_breaks'])
 
         events = AcademicEvents().categorize_events([event])
 
         categories = AcademicEvents().parse_myuw_categories(events[0])
-        self.assertEquals(len(categories.keys()), 3)
+        self.assertEquals(len(categories.keys()), 4)
 
 
     def test_filter_past(self):

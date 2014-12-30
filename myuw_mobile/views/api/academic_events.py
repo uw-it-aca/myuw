@@ -33,7 +33,6 @@ class AcademicEvents(RESTDispatch):
 
         raw_events = self.sort_events(raw_events)
 
-
         raw_events = self.categorize_events(raw_events)
 
         raw_events = self.filter_past_events(request, raw_events)
