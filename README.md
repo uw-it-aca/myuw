@@ -7,4 +7,3 @@ MyUW
 Install instructions at:
 
 https://github.com/uw-it-aca/myuw/wiki/Installation
-
