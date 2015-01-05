@@ -20,9 +20,11 @@ var LibraryCard = {
         var source = $("#library_card_content").html();
         var template = Handlebars.compile(source);
         if (!library_data.next_due && !library_data.holds_ready && !library_data.items_loaned && !library_data.fines) {
-            library_data = null;
+            LibraryCard.dom_target.hide();
         }
-        LibraryCard.dom_target.html(template({mylibaccount: library_data}));
+        else {
+            LibraryCard.dom_target.html(template({mylibaccount: library_data}));
+        }
     },
 
     _has_all_data: function () {
@@ -34,7 +36,8 @@ var LibraryCard = {
 
     show_error: function() {
         // don't show card if no account
-        LibraryCard.dom_target.html('');
+//        LibraryCard.dom_target.html('');
+        LibraryCard.dom_target.hide();
     }
 
 };

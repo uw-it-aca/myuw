@@ -19,9 +19,12 @@ var AcademicCard = {
         academic_data.display_card = true;
         if (!academic_data.class_level || academic_data.class_level === "NON_MATRIC") {
             academic_data.display_card = false;
+            AcademicCard.dom_target.hide();
         }
-        AcademicCard.dom_target.html(template(academic_data));
-        AcademicCard.add_events();
+        else {
+            AcademicCard.dom_target.html(template(academic_data));
+            AcademicCard.add_events();
+        }
     },
 
     _has_all_data: function () {
@@ -58,7 +61,8 @@ var AcademicCard = {
 
     show_error: function() {
         // don't show card if no account
-        AcademicCard.dom_target.html('');
+        AcademicCard.dom_target.hide();
+//        AcademicCard.dom_target.html('');
     }
 
     
