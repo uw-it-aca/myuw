@@ -32,7 +32,7 @@ var RegStatusCard = {
         RegStatusCard.dom_target.html(CardWithError.render("Registration"));
     },
 
-    _render: function () {
+    _render_for_term: function(quarter) {
         var source = $("#reg_status_card").html();
         var template = Handlebars.compile(source);
         var reg_notices = Notices.get_notices_for_tag("reg_card_messages");
@@ -45,67 +45,111 @@ var RegStatusCard = {
         var has_registration = next_term_data.has_registration;
 
         if (has_registration) {
-            RegStatusCard.dom_target.hide();
             return;
         }
-        
+
         //Get hold count from notice attrs
         var hold_count = reg_holds.length;
+        return template({"reg_notices": reg_notices,
+                         "reg_holds": reg_holds,
+                         "is_tacoma": window.user.tacoma,
+                         "is_bothell": window.user.bothell,
+                         "is_seattle": window.user.seattle,
+                         "hold_count": hold_count,
+                         "est_reg_date": reg_date,
+                         "reg_next_quarter" : reg_next_quarter,
+                         "reg_next_year": reg_next_year
+                         })
+    },
 
+    _add_events: function(card) {
         // show registration resources
-        $('body').on('click', '#show_reg_resources', function (ev) {
+        var id, holds_class;
+        if (card) {
+            id = "#show_reg_resources_"+card;
+            holds_class = ".reg_disclosure_"+card;
+        }
+        else {
+            id = "#show_reg_resources";
+            holds_class = ".reg_disclosure";
+        }
+
+        $('body').on('click', id, function (ev) {
+            var div, expose;
+            if (card) {
+                div = $("#reg_resources_"+card);
+                expose = $("#show_reg_resources_"+card);
+            }
+            else {
+                div = $("#reg_resources");
+                expose = $("#show_reg_resources");
+            }
 
             ev.preventDefault();
             var card = $(ev.target).closest("[data-type='card']");
 
-            $("#reg_resources").toggleClass("slide-show");
+            div.toggleClass("slide-show");
 
-            if ($("#reg_resources").hasClass("slide-show")) {
-                $("#show_reg_resources").text("Show less");
-                $("#reg_resources").attr('aria-hidden', 'false');
-                $("#show_reg_resources").attr('title', 'Collapse to hide additional registration resources');
+            if (div.hasClass("slide-show")) {
+                expose.text("Show less");
+                div.attr('aria-hidden', 'false');
+                expose.attr('title', 'Collapse to hide additional registration resources');
                 window.myuw_log.log_card(card, "expand");
             } else {
-
-                $("#reg_resources").attr('aria-hidden', 'true');
-                $("#show_reg_resources").attr('title', 'Expand to show additional registration resources');
+                div.attr('aria-hidden', 'true');
+                expose.attr('title', 'Expand to show additional registration resources');
                 window.myuw_log.log_card(card, "collapse");
 
                 setTimeout(function() {
-                    $("#show_reg_resources").text("Show more");
+                    expose.text("Show more");
                 }, 700);
             }
         });
-        
-        // show hold details
-        $("#show_reg_holds").text("Show " + hold_count + " holds");
-        $('body').on('click', '.reg_disclosure', function (ev) {
-            ev.preventDefault();
 
-            $("#reg_holds").toggleClass("slide-show");
-            if ($("#reg_holds").hasClass("slide-show")) {
-                $("#show_reg_holds").hide();
-                $("#hide_reg_holds").show();
+        // show hold details
+        $('body').on('click', holds_class, function (ev) {
+            ev.preventDefault();
+            var div, expose, hide;
+            if (card) {
+                div = $("#reg_holds_"+card);
+                expose = $("#show_reg_holds_"+card);
+                hide = $("#hide_reg_holds_"+card);
+            }
+            else {
+                div = $("#reg_holds");
+                expose = $("#show_reg_holds");
+                hide = $("#hide_reg_holds");
+            }
+
+            div.toggleClass("slide-show");
+            if (div.hasClass("slide-show")) {
+                expose.hide();
+                hide.show();
                 window.myuw_log.log_card("RegHolds", "expand");
             }
             else {
                 window.myuw_log.log_card("RegHolds", "collapse");
                 setTimeout(function () {
-                    $("#show_reg_holds").show();
-                    $("#hide_reg_holds").hide();
+                    expose.show();
+                    hide.hide();
                 }, 700);
             }
         });
 
-        RegStatusCard.dom_target.html(template({"reg_notices": reg_notices,
-                                                "reg_holds": reg_holds,
-                                                "is_tacoma": window.user.tacoma,
-                                                "is_bothell": window.user.bothell,
-                                                "is_seattle": window.user.seattle,
-                                                "hold_count": hold_count,
-                                                "est_reg_date": reg_date,
-                                                "reg_next_quarter" : reg_next_quarter,
-                                                "reg_next_year": reg_next_year
-                                                }));
+    },
+
+    _render: function () {
+        var next_term_data = WSData.oquarter_data().next_term_data;
+        var reg_next_quarter = next_term_data.quarter;
+        content = RegStatusCard._render_for_term(reg_next_quarter)
+
+        if (!content) {
+            RegStatusCard.dom_target.hide();
+            return;
+        }
+
+        RegStatusCard._add_events();
+
+        RegStatusCard.dom_target.html(content);
     }
 };

@@ -86,9 +86,13 @@ def get_values_by_date(now, request):
         "is_after_grade_submission_deadline": after_submission,
         "is_after_last_day_of_classes": is_after_last_day_of_classes,
         "is_after_start_of_registration_display_period": after_registration,
+        "is_after_start_of_summer_reg_display_periodA": after_registration,
+        "is_after_start_of_summer_reg_display_period1": after_registration,
         "is_before_end_of_finals_week": is_before_end_of_finals_week,
         "is_before_last_day_of_classes": is_before_last_day_of_classes,
         "is_before_end_of_registration_display_period": before_reg_end,
+        "is_before_end_of_summer_reg_display_periodA": before_reg_end,
+        "is_before_end_of_summer_reg_display_period1": before_reg_end,
         "is_before_first_day_of_term": is_before_first_day_of_term,
         "last_term": "%s,%s" % (last_term.year, last_term.quarter),
     }
