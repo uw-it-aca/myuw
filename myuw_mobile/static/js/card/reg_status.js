@@ -59,9 +59,9 @@ var RegStatusCard = {
             }
         }
 
-        var quarter, year, has_registration;
+        var year, has_registration, next_term_data;
         if (quarter == "Summer") {
-            var next_term_data = WSData.oquarter_data().next_term_data;
+            next_term_data = WSData.oquarter_data().next_term_data;
             var terms = WSData.oquarter_data().terms;
             year = next_term_data.year;
 
@@ -73,7 +73,7 @@ var RegStatusCard = {
             }
         }
         else {
-            var next_term_data = WSData.oquarter_data().next_term_data;
+            next_term_data = WSData.oquarter_data().next_term_data;
             quarter = next_term_data.quarter;
             year = next_term_data.year;
             has_registration = next_term_data.has_registration;
@@ -95,7 +95,7 @@ var RegStatusCard = {
                          "est_reg_date": display_reg_dates,
                          "reg_next_quarter" : quarter,
                          "reg_next_year": year
-                         })
+                         });
     },
 
     _add_events: function(card) {
@@ -180,7 +180,7 @@ var RegStatusCard = {
     _render: function () {
         var next_term_data = WSData.oquarter_data().next_term_data;
         var reg_next_quarter = next_term_data.quarter;
-        content = RegStatusCard._render_for_term(reg_next_quarter)
+        content = RegStatusCard._render_for_term(reg_next_quarter);
 
         if (!content) {
             RegStatusCard.dom_target.hide();
