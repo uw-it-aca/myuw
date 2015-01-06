@@ -33,14 +33,15 @@ var SummerRegStatusCard = {
     },
 
     _render: function() {
-        var content = RegStatusCard._render_for_term('summer');
 
 
         if (window.card_display_dates.is_after_start_of_summer_reg_display_periodA) {
+            var content = RegStatusCard._render_for_term('summer', 'summerA');
             $("#SummerRegStatusCardA").html(content);
             RegStatusCard._add_events('summerA');
         }
         if (window.card_display_dates.is_after_start_of_summer_reg_display_period1) {
+            var content = RegStatusCard._render_for_term('summer', 'summer1');
             $("#SummerRegStatusCard1").html(content);
             RegStatusCard._add_events('summer1');
         }

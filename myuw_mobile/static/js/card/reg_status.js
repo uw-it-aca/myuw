@@ -32,7 +32,7 @@ var RegStatusCard = {
         RegStatusCard.dom_target.html(CardWithError.render("Registration"));
     },
 
-    _render_for_term: function(quarter) {
+    _render_for_term: function(quarter, card) {
         var source = $("#reg_status_card").html();
         var template = Handlebars.compile(source);
         var reg_notices = Notices.get_notices_for_tag("reg_card_messages");
@@ -52,6 +52,7 @@ var RegStatusCard = {
         var hold_count = reg_holds.length;
         return template({"reg_notices": reg_notices,
                          "reg_holds": reg_holds,
+                         "card": card,
                          "is_tacoma": window.user.tacoma,
                          "is_bothell": window.user.bothell,
                          "is_seattle": window.user.seattle,
@@ -74,68 +75,71 @@ var RegStatusCard = {
             holds_class = ".reg_disclosure";
         }
 
-        $('body').on('click', id, function (ev) {
-            var div, expose;
-            if (card) {
-                div = $("#reg_resources_"+card);
-                expose = $("#show_reg_resources_"+card);
-            }
-            else {
-                div = $("#reg_resources");
-                expose = $("#show_reg_resources");
-            }
+        // Prevent a closure on card
+        (function(label) {
+            $('body').on('click', id, function (ev) {
+                var div, expose;
+                if (label) {
+                    div = $("#reg_resources_"+label);
+                    expose = $("#show_reg_resources_"+label);
+                }
+                else {
+                    div = $("#reg_resources");
+                    expose = $("#show_reg_resources");
+                }
 
-            ev.preventDefault();
-            var card = $(ev.target).closest("[data-type='card']");
+                ev.preventDefault();
+                var card = $(ev.target).closest("[data-type='card']");
 
-            div.toggleClass("slide-show");
+                div.toggleClass("slide-show");
 
-            if (div.hasClass("slide-show")) {
-                expose.text("Show less");
-                div.attr('aria-hidden', 'false');
-                expose.attr('title', 'Collapse to hide additional registration resources');
-                window.myuw_log.log_card(card, "expand");
-            } else {
-                div.attr('aria-hidden', 'true');
-                expose.attr('title', 'Expand to show additional registration resources');
-                window.myuw_log.log_card(card, "collapse");
+                if (div.hasClass("slide-show")) {
+                    expose.text("Show less");
+                    div.attr('aria-hidden', 'false');
+                    expose.attr('title', 'Collapse to hide additional registration resources');
+                    window.myuw_log.log_card(card, "expand");
+                } else {
+                    div.attr('aria-hidden', 'true');
+                    expose.attr('title', 'Expand to show additional registration resources');
+                    window.myuw_log.log_card(card, "collapse");
 
-                setTimeout(function() {
-                    expose.text("Show more");
-                }, 700);
-            }
-        });
+                    setTimeout(function() {
+                        expose.text("Show more");
+                    }, 700);
+                }
+            });
 
-        // show hold details
-        $('body').on('click', holds_class, function (ev) {
-            ev.preventDefault();
-            var div, expose, hide;
-            if (card) {
-                div = $("#reg_holds_"+card);
-                expose = $("#show_reg_holds_"+card);
-                hide = $("#hide_reg_holds_"+card);
-            }
-            else {
-                div = $("#reg_holds");
-                expose = $("#show_reg_holds");
-                hide = $("#hide_reg_holds");
-            }
+            // show hold details
+            $('body').on('click', holds_class, function (ev) {
+                ev.preventDefault();
+                var div, expose, hide;
+                if (label) {
+                    div = $("#reg_holds_"+label);
+                    expose = $("#show_reg_holds_"+label);
+                    hide = $("#hide_reg_holds_"+label);
+                }
+                else {
+                    div = $("#reg_holds");
+                    expose = $("#show_reg_holds");
+                    hide = $("#hide_reg_holds");
+                }
 
-            div.toggleClass("slide-show");
-            if (div.hasClass("slide-show")) {
-                expose.hide();
-                hide.show();
-                window.myuw_log.log_card("RegHolds", "expand");
-            }
-            else {
-                window.myuw_log.log_card("RegHolds", "collapse");
-                setTimeout(function () {
-                    expose.show();
-                    hide.hide();
-                }, 700);
-            }
-        });
+                div.toggleClass("slide-show");
+                if (div.hasClass("slide-show")) {
+                    expose.hide();
+                    hide.show();
+                    window.myuw_log.log_card("RegHolds", "expand");
+                }
+                else {
+                    window.myuw_log.log_card("RegHolds", "collapse");
+                    setTimeout(function () {
+                        expose.show();
+                        hide.hide();
+                    }, 700);
+                }
+            });
 
+        })(card);
     },
 
     _render: function () {

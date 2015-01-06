@@ -10,10 +10,10 @@
                 <div class="card-critical-alert" role="status">
                     
                     <i class="fa fa-exclamation-triangle"><span class="sr-only">You have registration holds!</span></i>
-                    <a id="show_reg_holds" class="reg_disclosure" aria-controls="reg_holds" href="#" title="Expand to show holds information">Show {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
-                    <a id="hide_reg_holds" class="reg_disclosure" style="display: none" aria-controls="reg_holds" href="#" title="Collapse to hide holds information">Hide {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
+                    <a id="show_reg_holds{{#if card}}_{{card}}{{/if}}" class="reg_disclosure{{#if card}}_{{card}}{{/if}}" aria-controls="reg_holds" href="#" title="Expand to show holds information">Show {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
+                    <a id="hide_reg_holds{{#if card}}_{{card}}{{/if}}" class="reg_disclosure{{#if card}}_{{card}}{{/if}}" style="display: none" aria-controls="reg_holds" href="#" title="Collapse to hide holds information">Hide {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
 
-                    <div id="reg_holds" class="slide-hide" aria-hidden="true" style="text-align:left;">
+                    <div id="reg_holds{{#if card}}_{{card}}{{/if}}" class="slide-hide" aria-hidden="true" style="text-align:left;">
                         <h4 class="sr-only">Registration holds</h4>
                         <div class="reg-holds">
 
@@ -54,7 +54,7 @@
 			</div>			
 			
 			<!-- CHARLON: not sure why a clearfix wasn't working on the DIV below, but the inline style was... -->                                                                                                
-            <div id="reg_resources" class="slide-hide" style="clear:both;" aria-hidden="true">
+            <div id="reg_resources{{#if card}}_{{card}}{{/if}}" class="slide-hide" style="clear:both;" aria-hidden="true">
                 
                <!-- {{ #if reg_notices }}
                 <h4 class="">Notices</h4>
@@ -75,7 +75,7 @@
             </div>
             
             <div class="card-disclosure">
-                <a id="show_reg_resources" aria-controls="reg_resources" href="#" title="Expand to show additional registration resources">Show more</a>
+                <a id="show_reg_resources{{# if card }}_{{card}}{{/if}}" aria-controls="reg_resources" href="#" title="Expand to show additional registration resources">Show more</a>
             </div>
         
         </div>
