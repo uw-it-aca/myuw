@@ -114,22 +114,19 @@ def get_values_by_date(now, request):
 def get_reg_data(now, term, data):
     if term.quarter == "summer":
         if (now >= term.registration_period1_start - timedelta(days=7) and
-            now < term.registration_period1_start + timedelta(days=7)):
+                now < term.registration_period1_start + timedelta(days=7)):
             data["after_summerA_start"] = True
             data["before_summerA_end"] = True
 
         elif (now >= term.registration_period1_start + timedelta(days=7) and
-            now < term.registration_period2_start + timedelta(days=7)):
+                now < term.registration_period2_start + timedelta(days=7)):
             data["after_summer1_start"] = True
             data["before_summer1_end"] = True
-
-
     else:
         if (now >= term.registration_period1_start - timedelta(days=14) and
-            now < term.registration_period2_start + timedelta(days=7)):
+                now < term.registration_period2_start + timedelta(days=7)):
             data["after_start"] = True
             data["before_end"] = True
-
 
 
 def set_js_overrides(request, values):
