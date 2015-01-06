@@ -38,11 +38,46 @@ var RegStatusCard = {
         var reg_notices = Notices.get_notices_for_tag("reg_card_messages");
         var reg_holds = Notices.get_notices_for_tag("reg_card_holds");
         var reg_date = Notices.get_notices_for_tag("est_reg_date");     
-        
-        var next_term_data = WSData.oquarter_data().next_term_data;
-        var reg_next_quarter = next_term_data.quarter;
-        var reg_next_year = next_term_data.year;
-        var has_registration = next_term_data.has_registration;
+        var i, j;
+
+        // Filter estimated registration dates for summer...
+        var display_reg_dates = [];
+        for (i = 0; i < reg_date.length; i++) {
+            var notice = reg_date[i];
+            for (j = 0; j < notice.attributes.length; j++) {
+                var attribute = notice.attributes[j];
+                if (quarter == "Summer") {
+                    if ((attribute.name == "Quarter") && (attribute.value == "Summer")) {
+                        display_reg_dates.push(notice);
+                    }
+                }
+                else {
+                    if ((attribute.name == "Quarter") && (attribute.value != "Summer")) {
+                        display_reg_dates.push(notice);
+                    }
+                }
+            }
+        }
+
+        var quarter, year, has_registration;
+        if (quarter == "Summer") {
+            var next_term_data = WSData.oquarter_data().next_term_data;
+            var terms = WSData.oquarter_data().terms;
+            year = next_term_data.year;
+
+            for (i = 0; i < terms.length; i++) {
+                var term = terms[i];
+                if ((term.quarter == quarter) && term.section_count) {
+                    has_registration = true;
+                }
+            }
+        }
+        else {
+            var next_term_data = WSData.oquarter_data().next_term_data;
+            quarter = next_term_data.quarter;
+            year = next_term_data.year;
+            has_registration = next_term_data.has_registration;
+        }
 
         if (has_registration) {
             return;
@@ -57,9 +92,9 @@ var RegStatusCard = {
                          "is_bothell": window.user.bothell,
                          "is_seattle": window.user.seattle,
                          "hold_count": hold_count,
-                         "est_reg_date": reg_date,
-                         "reg_next_quarter" : reg_next_quarter,
-                         "reg_next_year": reg_next_year
+                         "est_reg_date": display_reg_dates,
+                         "reg_next_quarter" : quarter,
+                         "reg_next_year": year
                          })
     },
 

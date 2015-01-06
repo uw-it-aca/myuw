@@ -36,13 +36,21 @@ var SummerRegStatusCard = {
 
 
         if (window.card_display_dates.is_after_start_of_summer_reg_display_periodA) {
-            var content = RegStatusCard._render_for_term('summer', 'summerA');
+            var content = RegStatusCard._render_for_term('Summer', 'summerA');
+            if (!content) {
+                $("#SummerRegStatusCardA").hide();
+            }
             $("#SummerRegStatusCardA").html(content);
             RegStatusCard._add_events('summerA');
         }
         if (window.card_display_dates.is_after_start_of_summer_reg_display_period1) {
-            var content = RegStatusCard._render_for_term('summer', 'summer1');
+            var content = RegStatusCard._render_for_term('Summer', 'summer1');
+
+            if (!content) {
+                $("#SummerRegStatusCard1").hide();
+            }
             $("#SummerRegStatusCard1").html(content);
+
             RegStatusCard._add_events('summer1');
         }
     }
