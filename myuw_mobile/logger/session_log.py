@@ -9,6 +9,9 @@ logger = logging.getLogger('session')
 
 
 def log_session(netid, session_key, request):
+    if session_key is None:
+        session_key = ''
+
     session_hash = hashlib.md5(session_key).hexdigest()
     log_entry = {'netid': netid,
                  'session_key': session_hash,
