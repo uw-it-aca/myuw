@@ -31,3 +31,6 @@ from myuw_mobile.test.context_processors import TestContextProcessors
 
 from myuw_mobile.test.views.mobile_login import TestLoginRedirects
 from myuw_mobile.test.views.rest_dispatch import TestDispatchErrorCases
+from myuw_mobile.test.views.display_dates import TestDisplayDatesPage
+from myuw_mobile.test.views.page import TestPageView
+
