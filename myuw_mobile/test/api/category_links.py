@@ -25,9 +25,34 @@ class TestLinks(TestCase):
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_academics_links(self):
+        # Javerage - Seattle Campus
         url = reverse("myuw_links_api", kwargs={'category_id': 'academics' })
         get_user('javerage')
         self.client.login(username='javerage', password=get_user_pass('javerage'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+        data = json.loads(response.content)
+
+        self.assertEquals(data["link_data"][0]["subcategory"], "Registration")
+        self.assertTrue(len(data["link_data"][0]["links"]) > 1)
+
+        # Jbothell - Bothell Campus
+        url = reverse("myuw_links_api", kwargs={'category_id': 'academics' })
+        get_user('jbothell')
+        self.client.login(username='jbothell', password=get_user_pass('jbothell'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+        data = json.loads(response.content)
+
+        self.assertEquals(data["link_data"][0]["subcategory"], "Registration")
+        self.assertTrue(len(data["link_data"][0]["links"]) > 1)
+
+        # Eight - Tacoma Campus
+        url = reverse("myuw_links_api", kwargs={'category_id': 'academics' })
+        get_user('eight')
+        self.client.login(username='eight', password=get_user_pass('eight'))
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
