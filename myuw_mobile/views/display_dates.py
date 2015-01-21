@@ -8,16 +8,20 @@ from datetime import datetime
 import logging
 from django import template
 from django.contrib.auth.decorators import login_required
+from myuw_mobile.dao import get_user_model
 from myuw_mobile.dao.card_display_dates import get_values_by_date
 from myuw_mobile.dao.card_display_dates import get_card_visibilty_date_values
 from myuw_mobile.dao.term import get_comparison_date, is_using_file_dao
 from myuw_mobile.dao.term import get_default_date
+from myuw_mobile.models import SeenRegistration
 from django.test.client import RequestFactory
 from restclients.sws.term import get_term_by_date
+from dateutil import tz
+import pytz
 
 DATE_KEYS = ['myuw_after_submission', 'myuw_after_last_day', 'myuw_after_reg',
              'myuw_before_finals_end', 'myuw_before_last_day',
-             'myuw_before_end_of_reg_display']
+             'myuw_before_end_of_reg_display', 'myuw_before_first_day']
 
 
 @login_required
@@ -70,6 +74,8 @@ def override(request):
 
     add_session_context(request, context)
     add_date_term_info(request, context)
+
+    add_seen_registration_context(request, context)
     return render_to_response("display_dates/override.html", context,
                               context_instance=RequestContext(request))
 
@@ -146,3 +152,29 @@ def add_session_context(request, context):
     used_date = datetime(default.year, default.month, default.day, now.hour,
                          now.minute, now.second)
     context["values_now"] = get_values_by_date(used_date, now_request)
+
+
+def add_seen_registration_context(request, context):
+    user = get_user_model()
+
+    seen_registrations = SeenRegistration.objects.filter(user=user)
+    seen = []
+
+    from_zone = tz.tzutc()
+    to_zone = tz.tzlocal()
+    to_zone = pytz.timezone("America/Los_Angeles")
+
+    for reg in seen_registrations:
+
+        seen_date = reg.first_seen_date
+        utc = seen_date.replace(tzinfo=from_zone)
+        local = utc.astimezone(to_zone)
+
+        seen.append({
+            'year': reg.year,
+            'quarter': reg.quarter,
+            'summer': reg.summer_term,
+            'date_seen': local.__str__(),
+        })
+
+    context['seen_registrations'] = seen

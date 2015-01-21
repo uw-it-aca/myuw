@@ -48,20 +48,20 @@ def get_values_by_date(now, request):
     # XXX - this will be a bug when summer quarter comes around
     # because there will need to be a summer term + a next non-summer term
     # version of this.  We're holding off on the summer term card though...
-    if (now >= next_term.registration_services_start - timedelta(days=7) and
+    if (now >= next_term.registration_period1_start - timedelta(days=14) and
             now < next_term.registration_period2_start + timedelta(days=7)):
         is_after_start_of_registration_display_period = True
         is_before_end_of_registration_display_period = True
 
     # We also need to be able to show this term's registration stuff, because
     # the period 2 stretches past the grade submission deadline
-    if (now >= current_term.registration_services_start - timedelta(days=7) and
+    if (now >= current_term.registration_period1_start - timedelta(days=14) and
             now < current_term.registration_period2_start + timedelta(days=7)):
         is_after_start_of_registration_display_period = True
         is_before_end_of_registration_display_period = True
 
     # We also need to be able to show the term after next, in spring quarter
-    start = term_after_next.registration_services_start - timedelta(days=7)
+    start = term_after_next.registration_period1_start - timedelta(days=14)
     end = term_after_next.registration_period2_start + timedelta(days=7)
     if now >= start and now < end:
         is_after_start_of_registration_display_period = True
@@ -103,6 +103,7 @@ def set_js_overrides(request, values):
            'myuw_before_finals_end': 'is_before_end_of_finals_week',
            'myuw_before_last_day': 'is_before_last_day_of_classes',
            'myuw_before_end_of_reg_display': before_reg,
+           'myuw_before_first_day': 'is_before_first_day_of_term',
            }
 
     for key, value in MAP.iteritems():
