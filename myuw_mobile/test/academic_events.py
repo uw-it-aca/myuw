@@ -18,7 +18,7 @@ class TestAcademicEvents(TestCase):
         start, end = obj.parse_dates(event)
 
         self.assertEquals(start, "2014-12-05")
-        self.assertEquals(end, "2014-12-06")
+        self.assertEquals(end, "2014-12-05")
 
         year, quarter = obj.parse_year_quarter(event)
         self.assertEquals(year, None)
