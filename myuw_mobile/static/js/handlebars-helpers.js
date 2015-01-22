@@ -58,7 +58,7 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
     }
 
     Handlebars.registerHelper('acal_banner_date_format', function(d1, d2) {
-        if (d1 == d2) {
+        if (typeof(d2) != 'string' || d1 == d2) {
             var date1 = _get_date(d1);
             return [months[date1.getMonth()], date1.getDate(), "("+days[date1.getDay()]+")"].join(" ");
         }
@@ -67,7 +67,7 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
         }
     });
     Handlebars.registerHelper('acal_page_date_format', function(d1, d2) {
-        if (d1 == d2) {
+        if (typeof(d2) != 'string' || d1 == d2) {
             var date1 = _get_date(d1);
             return [months[date1.getMonth()], date1.getDate()].join(" ");
         }

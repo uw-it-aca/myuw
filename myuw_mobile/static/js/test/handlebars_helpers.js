@@ -88,6 +88,12 @@ describe('Handlebar-helpers', function(){
     });
 
     describe('acal_banner_date_format', function() {
+        it("should give sunday (one date)", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-01-25'}}");
+            var output = template();
+            assert.equal(output, 'Jan 25 (sunday)');
+        });
+
         it("should give sunday", function() {
             var template = Handlebars.compile("{{acal_banner_date_format '2015-01-25' '2015-01-25' }}");
             var output = template();
@@ -198,6 +204,12 @@ describe('Handlebar-helpers', function(){
     });
 
     describe('acal_page_date_format', function() {
+        it("should give Jan (one value)", function() {
+            var template = Handlebars.compile("{{acal_page_date_format '2015-01-01' }}");
+            var output = template();
+            assert.equal(output, 'Jan 1');
+        });
+
         it("should give Jan", function() {
             var template = Handlebars.compile("{{acal_page_date_format '2015-01-01' '2015-01-01' }}");
             var output = template();
