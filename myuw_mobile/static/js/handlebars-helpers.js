@@ -42,7 +42,7 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
     var days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
     function _get_date(d) {
-        return new Date(d.replace("-", "/", "g") + " 00:00:00");
+        return new Date(d.replace(/-/g, "/") + " 00:00:00");
     }
 
     function _date_range(d1, d2) {
