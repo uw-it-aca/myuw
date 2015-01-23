@@ -11,7 +11,7 @@
 	            <ul class="acal-banner-list">
 		            {{ #each events }}
 		            <li class="acal-banner-list-item">
-		            	<div class="acal-banner-date">{{ start }} {{ end }}</div>
+		            	<div class="acal-banner-date">{{ acal_banner_date_format start end }}</div>
 		            	<a href="{{ event_url }}">{{ summary }}</a>
 		            </li>
 	                {{ /each }}

@@ -22,7 +22,7 @@
                 {{ #each events }}
                 <div class="acal-page-event acal-page-event-break">
 	                <center>
-                        <div class="acal-page-event-date"><strong>{{ start }} - {{ end }}</strong></div>
+                        <div class="acal-page-event-date"><strong>{{ acal_page_date_format start end }}</strong></div>
                         <div class="acal-page-event-title"><a href="{{ event_url }}">{{ summary }}</a></div>
 	                </center>
                 </div>
@@ -33,7 +33,7 @@
                 <ul class="acal-page-event-list">
                     {{ #each events }}
                     <li class="acal-page-event-list-item acal-page-event {{#if myuw_categories.breaks }}acal-page-event-break{{/if}}{{#if myuw_categories.classes}}acal-page-event-class{{/if}}">
-                        <div class="acal-page-event-date"><strong>{{ start }} - {{ end }}</strong></div>
+                        <div class="acal-page-event-date"><strong>{{ acal_page_date_format start end }}</strong></div>
                         <div class="acal-page-event-title"><a href="{{ event_url }}">{{ summary }}</a></div>
                     </li>
                     {{ /each }}

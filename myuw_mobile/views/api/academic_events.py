@@ -100,7 +100,8 @@ class AcademicEvents(RESTDispatch):
 
     def parse_dates(self, event):
         return (self.format_datetime(event.get('dtstart')),
-                self.format_datetime(event.get('dtend')))
+                self.format_native_datetime(event.get('dtend').dt -
+                                            timedelta(days=1)))
 
     def parse_year_quarter(self, event):
         desc = event.get('description')
