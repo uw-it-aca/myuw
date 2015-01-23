@@ -17,10 +17,10 @@ class TestDisplayValues(TestCase):
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_after_grade_submission_deadline"])
             self.assertFalse(values["is_after_last_day_of_classes"])
-            self.assertTrue(values["is_after_start_of_registration_display_period"])
+            self.assertFalse(values["is_after_start_of_registration_display_period"])
             self.assertTrue(values["is_before_end_of_finals_week"])
             self.assertTrue(values["is_before_last_day_of_classes"])
-            self.assertTrue(values["is_before_end_of_registration_display_period"])
+            self.assertFalse(values["is_before_end_of_registration_display_period"])
 
     def test_day_before_last_day_of_classes(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
@@ -225,5 +225,5 @@ class TestDisplayValues(TestCase):
             self.assertFalse(values["is_after_start_of_registration_display_period"])
             self.assertTrue(values["is_before_end_of_finals_week"])
             self.assertTrue(values["is_before_last_day_of_classes"])
-            self.assertTrue(values["is_before_end_of_registration_display_period"])
+            self.assertFalse(values["is_before_end_of_registration_display_period"])
 

@@ -1,5 +1,62 @@
 {
     "Notices": [
+        {
+            "NoticeAttributes": [
+                {
+                    "Name": "Date",
+                    "DataType": "date",
+                    "Value": "next-week"
+                },
+                {
+                    "Name": "DisplayBegin",
+                    "DataType": "date",
+                    "Value": "yesterday"
+                },
+                {
+                    "Name": "DisplayEnd",
+                    "DataType": "date",
+                    "Value": "next-week"
+                },
+                {
+                    "Name": "Quarter",
+                    "DataType": "string",
+                    "Value": "Autumn"
+                }
+   
+            ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": "<span class=\"notice-title\">Estimated Registration Date</span><span class=\"notice-body-with-title\">Your estimated Period I Priority Registration Date for autumn quarter is <span class=\"date\"> Thurs, May 15</span>. Registration begins at 6:00 AM. <a href=\"http://www.washington.edu/students/reg/priorau14.html\">View your Period 1 Priority Registration Date</a>.</span>",
+            "NoticeType": "EstPd1RegDate"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "Name": "Date",
+                    "DataType": "date",
+                    "Value": "next-week"
+                },
+                {
+                    "Name": "DisplayBegin",
+                    "DataType": "date",
+                    "Value": "yesterday"
+                },
+                {
+                    "Name": "DisplayEnd",
+                    "DataType": "date",
+                    "Value": "next-week"
+                },
+                {
+                    "Name": "Quarter",
+                    "DataType": "string",
+                    "Value": "Summer"
+                }
+   
+            ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": "<span class=\"notice-title\">Estimated Registration Date</span><span class=\"notice-body-with-title\">Your estimated Period I Priority Registration Date for summer quarter is <span class=\"date\"> Thurs, May 13</span>. Registration begins at 6:00 AM. <a href=\"http://www.washington.edu/students/reg/priorau14.html\">View your Period 1 Priority Registration Date</a>.</span>",
+            "NoticeType": "EstPd1RegDate"
+        }
+
     ],
     "Person": {
         "Href": "",

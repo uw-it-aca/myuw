@@ -34,6 +34,7 @@
     <!-- page content templates -->
     {% include "handlebars/landing.html" %}
     {% include "handlebars/future.html" %}
+    {% include "handlebars/future_410_error.html" %}
     {% include "handlebars/textbooks.html" %}
     {% include "handlebars/course_list.html" %}
     {% include "handlebars/course_modal.html" %}
@@ -49,20 +50,7 @@
     {% include "handlebars/quarter_books.html" %}
     {% include "handlebars/visual_schedule.html" %}
     {% include "handlebars/category_page.html" %}
-    
-    {% include "handlebars/weekly/other.html" %}
-    {% include "handlebars/weekly/week1.html" %}
-    {% include "handlebars/weekly/week2.html" %}
-    {% include "handlebars/weekly/week3.html" %}
-    {% include "handlebars/weekly/week5.html" %}
-    {% include "handlebars/weekly/week6.html" %}
-    {% include "handlebars/weekly/course_list_A.html" %}
-    {% include "handlebars/weekly/course_list_B.html" %}
-    {% include "handlebars/weekly/course_list_C.html" %}
-    
-    <!-- lauren's dummy pages for nav/hierarchy mockups -->
-    {% include "handlebars/weekly/libraries.html" %}
-    
+
     <script>
     window.page_titles = {
         "landing": "MyUW Mobile Home",
@@ -73,7 +61,6 @@
         "textbooks": "MyUW: Textbooks",
         "instructor": "Faculty Directory",
         "finals": "Final Exams",
-        "weekly": "Weekly View",
         "grades": "Grades",
         "notices": "MyUW: Notices",
         "category_page": "MyUW: Category",
@@ -94,9 +81,13 @@
         "is_after_grade_submission_deadline": {{ card_display_dates.is_after_grade_submission_deadline|yesno:"true, false" }},
         "is_after_last_day_of_classes": {{ card_display_dates.is_after_last_day_of_classes|yesno:"true, false" }},
         "is_after_start_of_registration_display_period": {{ card_display_dates.is_after_start_of_registration_display_period|yesno:"true, false" }},
+        "is_after_start_of_summer_reg_display_periodA": {{ card_display_dates.is_after_start_of_summer_reg_display_periodA|yesno:"true, false" }},
+        "is_after_start_of_summer_reg_display_period1": {{ card_display_dates.is_after_start_of_summer_reg_display_period1|yesno:"true, false" }},
         "is_before_end_of_finals_week": {{ card_display_dates.is_before_end_of_finals_week|yesno:"true, false" }},
         "is_before_last_day_of_classes": {{ card_display_dates.is_before_last_day_of_classes|yesno:"true, false" }},
         "is_before_end_of_registration_display_period": {{ card_display_dates.is_before_end_of_registration_display_period|yesno:"true, false" }},
+        "is_before_end_of_summer_reg_display_periodA": {{ card_display_dates.is_before_end_of_summer_reg_display_periodA|yesno:"true, false" }},
+        "is_before_end_of_summer_reg_display_period1": {{ card_display_dates.is_before_end_of_summer_reg_display_period1|yesno:"true, false" }},
         "is_before_first_day_of_term": {{ card_display_dates.is_before_first_day_of_term|yesno:"true, false" }},
         "last_term": "{{ card_display_dates.last_term }}"
     };

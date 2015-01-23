@@ -28,3 +28,4 @@ from myuw_mobile.test.api.notices import TestNotices
 from myuw_mobile.test.api.uwemail import TestUWEmail as TestUwEmailAPI
 from myuw_mobile.test.template_tags import TestNetidHash
 from myuw_mobile.test.context_processors import TestContextProcessors
+from myuw_mobile.test.loggers import TestSessionLog

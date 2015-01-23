@@ -139,7 +139,6 @@ class SeenRegistration(models.Model):
     unique_together = (("user",
                         "year",
                         "quarter",
-                        "summer_term",
-                        "first_seen_date"
+                        "summer_term"
                         ),
                        )

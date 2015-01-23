@@ -20,12 +20,13 @@ var HfsCard = {
         var template_data;
         if (!hfs_data.student_husky_card && !hfs_data.employee_husky_card && !hfs_data.resident_dining) {
             template_data = {hfs_data: null};
+            HfsCard.dom_target.hide();
         } else {
             template_data = {
                 hfs_data: hfs_data
             };
+            HfsCard.dom_target.html(template(template_data));
         }
-        HfsCard.dom_target.html(template(template_data));
     },
 
     _has_all_data: function () {

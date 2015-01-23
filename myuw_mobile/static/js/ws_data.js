@@ -1,6 +1,7 @@
 WSData = {
     _book_data: {},
     _course_data: {},
+    _course_data_error_status: null,
     _profile_data: null,
     _uwemail_data: null,
     _hfs_data: null,
@@ -58,7 +59,8 @@ WSData = {
         var i,
             callback,
             args;
-        for (i = 0; i < WSData._error_callbacks[url]; i++) {
+
+        for (i = 0; i < WSData._error_callbacks[url].length; i++) {
             callback = WSData._error_callbacks[url][i];
             args = WSData._callback_args[url][i];
 
@@ -77,6 +79,9 @@ WSData = {
         return WSData._book_data[term];
     },
 
+    course_data_error_code: function() {
+        return WSData._course_data_error_status;
+    },
     normalized_course_data: function(term) {
         var course_data;
         if (term) {
@@ -225,10 +230,12 @@ WSData = {
                             }
                         }
                     }
+                    WSData._course_data_error_status = null;
                     WSData._course_data[term] = results;
                     WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {
+                    WSData._course_data_error_status = xhr.status;
                     WSData._run_error_callbacks_for_url(url);
                 }
             });
