@@ -32,80 +32,163 @@ var RegStatusCard = {
         RegStatusCard.dom_target.html(CardWithError.render("Registration"));
     },
 
-    _render: function () {
+    _render_for_term: function(quarter, card) {
         var source = $("#reg_status_card").html();
         var template = Handlebars.compile(source);
         var reg_notices = Notices.get_notices_for_tag("reg_card_messages");
         var reg_holds = Notices.get_notices_for_tag("reg_card_holds");
         var reg_date = Notices.get_notices_for_tag("est_reg_date");     
-        
-        var next_term_data = WSData.oquarter_data().next_term_data;
-        var reg_next_quarter = next_term_data.quarter;
-        var reg_next_year = next_term_data.year;
-        var has_registration = next_term_data.has_registration;
+        var i, j;
+
+        // Filter estimated registration dates for summer...
+        var display_reg_dates = [];
+        for (i = 0; i < reg_date.length; i++) {
+            var notice = reg_date[i];
+            for (j = 0; j < notice.attributes.length; j++) {
+                var attribute = notice.attributes[j];
+                if (quarter == "Summer") {
+                    if ((attribute.name == "Quarter") && (attribute.value == "Summer")) {
+                        display_reg_dates.push(notice);
+                    }
+                }
+                else {
+                    if ((attribute.name == "Quarter") && (attribute.value != "Summer")) {
+                        display_reg_dates.push(notice);
+                    }
+                }
+            }
+        }
+
+        var year, has_registration, next_term_data;
+        if (quarter == "Summer") {
+            next_term_data = WSData.oquarter_data().next_term_data;
+            var terms = WSData.oquarter_data().terms;
+            year = next_term_data.year;
+
+            for (i = 0; i < terms.length; i++) {
+                var term = terms[i];
+                if ((term.quarter == quarter) && term.section_count) {
+                    has_registration = true;
+                }
+            }
+        }
+        else {
+            next_term_data = WSData.oquarter_data().next_term_data;
+            quarter = next_term_data.quarter;
+            year = next_term_data.year;
+            has_registration = next_term_data.has_registration;
+        }
 
         if (has_registration) {
+            return;
+        }
+
+        //Get hold count from notice attrs
+        var hold_count = reg_holds.length;
+        return template({"reg_notices": reg_notices,
+                         "reg_holds": reg_holds,
+                         "card": card,
+                         "is_tacoma": window.user.tacoma,
+                         "is_bothell": window.user.bothell,
+                         "is_seattle": window.user.seattle,
+                         "hold_count": hold_count,
+                         "est_reg_date": display_reg_dates,
+                         "reg_next_quarter" : quarter,
+                         "reg_next_year": year
+                         });
+    },
+
+    _add_events: function(card) {
+        // show registration resources
+        var id, holds_class;
+        if (card) {
+            id = "#show_reg_resources_"+card;
+            holds_class = ".reg_disclosure_"+card;
+        }
+        else {
+            id = "#show_reg_resources";
+            holds_class = ".reg_disclosure";
+        }
+
+        // Prevent a closure on card
+        (function(label) {
+            $('body').on('click', id, function (ev) {
+                var div, expose;
+                if (label) {
+                    div = $("#reg_resources_"+label);
+                    expose = $("#show_reg_resources_"+label);
+                }
+                else {
+                    div = $("#reg_resources");
+                    expose = $("#show_reg_resources");
+                }
+
+                ev.preventDefault();
+                var card = $(ev.target).closest("[data-type='card']");
+
+                div.toggleClass("slide-show");
+
+                if (div.hasClass("slide-show")) {
+                    expose.text("Show less");
+                    div.attr('aria-hidden', 'false');
+                    expose.attr('title', 'Collapse to hide additional registration resources');
+                    window.myuw_log.log_card(card, "expand");
+                } else {
+                    div.attr('aria-hidden', 'true');
+                    expose.attr('title', 'Expand to show additional registration resources');
+                    window.myuw_log.log_card(card, "collapse");
+
+                    setTimeout(function() {
+                        expose.text("Show more");
+                    }, 700);
+                }
+            });
+
+            // show hold details
+            $('body').on('click', holds_class, function (ev) {
+                ev.preventDefault();
+                var div, expose, hide;
+                if (label) {
+                    div = $("#reg_holds_"+label);
+                    expose = $("#show_reg_holds_"+label);
+                    hide = $("#hide_reg_holds_"+label);
+                }
+                else {
+                    div = $("#reg_holds");
+                    expose = $("#show_reg_holds");
+                    hide = $("#hide_reg_holds");
+                }
+
+                div.toggleClass("slide-show");
+                if (div.hasClass("slide-show")) {
+                    expose.hide();
+                    hide.show();
+                    window.myuw_log.log_card("RegHolds", "expand");
+                }
+                else {
+                    window.myuw_log.log_card("RegHolds", "collapse");
+                    setTimeout(function () {
+                        expose.show();
+                        hide.hide();
+                    }, 700);
+                }
+            });
+
+        })(card);
+    },
+
+    _render: function () {
+        var next_term_data = WSData.oquarter_data().next_term_data;
+        var reg_next_quarter = next_term_data.quarter;
+        content = RegStatusCard._render_for_term(reg_next_quarter);
+
+        if (!content) {
             RegStatusCard.dom_target.hide();
             return;
         }
-        
-        //Get hold count from notice attrs
-        var hold_count = reg_holds.length;
 
-        // show registration resources
-        $('body').on('click', '#show_reg_resources', function (ev) {
+        RegStatusCard._add_events();
 
-            ev.preventDefault();
-            var card = $(ev.target).closest("[data-type='card']");
-
-            $("#reg_resources").toggleClass("slide-show");
-
-            if ($("#reg_resources").hasClass("slide-show")) {
-                $("#show_reg_resources").text("Show less");
-                $("#reg_resources").attr('aria-hidden', 'false');
-                $("#show_reg_resources").attr('title', 'Collapse to hide additional registration resources');
-                window.myuw_log.log_card(card, "expand");
-            } else {
-
-                $("#reg_resources").attr('aria-hidden', 'true');
-                $("#show_reg_resources").attr('title', 'Expand to show additional registration resources');
-                window.myuw_log.log_card(card, "collapse");
-
-                setTimeout(function() {
-                    $("#show_reg_resources").text("Show more");
-                }, 700);
-            }
-        });
-        
-        // show hold details
-        $("#show_reg_holds").text("Show " + hold_count + " holds");
-        $('body').on('click', '.reg_disclosure', function (ev) {
-            ev.preventDefault();
-
-            $("#reg_holds").toggleClass("slide-show");
-            if ($("#reg_holds").hasClass("slide-show")) {
-                $("#show_reg_holds").hide();
-                $("#hide_reg_holds").show();
-                window.myuw_log.log_card("RegHolds", "expand");
-            }
-            else {
-                window.myuw_log.log_card("RegHolds", "collapse");
-                setTimeout(function () {
-                    $("#show_reg_holds").show();
-                    $("#hide_reg_holds").hide();
-                }, 700);
-            }
-        });
-
-        RegStatusCard.dom_target.html(template({"reg_notices": reg_notices,
-                                                "reg_holds": reg_holds,
-                                                "is_tacoma": window.user.tacoma,
-                                                "is_bothell": window.user.bothell,
-                                                "is_seattle": window.user.seattle,
-                                                "hold_count": hold_count,
-                                                "est_reg_date": reg_date,
-                                                "reg_next_quarter" : reg_next_quarter,
-                                                "reg_next_year": reg_next_year
-                                                }));
+        RegStatusCard.dom_target.html(content);
     }
 };
