@@ -60,3 +60,16 @@ class TestLinks(TestCase):
 
         self.assertEquals(data["link_data"][0]["subcategory"], "Registration")
         self.assertTrue(len(data["link_data"][0]["links"]) > 1)
+
+        # None - No Campus
+        url = reverse("myuw_links_api", kwargs={'category_id': 'academics' })
+        get_user('none')
+        self.client.login(username='none', password=get_user_pass('none'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+        data = json.loads(response.content)
+
+        self.assertEquals(data["link_data"][0]["subcategory"], "Registration")
+        self.assertTrue(len(data["link_data"][0]["links"]) > 1)
+        
