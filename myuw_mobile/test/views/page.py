@@ -29,6 +29,7 @@ class TestPageView(TestCase):
         url = reverse("myuw_mobile.views.page.index")
         get_user('javerage')
         self.client.login(username='javerage', password=get_user_pass('javerage'))
-
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
+        self.assertIn('"email_is_uwgmail":true', response.content.replace(' ',''))
+        self.assertIn('"email_is_uwlive":false', response.content.replace(' ',''))
