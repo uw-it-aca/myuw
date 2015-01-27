@@ -11,7 +11,7 @@
 	            <ul class="acal-banner-list">
 		            {{ #each events }}
 		            <li class="acal-banner-list-item">
-		            	<div class="acal-banner-event-container">{{ #if myuw_categories.breaks }}<i class="fa fa-heart"></i>{{/if}} <span class="acal-banner-date">{{ acal_banner_date_format start end }}</span> <a href="{{ event_url }}">{{ summary }}</a></div>
+		            	<div class="acal-banner-event-container">{{ #if myuw_categories.breaks }}<span class="acal-break-icon">&diams;</span>{{/if}} <span class="acal-banner-date">{{ acal_banner_date_format start end }}</span> <a href="{{ event_url }}">{{ summary }}</a></div>
 		            </li>
 	                {{ /each }}
 	            </ul>
