@@ -9,9 +9,9 @@
         {{ #if no_books }}
             <p class="text-muted">No textbooks for this term</p>
         {{ else }}
-            <ul class="unstyled-list">
+            <ul class="unstyled-list textbooks-list">
                 {{ #each sections }}
-                <li>{{ course_id }}: {{ required }} required, {{ optional }} optional</li>
+                <li class="textbooks-list-item"><div class="c{{color_id}} simplesquare todo"></div><span class="textbooks-course-title">{{ course_id }}:</span> <span class="textbooks-course-requirement">{{ #if no_course_books }} No books {{else}}<span class="todo">6 books</span></span> ({{ required }} required)</li>{{ /if }}
                 {{ /each }}
             </ul>
         {{ /if }}
