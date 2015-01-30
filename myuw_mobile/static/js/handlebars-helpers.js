@@ -1,4 +1,5 @@
 // used in profile banner
+
 Handlebars.registerHelper("formatPhoneNumber", function(str) {
     if (str.length == 10) {
         return str.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
@@ -10,32 +11,32 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
     return parseInt(str, 10);
 });
 
-(function() {
-
-    function parse_date(str) {
-        // MUWM-2289.  Our dates come in looking like:
-        // 2014-11-26 23:59:59
-        // sometimes.  Rather than hunt all of those down, we can just convert
-        // that to ISO-8601
-        // If that's still invalid - write more code.
-        var d = new Date(str);
-        if (isNaN(d.getYear())) {
-            d = new Date(str.replace(" ", "T"));
-        }
-        return d;
+function parse_date(str) {
+    // MUWM-2289.  Our dates come in looking like:
+    // 2014-11-26 23:59:59
+    // sometimes.  Rather than hunt all of those down, we can just convert
+    // that to ISO-8601
+    // If that's still invalid - write more code.
+    var d = new Date(str);
+    if (isNaN(d.getYear())) {
+        d = new Date(str.replace(" ", "T"));
     }
+    return d;
+}
 
-    // used on Library card
-    Handlebars.registerHelper("toFromNowDate", function(str) {
-        return moment(parse_date(str)).fromNow();
-    });
+function date_from_string(str) {
+    return parse_date(str);
+}
 
-    // used on Grade, Library card 
-    Handlebars.registerHelper("toFriendlyDate", function(str) {
-        return moment(parse_date(str)).format("ddd, MMM D");
-    });
+// used on Library card
+Handlebars.registerHelper("toFromNowDate", function(str) {
+    return moment(parse_date(str)).fromNow();
+});
 
-})();
+// used on Grade, Library card 
+Handlebars.registerHelper("toFriendlyDate", function(str) {
+    return moment(parse_date(str)).format("ddd, MMM D");
+});
 
 Handlebars.registerHelper("toUrlSafe", function(str) {
     return str.replace(/ /g, "%20");
@@ -58,20 +59,43 @@ Handlebars.registerHelper("termNoYear", function(term) {
     return str;
 });
 
+(function() {
 
-Handlebars.registerHelper("capitalizeString", function(str) {
-    return capitalizeString(str);
-});
-
-// convert term string from "2013,summer,a-term" to "Summer 2013 A-Term"
-Handlebars.registerHelper("titleFormatTerm", function(term) {
-    value = term.split(",");
-    str = capitalizeString(value[1]) + " " + value[0];
-    if (value[2]) {
-        str += " " + capitalizeString(value[2]);
+    function capitalizeString(str) {
+	if (str) {
+	    var newWordChars = ' _-/\|'
+	    var newWord = false
+	    var output = str.charAt(i).toUpperCase()
+	    for (var i = 1; i < str.length; i++) {
+		if (newWordChars.search(str.charAt(i)) != -1) {
+		    newWord = true
+		    output += str.charAt(i)
+		} else if (newWord) {
+		    newWord = false
+		    output += str.charAt(i).toUpperCase()
+		} else {
+		    output += str.charAt(i)
+		}
+	    }
+	    return output;
+	}
+	return str;
     }
-    return str;
-});
+
+    Handlebars.registerHelper("capitalizeString", function(str) {
+	return capitalizeString(str)
+    });
+
+    // convert term string from "2013,summer,a-term" to "Summer 2013 A-Term"
+    Handlebars.registerHelper("titleFormatTerm", function(term) {
+	value = term.split(",");
+	str = capitalizeString(value[1]) + " " + value[0];
+	if (value[2]) {
+            str += " " + capitalizeString(value[2]);
+	}
+	return str;
+    });
+})();
 
 // Google maps gets very confused by some characters in map urls
 Handlebars.registerHelper("encodeForMaps", function(str) {

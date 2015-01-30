@@ -8,10 +8,10 @@ def log_exception(logger, action, exc_info):
     exc_info is a string containing
     the full stack trace, the exception type and value
     """
-    logger.error("%s - %s => %s ",
-                 get_logging_userid(),
+    logger.error("%s - %s => %s" %
+                 (get_logging_userid(),
                  action,
-                 exc_info.splitlines())
+                 exc_info.splitlines()))
 
 
 def log_info(logger, message):
