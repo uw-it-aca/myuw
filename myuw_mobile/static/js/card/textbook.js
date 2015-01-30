@@ -66,7 +66,8 @@ var TextbookCard = {
 
                 var section_data = {"course_id": course_id,
                                     "required": required,
-                                    "optional": optional
+                                    "total": required + optional,
+                                    "no_course_books": (required + optional) ? false :true
                                    };
                 section_book_data.push(section_data);
             });
