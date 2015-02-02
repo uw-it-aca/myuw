@@ -5,7 +5,7 @@ var TextbookCard = {
     missing_book_error: false,
 
     render_init: function() {
-        if (TextbookCard.term = 'current') {
+        if (TextbookCard.term === 'current') {
             if (!window.card_display_dates.is_before_first_week_of_term) {
                 TextbookCard.dom_target.hide();
                 return;
@@ -58,6 +58,7 @@ var TextbookCard = {
             registered = false;
         } else {
             var textbook_data  = TextBooks.process_book_data(WSData.book_data(term), course_data);
+
             $.each(textbook_data.sections, function (sec_idx, section) {
                 var required = 0;
                 var optional = 0;
@@ -71,6 +72,7 @@ var TextbookCard = {
                 var course_id = section.curriculum + " " + section.course_number + " " + section.section_id;
 
                 var section_data = {"course_id": course_id,
+                                    "color_id": section.color_id,
                                     "required": required,
                                     "total": required + optional,
                                     "no_course_books": (required + optional) ? false :true
@@ -80,6 +82,9 @@ var TextbookCard = {
         }
         var template_data = {"registered": registered,
                              "term": term,
+                             "quarter": course_data.quarter,
+                             "year": course_data.year,
+                             "summer_term": course_data.summer_term,
                              "sections": section_book_data};
 
         var source = $("#textbook_card").html();
