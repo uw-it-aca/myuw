@@ -54,7 +54,10 @@ $(document).ready(function() {
             // Document title is set in the category.js file - custom per category
             //document.title = window.page_titles["category_page"];
         }
-
+        else if (state === "academic_calendar") {
+            AcademicCalendar.show_events();
+            document.title = window.page_titles.academic_calendar;
+        }
 
         loaded_url = state_url;
     });
@@ -125,6 +128,12 @@ $(document).ready(function() {
                 topic: topic
             },  "", "/mobile/resource/" + slug );
         }
+        else if (path.match(/^\/mobile\/academic_calendar/)) {
+            hist.replaceState({
+                state: "academic_calendar",
+            },  "", "/mobile/academic_calendar/");
+        }
+
         else {
             // Now we fall back to the landing page
             hist.replaceState({

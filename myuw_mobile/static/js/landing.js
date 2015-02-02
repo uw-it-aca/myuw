@@ -15,9 +15,10 @@ var Landing = {
         $("#main-content").html(template());
         
         NoticeBanner.render_init($("#notice_banner_location"));
+        CalendarBanner.render_init($("#calendar_banner_location"));
         var cards = [
-                     GradeCard,
                      FinalExamCard,           
+                     GradeCard,
                      FutureQuarterCardA,
                      RegStatusCard,
                      SummerRegStatusCardA,
