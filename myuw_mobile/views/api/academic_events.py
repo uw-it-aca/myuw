@@ -100,8 +100,10 @@ class AcademicEvents(RESTDispatch):
 
     def parse_dates(self, event):
         return (self.format_datetime(event.get('dtstart')),
-                self.format_native_datetime(event.get('dtend').dt -
-                                            timedelta(days=1)))
+                self.format_native_datetime(self.event_end_date(event)))
+
+    def event_end_date(self, event):
+        return event.get('dtend').dt - timedelta(days=1)
 
     def parse_year_quarter(self, event):
         desc = event.get('description')
@@ -175,7 +177,10 @@ class AcademicEvents(RESTDispatch):
 
         non_past = []
         for event in events:
-            if event.get('dtend').dt >= comparison_date:
+            # Events' end dates are midnight of the next day - not what we want
+            # muwm-2489
+            end_date = self.event_end_date(event)
+            if end_date >= comparison_date:
                 non_past.append(event)
 
         return non_past

@@ -87,7 +87,7 @@ class TestAcademicEvents(TestCase):
         events = AcademicEvents().filter_past_events(request, [past])
         self.assertEquals(len(events), 0)
 
-        request.session["myuw_override_date"] = "2010-12-31"
+        request.session["myuw_override_date"] = "2010-12-30"
         events = AcademicEvents().filter_past_events(request, [past])
         self.assertEquals(len(events), 1)
 

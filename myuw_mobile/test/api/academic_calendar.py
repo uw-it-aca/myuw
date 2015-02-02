@@ -45,6 +45,26 @@ class TestCalendarAPI(TestCase):
         data = json.loads(response.content)
         self.assertEquals(len(data), 25)
 
+
+    @skipIf(missing_url("myuw_current_schedule"), "myuw urls not configured")
+    def test_muwm_2489(self):
+        url = reverse("myuw_academic_calendar_current")
+        get_user('javerage')
+        self.client.login(username='javerage', password=get_user_pass('javerage'))
+
+        session = self.client.session
+        session["myuw_override_date"] = "2013-05-30"
+        session.save()
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+        data = json.loads(response.content)
+
+        self.assertEquals(len(data), 3)
+        for event in data:
+            self.assertNotEqual(event["summary"], "Memorial Day (no classes)")
+
+
     @skipIf(missing_url("myuw_current_schedule"), "myuw urls not configured")
     def test_current_events(self):
         url = reverse("myuw_academic_calendar_current")
