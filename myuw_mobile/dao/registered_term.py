@@ -5,13 +5,14 @@ This module encapsulates the access of the term data
 
 import logging
 from myuw_mobile.dao.term import is_a_term, is_b_term, is_full_summer_term
-from myuw_mobile.dao.term import get_current_summer_term
+from myuw_mobile.dao.term import get_current_summer_term, get_comparison_date
 from myuw_mobile.dao.schedule import get_next_quarter_schedule
 from myuw_mobile.dao.schedule import get_next_autumn_quarter_schedule
 from myuw_mobile.dao.schedule import has_summer_quarter_section
 from myuw_mobile.dao import get_user_model
 from myuw_mobile.models import SeenRegistration
 from django.utils import timezone
+from datetime import datetime
 
 
 logger = logging.getLogger(__name__)
@@ -166,9 +167,10 @@ def _get_registered_summer_terms(registered_summer_sections):
 
 
 # MUWM-2210
-def should_highlight_future_quarters(schedule):
+def should_highlight_future_quarters(schedule, request):
     should_highlight = False
-    now = timezone.now()
+    # MUWM-2373
+    now = get_comparison_date(request)
 
     for term in schedule:
         summer_term = "F"
@@ -181,11 +183,21 @@ def should_highlight_future_quarters(schedule):
         model, created = sr_get_or_create(user=get_user_model(),
                                           year=term["year"],
                                           quarter=term["quarter"],
-                                          summer_term=summer_term
+                                          summer_term=summer_term,
                                           )
 
-        days_diff = (now - model.first_seen_date).days
-        if days_diff < 1:
+        # Want to make sure that we have a full day, not just today/tomorrow
+        actual_now = timezone.now()
+        now_datetime = datetime(now.year, now.month, now.day, actual_now.hour,
+                                actual_now.minute, actual_now.second,
+                                tzinfo=actual_now.tzinfo)
+        if created:
+            model.first_seen_date = now_datetime
+            model.save()
+
+        days_diff = (now_datetime - model.first_seen_date).days
+        # XXX - this needs to be changed when we can set a time in the override
+        if days_diff < 1.02:
             should_highlight = True
 
     return should_highlight

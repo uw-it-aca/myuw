@@ -26,7 +26,13 @@ var FutureQuarterCard = {
     _render: function (oquarter_data) {
         var source = $("#future_quarter_card").html();
         var template = Handlebars.compile(source);
-        FutureQuarterCard.dom_target.html(template(oquarter_data));
+
+        if (!oquarter_data.terms.length) {
+            FutureQuarterCard.dom_target.hide();
+        }
+        else {
+            FutureQuarterCard.dom_target.html(template(oquarter_data));
+        }
     },
 
     render_error: function() {
