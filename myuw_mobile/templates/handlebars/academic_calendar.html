@@ -9,7 +9,7 @@
                     <button type="button" id="myuw-event-filter-all" class="btn btn-default myuw-selected-button" role="tab">All</button>
                 </div>
 	            <div class="btn-group" role="group">
-                    <button type="button" id="myuw-event-filter-breaks" class="btn btn-default" role="tab"><span class="acal-break-icon">&diams;</span> Breaks</button>
+                    <button type="button" id="myuw-event-filter-breaks" class="btn btn-default" role="tab">Breaks</button>
                 </div>
                 <!--<div class="btn-group" role="group">
                     <button type="button" id="myuw-event-filter-classes" class="btn btn-default" role="tab">Classes</button>
@@ -22,7 +22,7 @@
                 {{ #each events }}
                 <div class="acal-page-event acal-page-event-break">
 	                <center>
-                        <div class="acal-page-event-title">{{#if myuw_categories.breaks }}<span class="acal-break-icon" style="font-size:16px;">&diams;</span>{{/if}}  <a href="{{ event_url }}">{{ summary }}</a></div>
+                        <div class="acal-page-event-title">{{#if myuw_categories.breaks }}<i class="fa fa-circle acal-break-icon" aria-visible="false" role="presentation"></i> {{/if}} <a href="{{ event_url }}">{{ summary }}</a></div>
                         <div class="acal-page-event-date"><strong>{{ acal_page_date_format start end }}</strong></div>
 	                </center>
                 </div>
@@ -34,7 +34,7 @@
                     {{ #each events }}
                     <li class="acal-page-event-list-item acal-page-event {{#if myuw_categories.breaks }}acal-page-event-break{{/if}}{{#if myuw_categories.classes}}acal-page-event-class{{/if}}">
                         <div class="acal-page-event-date"><strong>{{ acal_page_date_format start end }}</strong></div>
-                        <div class="acal-page-event-title">{{#if myuw_categories.breaks }}<span class="acal-break-icon" style="font-size:16px;">&diams;</span> {{/if}} <a href="{{ event_url }}">{{ summary }}</a></div>
+                        <div class="acal-page-event-title">{{#if myuw_categories.breaks }}<i class="fa fa-circle acal-break-icon" aria-visible="false" role="presentation"></i> {{/if}} <a href="{{ event_url }}">{{ summary }}</a></div>
                     </li>
                     {{ /each }}
                 </ul>
