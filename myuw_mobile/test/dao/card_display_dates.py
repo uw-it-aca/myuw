@@ -22,6 +22,37 @@ class TestDisplayValues(TestCase):
             self.assertTrue(values["is_before_last_day_of_classes"])
             self.assertFalse(values["is_before_end_of_registration_display_period"])
 
+    def test_is_before_first_week_of_term(self):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-03-26"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_after_grade_submission_deadline"])
+            self.assertFalse(values["is_before_first_week_of_term"])
+
+            now_request.session["myuw_override_date"] = "2013-03-27"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertTrue(values["is_after_grade_submission_deadline"])
+            self.assertTrue(values["is_before_first_week_of_term"])
+
+            now_request.session["myuw_override_date"] = "2013-04-01"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_before_first_day_of_term"])
+            self.assertTrue(values["is_before_first_week_of_term"])
+
+            now_request.session["myuw_override_date"] = "2013-04-07"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_before_first_day_of_term"])
+            self.assertTrue(values["is_before_first_week_of_term"])
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-04-08"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_before_first_week_of_term"])
+
+
+
     def test_day_before_last_day_of_classes(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
             now_request = RequestFactory().get("/")

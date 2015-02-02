@@ -5,9 +5,15 @@ var TextbookCard = {
     missing_book_error: false,
 
     render_init: function() {
-        var term =  (TextbookCard.term === undefined) ? 'current' : TextbookCard.term;
-        WSData.fetch_book_data(term, TextbookCard.render_upon_data, TextbookCard.textbook_error);
-        WSData.fetch_course_data_for_term(term, TextbookCard.render_upon_data, TextbookCard._render_error);
+        if (TextbookCard.term = 'current') {
+            if (!window.card_display_dates.is_before_first_week_of_term) {
+                TextbookCard.dom_target.hide();
+                return;
+            }
+        }
+
+        WSData.fetch_book_data(TextbookCard.term, TextbookCard.render_upon_data, TextbookCard.textbook_error);
+        WSData.fetch_course_data_for_term(TextbookCard.term, TextbookCard.render_upon_data, TextbookCard._render_error);
         // may need to add a missing_course_error
     },
 
