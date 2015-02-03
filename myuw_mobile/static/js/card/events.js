@@ -5,7 +5,7 @@ var EventsCard = {
     render_init: function() {
         //WSData.fetch_events_for_user(EventsCard.render_upon_data, EventsCard.show_error);
         console.log('woo');
-        EventsCard._render()
+        EventsCard._render();
     },
 
     render_upon_data: function() {
