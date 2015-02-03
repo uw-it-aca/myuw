@@ -37,7 +37,8 @@ def get_values_by_date(now, request):
     is_before_end_of_summer_reg_display_period1 = False
     is_before_end_of_summer_reg_display_periodA = False
     is_before_first_day_of_term = False
-    is_before_first_week = False # before_end_of_first_week
+    # before_end_of_first_week
+    is_before_first_week = False 
 
     if now.date() < current_term.first_day_quarter:
         is_before_first_day_of_term = True
@@ -46,7 +47,7 @@ def get_values_by_date(now, request):
         is_after_grade_submission_deadline = True
 
     if now.date() < current_term.first_day_quarter + timedelta(days=7):
-        is_before_first_week = True;
+        is_before_first_week = True
 
     raw_date = current_term.last_day_instruction
     d = datetime(raw_date.year, raw_date.month, raw_date.day)
