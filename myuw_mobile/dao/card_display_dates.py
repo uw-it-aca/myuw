@@ -38,7 +38,7 @@ def get_values_by_date(now, request):
     is_before_end_of_summer_reg_display_periodA = False
     is_before_first_day_of_term = False
     # before_end_of_first_week
-    is_before_first_week = False 
+    is_before_first_week = False
 
     if now.date() < current_term.first_day_quarter:
         is_before_first_day_of_term = True
