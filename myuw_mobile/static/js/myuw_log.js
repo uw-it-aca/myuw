@@ -13,9 +13,10 @@ function MyuwLog()  {
 
     this.log_card = function(card, action) {
         var message = "";
-        if (typeof(card)=== "object"){
-            message = {card_name: $(card).attr('data-name'),
-                       card_info: $(card).attr('data-identifier'),
+        if (typeof(card.element)=== "object"){
+            message = {card_name: $(card.element).attr('data-name'),
+                       card_info: $(card.element).attr('data-identifier'),
+                       card_position: card.pos,
                        action: action};
         }else if (typeof(card) === "string"){
             message = {card_name: card,

@@ -3,6 +3,7 @@ var data;
 
 $(document).ready(function() {
     init_logging();
+    init_profile_events();
     var course_data = null;
     var book_data = null;
     // This is to prevent multiple events on load from making
@@ -72,10 +73,6 @@ $(document).ready(function() {
         else if (state === "grades") {
             Grades.show_grades(data.term);
             document.title = window.page_titles.grades;
-        }
-        else if (state === "weekly") {
-            Weekly.show_current_week(data);
-            document.title = window.page_titles.weekly;
         }
         else if (state === "libraries") {
             Libraries.show_card();
@@ -222,11 +219,6 @@ $(document).ready(function() {
                 term: (matches ? matches[1] : "")
             },  "", "/mobile/grades/" + (matches ? matches[1]
                                                  : ""));
-        }
-        else if (path.match(/^\/mobile\/weekly/)) {
-            hist.replaceState({
-                state: "weekly",
-            },  "", "/mobile/weekly/");
         }
         else if (path.match(/^\/mobile\/libraries/)) {
             hist.replaceState({
@@ -431,11 +423,11 @@ var get_new_visible_cards = function(){
         card_id;
 
     $(cards).each(function(i, card){
-        if(isScrolledIntoView(card)){
-            card_id = $(card).attr('data-name') +
-                ($(card).attr('data-identifier') === undefined ? "" : $(card).attr('data-identifier'));
+        if(isScrolledIntoView(card.element)){
+            card_id = $(card.element).attr('data-name') +
+                ($(card.element).attr('data-identifier') === undefined ? "" : $(card.element).attr('data-identifier'));
             if(!window.viewed_cards.hasOwnProperty(card_id)){
-                window.viewed_cards[card_id] = card;
+                window.viewed_cards[card_id] = card.element;
                 window.myuw_log.log_card(card, "view");
             }
         }
@@ -444,10 +436,11 @@ var get_new_visible_cards = function(){
 };
 
 var get_all_cards = function(){
-    var cards = [];
+    var cards = [],
+        pos = 0;
     $("div").find("[data-type='card']").each(function (i, card) {
-        var id = $(card).attr('data-identifier');
-        cards.push(card);
+        pos++;
+        cards.push({element: card, pos: pos});
     });
     return cards;
 };
@@ -492,3 +485,6 @@ var _init_card_logging = function() {
 };
 
 
+var init_profile_events = function () {
+    Profile.add_events();
+}

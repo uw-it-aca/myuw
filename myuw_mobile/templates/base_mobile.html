@@ -59,7 +59,17 @@
                 
         <div class="header-cover">
             <div class="container clearfix">
-                <div id="profile"></div>
+                <div id="profile">
+                    <h3 class="sr-only">Profile Information and Release Settings</h3>
+                    <div class="header-netid">
+                        <a href="#" id="toggle_my_profile">{{ user.netid }}
+                            <i id="my_profile_arrow" class="fa fa-chevron-down"></i>
+                        </a>
+                    </div>
+                    <div class="header-profile slide-hide" id="my_profile" aria-hidden="true">
+                        <i class="fa fa-cog fa-spin" style="color:#ddd;"></i>
+                    </div>
+                </div>
                 <div class="header-w"><img src="{% static 'images/w-logo-white.png' %}"></div>
             </div>
             
@@ -125,7 +135,7 @@
     
     <script src="{% static 'vendor/js/jquery.cookie-1.4.1.min.js' %}"></script>
     <script src="{% static 'vendor/js/ios-orientationchange-fix.min.js' %}"></script>
-    <script src="{% static 'vendor/js/handlebars-1.0.0.min.js' %}"></script>
+    <script src="{% static 'vendor/js/handlebars-v2.0.0.js' %}"></script>
     <script src="{% static 'vendor/js/jquery.history-1.8.0.min.js' %}"></script>
     <script src="{% static 'vendor/js/jquery.ba-dotimeout-1.0.js' %}"></script>
     <script src="{% static 'vendor/js/moment.2.8.3.min.js' %}"></script>
@@ -150,8 +160,7 @@
     <script src="{% static 'js/other_quarters.js' %}"></script>
     <script src="{% static 'js/myuw_m.js' %}"></script>
     <script src="{% static 'js/handlebars-helpers.js' %}"></script>
-    <script src="{% static 'js/vendor/uw-alert.js' %}"></script> 
-    <script src="{% static 'js/weekly.js' %}"></script>
+    <script src="{% static 'vendor/js/uw-alert.js' %}"></script> 
     <script src="{% static 'js/libraries.js' %}"></script>
     <script src="{% static 'js/notices.js' %}"></script>
     <script src="{% static 'js/landing.js' %}"></script>
