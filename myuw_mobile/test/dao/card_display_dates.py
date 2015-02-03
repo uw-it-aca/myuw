@@ -1,13 +1,13 @@
 from django.test import TestCase
 from django.conf import settings
 from django.test.client import RequestFactory
-
+from datetime import datetime
 from myuw_mobile.dao.term import get_default_date
 from myuw_mobile.dao.card_display_dates import get_card_visibilty_date_values
 
-from datetime import datetime
 
 class TestDisplayValues(TestCase):
+
     def test_first_day(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
             now_request = RequestFactory().get("/")
@@ -50,8 +50,6 @@ class TestDisplayValues(TestCase):
             now_request.session["myuw_override_date"] = "2013-04-08"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_before_first_week_of_term"])
-
-
 
     def test_day_before_last_day_of_classes(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
@@ -220,7 +218,6 @@ class TestDisplayValues(TestCase):
             self.assertFalse(values["is_before_last_day_of_classes"])
             self.assertFalse(values["is_before_end_of_registration_display_period"])
 
-
     def test_day_after_grade_submission_deadline(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
             now_request = RequestFactory().get("/")
@@ -239,7 +236,6 @@ class TestDisplayValues(TestCase):
             self.assertTrue(values["is_before_last_day_of_classes"])
             self.assertFalse(values["is_before_end_of_registration_display_period"])
 
-
     def test_js_overrides(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
             now_request = RequestFactory().get("/")
@@ -257,4 +253,3 @@ class TestDisplayValues(TestCase):
             self.assertTrue(values["is_before_end_of_finals_week"])
             self.assertTrue(values["is_before_last_day_of_classes"])
             self.assertFalse(values["is_before_end_of_registration_display_period"])
-

@@ -70,5 +70,3 @@ class TextbookCur(Textbook):
         if term.quarter == "summer":
             summer_term = get_current_summer_term(request)
         return self.respond(term.year, term.quarter, summer_term)
-
-

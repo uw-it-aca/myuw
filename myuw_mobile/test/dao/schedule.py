@@ -5,11 +5,12 @@ from myuw_mobile.dao.schedule import has_summer_quarter_section
 from myuw_mobile.dao.schedule import filter_schedule_sections_by_summer_term
 from restclients.models import ClassSchedule, Term, Section, Person
 
+
 class TestSchedule(TestCase):
+
     def test_has_summer_quarter_section(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File', 
-            RESTCLIENTS_PWS_DAO_CLASS='restclients.dao_implementation.pws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File',
+                           RESTCLIENTS_PWS_DAO_CLASS='restclients.dao_implementation.pws.File'):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = Term()
             term.year = 2012
@@ -24,15 +25,14 @@ class TestSchedule(TestCase):
             self.assertFalse(has_summer_quarter_section(schedule))
 
     def test_filter_schedule_sections_by_summer_term(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File', 
-            RESTCLIENTS_PWS_DAO_CLASS='restclients.dao_implementation.pws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File',
+                           RESTCLIENTS_PWS_DAO_CLASS='restclients.dao_implementation.pws.File'):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = Term()
             term.year = 2013
             term.quarter = "summer"
             schedule = _get_schedule(regid, term)
-            #ensure it has both A and B terms
+            # ensure it has both A and B terms
             has_a_term = False
             has_b_term = False
             for section in schedule.sections:
@@ -59,4 +59,3 @@ class TestSchedule(TestCase):
             self.assertFalse(filtered_has_b_term)
             self.assertTrue(filtered_has_full_term)
             self.assertTrue(filtered_has_a_term)
-

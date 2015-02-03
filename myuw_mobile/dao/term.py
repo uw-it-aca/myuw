@@ -19,8 +19,9 @@ logger = logging.getLogger(__name__)
 
 def get_comparison_date(request):
     """
-    Allows us to pretend we're at various points in the term,
-    so we can test against live data sources at various points in the year.
+    To test at various points in the year,
+    overrides to the date if specified in the request
+    otherwise return the default date.
     """
     FORMAT = "%Y-%m-%d"
 
