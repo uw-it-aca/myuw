@@ -165,10 +165,10 @@ describe('Handlebar-helpers', function() {
 	    assert.equal(output, 'Wed, Nov 26');
 	});
 	it ("should return formatted date for final exam schedule", function() {
-	    var template = Handlebars.compile("{{formatDateAsFinalsDay '2014-11-26'}}");
+	    var template = Handlebars.compile("{{formatDateAsFinalsDay '2014-11-26' '3'}}");
 	    var output = template();
 
-	    assert.equal(output, 'Nov 26');
+	    assert.equal(output, 'Nov 23');
 	});
     });
 
