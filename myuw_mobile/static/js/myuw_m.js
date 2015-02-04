@@ -487,4 +487,4 @@ var _init_card_logging = function() {
 
 var init_profile_events = function () {
     Profile.add_events();
-}
+};
