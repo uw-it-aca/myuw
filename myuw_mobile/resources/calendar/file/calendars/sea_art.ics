@@ -1,0 +1,2053 @@
+BEGIN:VCALENDAR
+PRODID:-//Trumba Corporation//Trumba Calendar Services 0.11.12128//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+X-WR-CALNAME:College of Arts and Sciences|School of Art + Art History + 
+ Design
+X-WR-TIMEZONE:America/Los_Angeles
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:America/Los_Angeles
+BEGIN:STANDARD
+TZOFFSETFROM:-0700
+TZOFFSETTO:-0800
+TZNAME:PST
+DTSTART:20071104T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0800
+TZOFFSETTO:-0700
+TZNAME:PDT
+DTSTART:20070311T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+SUMMARY:Exhibit - BAM Biennial 2014: Knock on Wood
+LOCATION:Bellevue Arts Museum\, 510 Bellevue Way NE\, Bellevue
+DTSTART;VALUE=DATE:20141031
+DTEND;VALUE=DATE:20150330
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.bellevuearts.org/exhibitions/bam_biennial_2014.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+DTSTAMP:20150126T151433Z
+DESCRIPTION:Link: http://www.bellevuearts.org/exhibitions/bam_biennial_2
+ 014.html\n\nExhibition continues through Sunday\, March 29\, 2015.\n <em
+ ><strong>Bellevue Arts Museum hours are Tue-Sun\, 11am-6pm. Open until 8
+ pm on the free first Friday. Closed some holidays. More info <a href="ht
+ tp://www.bellevuearts.org/visit_us/index.html" target="_blank">here</a>.
+ </strong></em><br /><hr /> Among the thirty-nine artists included in the
+  show are 3D4M Professor Amie McNeel and five of our alumni: Julia Harri
+ son (MFA 2004)\, Whiting Tennis (BFA 1984)\, W. Scott Trimble (MFA 2003)
+ \, Kimberly Trowbridge (MFA 2006)\, and William Whipple (BFA 1970). Plea
+ se <a href="mailto:soanews@uw.edu" target="_blank">email us</a> if we ha
+ ve missed someone.
+CATEGORIES:Outside SoA+AH+D
+UID:http://uid.trumba.com/event/111931800
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Exhibit - Here & Now: Native Artists Inspired
+LOCATION:Burke Memorial-Washington State Museum (BMM)
+DTSTART;VALUE=DATE:20141122
+DTEND;VALUE=DATE:20150728
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.burkemuseum.org/hereandnow
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Bu
+ rke Memorial-Washington State Museum (BMM)
+DTSTAMP:20150126T151503Z
+DESCRIPTION:Campus location: Burke Memorial-Washington State Museum (BMM
+ )\nLink: http://www.burkemuseum.org/hereandnow\n\nBurke Museum hours are
+  daily\, 10am-5pm. Closed some holidays. More info <a href="http://www.b
+ urkemuseum.org/info" target="_blank">here</a>.\n <hr /> Bill Holm is an 
+ Art History Professor Emeritus and Curator Emeritus of Northwest Coast I
+ ndian Art at the Burke Museum. The <a href="http://www.burkemuseum.org/b
+ hc" target="_blank">Bill Holm Center</a> was founded in 2003 to continue
+  Holm's legacy at the Burke Museum\, and the center's Director is Art Hi
+ story Professor and Burke Museum Curator of Native American Art Robin Wr
+ ight.\n \n This exhibition celebrates the 10th anniversary of the center
+  and "features 30 new works by contemporary Native artists\, paired with
+  historic pieces from the Burke Museum that artists identified as key to
+  their learning." The center's Assistant Director\, Kathryn Bunn-Marcuse
+  (PhD 2007)\, curated the show with assistance from Bridget Johnson (MA 
+ 2014).\n \n Read more about the exhibition at the link below.
+CATEGORIES:Outside SoA+AH+D
+UID:http://uid.trumba.com/event/112429415
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Exhibit - Design Program in Rome | Photographs
+LOCATION:University of Washington Club (FAC)
+DTSTART;VALUE=DATE:20150106
+DTEND;VALUE=DATE:20150322
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Un
+ iversity of Washington Club (FAC)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Colleen
+  Rohrbaugh Room
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDxP-Ia4tJ77YIXnr%2AlIjA1.png
+DTSTAMP:20150127T114316Z
+DESCRIPTION:Campus location: University of Washington Club (FAC)\nCampus
+  room: Colleen Rohrbaugh Room\n\n<em><strong>Room is normally accessible
+  Mon-Fri\, 7:30am-7:30pm\, if there is not an event scheduled. Call 206-
+ 543-0437 to inquire.</strong></em><br /><hr /> A small sampling of the p
+ hotos shot by the students who participated in the 2014 Design Program i
+ n Rome\, which was led by Professor Christopher Ozubko. The photos are a
+ rchivally matted/framed and are available for $200. All proceeds assist 
+ future Design Programs in Rome.
+CATEGORIES:Division of Design
+UID:http://uid.trumba.com/event/113568194
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Exhibit - Ellen Garvens: Fine Lines
+LOCATION:Russell Day Gallery\, Parks Student Union Building\, Everett Comm
+ unity College\, 2000 Tower Street\, Everett
+DTSTART;VALUE=DATE:20150112
+DTEND;VALUE=DATE:20150207
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgCRMdO6AGEDn11%2A1sjA9Ogp.jpg
+DTSTAMP:20150127T104712Z
+DESCRIPTION:<em><strong>Gallery hours are normally Mon-Thu\, 9:00am-7:00
+ pm and Fri\, 9:00am-1:00pm. More info <a href="http://www.everettcc.edu/
+ gallery" target="_blank">here</a>.</strong></em><br /><hr /> A show of p
+ hotography\, drawing\, and sculpture by Photomedia Professor Ellen Garve
+ ns.
+CATEGORIES:Outside SoA+AH+D
+UID:http://uid.trumba.com/event/113567084
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Exhibit - MELT
+LOCATION:Youngstown Cultural Arts Center\, 4408 Delridge Way SW\, Seattle
+DTSTART;VALUE=DATE:20150115
+DTEND;VALUE=DATE:20150316
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://melt2015.tumblr.com/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgCN32gUSTiCgLmehaGRkfv2.jpg
+DTSTAMP:20150126T151546Z
+DESCRIPTION:Link: http://melt2015.tumblr.com/\n\nThis exhibition include
+ s work by several current students and alumni:\n Hami Bahadori (Photomed
+ ia senior)\n Mia Bian (BA 2013)\n Matthew Bell (Photomedia senior)\n Ale
+ x Boeschenstein (IVA senior)\n Max Cleary (BFA 2014)\n Jueqian Fang (BFA
+  2014)\n Mario Lemafa (BFA 2013)\n Katy Lester (BFA 2014)\n Justen Water
+ house (BFA 2014)
+CATEGORIES:Outside SoA+AH+D
+UID:http://uid.trumba.com/event/113387528
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Exhibit - Parlor Games: Parallax (Timea Tihanyi)
+LOCATION:Kittredge Gallery\, University of Puget Sound\, N 15th St & N Law
+ rence St\, Tacoma
+DTSTART;VALUE=DATE:20150120
+DTEND;VALUE=DATE:20150222
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgBifnJINWAvuKp52jV4tUvY.jpg
+DTSTAMP:20150127T112216Z
+DESCRIPTION:<em><strong>Gallery hours are normally Mon-Fri\, 10:00am-5:0
+ 0pm and Sat\, 12:00-5:00pm. More info <a href="http://www.pugetsound.edu
+ /about/campus-the-northwest/places-spaces/kittredge-gallery/" target="_b
+ lank">here</a>.</strong></em><br /><hr /> A participatory installation b
+ y IVA Lecturer Timea Tihanyi created for Kittredge Gallery. The installa
+ tion explores the nature of the creative process by drawing together ide
+ as from art\, science\, and philosophy. For the exhibition\, Tihanyi ask
+ ed artists and scientists from around the world to submit snapshots of t
+ heir workspaces. During the course of the exhibition\, selected details 
+ from the photos will be drawn on the walls of the gallery by participati
+ ng University of Puget Sound students and the public in order to create 
+ a kaleidoscopic view of the ultimate creative space.\n \n The word paral
+ lax in the title refers to relative perception\, specifically the effect
+  whereby the position or direction of an object appears to differ when v
+ iewed from different positions. The installation plays with these ideas 
+ of\n presence\, absence\, movement\, transformation\, and discovery. It 
+ also includes sculptures and videos by Tihanyi and a work station where 
+ visitors can sculpt with clay\, transforming the gallery itself into a w
+ ork space.
+CATEGORIES:Outside SoA+AH+D
+UID:http://uid.trumba.com/event/113568032
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Exhibit - Started from the Bottom now we're Here
+LOCATION:Art Building (ART)
+DTSTART;VALUE=DATE:20150204
+DTEND;VALUE=DATE:20150215
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Room 00
+ 9 + Skinny Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:Photo
+ media Program\, <a href="http://art.washington.edu" target="_blank">Scho
+ ol of Art + Art History + Design</a>
+DTSTAMP:20150126T130149Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Room 009 +
+  Skinny Gallery\nEvent sponsors: Photomedia Program\, <a href="http://ar
+ t.washington.edu" target="_blank">School of Art + Art History + Design</
+ a>\n\n<strong>Opening Reception</strong>: Tue\, February 3\, 5:00-7:00pm
+ \n Exhibition continues through Sat\, February 14\, 2015.\n \n <em><stro
+ ng>Public hours for this exhibition are approximately 11:00am-5:00pm on 
+ weekdays after the opening.</strong></em><br /><hr /> Artwork by first-y
+ ear MFA students in the Photomedia Program: Paul Baughman\, Sarah Skwira
+ \, and Ellen Xu.
+CATEGORIES:Division of Art
+UID:http://uid.trumba.com/event/113559456
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Exhibits - 3D4M BFA + First-Year MFA
+LOCATION:Ceramic And Metal Arts Building (CMA)
+DTSTART;VALUE=DATE:20150204
+DTEND;VALUE=DATE:20150214
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ce
+ ramic And Metal Arts Building (CMA)
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:3D4M:
+  ceramics + glass + sculpture\, <a href="http://art.washington.edu" targ
+ et="_blank">School of Art + Art History + Design</a>
+DTSTAMP:20150127T120800Z
+DESCRIPTION:Campus location: Ceramic And Metal Arts Building (CMA)\nEven
+ t sponsors: 3D4M: ceramics + glass + sculpture\, <a href="http://art.was
+ hington.edu" target="_blank">School of Art + Art History + Design</a>\n
+ \n<em><strong>Public hours for these exhibitions are normally Mon-Fri\, n
+ oon-6:00pm. <a href="mailto:taylorja@uw.edu" target="_blank">Email</a> t
+ o inquire about viewing at other times.</strong></em> <hr /> <p>The Nort
+ h Gallery displays work by first-year MFA students Ben Gale-Schreck and 
+ Anna Mlasowsky in an exhibit they have titled <em>Artifice</em>. The Sou
+ th Gallery shows selected work by 3D4M undergraduates.</p>
+CATEGORIES:Division of Art
+UID:http://uid.trumba.com/event/113568804
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Jake Exhibit - Factory Showroom: Post-Speculation/thewayblackmac
+ hine
+LOCATION:Art Building (ART)
+DTSTART;VALUE=DATE:20150204
+DTEND;VALUE=DATE:20150301
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20150126T131302Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\n<a href="http://bi
+ t.ly/1rZ9EE1" target="_blank"><strong>Opening Reception</strong></a>: Tu
+ e\, February 3\, 5:00-8:00pm\n FREE and open to all\; please RSVP using 
+ the Register button <a href="http://bit.ly/1rZ9EE1" target="_blank">here
+ </a>.\n \n Exhibition continues through Sat\, February 28\, 2015.\n <em>
+ <strong>Jacob Lawrence Gallery hours are <em><strong>Tue-Fri\, 10:00am-5
+ :00pm\, and Sat\, 1:00pm-5:00pm</strong></em>.</strong></em><br /><hr />
+  The Jacob Lawrence Gallery is pleased to announce a new initiative to d
+ edicate every February to artists and ideas relating to the African dias
+ pora in honor of the gallery’s namesake and Black History Month.\n \n We
+  are thrilled to inaugurate this new program with a special project by t
+ he YAMS Collective. HOWDOYOUSAYYAMINAFRICAN? is “a collective of artists
+ \, writers\, composers\, academics\, filmmakers and performers from arou
+ nd the world who collaborate across disciplines and cities.”\n \n For th
+ e Jacob Lawrence Gallery\, YAMS has designed a fully-immersive\, multi-m
+ edia installation of<em> <a href="http://thewayblackmachine.net/" target
+ ="_blank">The Way Black Machine</a></em> (2014)\, an internet archive of
+  activism around black embodiment to address\, “contemporary conditions 
+ such as police brutality\, American-funded international violence\, and 
+ the ways that memes and hashtags collapse and make legible such threats 
+ to personhood.”\n \n This exhibition is being presented in partnership w
+ ith the New Foundation Seattle. They are sponsoring and/or hosting a num
+ ber of other events with members of HOWDOYOUSAYYAMINAFRICAN? To see all 
+ the events\, go to the calendar link on the <a href="http://www.thenewes
+ t.org/" target="_blank">New Foundation Seattle website</a>.\n \n See add
+ itional information in this <a href="http://art.washington.edu/soanews/P
+ DFs/JLG_PR_2015_YAMS.pdf" target="_blank">press release</a>.
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/113285040
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Meeting - SoA+AH+D Council
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150204T120000
+DTEND;TZID=America/Los_Angeles:20150204T133000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Room 21
+ 2
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20150130T152231Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Room 212\n
+ Event sponsors: <a href="http://art.washington.edu" target="_blank">Scho
+ ol of Art + Art History + Design</a>\n\nA meeting of the governing counc
+ il of the School of Art + Art History + Design. The agenda is <a href="h
+ ttp://art.washington.edu/PDFs/agendas/council_agenda_020415.pdf" target=
+ "_blank">here</a>.
+CATEGORIES:School of Art + Art History + Design
+UID:http://uid.trumba.com/event/113285580
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150204T120000
+DTEND;TZID=America/Los_Angeles:20150204T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382930
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:London Study Abroad Information Session
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150204T173000
+DTEND;TZID=America/Los_Angeles:20150204T183000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:ART RM 
+ 120
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:Art A
+ dvising
+X-TRUMBA-CUSTOMFIELD;NAME="Facebook";ID=30202;TYPE=Url:https://www.faceb
+ ook.com/events/930399500304402/
+DTSTAMP:20150108T165146Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: ART RM 120
+ \nEvent sponsors: Art Advising\nFacebook: https://www.facebook.com/event
+ s/930399500304402/\n\nThe London Art Scene – Past and Present\n Lou Cabe
+ en lcabeen@uw.edu and Judi Clark jclark@uw.edu\n 5 Credits&nbsp\;&nbsp\;
+ &nbsp\;\n Dates: August 24 – September 18\, 2015&nbsp\;&nbsp\;&nbsp\;\n 
+ Cost: $3\,850.00\n \n Information Sessions: Tuesday\, January 27\, 530\;
+  Wednesday\, February 4\, 530\; Friday\, February 6\, 1130.&nbsp\; All s
+ essions meet in Space 120 Art Building\n \n On this trip we will follow 
+ in the path of artists and travelers before us\, living\, learning and c
+ reating in London - a city whose contemporary arts are cutting edge and 
+ where history is told in the art\, architecture and monuments of the pas
+ t. London is a center of world art and diverse cultures with a 2000-year
+  old visual and historic legacy. Here we will investigate and study a wi
+ de range of arts including architecture\, drawing\, printmaking\, photog
+ raphy\, painting\, sculpture\, installation\, street art\, graphic\, int
+ erior and fashion design.\n Drawing\, photography\, and collage will ser
+ ve as research tools and targeted readings will help us refine our obser
+ vations and analyze and record our learning. Our investigations will tak
+ e us to London's most famous landmarks and galleries where local artists
+  and art historians will guide our explorations and expand our knowledge
+ . Students will complete a notebook of their on-site observations\, a se
+ ries of altered post cards\, and a travel journal in the form of an alte
+ red book.\n \n Our explorations and research will take us to the West En
+ d\, an international site for street art\, pop-up galleries and the cent
+ er of British design\; the British Museum\; the Victoria &amp\; Albert M
+ useum\; the Tate Museums\; the National Gallery\; the Whitechapel and Sa
+ atchi Galleries. We will also travel outside London to see the treasures
+  at Windsor Palace and the University of Oxford. We will go by boat on t
+ he Thames to explore historical Greenwich. We will climb to the top of S
+ t Paul's for the best view in London\, tour Westminster Abbey\, explore 
+ London's street markets and become part of the exciting day-to-day vital
+ ity of an international city of 8 million people.&nbsp\; London will be 
+ our classroom and its diverse neighborhoods\, monuments and museums will
+  be our inspiration to learn and create.&nbsp\;\n \n Transportation in L
+ ondon\, by subway (The Tube)\, riverboat\, coach\, and light rail\, is p
+ rovided\, allowing students easy access to the entire city at all times.
+  In London the theater\, art and music venuea are amazing\, the neighbor
+ hoods are international\, the food is world class\, the people are frien
+ dly and helpful\, and\, like the art\, the shopping is world class.&nbsp
+ \; Join us.
+CATEGORIES:Academic Advising and Student Services
+UID:http://uid.trumba.com/event/113343141
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:London Study Abroad Information Session
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150206T113000
+DTEND;TZID=America/Los_Angeles:20150206T123000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:ART RM 
+ 120
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:Art A
+ dvising
+X-TRUMBA-CUSTOMFIELD;NAME="Facebook";ID=30202;TYPE=Url:https://www.faceb
+ ook.com/events/721069418006398/
+DTSTAMP:20150108T165225Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: ART RM 120
+ \nEvent sponsors: Art Advising\nFacebook: https://www.facebook.com/event
+ s/721069418006398/\n\nThe London Art Scene – Past and Present\n Lou Cabe
+ en lcabeen@uw.edu and Judi Clark jclark@uw.edu\n 5 Credits&nbsp\;&nbsp\;
+ &nbsp\;\n Dates: August 24 – September 18\, 2015&nbsp\;&nbsp\;&nbsp\;\n 
+ Cost: $3\,850.00\n \n Information Sessions: Tuesday\, January 27\, 530\;
+  Wednesday\, February 4\, 530\; Friday\, February 6\, 1130.&nbsp\; All s
+ essions meet in Space 120 Art Building\n \n On this trip we will follow 
+ in the path of artists and travelers before us\, living\, learning and c
+ reating in London - a city whose contemporary arts are cutting edge and 
+ where history is told in the art\, architecture and monuments of the pas
+ t. London is a center of world art and diverse cultures with a 2000-year
+  old visual and historic legacy. Here we will investigate and study a wi
+ de range of arts including architecture\, drawing\, printmaking\, photog
+ raphy\, painting\, sculpture\, installation\, street art\, graphic\, int
+ erior and fashion design.\n Drawing\, photography\, and collage will ser
+ ve as research tools and targeted readings will help us refine our obser
+ vations and analyze and record our learning. Our investigations will tak
+ e us to London's most famous landmarks and galleries where local artists
+  and art historians will guide our explorations and expand our knowledge
+ . Students will complete a notebook of their on-site observations\, a se
+ ries of altered post cards\, and a travel journal in the form of an alte
+ red book.\n \n Our explorations and research will take us to the West En
+ d\, an international site for street art\, pop-up galleries and the cent
+ er of British design\; the British Museum\; the Victoria &amp\; Albert M
+ useum\; the Tate Museums\; the National Gallery\; the Whitechapel and Sa
+ atchi Galleries. We will also travel outside London to see the treasures
+  at Windsor Palace and the University of Oxford. We will go by boat on t
+ he Thames to explore historical Greenwich. We will climb to the top of S
+ t Paul's for the best view in London\, tour Westminster Abbey\, explore 
+ London's street markets and become part of the exciting day-to-day vital
+ ity of an international city of 8 million people.&nbsp\; London will be 
+ our classroom and its diverse neighborhoods\, monuments and museums will
+  be our inspiration to learn and create.&nbsp\;\n \n Transportation in L
+ ondon\, by subway (The Tube)\, riverboat\, coach\, and light rail\, is p
+ rovided\, allowing students easy access to the entire city at all times.
+  In London the theater\, art and music venuea are amazing\, the neighbor
+ hoods are international\, the food is world class\, the people are frien
+ dly and helpful\, and\, like the art\, the shopping is world class.&nbsp
+ \; Join us.
+CATEGORIES:Academic Advising and Student Services
+UID:http://uid.trumba.com/event/113343146
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Meeting - Division of Design Faculty
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150206T114500
+DTEND;TZID=America/Los_Angeles:20150206T131500
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:247
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20150203T161651Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: 247\nEvent
+  sponsors: <a href="http://art.washington.edu" target="_blank">School of
+  Art + Art History + Design</a>\n\nA meeting of the SoA+AH+D's Division 
+ of Design faculty. The agenda is:\n \n 1) Faculty updates + news\n 2) St
+ udent updates + news\n 3) Spring quarter planning
+CATEGORIES:Division of Design
+UID:http://uid.trumba.com/event/113657648
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Meeting - SoA+AH+D Faculty + Staff
+LOCATION:Smith Hall (SMI)
+DTSTART;TZID=America/Los_Angeles:20150206T133000
+DTEND;TZID=America/Los_Angeles:20150206T150000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Sm
+ ith Hall (SMI)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Room 20
+ 5
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20150203T142332Z
+DESCRIPTION:Campus location: Smith Hall (SMI)\nCampus room: Room 205\nEv
+ ent sponsors: <a href="http://art.washington.edu" target="_blank">School
+  of Art + Art History + Design</a>\n\nThe winter quarter meeting for all
+  faculty and staff in the school. The agenda is <a href="http://art.wash
+ ington.edu/PDFs/agendas/faculty_staff_agenda_020615.pdf" target="_blank"
+ >here</a>.
+CATEGORIES:School of Art + Art History + Design
+UID:http://uid.trumba.com/event/113610038
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Rome Study Abroad Information Session
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150209T173000
+DTEND;TZID=America/Los_Angeles:20150209T193000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:ART RM 
+ 120
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:Art D
+ ivision and Art Advising
+X-TRUMBA-CUSTOMFIELD;NAME="Facebook";ID=30202;TYPE=Url:https://www.faceb
+ ook.com/events/627969903999872/
+DTSTAMP:20150128T115330Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: ART RM 120
+ \nEvent sponsors: Art Division and Art Advising\nFacebook: https://www.f
+ acebook.com/events/627969903999872/\n\nLearn about this Autumn studio ar
+ t study abroad program in Rome\, Italy with Professor Curt Labitzke! Fin
+ d out where you would live and travel to\, see the studios where you wou
+ ld make art\, and see beautiful images of previous adventures!\n \n Stud
+ io Art in Rome\n Curt Labitzke cwl@uw.edu\n 15 Credits\n Fall quarter 20
+ 15\n Information Sessions: Monday\, January 12\; Wednesday\, January 28
+ \; Monday\, February 9. All sessions are from 530-730 pm and meet in Spac
+ e 120 in the Art Building
+CATEGORIES:Academic Advising and Student Services
+UID:http://uid.trumba.com/event/113343134
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150211T120000
+DTEND;TZID=America/Los_Angeles:20150211T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382931
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:PREVIEW: School of Art Information Session
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150212T150000
+DTEND;TZID=America/Los_Angeles:20150212T160000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+URL:http://art.washington.edu/advising/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:RM 120
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:UW Sc
+ hool of Art + Art History + Design
+X-TRUMBA-CUSTOMFIELD;NAME="Facebook";ID=30202;TYPE=Url:https://www.faceb
+ ook.com/uwsoaAdvising
+DTSTAMP:20141212T143555Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: RM 120\nEv
+ ent sponsors: UW School of Art + Art History + Design\nFacebook: https:/
+ /www.facebook.com/uwsoaAdvising\nLink: http://art.washington.edu/advisin
+ g/\n\n<strong>Are you a student at the UW interested in declaring an art
+ \, art history or design major\, OR a transfer student\, OR are you just
+  interested in our programs?</strong>\n You’re invited to attend <strong
+ >Preview</strong>. This hour-long info session\, led by professional aca
+ demic advisers\, is designed to introduce prospective undergraduate stud
+ ents to all of the academic and enrichment programs in the School of Art
+  + Art History + Design. If you are a prospective graduate student\, ple
+ ase read about our <a href="http://art.washington.edu/advising/degrees/g
+ raduate/" target="_blank">Graduate&nbsp\;programs.&nbsp\;</a>
+CATEGORIES:Academic Advising and Student Services
+UID:http://uid.trumba.com/event/110808022
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Meeting - Division of Art Faculty
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150212T173000
+DTEND;TZID=America/Los_Angeles:20150212T190000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Room 21
+ 2
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:Schoo
+ l of Art + Art History + Design
+DTSTAMP:20150130T121755Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Room 212\n
+ Event sponsors: School of Art + Art History + Design\n\nA meeting of the
+  SoA+AH+D's Division of Art faculty. The agenda is:\n \n 1) old business
+ \n 2) new business\n 3) announcements
+CATEGORIES:Division of Art
+UID:http://uid.trumba.com/event/113607253
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Lecture Series - Mitch McEwen
+LOCATION:Henry Art Gallery and Allen Center for The Visual Arts (HAG)
+DTSTART;TZID=America/Los_Angeles:20150212T190000
+DTEND;TZID=America/Los_Angeles:20150212T203000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+URL:http://art.washington.edu/free-lecture-series-winter-quarter-2015/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:He
+ nry Art Gallery and Allen Center for The Visual Arts (HAG)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Auditor
+ ium
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>\, Division of Art Nebula Project\, which has received ge
+ nerous support from the UW College of Arts &amp\; Sciences and The New F
+ oundation Seattle
+DTSTAMP:20150126T110933Z
+DESCRIPTION:Campus location: Henry Art Gallery and Allen Center for The 
+ Visual Arts (HAG)\nCampus room: Auditorium\nEvent sponsors: <a href="htt
+ p://art.washington.edu" target="_blank">School of Art + Art History + De
+ sign</a>\, Division of Art Nebula Project\, which has received generous 
+ support from the UW College of Arts &amp\; Sciences and The New Foundati
+ on Seattle\nLink: http://art.washington.edu/free-lecture-series-winter-q
+ uarter-2015/\n\n<strong>CRITICAL ISSUES IN CONTEMPORARY ART PUBLIC LECTU
+ RE SERIES\n \n <a href="http://shop.henryart.org/products/art-361-595-cr
+ itical-issues-in-contemporary-art-practice-mitch-mcewen" target="_blank"
+ >FREE TICKETS / RESERVATIONS</a></strong>\n This lecture is free\, but r
+ eservations are recommended. To reserve your seat online\, <a href="http
+ ://shop.henryart.org/products/art-361-595-critical-issues-in-contemporar
+ y-art-practice-mitch-mcewen" target="_blank">go to this page</a>. Doors 
+ open at 6:15pm. Any unreserved seats are first come\, first served. Uncl
+ aimed reservations will be released at 6:50pm to anyone waiting.\n <hr /
+ > <a href="http://mcewenstudio.com/web/about/mitch/" target="_blank">Mit
+ ch McEwen</a> is a member of the collective <a href="http://howdoyousayy
+ aminafrican.com/" target="_blank">HOWDOYOUSAYYAMINAFRICAN?</a> and princ
+ ipal of McEwen Studio. She holds an MArch from Columbia University and a
+  BA from Harvard. She previously worked at Bernard Tschumi Architects an
+ d the New York City Department of City Planning.\n \n NOTE: This lecture
+  will be video recorded\, and the video will be posted in <a href="https
+ ://vimeo.com/album/2648807" target="_blank">this Vimeo album</a> approxi
+ mately a week after the lecture.\n \n Follow the link below for more inf
+ ormation about this lecture series.
+CATEGORIES:Division of Art
+UID:http://uid.trumba.com/event/112773530
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:President's Day (no classes)
+DTSTART;VALUE=DATE:20150216
+DTEND;VALUE=DATE:20150217
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20150123T124001Z
+DESCRIPTION:Year: 2015\nQuarter: Winter\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271654
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Meeting - SoA+AH+D Council
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150218T120000
+DTEND;TZID=America/Los_Angeles:20150218T133000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Room 21
+ 2
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20150105T171104Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Room 212\n
+ Event sponsors: <a href="http://art.washington.edu" target="_blank">Scho
+ ol of Art + Art History + Design</a>\n\nA meeting of the governing counc
+ il of the School of Art + Art History + Design. The agenda will be added
+  when available.
+CATEGORIES:School of Art + Art History + Design
+UID:http://uid.trumba.com/event/113285581
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150218T120000
+DTEND;TZID=America/Los_Angeles:20150218T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382932
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Lecture Series - Gareth Moore
+LOCATION:Henry Art Gallery and Allen Center for The Visual Arts (HAG)
+DTSTART;TZID=America/Los_Angeles:20150219T190000
+DTEND;TZID=America/Los_Angeles:20150219T203000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+URL:http://art.washington.edu/free-lecture-series-winter-quarter-2015/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:He
+ nry Art Gallery and Allen Center for The Visual Arts (HAG)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Auditor
+ ium
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>\, Division of Art Nebula Project\, which has received ge
+ nerous support from the UW College of Arts &amp\; Sciences and The New F
+ oundation Seattle
+DTSTAMP:20150126T111047Z
+DESCRIPTION:Campus location: Henry Art Gallery and Allen Center for The 
+ Visual Arts (HAG)\nCampus room: Auditorium\nEvent sponsors: <a href="htt
+ p://art.washington.edu" target="_blank">School of Art + Art History + De
+ sign</a>\, Division of Art Nebula Project\, which has received generous 
+ support from the UW College of Arts &amp\; Sciences and The New Foundati
+ on Seattle\nLink: http://art.washington.edu/free-lecture-series-winter-q
+ uarter-2015/\n\n<strong><strong>CRITICAL ISSUES IN CONTEMPORARY ART PUBL
+ IC LECTURE SERIES</strong><br /><a href="http://shop.henryart.org/produc
+ ts/critical-issues-in-contemporary-art-practice-lecture-gareth-moore" ta
+ rget="_blank">FREE TICKETS / RESERVATIONS</a></strong>\n This lecture is
+  free\, but reservations are recommended. To reserve your seat online\, 
+ <a href="http://shop.henryart.org/products/critical-issues-in-contempora
+ ry-art-practice-lecture-gareth-moore" target="_blank">go to this page</a
+ >. Doors open at 6:15pm. Any unreserved seats are first come\, first ser
+ ved. Unclaimed reservations will be released at 6:50pm to anyone waiting
+ .\n <hr /> <a href="http://catrionajeffries.com/artists/gareth-moore/wor
+ ks/" target="_blank">Gareth Moore</a> lives in Vancouver\, BC\, but has 
+ worked nomadically throughout his career. His solo exhibitions include W
+ itte de With\, Rotterdam\; Wattis Institute\, San Francisco\; and Vancou
+ ver Art Gallery. His project <em>A Place—Near the Buried Canal</em> was 
+ included in Documenta 13\, Kassel\, Germany. He is represented by Catrio
+ na Jeffries\, Vancouver\, and Luettgenmeijer\, Berlin. He is a graduate 
+ of the Emily Carr Institute\, Vancouver.\n \n NOTE: At the artist's requ
+ est\, this lecture will not be recorded. Video recordings of some of the
+  series lectures will be posted in <a href="https://vimeo.com/album/2648
+ 807" target="_blank">this Vimeo album</a> approximately a week after eac
+ h lecture.\n \n Follow the link below for more information about this le
+ cture series.
+CATEGORIES:Division of Art
+UID:http://uid.trumba.com/event/112773533
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150225T120000
+DTEND;TZID=America/Los_Angeles:20150225T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382933
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Meeting - SoA+AH+D Council
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150304T120000
+DTEND;TZID=America/Los_Angeles:20150304T133000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Room 21
+ 2
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20150105T171104Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Room 212\n
+ Event sponsors: <a href="http://art.washington.edu" target="_blank">Scho
+ ol of Art + Art History + Design</a>\n\nA meeting of the governing counc
+ il of the School of Art + Art History + Design. The agenda will be added
+  when available.
+CATEGORIES:School of Art + Art History + Design
+UID:http://uid.trumba.com/event/113285582
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150304T120000
+DTEND;TZID=America/Los_Angeles:20150304T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382934
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150311T120000
+DTEND;TZID=America/Los_Angeles:20150311T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382935
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Lecture Series - Liz Craft with Pentti Monkkonen
+LOCATION:Henry Art Gallery and Allen Center for The Visual Arts (HAG)
+DTSTART;TZID=America/Los_Angeles:20150312T190000
+DTEND;TZID=America/Los_Angeles:20150312T203000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+URL:http://art.washington.edu/free-lecture-series-winter-quarter-2015/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:He
+ nry Art Gallery and Allen Center for The Visual Arts (HAG)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Auditor
+ ium
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>\, Division of Art Nebula Project\, which has received ge
+ nerous support from the UW College of Arts &amp\; Sciences and The New F
+ oundation Seattle
+DTSTAMP:20150106T190326Z
+DESCRIPTION:Campus location: Henry Art Gallery and Allen Center for The 
+ Visual Arts (HAG)\nCampus room: Auditorium\nEvent sponsors: <a href="htt
+ p://art.washington.edu" target="_blank">School of Art + Art History + De
+ sign</a>\, Division of Art Nebula Project\, which has received generous 
+ support from the UW College of Arts &amp\; Sciences and The New Foundati
+ on Seattle\nLink: http://art.washington.edu/free-lecture-series-winter-q
+ uarter-2015/\n\n<strong><strong>CRITICAL ISSUES IN CONTEMPORARY ART PUBL
+ IC LECTURE SERIES</strong>\n \n FREE TICKETS / RESERVATIONS</strong>\n T
+ his lecture is free\, but reservations are recommended. To reserve your 
+ seat online\, go to this page [link to be added when available]. Doors o
+ pen at 6:15pm. Any unreserved seats are first come\, first served. Uncla
+ imed reservations will be released at 6:50pm to anyone waiting.\n <hr />
+  <a href="http://www.patrickpainter.com/artists/Craft_Liz/" target="_bla
+ nk">Liz Craft</a> and Pentti Monkkonen are Los Angeles-based artists. Cr
+ aft's sculptures and installations have been included in exhibitions at 
+ the Whitney Museum of American Art\, New York\, and the Migros Museum\, 
+ Zurich. She studied at Otis College and the University of California\, L
+ os Angeles. Monkkonen's work has been exhibited at the Hammer Museum\, L
+ os Angeles\; Hacienda\, Zurich\; and New Jerseyy\, Basel. Craft and Monk
+ konen are co-founders of <a href="http://www.theparadisegarage.org/" tar
+ get="_blank">Paradise Garage</a>\, Los Angeles\, and the annual art even
+ t <a href="http://paramountranch.la/" target="_blank">Paramount Ranch</a
+ >.\n \n NOTE: This lecture will be video recorded\, and the video will b
+ e posted in <a href="https://vimeo.com/album/2648807" target="_blank">th
+ is Vimeo album</a> approximately a week after the lecture.\n \n Follow t
+ he link below for more information about this lecture series.
+CATEGORIES:Division of Art
+UID:http://uid.trumba.com/event/112773537
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Winter Quarter
+DTSTART;VALUE=DATE:20150313
+DTEND;VALUE=DATE:20150314
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20150123T123930Z
+DESCRIPTION:Year: 2015\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108014916
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Final Examinations - Winter Quarter
+DTSTART;VALUE=DATE:20150316
+DTEND;VALUE=DATE:20150321
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20150123T123856Z
+DESCRIPTION:Year: 2015\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108206510
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Meeting - SoA+AH+D Council
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150318T120000
+DTEND;TZID=America/Los_Angeles:20150318T133000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Room 21
+ 2
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20150105T171104Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Room 212\n
+ Event sponsors: <a href="http://art.washington.edu" target="_blank">Scho
+ ol of Art + Art History + Design</a>\n\nA meeting of the governing counc
+ il of the School of Art + Art History + Design. The agenda will be added
+  when available.
+CATEGORIES:School of Art + Art History + Design
+UID:http://uid.trumba.com/event/113285583
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150318T120000
+DTEND;TZID=America/Los_Angeles:20150318T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382936
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:PREVIEW: School of Art Information Session
+DTSTART;TZID=America/Los_Angeles:20150319T150000
+DTEND;TZID=America/Los_Angeles:20150319T160000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:RM 120
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:UW So
+ A+AH+D Advising
+X-TRUMBA-CUSTOMFIELD;NAME="Facebook";ID=30202;TYPE=Url:https://www.faceb
+ ook.com/events/827824187276712/
+DTSTAMP:20150108T163645Z
+DESCRIPTION:Campus room: RM 120\nEvent sponsors: UW SoA+AH+D Advising\nF
+ acebook: https://www.facebook.com/events/827824187276712/\n\n<strong>Are
+  you a student at the UW interested in declaring an art\, art history or
+  design major\, OR a transfer student\, OR are you just interested in ou
+ r programs?</strong>\n You’re invited to attend Preview. This hour-long 
+ info session\, led by professional academic advisers\, is designed to in
+ troduce prospective undergraduate students to all of the academic and en
+ richment programs in the School of Art + Art History + Design. If you ar
+ e a prospective graduate student\, please read about our Graduate progra
+ ms.
+CATEGORIES:Academic Advising and Student Services
+UID:http://uid.trumba.com/event/112981190
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Spring Break
+DTSTART;VALUE=DATE:20150321
+DTEND;VALUE=DATE:20150330
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+DTSTAMP:20150123T124026Z
+DESCRIPTION:Year: 2015\nQuarter: Winter
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108067803
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150325T120000
+DTEND;TZID=America/Los_Angeles:20150325T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382937
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins - Spring Quarter
+DTSTART;VALUE=DATE:20150330
+DTEND;VALUE=DATE:20150331
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20150123T124128Z
+DESCRIPTION:Year: 2015\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108067488
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150401T120000
+DTEND;TZID=America/Los_Angeles:20150401T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382938
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Design Career Fair
+LOCATION:by invitation only
+DTSTART;TZID=America/Los_Angeles:20150401T143000
+DTEND;TZID=America/Los_Angeles:20150401T163000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+URL:http://art.washington.edu/design/career-resources/career-fair/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDtX95k1tCylgM36FsU-JWI.jpg
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:Divis
+ ion of Design\, <a href="http://art.washington.edu" target="_blank">Scho
+ ol of Art + Art History + Design</a>
+DTSTAMP:20141124T105428Z
+DESCRIPTION:Event sponsors: Division of Design\, <a href="http://art.was
+ hington.edu" target="_blank">School of Art + Art History + Design</a>\nL
+ ink: http://art.washington.edu/design/career-resources/career-fair/\n\nU
+ ndergraduate and graduate students in Industrial Design\, Interaction De
+ sign\, and Visual Communication Design will have the opportunity to meet
+  with a range of participating firms seeking interns or full-time employ
+ ees.
+CATEGORIES:Division of Design
+UID:http://uid.trumba.com/event/112747831
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150408T120000
+DTEND;TZID=America/Los_Angeles:20150408T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382939
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:PREVIEW: School of Art Information Session
+DTSTART;TZID=America/Los_Angeles:20150409T150000
+DTEND;TZID=America/Los_Angeles:20150409T160000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Rm 120
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:UW So
+ A+AH+D Advising
+DTSTAMP:20141212T144014Z
+DESCRIPTION:Campus room: Rm 120\nEvent sponsors: UW SoA+AH+D Advising\n
+ \n<strong>Are you a student at the UW interested in declaring an art\, ar
+ t history or design major\, OR a transfer student\, OR are you just inte
+ rested in our programs?</strong>\n You’re invited to attend Preview. Thi
+ s hour-long info session\, led by professional academic advisers\, is de
+ signed to introduce prospective undergraduate students to all of the aca
+ demic and enrichment programs in the School of Art + Art History + Desig
+ n. If you are a prospective graduate student\, please read about our Gra
+ duate programs.
+CATEGORIES:Academic Advising and Student Services
+UID:http://uid.trumba.com/event/112981224
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150415T120000
+DTEND;TZID=America/Los_Angeles:20150415T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382940
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:PREVIEW: School of Art Information Session
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150416T150000
+DTEND;TZID=America/Los_Angeles:20150416T160000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+URL:http://art.washington.edu/advising/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:RM 120
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:UW Sc
+ hool of Art + Art History + Design
+X-TRUMBA-CUSTOMFIELD;NAME="Facebook";ID=30202;TYPE=Url:https://www.faceb
+ ook.com/uwsoaAdvising
+DTSTAMP:20140826T135803Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: RM 120\nEv
+ ent sponsors: UW School of Art + Art History + Design\nFacebook: https:/
+ /www.facebook.com/uwsoaAdvising\nLink: http://art.washington.edu/advisin
+ g/\n\n<strong>Are you a student at the UW interested in declaring an art
+ \, art history or design major\, OR a transfer student\, OR are you just
+  interested in our programs?</strong>\n You’re invited to attend <strong
+ >Preview</strong>. This hour-long info session\, led by professional aca
+ demic advisers\, is designed to introduce prospective undergraduate stud
+ ents to all of the academic and enrichment programs in the School of Art
+  + Art History + Design. If you are a prospective graduate student\, ple
+ ase read about our <a href="http://art.washington.edu/advising/degrees/g
+ raduate/" target="_blank">Graduate&nbsp\;programs.&nbsp\;</a>
+CATEGORIES:Academic Advising and Student Services
+UID:http://uid.trumba.com/event/110808038
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150422T120000
+DTEND;TZID=America/Los_Angeles:20150422T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382941
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150429T120000
+DTEND;TZID=America/Los_Angeles:20150429T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382942
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150506T120000
+DTEND;TZID=America/Los_Angeles:20150506T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382943
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150513T120000
+DTEND;TZID=America/Los_Angeles:20150513T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382944
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150520T120000
+DTEND;TZID=America/Los_Angeles:20150520T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382945
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Memorial Day (no classes)
+DTSTART;VALUE=DATE:20150525
+DTEND;VALUE=DATE:20150526
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20150123T124140Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271655
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150527T120000
+DTEND;TZID=America/Los_Angeles:20150527T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382946
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:PREVIEW: School of Art Information Session
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150528T150000
+DTEND;TZID=America/Los_Angeles:20150528T160000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+URL:http://art.washington.edu/advising/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:RM 120
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:UW Sc
+ hool of Art + Art History + Design
+X-TRUMBA-CUSTOMFIELD;NAME="Facebook";ID=30202;TYPE=Url:https://www.faceb
+ ook.com/uwsoaAdvising
+DTSTAMP:20141212T144456Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: RM 120\nEv
+ ent sponsors: UW School of Art + Art History + Design\nFacebook: https:/
+ /www.facebook.com/uwsoaAdvising\nLink: http://art.washington.edu/advisin
+ g/\n\n<strong>Are you a student at the UW interested in declaring an art
+ \, art history or design major\, OR a transfer student\, OR are you just
+  interested in our programs?</strong>\n You’re invited to attend <strong
+ >Preview</strong>. This hour-long info session\, led by professional aca
+ demic advisers\, is designed to introduce prospective undergraduate stud
+ ents to all of the academic and enrichment programs in the School of Art
+  + Art History + Design. If you are a prospective graduate student\, ple
+ ase read about our <a href="http://art.washington.edu/advising/degrees/g
+ raduate/" target="_blank">Graduate&nbsp\;programs.&nbsp\;</a>
+CATEGORIES:Academic Advising and Student Services
+UID:http://uid.trumba.com/event/110808039
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150603T120000
+DTEND;TZID=America/Los_Angeles:20150603T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382947
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:PREVIEW: School of Art Information Session
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150604T150000
+DTEND;TZID=America/Los_Angeles:20150604T160000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+URL:http://art.washington.edu/advising/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:RM 120
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:UW Sc
+ hool of Art + Art History + Design
+X-TRUMBA-CUSTOMFIELD;NAME="Facebook";ID=30202;TYPE=Url:https://www.faceb
+ ook.com/uwsoaAdvising
+DTSTAMP:20140826T135835Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: RM 120\nEv
+ ent sponsors: UW School of Art + Art History + Design\nFacebook: https:/
+ /www.facebook.com/uwsoaAdvising\nLink: http://art.washington.edu/advisin
+ g/\n\n<strong>Are you a student at the UW interested in declaring an art
+ \, art history or design major\, OR a transfer student\, OR are you just
+  interested in our programs?</strong>\n You’re invited to attend <strong
+ >Preview</strong>. This hour-long info session\, led by professional aca
+ demic advisers\, is designed to introduce prospective undergraduate stud
+ ents to all of the academic and enrichment programs in the School of Art
+  + Art History + Design. If you are a prospective graduate student\, ple
+ ase read about our <a href="http://art.washington.edu/advising/degrees/g
+ raduate/" target="_blank">Graduate&nbsp\;programs.&nbsp\;</a>
+CATEGORIES:Academic Advising and Student Services
+UID:http://uid.trumba.com/event/110808043
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Spring Quarter
+DTSTART;VALUE=DATE:20150605
+DTEND;VALUE=DATE:20150606
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20150123T124159Z
+DESCRIPTION:Year: 2015\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108067550
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Final Examinations - Spring Quarter
+DTSTART;VALUE=DATE:20150606
+DTEND;VALUE=DATE:20150613
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20150123T124221Z
+DESCRIPTION:Year: 2015\nQuarter: Spring
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108067601
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150610T120000
+DTEND;TZID=America/Los_Angeles:20150610T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382948
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Commencement for Tacoma Campus
+DTSTART;VALUE=DATE:20150612
+DTEND;VALUE=DATE:20150613
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.tacoma.uw.edu/events/content/commencement
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20141230T125308Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.tacoma.uw.edu/
+ events/content/commencement
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/113214709
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Commencement for Seattle Campus
+DTSTART;VALUE=DATE:20150613
+DTEND;VALUE=DATE:20150614
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/graduation/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20141230T124458Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.washington.edu
+ /graduation/
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/113214577
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Summer Break
+DTSTART;VALUE=DATE:20150613
+DTEND;VALUE=DATE:20150622
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20150123T124239Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108330602
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Commencement for Bothell Campus
+DTSTART;VALUE=DATE:20150614
+DTEND;VALUE=DATE:20150615
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.bothell.washington.edu/commencement
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+DTSTAMP:20141230T125323Z
+DESCRIPTION:Year: 2015\nQuarter: Spring\nLink: http://www.bothell.washin
+ gton.edu/commencement
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/113214595
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150617T120000
+DTEND;TZID=America/Los_Angeles:20150617T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382949
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins - Summer Full and A-term
+DTSTART;VALUE=DATE:20150622
+DTEND;VALUE=DATE:20150623
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20150123T124314Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108067979
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150624T120000
+DTEND;TZID=America/Los_Angeles:20150624T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382950
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150701T120000
+DTEND;TZID=America/Los_Angeles:20150701T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382951
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Independence Day (no classes)
+DTSTART;VALUE=DATE:20150703
+DTEND;VALUE=DATE:20150704
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20150123T124337Z
+DESCRIPTION:Year: 2015\nQuarter: Summer\n\nUniversity holiday\, no class
+ es
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/106271656
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150708T120000
+DTEND;TZID=America/Los_Angeles:20150708T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382952
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150715T120000
+DTEND;TZID=America/Los_Angeles:20150715T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382953
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Final Examinations - Summer A-term
+DTSTART;VALUE=DATE:20150722
+DTEND;VALUE=DATE:20150723
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20150123T124404Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108068299
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Last Day of Instruction - Summer A-term
+DTSTART;VALUE=DATE:20150722
+DTEND;VALUE=DATE:20150723
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20150123T124423Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108068034
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150722T120000
+DTEND;TZID=America/Los_Angeles:20150722T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382954
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Instruction Begins - Summer B-term
+DTSTART;VALUE=DATE:20150723
+DTEND;VALUE=DATE:20150724
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2015
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+DTSTAMP:20150123T124445Z
+DESCRIPTION:Year: 2015\nQuarter: Summer
+CATEGORIES:Dates of Instruction
+UID:http://uid.trumba.com/event/108067990
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Factory Picnic
+LOCATION:Art Building (ART)
+DTSTART;TZID=America/Los_Angeles:20150729T120000
+DTEND;TZID=America/Los_Angeles:20150729T130000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ar
+ t Building (ART)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:Jacob L
+ awrence Gallery
+X-TRUMBA-CUSTOMFIELD;NAME="Event image";ID=40;TYPE=Image:http://www.trum
+ ba.com/i/DgDQS0djsM4vq58YOhXDBU7E.png
+X-TRUMBA-CUSTOMFIELD;NAME="Event sponsors";ID=30383;TYPE=MultiLine:<a hr
+ ef="http://art.washington.edu" target="_blank">School of Art + Art Histo
+ ry + Design</a>
+DTSTAMP:20141117T134321Z
+DESCRIPTION:Campus location: Art Building (ART)\nCampus room: Jacob Lawr
+ ence Gallery\nEvent sponsors: <a href="http://art.washington.edu" target
+ ="_blank">School of Art + Art History + Design</a>\n\nJoin Scott Lawrimo
+ re\, Director of the Jacob Lawrence Gallery\, for a lively\, informal re
+ search and development group exploring the issues raised by <em>Factory<
+ /em> programs and exhibitions. Formal readings\, special presentations\,
+  screenings\, and activities allow students\, faculty\, staff\, and memb
+ ers of the community to share and discuss ideas about labor\, leisure\, 
+ education\, and art production.\n \n This event is free\, BYOBB (bring y
+ our own brown bag)\, open to the public\, and happens every Wednesday at
+  noon. Check the calendar around the holidays for special days and times
+ .
+CATEGORIES:Jacob Lawrence Gallery
+UID:http://uid.trumba.com/event/112382955
+END:VEVENT
+END:VCALENDAR

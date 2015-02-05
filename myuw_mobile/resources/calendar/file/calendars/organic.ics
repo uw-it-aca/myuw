@@ -1,0 +1,121 @@
+BEGIN:VCALENDAR
+PRODID:-//Trumba Corporation//Trumba Calendar Services 0.11.12128//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Department of Chemistry|Organic Seminars
+X-WR-TIMEZONE:America/Los_Angeles
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:America/Los_Angeles
+BEGIN:STANDARD
+TZOFFSETFROM:-0700
+TZOFFSETTO:-0800
+TZNAME:PST
+DTSTART:20071104T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0800
+TZOFFSETTO:-0700
+TZNAME:PDT
+DTSTART:20070311T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+SUMMARY:Organic Chemistry Seminar: Prof. Stephen Kent
+LOCATION:Chemistry Building (CHB)
+DTSTART;TZID=America/Los_Angeles:20150204T160000
+DTEND;TZID=America/Los_Angeles:20150204T170000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+URL:http://chemistry.uchicago.edu/faculty/faculty/person/member/stephen-
+ bh-kent.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ch
+ emistry Building (CHB)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:102
+DTSTAMP:20150126T130551Z
+DESCRIPTION:"Bringing the Science of Proteins into the Realm of Organic 
+ Chemistry"\n \n Professor Stephen Kent - Department of Chemistry\, Unive
+ rsity of Chicago
+CATEGORIES:Organic Seminars
+UID:http://uid.trumba.com/event/110589094
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Organic Chemistry Seminar: Asst. Prof. Alexander Statsyuk
+LOCATION:Chemistry Building (CHB)
+DTSTART;TZID=America/Los_Angeles:20150211T160000
+DTEND;TZID=America/Los_Angeles:20150211T170000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+URL:http://www.chemistry.northwestern.edu/people/core-faculty/profiles/a
+ lexander-statsyuk.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ch
+ emistry Building (CHB)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:102
+DTSTAMP:20150122T082754Z
+DESCRIPTION:"Biochemistry and Pharmacology of the Ubiquitin System"\n \n
+  Assistant Professor Alexander Statsyuk - Department of Chemistry\, Nort
+ hwestern University
+CATEGORIES:Organic Seminars
+UID:http://uid.trumba.com/event/110608069
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Organic Chemistry Seminar: Prof. Matthew Becker
+LOCATION:Chemistry Building (CHB)
+DTSTART;TZID=America/Los_Angeles:20150218T160000
+DTEND;TZID=America/Los_Angeles:20150218T170000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+URL:http://www.uakron.edu/cpspe/about-us/faculty/profile.dot?id=454b0e41
+ -0294-4c60-9bce-4fac6c2bb692
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ch
+ emistry Building (CHB)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:102
+DTSTAMP:20141229T110340Z
+DESCRIPTION:"TBA"\n \n Professor Matthew Becker - Department of Polymer 
+ Science\, University of Akron
+CATEGORIES:Organic Seminars
+UID:http://uid.trumba.com/event/110741160
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Organic Chemistry Seminar: Assoc. Prof. Ryan Shenvi
+LOCATION:Chemistry Building (CHB)
+DTSTART;TZID=America/Los_Angeles:20150225T160000
+DTEND;TZID=America/Los_Angeles:20150225T170000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+URL:http://www.scripps.edu/research/faculty/shenvi
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ch
+ emistry Building (CHB)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:102
+DTSTAMP:20150122T085648Z
+DESCRIPTION:"Chemical Synthesis of Secondary Metabolites"\n \n Associate
+  Professor Ryan Shenvi - Department of Chemistry\, The Scripps Research 
+ Institute\n \n Host: Assistant Professor Gojko Lalic
+CATEGORIES:Organic Seminars
+UID:http://uid.trumba.com/event/113278967
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Organic Chemistry Seminar: Asst. Prof. Eranthie Weerapana
+LOCATION:Chemistry Building (CHB)
+DTSTART;TZID=America/Los_Angeles:20150304T160000
+DTEND;TZID=America/Los_Angeles:20150304T170000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+URL:http://www.bc.edu/schools/cas/chemistry/faculty/weerapana.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ch
+ emistry Building (CHB)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:102
+DTSTAMP:20141229T110515Z
+DESCRIPTION:"TBA"\n \n Assistant Professor Eranthie Weerapana - Departme
+ nt of Chemistry\,\n Boston College
+CATEGORIES:Organic Seminars
+UID:http://uid.trumba.com/event/110616007
+END:VEVENT
+END:VCALENDAR
