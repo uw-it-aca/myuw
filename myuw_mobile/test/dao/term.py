@@ -20,7 +20,9 @@ class TestTerm(TestCase):
             term = _get_term_by_year_and_quarter(2013, "summer")
             self.assertEqual(term.year, 2013)
             self.assertEqual(term.quarter, "summer")
-            self.assertTrue(is_past(term))
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
+            self.assertFalse(is_past(term, now_request))
 
 
     def test_is_past(self):
@@ -30,7 +32,17 @@ class TestTerm(TestCase):
             term = _get_term_by_year_and_quarter(2014, "winter")
             self.assertEqual(term.year, 2014)
             self.assertEqual(term.quarter, "winter")
-            self.assertTrue(is_past(term))
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
+            self.assertFalse(is_past(term, now_request))
+
+            term = _get_term_by_year_and_quarter(2013, "winter")
+            self.assertEqual(term.year, 2013)
+            self.assertEqual(term.quarter, "winter")
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
+            self.assertTrue(is_past(term, now_request))
+
 
     def test_default_date(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
@@ -49,9 +61,6 @@ class TestTerm(TestCase):
 
     def test_is_using_file_dao(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
-            self.assertTrue(is_using_file_dao())
-
-        with self.settings(RESTCLIENTS_SWS_DAO_CLASS='myuw_mobile.restclients.dao_implementation.sws_weekly.ByWeek'):
             self.assertTrue(is_using_file_dao())
 
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.Live'):
