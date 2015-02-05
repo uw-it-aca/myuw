@@ -39,7 +39,7 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
 
 (function() {
     var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-    var days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     function _get_date(d) {
         return new Date(d.replace(/-/g, "/") + " 00:00:00");
