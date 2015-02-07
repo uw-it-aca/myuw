@@ -52,6 +52,7 @@ var TextbookCard = {
     _render: function () {
         var term = TextbookCard.term;
         var course_data = WSData.course_data_for_term(term);
+        var no_book_assigned = true;
         var registered = true;
         var section_book_data = [];
         if (course_data.sections.length === 0) {
@@ -68,6 +69,9 @@ var TextbookCard = {
                     } else {
                         optional += 1;
                     }
+                    if (no_book_assigned) {
+                        no_book_assigned = false;
+                    }
                 });
                 var course_id = section.curriculum + " " + section.course_number + " " + section.section_id;
 
@@ -82,6 +86,7 @@ var TextbookCard = {
         }
         var template_data = {"registered": registered,
                              "term": term,
+                             "no_book_assigned": no_book_assigned,
                              "quarter": course_data.quarter,
                              "year": course_data.year,
                              "summer_term": course_data.summer_term,

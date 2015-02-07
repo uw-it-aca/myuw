@@ -28,9 +28,11 @@
         {{ /if }}
         
         {{#unless no_books}}
-        <div class="destination-arrow">
-            <a class="show_textbooks" href="/mobile/textbooks/{{year}},{{quarter}}{{#if summer_term}},{{toLowerCase summer_term}}{{/if}}" title="View textbooks"><i class="fa fa-chevron-right"></i></a
-        </div>
+            {{#unless no_book_assigned}}
+            <div class="destination-arrow">
+                <a class="show_textbooks" href="/mobile/textbooks/{{year}},{{quarter}}{{#if summer_term}},{{toLowerCase summer_term}}{{/if}}" title="View textbooks"><i class="fa fa-chevron-right"></i></a>
+            </div>
+            {{/unless }}
         {{/unless}}
         
     </div>
