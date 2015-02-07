@@ -22,6 +22,34 @@ class TestDisplayValues(TestCase):
             self.assertTrue(values["is_before_last_day_of_classes"])
             self.assertFalse(values["is_before_end_of_registration_display_period"])
 
+            # autumn
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-08-21"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_after_grade_submission_deadline"])
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-08-22"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertTrue(values["is_after_grade_submission_deadline"])
+            # winter
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-12-17"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_after_grade_submission_deadline"])
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-12-18"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertTrue(values["is_after_grade_submission_deadline"])
+            # summer
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-06-12"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_after_grade_submission_deadline"])
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-06-13"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertTrue(values["is_after_grade_submission_deadline"])
+
     def test_is_before_first_week_of_term(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
             now_request = RequestFactory().get("/")
@@ -30,24 +58,75 @@ class TestDisplayValues(TestCase):
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_after_grade_submission_deadline"])
             self.assertFalse(values["is_before_first_week_of_term"])
-
+            # spring
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-27"
             values = get_card_visibilty_date_values(now_request)
-            self.assertTrue(values["is_after_grade_submission_deadline"])
             self.assertTrue(values["is_before_first_week_of_term"])
-
-            now_request.session["myuw_override_date"] = "2013-04-01"
-            values = get_card_visibilty_date_values(now_request)
-            self.assertFalse(values["is_before_first_day_of_term"])
-            self.assertTrue(values["is_before_first_week_of_term"])
-
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-04-07"
             values = get_card_visibilty_date_values(now_request)
-            self.assertFalse(values["is_before_first_day_of_term"])
             self.assertTrue(values["is_before_first_week_of_term"])
 
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-04-08"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_before_first_week_of_term"])
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-08-21"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_after_grade_submission_deadline"])
+            # autumn
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-08-22"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertTrue(values["is_before_first_week_of_term"])
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-09-30"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertTrue(values["is_before_first_week_of_term"])
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-10-01"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_before_first_week_of_term"])
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-12-18"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_after_grade_submission_deadline"])
+            # winter
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-12-19"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertTrue(values["is_before_first_week_of_term"])
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-01-13"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertTrue(values["is_before_first_week_of_term"])
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-01-14"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_before_first_week_of_term"])
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-06-12"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_after_grade_submission_deadline"])
+            # summer
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-06-13"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertTrue(values["is_before_first_week_of_term"])
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-06-24"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertTrue(values["is_before_first_week_of_term"])
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-06-25"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_before_first_week_of_term"])
 
