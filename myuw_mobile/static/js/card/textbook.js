@@ -26,10 +26,9 @@ var TextbookCard = {
         //If more than one data source, multiple callbacks point to this function
         //Delay rendering until all requests are complete
         //Do something smart about not showing error if AJAX is pending
-        if (!TextbookCard._has_all_data()) {
-            return;
+        if (TextbookCard._has_all_data()) {
+            TextbookCard._render();
         }
-        TextbookCard._render();
     },
 
     textbook_error: function() {
@@ -39,13 +38,14 @@ var TextbookCard = {
 
     _render_error: function() {
         if (TextbookCard.missing_book_error) {
+            TextbookCard.dom_target.hide();
         }
         else {
             var source = $("#textbook_card").html();
             var template = Handlebars.compile(source);
             TextbookCard.dom_target.html(template({'no_books': true,
-                                               'term': TextbookCard.term}
-                                             ));
+                                                   'term': TextbookCard.term}
+                                                 ));
         }
     },
 
