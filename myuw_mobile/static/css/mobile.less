@@ -339,7 +339,9 @@ body {
     
     // header bar (thin dark purple)    
     .header-bar { position: relative; height: 30px;
-        
+        .top_navigation_list { list-style-type: none; 
+	        li { display: inline-block; }
+        }
         .header-myuw { font-family: 'Roboto'; font-weight: 300; display: inline-block; margin: 0; padding: 0;  font-size:16px; color: @myuw;  line-height: 30px; 
             a { color: @lighttan; }
             span { color: darken(@lighttan, 20%); }
@@ -355,6 +357,8 @@ body {
             a { color: @lighttan; display: inline-block; line-height: 30px; }
         }    
     }
+    
+    
     
     // header cover (uw purple)
     .header-cover { background: lighten(@uwpurple, 2%);
@@ -568,6 +572,10 @@ body {
             
 			.destination-arrow { position:absolute; top: 50%; right: 0; margin-top:-25px; 
                 .future-quarter-card { display:inline-block; width:50px; line-height: 50px; text-align:center; color:#4d66ca; }
+            }
+            
+            p {
+	            span{ display: block; }
             }
             
             // handle :hover for mobile touch devices
@@ -1012,7 +1020,12 @@ body {
     	    }
     	    
     	    .disclosure-content {
-        	    padding: 0 15px 15px 15px;     
+        	    padding: 0 15px 15px 15px;
+        	    margin: 0px;  
+        	    .critical_notices_list {
+	        	    list-style: none;
+	        	    padding-left: 0;
+        	    } 
     	    }
 
 		}

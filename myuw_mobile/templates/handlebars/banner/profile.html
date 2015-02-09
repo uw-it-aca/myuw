@@ -2,13 +2,15 @@
     {% tplhandlebars "profile-content" %}
 
     <h3 class="sr-only">Profile Information and Release Settings</h3>
-    <div class="header-netid"><a href="#" id="toggle_my_profile">{{ uwnetid }} <i id="my_profile_arrow" class="fa fa-chevron-down"></i></a></div>
+    <div class="header-netid"><a href="#" id="toggle_my_profile">{{ uwnetid }} <i id="my_profile_arrow" class="fa fa-chevron-down" role="presentation"></i></a></div>
     <div class="header-profile slide-hide" id="my_profile" aria-hidden="true">
         <div style="margin-bottom: 60px;">
             
             <div class="profile-student-info">
+	            <h5 class="sr-only">Student name</h5>
                 <span class="profile_name">{{first_name}} {{last_name}}</span><br/>
                 {{#if student_number}}
+                	<h5 class="sr-only">Student number</h5>
                     Student Number: <span class="">{{student_number}}</span>
                 {{/if}}
                 <!-- {{#if campus}}
@@ -17,7 +19,7 @@
             </div>
             
             {{#if local_address}}
-            <div class="profile-release">
+            <div class="profile-release" title="Mailing address information">
                 <strong>Receiving UW mail</strong></br> 
                 <ul>
                     <li>To receive important mailings from the UW, verify that your addresses are correct.</li> 
@@ -26,6 +28,7 @@
             </div>
             
             <div class="profile-local-address">
+	            <h5 class="sr-only">Local Address</h5>
                 <h5>Local Address</h5>
                 {{#with local_address}}
                     {{#if street_line2}}
@@ -47,6 +50,7 @@
 
             {{#if permanent_address}}
             <div class="profile-perm-address">
+	            <h5 class="sr-only">Permanent Address</h5>
                 <h5>Permanent Address</h5>
                 {{#with permanent_address}}
                     {{#if street_line2}}
@@ -65,7 +69,8 @@
                 {{/if}}
             </div>
             {{/if}}
-            <div class="profile-section profile-release">                
+            <div class="profile-section profile-release">   
+	           	<h5 class="sr-only">Profile information release settings</h5>             
                 {{#if directory_release}}
                 <strong>Your profile information is currently <em>public</em></strong>
                 <ul>

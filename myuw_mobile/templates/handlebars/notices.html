@@ -38,19 +38,22 @@
 	            <!-- collapsy 1 content -->
 	            <div id="collapseOne" class="slide-hide clearfix" aria-hidden="true">
 	                <div class="disclosure-content">
+	                    <ul class="critical_notices_list">
 	                    {{ #each critical .notices }}
-	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
-		                    <div class="inner-notice-container">
-								<i class="fa fa-exclamation-triangle critical-icon"></i>
-		                        <div class="notice-category">
-			                        
-		                           {{ category }}{{ #unless is_read }}<span class="notice-new">New</span>{{ /unless }}  
-		                        </div>
-		                        <div class="notice-content">
-		                           {{ #unless is_read }}<span class="sr-only">New Notice:</span>{{ /unless }}{{{ notice_content }}}
-		                        </div>
+							<li>
+		                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
+			                    <div class="inner-notice-container">
+									<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="Critical Notice" alt="Critical Notice"></i>
+			                        <div class="notice-category">
+				                        
+			                           {{ category }}{{ #unless is_read }}<span class="notice-new"> New</span>{{ /unless }}  
+			                        </div>
+			                        <div class="notice-content">
+			                           {{ #unless is_read }}<span class="sr-only">New Notice:</span>{{ /unless }}{{{ notice_content }}}
+			                        </div>
+			                    </div>
 		                    </div>
-	                    </div>
+							</li>
 	                    {{ /each }}
 	                </div>
 	            </div>
@@ -85,10 +88,10 @@
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 		                    <div class="inner-notice-container">
 	                            {{ #if is_critical }}
-								<i class="fa fa-exclamation-triangle critical-icon"></i>
+								<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="Critical Notice" alt="Critical Notice"></i>
 	                            {{ /if }}
 		                        <div class="notice-category">
-		                            {{ category }}{{ #unless is_read }}<span class="notice-new">New</span>{{ /unless }}
+		                            {{ category }}{{ #unless is_read }}<span class="notice-new"> New</span>{{ /unless }}
 		                        </div>
 		                        <div class="notice-content">
 		                            {{ #unless is_read }}<span class="sr-only">New Notice:</span>{{ /unless }}{{{ notice_content }}}
@@ -131,10 +134,10 @@
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 		                    <div class="inner-notice-container">
 	                            {{ #if is_critical }}
-								<i class="fa fa-exclamation-triangle critical-icon"></i>
+								<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="Critical Notice" alt="Critical Notice"></i>
 	                            {{ /if }}
 		                        <div class="notice-category">
-		                            {{ category }}{{ #unless is_read }}<span class="notice-new">New</span>{{ /unless }}
+		                            {{ category }}{{ #unless is_read }}<span class="notice-new"> New</span>{{ /unless }}
 		                        </div>
 		                        <div class="notice-content">
 		                            {{ #unless is_read }}<span class="sr-only">New Notice:</span>{{ /unless }}{{{ notice_content }}}
@@ -175,10 +178,10 @@
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 		                    <div class="inner-notice-container">
 	                            {{ #if is_critical }}
-								<i class="fa fa-exclamation-triangle critical-icon"></i>
+								<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="Critical Notice" alt="Critical Notice"></i>
 	                            {{ /if }}
 		                        <div class="notice-category">
-		                            {{ category }}{{ #unless is_read }}<span class="notice-new">New</span>{{ /unless }}
+		                            {{ category }}{{ #unless is_read }}<span class="notice-new"> New</span>{{ /unless }}
 		                        </div>
 		                        <div class="notice-content">
 		                            {{ #unless is_read }}<span class="sr-only">New Notice:</span>{{ /unless }}{{{ notice_content }}}
@@ -219,10 +222,10 @@
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 		                    <div class="inner-notice-container">
 	                            {{ #if is_critical }}
-								<i class="fa fa-exclamation-triangle critical-icon"></i>
+								<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="Critical Notice" alt="Critical Notice"></i>
 	                            {{ /if }}
 		                        <div class="notice-category">
-		                            {{ category }}{{ #unless is_read }}<span class="notice-new">New</span>{{ /unless }}
+		                            {{ category }}{{ #unless is_read }}<span class="notice-new"> New</span>{{ /unless }}
 		                        </div>
 		                        <div class="notice-content">
 		                            {{ #unless is_read }}<span class="sr-only">New Notice:</span>{{ /unless }}{{{ notice_content }}}
@@ -263,7 +266,7 @@
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 		                    <div class="inner-notice-container">
 		                        <div class="notice-category">
-		                            {{ category }}{{ #unless is_read }}<span class="notice-new">New</span>{{ /unless }}
+		                            {{ category }}{{ #unless is_read }}<span class="notice-new"> New</span>{{ /unless }}
 		                        </div>
 		                        <div class="notice-content">
 		                            {{ #unless is_read }}<span class="sr-only">New Notice:</span>{{ /unless }}{{{ notice_content }}}
