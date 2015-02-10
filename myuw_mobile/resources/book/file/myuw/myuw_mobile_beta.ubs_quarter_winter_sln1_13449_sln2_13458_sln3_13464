@@ -1,0 +1,42 @@
+{
+    "13449": [{
+                "isbn":"9781256396362",
+                "title":"Writ of BC",
+                "authors": [{"name":"Mcdermott"}],
+                "price":58.00,
+                "used_price":null,
+                "required":true,
+                "notes":null,
+                "cover_image": null
+            },
+            {
+              "isbn":"9780521600491",
+              "title":"History Of Archaeological Thought (2e 06)",
+              "authors":[{"name":"Trigger" }],
+              "price":45.00,
+              "used_price":null,
+              "required":false,
+              "notes":"null",
+              "cover_image":null
+             }],
+    "13458": [{
+                "isbn":"9781256496062",
+                "title":"ESS Stuff 'n Things",
+                "authors": [{"name":"Mcdermott"}],
+                "price":58.00,
+                "used_price":null,
+                "required":true,
+                "notes":null,
+                "cover_image": null
+            }],
+    "13464": [{
+                "isbn":"9785256396062",
+                "title":"Studies in Bissy Bee",
+                "authors": [{"name":"Mcdermott"}],
+                "price":58.00,
+                "used_price":null,
+                "required":false,
+                "notes":null,
+                "cover_image": null
+            }]
+}
