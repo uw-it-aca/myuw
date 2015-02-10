@@ -2,19 +2,17 @@ var TextbookCard = {
     name: 'TextbookCard',
     dom_target: undefined,
     term: undefined,
-    missing_book_error: false,
 
     render_init: function() {
         if (TextbookCard.term === 'current') {
             if (!window.card_display_dates.is_before_first_week_of_term) {
-                TextbookCard.dom_target.hide();
+                $("#TextbookCard").hide();
                 return;
             }
         }
 
+        WSData.fetch_course_data_for_term(TextbookCard.term, TextbookCard.render_upon_data, TextbookCard.render_error);
         WSData.fetch_book_data(TextbookCard.term, TextbookCard.render_upon_data, TextbookCard.textbook_error);
-        WSData.fetch_course_data_for_term(TextbookCard.term, TextbookCard.render_upon_data, TextbookCard._render_error);
-        // may need to add a missing_course_error
     },
 
 
@@ -32,21 +30,13 @@ var TextbookCard = {
     },
 
     textbook_error: function() {
-        TextbookCard.missing_book_error = true;
-        TextbookCard._render_error();
-    },
-
-    _render_error: function() {
-        if (TextbookCard.missing_book_error) {
-            TextbookCard.dom_target.hide();
+        var book_error_code = WSData.book_data_error_code();
+        var course_error_code = WSData.course_data_error_code();
+        if (book_error_code === 404 && (course_error_code === null || course_error_code === 404)) {
+            $("#TextbookCard").hide();
+            return;
         }
-        else {
-            var source = $("#textbook_card").html();
-            var template = Handlebars.compile(source);
-            TextbookCard.dom_target.html(template({'no_books': true,
-                                                   'term': TextbookCard.term}
-                                                 ));
-        }
+        TextbookCard.dom_target.html(CardWithError.render("Textbook"));
     },
 
     _render: function () {

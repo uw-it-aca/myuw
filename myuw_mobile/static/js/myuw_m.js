@@ -344,6 +344,9 @@ var titilizeTerm = function(term) {
     //Takes a term string (Eg 2032,summer,b-term) and 
     //returns a title (Eg Summer 2032 B-term)
     var pieces = term.split(",");
+    if (pieces.length === 1) {
+        return capitalizeString(string);
+    }
     var string = capitalizeString(pieces[1]) + " " + pieces[0];
     if (pieces.length > 2) {
         string += " " + capitalizeString(pieces[2]);
