@@ -92,8 +92,8 @@ var Notices = {
         // event for slide show/hide panels
         $(".slide-link").on("click", function(ev) {
             ev.preventDefault();
-                        
-            var hidden_block = $(ev.target).parent().parent().siblings(".slide-hide")[0];
+
+            var hidden_block = $(ev.target).closest("div.disclosure-heading").siblings(".slide-hide")[0];
             
             var slide_link = this;
                                     
@@ -108,7 +108,6 @@ var Notices = {
                 Notices.get_notices_in_view_and_mark_read();
             }
             else {
-                                
                 $(slide_link).attr('title', 'Show more notice information');
                 $(hidden_block).attr('aria-hidden', 'true');
                 
