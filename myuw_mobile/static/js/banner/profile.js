@@ -3,6 +3,7 @@ var Profile = {
         var source = $("#profile-content").html();
         var template = Handlebars.compile(source);
         $("#profile").html(template(WSData.profile_data()));
+        $("#toggle_my_profile").attr("title", $("#profile_toggle_hidden").text());
         Profile.add_events();
     },
 
@@ -14,6 +15,7 @@ var Profile = {
             if ($("#my_profile").hasClass("slide-show")) {
                 $("#my_profile_arrow").attr('class', 'fa fa-chevron-up');
                 $("#my_profile").attr('aria-hidden', 'false');
+                $("#toggle_my_profile").attr("title", $("#profile_toggle_displayed").text());
                 WSData.log_interaction("show_my_profile");
             }
             else {
@@ -21,6 +23,7 @@ var Profile = {
                 $("#my_profile").attr('aria-hidden', 'true');
 
                 setTimeout(function() {
+                    $("#toggle_my_profile").attr("title", $("#profile_toggle_hidden").text());
                     $("#my_profile_arrow").attr('class', 'fa fa-chevron-down');
                 }, 900);
             }
