@@ -6,17 +6,17 @@
                 "price":58.00,
                 "used_price":null,
                 "required":true,
-                "notes":null,
+                "notes":"required",
                 "cover_image": null
             },
             {
               "isbn":"9780521600491",
-              "title":"History Of EMBA (2e 06)",
+              "title":"History Of EMBA",
               "authors":[{"name":"Trigger" }],
               "price":45.00,
               "used_price":null,
               "required":false,
-              "notes":"null",
+              "notes":"this is optional",
               "cover_image":null
              }],
     "13458": [{
