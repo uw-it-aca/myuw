@@ -15,6 +15,7 @@ var Profile = {
             if ($("#my_profile").hasClass("slide-show")) {
                 $("#my_profile_arrow").attr('class', 'fa fa-chevron-up');
                 $("#my_profile").attr('aria-hidden', 'false');
+                $("#my_profile").show();
                 $("#toggle_my_profile").attr("title", $("#profile_toggle_displayed").text());
                 WSData.log_interaction("show_my_profile");
             }
@@ -25,6 +26,7 @@ var Profile = {
                 setTimeout(function() {
                     $("#toggle_my_profile").attr("title", $("#profile_toggle_hidden").text());
                     $("#my_profile_arrow").attr('class', 'fa fa-chevron-down');
+                    $("#my_profile").hide();
                 }, 900);
             }
         });
