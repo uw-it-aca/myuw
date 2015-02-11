@@ -60,6 +60,7 @@ def get_calendars_for_gradmajors(gradmajors):
 
 def _get_calendars_by_name_and_type(major_name, major_type):
     calendars = []
+    added_calendars = []
     degree_column = DEGREE_TYPE_COLUMN_MAP[major_type]
 
     path = os.path.join(
@@ -68,9 +69,11 @@ def _get_calendars_by_name_and_type(major_name, major_type):
     with open(path, 'rbU') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
         for row in reader:
-            if row[degree_column] == major_name and \
-                    len(row[CALENDAR_ID_COL]) > 0:
+            if row[degree_column] in major_name and \
+                    len(row[CALENDAR_ID_COL]) > 0 and \
+                    row[CALENDAR_ID_COL] not in added_calendars:
                 cal = DepartmentCalendar(calendar_id=row[CALENDAR_ID_COL])
                 cal.set_base_url(row[CALENDAR_URL_COL])
                 calendars.append(cal)
+                added_calendars.append(row[CALENDAR_ID_COL])
     return calendars

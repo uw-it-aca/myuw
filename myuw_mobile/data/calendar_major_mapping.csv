@@ -3,4 +3,5 @@ description,department,ug major,ug minor,gr major,calendar,base url
 *test row do not delete*,Department of Unit Tests,,TRAIN,,organic,
 *test row do not delete*,Department of Unit Tests,,,TRAIN,sea_art,
 *test row do not delete*,Department of Unit Tests,,,TRAIN,organic,
-*test row do not delete*,Department of Other Unit Tests,,,TRAINS,,
+"*test row do not delete*","Department of Other Unit Tests",,,TRAINR,organic,
+"*test row do not delete*","Department of Other Unit Tests",,,TRAINS,,
