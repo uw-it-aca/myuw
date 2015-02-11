@@ -29,3 +29,5 @@ from myuw_mobile.test.api.uwemail import TestUWEmail as TestUwEmailAPI
 from myuw_mobile.test.template_tags import TestNetidHash
 from myuw_mobile.test.context_processors import TestContextProcessors
 from myuw_mobile.test.loggers import TestSessionLog
+from myuw_mobile.test.dao.calendar_mapping import TestCalendarMapping
+from myuw_mobile.test.models import TestCalendarModel
