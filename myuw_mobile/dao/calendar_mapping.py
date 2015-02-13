@@ -1,6 +1,5 @@
 import csv
 import os
-from myuw_mobile.models import DepartmentCalendar
 from myuw_mobile.dao.enrollment import get_current_quarter_enrollment
 from myuw_mobile.dao.gws import is_grad_student
 
@@ -18,11 +17,14 @@ def get_calendars_for_current_user(request):
 
 def _get_calendars(enrollments):
     calendars = []
-    calendars.append(get_calendars_for_minors(enrollments['minors']))
+    calendars = calendars + get_calendars_for_minors(enrollments['minors'])
+    print (enrollments['minors'])
+    print (enrollments['majors'])
     if enrollments['is_grad']:
-        calendars.append(get_calendars_for_gradmajors(enrollments['majors']))
+        grad_cals = get_calendars_for_gradmajors(enrollments['majors'])
+        calendars = calendars + grad_cals
     else:
-        calendars.append(get_calendars_for_majors(enrollments['majors']))
+        calendars = calendars + get_calendars_for_majors(enrollments['majors'])
 
     return calendars
 
@@ -72,8 +74,10 @@ def _get_calendars_by_name_and_type(major_name, major_type):
             if row[degree_column] in major_name and \
                     len(row[CALENDAR_ID_COL]) > 0 and \
                     row[CALENDAR_ID_COL] not in added_calendars:
-                cal = DepartmentCalendar(calendar_id=row[CALENDAR_ID_COL])
-                cal.set_base_url(row[CALENDAR_URL_COL])
+                base_url = None
+                if len(row[CALENDAR_URL_COL]) > 0:
+                    base_url = row[CALENDAR_URL_COL]
+                cal = {row[CALENDAR_ID_COL]: base_url}
                 calendars.append(cal)
                 added_calendars.append(row[CALENDAR_ID_COL])
     return calendars

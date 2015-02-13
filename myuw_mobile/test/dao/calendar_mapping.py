@@ -8,23 +8,24 @@ class TestCalendarMapping(TestCase):
     def test_get_by_major(self):
         cals = get_calendars_for_majors(['TRAIN'])
         self.assertEqual(len(cals), 1)
-        self.assertEqual(cals[0].calendar_id, 'sea_art')
-        self.assertEqual(cals[0].base_url, 'http://art.washington.edu/calendar/')
+        self.assertTrue('sea_art' in cals[0])
+        self.assertEqual(cals[0]['sea_art'], 'http://art.washington.edu/calendar/')
 
     def test_get_by_minor(self):
         cals = get_calendars_for_minors(['TRAIN'])
         self.assertEqual(len(cals), 1)
-        self.assertEqual(cals[0].calendar_id, 'organic')
-        self.assertIsNone(cals[0].base_url)
+        self.assertTrue('organic' in cals[0])
+
+        self.assertIsNone(cals[0]['organic'])
 
     def test_get_by_gradmajor(self):
         cals = get_calendars_for_gradmajors(['TRAIN'])
         self.assertEqual(len(cals), 2)
-        cal_ids = [cal.calendar_id for cal in cals]
+        cal_ids = []
+        for cal in cals:
+            cal_ids = cal_ids + cal.keys()
         self.assertIn('organic', cal_ids)
         self.assertIn('sea_art', cal_ids)
-        for cal in cals:
-            self.assertIsNone(cal.base_url)
 
     def test_no_calendar(self):
         cals = get_calendars_for_gradmajors(['TRAINS'])

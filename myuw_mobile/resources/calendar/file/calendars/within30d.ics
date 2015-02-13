@@ -25,8 +25,8 @@ END:VTIMEZONE
 BEGIN:VEVENT
 SUMMARY:Organic Chemistry Seminar: Prof. Stephen Kent
 LOCATION:Chemistry Building (CHB)
-DTSTART;TZID=America/Los_Angeles:20130204T160000
-DTEND;TZID=America/Los_Angeles:20130204T170000
+DTSTART;TZID=America/Los_Angeles:20130430T160000
+DTEND;TZID=America/Los_Angeles:20130430T170000
 X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
 URL:http://chemistry.uchicago.edu/faculty/faculty/person/member/stephen-
  bh-kent.html
@@ -45,8 +45,8 @@ END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Organic Chemistry Seminar: Asst. Prof. Alexander Statsyuk
 LOCATION:Chemistry Building (CHB)
-DTSTART;TZID=America/Los_Angeles:20130416T160000
-DTEND;TZID=America/Los_Angeles:20130416T170000
+DTSTART;TZID=America/Los_Angeles:20130430T160000
+DTEND;TZID=America/Los_Angeles:20130430T170000
 X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
 URL:http://www.chemistry.northwestern.edu/people/core-faculty/profiles/a
  lexander-statsyuk.html
@@ -65,8 +65,8 @@ END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Organic Chemistry Seminar: Prof. Matthew Becker
 LOCATION:Chemistry Building (CHB)
-DTSTART;TZID=America/Los_Angeles:20130417T160000
-DTEND;TZID=America/Los_Angeles:20130418T170000
+DTSTART;TZID=America/Los_Angeles:20130430T160000
+DTEND;TZID=America/Los_Angeles:20130430T170000
 X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
 URL:http://www.uakron.edu/cpspe/about-us/faculty/profile.dot?id=454b0e41
  -0294-4c60-9bce-4fac6c2bb692
@@ -84,8 +84,8 @@ END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Organic Chemistry Seminar: Assoc. Prof. Ryan Shenvi
 LOCATION:Chemistry Building (CHB)
-DTSTART;TZID=America/Los_Angeles:20130419T160000
-DTEND;TZID=America/Los_Angeles:20130419T170000
+DTSTART;TZID=America/Los_Angeles:20130430T160000
+DTEND;TZID=America/Los_Angeles:20130430T170000
 X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
 URL:http://www.scripps.edu/research/faculty/shenvi
 X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even
@@ -103,8 +103,8 @@ END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Organic Chemistry Seminar: Asst. Prof. Eranthie Weerapana
 LOCATION:Chemistry Building (CHB)
-DTSTART;TZID=America/Los_Angeles:20130622T160000
-DTEND;TZID=America/Los_Angeles:20130704T170000
+DTSTART;TZID=America/Los_Angeles:20130430T160000
+DTEND;TZID=America/Los_Angeles:20130430T170000
 X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
 URL:http://www.bc.edu/schools/cas/chemistry/faculty/weerapana.html
 X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Generic UW Even

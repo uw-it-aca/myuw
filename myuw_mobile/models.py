@@ -142,14 +142,3 @@ class SeenRegistration(models.Model):
                         "summer_term"
                         ),
                        )
-
-
-class DepartmentCalendar(models.Model):
-    calendar_id = models.CharField(max_length=100)
-    base_url = models.URLField(max_length=255, null=True, blank=True)
-
-    def set_base_url(self, url):
-        if len(url) == 0:
-            self.base_url = None
-        elif len(url) > 0:
-            self.base_url = url
