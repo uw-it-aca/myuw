@@ -4,17 +4,56 @@
     {{#if display_card}}
         <div aria-labeledby="my_events" data-name="EventsCard" data-type="card">
             <div class="card">
-                <div class="fade-in">
+                <div class="fade-in myuw-events">
                 
                     <h3>Events</h3>
-                    
-                    <div id="events_card_more" class="slide-hide" aria-hidden="true">
-                        <p>MORE</p>
+                     <h4><strong>Thursday, May 15</strong></h4>
+                    <ul class="myuw-events-list">	                    
+		                <li class="myuw-events-list-item">
+		                	<div><span class="myuw-events-time">7:30AM</span> <span class="myuw-events-title"><a href="#">The World Knew: Jan Karski's Mission for Humanity</a></span></div>
+							<div class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> Allen Library (ALB)</em></div>
+		                </li>
+                    </ul>
+	                <h4><strong>Friday, May 16</strong></h4>
+	                <ul class="myuw-events-list">
+		                <li class="myuw-events-list-item">
+		                	<div><span class="myuw-events-time">10:30PM</span> <span class="myuw-events-title"><a href="#">Leadership Fireside with Stephen Lanza</a></span></div>
+							<div class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> Ceramic And Metal Arts Building (CMA)</em></div>
+		                </li>
+		                <li class="myuw-events-list-item">
+		                	<div><span class="myuw-events-time">12:00PM</span> <span class="myuw-events-title"><a href="#">Exhibit - Here & Now: Native Artists Inspired</a></span></div>
+							<div class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> University of Washington Club (FAC)</em></div>
+		                </li>
+	                </ul> 
+	                <!-- calendar link when no events in next 14 days but some in 30 days -->
+	                <div class="myuw-events-calendar-link"> 6 events from <a href="#">School or Art - Division of Design</a> 3 calendars in the next 30 days.</div> 
+	                <!-- end if -->
+                     <div id="events_card_more" class="slide-hide" aria-hidden="true">	                     
+                        <h4><strong>Saturday, May 17</strong></h4>
+						<ul class="myuw-events-list">
+			                <li class="myuw-events-list-item">
+			                	<div><span class="myuw-events-time">4:30PM</span> <span class="myuw-events-title"><a href="#">Graduate Funding Information Service Office Hours</a></span></div>
+								<div class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> Mary Gates Hall (MGH)</em></div>
+			                </li>
+			                <li class="myuw-events-list-item">
+			                	<div><span class="myuw-events-time">6:00PM</span> <span class="myuw-events-title"><a href="#">Southern India Food and Culture Night</a></span></div>
+								<div class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> Student Union Building (HUB)</em></div>
+			                </li>
+	                	</ul>
+	                	<!-- calendar links if events from multiple calendars -->
+	                	<div class="myuw-events-calendar-link"> See all events from: 
+		                	<ul class="myuw-events-list">		                     	
+			                    <li><a href="#">School of Art - Division of Design</a></li>
+			                    <li><a href="#">Biology</a></li>
+			                    <li><a href="#">College of Engineering</a></li>		                     	
+	                     	</ul>
+	                	</div>
+	                	<!-- end if -->
                     </div>
                     
                     <div class="card-disclosure">
                         <a id="toggle_event_card_resources" aria-controls="..." href="#" title="Expand to show additional events">SHOW MORE</a>
-                    </div>
+                    </div> 
                     
                 
                 </div>
