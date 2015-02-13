@@ -19,7 +19,6 @@ def api_request(request):
 def get_events(dept_cals, now):
     return_data = {'active_cals': {},
                    'events': []}
-
     events_by_cal = {}
     for cal in dept_cals:
         cal_id = None
@@ -44,9 +43,12 @@ def get_events(dept_cals, now):
                         return_data['active_cals'][cal_id]['count'] += 1
                     else:
                         title = t_cal.get('x-wr-calname').to_ical()
+                        cal_url = cal[cal_id]
+                        if cal_url is None:
+                            cal_url = get_calendar_url(cal_id)
                         active_data = {'count': 1,
                                        'title': title,
-                                       'base_url': cal[cal_id]}
+                                       'base_url': cal_url}
 
                         return_data['active_cals'][cal_id] = active_data
     return return_data
@@ -89,6 +91,12 @@ def parse_event_url(event):
 
     url = ("http://www.washington.edu/calendar/"
            "?trumbaEmbed=view%%3Devent%%26eventid%%3D%s" % (event_id))
+
+    return url
+
+
+def get_calendar_url(calendar_id):
+    url = "http://www.washington.edu/calendar/%s/" % calendar_id
 
     return url
 

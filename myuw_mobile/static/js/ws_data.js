@@ -16,6 +16,8 @@ WSData = {
     _success_callbacks: {},
     _error_callbacks: {},
     _callback_args: {},
+    _department_events: null,
+
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
     _is_running_url: function(url) {
@@ -153,6 +155,35 @@ WSData = {
 
     uwemail_data: function() {
         return WSData._uwemail_data;
+    },
+    dept_event_data: function() {
+        return WSData._department_events;
+    },
+
+    fetch_event_data: function(callback, err_callback, args) {
+        if (WSData._department_events === null) {
+            $.ajax({
+                    url: "/mobile/api/v1/deptcal/",
+                    dataType: "JSON",
+
+                    type: "GET",
+                    accepts: {html: "text/html"},
+                    success: function(results) {
+                        WSData._department_events = results;
+                        if (callback !== null) {
+                            callback.apply(null, args);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        err_callback.call(null, status, error);
+                        }
+                    });
+              }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
     },
 
     fetch_book_data: function(term, callback, err_callback, args) {
