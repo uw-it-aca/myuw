@@ -43,7 +43,8 @@
 							<li>
 		                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 			                    <div class="inner-notice-container">
-									<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="Critical Notice" alt="Critical Notice"></i>
+									<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="critical_notice" ></i>
+									<span class="critical_notice sr-only">Critical Notice</span>
 			                        <div class="notice-category">
 				                        
 			                           {{ category }}{{ #unless is_read }}<span class="notice-new"> New</span>{{ /unless }}  
@@ -88,7 +89,8 @@
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 		                    <div class="inner-notice-container">
 	                            {{ #if is_critical }}
-								<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="Critical Notice" alt="Critical Notice"></i>
+								<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="critical_notice" ></i>
+								<span class="critical_notice sr-only">Critical Notice</span>
 	                            {{ /if }}
 		                        <div class="notice-category">
 		                            {{ category }}{{ #unless is_read }}<span class="notice-new"> New</span>{{ /unless }}
@@ -134,7 +136,8 @@
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 		                    <div class="inner-notice-container">
 	                            {{ #if is_critical }}
-								<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="Critical Notice" alt="Critical Notice"></i>
+								<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="critical_notice" ></i>
+								<span class="critical_notice sr-only">Critical Notice</span>
 	                            {{ /if }}
 		                        <div class="notice-category">
 		                            {{ category }}{{ #unless is_read }}<span class="notice-new"> New</span>{{ /unless }}
@@ -178,7 +181,8 @@
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 		                    <div class="inner-notice-container">
 	                            {{ #if is_critical }}
-								<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="Critical Notice" alt="Critical Notice"></i>
+								<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="critical_notice" ></i>
+								<span class="critical_notice sr-only">Critical Notice</span>
 	                            {{ /if }}
 		                        <div class="notice-category">
 		                            {{ category }}{{ #unless is_read }}<span class="notice-new"> New</span>{{ /unless }}
@@ -222,7 +226,8 @@
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 		                    <div class="inner-notice-container">
 	                            {{ #if is_critical }}
-								<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="Critical Notice" alt="Critical Notice"></i>
+								<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="critical_notice" ></i>
+								<span class="critical_notice sr-only">Critical Notice</span>
 	                            {{ /if }}
 		                        <div class="notice-category">
 		                            {{ category }}{{ #unless is_read }}<span class="notice-new"> New</span>{{ /unless }}
