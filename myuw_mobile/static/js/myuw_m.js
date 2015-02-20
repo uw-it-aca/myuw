@@ -3,6 +3,7 @@ var data;
 
 $(document).ready(function() {
     init_logging();
+    init_profile_events();
     var course_data = null;
     var book_data = null;
     // This is to prevent multiple events on load from making
@@ -86,7 +87,10 @@ $(document).ready(function() {
             // Document title is set in the category.js file - custom per category
             //document.title = window.page_titles["category_page"];
         }
-
+        else if (state === "academic_calendar") {
+            AcademicCalendar.show_events();
+            document.title = window.page_titles.academic_calendar;
+        }
 
         loaded_url = state_url;
     });
@@ -245,6 +249,12 @@ $(document).ready(function() {
                 topic: topic
             },  "", "/mobile/resource/" + slug );
         }
+        else if (path.match(/^\/mobile\/academic_calendar/)) {
+            hist.replaceState({
+                state: "academic_calendar",
+            },  "", "/mobile/academic_calendar/");
+        }
+
         else {
             // Now we fall back to the landing page
             hist.replaceState({
@@ -484,3 +494,6 @@ var _init_card_logging = function() {
 };
 
 
+var init_profile_events = function () {
+    Profile.add_events();
+};

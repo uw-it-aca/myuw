@@ -3,7 +3,7 @@ import datetime
 from myuw_mobile.dao.building import get_building_by_code, \
     get_buildings_by_schedule
 from myuw_mobile.dao.schedule import _get_schedule
-from restclients.models import Term
+from restclients.models.sws import Term
 
 
 class TestBuildings(TestCase):

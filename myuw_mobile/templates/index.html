@@ -8,6 +8,7 @@
     {% include "handlebars/banner/email.html" %}
     {% include "handlebars/banner/profile.html" %}
     {% include "handlebars/banner/notice.html" %}
+    {% include "handlebars/banner/calendar.html" %}
     {% include "handlebars/card/error.html" %}
     {% include "handlebars/card/academic.html" %}
     {% include "handlebars/card/fin_aid.html" %}
@@ -49,6 +50,7 @@
     {% include "handlebars/other_quarters.html" %}
     {% include "handlebars/quarter_books.html" %}
     {% include "handlebars/visual_schedule.html" %}
+    {% include "handlebars/academic_calendar.html" %}
     {% include "handlebars/category_page.html" %}
 
     <script>
@@ -64,6 +66,7 @@
         "grades": "Grades",
         "notices": "MyUW: Notices",
         "category_page": "MyUW: Category",
+        "academic_calendar": "Academic Calendar"
     };
     window.user = {
         "grad": {{ user.affiliations.grad|yesno:"true, false" }},
