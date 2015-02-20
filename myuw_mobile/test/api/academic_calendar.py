@@ -87,3 +87,19 @@ class TestCalendarAPI(TestCase):
         self.assertEquals(len(data), 3)
 
 
+    # Test a workaround for MUWM-2522
+    @skipIf(missing_url("myuw_current_schedule"), "myuw urls not configured")
+    def test_failing_term_resource(self):
+        url = reverse("myuw_academic_calendar")
+        get_user('javerage')
+        self.client.login(username='javerage', password=get_user_pass('javerage'))
+
+        session = self.client.session
+        session["myuw_override_date"] = "2013-07-25"
+        session.save()
+
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+        data = json.loads(response.content)
+        self.assertTrue(len(data) > 1)

@@ -59,7 +59,17 @@
                 
         <div class="header-cover">
             <div class="container clearfix">
-                <div id="profile"></div>
+                <div id="profile">
+                    <h3 class="sr-only">Profile Information and Release Settings</h3>
+                    <div class="header-netid">
+                        <a href="#" id="toggle_my_profile">{{ user.netid }}
+                            <i id="my_profile_arrow" class="fa fa-chevron-down"></i>
+                        </a>
+                    </div>
+                    <div class="header-profile slide-hide" id="my_profile" aria-hidden="true">
+                        <i class="fa fa-cog fa-spin" style="color:#ddd;"></i>
+                    </div>
+                </div>
                 <div class="header-w"><img src="{% static 'images/w-logo-white.png' %}"></div>
             </div>
             

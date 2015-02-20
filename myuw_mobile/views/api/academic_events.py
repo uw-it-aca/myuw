@@ -188,12 +188,23 @@ class AcademicEvents(RESTDispatch):
     def filter_too_future_events(self, request, events):
         current = get_current_quarter(request)
         after = get_term_after
-        last = after(after(after(after(current))))
+
+        last_date = None
+        # MUWM-2522
+        # This is intended as a workaround for missing data, but it's proably
+        # also good enough if there's an error fetching a term resource
+        # against live resources.
+        try:
+            last = after(after(after(after(current))))
+            last_date = last.grade_submission_deadline.date()
+        except Exception as ex:
+            last_dt = (current.grade_submission_deadline + timedelta(days=365))
+            last_date = last_dt.date()
 
         not_too_future = []
         for event in events:
             start = event.get('dtstart').dt
-            if start <= last.grade_submission_deadline.date():
+            if start <= last_date:
                 not_too_future.append(event)
 
         return not_too_future
