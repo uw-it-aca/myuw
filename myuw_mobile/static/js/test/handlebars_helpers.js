@@ -284,5 +284,13 @@ describe('Handlebar-helpers', function(){
         });
     });
 
+    describe("muwm-2505", function() {
+        it ("should have the right date", function() {
+            var template = Handlebars.compile("{{toFriendlyDate '2013-03-04' }}");
+            var output = template();
 
+            assert.equal(output, 'Mon, Mar 4');
+
+        });
+    });
 });

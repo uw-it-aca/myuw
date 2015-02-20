@@ -21,13 +21,15 @@ var Landing = {
                      GradeCard,
                      FutureQuarterCardA,
                      RegStatusCard,
+                     SummerRegStatusCardA,
                      VisualScheduleCard,
                      CourseCard,
                      HfsCard,
                      TuitionCard,
                      LibraryCard,
                      AcademicCard,
-                     FutureQuarterCard1
+                     FutureQuarterCard1,
+                     SummerRegStatusCard1
                     ];
         
         Cards.load_cards_in_order(cards, $("#landing_content"));
