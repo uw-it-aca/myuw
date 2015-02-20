@@ -13,6 +13,10 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
 (function() {
 
     function parse_date(str) {
+        // MUWM-2505 - dates without times assume a time zone of UTC
+        if (str.match(/^\d{4}-\d{2}-\d{2}$/)) {
+            str = str + " 00:00:00";
+        }
         // MUWM-2289.  Our dates come in looking like:
         // 2014-11-26 23:59:59
         // sometimes.  Rather than hunt all of those down, we can just convert
@@ -39,7 +43,7 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
 
 (function() {
     var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-    var days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     function _get_date(d) {
         return new Date(d.replace(/-/g, "/") + " 00:00:00");

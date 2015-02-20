@@ -196,7 +196,8 @@ def should_highlight_future_quarters(schedule, request):
             model.save()
 
         days_diff = (now_datetime - model.first_seen_date).days
-        if days_diff < 1:
+        # XXX - this needs to be changed when we can set a time in the override
+        if days_diff < 1.02:
             should_highlight = True
 
     return should_highlight
