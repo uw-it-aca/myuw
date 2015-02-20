@@ -1,0 +1,25 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "calendar_banner" %}
+    
+	<div id="app_acal">
+        <div class="container acal-header">
+            
+	            <h2 class="pull-right" role="alert"><strong>Academic Calendar</strong></h2>
+				
+			</a>
+	        <div class="acal-banner-events">
+	            <ul class="acal-banner-list">
+		            {{ #each events }}
+		            <li class="acal-banner-list-item">
+		            	<div class="acal-banner-event-container">{{ #if myuw_categories.breaks }}<span class="acal-break-icon">&diams;</span>{{/if}} <span class="acal-banner-date">{{ acal_banner_date_format start end }}</span> <a href="{{ event_url }}">{{ summary }}</a></div>
+		            </li>
+	                {{ /each }}
+	            </ul>
+	        </div>
+	        <div class="pull-right view-all"><a href="/mobile/academic_calendar/" title="Navigate to Notices">View all</a></div>
+        </div>        
+    </div>        
+{% endtplhandlebars %}
+
+
+

@@ -3,7 +3,7 @@ from django.conf import settings
 from myuw_mobile.dao.schedule import _get_schedule
 from myuw_mobile.dao.schedule import has_summer_quarter_section
 from myuw_mobile.dao.schedule import filter_schedule_sections_by_summer_term
-from restclients.models import ClassSchedule, Term, Section, Person
+from restclients.models.sws import ClassSchedule, Term, Section, Person
 
 class TestSchedule(TestCase):
     def test_has_summer_quarter_section(self):

@@ -87,6 +87,202 @@ describe('Handlebar-helpers', function(){
 
     });
 
+    describe('acal_banner_date_format', function() {
+        it("should give sunday (one date)", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-01-25'}}");
+            var output = template();
+            assert.equal(output, 'Jan 25 (Sunday)');
+        });
+
+        it("should give sunday", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-01-25' '2015-01-25' }}");
+            var output = template();
+            assert.equal(output, 'Jan 25 (Sunday)');
+        });
+        it("should give monday", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-01-26' '2015-01-26' }}");
+            var output = template();
+            assert.equal(output, 'Jan 26 (Monday)');
+        });
+        it("should give tuesday", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-01-27' '2015-01-27' }}");
+            var output = template();
+            assert.equal(output, 'Jan 27 (Tuesday)');
+        });
+        it("should give wednesday", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-01-28' '2015-01-28' }}");
+            var output = template();
+            assert.equal(output, 'Jan 28 (Wednesday)');
+        });
+        it("should give thursday", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-01-29' '2015-01-29' }}");
+            var output = template();
+            assert.equal(output, 'Jan 29 (Thursday)');
+        });
+        it("should give friday", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-01-30' '2015-01-30' }}");
+            var output = template();
+            assert.equal(output, 'Jan 30 (Friday)');
+        });
+        it("should give saturday", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-01-31' '2015-01-31' }}");
+            var output = template();
+            assert.equal(output, 'Jan 31 (Saturday)');
+        });
+        it("should give Jan", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-01-01' '2015-01-01' }}");
+            var output = template();
+            assert.equal(output, 'Jan 1 (Thursday)');
+        });
+        it("should give Feb", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-02-01' '2015-02-01' }}");
+            var output = template();
+            assert.equal(output, 'Feb 1 (Sunday)');
+        });
+        it("should give Mar", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-03-01' '2015-03-01' }}");
+            var output = template();
+            assert.equal(output, 'Mar 1 (Sunday)');
+        });
+        it("should give Apr", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-04-01' '2015-04-01' }}");
+            var output = template();
+            assert.equal(output, 'Apr 1 (Wednesday)');
+        });
+        it("should give May", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-05-01' '2015-05-01' }}");
+            var output = template();
+            assert.equal(output, 'May 1 (Friday)');
+        });
+        it("should give June", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-06-01' '2015-06-01' }}");
+            var output = template();
+            assert.equal(output, 'June 1 (Monday)');
+        });
+        it("should give July", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-07-01' '2015-07-01' }}");
+            var output = template();
+            assert.equal(output, 'July 1 (Wednesday)');
+        });
+        it("should give Aug", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-08-01' '2015-08-01' }}");
+            var output = template();
+            assert.equal(output, 'Aug 1 (Saturday)');
+        });
+        it("should give Sept", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-09-01' '2015-09-01' }}");
+            var output = template();
+            assert.equal(output, 'Sept 1 (Tuesday)');
+        });
+        it("should give Oct", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-10-01' '2015-10-01' }}");
+            var output = template();
+            assert.equal(output, 'Oct 1 (Thursday)');
+        });
+        it("should give Nov", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-11-01' '2015-11-01' }}");
+            var output = template();
+            assert.equal(output, 'Nov 1 (Sunday)');
+        });
+        it("should give Dec", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-12-01' '2015-12-01' }}");
+            var output = template();
+            assert.equal(output, 'Dec 1 (Tuesday)');
+        });
+
+        it("should give in-month range", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-12-01' '2015-12-02' }}");
+            var output = template();
+            assert.equal(output, 'Dec 1 - 2');
+        });
+
+        it("should give multi-month range", function() {
+            var template = Handlebars.compile("{{acal_banner_date_format '2015-09-29' '2015-10-25' }}");
+            var output = template();
+            assert.equal(output, 'Sept 29 - Oct 25');
+        });
+    });
+
+    describe('acal_page_date_format', function() {
+        it("should give Jan (one value)", function() {
+            var template = Handlebars.compile("{{acal_page_date_format '2015-01-01' }}");
+            var output = template();
+            assert.equal(output, 'Jan 1');
+        });
+
+        it("should give Jan", function() {
+            var template = Handlebars.compile("{{acal_page_date_format '2015-01-01' '2015-01-01' }}");
+            var output = template();
+            assert.equal(output, 'Jan 1');
+        });
+        it("should give Feb", function() {
+            var template = Handlebars.compile("{{acal_page_date_format '2015-02-01' '2015-02-01' }}");
+            var output = template();
+            assert.equal(output, 'Feb 1');
+        });
+        it("should give Mar", function() {
+            var template = Handlebars.compile("{{acal_page_date_format '2015-03-01' '2015-03-01' }}");
+            var output = template();
+            assert.equal(output, 'Mar 1');
+        });
+        it("should give Apr", function() {
+            var template = Handlebars.compile("{{acal_page_date_format '2015-04-01' '2015-04-01' }}");
+            var output = template();
+            assert.equal(output, 'Apr 1');
+        });
+        it("should give May", function() {
+            var template = Handlebars.compile("{{acal_page_date_format '2015-05-01' '2015-05-01' }}");
+            var output = template();
+            assert.equal(output, 'May 1');
+        });
+        it("should give June", function() {
+            var template = Handlebars.compile("{{acal_page_date_format '2015-06-01' '2015-06-01' }}");
+            var output = template();
+            assert.equal(output, 'June 1');
+        });
+        it("should give July", function() {
+            var template = Handlebars.compile("{{acal_page_date_format '2015-07-01' '2015-07-01' }}");
+            var output = template();
+            assert.equal(output, 'July 1');
+        });
+        it("should give Aug", function() {
+            var template = Handlebars.compile("{{acal_page_date_format '2015-08-01' '2015-08-01' }}");
+            var output = template();
+            assert.equal(output, 'Aug 1');
+        });
+        it("should give Sept", function() {
+            var template = Handlebars.compile("{{acal_page_date_format '2015-09-01' '2015-09-01' }}");
+            var output = template();
+            assert.equal(output, 'Sept 1');
+        });
+        it("should give Oct", function() {
+            var template = Handlebars.compile("{{acal_page_date_format '2015-10-01' '2015-10-01' }}");
+            var output = template();
+            assert.equal(output, 'Oct 1');
+        });
+        it("should give Nov", function() {
+            var template = Handlebars.compile("{{acal_page_date_format '2015-11-01' '2015-11-01' }}");
+            var output = template();
+            assert.equal(output, 'Nov 1');
+        });
+        it("should give Dec", function() {
+            var template = Handlebars.compile("{{acal_page_date_format '2015-12-01' '2015-12-01' }}");
+            var output = template();
+            assert.equal(output, 'Dec 1');
+        });
+
+        it("should give in-month range", function() {
+            var template = Handlebars.compile("{{acal_page_date_format '2015-12-01' '2015-12-02' }}");
+            var output = template();
+            assert.equal(output, 'Dec 1 - 2');
+        });
+
+        it("should give multi-month range", function() {
+            var template = Handlebars.compile("{{acal_page_date_format '2015-09-29' '2015-10-25' }}");
+            var output = template();
+            assert.equal(output, 'Sept 29 - Oct 25');
+        });
+    });
 
     describe("muwm-2505", function() {
         it ("should have the right date", function() {
