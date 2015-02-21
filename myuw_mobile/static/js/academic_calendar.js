@@ -32,11 +32,11 @@ var AcademicCalendar = {
                 year: ev.year,
                 quarter: ev.quarter,
                 events: []
-            }
+            };
 
             if (ev.myuw_categories.term_breaks) {
                 group_name = group_name+"-break";
-                new_group["term_break"] = true;
+                new_group.term_break = true;
 
                 by_group[group_name] = new_group;
                 groups.push(new_group);
