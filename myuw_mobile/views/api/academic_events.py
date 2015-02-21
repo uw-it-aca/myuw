@@ -143,7 +143,8 @@ class AcademicEvents(RESTDispatch):
             # That's not convenient for us, so put them on the term we want!
             if 'term_breaks' in categories:
                 summary = event.get('summary')
-                matches = re.match(r'.*?([a-zA-Z]+) break.*', summary)
+                matches = re.match(r'.*?([a-zA-Z]+) break.*', summary,
+                                   flags=re.IGNORECASE)
                 quarter = matches.group(1)
                 event.add("override_quarter", quarter)
 
@@ -161,7 +162,8 @@ class AcademicEvents(RESTDispatch):
             categories["classes"] = True
 
             summary = event.get('summary')
-            if summary and re.match(r'.*break.*', summary):
+            if summary and re.match(r'.*break.*', summary,
+                                    flags=re.IGNORECASE):
                 categories["breaks"] = True
                 categories["term_breaks"] = True
 

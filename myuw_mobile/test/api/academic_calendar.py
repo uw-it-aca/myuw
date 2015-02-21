@@ -33,7 +33,7 @@ class TestCalendarAPI(TestCase):
         self.assertEquals(response.status_code, 200)
 
         data = json.loads(response.content)
-        self.assertEquals(len(data), 26)
+        self.assertEquals(len(data), 29)
 
         session = self.client.session
         session["myuw_override_date"] = "2013-04-18"
@@ -43,7 +43,7 @@ class TestCalendarAPI(TestCase):
         self.assertEquals(response.status_code, 200)
 
         data = json.loads(response.content)
-        self.assertEquals(len(data), 25)
+        self.assertEquals(len(data), 28)
 
 
     @skipIf(missing_url("myuw_current_schedule"), "myuw urls not configured")
