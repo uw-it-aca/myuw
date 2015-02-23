@@ -1,50 +1,70 @@
 {% load templatetag_handlebars %}
-    {% tplhandlebars "events_card_content" %}
+{% tplhandlebars "events_card_content" %}
 
     {{#if display_card}}
-        <div aria-labeledby="my_events" data-name="EventsCard" data-type="card">
-            <div class="card">
-                <div class="fade-in">
-
-                    <h3>Events</h3>
-                    {{ #if has_events }}
-                        <ul class="myuw-events-list">
-                            {{ #each data.events }}
-                                <li class="myuw-events-list-item">
-                                    <div><span class="myuw-events-time">{{ start }}</span> <span class="myuw-events-title"><a href="{{ event_url }}">{{ summary }}</a></span></div>
-                                    <div class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> {{ event_location }}</em></div>
-                                </li>
-                            {{ /each }}
-                        </ul>
-
-
-                        {{ #if needs_disclosure }}
+    <div aria-labeledby="my_events" data-name="EventsCard" data-type="card">
+        <div class="card">
+            <div class="fade-in myuw-events">
+                <h3>Events</h3>
+                {{ #if has_events }}
+                    <h4><strong>Thursday, May 15</strong></h4>
+                    <ul class="myuw-events-list">
+                        {{ #each data.events }}
+                            <li class="myuw-events-list-item">
+                                <div><span class="myuw-events-time">{{ start }}</span> <span class="myuw-events-title"><a href="{{ event_url }}">{{ summary }}</a></span></div>
+                                <div class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> {{ event_location }}</em></div>
+                            </li>
+                        {{ /each }}
+                    </ul>
+                    {{ #if needs_disclosure }}
                          <div class="card-disclosure">
                             <a id="toggle_event_card_resources" aria-controls="..." href="#" title="Expand to show additional events">SHOW MORE</a>
                         </div>
                         <div id="events_card_more" class="slide-hide" aria-hidden="true">
                             <p>MORE</p>
                         </div>
-                        {{ /if }}
-                    {{ else }}
-                        {{ #if multi_active }}
-                            <div class="myuw-events-calendar-link">
-                            {{ active_events }} events from {{ active_count }} calendars in the next 30 days.
-                            <br>
-                            {{ #each active_name_url }}
-                                <a href="{{ url }}">{{ title }}</a>
-                                <br>
-                            {{ /each }}
-                            </div>
-                        {{ else }}
-                            <div class="myuw-events-calendar-link"> {{ active_events }} events from {{ #each active_name_url }}<a href="{{ url }}">{{ title }}</a>{{ /each }} in the next 30 days.</div>
-                        {{ /if }}
                     {{ /if }}
+                {{ else }}
+                <!-- calendar link when no events in next 14 days but some in 30 days -->
+                    {{ #if multi_active }}
+                        <div class="myuw-events-calendar-link">
+                            {{ active_events }} events from {{ active_count }} calendars in the next 30 days.
+                            <ul class="myuw-events-list">
+                                {{ #each active_name_url }}
+                                    <li><a href="{{ url }}">{{ title }}</a></li>
+                                {{ /each }}
+                            </ul>
+                        </div>
+                    {{ else }}
+                        <div class="myuw-events-calendar-link"> {{ active_events }} events from {{ #each active_name_url }}<a href="{{ url }}">{{ title }}</a>{{ /each }} in the next 30 days.</div>
 
-                    
-                
-                </div>
-            </div>     
+                    {{ /if }}
+                    <!-- end if -->
+                    <div id="events_card_more" class="slide-hide" aria-hidden="true">
+                        <h4><strong>Saturday, May 17</strong></h4>
+                        <ul class="myuw-events-list">
+                            <li class="myuw-events-list-item">
+                                <div><span class="myuw-events-time">4:30PM</span> <span class="myuw-events-title"><a href="#">Graduate Funding Information Service Office Hours</a></span></div>
+                                <div class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> Mary Gates Hall (MGH)</em></div>
+                            </li>
+                            <li class="myuw-events-list-item">
+                                <div><span class="myuw-events-time">6:00PM</span> <span class="myuw-events-title"><a href="#">Southern India Food and Culture Night</a></span></div>
+                                <div class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> Student Union Building (HUB)</em></div>
+                            </li>
+                        </ul>
+                        <!-- calendar links if events from multiple calendars -->
+                        <div class="myuw-events-calendar-link"> See all events from:
+                            <ul class="myuw-events-list">
+                                <li><a href="#">School of Art - Division of Design</a></li>
+                                <li><a href="#">Biology</a></li>
+                                <li><a href="#">College of Engineering</a></li>
+                            </ul>
+                        </div>
+                        <!-- end if -->
+                    </div>
+                {{ /if }}
+            </div>
         </div>
+    </div>
     {{/if}}
 {% endtplhandlebars %}
