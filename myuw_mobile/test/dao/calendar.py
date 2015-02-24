@@ -17,7 +17,7 @@ class TestCalendar(TestCase):
         cal = {'organic': None}
         event_response = get_events([cal], now)
         self.assertEqual(len(event_response['active_cals']), 0)
-        self.assertEqual(len(event_response['events']), 3)
+        self.assertEqual(len(event_response['events']), 4)
 
 
     def test_past_30(self):
