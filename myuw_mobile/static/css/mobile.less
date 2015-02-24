@@ -320,6 +320,8 @@ body {
     border: none;
     border-radius: 0;
     color: #8a6d3b;
+    
+    i { display:block; float:left; padding-right:8px;}
 }
 
 .uwalert-red {
@@ -327,6 +329,8 @@ body {
     border: none;
     border-radius: 0;
     color: #a94442;
+    
+    i { display:block; float:left; padding-right:8px;}
 }
 
 .uwalert-steel {
@@ -335,7 +339,7 @@ body {
     border-radius: 0;
     color: darken(#3a87ad, 15%);
     
-    i { display: none; }
+    i { display:none; }
     h1, p { margin-left: 0; }
 }
 
@@ -414,7 +418,7 @@ body {
 }
 
 /*** academic calendar banner ***/
-.acal-break-icon {color: @icon-break-color;} // for both banner & acal landing page
+.acal-break-icon {color: @icon-break-color; font-size:.7em; line-height: 20px; vertical-align: text-top;} // for both banner & acal landing page
 #app_acal { margin: 0; border-bottom: 1px solid #ddd; position: relative; padding-bottom: 15px;
     
     .acal-header { 
@@ -628,6 +632,15 @@ body {
             
             h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; 
                 .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
+            }
+            
+            .textbooks-list {
+	            .textbooks-list-item { //font-size:13px;
+		            .simplesquare {display: inline-block; height: .9em; width: .9em; margin-right: 0.3em;}
+		            .textbooks-course-title {display: inline-block;width:38%;/* text-align:right; */}
+		            .textbooks-course-books {font-weight:bold;}
+		            .textbooks-course-required {font-size:12px;font-style: italic;}
+	            }
             }
             
             .destination-arrow { position:absolute; top: 50%; right: 0; margin-top:-14px; 

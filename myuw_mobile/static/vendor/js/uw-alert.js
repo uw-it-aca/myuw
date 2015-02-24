@@ -90,13 +90,13 @@ function addElement(strAlertTitle,strAlertLink,strAlertColor,strAlertMessage)
   var alertBoxTextDiv = document.createElement('div');
 
   var alertIcon = document.createElement('i');
-  alertIcon.setAttribute('class', 'fa fa-exclamation-triangle fa-large');
+  alertIcon.setAttribute('class', 'fa fa-exclamation-triangle fa-3x');
 
   var header1 = document.createElement('h1');
 
   var jq_h1 = $(header1);
   jq_h1.html($("<div></div>").html(strAlertTitle).text());
-  header1.appendChild(alertIcon);
+  alertBoxTextDiv.appendChild(alertIcon);
 
   var alertTextP = document.createElement('p');
 

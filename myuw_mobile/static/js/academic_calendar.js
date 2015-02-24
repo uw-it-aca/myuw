@@ -20,29 +20,35 @@ var AcademicCalendar = {
     group_events_by_term: function(events) {
         var groups = [];
         var current_term = "";
+
+        var by_group = {};
         for (var i = 0; i < events.length; i++) {
             var ev = events[i];
 
             var term_name = ev.year + " " + ev.quarter;
+            var group_name = term_name;
+
+            var new_group = {
+                year: ev.year,
+                quarter: ev.quarter,
+                events: []
+            };
 
             if (ev.myuw_categories.term_breaks) {
-                groups.push({
-                    year: ev.year,
-                    quarter: ev.quarter,
-                    events: [],
-                    term_break: true
-                });
+                group_name = group_name+"-break";
+                new_group.term_break = true;
+
+                by_group[group_name] = new_group;
+                groups.push(new_group);
             }
             else if (term_name != current_term) {
                 current_term = term_name;
-                groups.push({
-                    year: ev.year,
-                    quarter: ev.quarter,
-                    events: []
-                });
+
+                by_group[group_name] = new_group;
+                groups.push(new_group);
             }
 
-            groups[groups.length-1].events.push(ev);
+            by_group[group_name].events.push(ev);
         }
 
         return groups;

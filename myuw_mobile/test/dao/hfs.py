@@ -12,5 +12,5 @@ class TestHFS(TestCase):
         # Testing case where json.loads poorly handles floats
         self.assertEquals(accounts.resident_dining.balance, Decimal('5.1'))
 
-        #Missing account
+        # Missing account
         self.assertEquals(get_account_balances_by_uwnetid("123notanetid"), None)
