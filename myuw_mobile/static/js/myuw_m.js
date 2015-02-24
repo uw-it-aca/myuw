@@ -3,6 +3,7 @@ var data;
 
 $(document).ready(function() {
     init_logging();
+    init_profile_events();
     var course_data = null;
     var book_data = null;
     // This is to prevent multiple events on load from making
@@ -487,3 +488,6 @@ var _init_card_logging = function() {
 };
 
 
+var init_profile_events = function () {
+    Profile.add_events();
+};
