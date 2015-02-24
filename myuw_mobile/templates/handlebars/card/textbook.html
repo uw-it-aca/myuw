@@ -4,22 +4,31 @@
 <div class="card"  data-name="TextbookCard" data-type="card">
     <div class="fade-in">
                         
-        <h3>Textbooks <!--<span class="shortTitle">{{termNoYear term}}</span>--></h3>
+        <h3>Textbooks</h3>
     
-        {{ #if no_books }}
-            <p class="text-muted">No textbooks for this term</p>
-        {{ else }}
-            <ul class="unstyled-list">
-                {{ #each sections }}
-                <li>{{ course_id }}: {{ required }} required, {{ optional }} optional</li>
-                {{ /each }}
-            </ul>
-        {{ /if }}
-        
-        {{#unless no_books}}
-        <div class="destination-arrow">
-            <a class="show_textbooks" href="/mobile/textbooks/{{term}}" title="View textbooks"><i class="fa fa-chevron-right"></i></a
-        </div>
+        <ul class="unstyled-list textbooks-list">
+            {{ #each sections }}
+                <li class="textbooks-list-item">
+                    <div class="c{{color_id}} simplesquare todo"></div>
+                    <span class="textbooks-course-title">{{ course_id }}:</span>
+                    <span class="textbooks-course-books">
+                    {{ #if no_course_books }}
+                        No books
+                    {{else}}
+                        {{ total }} {{ pluralize total 'book' 'books' }}
+                        </span>
+                        <span class="textbooks-course-required">
+                             ({{#if required}}{{required}}{{else}}not{{/if}} required)
+                        </span>
+                        </li>
+                {{ /if }}
+            {{ /each }}
+        </ul>
+
+        {{#unless no_book_assigned}}
+            <div class="destination-arrow">
+                <a class="show_textbooks" href="/mobile/textbooks/{{year}},{{quarter}}{{#if summer_term}},{{toLowerCase summer_term}}{{/if}}" title="View textbooks"><i class="fa fa-chevron-right"></i></a>
+            </div>
         {{/unless}}
         
     </div>

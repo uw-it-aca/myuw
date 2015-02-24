@@ -1,5 +1,6 @@
 WSData = {
     _book_data: {},
+    _book_data_error_status: null,
     _course_data: {},
     _course_data_error_status: null,
     _profile_data: null,
@@ -79,6 +80,10 @@ WSData = {
 
     book_data: function(term) {
         return WSData._book_data[term];
+    },
+
+    book_data_error_code: function() {
+        return WSData._book_data_error_status;
     },
 
     course_data_error_code: function() {
@@ -250,6 +255,7 @@ WSData = {
                     WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {
+                    WSData._book_data_error_status = xhr.status;
                     WSData._run_error_callbacks_for_url(url);
                 }
                 });
