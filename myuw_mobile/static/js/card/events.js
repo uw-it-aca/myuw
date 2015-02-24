@@ -93,6 +93,9 @@ var EventsCard = {
         // Will return the time, regardless if timestamp includes a range
         var date = timestamp.split(" ")[0];
         var time = timestamp.split(" ")[1];
+        if (time === undefined){{
+            return date;
+        }}
         if (time.indexOf("-") > -1){
             time = time.substring(0, time.indexOf('-'));
         }
@@ -129,3 +132,9 @@ var EventsCard = {
 
     
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.EventsCard = EventsCard;
