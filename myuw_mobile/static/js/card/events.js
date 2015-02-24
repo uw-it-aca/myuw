@@ -30,6 +30,12 @@ var EventsCard = {
             EventsCard.dom_target.html('');
             return;
         }
+
+        $.each(event_data.events, function(i, event){
+            event.start = EventsCard.fix_event_time(event.start);
+            event.start_time = moment(event.start).format('h:mm A');
+        });
+
         var grouped_events = EventsCard.group_by_date(event_data.events);
         EventsCard.dom_target.html(template({display_card: true,
                                              grouped_events: grouped_events,
@@ -49,6 +55,7 @@ var EventsCard = {
         }
         return false;
     },
+
 
     group_by_date: function (event_data) {
         // assumes events are sorted server side
@@ -80,6 +87,16 @@ var EventsCard = {
 
         });
         return grouped_events;
+    },
+
+    fix_event_time: function (timestamp) {
+        // Will return the time, regardless if timestamp includes a range
+        var date = timestamp.split(" ")[0];
+        var time = timestamp.split(" ")[1];
+        if (time.indexOf("-") > -1){
+            time = time.substring(0, time.indexOf('-'));
+        }
+        return date + " " + time;
     },
 
     add_events: function() {

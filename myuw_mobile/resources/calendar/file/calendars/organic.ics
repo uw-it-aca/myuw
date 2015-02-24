@@ -45,7 +45,7 @@ END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Organic Chemistry Seminar: Asst. Prof. Alexander Statsyuk
 LOCATION:Chemistry Building (CHB)
-DTSTART;TZID=America/Los_Angeles:20130416T160000
+DTSTART;TZID=America/Los_Angeles:20130416T100000
 DTEND;TZID=America/Los_Angeles:20130416T170000
 X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
 URL:http://www.chemistry.northwestern.edu/people/core-faculty/profiles/a
@@ -65,8 +65,8 @@ END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Organic Chemistry Seminar: Steve
 LOCATION:Chemistry Building (CHB)
-DTSTART;TZID=America/Los_Angeles:20130416T160000
-DTEND;TZID=America/Los_Angeles:20130416T170000
+DTSTART;TZID=America/Los_Angeles:20130416T180000
+DTEND;TZID=America/Los_Angeles:20130416T190000
 X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
 URL:http://www.chemistry.northwestern.edu/people/core-faculty/profiles/a
  lexander-statsyuk.html
