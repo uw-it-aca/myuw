@@ -50,7 +50,14 @@ class TestNotices(TestCase):
         data = json.loads(response.content)
 
         self.assertEquals(len(data), 6)
-        self.assertEquals(data[0]["is_read"], True)
+
+        match = False
+        for el in data:
+            if el["id_hash"] == hash_value:
+                match = True
+                self.assertEquals(el["is_read"], True)
+
+        self.assertEquals(match, True)
 
         response = self.client.put(url, data='{"notice_hashes":["fake-fake-fake"]}')
 

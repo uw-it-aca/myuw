@@ -9,7 +9,7 @@ from myuw_mobile.dao.term import is_using_file_dao, get_default_date
 from myuw_mobile.dao.term import get_comparison_date, get_current_quarter
 from myuw_mobile.dao.term import get_next_quarter
 
-from restclients.models import ClassSchedule, Term, Section, Person
+from restclients.models.sws import ClassSchedule, Term, Section, Person
 
 
 class TestTerm(TestCase):
