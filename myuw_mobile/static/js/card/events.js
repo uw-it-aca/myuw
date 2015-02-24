@@ -20,9 +20,8 @@ var EventsCard = {
         var active_events = 0;
         var active_name_url = [];
         for (var key in event_data.active_cals){
-            console.log(event_data.active_cals[key]);
             if (event_data.active_cals.hasOwnProperty(key)){
-                active_events += event_data.active_cals[key].count
+                active_events += event_data.active_cals[key].count;
                 active_name_url.push({title: event_data.active_cals[key].title,
                                       url: event_data.active_cals[key].base_url});
             }
@@ -31,9 +30,9 @@ var EventsCard = {
             EventsCard.dom_target.html('');
             return;
         }
-
+        var grouped_events = EventsCard.group_by_date(event_data.events);
         EventsCard.dom_target.html(template({display_card: true,
-                                             data: event_data,
+                                             grouped_events: grouped_events,
                                              has_events: event_data.events.length > 0,
                                              needs_disclosure: false,
                                              multi_active: active_name_url.length > 1,
@@ -45,11 +44,42 @@ var EventsCard = {
     },
 
     _has_all_data: function () {
-        return true;
         if (WSData.dept_event_data()) {
             return true;
         }
         return false;
+    },
+
+    group_by_date: function (event_data) {
+        // assumes events are sorted server side
+        var grouped_events = [];
+        var last_date = null;
+        var idx = 0;
+
+        $.each(event_data, function(i, event){
+            //Split off time range that brakes parsing
+            var date = event.start.split(" ")[0];
+
+            var day = moment(date).calendar();
+            if (day !== last_date) {
+                // Don't increment day index on first event
+                if (i > 0){
+                    idx += 1;
+                }
+
+                last_date = day;
+                var formatted_date = moment(date).format("dddd, MMMM D");
+                grouped_events[idx] = {'date_string': formatted_date,
+                                        'events': []};
+                grouped_events[idx].events.push(event);
+
+            } else {
+                grouped_events[idx].events.push(event);
+            }
+
+
+        });
+        return grouped_events;
     },
 
     add_events: function() {

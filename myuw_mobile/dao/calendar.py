@@ -112,7 +112,7 @@ def json_for_event(event):
 
     return {
         "summary": event.get('summary').to_ical(),
-        "start": start,
+        "start": start[0],
         "event_url": event_url,
         "event_location": event_location.to_ical(),
     }

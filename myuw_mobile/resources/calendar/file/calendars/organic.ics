@@ -63,6 +63,26 @@ CATEGORIES:Organic Seminars
 UID:http://uid.trumba.com/event/110608069
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:Organic Chemistry Seminar: Steve
+LOCATION:Chemistry Building (CHB)
+DTSTART;TZID=America/Los_Angeles:20130416T160000
+DTEND;TZID=America/Los_Angeles:20130416T170000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+URL:http://www.chemistry.northwestern.edu/people/core-faculty/profiles/a
+ lexander-statsyuk.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=36;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=32032;TYPE=CustomAsset:Ch
+ emistry Building (CHB)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28329;TYPE=SingleLine:102
+DTSTAMP:20130122T082754Z
+DESCRIPTION:"Biochemistry and Pharmacology of the Ubiquitin System"\n \n
+  Assistant Professor Alexander Statsyuk - Department of Chemistry\, Nort
+ hwestern University
+CATEGORIES:Organic Seminars
+UID:http://uid.trumba.com/event/110608069
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Organic Chemistry Seminar: Prof. Matthew Becker
 LOCATION:Chemistry Building (CHB)
 DTSTART;TZID=America/Los_Angeles:20130417T160000
