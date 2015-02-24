@@ -7,7 +7,7 @@ from myuw_mobile.dao.registered_term import _get_registered_summer_terms
 from myuw_mobile.dao.registered_term import _must_displayed_separately
 from myuw_mobile.dao.registered_term import _get_registered_future_quarters
 
-from restclients.models import ClassSchedule, Term, Section, Person
+from restclients.models.sws import ClassSchedule, Term, Section, Person
 
 class TestRegisteredTerm(TestCase):
 

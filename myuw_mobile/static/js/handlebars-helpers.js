@@ -13,6 +13,10 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
 (function() {
 
     function parse_date(str) {
+        // MUWM-2505 - dates without times assume a time zone of UTC
+        if (str.match(/^\d{4}-\d{2}-\d{2}$/)) {
+            str = str + " 00:00:00";
+        }
         // MUWM-2289.  Our dates come in looking like:
         // 2014-11-26 23:59:59
         // sometimes.  Rather than hunt all of those down, we can just convert
@@ -35,6 +39,47 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
         return moment(parse_date(str)).format("ddd, MMM D");
     });
 
+})();
+
+(function() {
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    function _get_date(d) {
+        return new Date(d.replace(/-/g, "/") + " 00:00:00");
+    }
+
+    function _date_range(d1, d2) {
+        var date1 = _get_date(d1);
+        var date2 = _get_date(d2);
+
+        if (date1.getMonth() == date2.getMonth() && date1.getYear() == date2.getYear()) {
+            return [months[date1.getMonth()], date1.getDate(), "-", date2.getDate()].join(" ");
+        }
+        else {
+            return [months[date1.getMonth()], date1.getDate(), "-", months[date2.getMonth()], date2.getDate()].join(" ");
+        }
+    }
+
+    Handlebars.registerHelper('acal_banner_date_format', function(d1, d2) {
+        if (typeof(d2) != 'string' || d1 == d2) {
+            var date1 = _get_date(d1);
+            return [months[date1.getMonth()], date1.getDate(), "("+days[date1.getDay()]+")"].join(" ");
+        }
+        else {
+            return _date_range(d1, d2);
+        }
+    });
+    Handlebars.registerHelper('acal_page_date_format', function(d1, d2) {
+        if (typeof(d2) != 'string' || d1 == d2) {
+            var date1 = _get_date(d1);
+            return [months[date1.getMonth()], date1.getDate()].join(" ");
+        }
+        else {
+            return _date_range(d1, d2);
+        }
+
+    });
 })();
 
 Handlebars.registerHelper("toUrlSafe", function(str) {
