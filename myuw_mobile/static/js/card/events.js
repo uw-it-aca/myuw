@@ -59,11 +59,13 @@ var EventsCard = {
 
     group_by_date: function (event_data) {
         // assumes events are sorted server side
-        var grouped_events = [];
-        var last_date = null;
-        var idx = 0;
+        var grouped_events = [],
+            last_date = null
+            idx = 0,
+            i = 0;
 
-        $.each(event_data, function(i, event){
+        for (i = 0; i < event_data.length; i++){
+            var event = event_data[i];
             //Split off time range that brakes parsing
             var date = event.start.split(" ")[0];
 
@@ -85,7 +87,7 @@ var EventsCard = {
             }
 
 
-        });
+        }
         return grouped_events;
     },
 

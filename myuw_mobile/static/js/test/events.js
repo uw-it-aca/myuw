@@ -1,5 +1,6 @@
 var ec = require("../card/events.js"),
     assert = require("assert");
+moment = require("../../vendor/js/moment.2.8.3.min.js");
 
 describe('EventsCard', function(){
     describe('fix_event_time', function(){
@@ -17,7 +18,19 @@ describe('EventsCard', function(){
         });
     });
 
-   
+    describe('group_by_date', function(){
+        var events = JSON.parse("[{\"start\": \"2013-04-16 10:00:00-07:00\", \"event_url\": \"http://www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D110608069\", \"event_location\": \"Chemistry Building (CHB)\", \"summary\": \"Organic Chemistry Seminar: Asst. Prof. Alexander Statsyuk\"}, {\"start\": \"2013-04-16 18:00:00-07:00\", \"event_url\": \"http://www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D110608069\", \"event_location\": \"Chemistry Building (CHB)\", \"summary\": \"Organic Chemistry Seminar: Steve\"}, {\"start\": \"2013-04-17 16:00:00-07:00\", \"event_url\": \"http://www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D110741160\", \"event_location\": \"Chemistry Building (CHB)\", \"summary\": \"Organic Chemistry Seminar: Prof. Matthew Becker\"}, {\"start\": \"2013-04-19 16:00:00-07:00\", \"event_url\": \"http://www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D113278967\", \"event_location\": \"Chemistry Building (CHB)\", \"summary\": \"Organic Chemistry Seminar: Assoc. Prof. Ryan Shenvi\"}]");
+        it('should sort events', function(){
+            var data = ec.EventsCard.group_by_date(events);
+            assert.equal(data.length, '3');
+            assert.equal(data[0].date_string, 'Tuesday, April 16');
+            assert.equal(data[1].date_string, 'Wednesday, April 17');
+            assert.equal(data[2].date_string, 'Friday, April 19');
+            assert.equal(data[0].events.length, 2);
+            assert.equal(data[1].events.length, 1);
+            assert.equal(data[2].events.length, 1);
+        });
+    });
 
 });
 
