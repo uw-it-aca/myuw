@@ -23,6 +23,7 @@ var Landing = {
                      RegStatusCard,
                      SummerRegStatusCardA,
                      VisualScheduleCard,
+                     TextbookCard,
                      CourseCard,
                      HfsCard,
                      TuitionCard,
