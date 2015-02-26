@@ -4,6 +4,9 @@ from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
 from restclients.myplan import get_plan
 from myuw_mobile.dao.pws import get_regid_of_current_user
 from myuw_mobile.dao.term import get_current_quarter
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class MyPlan(RESTDispatch):
@@ -12,10 +15,16 @@ class MyPlan(RESTDispatch):
     """
 
     def GET(self, request):
-        quarter = get_current_quarter(request)
-        plan = get_plan(regid=get_regid_of_current_user(),
-                        year=quarter.year,
-                        quarter=quarter.quarter,
-                        terms=4)
+        try:
+            quarter = get_current_quarter(request)
+            plan = get_plan(regid=get_regid_of_current_user(),
+                            year=quarter.year,
+                            quarter=quarter.quarter,
+                            terms=4)
 
-        return HttpResponse(json.dumps(plan.json_data()))
+            return HttpResponse(json.dumps(plan.json_data()))
+        except Exception as ex:
+            # Log the error, but don't have the front end complain
+            print ex
+            logger.error(ex)
+            return HttpResponse('[]')
