@@ -3,7 +3,8 @@ from django.http import HttpResponse
 import json
 from myuw_mobile.dao.schedule import get_schedule_by_term
 from myuw_mobile.dao.schedule import filter_schedule_sections_by_summer_term
-from myuw_mobile.dao.term import get_quarter
+from myuw_mobile.dao.term import get_quarter, get_current_quarter
+from myuw_mobile.dao.term import get_current_summer_term
 from myuw_mobile.dao.textbook import get_textbook_by_schedule
 from myuw_mobile.dao.textbook import get_verba_link_by_schedule
 from myuw_mobile.logger.timer import Timer
@@ -21,6 +22,9 @@ class Textbook(RESTDispatch):
         """
         GET returns 200 with textbooks for the current quarter
         """
+        return self.respond(year, quarter, summer_term)
+
+    def respond(self, year, quarter, summer_term):
         timer = Timer()
         logger = logging.getLogger(__name__)
 
@@ -50,3 +54,19 @@ def index_by_sln(book_data):
         for book in book_data[sln]:
             json_data[sln].append(book.json_data())
     return json_data
+
+
+class TextbookCur(Textbook):
+    """
+    Performs actions on resource at /api/v1/schedule/current/.
+    """
+
+    def GET(self, request):
+        """
+        GET returns 200 with the current quarter Textbook
+        """
+        term = get_current_quarter(request)
+        summer_term = ""
+        if term.quarter == "summer":
+            summer_term = get_current_summer_term(request)
+        return self.respond(term.year, term.quarter, summer_term)

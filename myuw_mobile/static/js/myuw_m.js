@@ -87,7 +87,10 @@ $(document).ready(function() {
             // Document title is set in the category.js file - custom per category
             //document.title = window.page_titles["category_page"];
         }
-
+        else if (state === "academic_calendar") {
+            AcademicCalendar.show_events();
+            document.title = window.page_titles.academic_calendar;
+        }
 
         loaded_url = state_url;
     });
@@ -246,6 +249,12 @@ $(document).ready(function() {
                 topic: topic
             },  "", "/mobile/resource/" + slug );
         }
+        else if (path.match(/^\/mobile\/academic_calendar/)) {
+            hist.replaceState({
+                state: "academic_calendar",
+            },  "", "/mobile/academic_calendar/");
+        }
+
         else {
             // Now we fall back to the landing page
             hist.replaceState({
@@ -345,6 +354,9 @@ var titilizeTerm = function(term) {
     //Takes a term string (Eg 2032,summer,b-term) and 
     //returns a title (Eg Summer 2032 B-term)
     var pieces = term.split(",");
+    if (pieces.length === 1) {
+        return capitalizeString(string);
+    }
     var string = capitalizeString(pieces[1]) + " " + pieces[0];
     if (pieces.length > 2) {
         string += " " + capitalizeString(pieces[2]);
