@@ -5,7 +5,7 @@ var TextbookCard = {
 
     render_init: function() {
         if (TextbookCard.term === 'current') {
-            if (!window.card_display_dates.is_before_first_week_of_term) {
+            if (!window.card_display_dates.is_before_eof_7days_of_term) {
                 $("#TextbookCard").hide();
                 return;
             }

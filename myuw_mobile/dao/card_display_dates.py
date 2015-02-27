@@ -37,8 +37,7 @@ def get_values_by_date(now, request):
     is_before_end_of_summer_reg_display_period1 = False
     is_before_end_of_summer_reg_display_periodA = False
     is_before_first_day_of_term = False
-    # before_end_of_first_week
-    is_before_first_week = False
+    is_before_eof_7days_of_term = False
 
     if now.date() < current_term.first_day_quarter:
         is_before_first_day_of_term = True
@@ -46,8 +45,9 @@ def get_values_by_date(now, request):
         # switches at the grade submission deadline.
         is_after_grade_submission_deadline = True
 
-    if now.date() < current_term.first_day_quarter + timedelta(days=7):
-        is_before_first_week = True
+    if now.date() <= current_term.first_day_quarter + timedelta(days=7):
+        # till the end of 7-day (exclude the first day)
+        is_before_eof_7days_of_term = True
 
     raw_date = current_term.last_day_instruction
     d = datetime(raw_date.year, raw_date.month, raw_date.day)
@@ -112,7 +112,7 @@ def get_values_by_date(now, request):
         "is_before_end_of_summer_reg_display_periodA": summerA_end,
         "is_before_end_of_summer_reg_display_period1": summer1_end,
         "is_before_first_day_of_term": is_before_first_day_of_term,
-        "is_before_first_week_of_term": is_before_first_week,
+        "is_before_eof_7days_of_term": is_before_eof_7days_of_term,
         "last_term": "%s,%s" % (last_term.year, last_term.quarter),
     }
 
@@ -145,7 +145,7 @@ def set_js_overrides(request, values):
            'myuw_before_last_day': 'is_before_last_day_of_classes',
            'myuw_before_end_of_reg_display': before_reg,
            'myuw_before_first_day': 'is_before_first_day_of_term',
-           'myuw_before_first_week': 'is_before_first_week_of_term',
+           'myuw_before_end_of_first_week': 'is_before_eof_7days_of_term',
            }
 
     for key, value in MAP.iteritems():
