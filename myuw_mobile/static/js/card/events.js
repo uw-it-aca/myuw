@@ -44,7 +44,7 @@ var EventsCard = {
                                              grouped_events_display: grouped_events[0],
                                              grouped_events_hide: grouped_events[1],
                                              has_events: event_data.events.length > 0,
-                                             needs_disclosure: grouped_events[0],
+                                             needs_disclosure: needs_disclosure,
                                              multi_active: active_name_url.length > 1,
                                              active_events: active_events,
                                              active_name_url: active_name_url,
