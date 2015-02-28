@@ -7,10 +7,7 @@
             <div class="fade-in myuw-events">
                 <h3>Events</h3>
                 {{ #if has_events }}
-                {{ data.grouped_events }}
-
-
-                    {{ #each grouped_events}}
+                    {{ #each grouped_events_display}}
                     <h4><strong>{{ date_string }}</strong></h4>
                     <ul class="myuw-events-list">
                         {{ #each events }}
@@ -23,11 +20,22 @@
                     {{ /each }}
 
                     {{ #if needs_disclosure }}
-                         <div class="card-disclosure">
-                            <a id="toggle_event_card_resources" aria-controls="..." href="#" title="Expand to show additional events">SHOW MORE</a>
-                        </div>
+
                         <div id="events_card_more" class="slide-hide" aria-hidden="true">
-                            <p>MORE</p>
+                            {{ #each grouped_events_hide}}
+                            <h4><strong>{{ date_string }}</strong></h4>
+                            <ul class="myuw-events-list">
+                                {{ #each events }}
+                                    <li class="myuw-events-list-item">
+                                        <div><span class="myuw-events-time">{{ start_time }}</span> <span class="myuw-events-title"><a href="{{ event_url }}">{{ summary }}</a></span></div>
+                                        <div class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> {{ event_location }}</em></div>
+                                    </li>
+                                {{ /each }}
+                            </ul>
+                            {{ /each }}
+                        </div>
+                        <div class="card-disclosure">
+                            <a id="toggle_event_card_resources" aria-controls="..." href="#" title="Expand to show additional events">SHOW MORE</a>
                         </div>
                     {{ /if }}
                 {{ else }}
@@ -40,7 +48,7 @@
                                     <li><a href="{{ url }}">{{ title }}</a></li>
                                 {{ /each }}
                             </ul>
-                        </div>
+                        </ div>
                     {{ else }}
                         <div class="myuw-events-calendar-link"> {{ active_events }} events from {{ #each active_name_url }}<a href="{{ url }}">{{ title }}</a>{{ /each }} in the next 30 days.</div>
 

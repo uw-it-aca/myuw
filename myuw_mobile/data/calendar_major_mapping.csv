@@ -2,8 +2,8 @@ description,department,ug major,ug minor,gr major,calendar,base url
 *test row do not delete*,Department of Unit Tests,TRAIN,,,sea_art,http://art.washington.edu/calendar/
 *test row do not delete*,Department of Unit Tests,,TRAIN,,organic,
 *test row do not delete*,Department of Unit Tests,,,TRAIN,sea_art,
-*test row do not delete*,Department of Unit Tests,,,TRAIN,organic,
-"*test row do not delete*","Department of Other Unit Tests",,,TRAINR,organic,
+*test row do not delete*,Department of Unit Tests,,,TRAIN,10_events,
+"*test row do not delete*","Department of Other Unit Tests",,,TRAINR,10_events,
 "*test row do not delete*","Department of Other Unit Tests",,,TRAINS,,
 "*test row do not delete*","Department of Other Unit Tests",UPCOM,,,within30d,
 "*test row do not delete*","Department of Other Unit Tests",UPCOM2,,,within30d,

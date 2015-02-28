@@ -37,10 +37,14 @@ var EventsCard = {
         });
 
         var grouped_events = EventsCard.group_by_date(event_data.events);
+        //determine if disclosure is required
+        var needs_disclosure = (grouped_events[0].length > 0);
+
         EventsCard.dom_target.html(template({display_card: true,
-                                             grouped_events: grouped_events,
+                                             grouped_events_display: grouped_events[0],
+                                             grouped_events_hide: grouped_events[1],
                                              has_events: event_data.events.length > 0,
-                                             needs_disclosure: false,
+                                             needs_disclosure: grouped_events[0],
                                              multi_active: active_name_url.length > 1,
                                              active_events: active_events,
                                              active_name_url: active_name_url,
@@ -59,8 +63,10 @@ var EventsCard = {
 
     group_by_date: function (event_data) {
         // assumes events are sorted server side
-        var grouped_events = [],
-            last_date = null
+        var hide_events = [],
+            show_events = [],
+            last_date_show = null,
+            last_date_hide = null,
             idx = 0,
             i = 0;
 
@@ -70,25 +76,38 @@ var EventsCard = {
             var date = event.start.split(" ")[0];
 
             var day = moment(date).calendar();
-            if (day !== last_date) {
-                // Don't increment day index on first event
-                if (i > 0){
-                    idx += 1;
+            var formatted_date = null;
+            if (i < 6) {
+                if (day !== last_date_show) {
+                    // Don't increment day index on first event
+                    if (i > 0){
+                        idx += 1;
+                    }
+
+                    last_date_show = day;
+                    formatted_date = moment(date).format("dddd, MMMM D");
+                    show_events[idx] = {'date_string': formatted_date,
+                                            'events': []};
+
                 }
-
-                last_date = day;
-                var formatted_date = moment(date).format("dddd, MMMM D");
-                grouped_events[idx] = {'date_string': formatted_date,
-                                        'events': []};
-                grouped_events[idx].events.push(event);
-
+                show_events[idx].events.push(event);
             } else {
-                grouped_events[idx].events.push(event);
+                if (day !== last_date_hide) {
+                    // Don't increment day index on first event
+                    if (i > 0){
+                        idx += 1;
+                    }
+
+                    last_date_hide = day;
+                    formatted_date = moment(date).format("dddd, MMMM D");
+                    hide_events[idx] = {'date_string': formatted_date,
+                                            'events': []};
+
+                }
+                hide_events[idx].events.push(event);
             }
-
-
         }
-        return grouped_events;
+        return [show_events, hide_events];
     },
 
     fix_event_time: function (timestamp) {
