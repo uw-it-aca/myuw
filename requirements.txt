@@ -6,12 +6,12 @@ django-compressor
 BeautifulSoup
 urllib3
 django-templatetag-handlebars
-AuthZ-Group==1.1.2
 Django-UserService==1.0.2
 unittest2
 #  If you're using a MySQL database, you may also need mysql-python
 # mysql-python
--e git://github.com/uw-it-aca/uw-restclients.git#egg=RestClients
+UW-Restclients==1.0.3
+AuthZ-Group
 -e git+https://github.com/abztrakt/django-mobileesp/#egg=django_mobileesp
 -e git+https://github.com/uw-it-aca/django-supporttools.git#egg=SupportTools
 -e git://github.com/vegitron/permissions_logging#egg=PermissionsLogging
