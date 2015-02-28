@@ -45,7 +45,7 @@ def get_values_by_date(now, request):
         # switches at the grade submission deadline.
         is_after_grade_submission_deadline = True
 
-    if now.date() <= current_term.first_day_quarter + timedelta(days=7):
+    if now.date() < current_term.first_day_quarter + timedelta(days=8):
         # till the end of 7-day (exclude the first day)
         is_before_eof_7days_of_term = True
 
