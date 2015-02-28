@@ -37,7 +37,10 @@ def get_events(dept_cals, now):
             start = _get_date(event.get('dtstart').dt)
             if start > now:
                 if start < now + timedelta(days=14):
-                    return_data['events'].append(json_for_event(event))
+                    cal_url = cal[cal_id]
+                    return_data['events'].append(json_for_event(event,
+                                                                cal_url,
+                                                                cal_id))
                 elif start < now + timedelta(days=30):
                     if cal_id in return_data['active_cals']:
                         return_data['active_cals'][cal_id]['count'] += 1
@@ -80,7 +83,7 @@ def _get_date(date):
     return date
 
 
-def parse_event_url(event):
+def parse_event_url(event, cal_url, cal_id):
     uid = event.get('uid')
 
     matches = re.match('.*?(\d+)$', uid)
@@ -88,15 +91,18 @@ def parse_event_url(event):
         return
 
     event_id = matches.group(1)
+    base_url = get_calendar_url(cal_id)
+    if cal_url is not None:
+        base_url = cal_url
 
-    url = ("http://www.washington.edu/calendar/"
-           "?trumbaEmbed=view%%3Devent%%26eventid%%3D%s" % (event_id))
+    url = ("%s?trumbaEmbed=view%%3Devent%%26eventid%%3D%s" %
+           (base_url, event_id))
 
     return url
 
 
 def get_calendar_url(calendar_id):
-    url = "http://www.washington.edu/calendar/%s/" % calendar_id
+    url = "http://www.trumba.com/calendar/%s" % calendar_id
 
     return url
 
@@ -105,9 +111,9 @@ def parse_event_location(event):
     return event.get('location')
 
 
-def json_for_event(event):
+def json_for_event(event, cal_url, cal_id):
     start = parse_dates(event)
-    event_url = parse_event_url(event)
+    event_url = parse_event_url(event, cal_url, cal_id)
     event_location = parse_event_location(event)
 
     return {

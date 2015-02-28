@@ -17,9 +17,6 @@ def get_calendars_for_current_user(request):
 
 def _get_calendars(enrollments):
     calendars = []
-    print enrollments['is_grad']
-    print enrollments['minors']
-    print enrollments['majors']
 
     calendars = calendars + get_calendars_for_minors(enrollments['minors'])
     if enrollments['is_grad']:
@@ -27,7 +24,6 @@ def _get_calendars(enrollments):
         calendars = calendars + grad_cals
     else:
         calendars = calendars + get_calendars_for_majors(enrollments['majors'])
-    print calendars
     return calendars
 
 
