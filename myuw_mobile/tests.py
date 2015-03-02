@@ -31,4 +31,6 @@ from myuw_mobile.test.api.uwemail import TestUWEmail as TestUwEmailAPI
 from myuw_mobile.test.api.academic_calendar import TestCalendarAPI
 from myuw_mobile.test.template_tags import TestNetidHash
 from myuw_mobile.test.context_processors import TestContextProcessors
+from myuw_mobile.test.views.mobile_login import TestLoginRedirects
+from myuw_mobile.test.views.rest_dispatch import TestDispatchErrorCases
 from myuw_mobile.test.loggers import TestSessionLog
