@@ -6,7 +6,6 @@ from myuw_mobile.dao.building import get_buildings_by_schedule
 from myuw_mobile.dao.canvas import get_canvas_enrolled_courses
 from myuw_mobile.dao.canvas import get_indexed_by_decrosslisted
 from myuw_mobile.dao.course_color import get_colors_by_schedule
-from myuw_mobile.dao.pws import get_contact
 from myuw_mobile.dao.gws import is_grad_student
 from myuw_mobile.dao.schedule import get_schedule_by_term
 from myuw_mobile.dao.schedule import filter_schedule_sections_by_summer_term
