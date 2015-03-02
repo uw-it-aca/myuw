@@ -1,11 +1,12 @@
 from django.test import TestCase
 from django.conf import settings
-
+from restclients.models import ClassSchedule, Term, Section, Person
 from myuw_mobile.dao.course_color import get_colors_by_regid_and_schedule
 from myuw_mobile.dao.schedule import _get_schedule
-from restclients.models.sws import ClassSchedule, Term, Section, Person
+
 
 class TestCourseColors(TestCase):
+
     def test_single_course(self):
         term = Term()
         term.year = 2012
@@ -31,8 +32,8 @@ class TestCourseColors(TestCase):
 
         colors = get_colors_by_regid_and_schedule(person.regid, schedule)
 
-        self.assertEquals(colors[section.section_label()], 1, "Single course section gets the first color")
-
+        self.assertEquals
+        (colors[section.section_label()], 1, "one section gets the 1st color")
 
     # This is MUWM-266
     def test_098(self):
@@ -59,8 +60,8 @@ class TestCourseColors(TestCase):
         schedule.sections.append(section)
 
         colors = get_colors_by_regid_and_schedule(person.regid, schedule)
-        self.assertEquals(colors[section.section_label()], 1, "Single course section gets the first color")
-
+        self.assertEquals
+        (colors[section.section_label()], 1, "one section gets the 1st color")
 
     def test_2_courses(self):
         term = Term()
@@ -96,9 +97,10 @@ class TestCourseColors(TestCase):
 
         colors = get_colors_by_regid_and_schedule(person.regid, schedule)
 
-        self.assertEquals(colors[section.section_label()], 1, "First course section gets the first color")
-        self.assertEquals(colors[section2.section_label()], 2, "Second section gets the second color")
-
+        self.assertEquals
+        (colors[section.section_label()], 1, "1st section gets the 1st color")
+        self.assertEquals
+        (colors[section2.section_label()], 2, "2nd section gets the 2nd color")
 
     def test_primary_secondary(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
@@ -109,10 +111,14 @@ class TestCourseColors(TestCase):
             schedule = _get_schedule(regid, term)
             colors = get_colors_by_regid_and_schedule(regid, schedule)
 
-            self.assertEquals(colors["2012,summer,PHYS,121/A"], 1, "Primary gets the 1st color")
-            self.assertEquals(colors["2012,summer,PHYS,121/AC"], "1a", "Secondary gets the 1st color, secondary version")
-            self.assertEquals(colors["2012,summer,PHYS,121/AQ"], "1a", "Second secondary gets the 1st color, secondary version")
-
+            self.assertEquals
+            (colors["2012,summer,PHYS,121/A"], 1, "Primary gets the 1st color")
+            msg = "Secondary gets the 1st color, secondary version"
+            self.assertEquals(
+                colors["2012,summer,PHYS,121/AC"], "1a", msg)
+            msg = "Second secondary gets the 1st color, secondary version"
+            self.assertEquals(
+                colors["2012,summer,PHYS,121/AQ"], "1a", msg)
 
     def test_drop_then_new_add(self):
         term = Term()
@@ -146,7 +152,8 @@ class TestCourseColors(TestCase):
 
         schedule.sections.append(section2)
 
-        # Get the colors for the first round - doesn't matter what they are though
+        # Get the colors for the first round -
+        # doesn't matter what they are though
         colors = get_colors_by_regid_and_schedule(person.regid, schedule)
 
         schedule.sections = []
@@ -163,7 +170,8 @@ class TestCourseColors(TestCase):
 
         colors = get_colors_by_regid_and_schedule(person.regid, schedule)
 
-        self.assertEquals(colors[section.section_label()], 1, "First course section gets the first color")
+        self.assertEquals
+        (colors[section.section_label()], 1, "1st section gets the 1st color")
 
         try:
             c2 = colors[section2.section_label()]
@@ -171,8 +179,8 @@ class TestCourseColors(TestCase):
         except KeyError as ex:
             pass
 
-        self.assertEquals(colors[section3.section_label()], 3, "3rd section gets the 3rd color")
-
+        self.assertEquals
+        (colors[section3.section_label()], 3, "3rd section gets the 3rd color")
 
     def test_swap_order(self):
         term = Term()
@@ -208,17 +216,19 @@ class TestCourseColors(TestCase):
 
         colors = get_colors_by_regid_and_schedule(person.regid, schedule)
 
-
         schedule.sections = []
         schedule.sections.append(section2)
         schedule.sections.append(section)
         colors = get_colors_by_regid_and_schedule(person.regid, schedule)
-        self.assertEquals(colors[section.section_label()], 1, "First course section gets the first color")
-        self.assertEquals(colors[section2.section_label()], 2, "Second section gets the second color")
-
+        self.assertEquals
+        (colors[section.section_label()], 1, "1st section gets the 1st color")
+        self.assertEquals
+        (colors[section2.section_label()], 2, "2nd section gets the 2nd color")
 
     def test_around_the_top(self):
-        """ This tests that we go over the 8 color limit, and reuse blanks """
+        """
+        go over the 8 color limit, and reuse blanks
+        """
         term = Term()
         term.year = 2012
         term.quarter = "autumn"
@@ -256,8 +266,6 @@ class TestCourseColors(TestCase):
         section3.is_primary_section = True
         schedule.sections.append(section3)
 
-
-
         section4 = Section()
         section4.term = term
         section4.curriculum_abbr = "MATH"
@@ -265,8 +273,6 @@ class TestCourseColors(TestCase):
         section4.section_id = "A"
         section4.is_primary_section = True
         schedule.sections.append(section4)
-
-
 
         section5 = Section()
         section5.term = term
@@ -276,8 +282,6 @@ class TestCourseColors(TestCase):
         section5.is_primary_section = True
         schedule.sections.append(section5)
 
-
-
         section6 = Section()
         section6.term = term
         section6.curriculum_abbr = "MATH"
@@ -285,8 +289,6 @@ class TestCourseColors(TestCase):
         section6.section_id = "A"
         section6.is_primary_section = True
         schedule.sections.append(section6)
-
-
 
         section7 = Section()
         section7.term = term
@@ -301,13 +303,13 @@ class TestCourseColors(TestCase):
         schedule.sections.append(section)
         schedule.sections.append(section7)
 
-
         colors = get_colors_by_regid_and_schedule(person.regid, schedule)
         self.assertEquals(len(colors), 2, "Only has colors for 2 courses")
 
-        self.assertEquals(colors[section.section_label()], 1, "First course section gets the first color")
-        self.assertEquals(colors[section7.section_label()], 7, "7th section gets the 7th color")
-
+        self.assertEquals
+        (colors[section.section_label()], 1, "1st section gets the 1st color")
+        self.assertEquals
+        (colors[section7.section_label()], 7, "7th section gets the 7th color")
 
         section8 = Section()
         section8.term = term
@@ -325,27 +327,33 @@ class TestCourseColors(TestCase):
         section9.is_primary_section = True
         schedule.sections.append(section9)
 
-
-
         colors = get_colors_by_regid_and_schedule(person.regid, schedule)
         self.assertEquals(len(colors), 4, "Only has colors for 4 courses")
 
-        self.assertEquals(colors[section.section_label()], 1, "First course section gets the first color")
-        self.assertEquals(colors[section7.section_label()], 7, "7th section gets the 7th color")
-        self.assertEquals(colors[section8.section_label()], 8, "8th section gets the 8th color")
-        self.assertEquals(colors[section9.section_label()], 2, "9th section gets the 2nd color")
+        self.assertEquals
+        (colors[section.section_label()], 1, "1st section gets the 1st color")
+        self.assertEquals
+        (colors[section7.section_label()], 7, "7th section gets the 7th color")
+        self.assertEquals
+        (colors[section8.section_label()], 8, "8th section gets the 8th color")
+        self.assertEquals
+        (colors[section9.section_label()], 2, "9th section gets the 2nd color")
 
         schedule.sections.append(section6)
 
         colors = get_colors_by_regid_and_schedule(person.regid, schedule)
         self.assertEquals(len(colors), 5, "Only has colors for 5 courses")
 
-        self.assertEquals(colors[section.section_label()], 1, "First course section gets the first color")
-        self.assertEquals(colors[section7.section_label()], 7, "7th section gets the 7th color")
-        self.assertEquals(colors[section8.section_label()], 8, "8th section gets the 8th color")
-        self.assertEquals(colors[section9.section_label()], 2, "0th section gets the 2nd color")
-        self.assertEquals(colors[section6.section_label()], 3, "6th section gets the 3rd color when readded")
-
+        self.assertEquals
+        (colors[section.section_label()], 1, "1st section gets the 1st color")
+        self.assertEquals
+        (colors[section7.section_label()], 7, "7th section gets the 7th color")
+        self.assertEquals
+        (colors[section8.section_label()], 8, "8th section gets the 8th color")
+        self.assertEquals
+        (colors[section9.section_label()], 2, "0th section gets the 2nd color")
+        self.assertEquals
+        (colors[section6.section_label()], 3, "6th section gets the 3rd color when readded")
 
     def test_over_8(self):
         term = Term()
@@ -385,8 +393,6 @@ class TestCourseColors(TestCase):
         section3.is_primary_section = True
         schedule.sections.append(section3)
 
-
-
         section4 = Section()
         section4.term = term
         section4.curriculum_abbr = "MATH"
@@ -394,8 +400,6 @@ class TestCourseColors(TestCase):
         section4.section_id = "A"
         section4.is_primary_section = True
         schedule.sections.append(section4)
-
-
 
         section5 = Section()
         section5.term = term
@@ -405,8 +409,6 @@ class TestCourseColors(TestCase):
         section5.is_primary_section = True
         schedule.sections.append(section5)
 
-
-
         section6 = Section()
         section6.term = term
         section6.curriculum_abbr = "MATH"
@@ -415,8 +417,6 @@ class TestCourseColors(TestCase):
         section6.is_primary_section = True
         schedule.sections.append(section6)
 
-
-
         section7 = Section()
         section7.term = term
         section7.curriculum_abbr = "MATH"
@@ -424,7 +424,6 @@ class TestCourseColors(TestCase):
         section7.section_id = "A"
         section7.is_primary_section = True
         schedule.sections.append(section7)
-
 
         section8 = Section()
         section8.term = term
@@ -454,16 +453,25 @@ class TestCourseColors(TestCase):
 
         self.assertEquals(len(colors), 10, "has 10 colors")
 
-        self.assertEquals(colors[section.section_label()], 1, "First course section gets the first color")
-        self.assertEquals(colors[section2.section_label()], 2, "2nd section gets the 2nd color")
-        self.assertEquals(colors[section3.section_label()], 3, "3rd section gets the 3rd color")
-        self.assertEquals(colors[section4.section_label()], 4, "4th section gets the 4th color")
-        self.assertEquals(colors[section4.section_label()], 4, "4th section gets the 4th color")
-        self.assertEquals(colors[section5.section_label()], 5, "5th section gets the 5th color")
-        self.assertEquals(colors[section6.section_label()], 6, "6th section gets the 6th color")
-        self.assertEquals(colors[section7.section_label()], 7, "7th section gets the 7th color")
-        self.assertEquals(colors[section8.section_label()], 8, "8th section gets the 8th color")
-        self.assertEquals(colors[section9.section_label()], 1, "9th section gets the 1st color")
-        self.assertEquals(colors[section10.section_label()], 2, "10th section gets the 2nd color")
-
-
+        self.assertEquals
+        (colors[section.section_label()], 1, "1st section gets the 1st color")
+        self.assertEquals
+        (colors[section2.section_label()], 2, "2nd section gets the 2nd color")
+        self.assertEquals
+        (colors[section3.section_label()], 3, "3rd section gets the 3rd color")
+        self.assertEquals
+        (colors[section4.section_label()], 4, "4th section gets the 4th color")
+        self.assertEquals
+        (colors[section4.section_label()], 4, "4th section gets the 4th color")
+        self.assertEquals
+        (colors[section5.section_label()], 5, "5th section gets the 5th color")
+        self.assertEquals
+        (colors[section6.section_label()], 6, "6th section gets the 6th color")
+        self.assertEquals
+        (colors[section7.section_label()], 7, "7th section gets the 7th color")
+        self.assertEquals
+        (colors[section8.section_label()], 8, "8th section gets the 8th color")
+        self.assertEquals
+        (colors[section9.section_label()], 1, "9th section gets the 1st color")
+        self.assertEquals
+        (colors[section10.section_label()], 2, "10th section gets the 2nd color")

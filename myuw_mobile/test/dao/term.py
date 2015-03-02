@@ -11,12 +11,11 @@ from myuw_mobile.dao.term import get_next_quarter
 
 from restclients.models.sws import ClassSchedule, Term, Section, Person
 
+
 class TestTerm(TestCase):
 
     def test_get_term(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
-
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
             term = _get_term_by_year_and_quarter(2013, "summer")
             self.assertEqual(term.year, 2013)
             self.assertEqual(term.quarter, "summer")
@@ -24,11 +23,8 @@ class TestTerm(TestCase):
             now_request.session = {}
             self.assertFalse(is_past(term, now_request))
 
-
     def test_is_past(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
-
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
             term = _get_term_by_year_and_quarter(2014, "winter")
             self.assertEqual(term.year, 2014)
             self.assertEqual(term.quarter, "winter")
@@ -43,7 +39,6 @@ class TestTerm(TestCase):
             now_request.session = {}
             self.assertTrue(is_past(term, now_request))
 
-
     def test_default_date(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
             date = get_default_date()
@@ -57,7 +52,6 @@ class TestTerm(TestCase):
             self.assertEquals(date.year, now.year)
             self.assertEquals(date.month, now.month)
             self.assertEquals(date.day, now.day)
-
 
     def test_is_using_file_dao(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
@@ -80,7 +74,6 @@ class TestTerm(TestCase):
             self.assertEquals(no_override.year, 2014)
             self.assertEquals(no_override.month, 1)
             self.assertEquals(no_override.day, 1)
-
 
     def test_current_quarter(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
@@ -110,7 +103,6 @@ class TestTerm(TestCase):
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'spring')
-
 
             now_request.session["myuw_override_date"] = "2013-03-31"
             quarter = get_current_quarter(now_request)
