@@ -19,11 +19,11 @@ var EventsCard = {
         var event_data = WSData.dept_event_data();
         var active_events = 0;
         var active_name_url = [];
-        for (var key in event_data.active_cals){
-            if (event_data.active_cals.hasOwnProperty(key)){
-                active_events += event_data.active_cals[key].count;
-                active_name_url.push({title: event_data.active_cals[key].title,
-                                      url: event_data.active_cals[key].base_url});
+        for (var key in event_data.future_active_cals){
+            if (event_data.future_active_cals.hasOwnProperty(key)){
+                active_events += event_data.future_active_cals[key].count;
+                active_name_url.push({title: event_data.future_active_cals[key].title,
+                                      url: event_data.future_active_cals[key].base_url});
             }
         }
         if (event_data.events.length === 0 && active_events === 0){
