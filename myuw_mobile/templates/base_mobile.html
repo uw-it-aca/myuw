@@ -49,9 +49,10 @@
     <div id="app_header">
         <div class="header-bar" role="navigation" aria-labeledby="header_navigation">
 	        <!--Added for screen reader -->
-	        <h2 id="header_navigation" class="sr-only">Navigation Links</h2> 
+	        <!--h2 id="header_navigation" class="sr-only">Links for Navigation</h2--> 
             <div class="container clearfix">
-                <div class="pull-left header-myuw"><a href="/mobile/landing" title="Return to Home">MYUW</a></div>
+	            
+                <div class="pull-left header-myuw"><a href="/mobile/landing" title="Go to MyUWHome">MYUW</a></div>
                 	<div class="pull-right">
 	                	<ul id="top_navigation_link_list" class="top_navigation_list">
 		                    <li><div class="header-email" id="uwemail"></div></li>
@@ -64,7 +65,7 @@
         <div class="header-cover" role="banner">
             <div class="container clearfix">
                 <div id="profile">
-                    <h3 class="sr-only">Profile Information and Release Settings</h3>
+                    <!--h2 class="sr-only">Profile Information and Release Settings</h2--><!--Removed as we have one inside the disclosure-->
                     <div class="header-netid">
                         <a href="#" id="toggle_my_profile" aria-controls="my_profile">{{ user.netid }}
                             <i id="my_profile_arrow" class="fa fa-chevron-down"></i>
@@ -89,12 +90,8 @@
     
     <!-- footer -->
     <div id="app_footer">
-        
-        
         <div class="container navigation-bar" role="navigation" aria-labeledby="categories"> 
-            
             <h2 id="categories" class="sr-only">Navigation to other Resources</h2>
-            
             <ul class="clearfix navigation-list">
                 <li class="pull-left">
                     <a href="/mobile/resource/academics" class="navigation-item hover"><span class="navigation-item-text">Academics</span></a>
@@ -115,7 +112,6 @@
                     <a href="/mobile/resource/employment" class="navigation-item hover"><span class="navigation-item-text">Employment</span></a>
                 </li>
             </ul>
-            
         </div>
     
         <div class="footer-bar" role="contentinfo">         

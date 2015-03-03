@@ -4,16 +4,13 @@
 
 <div class="card clearfix"  data-name="HFSCard" data-type="card">
 
-    <h3>Husky Card &amp; Dining</h3>
-    
-    <div class="card-badge-container">
-        
+    <h3 title="Husky Card and Dining account balances">Husky Card &amp; Dining</h3>
+    <div class="card-badge-container">    
         {{#if hfs_data.student_husky_card}}
-            
         <div class="card-badge clearfix">
             {{#with hfs_data.student_husky_card}}
             <div class="pull-left">
-                <span class="card-badge-label">Student Husky Card</span>
+                <h4 class="card-badge-label">Student Husky Card</h4>
             </div>
             <div class="pull-right">
                 <span class="card-badge-value">${{ formatPrice balance }}</span>
@@ -31,7 +28,7 @@
         <div class="card-badge clearfix">
             {{#with hfs_data.employee_husky_card}}
             <div class="pull-left">
-                <span class="card-badge-label">Employee Husky Card</span>
+                <h4 class="card-badge-label">Employee Husky Card</h4>
             </div>
             <div class="pull-right">
                 <span class="card-badge-value">${{ formatPrice balance }}</span>
@@ -48,7 +45,7 @@
         <div class="card-badge clearfix">
             {{#with hfs_data.resident_dining}}
             <div class="pull-left">
-                <span class="card-badge-label">Resident Dining</span>
+                <h4 class="card-badge-label">Resident Dining</h4>
             </div>
             <div class="pull-right">
                 <span class="card-badge-value">${{ formatPrice balance }}</span>

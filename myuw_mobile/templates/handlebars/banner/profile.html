@@ -1,19 +1,18 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "profile-content" %}
 
-    <h3 class="sr-only">Profile Information and Release Settings</h3>
     <span id="profile_toggle_hidden" style="display: none;">Show profile information</span>
     <span id="profile_toggle_displayed" style="display: none;">Hide profile information</span>
     <div class="header-netid"><a href="#" id="toggle_my_profile">{{ uwnetid }} <i id="my_profile_arrow" class="fa fa-chevron-down" role="presentation"></i></a></div>
     <div class="header-profile slide-hide" id="my_profile" aria-hidden="true" style="display: none;">
+	    <h2 class="sr-only">Student profile information</h2>
         <div style="margin-bottom: 60px;">
-
             <div class="profile-student-info">
-	            <h5 class="sr-only">Student name</h5>
+	            <span class="sr-only">Student name:</span>
                 <span class="profile_name">{{first_name}} {{last_name}}</span><br/>
                 {{#if student_number}}
-                	<h5 class="sr-only">Student number</h5>
-                    Student Number: <span class="">{{student_number}}</span>
+                	<!--h5 class="sr-only">Student number</h5-->
+                    <span class="">Student Number: {{student_number}}</span>
                 {{/if}}
                 <!-- {{#if campus}}
                     Campus: <span class="">{{capitalizeString campus}}</span>
@@ -30,8 +29,7 @@
             </div>
 
             <div class="profile-local-address">
-	            <h5 class="sr-only">Local Address</h5>
-                <h5>Local Address</h5>
+                <h3>Local Address</h3>
                 {{#with local_address}}
                     {{#if street_line2}}
                     <div><span class="">{{street_line2}}</span></div>
@@ -52,8 +50,7 @@
 
             {{#if permanent_address}}
             <div class="profile-perm-address">
-	            <h5 class="sr-only">Permanent Address</h5>
-                <h5>Permanent Address</h5>
+                <h3>Permanent Address</h3>
                 {{#with permanent_address}}
                     {{#if street_line2}}
                     <div><span class="">{{street_line2}}</span></div>
@@ -72,7 +69,7 @@
             </div>
             {{/if}}
             <div class="profile-section profile-release">   
-	           	<h5 class="sr-only">Profile information release settings</h5>             
+	           	<h3 class="sr-only">Profile privacy settings</h3>
                 {{#if directory_release}}
                 <strong>Your profile information is currently <em>public</em></strong>
                 <ul>
