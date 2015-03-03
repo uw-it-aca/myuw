@@ -40,6 +40,15 @@ var EventsCard = {
         //determine if disclosure is required
         var needs_disclosure = (grouped_events[0].length > 0);
 
+        //determine if more than one active cals
+        var multi_cal = (Object.keys(event_data.active_cals).length > 1);
+        var cal_links = [];
+        for (var key2 in event_data.active_cals) {
+            if (event_data.active_cals.hasOwnProperty(key2)){
+                cal_links.push(event_data.active_cals[key2]);
+            }
+        }
+
         EventsCard.dom_target.html(template({display_card: true,
                                              grouped_events_display: grouped_events[0],
                                              grouped_events_hide: grouped_events[1],
@@ -48,7 +57,9 @@ var EventsCard = {
                                              multi_active: active_name_url.length > 1,
                                              active_events: active_events,
                                              active_name_url: active_name_url,
-                                             active_count: active_name_url.length
+                                             active_count: active_name_url.length,
+                                             multi_cal: multi_cal,
+                                             cal_links: cal_links
                                         }));
         EventsCard.add_events();
     },

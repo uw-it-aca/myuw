@@ -38,6 +38,21 @@
                             <a id="toggle_event_card_resources" aria-controls="..." href="#" title="Expand to show additional events">SHOW MORE</a>
                         </div>
                     {{ /if }}
+                    {{ #if multi_cal }}
+                        <div class="myuw-events-calendar-link"> See all events from:
+                            <ul class="myuw-events-list">
+                                {{ #each cal_links }}
+                                <li><a href="{{ url }}">{{ title }}</a></li>
+                                {{ /each }}
+                            </ul>
+                        </div>
+                    {{ else }}
+                        {{ #each cal_links }}
+                        <div class="myuw-events-calendar-link"> <a href="{{ url }}">See all events from {{ title }} calendar.</a>
+                        </div>
+                        {{ /each }}
+                    {{ /if }}
+
                 {{ else }}
                 <!-- calendar link when no events in next 14 days but some in 30 days -->
                     {{ #if multi_active }}
@@ -66,15 +81,6 @@
                                 <div class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> Student Union Building (HUB)</em></div>
                             </li>
                         </ul>
-                        <!-- calendar links if events from multiple calendars -->
-                        <div class="myuw-events-calendar-link"> See all events from:
-                            <ul class="myuw-events-list">
-                                <li><a href="#">School of Art - Division of Design</a></li>
-                                <li><a href="#">Biology</a></li>
-                                <li><a href="#">College of Engineering</a></li>
-                            </ul>
-                        </div>
-                        <!-- end if -->
                     </div>
                 {{ /if }}
             </div>

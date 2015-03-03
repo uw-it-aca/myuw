@@ -2,7 +2,7 @@ BEGIN:VCALENDAR
 PRODID:-//Trumba Corporation//Trumba Calendar Services 0.11.12128//EN
 VERSION:2.0
 CALSCALE:GREGORIAN
-X-WR-CALNAME:Department of Two Events+
+X-WR-CALNAME:Department of Two Events
 X-WR-TIMEZONE:America/Los_Angeles
 METHOD:PUBLISH
 BEGIN:VTIMEZONE
