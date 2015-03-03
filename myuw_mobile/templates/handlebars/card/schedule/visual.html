@@ -3,8 +3,41 @@
 {{#if total_sections}}
 
 <div class="card">
-	<!--span id="class-schedule" class="sr-only">Class schedule</span-->
-    <!--h3 id="quarter-info" aria-labelledby="class-schedule"-->
+	<!--Adding SR only final exam schedule-->
+	<h3 class="sr-only">Your {{ucfirst quarter}} {{year}} final exam</h3>
+	<div class="final_schedule_table sr-only">
+	     <table>
+	         <thead>
+	             <tr>
+	                 <th scope="col">Class</th>
+	                 <th scope="col">Exam date and time</th>
+	                 <th scope="col">Exam location</th>
+	             </tr>
+	         </thead>
+	         <tbody>
+	             {{#each list_data}}
+	             <tr>
+	                 <th scope="row">{{curriculum_abbr}} {{course_number}} {{course_title}}</td>
+	                 {{#with final_exam}}
+	                 <td>{{formatDateAsDate start_date}}, {{formatDateAsTimeAMPM start_date}} - {{formatDateAsTimeAMPM end_date}}</td>
+	                 <td>
+	                     {{#if building_tbd}}
+	                     Room TBD
+	                     {{else}}
+	                         {{#if latitude}}
+	                         <a href="http://maps.google.com/maps?q={{latitude }},{{longitude }}+({{encodeForMaps building_name}})&z=18" target="_blank" class="show_map_modal" rel="{{building_name}}">
+	                         {{/if}}
+	                         {{building}} {{room_number}}
+	                         {{#if final_exam.latitude}}</a>{{/if}}
+	                     {{/if}}
+	                 </td>
+	                 {{/with}}
+	             </tr>
+	             {{/each}}
+	         </tbody>
+	     </table>
+	</div>
+	
     <h3 id="quarter-info" aria-hidden="true">
         {{ucfirst quarter}} {{year}} Courses
         {{#if summer_term}}
@@ -75,8 +108,6 @@
     <!-- begin - if there are meetings with times to be arranged -->  
     {{#if courses_meeting_tbd }}
     <div class="courseTBD" aria-hidden="true">
-        <h4>Courses with meeting times to be determined:</h4>
-        
         {{#each courses_meeting_tbd }} 
 	    <div class="pull-left course-box"> 
 	        <div class="c{{color_id}} course-info">{{curriculum}} {{course_number}}&nbsp;{{section_id}}</div>
@@ -89,42 +120,7 @@
     <!-- end - if there are meetings with times to be arranged --> 
 
     <div class="card-disclosure" aria-hidden="true"><a class="show_finalexams" id="toggle_finalexams" href="#" aria-controls="final_exam_schedule_card"  title="Show Final Exam Schedule">Show Final Exam Schedule</a></div>
-    <div id="final_exam_schedule_panel" class="slide-hide" aria-hidden="true"></div>
-
-	<!--Adding SR only final exam schedule-->
-	<div class="final_schedule_table sr-only">
-	     <table>
-	         <thead>
-	             <tr>
-	                 <th scope="col">Class</th>
-	                 <th scope="col">Exam date and time</th>
-	                 <th scope="col">Exam location</th>
-	             </tr>
-	         </thead>
-	         <tbody>
-	             {{#each list_data}}
-	             <tr>
-	                 <th scope="row">{{curriculum_abbr}} {{course_number}} {{course_title}}</td>
-	                 {{#with final_exam}}
-	                 <td>{{formatDateAsDate start_date}}, {{formatDateAsTimeAMPM start_date}} - {{formatDateAsTimeAMPM end_date}}</td>
-	                 <td>
-	                     {{#if building_tbd}}
-	                     Room TBD
-	                     {{else}}
-	                         {{#if latitude}}
-	                         <a href="http://maps.google.com/maps?q={{latitude }},{{longitude }}+({{encodeForMaps building_name}})&z=18" target="_blank" class="show_map_modal" rel="{{building_name}}">
-	                         {{/if}}
-	                         {{building}} {{room_number}}
-	                         {{#if final_exam.latitude}}</a>{{/if}}
-	                     {{/if}}
-	                 </td>
-	                 {{/with}}
-	             </tr>
-	             {{/each}}
-	         </tbody>
-	     </table>
-	</div>
-    
+    <div id="final_exam_schedule_panel" class="slide-hide" aria-hidden="true"></div>    
 </div>
 
 {{/if}}
