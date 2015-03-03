@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.conf import settings
 from django.test.client import Client
 from django.core.urlresolvers import reverse
 from unittest2 import skipIf
@@ -19,47 +20,21 @@ import json
                                 ),
                    AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
                    )
-class TestNotices(TestCase):
+class TestDispatchErrorCases(TestCase):
     def setUp(self):
         self.client = Client()
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
-    def test_javerage_books(self):
-        url = reverse("myuw_notices_api")
+    def test_javerage(self):
+        url = reverse("myuw_book_api", kwargs={'year': 2013, 'quarter': 'spring', 'summer_term': ''})
         get_user('javerage')
         self.client.login(username='javerage', password=get_user_pass('javerage'))
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
 
-        data = json.loads(response.content)
+        response = self.client.put(url)
+        self.assertEquals(response.status_code, 405)
 
-        self.assertEquals(len(data), 6)
-        self.assertEquals(data[0]["is_read"], False)
+        response = self.client.post(url)
+        self.assertEquals(response.status_code, 405)
 
-        hash_value = data[0]["id_hash"]
-
-        response = self.client.put(url, data='{"notice_hashes":["%s"]}' % hash_value)
-
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.content, '')
-
-
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
-
-        data = json.loads(response.content)
-
-        self.assertEquals(len(data), 6)
-
-        match = False
-        for el in data:
-            if el["id_hash"] == hash_value:
-                match = True
-                self.assertEquals(el["is_read"], True)
-
-        self.assertEquals(match, True)
-
-        response = self.client.put(url, data='{"notice_hashes":["fake-fake-fake"]}')
-
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.content, '')
+        response = self.client.delete(url)
+        self.assertEquals(response.status_code, 405)

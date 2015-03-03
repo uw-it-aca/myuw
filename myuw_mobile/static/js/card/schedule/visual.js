@@ -259,8 +259,5 @@ var VisualScheduleCard = {
                }, 700);
             }
         });
-        
-        // hide visual schedule from screen readers
-        $("#VisualScheduleCard").attr('aria-hidden', 'true');
-    },
+    }
 };

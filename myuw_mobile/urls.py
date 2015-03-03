@@ -9,25 +9,27 @@ from myuw_mobile.views.api.profile import MyProfile
 from myuw_mobile.views.api.category_links import CategoryLinks
 from myuw_mobile.views.api.other_quarters import RegisteredFutureQuarters
 from myuw_mobile.views.api.uwemail import UwEmail
-from myuw_mobile.views.api.textbook import Textbook
-from myuw_mobile.views.logout import Logout
+from myuw_mobile.views.api.textbook import Textbook, TextbookCur
 from myuw_mobile.views.api.notices import Notices
+from myuw_mobile.views.api.academic_events import AcademicEvents
 from myuw_mobile.views.page import index
 from django.contrib.auth.decorators import login_required
 
 
 urlpatterns = patterns(
     'myuw_mobile.views',
-    url(r'login', 'mobile_login.user_login'),
+    url(r'login', 'mobile_login.user_login', name="myuw_login"),
     url(r'admin/dates', 'display_dates.override'),
     url(r'^logger/(?P<interaction_type>\w+)$', 'logger.log_interaction'),
-    url(r'logout', login_required(Logout.as_view())),
+    url(r'^api/v1/book/current/?$',
+        login_required(TextbookCur().run),
+        name="myuw_current_book"
+        ),
     url(r'^api/v1/book/(?P<year>\d{4}),(?P<quarter>[a-z]+)'
-        r'(?P<summer_term>[-,abterm]*)$',
+        r'(?P<summer_term>[-,fulabterm]*)$',
         login_required(Textbook().run),
         name="myuw_book_api"
         ),
-
     url(r'^api/v1/categorylinks/(?P<category_id>.*?)$',
         login_required(CategoryLinks().run),
         name="myuw_links_api"),
@@ -60,5 +62,10 @@ urlpatterns = patterns(
         login_required(StudClasScheFutureQuar().run),
         name="myuw_future_schedule_api"
         ),
+    url(r'^api/v1/academic_events$', login_required(AcademicEvents().run),
+        name="myuw_academic_calendar"),
+    url(r'^api/v1/academic_events/current/$',
+        login_required(AcademicEvents().run), {'current': True},
+        name="myuw_academic_calendar_current"),
     url(r'.*', 'page.index', name="myuw_home"),
 )

@@ -44,6 +44,47 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
     });
 })();
 
+(function() {
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    function _get_date(d) {
+        return new Date(d.replace(/-/g, "/") + " 00:00:00");
+    }
+
+    function _date_range(d1, d2) {
+        var date1 = _get_date(d1);
+        var date2 = _get_date(d2);
+
+        if (date1.getMonth() == date2.getMonth() && date1.getYear() == date2.getYear()) {
+            return [months[date1.getMonth()], date1.getDate(), "-", date2.getDate()].join(" ");
+        }
+        else {
+            return [months[date1.getMonth()], date1.getDate(), "-", months[date2.getMonth()], date2.getDate()].join(" ");
+        }
+    }
+
+    Handlebars.registerHelper('acal_banner_date_format', function(d1, d2) {
+        if (typeof(d2) != 'string' || d1 == d2) {
+            var date1 = _get_date(d1);
+            return [months[date1.getMonth()], date1.getDate(), "("+days[date1.getDay()]+")"].join(" ");
+        }
+        else {
+            return _date_range(d1, d2);
+        }
+    });
+    Handlebars.registerHelper('acal_page_date_format', function(d1, d2) {
+        if (typeof(d2) != 'string' || d1 == d2) {
+            var date1 = _get_date(d1);
+            return [months[date1.getMonth()], date1.getDate()].join(" ");
+        }
+        else {
+            return _date_range(d1, d2);
+        }
+
+    });
+})();
+
 Handlebars.registerHelper("toUrlSafe", function(str) {
     return str.replace(/ /g, "%20");
 });

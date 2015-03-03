@@ -1,0 +1,206 @@
+{
+    "ClassLevel": "SENIOR",
+    "FullName": "AVERAGE,JOHN JOSEPH",
+    "HonorsProgram": false,
+    "LeaveEndQuarter": 0,
+    "LeaveEndYear": 0,
+    "Majors": [{
+            "Abbreviation": "ACMS",
+            "Campus": "Seattle",
+            "DegreeLevel": 1,
+            "DegreeName": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
+            "DegreeType": 5,
+            "FullName": "App & Comp Math Sci (Social & Behav Sci)",
+            "MajorName": "ACMS (SOC & BEH SCI)",
+            "Pathway": 80,
+            "ShortName": "ACMS (SBS)"
+        }],
+    "Minors":[{"Abbreviation":"ASL",
+        "CampusName":"Seattle",
+        "FullName":"American Sign Language",
+        "Name":"AMERICAN SIGN LANGUAGE",
+        "Pathway":0,
+        "ShortName":"ASL"}],
+    "PendingClassChange": false,
+    "PendingHonorsChange": false,
+    "PendingMajorChange": false,
+    "PendingResidentChange": false,
+    "PendingSpecialProgramChange": false,
+    "Person": {
+        "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494FFE.json",
+        "Name": "AVERAGE,JAMES",
+        "RegID": "9136CCB8F66711D5BE060004AC494FFE"
+    },
+    "QtrGradePoints": 30,
+    "QtrGradedAttmp": 10,
+    "QtrNonGrdEarned": 2,
+    "RegID": "9136CCB8F66711D5BE060004AC494FFE",
+    "Registrations": [
+        {
+            "AddAccessCode": "",
+            "Auditor": false,
+            "Credits": " 2.0",
+            "DropAccessCode": "",
+            "DuplicateCode": "1",
+            "FacultySequenceNumber": "",
+            "FeeBaseType": "",
+            "Grade": "CR",
+            "GradeDate": "",
+            "GradeDocumentID": "061102100",
+            "HonorsCourse": false,
+            "IsActive": true,
+            "Person": {
+                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494FFE.json",
+                "Name": "AVERAGE,JAMES",
+                "RegID": "9136CCB8F66711D5BE060004AC494FFE"
+            },
+            "RepeatCourse": false,
+            "RequestDate": "",
+            "RequestStatus": "",
+            "Section": {
+                "Href": "/student/v5/course/2013,spring,TRAIN,101/A.json",
+                "CourseNumber": "101",
+                "CurriculumAbbreviation": "TRAIN",
+                "Quarter": "spring",
+                "SectionID": "A",
+                "Year": "2013"
+            },
+            "VariableCredit": false,
+            "WritingCourse": false
+        },
+        {
+            "AddAccessCode": "",
+            "Auditor": false,
+            "Credits": " 5.0",
+            "DropAccessCode": "",
+            "DuplicateCode": "1",
+            "FacultySequenceNumber": "",
+            "FeeBaseType": "",
+            "Grade": "2.9",
+            "GradeDate": "",
+            "GradeDocumentID": "061702503",
+            "HonorsCourse": false,
+            "IsActive": true,
+            "Person": {
+                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494FFE.json",
+                "Name": "AVERAGE,JAMES",
+                "RegID": "9136CCB8F66711D5BE060004AC494FFE"
+            },
+            "RepeatCourse": false,
+            "RequestDate": "",
+            "RequestStatus": "",
+            "Section": {
+                "Href": "/student/v5/course/2013,spring,TRAIN,100/A.json",
+                "CourseNumber": "100",
+                "CurriculumAbbreviation": "TRAIN",
+                "Quarter": "spring",
+                "SectionID": "A",
+                "Year": "2013"
+            },
+            "VariableCredit": false,
+            "WritingCourse": false
+        },
+        {
+            "AddAccessCode": "",
+            "Auditor": false,
+            "Credits": " 3.0",
+            "DropAccessCode": "",
+            "DuplicateCode": "1",
+            "FacultySequenceNumber": "",
+            "FeeBaseType": "",
+            "Grade": "3.1",
+            "GradeDate": "",
+            "GradeDocumentID": "061702510",
+            "HonorsCourse": false,
+            "IsActive": true,
+            "Person": {
+                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494FFE.json",
+                "Name": "AVERAGE,JAMES",
+                "RegID": "9136CCB8F66711D5BE060004AC494FFE"
+            },
+            "RepeatCourse": false,
+            "RequestDate": "",
+            "RequestStatus": "",
+            "Section": {
+                "Href": "/student/v5/course/2013,spring,PHYS,121/A.json",
+                "CourseNumber": "121",
+                "CurriculumAbbreviation": "PHYS",
+                "Quarter": "spring",
+                "SectionID": "A",
+                "Year": "2013"
+            },
+            "VariableCredit": false,
+            "WritingCourse": true
+        },
+        {
+            "AddAccessCode": "",
+            "Auditor": false,
+            "Credits": " 1.0",
+            "DropAccessCode": "",
+            "DuplicateCode": "1",
+            "FacultySequenceNumber": "",
+            "FeeBaseType": "",
+            "Grade": "3.1",
+            "GradeDate": "",
+            "GradeDocumentID": "061702510",
+            "HonorsCourse": false,
+            "IsActive": true,
+            "Person": {
+                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494FFE.json",
+                "Name": "AVERAGE,JAMES",
+                "RegID": "9136CCB8F66711D5BE060004AC494FFE"
+            },
+            "RepeatCourse": false,
+            "RequestDate": "",
+            "RequestStatus": "",
+            "Section": {
+                "Href": "/student/v5/course/2013,spring,PHYS,121/AC.json",
+                "CourseNumber": "121",
+                "CurriculumAbbreviation": "PHYS",
+                "Quarter": "spring",
+                "SectionID": "AC",
+                "Year": "2013"
+            },
+            "VariableCredit": false,
+            "WritingCourse": true
+        },
+        {
+            "AddAccessCode": "",
+            "Auditor": false,
+            "Credits": " 1.0",
+            "DropAccessCode": "",
+            "DuplicateCode": "1",
+            "FacultySequenceNumber": "",
+            "FeeBaseType": "",
+            "Grade": "3.1",
+            "GradeDate": "",
+            "GradeDocumentID": "061702510",
+            "HonorsCourse": false,
+            "IsActive": true,
+            "Person": {
+                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494FFE.json",
+                "Name": "AVERAGE,JAMES",
+                "RegID": "9136CCB8F66711D5BE060004AC494FFE"
+            },
+            "RepeatCourse": false,
+            "RequestDate": "",
+            "RequestStatus": "",
+            "Section": {
+                "Href": "/student/v5/course/2013,spring,PHYS,121/AQ.json",
+                "CourseNumber": "121",
+                "CurriculumAbbreviation": "PHYS",
+                "Quarter": "spring",
+                "SectionID": "AQ",
+                "Year": "2013"
+            },
+            "VariableCredit": false,
+            "WritingCourse": true
+        }
+
+    ],
+    "Term": {
+        "Href": "/student/v5/term/2013,spring.json",
+        "Quarter": "spring",
+        "Year": "2013"
+    }
+}

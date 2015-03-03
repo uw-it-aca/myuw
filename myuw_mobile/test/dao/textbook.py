@@ -1,8 +1,8 @@
 from django.test import TestCase
 from myuw_mobile.dao.schedule import _get_schedule
 from restclients.models import Term
-from myuw_mobile.dao.textbook import get_textbook_by_schedule, \
-    get_verba_link_by_schedule
+from myuw_mobile.dao.textbook import get_textbook_by_schedule
+from myuw_mobile.dao.textbook import get_verba_link_by_schedule
 
 
 class TestTextbooks(TestCase):

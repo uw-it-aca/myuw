@@ -4,7 +4,7 @@ This module provides access to registered class schedule and sections
 
 import logging
 import traceback
-from restclients.models import ClassSchedule
+from restclients.models.sws import ClassSchedule
 from restclients.sws.registration import get_schedule_by_regid_and_term
 from myuw_mobile.dao.pws import get_regid_of_current_user
 from myuw_mobile.dao.term import get_current_quarter, get_next_quarter
