@@ -8,26 +8,27 @@ from myuw_mobile.dao.calendar_mapping import \
 class TestCalendarMapping(TestCase):
     def test_get_by_major(self):
         cals = get_calendars_for_majors(['TRAIN'])
-        self.assertEqual(len(cals), 1)
-        self.assertTrue('sea_art' in cals[0])
-        self.assertEqual(cals[0]['sea_art'],
+        self.assertEqual(len(cals), 3)
+        self.assertTrue('5_current' in cals[0])
+        self.assertEqual(cals[0]['5_current'],
                          'http://art.washington.edu/calendar/')
 
     def test_get_by_minor(self):
-        cals = get_calendars_for_minors(['TRAIN'])
-        self.assertEqual(len(cals), 1)
-        self.assertTrue('organic' in cals[0])
+        cals = get_calendars_for_minors(['TRAINR'])
+        self.assertEqual(len(cals), 3)
+        self.assertTrue('2_current' in cals[0])
 
-        self.assertIsNone(cals[0]['organic'])
+        self.assertIsNone(cals[0]['2_current'])
 
     def test_get_by_gradmajor(self):
-        cals = get_calendars_for_gradmajors(['TRAIN'])
-        self.assertEqual(len(cals), 2)
+        cals = get_calendars_for_gradmajors(['UPCOM'])
+        self.assertEqual(len(cals), 3)
         cal_ids = []
         for cal in cals:
             cal_ids = cal_ids + cal.keys()
-        self.assertIn('10_events', cal_ids)
-        self.assertIn('sea_art', cal_ids)
+        self.assertIn('future_1', cal_ids)
+        self.assertIn('far_future', cal_ids)
+        self.assertIn('past', cal_ids)
 
     def test_no_calendar(self):
         cals = get_calendars_for_gradmajors(['TRAINS'])
@@ -38,5 +39,7 @@ class TestCalendarMapping(TestCase):
         self.assertEqual(len(cals), 0)
 
     def test_dupe_calendar(self):
-        cals = get_calendars_for_gradmajors(['TRAINR', 'TRAIN'])
-        self.assertEqual(len(cals), 2)
+        major_cals = get_calendars_for_majors(['TRAIN'])
+        minor_cals = get_calendars_for_minors(['TRAINR'])
+        cals = major_cals + minor_cals
+        self.assertEqual(len(cals), 5)
