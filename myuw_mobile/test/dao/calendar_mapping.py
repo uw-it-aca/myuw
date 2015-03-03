@@ -2,44 +2,55 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 from myuw_mobile.dao.calendar_mapping import \
     get_calendars_for_minors, get_calendars_for_majors, \
-    get_calendars_for_gradmajors, _get_enrollments
+    get_calendars_for_gradmajors, _get_enrollments, \
+    _get_calendars
 
 
 class TestCalendarMapping(TestCase):
     def test_get_by_major(self):
-        cals = get_calendars_for_majors(['TRAIN'])
+        enrollments = {'majors': ['TRAIN'],
+                       'minors': [],
+                       'is_grad': False}
+
+        cals = _get_calendars(enrollments)
         self.assertEqual(len(cals), 3)
-        self.assertTrue('5_current' in cals[0])
-        self.assertEqual(cals[0]['5_current'],
+        self.assertTrue('5_current' in cals)
+        self.assertEqual(cals['5_current'],
                          'http://art.washington.edu/calendar/')
 
     def test_get_by_minor(self):
-        cals = get_calendars_for_minors(['TRAINR'])
-        self.assertEqual(len(cals), 3)
-        self.assertTrue('2_current' in cals[0])
+        enrollments = {'majors': [],
+                       'minors': ['TRAINR'],
+                       'is_grad': False}
 
-        self.assertIsNone(cals[0]['2_current'])
+        cals = _get_calendars(enrollments)
+        self.assertEqual(len(cals), 3)
+        self.assertTrue('2_current' in cals)
+
+        self.assertIsNone(cals['2_current'])
 
     def test_get_by_gradmajor(self):
-        cals = get_calendars_for_gradmajors(['UPCOM'])
-        self.assertEqual(len(cals), 3)
-        cal_ids = []
-        for cal in cals:
-            cal_ids = cal_ids + cal.keys()
-        self.assertIn('future_1', cal_ids)
-        self.assertIn('far_future', cal_ids)
-        self.assertIn('past', cal_ids)
+        enrollments = {'majors': ['UPCOM'],
+                       'minors': [],
+                       'is_grad': True}
 
-    def test_no_calendar(self):
-        cals = get_calendars_for_gradmajors(['TRAINS'])
-        self.assertEqual(len(cals), 0)
+        cals = _get_calendars(enrollments)
+        self.assertEqual(len(cals), 3)
+        self.assertIn('future_1', cals)
+        self.assertIn('far_future', cals)
+        self.assertIn('past', cals)
+
 
     def test_unknown_major(self):
-        cals = get_calendars_for_gradmajors(['WTFBBQ'])
+        enrollments = {'majors': ['WTFBBQ'],
+                       'minors': [],
+                       'is_grad': False}
+        cals = _get_calendars(enrollments)
         self.assertEqual(len(cals), 0)
 
     def test_dupe_calendar(self):
-        major_cals = get_calendars_for_majors(['TRAIN'])
-        minor_cals = get_calendars_for_minors(['TRAINR'])
-        cals = major_cals + minor_cals
+        enrollments = {'majors': ['TRAIN'],
+                       'minors': ['TRAINR'],
+                       'is_grad': False}
+        cals = _get_calendars(enrollments)
         self.assertEqual(len(cals), 5)
