@@ -20,11 +20,10 @@ def get_events(dept_cals, now):
     return_data = {'active_cals': {},
                    'events': []}
     events_by_cal = {}
-    for cal in dept_cals:
-        cal_id = None
-        for key in cal.keys():
-            cal_id = key
-        events_by_cal[cal_id] = {'cal': cal,
+    for key in dept_cals:
+        cal_id = key
+        cal_url = dept_cals[key]
+        events_by_cal[cal_id] = {'cal': cal_url,
                                  'events': []}
         t_cal = get_calendar_by_name(cal_id)
         cal_events = []
@@ -37,7 +36,6 @@ def get_events(dept_cals, now):
             start = _get_date(event.get('dtstart').dt)
             if start > now:
                 if start < now + timedelta(days=14):
-                    cal_url = cal[cal_id]
                     return_data['events'].append(json_for_event(event,
                                                                 cal_url,
                                                                 cal_id))
@@ -46,7 +44,7 @@ def get_events(dept_cals, now):
                         return_data['active_cals'][cal_id]['count'] += 1
                     else:
                         title = t_cal.get('x-wr-calname').to_ical()
-                        cal_url = cal[cal_id]
+
                         if cal_url is None:
                             cal_url = get_calendar_url(cal_id)
                         active_data = {'count': 1,
@@ -95,8 +93,9 @@ def parse_event_url(event, cal_url, cal_id):
     if cal_url is not None:
         base_url = cal_url
 
-    url = ("%s?trumbaEmbed=view%%3Devent%%26eventid%%3D%s" %
-           (base_url, event_id))
+    url = base_url \
+        + "?trumbaEmbed=view%%3Devent%%26eventid%%3D"\
+        + event_id
 
     return url
 
