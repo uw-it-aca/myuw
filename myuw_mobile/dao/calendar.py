@@ -17,8 +17,9 @@ def api_request(request):
 
 
 def get_events(dept_cals, now):
-    return_data = {'active_cals': {},
-                   'events': []}
+    return_data = {'future_active_cals': {},
+                   'events': [],
+                   'active_cals': {}}
     events_by_cal = {}
     for key in dept_cals:
         cal_id = key
@@ -39,9 +40,13 @@ def get_events(dept_cals, now):
                     return_data['events'].append(json_for_event(event,
                                                                 cal_url,
                                                                 cal_id))
+                    title = t_cal.get('x-wr-calname').to_ical()
+                    url = get_calendar_url(cal_id)
+                    return_data['active_cals'][cal_id] = {'title': title,
+                                                          'url': url}
                 elif start < now + timedelta(days=30):
-                    if cal_id in return_data['active_cals']:
-                        return_data['active_cals'][cal_id]['count'] += 1
+                    if cal_id in return_data['future_active_cals']:
+                        return_data['future_active_cals'][cal_id]['count'] += 1
                     else:
                         title = t_cal.get('x-wr-calname').to_ical()
 
@@ -51,7 +56,7 @@ def get_events(dept_cals, now):
                                        'title': title,
                                        'base_url': cal_url}
 
-                        return_data['active_cals'][cal_id] = active_data
+                        return_data['future_active_cals'][cal_id] = active_data
     return return_data
 
 

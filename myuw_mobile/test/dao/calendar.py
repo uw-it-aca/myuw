@@ -15,28 +15,28 @@ class TestCalendar(TestCase):
         now = date(2013, 04, 15)
         cal = {'far_future': None}
         event_response = get_events(cal, now)
-        self.assertEqual(len(event_response['active_cals']), 0)
+        self.assertEqual(len(event_response['future_active_cals']), 0)
         self.assertEqual(len(event_response['events']), 0)
 
     def test_past_events(self):
         now = date(2013, 04, 15)
         cal = {'past': None}
         event_response = get_events(cal, now)
-        self.assertEqual(len(event_response['active_cals']), 0)
+        self.assertEqual(len(event_response['future_active_cals']), 0)
         self.assertEqual(len(event_response['events']), 0)
 
     def test_future(self):
         now = date(2013, 04, 15)
         cal = {'future_1': None}
         event_response = get_events(cal, now)
-        self.assertEqual(len(event_response['active_cals']), 1)
+        self.assertEqual(len(event_response['future_active_cals']), 1)
         self.assertEqual(len(event_response['events']), 0)
 
     def test_current(self):
         now = date(2013, 04, 15)
         cal = {'5_current': None}
         event_response = get_events(cal, now)
-        self.assertEqual(len(event_response['active_cals']), 0)
+        self.assertEqual(len(event_response['future_active_cals']), 0)
         self.assertEqual(len(event_response['events']), 5)
 
     def test_event_url(self):
@@ -57,3 +57,12 @@ class TestCalendar(TestCase):
         event_response = get_events(cal, now)
         self.assertEqual(event_response['events'][0]['summary'], 'Organic Chemistry Seminar: Prof. Matthew Becker1')
         self.assertEqual(event_response['events'][4]['summary'], 'Organic Chemistry Seminar: Prof. Matthew Becker4')
+
+    def test_active_cals(self):
+        now = date(2013, 04, 15)
+        cal = {'5_current': None}
+        event_response = get_events(cal, now)
+        self.assertEqual(len(event_response['active_cals']), 1)
+        self.assertIn('5_current', event_response['active_cals'])
+        self.assertEqual(event_response['active_cals']['5_current']['url'], "http://www.trumba.com/calendar/5_current")
+        self.assertEqual(event_response['active_cals']['5_current']['title'], "Department of Five Events")
