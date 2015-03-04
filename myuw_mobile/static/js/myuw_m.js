@@ -3,6 +3,7 @@ var data;
 
 $(document).ready(function() {
     init_logging();
+    init_profile_events();
     var course_data = null;
     var book_data = null;
     // This is to prevent multiple events on load from making
@@ -37,16 +38,6 @@ $(document).ready(function() {
             $("#landing").addClass("active");
             document.title = window.page_titles.landing;
         }
-        else if (state === "course_list") {
-            // Figure out what to do from the url
-            CourseList.show_list(data.term, data.course_index);
-            $("#nav_course_list").addClass("active");
-            document.title = window.page_titles.course_list;
-        }
-        else if (state === "instructor") {
-            Instructor.show_instructor(data.term, data.instructor);
-            document.title = window.page_titles.instructor;
-        }
         else if (state === "future_quarters") {
             FutureQuarter.render(data.term);
             document.title = window.page_titles.future_quarters;
@@ -54,28 +45,6 @@ $(document).ready(function() {
         else if (state === "textbooks") {
             TextBooks.show_books(data.term, data.textbook);
             document.title = window.page_titles.textbooks;
-        }
-        else if (state === "finabala") {
-            HfsAccounts.show_balances();
-            $("#nav_finabala").addClass("active");
-            document.title = window.page_titles.finabala;
-        }
-        else if (state === "visual") {
-            VisualSchedule.show_visual_schedule(data.term, data.course_index);
-            $("#nav_visual_schedule").addClass("active");
-            document.title = window.page_titles.visual;
-        }
-        else if (state === "final_exams") {
-            FinalExams.show_finals(data.term, data.course_index);
-            document.title = window.page_titles.finals;
-        }
-        else if (state === "grades") {
-            Grades.show_grades(data.term);
-            document.title = window.page_titles.grades;
-        }
-        else if (state === "libraries") {
-            Libraries.show_card();
-            document.title = window.page_titles.libraries;
         }
         else if (state === "notices") {
             Notices.show_notices();
@@ -86,7 +55,10 @@ $(document).ready(function() {
             // Document title is set in the category.js file - custom per category
             //document.title = window.page_titles["category_page"];
         }
-
+        else if (state === "academic_calendar") {
+            AcademicCalendar.show_events();
+            document.title = window.page_titles.academic_calendar;
+        }
 
         loaded_url = state_url;
     });
@@ -102,42 +74,6 @@ $(document).ready(function() {
                 state: "landing",
             },  "", "/mobile/landing/");
             return;
-        }
-        else if (path.match(/^\/mobile\/[0-9]{4},[a-z]+[,-abterm]*$/)) {
-            matches = path.match(/^\/mobile\/([0-9]{4},[a-z]+[,-abterm]*)$/);
-            var state = "course_list";
-            var term = matches[1];
-            hist.replaceState({
-                state: "course_list",
-                term: matches[1]
-            }, "", "/mobile/"+matches[1]);
-        }
-        else if (path.match(/^\/mobile\/visual\/[^\/]+\/[0-9]+$/)) {
-            matches = path.match(/^\/mobile\/visual\/([^\/]+)\/([0-9]+)/);
-            hist.replaceState({
-                state: "visual",
-                term: matches[1],
-                course_index: matches[2]
-            },  "", "/mobile/visual/"+matches[1]+"/"+matches[2]);
-        }
-        else if (path.match(/^\/mobile\/visual\/[0-9]{4},[a-z]+[,-abterm]*$/)) {
-            matches = path.match(/^\/mobile\/visual\/([0-9]{4},[a-z]+[,-abterm]*)$/);
-            hist.replaceState({
-                state: "visual",
-                term: matches[1]
-            },  "", "/mobile/visual/"+matches[1]);
-        } 
-        else if (path.match(/^\/mobile\/visual\/[0-9]+$/)) {
-            matches = path.match(/^\/mobile\/visual\/([0-9]+)/);
-            hist.replaceState({
-                state: "visual",
-                course_index: matches[1]
-            },  "", "/mobile/visual/"+matches[1]);
-        }
-        else if (path.match(/^\/mobile\/visual\/?/)) {
-            hist.replaceState({
-                state: "visual"
-            },  "", "/mobile/visual");
         }
         else if (path.match(/^\/mobile\/landing/)) {
             hist.replaceState({
@@ -165,64 +101,12 @@ $(document).ready(function() {
                 term: "current"
             },  "", path);
         }
-        else if (path === "/mobile/finabala") {
-            hist.replaceState({
-                state: "finabala"
-            },  "", "/mobile/finabala");
-        }
         else if (path.match(/^\/mobile\/future_quarters\/[0-9]{4},[-,a-z]+/)) {
             matches = path.match(/^\/mobile\/future_quarters\/([0-9]{4},[-,a-z]+)/);
             hist.replaceState({
                 state: "future_quarters",
                 term: matches[1],
             },  "", path);
-        }
-        else if (path === "/mobile/final_exams") {
-            hist.replaceState({
-                state: "final_exams"
-            },  "", "/mobile/final_exams");
-        }
-        else if (path.match("/mobile/final_exams/[0-9]+$")) {
-            matches = path.match(/^\/mobile\/final_exams\/([0-9]+)/);
-            hist.replaceState({
-                state: "final_exams",
-                course_index: matches[1]
-            },  "", "/mobile/final_exams/"+matches[1]);
-        }
-        else if (path.match(/^\/mobile\/final_exams\/[^\/]+\/[0-9]+/)) {
-            matches = path.match(/^\/mobile\/final_exams\/([^\/]+)\/([0-9]+)/);
-            hist.replaceState({
-                state: "final_exams",
-                term: matches[1],
-                course_index: matches[2]
-            },  "", "/mobile/final_exams/"+matches[1]+"/"+matches[2]);
-        }
-        else if (path.match(/^\/mobile\/final_exams\/[^\/]+/)) {
-            matches = path.match(/^\/mobile\/final_exams\/([^\/]+)/);
-            hist.replaceState({
-                state: "final_exams",
-                term: matches[1],
-            },  "", "/mobile/final_exams/"+matches[1]);
-        }
-        else if (path.match(/^\/mobile\/instructor\/[A-Z0-9]+/)) {
-            matches = path.match(/^\/mobile\/instructor\/([A-Z0-9]+)/);
-            hist.pushState({
-                state: "instructor",
-                instructor: matches[1]
-            },  "", "/mobile/instructor/"+matches[1]);
-        }
-        else if (path.match(/^\/mobile\/grades/)) {
-            matches = path.match(/^\/mobile\/grades\/([0-9,a-z]+)/);
-            hist.replaceState({
-                state: "grades",
-                term: (matches ? matches[1] : "")
-            },  "", "/mobile/grades/" + (matches ? matches[1]
-                                                 : ""));
-        }
-        else if (path.match(/^\/mobile\/libraries/)) {
-            hist.replaceState({
-                state: "libraries",
-            },  "", "/mobile/libraries/");
         }
         else if (path.match(/^\/mobile\/notices/)) {
             hist.replaceState({
@@ -245,6 +129,12 @@ $(document).ready(function() {
                 topic: topic
             },  "", "/mobile/resource/" + slug );
         }
+        else if (path.match(/^\/mobile\/academic_calendar/)) {
+            hist.replaceState({
+                state: "academic_calendar",
+            },  "", "/mobile/academic_calendar/");
+        }
+
         else {
             // Now we fall back to the landing page
             hist.replaceState({
@@ -344,6 +234,9 @@ var titilizeTerm = function(term) {
     //Takes a term string (Eg 2032,summer,b-term) and 
     //returns a title (Eg Summer 2032 B-term)
     var pieces = term.split(",");
+    if (pieces.length === 1) {
+        return capitalizeString(string);
+    }
     var string = capitalizeString(pieces[1]) + " " + pieces[0];
     if (pieces.length > 2) {
         string += " " + capitalizeString(pieces[2]);
@@ -484,3 +377,6 @@ var _init_card_logging = function() {
 };
 
 
+var init_profile_events = function () {
+    Profile.add_events();
+};

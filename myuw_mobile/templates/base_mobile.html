@@ -59,7 +59,17 @@
                 
         <div class="header-cover">
             <div class="container clearfix">
-                <div id="profile"></div>
+                <div id="profile">
+                    <h3 class="sr-only">Profile Information and Release Settings</h3>
+                    <div class="header-netid">
+                        <a href="#" id="toggle_my_profile">{{ user.netid }}
+                            <i id="my_profile_arrow" class="fa fa-chevron-down"></i>
+                        </a>
+                    </div>
+                    <div class="header-profile slide-hide" id="my_profile" aria-hidden="true">
+                        <i class="fa fa-cog fa-spin" style="color:#ddd;"></i>
+                    </div>
+                </div>
                 <div class="header-w"><img src="{% static 'images/w-logo-white.png' %}"></div>
             </div>
             
@@ -138,15 +148,9 @@
     <script src="{% static 'js/panel/addi_course_links.js' %}"></script>
     <script src="{% static 'js/panel/no_courses.js' %}"></script>
     <script src="{% static 'js/course_list.js' %}"></script>
-    <script src="{% static 'js/course_list_card.js' %}"></script>
-    <script src="{% static 'js/course_modal.js' %}"></script> 
-    <script src="{% static 'js/final_modal.js' %}"></script>
-    <script src="{% static 'js/final_exams.js' %}"></script>
     <script src="{% static 'js/visual_schedule.js' %}"></script>
-    <script src="{% static 'js/instructor.js' %}"></script>
     <script src="{% static 'js/textbooks.js' %}"></script>
     <script src="{% static 'js/grades.js' %}"></script>
-    <script src="{% static 'js/hfs.js' %}"></script>
     <script src="{% static 'js/other_quarters.js' %}"></script>
     <script src="{% static 'js/myuw_m.js' %}"></script>
     <script src="{% static 'js/handlebars-helpers.js' %}"></script>
@@ -158,10 +162,12 @@
     <script src="{% static 'js/cards.js' %}"></script>
     <script src="{% static 'js/future.js' %}"></script>
     <script src="{% static 'js/navbar.js' %}"></script>
+    <script src="{% static 'js/academic_calendar.js' %}"></script>
     <script src="{% static 'js/banner/email.js' %}"></script>
     <script src="{% static 'js/banner/common_loading.js' %}"></script>
     <script src="{% static 'js/banner/profile.js' %}"></script>
     <script src="{% static 'js/banner/notice.js' %}"></script>
+    <script src="{% static 'js/banner/calendar.js' %}"></script>
     <script src="{% static 'js/card/error.js' %}"></script>
     <script src="{% static 'js/card/academic.js' %}"></script>
     <script src="{% static 'js/card/grade.js' %}"></script>

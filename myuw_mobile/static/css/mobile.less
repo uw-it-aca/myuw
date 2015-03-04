@@ -3,6 +3,17 @@
 @uwpurple: #4b2e84;
 @lighttan: #e8e3d3;
 @darktan: #85754d;
+@icon-break-color: #AB9765;
+
+.button-variant(@color; @background; @border) {
+color: @color;
+background-color: @background;
+border-color: @border;}
+
+.btn-myuww {
+  //.button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
+  .button-variant(#fff; #6D569B; #4A3673);
+}
 
 @yellow: #f5d300;
 @gray: #ccc;
@@ -309,6 +320,8 @@ body {
     border: none;
     border-radius: 0;
     color: #8a6d3b;
+    
+    i { display:block; float:left; padding-right:8px;}
 }
 
 .uwalert-red {
@@ -316,6 +329,8 @@ body {
     border: none;
     border-radius: 0;
     color: #a94442;
+    
+    i { display:block; float:left; padding-right:8px;}
 }
 
 .uwalert-steel {
@@ -324,7 +339,7 @@ body {
     border-radius: 0;
     color: darken(#3a87ad, 15%);
     
-    i { display: none; }
+    i { display:none; }
     h1, p { margin-left: 0; }
 }
 
@@ -400,6 +415,27 @@ body {
     .notice-unread { background-color: white; color:#444; font-weight:normal; border:1px solid #444; position: absolute; right: 15px; top: 50%; margin-top: -5px; z-index: -1; }
     
     .notice-information { font-size: 11px; font-weight:normal; display: block; white-space: nowrap; margin-top: -15px; line-height: normal; }
+}
+
+/*** academic calendar banner ***/
+.acal-break-icon {color: @icon-break-color; font-size:.7em; line-height: 20px; vertical-align: text-top;} // for both banner & acal landing page
+#app_acal { margin: 0; border-bottom: 1px solid #ddd; position: relative; padding-bottom: 15px;
+    
+    .acal-header { 
+        h2 {font-size: small; line-height: 50px; margin: 0 auto; position: relative;/*font-family: 'encode_sans_normalbold';*/color: #444; }
+        .view-all {border:none;font-size: 14px;color: #4d66ca;line-height:50px;}
+        .acal-banner-events {line-height: 24px;margin-top:10px;clear:both;
+	        .acal-banner-list { list-style-type: none;padding-left: 0;
+		        .acal-banner-list-item {margin-bottom: 8px;
+			        .acal-banner-event-container {margin: 0; width: 99%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+			        .acal-banner-date {/*font-family: 'encode_sans_normalbold';*/font-weight:bold; color:#333; line-height:10px;font-size: 14px;}
+			        a {font-weight:normal;font-size: 14px;}
+		        }
+	        }
+        }
+    }
+    
+    .acal-information { font-size: 11px; font-weight:normal; display: block; white-space: nowrap; margin-top: -15px; line-height: normal; }
 }
 
 /*** content ***/
@@ -596,6 +632,15 @@ body {
             
             h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; 
                 .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
+            }
+            
+            .textbooks-list {
+	            .textbooks-list-item { //font-size:13px;
+		            .simplesquare {display: inline-block; height: .9em; width: .9em; margin-right: 0.3em;}
+		            .textbooks-course-title {display: inline-block;width:38%;/* text-align:right; */}
+		            .textbooks-course-books {font-weight:bold;}
+		            .textbooks-course-required {font-size:12px;font-style: italic;}
+	            }
             }
             
             .destination-arrow { position:absolute; top: 50%; right: 0; margin-top:-14px; 
@@ -1100,6 +1145,28 @@ body {
     		.notice-body-with-title { color: inherit;  }
 	        .notice-body-without-title { color: inherit;  }
 	
+		}
+	}
+	
+	// academic calendar page
+	
+	.academic_cal-container {
+		.container {
+			h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444; }
+			.acal-page-filters { padding:10px 0;margin-bottom:15px;margin-top:15px; 
+				#myuw-event-filter-breaks, #myuw-event-filter-all, #myuw-event-filter-classes {font-size:15px;}
+				.myuw-selected-button {color: #fff; background-color:#4f318c;border-color: #4f318c;}
+			}
+			.acal-page-events {
+				h2 {color: #333;margin-top: 0;margin-bottom: 0;font-family: 'Roboto', sans-serif;font-weight: 400;padding:20px 0;}
+				center {border-top:1px; border-bottom:1px; border-left:0; border-right:0; border-color: #bbb; border-style: dotted; padding: 20px 0;}
+				.acal-page-event-list { list-style-type: none;padding-left: 0;
+					.acal-page-event-list-item { margin-bottom:10px;
+						.acal-page-event-date {}
+						.acal-page-event-title {margin: 0; width: 99%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}						
+					}
+				}
+			}
 		}
 	}
 

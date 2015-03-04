@@ -1,5 +1,6 @@
 WSData = {
     _book_data: {},
+    _book_data_error_status: null,
     _course_data: {},
     _course_data_error_status: null,
     _profile_data: null,
@@ -17,6 +18,9 @@ WSData = {
     _error_callbacks: {},
     _callback_args: {},
     _department_events: null,
+    _academic_calendar_data: null,
+    _current_academic_calendar_data: null,
+    _myplan_data: null,
 
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
@@ -79,6 +83,10 @@ WSData = {
 
     book_data: function(term) {
         return WSData._book_data[term];
+    },
+
+    book_data_error_code: function() {
+        return WSData._book_data_error_status;
     },
 
     course_data_error_code: function() {
@@ -186,6 +194,82 @@ WSData = {
         }
     },
 
+    academic_calendar_data: function() {
+        return WSData._academic_calendar_data;
+    },
+
+    current_academic_calendar_data: function() {
+        return WSData._current_academic_calendar_data;
+    },
+
+    myplan_data: function() {
+        return WSData._myplan_data;
+    },
+
+    fetch_academic_calendar_events: function(callback, err_callback, args) {
+        if (!WSData._academic_calendar_data) {
+            var url = "/mobile/api/v1/academic_events";
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+            $.ajax({
+                url: url,
+                dataType: "JSON",
+
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    WSData._academic_calendar_data = results;
+                    WSData._run_success_callbacks_for_url(url);
+                },
+                error: function(xhr, status, error) {
+                    WSData._run_error_callbacks_for_url(url);
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
+    fetch_current_academic_calendar_events: function(callback, err_callback, args) {
+        if (!WSData._current_academic_calendar_data) {
+            var url = "/mobile/api/v1/academic_events/current/";
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+            $.ajax({
+                url: url,
+                dataType: "JSON",
+
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    WSData._current_academic_calendar_data = results;
+                    WSData._run_success_callbacks_for_url(url);
+                },
+                error: function(xhr, status, error) {
+                    WSData._run_error_callbacks_for_url(url);
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
     fetch_book_data: function(term, callback, err_callback, args) {
         if (!WSData._book_data[term]) {
             var url = "/mobile/api/v1/book/" + term;
@@ -207,6 +291,7 @@ WSData = {
                     WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {
+                    WSData._book_data_error_status = xhr.status;
                     WSData._run_error_callbacks_for_url(url);
                 }
                 });
@@ -611,6 +696,39 @@ WSData = {
             }, 0);
         }
     },
+
+    fetch_myplan_data: function(callback, err_callback, args) {
+        if (WSData._myplan_data === null) {
+            var url = "/mobile/api/v1/myplan/";
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+            $.ajax({
+                url: url,
+                    dataType: "JSON",
+
+                    type: "GET",
+                    accepts: {html: "text/html"},
+                    success: function(results) {
+                        WSData._myplan_data = results;
+                        WSData._run_success_callbacks_for_url(url);
+                    },
+                    error: function(xhr, status, error) {
+                        WSData._run_error_callbacks_for_url(url);
+                    }
+                 });
+              }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
 
     fetch_uwemail_data: function(callback, err_callback, args) {
         if (WSData._uwemail_data === null) {

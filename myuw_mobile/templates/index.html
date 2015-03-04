@@ -8,6 +8,7 @@
     {% include "handlebars/banner/email.html" %}
     {% include "handlebars/banner/profile.html" %}
     {% include "handlebars/banner/notice.html" %}
+    {% include "handlebars/banner/calendar.html" %}
     {% include "handlebars/card/error.html" %}
     {% include "handlebars/card/academic.html" %}
     {% include "handlebars/card/fin_aid.html" %}
@@ -37,19 +38,15 @@
     {% include "handlebars/future.html" %}
     {% include "handlebars/future_410_error.html" %}
     {% include "handlebars/textbooks.html" %}
-    {% include "handlebars/course_list.html" %}
-    {% include "handlebars/course_modal.html" %}
     {% include "handlebars/error.html" %}
-    {% include "handlebars/finals_modal.html" %}
-    {% include "handlebars/final_exams.html" %}
     {% include "handlebars/hfs.html" %}
     {% include "handlebars/grades.html" %}
-    {% include "handlebars/instructor.html" %}
     {% include "handlebars/loading.html" %}
     {% include "handlebars/notices.html" %}
     {% include "handlebars/other_quarters.html" %}
     {% include "handlebars/quarter_books.html" %}
     {% include "handlebars/visual_schedule.html" %}
+    {% include "handlebars/academic_calendar.html" %}
     {% include "handlebars/category_page.html" %}
 
     <script>
@@ -65,6 +62,7 @@
         "grades": "Grades",
         "notices": "MyUW: Notices",
         "category_page": "MyUW: Category",
+        "academic_calendar": "Academic Calendar"
     };
     window.user = {
         "grad": {{ user.affiliations.grad|yesno:"true, false" }},
@@ -90,6 +88,7 @@
         "is_before_end_of_summer_reg_display_periodA": {{ card_display_dates.is_before_end_of_summer_reg_display_periodA|yesno:"true, false" }},
         "is_before_end_of_summer_reg_display_period1": {{ card_display_dates.is_before_end_of_summer_reg_display_period1|yesno:"true, false" }},
         "is_before_first_day_of_term": {{ card_display_dates.is_before_first_day_of_term|yesno:"true, false" }},
+        "is_before_eof_7days_of_term": {{ card_display_dates.is_before_eof_7days_of_term|yesno:"true, false" }},
         "last_term": "{{ card_display_dates.last_term }}"
     };
     </script>
