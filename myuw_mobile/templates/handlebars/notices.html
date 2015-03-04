@@ -36,7 +36,7 @@
                 </div>
 	            
 	            <!-- collapsy 1 content -->
-	            <div id="collapseOne" class="slide-hide clearfix" aria-hidden="true">
+	            <div id="collapseOne" class="slide-hide clearfix" aria-hidden="true" style="display: none;">
 	                <div class="disclosure-content">
 	                    <ul class="critical_notices_list">
 	                    {{ #each critical .notices }}
@@ -83,7 +83,7 @@
                 </div>
 	            
 	            <!-- collapsy 2 content -->
-	            <div id="collapseTwo" class="slide-hide" aria-hidden="true">
+	            <div id="collapseTwo" class="slide-hide" aria-hidden="true" style="display: none;">
 	                <div class="disclosure-content"> 
 	                    {{# each today.notices }}
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
@@ -130,7 +130,7 @@
                 </div>
 	            
 	            <!-- collapsy 3 content -->
-	            <div id="collapseThree" class="slide-hide" aria-hidden="true">
+	            <div id="collapseThree" class="slide-hide" aria-hidden="true" style="display: none;">
 	                <div class="disclosure-content">
 	                    {{# each week.notices }}
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
@@ -175,7 +175,7 @@
                 </div>
 	            
 	            <!-- collapsy 4 content -->
-	            <div id="collapseFour" class="slide-hide" aria-hidden="true">
+	            <div id="collapseFour" class="slide-hide" aria-hidden="true" style="display: none;">
 	                <div class="disclosure-content">
 	                    {{# each next_week.notices }}
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
