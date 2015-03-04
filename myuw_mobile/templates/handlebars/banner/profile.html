@@ -1,23 +1,18 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "profile-content" %}
 
-    <span id="profile_toggle_hidden" style="display: none;">Show profile information</span>
-    <span id="profile_toggle_displayed" style="display: none;">Hide profile information</span>
+    <span id="profile_toggle_hidden" style="display: none;" aria-hidden="true">Show profile information</span>
+    <span id="profile_toggle_displayed" style="display: none;" aria-hidden="true">Hide profile information</span>
     <div class="header-netid"><a href="#" id="toggle_my_profile">{{ uwnetid }} <i id="my_profile_arrow" class="fa fa-chevron-down" role="presentation"></i></a></div>
     <div class="header-profile slide-hide" id="my_profile" aria-hidden="true" style="display: none;">
-	    <h2 class="sr-only">Profile information</h2>
         <div style="margin-bottom: 60px;">
             <div class="profile-student-info">
 	            <h3 class="sr-only">Official name and student ID number</h3>
 	            <span class="sr-only">Student name:</span>
                 <span class="profile_name">{{first_name}} {{last_name}}</span><br/>
                 {{#if student_number}}
-                	<!--h5 class="sr-only">Student number</h5-->
                     <span class="">Student Number: {{student_number}}</span>
                 {{/if}}
-                <!-- {{#if campus}}
-                    Campus: <span class="">{{capitalizeString campus}}</span>
-                {{/if}} -->
             </div>
 
             {{#if local_address}}

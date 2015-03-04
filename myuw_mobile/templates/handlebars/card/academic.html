@@ -7,26 +7,28 @@
                 <div class="fade-in">
                 
                     <h3>Academics</h3>
-                     
+                    <ul class="academics_list"> 
                     <div class="class-standing">
-                        <h5>Class standing</h5>
-                        <p>{{ class_level }}</p>
+                        <li>
+	                        <h5>Class standing</h5>
+	                        <p>{{ class_level }}</p>
+                        </li>
                         
                         {{#if majors}}
+                        <li>
                             <h4>{{ pluralize_by_size majors "Major" "Majors"}}</h4>
-                            <ul>
-                              {{#each majors}}  
-                              <li>{{full_name}}</li>
-                              {{/each}}
-                            </ul>
+	                           	{{#each majors}}  
+							   	{{full_name}}
+							   	{{/each}}
+                        </li>
                         {{/if}}
                         {{#if minors}}
+                        <li>
                             <h4>{{ pluralize_by_size minors "Minor" "Minors"}}</h4>
-                            <ul>
-                              {{#each minors}}  
-                              <li>{{full_name}}</li>
-                              {{/each}}
-                            </ul>
+							{{#each minors}}  
+                            {{full_name}}
+                            {{/each}}
+                        </li>
                         {{/if}}
                      </div>
                      

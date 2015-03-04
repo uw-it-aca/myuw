@@ -5,7 +5,7 @@
 	  
 	  <div class="container">
 	  
-	    <h1>Notices</h1>
+	    <h2>Notices</h2>
 		<div class="notice-header-metadata">
 		    <span class="notice-count">{{ total_notices }} notices total</span>
 		    {{ #if total_notices }}
@@ -43,8 +43,8 @@
 							<li>
 		                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
 			                    <div class="inner-notice-container">
-									<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="critical_notice" ></i>
-									<span class="critical_notice sr-only">Critical Notice</span>
+									<i class="fa fa-exclamation-triangle critical-icon" aria-labelledby="critical_notice" ></i>
+									<span id="critical_notice" class="critical_notice sr-only">Critical Notice</span>
 			                        <div class="notice-category">
 				                        
 			                           {{ category }}{{ #unless is_read }}<span class="notice-new"> New</span>{{ /unless }}  

@@ -7,8 +7,10 @@
     <h3 aria-hidden="true">Husky Card &amp; Dining</h3>
     <h3 class="sr-only">Husky Card account and Dining account</h3>
     
-    <div class="card-badge-container">    
+    <div class="card-badge-container">
+	<ul style="list-style: none; padding-left: 0;" class="hfs_dining_list">    
         {{#if hfs_data.student_husky_card}}
+        <li>
         <div class="card-badge clearfix">
             {{#with hfs_data.student_husky_card}}
             <div class="pull-left">
@@ -23,11 +25,13 @@
             {{/if}}
             {{/with}}
         </div>
+        </li>
             
         {{/if}}
         
         {{#if hfs_data.employee_husky_card}}
-            
+        
+        <li>    
         <div class="card-badge clearfix">
             {{#with hfs_data.employee_husky_card}}
             <div class="pull-left">
@@ -42,10 +46,13 @@
             {{/if}}
             {{/with}}
         </div>
+        </li>
             
         {{/if}}
         
         {{#if hfs_data.resident_dining}}
+        
+        <li>
         <div class="card-badge clearfix">
             {{#with hfs_data.resident_dining}}
             <div class="pull-left">
@@ -59,8 +66,10 @@
             {{/if}}
             {{/with}}
         </div>
-        {{/if}}
+        </li>
         
+        {{/if}}
+	</ul>
         <div class="card-badge pull-right" style="margin:0; padding-bottom:0;">
             <div class="card-badge-action"><a href="{{ hfs_data.student_husky_card.add_funds_url }}">Add funds to your accounts</a></div>
         </div>
