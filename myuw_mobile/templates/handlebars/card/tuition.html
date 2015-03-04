@@ -28,10 +28,14 @@
                         {{ #unless has_balance }}
                         <!-- if tuition balance is 0 -->
                         <div class="card-badge-container">
+	                    <ul class="card_list">
+		                    <li>
                             <div class="card-badge">
                                 <span class="card-badge-label" style="line-height:20px;">{{ #if is_pce}}Your PCE tuition<br/> has been paid{{ else  }}Your tuition and fees have been paid{{ /if }}</span>
                                 <div class="card-badge-action" style="margin-top:10px; text-align:right;"><a href="https://sdb.admin.washington.edu/sisStudents/uwnetid/tuition.aspx">See tuition statement</a></div>
                             </div>
+		                    </li>
+	                    </ul>
                         </div>
                         {{ /unless }}
                         
@@ -39,6 +43,8 @@
                         
                         <!-- else, there is a balance -->
                         <div class="card-badge-container">
+	                    <ul class="card_list">
+		                    <li>
                                 <div class="card-badge clearfix">
                                      <div class="pull-left">
                                          <span class="card-badge-label">You owe</span>
@@ -49,7 +55,9 @@
 
                                     </div>
                                 </div>
+		                    </li>
                                 {{ #if tuition_date }}
+                            <li>
                                 <div class="card-badge clearfix">
                                     <div class="pull-left">  
                                         <span class="card-badge-label">Tuition due </span>
@@ -60,7 +68,9 @@
                                         <span class="card-badge-action pull-right">in {{ tuition_date_offset }} days</span>
                                     </div>
                                 </div>
+                            </li>
                                 {{ /if }}
+	                    </ul>
                         </div>
                         <!-- end if -->
                         {{ /if }}

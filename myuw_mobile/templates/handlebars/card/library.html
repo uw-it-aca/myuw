@@ -18,7 +18,9 @@
         
                 <div class="card-badge-container">
 
+				<ul class="card_list">
                     {{#if items_loaned }}
+                    <li>
                     <div class="card-badge clearfix">     
                         <div class="pull-left">                   
                             <span class="card-badge-label">Items out</span>
@@ -30,9 +32,11 @@
                         </div>
                         
                     </div>
+                    </li>
                     {{/if}}
                     
-                    {{#if next_due }}        
+                    {{#if next_due }}
+                    <li>
                     <div class="card-badge clearfix">         
                         <div class="pull-left"> 
                             <span class="card-badge-label">Next item due</span>
@@ -43,9 +47,11 @@
                             <span class="card-badge-action pull-right">{{toFromNowDate next_due}} </span> 
                         </div>
                     </div>
+                    </li>
                     {{/if}}
                         
                     {{#if fines}}
+					<li>
                     <div class="card-badge clearfix">  
                         <div class="pull-left"> 
                             <span class="card-badge-label">You owe</span>
@@ -55,7 +61,9 @@
                             <span class="card-badge-action pull-right"><a href="https://p.lib.washington.edu/payfines/">Pay fees</a></span>
                         </div>
                     </div>
+					</li>
                     {{/if}}
+				</ul>    
                 </div>
                 
                 {{#unless items_loaned }}                
