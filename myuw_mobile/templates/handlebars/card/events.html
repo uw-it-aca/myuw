@@ -7,14 +7,18 @@
             <div class="fade-in myuw-events">
                 <h3>Events</h3>
                 {{ #if has_events }}
+                <div class="myuw-events-info">Showing events in the next 14 days.</div>
                     {{ #each grouped_events_display}}
-                    <h4><strong>{{ date_string }}</strong></h4>
+                    <!-- <h4><strong>{{ date_string }}</strong></h4> -->
                     <ul class="myuw-events-list">
                         {{ #each events }}
+                        <a href="{{ event_url }}">
                             <li class="myuw-events-list-item">
-                                <div><span class="myuw-events-time">{{ start_time }}</span> <span class="myuw-events-title"><a href="{{ event_url }}">{{ summary }}</a></span></div>
+                            	<div class="myuw-events-date">Mar 3</div>
+                                <div><span class="myuw-events-time">{{ start_time }}</span> <span class="myuw-events-title">{{ summary }}</span></div>
                                 <div class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> {{ event_location }}</em></div>
                             </li>
+                        </a>
                         {{ /each }}
                     </ul>
                     {{ /each }}
@@ -35,14 +39,14 @@
                             {{ /each }}
                         </div>
                         <div class="card-disclosure">
-                            <a id="toggle_event_card_resources" aria-controls="..." href="#" title="Expand to show additional events">SHOW MORE</a>
+                            <a id="toggle_event_card_resources" aria-controls="..." href="#" title="Expand to show additional events">SHOW (2) MORE</a>
                         </div>
                     {{ /if }}
                     {{ #if multi_cal }}
-                        <div class="myuw-events-calendar-link"> See all events from:
-                            <ul class="myuw-events-list">
+                        <div class="myuw-events-calendar-link-sml"> See all events from:
+                            <ul class="myuw-events-cal-list">
                                 {{ #each cal_links }}
-                                <li><a href="{{ url }}">{{ title }}</a></li>
+                                <li class="myuw-events-cal-list-item"><a href="{{ url }}">{{ title }}</a></li>
                                 {{ /each }}
                             </ul>
                         </div>
@@ -57,15 +61,15 @@
                 <!-- calendar link when no events in next 14 days but some in 30 days -->
                     {{ #if multi_active }}
                         <div class="myuw-events-calendar-link">
-                            {{ active_events }} events from {{ active_count }} calendars in the next 30 days.
-                            <ul class="myuw-events-list">
+                            No events in the next 14 days. <strong>{{ active_events }}</strong> events from {{ active_count }} calendars in the next 30 days.
+                            <ul class="myuw-events-cal-list">
                                 {{ #each active_name_url }}
-                                    <li><a href="{{ url }}">{{ title }}</a></li>
+                                    <li class="myuw-events-cal-list-item"><a href="{{ url }}">{{ title }}</a></li>
                                 {{ /each }}
                             </ul>
                         </ div>
                     {{ else }}
-                        <div class="myuw-events-calendar-link"> {{ active_events }} events from {{ #each active_name_url }}<a href="{{ url }}">{{ title }}</a>{{ /each }} in the next 30 days.</div>
+                        <div class="myuw-events-calendar-link">No events in the next 14 days. <strong>{{ active_events }}</strong> events from {{ #each active_name_url }}<a href="{{ url }}">{{ title }}</a>{{ /each }} in the next 30 days.</div>
 
                     {{ /if }}
                     <!-- end if -->
