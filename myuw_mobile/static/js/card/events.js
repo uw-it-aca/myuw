@@ -52,6 +52,7 @@ var EventsCard = {
         EventsCard.dom_target.html(template({display_card: true,
                                              grouped_events_display: grouped_events[0],
                                              grouped_events_hide: grouped_events[1],
+                                             hidden_event_count: grouped_events[1].length,
                                              has_events: event_data.events.length > 0,
                                              needs_disclosure: needs_disclosure,
                                              multi_active: active_name_url.length > 1,

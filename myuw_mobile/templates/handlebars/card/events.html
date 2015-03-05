@@ -37,24 +37,39 @@
                                 {{ /each }}
                             </ul>
                             {{ /each }}
+                            {{ #if multi_cal }}
+                                <div class="myuw-events-calendar-link-sml"> See all events from:
+                                    <ul class="myuw-events-cal-list">
+                                        {{ #each cal_links }}
+                                        <li class="myuw-events-cal-list-item"><a href="{{ url }}">{{ title }}</a></li>
+                                        {{ /each }}
+                                    </ul>
+                                </div>
+                            {{ else }}
+                                {{ #each cal_links }}
+                                <div class="myuw-events-calendar-link"> <a href="{{ url }}">See all events from {{ title }} calendar.</a>
+                                </div>
+                                {{ /each }}
+                            {{ /if }}
                         </div>
                         <div class="card-disclosure">
-                            <a id="toggle_event_card_resources" aria-controls="..." href="#" title="Expand to show additional events">SHOW (2) MORE</a>
-                        </div>
-                    {{ /if }}
-                    {{ #if multi_cal }}
-                        <div class="myuw-events-calendar-link-sml"> See all events from:
-                            <ul class="myuw-events-cal-list">
-                                {{ #each cal_links }}
-                                <li class="myuw-events-cal-list-item"><a href="{{ url }}">{{ title }}</a></li>
-                                {{ /each }}
-                            </ul>
+                            <a id="toggle_event_card_resources" aria-controls="..." href="#" title="Expand to show additional events">SHOW ({{ hidden_event_count }}) MORE</a>
                         </div>
                     {{ else }}
-                        {{ #each cal_links }}
-                        <div class="myuw-events-calendar-link"> <a href="{{ url }}">See all events from {{ title }} calendar.</a>
-                        </div>
-                        {{ /each }}
+                            {{ #if multi_cal }}
+                                <div class="myuw-events-calendar-link-sml"> See all events from:
+                                    <ul class="myuw-events-cal-list">
+                                        {{ #each cal_links }}
+                                        <li class="myuw-events-cal-list-item"><a href="{{ url }}">{{ title }}</a></li>
+                                        {{ /each }}
+                                    </ul>
+                                </div>
+                            {{ else }}
+                                {{ #each cal_links }}
+                                <div class="myuw-events-calendar-link"> <a href="{{ url }}">See all events from {{ title }} calendar.</a>
+                                </div>
+                                {{ /each }}
+                            {{ /if }}
                     {{ /if }}
 
                 {{ else }}
