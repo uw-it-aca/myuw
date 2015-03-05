@@ -67,7 +67,9 @@ def sort_events(events):
 
 
 def parse_dates(event):
-    return format_datetime(event.get('dtstart')),
+    start = format_datetime(event.get('dtstart'))
+    end = format_datetime(event.get('dtstart'))
+    return start, end
 
 
 def format_datetime(dt):
@@ -116,13 +118,14 @@ def parse_event_location(event):
 
 
 def json_for_event(event, cal_url, cal_id):
-    start = parse_dates(event)
+    start, end = parse_dates(event)
     event_url = parse_event_url(event, cal_url, cal_id)
     event_location = parse_event_location(event)
 
     return {
         "summary": event.get('summary').to_ical(),
-        "start": start[0],
+        "start": start,
+        "end": end,
         "event_url": event_url,
         "event_location": event_location.to_ical(),
     }
