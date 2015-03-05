@@ -77,8 +77,6 @@ var EventsCard = {
         // assumes events are sorted server side
         var hide_events = [],
             show_events = [],
-            last_date_show = null,
-            last_date_hide = null,
             idx = 0,
             i = 0;
 
@@ -88,35 +86,12 @@ var EventsCard = {
             var date = event.start.split(" ")[0];
 
             var day = moment(date).calendar();
-            var formatted_date = null;
+            var formatted_date = moment(date).format("MMM D");
+            event.start_date = formatted_date;
             if (i < 6) {
-                if (day !== last_date_show) {
-                    // Don't increment day index on first event
-                    if (i > 0){
-                        idx += 1;
-                    }
-
-                    last_date_show = day;
-                    formatted_date = moment(date).format("dddd, MMMM D");
-                    show_events[idx] = {'date_string': formatted_date,
-                                            'events': []};
-
-                }
-                show_events[idx].events.push(event);
+                show_events.push(event);
             } else {
-                if (day !== last_date_hide) {
-                    // Don't increment day index on first event
-                    if (i > 0){
-                        idx += 1;
-                    }
-
-                    last_date_hide = day;
-                    formatted_date = moment(date).format("dddd, MMMM D");
-                    hide_events[idx] = {'date_string': formatted_date,
-                                            'events': []};
-
-                }
-                hide_events[idx].events.push(event);
+                hide_events.push(event);
             }
         }
         return [show_events, hide_events];
