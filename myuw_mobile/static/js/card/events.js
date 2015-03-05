@@ -38,7 +38,7 @@ var EventsCard = {
 
         var grouped_events = EventsCard.group_by_date(event_data.events);
         //determine if disclosure is required
-        var needs_disclosure = (grouped_events[0].length > 0);
+        var needs_disclosure = (grouped_events[1].length > 0);
 
         //determine if more than one active cals
         var multi_cal = (Object.keys(event_data.active_cals).length > 1);
