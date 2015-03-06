@@ -19,9 +19,7 @@
                         </a>
                     </ul>
                     {{ /each }}
-
                     {{ #if needs_disclosure }}
-
                         <div id="events_card_more" class="slide-hide" aria-hidden="true">
                             {{ #each grouped_events_hide}}
                             <ul class="myuw-events-list">
@@ -66,7 +64,6 @@
                                 {{ /each }}
                             {{ /if }}
                     {{ /if }}
-
                 {{ else }}
                 <!-- calendar link when no events in next 14 days but some in 30 days -->
                     {{ #if multi_active }}
@@ -80,22 +77,8 @@
                         </ div>
                     {{ else }}
                         <div class="myuw-events-calendar-link">No events in the next 14 days. <strong>{{ active_events }}</strong> events from {{ #each active_name_url }}<a href="{{ url }}">{{ title }}</a>{{ /each }} in the next 30 days.</div>
-
                     {{ /if }}
                     <!-- end if -->
-                    <div id="events_card_more" class="slide-hide" aria-hidden="true">
-                        <h4><strong>Saturday, May 17</strong></h4>
-                        <ul class="myuw-events-list">
-                            <li class="myuw-events-list-item">
-                                <div><span class="myuw-events-time">4:30PM</span> <span class="myuw-events-title"><a href="#">Graduate Funding Information Service Office Hours</a></span></div>
-                                <div class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> Mary Gates Hall (MGH)</em></div>
-                            </li>
-                            <li class="myuw-events-list-item">
-                                <div><span class="myuw-events-time">6:00PM</span> <span class="myuw-events-title"><a href="#">Southern India Food and Culture Night</a></span></div>
-                                <div class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> Student Union Building (HUB)</em></div>
-                            </li>
-                        </ul>
-                    </div>
                 {{ /if }}
             </div>
         </div>
