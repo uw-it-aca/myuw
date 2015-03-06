@@ -85,9 +85,6 @@ var EventsCard = {
             //Split off time range that brakes parsing
             var date = event.start.split(" ")[0];
 
-            var day = moment(date).calendar();
-            var formatted_date = moment(date).format("MMM D");
-            event.start_date = formatted_date;
             if (i < 6) {
                 show_events.push(event);
             } else {

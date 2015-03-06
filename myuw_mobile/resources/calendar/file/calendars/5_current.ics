@@ -24,10 +24,10 @@ END:DAYLIGHT
 END:VTIMEZONE
 
 BEGIN:VEVENT
-SUMMARY:Organic Chemistry Seminar: Prof. Matthew Becker1
+SUMMARY:Multi Day Event
 LOCATION:Chemistry Building (CHB)
 DTSTART;TZID=America/Los_Angeles:20130416T160000
-DTEND;TZID=America/Los_Angeles:20130418T170000
+DTEND;TZID=America/Los_Angeles:20130419T170000
 X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
 URL:http://www.uakron.edu/cpspe/about-us/faculty/profile.dot?id=454b0e41
  -0294-4c60-9bce-4fac6c2bb692
@@ -47,7 +47,7 @@ BEGIN:VEVENT
 SUMMARY:Organic Chemistry Seminar: Prof. Matthew Becker2
 LOCATION:Chemistry Building (CHB)
 DTSTART;TZID=America/Los_Angeles:20130417T160000
-DTEND;TZID=America/Los_Angeles:20130418T170000
+DTEND;TZID=America/Los_Angeles:20130417T170000
 X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
 URL:http://www.uakron.edu/cpspe/about-us/faculty/profile.dot?id=454b0e41
  -0294-4c60-9bce-4fac6c2bb692
@@ -87,7 +87,7 @@ BEGIN:VEVENT
 SUMMARY:Organic Chemistry Seminar: Prof. Matthew Becker4
 LOCATION:Chemistry Building (CHB)
 DTSTART;TZID=America/Los_Angeles:20130419T160000
-DTEND;TZID=America/Los_Angeles:20130418T170000
+DTEND;TZID=America/Los_Angeles:20130419T170000
 X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
 URL:http://www.uakron.edu/cpspe/about-us/faculty/profile.dot?id=454b0e41
  -0294-4c60-9bce-4fac6c2bb692
@@ -107,7 +107,7 @@ BEGIN:VEVENT
 SUMMARY:Organic Chemistry Seminar: Prof. Matthew Becker5
 LOCATION:Chemistry Building (CHB)
 DTSTART;TZID=America/Los_Angeles:20130417T160000
-DTEND;TZID=America/Los_Angeles:20130418T170000
+DTEND;TZID=America/Los_Angeles:20130417T170000
 X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
 URL:http://www.uakron.edu/cpspe/about-us/faculty/profile.dot?id=454b0e41
  -0294-4c60-9bce-4fac6c2bb692

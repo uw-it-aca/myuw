@@ -1,7 +1,7 @@
 from myuw_mobile.dao.term import get_comparison_date
 from myuw_mobile.dao.calendar_mapping import get_calendars_for_current_user
 from restclients.trumba import get_calendar_by_name
-from datetime import timedelta
+from datetime import timedelta, datetime
 import re
 
 # Number of future days to search for displaying events
@@ -66,7 +66,7 @@ def sort_events(events):
                   )
 
 
-def parse_dates(event):
+def parse_datetimes(event):
     start = format_datetime(event.get('dtstart'))
     end = format_datetime(event.get('dtstart'))
     return start, end
@@ -117,15 +117,26 @@ def parse_event_location(event):
     return event.get('location')
 
 
+def get_start_date(event):
+    date = event.get('dtstart').dt.date()
+    return str(date)
+
+
+def get_end_date(event):
+    date = event.get('dtend').dt.date()
+    return str(date)
+
+
 def json_for_event(event, cal_url, cal_id):
-    start, end = parse_dates(event)
+    start, end = parse_datetimes(event)
     event_url = parse_event_url(event, cal_url, cal_id)
     event_location = parse_event_location(event)
 
     return {
         "summary": event.get('summary').to_ical(),
         "start": start,
-        "end": end,
+        "start_date": get_start_date(event),
+        "end_date": get_end_date(event),
         "event_url": event_url,
         "event_location": event_location.to_ical(),
     }

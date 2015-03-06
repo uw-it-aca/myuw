@@ -55,7 +55,7 @@ class TestCalendar(TestCase):
         now = date(2013, 04, 15)
         cal = {'5_current': None}
         event_response = get_events(cal, now)
-        self.assertEqual(event_response['events'][0]['summary'], 'Organic Chemistry Seminar: Prof. Matthew Becker1')
+        self.assertEqual(event_response['events'][0]['summary'], 'Multi Day Event')
         self.assertEqual(event_response['events'][4]['summary'], 'Organic Chemistry Seminar: Prof. Matthew Becker4')
 
     def test_active_cals(self):
