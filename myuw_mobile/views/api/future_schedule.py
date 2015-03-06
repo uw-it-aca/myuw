@@ -2,6 +2,8 @@ import logging
 from django.http import HttpResponse
 from myuw_mobile.dao.term import get_quarter, is_past
 from myuw_mobile.logger.timer import Timer
+from myuw_mobile.dao.card_display_dates import get_values_by_date
+from myuw_mobile.dao.card_display_dates import get_card_visibilty_date_values
 from myuw_mobile.views.api.base_schedule import StudClasSche
 
 
@@ -26,8 +28,10 @@ class StudClasScheFutureQuar(StudClasSche):
         if not request_term:
             return HttpResponse(status=404)
 
+        visibility_data = get_card_visibilty_date_values(request)
         if is_past(request_term, request):
-            return HttpResponse(status=410)
+            if not visibility_data["is_before_first_day_of_term"]:
+                return HttpResponse(status=410)
 
         return self.make_http_resp(
             logging.getLogger(__name__),
