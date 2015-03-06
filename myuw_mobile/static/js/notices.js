@@ -93,27 +93,32 @@ var Notices = {
         $(".slide-link").on("click", function(ev) {
             ev.preventDefault();
 
-            var hidden_block = $(ev.target).closest("div.disclosure-heading").siblings(".slide-hide")[0];
+            var hidden_block = $($(ev.target).closest("div.disclosure-heading").siblings(".slide-hide")[0]);
             
-            var slide_link = this;
-                                    
-            $(hidden_block).toggleClass("slide-show");
-
-            if ($(hidden_block).hasClass("slide-show")) {
-                $(slide_link).siblings().find("i").removeClass("fa-angle-down");
-                $(slide_link).siblings().find("i").addClass("fa-angle-up");
-                $(slide_link).attr('title', 'Show less notice information');
-                $(hidden_block).attr('aria-hidden', 'false');
-                //WSData.log_interaction("show_final_card", term);
-                Notices.get_notices_in_view_and_mark_read();
+            var slide_link = $(this);
+            
+            if (hidden_block.css('display') == 'none') {
+                hidden_block.show();
+                // Without this timeout, the animation doesn't happen - the block just appears.
+                setTimeout(function() {
+                    hidden_block.toggleClass("slide-show");
+                    slide_link.siblings().find("i").removeClass("fa-angle-down");
+                    slide_link.siblings().find("i").addClass("fa-angle-up");
+                    slide_link.attr('title', 'Show less notice information');
+                    hidden_block.attr('aria-hidden', 'false');
+                    //WSData.log_interaction("show_final_card", term);
+                    Notices.get_notices_in_view_and_mark_read();
+                }, 0);
             }
             else {
-                $(slide_link).attr('title', 'Show more notice information');
-                $(hidden_block).attr('aria-hidden', 'true');
-                
+                hidden_block.toggleClass("slide-show");
+                slide_link.attr('title', 'Show more notice information');
+                hidden_block.attr('aria-hidden', 'true');
+
                 setTimeout(function() {
-                      $(slide_link).siblings().find("i").removeClass("fa-angle-up");
-                      $(slide_link).siblings().find("i").addClass("fa-angle-down");
+                    hidden_block.hide();
+                    slide_link.siblings().find("i").removeClass("fa-angle-up");
+                    slide_link.siblings().find("i").addClass("fa-angle-down");
                 }, 700);
             }
         });

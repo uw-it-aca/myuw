@@ -72,6 +72,16 @@
                     <li><a href="https://myplan.uw.edu">MyPlan</a> (Academic Planning)</li>
                     <li><a href="https://uwstudent.washington.edu/student/myplan/audit?methodToCall=audit&viewId=DegreeAudit-FormView">Degree Audit Reporting System (DARS)</a></li>
                 </ul>
+                <!-- data from MyPlan -->
+                <div style="display: none;">
+                    {{ #each plan_data }}
+                    {{ curriculum_abbr }} {{ course_number }} - {{ #if registrations_available }} Available{{/if}}
+                    <br/>
+                    {{ #each sections }}
+                    Section {{ section_id }}<br />
+                    {{ /each }}
+                    {{ /each }}
+                </div>
             </div>
             
             <div class="card-disclosure">

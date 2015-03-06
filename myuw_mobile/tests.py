@@ -34,3 +34,4 @@ from myuw_mobile.test.context_processors import TestContextProcessors
 from myuw_mobile.test.views.mobile_login import TestLoginRedirects
 from myuw_mobile.test.views.rest_dispatch import TestDispatchErrorCases
 from myuw_mobile.test.loggers import TestSessionLog
+from myuw_mobile.test.cache import TestCustomCachePolicy
