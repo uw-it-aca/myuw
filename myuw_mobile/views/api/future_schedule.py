@@ -2,7 +2,6 @@ import logging
 from django.http import HttpResponse
 from myuw_mobile.dao.term import get_quarter, is_past
 from myuw_mobile.logger.timer import Timer
-from myuw_mobile.dao.card_display_dates import get_values_by_date
 from myuw_mobile.dao.card_display_dates import get_card_visibilty_date_values
 from myuw_mobile.views.api.base_schedule import StudClasSche
 
