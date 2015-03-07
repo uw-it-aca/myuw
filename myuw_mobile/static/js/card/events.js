@@ -32,7 +32,7 @@ var EventsCard = {
         }
 
         $.each(event_data.events, function(i, event){
-            event.start = EventsCard.fix_event_time(event.start);
+            event.start = EventsCard.fix_event_time(event.start_time);
             event.start_time = moment(event.start).format('h:mm A');
         });
 
