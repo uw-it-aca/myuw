@@ -47,12 +47,6 @@ def invalid_session():
     return response
 
 
-def invalid_arg():
-    response = HttpResponse('No valid argument')
-    response.status_code = 400
-    return response
-
-
 def data_not_found():
     response = HttpResponse('Data not found')
     response.status_code = 404

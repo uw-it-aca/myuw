@@ -37,14 +37,9 @@
     {% include "handlebars/future.html" %}
     {% include "handlebars/future_410_error.html" %}
     {% include "handlebars/textbooks.html" %}
-    {% include "handlebars/course_list.html" %}
-    {% include "handlebars/course_modal.html" %}
     {% include "handlebars/error.html" %}
-    {% include "handlebars/finals_modal.html" %}
-    {% include "handlebars/final_exams.html" %}
     {% include "handlebars/hfs.html" %}
     {% include "handlebars/grades.html" %}
-    {% include "handlebars/instructor.html" %}
     {% include "handlebars/loading.html" %}
     {% include "handlebars/notices.html" %}
     {% include "handlebars/other_quarters.html" %}
@@ -92,7 +87,7 @@
         "is_before_end_of_summer_reg_display_periodA": {{ card_display_dates.is_before_end_of_summer_reg_display_periodA|yesno:"true, false" }},
         "is_before_end_of_summer_reg_display_period1": {{ card_display_dates.is_before_end_of_summer_reg_display_period1|yesno:"true, false" }},
         "is_before_first_day_of_term": {{ card_display_dates.is_before_first_day_of_term|yesno:"true, false" }},
-        "is_before_first_week_of_term": {{ card_display_dates.is_before_first_week_of_term|yesno:"true, false" }},
+        "is_before_eof_7days_of_term": {{ card_display_dates.is_before_eof_7days_of_term|yesno:"true, false" }},
         "last_term": "{{ card_display_dates.last_term }}"
     };
     </script>

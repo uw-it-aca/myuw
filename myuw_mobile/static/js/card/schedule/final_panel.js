@@ -65,14 +65,14 @@ var FinalExamSchedule = {
         // It's our current understanding that the last day of finals is always a friday -
         // grades are due on the following tuesday.  If the last day of finals isn't a friday,
         // fall back to the list view.
-        if (last_day_of_finals.getDay() != FinalExams.FRIDAY) {
+        if (last_day_of_finals.getDay() != FinalExamSchedule.FRIDAY) {
             show_list_instead_of_visual = true;
         }
 
         var list_data = [];
         var visual_data = {};
 
-        list_data = scheduled_finals.sort(FinalExams.sort_by_finals_date);
+        list_data = scheduled_finals.sort(FinalExamSchedule.sort_by_finals_date);
 
         if (course_data.quarter != "summer") {
             // summer quarter doesn't have properly scheduled finals
@@ -133,10 +133,10 @@ var FinalExamSchedule = {
             var start_date = date_from_string(final_exam.start_date);
             var end_date = date_from_string(final_exam.end_date);
 
-            if (start_date.getDay() == FinalExams.SATURDAY) {
+            if (start_date.getDay() == FinalExamSchedule.SATURDAY) {
                 visual_data.has_7_days = true;
             }
-            if (start_date.getDay() == FinalExams.SUNDAY) {
+            if (start_date.getDay() == FinalExamSchedule.SUNDAY) {
                 visual_data.has_7_days = true;
             }
 
