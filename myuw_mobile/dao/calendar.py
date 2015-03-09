@@ -29,6 +29,7 @@ def refactored_get_events(dept_cals, now):
     active_calendar_json = []
 
     active_cal_ids = []
+    current_events = sort_events(current_events)
     for event in current_events:
         json = _get_json_for_event(event)
         current_event_json.append(json)
