@@ -33,7 +33,9 @@ var EventsCard = {
 
         $.each(event_data.events, function(i, event){
             event.start = EventsCard.fix_event_time(event.start_time);
-            event.start_time = moment(event.start).format('h:mm A');
+            //moment requires a date
+            var d = "1-1-2000 " + event.start
+            event.start_time = moment(d).format('h:mm A');
         });
 
         var grouped_events = EventsCard.group_by_date(event_data.events);
