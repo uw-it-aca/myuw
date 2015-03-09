@@ -13,10 +13,10 @@ FUTURE_CUTOFF_DAYS = 30
 def api_request(request):
     current_date = get_comparison_date(request)
     calendar_ids = get_calendars_for_current_user(request)
-    return refactored_get_events(calendar_ids, current_date)
+    return get_events(calendar_ids, current_date)
 
 
-def refactored_get_events(dept_cals, now):
+def get_events(dept_cals, now):
     events = _get_all_events(dept_cals)
     events = _filter_past_events(events, now)
     current_events = _get_current_events(events, now)

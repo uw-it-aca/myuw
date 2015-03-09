@@ -6,8 +6,8 @@ from myuw_mobile.test.api import missing_url, get_user, get_user_pass
 from django.test.utils import override_settings
 import json
 
-from datetime import date
-from myuw_mobile.dao.calendar import get_events
+from datetime import date, datetime
+from myuw_mobile.dao.calendar import get_events, _get_date
 
 
 class TestCalendar(TestCase):
@@ -31,6 +31,18 @@ class TestCalendar(TestCase):
         event_response = get_events(cal, now)
         self.assertEqual(len(event_response['future_active_cals']), 1)
         self.assertEqual(len(event_response['events']), 0)
+
+
+    def test_future_two(self):
+        now = date(2013, 04, 15)
+        cal = {'future_1': None,
+               'future_2': None}
+        event_response = get_events(cal, now)
+        self.assertTrue(True)
+        self.assertEqual(len(event_response['future_active_cals']), 2)
+        self.assertEqual(len(event_response['events']), 0)
+        self.assertEqual(event_response['future_active_cals'][0]['count'], 1)
+        self.assertEqual(event_response['future_active_cals'][1]['count'], 2)
 
     def test_current(self):
         now = date(2013, 04, 15)
@@ -63,6 +75,11 @@ class TestCalendar(TestCase):
         cal = {'5_current': None}
         event_response = get_events(cal, now)
         self.assertEqual(len(event_response['active_cals']), 1)
-        self.assertIn('5_current', event_response['active_cals'])
-        self.assertEqual(event_response['active_cals']['5_current']['url'], "http://www.trumba.com/calendar/5_current")
-        self.assertEqual(event_response['active_cals']['5_current']['title'], "Department of Five Events")
+        self.assertEqual(event_response['active_cals'][0]['url'], "http://www.trumba.com/calendar/5_current")
+        self.assertEqual(event_response['active_cals'][0]['title'], "Department of Five Events")
+
+    def test_get_date(self):
+        d = date(2013, 04, 15)
+        dt = datetime(2013, 04, 15)
+        self.assertEqual(_get_date(d), d)
+        self.assertEqual(_get_date(dt), d)
