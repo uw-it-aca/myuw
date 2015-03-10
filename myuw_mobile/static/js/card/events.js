@@ -34,7 +34,7 @@ var EventsCard = {
         $.each(event_data.events, function(i, event){
             event.start = EventsCard.fix_event_time(event.start_time);
             //moment requires a date
-            var d = "1-1-2000 " + event.start
+            var d = "1-1-2000 " + event.start;
             event.start_time = moment(d).format('h:mm A');
         });
 
