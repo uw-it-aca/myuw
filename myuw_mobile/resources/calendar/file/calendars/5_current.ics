@@ -46,7 +46,7 @@ END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Organic Chemistry Seminar: Prof. Matthew Becker2
 LOCATION:Chemistry Building (CHB)
-DTSTART;TZID=America/Los_Angeles:20130417T160000
+DTSTART;TZID=America/Los_Angeles:20130417T060000
 DTEND;TZID=America/Los_Angeles:20130417T170000
 X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
 URL:http://www.uakron.edu/cpspe/about-us/faculty/profile.dot?id=454b0e41
@@ -66,8 +66,8 @@ END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Organic Chemistry Seminar: Prof. Matthew Becker3
 LOCATION:Chemistry Building (CHB)
-DTSTART;TZID=America/Los_Angeles:20130418T160000
-DTEND;TZID=America/Los_Angeles:20130418T170000
+DTSTART;TZID=America/Los_Angeles:20130418T170000
+DTEND;TZID=America/Los_Angeles:20130418T180000
 X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
 URL:http://www.uakron.edu/cpspe/about-us/faculty/profile.dot?id=454b0e41
  -0294-4c60-9bce-4fac6c2bb692
