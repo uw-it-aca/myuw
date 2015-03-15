@@ -7,29 +7,30 @@
                 <div class="fade-in">
                 
                     <h3>Academics</h3>
-                    <ul class="academics_list"> 
                     <div class="class-standing">
-                        <li>
-	                        <h5>Class standing</h5>
-	                        <p>{{ class_level }}</p>
-                        </li>
-                        
-                        {{#if majors}}
-                        <li>
-                            <h4>{{ pluralize_by_size majors "Major" "Majors"}}</h4>
-	                           	{{#each majors}}  
-							   	{{full_name}}
-							   	{{/each}}
-                        </li>
-                        {{/if}}
-                        {{#if minors}}
-                        <li>
-                            <h4>{{ pluralize_by_size minors "Minor" "Minors"}}</h4>
-							{{#each minors}}  
-                            {{full_name}}
-                            {{/each}}
-                        </li>
-                        {{/if}}
+	                    <ul class="academics_list"> 
+	                        <li>
+		                        <h5>Class standing</h5>
+		                        <p>{{ class_level }}</p>
+	                        </li>
+	                        
+	                        {{#if majors}}
+	                        <li>
+	                            <h4>{{ pluralize_by_size majors "Major" "Majors"}}</h4>
+		                           	{{#each majors}}  
+								   	{{full_name}}
+								   	{{/each}}
+	                        </li>
+	                        {{/if}}
+	                        {{#if minors}}
+	                        <li>
+	                            <h4>{{ pluralize_by_size minors "Minor" "Minors"}}</h4>
+								{{#each minors}}  
+	                            {{full_name}}
+	                            {{/each}}
+	                        </li>
+	                        {{/if}}
+	                    </ul>
                      </div>
                      
                     <div id="academic_card_resources" class="slide-hide" aria-hidden="true">
@@ -45,8 +46,8 @@
                     </div>
                     
                 
-                </div>
-            </div>     
-        </div>
+            </div>
+        </div>     
+    </div>
     {{/if}}
 {% endtplhandlebars %}
