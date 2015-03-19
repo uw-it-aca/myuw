@@ -7,6 +7,7 @@ var RegStatusCard = {
             window.card_display_dates.is_before_end_of_registration_display_period) {
             WSData.fetch_notice_data(RegStatusCard.render_upon_data,RegStatusCard.render_error);
             WSData.fetch_oquarter_data(RegStatusCard.render_upon_data, RegStatusCard.render_error);
+            WSData.fetch_myplan_data(RegStatusCard.render_upon_data, RegStatusCard.render_error);
         }
         else {
             $("#RegStatusCard").hide();
@@ -23,7 +24,7 @@ var RegStatusCard = {
     },
 
     _has_all_data: function () {
-        if (WSData.notice_data() && WSData.oquarter_data()) {
+        if (WSData.notice_data() && WSData.oquarter_data() && WSData.myplan_data()) {
             return true;
         }
         return false;
@@ -83,6 +84,14 @@ var RegStatusCard = {
             return;
         }
 
+        var all_plans = WSData.myplan_data();
+        var plan_data = null;
+        for (i = 0; i < all_plans.terms.length; i++) {
+            var plan_term = all_plans.terms[i];
+            if (plan_term.quarter == quarter) {
+                plan_data = plan_term.courses;
+            }
+        }
         //Get hold count from notice attrs
         var hold_count = reg_holds.length;
         return template({"reg_notices": reg_notices,
@@ -94,7 +103,8 @@ var RegStatusCard = {
                          "hold_count": hold_count,
                          "est_reg_date": display_reg_dates,
                          "reg_next_quarter" : quarter,
-                         "reg_next_year": year
+                         "reg_next_year": year,
+                         "plan_data": plan_data
                          });
     },
 
