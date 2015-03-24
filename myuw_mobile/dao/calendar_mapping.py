@@ -37,11 +37,11 @@ def _get_enrollments(request):
     if enrollment is not None:
         if len(enrollment.majors) > 0:
             for major in enrollment.majors:
-                majors.append(major.degree_abbr)
+                majors.append(major.degree_name)
 
         if len(enrollment.minors) > 0:
             for minor in enrollment.minors:
-                minors.append(minor.abbr)
+                minors.append(minor.short_name)
 
     return {'is_grad': is_grad_student(),
             'majors': majors,
