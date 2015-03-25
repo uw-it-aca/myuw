@@ -220,7 +220,7 @@
                 </div>
 	            
 	            <!-- collapsy 5 content -->
-	            <div id="collapseFive" class="slide-hide" aria-hidden="true">
+	            <div id="collapseFive" class="slide-hide" aria-hidden="true" style="display: none;">
 	                <div class="disclosure-content"> 
 	                    {{# each future.notices }}
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
@@ -265,7 +265,7 @@
                 </div>
 	            
 	            <!-- collapsy legal content -->
-	            <div id="collapseSix" class="slide-hide" aria-hidden="true">
+	            <div id="collapseSix" class="slide-hide" aria-hidden="true" style="display: none;">
 	                <div class="disclosure-content"> 
 	                    {{# each legal.notices }}
 	                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
