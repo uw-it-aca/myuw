@@ -142,17 +142,7 @@ def _get_all_events(dept_cals):
 
 
 def sort_events(events):
-    return sorted(events,
-                  key=lambda e: _get_date(e.get('dtstart').dt)
-                  )
-
-
-def _get_date(date):
-    try:
-        return date.date()
-    except AttributeError:
-        return date
-    return date
+    return sorted(events, key=lambda e: e.get('dtstart').dt)
 
 
 def parse_event_url(event, cal_url, cal_id):

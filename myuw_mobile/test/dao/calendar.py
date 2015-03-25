@@ -7,7 +7,7 @@ from django.test.utils import override_settings
 import json
 
 from datetime import date, datetime
-from myuw_mobile.dao.calendar import get_events, _get_date
+from myuw_mobile.dao.calendar import get_events
 
 
 class TestCalendar(TestCase):
@@ -77,9 +77,3 @@ class TestCalendar(TestCase):
         self.assertEqual(len(event_response['active_cals']), 1)
         self.assertEqual(event_response['active_cals'][0]['url'], "http://www.trumba.com/calendar/5_current")
         self.assertEqual(event_response['active_cals'][0]['title'], "Department of Five Events")
-
-    def test_get_date(self):
-        d = date(2013, 04, 15)
-        dt = datetime(2013, 04, 15)
-        self.assertEqual(_get_date(d), d)
-        self.assertEqual(_get_date(dt), d)
