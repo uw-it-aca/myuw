@@ -7,6 +7,32 @@ var Notices = {
         WSData.fetch_notice_data(Notices.render_notices);
     },
 
+    _show_section: function(hidden_block, slide_link) {
+        hidden_block.show();
+        // Without this timeout, the animation doesn't happen - the block just appears.
+        setTimeout(function() {
+            hidden_block.toggleClass("slide-show");
+            slide_link.siblings().find("i").removeClass("fa-angle-down");
+            slide_link.siblings().find("i").addClass("fa-angle-up");
+            slide_link.attr('title', 'Show less notice information');
+            hidden_block.attr('aria-hidden', 'false');
+            //WSData.log_interaction("show_final_card", term);
+            Notices.get_notices_in_view_and_mark_read();
+        }, 0);
+    },
+
+    _hide_section: function(hidden_block, slide_link) {
+        hidden_block.toggleClass("slide-show");
+        slide_link.attr('title', 'Show more notice information');
+        hidden_block.attr('aria-hidden', 'true');
+
+        setTimeout(function() {
+            hidden_block.hide();
+            slide_link.siblings().find("i").removeClass("fa-angle-up");
+            slide_link.siblings().find("i").addClass("fa-angle-down");
+        }, 700);
+    },
+
     render_notices: function () {
         "use strict";
         var notices, source, template,
@@ -50,39 +76,32 @@ var Notices = {
 
         /* Events for expand/close all */
         $("#expand_collapse").on("click", function(ev) {
-        
             ev.preventDefault();
-                        
+            var blocks = [$("#collapseOne"), $("#collapseTwo"), $("#collapseThree"), $("#collapseFour"), $("#collapseFive"), $("#collapseSix")];
+
+            function get_link_for_block(block) {
+                return block.parent().find(".slide-link");
+            }
+
             if (expanded) {
                 expanded = false;
-                
-                // update all individual disclosure links
-                $(".notices-container .slide-hide").removeClass("slide-show");
-                $(".notices-container .slide-hide").attr('aria-hidden', 'true');
-                $(".notices-container .slide-link").attr('title', 'Show more notice information');
-                
-                $(this).attr('title', 'Show all notice information');
-                
-                $(".notices-container .disclosure-meta").find("i").removeClass("fa-angle-up");
-                $(".notices-container .disclosure-meta").find("i").addClass("fa-angle-down");
-                
+                for (var i = 0; i < blocks.length; i++) {
+                    var block = blocks[i];
+                    if (block.css('display') != 'none') {
+                        Notices._hide_section(block, get_link_for_block(block));
+                    }
+                }
                 setTimeout(function() {
                       $("#expand_collapse").text("Expand all");
                 }, 700);
-                
-                
             } else if (!expanded) {
                 expanded = true;
-                
-                // update all individual disclosure links
-                $(".notices-container .slide-hide").addClass("slide-show");
-                $(".notices-container .slide-hide").attr('aria-hidden', 'false');
-                $(".notices-container .slide-link").attr('title', 'Show less notice information');
-                
-                $(this).attr('title', 'Hide all notice information');
-                
-                $(".notices-container .disclosure-meta").find("i").removeClass("fa-angle-down");
-                $(".notices-container .disclosure-meta").find("i").addClass("fa-angle-up");
+                for (var i = 0; i < blocks.length; i++) {
+                    var block = blocks[i];
+                    if (block.css('display') == 'none') {
+                        Notices._show_section(block, get_link_for_block(block));
+                    }
+                }
                 $(this).text("Collapse all");
                 Notices.get_notices_in_view_and_mark_read();
             }
@@ -98,28 +117,10 @@ var Notices = {
             var slide_link = $(this);
             
             if (hidden_block.css('display') == 'none') {
-                hidden_block.show();
-                // Without this timeout, the animation doesn't happen - the block just appears.
-                setTimeout(function() {
-                    hidden_block.toggleClass("slide-show");
-                    slide_link.siblings().find("i").removeClass("fa-angle-down");
-                    slide_link.siblings().find("i").addClass("fa-angle-up");
-                    slide_link.attr('title', 'Show less notice information');
-                    hidden_block.attr('aria-hidden', 'false');
-                    //WSData.log_interaction("show_final_card", term);
-                    Notices.get_notices_in_view_and_mark_read();
-                }, 0);
+                Notices._show_section(hidden_block, slide_link);
             }
             else {
-                hidden_block.toggleClass("slide-show");
-                slide_link.attr('title', 'Show more notice information');
-                hidden_block.attr('aria-hidden', 'true');
-
-                setTimeout(function() {
-                    hidden_block.hide();
-                    slide_link.siblings().find("i").removeClass("fa-angle-up");
-                    slide_link.siblings().find("i").addClass("fa-angle-down");
-                }, 700);
+                Notices._hide_section(hidden_block, slide_link);
             }
         });
 
