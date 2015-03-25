@@ -78,6 +78,7 @@ var Notices = {
         $("#expand_collapse").on("click", function(ev) {
             ev.preventDefault();
             var blocks = [$("#collapseOne"), $("#collapseTwo"), $("#collapseThree"), $("#collapseFour"), $("#collapseFive"), $("#collapseSix")];
+            var i, block;
 
             function get_link_for_block(block) {
                 return block.parent().find(".slide-link");
@@ -85,8 +86,8 @@ var Notices = {
 
             if (expanded) {
                 expanded = false;
-                for (var i = 0; i < blocks.length; i++) {
-                    var block = blocks[i];
+                for (i = 0; i < blocks.length; i++) {
+                    block = blocks[i];
                     if (block.css('display') != 'none') {
                         Notices._hide_section(block, get_link_for_block(block));
                     }
@@ -96,8 +97,8 @@ var Notices = {
                 }, 700);
             } else if (!expanded) {
                 expanded = true;
-                for (var i = 0; i < blocks.length; i++) {
-                    var block = blocks[i];
+                for (i = 0; i < blocks.length; i++) {
+                    block = blocks[i];
                     if (block.css('display') == 'none') {
                         Notices._show_section(block, get_link_for_block(block));
                     }
