@@ -84,8 +84,6 @@ var EventsCard = {
 
         for (i = 0; i < event_data.length; i++){
             var event = event_data[i];
-            //Split off time range that brakes parsing
-            var date = event.start_date.split(" ")[0];
 
             if (i < 6) {
                 show_events.push(event);
