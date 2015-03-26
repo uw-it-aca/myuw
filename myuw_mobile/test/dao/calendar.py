@@ -32,7 +32,6 @@ class TestCalendar(TestCase):
         self.assertEqual(len(event_response['future_active_cals']), 1)
         self.assertEqual(len(event_response['events']), 0)
 
-
     def test_future_two(self):
         now = date(2013, 04, 15)
         cal = {'future_1': None,

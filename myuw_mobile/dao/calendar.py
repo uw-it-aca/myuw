@@ -88,8 +88,9 @@ def _get_json_for_event(event):
 
 
 def _get_start_time(event):
-    start_time = event.get('dtstart').dt.time()
-    return str(start_time)
+    start_time = event.get('dtstart').dt
+    start_time = str(start_time).split(" ")
+    return start_time[1]
 
 
 def _get_future_events(events, now):
