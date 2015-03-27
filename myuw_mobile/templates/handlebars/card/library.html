@@ -27,6 +27,7 @@
                         </div>
                         <div class="pull-right">
                             <span class="card-badge-value">{{ items_loaned }} {{ pluralize items_loaned "item" "items"}}</span>
+							&nbsp;
                             <span class="card-badge-action pull-right"><a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount">See account</a></span>
                         </div>
                         
@@ -41,9 +42,10 @@
                             <h4 class="card-badge-label">Next item due</h4>
                         </div>
                         <div class="pull-right">
-                            <span class="card-badge-value" aria-hidden="true">{{toFriendlyDate next_due }} </span>
-                            <span class="sr-only">{{ toFriendlyDateVerbose next_due }} </span>
-                            <span class="card-badge-action pull-right">{{toFromNowDate next_due}} </span> 
+                            <span class="card-badge-value" aria-hidden="true">{{toFriendlyDate next_due }}</span>
+                            <span class="sr-only">{{ toFriendlyDateVerbose next_due }}</span>
+							&nbsp;
+                            <span class="card-badge-action pull-right">{{toFromNowDate next_due}}</span> 
                         </div>
                     </div>
                     </li>
@@ -57,6 +59,7 @@
                         </div>
                         <div class="pull-right">
                             <span class="card-badge-value text-danger">${{ formatPrice fines }}</span> 
+							&nbsp;
                             <span class="card-badge-action pull-right"><a href="https://p.lib.washington.edu/payfines/">Pay fees</a></span>
                         </div>
                     </div>

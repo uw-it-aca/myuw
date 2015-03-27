@@ -51,8 +51,8 @@
                                     </div>
                                     <div class="pull-right">
                                         <span class="card-badge-value text-danger">${{ tuition_accbalance }}</span>
+										&nbsp;
                                         <span class="card-badge-action pull-right"><a href="http://f2.washington.edu/fm/sfs/tuition/payment">Make payment</a></span>
-
                                     </div>
                                 </div>
 		                    </li>
@@ -64,7 +64,8 @@
                                     </div>
                                     <div class="pull-right">
                                         <span class="card-badge-value" aria-hidden="true">{{ toFriendlyDate tuition_due }}</span>
-                                        <span class="sr-only">{{ toFriendlyDateVerbose tuition_due }} </span>
+                                        <span class="sr-only">{{ toFriendlyDateVerbose tuition_due }}</span>
+										&nbsp;
                                         <span class="card-badge-action pull-right">in {{ tuition_date_offset }} days</span>
                                     </div>
                                 </div>
