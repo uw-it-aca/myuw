@@ -1,0 +1,67 @@
+BEGIN:VCALENDAR
+PRODID:-//Trumba Corporation//Trumba Calendar Services 0.11.12128//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Department of Two Events
+X-WR-TIMEZONE:America/Los_Angeles
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:America/Los_Angeles
+BEGIN:STANDARD
+TZOFFSETFROM:-0700
+TZOFFSETTO:-0800
+TZNAME:PST
+DTSTART:20071104T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0800
+TZOFFSETTO:-0700
+TZNAME:PDT
+DTSTART:20070311T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+END:DAYLIGHT
+END:VTIMEZONE
+
+
+BEGIN:VEVENT
+SUMMARY:Organic Chemistry Seminar: Prof. Matthew Becker7
+LOCATION:Chemistry Building (CHB)
+DTSTART;TZID=America/Los_Angeles:20130417T160000
+DTEND;TZID=America/Los_Angeles:20130418T170000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+URL:http://www.uakron.edu/cpspe/about-us/faculty/profile.dot?id=454b0e41
+ -0294-4c60-9bce-4fac6c2bb692
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=241;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ch
+ emistry Building (CHB)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:102
+DTSTAMP:20141229T110340Z
+DESCRIPTION:"TBA"\n \n Professor Matthew Becker - Department of Polymer
+ Science\, University of Akron
+CATEGORIES:Organic Seminars
+UID:http://uid.trumba.com/event/1107418160
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Organic Chemistry Seminar: Prof. Matthew Becker6
+LOCATION:Chemistry Building (CHB)
+DTSTART;TZID=America/Los_Angeles:20130418T160000
+DTEND;TZID=America/Los_Angeles:20130418T170000
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+URL:http://www.uakron.edu/cpspe/about-us/faculty/profile.dot?id=454b0e41
+ -0294-4c60-9bce-4fac6c2bb692
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=2781;TYPE=number:Generic UW Even
+ t
+X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ch
+ emistry Building (CHB)
+X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:102
+DTSTAMP:20141229T110340Z
+DESCRIPTION:"TBA"\n \n Professor Matthew Becker - Department of Polymer
+ Science\, University of Akron
+CATEGORIES:Organic Seminars
+UID:http://uid.trumba.com/event/1107411670
+END:VEVENT
+
+END:VCALENDAR

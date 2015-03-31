@@ -41,7 +41,7 @@ var CourseCard = {
         var index;
         for (index = 0; index < course_data.sections.length; index += 1) {
             course_data.sections[index].index = index;
-            if (course_data.sections[index].class_website_url || course_data.sections[index].canvas_url) {
+            if (course_data.sections[index].class_website_url || course_data.sections[index].lib_subj_guide || course_data.sections[index].canvas_url) {
                 course_data.sections[index].has_resources = true;
             }
             course_data.sections[index].summer_term = course_data.summer_term;

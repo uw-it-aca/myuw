@@ -23,6 +23,7 @@ class Finance(RESTDispatch):
         timer = Timer()
         logger = logging.getLogger(__name__)
         balances = get_account_balances_for_current_user()
+
         if balances is None:
             log_data_not_found_response(logger, timer)
             return data_not_found()
