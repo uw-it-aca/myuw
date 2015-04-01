@@ -32,9 +32,11 @@ var EventsCard = {
         }
 
         $.each(event_data.events, function(i, event){
-            //moment requires a date
-            var d = event.start_date + "T" + event.start_time;
-            event.start_time = moment(d).format('h:mm A');
+            if(event.start_time !== "All Day") {
+                //moment requires a date
+                var d = event.start_date + "T" + event.start_time;
+                event.start_time = moment(d).format('h:mm A');
+            }
         });
 
         var grouped_events = EventsCard.group_by_date(event_data.events);

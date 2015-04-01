@@ -90,7 +90,12 @@ def _get_json_for_event(event):
 def _get_start_time(event):
     start_time = event.get('dtstart').dt
     start_time = str(start_time).split(" ")
-    return start_time[1]
+    time = ""
+    try:
+        time = start_time[1]
+    except IndexError:
+        time = "All Day"
+    return time
 
 
 def _get_future_events(events, now):
@@ -181,7 +186,7 @@ def get_start_date(event):
 
 
 def get_end_date(event):
-    date = _get_date(event.get('dtend').dt.date())
+    date = _get_date(event.get('dtend').dt)
     return str(date)
 
 
