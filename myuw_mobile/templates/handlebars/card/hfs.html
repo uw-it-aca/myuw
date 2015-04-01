@@ -4,16 +4,19 @@
 
 <div class="card clearfix"  data-name="HFSCard" data-type="card">
 
-    <h3>Husky Card &amp; Dining</h3>
+    <h3 aria-hidden="true">Husky Card &amp; Dining</h3>
+    <h3 class="sr-only">Husky Card account and Dining account</h3>
     
     <div class="card-badge-container">
-        
+	 
+	<ul class="card_list">
         {{#if hfs_data.student_husky_card}}
-            
+        <li>
         <div class="card-badge clearfix">
             {{#with hfs_data.student_husky_card}}
             <div class="pull-left">
-                <span class="card-badge-label">Student Husky Card</span>
+                <h4 class="card-badge-label" aria-hidden="true">Student Husky Card</h4>
+                <h4 class="sr-only">Student Husky Account</h4>
             </div>
             <div class="pull-right">
                 <span class="card-badge-value">${{ formatPrice balance }}</span>
@@ -23,15 +26,18 @@
             {{/if}}
             {{/with}}
         </div>
+        </li>
             
         {{/if}}
         
         {{#if hfs_data.employee_husky_card}}
-            
+        
+        <li>    
         <div class="card-badge clearfix">
             {{#with hfs_data.employee_husky_card}}
             <div class="pull-left">
-                <span class="card-badge-label">Employee Husky Card</span>
+                <h4 class="card-badge-label" aria-hidden="true">Employee Husky Card</h4>
+                <h4 class="sr-only">Employee Husky Account</h4>
             </div>
             <div class="pull-right">
                 <span class="card-badge-value">${{ formatPrice balance }}</span>
@@ -41,14 +47,17 @@
             {{/if}}
             {{/with}}
         </div>
+        </li>
             
         {{/if}}
         
         {{#if hfs_data.resident_dining}}
+        
+        <li>
         <div class="card-badge clearfix">
             {{#with hfs_data.resident_dining}}
             <div class="pull-left">
-                <span class="card-badge-label">Resident Dining</span>
+                <h4 class="card-badge-label">Resident Dining</h4>
             </div>
             <div class="pull-right">
                 <span class="card-badge-value">${{ formatPrice balance }}</span>
@@ -58,8 +67,10 @@
             {{/if}}
             {{/with}}
         </div>
-        {{/if}}
+        </li>
         
+        {{/if}}
+	</ul>
         <div class="card-badge pull-right" style="margin:0; padding-bottom:0;">
             <div class="card-badge-action"><a href="{{ hfs_data.student_husky_card.add_funds_url }}">Add funds to your accounts</a></div>
         </div>

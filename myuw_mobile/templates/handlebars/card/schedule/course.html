@@ -1,7 +1,7 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "course_card_content" %}
 
-<h3 id="your_courses" class="sr-only">Your Courses</h3>
+<h3 id="your_courses" class="sr-only">Your {{ucfirst quarter}} {{year}} Courses</h3>
 <div aria-labeledby="your_courses">
 
     {{#each sections}}
@@ -13,7 +13,7 @@
     
         <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
                 
-            <h4><span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>
+            <h4><span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>&nbsp;
             <span class="shortTitle" style="display:block;">{{ course_title }}</span></h4>
             
             <h5 class="scheduleHeading">{{ucfirst meetings.0.type}} Schedule</h5>
@@ -72,7 +72,7 @@
             <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
                 
                 <div>
-                    <h5>Course resources</h5>     
+                    <h5>Course resources</h5>
                     <ul class="unstyled-list">
                         {{#if has_resources }}
                             {{#if class_website_url}}

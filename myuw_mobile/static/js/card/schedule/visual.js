@@ -246,12 +246,10 @@ var VisualScheduleCard = {
             if ($("#final_exam_schedule_panel").hasClass("slide-show")) {
                 $("#toggle_finalexams").text("Hide Final Exam Schedule");
                 $("#toggle_finalexams").attr('title', 'Hide Final Exam Schedule');
-                $("#final_exam_schedule_panel").attr('aria-hidden', 'false');
                 window.myuw_log.log_card("FinalExam", "expand");
             }
             else {
                 $("#toggle_finalexams").attr('title', 'Show Final Exam Schedule');
-                $("#final_exam_schedule_panel").attr('aria-hidden', 'true');
                 window.myuw_log.log_card("FinalExam", "collapse");
                 
                 setTimeout(function() {
@@ -259,8 +257,5 @@ var VisualScheduleCard = {
                }, 700);
             }
         });
-        
-        // hide visual schedule from screen readers
-        $("#VisualScheduleCard").attr('aria-hidden', 'true');
-    },
+    }
 };
