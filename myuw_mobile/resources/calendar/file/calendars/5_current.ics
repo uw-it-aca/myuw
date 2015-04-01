@@ -65,7 +65,6 @@ END:VEVENT
 
 BEGIN:VEVENT
 SUMMARY:Organic Chemistry Seminar: Prof. Matthew Becker3
-LOCATION:Chemistry Building (CHB)
 DTSTART;TZID=America/Los_Angeles:20130418
 DTEND;TZID=America/Los_Angeles:20130418
 X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
@@ -73,9 +72,6 @@ URL:http://www.uakron.edu/cpspe/about-us/faculty/profile.dot?id=454b0e41
  -0294-4c60-9bce-4fac6c2bb692
 X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=23121;TYPE=number:Generic UW Even
  t
-X-TRUMBA-CUSTOMFIELD;NAME="Campus location";ID=30032;TYPE=CustomAsset:Ch
- emistry Building (CHB)
-X-TRUMBA-CUSTOMFIELD;NAME="Campus room";ID=28429;TYPE=SingleLine:102
 DTSTAMP:20141229T110340Z
 DESCRIPTION:"TBA"\n \n Professor Matthew Becker - Department of Polymer
  Science\, University of Akron

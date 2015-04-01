@@ -78,3 +78,9 @@ class TestCalendar(TestCase):
         cal = {'5_current': None}
         event_response = get_events(cal, now)
         self.assertEqual(event_response['events'][3]['start_time'], "All Day")
+
+    def test_no_location(self):
+        now = date(2013, 04, 15)
+        cal = {'5_current': None}
+        event_response = get_events(cal, now)
+        self.assertEqual(event_response['events'][3]['event_location'], "unknown")
