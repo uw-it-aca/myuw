@@ -76,7 +76,7 @@
          {{/with}}
          {{/if}}
 
-         <div class="final_schedule_table sr-only">
+         <!--div class="final_schedule_table sr-only">
              <table>
                  <thead>
                      <tr>
@@ -107,13 +107,13 @@
                      {{/each}}
                  </tbody>
              </table>
-         </div>
+         </div-->
                 
 
         <!-- begin - if there are meetings with times to be arranged -->
         {{#if tbd}}
-        <div class="courseTBD">
-            <h6>Courses with final exam meeting times to be determined or courses with no final exam:</h6>
+        <div class="courseTBD" aria-hidden="true">
+            <h5>Courses with final exam meeting times to be determined or courses with no final exam:</h5>
             {{#each tbd}}
     	    <div class="pull-left course-box"> 
     	        <div class="c{{color_id}} course-info">{{curriculum_abbr}} {{course_number}}&nbsp;{{section_id}}</div>
