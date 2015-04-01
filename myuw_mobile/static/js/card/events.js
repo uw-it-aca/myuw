@@ -32,9 +32,8 @@ var EventsCard = {
         }
 
         $.each(event_data.events, function(i, event){
-            event.start = EventsCard.fix_event_time(event.start_time);
             //moment requires a date
-            var d = "1-1-2000 " + event.start;
+            var d = event.start_date + "T" + event.start_time;
             event.start_time = moment(d).format('h:mm A');
         });
 
@@ -84,8 +83,6 @@ var EventsCard = {
 
         for (i = 0; i < event_data.length; i++){
             var event = event_data[i];
-            //Split off time range that brakes parsing
-            var date = event.start.split(" ")[0];
 
             if (i < 6) {
                 show_events.push(event);
@@ -94,19 +91,6 @@ var EventsCard = {
             }
         }
         return [show_events, hide_events];
-    },
-
-    fix_event_time: function (timestamp) {
-        // Will return the time, regardless if timestamp includes a range
-        var date = timestamp.split(" ")[0];
-        var time = timestamp.split(" ")[1];
-        if (time === undefined){{
-            return date;
-        }}
-        if (time.indexOf("-") > -1){
-            time = time.substring(0, time.indexOf('-'));
-        }
-        return date + " " + time;
     },
 
     add_events: function() {

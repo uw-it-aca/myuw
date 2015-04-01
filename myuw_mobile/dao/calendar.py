@@ -88,8 +88,9 @@ def _get_json_for_event(event):
 
 
 def _get_start_time(event):
-    start_time = event.get('dtstart').dt.time()
-    return str(start_time)
+    start_time = event.get('dtstart').dt
+    start_time = str(start_time).split(" ")
+    return start_time[1]
 
 
 def _get_future_events(events, now):
@@ -97,7 +98,7 @@ def _get_future_events(events, now):
     min_cutoff = now + timedelta(days=DISPLAY_CUTOFF_DAYS)
     future = []
     for event in events:
-        end_date = event.get('dtend').dt.date()
+        end_date = _get_date(event.get('dtend').dt)
         if min_cutoff <= end_date <= max_cutoff:
             future.append(event)
 
@@ -108,7 +109,7 @@ def _get_current_events(events, now):
     cutoff = now + timedelta(days=DISPLAY_CUTOFF_DAYS)
     current = []
     for event in events:
-        end_date = event.get('dtend').dt.date()
+        end_date = _get_date(event.get('dtend').dt)
         if end_date <= cutoff:
             current.append(event)
 
@@ -118,7 +119,7 @@ def _get_current_events(events, now):
 def _filter_past_events(events, now):
     non_past = []
     for event in events:
-        end_date = event.get('dtend').dt.date()
+        end_date = _get_date(event.get('dtend').dt)
         if end_date >= now:
             non_past.append(event)
 
@@ -142,17 +143,7 @@ def _get_all_events(dept_cals):
 
 
 def sort_events(events):
-    return sorted(events,
-                  key=lambda e: _get_date(e.get('dtstart').dt)
-                  )
-
-
-def _get_date(date):
-    try:
-        return date.date()
-    except AttributeError:
-        return date
-    return date
+    return sorted(events, key=lambda e: _get_date(e.get('dtstart').dt))
 
 
 def parse_event_url(event, cal_url, cal_id):
@@ -185,10 +176,17 @@ def parse_event_location(event):
 
 
 def get_start_date(event):
-    date = event.get('dtstart').dt.date()
+    date = _get_date(event.get('dtstart').dt)
     return str(date)
 
 
 def get_end_date(event):
-    date = event.get('dtend').dt.date()
+    date = _get_date(event.get('dtend').dt.date())
     return str(date)
+
+
+def _get_date(date):
+    try:
+        return date.date()
+    except AttributeError:
+        return date
