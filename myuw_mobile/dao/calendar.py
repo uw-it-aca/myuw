@@ -83,14 +83,19 @@ def _get_json_for_event(event):
         "start_date": get_start_date(event),
         "end_date": get_end_date(event),
         "event_url": event.event_url,
-        "event_location": event_location.to_ical(),
+        "event_location": event_location,
     }
 
 
 def _get_start_time(event):
     start_time = event.get('dtstart').dt
     start_time = str(start_time).split(" ")
-    return start_time[1]
+    time = ""
+    try:
+        time = start_time[1]
+    except IndexError:
+        time = "All Day"
+    return time
 
 
 def _get_future_events(events, now):
@@ -172,7 +177,12 @@ def get_calendar_url(calendar_id):
 
 
 def parse_event_location(event):
-    return event.get('location')
+    location = event.get('location')
+    if location is None:
+        location = "unknown"
+    else:
+        location = location.to_ical()
+    return location
 
 
 def get_start_date(event):
@@ -181,7 +191,7 @@ def get_start_date(event):
 
 
 def get_end_date(event):
-    date = _get_date(event.get('dtend').dt.date())
+    date = _get_date(event.get('dtend').dt)
     return str(date)
 
 

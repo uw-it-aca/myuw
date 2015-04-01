@@ -73,3 +73,14 @@ class TestCalendar(TestCase):
         self.assertEqual(event_response['active_cals'][0]['url'], "http://www.trumba.com/calendar/5_current")
         self.assertEqual(event_response['active_cals'][0]['title'], "Department of Five Events")
 
+    def test_all_day(self):
+        now = date(2013, 04, 15)
+        cal = {'5_current': None}
+        event_response = get_events(cal, now)
+        self.assertEqual(event_response['events'][3]['start_time'], "All Day")
+
+    def test_no_location(self):
+        now = date(2013, 04, 15)
+        cal = {'5_current': None}
+        event_response = get_events(cal, now)
+        self.assertEqual(event_response['events'][3]['event_location'], "unknown")
