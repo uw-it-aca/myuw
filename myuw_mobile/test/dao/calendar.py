@@ -57,10 +57,6 @@ class TestCalendar(TestCase):
         event_response = get_events(cal, now)
         self.assertEqual(event_response['events'][0]['event_url'],
                          'http://www.trumba.com/calendar/5_current?trumbaEmbed=view%%3Devent%%26eventid%%3D1107241160')
-        cal = {'5_current': 'http://art.uw.edu/calendar'}
-        event_response = get_events(cal, now)
-        self.assertEqual(event_response['events'][0]['event_url'],
-                         'http://art.uw.edu/calendar?trumbaEmbed=view%%3Devent%%26eventid%%3D1107241160')
 
     def test_date_sort(self):
         now = date(2013, 04, 15)
@@ -76,3 +72,4 @@ class TestCalendar(TestCase):
         self.assertEqual(len(event_response['active_cals']), 1)
         self.assertEqual(event_response['active_cals'][0]['url'], "http://www.trumba.com/calendar/5_current")
         self.assertEqual(event_response['active_cals'][0]['title'], "Department of Five Events")
+

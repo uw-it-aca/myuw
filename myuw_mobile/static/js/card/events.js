@@ -33,7 +33,6 @@ var EventsCard = {
 
         $.each(event_data.events, function(i, event){
             //moment requires a date
-            console.log(event);
             var d = event.start_date + "T" + event.start_time;
             event.start_time = moment(d).format('h:mm A');
         });
