@@ -75,27 +75,22 @@ def _get_active_cal_json(event):
 
 
 def _get_json_for_event(event):
-    start = _get_start_time(event)
     event_location = parse_event_location(event)
     return {
         "summary": event.get('summary').to_ical(),
-        "start_time": start,
-        "start_date": get_start_date(event),
-        "end_date": get_end_date(event),
+        "start": event.get('dtstart').dt.isoformat(),
+        "end": event.get('dtend').dt.isoformat(),
         "event_url": event.event_url,
         "event_location": event_location,
+        "is_all_day": _get_is_all_day(event)
     }
 
 
-def _get_start_time(event):
-    start_time = event.get('dtstart').dt
-    start_time = str(start_time).split(" ")
-    time = ""
-    try:
-        time = start_time[1]
-    except IndexError:
-        time = "All Day"
-    return time
+def _get_is_all_day(event):
+    if event.get('X-MICROSOFT-CDO-ALLDAYEVENT') == "TRUE":
+        return True
+    else:
+        return False
 
 
 def _get_future_events(events, now):
@@ -183,16 +178,6 @@ def parse_event_location(event):
     else:
         location = location.to_ical()
     return location
-
-
-def get_start_date(event):
-    date = _get_date(event.get('dtstart').dt)
-    return str(date)
-
-
-def get_end_date(event):
-    date = _get_date(event.get('dtend').dt)
-    return str(date)
 
 
 def _get_date(date):

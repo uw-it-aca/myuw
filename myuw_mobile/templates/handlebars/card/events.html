@@ -12,8 +12,15 @@
                     <ul class="myuw-events-list">
                         <a href="{{ event_url }}">
                             <li class="myuw-events-list-item">
-                            	<div class="myuw-events-date">{{ acal_page_date_format start_date end_date }}</div>
-                                <div><span class="myuw-events-time">{{ start_time }}</span> <span class="myuw-events-title">{{ summary }}</span></div>
+                                <div class="myuw-events-date">{{ acal_page_date_format start_date end_date }}</div>
+                                <div>
+                                    {{ #if is_all_day }}
+                                    <span class="myuw-events-time">All Day</span>
+                                    {{ else }}
+                                    <span class="myuw-events-time">{{ start_time }}</span>
+                                    {{ /if }}
+                                    <span class="myuw-events-title">{{ summary }}</span>
+                                </div>
                                 <div class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> {{ event_location }}</em></div>
                             </li>
                         </a>
