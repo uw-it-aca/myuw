@@ -158,9 +158,7 @@ def parse_event_url(event, cal_url, cal_id):
     if cal_url is not None:
         base_url = cal_url
 
-    url = base_url \
-        + "?trumbaEmbed=view%%3Devent%%26eventid%%3D"\
-        + event_id
+    url = base_url + "?view=event&eventid=" + event_id
 
     return url
 
