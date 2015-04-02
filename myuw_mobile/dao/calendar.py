@@ -175,8 +175,6 @@ def parse_event_location(event):
     location = event.get('location')
     if location is None:
         location = "unknown"
-    else:
-        location = location.to_ical()
     return location
 
 
