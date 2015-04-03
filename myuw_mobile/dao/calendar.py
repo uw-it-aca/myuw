@@ -2,6 +2,7 @@ from myuw_mobile.dao.term import get_comparison_date
 from myuw_mobile.dao.calendar_mapping import get_calendars_for_current_user
 from restclients.trumba import get_calendar_by_name
 from datetime import timedelta, datetime
+from restclients.exceptions import DataFailureException
 import re
 
 # Number of future days to search for displaying events
@@ -131,14 +132,16 @@ def _get_all_events(dept_cals):
     for key in dept_cals:
         cal_id = key
         cal_base_url = dept_cals[key]
-
-        calendar = get_calendar_by_name(cal_id)
-        for event in calendar.walk('vevent'):
-            event.event_url = parse_event_url(event, cal_base_url, cal_id)
-            event.cal_id = cal_id
-            event.base_url = cal_base_url
-            event.cal_title = calendar.get('x-wr-calname').to_ical()
-            events.append(event)
+        try:
+            calendar = get_calendar_by_name(cal_id)
+            for event in calendar.walk('vevent'):
+                event.event_url = parse_event_url(event, cal_base_url, cal_id)
+                event.cal_id = cal_id
+                event.base_url = cal_base_url
+                event.cal_title = calendar.get('x-wr-calname').to_ical()
+                events.append(event)
+        except DataFailureException:
+            pass
     return events
 
 
