@@ -110,7 +110,7 @@ def _get_current_events(events, now):
     cutoff = now + timedelta(days=DISPLAY_CUTOFF_DAYS)
     current = []
     for event in events:
-        end_date = _get_date(event.get('dtend').dt)
+        end_date = _get_date(event.get('dtstart').dt)
         if end_date <= cutoff:
             current.append(event)
 
