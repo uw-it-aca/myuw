@@ -84,4 +84,3 @@ def _get_calendars_by_name_and_type(major_name, major_type):
 
 def _get_calendar_ids_from_text(text):
     return text.split(" ")
-
