@@ -14,6 +14,12 @@
         },
         {
             "NoticeAttributes": [],
+            "NoticeCategory": "StudentGEN",
+            "NoticeContent": "This is the ferpa notice.",
+            "NoticeType": "FERPA"
+        },
+        {
+            "NoticeAttributes": [],
             "NoticeCategory": "StudentALR",
             "NoticeContent": "<span class=\"notice-title\">Satisfactory Progress Registration Block</span><span class=\"notice-body-with-title\">You currently have a satisfactory progress registration block on your academic record. This will prevent further registration in any quarter but summer. <a href=\"http://www.washington.edu/students/reg/regpol.html#progress\">Learn how to resolve satisfactory progress registration blocks</a>.</span>",
             "NoticeType": "SatProgBlock"

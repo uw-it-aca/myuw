@@ -81,7 +81,7 @@ def get_values_by_date(now, request):
 
     raw_date = current_term.last_final_exam_date
     d = datetime(raw_date.year, raw_date.month, raw_date.day)
-    if now < d:
+    if now < d + timedelta(days=1):
         is_before_end_of_finals_week = True
 
     raw_date = current_term.last_day_instruction

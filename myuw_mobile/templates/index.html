@@ -1,9 +1,9 @@
 {% extends "base_mobile.html" %}
 {% block content %}
-            
-    <div id="main-content"></div>
-    <div id="static-links"></div>
 
+    <div id="main-content" role="main" aria-labeledby="main"></div>
+    <div id="static-links"></div>
+    
     <!-- component content templates -->
     {% include "handlebars/banner/email.html" %}
     {% include "handlebars/banner/profile.html" %}
@@ -22,6 +22,7 @@
     {% include "handlebars/card/tuition.html" %}
     {% include "handlebars/card/textbook.html" %}
     {% include "handlebars/card/future_quarter.html" %}
+    {% include "handlebars/card/events.html" %}
     {% include "handlebars/card/schedule/course.html" %}
     {% include "handlebars/card/schedule/final_panel.html" %}
     {% include "handlebars/card/schedule/sp_final.html" %}
