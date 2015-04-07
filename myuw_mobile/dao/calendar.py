@@ -78,7 +78,7 @@ def _get_active_cal_json(event):
 def _get_json_for_event(event):
     event_location = parse_event_location(event)
     return {
-        "summary": event.get('summary').to_ical(),
+        "summary": event.get('summary'),
         "start": event.get('dtstart').dt.isoformat(),
         "end": event.get('dtend').dt.isoformat(),
         "event_url": event.event_url,
