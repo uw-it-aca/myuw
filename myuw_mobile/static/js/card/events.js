@@ -32,8 +32,8 @@ var EventsCard = {
         }
 
         $.each(event_data.events, function(i, event){
-                var start_date = moment(event.start);
-                var end_date = moment(event.end);
+                var start_date = moment(event.start).zone('America/Los_Angeles');
+                var end_date = moment(event.end).zone('America/Los_Angeles');
                 event.start_time = start_date.format('h:mm A');
                 event.start_date = start_date.format('YYYY-MM-DD');
                 event.end_date = end_date.format('YYYY-MM-DD');
