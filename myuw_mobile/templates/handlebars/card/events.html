@@ -83,7 +83,7 @@
                 <!-- calendar link when no events in next 14 days but some in 30 days -->
                     {{ #if multi_active }}
                         <div class="myuw-events-calendar-link">
-                            No events in the next 14 days. <strong>{{ active_events }}</strong> events from {{ active_count }} calendars in the next 30 days.
+                            No events in the next 14 days. <strong>{{ active_events }}</strong> {{ pluralize active_events 'event' 'events'}} from {{ active_count }} calendars in the next 30 days.
                             <ul class="myuw-events-cal-list">
                                 {{ #each active_name_url }}
                                     <li class="myuw-events-cal-list-item"><a href="{{ url }}">{{ title }}</a></li>
@@ -91,7 +91,7 @@
                             </ul>
                         </ div>
                     {{ else }}
-                        <div class="myuw-events-calendar-link">No events in the next 14 days. <strong>{{ active_events }}</strong> events from {{ #each active_name_url }}<a href="{{ url }}">{{ title }}</a>{{ /each }} in the next 30 days.</div>
+                        <div class="myuw-events-calendar-link">No events in the next 14 days. <strong>{{ active_events }}</strong> {{ pluralize active_events 'event' 'events'}} from {{ #each active_name_url }}<a href="{{ url }}">{{ title }}</a>{{ /each }} in the next 30 days.</div>
                     {{ /if }}
                     <!-- end if -->
                 {{ /if }}
