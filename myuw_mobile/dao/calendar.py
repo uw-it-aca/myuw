@@ -175,7 +175,7 @@ def get_calendar_url(calendar_id):
 def parse_event_location(event):
     location = event.get('location')
     if location is None:
-        location = "unknown"
+        location = ""
     return location
 
 
