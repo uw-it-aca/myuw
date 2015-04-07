@@ -21,10 +21,11 @@
                                     {{ /if }}
                                     <span class="myuw-events-title">{{ summary }}</span>
                                 </div>
+                                {{ #if event_location}}
                                 <div class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> {{ event_location }}</em></div>
-                                <!-- if location unknown 
+                                {{ else }}
 	                                <div class="myuw-events-location"><em>Location not available</em></div>
-	                             end if -->
+	                            {{ /if }}
                             </li>
                         </a>
                     </ul>
@@ -36,7 +37,11 @@
                                 <li class="myuw-events-list-item">
                                     <div class="myuw-events-date">{{ acal_page_date_format start_date end_date }}</div>
                                     <div><span class="myuw-events-time">{{ start_time }}</span> <span class="myuw-events-title"><a href="{{ event_url }}">{{ summary }}</a></span></div>
+                                    {{ #if event_location}}
                                     <div class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> {{ event_location }}</em></div>
+                                    {{ else}}
+                                    <div class="myuw-events-location"><em>Location not available</em></div>
+                                     {{ /if }}
                                 </li>
                             </ul>
                             {{ /each }}
