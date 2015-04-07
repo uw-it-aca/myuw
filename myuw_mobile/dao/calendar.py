@@ -77,13 +77,18 @@ def _get_active_cal_json(event):
 
 def _get_json_for_event(event):
     event_location = parse_event_location(event)
+    is_allday = _get_is_all_day(event)
+    end = event.get('dtend').dt
+    if is_allday:
+        end = end - timedelta(days=1)
+
     return {
         "summary": event.get('summary'),
         "start": event.get('dtstart').dt.isoformat(),
-        "end": event.get('dtend').dt.isoformat(),
+        "end": end.isoformat(),
         "event_url": event.event_url,
         "event_location": event_location,
-        "is_all_day": _get_is_all_day(event)
+        "is_all_day": is_allday
     }
 
 
