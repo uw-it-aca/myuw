@@ -102,20 +102,22 @@ var EventsCard = {
             var card = $(ev.target).closest("[data-type='card']");
 
             if ($("#events_card_more").hasClass("slide-show")) {
+                window.user.event_toggle_text = $("#toggle_event_card_resources").text();
                 $("#toggle_event_card_resources").text("SHOW LESS");
                 $("#toggle_event_card_resources").attr("title", "Hide additional academic resources");
                 $("#events_card_more").attr("aria-hidden", "false");
                 window.myuw_log.log_card(card, "expand");
             }
             else {
-                $("#toggle_event_card_resources").text("SHOW MORE");
+                if (window.user.event_toggle_text === undefined) {
+                    $("#toggle_event_card_resources").text("SHOW MORE");
+                } else {
+                    $("#toggle_event_card_resources").text(window.user.event_toggle_text);
+                }
+
                 $("#toggle_event_card_resources").attr("title", "Expand to show additional academic resources");
                 $("#events_card_more").attr("aria-hidden", "true");
                 window.myuw_log.log_card(card, "collapse");
-
-                setTimeout(function() {
-                    $("#toggle_event_card_resources").text("SHOW MORE");
-                }, 700);
             }
         });
     },
