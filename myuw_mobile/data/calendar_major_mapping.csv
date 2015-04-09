@@ -39,9 +39,9 @@
 ,ANTHROPOLOGY                            ,ANTH: HUMAN EVOL BIOLOGY,,,sea_anthweb,http://depts.washington.edu/anthweb/news-events/upcoming-events
 ,ANTHROPOLOGY                            ,,ANTHROPOLOGY            ,,sea_anthweb,http://depts.washington.edu/anthweb/news-events/upcoming-events
 ,ANTHROPOLOGY                            ,,,ANTHROPOLOGY            ,sea_anthweb,http://depts.washington.edu/anthweb/news-events/upcoming-events
-,ANTHROPOLOGY/PUBLIC HEALTH CONCURRENT   ,,,ANTH/EPIDEMIOLOGY       ,sea_anthweb,http://depts.washington.edu/anthweb/news-events/upcoming-events
-,ANTHROPOLOGY/PUBLIC HEALTH CONCURRENT   ,,,ANTH/GLOBAL HLTH        ,sea_anthweb,http://depts.washington.edu/anthweb/news-events/upcoming-events
-,ANTHROPOLOGY/PUBLIC HEALTH CONCURRENT   ,,,ANTH/HSERV              ,sea_anthweb,http://depts.washington.edu/anthweb/news-events/upcoming-events
+,ANTHROPOLOGY/PUBLIC HEALTH CONCURRENT   ,,,ANTH/EPIDEMIOLOGY       ,sea_anthweb sea_epidem,
+,ANTHROPOLOGY/PUBLIC HEALTH CONCURRENT   ,,,ANTH/GLOBAL HLTH        ,sea_anthweb sea_globalhealth,
+,ANTHROPOLOGY/PUBLIC HEALTH CONCURRENT   ,,,ANTH/HSERV              ,sea_anthweb sea_sph-hserv,
 ,APPLIED & COMPUTATIONAL MATH SCIENCES   ,ACMS (ENGR & PHYS SCI)  ,,,sea_amath sea_math sea_cse sea_stat,
 ,APPLIED & COMPUTATIONAL MATH SCIENCES   ,ACMS (DISCRETE MATH AL) ,,,sea_amath sea_math sea_cse sea_stat,
 ,APPLIED & COMPUTATIONAL MATH SCIENCES   ,ACMS (BIOL & LIFE SCI)  ,,,sea_amath sea_math sea_stat,
@@ -492,8 +492,8 @@
 ,EPIDEMIOLOGY                            ,,,EPIDEMIOLOGY            ,sea_epidem,
 ,EPIDEMIOLOGY                            ,,,EPIDEMIOLOGY (CLIN RES) ,sea_epidem,
 ,EPIDEMIOLOGY                            ,,,GENETIC EPIDEMIOLOGY    ,sea_epidem,
-,EPIDEMIOLOGY                            ,,,PUB HEALTH NUTRITION    ,sea_epidem,
-,EPIDEMIOLOGY                            ,,,PUB HLTH NUTR: PRACT EXP,sea_epidem,
+,EPIDEMIOLOGY                            ,,,PUB HEALTH NUTRITION    ,sea_epidem sea_nutr,
+,EPIDEMIOLOGY                            ,,,PUB HLTH NUTR: PRACT EXP,sea_epidem sea_nutr,
 ,EPIDEMIOLOGY                            ,,,PUBLIC HEALTH GENETICS  ,sea_epidem,
 ,EVENING DEGREE PROGRAM                  ,"HUMANITIES,EVENING      ",,,,
 ,EVENING DEGREE PROGRAM                  ,"SOCIAL SCIENCES,EVENING ",,,,
@@ -1171,7 +1171,7 @@
 ,SCHOOL OF PUBLIC HEALTH                 ,,NUTRITIONAL SCIENCES    ,,sea_nutr,
 ,SCHOOL OF PUBLIC HEALTH                 ,,,NUTRITIONAL SCIENCES    ,sea_nutr,
 ,SCHOOL OF PUBLIC HEALTH                 ,,,NUTRITIONAL SCIENCES    ,sea_nutr,
-,SCHOOL OF PUBLIC HEALTH                 ,,,PH: HLTH BEH & HLTH PROM,sea_sph,
+,SCHOOL OF PUBLIC HEALTH                 ,,,PH: HLTH BEH & HLTH PROM,sea_sph sea_sph-hprc,
 ,SCHOOL OF PUBLIC HEALTH                 ,,,PUB HLTH: HEALTH POLICY ,sea_sph,
 ,SCHOOL OF PUBLIC HEALTH                 ,,,PUB HLTH: INTL HEALTH   ,sea_sph,
 ,SCHOOL OF PUBLIC HEALTH                 ,,,PH: MATERNAL&CHILD HLTH ,sea_sph,
@@ -1183,7 +1183,7 @@
 ,SCHOOL OF PUBLIC HEALTH                 ,,,PH: HEALTH MANAGEMENT   ,sea_sph,
 ,SCHOOL OF PUBLIC HEALTH                 ,,,PH: GLB INJ & VIOL PREV ,sea_sph,
 ,SCHOOL OF PUBLIC HEALTH                 ,,,PH: GLB HLTH WOM ADOL CH,sea_sph,
-,SCHOOL OF PUBLIC HEALTH                 ,,,PUBLIC HEALTH GENETICS  ,sea_sph,
+,SCHOOL OF PUBLIC HEALTH                 ,,,PUBLIC HEALTH GENETICS  ,sea_epidem,
 ,Science for Teachers                    ,,,SCIENCE FOR TEACHERS    ,,
 ,"Science, Technology and Society Studies ",,,"SCI, TECH & SOCIETY ST  ",,
 ,SECOND LANGUAGE STUDIES                 ,,,SEC AND FOR LANG TEACH  ,,

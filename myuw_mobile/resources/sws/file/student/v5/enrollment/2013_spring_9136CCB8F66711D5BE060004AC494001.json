@@ -6,15 +6,15 @@
     "LeaveEndYear": 0,
     "Majors": [
                  {
-                    "Abbreviation": "T SOCW",
+                    "Abbreviation": "UPCOM",
                     "Campus": "Tacoma",
                     "DegreeLevel": 2,
-                    "DegreeName": "MASTER OF SOCIAL WORK",
+                    "DegreeName": "ASD",
                     "DegreeType": 7,
-                    "FullName": "Social Work (Tacoma Campus)",
-                    "MajorName": "SOCIAL WORK - TACOMA",
+                    "FullName": "UPCOM (Tacoma Campus)",
+                    "MajorName": "UPCOM",
                     "Pathway": 0,
-                    "ShortName": "T SOCW"
+                    "ShortName": "UPCOM"
                 }],
     "Minors":[],
     "PendingClassChange": false,
