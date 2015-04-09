@@ -83,5 +83,4 @@ class TestCalendar(TestCase):
         event_response = get_events(cal, self.now)
         self.assertTrue(event_response['events'][3]['is_all_day'])
         self.assertFalse(event_response['events'][2]['is_all_day'])
-
-        self.assertEqual(event_response['events'][3]['end'], '2013-04-18')
+        self.assertIn('2013-04-18', event_response['events'][3]['end'])
