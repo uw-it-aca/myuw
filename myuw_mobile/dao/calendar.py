@@ -1,9 +1,11 @@
 from myuw_mobile.dao.term import get_comparison_date
 from myuw_mobile.dao.calendar_mapping import get_calendars_for_current_user
 from restclients.trumba import get_calendar_by_name
-from datetime import timedelta, datetime
+from datetime import timedelta, datetime, time
 from restclients.exceptions import DataFailureException
+from django.conf import settings
 import re
+import pytz
 
 # Number of future days to search for displaying events
 DISPLAY_CUTOFF_DAYS = 14
@@ -13,6 +15,8 @@ FUTURE_CUTOFF_DAYS = 30
 
 def api_request(request):
     current_date = get_comparison_date(request)
+    current_date = datetime.combine(current_date, datetime.now().time())
+    current_date = pytz.utc.localize(current_date)
     calendar_ids = get_calendars_for_current_user(request)
     return get_events(calendar_ids, current_date)
 
@@ -115,8 +119,8 @@ def _get_current_events(events, now):
     cutoff = now + timedelta(days=DISPLAY_CUTOFF_DAYS)
     current = []
     for event in events:
-        end_date = _get_date(event.get('dtstart').dt)
-        if end_date <= cutoff:
+        start_date = _get_date(event.get('dtstart').dt)
+        if start_date <= cutoff:
             current.append(event)
 
     return current
@@ -128,7 +132,6 @@ def _filter_past_events(events, now):
         end_date = _get_date(event.get('dtend').dt)
         if end_date >= now:
             non_past.append(event)
-
     return non_past
 
 
@@ -185,7 +188,10 @@ def parse_event_location(event):
 
 
 def _get_date(date):
-    try:
-        return date.date()
-    except AttributeError:
+    if hasattr(date, 'hour'):
         return date
+    tz_name = getattr(settings,
+                      'TRUMBA_CALENDAR_TIMEZONE',
+                      'America/Los_Angeles')
+    midnight = time(hour=0, minute=0, tzinfo=pytz.timezone(tz_name))
+    return datetime.combine(date, midnight)
