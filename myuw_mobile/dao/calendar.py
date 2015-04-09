@@ -90,8 +90,8 @@ def _get_json_for_event(event):
 
     return {
         "summary": event.get('summary'),
-        "start": event.get('dtstart').dt.isoformat(),
-        "end": end.isoformat(),
+        "start": _get_date(event.get('dtstart').dt).isoformat(),
+        "end": _get_date(end).isoformat(),
         "event_url": event.event_url,
         "event_location": event_location,
         "is_all_day": is_allday
