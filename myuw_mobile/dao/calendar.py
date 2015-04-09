@@ -4,6 +4,7 @@ from restclients.trumba import get_calendar_by_name
 from datetime import timedelta, datetime, time
 from restclients.exceptions import DataFailureException
 from django.conf import settings
+from django.utils import timezone
 import re
 import pytz
 
@@ -15,7 +16,7 @@ FUTURE_CUTOFF_DAYS = 30
 
 def api_request(request):
     current_date = get_comparison_date(request)
-    current_date = datetime.combine(current_date, datetime.now().time())
+    current_date = datetime.combine(current_date, timezone.now().time())
     current_date = pytz.utc.localize(current_date)
     calendar_ids = get_calendars_for_current_user(request)
     return get_events(calendar_ids, current_date)
