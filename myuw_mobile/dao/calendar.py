@@ -5,6 +5,7 @@ from datetime import timedelta, datetime, time
 from restclients.exceptions import DataFailureException
 from django.conf import settings
 from django.utils import timezone
+from urllib import quote_plus, urlencode
 import re
 import pytz
 
@@ -169,8 +170,10 @@ def parse_event_url(event, cal_url, cal_id):
     base_url = get_calendar_url(cal_id)
     if cal_url is not None:
         base_url = cal_url
+    url_params = {'view': 'event',
+                  'eventid': event_id}
 
-    url = base_url + "?view=event&eventid=" + event_id
+    url = base_url + "?trumbaEmbed=" + quote_plus(urlencode(url_params))
 
     return url
 

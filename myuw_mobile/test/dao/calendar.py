@@ -53,7 +53,7 @@ class TestCalendar(TestCase):
         cal = {'5_current': None}
         event_response = get_events(cal, self.now)
         self.assertEqual(event_response['events'][0]['event_url'],
-                         'http://www.trumba.com/calendar/5_current?view=event&eventid=1107241160')
+                         'http://www.trumba.com/calendar/5_current?trumbaEmbed=eventid%3D1107241160%26view%3Devent')
 
     def test_date_sort(self):
         cal = {'5_current': None}
