@@ -29,7 +29,12 @@ var GradeCard = {
     },
 
     render_error: function() {
-        GradeCard.dom_target.html(CardWithNoCourse.render(titilizeTerm(GradeCard.term)));
+        var course_error_code = WSData.course_data_error_code();
+        if (course_error_code === null || course_error_code === 404) {
+            $("#GradeCard").hide();
+            return;
+        }
+        GradeCard.dom_target.html(CardWithError.render("Final Grades"));
     },
 
     _has_all_data: function () {

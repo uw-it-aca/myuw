@@ -37,11 +37,11 @@ def _get_enrollments(request):
     if enrollment is not None:
         if len(enrollment.majors) > 0:
             for major in enrollment.majors:
-                majors.append(major.degree_abbr)
+                majors.append(major.major_name)
 
         if len(enrollment.minors) > 0:
             for minor in enrollment.minors:
-                minors.append(minor.abbr)
+                minors.append(minor.short_name)
 
     return {'is_grad': is_grad_student(),
             'majors': majors,
@@ -70,10 +70,17 @@ def _get_calendars_by_name_and_type(major_name, major_type):
     with open(path, 'rbU') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
         for row in reader:
-            if row[degree_column] in major_name and \
+            degree_name = row[degree_column].strip()
+            if degree_name in major_name and \
                     len(row[CALENDAR_ID_COL]) > 0:
                 base_url = None
                 if len(row[CALENDAR_URL_COL]) > 0:
                     base_url = row[CALENDAR_URL_COL]
-                calendars[row[CALENDAR_ID_COL]] = base_url
+                cal_ids = _get_calendar_ids_from_text(row[CALENDAR_ID_COL])
+                for cal_id in cal_ids:
+                    calendars[cal_id] = base_url
     return calendars
+
+
+def _get_calendar_ids_from_text(text):
+    return text.split(" ")

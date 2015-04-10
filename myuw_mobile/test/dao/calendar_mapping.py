@@ -3,7 +3,7 @@ from django.test.client import RequestFactory
 from myuw_mobile.dao.calendar_mapping import \
     get_calendars_for_minors, get_calendars_for_majors, \
     get_calendars_for_gradmajors, _get_enrollments, \
-    _get_calendars
+    _get_calendars, _get_calendar_ids_from_text
 
 
 class TestCalendarMapping(TestCase):
@@ -54,3 +54,14 @@ class TestCalendarMapping(TestCase):
                        'is_grad': False}
         cals = _get_calendars(enrollments)
         self.assertEqual(len(cals), 5)
+
+    def test_ids_from_text(self):
+        text = "sea_art sea_math sea_wtf"
+        ids = _get_calendar_ids_from_text(text)
+        self.assertEqual(len(ids), 3)
+        self.assertEqual(ids[0], "sea_art")
+
+        text = "sea_art"
+        ids = _get_calendar_ids_from_text(text)
+        self.assertEqual(len(ids), 1)
+        self.assertEqual(ids[0], "sea_art")

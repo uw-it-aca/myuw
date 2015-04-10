@@ -1,0 +1,11 @@
+{
+"status": 302,
+"headers":{
+"Server": "Apache",
+"X-Powered-By": "PHP/5.3.3",
+"Location": "http://www.lib.washington.edu/subject/",
+"Which-Server": "demeter2",
+"Content-Length": 0,
+"Connection": "close",
+"Content-Type": "text/html"}
+}

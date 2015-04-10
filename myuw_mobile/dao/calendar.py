@@ -1,8 +1,13 @@
 from myuw_mobile.dao.term import get_comparison_date
 from myuw_mobile.dao.calendar_mapping import get_calendars_for_current_user
 from restclients.trumba import get_calendar_by_name
-from datetime import timedelta, datetime
+from datetime import timedelta, datetime, time
+from restclients.exceptions import DataFailureException
+from django.conf import settings
+from django.utils import timezone
+from urllib import quote_plus, urlencode
 import re
+import pytz
 
 # Number of future days to search for displaying events
 DISPLAY_CUTOFF_DAYS = 14
@@ -12,6 +17,8 @@ FUTURE_CUTOFF_DAYS = 30
 
 def api_request(request):
     current_date = get_comparison_date(request)
+    current_date = datetime.combine(current_date, timezone.now().time())
+    current_date = pytz.utc.localize(current_date)
     calendar_ids = get_calendars_for_current_user(request)
     return get_events(calendar_ids, current_date)
 
@@ -75,21 +82,27 @@ def _get_active_cal_json(event):
 
 
 def _get_json_for_event(event):
-    start = _get_start_time(event)
     event_location = parse_event_location(event)
+    is_allday = _get_is_all_day(event)
+    end = event.get('dtend').dt
+    if is_allday:
+        end = end - timedelta(days=1)
+
     return {
-        "summary": event.get('summary').to_ical(),
-        "start_time": start,
-        "start_date": get_start_date(event),
-        "end_date": get_end_date(event),
+        "summary": event.get('summary'),
+        "start": _get_date(event.get('dtstart').dt).isoformat(),
+        "end": _get_date(end).isoformat(),
         "event_url": event.event_url,
-        "event_location": event_location.to_ical(),
+        "event_location": event_location,
+        "is_all_day": is_allday
     }
 
 
-def _get_start_time(event):
-    start_time = event.get('dtstart').dt.time()
-    return str(start_time)
+def _get_is_all_day(event):
+    if event.get('X-MICROSOFT-CDO-ALLDAYEVENT') == "TRUE":
+        return True
+    else:
+        return False
 
 
 def _get_future_events(events, now):
@@ -97,7 +110,7 @@ def _get_future_events(events, now):
     min_cutoff = now + timedelta(days=DISPLAY_CUTOFF_DAYS)
     future = []
     for event in events:
-        end_date = event.get('dtend').dt.date()
+        end_date = _get_date(event.get('dtend').dt)
         if min_cutoff <= end_date <= max_cutoff:
             future.append(event)
 
@@ -108,8 +121,8 @@ def _get_current_events(events, now):
     cutoff = now + timedelta(days=DISPLAY_CUTOFF_DAYS)
     current = []
     for event in events:
-        end_date = event.get('dtend').dt.date()
-        if end_date <= cutoff:
+        start_date = _get_date(event.get('dtstart').dt)
+        if start_date <= cutoff:
             current.append(event)
 
     return current
@@ -118,10 +131,9 @@ def _get_current_events(events, now):
 def _filter_past_events(events, now):
     non_past = []
     for event in events:
-        end_date = event.get('dtend').dt.date()
+        end_date = _get_date(event.get('dtend').dt)
         if end_date >= now:
             non_past.append(event)
-
     return non_past
 
 
@@ -130,29 +142,21 @@ def _get_all_events(dept_cals):
     for key in dept_cals:
         cal_id = key
         cal_base_url = dept_cals[key]
-
-        calendar = get_calendar_by_name(cal_id)
-        for event in calendar.walk('vevent'):
-            event.event_url = parse_event_url(event, cal_base_url, cal_id)
-            event.cal_id = cal_id
-            event.base_url = cal_base_url
-            event.cal_title = calendar.get('x-wr-calname').to_ical()
-            events.append(event)
+        try:
+            calendar = get_calendar_by_name(cal_id)
+            for event in calendar.walk('vevent'):
+                event.event_url = parse_event_url(event, cal_base_url, cal_id)
+                event.cal_id = cal_id
+                event.base_url = cal_base_url
+                event.cal_title = calendar.get('x-wr-calname').to_ical()
+                events.append(event)
+        except DataFailureException:
+            pass
     return events
 
 
 def sort_events(events):
-    return sorted(events,
-                  key=lambda e: _get_date(e.get('dtstart').dt)
-                  )
-
-
-def _get_date(date):
-    try:
-        return date.date()
-    except AttributeError:
-        return date
-    return date
+    return sorted(events, key=lambda e: _get_date(e.get('dtstart').dt))
 
 
 def parse_event_url(event, cal_url, cal_id):
@@ -166,10 +170,10 @@ def parse_event_url(event, cal_url, cal_id):
     base_url = get_calendar_url(cal_id)
     if cal_url is not None:
         base_url = cal_url
+    url_params = {'view': 'event',
+                  'eventid': event_id}
 
-    url = base_url \
-        + "?trumbaEmbed=view%%3Devent%%26eventid%%3D"\
-        + event_id
+    url = base_url + "?trumbaEmbed=" + quote_plus(urlencode(url_params))
 
     return url
 
@@ -181,14 +185,17 @@ def get_calendar_url(calendar_id):
 
 
 def parse_event_location(event):
-    return event.get('location')
+    location = event.get('location')
+    if location is None:
+        location = ""
+    return location
 
 
-def get_start_date(event):
-    date = event.get('dtstart').dt.date()
-    return str(date)
-
-
-def get_end_date(event):
-    date = event.get('dtend').dt.date()
-    return str(date)
+def _get_date(date):
+    if hasattr(date, 'hour'):
+        return date
+    tz_name = getattr(settings,
+                      'TRUMBA_CALENDAR_TIMEZONE',
+                      'America/Los_Angeles')
+    midnight = time(hour=0, minute=0, tzinfo=pytz.timezone(tz_name))
+    return datetime.combine(date, midnight)
