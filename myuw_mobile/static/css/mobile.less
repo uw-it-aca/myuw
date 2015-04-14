@@ -354,11 +354,17 @@ body {
     
     // header bar (thin dark purple)    
     .header-bar { position: relative; height: 30px;
-        
-        .header-myuw { font-family: 'Roboto'; font-weight: 300; display: inline-block; margin: 0; padding: 0;  font-size:16px; color: @myuw;  line-height: 30px; 
-            a { color: @lighttan; }
-            span { color: darken(@lighttan, 20%); }
+        .top_navigation_list { list-style-type: none; 
+	        li { display: inline-block; }
         }
+        .header-myuw { 
+	        h1 {
+		        font-family: 'Roboto'; font-weight: 300; display: inline-block; margin: 0; padding: 0;  font-size:16px; color: @myuw;  line-height: 30px; 
+				a { color: @lighttan; }
+				span { color: darken(@lighttan, 20%); }
+            }
+		}
+		
        
         .header-resources { display: inline-block; font-size: 12px; line-height: 30px; margin-left: 10px;
             i { color: @lighttan; opacity:0.7; filter: Alpha(opacity=60); /* IE8 and earlier */}
@@ -370,6 +376,8 @@ body {
             a { color: @lighttan; display: inline-block; line-height: 30px; }
         }    
     }
+    
+    
     
     // header cover (uw purple)
     .header-cover { background: lighten(@uwpurple, 2%);
@@ -469,9 +477,9 @@ body {
         }
         
         .card-badge-container {
-                
+            .card_list { list-style: none; padding-left: 0; }                
             .card-badge {  padding: 8px 10px 10px 0px; position: relative;
-                
+
                 .card-badge-label { display: block; font-weight: bold; line-height: 35px; }
                 .card-badge-action { display: block; font-weight: normal; line-height: 35px; margin-top: -10px; 
                     a { display: block; }
@@ -606,6 +614,10 @@ body {
                 .future-quarter-card { display:inline-block; width:50px; line-height: 50px; text-align:center; color:#4d66ca; }
             }
             
+            p {
+	            span{ display: block; }
+            }
+            
             // handle :hover for mobile touch devices
             .hover:hover { background: lighten(#4d66ca, 42%); }
         }
@@ -666,15 +678,49 @@ body {
              a { padding-left: 0; color: #4d66ca; }
          }
      }
-    
+     
+    // Events Card
+    #EventsCard {
+	    
+	    .card {
+		    .myuw-events {
+			    .myuw-events-info {font-style: italic;font-size: 80%;margin-top:-5px; padding-bottom:5px}
+			    h3 {}
+			    .myuw-events-list { padding-left: 0px; list-style-type: none;
+				    .myuw-events-list-item {border-bottom:1px dotted #aaa;padding: 6px 0;
+					    .myuw-events-date {font-weight: bold;font-size:110%;color:#333;}
+					    .myuw-events-time {font-size:89%;color:#333;}
+					    .myuw-events-title {}
+					    .myuw-events-location {font-size:12px; color:#777;padding-top:5px;}
+				    }
+				}
+				#events_card_more {					
+			    }
+			    .myuw-events-calendar-link {
+				    .myuw-events-cal-list {padding-top: 5px; line-height: 1.6em; list-style-type: circle;
+					    .myuw-events-cal-list-item {}
+				    }
+				}
+				.myuw-events-calendar-link-sml {font-size:12px;
+					.myuw-events-cal-list { padding-left:15px; padding-top:5px; line-height: 1.6em; list-style-type: circle;
+					    .myuw-events-cal-list-item {}
+				    }
+			    }
+		    }
+		    
+	    }
+	    
+    }
+     
+     
+    // Academic Card
     #AcademicCard {
         
         h3 { margin-bottom: 25px; }
-        h4 { color: #444; }
-        
-        
+        h4 { color: #85754d; }        
+
         .class-standing {
-            h5 { text-transform: uppercase; font-weight: normal; color: gray; margin-bottom: 3px; }
+            h4 { text-transform: uppercase; font-weight: normal; color: gray; margin-bottom: 3px; }
             p, li { font-weight: bold; }
         }
         
@@ -958,7 +1004,7 @@ body {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
 		
-		h1 { font-family: 'encode_sans_normalbold'; color: #444; font-size: @font-header-small;  }
+		h2 { font-family: 'encode_sans_normalbold'; color: #444; font-size: @font-header-small;  }
 		h3 { font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 16px; line-height: 30px; margin: 0; color: #222; }
 		h4 { font-family: 'Open Sans', sans-serif; font-size: 14px; 
     		span { text-transform: uppercase; font-size: 11px; }
@@ -999,7 +1045,7 @@ body {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
         
-        h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; }
+        h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; }
         
         .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
     }
@@ -1057,7 +1103,12 @@ body {
     	    }
     	    
     	    .disclosure-content {
-        	    padding: 0 15px 15px 15px;     
+        	    padding: 0 15px 15px 15px;
+        	    margin: 0px;  
+        	    .notices_list {
+	        	    list-style: none;
+	        	    padding-left: 0;
+        	    } 
     	    }
 
 		}
@@ -1117,7 +1168,7 @@ body {
 	
 	.academic_cal-container {
 		.container {
-			h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444; }
+			h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444; }
 			.acal-page-filters { padding:10px 0;margin-bottom:15px;margin-top:15px; 
 				#myuw-event-filter-breaks, #myuw-event-filter-all, #myuw-event-filter-classes {font-size:15px;}
 				.myuw-selected-button {color: #fff; background-color:#4f318c;border-color: #4f318c;}

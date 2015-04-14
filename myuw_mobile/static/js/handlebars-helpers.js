@@ -39,6 +39,9 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
         return moment(parse_date(str)).format("ddd, MMM D");
     });
 
+    Handlebars.registerHelper("toFriendlyDateVerbose", function(str) {
+        return moment(parse_date(str)).format("dddd, MMMM D");
+    });
 })();
 
 (function() {

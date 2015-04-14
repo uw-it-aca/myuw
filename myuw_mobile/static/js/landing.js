@@ -17,7 +17,7 @@ var Landing = {
         NoticeBanner.render_init($("#notice_banner_location"));
         CalendarBanner.render_init($("#calendar_banner_location"));
         var cards = [
-                     FinalExamCard,           
+                     FinalExamCard,
                      GradeCard,
                      FutureQuarterCardA,
                      RegStatusCard,
@@ -29,6 +29,7 @@ var Landing = {
                      TuitionCard,
                      LibraryCard,
                      AcademicCard,
+                     EventsCard,
                      FutureQuarterCard1,
                      SummerRegStatusCard1
                     ];

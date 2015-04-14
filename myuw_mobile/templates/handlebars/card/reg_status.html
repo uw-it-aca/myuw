@@ -9,7 +9,7 @@
             {{ #if hold_count }}
                 <div class="card-critical-alert" role="status">
                     
-                    <i class="fa fa-exclamation-triangle"><span class="sr-only">You have registration holds!</span></i>
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span class="sr-only">You have registration holds!</span>
                     <a id="show_reg_holds{{#if card}}_{{card}}{{/if}}" class="reg_disclosure{{#if card}}_{{card}}{{/if}}" aria-controls="reg_holds" href="#" title="Expand to show holds information">Show {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
                     <a id="hide_reg_holds{{#if card}}_{{card}}{{/if}}" class="reg_disclosure{{#if card}}_{{card}}{{/if}}" style="display: none" aria-controls="reg_holds" href="#" title="Collapse to hide holds information">Hide {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
 
@@ -72,6 +72,16 @@
                     <li><a href="https://myplan.uw.edu">MyPlan</a> (Academic Planning)</li>
                     <li><a href="https://uwstudent.washington.edu/student/myplan/audit?methodToCall=audit&viewId=DegreeAudit-FormView">Degree Audit Reporting System (DARS)</a></li>
                 </ul>
+                <!-- data from MyPlan -->
+                <div style="display: none;">
+                    {{ #each plan_data }}
+                    {{ curriculum_abbr }} {{ course_number }} - {{ #if registrations_available }} Available{{/if}}
+                    <br/>
+                    {{ #each sections }}
+                    Section {{ section_id }}<br />
+                    {{ /each }}
+                    {{ /each }}
+                </div>
             </div>
             
             <div class="card-disclosure">
