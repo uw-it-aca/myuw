@@ -17,17 +17,21 @@
 	                        {{#if majors}}
 	                        <li>
 	                            <h4>{{ pluralize_by_size majors "Major" "Majors"}}</h4>
+	                            	<ul>
 		                           	{{#each majors}}  
-								   	{{full_name}}<br />
+		                           		<li>{{full_name}}</li>
 								   	{{/each}}
+	                            	</ul>
 	                        </li>
 	                        {{/if}}
 	                        {{#if minors}}
 	                        <li>
 	                            <h4>{{ pluralize_by_size minors "Minor" "Minors"}}</h4>
+	                            <ul>
 								{{#each minors}}  
-	                            {{full_name}}<br />
+	                            	<li>{{full_name}}</li>
 	                            {{/each}}
+	                            </ul>
 	                        </li>
 	                        {{/if}}
 	                    </ul>
