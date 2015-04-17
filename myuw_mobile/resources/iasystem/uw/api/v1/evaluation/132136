@@ -1,0 +1,245 @@
+{
+    "collection": {
+        "version": "1.0",
+        "items": [
+            {
+                "meta": [
+                    {
+                        "value": "evaluation",
+                        "name": "type"
+                    },
+                    {
+                        "name": "id",
+                        "value": "1"
+                    },
+                    {
+                        "name": "childId",
+                        "value": "2"
+                    },
+                    {
+                        "name": "childId",
+                        "value": "3"
+                    },
+                    {
+                        "value": "4",
+                        "name": "childId"
+                    },
+                    {
+                        "name": "childId",
+                        "value": "5"
+                    }
+                ],
+                "links": [
+                    {
+                        "rel": "publishedto",
+                        "prompt": "Evaluation URL",
+                        "href": "https://uw.iasysdev.org/survey/132136"
+                    }
+                ],
+                "data": [
+                    {
+                        "value": "132136",
+                        "prompt": "Id",
+                        "name": "id"
+                    },
+                    {
+                        "prompt": "Year",
+                        "name": "year",
+                        "value": "2013"
+                    },
+                    {
+                        "prompt": "Term",
+                        "name": "termName",
+                        "value": "Spring"
+                    },
+                    {
+                        "value": "Online",
+                        "name": "deliveryMethod",
+                        "prompt": "Delivery Method"
+                    },
+                    {
+                        "value": "Closed",
+                        "name": "status",
+                        "prompt": "Status"
+                    },
+                    {
+                        "name": "openDate",
+                        "prompt": "Open Date",
+                        "value": "2013-11-24T15:00:00Z"
+                    },
+                    {
+                        "name": "closeDate",
+                        "prompt": "Close Date",
+                        "value": "2013-12-03T07:59:59Z"
+                    }
+                ],
+                "href": "https://uw.iasysdev.org/api/v1/evaluation/132136"
+            },
+            {
+                "meta": [
+                    {
+                        "value": "section",
+                        "name": "type"
+                    },
+                    {
+                        "name": "id",
+                        "value": "2"
+                    }
+                ],
+                "data": [
+                    {
+                        "name": "instCourseId",
+                        "value": "11840"
+                    },
+                    {
+                        "value": "2013",
+                        "name": "year"
+                    },
+                    {
+                        "value": "Spring",
+                        "name": "termName"
+                    },
+                    {
+                        "name": "curriculumAbbreviation",
+                        "value": "C LIT"
+                    },
+                    {
+                        "name": "courseNumber",
+                        "value": "270"
+                    },
+                    {
+                        "name": "sectionId",
+                        "value": "AG"
+                    },
+                    {
+                        "value": "Perspectives On Film: Introduction",
+                        "name": "courseTitle"
+                    }
+                ]
+            },
+            {
+                "meta": [
+                    {
+                        "name": "type",
+                        "value": "section"
+                    },
+                    {
+                        "name": "id",
+                        "value": "3"
+                    }
+                ],
+                "data": [
+                    {
+                        "value": "15327",
+                        "name": "instCourseId"
+                    },
+                    {
+                        "value": "2013",
+                        "name": "year"
+                    },
+                    {
+                        "value": "Spring",
+                        "name": "termName"
+                    },
+                    {
+                        "value": "GERMAN",
+                        "name": "curriculumAbbreviation"
+                    },
+                    {
+                        "name": "courseNumber",
+                        "value": "275"
+                    },
+                    {
+                        "name": "sectionId",
+                        "value": "AG"
+                    },
+                    {
+                        "name": "courseTitle",
+                        "value": "Crime Scenes: Investigating The Cinema And Its Cultures"
+                    }
+                ]
+            },
+            {
+                "meta": [
+                    {
+                        "value": "section",
+                        "name": "type"
+                    },
+                    {
+                        "value": "4",
+                        "name": "id"
+                    }
+                ],
+                "data": [
+                    {
+                        "name": "instCourseId",
+                        "value": "20334"
+                    },
+                    {
+                        "name": "year",
+                        "value": "2013"
+                    },
+                    {
+                        "name": "termName",
+                        "value": "Spring"
+                    },
+                    {
+                        "value": "SCAND",
+                        "name": "curriculumAbbreviation"
+                    },
+                    {
+                        "value": "275",
+                        "name": "courseNumber"
+                    },
+                    {
+                        "value": "AG",
+                        "name": "sectionId"
+                    },
+                    {
+                        "value": "Crime Scenes: Investigating The Cinema And Its Cultures",
+                        "name": "courseTitle"
+                    }
+                ]
+            },
+            {
+                "meta": [
+                    {
+                        "name": "type",
+                        "value": "instructor"
+                    },
+                    {
+                        "value": "5",
+                        "name": "id"
+                    }
+                ],
+                "data": [
+                    {
+                        "name": "instInstructorId",
+                        "value": "849001851"
+                    },
+                    {
+                        "value": "Douglas",
+                        "name": "firstName"
+                    },
+                    {
+                        "name": "lastName",
+                        "value": "Anderson"
+                    }
+                ]
+            }
+        ],
+        "links": [
+            {
+                "href": "https://uw.iasysdev.org/api/v1",
+                "prompt": "IASystem v1 Web API",
+                "rel": "home"
+            },
+            {
+                "rel": "self",
+                "prompt": "IASystem Evaluation '132136'",
+                "href": "https://uw.iasysdev.org/api/v1/evaluation/132136"
+            }
+        ],
+        "href": "https://uw.iasysdev.org/api/v1/evaluation"
+    }
+}
