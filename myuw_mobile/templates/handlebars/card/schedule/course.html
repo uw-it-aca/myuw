@@ -20,10 +20,12 @@
 	            <h5 class="scheduleHeading">Course Evaluations</h5>
 	            <div class="card-related-messages"></div>
             	<ul>
+                    {{ #each evaluation_data }}
 	            	<li>
-	            		<div><a href="#">Rate <strong>Michael P. Fritts</strong></a></div>
+	            		<div><a href="{{ url }}">Rate <strong>{{ instructor_name }}</strong></a></div>
 						<span><em>Teaching Assistant</em></span>
 					</li>
+                    {{ /each }}
             	</ul>
 				<div class="card-related-messages"><strong>All evaluations close on Mar 20.</strong> Evaluations take approximately 5-10 minutes to complete. Your responses are anonymous.</div>
             </div>   
