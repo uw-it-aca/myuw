@@ -29,8 +29,12 @@ def json_for_evaluation(evaluations):
     json_data = []
     for evaluation in evaluations:
         eval_json = {}
-        instructor = PWS().get_person_by_employee_id(evaluation.instructor_id)
+
+        pws = PWS()
+        instructor = pws.get_person_by_employee_id(evaluation.instructor_id)
+
         eval_json['instructor_name'] = instructor.display_name
+        eval_json['instructor_title'] = instructor.title1
         eval_json['open_date'] = evaluation.eval_open_date.isoformat()
         eval_json['close_date'] = evaluation.eval_close_date.isoformat()
         eval_json['url'] = evaluation.eval_url
