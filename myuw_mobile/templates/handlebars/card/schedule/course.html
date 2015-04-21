@@ -30,10 +30,9 @@
             	</ul>
 				<div class="card-related-messages"><span class="myuw-eval-close-date" role="alert">All evaluations close on Mar 20.</span> Evaluations take approximately 5-10 minutes to complete. Your responses are anonymous.</div>
             </div>
+            <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
             {{ /if }}
-	        <!-- disclosure new here -->
-	        
-            
+
             <h5 class="scheduleHeading">{{ucfirst meetings.0.type}} Schedule</h5>
             
             {{ #if canvas_grade }}
@@ -86,9 +85,10 @@
                 </tbody>
                 
             </table>
-            
-            <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">           
-                
+            {{ #unless evaluation_data }}
+
+            <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
+            {{ /unless }}
                 <div>
                     <h5>Course resources</h5>
                     <ul class="unstyled-list">
