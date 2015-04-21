@@ -14,7 +14,8 @@ from myuw_mobile.dao.registered_term import get_current_summer_term_in_schedule
 from myuw_mobile.logger.logresp import log_data_not_found_response
 from myuw_mobile.logger.logresp import log_success_response
 from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
-from myuw_mobile.dao.iasystem import get_evaluations_by_section, json_for_evaluation
+from myuw_mobile.dao.iasystem import get_evaluations_by_section,\
+    json_for_evaluation
 
 
 class StudClasSche(RESTDispatch):
@@ -82,7 +83,8 @@ def load_schedule(schedule, summer_term=""):
 
         evaluation_data = get_evaluations_by_section(section)
         if evaluation_data is not None:
-             section_data["evaluation_data"] = json_for_evaluation(evaluation_data)
+            section_data["evaluation_data"] = \
+                json_for_evaluation(evaluation_data)
 
         if section.section_label() in canvas_data_by_course_id:
             enrollment = canvas_data_by_course_id[section.section_label()]
