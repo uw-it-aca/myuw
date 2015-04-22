@@ -15,7 +15,7 @@
                 
             <h4><span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>&nbsp;
             <span class="shortTitle" style="display:block;">{{ course_title }}</span></h4>
-            {{ #if evaluation_data }}
+            {{ #if show_evals }}
             <div class="myuw-course-eval">
 	            <h5 class="scheduleHeading">Evaluate Your Instructor</h5>
 	            <div class="card-related-messages"></div>
@@ -85,7 +85,7 @@
                 </tbody>
                 
             </table>
-            {{ #unless evaluation_data }}
+            {{ #unless show_evals }}
 
             <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
             {{ /unless }}

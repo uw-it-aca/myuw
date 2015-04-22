@@ -38,6 +38,7 @@ def get_values_by_date(now, request):
     is_before_end_of_summer_reg_display_periodA = False
     is_before_first_day_of_term = False
     is_before_eof_7days_of_term = False
+    is_after_7d_before_last_instruction = False
 
     if now.date() < current_term.first_day_quarter:
         is_before_first_day_of_term = True
@@ -48,6 +49,9 @@ def get_values_by_date(now, request):
     if now.date() < current_term.first_day_quarter + timedelta(days=8):
         # till the end of 7-day (exclude the first day)
         is_before_eof_7days_of_term = True
+
+    if now.date() > (current_term.last_day_instruction - timedelta(days=7)):
+        is_after_7d_before_last_instruction = True
 
     raw_date = current_term.last_day_instruction
     d = datetime(raw_date.year, raw_date.month, raw_date.day)
@@ -114,6 +118,7 @@ def get_values_by_date(now, request):
         "is_before_first_day_of_term": is_before_first_day_of_term,
         "is_before_eof_7days_of_term": is_before_eof_7days_of_term,
         "last_term": "%s,%s" % (last_term.year, last_term.quarter),
+        "is_after_7d_before_last_instruction": is_after_7d_before_last_instruction
     }
 
 
@@ -146,6 +151,7 @@ def set_js_overrides(request, values):
            'myuw_before_end_of_reg_display': before_reg,
            'myuw_before_first_day': 'is_before_first_day_of_term',
            'myuw_before_end_of_first_week': 'is_before_eof_7days_of_term',
+           'myuw_after_eval_start': 'is_after_7d_before_last_instruction'
            }
 
     for key, value in MAP.iteritems():
