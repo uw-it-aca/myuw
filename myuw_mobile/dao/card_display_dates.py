@@ -118,7 +118,8 @@ def get_values_by_date(now, request):
         "is_before_first_day_of_term": is_before_first_day_of_term,
         "is_before_eof_7days_of_term": is_before_eof_7days_of_term,
         "last_term": "%s,%s" % (last_term.year, last_term.quarter),
-        "is_after_7d_before_last_instruction": is_after_7d_before_last_instruction
+        "is_after_7d_before_last_instruction":
+            is_after_7d_before_last_instruction
     }
 
 
