@@ -1,0 +1,42 @@
+{
+    "Current": {
+        "DevelopmentID": null,
+        "EduPersonAffiliationAffiliate": null,
+        "EduPersonAffiliationAlum": null,
+        "EduPersonAffiliationEmployee": null,
+        "EduPersonAffiliationFaculty": null,
+        "EduPersonAffiliationMember": null,
+        "EduPersonAffiliationStaff": null,
+        "EduPersonAffiliationStudent": null,
+        "EmployeeID": "123456789",
+        "Href": "/identity/v1/person.json?uwregid=&uwnetid=&employee_id=123456782&student_number=&student_system_key=&development_id=&registered_surname=&registered_first_middle_name=&edupersonaffiliation_student=&edupersonaffiliation_staff=&edupersonaffiliation_faculty=&edupersonaffiliation_employee=&edupersonaffiliation_member=&edupersonaffiliation_alum=&edupersonaffiliation_affiliate=&page_size=10&page_start=1",
+        "PageSize": "10",
+        "PageStart": "1",
+        "RegisteredFirstMiddleName": null,
+        "RegisteredSurname": null,
+        "Start": "1",
+        "StudentNumber": null,
+        "StudentSystemKey": null,
+        "UWNetID": null,
+        "UWRegID": null
+    },
+    "MaxResultSize": 500,
+    "Next": null,
+    "Persons": [
+        {
+            "PersonFullURI": {
+                "DisplayName": "BILL AVERAGE TEACHER",
+                "Href": "/identity/v1/person/FBB38FE46A7C11D5A4AE0004AC494FFE/full.json",
+                "UWNetID": "bill",
+                "UWRegID": "FBB38FE46A7C11D5A4AE0004AC494FFE"
+            },
+            "PersonURI": {
+                "DisplayName": "BILL AVERAGE TEACHER",
+                "Href": "/identity/v1/person/FBB38FE46A7C11D5A4AE0004AC494FFE.json",
+                "UWNetID": "bill",
+                "UWRegID": "FBB38FE46A7C11D5A4AE0004AC494FFE"
+            }
+        }
+    ],
+    "Previous": null
+}

@@ -66,7 +66,6 @@
 			"RoomNumber":"*",
 			"Instructors":
 			[
-				
 				{
 					"Person":
 					{
@@ -74,7 +73,7 @@
 						"Href":"/student/v5/person/260A0DEC95CB11D78BAA000629C31437.json",
 						"Name":"STUDENT, JAMES AVERAGE"
 					},
-					"TSPrint":false,
+					"TSPrint":true,
 					"FacultySequenceNumber":"",
 					"GradeRoster":
 					{
