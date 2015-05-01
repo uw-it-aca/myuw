@@ -67,7 +67,7 @@
 "DaysOfWeekToBeArranged":false,
 "EndTime":"19:25",
 "Instructors":[{"FacultySequenceNumber":"",
-                "GradeRoster":{"Href":"\/student\/v5\/graderoster\/2013,spring,T%20ARTS,110,A,2A8210B282FD4463BBEC53A09CDB13EC"},
+                "GradeRoster":{"Href":"\/student\/v5\/graderoster\/2013,spring,T%20ARTS,110,A,9136CCB8F66711D5BE060004AC494F31"},
                 "Person":{"Href":"\/student\/v5\/person\/9136CCB8F66711D5BE060004AC494F31.json",
                 "Name":"J,INTER",
                 "RegID":"9136CCB8F66711D5BE060004AC494F31"},
