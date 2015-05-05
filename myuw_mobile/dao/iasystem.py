@@ -35,10 +35,11 @@ def json_for_evaluation(evaluations):
 
         eval_json['instructor_name'] = instructor.display_name
         eval_json['instructor_title'] = instructor.title1
-        eval_json['open_date'] = evaluation.eval_open_date.isoformat()
-        eval_json['close_date'] = evaluation.eval_close_date.isoformat()
-        eval_json['url'] = evaluation.eval_url
         eval_json['is_online'] = evaluation.eval_is_online
+        if eval_json['is_online']:
+            eval_json['open_date'] = evaluation.eval_open_date.isoformat()
+            eval_json['close_date'] = evaluation.eval_close_date.isoformat()
+            eval_json['url'] = evaluation.eval_url
         json_data.append(eval_json)
 
     return json_data
