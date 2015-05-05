@@ -23,9 +23,15 @@
             	<ul class="myuw-eval-list">
                     {{ #each evaluation_data }}
 	            	<li class="myuw-eval-list-item">
-	            		<div><a class="myuw-eval-link" href="{{ url }}">Rate <span class="myuw-eval-name">{{ instructor_name }}</span></a></div>
-						<div class="myuw-eval-title">{{ instructor_title }}</div>
-					</li>
+	            	    <div>
+                                {{#if url }}
+                                    <a class="myuw-eval-link" href="{{ url }}">Rate <span class="myuw-eval-name">{{ instructor_name }}</span></a>
+                                {{else}}
+                                    {{ instructor_name }}
+                                {{/if}}
+                            </div>
+			    <div class="myuw-eval-title">{{ instructor_title }}</div>
+			</li>
                     {{ /each }}
             	</ul>
 				<div class="card-related-messages"><span class="myuw-eval-close-date" role="alert">All evaluations close on Mar 20.</span> Evaluations take approximately 5-10 minutes to complete. Your responses are anonymous.</div>
