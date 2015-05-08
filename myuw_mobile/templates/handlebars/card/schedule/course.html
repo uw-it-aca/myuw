@@ -19,19 +19,16 @@
             <div class="myuw-course-eval">
 	            <h5 class="scheduleHeading">Evaluate Your Instructor</h5>
 	            <div class="card-related-messages"></div>
-            	<ul>
             	<ul class="myuw-eval-list">
                     {{ #each evaluation_data }}
-	            	<li class="myuw-eval-list-item">
-	            	    <div>
-                                {{#if url }}
-                                    <a class="myuw-eval-link" href="{{ url }}">Rate <span class="myuw-eval-name">{{ instructor_name }}</span></a>
-                                {{else}}
-                                    {{ instructor_name }}
-                                {{/if}}
-                            </div>
-			    <div class="myuw-eval-title">{{ instructor_title }}</div>
-			</li>
+	            	<li class="myuw-eval-list-item">	            	    
+                        {{#if url }}
+                            <a class="myuw-eval-link" href="{{ url }}">Rate <span class="myuw-eval-name">{{ instructor_name }}</span></a>
+                        {{else}}
+                            {{ instructor_name }}
+                        {{/if}}                    
+						<div class="myuw-eval-title">{{ instructor_title }}</div>
+					</li>
                     {{ /each }}
             	</ul>
                 {{#if evaluation_close_date}}
