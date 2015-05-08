@@ -1,0 +1,188 @@
+{
+  "collection": {
+    "version": "1.0",
+    "href": "https:\/\/uw.iasysdev.org\/api\/v1\/evaluation",
+    "links": [
+      {
+        "href": "https:\/\/uw.iasysdev.org\/api\/v1",
+        "prompt": "IASystem v1 Web API",
+        "rel": "home"
+      },
+      {
+        "href": "https:\/\/uw.iasysdev.org\/api\/v1\/evaluation?section_id=A&curriculum_abbreviation=ELCBUS&course_number=200&term_name=Summer&year=2013",
+        "rel": "self",
+        "prompt": "IASystem Evaluation Listing"
+      }
+    ],
+    "items": [
+      {
+        "href": "https:\/\/uw.iasysdev.org\/api\/v1\/evaluation\/136618",
+        "links": [
+          {
+            "prompt": "Evaluation URL",
+            "rel": "publishedto",
+            "href": "https:\/\/uw.iasysdev.org\/survey\/136618"
+          }
+        ],
+        "data": [
+          {
+            "value": "136618",
+            "name": "id",
+            "prompt": "Id"
+          },
+          {
+            "value": "2013",
+            "prompt": "Year",
+            "name": "year"
+          },
+          {
+            "value": "Summer",
+            "prompt": "Term",
+            "name": "termName"
+          },
+          {
+            "value": "Online",
+            "name": "deliveryMethod",
+            "prompt": "Delivery Method"
+          },
+          {
+            "value": "Closed",
+            "name": "status",
+            "prompt": "Status"
+          },
+          {
+            "value": "2013-07-20T15:00:00Z",
+            "prompt": "Open Date",
+            "name": "openDate"
+          },
+          {
+            "value": "2013-07-25T07:59:59Z",
+            "name": "closeDate",
+            "prompt": "Close Date"
+          }
+        ],
+        "meta": [
+          {
+            "name": "type",
+            "value": "evaluation"
+          },
+          {
+            "name": "id",
+            "value": "1"
+          },
+          {
+            "name": "childId",
+            "value": "2"
+          },
+          {
+            "name": "childId",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "data": [
+          {
+            "name": "instCourseId",
+            "value": "13833"
+          },
+          {
+            "value": "2013",
+            "name": "year"
+          },
+          {
+            "value": "Summer",
+            "name": "termName"
+          },
+          {
+            "name": "curriculumAbbreviation",
+            "value": "ELCBUS"
+          },
+          {
+            "value": "451",
+            "name": "courseNumber"
+          },
+          {
+            "value": "A",
+            "name": "sectionId"
+          },
+          {
+            "value": "FIN PLAN AND PRAC A",
+            "name": "courseTitle"
+          }
+        ],
+        "meta": [
+          {
+            "name": "type",
+            "value": "section"
+          },
+          {
+            "value": "2",
+            "name": "id"
+          }
+        ]
+      },
+      {
+        "meta": [
+          {
+            "value": "instructor",
+            "name": "type"
+          },
+          {
+            "value": "3",
+            "name": "id"
+          }
+        ],
+        "data": [
+          {
+            "value": "123456789",
+            "name": "instInstructorId"
+          },
+          {
+            "value": "Steven",
+            "name": "firstName"
+          },
+          {
+            "name": "lastName",
+            "value": "Herbert"
+          }
+        ]
+      }
+    ],
+    "queries": [
+      {
+        "data": [
+          {
+            "prompt": "Year",
+            "name": "year",
+            "required": true
+          },
+          {
+            "name": "term_name",
+            "prompt": "Term Name",
+            "required": true
+          },
+          {
+            "name": "curriculum_abbreviation",
+            "prompt": "Curriculum Abbreviation"
+          },
+          {
+            "prompt": "Course Number",
+            "name": "course_number"
+          },
+          {
+            "prompt": "Section ID",
+            "name": "section_id"
+          },
+          {
+            "prompt": "Student ID",
+            "name": "student_id"
+          }
+        ],
+        "href": "https:\/\/uw.iasysdev.org\/api\/v1\/evaluation",
+        "prompt": "Evaluation Search Resource",
+        "rel": "collection filter"
+      }
+    ]
+  }
+}
