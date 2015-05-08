@@ -17,8 +17,8 @@
             <span class="shortTitle" style="display:block;">{{ course_title }}</span></h4>
             {{ #if show_evals }}
             <div class="myuw-course-eval">
-	            <h5 class="scheduleHeading">Evaluate Your Instructor</h5>
-	            <div class="card-related-messages"></div>
+	        <h5 class="scheduleHeading">Evaluate Your Instructor</h5>
+	        <div class="card-related-messages"></div>
             	<ul class="myuw-eval-list">
                     {{ #each evaluation_data }}
 	            	<li class="myuw-eval-list-item">	            	    
@@ -27,8 +27,8 @@
                         {{else}}
                             {{ instructor_name }}
                         {{/if}}                    
-						<div class="myuw-eval-title">{{ instructor_title }}</div>
-					</li>
+			    <div class="myuw-eval-title">{{ instructor_title }}</div>
+			</li>
                     {{ /each }}
             	</ul>
                 {{#if evaluation_close_date}}
