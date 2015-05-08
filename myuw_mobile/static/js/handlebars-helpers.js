@@ -29,6 +29,11 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
         return d;
     }
 
+    // used on course card
+    Handlebars.registerHelper("toMonthDay", function(str) {
+        return moment(parse_date(str)).format("MMM D");
+    });
+
     // used on Library card
     Handlebars.registerHelper("toFromNowDate", function(str) {
         return moment(parse_date(str)).fromNow();
