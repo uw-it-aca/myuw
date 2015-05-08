@@ -17,24 +17,23 @@
             <span class="shortTitle" style="display:block;">{{ course_title }}</span></h4>
             {{ #if show_evals }}
             <div class="myuw-course-eval">
-	            <h5 class="scheduleHeading">Evaluate Your Instructor</h5>
-	            <div class="card-related-messages"></div>
-            	<ul>
+	        <h5 class="scheduleHeading">Evaluate Your Instructor</h5>
+	        <div class="card-related-messages"></div>
             	<ul class="myuw-eval-list">
                     {{ #each evaluation_data }}
-	            	<li class="myuw-eval-list-item">
-	            	    <div>
-                                {{#if url }}
-                                    <a class="myuw-eval-link" href="{{ url }}">Rate <span class="myuw-eval-name">{{ instructor_name }}</span></a>
-                                {{else}}
-                                    {{ instructor_name }}
-                                {{/if}}
-                            </div>
+	            	<li class="myuw-eval-list-item">	            	    
+                        {{#if url }}
+                            <a class="myuw-eval-link" href="{{ url }}">Rate <span class="myuw-eval-name">{{ instructor_name }}</span></a>
+                        {{else}}
+                            {{ instructor_name }}
+                        {{/if}}                    
 			    <div class="myuw-eval-title">{{ instructor_title }}</div>
 			</li>
                     {{ /each }}
             	</ul>
-				<div class="card-related-messages"><span class="myuw-eval-close-date" role="alert">All evaluations close on Mar 20.</span> Evaluations take approximately 5-10 minutes to complete. Your responses are anonymous.</div>
+                {{#if evaluation_close_date}}
+	        <div class="card-related-messages"><span class="myuw-eval-close-date" role="alert">Online evaluation closes on {{toMonthDay evaluation_close_date}}.</span> Evaluations take approximately 5-10 minutes to complete. Your responses are anonymous.</div>
+                {{/if}}
             </div>
             <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
             {{ /if }}
