@@ -21,18 +21,16 @@
 	        <div class="card-related-messages"></div>
             	<ul class="myuw-eval-list">
                     {{ #each evaluation_data }}
-	            	<li class="myuw-eval-list-item">	            	    
                         {{#if url }}
+	                <li class="myuw-eval-list-item">
                             <a class="myuw-eval-link" href="{{ url }}">Rate <span class="myuw-eval-name">{{ instructor_name }}</span></a>
-                        {{else}}
-                            {{ instructor_name }}
-                        {{/if}}                    
 			    <div class="myuw-eval-title">{{ instructor_title }}</div>
-			</li>
+		        </li>
+                        {{/if}}
                     {{ /each }}
             	</ul>
                 {{#if evaluation_close_date}}
-	        <div class="card-related-messages"><span class="myuw-eval-close-date" role="alert">Online evaluation closes on {{toMonthDay evaluation_close_date}}.</span> Evaluations take approximately 5-10 minutes to complete. Your responses are anonymous.</div>
+	        <div class="card-related-messages"><span class="myuw-eval-close-date" role="alert">Submit your evaluation by {{toMonthDay evaluation_close_date}}.</span> Evaluations take approximately 5-10 minutes to complete. Your responses are anonymous.</div>
                 {{/if}}
             </div>
             <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
