@@ -42,12 +42,12 @@
                         {"value":"Closed",
                          "prompt":"Status",
                          "name":"status"},
-                        {"value":"2013-07-16T14:00:00Z",
+                        {"value":"2013-07-24T14:00:00Z",
                          "name":"openDate",
                          "prompt":"Open Date"},
                         {"prompt":"Close Date",
                          "name":"closeDate",
-                         "value":"2013-07-22T06:59:59Z"}
+                         "value":"2013-07-29T06:59:59Z"}
                          ],
                "links":[{"rel":"publishedto",
                          "href":"https://uw.iasystem.org/survey/130808",
