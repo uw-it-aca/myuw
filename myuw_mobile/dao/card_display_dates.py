@@ -5,11 +5,11 @@ either the current, next, or previous term.
 https://docs.google.com/document/d/14q26auOLPU34KFtkUmC_bkoo5dAwegRzgpwmZEQMhaU
 """
 
-from restclients.sws import term
 from django.conf import settings
 from datetime import datetime, timedelta
-from myuw_mobile.dao.term import get_comparison_date, get_current_quarter
-from myuw_mobile.dao.term import get_next_quarter
+from myuw_mobile.dao.term import get_comparison_date, \
+    get_current_quarter, get_next_quarter, \
+    get_current_summer_term, is_a_term
 from restclients.sws.term import get_term_after, get_term_before
 
 
@@ -50,8 +50,12 @@ def get_values_by_date(now, request):
         # till the end of 7-day (exclude the first day)
         is_before_eof_7days_of_term = True
 
-    if now.date() > (current_term.last_day_instruction - timedelta(days=7)):
-        is_after_7d_before_last_instruction = True
+    if current_term.quarter == "summer" and is_a_term(get_current_summer_term(request)):
+        is_after_7d_before_last_instruction = \
+            now.date() > (current_term.aterm_last_date - timedelta(days=7))
+    else:
+        is_after_7d_before_last_instruction = \
+            now.date() > (current_term.last_day_instruction - timedelta(days=7))
 
     raw_date = current_term.last_day_instruction
     d = datetime(raw_date.year, raw_date.month, raw_date.day)
