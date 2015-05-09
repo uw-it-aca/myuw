@@ -90,23 +90,23 @@ def get_values_by_date(now, request):
 
     last_term = get_term_before(current_term)
     return {
-        "is_after_grade_submission_deadline":\
+        "is_after_grade_submission_deadline":
             is_after_grade_submission_deadline,
-        "is_after_last_day_of_classes":\
+        "is_after_last_day_of_classes":
             is_after_last_day_of_classes,
-        "is_after_start_of_registration_display_period":\
+        "is_after_start_of_registration_display_period":
             is_after_start_of_registration_display_period,
-        "is_after_start_of_summer_reg_display_periodA":\
+        "is_after_start_of_summer_reg_display_periodA":
             is_after_start_of_summer_reg_display_periodA,
         "is_after_start_of_summer_reg_display_period1":
             is_after_start_of_summer_reg_display_period1,
         "is_before_end_of_finals_week": is_before_end_of_finals_week,
         "is_before_last_day_of_classes": is_before_last_day_of_classes,
-        "is_before_end_of_registration_display_period":\
+        "is_before_end_of_registration_display_period":
             is_before_end_of_registration_display_period,
-        "is_before_end_of_summer_reg_display_periodA":\
+        "is_before_end_of_summer_reg_display_periodA":
             is_before_end_of_summer_reg_display_periodA,
-        "is_before_end_of_summer_reg_display_period1":\
+        "is_before_end_of_summer_reg_display_period1":
             is_before_end_of_summer_reg_display_period1,
         "is_before_first_day_of_term": is_before_first_day_of_term,
         "is_before_eof_7days_of_term": is_before_eof_7days_of_term,
