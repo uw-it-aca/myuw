@@ -20,7 +20,7 @@
 	        <h5 class="scheduleHeading">Evaluate Your Instructor</h5>
 	        <div class="card-related-messages"></div>
             	<ul class="myuw-eval-list">
-                    {{ #each evaluation_data }}
+                    {{ #each evaluation_data.instructors }}
                         {{#if url }}
 	                <li class="myuw-eval-list-item">
                             <a class="myuw-eval-link" href="{{ url }}">Rate <span class="myuw-eval-name">{{ instructor_name }}</span></a>
@@ -29,8 +29,8 @@
                         {{/if}}
                     {{ /each }}
             	</ul>
-                {{#if evaluation_close_date}}
-	        <div class="card-related-messages"><span class="myuw-eval-close-date" role="alert">Submit your evaluation by {{toMonthDay evaluation_close_date}}.</span> Evaluations take approximately 5-10 minutes to complete. Your responses are anonymous.</div>
+                {{#if evaluation_data.close_date}}
+	        <div class="card-related-messages"><span class="myuw-eval-close-date" role="alert">Submit your evaluation between {{toMonthDay evaluation_data.open_date}} to {{toMonthDay evaluation_data.close_date}}.</span> Evaluations take approximately 5-10 minutes to complete. Your responses are anonymous.</div>
                 {{/if}}
             </div>
             <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">

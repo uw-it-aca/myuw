@@ -1,7 +1,9 @@
+from datetime import datetime
+from restclients.pws import PWS
+from restclients.exceptions import DataFailureException
 from restclients.iasystem import evaluation
 from myuw_mobile.dao.student_profile import get_profile_of_current_user
-from restclients.exceptions import DataFailureException
-from restclients.pws import PWS
+from myuw_mobile.dao.term import get_comparison_date
 
 
 def get_evaluations_by_section(section):
@@ -25,22 +27,27 @@ def _get_evaluations_by_section_and_student(section, student_id):
         return None
 
 
-def json_for_evaluation(evaluations):
-    json_data = []
+def json_for_evaluation(request, evaluations):
+    now = get_comparison_date(request)
+    this_morning = datetime(now.year, now.month, now.day, 0, 0, 0)
+    json_data = {'instructors': [],
+                 'open_date': None,
+                 'close_date': None}
     for evaluation in evaluations:
-        eval_json = {}
+        if evaluation.eval_is_online:
+            # and this_morning >= evaluation.eval_open_date:
+            eval_json = {}
 
-        pws = PWS()
-        instructor = pws.get_person_by_employee_id(evaluation.instructor_id)
+            pws = PWS()
+            instructor = \
+                pws.get_person_by_employee_id(evaluation.instructor_id)
 
-        eval_json['instructor_name'] = instructor.display_name
-        eval_json['instructor_title'] = instructor.title1
-        eval_json['is_online'] = evaluation.eval_is_online
-        if eval_json['is_online']:
-            eval_json['open_date'] = evaluation.eval_open_date.isoformat()
-            eval_json['close_date'] = evaluation.eval_close_date.isoformat()
+            eval_json['instructor_name'] = instructor.display_name
+            eval_json['instructor_title'] = instructor.title1
+            json_data['close_date'] = evaluation.eval_close_date.isoformat()
+            json_data['open_date'] = evaluation.eval_open_date.isoformat()
             eval_json['url'] = evaluation.eval_url
-        json_data.append(eval_json)
+            json_data['instructors'].append(eval_json)
 
     return json_data
 
