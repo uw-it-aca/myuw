@@ -11,6 +11,7 @@ from myuw_mobile.dao.library import get_subject_guide_by_section
 from myuw_mobile.dao.schedule import get_schedule_by_term
 from myuw_mobile.dao.schedule import filter_schedule_sections_by_summer_term
 from myuw_mobile.dao.registered_term import get_current_summer_term_in_schedule
+from myuw_mobile.dao.term import get_comparison_date
 from myuw_mobile.logger.logresp import log_data_not_found_response
 from myuw_mobile.logger.logresp import log_success_response
 from myuw_mobile.views.rest_dispatch import RESTDispatch, data_not_found
@@ -38,7 +39,7 @@ class StudClasSche(RESTDispatch):
             summer_term = get_current_summer_term_in_schedule(schedule,
                                                               request)
 
-        resp_data = load_schedule(schedule, summer_term)
+        resp_data = load_schedule(request, schedule, summer_term)
         if resp_data is None:
             log_data_not_found_response(logger, timer)
             return data_not_found()
@@ -47,7 +48,7 @@ class StudClasSche(RESTDispatch):
         return HttpResponse(json.dumps(resp_data))
 
 
-def load_schedule(schedule, summer_term=""):
+def load_schedule(request, schedule, summer_term=""):
     filter_schedule_sections_by_summer_term(schedule, summer_term)
     json_data = schedule.json_data()
     json_data["summer_term"] = summer_term
@@ -84,12 +85,7 @@ def load_schedule(schedule, summer_term=""):
         evaluation_data = get_evaluations_by_section(section)
         if evaluation_data is not None:
             section_data["evaluation_data"] = \
-                json_for_evaluation(evaluation_data)
-            close_date = None
-            for item in section_data["evaluation_data"]:
-                if item.get("close_date") is not None:
-                    close_date = item["close_date"]
-            section_data["evaluation_close_date"] = close_date
+                json_for_evaluation(request, evaluation_data)
 
         if section.section_label() in canvas_data_by_course_id:
             enrollment = canvas_data_by_course_id[section.section_label()]

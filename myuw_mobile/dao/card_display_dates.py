@@ -5,11 +5,11 @@ either the current, next, or previous term.
 https://docs.google.com/document/d/14q26auOLPU34KFtkUmC_bkoo5dAwegRzgpwmZEQMhaU
 """
 
-from restclients.sws import term
 from django.conf import settings
 from datetime import datetime, timedelta
-from myuw_mobile.dao.term import get_comparison_date, get_current_quarter
-from myuw_mobile.dao.term import get_next_quarter
+from myuw_mobile.dao.term import get_comparison_date, \
+    get_current_quarter, get_next_quarter, \
+    get_current_summer_term, is_a_term
 from restclients.sws.term import get_term_after, get_term_before
 
 
@@ -26,37 +26,35 @@ def get_values_by_date(now, request):
     next_term = get_next_quarter(request)
     term_after_next = get_term_after(next_term)
 
-    is_after_grade_submission_deadline = False
-    is_after_last_day_of_classes = False
-    is_after_start_of_registration_display_period = False
-    is_after_start_of_summer_reg_display_period1 = False
-    is_after_start_of_summer_reg_display_periodA = False
-    is_before_end_of_finals_week = False
-    is_before_last_day_of_classes = False
-    is_before_end_of_registration_display_period = False
-    is_before_end_of_summer_reg_display_period1 = False
-    is_before_end_of_summer_reg_display_periodA = False
-    is_before_first_day_of_term = False
-    is_before_eof_7days_of_term = False
-    is_after_7d_before_last_instruction = False
+    # We need to see if we're before this term's 1st day - the term
+    # switches at the grade submission deadline.
+    is_before_first_day_of_term = \
+        now.date() < current_term.first_day_quarter
+    is_after_grade_submission_deadline = is_before_first_day_of_term
 
-    if now.date() < current_term.first_day_quarter:
-        is_before_first_day_of_term = True
-        # We need to see if we're before this term's 1st day - the term
-        # switches at the grade submission deadline.
-        is_after_grade_submission_deadline = True
+    is_before_eof_7days_of_term = \
+        now.date() < (current_term.first_day_quarter + timedelta(days=8))
+    # till the end of 7-day (exclude the first day)
 
-    if now.date() < current_term.first_day_quarter + timedelta(days=8):
-        # till the end of 7-day (exclude the first day)
-        is_before_eof_7days_of_term = True
-
-    if now.date() > (current_term.last_day_instruction - timedelta(days=7)):
-        is_after_7d_before_last_instruction = True
+    if current_term.quarter == "summer" and \
+       is_a_term(get_current_summer_term(request)):
+        is_after_7d_before_last_instruction = \
+            now.date() > (current_term.aterm_last_date - timedelta(days=8))
+    else:
+        is_after_7d_before_last_instruction = \
+            now.date() > current_term.last_day_instruction - timedelta(days=7)
 
     raw_date = current_term.last_day_instruction
     d = datetime(raw_date.year, raw_date.month, raw_date.day)
-    if now >= d + timedelta(days=1):
-        is_after_last_day_of_classes = True
+    is_before_last_day_of_classes = now < (d + timedelta(days=1))
+
+    raw_date = current_term.last_day_instruction
+    d = datetime(raw_date.year, raw_date.month, raw_date.day)
+    is_after_last_day_of_classes = now >= (d + timedelta(days=1))
+
+    raw_date = current_term.last_final_exam_date
+    d = datetime(raw_date.year, raw_date.month, raw_date.day)
+    is_before_end_of_finals_week = now < (d + timedelta(days=1))
 
     term_reg_data = {
         "after_start": False,
@@ -65,11 +63,18 @@ def get_values_by_date(now, request):
     }
 
     get_reg_data(now, next_term, term_reg_data)
-    # We also need to be able to show this term's registration stuff, because
+    # We need to show this term's registration stuff, because
     # the period 2 stretches past the grade submission deadline
     get_reg_data(now, current_term, term_reg_data)
     # We also need to be able to show the term after next, in spring quarter
     get_reg_data(now, term_after_next, term_reg_data)
+
+    is_after_start_of_registration_display_period = False
+    is_after_start_of_summer_reg_display_period1 = False
+    is_after_start_of_summer_reg_display_periodA = False
+    is_before_end_of_registration_display_period = False
+    is_before_end_of_summer_reg_display_period1 = False
+    is_before_end_of_summer_reg_display_periodA = False
 
     if term_reg_data["after_start"]:
         is_after_start_of_registration_display_period = True
@@ -83,38 +88,26 @@ def get_values_by_date(now, request):
         is_after_start_of_summer_reg_display_periodA = True
         is_before_end_of_summer_reg_display_periodA = True
 
-    raw_date = current_term.last_final_exam_date
-    d = datetime(raw_date.year, raw_date.month, raw_date.day)
-    if now < d + timedelta(days=1):
-        is_before_end_of_finals_week = True
-
-    raw_date = current_term.last_day_instruction
-    d = datetime(raw_date.year, raw_date.month, raw_date.day)
-    if now < d + timedelta(days=1):
-        is_before_last_day_of_classes = True
-
-    after_submission = is_after_grade_submission_deadline
-    after_registration = is_after_start_of_registration_display_period
-    before_reg_end = is_before_end_of_registration_display_period
-
-    summerA_start = is_after_start_of_summer_reg_display_periodA
-    summer1_start = is_after_start_of_summer_reg_display_period1
-
-    summerA_end = is_before_end_of_summer_reg_display_periodA
-    summer1_end = is_before_end_of_summer_reg_display_period1
-
     last_term = get_term_before(current_term)
     return {
-        "is_after_grade_submission_deadline": after_submission,
-        "is_after_last_day_of_classes": is_after_last_day_of_classes,
-        "is_after_start_of_registration_display_period": after_registration,
-        "is_after_start_of_summer_reg_display_periodA": summerA_start,
-        "is_after_start_of_summer_reg_display_period1": summer1_start,
+        "is_after_grade_submission_deadline":
+            is_after_grade_submission_deadline,
+        "is_after_last_day_of_classes":
+            is_after_last_day_of_classes,
+        "is_after_start_of_registration_display_period":
+            is_after_start_of_registration_display_period,
+        "is_after_start_of_summer_reg_display_periodA":
+            is_after_start_of_summer_reg_display_periodA,
+        "is_after_start_of_summer_reg_display_period1":
+            is_after_start_of_summer_reg_display_period1,
         "is_before_end_of_finals_week": is_before_end_of_finals_week,
         "is_before_last_day_of_classes": is_before_last_day_of_classes,
-        "is_before_end_of_registration_display_period": before_reg_end,
-        "is_before_end_of_summer_reg_display_periodA": summerA_end,
-        "is_before_end_of_summer_reg_display_period1": summer1_end,
+        "is_before_end_of_registration_display_period":
+            is_before_end_of_registration_display_period,
+        "is_before_end_of_summer_reg_display_periodA":
+            is_before_end_of_summer_reg_display_periodA,
+        "is_before_end_of_summer_reg_display_period1":
+            is_before_end_of_summer_reg_display_period1,
         "is_before_first_day_of_term": is_before_first_day_of_term,
         "is_before_eof_7days_of_term": is_before_eof_7days_of_term,
         "last_term": "%s,%s" % (last_term.year, last_term.quarter),
