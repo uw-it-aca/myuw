@@ -17,15 +17,15 @@
             <span class="shortTitle" style="display:block;">{{ course_title }}</span></h4>
             {{ #if show_evals }}
             <div class="myuw-course-eval">
-	        <h5 class="scheduleHeading">Evaluate Your Instructor</h5>
+	        <h5 class="scheduleHeading">Course Evaluations</h5>
 	        <div class="card-related-messages"></div>
             	<ul class="myuw-eval-list">
                     {{ #each evaluation_data }}
                         {{#if url }}
 	                <li class="myuw-eval-list-item">
                             <a class="myuw-eval-link" href="{{ url }}">Rate <span class="myuw-eval-name">{{ instructor_name }}</span></a>
-			    <div class="myuw-eval-title">{{ instructor_title }}</div>
-		        </li>
+							<div class="myuw-eval-title">{{ instructor_title }}</div>
+					</li>
                         {{/if}}
                     {{ /each }}
             	</ul>
