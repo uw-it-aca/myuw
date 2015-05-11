@@ -39,7 +39,8 @@ def get_values_by_date(now, request):
     if current_term.quarter == "summer" and \
        is_a_term(get_current_summer_term(request)):
         is_after_7d_before_last_instruction = \
-            now.date() > (current_term.aterm_last_date - timedelta(days=7))
+            now.date() > (current_term.aterm_last_date - timedelta(days=7)) \
+            and now.date() < current_term.bterm_first_date
     else:
         is_after_7d_before_last_instruction = \
             now.date() > current_term.last_day_instruction - timedelta(days=7)
