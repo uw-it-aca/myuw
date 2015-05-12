@@ -29,13 +29,13 @@ def _get_evaluations_by_section_and_student(section, student_id):
 
 def json_for_evaluation(request, evaluations, section_summer_term):
     now = get_comparison_date(request)
-    #this_morning = datetime(now.year, now.month, now.day, 0, 0, 0)
+    # this_morning = datetime(now.year, now.month, now.day, 0, 0, 0)
     json_data = {'instructors': [],
                  'open_date': None,
                  'close_date': None}
     for evaluation in evaluations:
         if evaluation.eval_is_online and \
-                term_matched (request, section_summer_term):
+                term_matched(request, section_summer_term):
             # this_morning < evaluation.eval_close_date
             eval_json = {}
 

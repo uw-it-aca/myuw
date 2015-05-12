@@ -199,7 +199,7 @@ def is_past(term, request):
     return term.last_final_exam_date < get_comparison_date(request)
 
 
-def term_matched (request, given_summer_term):
+def term_matched(request, given_summer_term):
     """
     return true if this is not a summer quarter or
     the given_summer_term is overlaped with the current summer term
@@ -208,6 +208,6 @@ def term_matched (request, given_summer_term):
     if current_term.quarter != "summer":
         return True
     current_summer_term = get_current_summer_term(request)
-    return is_same_summer_term(current_summer_term, given_summer_term) or \
-            is_full_summer_term(given_summer_term) and \
-            is_b_term(current_summer_term)
+    return (is_same_summer_term(current_summer_term, given_summer_term) or
+            is_full_summer_term(given_summer_term) and
+            is_b_term(current_summer_term))
