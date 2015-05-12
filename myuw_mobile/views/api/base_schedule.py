@@ -81,11 +81,13 @@ def load_schedule(request, schedule, summer_term=""):
         section_index += 1
 #        if section.is_primary_section:
         section_data["lib_subj_guide"] = get_subject_guide_by_section(section)
-
+        print section.summer_term
         evaluation_data = get_evaluations_by_section(section)
         if evaluation_data is not None:
             section_data["evaluation_data"] = \
-                json_for_evaluation(request, evaluation_data)
+                json_for_evaluation(request, 
+                                    evaluation_data,
+                                    section.summer_term)
 
         if section.section_label() in canvas_data_by_course_id:
             enrollment = canvas_data_by_course_id[section.section_label()]

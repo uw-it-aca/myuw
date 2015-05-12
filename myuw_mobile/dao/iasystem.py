@@ -3,7 +3,7 @@ from restclients.pws import PWS
 from restclients.exceptions import DataFailureException
 from restclients.iasystem import evaluation
 from myuw_mobile.dao.student_profile import get_profile_of_current_user
-from myuw_mobile.dao.term import get_comparison_date
+from myuw_mobile.dao.term import get_comparison_date, term_matched
 
 
 def get_evaluations_by_section(section):
@@ -27,15 +27,16 @@ def _get_evaluations_by_section_and_student(section, student_id):
         return None
 
 
-def json_for_evaluation(request, evaluations):
+def json_for_evaluation(request, evaluations, section_summer_term):
     now = get_comparison_date(request)
-    this_morning = datetime(now.year, now.month, now.day, 0, 0, 0)
+    #this_morning = datetime(now.year, now.month, now.day, 0, 0, 0)
     json_data = {'instructors': [],
                  'open_date': None,
                  'close_date': None}
     for evaluation in evaluations:
-        if evaluation.eval_is_online:
-            # and this_morning >= evaluation.eval_open_date:
+        if evaluation.eval_is_online and \
+                term_matched (request, section_summer_term):
+            # this_morning < evaluation.eval_close_date
             eval_json = {}
 
             pws = PWS()
@@ -50,7 +51,6 @@ def json_for_evaluation(request, evaluations):
             json_data['instructors'].append(eval_json)
 
     return json_data
-
 
 # def get_evaluations_for_student_term(term):
 #     profile = get_profile_of_current_user()
