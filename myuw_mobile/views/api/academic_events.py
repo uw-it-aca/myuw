@@ -17,7 +17,7 @@ class AcademicEvents(RESTDispatch):
     def GET(self, request, current=False):
         events = []
 
-        cal_names = ['sea_acad-comm', 'sea_acad-inst', 'sea_acad-holidays']
+        cal_names = ['sea_acad-inst', 'sea_acad-holidays']
 
         calendars = []
         for cal in cal_names:
