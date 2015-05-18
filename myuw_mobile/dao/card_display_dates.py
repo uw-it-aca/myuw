@@ -42,7 +42,7 @@ def get_values_by_date(now, request):
             now.date() > (current_term.aterm_last_date - timedelta(days=8))
     else:
         is_after_7d_before_last_instruction = \
-            now.date() > current_term.last_day_instruction - timedelta(days=7)
+            now.date() > current_term.last_day_instruction - timedelta(days=8)
 
     raw_date = current_term.last_day_instruction
     d = datetime(raw_date.year, raw_date.month, raw_date.day)

@@ -194,10 +194,10 @@ class TestDisplayValues(TestCase):
             now_request = RequestFactory().get("/")
             # spring
             now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-05-31"
+            now_request.session["myuw_override_date"] = "2013-05-30"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_after_7d_before_last_instruction"])
-            now_request.session["myuw_override_date"] = "2013-06-01"
+            now_request.session["myuw_override_date"] = "2013-05-31"
             values = get_card_visibilty_date_values(now_request)
             self.assertTrue(values["is_after_7d_before_last_instruction"])
             now_request.session["myuw_override_date"] = "2013-06-24"
@@ -211,18 +211,16 @@ class TestDisplayValues(TestCase):
             now_request.session["myuw_override_date"] = "2012-07-11"
             values = get_card_visibilty_date_values(now_request)
             self.assertTrue(values["is_after_7d_before_last_instruction"])
-            now_request.session["myuw_override_date"] = "2012-07-18"
-            values = get_card_visibilty_date_values(now_request)
-            self.assertTrue(values["is_after_7d_before_last_instruction"])
+            # b-term start
             now_request.session["myuw_override_date"] = "2012-07-19"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_after_7d_before_last_instruction"])
             #summer b-term or full-term
             now_request.session = {}
-            now_request.session["myuw_override_date"] = "2012-08-10"
+            now_request.session["myuw_override_date"] = "2012-08-09"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_after_7d_before_last_instruction"])
-            now_request.session["myuw_override_date"] = "2012-08-11"
+            now_request.session["myuw_override_date"] = "2012-08-10"
             values = get_card_visibilty_date_values(now_request)
             self.assertTrue(values["is_after_7d_before_last_instruction"])
             now_request.session["myuw_override_date"] = "2012-08-22"
