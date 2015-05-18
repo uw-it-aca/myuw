@@ -1,5 +1,5 @@
 {
-    "DisplayName": "Jim Bags",
+    "DisplayName": "JAMES AVERAGE STUDENT",
     "EduPersonAffiliations": [
         "member",
         "student",
@@ -10,19 +10,19 @@
     "IsTestEntity": true,
     "PriorUWNetIDs": [],
     "PriorUWRegIDs": [],
-    "RegisteredFirstMiddleName": "Jim",
-    "RegisteredName": "Bags",
-    "RegisteredSurname": "WINSLOWE",
-    "UIDNumber": "56375",
-    "UWNetID": "mwinslowe",
-    "UWRegID": "260A0DEC95CB11D78BAA000629C31437",
+    "RegisteredFirstMiddleName": "JAMES AVERAGE",
+    "RegisteredName": "JAMES AVERAGE STUDENT",
+    "RegisteredSurname": "STUDENT",
+    "UIDNumber": "35443",
+    "UWNetID": "javerage",
+    "UWRegID": "9136CCB8F66711D5BE060004AC494FFE",
     "WhitepagesPublish": true,
     "PersonAffiliations": {
         "AlumPersonAffiliation": {
             "DevelopmentID": "0000773877"
         },
         "EmployeePersonAffiliation": {
-            "EmployeeID": "987654321",
+            "EmployeeID": "123456789",
             "EmployeeWhitePages": {
                 "Address1": null,
                 "Address2": null,
@@ -35,7 +35,7 @@
                 "Phone1": null,
                 "Phone2": null,
                 "PublishInDirectory": true,
-                "Title1": null,
+                "Title1": "Senior Lecturer",
                 "Title2": null,
                 "TouchDial": null,
                 "VoiceMail": null
@@ -44,8 +44,8 @@
             "MailStop": null
         },
         "StudentPersonAffiliation": {
-            "StudentNumber": "1443336",
-            "StudentSystemKey": "000083857",
+            "StudentNumber": "1033334",
+            "StudentSystemKey": "000083856",
             "StudentWhitePages": {
                 "Class": null,
                 "Department1": null,
@@ -54,7 +54,7 @@
                 "Email": null,
                 "Name": null,
                 "Phone": null,
-                "PublishInDirectory": true
+                "PublishInDirectory": false
             }
         }
     }

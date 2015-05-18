@@ -9,7 +9,9 @@ from myuw_mobile.dao.card_display_dates import get_card_visibilty_date_values
 class TestDisplayValues(TestCase):
 
     def test_first_day(self):
-        with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
+        with self.settings(\
+            RESTCLIENTS_SWS_DAO_CLASS=\
+                'restclients.dao_implementation.sws.File'):
             now_request = RequestFactory().get("/")
             # spring
             now_request.session = {}
@@ -106,7 +108,8 @@ class TestDisplayValues(TestCase):
             self.assertTrue(values["is_before_first_day_of_term"])
 
     def test_is_before_eof_7days_of_term(self):
-        with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=\
+                               'restclients.dao_implementation.sws.File'):
             now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-26"
@@ -184,6 +187,45 @@ class TestDisplayValues(TestCase):
             now_request.session["myuw_override_date"] = "2012-06-26"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_before_eof_7days_of_term"])
+
+    def test_is_after_7d_before_last_instruction(self):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=\
+                               'restclients.dao_implementation.sws.File'):
+            now_request = RequestFactory().get("/")
+            # spring
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-05-30"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_after_7d_before_last_instruction"])
+            now_request.session["myuw_override_date"] = "2013-05-31"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertTrue(values["is_after_7d_before_last_instruction"])
+            now_request.session["myuw_override_date"] = "2013-06-24"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_after_7d_before_last_instruction"])
+            #summer a-term
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-07-10"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_after_7d_before_last_instruction"])
+            now_request.session["myuw_override_date"] = "2012-07-11"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertTrue(values["is_after_7d_before_last_instruction"])
+            # b-term start
+            now_request.session["myuw_override_date"] = "2012-07-19"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_after_7d_before_last_instruction"])
+            #summer b-term or full-term
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-08-09"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_after_7d_before_last_instruction"])
+            now_request.session["myuw_override_date"] = "2012-08-10"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertTrue(values["is_after_7d_before_last_instruction"])
+            now_request.session["myuw_override_date"] = "2012-08-22"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["is_after_7d_before_last_instruction"])
 
     def test_day_before_last_day_of_classes(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
