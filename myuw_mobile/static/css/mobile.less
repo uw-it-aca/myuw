@@ -1,3 +1,8 @@
+/*** breakpoints ***/
+
+@phablet: ~"screen and (min-width: 768px)";
+@landscape: ~"screen and (min-width: 1024px)";
+
 /*** less variables ***/
 @myuw: #efe2cd;
 @uwpurple: #4b2e84;
@@ -28,10 +33,6 @@ border-color: @border;}
 @font-header-medium: 20px;
 @font-header-small: 18px;
 @font-header-smaller: 16px;
-
-/*** break points ***/
-@medium: ~"screen and (min-width: 768px)";
-@large: ~"screen and (min-width: 1024px)";
 
 @font-face {
     font-family: 'encode_sans_normalsemibold';
@@ -1256,7 +1257,7 @@ body {
 .container {
     
     // make margins auto at 768px
-     @media @medium {
+     @media @phablet {
         margin-left: auto; margin-right: auto;
     }
 

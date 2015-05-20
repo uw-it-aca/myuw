@@ -17,6 +17,13 @@
     <link href="{% static 'vendor/css/font-awesome-4.2.0.min.css' %}" rel="stylesheet">  
     <link href="{% static 'css/mobile.less' %}" rel="stylesheet" type="text/less">
    {% endcompress %}
+   
+   	 <!-- add desktop styles -->
+   	{% if not request.is_mobile and not request.is_tablet %}
+    {% compress css %}
+    <link rel="stylesheet" type="text/less" href="{% static 'css/desktop.less' %}"/>
+    {% endcompress %}
+    {% endif %}
 
     <!-- google fonts -->   
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -118,6 +125,9 @@
                     <li><a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi"><i class="fa fa-envelope" role="presentation"></i> Contact</a></li>
                      <li><a href="//www.washington.edu/online/terms/">Terms</a></li> 
                      <li style="border:none;"><a href="//www.washington.edu/online/privacy/">Privacy</a></li>
+                     <li style="border:none;"><div id="developer">
+            <span class="label label-danger">{% if request.is_mobile %}mobile{% elif request.is_tablet %}tablet{% else %}desktop{% endif %}</span>
+        </div></li> 
                      <li style="border:none; position:absolute; right:0; top:50%; margin-top:-6px;"><a href="//myuw.washington.edu/servlet/user"><i class="fa fa-desktop" role="presentation" aria-hidden="true"></i> Desktop Version</a></li>
                 </ul>
                 <div>&copy; {% now "Y" %} University of Washington</div>
@@ -126,6 +136,11 @@
     
     </div>
     <!-- /footer -->
+    
+    <!-- dev bar -->
+        
+        
+        
  
      <!-- do not compress - lack of trailing semicolons breaks concatenation -->
     <script src="{% static 'vendor/js/jquery-1.11.0.min.js' %}"></script>

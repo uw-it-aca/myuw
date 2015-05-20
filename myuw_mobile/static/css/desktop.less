@@ -1,0 +1,49 @@
+/*** breakpoints ***/
+
+@desktop: ~"screen and (min-width: 768px)";
+@widescreen: ~"screen and (min-width: 1200px)";
+
+/*** less variables ***/
+@myuw: #efe2cd;
+@uwpurple: #4b2e84;
+@lighttan: #e8e3d3;
+@darktan: #85754d;
+@icon-break-color: #AB9765;
+
+.button-variant(@color; @background; @border) {
+color: @color;
+background-color: @background;
+border-color: @border;}
+
+.btn-myuww {
+  //.button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
+  .button-variant(#fff; #6D569B; #4A3673);
+}
+
+@yellow: #f5d300;
+@gray: #ccc;
+
+@line-height-base: 20px;
+
+/*** font size ***/
+@font-base: 14px;
+@font-meta: 12px; 
+
+@font-header-large: 22px;
+@font-header-medium: 20px;
+@font-header-small: 18px;
+@font-header-smaller: 16px;
+
+/*** global ***/
+
+@media @desktop { 
+	
+	.container {max-width: 970px;}
+    #app_content { max-width: 970px; 
+	      min-height: 100%;
+		  height: auto;
+		  margin: 0 auto -60px;
+		  padding: 0 0 60px;
+    }
+}
+
