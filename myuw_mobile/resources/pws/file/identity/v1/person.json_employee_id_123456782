@@ -25,15 +25,15 @@
     "Persons": [
         {
             "PersonFullURI": {
-                "DisplayName": "BILL AVERAGE TEACHER",
+                "DisplayName": "Nancy O'Brien-Abël",
                 "Href": "/identity/v1/person/FBB38FE46A7C11D5A4AE0004AC494FFE/full.json",
-                "UWNetID": "bill",
+                "UWNetID": "nancy",
                 "UWRegID": "FBB38FE46A7C11D5A4AE0004AC494FFE"
             },
             "PersonURI": {
-                "DisplayName": "BILL AVERAGE TEACHER",
+                "DisplayName": "Nancy O'Brien-Abël",
                 "Href": "/identity/v1/person/FBB38FE46A7C11D5A4AE0004AC494FFE.json",
-                "UWNetID": "bill",
+                "UWNetID": "nancy",
                 "UWRegID": "FBB38FE46A7C11D5A4AE0004AC494FFE"
             }
         }
