@@ -1,2 +1,61 @@
-{"DisplayName":"EIGHT CLASS STUDENT","EduPersonAffiliations":["member","student","alum","staff","employee"],"IsTestEntity":true,"PriorUWNetIDs":[],"PriorUWRegIDs":[],"RegisteredFirstMiddleName":"EIGHT CLASS","RegisteredName":"EIGHT CLASS STUDENT","RegisteredSurname":"STUDENT","UIDNumber":"97802","UWNetID":"javerage","UWRegID":"12345678901234567890123456789012","WhitepagesPublish":false,"PersonAffiliations":{"AlumPersonAffiliation":{"DevelopmentID":"0000773877"},"EmployeePersonAffiliation":{"EmployeeID":"123456781","EmployeeWhitePages":{"Address1":null,"Address2":null,"Department1":null,"Department2":null,"Email1":null,"Email2":null,"Fax":null,"Name":null,"Phone1":null,"Phone2":null,"PublishInDirectory":false,"Title1":null,"Title2":null,"TouchDial":null,"VoiceMail":null},"HomeDepartment":"C&C TEST BUDGET","MailStop":null},"StudentPersonAffiliation":{"StudentNumber":"1443336","StudentSystemKey":"000083857","StudentWhitePages":{"Class":null,"Department1":null,"Department2":null,"Department3":null,"Email":null,"Name":null,"Phone":null,"PublishInDirectory":false}}}}
-
+{
+  "PersonAffiliations": {
+    "StudentPersonAffiliation": {
+      "StudentWhitePages": {
+        "PublishInDirectory": false,
+        "Phone": null,
+        "Name": null,
+        "Email": null,
+        "Department3": null,
+        "Department2": null,
+        "Department1": null,
+        "Class": null
+      },
+      "StudentSystemKey": "000083857",
+      "StudentNumber": "1443336"
+    },
+    "EmployeePersonAffiliation": {
+      "MailStop": null,
+      "HomeDepartment": "C&C TEST BUDGET",
+      "EmployeeWhitePages": {
+        "VoiceMail": null,
+        "TouchDial": null,
+        "Title2": null,
+        "Title1": null,
+        "PublishInDirectory": false,
+        "Phone2": null,
+        "Phone1": null,
+        "Name": null,
+        "Fax": null,
+        "Email2": null,
+        "Email1": null,
+        "Department2": null,
+        "Department1": null,
+        "Address2": null,
+        "Address1": null
+      },
+      "EmployeeID": "123456781"
+    },
+    "AlumPersonAffiliation": {
+      "DevelopmentID": "0000773877"
+    }
+  },
+  "WhitepagesPublish": false,
+  "UWRegID": "12345678901234567890123456789012",
+  "UWNetID": "javerage",
+  "UIDNumber": "97802",
+  "RegisteredSurname": "STUDENT",
+  "RegisteredName": "EIGHT CLASS STUDENT",
+  "RegisteredFirstMiddleName": "EIGHT CLASS",
+  "PriorUWRegIDs": [],
+  "PriorUWNetIDs": [],
+  "IsTestEntity": true,
+  "EduPersonAffiliations": [
+    "member",
+    "student",
+    "alum",
+    "staff",
+    "employee"
+  ],
+  "DisplayName": "EIGHT CLASS STUDENT"
+}
