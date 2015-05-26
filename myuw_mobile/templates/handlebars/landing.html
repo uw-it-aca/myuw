@@ -1,9 +1,14 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "landing" %}
     
-    <div id="calendar_banner_location"></div>
-    <div id="notice_banner_location"></div>
     <h2 id="main" class="sr-only">Summary of courses and accounts</h2>
-    <div id="landing_content" class="container"></div>
+    <div class="container row landing-wrapper">
+	    <div id="landing_content" class="col-md-8">
+		    <div id="notice_banner_location"></div>
+	    </div>
+	    <div id="landing_accounts" class="col-md-4">
+		    <div id="calendar_banner_location"></div>
+	    </div>
+    </div>
     
     {% endtplhandlebars %}

@@ -25,16 +25,20 @@ var Landing = {
                      VisualScheduleCard,
                      TextbookCard,
                      CourseCard,
-                     HfsCard,
+                    ];
+        var account_cards = [
+	        		 HfsCard,
                      TuitionCard,
                      LibraryCard,
                      AcademicCard,
                      EventsCard,
                      FutureQuarterCard1,
                      SummerRegStatusCard1
-                    ];
+					];            
+        
         
         Cards.load_cards_in_order(cards, $("#landing_content"));
+        Cards.load_cards_in_order(account_cards, $("#landing_accounts"));
                 
     }
 };
