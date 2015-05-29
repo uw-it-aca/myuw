@@ -18,19 +18,19 @@
             {{ #if evaluation_data }}
             <div class="myuw-course-eval">
 	        <h5 class="scheduleHeading">Course Evaluations</h5>
-	        <div class="card-related-messages"></div>
+	        <div class="eval-related-messages">Evaluate your instructor(s):</div>
             	<ul class="myuw-eval-list">
                     {{ #each evaluation_data.instructors }}
                         {{#if url }}
 	                <li class="myuw-eval-list-item">
-                            <a class="myuw-eval-link" href="{{ url }}">Rate <span class="myuw-eval-name">{{ instructor_name }}</span></a>
+                            <a class="myuw-eval-link" href="{{ url }}"><span class="myuw-eval-name">{{ instructor_name }}</span></a>
 			    <div class="myuw-eval-title">{{ instructor_title }}</div>
 			</li>
                         {{/if}}
                     {{ /each }}
             	</ul>
                 {{#if evaluation_data.close_date}}
-	        <div class="card-related-messages">Evaluations are available here for <span class="myuw-eval-close-date" role="alert">{{toMoreDay evaluation_data.close_date}}</span> and take only 5-10 minutes to complete.</div>
+	        <div class="card-related-messages"><!--Submit your evaluation bebefore {{toMonthDay evaluation_data.close_date}}. -->Evaluations are available here for <span class="myuw-eval-close-date">{{toMoreDay evaluation_data.close_date}}</span> and take only 5-10 minutes to complete.</div>
                 {{/if}}
             </div>
             <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
