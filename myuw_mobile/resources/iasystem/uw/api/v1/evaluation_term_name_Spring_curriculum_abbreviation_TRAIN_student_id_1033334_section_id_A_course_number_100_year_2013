@@ -84,12 +84,12 @@
                     {
                         "name": "openDate",
                         "prompt": "Open Date",
-                        "value": "2013-04-05T15:00:00Z"
+                        "value": "2013-05-30T15:00:00Z"
                     },
                     {
                         "prompt": "Close Date",
                         "name": "closeDate",
-                        "value": "2013-05-13T07:59:59Z"
+                        "value": "2013-07-01T07:59:59Z"
                     }
                 ],
                 "links": [

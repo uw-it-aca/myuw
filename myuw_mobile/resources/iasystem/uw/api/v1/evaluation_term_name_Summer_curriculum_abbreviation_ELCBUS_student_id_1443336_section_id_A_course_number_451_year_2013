@@ -36,7 +36,7 @@
                    {"value":"2013-07-02T14:00:00Z",
                    "name":"openDate",
                    "prompt":"Open Date"},
-                   {"value":"2013-07-10T06:59:59Z",
+                   {"value":"2013-07-23T06:59:59Z",
                    "prompt":"Close Date",
                    "name":"closeDate"}],
           "meta":[{"name":"type",

@@ -84,12 +84,12 @@
                     {
                         "name": "openDate",
                         "prompt": "Open Date",
-                        "value": "2013-06-01T15:00:00Z"
+                        "value": "2013-06-07T15:00:00Z"
                     },
                     {
                         "prompt": "Close Date",
                         "name": "closeDate",
-                        "value": "2013-06-15T07:59:59Z"
+                        "value": "2013-06-14T07:59:59Z"
                     }
                 ],
                 "links": [
@@ -104,71 +104,6 @@
             {
                 "meta": [
                     {
-                        "value": "evaluation",
-                        "name": "type"
-                    },
-                    {
-                        "value": "4",
-                        "name": "id"
-                    },
-                    {
-                        "value": "5",
-                        "name": "childId"
-                    },
-                    {
-                        "value": "2",
-                        "name": "childId"
-                    }
-                ],
-                "data": [
-                    {
-                        "prompt": "Id",
-                        "name": "id",
-                        "value": "1337"
-                    },
-                    {
-                        "name": "year",
-                        "prompt": "Year",
-                        "value": "2013"
-                    },
-                    {
-                        "name": "termName",
-                        "prompt": "Term",
-                        "value": "Spring"
-                    },
-                    {
-                        "prompt": "Delivery Method",
-                        "name": "deliveryMethod",
-                        "value": "Online"
-                    },
-                    {
-                        "prompt": "Status",
-                        "name": "status",
-                        "value": "Closed"
-                    },
-                    {
-                        "name": "openDate",
-                        "prompt": "Open Date",
-                        "value": "2013-04-05T15:00:00Z"
-                    },
-                    {
-                        "prompt": "Close Date",
-                        "name": "closeDate",
-                        "value": "2013-05-13T07:59:59Z"
-                    }
-                ],
-                "links": [
-                    {
-                        "href": "https://uw.iasysdev.org/survey/1337",
-                        "rel": "publishedto",
-                        "prompt": "Evaluation URL"
-                    }
-                ],
-                "href": "https://uw.iasysdev.org/api/v1/evaluation/1337"
-            },
-            {
-                "meta": [
-                    {
                         "value": "section",
                         "name": "type"
                     },
@@ -179,7 +114,7 @@
                 ],
                 "data": [
                     {
-                        "value": "17169",
+                        "value": "18545",
                         "name": "instCourseId"
                     },
                     {
@@ -191,20 +126,20 @@
                         "value": "Spring"
                     },
                     {
-                        "value": "TRAIN",
+                        "value": "PHYS",
                         "name": "curriculumAbbreviation"
                     },
                     {
                         "name": "courseNumber",
-                        "value": "101"
+                        "value": "121"
                     },
                     {
                         "name": "sectionId",
-                        "value": "A"
+                        "value": "AQ"
                     },
                     {
                         "name": "courseTitle",
-                        "value": "Train One Hundred"
+                        "value": "MECHANICS"
                     }
                 ]
             },
@@ -212,14 +147,14 @@
                 "data": [
                     {
                         "name": "instInstructorId",
-                        "value": "123456781"
+                        "value": "123456789"
                     },
                     {
                         "name": "firstName",
-                        "value": "Eight"
+                        "value": "Steven"
                     },
                     {
-                        "value": "Ate",
+                        "value": "Herbert",
                         "name": "lastName"
                     }
                 ],
@@ -233,32 +168,6 @@
                         "value": "3"
                     }
                 ]
-            },
-            {
-                "data": [
-                    {
-                        "name": "instInstructorId",
-                        "value": "123456782"
-                    },
-                    {
-                        "name": "firstName",
-                        "value": "Bill"
-                    },
-                    {
-                        "value": "Teacher",
-                        "name": "lastName"
-                    }
-                ],
-                "meta": [
-                    {
-                        "name": "type",
-                        "value": "instructor"
-                    },
-                    {
-                        "name": "id",
-                        "value": "5"
-                    }
-                ]
             }
         ],
         "links": [
@@ -270,7 +179,7 @@
             {
                 "prompt": "IASystem Evaluation Listing",
                 "rel": "self",
-                "href": "https://uw.iasysdev.org/api/v1/evaluation?section_id=A&curriculum_abbreviation=LSJ&course_number=200&term_name=Autumn&year=2014"
+                "href": "https://uw.iasysdev.org/api/v1/evaluation?section_id=AQ&curriculum_abbreviation=PHYS&course_number=121&term_name=Spring&year=2013"
             }
         ],
         "href": "https://uw.iasysdev.org/api/v1/evaluation",

@@ -1,15 +1,16 @@
 from datetime import datetime
+from django.utils import timezone
 from restclients.pws import PWS
 from restclients.exceptions import DataFailureException
 from restclients.iasystem import evaluation
 from myuw_mobile.dao.student_profile import get_profile_of_current_user
-from myuw_mobile.dao.term import get_comparison_date, term_matched
+from myuw_mobile.dao.term import get_comparison_date, term_matched,\
+    get_bof_7d_before_last_instruction, get_eof_term
 
 
 def get_evaluations_by_section(section):
-    profile = get_profile_of_current_user()
-    return _get_evaluations_by_section_and_student(section,
-                                                   profile.student_number)
+    return _get_evaluations_by_section_and_student(
+        section, get_profile_of_current_user().student_number)
 
 
 def _get_evaluations_by_section_and_student(section, student_id):
@@ -28,26 +29,49 @@ def _get_evaluations_by_section_and_student(section, student_id):
 
 
 def json_for_evaluation(request, evaluations, section_summer_term):
-    now = get_comparison_date(request)
-    # this_morning = datetime(now.year, now.month, now.day, 0, 0, 0)
+    local_tz = timezone.get_current_timezone()
+    today = get_comparison_date(request)
+    now = local_tz.localize(
+        datetime(today.year, today.month, today.day, 0, 0, 1))
+
+    # the start date of the default show window
+    show_date = get_bof_7d_before_last_instruction(request)
+    on_dt = local_tz.localize(
+        datetime(show_date.year, show_date.month, show_date.day, 0, 0, 0))
+
+    # the end date of the default show window
+    hide_date = get_eof_term(request, True)
+
+    off_dt = local_tz.localize(
+        datetime(hide_date.year, hide_date.month, hide_date.day, 0, 0, 0))
+
     json_data = {'instructors': [],
-                 'open_date': None,
                  'close_date': None}
+
     for evaluation in evaluations:
-        if evaluation.eval_is_online and \
+
+        if evaluation.eval_is_online and\
                 term_matched(request, section_summer_term):
-            # this_morning < evaluation.eval_close_date
+
+            if now < on_dt or now < evaluation.eval_open_date:
+                continue
+
+            if evaluation.eval_close_date < off_dt:
+                off_dt = evaluation.eval_close_date
+
+            if now >= off_dt:
+                continue
+
             eval_json = {}
 
             pws = PWS()
-            instructor = \
-                pws.get_person_by_employee_id(evaluation.instructor_id)
+            instructor = pws.get_person_by_employee_id(
+                evaluation.instructor_id)
 
             eval_json['instructor_name'] = instructor.display_name
             eval_json['instructor_title'] = instructor.title1
-            json_data['close_date'] = evaluation.eval_close_date.isoformat()
-            json_data['open_date'] = evaluation.eval_open_date.isoformat()
             eval_json['url'] = evaluation.eval_url
+            json_data['close_date'] = off_dt.isoformat()
             json_data['instructors'].append(eval_json)
 
     return json_data
