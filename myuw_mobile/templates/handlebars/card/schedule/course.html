@@ -23,18 +23,19 @@
                     {{ #each evaluation_data.instructors }}
                         {{#if url }}
 	                <li class="myuw-eval-list-item">
-                            <a class="myuw-eval-link" href="{{ url }}"><span class="myuw-eval-name">{{ instructor_name }}</span></a>
+                            <a class="myuw-eval-link" href="{{ url }}" target="_blank"><span class="myuw-eval-name">{{ instructor_name }}</span></a>
 			    <div class="myuw-eval-title">{{ instructor_title }}</div>
 			</li>
                         {{/if}}
                     {{ /each }}
             	</ul>
                 {{#if evaluation_data.close_date}}
-	        <div class="card-related-messages"><!--Submit your evaluation bebefore {{toMonthDay evaluation_data.close_date}}. -->Evaluations are available here for <span class="myuw-eval-close-date">{{toMoreDay evaluation_data.close_date}}</span> and take only 5-10 minutes to complete.</div>
+	        <div class="card-related-messages"><!--Submit your evaluation before {{toMonthDay evaluation_data.close_date}}. -->Evaluations are available here for <span class="myuw-eval-close-date">{{toMoreDay evaluation_data.close_date}}</span> and take only 5-10 minutes to complete.</div>
                 {{/if}}
             </div>
+            {{/if}}
             <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
-            {{ /if }}
+            </div>
 
             <h5 class="scheduleHeading">{{ucfirst meetings.0.type}} Schedule</h5>
             
@@ -47,7 +48,7 @@
             
             <table class="table table-condensed">
                
-               <thead class="sr-only">
+                <thead class="sr-only">
                    <tr>
                         <th>Day(s)</th>
                         <th>Time</th>
