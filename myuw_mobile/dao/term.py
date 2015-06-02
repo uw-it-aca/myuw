@@ -270,11 +270,13 @@ def get_eof_term(request, break_at_a_term=False):
     """
     current_term = get_current_quarter(request)
     if break_at_a_term and is_current_summer_a_term(request):
-        return convert_to_datetime(current_term.aterm_last_date +
-                                   timedelta(days=1))
+        return convert_to_datetime(
+            current_term.aterm_last_date +
+            timedelta(days=1))
     else:
-        return convert_to_datetime(current_term.grade_submission_deadline +
-                                   timedelta(days=1))
+        return convert_to_datetime(
+            current_term.grade_submission_deadline.date() +
+            timedelta(days=1))
 
 
 def get_eof_last_final_exam(request):
