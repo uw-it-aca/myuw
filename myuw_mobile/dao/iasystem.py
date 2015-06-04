@@ -29,6 +29,8 @@ def _get_evaluations_by_section_and_student(section, student_id):
 
 
 def json_for_evaluation(request, evaluations, section_summer_term):
+    if evaluations is None:
+        return None
     local_tz = timezone.get_current_timezone()
     today = get_comparison_date(request)
     now = local_tz.localize(
@@ -44,14 +46,14 @@ def json_for_evaluation(request, evaluations, section_summer_term):
 
     off_dt = local_tz.localize(
         datetime(hide_date.year, hide_date.month, hide_date.day, 0, 0, 0))
-
-    json_data = {'instructors': [],
-                 'close_date': None}
-
+    pws = PWS()
+    json_data = []
     for evaluation in evaluations:
-
-        if evaluation.eval_is_online and\
-                term_matched(request, section_summer_term):
+        if term_matched(request, section_summer_term):
+            json_item = {'instructors': [],
+                         'url': None,
+                         'is_multi_instr': False,
+                         'close_date': None}
 
             if now < on_dt or now < evaluation.eval_open_date:
                 continue
@@ -62,17 +64,17 @@ def json_for_evaluation(request, evaluations, section_summer_term):
             if now >= off_dt:
                 continue
 
-            eval_json = {}
+            json_item['is_multi_instr'] = len(evaluation.instructor_ids) > 1
+            for eid in evaluation.instructor_ids:
+                instructor_json = {}
+                instructor = pws.get_person_by_employee_id(eid)
+                instructor_json['instructor_name'] = instructor.display_name
+                instructor_json['instructor_title'] = instructor.title1
+                json_item['instructors'].append(instructor_json)
 
-            pws = PWS()
-            instructor = pws.get_person_by_employee_id(
-                evaluation.instructor_id)
-
-            eval_json['instructor_name'] = instructor.display_name
-            eval_json['instructor_title'] = instructor.title1
-            eval_json['url'] = evaluation.eval_url
-            json_data['close_date'] = off_dt.isoformat()
-            json_data['instructors'].append(eval_json)
+            json_item['url'] = evaluation.eval_url
+            json_item['close_date'] = off_dt.isoformat()
+            json_data.append(json_item)
 
     return json_data
 

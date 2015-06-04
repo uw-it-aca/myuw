@@ -7,37 +7,55 @@
     {{#each sections}}
     <div class="card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
     
-    <div class=" c{{color_id}}Border" style="position:absolute; top:0; left:0; right:0;">&nbsp;</div>
+        <div class=" c{{color_id}}Border" style="position:absolute; top:0; left:0; right:0;">&nbsp;</div>
     
-    <div class="fade-in">
+        <div class="fade-in">
     
-        <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
+            <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
                 
-            <h4><span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>&nbsp;
-            <span class="shortTitle" style="display:block;">{{ course_title }}</span></h4>
-            {{ #if evaluation_data }}
-            <div class="myuw-course-eval">
-	        <h5 class="scheduleHeading">Course Evaluations</h5>
-	        <div class="eval-related-messages">Evaluate your instructor(s):</div>
-            	<ul class="myuw-eval-list">
-                    {{ #each evaluation_data.instructors }}
-                        {{#if url }}
-	                <li class="myuw-eval-list-item">
-                            <a class="myuw-eval-link" href="{{ url }}" target="_blank"><span class="myuw-eval-name">{{ instructor_name }}</span></a>
-			    <div class="myuw-eval-title">{{ instructor_title }}</div>
-			</li>
-                        {{/if}}
-                    {{ /each }}
-            	</ul>
-                {{#if evaluation_data.close_date}}
-	        <div class="card-related-messages"><!--Submit your evaluation before {{toMonthDay evaluation_data.close_date}}. -->Evaluations are available here for <span class="myuw-eval-close-date">{{toMoreDay evaluation_data.close_date}}</span> and take only 5-10 minutes to complete.</div>
-                {{/if}}
-            </div>
-            {{/if}}
-            <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
-            </div>
+                <h4><span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>&nbsp;
+                    <span class="shortTitle" style="display:block;">{{ course_title }}</span></h4>
+                {{ #if evaluation_data }}
 
-            <h5 class="scheduleHeading">{{ucfirst meetings.0.type}} Schedule</h5>
+                <div class="myuw-course-eval">
+	            <h5 class="scheduleHeading">Course Evaluations</h5>
+	            <div class="eval-related-messages">Evaluate your instructor(s):</div>
+                    {{ #each evaluation_data }}
+                    <div>
+                        {{ #if is_multi_instr }}
+                            <a class="myuw-eval-link" href="{{ url }}" target="_blank"><span class="myuw-eval-name">{{ ../../curriculum_abbr }} {{../../course_number}} {{../../section_id}}</span></a>
+                            <div>
+                                {{ #each instructors }}
+                                <ul class="myuw-eval-list">
+                                    <li class="myuw-eval-list-item">
+                                        <span class="myuw-eval-name">{{ instructor_name }}</span>
+			                <div class="myuw-eval-title">{{ instructor_title }}</div>
+		                    </li>
+                                </ul>
+                                {{/each}}
+                            </div>
+                        {{else}}
+                            {{ #each instructors }}
+                            <ul class="myuw-eval-list">
+                                <li class="myuw-eval-list-item">
+                                    <span class="myuw-eval-name">{{ instructor_name }}</span>
+			            <div class="myuw-eval-title">{{ instructor_title }}</div>
+                                </li>
+                            </ul>
+                            {{/each}}
+                        {{/if}}
+	                <div class="card-related-messages">
+                            <!--Submit your evaluation by {{toMonthDay close_date}}. -->Evaluations are available here for <span class="myuw-eval-close-date">{{toMoreDay close_date}}</span> and take only 5-10 minutes to complete.
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                {{/if}}
+
+                <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
+                </div>
+
+                <h5 class="scheduleHeading">{{ucfirst meetings.0.type}} Schedule</h5>
             
             {{ #if canvas_grade }}
             <div class="canvasGradeBox" style="position: absolute; width: 100px; top: -3px; right:0;">
