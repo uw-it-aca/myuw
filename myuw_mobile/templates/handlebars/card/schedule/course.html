@@ -16,6 +16,62 @@
                 <h4><span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>&nbsp;
                     <span class="shortTitle" style="display:block;">{{ course_title }}</span></h4>
 
+                {{ #unless evaluation_data }}
+                <h5 class="scheduleHeading">{{ucfirst meetings.0.type}} Schedule</h5>
+
+                {{ #if canvas_grade }}
+                <div class="canvasGradeBox" style="position: absolute; width: 100px; top: -3px; right:0;">
+                    <span class="canvasGrade" style="font-size: 22px;">{{ canvas_grade }}%</span>
+                    <span class="canvasGradeLabel" style="font-size: 12px; cursor: pointer; display:block; margin-top:-3px;" title="See note">Canvas Grade*</span>
+                </div>
+                {{ /if }}
+
+                <table class="table table-condensed">
+
+                    <thead class="sr-only">
+                        <tr>
+                            <th>Day(s)</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {{#each meetings}}
+                        <tr>
+                            {{#if days_tbd }}
+                                <td colspan="2" class="text-muted" style="font-size:12px;">Days and times to<br/> be arranged</td>
+                            {{else}}
+                                <td>
+                                    {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
+                                    meeting_days.tuesday}}<abbr title="Tuesday">T</abbr>{{/if}}{{#if
+                                    meeting_days.wednesday}}<abbr title="Wednesday">W</abbr>{{/if}}{{#if
+                                    meeting_days.thursday}}<abbr title="Thursday">Th</abbr>{{/if}}{{#if
+                                    meeting_days.friday}}<abbr title="Friday">F</abbr>{{/if}}{{#if
+                                    meeting_days.saturday}}<abbr title="Saturday">Sa</abbr>{{/if}}{{#if
+                                    meeting_days.sunday}}<abbr title="Sunday">Su</abbr>{{/if}}
+                                </td>
+                                <td>{{formatTime start_time}} - {{formatTimeAMPM end_time}}</td>
+                            {{/if}}
+                            {{#if building_tbd}}
+                                <td style="width:100px; font-size:12px;" class="text-muted">Room to be arranged</td>
+                            {{else}}
+                                <td style="width:100px;">
+                                    {{#if latitude}}
+                                    <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" class="show_map" rel="{{building_name}}">
+                                        {{/if}}
+                                        {{building}} {{room}}
+                                        {{#if latitude}}</a>{{/if}}
+                                </td>
+                            {{/if}}
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+
+                <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
+                {{ /unless }}
+
                 {{ #if evaluation_data }}
                 <div class="myuw-course-eval">
 	            <h5 class="scheduleHeading">Course Evaluations</h5>
@@ -50,9 +106,8 @@
                 </div>
 
                 <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
-                {{/if}}
 
-                {{ #unless evaluation_data }}
+
                     <h5 class="scheduleHeading">{{ucfirst meetings.0.type}} Schedule</h5>
             
                     {{ #if canvas_grade }}
@@ -104,11 +159,9 @@
                             {{/each}}
                         </tbody>
                     </table>
+                {{/if}}
 
-                    <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
-                {{ /unless }}
-
-                        <h5>Course resources</h5>
+                    <h5>Course resources</h5>
                         <ul class="unstyled-list">
                         {{#if has_resources }}
                             {{#if class_website_url}}
@@ -159,12 +212,14 @@
                         </div>
                         {{ /if }}
 
-                    {{ #unless evaluation_data }}
+                    {{ #if evaluation_data }}
                     </div>
-                    {{ /unless}}
-                {{ #if evaluation_data }}
+                    {{ /if }}
+
+                {{ #unless evaluation_data }}
                 </div>
-                {{ /if }}
+                {{ /unless}}
+
                 <div class="card-disclosure">
                     <a class="slide-link" href="#" aria-controls="course{{index}}" title="Show more course information">Show more</a>
                 </div>
