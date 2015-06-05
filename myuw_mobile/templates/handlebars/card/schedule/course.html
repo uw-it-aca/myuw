@@ -79,15 +79,15 @@
                     {{ #each evaluation_data }}
                     <div>
                         {{ #if is_multi_instr }}
-                            <a class="myuw-eval-link" href="{{ url }}" target="_blank"><span class="myuw-eval-name">{{ ../../curriculum_abbr }} {{../../course_number}} {{../../section_id}}</span></a>
+                            <a class="myuw-eval-multi-link" href="{{ url }}" target="_blank"><span class="myuw-eval-name">{{ ../../curriculum_abbr }} {{../../course_number}} {{../../section_id}}</span></a>
+                            <ul class="myuw-eval-multi-list">
                             {{ #each instructors }}
-                            <ul class="myuw-eval-list">
-                                <li class="myuw-eval-list-item">
+                                <li class="myuw-eval-multi-list-item">
                                     <span class="myuw-eval-name">{{ instructor_name }}</span>
-			            <div class="myuw-eval-title">{{ instructor_title }}</div>
-		                </li>
-                            </ul>
+									<div class="myuw-eval-title">{{ instructor_title }}</div>
+								</li>
                             {{/each}}
+                            </ul>
                         {{else}}
                             {{ #each instructors }}
                             <ul class="myuw-eval-list">
