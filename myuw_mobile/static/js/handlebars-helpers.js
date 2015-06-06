@@ -37,8 +37,8 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
     // used on course card
     Handlebars.registerHelper("toMoreDay", function(str) {
         var d =  moment().from(moment(parse_date(str)), true);
-        if (str.match(/^a [a-z]+/)) {
-            return d.replace(/^a /, 'one more ');
+        if (str.match(/^an? [a-z]+/)) {
+            return d.replace(/^an? /, 'one more ');
         } else
             return d.replace(/ ([a-z]+)$/, ' more $1');
     });
