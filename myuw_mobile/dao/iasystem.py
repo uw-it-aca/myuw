@@ -44,11 +44,12 @@ def json_for_evaluation(request, evaluations, section_summer_term):
     # the end date of the default show window
     hide_date = get_eof_term(request, True)
 
-    off_dt = local_tz.localize(
+    term_off_dt = local_tz.localize(
         datetime(hide_date.year, hide_date.month, hide_date.day, 0, 0, 0))
     pws = PWS()
     json_data = []
     for evaluation in evaluations:
+        off_dt = term_off_dt
         if term_matched(request, section_summer_term):
             json_item = {'instructors': [],
                          'url': None,
