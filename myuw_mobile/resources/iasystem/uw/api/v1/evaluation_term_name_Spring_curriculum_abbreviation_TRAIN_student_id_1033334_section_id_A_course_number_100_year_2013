@@ -36,8 +36,7 @@
             }
         ],
         "items": [
-            {
-                "meta": [
+            {   "meta": [
                     {
                         "value": "evaluation",
                         "name": "type"
@@ -101,8 +100,7 @@
                 ],
                 "href": "https://uw.iasysdev.org/api/v1/evaluation/136617"
             },
-            {
-                "meta": [
+            {   "meta": [
                     {
                         "value": "section",
                         "name": "type"
@@ -143,8 +141,7 @@
                     }
                 ]
             },
-            {
-                "data": [
+            {   "data": [
                     {
                         "name": "instInstructorId",
                         "value": "123456789"
@@ -168,8 +165,95 @@
                         "value": "3"
                     }
                 ]
-            }
-        ],
+            },
+
+         {"href":"https://demo.iasystem.org/api/v1/evaluation/96956",
+          "meta":[{"value":"evaluation",
+                   "name":"type"},
+                   {"value":"4",
+                   "name":"id"},
+                   {"value":"2",
+                   "name":"childId"},
+                   {"value":"5",
+                   "name":"childId"}],
+          "links":[{"prompt":"Evaluation URL",
+                    "rel":"publishedto",
+                    "href":"https://demo.iasystem.org/survey/96956"}],
+         "data":[{"prompt":"Id",
+                  "value":"96956",
+                  "name":"id"},
+                  {"value":"2013",
+                  "prompt":"Year",
+                  "name":"year"},
+                  {"prompt":"Term",
+                  "value":"Spring",
+                  "name":"termName"},
+                  {"prompt":"Delivery Method",
+                  "value":"Online",
+                  "name":"deliveryMethod"},
+                  {"name":"status",
+                  "value":"Pending",
+                  "prompt":"Status"},
+                  {"name":"openDate",
+                  "prompt":"Open Date",
+                  "value":"2013-06-05T07:00:00Z"},
+                  {"name":"closeDate",
+                  "prompt":"Close Date",
+                  "value":"2013-06-17T06:59:59Z"}]},
+        {"meta":[{"name":"type",
+                  "value":"instructor"},
+                  {"value":"5",
+                  "name":"id"}],
+         "data":[{"name":"instInstructorId",
+                  "value":"123456782"},
+                  {"value":"see pws",
+                  "name":"firstName"},
+                  {"name":"lastName",
+                  "value":"see pws"}]},
+
+        {"links":[{"rel":"publishedto",
+                   "prompt":"Evaluation URL",
+                   "href":"https://uw.iasystem.org/survey/96957"}],
+         "data":[{"name":"id",
+                  "value":"96957",
+                  "prompt":"Id"},
+                  {"prompt":"Year",
+                  "value":"2013",
+                  "name":"year"},
+                  {"prompt":"Term",
+                  "value":"Spring",
+                  "name":"termName"},
+                  {"prompt":"Delivery Method",
+                  "value":"Online",
+                  "name":"deliveryMethod"},
+                  {"value":"Pending",
+                  "prompt":"Status",
+                  "name":"status"},
+                  {"name":"openDate",
+                  "value":"2013-06-10T07:00:00Z",
+                  "prompt":"Open Date"},
+                  {"name":"closeDate",
+                  "value":"2013-06-19T06:59:59Z",
+                  "prompt":"Close Date"}],
+         "meta":[{"name":"type",
+                  "value":"evaluation"},
+                  {"value":"6",
+                  "name":"id"},
+                  {"name":"childId",
+                  "value":"2"},
+                  {"value":"7",
+                  "name":"childId"}],
+         "href":"https://uw.iasystem.org/api/v1/evaluation/96957"},
+         {"data":[{"name":"instInstructorId",
+                   "value":"123456798"},
+                   {"value":"see pws",
+                   "name":"firstName"},
+                   {"value":"see pws",
+                   "name":"lastName"}],
+           "meta":[{"value":"instructor",
+                    "name":"type"},
+                    {"value":"7",
+                    "name":"id"}]}],
         "links": [
             {
                 "rel": "home",

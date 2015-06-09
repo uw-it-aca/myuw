@@ -86,7 +86,7 @@ def load_schedule(request, schedule, summer_term=""):
             request,
             get_evaluations_by_section(section),
             section.summer_term)
-        if evaluation_json_data is not None and len(evaluation_json_data) > 0:
+        if evaluation_json_data is not None:
             section_data["evaluation_data"] = evaluation_json_data
 
         if section.section_label() in canvas_data_by_course_id:
