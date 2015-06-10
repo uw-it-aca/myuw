@@ -45,27 +45,25 @@ def json_for_evaluation(request, evaluations, section_summer_term):
     hide_date = get_eof_term(request, True)
     off_dt = local_tz.localize(
         datetime(hide_date.year, hide_date.month, hide_date.day, 0, 0, 0))
-    if now > off_dt:
+
+    if now < on_dt or now > off_dt:
         return None
 
     pws = PWS()
     json_data = []
     for evaluation in evaluations:
         if term_matched(request, section_summer_term):
-            json_item = {'instructors': [],
-                         'url': None,
-                         'is_multi_instr': False}
-
-            if now < on_dt or now < evaluation.eval_open_date:
-                continue
-
-            if now >= evaluation.eval_close_date:
+            if now < evaluation.eval_open_date or\
+                    now >= evaluation.eval_close_date:
                 continue
 
             if evaluation.eval_close_date < off_dt:
                 off_dt = evaluation.eval_close_date
 
-            json_item['is_multi_instr'] = len(evaluation.instructor_ids) > 1
+            json_item = {'instructors': [],
+                         'url': evaluation.eval_url,
+                         'is_multi_instr': len(evaluation.instructor_ids) > 1}
+
             for eid in evaluation.instructor_ids:
                 instructor_json = {}
                 instructor = pws.get_person_by_employee_id(eid)
@@ -73,11 +71,11 @@ def json_for_evaluation(request, evaluations, section_summer_term):
                 instructor_json['instructor_title'] = instructor.title1
                 json_item['instructors'].append(instructor_json)
 
-            json_item['url'] = evaluation.eval_url
             json_data.append(json_item)
-            # althrough each item has its own close date, we
-            # only take one - the earliest.
+    # althrough each item has its own close date, we
+    # only take one - the earliest.
     if len(json_data) > 0:
         return {'evals': json_data,
                 'close_date': off_dt.isoformat()}
+
     return None
