@@ -45,14 +45,6 @@ var CourseCard = {
                 course_data.sections[index].has_resources = true;
             }
             course_data.sections[index].summer_term = course_data.summer_term;
-
-            //determine if section has evals AND we're in the display period
-            course_data.sections[index].show_evals = false;
-            if (course_data.sections[index].hasOwnProperty('evaluation_data') &&  window.card_display_dates.is_after_7d_before_last_instruction){
-                course_data.sections[index].show_evals = true;
-            }
-
-
         }
 
         var source = $("#course_card_content").html();

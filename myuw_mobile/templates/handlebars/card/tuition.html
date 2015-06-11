@@ -20,7 +20,7 @@
                         <!-- if tuition due date has passed and balance is greater than 0 -->
                         {{ #if past_due }}
                             <div class="card-critical-alert">
-                                <i class="fa fa-exclamation-circle"></i> {{ #if is_pce}} Your PCE tuition is past due.{{ else  }}You have a balance that may be past due. {{ /if }}<a href="https://sdb.admin.washington.edu/sisStudents/uwnetid/tuition.aspx">See your statement for details</a>.
+                                <i class="fa fa-exclamation-circle"></i> {{ #if is_pce}} Your PCE tuition is past due.{{ else  }}You have a balance that may be past due. {{ /if }}<a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">See your statement for details</a>.
                             </div>
                         {{ /if }}
                         <!-- end if --> 
@@ -32,7 +32,7 @@
 		                    <li>
                             <div class="card-badge">
                                 <span class="card-badge-label" style="line-height:20px;">{{ #if is_pce}}Your PCE tuition<br/> has been paid{{ else  }}Your tuition and fees have been paid{{ /if }}</span>
-                                <div class="card-badge-action" style="margin-top:10px; text-align:right;"><a href="https://sdb.admin.washington.edu/sisStudents/uwnetid/tuition.aspx">See tuition statement</a></div>
+                                <div class="card-badge-action" style="margin-top:10px; text-align:right;"><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">See tuition statement</a></div>
                             </div>
 		                    </li>
 	                    </ul>
@@ -77,7 +77,7 @@
                         {{ /if }}
 
                         <div class="card-related-messages">
-                            <p><a href="https://sdb.admin.washington.edu/sisStudents/uwnetid/release.aspx">Give access to your tuition account and financial aid information</a> to parents or other third parties.</p>
+                            <p><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx">Give access to your tuition account and financial aid information</a> to parents or other third parties.</p>
                             
                             {{ #each pce_tuition_dup }}
                             <p class="pce-message">{{{ this.notice_content }}}</p>

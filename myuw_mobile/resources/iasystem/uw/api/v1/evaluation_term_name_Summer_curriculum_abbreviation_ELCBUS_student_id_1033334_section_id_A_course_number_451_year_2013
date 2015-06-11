@@ -42,7 +42,7 @@
                         {"value":"Closed",
                          "prompt":"Status",
                          "name":"status"},
-                        {"value":"2013-07-24T14:00:00Z",
+                        {"value":"2013-07-23T14:00:00Z",
                          "name":"openDate",
                          "prompt":"Open Date"},
                         {"prompt":"Close Date",
