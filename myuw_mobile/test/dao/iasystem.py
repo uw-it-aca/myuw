@@ -202,7 +202,7 @@ class IASystemTest(TestCase):
             now_request.session["myuw_override_date"] = "2013-05-30"
             json_data = json_for_evaluation(now_request, evals, None)
             self.assertIsNone(json_data)
-            # after show date
+            # after show date and open dates of 1 eval
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-05-31"
             json_data = json_for_evaluation(now_request, evals, None)
@@ -210,9 +210,17 @@ class IASystemTest(TestCase):
             self.assertEqual(len(json_data['evals']), 1)
             self.assertEqual(json_data['close_date'],
                              "2013-07-01T07:59:59+00:00")
+            # after open dates of 1 eval
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-06-04"
+            json_data = json_for_evaluation(now_request, evals, None)
+            self.assertIsNotNone(json_data)
+            self.assertEqual(len(json_data['evals']), 1)
+            self.assertEqual(json_data['close_date'],
+                             "2013-07-01T07:59:59+00:00")
             # after open dates of two evals
             now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-06-06"
+            now_request.session["myuw_override_date"] = "2013-06-05"
             json_data = json_for_evaluation(now_request, evals, None)
             self.assertIsNotNone(json_data)
             self.assertEqual(len(json_data['evals']), 2)
