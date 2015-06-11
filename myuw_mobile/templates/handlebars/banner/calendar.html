@@ -1,10 +1,9 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "calendar_banner" %}
     
-	<div id="app_acal" class="card">
+	<div id="app_acal">
         <div class="acal-header">            
-            <h2 class="pull-left" role="alert"><strong>Academic Calendar</strong></h2>
-			<div class="pull-right view-all"><a href="/mobile/academic_calendar/" title="Navigate to Notices">View all events</a></div>
+            <h2 class="sr-only"><strong>Academic Calendar</strong></h2>
 			</a>
 	        <div class="acal-banner-events">
 	            <ul class="acal-banner-list">
@@ -15,6 +14,7 @@
 	                {{ /each }}
 	            </ul>
 	        </div>
+	        <div class="view-all"><a href="/mobile/academic_calendar/" title="Navigate to Notices">View all Academic Calendar events</a></div>
         </div>        
     </div>        
 {% endtplhandlebars %}

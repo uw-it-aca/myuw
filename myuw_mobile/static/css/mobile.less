@@ -414,14 +414,52 @@ body {
     
 }
 
-/*** notice banner ***/
-#app_notices { margin: 0; border-bottom: 1px solid #ddd; position: relative; padding-bottom: 15px;
+/*** week counter ***/
+	
+#week_counter_location {
+	.counter-text {font-style: italic;font-size: 75%;margin-top:5px;margin-bottom: 5px;}
+	.progress {height:15px; margin: 3px 0 5px 0;width:100%;
+		.progress-bar-empty {background-color: #eee;}
+		.progress-bar-success {background-color: #ccc;}
+		.myuw-week-progress {width:8.79%;
+			&.break {width:1px;}
+		.finals-text {font-size:85%;}	
+		}
+	}
+}
+
+
+/*** notice banner - critical notices on landing page ***/
+#app_notices { margin: 0; /*border-bottom: 1px solid #ddd;*/ position: relative; padding-bottom: 15px;
     
     .notice-header { font-size: @font-header-small; line-height: 50px; margin: 0 auto; position: relative;
         a {font-family: 'encode_sans_normalbold'; color: #444;}
     }
+    .critical-notices-container {margin-top:20px;
+	    .notice-content { font-weight: normal; border:none; box-shadow: none; -webkit-box-shadow: none;
+	        
+	        .notice-title {  color: #222; font-weight: bold; display: block; margin-bottom: 2px; }
+	        .notice-body-with-title { color: #444; }
+	        .notice-body-without-title { }
+	        .notice-list { margin-top: 5px; }
+	        
+	        .notice-panel-heading {background-color:transparent;padding: 10px 0;
+		        .notice-panel-title /*h4*/ {font-size:14px; line-height:20px;
+			        a:active, a:focus {text-decoration: none;}
+			        .notice-critical-label {color:#fff; background-color:#a94442;padding: 0 7px;border-radius: 4px;font-weight:400;font-size:12px;}
+		        }
+	        }
+	        .notice-panel-collapse {background-color:#eee;
+		        .notice-panel-body {border-top:none;}
+	        }
+	    }
+	    
+    }
     
-    .notice-unread { background-color: white; color:#444; font-weight:normal; border:1px solid #444; position: absolute; right: 15px; top: 50%; margin-top: -5px; z-index: -1; }
+    .other-notices-link {
+	    
+    }
+    .notice-unread { /*background-color: white; color:#444;*/ font-weight:normal; /*border:1px solid #444;*/ position: absolute; right: 15px; top: 50%; margin-top: -5px; }
     
     .notice-information { font-size: 11px; font-weight:normal; display: block; white-space: nowrap; margin-top: -15px; line-height: normal; }
 }
@@ -509,7 +547,7 @@ body {
         ul.unstyled-list, ol.unstyled-list { padding-left: 0px; list-style-type: none; line-height: 23px; }
         ul.unstyled, ol.unstyled { padding-left: 0px; list-style-type: none; line-height: 23px; }
         
-        .card-disclosure {  margin-left: -10px; margin-right: -10px; margin-bottom: -10px; margin-top: 1em; padding-left: 10px; border-top: solid 1px #eee; text-transform: uppercase; text-align: center; font-size: 12px;
+        .card-disclosure {  margin-left: -10px; margin-right: -10px; margin-bottom: -10px; margin-top: 1em; padding-left: 10px; border-top: solid 1px #eee; text-transform: uppercase; text-align: center; font-size: 12px;background-color: #efefef;
             a { color: #444; display:block; line-height:40px; }
         }
         
@@ -594,9 +632,18 @@ body {
 				ol {padding: 0px;}
 			}
 
-			.table {
+			.table-course-schedule {
 				margin-top: -5px;	
 				margin-bottom: 0;
+				.tbody-course-schedule {
+					.course-schedule-row {text-align: center;
+						.course-tbd {font-size:12px; width:64%;}
+						.course-days {width:20%;}
+						.course-time {width:44%}
+						.course-location {width:36%;}
+						.course-loc-tbd {font-size:12px;min-width:36%;}
+					}
+				}
 			}
         }
     }
