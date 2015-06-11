@@ -15,10 +15,10 @@ color: @color;
 background-color: @background;
 border-color: @border;}
 
-.btn-myuww {
+//.btn-myuww {
   //.button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
-  .button-variant(#fff; #6D569B; #4A3673);
-}
+  //.button-variant(#fff; #6D569B; #4A3673);
+//}
 
 @yellow: #f5d300;
 @gray: #ccc;
@@ -54,13 +54,15 @@ body {
 /*** week counter ***/
 	
 #week_counter_location {
-	.counter-text {font-style: italic;font-size: 85%;margin-top:5px;margin-bottom: 2px;}
-	.progress {height:15px; margin: 3px 0 5px 0;width:100%;
-		.progress-bar-empty {background-color: #eee;}
-		.progress-bar-success {background-color: #ccc;}
-		.myuw-week-progress {width:8.989%;
-			&.break {width:1px;}
-		.finals-text {}	
+	.week-counter {
+		.counter-text {font-style: italic;font-size: 85%;margin-top:5px;margin-bottom: 2px;}
+		.progress {height:15px; margin: 3px 0 5px 0;width:100%;
+			.progress-bar-empty {background-color: #eee;}
+			.progress-bar-success {background-color: #ccc;}
+			.myuw-week-progress {width:8.989%;
+				&.break {width:1px;}
+			.finals-text {}	
+			}
 		}
 	}
 }
