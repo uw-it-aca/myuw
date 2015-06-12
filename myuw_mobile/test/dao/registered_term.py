@@ -3,16 +3,19 @@ from django.conf import settings
 from restclients.models import ClassSchedule, Term, Section, Person
 from myuw_mobile.dao.term import _get_term_by_year_and_quarter
 from myuw_mobile.dao.schedule import _get_schedule
-from myuw_mobile.dao.registered_term import _get_registered_summer_terms
-from myuw_mobile.dao.registered_term import _must_displayed_separately
-from myuw_mobile.dao.registered_term import _get_registered_future_quarters
+from myuw_mobile.dao.registered_term import _get_registered_summer_terms,\
+    _must_displayed_separately, _get_registered_future_quarters
+
+
+FDAO_SWS = 'restclients.dao_implementation.sws.File'
+FDAO_PWS = 'restclients.dao_implementation.pws.File'
 
 
 class TestRegisteredTerm(TestCase):
 
     def test_get_registered_summer_terms(self):
-        with self.settings(RESTCLIENTS_PWS_DAO_CLASS='restclients.dao_implementation.pws.File',
-                           RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = _get_term_by_year_and_quarter(2013, "summer")
             schedule = _get_schedule(regid, term)
@@ -21,16 +24,16 @@ class TestRegisteredTerm(TestCase):
             self.assertTrue(data["A"])
 
     def test_must_displayed_separately(self):
-        with self.settings(RESTCLIENTS_PWS_DAO_CLASS='restclients.dao_implementation.pws.File',
-                           RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = _get_term_by_year_and_quarter(2013, "summer")
             schedule = _get_schedule(regid, term)
             self.assertTrue(_must_displayed_separately(schedule))
 
     def test_get_registered_future_quarters(self):
-        with self.settings(RESTCLIENTS_PWS_DAO_CLASS='restclients.dao_implementation.pws.File',
-                           RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term1 = _get_term_by_year_and_quarter(2013, "summer")
             schedule1 = _get_schedule(regid, term1)

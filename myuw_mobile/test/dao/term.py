@@ -6,7 +6,7 @@ from restclients.models.sws import ClassSchedule, Term, Section, Person
 from myuw_mobile.dao.term import _get_term_by_year_and_quarter, is_past,\
     is_using_file_dao, get_default_date, get_comparison_date,\
     get_current_quarter, get_next_quarter, get_next_non_summer_quarter,\
-    get_next_autumn_quarter,_get_term_by_year_and_quarter, get_quarter,\
+    get_next_autumn_quarter, _get_term_by_year_and_quarter, get_quarter,\
     is_past, is_a_term, is_b_term, is_half_summer_term, is_full_summer_term,\
     is_same_summer_term, term_matched, is_current_summer_a_term,\
     get_eof_last_instruction, get_bof_7d_before_last_instruction,\
@@ -14,12 +14,14 @@ from myuw_mobile.dao.term import _get_term_by_year_and_quarter, is_past,\
     get_eof_term, get_eof_last_final_exam
 
 
+FDAO_SWS = 'restclients.dao_implementation.sws.File'
+LDAO_SWS = 'restclients.dao_implementation.sws.Live'
+
+
 class TestTerm(TestCase):
 
     def test_get_term(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             term = _get_term_by_year_and_quarter(2013, "summer")
             self.assertEqual(term.year, 2013)
             self.assertEqual(term.quarter, "summer")
@@ -28,9 +30,7 @@ class TestTerm(TestCase):
             self.assertFalse(is_past(term, now_request))
 
     def test_is_past(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             term = _get_term_by_year_and_quarter(2014, "winter")
             self.assertEqual(term.year, 2014)
             self.assertEqual(term.quarter, "winter")
@@ -46,17 +46,13 @@ class TestTerm(TestCase):
             self.assertTrue(is_past(term, now_request))
 
     def test_default_date(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             date = get_default_date()
             self.assertEquals(date.year, 2013)
             self.assertEquals(date.month, 4)
             self.assertEquals(date.day, 15)
 
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.Live'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=LDAO_SWS):
             now = datetime.now()
             date = get_default_date()
             self.assertEquals(date.year, now.year)
@@ -64,20 +60,14 @@ class TestTerm(TestCase):
             self.assertEquals(date.day, now.day)
 
     def test_is_using_file_dao(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             self.assertTrue(is_using_file_dao())
 
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.Live'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=LDAO_SWS):
             self.assertFalse(is_using_file_dao())
 
     def test_comparison_date(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             now_request = RequestFactory().get("/")
             now_request.session = {}
             no_override = get_comparison_date(now_request)
@@ -92,9 +82,7 @@ class TestTerm(TestCase):
             self.assertEquals(no_override.day, 1)
 
     def test_current_quarter(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             now_request = RequestFactory().get("/")
             now_request.session = {}
 
@@ -145,9 +133,7 @@ class TestTerm(TestCase):
             self.assertEquals(quarter.quarter, 'spring')
 
     def test_next_quarter(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             now_request = RequestFactory().get("/")
             now_request.session = {}
 
@@ -176,9 +162,7 @@ class TestTerm(TestCase):
             self.assertEquals(quarter.quarter, 'summer')
 
     def test_get_next_non_summer_quarter(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-04-01"
@@ -187,9 +171,7 @@ class TestTerm(TestCase):
             self.assertEquals(quarter.quarter, 'autumn')
 
     def test_get_next_autumn_quarter(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-04-01"
@@ -198,9 +180,7 @@ class TestTerm(TestCase):
             self.assertEquals(quarter.quarter, 'autumn')
 
     def test_get_term_by_year_and_quarter(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             quarter = _get_term_by_year_and_quarter(2013, 'spring')
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'spring')
@@ -209,9 +189,7 @@ class TestTerm(TestCase):
             self.assertEquals(quarter.quarter, 'autumn')
 
     def test_is_past(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             quarter = get_quarter(2013, 'autumn')
             now_request = RequestFactory().get("/")
             now_request.session = {}
@@ -229,9 +207,7 @@ class TestTerm(TestCase):
             self.assertFalse(is_same_summer_term('A-term', 'Full-term'))
 
     def test_term_matched(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-10"
@@ -247,9 +223,7 @@ class TestTerm(TestCase):
             self.assertTrue(term_matched(now_request, '-'))
 
     def test_is_current_summer_a_term(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-10"
@@ -262,9 +236,7 @@ class TestTerm(TestCase):
             self.assertFalse(is_current_summer_a_term(now_request))
 
     def test_get_eof_last_instruction(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-05-10"
@@ -284,9 +256,7 @@ class TestTerm(TestCase):
                              datetime(2013, 8, 24, 0, 0, 0))
 
     def test_bof_7d_before_last_instruction(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-05-10"
@@ -302,9 +272,7 @@ class TestTerm(TestCase):
                              datetime(2013, 8, 16, 0, 0, 0))
 
     def test_bof_1st_instruction(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-05-10"
@@ -320,9 +288,7 @@ class TestTerm(TestCase):
                              datetime(2013, 6, 24, 0, 0, 0))
 
     def test_eof_7d_after_class_start(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-05-10"
@@ -338,9 +304,7 @@ class TestTerm(TestCase):
                              datetime(2013, 7, 2, 0, 0, 0))
 
     def test_eof_term(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-10"
@@ -356,9 +320,7 @@ class TestTerm(TestCase):
                              datetime(2013, 8, 28, 0, 0, 0))
 
     def test_eof_last_final_exam(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-10"
