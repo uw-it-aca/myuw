@@ -40,7 +40,6 @@ class TestCalendarMapping(TestCase):
         self.assertIn('far_future', cals)
         self.assertIn('past', cals)
 
-
     def test_unknown_major(self):
         enrollments = {'majors': ['WTFBBQ'],
                        'minors': [],

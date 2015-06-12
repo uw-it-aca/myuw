@@ -16,4 +16,3 @@ class TestValidation(TestCase):
         self.assertEquals(validate("99invalid"), invalid_string)
         self.assertEquals(validate("thisisfartoolongtobeanetid"),
                           invalid_string)
-

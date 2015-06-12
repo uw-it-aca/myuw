@@ -3,11 +3,15 @@ from myuw_mobile.dao.notice import UNKNOWN_CATEGORY_NAME
 from myuw_mobile.dao.notice import _get_notices_by_regid
 
 
+FDAO_SWS = 'restclients.dao_implementation.sws.File'
+FDAO_PWS = 'restclients.dao_implementation.pws.File'
+
+
 class TestNotce(TestCase):
 
     def test_get_notice_by_regid(self):
-        with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File',
-                           RESTCLIENTS_PWS_DAO_CLASS='restclients.dao_implementation.pws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
 
             regid = "9136CCB8F66711D5BE060004AC494FFE"
 
