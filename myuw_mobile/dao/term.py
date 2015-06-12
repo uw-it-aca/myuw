@@ -279,14 +279,20 @@ def get_eof_term(request, break_at_a_term=False):
             timedelta(days=1))
 
 
-def get_eof_last_final_exam(request):
+def get_eof_last_final_exam(request, break_at_a_term=False):
     """
     @return the datetime object of the current quarter
     the end of the last final exam day
     """
-    return convert_to_datetime(
-        get_current_quarter(request).last_final_exam_date +
-        timedelta(days=1))
+    current_term = get_current_quarter(request)
+    if break_at_a_term and is_current_summer_a_term(request):
+        return convert_to_datetime(
+            current_term.aterm_last_date +
+            timedelta(days=1))
+    else:
+        return convert_to_datetime(
+            get_current_quarter(request).last_final_exam_date +
+            timedelta(days=1))
 
 
 def convert_to_datetime(a_date):
