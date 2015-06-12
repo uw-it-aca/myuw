@@ -8,7 +8,7 @@ import json
 
 
 FDAO_SWS = 'restclients.dao_implementation.sws.File'
-Session = 'django.contrib.sessions.middleware.SessionMiddleware',
+Session = 'django.contrib.sessions.middleware.SessionMiddleware'
 Common = 'django.middleware.common.CommonMiddleware'
 CsrfView = 'django.middleware.csrf.CsrfViewMiddleware'
 Auth = 'django.contrib.auth.middleware.AuthenticationMiddleware'
@@ -20,15 +20,16 @@ AUTH_BACKEND = 'django.contrib.auth.backends.ModelBackend'
 
 
 @override_settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
-                   MIDDLEWARE_CLASSES=(SessionMiddleware
+                   MIDDLEWARE_CLASSES=(Session,
                                        Common,
                                        CsrfView,
                                        Auth,
                                        RemoteUser,
                                        Message,
                                        XFrame,
-                                       UserService),
-                   AUTHENTICATION_BACKENDS=(AUTH_BACKEND)
+                                       UserService,
+                                       ),
+                   AUTHENTICATION_BACKENDS=(AUTH_BACKEND,)
                    )
 class TestLibrary(TestCase):
     def setUp(self):
