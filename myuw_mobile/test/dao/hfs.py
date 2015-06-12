@@ -13,4 +13,5 @@ class TestHFS(TestCase):
         self.assertEquals(accounts.resident_dining.balance, Decimal('5.1'))
 
         # Missing account
-        self.assertEquals(get_account_balances_by_uwnetid("123notanetid"), None)
+        self.assertEquals(get_account_balances_by_uwnetid("123notanetid"),
+                          None)

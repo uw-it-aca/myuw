@@ -6,6 +6,10 @@ from myuw_mobile.dao.schedule import _get_schedule
 from restclients.models.sws import Term, Section
 
 
+FDAO_SWS = 'restclients.dao_implementation.sws.File'
+FDAO_PWS = 'restclients.dao_implementation.pws.File'
+
+
 class TestLibrary(TestCase):
 
     def test_get_account_balance(self):
@@ -17,9 +21,8 @@ class TestLibrary(TestCase):
         self.assertEquals(_get_account_by_uwnetid("123notarealuser"), None)
 
     def test_get_subject_guide_by_section(self):
-        with self.settings(
-            RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File',
-            RESTCLIENTS_PWS_DAO_CLASS='restclients.dao_implementation.pws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = Term()
             term.year = 2013
@@ -34,4 +37,3 @@ class TestLibrary(TestCase):
                     self.assertEquals(
                         get_subject_guide_by_section(section),
                         "http://guides.lib.washington.edu/physics_astronomy")
-                    

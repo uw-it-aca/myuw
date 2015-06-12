@@ -4,6 +4,7 @@ from icalendar import Calendar, Event
 from datetime import datetime, date
 from django.test.client import RequestFactory
 
+
 class TestAcademicEvents(TestCase):
     def test_parsers(self):
         obj = AcademicEvents()
@@ -41,7 +42,6 @@ class TestAcademicEvents(TestCase):
         self.assertEquals(len(categories.keys()), 1)
         self.assertTrue(categories['all'])
 
-
         event['calendar_name'] = 'sea_acad-holidays'
         categories = AcademicEvents().get_event_categories(event)
         self.assertEquals(len(categories.keys()), 2)
@@ -72,7 +72,6 @@ class TestAcademicEvents(TestCase):
 
         categories = AcademicEvents().parse_myuw_categories(events[0])
         self.assertEquals(len(categories.keys()), 4)
-
 
     def test_filter_past(self):
         request = RequestFactory().get("/")
@@ -144,7 +143,8 @@ class TestAcademicEvents(TestCase):
         e6['summary'] = "Event 6"
 
         # Test that there are only events in the first 3 of the valid dates
-        events = AcademicEvents().filter_non_current(request, [e1, e2, e3, e4, e5, e6])
+        events = AcademicEvents().filter_non_current(
+            request, [e1, e2, e3, e4, e5, e6])
 
         self.assertEquals(len(events), 5)
         self.assertEquals(events[0]['summary'], 'Event 1')
@@ -152,7 +152,6 @@ class TestAcademicEvents(TestCase):
         self.assertEquals(events[2]['summary'], 'Event 3')
         self.assertEquals(events[3]['summary'], 'Event 4')
         self.assertEquals(events[4]['summary'], 'Event 5')
-
 
         e7 = Event()
         e7.add('dtstart', date(2013, 2, 13))
@@ -169,13 +168,15 @@ class TestAcademicEvents(TestCase):
         e9.add('dtend', date(2013, 2, 15))
         e9['summary'] = "Event 9"
 
-        # Test that both events outside of 4 weeks, but on the first day outside are included
+        # Test that both events outside of 4 weeks,
+        # but on the first day outside are included
         events = AcademicEvents().filter_non_current(request, [e7, e8, e9])
         self.assertEquals(len(events), 2)
         self.assertEquals(events[0]['summary'], 'Event 7')
         self.assertEquals(events[1]['summary'], 'Event 8')
 
-        # Make sure that just one event inside of the 4 week span blocks everything outside
+        # Make sure that just one event inside of
+        # the 4 week span blocks everything outside
         events = AcademicEvents().filter_non_current(request, [e6, e7, e8, e9])
         self.assertEquals(len(events), 1)
         self.assertEquals(events[0]['summary'], 'Event 6')

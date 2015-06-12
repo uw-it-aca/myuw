@@ -10,16 +10,17 @@ from myuw_mobile.dao.iasystem import json_for_evaluation,\
 from myuw_mobile.dao.schedule import _get_schedule
 
 
+FDAO_SWS = 'restclients.dao_implementation.sws.File'
+FDAO_PWS = 'restclients.dao_implementation.pws.File'
+FDAO_IAS = 'restclients.dao_implementation.iasystem.File'
+
+
 class IASystemTest(TestCase):
 
     def test_get_evaluations_by_section(self):
-        with self.settings(
-            RESTCLIENTS_IASYSTEM_DAO_CLASS=\
-                'restclients.dao_implementation.iasystem.File',
-            RESTCLIENTS_PWS_DAO_CLASS=\
-                'restclients.dao_implementation.pws.File',
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
+                           RESTCLIENTS_IASYSTEM_DAO_CLASS=FDAO_IAS):
 
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = Term()
@@ -71,13 +72,9 @@ class IASystemTest(TestCase):
             self.assertIsNone(json_data)
 
     def test_json_for_evaluation(self):
-        with self.settings(
-            RESTCLIENTS_IASYSTEM_DAO_CLASS=\
-                'restclients.dao_implementation.iasystem.File',
-            RESTCLIENTS_PWS_DAO_CLASS=\
-                'restclients.dao_implementation.pws.File',
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
+                           RESTCLIENTS_IASYSTEM_DAO_CLASS=FDAO_IAS):
 
             evals = get_evaluation_by_id(132136, "seattle")
             self.assertIsNotNone(evals)
@@ -110,13 +107,9 @@ class IASystemTest(TestCase):
             self.assertIsNone(json_data)
 
     def test_multiple_instructor(self):
-        with self.settings(
-            RESTCLIENTS_IASYSTEM_DAO_CLASS=\
-                'restclients.dao_implementation.iasystem.File',
-            RESTCLIENTS_PWS_DAO_CLASS=\
-                'restclients.dao_implementation.pws.File',
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
+                           RESTCLIENTS_IASYSTEM_DAO_CLASS=FDAO_IAS):
 
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = Term()
@@ -149,13 +142,9 @@ class IASystemTest(TestCase):
             self.assertEqual(evals[0].instructor_ids[2], 123456798)
 
     def test_multiple_instructor(self):
-        with self.settings(
-            RESTCLIENTS_IASYSTEM_DAO_CLASS=\
-                'restclients.dao_implementation.iasystem.File',
-            RESTCLIENTS_PWS_DAO_CLASS=\
-                'restclients.dao_implementation.pws.File',
-            RESTCLIENTS_SWS_DAO_CLASS=\
-                'restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
+                           RESTCLIENTS_IASYSTEM_DAO_CLASS=FDAO_IAS):
 
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = Term()

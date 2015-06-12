@@ -12,7 +12,7 @@ before_script:
   - cp travis-ci/manage.py manage.py
   - python manage.py syncdb --noinput
 script:
-  - pep8 myuw_mobile/ --exclude=migrations,myuw_mobile/management,myuw_mobile/test
+  - pep8 myuw_mobile/ --exclude=migrations,myuw_mobile/management,myuw_mobile/test/views,myuw_mobile/test/api,myuw_mobile/test/course
   - jshint myuw_mobile/static/js/  --verbose
   - mocha myuw_mobile/static/js/test/ --recursive
   - coverage run --source=myuw_mobile/ --omit=myuw_mobile/migrations/* manage.py test myuw_mobile
