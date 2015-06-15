@@ -26,7 +26,16 @@ def get_values_by_date(now, request):
     """
     now is a datetime object of 1 second after the beginning of the day.
     """
-    last_term = get_term_before(get_current_quarter(request))
+    current_term = get_current_quarter(request)
+    last_term = get_term_before(current_term)
+
+    is_summer = False
+    is_after_summer_b = False
+    if current_term.quarter == "summer":
+        is_summer = True
+        if get_comparison_date(request) >= current_term.bterm_first_date:
+            is_after_summer_b = True
+
     return {
         "is_after_7d_before_last_instruction":
             is_after_7d_before_last_instruction(now, request),
@@ -54,7 +63,9 @@ def get_values_by_date(now, request):
             is_before_bof_term(now, request),
         "is_before_last_day_of_classes":
             is_before_last_day_of_classes(now, request),
-        "last_term": "%s,%s" % (last_term.year, last_term.quarter)
+        "last_term": "%s,%s" % (last_term.year, last_term.quarter),
+        "is_summer": is_summer,
+        "is_after_summer_b": is_after_summer_b,
     }
 
 
