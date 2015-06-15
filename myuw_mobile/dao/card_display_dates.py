@@ -13,6 +13,14 @@ from myuw_mobile.dao.term import get_comparison_date,\
     get_eof_7d_after_class_start, get_eof_last_final_exam
 
 
+def in_show_grades_period(term, request):
+    comparison_date = get_comparison_date(request)
+    next_term = get_term_after(term)
+    if comparison_date < next_term.first_day_quarter:
+        return True
+
+    return False
+
 def get_card_visibilty_date_values(request=None):
     now = get_comparison_date(request)
     after_midnight = datetime(now.year, now.month, now.day,
@@ -66,6 +74,7 @@ def get_values_by_date(now, request):
         "last_term": "%s,%s" % (last_term.year, last_term.quarter),
         "is_summer": is_summer,
         "is_after_summer_b": is_after_summer_b,
+        "current_summer_term": "%s,%s" % (last_term.year, "summer"),
     }
 
 
