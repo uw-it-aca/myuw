@@ -84,11 +84,11 @@ class TestFutureSchedule(TestCase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 410)
 
-        session = self.client.session
-        session["myuw_override_date"] = "2013-03-26"
-        session.save()
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 410)
+#        session = self.client.session
+#        session["myuw_override_date"] = "2013-03-26"
+#        session.save()
+#        response = self.client.get(url)
+#        self.assertEquals(response.status_code, 410)
 
         session = self.client.session
         session["myuw_override_date"] = "2013-03-27"

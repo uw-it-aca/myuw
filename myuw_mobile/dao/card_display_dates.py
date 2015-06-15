@@ -21,6 +21,7 @@ def in_show_grades_period(term, request):
 
     return False
 
+
 def get_card_visibilty_date_values(request=None):
     now = get_comparison_date(request)
     after_midnight = datetime(now.year, now.month, now.day,
