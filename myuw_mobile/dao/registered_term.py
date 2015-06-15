@@ -6,13 +6,15 @@ This module encapsulates the access of the term data
 import logging
 from myuw_mobile.dao.term import is_a_term, is_b_term, is_full_summer_term
 from myuw_mobile.dao.term import get_current_summer_term, get_comparison_date
+from myuw_mobile.dao.term import get_quarter, get_current_quarter
 from myuw_mobile.dao.schedule import get_next_quarter_schedule
 from myuw_mobile.dao.schedule import get_next_autumn_quarter_schedule
 from myuw_mobile.dao.schedule import has_summer_quarter_section
+from myuw_mobile.dao.schedule import get_current_quarter_schedule
 from myuw_mobile.dao import get_user_model
 from myuw_mobile.models import SeenRegistration
 from django.utils import timezone
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 logger = logging.getLogger(__name__)
@@ -53,12 +55,22 @@ def get_registered_future_quarters(request):
     next_autumn_sche = None
     if next_quar_sche and next_quar_sche.term.quarter == 'summer':
         next_autumn_sche = get_next_autumn_quarter_schedule(request)
-    return _get_registered_future_quarters(next_quar_sche,
+
+    # MUWM-3010
+    current = get_current_quarter(request)
+    if current.quarter == "summer":
+        summer_term = get_current_summer_term(request)
+        if summer_term == "a-term":
+            summer = get_current_quarter_schedule(request)
+            next_autumn_sche = next_quar_sche
+            next_quar_sche = summer
+
+    return _get_registered_future_quarters(request,
+                                           next_quar_sche,
                                            next_autumn_sche)
 
 
-def _get_registered_future_quarters(next_quar_sche,
-                                    next_autumn_sche):
+def _get_registered_future_quarters(request, next_quar_sche, next_autumn_sche):
     """
     Return the list of future quarters that
     has actively enrolled sections
@@ -73,23 +85,42 @@ def _get_registered_future_quarters(next_quar_sche,
 
         if next_quarter.quarter == "summer":
             sumr_tms = _get_registered_summer_terms(next_quar_sche.sections)
+            # MUWM-3010
+            # Filter out A-term and Full-term sections once summer term has
+            # started.
+            # Filter out B-term courses once B-term has started.
+            current = get_current_quarter(request)
+            now = get_comparison_date(request)
+            summer_started = False
+            bterm_started = False
 
-            if sumr_tms[A_TERM] or sumr_tms[FULL_TERM] and sumr_tms[B_TERM]:
-                terms.append(_get_future_term_json(next_quarter,
-                                                   "a-term",
-                                                   sumr_tms))
+            has_b = sumr_tms[B_TERM]
+            if current.quarter == "summer":
+                if now > current.first_day_quarter:
+                    summer_started = True
 
-            if sumr_tms[B_TERM] or sumr_tms[FULL_TERM] and sumr_tms[A_TERM]:
-                terms.append(_get_future_term_json(next_quarter,
-                                                   "b-term",
-                                                   sumr_tms))
+                if now > current.bterm_first_date:
+                    bterm_started = True
 
-            if (sumr_tms[FULL_TERM] and
-                    not sumr_tms[A_TERM] and
-                    not sumr_tms[B_TERM]):
-                terms.append(_get_future_term_json(next_quarter,
-                                                   "full-term",
-                                                   sumr_tms))
+            if not summer_started:
+                if sumr_tms[A_TERM] or sumr_tms[FULL_TERM] and has_b:
+                    terms.append(_get_future_term_json(next_quarter,
+                                                       "a-term",
+                                                       sumr_tms))
+
+            if not bterm_started:
+                if has_b or sumr_tms[FULL_TERM] and sumr_tms[A_TERM]:
+                    terms.append(_get_future_term_json(next_quarter,
+                                                       "b-term",
+                                                       sumr_tms))
+
+            if not summer_started:
+                if (sumr_tms[FULL_TERM] and
+                        not sumr_tms[A_TERM] and
+                        not sumr_tms[B_TERM]):
+                    terms.append(_get_future_term_json(next_quarter,
+                                                       "full-term",
+                                                       sumr_tms))
         else:
             terms.append(_get_future_term_json(next_quarter, ""))
 
@@ -194,6 +225,28 @@ def should_highlight_future_quarters(schedule, request):
         if created:
             model.first_seen_date = now_datetime
             model.save()
+        else:
+            # MUWM-3009
+            if summer_term == "B":
+                print "Is B term"
+                term_obj = get_quarter(term["year"], "summer")
+
+                bterm_start = term_obj.bterm_first_date
+                bterm_start_dt = datetime(bterm_start.year,
+                                          bterm_start.month,
+                                          bterm_start.day,
+                                          0, 0, 0, tzinfo=actual_now.tzinfo)
+
+                new_highlight = bterm_start - timedelta(days=8)
+                seen_before = model.first_seen_date < bterm_start_dt
+
+                is_after = now_datetime > bterm_start_dt
+
+                if seen_before and is_after:
+                    pass
+                #     print "This day here!"
+#                    model.first_seen_date = now_datetime
+#                    model.save()
 
         days_diff = (now_datetime - model.first_seen_date).days
         # XXX - this needs to be changed when we can set a time in the override
