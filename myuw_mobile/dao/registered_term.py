@@ -228,7 +228,6 @@ def should_highlight_future_quarters(schedule, request):
         else:
             # MUWM-3009
             if summer_term == "B":
-                print "Is B term"
                 term_obj = get_quarter(term["year"], "summer")
 
                 bterm_start = term_obj.bterm_first_date
@@ -237,16 +236,14 @@ def should_highlight_future_quarters(schedule, request):
                                           bterm_start.day,
                                           0, 0, 0, tzinfo=actual_now.tzinfo)
 
-                new_highlight = bterm_start - timedelta(days=8)
-                seen_before = model.first_seen_date < bterm_start_dt
+                new_highlight = bterm_start_dt - timedelta(days=8)
 
-                is_after = now_datetime > bterm_start_dt
+                seen_before = model.first_seen_date < bterm_start_dt
+                is_after = now_datetime > new_highlight
 
                 if seen_before and is_after:
-                    pass
-                #     print "This day here!"
-#                    model.first_seen_date = now_datetime
-#                    model.save()
+                    model.first_seen_date = now_datetime
+                    model.save()
 
         days_diff = (now_datetime - model.first_seen_date).days
         # XXX - this needs to be changed when we can set a time in the override
