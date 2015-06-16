@@ -9,7 +9,7 @@
 
 <h3>Web Services</h3>
 <ul>
-    {% url 'restclients.views.proxy' 'sws' 'student/v4' as sws_url %}
+    {% url 'restclients.views.proxy' 'sws' 'student/v5' as sws_url %}
     {% if sws_url %}
     <li><a href="{{ sws_url }}">{{ restclients_sws_link|default:"Browse Student Web Service" }}</a></li>
     {% endif %}
@@ -30,11 +30,15 @@
     {% if url %}
     <li><a href="{{ url }}">Canvas Web Service</a></li>
     {% endif %}
-    </ul>
 
+    {% url 'restclients.views.proxy' 'iasystem' 'uw/api/v1' as ias_url %}
+    {% if ias_url %}
+    <li><a href="{{ ias_url }}">IASystem Web Service</a></li>
+    {% endif %}
+</ul>
 
-    {% url 'restclients.views.proxy' 'hfs' 'myuw/v1' as url %}
-    {% if url %}
+{% url 'restclients.views.proxy' 'hfs' 'myuw/v1' as url %}
+{% if url %}
     <h4>HFS Web Service:</h4>
     <script>
         function direct_to_hfs_service() {
@@ -49,19 +53,20 @@
         </div>
     </form>
 
-    {% endif %}
+{% endif %}
 
-    {% url 'restclients.views.proxy' 'libraries' '' as url %}
-    {% if url %}
+{% url 'restclients.views.proxy' 'libraries' '' as url %}
+{% if url %}
     <h4>Library Web Service:</h4>
     <form action="{% url 'restclients.views.proxy' 'libraries' 'mylibinfo/v1/' %}" method="GET">
         <div class="form-group">
             <input type="text" name="id" class="form-control" />&nbsp;<input type="submit" value="go" class="btn btn-primary btn-sm" />
         </div>
     </form>
-    {% endif %}
+{% endif %}
 
-    {% url 'restclients.views.proxy' 'book' '' as url %}
+{% url 'restclients.views.proxy' 'book' '' as url %}
+{% if url %}
     <h4>UW Bookstore Web Service:</h4>
     <form action="{% url 'restclients.views.proxy' 'book' 'myuw/myuw_mobile_beta.ubs' %}" method="GET">
         
@@ -76,9 +81,10 @@
             <input type="text" name="sln1" class="form-control" />&nbsp;<input type="submit" value="Go" class="btn btn-primary btn-sm" />
         </div>
     </form>
+{% endif %}
 
-    {% url 'restclients.views.proxy' 'uwnetid' '/nws/v1/uwnetid' as url %}
-    {% if url %}
+{% url 'restclients.views.proxy' 'uwnetid' '/nws/v1/uwnetid' as url %}
+{% if url %}
     <h4>Netid Web Service:</h4>
     <script>
         function direct_to_netid_service() {
@@ -94,5 +100,4 @@
         </div>
     </form>
         
-    {% endif %}
-
+{% endif %}
