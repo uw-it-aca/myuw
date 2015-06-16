@@ -28,7 +28,7 @@ NOTICE_MAPPING = {
         "myuw_category": "Holds",
         "location_tags": ['notices_holds', 'reg_card_holds'],
         "critical": True
-        },
+    },
     "StudentALR_IntlStuCheckIn": {
         "myuw_category": "Holds",
         "location_tags": ['notices_holds', 'reg_card_holds'],
@@ -75,11 +75,11 @@ NOTICE_MAPPING = {
         "critical": False
     },
     "StudentGEN_IntendedMajors": {
-        "myuw_category": "not a notice",
-        "location_tags": [],
+        "myuw_category": "Academics",
+        "location_tags": ['academics_card'],
         "critical": False
     },
-    "StudentGEN_MajorsMinors": {
+    "StudentGEN_MAJORS": {
         "myuw_category": "not a notice",
         "location_tags": [],
         "critical": False
@@ -90,39 +90,9 @@ NOTICE_MAPPING = {
         "critical": True
     },
     "StudentDAD_QtrBegin": {
-        "myuw_category": "Quarter Begins",
+        "myuw_category": "not a notice",
         "location_tags": ['notices_date_sort', 'quarter_begins'],
         "critical": False
-    },
-    "StudentDAD_IntlStuRegCutoffDate": {
-        "myuw_category": "Visa",
-        "location_tags": ['notices_date_sort'],
-        "critical": True
-    },
-    "StudentDAD_IntlStuRegCutoffDate": {
-        "myuw_category": "Visa",
-        "location_tags": ['notices_date_sort'],
-        "critical": True
-    },
-    "StudentDAD_IntlStuRegCutoffDate": {
-        "myuw_category": "Visa",
-        "location_tags": ['notices_date_sort'],
-        "critical": True
-    },
-    "StudentDAD_IntlStuFTRegCutoffDate": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": True
-    },
-    "StudentDAD_IntlStuFTRegCutoffDate": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": True
-    },
-    "StudentDAD_IntlStuFTRegCutoffDate": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": True
     },
     "StudentDAD_LastDayRegWOChgFee": {
         "myuw_category": "Registration",
@@ -336,9 +306,7 @@ NOTICE_MAPPING = {
     },
     "StudentDAD_TuitDue": {
         "myuw_category": "Fees & Finances",
-        "location_tags": ['tuition_due_date',
-                          'finance_card',
-                          'notices_date_sort'],
+        "location_tags": ['tuition_due_date', 'finance_card', 'notice_date_sort'],
         "critical": True
     },
     "StudentDAD_Commencement": {
@@ -351,54 +319,84 @@ NOTICE_MAPPING = {
         "location_tags": ['est_reg_date', 'notices_date_sort'],
         "critical": True
     },
+    "StudentDAD_IntlStuRegCutoffDate": {
+        "myuw_category": "Visa",
+        "location_tags": ['notices_date_sort'],
+        "critical": True
+    },
+    "StudentDAD_IntlStuRegCutoffDate": {
+        "myuw_category": "Visa",
+        "location_tags": ['notices_date_sort'],
+        "critical": True
+    },
+    "StudentDAD_IntlStuRegCutoffDate": {
+        "myuw_category": "Visa",
+        "location_tags": ['notices_date_sort'],
+        "critical": True
+    },
+    "StudentDAD_IntlStuFTRegCutoffDate": {
+        "myuw_category": "Registration",
+        "location_tags": ['notices_date_sort'],
+        "critical": True
+    },
+    "StudentDAD_IntlStuFTRegCutoffDate": {
+        "myuw_category": "Registration",
+        "location_tags": ['notices_date_sort'],
+        "critical": True
+    },
+    "StudentDAD_IntlStuFTRegCutoffDate": {
+        "myuw_category": "Registration",
+        "location_tags": ['notices_date_sort'],
+        "critical": True
+    },
     "NewStudentGEN_ThankYouRemark": {
-        "myuw_category": "not a notice",
-        "location_tags": [],
+        "myuw_category": "Admission",
+        "location_tags": ['checklist_thankyou'],
         "critical": False
     },
     "NewStudentGEN_StatusSummary": {
-        "myuw_category": "not a notice",
-        "location_tags": [],
+        "myuw_category": "Admission",
+        "location_tags": ['checklist_residence'],
         "critical": False
     },
     "NewStudentGEN_FeesPaid": {
-        "myuw_category": "not a notice",
-        "location_tags": [],
+        "myuw_category": "Admission",
+        "location_tags": ['checklist_thankyou'],
         "critical": False
     },
-    "NewStudentCLIST_IntlStuCheckIn": {
-        "myuw_category": "not a notice",
-        "location_tags": ['notices_holds'],
+    "NewStudentCLIST_IntlStuCheckInA": {
+        "myuw_category": "Admission",
+        "location_tags": ['checklist_register'],
         "critical": False
     },
-    "NewStudentCLIST_IntlStuCheckIn": {
-        "myuw_category": "not a notice",
-        "location_tags": [],
+    "NewStudentCLIST_IntlStuCheckInB": {
+        "myuw_category": "Admission",
+        "location_tags": ['checklist_register'],
         "critical": False
     },
-    "NewStudentCLIST_AdvOrientRegDate": {
-        "myuw_category": "not a notice",
-        "location_tags": ['notices_date_sort'],
+    "NewStudentCLIST_AdvOrientRegDateA": {
+        "myuw_category": "Admission",
+        "location_tags": ['checklist_register'],
         "critical": False
     },
-    "NewStudentCLIST_AdvOrientRegDate": {
-        "myuw_category": "not a notice",
-        "location_tags": [],
+    "NewStudentCLIST_AdvOrientRegDateB": {
+        "myuw_category": "Admission",
+        "location_tags": ['checklist_register_B'],
         "critical": False
     },
-    "NewStudentCLIST_AdvOrientRegDate": {
-        "myuw_category": "not a notice",
-        "location_tags": [],
+    "NewStudentCLIST_AdvOrientRegDateC": {
+        "myuw_category": "Admission",
+        "location_tags": ['checklist_register_C'],
         "critical": False
     },
-    "NewStudentCLIST_Measles": {
-        "myuw_category": "not a notice",
-        "location_tags": [],
+    "NewStudentCLIST_MeaslesA": {
+        "myuw_category": "Admission",
+        "location_tags": ['checklist_register'],
         "critical": False
     },
-    "NewStudentCLIST_Measles": {
-        "myuw_category": "not a notice",
-        "location_tags": [],
+    "NewStudentCLIST_MeaslesB": {
+        "myuw_category": "Admission",
+        "location_tags": ['checklist_register'],
         "critical": False
     },
     "NewStudentCLIST_IntendedMajor": {
@@ -413,22 +411,22 @@ NOTICE_MAPPING = {
     },
     "NewStudentCLIST_FinAid": {
         "myuw_category": "not a notice",
-        "location_tags": ['finance_card_finaid'],
+        "location_tags": [],
         "critical": False
     },
     "NewStudentCLIST_EmailServices": {
-        "myuw_category": "not a notice",
-        "location_tags": [],
+        "myuw_category": "Admission",
+        "location_tags": ['checklist_update'],
         "critical": False
     },
     "NewStudentFOOT_FIUTS": {
-        "myuw_category": "not a notice",
-        "location_tags": [],
+        "myuw_category": "Admission",
+        "location_tags": ['checklist_ISS'],
         "critical": False
     },
     "NewStudentFOOT_SummerRegInfo": {
-        "myuw_category": "not a notice",
-        "location_tags": [],
+        "myuw_category": "Admission",
+        "location_tags": ['checklist_earlystart'],
         "critical": False
     },
     "NewStudentFOOT_NextStep": {
@@ -451,7 +449,6 @@ NOTICE_MAPPING = {
         "location_tags": [],
         "critical": False
     },
-
 }
 
 UNKNOWN_CATEGORY_NAME = "Uncategorized"
