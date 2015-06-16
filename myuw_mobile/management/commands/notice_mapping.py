@@ -19,8 +19,8 @@ class Command(BaseCommand):
                     notice_id = row[2]
                     myuw_category = row[3]
                     critical = row[4]
-                    location_tags = self._get_location_tags(row[12])
-                    string = "\"%s\": {\n    \"myuw_category\": \"%s\",\n    \"location_tags\": %s,\n    \"critical\": %s\n}," % \
+                    location_tags = self._get_location_tags(row[5])
+                    string = "\"%s\": {\n    \"myuw_category\": \"%s\",\n    \"location_tags\": %s,\n    \"critical\": %s\n},\n" % \
                              (notice_id,
                              myuw_category,
                               location_tags,
