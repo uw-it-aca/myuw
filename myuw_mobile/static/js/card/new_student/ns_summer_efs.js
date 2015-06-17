@@ -22,7 +22,6 @@ var SummerEFSCard = {
         var source = $("#ns_summer_efs").html();
         var template = Handlebars.compile(source);
         var notices = Notices.get_notices_for_tag("checklist_summerreg");
-        console.log(notices);
 
         SummerEFSCard.dom_target.html(template({'notices': notices}));
     },
