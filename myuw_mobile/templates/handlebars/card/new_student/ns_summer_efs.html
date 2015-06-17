@@ -2,6 +2,14 @@
     {% tplhandlebars "ns_summer_efs" %}
     <div class="card clearfix"  data-type="card">
         <h2>Summer and EFS</h2>
+            {{ #each notices }}
+                <div>{{{ notice_content }}}</div>
+            {{ /each }}
+
+        <h3>Consider EFS</h3>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean elementum magna ac luctus euismod. Nunc ipsum est, mattis at lorem et, placerat porta quam. Nullam a sagittis magna, dignissim placerat urna. Vestibulum mattis ipsum a ultrices dapibus. Nunc sapien odio, interdum in finibus sed, luctus vel diam. Morbi nec sem vitae nulla efficitur iaculis quis et nulla. Suspendisse placerat diam diam, eu venenatis ligula efficitur sed. Cras elementum diam lacus, et egestas odio posuere congue. Proin at eros id mauris rhoncus fermentum sed in lacus.
+        </p>
     </div>
 
 {% endtplhandlebars %}

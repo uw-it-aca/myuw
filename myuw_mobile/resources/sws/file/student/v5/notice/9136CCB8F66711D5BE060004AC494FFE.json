@@ -128,6 +128,12 @@
             "NoticeContent": "You can <a href=\"https://sdb.admin.washington.edu/students/uwnetid/finaidstatus.asp\">review the status</a> of your financial aid application online.",
             "NoticeType": "FinAid"
         },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentFOOT",
+            "NoticeContent": "<span class=\"notice-title\">Critical Summer Registration Information</span>&nbsp;<span class=\"notice-body-with-title\"><a href=\"http://fyp.washington.edu/sumreg\">Read the Summer Registration Guide</a> for instructions on how to register for both summer and autumn classes. If you have further questions, call First Year Programs at 206-543-4905.</span>",
+            "NoticeType": "SummerRegInfo"
+        },
 		  {
             "NoticeAttributes": [
              {
