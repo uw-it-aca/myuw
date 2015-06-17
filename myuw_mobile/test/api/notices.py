@@ -63,7 +63,7 @@ class TestNotices(TestCase):
 
         data = json.loads(response.content)
 
-        self.assertEquals(len(data), 6)
+        self.assertEquals(len(data), 7)
 
         match = False
         for el in data:
