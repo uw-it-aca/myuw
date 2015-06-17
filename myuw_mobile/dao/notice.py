@@ -306,7 +306,8 @@ NOTICE_MAPPING = {
     },
     "StudentDAD_TuitDue": {
         "myuw_category": "Fees & Finances",
-        "location_tags": ['tuition_due_date', 'finance_card', 'notice_date_sort'],
+        "location_tags": ['tuition_due_date', 'finance_card',
+                          'notice_date_sort'],
         "critical": True
     },
     "StudentDAD_Commencement": {
