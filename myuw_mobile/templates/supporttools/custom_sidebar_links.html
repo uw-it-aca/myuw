@@ -13,10 +13,6 @@
     {% if sws_url %}
     <li><a href="{{ sws_url }}">{{ restclients_sws_link|default:"Browse Student Web Service" }}</a></li>
     {% endif %}
-    {% url 'restclients.views.proxy' 'sws' 'student/v5' as sws_url %}
-    {% if sws_url %}
-    <li><a href="{{ sws_url }}">New SWS resources, eg: notice</a></li>
-    {% endif %}
     {% url 'restclients.views.proxy' 'pws' 'identity/v1' as pws_url %}
     {% if pws_url %}
     <li><a href="{{ pws_url }}">{{ restclients_pws_link|default:"Browse Person Web Service" }}</a></li>
@@ -31,7 +27,7 @@
     <li><a href="{{ url }}">Canvas Web Service</a></li>
     {% endif %}
 
-    {% url 'restclients.views.proxy' 'iasystem' 'uw/api/v1' as ias_url %}
+    {% url 'restclients.views.proxy' 'iasystem' '' as ias_url %}
     {% if ias_url %}
     <li><a href="{{ ias_url }}">IASystem Web Service</a></li>
     {% endif %}
