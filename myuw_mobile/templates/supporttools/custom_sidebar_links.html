@@ -27,7 +27,7 @@
     <li><a href="{{ url }}">Canvas Web Service</a></li>
     {% endif %}
 
-    {% url 'restclients.views.proxy' 'iasystem' '' as ias_url %}
+    {% url 'restclients.views.proxy' 'iasystem' 'index.html' as ias_url %}
     {% if ias_url %}
     <li><a href="{{ ias_url }}">IASystem Web Service</a></li>
     {% endif %}
