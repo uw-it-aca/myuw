@@ -3,5 +3,8 @@
 
 <div class="card clearfix"  data-type="card">
     <h2>international student</h2>
+    {{ #each notices }}
+    <div>{{{ notice_content }}}</div>
+    {{ /each }}
 </div>
 {% endtplhandlebars %}

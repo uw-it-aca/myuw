@@ -222,8 +222,14 @@
             "NoticeCategory": "StudentALR",
             "NoticeContent": "<span class=\"notice-title\">You have holds</span><span class=\"notice-body-with-title\">Yes you do</span>",
             "NoticeType": "AdminHolds"
+        },
+        {
+            "NoticeAttributes": [
+             ],
+            "NoticeCategory": "NewStudentFOOT",
+            "NoticeContent": "<span class=\"notice-title\">International Student Resources</span>&nbsp;<spanclass=\"notice-body-with-title\">The Foundation for International Understanding Through Students (FIUTS) welcomes you to the University of Washington! <a href=\"http://www.fiuts.washington.edu/\">Visit the FIUTS website</a> for information about international Student Orientation and the wide variety of services for international students.",
+            "NoticeType": "FIUTS"
         }
-
     ],
     "Person": {
         "Href": "",
