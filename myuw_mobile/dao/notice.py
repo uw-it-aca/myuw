@@ -306,8 +306,7 @@ NOTICE_MAPPING = {
     },
     "StudentDAD_TuitDue": {
         "myuw_category": "Fees & Finances",
-        "location_tags": ['tuition_due_date', 'finance_card',
-                          'notice_date_sort'],
+        "location_tags": ['tuition_due_date', 'finance_card', 'notice_date_sort'],
         "critical": True
     },
     "StudentDAD_Commencement": {
@@ -362,42 +361,42 @@ NOTICE_MAPPING = {
     },
     "NewStudentGEN_FeesPaid": {
         "myuw_category": "Admission",
-        "location_tags": ['checklist_thankyou'],
+        "location_tags": ['checklist_feespaid'],
         "critical": False
     },
     "NewStudentCLIST_IntlStuCheckInA": {
         "myuw_category": "Admission",
-        "location_tags": ['checklist_register'],
+        "location_tags": ['checklist_iss_before'],
         "critical": False
     },
     "NewStudentCLIST_IntlStuCheckInB": {
         "myuw_category": "Admission",
-        "location_tags": ['checklist_register'],
+        "location_tags": ['checklist_iss_after'],
         "critical": False
     },
     "NewStudentCLIST_AdvOrientRegDateA": {
         "myuw_category": "Admission",
-        "location_tags": ['checklist_register'],
+        "location_tags": ['checklist_orient_before'],
         "critical": False
     },
     "NewStudentCLIST_AdvOrientRegDateB": {
         "myuw_category": "Admission",
-        "location_tags": ['checklist_register_B'],
+        "location_tags": ['checklist_no_orient'],
         "critical": False
     },
     "NewStudentCLIST_AdvOrientRegDateC": {
         "myuw_category": "Admission",
-        "location_tags": ['checklist_register_C'],
+        "location_tags": ['checklist_orient_after'],
         "critical": False
     },
     "NewStudentCLIST_MeaslesA": {
         "myuw_category": "Admission",
-        "location_tags": ['checklist_register'],
+        "location_tags": ['checklist_measles_before'],
         "critical": False
     },
     "NewStudentCLIST_MeaslesB": {
         "myuw_category": "Admission",
-        "location_tags": ['checklist_register'],
+        "location_tags": ['checklist_measles_after'],
         "critical": False
     },
     "NewStudentCLIST_IntendedMajor": {
@@ -417,17 +416,17 @@ NOTICE_MAPPING = {
     },
     "NewStudentCLIST_EmailServices": {
         "myuw_category": "Admission",
-        "location_tags": ['checklist_update'],
+        "location_tags": ['checklist_email'],
         "critical": False
     },
     "NewStudentFOOT_FIUTS": {
         "myuw_category": "Admission",
-        "location_tags": ['checklist_ISS'],
+        "location_tags": ['checklist_fiuts'],
         "critical": False
     },
     "NewStudentFOOT_SummerRegInfo": {
         "myuw_category": "Admission",
-        "location_tags": ['checklist_earlystart'],
+        "location_tags": ['checklist_summerreg'],
         "critical": False
     },
     "NewStudentFOOT_NextStep": {
@@ -450,6 +449,7 @@ NOTICE_MAPPING = {
         "location_tags": [],
         "critical": False
     },
+
 }
 
 UNKNOWN_CATEGORY_NAME = "Uncategorized"
