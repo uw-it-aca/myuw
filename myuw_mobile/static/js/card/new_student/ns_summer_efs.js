@@ -22,8 +22,11 @@ var SummerEFSCard = {
         var source = $("#ns_summer_efs").html();
         var template = Handlebars.compile(source);
         var notices = Notices.get_notices_for_tag("checklist_summerreg");
-
-        SummerEFSCard.dom_target.html(template({'notices': notices}));
+        if (notices.length > 0){
+            SummerEFSCard.dom_target.html(template({'notices': notices}));
+        } else {
+            SummerEFSCard.dom_target.hide()
+        }
     },
     render_error: function () {
         SummerEFSCard.dom_target.html(CardWithError.render(SummerEFSCard.name));
