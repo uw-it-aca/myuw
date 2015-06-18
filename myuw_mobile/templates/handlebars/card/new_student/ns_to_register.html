@@ -2,9 +2,12 @@
     {% tplhandlebars "ns_to_register" %}
     <div class="card clearfix"  data-type="card">
         <h2>To Register</h2>
-        {{ #each no_orient }}
-            <div>{{{ notice_content }}}</div>
-        {{ /each }}
+        {{  #if no_orient }}
+            {{ #each no_orient }}
+                <div>{{{ notice_content }}}</div>
+            {{ /each }}
+            <p>HARDCODED LINKS</p>
+        {{ /if }}
 
         {{ #each post_orient }}
             <div>{{{ notice_content }}}</div>
@@ -29,6 +32,10 @@
         {{ #each pre_orient }}
             <div>{{{ notice_content }}}</div>
         {{ /each }}
+
+        {{ #if post_orient }}
+            <p> HARDCODED 'A&O registered'</p>
+        {{ /if }}
     </div>
 
 {% endtplhandlebars %}
