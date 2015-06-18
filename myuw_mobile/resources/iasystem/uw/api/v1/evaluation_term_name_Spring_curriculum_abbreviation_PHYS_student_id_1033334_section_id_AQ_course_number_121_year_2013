@@ -1,0 +1,188 @@
+{
+    "collection": {
+        "queries": [
+            {
+                "rel": "collection filter",
+                "prompt": "Evaluation Search Resource",
+                "href": "https://uw.iasysdev.org/api/v1/evaluation",
+                "data": [
+                    {
+                        "required": true,
+                        "name": "year",
+                        "prompt": "Year"
+                    },
+                    {
+                        "required": true,
+                        "prompt": "Term Name",
+                        "name": "term_name"
+                    },
+                    {
+                        "prompt": "Curriculum Abbreviation",
+                        "name": "curriculum_abbreviation"
+                    },
+                    {
+                        "name": "course_number",
+                        "prompt": "Course Number"
+                    },
+                    {
+                        "name": "section_id",
+                        "prompt": "Section ID"
+                    },
+                    {
+                        "name": "student_id",
+                        "prompt": "Student ID"
+                    }
+                ]
+            }
+        ],
+        "items": [
+            {
+                "meta": [
+                    {
+                        "value": "evaluation",
+                        "name": "type"
+                    },
+                    {
+                        "value": "1",
+                        "name": "id"
+                    },
+                    {
+                        "value": "2",
+                        "name": "childId"
+                    },
+                    {
+                        "value": "3",
+                        "name": "childId"
+                    }
+                ],
+                "data": [
+                    {
+                        "prompt": "Id",
+                        "name": "id",
+                        "value": "136617"
+                    },
+                    {
+                        "name": "year",
+                        "prompt": "Year",
+                        "value": "2013"
+                    },
+                    {
+                        "name": "termName",
+                        "prompt": "Term",
+                        "value": "Spring"
+                    },
+                    {
+                        "prompt": "Delivery Method",
+                        "name": "deliveryMethod",
+                        "value": "Online"
+                    },
+                    {
+                        "prompt": "Status",
+                        "name": "status",
+                        "value": "Closed"
+                    },
+                    {
+                        "name": "openDate",
+                        "prompt": "Open Date",
+                        "value": "2013-06-07T15:00:00Z"
+                    },
+                    {
+                        "prompt": "Close Date",
+                        "name": "closeDate",
+                        "value": "2013-06-14T07:59:59Z"
+                    }
+                ],
+                "links": [
+                    {
+                        "href": "https://uw.iasysdev.org/survey/136617",
+                        "rel": "publishedto",
+                        "prompt": "Evaluation URL"
+                    }
+                ],
+                "href": "https://uw.iasysdev.org/api/v1/evaluation/136617"
+            },
+            {
+                "meta": [
+                    {
+                        "value": "section",
+                        "name": "type"
+                    },
+                    {
+                        "name": "id",
+                        "value": "2"
+                    }
+                ],
+                "data": [
+                    {
+                        "value": "18545",
+                        "name": "instCourseId"
+                    },
+                    {
+                        "name": "year",
+                        "value": "2013"
+                    },
+                    {
+                        "name": "termName",
+                        "value": "Spring"
+                    },
+                    {
+                        "value": "PHYS",
+                        "name": "curriculumAbbreviation"
+                    },
+                    {
+                        "name": "courseNumber",
+                        "value": "121"
+                    },
+                    {
+                        "name": "sectionId",
+                        "value": "AQ"
+                    },
+                    {
+                        "name": "courseTitle",
+                        "value": "MECHANICS"
+                    }
+                ]
+            },
+            {
+                "data": [
+                    {
+                        "name": "instInstructorId",
+                        "value": "123456789"
+                    },
+                    {
+                        "name": "firstName",
+                        "value": "Steven"
+                    },
+                    {
+                        "value": "Herbert",
+                        "name": "lastName"
+                    }
+                ],
+                "meta": [
+                    {
+                        "name": "type",
+                        "value": "instructor"
+                    },
+                    {
+                        "name": "id",
+                        "value": "3"
+                    }
+                ]
+            }
+        ],
+        "links": [
+            {
+                "rel": "home",
+                "prompt": "IASystem v1 Web API",
+                "href": "https://uw.iasysdev.org/api/v1"
+            },
+            {
+                "prompt": "IASystem Evaluation Listing",
+                "rel": "self",
+                "href": "https://uw.iasysdev.org/api/v1/evaluation?section_id=AQ&curriculum_abbreviation=PHYS&course_number=121&term_name=Spring&year=2013"
+            }
+        ],
+        "href": "https://uw.iasysdev.org/api/v1/evaluation",
+        "version": "1.0"
+    }
+}

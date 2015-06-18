@@ -65,10 +65,10 @@
         "SectionID" : "A",
         "Year" : "2013"
       },
-      { "CourseNumber" : "101",
-        "CurriculumAbbreviation" : "ASL",
+      { "CourseNumber" : "110",
+        "CurriculumAbbreviation" : "T ARTS",
         "DuplicateCode" : "1",
-        "Href" : "\/student\/v5\/registration\/2013,spring,ASL,101,A,12345678901234567890123456789012,.json",
+        "Href" : "\/student\/v5\/registration\/2013,spring,T%20ARTS,110,A,12345678901234567890123456789012,.json",
         "Instructor" : null,
         "Quarter" : "spring",
         "RegID" : "12345678901234567890123456789012",

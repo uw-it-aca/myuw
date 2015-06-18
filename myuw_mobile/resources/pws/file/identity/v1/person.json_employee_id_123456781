@@ -1,0 +1,42 @@
+{
+    "Current": {
+        "DevelopmentID": null,
+        "EduPersonAffiliationAffiliate": null,
+        "EduPersonAffiliationAlum": null,
+        "EduPersonAffiliationEmployee": null,
+        "EduPersonAffiliationFaculty": null,
+        "EduPersonAffiliationMember": null,
+        "EduPersonAffiliationStaff": null,
+        "EduPersonAffiliationStudent": null,
+        "EmployeeID": "123456781",
+        "Href": "/identity/v1/person.json?uwregid=&uwnetid=&employee_id=123456781&student_number=&student_system_key=&development_id=&registered_surname=&registered_first_middle_name=&edupersonaffiliation_student=&edupersonaffiliation_staff=&edupersonaffiliation_faculty=&edupersonaffiliation_employee=&edupersonaffiliation_member=&edupersonaffiliation_alum=&edupersonaffiliation_affiliate=&page_size=10&page_start=1",
+        "PageSize": "10",
+        "PageStart": "1",
+        "RegisteredFirstMiddleName": null,
+        "RegisteredSurname": null,
+        "Start": "1",
+        "StudentNumber": null,
+        "StudentSystemKey": null,
+        "UWNetID": null,
+        "UWRegID": null
+    },
+    "MaxResultSize": 500,
+    "Next": null,
+    "Persons": [
+        {
+            "PersonFullURI": {
+                "DisplayName": "Eight Average Student",
+                "Href": "/identity/v1/person/12345678901234567890123456789012/full.json",
+                "UWNetID": "eight",
+                "UWRegID": "12345678901234567890123456789012"
+            },
+            "PersonURI": {
+                "DisplayName": "James Average Student",
+                "Href": "/identity/v1/person/12345678901234567890123456789012.json",
+                "UWNetID": "eight",
+                "UWRegID": "12345678901234567890123456789012"
+            }
+        }
+    ],
+    "Previous": null
+}

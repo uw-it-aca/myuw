@@ -6,18 +6,30 @@ from unittest2 import skipIf
 import json
 from myuw_mobile.test.api import missing_url, get_user, get_user_pass
 
-@override_settings(RESTCLIENTS_HFS_DAO_CLASS='restclients.dao_implementation.hfs.File',
-                   MIDDLEWARE_CLASSES = (
-                                'django.contrib.sessions.middleware.SessionMiddleware',
-                                'django.middleware.common.CommonMiddleware',
-                                'django.middleware.csrf.CsrfViewMiddleware',
-                                'django.contrib.auth.middleware.AuthenticationMiddleware',
-                                'django.contrib.auth.middleware.RemoteUserMiddleware',
-                                'django.contrib.messages.middleware.MessageMiddleware',
-                                'django.middleware.clickjacking.XFrameOptionsMiddleware',
-                                'userservice.user.UserServiceMiddleware',
-                                ),
-                   AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+
+FDAO_SWS = 'restclients.dao_implementation.sws.File'
+Session = 'django.contrib.sessions.middleware.SessionMiddleware'
+Common = 'django.middleware.common.CommonMiddleware'
+CsrfView = 'django.middleware.csrf.CsrfViewMiddleware'
+Auth = 'django.contrib.auth.middleware.AuthenticationMiddleware'
+RemoteUser = 'django.contrib.auth.middleware.RemoteUserMiddleware'
+Message = 'django.contrib.messages.middleware.MessageMiddleware'
+XFrame = 'django.middleware.clickjacking.XFrameOptionsMiddleware'
+UserService = 'userservice.user.UserServiceMiddleware'
+AUTH_BACKEND = 'django.contrib.auth.backends.ModelBackend'
+
+
+@override_settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                   MIDDLEWARE_CLASSES=(Session,
+                                       Common,
+                                       CsrfView,
+                                       Auth,
+                                       RemoteUser,
+                                       Message,
+                                       XFrame,
+                                       UserService,
+                                       ),
+                   AUTHENTICATION_BACKENDS=(AUTH_BACKEND,)
                    )
 class TestHFS(TestCase):
     def setUp(self):
@@ -27,7 +39,8 @@ class TestHFS(TestCase):
     def test_javerage(self):
         url = reverse("myuw_hfs_api")
         get_user('javerage')
-        self.client.login(username='javerage', password=get_user_pass('javerage'))
+        self.client.login(username='javerage',
+                          password=get_user_pass('javerage'))
 
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
@@ -41,7 +54,8 @@ class TestHFS(TestCase):
     def test_bad_user(self):
         url = reverse("myuw_hfs_api")
         get_user('err-user')
-        self.client.login(username='err-user', password=get_user_pass('javerage'))
+        self.client.login(username='err-user',
+                          password=get_user_pass('javerage'))
 
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)

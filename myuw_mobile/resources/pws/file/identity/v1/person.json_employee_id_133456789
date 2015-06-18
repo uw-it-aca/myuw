@@ -1,0 +1,42 @@
+{
+    "Current": {
+        "DevelopmentID": null,
+        "EduPersonAffiliationAffiliate": null,
+        "EduPersonAffiliationAlum": null,
+        "EduPersonAffiliationEmployee": null,
+        "EduPersonAffiliationFaculty": null,
+        "EduPersonAffiliationMember": null,
+        "EduPersonAffiliationStaff": null,
+        "EduPersonAffiliationStudent": null,
+        "EmployeeID": "133456789",
+        "Href": "/identity/v1/person.json?uwregid=&uwnetid=&employee_id=133456789&student_number=&student_system_key=&development_id=&registered_surname=&registered_first_middle_name=&edupersonaffiliation_student=&edupersonaffiliation_staff=&edupersonaffiliation_faculty=&edupersonaffiliation_employee=&edupersonaffiliation_member=&edupersonaffiliation_alum=&edupersonaffiliation_affiliate=&page_size=10&page_start=1",
+        "PageSize": "10",
+        "PageStart": "1",
+        "RegisteredFirstMiddleName": null,
+        "RegisteredSurname": null,
+        "Start": "1",
+        "StudentNumber": null,
+        "StudentSystemKey": null,
+        "UWNetID": null,
+        "UWRegID": null
+    },
+    "MaxResultSize": 500,
+    "Next": null,
+    "Persons": [
+        {
+            "PersonFullURI": {
+                "DisplayName": "JAMES INTERNATIONAL TEACHER",
+                "Href": "/identity/v1/person/9136CCB8F66711D5BE060004AC494F31/full.json",
+                "UWNetID": "jinter",
+                "UWRegID": "9136CCB8F66711D5BE060004AC494F31"
+            },
+            "PersonURI": {
+                "DisplayName": "JAMES INTERNATIONAL TEACHER",
+                "Href": "/identity/v1/person/9136CCB8F66711D5BE060004AC494F31.json",
+                "UWNetID": "jinter",
+                "UWRegID": "9136CCB8F66711D5BE060004AC494F31"
+            }
+        }
+    ],
+    "Previous": null
+}
