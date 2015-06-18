@@ -27,7 +27,7 @@ var InternationalStuCard = {
         if (notices.length > 0){
             InternationalStuCard.dom_target.html(template({'notices': notices}));
         } else {
-            InternationalStuCard.dom_target.hide()
+            InternationalStuCard.dom_target.hide();
         }
     },
     render_error: function () {

@@ -25,7 +25,7 @@ var SummerEFSCard = {
         if (notices.length > 0){
             SummerEFSCard.dom_target.html(template({'notices': notices}));
         } else {
-            SummerEFSCard.dom_target.hide()
+            SummerEFSCard.dom_target.hide();
         }
     },
     render_error: function () {

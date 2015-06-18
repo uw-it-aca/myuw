@@ -25,7 +25,7 @@ var CriticalInfoCard = {
         if (notices.length > 0){
             CriticalInfoCard.dom_target.html(template({'notices': notices}));
         } else {
-            CriticalInfoCard.dom_target.hide()
+            CriticalInfoCard.dom_target.hide();
         }
 
     },
