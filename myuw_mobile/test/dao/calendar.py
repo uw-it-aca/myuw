@@ -1,14 +1,16 @@
+import json
+import pytz
+from unittest2 import skipIf
+from datetime import date, datetime
+from django.test.utils import override_settings
 from django.test import TestCase
 from django.test.client import Client
 from django.core.urlresolvers import reverse
-from unittest2 import skipIf
 from myuw_mobile.test.api import missing_url, get_user, get_user_pass
-from django.test.utils import override_settings
-import json
-import pytz
-
-from datetime import date, datetime
 from myuw_mobile.dao.calendar import get_events
+
+
+TRUMBA_PREFIX = 'http://www.trumba.com/calendar/5_current'
 
 
 class TestCalendar(TestCase):
@@ -52,21 +54,26 @@ class TestCalendar(TestCase):
     def test_event_url(self):
         cal = {'5_current': None}
         event_response = get_events(cal, self.now)
-        self.assertEqual(event_response['events'][0]['event_url'],
-                         'http://www.trumba.com/calendar/5_current?trumbaEmbed=eventid%3D1107241160%26view%3Devent')
+        url = "%s?%s" % (TRUMBA_PREFIX,
+                         'trumbaEmbed=eventid%3D1107241160%26view%3Devent')
+        self.assertEqual(event_response['events'][0]['event_url'], url)
 
     def test_date_sort(self):
         cal = {'5_current': None}
         event_response = get_events(cal, self.now)
-        self.assertEqual(event_response['events'][0]['summary'], 'Multi Day Event')
-        self.assertEqual(event_response['events'][4]['summary'], 'Organic Chemistry Seminar: Prof. Matthew Becker4')
+        self.assertEqual(event_response['events'][0]['summary'],
+                         'Multi Day Event')
+        self.assertEqual(event_response['events'][4]['summary'],
+                         'Organic Chemistry Seminar: Prof. Matthew Becker4')
 
     def test_active_cals(self):
         cal = {'5_current': None}
         event_response = get_events(cal, self.now)
         self.assertEqual(len(event_response['active_cals']), 1)
-        self.assertEqual(event_response['active_cals'][0]['url'], "http://www.trumba.com/calendar/5_current")
-        self.assertEqual(event_response['active_cals'][0]['title'], "Department of Five Events")
+        self.assertEqual(event_response['active_cals'][0]['url'],
+                         TRUMBA_PREFIX)
+        self.assertEqual(event_response['active_cals'][0]['title'],
+                         "Department of Five Events")
 
     def test_all_day(self):
         cal = {'5_current': None}

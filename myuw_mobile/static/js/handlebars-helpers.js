@@ -29,6 +29,21 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
         return d;
     }
 
+    // used on course card
+    Handlebars.registerHelper("toMonthDay", function(str) {
+        return moment(parse_date(str)).format("MMM D");
+    });
+
+    // used on course card
+    Handlebars.registerHelper("toMoreDay", function(str) {
+        var d =  moment().from(moment(parse_date(str)), true);
+        if (d.match(/^an? [a-z]+$/)) {
+            return d.replace(/^an? /, '1 more ');
+        } else {
+            return d.replace(/ ([a-z]+)$/, ' more $1');
+        }
+    });
+
     // used on Library card
     Handlebars.registerHelper("toFromNowDate", function(str) {
         return moment(parse_date(str)).fromNow();

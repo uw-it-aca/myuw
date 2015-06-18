@@ -5,6 +5,9 @@ from myuw_mobile.dao.course_color import get_colors_by_regid_and_schedule
 from myuw_mobile.dao.schedule import _get_schedule
 
 
+FDAO_SWS = 'restclients.dao_implementation.sws.File'
+
+
 class TestCourseColors(TestCase):
 
     def test_single_course(self):
@@ -103,7 +106,7 @@ class TestCourseColors(TestCase):
         (colors[section2.section_label()], 2, "2nd section gets the 2nd color")
 
     def test_primary_secondary(self):
-        with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             regid = "00000000000000000000000000000003"
             term = Term()
             term.year = 2012
@@ -353,7 +356,8 @@ class TestCourseColors(TestCase):
         self.assertEquals
         (colors[section9.section_label()], 2, "0th section gets the 2nd color")
         self.assertEquals
-        (colors[section6.section_label()], 3, "6th section gets the 3rd color when readded")
+        (colors[section6.section_label()], 3,
+         "6th section gets the 3rd color when readded")
 
     def test_over_8(self):
         term = Term()
@@ -474,4 +478,5 @@ class TestCourseColors(TestCase):
         self.assertEquals
         (colors[section9.section_label()], 1, "9th section gets the 1st color")
         self.assertEquals
-        (colors[section10.section_label()], 2, "10th section gets the 2nd color")
+        (colors[section10.section_label()], 2,
+         "10th section gets the 2nd color")

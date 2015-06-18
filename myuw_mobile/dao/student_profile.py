@@ -15,6 +15,9 @@ logger = logging.getLogger(__name__)
 
 
 def get_profile_of_current_user():
+    """
+    Return restclients.models.sws.SwsPerson object
+    """
     regid = get_regid_of_current_user()
 
     timer = Timer()

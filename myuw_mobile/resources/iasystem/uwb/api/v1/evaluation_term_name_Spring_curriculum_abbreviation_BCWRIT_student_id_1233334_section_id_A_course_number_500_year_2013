@@ -1,0 +1,188 @@
+{
+    "collection": {
+        "queries": [
+            {
+                "rel": "collection filter",
+                "prompt": "Evaluation Search Resource",
+                "href": "https://uwb.iasysdev.org/api/v1/evaluation",
+                "data": [
+                    {
+                        "required": true,
+                        "name": "year",
+                        "prompt": "Year"
+                    },
+                    {
+                        "required": true,
+                        "prompt": "Term Name",
+                        "name": "term_name"
+                    },
+                    {
+                        "prompt": "Curriculum Abbreviation",
+                        "name": "curriculum_abbreviation"
+                    },
+                    {
+                        "name": "course_number",
+                        "prompt": "Course Number"
+                    },
+                    {
+                        "name": "section_id",
+                        "prompt": "Section ID"
+                    },
+                    {
+                        "name": "student_id",
+                        "prompt": "Student ID"
+                    }
+                ]
+            }
+        ],
+        "items": [
+            {
+                "meta": [
+                    {
+                        "value": "evaluation",
+                        "name": "type"
+                    },
+                    {
+                        "value": "1",
+                        "name": "id"
+                    },
+                    {
+                        "value": "2",
+                        "name": "childId"
+                    },
+                    {
+                        "value": "3",
+                        "name": "childId"
+                    }
+                ],
+                "data": [
+                    {
+                        "prompt": "Id",
+                        "name": "id",
+                        "value": "136617"
+                    },
+                    {
+                        "name": "year",
+                        "prompt": "Year",
+                        "value": "2013"
+                    },
+                    {
+                        "name": "termName",
+                        "prompt": "Term",
+                        "value": "Spring"
+                    },
+                    {
+                        "prompt": "Delivery Method",
+                        "name": "deliveryMethod",
+                        "value": "Online"
+                    },
+                    {
+                        "prompt": "Status",
+                        "name": "status",
+                        "value": "Closed"
+                    },
+                    {
+                        "name": "openDate",
+                        "prompt": "Open Date",
+                        "value": "2013-04-05T15:00:00Z"
+                    },
+                    {
+                        "prompt": "Close Date",
+                        "name": "closeDate",
+                        "value": "2013-05-13T07:59:59Z"
+                    }
+                ],
+                "links": [
+                    {
+                        "href": "https://uwb.iasysdev.org/survey/136617",
+                        "rel": "publishedto",
+                        "prompt": "Evaluation URL"
+                    }
+                ],
+                "href": "https://uwb.iasysdev.org/api/v1/evaluation/136617"
+            },
+            {
+                "meta": [
+                    {
+                        "value": "section",
+                        "name": "type"
+                    },
+                    {
+                        "name": "id",
+                        "value": "2"
+                    }
+                ],
+                "data": [
+                    {
+                        "value": "17169",
+                        "name": "instCourseId"
+                    },
+                    {
+                        "name": "year",
+                        "value": "2013"
+                    },
+                    {
+                        "name": "termName",
+                        "value": "Spring"
+                    },
+                    {
+                        "value": "TRAIN",
+                        "name": "curriculumAbbreviation"
+                    },
+                    {
+                        "name": "courseNumber",
+                        "value": "100"
+                    },
+                    {
+                        "name": "sectionId",
+                        "value": "A"
+                    },
+                    {
+                        "name": "courseTitle",
+                        "value": "Train One Hundred"
+                    }
+                ]
+            },
+            {
+                "data": [
+                    {
+                        "name": "instInstructorId",
+                        "value": "123456798"
+                    },
+                    {
+                        "name": "firstName",
+                        "value": "Steven"
+                    },
+                    {
+                        "value": "Herbert",
+                        "name": "lastName"
+                    }
+                ],
+                "meta": [
+                    {
+                        "name": "type",
+                        "value": "instructor"
+                    },
+                    {
+                        "name": "id",
+                        "value": "3"
+                    }
+                ]
+            }
+        ],
+        "links": [
+            {
+                "rel": "home",
+                "prompt": "IASystem v1 Web API",
+                "href": "https://uwb.iasysdev.org/api/v1"
+            },
+            {
+                "prompt": "IASystem Evaluation Listing",
+                "rel": "self",
+                "href": "https://uwb.iasysdev.org/api/v1/evaluation?section_id=A&curriculum_abbreviation=LSJ&course_number=200&term_name=Autumn&year=2014"
+            }
+        ],
+        "href": "https://uwb.iasysdev.org/api/v1/evaluation",
+        "version": "1.0"
+    }
+}
