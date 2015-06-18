@@ -22,8 +22,12 @@ var CriticalInfoCard = {
         var source = $("#ns_critical_info").html();
         var template = Handlebars.compile(source);
         var notices = Notices.get_notices_for_tag("checklist_email");
+        if (notices.length > 0){
+            CriticalInfoCard.dom_target.html(template({'notices': notices}));
+        } else {
+            CriticalInfoCard.dom_target.hide()
+        }
 
-        CriticalInfoCard.dom_target.html(template({'notices': notices}));
     },
     render_error: function () {
         CriticalInfoCard.dom_target.html(CardWithError.render(CriticalInfoCard.name));
