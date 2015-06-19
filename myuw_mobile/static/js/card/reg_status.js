@@ -37,7 +37,8 @@ var RegStatusCard = {
         var template = Handlebars.compile(source);
         var reg_notices = Notices.get_notices_for_tag("reg_card_messages");
         var reg_holds = Notices.get_notices_for_tag("reg_card_holds");
-        var reg_date = Notices.get_notices_for_tag("est_reg_date");     
+        var reg_date = Notices.get_notices_for_tag("est_reg_date");
+        var ns_reg_date = Notices.get_notices_for_tag("checklist_orient_after");
         var i, j;
 
         // Filter estimated registration dates for summer...
@@ -57,6 +58,9 @@ var RegStatusCard = {
                     }
                 }
             }
+        }
+        if (display_reg_dates.length === 0){
+            display_reg_dates.push(ns_reg_date[0]);
         }
 
         var year, has_registration, next_term_data;
