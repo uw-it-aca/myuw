@@ -1,94 +1,88 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "tuition_card" %}
 
-            <div class="card"  data-name="TuitionCard" data-type="card">
+    <div class="card"  data-name="TuitionCard" data-type="card">
 
-                        {{ #if is_pce}}
-                        <h3>PCE Account Balance</h3>
+        {{ #if is_pce}}
+            <h3>PCE Account Balance</h3>
+        {{ else }}
+            <h3>Tuition &amp; Fees</h3>
+        {{ /if }}
+        <!-- if tuition due date is TODAY -->
+        {{ #if due_today}}
+        <div class="card-critical-alert">
+            <i class="fa fa-exclamation-circle"></i> {{ #if is_pce}} PCE tuition{{ else  }}Tuition{{ /if }} is due today.
+        </div>
+        {{ /if }}
+        <!-- end if -->
 
-                        {{ else }}
-                        <h3>Tuition &amp; Fees</h3> 
-            <div style="background: #f0dbd0; padding: 8px; margin-bottom: 1em; color: #af4b1a;"><h4 style="color: #af4b1a; text-align: center; font-weight:500;">Summer Tuition Error</h4>
-            <p>Summer tuition charges were calculated in error and posted in your student account.  We are working to fix the issue and will provide updates on this issue daily, if needed.</p> <p>If you receive a direct deposit or check for financial aid disbursement, please ensure its accuracy. If you have a balance on your account after this error has been corrected, you may need to return all or a portion of the funds. </p><strong>Please check your Account Balance on or after Mon, June 22</strong>. If you still have questions, please contact us at sfshelp@uw.edu or (206)543-4694.</p>
- 
-<p>We apologize for any inconvenience this may have caused.</p><p>- Student Fiscal Services</p></div>                     
-                        {{ /if }}
-                        <!-- if tuition due date is TODAY -->
-                        {{ #if due_today}}
-                            <div class="card-critical-alert">
-                                <i class="fa fa-exclamation-circle"></i> {{ #if is_pce}} PCE tuition{{ else  }}Tuition{{ /if }} is due today.
-                            </div>
-                        {{ /if }}
-                        <!-- end if --> 
+        <!-- if tuition due date has passed and balance is greater than 0 -->
+        {{ #if past_due }}
+        <div class="card-critical-alert">
+            <i class="fa fa-exclamation-circle"></i> {{ #if is_pce}} Your PCE tuition is past due.{{ else  }}You have a balance that may be past due. {{ /if }}<a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">See your statement for details</a>.
+        </div>
+        {{ /if }}
+        <!-- end if -->
                         
-                        <!-- if tuition due date has passed and balance is greater than 0 -->
-                        {{ #if past_due }}
-                            <div class="card-critical-alert">
-                                <i class="fa fa-exclamation-circle"></i> {{ #if is_pce}} Your PCE tuition is past due.{{ else  }}You have a balance that may be past due. {{ /if }}<a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">See your statement for details</a>.
-                            </div>
-                        {{ /if }}
-                        <!-- end if --> 
+        {{ #unless has_balance }}
+        <!-- if tuition balance is 0 -->
+        <div class="card-badge-container">
+	    <ul class="card_list">
+		<li>
+                    <div class="card-badge">
+                        <span class="card-badge-label" style="line-height:20px;">{{ #if is_pce}}Your PCE tuition<br/> has been paid{{ else  }}Your tuition and fees have been paid{{ /if }}</span>
+                        <div class="card-badge-action" style="margin-top:10px; text-align:right;"><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">See tuition statement</a></div>
+                    </div>
+		</li>
+	    </ul>
+        </div>
+        {{ /unless }}
                         
-                        {{ #unless has_balance }}
-                        <!-- if tuition balance is 0 -->
-                        <div class="card-badge-container">
-	                    <ul class="card_list">
-		                    <li>
-                            <div class="card-badge">
-                                <span class="card-badge-label" style="line-height:20px;">{{ #if is_pce}}Your PCE tuition<br/> has been paid{{ else  }}Your tuition and fees have been paid{{ /if }}</span>
-                                <div class="card-badge-action" style="margin-top:10px; text-align:right;"><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">See tuition statement</a></div>
-                            </div>
-		                    </li>
-	                    </ul>
+        {{ #if has_balance }}
+                        
+        <!-- else, there is a balance -->
+        <div class="card-badge-container">
+	    <ul class="card_list">
+		<li>
+                    <div class="card-badge clearfix">
+                        <div class="pull-left">
+                            <h4 class="card-badge-label">You owe</h4>
                         </div>
-                        {{ /unless }}
-                        
-                        {{ #if has_balance }}
-                        
-                        <!-- else, there is a balance -->
-                        <div class="card-badge-container">
-	                    <ul class="card_list">
-		                    <li>
-                                <div class="card-badge clearfix">
-                                     <div class="pull-left">
-                                         <h4 class="card-badge-label">You owe</h4>
-                                    </div>
-                                    <div class="pull-right">
-                                        <span class="card-badge-value text-danger">${{ tuition_accbalance }}</span>
-										&nbsp;
-                                        <span class="card-badge-action pull-right"><a href="http://f2.washington.edu/fm/sfs/tuition/payment">Make payment</a></span>
-                                    </div>
-                                </div>
-		                    </li>
-                                {{ #if tuition_date }}
-                            <li>
-                                <div class="card-badge clearfix">
-                                    <div class="pull-left">  
-                                        <h4 class="card-badge-label">Tuition due </h4>
-                                    </div>
-                                    <div class="pull-right">
-                                        <span class="card-badge-value" aria-hidden="true">{{ toFriendlyDate tuition_due }}</span>
-                                        <span class="sr-only">{{ toFriendlyDateVerbose tuition_due }}</span>
-										&nbsp;
-                                        <span class="card-badge-action pull-right">in {{ tuition_date_offset }} days</span>
-                                    </div>
-                                </div>
-                            </li>
-                                {{ /if }}
-	                    </ul>
+                        <div class="pull-right">
+                            <span class="card-badge-value text-danger">${{ tuition_accbalance }}</span>
+			    &nbsp;
+                            <span class="card-badge-action pull-right"><a href="http://f2.washington.edu/fm/sfs/tuition/payment">Make payment</a></span>
                         </div>
-                        <!-- end if -->
-                        {{ /if }}
+                    </div>
+		</li>
+                {{ #if tuition_date }}
+                <li>
+                    <div class="card-badge clearfix">
+                        <div class="pull-left">
+                            <h4 class="card-badge-label">Tuition due </h4>
+                        </div>
+                        <div class="pull-right">
+                            <span class="card-badge-value" aria-hidden="true">{{ toFriendlyDate tuition_due }}</span>
+                            <span class="sr-only">{{ toFriendlyDateVerbose tuition_due }}</span>
+			    &nbsp;
+                            <span class="card-badge-action pull-right">in {{ tuition_date_offset }} days</span>
+                        </div>
+                    </div>
+                </li>
+                {{ /if }}
+	    </ul>
+        </div>
+        <!-- end if -->
+        {{ /if }}
 
-                        <div class="card-related-messages">
-                            <p><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx">Give access to your tuition account and financial aid information</a> to parents or other third parties.</p>
+        <div class="card-related-messages">
+            <p><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx">Give access to your tuition account and financial aid information</a> to parents or other third parties.</p>
                             
-                            {{ #each pce_tuition_dup }}
-                            <p class="pce-message">{{{ this.notice_content }}}</p>
-                            {{ /each }}
-                        </div>       
-                                       
-            </div>
+            {{ #each pce_tuition_dup }}
+            <p class="pce-message">{{{ this.notice_content }}}</p>
+            {{ /each }}
+        </div>
+    </div>
 
     
     {% endtplhandlebars %}
