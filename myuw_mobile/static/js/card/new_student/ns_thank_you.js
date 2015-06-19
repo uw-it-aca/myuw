@@ -22,10 +22,29 @@ var ThankYouCard = {
         var source = $("#ns_thank_you").html();
         var template = Handlebars.compile(source);
         var notices = Notices.get_notices_for_tag("checklist_thankyou");
+        var notice_hashes = [];
 
-        ThankYouCard.dom_target.html(template({'notices': notices}));
+        for (var i = 0; i < notices.length; i += 1) {
+            var notice = notices[i];
+            if (!notice.is_read) {
+                notice_hashes.push(notice.id_hash)
+            }
+        }
+
+        if (notice_hashes.length > 0){
+            ThankYouCard.dom_target.html(template({'notices': notices}));
+            ThankYouCard.mark_notices_read(notice_hashes);
+        } else {
+            ThankYouCard.dom_target.hide();
+        }
+
+
     },
     render_error: function () {
         ThankYouCard.dom_target.html(CardWithError.render(ThankYouCard.name));
+    },
+
+    mark_notices_read: function(notice_hashes) {
+        WSData.mark_notices_read(notice_hashes);
     },
 };
