@@ -27,7 +27,7 @@ var ThankYouCard = {
         for (var i = 0; i < notices.length; i += 1) {
             var notice = notices[i];
             if (!notice.is_read) {
-                notice_hashes.push(notice.id_hash)
+                notice_hashes.push(notice.id_hash);
             }
         }
 
