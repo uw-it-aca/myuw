@@ -330,7 +330,8 @@ var Notices = {
         var notice_hashes = [];
         $("[id^=collapse]").each(function (idx, element) {
             if ($(element).hasClass('slide-show')) {
-                $.each($(element).children(".disclosure-content").first().children(), function (idx, notice) {
+                $.each($(element).find('ul.notices_list').children(), function (idx, notice) {
+                    notice = $(notice).find('div.notice-container').first();
                     if (isScrolledIntoView($(notice))) {
                         if ($(notice).hasClass('unread')) {
                             notice_hashes.push($(notice).attr('id'));
