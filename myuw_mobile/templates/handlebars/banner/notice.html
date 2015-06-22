@@ -10,7 +10,7 @@
 				<div class="panel-heading notice-panel-heading" role="tab" id="headingOne">
 					<h4 class="panel-title notice-panel-title">
 				    	<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-						<span class="notice-critical-label">critical</span> Online ISS information session required before registration
+						<span class="notice-critical-label">holds</span> Online ISS information session required before registration
 				    	</a>
 					</h4>
 				</div>
@@ -20,8 +20,36 @@
 				  	</div>
 				</div>
 			</div>
+			<div class="panel panel-default notice-content">
+				<div class="panel-heading notice-panel-heading" role="tab" id="headingTwo">
+					<h4 class="panel-title notice-panel-title">
+				    	<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						<span class="notice-critical-label" style="background-color:green">registration</span> Estimated Registration Date
+				    	</a>	
+					</h4>
+				</div>
+				<div id="collapseTwo" class="panel-collapse collapse notice-panel-collapse" role="tabpanel" aria-labelledby="headingTwo">
+				  	<div class="panel-body notice-panel-body">
+				    Your estimated Period I Priority Registration Date for winter quarter is May 13, 2014. Registration begins at 6:00 AM. View your Priority I Registration Date.
+				  	</div>
+				</div>
+			</div>
+			<div class="panel panel-default notice-content">
+				<div class="panel-heading notice-panel-heading" role="tab" id="headingThree">
+					<h4 class="panel-title notice-panel-title">
+				    	<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						<span class="notice-critical-label" style="background-color:rgba(238, 150, 16, 0.79)">tuition</span> Tuition Due
+				    	</a>	
+					</h4>
+				</div>
+				<div id="collapseThree" class="panel-collapse collapse notice-panel-collapse" role="tabpanel" aria-labelledby="headingThree">
+				  	<div class="panel-body notice-panel-body">
+				    Payment of tuition and tuition-related fees for winter quarter is due . For details, view your Tuition Statement.
+				  	</div>
+				</div>
+			</div>
         </div>
-        <div class="other-notices-link"><a href="#">{{ total_unread }} more new {{ pluralize total_unread "notice" "notices" }} <!--( <span class="badge">{{ total_unread }}</span> new)--></a></div>
+        <div class="other-notices-link"><a href="/mobile/notices">{{ total_unread }} more new {{ pluralize total_unread "notice" "notices" }} <!--( <span class="badge">{{ total_unread }}</span> new)--></a></div>
    <!-- <div class="notice-information text-danger">{{total_critical}} {{ pluralize total_critical "critical notice" "critical notices" }}</div> -->      
     </div>        
 {% endtplhandlebars %}
