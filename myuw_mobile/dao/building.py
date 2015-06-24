@@ -3,7 +3,7 @@ This module gives access to building data
 """
 import json
 import os
-from myuw_mobile.models import Building
+from myuw_mobile.models.building import Building
 
 
 def get_building_by_code(code):
