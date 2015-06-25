@@ -96,10 +96,10 @@ def _get_registered_future_quarters(request, next_quar_sche, next_autumn_sche):
 
             has_b = sumr_tms[B_TERM]
             if current.quarter == "summer":
-                if now > current.first_day_quarter:
+                if now >= current.first_day_quarter:
                     summer_started = True
 
-                if now > current.bterm_first_date:
+                if now >= current.bterm_first_date:
                     bterm_started = True
 
             if not summer_started:
