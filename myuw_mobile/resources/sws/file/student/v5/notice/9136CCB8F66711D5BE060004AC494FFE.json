@@ -193,7 +193,7 @@
                {
                "Name": "End",
                "DataType": "date",
-               "Value": "20130227"
+               "Value": "20130228"
                }
             ],
             "NoticeCategory": "StudentFinAid",
@@ -221,7 +221,7 @@
                {
                "Name": "Begin",
                "DataType": "date",
-               "Value": "20130228"
+               "Value": "20130301"
                },
                {
                "Name": "End",
