@@ -2,8 +2,9 @@ import logging
 import json
 from django.http import HttpResponse
 from myuw_mobile.views.rest_dispatch import RESTDispatch
-from myuw_mobile.dao.notice import get_notices_for_current_user
-from myuw_mobile.dao.notice import mark_notices_read_for_current_user
+from myuw_mobile.dao.notice_mapping import apply_showhide
+from myuw_mobile.dao.notice import get_notices_for_current_user,\
+    mark_notices_read_for_current_user
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_success_response
 from datetime import datetime
@@ -20,7 +21,7 @@ class Notices(RESTDispatch):
         timer = Timer()
         logger = logging.getLogger(__name__)
 
-        notices = get_notices_for_current_user()
+        notices = apply_showhide(request, get_notices_for_current_user())
         notice_json = self._get_json(notices)
         log_success_response(logger, timer)
 
