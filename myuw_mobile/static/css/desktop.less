@@ -64,6 +64,40 @@ border-color: @border;}
 
 body {
 	
+	a {
+		&:hover { text-decoration: underline; color: #334baa; }
+	}
+	
+}
+
+#app_notices { border-bottom: none;
+    
+    .notice-header { 
+    }
+    .critical-notices-container {margin-top: 0; margin-bottom: 15px;
+	    .notice-content { font-weight: normal; border:none; box-shadow: none; -webkit-box-shadow: none;
+	        
+	        .notice-panel-heading {background-color:transparent;padding: 0 0;
+		        .notice-panel-title /*h4*/ {font-size:14px; line-height:20px;
+			        a {color:#4d66ca;padding-left: 5px;}
+			        a:active, a:focus {text-decoration: none;}
+			        .notice-critical-label {color:#fff; background-color:#a94442;padding: 0 7px;border-radius: 4px;font-weight:400;font-size:12px;}
+			        .fa-usd {padding-left: 3px;}
+		        }
+	        }
+	        .notice-panel-collapse {
+		        .notice-panel-body {}
+	        }
+	    }
+	    
+    }
+    
+    .other-notices-link {
+	    
+    }
+    .notice-unread { /*background-color: white; color:#444;*/ font-weight:normal; /*border:1px solid #444;*/ position: absolute; right: 15px; top: 50%; margin-top: -5px; }
+    
+    .notice-information { font-size: 11px; font-weight:normal; display: block; white-space: nowrap; margin-top: -15px; line-height: normal; }
 }
 
 /*** week counter ***/

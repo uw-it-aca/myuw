@@ -2,15 +2,16 @@
 {% tplhandlebars "notice_banner" %}
     
     <div id="app_notices">
-        <div class="notice-header sr-only">
-            <a href="/mobile/notices/" title="Navigate to Notices"><h2 class="notice-header">Notices</h2></a>
+        <div class="notice-header">
+            <h2 class="notice-header text-danger">Critical Notices</h2><!--</a>-->
         </div>    
         <div class="panel-group critical-notices-container" id="accordion" role="tablist" aria-multiselectable="true">
 			<div class="panel panel-default notice-content">
 				<div class="panel-heading notice-panel-heading" role="tab" id="headingOne">
 					<h4 class="panel-title notice-panel-title">
+						<i class="fa fa-ban text-info"></i>
 				    	<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-						<span class="notice-critical-label">holds</span> Online ISS information session required before registration
+						 Online ISS information session required before registration
 				    	</a>
 					</h4>
 				</div>
@@ -23,8 +24,9 @@
 			<div class="panel panel-default notice-content">
 				<div class="panel-heading notice-panel-heading" role="tab" id="headingTwo">
 					<h4 class="panel-title notice-panel-title">
+						<i class="fa fa-clock-o text-warning"></i>
 				    	<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						<span class="notice-critical-label" style="background-color:green">registration</span> Estimated Registration Date
+						 Estimated Registration Date
 				    	</a>	
 					</h4>
 				</div>
@@ -37,8 +39,9 @@
 			<div class="panel panel-default notice-content">
 				<div class="panel-heading notice-panel-heading" role="tab" id="headingThree">
 					<h4 class="panel-title notice-panel-title">
+						<i class="fa fa-usd text-success"></i>
 				    	<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-						<span class="notice-critical-label" style="background-color:rgba(238, 150, 16, 0.79)">tuition</span> Tuition Due
+						Tuition Due
 				    	</a>	
 					</h4>
 				</div>
