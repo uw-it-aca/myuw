@@ -2,15 +2,24 @@ var GradeCard = {
     name: 'GradeCard',
     dom_target: undefined,
     term: null,
+    show_only_aterm: false,
 
     render_init: function() {
         GradeCard.term = null;
         if (window.card_display_dates.is_after_last_day_of_classes) {
             GradeCard.term = 'current';
+
+            if (window.card_display_dates.is_summer) {
+                GradeCard.term = window.card_display_dates.current_summer_term;
+            }
         }
         else if (window.card_display_dates.is_before_first_day_of_term) {
             // Fetch previous term's data...
             GradeCard.term = window.card_display_dates.last_term;
+        }
+        else if (window.card_display_dates.is_summer && window.card_display_dates.is_after_summer_b_start) {
+            GradeCard.term = window.card_display_dates.current_summer_term;
+            GradeCard.show_only_aterm = true;
         }
 
         if (GradeCard.term) {
@@ -58,10 +67,18 @@ var GradeCard = {
             course_data.display_note = false;
         }
         var index;
+        // supporting MUWM-3014
         for (index = 0; index < course_data.sections.length; index += 1) {
+            if (GradeCard.show_only_aterm && (course_data.sections[index].summer_term !== "A-term")) {
+                course_data.sections[index].hide_for_early_summer_display = true;
+                course_data.sections[index].display_grade = false;
+            }
             if (course_data.sections[index].is_primary_section && !course_data.sections[index].is_auditor) {
-                course_data.sections[index].display_grade = true;
-                has_section_to_display = true;
+                if (!course_data.sections[index].hide_for_early_summer_display) {
+                    console.log(course_data.sections[index]);
+                    course_data.sections[index].display_grade = true;
+                    has_section_to_display = true;
+                }
             } else {
                 course_data.sections[index].display_grade = false;
             }
