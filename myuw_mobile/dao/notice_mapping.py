@@ -1,7 +1,9 @@
 """
-This module provides function to categorize notices based on
-the dictionary defined in notice_categorization.py;
-function to process notice besed on their category and timing.
+This module provides utility the following functions:
+1. categorize notices based on the dictionary defined
+   in notice_categorization.py;
+2. apply show/hide on notices besed on their category and timing;
+3. convert notice object into json format
 """
 import logging
 import pytz
@@ -112,3 +114,36 @@ def is_before_bof_days_before_close(now, notice, n_days):
     @return true if it is before "n_days" prior to the notice close datetime
     """
     return now < get_close_date(notice) - timedelta(days=n_days)
+
+
+def get_json_for_notices(request, notices):
+    """
+    @return the json data of notices with the specific show/hide logic
+    applied on the corresponding notices.
+    """
+    notice_json = []
+
+    for notice in apply_showhide(request, notices):
+
+        if notice.notice_category == "StudentFinAid" and\
+                notice.notice_type.endswith("Short") and\
+                notice.long_notice is not None:
+            data = notice.long_notice.json_data(
+                include_abbr_week_month_day_format=True)
+            data['short_content'] = notice.notice_content
+            data['category'] = notice.custom_category
+            data['is_critical'] = False
+            data['id_hash'] = notice.id_hash
+            data['is_read'] = notice.is_read
+            data['location_tags'] = notice.location_tags
+
+        else:
+            data = notice.json_data(
+                include_abbr_week_month_day_format=True)
+            data['category'] = notice.custom_category
+            data['is_critical'] = notice.is_critical
+            data['id_hash'] = notice.id_hash
+            data['is_read'] = notice.is_read
+            data['location_tags'] = notice.location_tags
+        notice_json.append(data)
+    return notice_json

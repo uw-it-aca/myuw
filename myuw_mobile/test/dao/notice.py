@@ -23,7 +23,7 @@ class TestNotices(TestCase):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             notices = _get_notices_by_regid(regid)
             self.assertIsNotNone(notices)
-            self.assertEquals(len(notices), 13)
+            self.assertEquals(len(notices), 17)
 
             self.assertEquals(notices[0].custom_category, "Holds")
             self.assertEquals(notices[0].location_tags, ['notices_holds',

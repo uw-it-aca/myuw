@@ -23,7 +23,7 @@ class TestMapNotices(TestCase):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
 
             notices = get_notices_by_regid(regid)
-            self.assertEquals(len(notices), 17)
+            self.assertEquals(len(notices), 21)
 
             notice = map_notice_category(notices[0])
             self.assertEquals(notice.custom_category, "Holds")
@@ -49,7 +49,7 @@ class TestMapNotices(TestCase):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
 
             notices = categorize_notices(get_notices_by_regid(regid))
-            self.assertEquals(len(notices), 13)
+            self.assertEquals(len(notices), 17)
             notice = notices[10]
             self.assertEquals(notice.custom_category, "Fees & Finances")
             self.assertEquals(notice.location_tags,

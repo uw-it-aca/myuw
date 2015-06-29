@@ -2,7 +2,7 @@ import logging
 import json
 from django.http import HttpResponse
 from myuw_mobile.views.rest_dispatch import RESTDispatch
-from myuw_mobile.dao.notice_mapping import apply_showhide
+from myuw_mobile.dao.notice_mapping import get_json_for_notices
 from myuw_mobile.dao.notice import get_notices_for_current_user,\
     mark_notices_read_for_current_user
 from myuw_mobile.logger.timer import Timer
@@ -20,9 +20,8 @@ class Notices(RESTDispatch):
         """
         timer = Timer()
         logger = logging.getLogger(__name__)
-
-        notices = apply_showhide(request, get_notices_for_current_user())
-        notice_json = self._get_json(notices)
+        notice_json = get_json_for_notices(
+            request, get_notices_for_current_user())
         log_success_response(logger, timer)
 
         return HttpResponse(json.dumps(notice_json))
@@ -38,10 +37,11 @@ class Notices(RESTDispatch):
             data['id_hash'] = notice.id_hash
             data['is_read'] = notice.is_read
             data['category'] = notice.custom_category
+            data['myuw_id'] = notice.notice_typecustom_category
             data['is_critical'] = notice.is_critical
             data['location_tags'] = notice.location_tags
             notice_json.append(data)
-        return notice_json
+        return _associate_short_to_long(notice_json)
 
     def PUT(self, request):
         notice_hashes = json.loads(request.body).get('notice_hashes', None)

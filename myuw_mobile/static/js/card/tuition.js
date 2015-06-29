@@ -56,6 +56,29 @@ var TuitionCard = {
         }
         template_data.has_balance = parseInt(template_data.tuition_accbalance) > 0;
 
+        finaid_tags = ["tuition_aidhold_title",
+                       "tuition_missingdocs_title",
+                       "tuition_loanpromissory_title",
+                       "tuition_loancounseling_title",
+                       "tuition_acceptreject_title",
+                       "tuition_disbursedateA_title",
+                       "tuition_disbursedateB_title",
+                       "tuition_direct_deposit_title",
+                       "tuition_aid_prioritydate_title",
+                       "tuition_aid_reminder_title",
+                       "tuition_summeraid_date_title",
+                       "tuition_summeraid_avail_title"
+                      ];
+        finaid_notices = []
+        for (var i = 0; i < finaid_tags.length; i += 1) {
+            notice = Notices.get_notices_for_tag(finaid_tags[i])[0];
+            if (notice !== undefined) {
+                finaid_notices.push(notice);
+            }
+        }
+        if (finaid_notices.length > 0) {
+            template_data.finaid_notices = finaid_notices;
+        }
         var source = $("#tuition_card").html();
         var template = Handlebars.compile(source);
         TuitionCard.dom_target.html(template(template_data));

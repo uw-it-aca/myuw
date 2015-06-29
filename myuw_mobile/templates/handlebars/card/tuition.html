@@ -42,79 +42,66 @@
                         
         <!-- else, there is a balance -->
         <div class="card-badge-container">
-		    <ul class="card_list">
-			<li>
-	                    <div class="card-badge clearfix">
-	                        <div class="pull-left">
-	                            <h4 class="card-badge-label">You owe</h4>
-	                        </div>
-	                        <div class="pull-right">
-	                            <span class="card-badge-value text-danger">${{ tuition_accbalance }}</span>
-				    &nbsp;
-	                            <span class="card-badge-action pull-right"><a href="http://f2.washington.edu/fm/sfs/tuition/payment">Make payment</a></span>
-	                        </div>
-	                    </div>
-			</li>
-	                {{ #if tuition_date }}
-	                <li>
-	                    <div class="card-badge clearfix">
-	                        <div class="pull-left">
-	                            <h4 class="card-badge-label">Tuition due </h4>
-	                        </div>
-	                        <div class="pull-right">
-	                            <span class="card-badge-value" aria-hidden="true">{{ toFriendlyDate tuition_due }}</span>
-	                            <span class="sr-only">{{ toFriendlyDateVerbose tuition_due }}</span>
-				    &nbsp;
-	                            <span class="card-badge-action pull-right">in {{ tuition_date_offset }} days</span>
-	                        </div>
-	                    </div>
-	                </li>
-	                {{ /if }}
-		    </ul>
+	    <ul class="card_list">
+		<li>
+	            <div class="card-badge clearfix">
+	                <div class="pull-left">
+	                    <h4 class="card-badge-label">You owe</h4>
+	                </div>
+	                <div class="pull-right">
+	                    <span class="card-badge-value text-danger">${{ tuition_accbalance }}</span>
+			    &nbsp;
+	                    <span class="card-badge-action pull-right"><a href="http://f2.washington.edu/fm/sfs/tuition/payment">Make payment</a></span>
+	                </div>
+	            </div>
+		</li>
+	        {{ #if tuition_date }}
+	        <li>
+	            <div class="card-badge clearfix">
+	                <div class="pull-left">
+	                    <h4 class="card-badge-label">Tuition due </h4>
+	                </div>
+	                <div class="pull-right">
+	                    <span class="card-badge-value" aria-hidden="true">{{ toFriendlyDate tuition_due }}</span>
+	                    <span class="sr-only">{{ toFriendlyDateVerbose tuition_due }}</span>
+			    &nbsp;
+	                    <span class="card-badge-action pull-right">in {{ tuition_date_offset }} days</span>
+	                </div>
+	            </div>
+	        </li>
+	        {{ /if }}
+	    </ul>
 		    
-		    <!-- end if -->
-		{{ /if }}
+	    <!-- end if -->
+	    {{ /if }}
 		    
-	        <!-- finaid notices begin -->
-	        
-	        <div class="finaid-notices-container">
-		    	<h5>Financial Aid</h5>  
+	    <!-- finaid notices begin -->
+	    <div class="finaid-notices-container">
+                {{ #if finaid_notices }}
+		<h5>Financial Aid</h5>
 		    	
-				<div class="panel-group finaid-notices-panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-					<div class="panel panel-default finaid-panel-default">
-					    <div class="panel-heading finaid-panel-heading" role="tab" id="headingOne">
-					    	<span class="panel-title finaid-panel-title">
-						        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						        	<i class="fa fa-sort-desc" aria-hidden="true"></i> Finaid Notice Title #1
-						        </a>
-					    	</span>
-					    </div>
-					    <div id="collapseOne" class="panel-collapse collapse finaid-panel-collapse" role="tabpanel" aria-labelledby="headingOne">
-					    	<div class="panel-body finaid-panel-body">
-					        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-					    	</div>
-					    </div>
-					</div>
-					<div class="panel panel-default finaid-panel-default">
-				    	<div class="panel-heading finaid-panel-heading" role="tab" id="headingTwo">
-							<span class="panel-title finaid-panel-title">
-								<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-									<i class="fa fa-sort-desc" aria-hidden="true"></i> Finaid Notice Title #2
-				        		</a>
-				    		</span>
-				    	</div>
-						<div id="collapseTwo" class="panel-collapse collapse finaid-panel-collapse" role="tabpanel" aria-labelledby="headingTwo">
-							<div class="panel-body finaid-panel-body">
-				        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-				    		</div>
-				    	</div>
-					</div>
-				</div>
+		<div class="panel-group finaid-notices-panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    {{ #each finaid_notices}}
+		    <div class="panel panel-default finaid-panel-default">
+			<div class="panel-heading finaid-panel-heading" role="tab" id="{{id_hash}}">
+			    <span class="panel-title finaid-panel-title">
+				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{id_hash}}" aria-expanded="true" aria-controls="collapse{{id_hash}}">
+				    <i class="fa fa-sort-desc" aria-hidden="true"></i> {{short_content}}
+				</a>
+			    </span>
+			</div>
+			<div id="collapse{{id_hash}}" class="panel-collapse collapse finaid-panel-collapse" role="tabpanel" aria-labelledby="heading{{id_hash}}">
+			    <div class="panel-body finaid-panel-body">
+                                {{{ notice_content }}}
+			    </div>
+			</div>
 		    </div>
-			<!-- finaid notices end -->
+		    {{ /each }}
+		</div>
+                {{ /if }}
+	    </div>
+	    <!-- finaid notices end -->
         </div>
-        
-        
 
         <div class="card-related-messages">
             <p><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx">Give access to your tuition account and financial aid information</a> to parents or other third parties.</p>
