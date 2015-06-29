@@ -137,7 +137,7 @@
        {
             "NoticeAttributes": [],
             "NoticeCategory": "NewStudentCLIST",
-            "NoticeContent": "<span class=\"notice-title\">Set Up UW Email</span>&nbsp;<span class=\"notice-title\"><a href=\"http://www.washington.edu/itconnect/connect/email/#students\">Set up your UW inbox</a> so you can receive important emails from instructors and UW departments.",
+            "NoticeContent": "<span class=\"notice-title\">Set Up UW Email</span>&nbsp;<span class=\"notice-body-with-title\"><a href=\"http://www.washington.edu/itconnect/connect/email/#students\">Set up your UW inbox</a> so you can receive important emails from instructors and UW departments.",
             "NoticeType": "EmailServices"
         },
        {
