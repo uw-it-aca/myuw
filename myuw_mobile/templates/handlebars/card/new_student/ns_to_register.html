@@ -15,31 +15,31 @@
         {{ /if }}
 
         {{ #each post_orient }}
-            <div class="notice-content">{{{ notice_content }}}</div>
+            <i class="fa fa-circle-o pre" aria-hidden="true"></i><div class="notice-content pre">{{{ notice_content }}}</div>
         {{ /each }}
 
         {{ #each pre_iss }}
-            <div class="notice-content">{{{ notice_content }}}</div>
+            <i class="fa fa-circle-o pre" aria-hidden="true"></i><div class="notice-content pre">{{{ notice_content }}}</div>
         {{ /each }}
 
         {{ #each post_iss }}
-            <div class="notice-content post"><i class="fa fa-check-circle-o" aria-hidden="true"></i>{{{ notice_content }}}</div>
+            <i class="fa fa-check-circle" aria-hidden="true"></i><div class="notice-content post">{{{ notice_content }}}</div>
         {{ /each }}
 
         {{ #each pre_measles }}
-            <div class="notice-content">{{{ notice_content }}}</div>
+            <i class="fa fa-circle-o pre" aria-hidden="true"></i><div class="notice-content pre">{{{ notice_content }}}</div>
         {{ /each }}
 
         {{ #each post_measles }}
-            <div class="notice-content post"><i class="fa fa-check-circle" aria-hidden="true"></i>{{{ notice_content }}}</div>
+            <i class="fa fa-check-circle" aria-hidden="true"></i><div class="notice-content post">{{{ notice_content }}}</div>
         {{ /each }}
 
         {{ #each pre_orient }}
-            <div class="notice-content">{{{ notice_content }}}</div>
+            <i class="fa fa-circle-o pre" aria-hidden="true"></i><div class="notice-content pre">{{{ notice_content }}}</div>
         {{ /each }}
 
         {{ #if post_orient }}
-            <p class="notice-content post"><i class="fa fa-check" aria-hidden="true"></i>You have registered for an Advising & Orientation Session.</p>
+            <i class="fa fa-check-circle" aria-hidden="true"></i><div class="notice-content post"><span class="non-notice-body-without-title">You have registered for an Advising & Orientation Session.<span></div>
         {{ /if }}
     </div>
 
