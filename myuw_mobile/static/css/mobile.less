@@ -545,21 +545,34 @@ body {
 
 
 		// Thank You (New Student Checklist) //
-		#ThankYou {
+		#ThankYouCard {
 			h3 {margin-bottom: 25px;}
 			.notice-title {display:none;}			
+			.card {background-color: #FDFFF7;}
 		}
 
 
 		// To Register For Classes (New Student Checklist) // 
 		#ToRegisterForClasses {
 			h3 {margin-bottom: 25px;}
-			.notice-title { display: block; font-weight: bold; margin-bottom: 2px; }
+			.notice-title { display: block; font-weight: bold; margin-bottom: 2px; font-size: 1.1em;}
 			.notice-content { padding-bottom: 2em;}
-			i {font-size: 1.5em;  vertical-align: middle;  margin-right: .5em;}
-			// adding this display inline-block to adjust for &nbsp; that is in front of body text
-			.notice-body-with-title {display: inline-block; margin-top: -1.5em;}
-			strong {font-weight:400;}
+			.notice-body-with-title {display: inline-block;  margin-top: -1em;}
+
+			// pre 
+			div.pre, div.post { margin-left: 2.2em;}
+			// .pre .notice-title {float:left; width: 90%;}			
+			// .pre .notice-body-with-title {float:left; width: 90%;}			
+
+			// post - NO TITLES
+			// .post .notice-body-with-title {float:left; width: 90%; margin-top: 0;}			
+			// .post .notice-body-with-title {margin-left: 2.2em;  margin-top: -1.5em; display:inline-block;}
+			// .post .notice-body-without-title {margin-left: 2.2em;  margin-top: -1.5em; display:inline-block;}
+			// .post .non-notice-body-without-title {margin-left: 2.2em;  margin-top: -1.5em; display:inline-block;}
+
+			i {font-size: 1.5em;  vertical-align: middle;  margin-right: .5em; float:left; color:green; font-weight:400;}
+			i.pre {color:#3D3D3D;}
+			// strong {font-weight:400;}
 		}
 		
 		
@@ -579,9 +592,10 @@ body {
 		
 		#UpdateCriticalInfo {
 			h3 {margin-bottom: 25px;}		
-			.notice-title { display: block; font-weight: bold; margin-bottom: 2px;}
+			.notice-title { display: block; font-weight: bold; margin-bottom: 2px; font-size: 1.1em;}
 			.notice-content { padding-bottom: 2em;}
-			.notice-body-with-title {display: inline-block;}
+			.notice-body-with-title {display: inline-block;  margin-top: -1.5em;}
+			.non-notice-body-with-title {display: inline-block;}
 		}
 
 
@@ -591,7 +605,7 @@ body {
 		#IntStud {
 			h3 {margin-bottom: 6px;}		
 			.notice-title {display:none;}
-			.notice-body-with-title {display: inline-block;  margin-top: -1em; margin-bottom: 2em;}			
+			.notice-body-with-title {display: inline-block; margin-top: -1em; margin-bottom: 2em;}			
 		}
 
 			
