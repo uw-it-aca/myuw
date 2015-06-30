@@ -28,6 +28,17 @@ var ToRegisterCard = {
         var pre_measles = Notices.get_notices_for_tag("checklist_measles_before");
         var post_measles = Notices.get_notices_for_tag("checklist_measles_after");
         var pre_orient = Notices.get_notices_for_tag("checklist_orient_before");
+        var no_orient_date = undefined;
+        if (no_orient.length > 0) {
+            no_msg = no_orient[0];
+            $.each(no_msg.attributes, function(idx, attrib){
+                if(attrib.name === "Date") {
+                    no_orient_date = attrib.formatted_value;
+                }
+
+            });
+        }
+
         var notice_count =  no_orient.length +
             post_orient.length +
             pre_iss.length +
@@ -37,6 +48,7 @@ var ToRegisterCard = {
             pre_orient.length;
         if (notice_count > 0){
             ToRegisterCard.dom_target.html(template({'no_orient': no_orient,
+                                                     'no_orient_date': no_orient_date,
                                                      'post_orient': post_orient,
                                                      'pre_iss': pre_iss,
                                                      'post_iss': post_iss,
