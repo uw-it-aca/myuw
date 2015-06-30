@@ -28,7 +28,7 @@ var ToRegisterCard = {
         var pre_measles = Notices.get_notices_for_tag("checklist_measles_before");
         var post_measles = Notices.get_notices_for_tag("checklist_measles_after");
         var pre_orient = Notices.get_notices_for_tag("checklist_orient_before");
-        var no_orient_date = undefined;
+
         if (no_orient.length > 0) {
             no_msg = no_orient[0];
             $.each(no_msg.attributes, function(idx, attrib){
