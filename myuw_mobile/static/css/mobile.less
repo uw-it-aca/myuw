@@ -541,33 +541,59 @@ body {
     // registration card
     
     #RegStatusCard, #SummerRegStatusCardA, #SummerRegStatusCard1 {
+	    
+	    .card {
+		    h4 {font-family: 'Roboto', sans-serif; font-weight: 500; color: @darktan; margin-top: 1.5em; margin-bottom: .5em; font-size: 16px;  }
         
-        .reg-holds-list { list-style: none; padding: 0; margin-top: 1em; color:#913f16;
-	        a {color:#4d66ca; text-decoration: none;}
+	        .reg-holds-list { list-style: none; padding: 0; margin-top: 1em; color:#913f16;
+		        a {color:#4d66ca; text-decoration: none;}
+		        
+		        ul { margin-top:5px;
+	            	li { margin-bottom: 1em; }
+	            }
+	            	
+	        	li { margin-bottom: 1em; }
+	        }     
 	        
-	        ul { margin-top:5px;
-            	li { margin-bottom: 1em; }
-            }
-            	
-        	li { margin-bottom: 1em; }
-        }     
+	        .est-reg-date { margin-bottom: 20px; }
+	        
+	        .reg-notice-list { list-style: none; padding: 5px 0; 
+	             
+	            li { margin-bottom: 1em; }
+	        }
+	        
+	        .reg-resources-list { list-style: none; padding-left: 0; }
+	        
+	        
+	        .notice-list { margin-top: 5px; margin-bottom: 10px; list-style: disc; 
+	            
+	            li { margin-bottom: 0;}
+	        }
+	        
+	        .notice-title { display: block; font-weight: bold; margin-bottom: 2px; }
         
-        .est-reg-date { margin-bottom: 20px; }
-        
-        .reg-notice-list { list-style: none; padding: 5px 0; 
-             
-            li { margin-bottom: 1em; }
-        }
-        
-        .reg-resources-list { list-style: none; padding-left: 0; }
-        
-        
-        .notice-list { margin-top: 5px; margin-bottom: 10px; list-style: disc; 
-            
-            li { margin-bottom: 0;}
-        }
-        
-        .notice-title { display: block; font-weight: bold; margin-bottom: 2px; }
+	        .finaid-notices-container {
+				    .finaid-notices-panel-group {padding-left:0;line-height: 24px;				    
+					    .finaid-panel-default {border:none; box-shadow: none;-webkit-box-shadow: none; margin-left: -10px; margin-right: -10px;
+						    .finaid-panel-heading {padding: 0px 0px;background-color: transparent;
+							    .finaid-panel-title {font-size:14px;padding: 0 10px;
+								    a {color: #4d66ca;
+									    &.collapsed {
+										    i {
+											    &.fa-sort-desc {filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);-webkit-transform:rotate(270deg);-ms-transform:rotate(270deg);transform:rotate(270deg)}
+											    }
+									    }
+									 
+								    }
+							    }
+						    }
+						    .finaid-panel-collapse {
+							    .finaid-panel-body {border-top: none;padding: 5px 10px;margin-top: 5px;background-color:#FDFCD2;line-height:20px;}
+						    }
+					    }					
+				    }
+			    }
+			}
         
     }
     
