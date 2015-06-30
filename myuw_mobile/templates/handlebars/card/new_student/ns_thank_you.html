@@ -1,7 +1,7 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "ns_thank_you" %}
-    <div class="card clearfix"  data-type="card">
-        <h2>Thank you</h2>
+    <div class="thankyou card clearfix"  data-type="card">
+        <h3>Payment Received, Thank You</h3>
     {{ #each notices }}
     <div>{{{ notice_content }}}</div>
     {{ /each }}

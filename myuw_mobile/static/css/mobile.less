@@ -33,6 +33,8 @@ border-color: @border;}
 @medium: ~"screen and (min-width: 768px)";
 @large: ~"screen and (min-width: 1024px)";
 
+
+/*** fonts ***/
 @font-face {
     font-family: 'encode_sans_normalsemibold';
     src: url('../fonts/encodesansnormal-600-semibold-webfont.eot');
@@ -536,6 +538,75 @@ body {
 	.official-note {display: block; font-style: italic; color: #595959;}
 	
 	.simplesquare {display: inline-block; height: .9em; width: .9em; margin-right: 0.3em;}
+
+
+
+	// --- NEW STUDENT CHECKLIST CARDS --- //
+
+
+		// Thank You (New Student Checklist) //
+		#ThankYou {
+			h3 {margin-bottom: 25px;}
+			.notice-title {display:none;}			
+		}
+
+
+		// To Register For Classes (New Student Checklist) // 
+		#ToRegisterForClasses {
+			h3 {margin-bottom: 25px;}
+			.notice-title { display: block; font-weight: bold; margin-bottom: 2px; }
+			.notice-content { padding-bottom: 2em;}
+			i {font-size: 1.5em;  vertical-align: middle;  margin-right: .5em;}
+			// adding this display inline-block to adjust for &nbsp; that is in front of body text
+			.notice-body-with-title {display: inline-block; margin-top: -1.5em;}
+			strong {font-weight:400;}
+		}
+		
+		
+		// Critical Summer Reg & Early Fall Start  (New Student Checklist) // 
+		
+		div#EarlyFallStart {padding-top: 25px;}
+		#EarlyFallStart {
+			h3 {margin-bottom: 6px;}		
+			.notice-title {display:none;}
+			// adding this display inline-block to adjust for &nbsp; that is in front of body text
+			.notice-body-with-title {display: inline-block;  margin-top: -1em; margin-bottom: 2em;}
+			.non-notice-body-with-title {display: inline-block; margin-top: .4em; margin-bottom: 2em;}
+		}
+
+
+		// Update Critical Information (New Student Checklist) // 
+		
+		#UpdateCriticalInfo {
+			h3 {margin-bottom: 25px;}		
+			.notice-title { display: block; font-weight: bold; margin-bottom: 2px;}
+			.notice-content { padding-bottom: 2em;}
+			.notice-body-with-title {display: inline-block;}
+		}
+
+
+		// International Student Resources (New Student Checklist) // 
+
+		div#IntStud {padding-top: 25px;}
+		#IntStud {
+			h3 {margin-bottom: 6px;}		
+			.notice-title {display:none;}
+			.notice-body-with-title {display: inline-block;  margin-top: -1em; margin-bottom: 2em;}			
+		}
+
+			
+	    // Checklist items on SU registration card   (New Student Checklist) //
+	    
+	    #SummerRegStatusCardA, #SummerRegStatusCard1 {
+			.notice-title {display:none;}
+			.notice-content { padding-bottom: 1.5em;}
+			strong {font-weight:400;}
+			// adding this display inline-block to adjust for &nbsp; that is in front of body text
+			.notice-body-with-title {display: inline-block;  margin-top: -1em;}
+		}
+	
+	// --- END NEW STUDENT CHECKLIST CARDS --- 
+
 
 
     // registration card

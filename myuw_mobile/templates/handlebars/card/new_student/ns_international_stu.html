@@ -1,10 +1,10 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "ns_international_stu" %}
 
-<div class="card clearfix"  data-type="card">
-    <h2>international student</h2>
+<div id="IntStud" class="card clearfix"  data-type="card">
+    <h3>International Student Resources</h3>
     {{ #each notices }}
-    <div>{{{ notice_content }}}</div>
+    <div class="notice-content">{{{ notice_content }}}</div>
     {{ /each }}
 </div>
 {% endtplhandlebars %}

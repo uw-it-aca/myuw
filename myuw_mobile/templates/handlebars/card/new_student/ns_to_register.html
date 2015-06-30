@@ -1,37 +1,43 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "ns_to_register" %}
-    <div class="card clearfix"  data-type="card">
-        <h2>To Register</h2>
+    <div id="ToRegisterForClasses" class="card clearfix"  data-type="card">
+        <h3>To Register For Classes</h3>
         {{  #if no_orient_date }}
-           Register on {{ no_orient_date }} through <a href="http://asdf.com">some</a> neat <a href="http://qwerty.com">links</a>.
+        Register on {{ no_orient_date }} through <a href="http://asdf.com">some</a> neat <a href="http://qwerty.com">links</a>.
+            <p>
+	            <ul>
+		            <li><a href="https://depts.washington.edu/sislearn/registration-resources/">How to register</a></li>
+		            <li><a href="http://www.washington.edu/uaa/advising/academic-planning/choosing-courses/overview/">How to choose courses</a></li>
+	            </ul>
+			</p>
         {{ /if }}
 
         {{ #each post_orient }}
-            <div>{{{ notice_content }}}</div>
+            <div class="notice-content">{{{ notice_content }}}</div>
         {{ /each }}
 
         {{ #each pre_iss }}
-            <div>{{{ notice_content }}}</div>
+            <div class="notice-content">{{{ notice_content }}}</div>
         {{ /each }}
 
         {{ #each post_iss }}
-            <div>{{{ notice_content }}}</div>
+            <div class="notice-content post"><i class="fa fa-check-circle-o" aria-hidden="true"></i>{{{ notice_content }}}</div>
         {{ /each }}
 
         {{ #each pre_measles }}
-            <div>{{{ notice_content }}}</div>
+            <div class="notice-content">{{{ notice_content }}}</div>
         {{ /each }}
 
         {{ #each post_measles }}
-            <div>{{{ notice_content }}}</div>
+            <div class="notice-content post"><i class="fa fa-check-circle" aria-hidden="true"></i>{{{ notice_content }}}</div>
         {{ /each }}
 
         {{ #each pre_orient }}
-            <div>{{{ notice_content }}}</div>
+            <div class="notice-content">{{{ notice_content }}}</div>
         {{ /each }}
 
         {{ #if post_orient }}
-            <p> HARDCODED 'A&O registered'</p>
+            <p class="notice-content post"><i class="fa fa-check" aria-hidden="true"></i>You have registered for an Advising & Orientation Session.</p>
         {{ /if }}
     </div>
 
