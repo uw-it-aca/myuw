@@ -7,8 +7,9 @@ https://docs.google.com/document/d/14q26auOLPU34KFtkUmC_bkoo5dAwegRzgpwmZEQMhaU
 from django.conf import settings
 from datetime import datetime, timedelta
 from myuw_mobile.dao.term import get_comparison_date,\
+    is_in_summer_b_term, is_summer_term,\
     get_current_quarter, get_next_quarter,\
-    get_term_after, get_term_before, get_bof_1st_instruction,\
+    get_term_after, get_last_term, get_bof_1st_instruction,\
     get_eof_last_instruction, get_bof_7d_before_last_instruction,\
     get_eof_7d_after_class_start, get_eof_last_final_exam
 
@@ -16,10 +17,7 @@ from myuw_mobile.dao.term import get_comparison_date,\
 def in_show_grades_period(term, request):
     comparison_date = get_comparison_date(request)
     next_term = get_term_after(term)
-    if comparison_date < next_term.first_day_quarter:
-        return True
-
-    return False
+    return comparison_date < next_term.first_day_quarter
 
 
 def get_card_visibilty_date_values(request=None):
@@ -35,15 +33,7 @@ def get_values_by_date(now, request):
     """
     now is a datetime object of 1 second after the beginning of the day.
     """
-    current_term = get_current_quarter(request)
-    last_term = get_term_before(current_term)
-
-    is_summer = False
-    is_after_summer_b = False
-    if current_term.quarter == "summer":
-        is_summer = True
-        if get_comparison_date(request) >= current_term.bterm_first_date:
-            is_after_summer_b = True
+    last_term = get_last_term(request)
 
     return {
         "is_after_7d_before_last_instruction":
@@ -72,10 +62,10 @@ def get_values_by_date(now, request):
             is_before_bof_term(now, request),
         "is_before_last_day_of_classes":
             is_before_last_day_of_classes(now, request),
-        "last_term": "%s,%s" % (last_term.year, last_term.quarter),
-        "is_summer": is_summer,
-        "is_after_summer_b": is_after_summer_b,
+        "is_summer": is_summer_term(request),
+        "is_after_summer_b": is_in_summer_b_term(request),
         "current_summer_term": "%s,%s" % (last_term.year, "summer"),
+        "last_term": "%s,%s" % (last_term.year, last_term.quarter),
     }
 
 

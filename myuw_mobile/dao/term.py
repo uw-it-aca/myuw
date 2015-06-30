@@ -9,8 +9,8 @@ import traceback
 from django.conf import settings
 import restclients.sws.term as sws_term
 from restclients.dao import SWS_DAO
-from restclients.sws.term import get_term_by_date, get_term_after
-from restclients.sws.term import get_term_before, get_current_term
+from restclients.sws.term import get_term_by_date, get_term_after,\
+    get_term_before, get_current_term
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logback import log_resp_time, log_exception
 
@@ -152,6 +152,10 @@ def get_quarter(year, quarter):
     If year and quarter are None, return the current quarter.
     """
     return _get_term_by_year_and_quarter(year, quarter.lower())
+
+
+def get_last_term(request):
+    return get_term_before(get_current_quarter(request))
 
 
 def is_past(term, request):
