@@ -27,7 +27,8 @@ class TestMapNotices(TestCase):
             notice = map_notice_category(notices[4])
 
             self.assertEquals(notice.custom_category, "Holds")
-            self.assertEquals(notice.location_tags, ['notices_holds', 'reg_card_holds'])
+            self.assertEquals(notice.location_tags, ['notices_holds',
+                                                     'reg_card_holds'])
             self.assertTrue(notice.is_critical)
 
             notice = map_notice_category(notices[9])

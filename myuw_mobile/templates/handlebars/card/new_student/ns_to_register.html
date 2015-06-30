@@ -2,10 +2,8 @@
     {% tplhandlebars "ns_to_register" %}
     <div id="ToRegisterForClasses" class="card clearfix"  data-type="card">
         <h3>To Register For Classes</h3>
-        {{  #if no_orient }}
-            {{ #each no_orient }}
-                <div class="notice-content">{{{ notice_content }}}</div>
-            {{ /each }}
+        {{  #if no_orient_date }}
+        Register on {{ no_orient_date }} through <a href="http://asdf.com">some</a> neat <a href="http://qwerty.com">links</a>.
             <p>
 	            <ul>
 		            <li><a href="https://depts.washington.edu/sislearn/registration-resources/">How to register</a></li>
