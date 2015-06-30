@@ -85,11 +85,10 @@ var RegStatusCard = {
 
         var finaid_tags = ["reg_summeraid_avail_title"];
         var finaid_notices = [];
-        var notice;
         for (i = 0; i < finaid_tags.length; i += 1) {
-            notice = Notices.get_notices_for_tag(finaid_tags[i])[0];
-            if (notice !== undefined) {
-                finaid_notices.push(notice);
+            var fnotice = Notices.get_notices_for_tag(finaid_tags[i])[0];
+            if (fnotice !== undefined) {
+                finaid_notices.push(fnotice);
             }
         }
         //Get hold count from notice attrs
