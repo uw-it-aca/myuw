@@ -245,7 +245,7 @@
        {
             "NoticeAttributes": [],
             "NoticeCategory": "NewStudentCLIST",
-            "NoticeContent": "<span class=\"notice=body-without-title\">Your Measles Immunization Form has been received and processed.</span>",
+            "NoticeContent": "<span class=\"notice-body-without-title\">Your Measles Immunization Form has been received and processed.</span>",
             "NoticeType": "MeaslesB"
         }
     ],
