@@ -27,14 +27,10 @@
         {{ #unless has_balance }}
         <!-- if tuition balance is 0 -->
         <div class="card-badge-container">
-	    <ul class="card_list">
-		<li>
-                    <div class="card-badge">
-                        <span class="card-badge-label" style="line-height:20px;">{{ #if is_pce}}Your PCE tuition<br/> has been paid{{ else  }}Your tuition and fees have been paid{{ /if }}</span>
-                        <div class="card-badge-action" style="margin-top:10px; text-align:right;"><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">See tuition statement</a></div>
-                    </div>
-		</li>
-	    </ul>
+            <div class="card-badge">
+                <span class="card-badge-label" style="line-height:20px;">{{ #if is_pce}}Your PCE tuition<br/> has been paid{{ else  }}Your tuition and fees have been paid{{ /if }}</span>
+                <div class="card-badge-action" style="margin-top:10px; text-align:right;"><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">See tuition statement</a></div>
+            </div>
         </div>
         {{ /unless }}
                         
@@ -76,27 +72,27 @@
 		    
 	<!-- finaid notices begin -->
         {{ #if finaid_notices }}
-	<div class="finaid-notices-container">
-	    <h4>Financial Aid</h4>
-	    <ul class="panel-group finaid-notices-panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-            {{ #each finaid_notices}}
-			<li class="panel panel-default finaid-panel-default">
-			    <div class="panel-heading finaid-panel-heading" role="tab" id="{{id_hash}}">
-					<span class="panel-title finaid-panel-title">
-				    	<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{id_hash}}" aria-expanded="true" aria-controls="collapse{{id_hash}}">
-							<i class="fa fa-sort-desc" aria-hidden="true"></i> {{{short_content}}}
-				    	</a>
-					</span>
-			    </div>
-			    <div id="collapse{{id_hash}}" class="panel-collapse collapse finaid-panel-collapse" role="tabpanel" aria-labelledby="heading{{id_hash}}">
-					<div class="panel-body finaid-panel-body">
-                                    {{{ notice_content }}}
+        <div class="finaid-notices-container">
+            <h4>Financial Aid</h4>
+            <ul class="panel-group finaid-notices-panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                {{ #each finaid_notices}}
+                <li class="panel panel-default finaid-panel-default">
+                    <div class="panel-heading finaid-panel-heading" role="tab" id="Tf{{id_hash}}">
+                        <span class="panel-title finaid-panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTf{{id_hash}}" aria-expanded="true" aria-controls="collapseTf{{id_hash}}">
+                                <i class="fa fa-sort-desc" aria-hidden="true"></i> {{{short_content}}}
+                            </a>
+                        </span>
                     </div>
-			    </div>
-			</li>
-		    {{ /each }}
-	    </ul>
-	</div>
+                    <div id="collapseTf{{id_hash}}" class="panel-collapse collapse finaid-panel-collapse" role="tabpanel" aria-labelledby="headingTf{{id_hash}}">
+                        <div class="panel-body finaid-panel-body">
+                            {{{ notice_content }}}
+                        </div>
+                    </div>
+                </li>
+                {{ /each }}
+            </ul>
+        </div>
         {{ /if }}
 	<!-- finaid notices end -->
 
