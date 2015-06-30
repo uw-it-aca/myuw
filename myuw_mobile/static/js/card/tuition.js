@@ -69,7 +69,7 @@ var TuitionCard = {
                        "tuition_summeraid_date_title",
                        "tuition_summeraid_avail_title"
                       ];
-        finaid_notices = []
+        var finaid_notices = [];
         for (var i = 0; i < finaid_tags.length; i += 1) {
             notice = Notices.get_notices_for_tag(finaid_tags[i])[0];
             if (notice !== undefined) {
