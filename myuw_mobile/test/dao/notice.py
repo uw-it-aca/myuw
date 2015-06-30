@@ -35,3 +35,11 @@ class TestNotices(TestCase):
             self.assertEquals(notices[12].location_tags,
                               ['tuition_aid_reminder_title'])
             self.assertFalse(notices[12].is_critical)
+
+            regid = "9136CCB8F66711D5BE060004AC494F31"
+            notices = _get_notices_by_regid(regid)
+            self.assertIsNotNone(notices)
+            self.assertEquals(len(notices), 13)
+            self.assertEquals(notices[12].custom_category,
+                              "Fees & Finances")
+            self.assertFalse(notices[12].is_critical)
