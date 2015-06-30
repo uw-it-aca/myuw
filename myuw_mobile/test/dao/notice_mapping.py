@@ -43,8 +43,9 @@ class TestMapNotices(TestCase):
             self.assertFalse(notice.is_critical)
 
             notice = map_notice_category(notices[20])
-            self.assertEquals(notice.location_tags, ['tuition_summeraid_avail_title',
-                                                     'reg_summeraid_avail_title'])
+            self.assertEquals(notice.location_tags,
+                              ['tuition_summeraid_avail_title',
+                               'reg_summeraid_avail_title'])
             self.assertFalse(notice.is_critical)
 
     def test_categorize_notices(self):
