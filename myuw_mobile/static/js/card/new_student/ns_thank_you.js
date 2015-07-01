@@ -21,7 +21,10 @@ var ThankYouCard = {
     _render: function () {
         var source = $("#ns_thank_you").html();
         var template = Handlebars.compile(source);
-        var notices = Notices.get_notices_for_tag("checklist_thankyou");
+        var ty_notices = Notices.get_notices_for_tag("checklist_thankyou");
+        var fp_notices = Notices.get_notices_for_tag("checklist_feespaid");
+        var notices  = ty_notices.concat(fp_notices);
+
         var notice_hashes = [];
 
         for (var i = 0; i < notices.length; i += 1) {
