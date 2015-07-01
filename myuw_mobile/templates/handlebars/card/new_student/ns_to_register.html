@@ -1,15 +1,16 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "ns_to_register" %}
-    <div id="ToRegisterForClasses" class="card clearfix"  data-type="card">
-        <h3>To Register For Classes</h3>
+
+	<!-- #ToRegisterCard -->
+    <div class="card" data-type="card">
+		<div class="card-badge-container clearfix">
+        	<h3>To Register For Classes</h3>
         {{  #if no_orient_date }}
-        <strong>Register on {{ no_orient_date }} through <a href="https://myplan.uw.edu/">MyPlan</a> or <a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp">the registration screen</a>.</strong>
-            <p>
-	            <ul>
-		            <li><a href="https://depts.washington.edu/sislearn/registration-resources/">How to register</a></li>
-		            <li><a href="http://www.washington.edu/uaa/advising/academic-planning/choosing-courses/overview/">How to choose courses</a></li>
-	            </ul>
-			</p>
+        	<strong>Register on {{ no_orient_date }} through <a href="https://myplan.uw.edu/">MyPlan</a> or <a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp">the registration screen</a>.</strong>
+            <ul class="card_list">
+	            <li><a href="https://depts.washington.edu/sislearn/registration-resources/">How to register</a></li>
+	            <li><a href="http://www.washington.edu/uaa/advising/academic-planning/choosing-courses/overview/">How to choose courses</a></li>
+            </ul>
         {{ /if }}
 
         {{ #each post_orient }}
@@ -37,8 +38,9 @@
         {{ /each }}
 
         {{ #if post_orient }}
-            <i class="fa fa-check-circle" aria-hidden="true"></i><div class="notice-content post"><span class="non-notice-body-without-title">You have registered for an Advising & Orientation Session.<span></div>
+            <i class="fa fa-check-circle" aria-hidden="true"></i><div class="notice-content post"><span class="non-notice-body-without-title">You have registered for an Advising & Orientation Session.</span></div>
         {{ /if }}
+		</div>
     </div>
 
 {% endtplhandlebars %}
