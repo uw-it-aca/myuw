@@ -247,6 +247,18 @@
             "NoticeCategory": "NewStudentCLIST",
             "NoticeContent": "<span class=\"notice-body-without-title\">Your Measles Immunization Form has been received and processed.</span>",
             "NoticeType": "MeaslesB"
+        },
+       {
+            "NoticeAttributes": [
+              {
+                "Name": "ResidencyStatus",
+                "DataType": "string",
+                "Value": "3"
+              }
+            ],
+            "NoticeCategory": "NewStudentGEN",
+            "NoticeContent": "<span class=\"notice-title\">Expected Status</span>&nbsp;<span class=\"notice-body-with-title\">Your expected status at the University:</span>&nbsp;<ul class=\"notice-list\"> <li>Campus: SEATTLE</li><li>Class Standing: FRESHMAN</li><li>School/College: Arts & Sciences</li><li>Department: PRE MAJOR (A&S)</li><li>Student Number: 1522136</li><li>Residency Status: RES-IMMIGR</li></ul> <span class=\"notice-body-with-title\"><a href=\"http://www.washington.edu/students/reg/whatsthis.html\">Have questions? Read the Notes and Definitions</a></span>",
+            "NoticeType": "StatusSummary"
         }
     ],
     "Person": {
