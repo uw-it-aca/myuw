@@ -428,7 +428,13 @@ body {
 	        
 	        .notice-panel-heading {background-color:transparent;padding: 0 0;
 		        .notice-panel-title /*h4*/ {font-size:14px; line-height:20px;
-			        a {color:#4d66ca;padding-left: 5px;}
+			        a {color:#4d66ca;padding-left: 5px;
+						&.collapsed {
+							i {
+								&.fa-sort-desc {filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);-webkit-transform:rotate(270deg);-ms-transform:rotate(270deg);transform:rotate(270deg)}
+							}
+						}					
+					}
 			        a:active, a:focus {text-decoration: none;}
 			        .notice-critical-label {color:#fff; background-color:#a94442;padding: 0 7px;border-radius: 4px;font-weight:400;font-size:12px;}
 			        .fa-usd {padding-left: 3px;}
