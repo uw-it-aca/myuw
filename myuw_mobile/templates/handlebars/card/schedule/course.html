@@ -12,11 +12,11 @@
         <div class="fade-in">
     
             <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
-            	<h4><span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>&nbsp;
+            	<h4><span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>&nbsp;<span class="meeting-type c{{color_id}}Color">{{ucfirst meetings.0.type}}</span>
 				<span class="shortTitle" style="display:block;">{{ course_title }}</span></h4>
             
 			{{ #unless evaluation_data }}
-				<h5 class="scheduleHeading">{{ucfirst meetings.0.type}} Schedule</h5>
+				<h5 class="scheduleHeading sr-only"><!--{{ucfirst meetings.0.type}}--> Schedule</h5>
             
 				{{ #if canvas_grade }}
 	            <div class="canvasGradeBox" style="position: absolute; width: 100px; top: -3px; right:0;">
@@ -155,7 +155,7 @@
 		            </table>                    
                 {{/if}}
 
-                <h5>Course resources</h5>
+                <h5 clas="sr-only">Course resources</h5>
                 <ul class="unstyled-list">
                 {{#if has_resources }}
                     {{#if class_website_url}}
