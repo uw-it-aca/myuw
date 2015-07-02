@@ -155,7 +155,7 @@
 		            </table>                    
                 {{/if}}
 
-                <h5 clas="sr-only">Course resources</h5>
+                <h5 class="sr-only">Course resources</h5>
                 <ul class="unstyled-list">
                 {{#if has_resources }}
                     {{#if class_website_url}}
@@ -199,7 +199,9 @@
                         {{/each}}
                     </ol>
                 </div>
-                {{/if}}
+                {{else}}
+				<strong>No instructor information available for this <span class="text-lowercase">{{ucfirst meetings.0.type}}</span>.</strong>
+				{{/if}}
 
                 {{ #if canvas_grade }}
                 <div class="canvasGradeBox" style="font-style: italic; color: #888;">
@@ -216,7 +218,16 @@
                 {{ /unless}}
 
                 <div class="card-disclosure">
-                    <a class="slide-link" href="#" aria-controls="course{{index}}" title="Show more course information">Show more</a>
+                    <a class="slide-link" href="#" aria-controls="course{{index}}" title="Show more course information">
+					Show {{#if instructors}}
+							{{#if canvas_grade}}more
+								{{else}}instructors
+							{{/if}}
+						 {{else}}
+							{{#if canvas_grade}}canvas grade
+								{{else}}more
+							{{/if}}
+						  {{/if}}</a>
                 </div>
 
         </div>
