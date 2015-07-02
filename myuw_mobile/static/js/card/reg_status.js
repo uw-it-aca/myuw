@@ -84,16 +84,10 @@ var RegStatusCard = {
         }
 
         var finaid_tags = ["reg_summeraid_avail_title"];
-        var finaid_notices = [];
-        for (i = 0; i < finaid_tags.length; i += 1) {
-            var fnotice = Notices.get_notices_for_tag(finaid_tags[i])[0];
-            if (fnotice !== undefined) {
-                finaid_notices.push(fnotice);
-            }
-        }
+
         //Get hold count from notice attrs
         var hold_count = reg_holds.length;
-        return template({"finaid_notices": (finaid_notices.length > 0 ? finaid_notices : null),
+        return template({"finaid_notices": Notices.get_ordered_finaid_notices(finaid_tags),
                          "reg_notices": reg_notices,
                          "reg_holds": reg_holds,
                          "card": card,

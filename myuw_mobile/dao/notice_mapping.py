@@ -141,6 +141,7 @@ def get_json_for_notices(request, notices):
             data = notice.json_data(
                 include_abbr_week_month_day_format=True)
             data['category'] = notice.custom_category
+            data['sws_category'] = notice.notice_category
             data['is_critical'] = notice.is_critical
             data['id_hash'] = notice.id_hash
             data['is_read'] = notice.is_read

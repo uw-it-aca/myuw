@@ -23,19 +23,6 @@ var TuitionCard = {
     },
 
     _render: function () {
-        var finaid_tags = ["tuition_aidhold_title",
-                           "tuition_missingdocs_title",
-                           "tuition_loanpromissory_title",
-                           "tuition_loancounseling_title",
-                           "tuition_acceptreject_title",
-                           "tuition_disbursedateA_title",
-                           "tuition_disbursedateB_title",
-                           "tuition_direct_deposit_title",
-                           "tuition_aid_prioritydate_title",
-                           "tuition_aid_reminder_title",
-                           "tuition_summeraid_date_title",
-                           "tuition_summeraid_avail_title"
-                          ];
         var template_data = WSData.tuition_data(),
             tuition_due_notice,
             display_date,
@@ -69,16 +56,20 @@ var TuitionCard = {
         }
         template_data.has_balance = parseInt(template_data.tuition_accbalance) > 0;
 
-        var finaid_notices = [];
-        for (var j = 0; j < finaid_tags.length; j += 1) {
-            var notice = Notices.get_notices_for_tag(finaid_tags[j])[0];
-            if (notice !== undefined) {
-                finaid_notices.push(notice);
-            }
-        }
-        if (finaid_notices.length > 0) {
-            template_data.finaid_notices = finaid_notices;
-        }
+        var finaid_tags = ["tuition_aidhold_title",
+                           "tuition_missingdocs_title",
+                           "tuition_loanpromissory_title",
+                           "tuition_loancounseling_title",
+                           "tuition_acceptreject_title",
+                           "tuition_disbursedateA_title",
+                           "tuition_disbursedateB_title",
+                           "tuition_direct_deposit_title",
+                           "tuition_aid_prioritydate_title",
+                           "tuition_aid_reminder_title",
+                           "tuition_summeraid_date_title",
+                           "tuition_summeraid_avail_title"
+                          ];
+        template_data.finaid_notices = Notices.get_ordered_finaid_notices(finaid_tags);
         var source = $("#tuition_card").html();
         var template = Handlebars.compile(source);
         TuitionCard.dom_target.html(template(template_data));
