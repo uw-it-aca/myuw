@@ -297,7 +297,7 @@
             ],
             "NoticeCategory": "StudentFinAid",
             "NoticeType": "SummerAidAvail",
-            "NoticeContent": "<span class=\"notice-title\">Summer Financial Aid Application now available</span>&nbsp<span class=\"notice-body-with-title\">The <a href=\"https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">Summer Financial Aid Application</a> is now available<span>"
+            "NoticeContent": "<span class=\"notice-title\">Summer Financial Aid Application now available</span>&nbsp<span class=\"notice-body-with-title\">The <a href=\"https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">Summer Financial Aid Application</a> is now available</span>"
         },
         {
             "NoticeAttributes": [],
