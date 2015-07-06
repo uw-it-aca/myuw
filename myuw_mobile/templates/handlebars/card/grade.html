@@ -17,43 +17,32 @@
                     {{ #if display_grade }}
                     <li class="clearfix">
                         <div class="card-badge">		
-		            <div class="pull-left">
+							<div class="pull-left">
 		                <!--i class="fa fa-check-square c{{color_id}}Color"></i -->
-			        <div class="c{{color_id}} simplesquare" aria-hidden="true"></div>
-			        <span class="card-badge-inline-label">{{curriculum_abbr }} {{course_number}}</span>
-		            </div>
-		            <div class="pull-right">
+								<div class="c{{color_id}} simplesquare" aria-hidden="true"></div>
+								<span class="card-badge-inline-label">{{curriculum_abbr }} {{course_number}}</span>
+		            		</div>
+							<div class="pull-right">
                                 {{ #if no_grade }}<span class="card-badge-nograde-value">No grade yet</span> {{ /if }}
-			        <span class="card-badge-value pull-right">{{grade}}</span>
-			    </div>
+								<span class="card-badge-value pull-right">{{grade}}</span>
+			    			</div>
                         </div>
                     </li>
                     {{ /if }}
                 {{ /each }}
             </ul>
-
-	        <div class="card-badge pull-right">
-	            <ul class="unstyled-list">
-	                <li><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx">View credits and GPA</a></li>
-	            </ul>
-	        </div>
         </div>
         {{ /if }}
 
 
-    	<div id="grade_card_resources" class="slide-hide" aria-hidden="true">
-            <h4>Resources</h4>
+    	<div id="grade_card_resources">
+            <h4 class="sr-only">Resources</h4>
     	    <ul class="unstyled-list">
+				<li><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx">View credits and GPA</a></li>
                 <li><a href="https://uwstudent.washington.edu/student/myplan/audit?methodToCall=audit&viewId=DegreeAudit-FormView">Degree Audit Reporting System (DARS)</a></li>
                 <li><a href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp">Unofficial Transcript</a></li>
             </ul>
     	</div>
-		
-        <div class="card-disclosure">
-            <a id="toggle_grade_card_resources" 
-               aria-controls="grade_card_resources" href="#" 
-               title="Expand to show additional grade resources">SHOW MORE</a>
-        </div>
         
     </div>
 {{ /if }}

@@ -563,11 +563,23 @@ body {
 
     // Grades card
 	#GradeCard {	
-		.card-badge-inline-label { display: inline-block; font-weight: bold; line-height: 35px; }
-		.card-badge-nograde-value {display: inline-block; line-height: 35px; padding-right: 20px; font-style: italic;}
+		.card {
+			.official-note {display: block; font-style: italic; color: #595959;}
+			.card-badge-container {
+				ul.unstyled-list {margin-bottom: 5px;margin-top: 10px;
+					li {
+						.card-badge {padding: 0 10px;
+							.card-badge-inline-label { display: inline-block; font-weight: bold; line-height: 35px; }
+							.card-badge-nograde-value {display: inline-block; line-height: 35px; padding-right: 20px; font-style: italic;}
+						}
+					}
+				}
+			}
+			#grade_card_resources {}
+		}
 	}
 	
-	.official-note {display: block; font-style: italic; color: #595959;}
+	
 	
 	.simplesquare {display: inline-block; height: .9em; width: .9em; margin-right: 0.3em;}
 
