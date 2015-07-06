@@ -171,11 +171,11 @@ var Notices = {
         return filtered_notices;
     },
 
-    get_ordered_finaid_notices: function (finaid_tags) {
+    get_ordered_finaid_notices: function (finaid_tags, is_critical) {
         var finaid_notices = [];
         for (var j = 0; j < finaid_tags.length; j += 1) {
             var notice = Notices.get_notices_for_tag(finaid_tags[j])[0];
-            if (notice !== undefined) {
+            if (notice !== undefined && (is_critical === undefined || notice.is_critical)) {
                 finaid_notices.push(notice);
             }
         }
@@ -304,7 +304,7 @@ var Notices = {
                                     "tuition_direct_deposit",
                                     "tuition_aid_prioritydate"
                                    ];
-        var finaid_notices = Notices.get_ordered_finaid_notices(finaid_critical_tags);
+        var finaid_notices = Notices.get_ordered_finaid_notices(finaid_critical_tags, true);
         if (finaid_notices !== null) {
             critical = critical.concat(finaid_notices);
         }
