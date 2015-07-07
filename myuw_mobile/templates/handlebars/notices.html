@@ -186,7 +186,7 @@
 	            <!-- collapsy 4 content -->
 	            <div id="collapseFour" class="slide-hide" aria-hidden="true" style="display: none;">
 	                <div class="disclosure-content">
-						<ul>
+						<ul class="notices_list">
 		                    {{# each next_week.notices }}
 							<li>
 		                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
@@ -235,7 +235,7 @@
 	            <!-- collapsy 5 content -->
 	            <div id="collapseFive" class="slide-hide" aria-hidden="true" style="display: none;">
 	                <div class="disclosure-content"> 
-						<ul>
+						<ul class="notices_list">
 		                    {{# each future.notices }}
 							<li>
 		                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
@@ -284,7 +284,7 @@
 	            <!-- collapsy legal content -->
 	            <div id="collapseSix" class="slide-hide" aria-hidden="true" style="display: none;">
 	                <div class="disclosure-content"> 
-						<ul>
+						<ul class="notices_list">
 		                    {{# each legal.notices }}
 							<li>
 		                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
