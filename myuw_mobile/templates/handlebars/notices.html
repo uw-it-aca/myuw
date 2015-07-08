@@ -16,7 +16,7 @@
 		</div>	  
 
 	    {{ #if total_notices }}
-        <div id="accordion" class="notice-accordian">
+        <div id="accordion" class="notice-accordion">
 	    
 	        {{ #if critical.count }}
 	        <!-- collapsy 1: critical -->
@@ -96,7 +96,7 @@
 									<span class="critical_notice sr-only">Critical Notice</span>
 		                            {{ /if }}
 			                        <div class="notice-category">
-			                            {{ category }}{{ #unless is_read }}<span class="notice-new"> New</span>{{ /unless }}
+			                            {{ category }}{{ #unless is_read }}<span class="notice-new">New</span>{{ /unless }}
 			                        </div>
 			                        <div class="notice-content">
 			                            {{ #unless is_read }}<span class="sr-only">New Notice:</span>{{ /unless }}{{{ notice_content }}}
@@ -186,7 +186,7 @@
 	            <!-- collapsy 4 content -->
 	            <div id="collapseFour" class="slide-hide" aria-hidden="true" style="display: none;">
 	                <div class="disclosure-content">
-						<ul>
+						<ul class="notices_list">
 		                    {{# each next_week.notices }}
 							<li>
 		                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
@@ -235,7 +235,7 @@
 	            <!-- collapsy 5 content -->
 	            <div id="collapseFive" class="slide-hide" aria-hidden="true" style="display: none;">
 	                <div class="disclosure-content"> 
-						<ul>
+						<ul class="notices_list">
 		                    {{# each future.notices }}
 							<li>
 		                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
@@ -284,7 +284,7 @@
 	            <!-- collapsy legal content -->
 	            <div id="collapseSix" class="slide-hide" aria-hidden="true" style="display: none;">
 	                <div class="disclosure-content"> 
-						<ul>
+						<ul class="notices_list">
 		                    {{# each legal.notices }}
 							<li>
 		                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
