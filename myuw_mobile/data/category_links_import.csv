@@ -1,8 +1,8 @@
 Category,Subcategory,Central (not campus specific),Central Title,Seattle,Seattle (link text),Bothell (destination URL),Bothell (link text),Tacoma,Tacoma Title,Open in a new tab?
 Academics,Registration,,,http://www.washington.edu/students/reg/calendar.html,Academic Calendar,http://www.uwb.edu/calendars,Bothell Academic Calendar,http://www.washington.edu/students/reg/calendar.html,Academic Calendar,no
 Academics,Registration,,,http://www.washington.edu/students/crscat/,Course Catalog,http://www.washington.edu/students/crscatb/,Course Catalog,http://www.washington.edu/students/crscatt/,Course Catalog,no
-Academics,Registration,https://uwstudent.washington.edu/student/myplan/audit?methodToCall=audit&viewId=DegreeAudit-FormView,Degree Audit Reporting System (DARS),,,,,,,yes
-Academics,Registration,http://myplan.uw.edu,MyPlan,,,,,,,yes
+Academics,Registration,https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree,Check Your Degree Progress (DARS),,,,,,,yes
+Academics,Registration,https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/,MyPlan,,,,,,,yes
 Academics,Registration,https://sdb.admin.uw.edu/students/uwnetid/register.asp,Registration,,,,,,,yes
 Academics,Registration,,,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,http://www.tacoma.washington.edu/enrollment_apps/timeschedule/search.cfm,Schedule Finder,yes
 Academics,Registration,,,http://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,http://www.uwb.edu/registration/time,UW Bothell Time Schedule,http://www.tacoma.uw.edu/uwt/enrollment-services/time-schedule-registration-guide,UW Tacoma Time Schedule,no
