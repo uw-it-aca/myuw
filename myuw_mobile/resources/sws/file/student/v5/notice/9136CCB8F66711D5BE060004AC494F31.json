@@ -22,7 +22,7 @@
                 {
                     "Name": "Date",
                     "DataType": "date",
-                    "Value": "next-week"
+                    "Value": "next_week"
                 },
                 {
                     "Name": "DisplayBegin",
@@ -32,7 +32,7 @@
                 {
                     "Name": "DisplayEnd",
                     "DataType": "date",
-                    "Value": "next-week"
+                    "Value": "next_week"
                 },
                 {
                     "Name": "Quarter",
