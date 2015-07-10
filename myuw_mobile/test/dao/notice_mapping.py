@@ -16,7 +16,7 @@ class TestMapNotices(TestCase):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
 
             notices = get_notices_by_regid(regid)
-            self.assertEquals(len(notices), 16)
+            self.assertEquals(len(notices), 17)
 
             notice = map_notice_category(notices[0])
             self.assertEquals(notice.custom_category, "Holds")
