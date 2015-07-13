@@ -1,4 +1,4 @@
-f{% load templatetag_handlebars %}
+{% load templatetag_handlebars %}
 {% tplhandlebars "notice_banner" %}
     
     <div id="app_notices">
@@ -9,7 +9,7 @@ f{% load templatetag_handlebars %}
 			<li class="panel panel-default notice-category-content">
 				<div class="panel-heading notice-panel-heading" role="tab" id="headingOne">
 					<h3 class="panel-title notice-category-panel-title">
-						<i class="fa fa-ban text-info"></i>
+						<i class="fa fa-ban text-info" aria-hidden="true"></i>
 				    	<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" aria-labelledby="control-label">
 						<span class="caret" aria-hidden="true"></span> Holds (2)
 				    	</a>
