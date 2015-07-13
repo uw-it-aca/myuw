@@ -1,4 +1,4 @@
-{% load templatetag_handlebars %}
+f{% load templatetag_handlebars %}
 {% tplhandlebars "notice_banner" %}
     
     <div id="app_notices">
@@ -10,11 +10,12 @@
 				<div class="panel-heading notice-panel-heading" role="tab" id="headingOne">
 					<h3 class="panel-title notice-category-panel-title">
 						<i class="fa fa-ban text-info"></i>
-				    	<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+				    	<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" aria-labelledby="control-label">
 						<span class="caret" aria-hidden="true"></span> Holds (2)
 				    	</a>
 					</h3>
 				</div>
+				<span id="control-label" class="sr-only">Read [number] critical [category] notices</span><!-- Stephen: this needs to be on each disclosure control; can you give it dynamic content for the number and category? --> 
 				<div id="collapseOne" class="panel-collapse collapse notice-panel-collapse" role="tabpanel" aria-labelledby="headingOne">
 					<div class="panel-body notice-panel-body">	
 						<div class="notice-content">
