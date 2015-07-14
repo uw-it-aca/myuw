@@ -5,12 +5,12 @@
 
     <div class="container">
         
-        <h1 class="category-header">{{category_name}}</h1>
+        <h2 class="category-header">{{category_name}}</h2>
         
         <div class="category-content">
             
             {{ #each link_data }}
-            <h2 id="{{subcat_slug}}" class="category-sub-header">{{ subcategory }}</h2>
+            <h3 id="{{subcat_slug}}" class="category-sub-header">{{ subcategory }}</h3>
             {{ #each links }}
                 <ul class="category-links">
                     <li> <a href="{{ url }}" {{#if new_tab }}target="_blank"{{ /if }}>{{ title }}</a></li>
