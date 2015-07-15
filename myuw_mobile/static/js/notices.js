@@ -137,15 +137,15 @@ var Notices = {
         var categorized_notices = {};
         $.each(notices, function(idx, notice){
             if (notice.category in categorized_notices){
-                categorized_notices[notice.category]['count'] += 1;
-                categorized_notices[notice.category]['notices'].push(notice)
+                categorized_notices[notice.category].count += 1;
+                categorized_notices[notice.category].notices.push(notice);
             } else {
                 categorized_notices[notice.category] = {};
-                categorized_notices[notice.category]['count'] = 1;
-                categorized_notices[notice.category]['category'] =
+                categorized_notices[notice.category].count = 1;
+                categorized_notices[notice.category].category =
                     notice.category;
-                categorized_notices[notice.category]['notices'] = [notice];
-                categorized_notices[notice.category]['icon_class'] =
+                categorized_notices[notice.category].notices = [notice];
+                categorized_notices[notice.category].icon_class =
                     Notices.get_icon_class_for_category(notice.category);
             }
 
@@ -383,7 +383,7 @@ var Notices = {
         if (category in mapping){
             return mapping[category];
         } else {
-            return ''
+            return '';
         }
 
     }
