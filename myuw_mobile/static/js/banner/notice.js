@@ -8,6 +8,7 @@ var NoticeBanner = {
 
     render: function () {
         var notice_data = WSData.notice_data();
+        Notices.get_categorized_critical_notices();
 
         if (notice_data.length > 0) {
             var source = $("#notice_banner").html();
@@ -15,10 +16,8 @@ var NoticeBanner = {
 
             var html = template({
                 "total_unread": Notices.get_total_unread(),
-                "total_critical": Notices.get_all_critical(),
-                "is_uwgmail": window.user.email_is_uwgmail,
-                "is_uwlive": window.user.email_is_uwlive,
-                "netid": window.user.netid
+                "categorized_critical":
+                    Notices.get_categorized_critical_notices()
             });
             NoticeBanner.dom_target.html(html);
         }

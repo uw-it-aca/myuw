@@ -3,81 +3,36 @@
     
     <div id="app_notices">
         <div class="notice-header">
-            <h2 class="notice-header text-danger">Critical Notices</h2><!--</a>-->
+            <h2 class="notice-header text-danger">Critical Notices</h2>
         </div>    
         <ul class="panel-group critical-notices-container" id="accordion" role="tablist" aria-multiselectable="true">
+            {{ #each categorized_critical }}
 			<li class="panel panel-default notice-category-content">
 				<div class="panel-heading notice-panel-heading" role="tab" id="headingOne">
 					<h3 class="panel-title notice-category-panel-title">
-						<i class="fa fa-ban text-info" aria-hidden="true"></i>
+						<i class="fa {{ icon_class }} text-info" aria-hidden="true"></i>
 				    	<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" aria-labelledby="control-label">
-						<span class="caret" aria-hidden="true"></span> Holds (2)
+						<span class="caret" aria-hidden="true"></span> {{ category }} ({{ count }})
 				    	</a>
 					</h3>
 				</div>
-				<span id="control-label" class="sr-only">Read [number] critical [category] notices</span><!-- Stephen: this needs to be on each disclosure control; can you give it dynamic content for the number and category? --> 
+				<span id="control-label" class="sr-only">Read {{ count }} critical {{ category }} notices</span>
 				<div id="collapseOne" class="panel-collapse collapse notice-panel-collapse" role="tabpanel" aria-labelledby="headingOne">
 					<div class="panel-body notice-panel-body">	
 						<ul class="critical-notice-list">
-    						<li>
-        						<div class="notice-content">
-                                   <span class="sr-only">New Notice:</span>
-        						   <span class="notice-title">Online ISS information session required before registration</span>
-        						   <span class="notice-body-with-title">All new international students are required to complete the <a href="https://catalysttools.washington.edu/webq/survey/torre/79003">International Student Services (ISS) Online Information Session</a> before registering for classes. You will need your UW NetID and password to access the online ISS information session. After you arrive on campus, the International Student Services (ISS) must collect copies of your immigration documents.</span>
-                            	</div>
-    						</li>
-                            <li>						
+                            {{ #each notices }}
+                            <li>
                                 <div class="notice-content">
-        					        <span class="notice-body-with-title">The following offices have placed administrative holds on your academic record. These will prevent registration and/or ordering official transcripts. To resolve these holds, contact the office(s) listed below.</span>
-        							<span class="notice-title">Registration/Transcript Holds</span>
-        							<ul class="notice-list">
-        								<li>Registration and Transcript hold(s) placed by Library Account Services, Suzzallo, 1st Floor 206-543-1174</li>
-        								<li>Registration and Transcript hold(s) placed by Student Fiscal Services, 129 Schmitz, 206-543-4694</li>
-        								<li>Registration hold(s) placed by Financial Aid Office, 105 Schmitz, 206-543-6101</li>
-        							</ul>
-        							<span class="notice-body-with-title"><a href="http://www.washington.edu/students/reg/regrest.html#Q2">What is an administrative hold?</a></span>
-    				            </div>
+                                    {{{ notice_content }}}
+                                </div>
                             </li>
+                            {{ /each }}
 						</ul>
 					</div>
 				</div>
 			</li>
-			<li class="panel panel-default notice-category-content">
-				<div class="panel-heading notice-panel-heading" role="tab" id="headingTwo">
-					<h3 class="panel-title notice-category-panel-title">
-						<i class="fa fa-clock-o text-warning"></i>
-				    	<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						<span class="caret" aria-hidden="true"></span> Registration (1)
-				    	</a>	
-					</h3>
-				</div>
-				<div id="collapseTwo" class="panel-collapse collapse notice-panel-collapse" role="tabpanel" aria-labelledby="headingTwo">
-				  	<div class="panel-body notice-panel-body">
-				    	<div class="notice-content">
-			                <span class="sr-only">New Notice:</span><span class="notice-title">Estimated Registration Date</span><span class="notice-body-with-title">Your estimated Period I Priority Registration Date for winter quarter is <span class="date">May 13, 2014</span>. Registration begins at 6:00 AM. <a href="http://www.washington.edu/students/reg/priorsp15.html">View your Priority I Registration Date.</a></span>
-			            </div>
-				  	</div>
-				</div>
-			</li>
-			<li class="panel panel-default notice-category-content">
-				<div class="panel-heading notice-panel-heading" role="tab" id="headingThree">
-					<h3 class="panel-title notice-category-panel-title">
-						<i class="fa fa-usd text-success"></i>
-				    	<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-						<span class="caret" aria-hidden="true"></span> Fees & Finances (1)
-				    	</a>	
-					</h3>
-				</div>
-				<div id="collapseThree" class="panel-collapse collapse notice-panel-collapse" role="tabpanel" aria-labelledby="headingThree">
-				  	<div class="panel-body notice-panel-body">
-				  		<div class="notice-content">
-			                           <span class="sr-only">New Notice:</span><span class="notice-title">Tuition Due</span><span class="notice-body-with-title">Payment of tuition and tuition-related fees for winter quarter is due <span class="date"></span>. For details, <a href="https://sdb.admin.washington.edu/students/UWNetID/tuition.asp">view your Tuition Statement</a>.</span>
-			                        </div>
-				  	</div>
-				</div>
-			</li>
+            {{ /each }}
         </ul>
-        <div class="other-notices-link"><a href="/mobile/notices">{{ total_unread }} more new {{ pluralize total_unread "notice" "notices" }} <!--( <span class="badge">{{ total_unread }}</span> new)--></a></div>
-   <!-- <div class="notice-information text-danger">{{total_critical}} {{ pluralize total_critical "critical notice" "critical notices" }}</div> -->      
-    </div>        
+        <div class="other-notices-link"><a href="/mobile/notices">{{ total_unread }} more new {{ pluralize total_unread "notice" "notices" }}</a></div>
+    </div>
 {% endtplhandlebars %}

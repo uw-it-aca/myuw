@@ -132,6 +132,28 @@ var Notices = {
         });
     },
 
+    get_categorized_critical_notices: function() {
+        var notices = Notices._get_critical(WSData.notice_data());
+        var categorized_notices = {};
+        $.each(notices, function(idx, notice){
+            if (notice.category in categorized_notices){
+                categorized_notices[notice.category]['count'] += 1;
+                categorized_notices[notice.category]['notices'].push(notice)
+            } else {
+                categorized_notices[notice.category] = {};
+                categorized_notices[notice.category]['count'] = 1;
+                categorized_notices[notice.category]['category'] =
+                    notice.category;
+                categorized_notices[notice.category]['notices'] = [notice];
+                categorized_notices[notice.category]['icon_class'] =
+                    Notices.get_icon_class_for_category(notice.category);
+            }
+
+        });
+        return categorized_notices;
+
+    },
+
     get_notices_for_category: function (category) {
         "use strict";
         var i,
@@ -346,6 +368,24 @@ var Notices = {
             }
         });
         return unique_notices;
+    },
+
+    get_icon_class_for_category: function(category){
+        var mapping = {'Holds': 'fa-ban',
+            'Fees & Finances': 'fa-usd',
+            'Graduation': 'fa-graduation-cap',
+            'Academics': 'fa-university',
+            'Registration': 'fa-clock-o',
+            'Insurance': 'fa-medkit',
+            'Legal': 'fa-gavel',
+            'Visa': 'fa-globe'
+        };
+        if (category in mapping){
+            return mapping[category];
+        } else {
+            return ''
+        }
+
     }
 };
 
