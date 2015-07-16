@@ -137,11 +137,15 @@ var Notices = {
         var categorized_notices = {};
         $.each(notices, function(idx, notice){
             if (notice.category in categorized_notices){
-                categorized_notices[notice.category].count += 1;
+                if (!notice.is_read){
+                    categorized_notices[notice.category].count += 1;
+                }
                 categorized_notices[notice.category].notices.push(notice);
             } else {
                 categorized_notices[notice.category] = {};
-                categorized_notices[notice.category].count = 1;
+                if (!notice.is_read){
+                    categorized_notices[notice.category].count = 1;
+                }
                 categorized_notices[notice.category].category =
                     notice.category;
                 categorized_notices[notice.category].notices = [notice];
