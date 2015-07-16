@@ -38,22 +38,21 @@
                 </p>
             </div>     
             <h4 class="sr-only">Registration Resources</h4>
-			<div class="pull-right">
-	            <ul class="reg-resources-list">
-	                {{ #if is_tacoma }}
-	                    <li><a href="http://www.washington.edu/students/timeschd/T/">Browse time schedule</a></li>
-	                    <li><a href="http://www.tacoma.washington.edu/enrollment_apps/timeschedule/search.cfm">Tacoma Time Schedule Quick Search</a></li>
-	                {{ /if }}
-	                {{ #if is_bothell }}
-	                    <li><a href="http://www.uwb.edu/registration/time">Browse time schedule</a></li>
-	                {{ /if }}
-	                {{ #if is_seattle }}
-	                    <li><a href="http://www.washington.edu/students/timeschd/">Browse time schedule</a></li>
-	                {{ /if }}
+	    <div class="pull-right">
+	        <ul class="reg-resources-list">
+	            {{ #if is_tacoma }}
+	                <li><a href="http://www.washington.edu/students/timeschd/T/">Browse time schedule</a></li>
+	                <li><a href="http://www.tacoma.washington.edu/enrollment_apps/timeschedule/search.cfm">Tacoma Time Schedule Quick Search</a></li>
+	            {{ /if }}
+	            {{ #if is_bothell }}
+	                <li><a href="http://www.uwb.edu/registration/time">Browse time schedule</a></li>
+	            {{ /if }}
+	            {{ #if is_seattle }}
+	                <li><a href="http://www.washington.edu/students/timeschd/">Browse time schedule</a></li>
+	            {{ /if }}
 	            </ul>
-			</div>			
-			
-			<!-- CHARLON: not sure why a clearfix wasn't working on the DIV below, but the inline style was... -->                                                                                                
+	    </div>
+	    <!-- CHARLON: not sure why a clearfix wasn't working on the DIV below, but the inline style was... -->
             <div id="reg_resources{{#if card}}_{{card}}{{/if}}" class="slide-hide" style="clear:both;" aria-hidden="true">
                 
                <!-- {{ #if reg_notices }}
@@ -68,9 +67,9 @@
                 {{/if}} -->
                 <h4>Resources</h4>
                 <ul class="reg-resources-list">
-					<li><a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp">Registration</a></li>
-                    <li><a href="https://myplan.uw.edu">MyPlan</a> (Academic Planning)</li>
-                    <li><a href="https://uwstudent.washington.edu/student/myplan/audit?methodToCall=audit&viewId=DegreeAudit-FormView">Degree Audit Reporting System (DARS)</a></li>
+                    <li><a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp">Registration</a></li>
+                    <li><a href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">MyPlan</a> (Academic Planning)</li>
+                    <li><a href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree">Check Your Degree Progress (DARS)</a></li>
                 </ul>
                 <!-- data from MyPlan -->
                 <div style="display: none;">
