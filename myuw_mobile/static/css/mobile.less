@@ -390,11 +390,25 @@ body {
             }
             
             .header-profile { color: #fff; font-size: 12px; 
-                
-                a { color: #c9bea2; text-decoration: underline; }
-            	.profile-name { font-weight: bold; font-size: 18.4px;}
-	            .profile-section {margin-top: 15px; padding-top: 15px;}	           
-				.profile-release {background: lighten(@uwpurple, 10%); padding:10px; margin-top: 20px;}
+				a { color: #c9bea2; text-decoration: underline; }
+				.profile-bio {padding: 0 10px;
+					.profile-student-info {
+	            		.profile-name { /*font-weight: bold;*/ font-size: 18.4px;}
+					}
+					.profile-student-major {text-align: left;
+						.student-major-list {list-style: none;padding-left:20px;}
+					}
+				}
+				.profile-addresses {background: lighten(@uwpurple, 10%); padding:10px; margin-top: 20px;
+					.profile-mailing {}
+					.profile-local-address {}
+					.profile-perm-address {}
+				
+				}
+	            //.profile-section {margin-top: 15px; padding-top: 15px;}	           
+				.profile-release {background: lighten(@uwpurple, 10%); padding:10px; margin-top: 20px;
+					.profile-publish {padding:0 5px;}	
+				}
 				h5 {text-transform: uppercase;font-size: 12px; margin-bottom: 5px; margin-top: 15px; font-weight: bold;}
             }
             
