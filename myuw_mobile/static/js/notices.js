@@ -143,6 +143,7 @@ var Notices = {
                 categorized_notices[notice.category].notices.push(notice);
             } else {
                 categorized_notices[notice.category] = {};
+                categorized_notices[notice.category].count = 0;
                 if (!notice.is_read){
                     categorized_notices[notice.category].count = 1;
                 }
