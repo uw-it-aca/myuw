@@ -8,16 +8,16 @@
         <ul class="panel-group critical-notices-container" id="accordion" role="tablist" aria-multiselectable="true">
             {{ #each categorized_critical }}
 			<li class="panel panel-default notice-category-content">
-				<div class="panel-heading notice-panel-heading" role="tab" id="headingOne">
+				<div class="panel-heading notice-panel-heading" role="tab" id="heading{{ @index }}">
 					<h3 class="panel-title notice-category-panel-title">
 						<i class="fa {{ icon_class }} text-info" aria-hidden="true"></i>
-				    	<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" aria-labelledby="control-label">
+				    	<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ @index }}" aria-expanded="false" aria-controls="collapse{{ @index }}" aria-labelledby="control-label">
 						<span class="caret" aria-hidden="true"></span> {{ category }} ({{ count }})
 				    	</a>
 					</h3>
 				</div>
 				<span id="control-label" class="sr-only">Read {{ count }} critical {{ category }} notices</span>
-				<div id="collapseOne" class="panel-collapse collapse notice-panel-collapse" role="tabpanel" aria-labelledby="headingOne">
+				<div id="collapse{{ @index }}" class="panel-collapse collapse notice-panel-collapse" role="tabpanel" aria-labelledby="heading{{ @index }}">
 					<div class="panel-body notice-panel-body">	
 						<ul class="critical-notice-list">
                             {{ #each notices }}
