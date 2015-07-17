@@ -74,12 +74,12 @@
         {{ #if finaid_notices }}
         <div class="finaid-notices-container">
             <h4>Financial Aid</h4>
-            <ul class="panel-group finaid-notices-panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <ul class="panel-group finaid-notices-panel-group" id="tui_finaid_notices_accordion" role="tablist" aria-multiselectable="true">
                 {{ #each finaid_notices}}
                 <li class="panel panel-default finaid-panel-default">
                     <div class="panel-heading finaid-panel-heading" role="tab" id="Tf{{id_hash}}">
                         <span class="panel-title finaid-panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTf{{id_hash}}" aria-expanded="true" aria-controls="collapseTf{{id_hash}}">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#tui_finaid_notices_accordion" href="#collapseTf{{id_hash}}" aria-expanded="true" aria-controls="collapseTf{{id_hash}}">
                                 <span class="caret" aria-hidden="true"></span> {{{short_content}}}
                             </a>
                         </span>
