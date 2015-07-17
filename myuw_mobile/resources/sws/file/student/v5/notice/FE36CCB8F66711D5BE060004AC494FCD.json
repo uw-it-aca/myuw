@@ -110,6 +110,18 @@
             "NoticeContent": "Thank you for confirming your intention to enroll at the University of Washington for autumn quarter 2014. Your new Student Enrollment and Orientation Fee has been accepted and recorded.",
             "NoticeType": "ThankYouRemark"
         },
+       {
+            "NoticeAttributes": [
+              {
+               "Name": "Date",
+               "DataType": "date",
+               "Value": "20130401"
+               }
+            ],
+            "NoticeCategory": "NewStudentCLIST",
+            "NoticeContent": " <span class=\"notice-title\">Register for Classes</span>&nbsp;<span class=\"notice-body-with-title\">You can register for classes beginning <span class=\"date\"> Mon, June 22</span>.</span>",
+            "NoticeType": "AdvOrientRegDateB"
+        },
         {
             "NoticeAttributes": [
             {
@@ -121,6 +133,72 @@
             "NoticeCategory": "StudentDAD",
             "NoticeContent": "<span class=\"notice-title\">Tuition Due</span><span class=\"notice-body-with-title\">Payment of tuition and tuition-related fees for winter quarter is due <span class=\"date\"></span>. For details, <a href=\"https://sdb.admin.washington.edu/students/UWNetID/tuition.asp\">view your Tuition Statement</a>.</span>",
             "NoticeType": "TuitDue"
+        },
+        {
+            "NoticeAttributes": [
+               {
+               "Name": "Year",
+               "DataType": "string",
+               "Value": "2013"
+               },
+               {
+               "Name": "Date",
+               "DataType": "date",
+               "Value": "20130401"
+               },
+               {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "20130318"
+               },
+               {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "20130331"
+               }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "SummerAidDate",
+            "NoticeContent": "<span class=\"notice-title\">Summer Aid Application available April 1st</span>&nbsp;<span class=\"notice-body-with-title\">Summer Financial Aid Application will be available</span> <span class=\"date\">April 1st</span>."
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "SummerAidDateShort",
+            "NoticeContent": "Summer Aid Application available <span class=\"date\">Apr 1st</span>."
+        },
+        {
+            "NoticeAttributes": [
+               {
+               "Name": "Year",
+               "DataType": "string",
+               "Value": "2013"
+               },
+               {
+               "Name": "Date",
+               "DataType": "date",
+               "Value": "future"
+               },
+               {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "20130401"
+               },
+               {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "20130725"
+               }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "SummerAidDate",
+            "NoticeContent": "<span class=\"notice-title\">Summer Financial Aid Application now available</span>&nbsp;<span class=\"notice-body-with-title\">The <a href=\"https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">Summer Financial Aid Application</a> is now available<span>."
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "SummerAidDateShort",
+            "NoticeContent": "Summer aid Application now available"
         }
     ],
     "Person": {
