@@ -155,8 +155,50 @@ var Notices = {
             }
 
         });
+        $.each(categorized_notices, function(idx,category){
+            var sorted = Notices.sort_notices_by_start_date(category.notices);
+        });
         return categorized_notices;
+    },
 
+    sort_notices_by_start_date: function(notices){
+        return notices.sort(function(a, b){
+            return Notices._get_critical_notice_sort_date(b) -
+                Notices._get_critical_notice_sort_date(a);
+        });
+    },
+
+    _get_critical_notice_sort_date: function (notice){
+        // Defaulting to something, using current time for now
+        var date = new Date();
+
+        var start_date_string = Notices.get_attribute_by_name('StartDate',
+                                                              notice);
+        var date_string = Notices.get_attribute_by_name('Date', notice);
+
+        if(start_date_string !== undefined){
+            date = Notices.parse_notice_date(start_date_string);
+        } else if (date_string !== undefined){
+            date = Notices.parse_notice_date(date_string);
+        }
+        return date;
+
+    },
+
+    parse_notice_date: function (notice_date) {
+        var parts = notice_date.split("-");
+
+        return new Date(parts[0], parts[1]-1, parts[2]);
+    },
+
+    get_attribute_by_name: function(attrib_name, notice){
+        var attr_value;
+        $.each(notice.attributes, function (idx, attr){
+            if (attr.name === attrib_name){
+                attr_value = attr.value;
+            }
+        });
+        return attr_value;
     },
 
     get_notices_for_category: function (category) {
