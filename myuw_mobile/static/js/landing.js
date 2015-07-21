@@ -35,7 +35,7 @@ var Landing = {
                      CriticalInfoCard,
                      InternationalStuCard,
                      LibraryCard,
-                     AcademicCard,
+                     //AcademicCard,
                      EventsCard,
                      FutureQuarterCard1,
                      SummerRegStatusCard1
