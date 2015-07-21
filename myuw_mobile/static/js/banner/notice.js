@@ -40,11 +40,12 @@ var NoticeBanner = {
         var category_order = ['Holds',
         'Fees & Finances',
         'Graduation',
-        'Academics',
+        'Visa',
         'Registration',
+        'Admission',
         'Insurance',
         'Legal',
-        'Visa'];
+        ];
         var sorted_notices = [];
         $.each(category_order, function(idx, category){
             if (category in notices) {
