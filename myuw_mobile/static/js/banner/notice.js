@@ -20,7 +20,20 @@ var NoticeBanner = {
                 "categorized_critical": sorted_notices
             });
             NoticeBanner.dom_target.html(html);
+            NoticeBanner._init_events();
         }
+    },
+
+    _init_events: function () {
+        $("a.collapsed").on('click', function (event){
+            var li = $(event.target).parents('li.notice-category-content')[0];
+            var notices = $(li).find("ul.critical-notice-list");
+            var notice_hashes = [];
+            $.each($(notices).children('li'), function(idx, elm){
+                notice_hashes.push($(elm).attr('id'));
+            });
+            WSData.mark_notices_read(notice_hashes);
+        });
     },
 
     _sort_categories: function (notices) {
