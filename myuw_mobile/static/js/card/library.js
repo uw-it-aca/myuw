@@ -23,7 +23,7 @@ var LibraryCard = {
             LibraryCard.dom_target.hide();
         }
         else {
-            LibraryCard.dom_target.html(template({mylibaccount: library_data}));
+            LibraryCard.dom_target.html(template(library_data));
         }
     },
 
