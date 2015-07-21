@@ -11,6 +11,7 @@ from myuw_mobile.test.dao.term import TestTerm
 from myuw_mobile.test.dao.canvas import TestCanvas
 from myuw_mobile.test.dao.card_display_dates import TestDisplayValues
 from myuw_mobile.test.userservice_validation import TestValidation
+from myuw_mobile.test.dao.grad import TestGrad
 from myuw_mobile.test.dao.hfs import TestHFS
 from myuw_mobile.test.dao.library import TestLibrary
 from myuw_mobile.test.dao.building import TestBuildings
@@ -21,6 +22,7 @@ from myuw_mobile.test.dao.uwemail import TestUwEmail
 from myuw_mobile.test.api.schedule import TestSchedule as APISchedule
 from myuw_mobile.test.api.books import TestBooks
 from myuw_mobile.test.api.cur_books import TestCurBooks
+from myuw_mobile.test.api.grad import TestGrad
 from myuw_mobile.test.api.hfs import TestHFS as TestHFSAPI
 from myuw_mobile.test.api.profile import TestProfile
 from myuw_mobile.test.api.library import TestLibrary as TestLibraryAPI

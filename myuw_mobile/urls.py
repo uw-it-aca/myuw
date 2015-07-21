@@ -4,6 +4,7 @@ from myuw_mobile.views.api.current_schedule import StudClasScheCurQuar
 from myuw_mobile.views.api.finance import Finance
 from myuw_mobile.views.api.hfs import HfsBalances
 from myuw_mobile.views.api.future_schedule import StudClasScheFutureQuar
+from myuw_mobile.views.api.grad import MyGrad
 from myuw_mobile.views.api.library import MyLibInfo
 from myuw_mobile.views.api.profile import MyProfile
 from myuw_mobile.views.api.category_links import CategoryLinks
@@ -37,6 +38,8 @@ urlpatterns = patterns(
         name="myuw_links_api"),
     url(r'^api/v1/finance/$', login_required(Finance().run),
         name="myuw_finance_api"),
+    url(r'^api/v1/grad/$', login_required(MyGrad().run),
+        name="myuw_grad_api"),
     url(r'^api/v1/hfs/$', login_required(HfsBalances().run),
         name="myuw_hfs_api"),
     url(r'^api/v1/library/$', login_required(MyLibInfo().run),
