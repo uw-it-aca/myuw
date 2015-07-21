@@ -23,13 +23,23 @@ class TestMapNotices(TestCase):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
 
             notices = get_notices_by_regid(regid)
-            self.assertEquals(len(notices), 21)
+            self.assertEquals(len(notices), 28)
 
             notice = map_notice_category(notices[0])
             self.assertEquals(notice.custom_category, "Holds")
             self.assertEquals(notice.location_tags, ['notices_holds',
                                                      'reg_card_holds'])
             self.assertTrue(notice.is_critical)
+
+            notice = map_notice_category(notices[4])
+            self.assertEquals(notice.custom_category, "Registration")
+            self.assertEquals(notice.location_tags, ['reg_card_messages'])
+            self.assertTrue(notice.is_critical)
+
+            notice = map_notice_category(notices[9])
+            self.assertEquals(notice.custom_category, "Admission")
+            self.assertEquals(notice.location_tags, ['checklist_feespaid'])
+            self.assertFalse(notice.is_critical)
 
             notice = map_notice_category(notices[11])
             self.assertEquals(notice.custom_category, "Fees & Finances")
@@ -55,7 +65,7 @@ class TestMapNotices(TestCase):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
 
             notices = categorize_notices(get_notices_by_regid(regid))
-            self.assertEquals(len(notices), 17)
+            self.assertEquals(len(notices), 23)
             notice = notices[10]
             self.assertEquals(notice.custom_category, "Fees & Finances")
             self.assertEquals(notice.location_tags,

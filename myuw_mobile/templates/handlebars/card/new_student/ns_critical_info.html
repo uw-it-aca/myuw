@@ -1,0 +1,19 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "ns_critical_info" %}
+    <div id="UpdateCriticalInfo" class="card clearfix"  data-type="card">
+        <h3>Update Critical Information</h3>
+        {{ #each notices }}
+            <div class="notice-content">{{{ notice_content }}}</div>
+        {{ /each }}
+        <div class="notice-content">
+	    <span class="notice-title">Update Student Directory</span>
+	    <span class="non-notice-body-with-title">Critical information (e.g. financial aid information) goes to your addresses found in the Student Directory, so keep them up to date. You can check your directory information by clicking on your username in the MyUW header above and you can update it by following links provided there.</span>
+	</div>
+        {{ #unless is_resident }}
+	<div class="notice-content">
+	    <span class="notice-title">Non-Resident Classification</span>
+	    <span class="non-notice-body-with-title">You are currently classified as a "Non-Resident.” If you believe you qualify for <a href="http://www.washington.edu/students/reg/residency/index.html">resident status</a>, you may apply for a change of status by completing the <a href="http://www.washington.edu/students/reg/residency/applicationProcess.html">Residence Questionnaire</a>, or contact the Residency Office at <a href="mailto:resquest@uw.edu">resquest@uw.edu</a> or 206-543-5932.</span>
+	</div>
+        {{ /unless }}
+    </div>
+{% endtplhandlebars %}

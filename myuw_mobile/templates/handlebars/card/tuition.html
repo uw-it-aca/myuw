@@ -23,7 +23,7 @@
         </div>
         {{ /if }}
         <!-- end if -->
-                        
+
         {{ #unless has_balance }}
         <!-- if tuition balance is 0 -->
         <div class="card-badge-container">
@@ -33,7 +33,7 @@
             </div>
         </div>
         {{ /unless }}
-                        
+
         {{ #if has_balance }}
         <!-- else, there is a balance -->
         <div class="card-badge-container">
@@ -69,7 +69,7 @@
 	</div>
 	<!-- end if has_balance -->
 	{{ /if }}
-		    
+
 	<!-- finaid notices begin -->
         {{ #if finaid_notices }}
         <div class="finaid-notices-container">
@@ -98,11 +98,11 @@
 
         <div class="card-related-messages">
             <p><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx">Give access to your tuition account and financial aid information</a> to parents or other third parties.</p>
-                            
+
             {{ #each pce_tuition_dup }}
             <p class="pce-message">{{{ this.notice_content }}}</p>
             {{ /each }}
         </div>
     </div>
-    
+
     {% endtplhandlebars %}

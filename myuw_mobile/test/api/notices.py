@@ -46,7 +46,8 @@ class TestNotices(TestCase):
 
         data = json.loads(response.content)
 
-        self.assertEquals(len(data), 17)
+        self.assertEquals(len(data), 23)
+
         self.assertEquals(data[0]["is_read"], False)
 
         hash_value = data[0]["id_hash"]
@@ -63,7 +64,7 @@ class TestNotices(TestCase):
 
         data = json.loads(response.content)
 
-        self.assertEquals(len(data), 17)
+        self.assertEquals(len(data), 23)
 
         match = False
         for el in data:

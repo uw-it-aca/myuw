@@ -37,7 +37,7 @@ var RegStatusCard = {
         var template = Handlebars.compile(source);
         var reg_notices = Notices.get_notices_for_tag("reg_card_messages");
         var reg_holds = Notices.get_notices_for_tag("reg_card_holds");
-        var reg_date = Notices.get_notices_for_tag("est_reg_date");     
+        var reg_date = Notices.get_notices_for_tag("est_reg_date");
         var i, j;
 
         // Filter estimated registration dates for summer...

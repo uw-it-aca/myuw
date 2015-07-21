@@ -4,7 +4,7 @@ ordereddict
 simplejson
 django-compressor
 BeautifulSoup
-urllib3
+urllib3==1.10.2
 django-templatetag-handlebars
 Django-UserService==1.0.2
 unittest2

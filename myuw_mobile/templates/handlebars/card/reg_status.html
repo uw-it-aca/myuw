@@ -3,12 +3,11 @@
 
     <div class="card"  data-name="RegistrationCard" data-type="card">
         <div class="fade-in">
-        
             <h3>Registration: {{reg_next_quarter}} {{ reg_next_year }}</h3>
             
             {{ #if hold_count }}
                 <div class="card-critical-alert" role="status">
-                    
+
                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span class="sr-only">You have registration holds!</span>
                     <a id="show_reg_holds{{#if card}}_{{card}}{{/if}}" class="reg_disclosure{{#if card}}_{{card}}{{/if}}" aria-controls="reg_holds" href="#" title="Expand to show holds information">Show {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
                     <a id="hide_reg_holds{{#if card}}_{{card}}{{/if}}" class="reg_disclosure{{#if card}}_{{card}}{{/if}}" style="display: none" aria-controls="reg_holds" href="#" title="Collapse to hide holds information">Hide {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
@@ -19,7 +18,7 @@
 
                             <ul class="reg-holds-list">
                                 {{ #each reg_holds }}
-                                 <li>{{{ notice_content }}}</li>
+                                <li>{{{ notice_content }}}</li>
                                 {{ /each }}
                             </ul>
 
@@ -28,7 +27,7 @@
 
                 </div>
             {{ /if }}
-            
+
             <!-- finaid notices begin -->
             {{ #if finaid_notices }}
             <div class="finaid-notices-container">
@@ -55,8 +54,6 @@
             {{ /if }}
             <!-- finaid notices end -->
 
-
-
             <h4 class="sr-only">Registration Information</h4>    
             <div class="est-reg-date">
                 <p>
@@ -66,24 +63,23 @@
                 </p>
             </div>     
             <h4 class="sr-only">Registration Resources</h4>
-			<div class="pull-right">
-	            <ul class="reg-resources-list">
-	                {{ #if is_tacoma }}
-	                    <li><a href="http://www.washington.edu/students/timeschd/T/">Browse time schedule</a></li>
-	                    <li><a href="http://www.tacoma.washington.edu/enrollment_apps/timeschedule/search.cfm">Tacoma Time Schedule Quick Search</a></li>
-	                {{ /if }}
-	                {{ #if is_bothell }}
-	                    <li><a href="http://www.uwb.edu/registration/time">Browse time schedule</a></li>
-	                {{ /if }}
-	                {{ #if is_seattle }}
-	                    <li><a href="http://www.washington.edu/students/timeschd/">Browse time schedule</a></li>
-	                {{ /if }}
+	    <div class="pull-right">
+	        <ul class="reg-resources-list">
+	            {{ #if is_tacoma }}
+	                <li><a href="http://www.washington.edu/students/timeschd/T/">Browse time schedule</a></li>
+	                <li><a href="http://www.tacoma.washington.edu/enrollment_apps/timeschedule/search.cfm">Tacoma Time Schedule Quick Search</a></li>
+	            {{ /if }}
+	            {{ #if is_bothell }}
+	                <li><a href="http://www.uwb.edu/registration/time">Browse time schedule</a></li>
+	            {{ /if }}
+	            {{ #if is_seattle }}
+	                <li><a href="http://www.washington.edu/students/timeschd/">Browse time schedule</a></li>
+	            {{ /if }}
 	            </ul>
-			</div>			
-			
-			<!-- CHARLON: not sure why a clearfix wasn't working on the DIV below, but the inline style was... -->                                                                                                
+	    </div>
+	    <!-- CHARLON: not sure why a clearfix wasn't working on the DIV below, but the inline style was... -->
             <div id="reg_resources{{#if card}}_{{card}}{{/if}}" class="slide-hide" style="clear:both;" aria-hidden="true">
-                
+
                <!-- {{ #if reg_notices }}
                 <h4 class="">Notices</h4>
                 <ul class="reg-notice-list">
@@ -96,7 +92,7 @@
                 {{/if}} -->
                 <h4>Resources</h4>
                 <ul class="reg-resources-list">
-					<li><a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp">Registration</a></li>
+		    <li><a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp">Registration</a></li>
                     <li><a href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">MyPlan</a> (Academic Planning)</li>
                     <li><a href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree">Check Your Degree Progress (DARS)</a></li>
                 </ul>
@@ -111,13 +107,11 @@
                     {{ /each }}
                 </div>
             </div>
-            
+
             <div class="card-disclosure">
                 <a id="show_reg_resources{{# if card }}_{{card}}{{/if}}" aria-controls="reg_resources" href="#" title="Expand to show additional registration resources">Show more</a>
             </div>
-        
         </div>
     </div>
-
 
     {% endtplhandlebars %}
