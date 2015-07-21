@@ -1,10 +1,10 @@
 Category,Subcategory,Central (not campus specific),Central Title,Seattle,Seattle (link text),Bothell (destination URL),Bothell (link text),Tacoma,Tacoma Title,Open in a new tab?
 Academics,Registration,,,http://www.washington.edu/students/reg/calendar.html,Academic Calendar,http://www.uwb.edu/calendars,Bothell Academic Calendar,http://www.washington.edu/students/reg/calendar.html,Academic Calendar,no
 Academics,Registration,,,http://www.washington.edu/students/crscat/,Course Catalog,http://www.washington.edu/students/crscatb/,Course Catalog,http://www.washington.edu/students/crscatt/,Course Catalog,no
-Academics,Registration,https://uwstudent.washington.edu/student/myplan/audit?methodToCall=audit&viewId=DegreeAudit-FormView,Degree Audit Reporting System (DARS),,,,,,,yes
-Academics,Registration,https://myplan.uw.edu,MyPlan,,,,,,,yes
-Academics,Registration,https://sdb.admin.washington.edu/students/uwnetid/register.asp,Registration,,,,,,,yes
-Academics,Registration,,,https://sdb.admin.washington.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,https://sdb.admin.washington.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,http://www.tacoma.washington.edu/enrollment_apps/timeschedule/search.cfm,Schedule Finder,yes
+Academics,Registration,https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree,Check Your Degree Progress (DARS),,,,,,,yes
+Academics,Registration,https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/,MyPlan,,,,,,,yes
+Academics,Registration,https://sdb.admin.uw.edu/students/uwnetid/register.asp,Registration,,,,,,,yes
+Academics,Registration,,,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,http://www.tacoma.washington.edu/enrollment_apps/timeschedule/search.cfm,Schedule Finder,yes
 Academics,Registration,,,http://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,http://www.uwb.edu/registration/time,UW Bothell Time Schedule,http://www.tacoma.uw.edu/uwt/enrollment-services/time-schedule-registration-guide,UW Tacoma Time Schedule,no
 Academics,Advising & Tutoring,,,http://careers.washington.edu/,Career Center,http://www.bothell.washington.edu/careers,Career Services,http://www.tacoma.washington.edu/studentaffairs/SS/cde_about.cfm,Career Development,no
 Academics,Advising & Tutoring,,,http://depts.washington.edu/aspuw/clue/home/,Center for Learning and Undergraduate Enrichment (CLUE),,,http://www.tacoma.uw.edu/teaching-learning-center/teaching-learning-center,Teaching and Learning Center,no
@@ -14,15 +14,15 @@ Academics,Advising & Tutoring,,,,,,,http://www.tacoma.uw.edu/teaching-and-learni
 Academics,Advising & Tutoring,,,http://www.washington.edu/uaa/advising/,Undergraduate Academic Advising (Pre-major),http://www.uwb.edu/cusp/advising,Undergraduate Academic Advising (Pre-major),http://www.tacoma.uw.edu/advising,Undergraduate Academic Advising (Pre-major),no
 Academics,Advising & Tutoring,,,http://studyabroad.washington.edu/,Study Abroad,http://www.uwb.edu/globalinitiatives/abroad,Study Abroad,http://www.tacoma.uw.edu/international-programs/international-programs,Study Abroad,no
 Academics,Grades & Transcripts,http://www.washington.edu/uaa/advising/general-education-requirements/gpa-calculator/,GPA Calculator,,,,,,,no
-Academics,Grades & Transcripts,https://sdb.admin.washington.edu/students/uwnetid/grades.asp,Grade Report,,,,,,,yes
-Academics,Grades & Transcripts,,,https://sdb.admin.washington.edu/students/uwnetid/official.asp,Order Official Transcripts,http://www.uwb.edu/directory,Bothell Faculty and Staff Directory,https://sdb.admin.washington.edu/students/uwnetid/official.asp,Order Official Transcripts,yes
-Academics,Grades & Transcripts,https://sdb.admin.washington.edu/students/uwnetid/unofficial.asp,Unofficial Transcript,,,,,,,yes
+Academics,Grades & Transcripts,https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx,Grade Report,,,,,,,yes
+Academics,Grades & Transcripts,,,https://sdb.admin.uw.edu/sisStudents/uwnetid/transcript.aspx,Order Official Transcripts,http://www.uwb.edu/directory,Bothell Faculty and Staff Directory,https://sdb.admin.uw.edu/sisStudents/uwnetid/transcript.aspx,Order Official Transcripts,yes
+Academics,Grades & Transcripts,https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp,Unofficial Transcript,,,,,,,yes
 Academics,Libraries,,,https://eres.lib.washington.edu/,Electronic Course Reserves,https://eres.bothell.washington.edu/,Electronic Course Reserves,https://ereserves.tacoma.washington.edu/,Electronic Course Reserves,yes
 Academics,Libraries,,,http://lib.washington.edu/,UW Libraries,http://library.uwb.edu/,UW Bothell Library,http://www.tacoma.uw.edu/library,UW Tacoma Library,no
 Academics,Graduation,,,http://www.washington.edu/students/reg/grad.html,Application for Graduation,https://www.uwb.edu/registration/graduation/apply,Applying for Graduation,http://www.tacoma.uw.edu/uwt/enrollment-services/applying-graduate,Applying to Graduate,no
 Finances,Financial Aid,,,http://www.washington.edu/students/osfa/,Financial Aid and Scholarships,http://www.bothell.washington.edu/financialaid,Financial Aid and Scholarships,http://www.tacoma.uw.edu/uwt/financial-aid,Financial Aid and Scholarships,no
-Finances,Financial Aid,https://sdb.admin.washington.edu/students/uwnetid/finaidstatus.asp,Financial Aid Status,,,,,,,yes
-Finances,Taxes,https://sdb.admin.washington.edu/sisStudents/uwnetid/irs1098tconsent.aspx,Form 1098-T,,,,,,,yes
+Finances,Financial Aid,https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx,Financial Aid Status,,,,,,,yes
+Finances,Taxes,https://sdb.admin.uw.edu/sisStudents/uwnetid/irs1098tconsent.aspx,Form 1098-T,,,,,,,yes
 Finances,Taxes,http://f2.washington.edu/fm/sfs/tax,Student Tax Information,,,,,,,no
 Finances,Tuition,http://f2.washington.edu/fm/sfs/tuition,Tuition Overview,,,,,,,no
 Student & Campus Life,Housing & Dining,https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx,Add Funds to Husky Card,,,,,,,yes

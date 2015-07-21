@@ -1,16 +1,19 @@
 from django.test import TestCase
 from django.conf import settings
-from myuw_mobile.dao.schedule import _get_schedule
-from myuw_mobile.dao.schedule import has_summer_quarter_section
-from myuw_mobile.dao.schedule import filter_schedule_sections_by_summer_term
 from restclients.models.sws import ClassSchedule, Term, Section, Person
+from myuw_mobile.dao.schedule import _get_schedule,\
+    has_summer_quarter_section, filter_schedule_sections_by_summer_term
+
+
+FDAO_SWS = 'restclients.dao_implementation.sws.File'
+FDAO_PWS = 'restclients.dao_implementation.pws.File'
 
 
 class TestSchedule(TestCase):
 
     def test_has_summer_quarter_section(self):
-        with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File',
-                           RESTCLIENTS_PWS_DAO_CLASS='restclients.dao_implementation.pws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = Term()
             term.year = 2012
@@ -25,8 +28,8 @@ class TestSchedule(TestCase):
             self.assertFalse(has_summer_quarter_section(schedule))
 
     def test_filter_schedule_sections_by_summer_term(self):
-        with self.settings(RESTCLIENTS_SWS_DAO_CLASS='restclients.dao_implementation.sws.File',
-                           RESTCLIENTS_PWS_DAO_CLASS='restclients.dao_implementation.pws.File'):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = Term()
             term.year = 2013
