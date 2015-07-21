@@ -9,6 +9,7 @@
 @lighttan: #e8e3d3;
 @darktan: #85754d;
 @icon-break-color: #AB9765;
+@notice-bg: #FDFFF7;
 
 .button-variant(@color; @background; @border) {
 color: @color;
@@ -461,7 +462,7 @@ body {
     		        ul.critical-notice-list { padding-left: 0; 
     		            > li { list-style-type: none; }
                         } 
-					.notice-content {background-color: #eee;margin-bottom: 1em; padding: 10px 10px;font-weight: normal; border:none; box-shadow: none; -webkit-box-shadow: none;
+					.notice-content {background-color: @notice-bg;margin-bottom: 1em; padding: 10px 10px;font-weight: normal; border:none; box-shadow: none; -webkit-box-shadow: none;
 						.notice-title {font-weight:600; display: block; margin-bottom: 2px; }
 						.notice-body-with-title { color: #444; }
 						.notice-body-without-title { }
@@ -1316,7 +1317,7 @@ body {
 			margin: 15px -4px;
 			padding: 9px 9px;
 			//border-top: 1px dotted #bbb; 
-			background-color: #efefef;
+			background-color: @notice-bg;
 			.notice-new {padding:0 3px; background:#f5d300; float:right; border-radius: 4px; margin-right:20px;}
 	    }
 	
