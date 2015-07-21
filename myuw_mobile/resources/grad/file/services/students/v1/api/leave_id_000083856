@@ -1,0 +1,29 @@
+[
+    {
+     "leaveReason":"Dissertation/Thesis research/writing",
+     "submitDate":"2012-09-10T09:40:03.36",
+     "status":"paid",
+     "quarters":[{"year":2012,
+                  "quarter":"autumn"}]},
+    {"leaveReason":"Dissertation/Thesis research/writing",
+     "submitDate":"2013-01-02T12:05:14.37",
+     "status":"paid",
+     "quarters":[{"year":2013,
+                  "quarter":"winter"}]},
+    {"leaveReason":"Dissertation/Thesis research/writing",
+     "submitDate":"2013-09-19T08:55:36.517",
+     "status":"paid",
+     "quarters":[{"year":2013,
+                  "quarter":"autumn"}]},
+    {"leaveReason":"Dissertation/Thesis research/writing",
+     "submitDate":"2014-01-02T15:03:28.01",
+     "status":"paid",
+     "quarters":[{"year":2014,
+                  "quarter":"winter"}]},
+    {"leaveReason":"Dissertation/Thesis research/writing",
+     "submitDate":"2014-03-31T11:32:48.583",
+     "status":"paid",
+     "quarters":[{"year":2014,
+                  "quarter":"spring"}]
+    }
+]
