@@ -1,0 +1,164 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "mygrad_card_content" %}
+
+    <div class="card"  data-name="MyGradCard" data-type="card">
+        <h3>MyGrad</h3>
+
+        <ul id="grad_requests">
+            {{#if petitions }}
+            <li class="card-badge-container" id="petition-reqs">
+                <h4>Petition Request</h4>
+
+                <ul class="panel-group">
+                    {{ #each petitions}}
+                    <li class="panel panel-default">
+                        <div class="card-badge">
+                            <span class="card-badge-label">Description:</span>
+                        </div>
+                        <div class="">
+                            <span class="card-badge-value">{{description}}</span>
+                        </div>
+                        <div class="card-badge">
+                            <span class="card-badge-label">Dept Recommend:</span>
+                        </div>
+                        <div class="">
+                            <span class="card-badge-value">{{dept_recommend}}</span>
+                        </div>
+                        <div class="card-badge">
+                            <span class="card-badge-label">GradSchool Decision:</span>
+                        </div>
+                        <div class="">
+                            <span class="card-badge-value">{{gradschool_decision}}</span>
+                        </div>
+                        <div class="card-badge">
+                            <span class="card-badge-label">Submit date:</span>
+                        </div>
+                        <div class="">
+                            <span class="card-badge-value">{{toFriendlyDate submit_date}}</span>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </li>
+            {{/if}}
+
+            {{#if leaves }}
+            <li class="card-badge-container" id="leave-reqs">
+                <h4>Leave Request</h4>
+
+                <ul class="panel-group">
+                    {{ #each leaves}}
+                    <li class="panel panel-default">
+                        <div class="card-badge">
+                            <span class="card-badge-label">Reason:</span>
+                        </div>
+                        <div class="">
+                            <span class="card-badge-value">{{reason}}</span>
+                        </div>
+                        <div class="card-badge">
+                            <span class="card-badge-label">Status:</span>
+                        </div>
+                        <div class="">
+                            <span class="card-badge-value">{{status}}</span>
+                        </div>
+                        <div class="card-badge">
+                            <span class="card-badge-label">Submit date:</span>
+                        </div>
+                        <div class="">
+                            <span class="card-badge-value">{{submit_date}}</span>
+                        </div>
+                        <div class="card-badge">
+                            <span class="card-badge-label">Quarters:</span>
+                        </div>
+                        <div class="">
+                            <ul>
+                                {{ #each terms}}
+                                <li>
+                                    <span class="card-badge-value">
+                                        {{year}}, {{quarter}}
+                                    </span>
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </li>
+            {{/if}}
+
+            {{#if degrees }}
+            <li class="card-badge-container" id="degree-reqs">
+                <h4>Degree Request</h4>
+
+                <ul class="panel-group">
+                    {{ #each degrees}}
+                    <li class="panel panel-default">
+                        <div class="card-badge">
+                            <span class="card-badge-label">Request type:</span>
+                        </div>
+                        <div class="">
+                            <span class="card-badge-value">{{req_type}}</span>
+                        </div>
+                        <div class="card-badge">
+                            <span class="card-badge-label">Degree Title:</span>
+                        </div>
+                        <div class="">
+                            <span class="card-badge-value">{{degree_title}}</span>
+                        </div>
+                        <div class="card-badge">
+                            <span class="card-badge-label">Status:</span>
+                        </div>
+                        <div class="">
+                            <span class="card-badge-value">{{status}}
+                            </span>
+                        </div>
+                        <div class="card-badge">
+                            <span class="card-badge-label">Award Year, Quarter:</span>
+                        </div>
+                        <div class="">
+                            <span class="card-badge-value">
+                                {{target_award_year}}, {{target_award_quarter}}
+                            </span>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </li>
+            {{/if}}
+
+            {{#if committees }}
+            <li class="card-badge-container" id="committee_reqs">
+                <h4>Committees Request</h4>
+
+                <ul class="panel-group">
+                    {{ #each committees}}
+                    <li class="panel panel-default">
+                        <div class="pull-left">
+                            <span class="card-badge-value">{{committee_type}}</span>
+                        </div>
+
+                        <div class="card-badge">
+                            <ul class="panel-group">
+                                {{ #each members}}
+                                <li class="panel panel-default">
+                                    <span class="card-badge-value">{{member_type}}</span>
+                                    <span class="card-badge-value">{{dept}}</span>
+                                    <span class="card-badge-value">{{first_name}} {{last_name}}</span>
+                                    <span class="card-badge-value">{{email}}</span>
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+
+                    </li>
+                    {{/each}}
+                </ul>
+
+            </li>
+            {{/if}}
+
+        </ul>
+    </div>
+
+    {% endtplhandlebars %}

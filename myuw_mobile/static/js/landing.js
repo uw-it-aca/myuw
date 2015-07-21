@@ -32,6 +32,7 @@ var Landing = {
                      TuitionCard,
                      CriticalInfoCard,
                      InternationalStuCard,
+                     MyGradCard,
                      LibraryCard,
                      AcademicCard,
                      EventsCard,
