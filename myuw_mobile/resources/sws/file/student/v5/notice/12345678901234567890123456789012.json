@@ -137,7 +137,7 @@
                 }
             ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": "<span class=\"notice-title\">Tuition Due</span><span class=\"notice-body-with-title\">Payment of tuition and tuition-related fees for summer quarter is due <span class=\"date\"> Fri, July 11</span>. For details, <a href=\"https://sdb.admin.washington.edu/students/UWNetID/tuition.asp\">view your Tuition Statement</a>.</span>",
+            "NoticeContent": "<span class=\"notice-title\">Tuition Due</span><span class=\"notice-body-with-title\">Payment of tuition and tuition-related fees for summer quarter is due <span class=\"date\"> Fri, July 11</span>. For details, <a href=\"https://sdb.admin.uw.edu/students/UWNetID/tuition.asp\">view your Tuition Statement</a>.</span>",
             "NoticeType": "TuitDue"
         },
         {
@@ -164,7 +164,7 @@
              }
            ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": "<span class=\"notice-body-without-title\"> Spring quarter ends <span class=\"date\"> Friday, June 6</span>.</span>",
+            "NoticeContent": "<span class=\"notice-body-without-title\"> Spring quarter ends </span><span class=\"date\"> Friday, June 6</span>.",
             "NoticeType": "QtrEnd"
         }
     ],

@@ -24,20 +24,6 @@
         {{ /if }}
         <!-- end if -->
                         
-        {{ #unless has_balance }}
-        <!-- if tuition balance is 0 -->
-        <div class="card-badge-container">
-	    <ul class="card_list">
-		<li>
-                    <div class="card-badge">
-                        <span class="card-badge-label" style="line-height:20px;">{{ #if is_pce}}Your PCE tuition<br/> has been paid{{ else  }}Your tuition and fees have been paid{{ /if }}</span>
-                        <div class="card-badge-action" style="margin-top:10px; text-align:right;"><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">See tuition statement</a></div>
-                    </div>
-		</li>
-	    </ul>
-        </div>
-        {{ /unless }}
-                        
         {{ #if has_balance }}
                         
         <!-- else, there is a balance -->

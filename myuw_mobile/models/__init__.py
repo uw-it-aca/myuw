@@ -1,7 +1,30 @@
-from django.db import models
+import hashlib
 from datetime import datetime
 from django.utils import timezone
-import hashlib
+from django.db import models
+
+
+class CategoryLinks(models.Model):
+    url = models.CharField(max_length=150)
+    title = models.CharField(max_length=150)
+    campus = models.CharField(max_length=8, null=True)
+    category_id = models.CharField(max_length=80)
+    category_name = models.CharField(max_length=80)
+    sub_category = models.CharField(max_length=80)
+    new_tab = models.BooleanField(default=False)
+
+    def json_data(self):
+        data = {
+            "title": self.title,
+            "url": self.url,
+            "new_tab": self.new_tab
+        }
+        return data
+
+    def set_category_id(self, category_name):
+        category_id = category_name.lower()
+        category_id = "".join(c for c in category_id if c.isalpha())
+        self.category_id = category_id
 
 
 class CourseColor(models.Model):
@@ -37,13 +60,6 @@ class User(models.Model):
     last_visit = models.DateTimeField(default=timezone.now())
 
 
-class Building(models.Model):
-    code = models.CharField(max_length=6, db_index=True)
-    latititude = models.CharField(max_length=40)
-    longitude = models.CharField(max_length=40)
-    name = models.CharField(max_length=200)
-
-
 class StudentAccountsBalances(models.Model):
     student_number = models.CharField(max_length=10,
                                       db_index=True,
@@ -72,6 +88,12 @@ class StudentAccountsBalances(models.Model):
         return data
 
 
+class TuitionDate(models.Model):
+    user = models.ForeignKey('User', on_delete=models.PROTECT, unique=True)
+    date_stored = models.DateTimeField(auto_now=True)
+    date = models.DateField()
+
+
 class UserNotices(models.Model):
     notice_hash = models.CharField(max_length=32)
     user = models.ForeignKey('User', on_delete=models.PROTECT)
@@ -98,35 +120,6 @@ class UserNotices(models.Model):
 
     class Meta:
         unique_together = (("notice_hash", "user"),)
-
-
-class CategoryLinks(models.Model):
-    url = models.CharField(max_length=150)
-    title = models.CharField(max_length=150)
-    campus = models.CharField(max_length=8, null=True)
-    category_id = models.CharField(max_length=80)
-    category_name = models.CharField(max_length=80)
-    sub_category = models.CharField(max_length=80)
-    new_tab = models.BooleanField(default=False)
-
-    def json_data(self):
-        data = {
-            "title": self.title,
-            "url": self.url,
-            "new_tab": self.new_tab
-        }
-        return data
-
-    def set_category_id(self, category_name):
-        category_id = category_name.lower()
-        category_id = "".join(c for c in category_id if c.isalpha())
-        self.category_id = category_id
-
-
-class TuitionDate(models.Model):
-    user = models.ForeignKey('User', on_delete=models.PROTECT, unique=True)
-    date_stored = models.DateTimeField(auto_now=True)
-    date = models.DateField()
 
 
 class SeenRegistration(models.Model):
