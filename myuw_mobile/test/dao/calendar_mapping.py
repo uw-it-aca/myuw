@@ -8,7 +8,7 @@ from myuw_mobile.dao.calendar_mapping import \
 
 class TestCalendarMapping(TestCase):
     def test_get_by_major(self):
-        enrollments = {'majors': ['TRAIN'],
+        enrollments = {'majors': ['NON MATRICULATED'],
                        'minors': [],
                        'is_grad': False}
 
@@ -20,7 +20,7 @@ class TestCalendarMapping(TestCase):
 
     def test_get_by_minor(self):
         enrollments = {'majors': [],
-                       'minors': ['TRAINR'],
+                       'minors': ['ASL'],
                        'is_grad': False}
 
         cals = _get_calendars(enrollments)
@@ -30,7 +30,7 @@ class TestCalendarMapping(TestCase):
         self.assertIsNone(cals['2_current'])
 
     def test_get_by_gradmajor(self):
-        enrollments = {'majors': ['UPCOM'],
+        enrollments = {'majors': ['ACMS (SOC & BEH SCI)'],
                        'minors': [],
                        'is_grad': True}
 
@@ -48,8 +48,8 @@ class TestCalendarMapping(TestCase):
         self.assertEqual(len(cals), 0)
 
     def test_dupe_calendar(self):
-        enrollments = {'majors': ['TRAIN'],
-                       'minors': ['TRAINR'],
+        enrollments = {'majors': ['NON MATRICULATED'],
+                       'minors': ['ASL'],
                        'is_grad': False}
         cals = _get_calendars(enrollments)
         self.assertEqual(len(cals), 5)
