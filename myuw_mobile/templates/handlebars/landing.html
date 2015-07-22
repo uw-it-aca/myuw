@@ -4,10 +4,11 @@
     <h2 id="main" class="sr-only">Summary of courses and accounts</h2>
     <div class="container row landing-wrapper">	    
 	    <div id="landing_content" class="col-md-8">
+			{% if request.is_mobile or request.is_tablet %}<div id="calendar_banner_location"></div>{% endif %}
 		    <div id="notice_banner_location"></div>
 	    </div>
 	    <div id="landing_accounts" class="col-md-4">
-			<div id="calendar_banner_location"></div>
+			{% if not request.is_mobile and not request.is_tablet %}<div id="calendar_banner_location"></div>{% endif %}
 	    </div>
     </div>
     
