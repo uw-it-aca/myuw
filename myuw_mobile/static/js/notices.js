@@ -419,14 +419,14 @@ var Notices = {
     },
 
     get_icon_class_for_category: function(category){
-        var mapping = {'Holds': 'fa-ban',
-            'Fees & Finances': 'fa-usd',
+        var mapping = {'Holds': 'fa-ban  text-warning',
+            'Fees & Finances': 'fa-usd text-success',
             'Graduation': 'fa-graduation-cap',
-            'Academics': 'fa-university',
-            'Registration': 'fa-clock-o',
-            'Insurance': 'fa-medkit',
-            'Legal': 'fa-gavel',
-            'Visa': 'fa-globe'
+            'Academics': 'fa-university text-academics',
+            'Registration': 'fa-clock-o text-info',
+            'Insurance': 'fa-medkit text-insurance',
+            'Legal': 'fa-gavel text-muted',
+            'Visa': 'fa-globe text-visa'
         };
         if (category in mapping){
             return mapping[category];
