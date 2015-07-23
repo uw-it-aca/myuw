@@ -1,9 +1,9 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "notices" %}
 
-<div class="notices-container">
+<div class="container row notices-container">
 	  
-	  <div class="container">
+	<div class="col-md-8">
 	  
 	    <h2 id="main">Notices</h2>
 		<div class="notice-header-metadata">
@@ -32,7 +32,6 @@
                         {{ /if }}
                         <i class="fa fa-angle-down fa-2x pull-right"></i>
 					</div>
-					
                 </div>
 	            
 	            <!-- collapsy 1 content -->
@@ -59,12 +58,12 @@
 	                    </ul>
 	                </div>
 	            </div>
-	      </div>
-	      {{ /if }}
-	      <!-- end collapsy 1 -->
+	    	</div>
+			{{ /if }}
+			<!-- end collapsy 1 -->
 	      
-	      {{ #if today.notices }}
-	      <!-- collapsy 2: today -->      
+			{{ #if today.notices }}
+			<!-- collapsy 2: today -->      
 	        <div class="disclosure">
 	            
                 <div class="disclosure-heading clearfix">
@@ -108,12 +107,12 @@
 	                    </ul>
 	                </div>
 	            </div>
-	      </div>
+	    	</div>
 	        {{ /if }}
-	      <!-- end collapsy 2 -->
+			<!-- end collapsy 2 -->
 	      
-	      {{ #if week.notices }}
-	       <!-- collapsy 3: this week -->
+			{{ #if week.notices }}
+			<!-- collapsy 3: this week -->
 	        <div class="disclosure">
 	              
 	                
@@ -159,12 +158,12 @@
 	                    </ul>
 	                </div>
 	            </div>
-	      </div>
+	    	</div>
 	        {{ /if }}
-	      <!-- end collapsy 3 -->
+			<!-- end collapsy 3 -->
 	
-	      {{ #if next_week.notices }}
-	       <!-- collapsy 4: next week -->
+			{{ #if next_week.notices }}
+			<!-- collapsy 4: next week -->
 	        <div class="disclosure">
 	              
                 <div class="disclosure-heading clearfix">
@@ -208,12 +207,12 @@
 						</ul>
 	                </div>
 	            </div>
-	      </div>
+	    	</div>
 	        {{ /if }}
-	      <!-- end collapsy 4 -->
+			<!-- end collapsy 4 -->
 	
-	      {{ #if future.notices }}
-	      <!-- collapsy 5: future -->      
+			{{ #if future.notices }}
+			<!-- collapsy 5: future -->      
 	        <div class="disclosure">
 	            
                 <div class="disclosure-heading clearfix">
@@ -238,30 +237,30 @@
 						<ul class="notices_list">
 		                    {{# each future.notices }}
 							<li>
-		                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
-			                    <div class="inner-notice-container">
-		                            {{ #if is_critical }}
-									<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="critical_notice" ></i>
-									<span class="critical_notice sr-only">Critical Notice</span>
-		                            {{ /if }}
-			                        <div class="notice-category">
-			                            {{ category }}{{ #unless is_read }}<span class="notice-new"> New</span>{{ /unless }}
-			                        </div>
-			                        <div class="notice-content">
-			                            {{ #unless is_read }}<span class="sr-only">New Notice:</span>{{ /unless }}{{{ notice_content }}}
-			                        </div>
+			                    <div id="{{ id_hash }}" class="notice-container {{ #unless is_read }}unread{{ /unless }} {{ #each location_tags }}{{ this }} {{ /each }}">
+				                    <div class="inner-notice-container">
+			                            {{ #if is_critical }}
+										<i class="fa fa-exclamation-triangle critical-icon" title="Critical Notice" aria-labelledby="critical_notice" ></i>
+										<span class="critical_notice sr-only">Critical Notice</span>
+			                            {{ /if }}
+				                        <div class="notice-category">
+				                            {{ category }}{{ #unless is_read }}<span class="notice-new"> New</span>{{ /unless }}
+				                        </div>
+				                        <div class="notice-content">
+				                            {{ #unless is_read }}<span class="sr-only">New Notice:</span>{{ /unless }}{{{ notice_content }}}
+				                        </div>
+				                    </div>
 			                    </div>
-		                    </div>
 							</li>
 		                    {{ /each }}
 						</ul>
 	                </div>
 	            </div>
-	      </div>
+	    	</div>
 	        {{ /if }}
-	      <!-- end collapsy 5 -->
+			<!-- end collapsy 5 -->
 	      
-	      {{ #if legal.notices }}
+			{{ #if legal.notices }}
 	        <!-- collapsy legal -->      
 	        <div class="disclosure">
 	              
@@ -302,18 +301,19 @@
 						</ul>
 	                </div>
 	            </div>
-	      </div>
+	    	</div>
 	        {{ /if }}
-	      <!-- end collapsy legal -->
-    </div>
-    {{ else }}
-    <div class="card">
-        <h3>No Notices Found</h3>
-        <p>You don&rsquo;t appear to have any notices to display at the moment.</p>
-    </div>
-    {{ /if }}
-    
-</div> 
+			<!-- end collapsy legal -->
+    	</div>
+	    {{ else }}
+	    <div class="card">
+	        <h3>No Notices Found</h3>
+	        <p>You don&rsquo;t appear to have any notices to display at the moment.</p>
+	    </div>
+	    {{ /if }}
+	</div> <!-- end main colom col-nmd-8 -->
+	<div class="col-md-4"></div>
+</div>
 <!-- end notices container  --> 
  
     {% endtplhandlebars %}
