@@ -437,7 +437,7 @@ body {
 /*** notice banner - critical notices on landing page ***/
 #app_notices { margin: 0; border-bottom: 1px solid #ddd; position: relative; padding-bottom: 15px;
     
-    .notice-header { font-size: @font-header-smallest; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600;
+    .notice-header { font-size: @font-header-smaller; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600;
         a {font-family: 'encode_sans_normalbold'; color: #444;}
     }
     .critical-notices-container {margin-top: 0; margin-bottom: 15px;padding-left: 0;
@@ -489,11 +489,11 @@ body {
 
 /*** academic calendar banner ***/
 .acal-break-icon {color: @icon-break-color; font-size:.7em; line-height: 20px; vertical-align: text-top;} // for both banner & acal landing page
-#app_acal { margin: 0; position: relative; padding-bottom: 15px;padding-left: 10px;padding-right: 10px;
+#app_acal { margin: 0; position: relative; padding-bottom: 15px;border-bottom: 1px solid lightgray; 
     
     .acal-header { 
-        h2 {font-size: @font-header-smallest; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600;/*font-family: 'encode_sans_normalbold';*/color: #85754d;display: inline-block;}
-        .view-all {border:none;font-size: 14px;color: #4d66ca;line-height:50px;display: inline-block;float: right;}
+        h2 {font-size: @font-header-smaller; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600;/*font-family: 'encode_sans_normalbold';*/color: #85754d;}
+        .view-all {border:none;font-size: 14px;color: #4d66ca;line-height:50px;margin-top: -1.7em;}
         .acal-banner-events {line-height: 24px;margin-top:0;clear:both;
 	        .acal-banner-list { list-style-type: none;padding-left: 0;
 		        .acal-banner-list-item {margin-bottom: 8px;
