@@ -340,12 +340,12 @@ NOTICE_CATEGORIES = {
         "location_tags": ['checklist_feespaid'],
         "critical": False
     },
-    "NewStudentCLIST_IntlStuCheckInA": {
+    "NewStudentCLIST_IntlStuCheckinA": {
         "myuw_category": "Admission",
         "location_tags": ['checklist_iss_before'],
         "critical": False
     },
-    "NewStudentCLIST_IntlStuCheckInB": {
+    "NewStudentCLIST_IntlStuCheckinB": {
         "myuw_category": "Admission",
         "location_tags": ['checklist_iss_after'],
         "critical": False
