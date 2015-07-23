@@ -10,7 +10,7 @@
             ],
             "NoticeCategory": "StudentALR",
             "NoticeContent": "<span class=\"notice-title\">Online ISS information session required before registration</span><span class=\"notice-body-with-title\">All new international students are required to complete the <a href=\"https://catalysttools.washington.edu/webq/survey/torre/79003\">International Student Services (ISS) Online Information Session</a> before registering for classes. You will need your UW NetID and password to access the online ISS information session. After you arrive on campus, the International Student Services (ISS) must collect copies of your immigration documents.</span>",
-            "NoticeType": "IntlStuCheckIn"
+            "NoticeType": "IntlStuCheckin"
         },
         {
             "NoticeAttributes": [
@@ -144,7 +144,7 @@
             "NoticeAttributes": [],
             "NoticeCategory": "NewStudentCLIST",
             "NoticeContent": "<span class=\"notice-title\">Register for Required Online Information Session for International Students</span>&nbsp;<span class=\"notice-body-with-title\" >You must <a href=\"https://catalyst.uw.edu/webq/survey/torre/79003\">complete the International Student Services (ISS) Online Information Session</a>. The session includes important information about your benefits and responsibilities on an F-1 or J-1 student visa.</span>",
-            "NoticeType": "IntlStuCheckInA"
+            "NoticeType": "IntlStuCheckinA"
         },
        {
             "NoticeAttributes": [],

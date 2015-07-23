@@ -10,7 +10,7 @@
             ],
             "NoticeCategory": "StudentALR",
             "NoticeContent": "<span class=\"notice-title\">International Student Services Office Check-in Required</span><span class=\"notice-body-with-title\">You are not eligible to register until you check in with the UW Tacoma International Student Services Office (MAT 203). Please email uwtiss@uw.edu or call (253) 692-4762 for assistance.</span>",
-            "NoticeType": "IntlStuCheckIn"
+            "NoticeType": "IntlStuCheckin"
         },
         {
             "NoticeAttributes": [],
