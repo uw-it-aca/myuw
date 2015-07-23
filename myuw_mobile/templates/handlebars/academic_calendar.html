@@ -1,7 +1,7 @@
 	{% load templatetag_handlebars %}
     {% tplhandlebars "calendar_events" %}
-    <div class="academic_cal-container">
-       <div class="container">
+    <div class="container row academic_cal-container">
+       <div class="acal-main col-md-8">
             <h2 id="main">Academic Calendar</h2>
             <a href="//www.washington.edu/students/reg/calendar.html">View detailed calendar</a> <!--| <a href="//www.washington.edu/calendar/academic/">Subscribe to detailed</a> -->
 			<center>
@@ -43,6 +43,7 @@
                 {{ /each }}
            </div>
         </div>
+		<div class="col-md-4"></div>
     </div>
     {% endtplhandlebars %}
 
