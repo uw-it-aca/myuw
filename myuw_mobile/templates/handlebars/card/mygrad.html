@@ -63,46 +63,32 @@
                 </ul>
             </div>
             {{/if}}
-
+            <!-- end leave -->    
+        
+            <!-- degrees --> 
             {{#if degrees }}
-            <li class="card-badge-container" id="degree-reqs">
-                <h4>Degree Request</h4>
+            <div class="card-badge-container" id="degree-reqs">
+                <h3>Degree and Exam Requests</h3>
 
-                <ul class="panel-group">
+                <ul class="card_list">
                     {{ #each degrees}}
-                    <li class="panel panel-default">
-                        <div class="card-badge">
-                            <span class="card-badge-label">Request type:</span>
-                        </div>
-                        <div class="">
-                            <span class="card-badge-value">{{req_type}}</span>
-                        </div>
-                        <div class="card-badge">
-                            <span class="card-badge-label">Degree Title:</span>
-                        </div>
-                        <div class="">
-                            <span class="card-badge-value">{{degree_title}}</span>
-                        </div>
-                        <div class="card-badge">
-                            <span class="card-badge-label">Status:</span>
-                        </div>
-                        <div class="">
-                            <span class="card-badge-value">{{status}}
-                            </span>
-                        </div>
-                        <div class="card-badge">
-                            <span class="card-badge-label">Award Year, Quarter:</span>
-                        </div>
-                        <div class="">
-                            <span class="card-badge-value">
-                                {{target_award_year}}, {{target_award_quarter}}
-                            </span>
+                    <li>
+                        <div class="card-badge clearfix"><!--<span class="card-badge-value">{{req_type}}</span>-->
+                            <h4>{{degree_title}}, {{target_award_quarter}} {{target_award_year}}</h4>
+                            <div class="pull-left">
+                                <span class="card-badge-label">Status</span>
+                            </div>
+                            <div class="pull-right">
+                                <span class="card-badge-value">{{status}}</span>
+                            </div>
                         </div>
                     </li>
                     {{/each}}
                 </ul>
-            </li>
+            </div>
             {{/if}}
+            
+            
 
             {{#if committees }}
             <li class="card-badge-container" id="committee_reqs">
