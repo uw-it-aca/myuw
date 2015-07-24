@@ -2,45 +2,42 @@
     {% tplhandlebars "mygrad_card_content" %}
 
     <div class="card"  data-name="MyGradCard" data-type="card">
-        <h3>MyGrad</h3>
-
-        <ul id="grad_requests">
+ 
+            <!-- petitions --> 
             {{#if petitions }}
-            <li class="card-badge-container" id="petition-reqs">
-                <h4>Petition Request</h4>
+            <div class="card-badge-container" id="petition-reqs">
+                <h3>Petition Requests</h3>
 
-                <ul class="panel-group">
+                <ul class="card_list">
                     {{ #each petitions}}
-                    <li class="panel panel-default">
-                        <div class="card-badge">
-                            <span class="card-badge-label">Description:</span>
-                        </div>
-                        <div class="">
-                            <span class="card-badge-value">{{description}}</span>
-                        </div>
-                        <div class="card-badge">
-                            <span class="card-badge-label">Dept Recommend:</span>
-                        </div>
-                        <div class="">
-                            <span class="card-badge-value">{{dept_recommend}}</span>
-                        </div>
-                        <div class="card-badge">
-                            <span class="card-badge-label">GradSchool Decision:</span>
-                        </div>
-                        <div class="">
-                            <span class="card-badge-value">{{gradschool_decision}}</span>
-                        </div>
-                        <div class="card-badge">
-                            <span class="card-badge-label">Submit date:</span>
-                        </div>
-                        <div class="">
-                            <span class="card-badge-value">{{toFriendlyDate submit_date}}</span>
+                    <li>
+                        <div class="card-badge clearfix"> 
+                            <h4>{{description}}</h4>
+                            <ul class="recommendation-list">
+                                <li class="clearfix">
+                                    <div class="pull-left">
+                                        <h5 class="card-badge-label">Department Recommendation</h5>
+                                    </div>
+                                    <div class="pull-right">
+                                        <span class="card-badge-value">{{dept_recommend}}</span>
+                                    </div>
+                                </li>                            
+                                <li class="clearfix">
+                                    <div class="pull-left">
+                                        <h5 class="card-badge-label">Graduate School Decision</h5>
+                                    </div>
+                                    <div class="pull-right">
+                                        <span class="card-badge-value">{{gradschool_decision}}</span>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </li>
                     {{/each}}
                 </ul>
-            </li>
+            </div>
             {{/if}}
+            <!-- end petitions --> 
 
             {{#if leaves }}
             <li class="card-badge-container" id="leave-reqs">
@@ -158,7 +155,7 @@
             </li>
             {{/if}}
 
-        </ul>
+        
     </div>
 
     {% endtplhandlebars %}
