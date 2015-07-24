@@ -199,7 +199,7 @@
             ],
             "NoticeCategory": "StudentALR",
             "NoticeContent": "<span class=\"notice-title\">International Check in</span><span class=\"notice-body-with-title\">Yo dawg, it's time to check in.</span>",
-            "NoticeType": "IntlStuCheckIn"
+            "NoticeType": "IntlStuCheckin"
         },
         {
             "NoticeAttributes": [
@@ -234,7 +234,7 @@
             "NoticeAttributes": [],
             "NoticeCategory": "NewStudentCLIST",
             "NoticeContent": "<span class=\"notice-body-without-title\">You have completed the International Student Services Online Information Session.</span>",
-            "NoticeType": "IntlStuCheckInB"
+            "NoticeType": "IntlStuCheckinB"
         },
        {
             "NoticeAttributes": [],

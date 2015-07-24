@@ -54,7 +54,6 @@ var TuitionCard = {
                 }
             }
         }
-        template_data.has_balance = parseInt(template_data.tuition_accbalance) > 0;
 
         var source = $("#tuition_card").html();
         var template = Handlebars.compile(source);
