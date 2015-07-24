@@ -39,49 +39,29 @@
             {{/if}}
             <!-- end petitions --> 
 
+            <!-- leave --> 
             {{#if leaves }}
-            <li class="card-badge-container" id="leave-reqs">
-                <h4>Leave Request</h4>
+            <div class="card-badge-container" id="leave-reqs">
+                <h3>Leave Requests</h3>
 
-                <ul class="panel-group">
+                <ul class="card_list">
                     {{ #each leaves}}
-                    <li class="panel panel-default">
-                        <div class="card-badge">
-                            <span class="card-badge-label">Reason:</span>
-                        </div>
-                        <div class="">
-                            <span class="card-badge-value">{{reason}}</span>
-                        </div>
-                        <div class="card-badge">
-                            <span class="card-badge-label">Status:</span>
-                        </div>
-                        <div class="">
-                            <span class="card-badge-value">{{status}}</span>
-                        </div>
-                        <div class="card-badge">
-                            <span class="card-badge-label">Submit date:</span>
-                        </div>
-                        <div class="">
-                            <span class="card-badge-value">{{submit_date}}</span>
-                        </div>
-                        <div class="card-badge">
-                            <span class="card-badge-label">Quarters:</span>
-                        </div>
-                        <div class="">
-                            <ul>
-                                {{ #each terms}}
-                                <li>
-                                    <span class="card-badge-value">
-                                        {{year}}, {{quarter}}
-                                    </span>
-                                </li>
-                                {{/each}}
-                            </ul>
-                        </div>
+                    <li>
+                        <div class="card-badge clearfix">
+                            <h4>
+                               {{reason}}, {{ #each terms}}{{quarter}} {{year}}{{/each}} <!-- get a comma if there's more than one --> 
+                            </h4>
+                            <div class="pull-left">
+                                <span class="card-badge-label">Status</span>
+                            </div>
+                            <div class="pull-right">
+                                <span class="card-badge-value">{{status}}</span>
+                            </div>
+                        </div>                  
                     </li>
                     {{/each}}
                 </ul>
-            </li>
+            </div>
             {{/if}}
 
             {{#if degrees }}
