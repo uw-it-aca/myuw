@@ -87,38 +87,31 @@
                 </ul>
             </div>
             {{/if}}
+            <!-- end degrees --> 
             
-            
-
+            <!-- committees --> 
             {{#if committees }}
-            <li class="card-badge-container" id="committee_reqs">
-                <h4>Committees Request</h4>
+            <div class="card-badge-container" id="committee_reqs">
+                <h3>Your Committees</h3>
 
-                <ul class="panel-group">
+                <ul class="card-list">
                     {{ #each committees}}
-                    <li class="panel panel-default">
-                        <div class="pull-left">
-                            <span class="card-badge-value">{{committee_type}}</span>
-                        </div>
-
-                        <div class="card-badge">
-                            <ul class="panel-group">
-                                {{ #each members}}
-                                <li class="panel panel-default">
-                                    <span class="card-badge-value">{{member_type}}</span>
-                                    <span class="card-badge-value">{{dept}}</span>
-                                    <span class="card-badge-value">{{first_name}} {{last_name}}</span>
-                                    <span class="card-badge-value">{{email}}</span>
-                                </li>
-                                {{/each}}
-                            </ul>
-                        </div>
-
+                    <li>
+                        <h4>{{committee_type}}</h4>
+                        <ul>
+                            {{ #each members}}
+                            <li class="">
+                                <span style="display: block">{{first_name}} {{last_name}}, {{member_type}}</span>
+                                <span style="display: block">{{dept}}</span>
+                                <span style="display: block"><a href="mailto:{{email}}">{{email}}</a></span>
+                            </li>
+                            {{/each}}
+                        </ul>
                     </li>
                     {{/each}}
                 </ul>
 
-            </li>
+            </div>
             {{/if}}
 
         
