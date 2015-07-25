@@ -1,12 +1,12 @@
-*test row do not delete*,Department of Unit Tests,TRAIN,,,5_current,http://art.washington.edu/calendar/
-*test row do not delete*,Department of Unit Tests,TRAIN,,,past,
-*test row do not delete*,Department of Unit Tests,TRAIN,,,far_future,
-*test row do not delete*,Department of Other Unit Tests,,TRAINR,,2_current,
-*test row do not delete*,Department of Other Unit Tests,,TRAINR,,5_current,http://art.washington.edu/calendar/
-*test row do not delete*,Department of Other Unit Tests,,TRAINR,,future_1,
-*test row do not delete*,Department of Other Unit Tests,,,UPCOM,future_1,
-*test row do not delete*,Department of Other Unit Tests,,,UPCOM,far_future,
-*test row do not delete*,Department of Other Unit Tests,,,UPCOM,past,
+*test row do not delete*,Department of Unit Tests,NON MATRICULATED,,,5_current,http://art.washington.edu/calendar/
+*test row do not delete*,Department of Unit Tests,NON MATRICULATED,,,past,
+*test row do not delete*,Department of Unit Tests,NON MATRICULATED,,,far_future,
+*test row do not delete*,Department of Other Unit Tests,,ASL,,2_current,
+*test row do not delete*,Department of Other Unit Tests,,ASL,,5_current,http://art.washington.edu/calendar/
+*test row do not delete*,Department of Other Unit Tests,,ASL,,future_1,
+*test row do not delete*,Department of Other Unit Tests,,,ACMS (SOC & BEH SCI),future_1,
+*test row do not delete*,Department of Other Unit Tests,,,ACMS (SOC & BEH SCI),far_future,
+*test row do not delete*,Department of Other Unit Tests,,,ACMS (SOC & BEH SCI),past,
 *test row do not delete*,Department of Other Unit Tests,,UPCOM2,,future_2,
 ,ACCOUNTING                              ,ACCOUNTING              ,,,sea_acctg,
 ,ACCOUNTING                              ,,,ACCOUNTING              ,sea_acctg,
