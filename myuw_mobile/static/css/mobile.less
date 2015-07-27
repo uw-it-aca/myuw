@@ -482,12 +482,12 @@ body {
             .card_list { list-style: none; padding-left: 0; }                
             .card-badge {  padding: 8px 10px 10px 0px; position: relative;
 
-                .card-badge-label { display: block; font-weight: bold; line-height: 35px; }
+                .card-badge-label { display: block; font-weight: bold; }
                 .card-badge-action { display: block; font-weight: normal; line-height: 35px; margin-top: -10px; 
                     a { display: block; }
                 }
                 
-                .card-badge-value { display: block; font-size: 22px; font-weight: bold; line-height: 35px; text-align: right; }
+                .card-badge-value { display: block; font-size: 22px; font-weight: bold;  text-align: right; }
                 .card-badge-note { font-weight: normal; color: #888; margin-top: 35px; position: absolute; bottom: -3px; font-size: 12px; }
             }
         }
@@ -627,7 +627,13 @@ body {
     // graduate student content card 
     div#MyGradCard {
         ul { list-style-type: none; padding-left: 0; }
-        .card-badge-value { font-size: 14px; font-weight: normal; }        
+        .card-badge { 
+            h5 { font-weight: bold; }
+        }
+        .card-badge-value { font-size: 14px; }
+        .card-badge-label { font-weight: normal; } 
+        span.qtr-yr { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; }  
+             
     }
     
     

@@ -2,21 +2,21 @@
     {% tplhandlebars "mygrad_card_content" %}
 
     <div class="card"  data-name="MyGradCard" data-type="card">
- 
+        <h3>Graduate Status</h3>
             <!-- petitions --> 
             {{#if petitions }}
             <div class="card-badge-container" id="petition-reqs">
-                <h3>Petition Requests</h3>
+                <h4>Petition Requests</h4>
 
                 <ul class="card_list">
                     {{ #each petitions}}
                     <li>
                         <div class="card-badge clearfix"> 
-                            <h4>{{description}}</h4>
+                            <h5>{{description}}</h5>
                             <ul class="recommendation-list">
                                 <li class="clearfix">
                                     <div class="pull-left">
-                                        <h5 class="card-badge-label">Department Recommendation</h5>
+                                        <span class="card-badge-label">Department Recommendation</span>
                                     </div>
                                     <div class="pull-right">
                                         <span class="card-badge-value">{{dept_recommend}}</span>
@@ -24,7 +24,7 @@
                                 </li>                            
                                 <li class="clearfix">
                                     <div class="pull-left">
-                                        <h5 class="card-badge-label">Graduate School Decision</h5>
+                                        <span class="card-badge-label">Graduate School Decision</span>
                                     </div>
                                     <div class="pull-right">
                                         <span class="card-badge-value">{{gradschool_decision}}</span>
@@ -42,15 +42,16 @@
             <!-- leave --> 
             {{#if leaves }}
             <div class="card-badge-container" id="leave-reqs">
-                <h3>Leave Requests</h3>
+                <h4>Leave Requests</h4>
 
                 <ul class="card_list">
                     {{ #each leaves}}
                     <li>
                         <div class="card-badge clearfix">
-                            <h4>
-                               {{reason}}, {{ #each terms}}{{quarter}} {{year}}{{/each}} <!-- get a comma if there's more than one --> 
-                            </h4>
+                            <h5>
+                               {{reason}}&nbsp;<br />
+                               <span class="">{{ #each terms}}{{quarter}} {{year}}{{/each}}</span><!-- get a comma if there's more than one --> 
+                            </h5>
                             <div class="pull-left">
                                 <span class="card-badge-label">Status</span>
                             </div>
@@ -68,13 +69,15 @@
             <!-- degrees --> 
             {{#if degrees }}
             <div class="card-badge-container" id="degree-reqs">
-                <h3>Degree and Exam Requests</h3>
+                <h4>Degree and Exam Requests</h4>
 
                 <ul class="card_list">
                     {{ #each degrees}}
                     <li>
                         <div class="card-badge clearfix"><!--<span class="card-badge-value">{{req_type}}</span>-->
-                            <h4>{{degree_title}}, {{target_award_quarter}} {{target_award_year}}</h4>
+                            <h5>{{degree_title}}&nbsp;<br />
+                                {{target_award_quarter}} {{target_award_year}}
+                            </h5>
                             <div class="pull-left">
                                 <span class="card-badge-label">Status</span>
                             </div>
@@ -89,15 +92,23 @@
             {{/if}}
             <!-- end degrees --> 
             
+            <div style="margin:0; padding-bottom:0;" class="card-badge pull-right">
+                <div class="card-badge-action">
+                    <a href="http://www.grad.washington.edu/mygrad/student.htm">Go to MyGrad</a>
+                </div>
+            </div>
+            
+            <div class="todo">Show Committees [insert disclosure here]</div>
+            
             <!-- committees --> 
             {{#if committees }}
             <div class="card-badge-container" id="committee_reqs">
-                <h3>Your Committees</h3>
+                <h4>Your Committees</h4>
 
                 <ul class="card-list">
                     {{ #each committees}}
                     <li>
-                        <h4>{{committee_type}}</h4>
+                        <h5>{{committee_type}}</h5>
                         <ul>
                             {{ #each members}}
                             <li class="">
