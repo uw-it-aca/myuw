@@ -50,7 +50,7 @@
                         <div class="card-badge clearfix">
                             <h5>
                                {{reason}}&nbsp;<br />
-                               <span class="">{{ #each terms}}{{quarter}} {{year}}{{/each}}</span><!-- get a comma if there's more than one --> 
+                               <span class="">{{#each terms}}{{#not_first @index}}, {{/not_first}}{{quarter}} {{year}}{{/each}}</span>
                             </h5>
                             <div class="pull-left">
                                 <span class="card-badge-label">Status</span>
@@ -94,14 +94,14 @@
             
             <div style="margin:0; padding-bottom:0;" class="card-badge pull-right">
                 <div class="card-badge-action">
-                    <a href="http://www.grad.washington.edu/mygrad/student.htm">Go to MyGrad</a>
+                    <a target="_blank" href="http://www.grad.washington.edu/mygrad/student.htm">Go to MyGrad</a>
                 </div>
             </div>
-            
-            <div class="todo">Show Committees [insert disclosure here]</div>
-            
+
             <!-- committees --> 
             {{#if committees }}
+            <div class="todo">Show Committees [insert disclosure here]</div>
+
             <div class="card-badge-container" id="committee_reqs">
                 <h4>Your Committees</h4>
 

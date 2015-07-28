@@ -23,7 +23,9 @@
     {"leaveReason":"Dissertation/Thesis research/writing",
      "submitDate":"2014-03-31T11:32:48.583",
      "status":"paid",
-     "quarters":[{"year":2014,
+     "quarters":[{"year":2013,
+                  "quarter":"autumn"},
+                 {"year":2014,
                   "quarter":"spring"}]
     }
 ]
