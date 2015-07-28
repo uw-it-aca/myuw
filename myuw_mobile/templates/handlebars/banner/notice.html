@@ -15,30 +15,6 @@
         </div>
         <hr>
         {{ /each }}
-
-
-
-
-
-
-{#        <ul class="panel-group critical-notices-container" id="accordion" role="tablist" aria-multiselectable="true">#}
-{#			<li class="panel panel-default notice-category-content">#}
-{#				<div id="collapse"  role="tabpanel" aria-labelledby="heading">#}
-{#					<div class="panel-body notice-panel-body">	#}
-{#						<ul class="critical-notice-list">#}
-{#                             {{ #each notices }}#}
-{#                            <li id="{{ id_hash }}">#}
-{#                                <div class="notice-content"> #}
-{#									#}
-{#                                     {{{ notice_content }}} #}
-{#                               </div>#}
-{#                           </li>#}
-{#                            {{ /each }} #}
-{#						</ul>#}
-{#					</div>#}
-{#				</div>#}
-{#			</li>#}
-{#        </ul>#}
         <div class="other-notices-link"><a href="/mobile/notices">{{ total_unread }} more new {{ pluralize total_unread "notice" "notices" }}</a></div>
     </div>
 {% endtplhandlebars %}
