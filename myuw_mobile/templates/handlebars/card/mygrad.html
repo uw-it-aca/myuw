@@ -109,15 +109,15 @@
                     {{ #each committees}}
                     <li>
                         <h5>{{committee_type}}</h5>
-                        <ul>
+                        <ol><!-- committee members should be ordered alphabetically by last name --> 
                             {{ #each members}}
-                            <li class="">
-                                <span style="display: block">{{first_name}} {{last_name}}, <span class="todo">{{member_type}}</span></span><!-- only show member type if chair or GSR --> 
+                            <li class="committee-member">
+                                <span style="display: block">{{first_name}} {{last_name}}<span class="todo">, {{member_type}}</span></span><!-- only show member type if chair or GSR --> 
                                 <span style="display: block">{{dept}}</span>
                                 <span style="display: block"><a href="mailto:{{email}}">{{email}}</a></span>
                             </li>
                             {{/each}}
-                        </ul>
+                        </ol>
                     </li>
                     {{/each}}
                 </ul>
