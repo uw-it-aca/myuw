@@ -40,14 +40,7 @@ var ToRegisterCard = {
             });
         }
 
-        var notice_count =  no_orient.length +
-            post_orient.length +
-            pre_iss.length +
-            post_iss.length +
-            pre_measles.length +
-            post_measles.length +
-            pre_orient.length;
-        if (notice_count > 0){
+        if (ToRegisterCard.has_to_register_notices()){
             ToRegisterCard.dom_target.html(template({'no_orient': no_orient,
                                                      'no_orient_date': no_orient_date,
                                                      'post_orient': post_orient,
@@ -64,4 +57,24 @@ var ToRegisterCard = {
     render_error: function () {
         ToRegisterCard.dom_target.html(CardWithError.render(ToRegisterCard.name));
     },
+
+    has_to_register_notices: function () {
+        var no_orient = Notices.get_notices_for_tag("checklist_no_orient");
+        var post_orient = Notices.get_notices_for_tag("checklist_orient_after");
+        var pre_iss = Notices.get_notices_for_tag("checklist_iss_before");
+        var post_iss = Notices.get_notices_for_tag("checklist_iss_after");
+        var pre_measles = Notices.get_notices_for_tag("checklist_measles_before");
+        var post_measles = Notices.get_notices_for_tag("checklist_measles_after");
+        var pre_orient = Notices.get_notices_for_tag("checklist_orient_before");
+
+        var notice_count =  no_orient.length +
+            post_orient.length +
+            pre_iss.length +
+            post_iss.length +
+            pre_measles.length +
+            post_measles.length +
+            pre_orient.length;
+        return notice_count > 0;
+
+    }
 };
