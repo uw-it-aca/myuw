@@ -112,7 +112,7 @@
                         <ul>
                             {{ #each members}}
                             <li class="">
-                                <span style="display: block">{{first_name}} {{last_name}}, {{member_type}}</span>
+                                <span style="display: block">{{first_name}} {{last_name}}, <span class="todo">{{member_type}}</span></span><!-- only show member type if chair or GSR --> 
                                 <span style="display: block">{{dept}}</span>
                                 <span style="display: block"><a href="mailto:{{email}}">{{email}}</a></span>
                             </li>

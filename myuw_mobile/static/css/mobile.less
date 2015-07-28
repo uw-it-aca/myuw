@@ -627,13 +627,19 @@ body {
     // graduate student content card 
     div#MyGradCard {
         ul { list-style-type: none; padding-left: 0; }
-        .card-badge { 
+        #petition-reqs, #leave-reqs, #degree-reqs { 
+            h4 { margin-bottom: 0px; }
+            h5 { font-weight: bold; margin-top: 0px;}
+        }
+        #committee_reqs { 
             h5 { font-weight: bold; }
+            ul.card-list ul { 
+                padding-bottom: 10px; 
+            }
         }
         .card-badge-value { font-size: 14px; }
         .card-badge-label { font-weight: normal; } 
-        span.qtr-yr { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; }  
-             
+                     
     }
     
     
