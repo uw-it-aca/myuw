@@ -20,12 +20,13 @@ var MyGradCard = {
             MyGradCard.dom_target.hide();
             return;
         }
-
-        for (var i = 0; i < mygrad_data.committees.length; i += 1) {
-            var members = mygrad_data.committees[i].members;
-            for (var j = 0; j < members.length; j += 1) {
-                if (members[j].member_type === "member") {
-                    members[j].member_type = null;
+        if (mygrad_data.committees !== null) {
+            for (var i = 0; i < mygrad_data.committees.length; i += 1) {
+                var members = mygrad_data.committees[i].members;
+                for (var j = 0; j < members.length; j += 1) {
+                    if (members[j].member_type === "member") {
+                        members[j].member_type = null;
+                    }
                 }
             }
         }
