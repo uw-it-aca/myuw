@@ -132,34 +132,6 @@ var Notices = {
         });
     },
 
-    get_categorized_critical_notices: function() {
-        var notices = Notices._get_critical(WSData.notice_data());
-        var categorized_notices = {};
-        $.each(notices, function(idx, notice){
-            if (notice.category in categorized_notices){
-                if (!notice.is_read){
-                    categorized_notices[notice.category].count += 1;
-                }
-                categorized_notices[notice.category].notices.push(notice);
-            } else {
-                categorized_notices[notice.category] = {};
-                categorized_notices[notice.category].count = 0;
-                if (!notice.is_read){
-                    categorized_notices[notice.category].count = 1;
-                }
-                categorized_notices[notice.category].category =
-                    notice.category;
-                categorized_notices[notice.category].notices = [notice];
-                categorized_notices[notice.category].icon_class =
-                    Notices.get_icon_class_for_category(notice.category);
-            }
-
-        });
-        $.each(categorized_notices, function(idx,category){
-            var sorted = Notices.sort_notices_by_start_date(category.notices);
-        });
-        return categorized_notices;
-    },
 
     sort_notices_by_start_date: function(notices){
         return notices.sort(function(a, b){
@@ -324,11 +296,6 @@ var Notices = {
         return category_counts;
     },
 
-    get_all_critical: function () {
-        var notices = WSData.notice_data();
-        return Notices._get_critical_count(notices);
-    },
-
     _get_unread_count: function (notices) {
         var unread_count = 0;
         for (i = 0; i < notices.length; i += 1) {
@@ -416,24 +383,8 @@ var Notices = {
             }
         });
         return unique_notices;
-    },
-
-    get_icon_class_for_category: function(category){
-        var mapping = {'Holds': 'fa-ban  text-warning',
-            'Fees & Finances': 'fa-usd text-success',
-            'Graduation': 'fa-graduation-cap',
-            'Admission': 'fa-university text-academics',
-            'Registration': 'fa-clock-o text-info',
-            'Insurance': 'fa-medkit text-insurance',
-            'Legal': 'fa-gavel text-muted',
-            'Visa': 'fa-globe text-visa'
-        };
-        if (category in mapping){
-            return mapping[category];
-        } else {
-            return '';
-        }
-
     }
+
+
 };
 

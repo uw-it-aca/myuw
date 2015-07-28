@@ -4,36 +4,41 @@
     <div id="app_notices">
         <div class="notice-header">
             <h2 class="notice-header text-danger">Critical Notices</h2>
-        </div>    
-        <ul class="panel-group critical-notices-container" id="accordion" role="tablist" aria-multiselectable="true">
-            <!--{{ #each categorized_critical }} -->
-			<li class="panel panel-default notice-category-content">
-				<div class="panel-heading notice-panel-heading" role="tab" id="heading{{ @index }}">
-					<h3 class="panel-title notice-category-panel-title">
-						<i class="fa {{ icon_class }}" title="{{ category }}" aria-hidden="true"></i>
-				    	<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ @index }}" aria-expanded="false" aria-controls="collapse{{ @index }}" aria-labelledby="control-label">
-						 Online ISS information session required before registration<!-- {{ category }} ({{ count }}) -->
-				    	</a>
-					</h3>
-				</div>
-				<span id="control-label" class="sr-only">Read critical {{ category }} notice</span>
-				<div id="collapse{{ @index }}" class="panel-collapse collapse notice-panel-collapse" role="tabpanel" aria-labelledby="heading{{ @index }}">
-					<div class="panel-body notice-panel-body">	
-						<!--<ul class="critical-notice-list">
-                             {{ #each notices }}
-                            <li id="{{ id_hash }}"> -->
-                                <div class="notice-content"> 
-									
-                                     {{{ notice_content }}} 
-                               </div>
-                            <!-- </li>
-                            {{ /each }} 
-						</ul>-->
-					</div>
-				</div>
-			</li>
-            <!-- {{ /each }} -->
-        </ul>
+        </div>
+        {{ #each notices }}
+        <div id="{{ id_hash }}">
+            <i class="fa {{ icon_class }}" title="{{ category }}" aria-hidden="true"></i>
+            {{{ notice_content }}}
+            {{ #unless is_read }}
+                <div class="new-status">NEW!</div>
+            {{ /unless }}
+        </div>
+        <hr>
+        {{ /each }}
+
+
+
+
+
+
+{#        <ul class="panel-group critical-notices-container" id="accordion" role="tablist" aria-multiselectable="true">#}
+{#			<li class="panel panel-default notice-category-content">#}
+{#				<div id="collapse"  role="tabpanel" aria-labelledby="heading">#}
+{#					<div class="panel-body notice-panel-body">	#}
+{#						<ul class="critical-notice-list">#}
+{#                             {{ #each notices }}#}
+{#                            <li id="{{ id_hash }}">#}
+{#                                <div class="notice-content"> #}
+{#									#}
+{#                                     {{{ notice_content }}} #}
+{#                               </div>#}
+{#                           </li>#}
+{#                            {{ /each }} #}
+{#						</ul>#}
+{#					</div>#}
+{#				</div>#}
+{#			</li>#}
+{#        </ul>#}
         <div class="other-notices-link"><a href="/mobile/notices">{{ total_unread }} more new {{ pluralize total_unread "notice" "notices" }}</a></div>
     </div>
 {% endtplhandlebars %}
