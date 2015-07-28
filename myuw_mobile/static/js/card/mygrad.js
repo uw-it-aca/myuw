@@ -18,10 +18,18 @@ var MyGradCard = {
         var template = Handlebars.compile(source);
         if (!mygrad_data.degrees && !mygrad_data.committees && !mygrad_data.leaves && !mygrad_data.petitions) {
             MyGradCard.dom_target.hide();
+            return;
         }
-        else {
-            MyGradCard.dom_target.html(template(mygrad_data));
+
+        for (var i = 0; i < mygrad_data.committees.length; i += 1) {
+            var members = mygrad_data.committees[i].members;
+            for (var j = 0; j < members.length; j += 1) {
+                if (members[j].member_type === "member") {
+                    members[j].member_type = null;
+                }
+            }
         }
+        MyGradCard.dom_target.html(template(mygrad_data));
     },
 
     _has_all_data: function () {
