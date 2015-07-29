@@ -5,16 +5,23 @@
         <div class="notice-header">
             <h2 class="notice-header text-danger">Critical Notices</h2>
         </div>
-        {{ #each notices }}
-        <div id="{{ id_hash }}">
-            <i class="fa {{ icon_class }}" title="{{ category }}" aria-hidden="true"></i>
-            {{{ notice_content }}}
-            {{ #unless is_read }}
-                <div class="new-status">NEW!</div>
-            {{ /unless }}
+        
+        <div class="critical-notices-container">
+			<ul class="notice-content-list">				
+				{{ #each notices }}
+				<div id="{{ id_hash }}" class="notice-container">
+					<li class="notice-content-list-item clearfix">
+			            <div class="notice-category-icon"><i class="fa {{ icon_class }}" title="{{ category }}" aria-hidden="true"></i></div>
+			            {{{ notice_content }}}
+			            {{ #unless is_read }}
+			                <div class="new-status">NEW!</div>
+			            {{ /unless }}
+					</li>
+				</div>
+				{{ /each }}
+			</ul>
         </div>
-        <hr>
-        {{ /each }}
+        
         <div class="other-notices-link"><a href="/mobile/notices">{{ total_unread }} more new {{ pluralize total_unread "notice" "notices" }}</a></div>
     </div>
 {% endtplhandlebars %}
