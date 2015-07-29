@@ -37,7 +37,7 @@ var CriticalInfoCard = {
 
         }
 
-        if (notices.length > 0){
+        if (ToRegisterCard.has_to_register_notices()){
             CriticalInfoCard.dom_target.html(template({'notices': notices,
                                                        'is_resident': is_resident}));
         } else {
