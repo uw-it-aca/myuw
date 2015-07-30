@@ -100,16 +100,14 @@
 
             <!-- committees --> 
             {{#if committees }}
-            <div class="todo">Show Committees [insert disclosure here]</div>
-
-            <div class="card-badge-container" id="committee_reqs">
+            <div class="card-badge-container slide-hide" id="grad_committee_reqs" aria-hidden="true">
                 <h4>Your Committees</h4>
 
                 <ul class="card-list">
                     {{ #each committees}}
                     <li>
                         <h5>{{committee_type}}</h5>
-                        <ol><!-- committee members should be ordered alphabetically by last name --> 
+                        <ol>
                             {{ #each members}}
                             <li class="committee-member">
                                 <span style="display: block">{{first_name}} {{last_name}}{{#if member_type}}, {{member_type}}{{/if}}</span>
@@ -122,6 +120,9 @@
                     {{/each}}
                 </ul>
 
+            </div>
+            <div class="card-disclosure">
+                <a id="toggle_grad_committees" aria-controls="grad_committee_reqs" href="#" title="Expand to show Committees">SHOW COMMITTEES</a>
             </div>
             {{/if}}
 
