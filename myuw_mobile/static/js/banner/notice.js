@@ -37,7 +37,10 @@ var NoticeBanner = {
 
     _toggle_notice: function(title_elm){
         var children = $(title_elm).parent().children('.notice-body-with-title, .notice-list');
-        $(children).toggle('slow', NoticeBanner._mark_read(children));
+        $(children).css('visibility', function(i, visibility){
+            return (visibility === 'visible') ? 'hidden' : 'visible'
+        });
+        NoticeBanner._mark_read(children);
     },
 
     _mark_read: function(children) {
