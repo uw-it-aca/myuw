@@ -91,7 +91,7 @@ class TestGrad(TestCase):
         self.assertEqual(leave['terms'][0]['year'], 2012)
 
         self.assertIsNotNone(data.get("petitions"))
-        self.assertEquals(len(data["petitions"]), 2)
+        self.assertEquals(len(data["petitions"]), 6)
         petition = data["petitions"][0]
         self.assertEqual(petition['description'],
                          "Doctoral degree - Extend ten year limit")
