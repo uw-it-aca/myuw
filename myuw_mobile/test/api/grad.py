@@ -92,10 +92,10 @@ class TestGrad(TestCase):
 
         self.assertIsNotNone(data.get("petitions"))
         self.assertEquals(len(data["petitions"]), 6)
-        petition = data["petitions"][0]
+        petition = data["petitions"][5]
         self.assertEqual(petition['description'],
                          "Doctoral degree - Extend ten year limit")
         self.assertEqual(petition['submit_date'],
-                         "2015-03-26T16:32:28")
+                         "2014-03-26T13:24:58")
         self.assertEqual(petition['dept_recommend'], "Approve")
         self.assertEqual(petition['gradschool_decision'], "Approved")
