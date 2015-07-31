@@ -61,9 +61,11 @@
                                 <span class="card-badge-label">Status</span>
                             </div>
                             <div class="pull-right">
-                                <span class="card-badge-value{{#equal status 'approved'}}text-danger{{/equal}}">{{status}}</span>
+                                <span class="card-badge-value {{#equal status 'approved'}}text-danger{{/equal}}">{{status}}</span>
                                 {{#equal status 'approved'}}
-                                    <a target="_blank" href="http://www.grad.washington.edu/mygrad/">Pay</a>
+                                    <span class="card-badge-action pull-right">
+                                        <a target="_blank" href="http://www.grad.washington.edu/mygrad/" class="todo">Pay</a>
+                                    </span>
                                 {{/equal}}
                             </div>
                         </div>                  
