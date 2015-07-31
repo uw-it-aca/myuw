@@ -30,6 +30,13 @@ var NoticeBanner = {
 
     _init_events: function () {
         var notices = $(".notice-title");
+        //supporting enter key for accessibility purposes
+        $(".notice-container").keyup(function(e){
+            if(e.keyCode === 13){
+                NoticeBanner._toggle_notice($(this).find(".notice-title"));
+
+            }
+        });
         notices.on('click', function(elm){
             NoticeBanner._toggle_notice(elm.target);
         });
