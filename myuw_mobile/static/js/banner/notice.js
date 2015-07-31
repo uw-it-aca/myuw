@@ -44,8 +44,8 @@ var NoticeBanner = {
     },
 
     _mark_read: function(children) {
-        if($(children[0]).is(":visible") === false){
-            id_hash = $(children[0]).parent().attr('id');
+        if($(children[0]).is(":visible") === true){
+            id_hash = $(children[0]).parent().parent().attr('id');
             WSData.mark_notices_read([id_hash]);
             var new_tag = $(children[0]).parent().children(".new-status");
             new_tag.hide();
