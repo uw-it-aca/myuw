@@ -36,7 +36,7 @@ var AcademicCard = {
         $("#toggle_academic_card_resources").on("click", function(ev) {
             ev.preventDefault();
             $("#academic_card_resources").toggleClass("slide-show");
-            var card = $(ev.target).closest("[data-type='card']");
+            var card = "AcademicsCard";
 
             if ($("#academic_card_resources").hasClass("slide-show")) {
                 $("#toggle_academic_card_resources").text("SHOW LESS");

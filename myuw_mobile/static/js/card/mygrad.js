@@ -56,19 +56,19 @@ var MyGradCard = {
         $("#toggle_grad_committees").on("click", function(ev) {
             ev.preventDefault();
             $("#grad_committee_reqs").toggleClass("slide-show");
-            var card = $(ev.target).closest("[data-type='card']");
+            var card = "MyGradCard";
 
             if ($("#grad_committee_reqs").hasClass("slide-show")) {
                 $("#toggle_grad_committees").text("HIDE COMMITTEES");
                 $("#toggle_grad_committees").attr("title", "Hide Committees");
                 $("#grad_committee_reqs").attr("aria-hidden", "false");
-                window.myuw_log.log_card(card, "expand");
+                window.myuw_log.log_card(card, "expand committees");
             }
             else {
                 $("#toggle_grad_committees").text("SHOW COMMITTEES");
                 $("#toggle_grad_committees").attr("title", "Expand to show Committees");
                 $("#grad_committee_reqs").attr("aria-hidden", "true");
-                window.myuw_log.log_card(card, "collapse");
+                window.myuw_log.log_card(card, "collapse committees");
 
                 setTimeout(function() {
                     $("#toggle_grad_committees").text("SHOW COMMITTEES");

@@ -1,17 +1,18 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "mygrad_card_content" %}
 
-    <div class="card"  data-name="MyGradCard" data-type="card">
+    <div aria-labeledby="graduate_status" class="card">
         <h3>Graduate Status</h3>
-            <!-- petitions --> 
-            {{#if petitions }}
+
+        <!-- petitions -->
+        {{#if petitions }}
             <div class="card-badge-container" id="petition-reqs">
                 <h4>Petition Requests</h4>
 
                 <ul class="card_list">
                     {{ #each petitions}}
                     <li>
-                        <div class="card-badge clearfix"> 
+                        <div class="card-badge clearfix">
                             <h5>{{description}}</h5>
                             <ul class="recommendation-list">
                                 {{#if dept_recommend}}
@@ -41,11 +42,11 @@
                     {{/each}}
                 </ul>
             </div>
-            {{/if}}
-            <!-- end petitions --> 
+        {{/if}}
+        <!-- end petitions -->
 
-            <!-- leave --> 
-            {{#if leaves }}
+        <!-- leave -->
+        {{#if leaves }}
             <div class="card-badge-container" id="leave-reqs">
                 <h4>Leave Requests</h4>
 
@@ -68,16 +69,16 @@
                                     </span>
                                 {{/equal}}
                             </div>
-                        </div>                  
+                        </div>
                     </li>
                     {{/each}}
                 </ul>
             </div>
-            {{/if}}
-            <!-- end leave -->    
-        
-            <!-- degrees --> 
-            {{#if degrees }}
+        {{/if}}
+        <!-- end leave -->
+
+        <!-- degrees -->
+        {{#if degrees }}
             <div class="card-badge-container" id="degree-reqs">
                 <h4>Degree and Exam Requests</h4>
 
@@ -95,18 +96,18 @@
                     {{/each}}
                 </ul>
             </div>
-            {{/if}}
-            <!-- end degrees --> 
-            
-            <div class="pull-right">
-                <div class="card-badge-action">
-                    <a href="http://www.grad.washington.edu/mygrad/student.htm">Go to MyGrad</a>
-                </div>
-            </div> 
-            <br class="clearfix" /> 
-            
-            <!-- committees --> 
-            {{#if committees }}
+        {{/if}}
+        <!-- end degrees -->
+
+        <div class="pull-right">
+            <div class="card-badge-action">
+                <a href="http://www.grad.washington.edu/mygrad/student.htm">Go to MyGrad</a>
+            </div>
+        </div>
+        <br class="clearfix" />
+
+        <!-- committees -->
+        {{#if committees }}
             <div class="card-badge-container slide-hide" id="grad_committee_reqs" aria-hidden="true">
                 <h4>Your Committees</h4>
 
@@ -128,13 +129,9 @@
                 </ul>
 
             </div>
-            
             <div class="card-disclosure">
                 <a id="toggle_grad_committees" aria-controls="grad_committee_reqs" href="#" title="Expand to show Committees">Show Committees</a>
             </div>
-            {{/if}}
-
-        
+        {{/if}}
     </div>
-
     {% endtplhandlebars %}
