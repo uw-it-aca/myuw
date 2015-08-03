@@ -26,6 +26,7 @@ def get_grad_degree_for_current_user():
     try:
         if is_grad_student():
             return get_degree_by_regid(get_regid_of_current_user())
+        return []  # not an error
     except Exception:
         log_exception(logger,
                       "get_grad_degree_for_current_user",
@@ -42,6 +43,7 @@ def get_grad_committee_for_current_user():
     try:
         if is_grad_student():
             return get_committee_by_regid(get_regid_of_current_user())
+        return []  # not an error
     except Exception:
         log_exception(logger,
                       "get_grad_committee_for_current_user",
@@ -58,6 +60,7 @@ def get_grad_leave_for_current_user():
     try:
         if is_grad_student():
             return get_leave_by_regid(get_regid_of_current_user())
+        return []  # not an error
     except Exception:
         log_exception(logger,
                       "get_grad_leave_for_current_user",
@@ -74,6 +77,7 @@ def get_grad_petition_for_current_user():
     try:
         if is_grad_student():
             return get_petition_by_regid(get_regid_of_current_user())
+        return []  # not an error
     except Exception:
         log_exception(logger,
                       "get_grad_petition_for_current_user",
