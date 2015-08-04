@@ -2,7 +2,9 @@
     {% tplhandlebars "mygrad_card_content" %}
 
     <div aria-labeledby="graduate_status" class="card">
-        <h3>Graduate Status</h3>
+        {{#unless has_only_committee}}
+            <h3>Graduate Status</h3>
+        {{/unless}}
 
         <!-- petitions -->
         {{#if petitions }}
@@ -106,18 +108,22 @@
         {{/if}}
         <!-- end degrees -->
 
+        {{#unless has_only_committee}}
         <div class="pull-right">
             <div class="card-badge-action">
                 <a href="http://www.grad.washington.edu/mygrad/student.htm">Go to MyGrad</a>
             </div>
         </div>
         <br class="clearfix" />
-
+        {{/unless}}
         <!-- committees -->
         {{#if committees }}
-            <div class="card-badge-container slide-hide" id="grad_committee_reqs" aria-hidden="true">
-                <h4>Your Committees</h4>
-
+            {{#if has_only_committee}}
+                <h3>Your Committees</h3>
+            {{else}}
+                <div class="card-badge-container slide-hide" id="grad_committee_reqs" aria-hidden="true">
+                    <h4>Your Committees</h4>
+            {{/if}}
                 <ul class="card-list">
                     {{ #each committees}}
                     <li>
@@ -136,9 +142,18 @@
                 </ul>
 
             </div>
-            <div class="card-disclosure">
-                <a id="toggle_grad_committees" aria-controls="grad_committee_reqs" href="#" title="Expand to show Committees">Show Committees</a>
-            </div>
+            {{#unless has_only_committee}}
+                <div class="card-disclosure">
+                    <a id="toggle_grad_committees" aria-controls="grad_committee_reqs" href="#" title="Expand to show Committees">Show Committees</a>
+                </div>
+            {{/unless}}
+            {{#if has_only_committee}}
+                <div class="pull-right">
+                    <div class="card-badge-action">
+                        <a href="http://www.grad.washington.edu/mygrad/student.htm">Go to MyGrad</a>
+                    </div>
+                </div>
+            {{/if}}
         {{/if}}
     </div>
     {% endtplhandlebars %}
