@@ -314,7 +314,6 @@ class TestDisplayValues(TestCase):
             self.assertFalse(
                 is_after_last_day_of_classes(now, now_request))
 
-
     def test_day_on_last_day_of_classes(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             now_request = RequestFactory().get("/")
