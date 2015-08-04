@@ -10,7 +10,7 @@
             ],
             "NoticeCategory": "StudentALR",
             "NoticeContent": "<span class=\"notice-title\">Online ISS information session required before registration</span><span class=\"notice-body-with-title\">All new international students are required to complete the <a href=\"https://catalysttools.washington.edu/webq/survey/torre/79003\">International Student Services (ISS) Online Information Session</a> before registering for classes. You will need your UW NetID and password to access the online ISS information session. After you arrive on campus, the International Student Services (ISS) must collect copies of your immigration documents.</span>",
-            "NoticeType": "IntlStuCheckIn"
+            "NoticeType": "IntlStuCheckin"
         },
         {
             "NoticeAttributes": [
@@ -128,6 +128,36 @@
             "NoticeContent": "You can <a href=\"https://sdb.admin.washington.edu/students/uwnetid/finaidstatus.asp\">review the status</a> of your financial aid application online.",
             "NoticeType": "FinAid"
         },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentFOOT",
+            "NoticeContent": "<span class=\"notice-title\">Critical Summer Registration Information</span>&nbsp;<span class=\"notice-body-with-title\"><a href=\"http://fyp.washington.edu/sumreg\">Read the Summer Registration Guide</a> for instructions on how to register for both summer and autumn classes. If you have further questions, call First Year Programs at 206-543-4905.</span>",
+            "NoticeType": "SummerRegInfo"
+        },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentCLIST",
+            "NoticeContent": "<span class=\"notice-title\">Set Up UW Email</span>&nbsp;<span class=\"notice-body-with-title\"><a href=\"http://www.washington.edu/itconnect/connect/email/#students\">Set up your UW inbox</a> so you can receive important emails from instructors and UW departments.",
+            "NoticeType": "EmailServices"
+        },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentCLIST",
+            "NoticeContent": "<span class=\"notice-title\">Register for Required Online Information Session for International Students</span>&nbsp;<span class=\"notice-body-with-title\" >You must <a href=\"https://catalyst.uw.edu/webq/survey/torre/79003\">complete the International Student Services (ISS) Online Information Session</a>. The session includes important information about your benefits and responsibilities on an F-1 or J-1 student visa.</span>",
+            "NoticeType": "IntlStuCheckinA"
+        },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentCLIST",
+            "NoticeContent": "<span class=\"notice-title\">Register for Advising &#47O Orientation and Class Registration</span>&nbsp;<span class=\"notice-body-with-title\">You haven't registered for an Advising &#47O Orientation session yet. <strong>You will register for your first quarter classes during this session</strong>. <a href=\"http://fyp.washington.edu/getting-started-at-the-university-of-washington/\">Sign up for a session</a>.</span>",
+            "NoticeType": "AdvOrientRegDateA"
+        },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentCLIST",
+            "NoticeContent": "<span class=\"notice-title\">Submit Measles Immunization</span>&nbsp;<span class=\"notice-body-with-title\">Your Measles Immunization Form has not been processed at Hall Health Center. You cannot register for classes until you have submitted this form and it has been processed. Please <a href=\"http://www.washington.edu/students/reg/immunization.html\">complete and submit the form</a> as early as possible to ensure that it is processed before your registration date.</span>",
+            "NoticeType": "MeaslesA"
+        },
 		  {
             "NoticeAttributes": [
              {
@@ -159,6 +189,18 @@
             "NoticeCategory": "StudentDAD",
             "NoticeContent": "<span class=\"notice-body-without-title\"> Summer quarter begins <span class=\"date\"> June 13</span>.</span>",
             "NoticeType": "QtrEnd"
+        },
+       {
+            "NoticeAttributes": [
+              {
+                "Name": "ResidencyStatus",
+                "DataType": "string",
+                "Value": "1"
+              }
+            ],
+            "NoticeCategory": "NewStudentGEN",
+            "NoticeContent": "<span class=\"notice-title\">Expected Status</span>&nbsp;<span class=\"notice-body-with-title\">Your expected status at the University:</span>&nbsp;<ul class=\"notice-list\"> <li>Campus: SEATTLE</li><li>Class Standing: FRESHMAN</li><li>School/College: Arts & Sciences</li><li>Department: PRE MAJOR (A&S)</li><li>Student Number: 1522136</li><li>Residency Status: RES-IMMIGR</li></ul> <span class=\"notice-body-with-title\"><a href=\"http://www.washington.edu/students/reg/whatsthis.html\">Have questions? Read the Notes and Definitions</a></span>",
+            "NoticeType": "StatusSummary"
         }
     ],
     "Person": {
