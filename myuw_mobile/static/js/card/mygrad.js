@@ -20,6 +20,7 @@ var MyGradCard = {
             MyGradCard.dom_target.hide();
             return;
         }
+
         if (mygrad_data.petitions !== null) {
             for (var i = 0; i < mygrad_data.petitions.length; i += 1) {
                 if (mygrad_data.petitions[i].dept_recommend === "Pending" || mygrad_data.petitions[i].dept_recommend === "Withdraw") {
@@ -32,6 +33,9 @@ var MyGradCard = {
         }
 
         if (mygrad_data.committees !== null) {
+            if (!mygrad_data.degrees && !mygrad_data.leaves && !mygrad_data.petitions) {
+                mygrad_data.has_only_committee = true;
+            }
             for (var k = 0; k < mygrad_data.committees.length; k += 1) {
                 var members = mygrad_data.committees[k].members;
                 for (var j = 0; j < members.length; j += 1) {
