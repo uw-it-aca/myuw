@@ -55,7 +55,6 @@ var TuitionCard = {
             }
         }
         template_data.has_balance = parseInt(template_data.tuition_accbalance) > 0;
-
         var finaid_tags = ["tuition_aidhold_title",
                            "tuition_missingdocs_title",
                            "tuition_loanpromissory_title",

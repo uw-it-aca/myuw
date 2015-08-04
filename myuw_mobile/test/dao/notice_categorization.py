@@ -6,7 +6,7 @@ class TestNoticeCategories(TestCase):
 
     def test_categories(self):
         categorization = NOTICE_CATEGORIES.get(
-            "StudentALR_IntlStuCheckIn", None)
+            "StudentALR_IntlStuCheckin", None)
         self.assertIsNotNone(categorization)
         self.assertEqual(categorization["myuw_category"], "Holds")
         self.assertTrue(categorization["critical"])

@@ -11,4 +11,4 @@ class TestUserNotices(TestCase):
         notice = notices[0]
         model = UserNotices()
         hash = model.generate_hash(notice)
-        self.assertEquals(hash, "516660a8fb896ebc046ca68c8e8bcd02")
+        self.assertEquals(hash, "fbb05e8edaf403b7c5eb5a9ac8d7cc3b")
