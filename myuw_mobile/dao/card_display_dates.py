@@ -15,6 +15,10 @@ from myuw_mobile.dao.term import get_comparison_date,\
 
 
 def in_show_grades_period(term, request):
+    """
+    return true if it is within the grades display window -
+    before the 1st day of next quarter
+    """
     comparison_date = get_comparison_date(request)
     next_term = get_term_after(term)
     return comparison_date < next_term.first_day_quarter
