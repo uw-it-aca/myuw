@@ -57,32 +57,30 @@
                     <li>
                         <div class="card-badge clearfix">
                             <h5>
-                               {{reason}}&nbsp;<br />
-                               <span class="">{{#each terms}}{{#not_first @index}}, {{/not_first}}{{quarter}} {{year}}{{/each}}</span>
+                               {{#each terms}}{{#not_first @index}}, {{/not_first}}{{quarter}} {{year}}{{/each}} Leave
                             </h5>
-                            <div class="pull-left">
+                             <div class="pull-left">
                                 <span class="card-badge-label">Status</span>
-                            </div>
-                            <div class="pull-right">
-                                <span class="card-badge-value {{#equal status 'approved'}}text-danger{{/equal}}">{{status}}</span>
-                                {{#equal status 'approved'}}
-                                    <span class="card-badge-action pull-right">
-                                        <a target="_blank" href="http://www.grad.washington.edu/mygrad/" class="todo">Pay</a>
-                                    </span>
-                                {{/equal}}
-                            </div>
+                             </div>
+                             <div class="pull-right">
+                                <span class="card-badge-value"><span class="{{#equal status 'approved'}}text-danger{{/equal}}">{{status}}</span>
+                                    {{#equal status 'approved'}}
+                                        <br /><span><a target="_blank" href="http://www.grad.washington.edu/mygrad/" class="todo pull-right">Pay Your Fee</a></span>                                             
+                                    {{/equal}}</span>
+                             </div>
                         </div>
                     </li>
                     {{/each}}
                 </ul>
             </div>
-        {{/if}}
         <div class="pull-right">
             <div class="card-badge-action">
                 <a href="" class="todo">See Leave History</a>
             </div>
         </div>
         <br class="clearfix" />
+        {{/if}}
+        
 
         <!-- end leave -->
 
@@ -95,10 +93,15 @@
                     {{ #each degrees}}
                     <li>
                         <div class="card-badge clearfix"><!--<span class="card-badge-value">{{req_type}}</span>-->
-                            <h5>{{degree_title}}&nbsp;</h5>
+                            <h5>{{req_type}}, {{target_award_quarter}} {{target_award_year}}</h5>
                             <div>
-                                {{target_award_quarter}} {{target_award_year}}<br />
-                                {{status}}
+                                <div>{{degree_title}}</div>
+                                <div class="pull-left">
+                                    <span class="card-badge-label">Status</span>
+                                </div>
+                                <div>
+                                    <span class="card-badge-value">{{status}}</span>
+                                </div>
                             </div>
                         </div>
                     </li>
