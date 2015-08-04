@@ -225,12 +225,199 @@
         },
         {
             "NoticeAttributes": [
-             ],
+               {
+               "Name": "Year",
+               "DataType": "string",
+               "Value": "2013"
+               },
+               {
+               "Name": "Date",
+               "DataType": "date",
+               "Value": "20130401"
+               },
+               {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "20130318"
+               },
+               {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "20130331"
+               }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "SummerAidDate",
+            "NoticeContent": "<span class=\"notice-title\">Summer Aid Application available April 1st</span>&nbsp;<span class=\"notice-body-with-title\">Summer Financial Aid Application will be available</span> <span class=\"date\">April 1st</span>."
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "SummerAidDateShort",
+            "NoticeContent": "Summer Aid Application available <span class=\"date\">Apr 1st</span>."
+        },
+        {
+            "NoticeAttributes": [
+               {
+               "Name": "Year",
+               "DataType": "string",
+               "Value": "2013"
+               },
+               {
+               "Name": "Date",
+               "DataType": "date",
+               "Value": "20130801"
+               },
+               {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "20130401"
+               },
+               {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "20130801"
+               }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "SummerAidAvail",
+            "NoticeContent": "<span class=\"notice-title\">Summer Financial Aid Application now available</span>&nbsp;<span class=\"notice-body-with-title\">The <a href=\"https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">Summer Financial Aid Application</a> is now available</span>"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "SummerAidAvailShort",
+            "NoticeContent": "Summer aid Application now available"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "AcceptRejectAward",
+            "NoticeContent": "<span class=\"notice-title\">Accept or Reject Your Financial Aid</span>&nbsp;<span class=\"notice-body-with-title\">You have been awarded financial aid and you need to <a href=\"https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">accept/reject</a> the award(s) now in order to avoid cancellation.</span>"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "AcceptRejectAwardShort",
+            "NoticeContent": "Accept/reject your aid award"
+        },
+        {
+            "NoticeAttributes": [
+               {
+               "Name": "Date",
+               "DataType": "date",
+               "Value": "20130625"
+               },
+               {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "20130610"
+               },
+               {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "20130625"
+               }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "DisbursDateA",
+            "NoticeContent": "<span class=\"notice-title\">Financial Aid Disbursement Begins Jun 24th</span></span>&nbsp;<span class=\"notice-body-with-title\">Financial Aid disbursement begins on <span class=\"date\">Jun 24th</span>. Aid that exceeds your account charges will take 2-3 days to appear in your  bank account.</span> "
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "DisbursDateAShort",
+            "NoticeContent": "Aid disbursement begins <span class=\"date\">Jun 24th</span>"
+        },
+        {
+            "NoticeAttributes": [
+               {
+               "Name": "Date",
+               "DataType": "date",
+               "Value": "20130402"
+               },
+               {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "20130317"
+               },
+               {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "20130402"
+               }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "DisbursDateB",
+            "NoticeContent": "<span class=\"notice-title\">Financial Aid Disbursement begins Apr 1st</span>&nbsp;<span class=\"notice-body-with-title\">Financial Aid disbursement begins on <span class=\"date\">Apr 1st</span>. Aid that exceeds your account charges can take up to 10 business days to get by mail.</span>"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "DisbursDateBShort",
+            "NoticeContent": "Aid Disbursement begins <span class=\"date\">Apr 1st</span>"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "LoanCounseling",
+            "NoticeContent": "<span class=\"notice-title\">Loan entrance counseling required</span>&nbsp;<span class=\"notice-body-with-title\">You need to complete <a href=\"https://studentloans.gov\">Entrance Counseling</a> for your Loan(s).</span> "
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "LoanCounseling",
+            "NoticeContent": "<span class=\"notice-title\">Loan entrance counseling required</span>&nbsp;<span class=\"notice-body-with-title\">You need to complete <a href=\"https://studentloans.gov\">Entrance Counseling</a> for your Loan(s).</span>"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "LoanCounselingShort",
+            "NoticeContent": "Loan entrance counseling required"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "LoanPromissory",
+            "NoticeContent": "<span class=\"notice-title\">Loan Master Promissory Note required</span>&nbsp<span class=\"notice-body-with-title\">You may have a Master Promissory Note that needs to be signed, please check your messages on <a href=\"https://sdb/admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">Financial Aid Status</a></span>"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "LoanPromissoryShort",
+            "NoticeContent": "Loan Master Promissory Note needs signing"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "MissingDocs",
+            "NoticeContent": "<span class=\"notice-title\">Missing Financial Aid documents</span>&nbsp;<span class=\"notice-body-with-title\">Your aid has not been disbursed because you need to <a href=\"https://sdb/admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\"> submit missing documents</a></span>"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "MissingDocsShort",
+            "NoticeContent": "Aid not disbursed because of missing documents"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "AidHold",
+            "NoticeContent": "<span class=\"notice-title\">Financial Aid Hold</span>&nbsp;<span class=\"notice-body-with-title\">You have a <a href=\"https://sdb/admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">hold</a> on your financial aid.</span> "
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "AidHoldShort",
+            "NoticeContent": "You have a hold on your aid"
+        },
+        {
+            "NoticeAttributes": [],
             "NoticeCategory": "NewStudentFOOT",
             "NoticeContent": "<span class=\"notice-title\">International Student Resources</span>&nbsp;<span class=\"notice-body-with-title\">The Foundation for International Understanding Through Students (FIUTS) welcomes you to the University of Washington! <a href=\"http://www.fiuts.washington.edu/\">Visit the FIUTS website</a> for information about international Student Orientation and the wide variety of services for international students.",
             "NoticeType": "FIUTS"
         },
-       {
+        {
             "NoticeAttributes": [],
             "NoticeCategory": "NewStudentCLIST",
             "NoticeContent": "<span class=\"notice-body-without-title\">You have completed the International Student Services Online Information Session.</span>",

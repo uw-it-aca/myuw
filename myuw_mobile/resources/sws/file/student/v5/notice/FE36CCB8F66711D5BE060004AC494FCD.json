@@ -177,7 +177,7 @@
                {
                "Name": "Date",
                "DataType": "date",
-               "Value": "future"
+               "Value": "20130801"
                },
                {
                "Name": "Begin",
@@ -187,7 +187,7 @@
                {
                "Name": "End",
                "DataType": "date",
-               "Value": "20130725"
+               "Value": "20130801"
                }
             ],
             "NoticeCategory": "StudentFinAid",
