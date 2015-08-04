@@ -83,9 +83,12 @@ var RegStatusCard = {
             return;
         }
 
+        var finaid_tags = ["reg_summeraid_avail_title"];
+
         //Get hold count from notice attrs
         var hold_count = reg_holds.length;
-        return template({"reg_notices": reg_notices,
+        return template({"finaid_notices": Notices.get_ordered_finaid_notices(finaid_tags),
+                         "reg_notices": reg_notices,
                          "reg_holds": reg_holds,
                          "card": card,
                          "is_tacoma": window.user.tacoma,

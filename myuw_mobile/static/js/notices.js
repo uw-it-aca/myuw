@@ -47,7 +47,7 @@ var Notices = {
             all_notices = all_notices.concat(notices[group].notices);
         }
 
-        var critical_notices = Notices._get_critical(WSData.notice_data());
+        var critical_notices = Notices._get_all_critical();
 
         notices.total_notices = Notices.get_notice_page_notices().length;
         notices.legal = Notices.get_notices_for_category("Legal");
@@ -171,18 +171,30 @@ var Notices = {
         return filtered_notices;
     },
 
+    get_ordered_finaid_notices: function (finaid_tags, is_critical) {
+        var finaid_notices = [];
+        for (var j = 0; j < finaid_tags.length; j += 1) {
+            var notice = Notices.get_notices_for_tag(finaid_tags[j])[0];
+            if (notice !== undefined && (is_critical === undefined || notice.is_critical)) {
+                finaid_notices.push(notice);
+            }
+        }
+        return (finaid_notices.length > 0 ? finaid_notices : null);
+    },
+
     get_notices_by_date: function () {
         "use strict";
         var i,
             j,
             notice,
             date,
-            notices = Notices.get_notices_for_tag('notices_date_sort'),
             today,
+            notices = Notices.get_notices_for_tag('notices_date_sort'),
             notices_today = [],
             notices_week = [],
             notices_next_week = [],
             notices_future = [];
+
         today = Notices._get_utc_date(new Date());
 
         for (i = 0; i < notices.length; i += 1) {
@@ -255,11 +267,6 @@ var Notices = {
         return category_counts;
     },
 
-    get_all_critical: function () {
-        var notices = WSData.notice_data();
-        return Notices._get_critical_count(notices);
-    },
-
     _get_unread_count: function (notices) {
         var unread_count = 0;
         for (i = 0; i < notices.length; i += 1) {
@@ -271,19 +278,45 @@ var Notices = {
         return unread_count;
     },
 
-    _get_critical: function(notices) {
+    _get_critical: function(notices, exclude_sws_category) {
         var critical = [];
         for (i = 0; i < notices.length; i += 1) {
             notice = notices[i];
             if (notice.is_critical) {
+                if (exclude_sws_category === 'undefined' ||
+                    notice.sws_category !== exclude_sws_category) {
                     critical.push(notice);
+                }
             }
+        }
+        return critical;
+    },
+
+    _get_all_critical: function() {
+        var critical = Notices._get_critical(WSData.notice_data(), "StudentFinAid");
+        var finaid_critical_tags = ["tuition_aidhold",
+                                    "tuition_missingdocs",
+                                    "tuition_loanpromissory ",
+                                    "tuition_loancounseling",
+                                    "tuition_acceptreject",
+                                    "tuition_disbursedateA",
+                                    "tuition_disbursedateB",
+                                    "tuition_direct_deposit",
+                                    "tuition_aid_prioritydate"
+                                   ];
+        var finaid_notices = Notices.get_ordered_finaid_notices(finaid_critical_tags, true);
+        if (finaid_notices !== null) {
+            critical = critical.concat(finaid_notices);
         }
         return critical;
     },
 
     _get_critical_count: function (notices) {
         return Notices._get_critical(notices).length;
+    },
+
+    get_total_critical_count: function () {
+        return Notices._get_critical_count(WSData.notice_data());
     },
 
     _get_utc_date: function (date) {
@@ -323,18 +356,20 @@ var Notices = {
     get_notice_page_notices: function () {
         var page_notices = [];
         var unique_notices = [];
-        var notices = WSData.notice_data();
-        var critical = Notices._get_critical(notices);
-        var legal = Notices.get_notices_for_category("Legal").notices;
-        var date_sort = Notices.get_notices_for_tag('notices_date_sort');
 
+        var critical = Notices._get_all_critical();
         page_notices = page_notices.concat(critical);
+
+        var legal = Notices.get_notices_for_category("Legal").notices;
         if(legal !== undefined) {
             page_notices = page_notices.concat(legal);
         }
+
+        var date_sort = Notices.get_notices_for_tag('notices_date_sort');
         if(date_sort !== undefined) {
             page_notices = page_notices.concat(date_sort);
         }
+
         $(page_notices).each(function (i, notice) {
             var unmatched = true;
             $(unique_notices).each(function (i, unique_notice){
