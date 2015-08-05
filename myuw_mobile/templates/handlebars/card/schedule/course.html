@@ -217,6 +217,16 @@
                 </div>
                 {{ /unless}}
 
+				{{#if instructors}}
+                <div class="card-disclosure">
+                    <a class="slide-link" href="#" aria-controls="course{{index}}" title="Show course instructors">
+					Show instructors</a>
+                </div>
+				{{else}}
+				<div class="card-faux-disclosure">No instructor information available</div>
+				{{/if}}
+
+<!-- Original Disclosure Behavior
                 <div class="card-disclosure">
                     <a class="slide-link" href="#" aria-controls="course{{index}}" title="Show more course information">
 					Show {{#if instructors}}
@@ -229,6 +239,7 @@
 							{{/if}}
 						  {{/if}}</a>
                 </div>
+-->
 
         </div>
     </div>

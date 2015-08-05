@@ -9,14 +9,18 @@
         
         <div class="category-content">
             
+			<div class="row">
             {{ #each link_data }}
-            <h3 id="{{subcat_slug}}" class="category-sub-header">{{ subcategory }}</h3>
-            {{ #each links }}
-                <ul class="category-links">
-                    <li> <a href="{{ url }}" {{#if new_tab }}target="_blank"{{ /if }}>{{ title }}</a></li>
-                </ul>
+				<div class="col-lg-6">
+	            <h3 id="{{subcat_slug}}" class="category-sub-header">{{ subcategory }}</h3>
+	            {{ #each links }}
+	                <ul class="category-links">
+	                    <li> <a href="{{ url }}" {{#if new_tab }}target="_blank"{{ /if }}>{{ title }}</a></li>
+	                </ul>
+	            {{ /each }}
+				</div>
             {{ /each }}
-            {{ /each }}
+			</div>
         
         </div>
         

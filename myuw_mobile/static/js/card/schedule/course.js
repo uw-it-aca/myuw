@@ -96,16 +96,16 @@ var CourseCard = {
             var card = $(ev.target).closest("[data-type='card']");
 
             if ($(hidden_block).hasClass("slide-show")) {
-                $(slide_link).text("SHOW LESS");
-                $(slide_link).attr("title", "Show less course information");
+                $(slide_link).text("HIDE INSTRUCTORS");
+                $(slide_link).attr("title", "Hide instructor information");
                 $(hidden_block).attr("aria-hidden", "false");
                  window.myuw_log.log_card(card, "expand");
             }
             else {
-                $(slide_link).attr("title", "Show more course information");
+                $(slide_link).attr("title", "Show instructor information");
                 $(hidden_block).attr("aria-hidden", "true");
                 setTimeout(function() {
-                      $(slide_link).text("SHOW MORE");
+                      $(slide_link).text("SHOW INSTRUCTORS");
                 }, 700);
                 window.myuw_log.log_card(card, "collapse");
             }
