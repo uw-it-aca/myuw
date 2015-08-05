@@ -29,7 +29,7 @@ var NoticeBanner = {
     },
 
     _init_events: function () {
-        var notices = $(".notice-title");
+        var notices = $(NoticeBanner.dom_target).find(".notice-title");
         //supporting enter key for accessibility purposes
         $(".notice-container").keyup(function(e){
             if(e.keyCode === 13){
@@ -37,22 +37,31 @@ var NoticeBanner = {
 
             }
         });
-        notices.on('click', function(elm){
+        notices.on("click", function(elm){
             NoticeBanner._toggle_notice(elm.target);
         });
+        $(NoticeBanner.dom_target).find(".notice-body-with-title, .notice-list").addClass("sr-only");
     },
 
     _toggle_notice: function(title_elm){
-        var children = $(title_elm).parent().children('.notice-body-with-title, .notice-list');
-        $(children).css('visibility', function(i, visibility){
-            return (visibility === 'visible') ? 'hidden' : 'visible';
+        var children = $(title_elm).parent().children(".notice-body-with-title, .notice-list");
+        $.each(children, function(idx, child){
+            if ($(child).hasClass("sr-only")){
+                console.log("removing");
+                console.log(child);
+                $(child).removeClass("sr-only");
+            } else {
+                $(child).addClass("sr-only");
+                console.log("adding");
+                console.log(child);
+            }
         });
         NoticeBanner._mark_read(children);
     },
 
     _mark_read: function(children) {
-        if($(children[0]).is(":visible") === true){
-            id_hash = $(children[0]).parent().parent().attr('id');
+        if($(children[0]).hasClass("sr-only") === false){
+            id_hash = $(children[0]).parent().parent().attr("id");
             WSData.mark_notices_read([id_hash]);
             var new_tag = $(children[0]).parent().children(".new-status");
             new_tag.hide();
