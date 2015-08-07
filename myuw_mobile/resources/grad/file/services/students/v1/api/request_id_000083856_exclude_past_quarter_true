@@ -58,5 +58,20 @@
      "major":"L ARCH",
      "pathway":0,
      "degreeLevel":2,
-     "degreeType":7}
+     "degreeType":7},
+    {"syskey":83856,
+     "requestId":100794,
+     "requestType":"Masters Request",
+     "degreeTitle":"Master Of Science In Construction Management",
+     "status":"Did not graduate",
+     "examPlace":null,
+     "examDate":null,
+     "targetAwardYear":2015,
+     "targetAwardQuarter":"winter",
+     "requestSubmitDate":"2015-01-14T14:15:04.74",
+     "major":"CONMGT",
+     "majorFullName":"Construction Management,Evening Deg Prog",
+     "pathway":0,
+     "degreeLevel":2,
+     "degreeType":6}
 ]

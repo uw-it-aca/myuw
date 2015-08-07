@@ -382,3 +382,11 @@ Handlebars.registerHelper('not_first', function(index, block) {
         return block.fn(this);
     }
 });
+
+Handlebars.registerHelper('not_equal', function(obj, value, block) {
+    if (arguments.length < 3)
+        throw new Error("Handlebars Helper not_equal needs 2 parameters");
+    if(obj != value) {
+        return block.fn(this);
+    }
+});

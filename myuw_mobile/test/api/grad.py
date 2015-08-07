@@ -48,7 +48,7 @@ class TestGrad(TestCase):
         data = json.loads(response.content)
 
         self.assertIsNotNone(data.get("degrees"))
-        self.assertEquals(len(data["degrees"]), 4)
+        self.assertEquals(len(data["degrees"]), 5)
         degree = data["degrees"][0]
         self.assertEqual(degree["req_type"], "Masters Request")
         self.assertEqual(degree["submit_date"], "2015-03-11T20:53:32")

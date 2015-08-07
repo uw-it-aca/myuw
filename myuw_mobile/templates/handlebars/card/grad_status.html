@@ -1,10 +1,8 @@
 {% load templatetag_handlebars %}
-    {% tplhandlebars "mygrad_card_content" %}
+    {% tplhandlebars "gradstatus_card_content" %}
 
     <div aria-labeledby="graduate_status" class="card">
-        {{#unless has_only_committee}}
-            <h3>Graduate Status</h3>
-        {{/unless}}
+        <h3>Graduate Status</h3>
 
         <!-- petitions -->
         {{#if petitions }}
@@ -63,10 +61,14 @@
                                 <span class="card-badge-label">Status</span>
                              </div>
                              <div class="pull-right">
-                                <span class="card-badge-value"><span class="{{#equal status 'approved'}}text-danger{{/equal}}">{{status}}</span>
-                                    {{#equal status 'approved'}}
-                                        <br /><span><a target="_blank" href="https://apps.grad.uw.edu/mgp-stu/uwnetid/default.aspx" class="pull-right">Pay Your Fee</a></span>
-                                    {{/equal}}</span>
+                                 <span class="card-badge-value">
+                                 {{#not_equal status 'approved'}}
+                                     <span class="{{#equal status 'approved'}}text-danger{{/equal}}">{{status}}</span>
+                                 {{/not_equal}}
+                                 {{#equal status 'approved'}}
+                                     <a target="_blank" href="https://apps.grad.uw.edu/mgp-stu/uwnetid/default.aspx" class="pull-right">Pay Your Fee</a>
+                                 {{/equal}}
+                                 </span>
                              </div>
                         </div>
                     </li>
@@ -103,52 +105,11 @@
         {{/if}}
         <!-- end degrees -->
 
-        {{#unless has_only_committee}}
         <div class="pull-right">
             <div class="card-badge-action">
                 <a href="http://www.grad.uw.edu/mygrad/student.htm">Go to MyGrad</a>
             </div>
         </div>
         <br class="clearfix" />
-        {{/unless}}
-        <!-- committees -->
-        {{#if committees }}
-            {{#if has_only_committee}}
-                <h3>Your Committees</h3>
-            {{else}}
-                <div class="card-badge-container slide-hide" id="grad_committee_reqs" aria-hidden="true">
-                    <h4>Your Committees</h4>
-            {{/if}}
-                <ul class="card-list">
-                    {{ #each committees}}
-                    <li>
-                        <h5>{{committee_type}}</h5>
-                        <ol>
-                            {{ #each members}}
-                            <li class="committee-member">
-                                <span style="display: block">{{first_name}} {{last_name}}{{#if member_type}}, {{member_type}}{{/if}}</span>
-                                <span style="display: block">{{dept}}</span>
-                                <span style="display: block"><a href="mailto:{{email}}">{{email}}</a></span>
-                            </li>
-                            {{/each}}
-                        </ol>
-                    </li>
-                    {{/each}}
-                </ul>
-
-            </div>
-            {{#unless has_only_committee}}
-                <div class="card-disclosure">
-                    <a id="toggle_grad_committees" aria-controls="grad_committee_reqs" href="#" title="Expand to show Committees">Show Committees</a>
-                </div>
-            {{/unless}}
-            {{#if has_only_committee}}
-                <div class="pull-right">
-                    <div class="card-badge-action">
-                        <a href="http://www.grad.uw.edu/mygrad/student.htm">Go to MyGrad</a>
-                    </div>
-                </div>
-            {{/if}}
-        {{/if}}
     </div>
     {% endtplhandlebars %}
