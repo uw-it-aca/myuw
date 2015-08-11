@@ -39,7 +39,7 @@ var NoticeBanner = {
             placeholder = $("<div></div>");
             var notice_body = $(notice.notice_content).not(".notice-title");
             $.each(notice_body, function(idx, element){
-                placeholder.append(element)
+                placeholder.append(element);
             });
             var notice_body_html = $(placeholder).html();
             notice.notice_title = notice_title_html;
