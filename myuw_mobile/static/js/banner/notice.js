@@ -18,6 +18,7 @@ var NoticeBanner = {
             $.each(notices, function(idx, notice){
                 notice.icon_class = NoticeBanner.get_icon_class_for_category(notice.category);
             });
+            NoticeBanner._split_notice_titles(notices);
 
             var html = template({
                 "total_unread": Notices.get_total_unread(),
@@ -28,42 +29,41 @@ var NoticeBanner = {
         }
     },
 
+    _split_notice_titles: function (notices) {
+        $.each(notices, function(idx, notice){
+            var notice_title = $(notice.notice_content).filter(".notice-title");
+            var placeholder = $("<div></div>");
+            placeholder.append(notice_title);
+            var notice_title_html = $(placeholder).html();
+
+            placeholder = $("<div></div>");
+            var notice_body = $(notice.notice_content).not(".notice-title");
+            $.each(notice_body, function(idx, element){
+                placeholder.append(element)
+            });
+            var notice_body_html = $(placeholder).html();
+            notice.notice_title = notice_title_html;
+            notice.notice_body = notice_body_html;
+        });
+        return notices;
+    },
+
+
     _init_events: function () {
-        var notices = $(NoticeBanner.dom_target).find(".notice-title");
-        //supporting enter key for accessibility purposes
-        $(".notice-container").keyup(function(e){
-            if(e.keyCode === 13){
-                NoticeBanner._toggle_notice($(this).find(".notice-title"));
+        $(".crit-notice-title").on("click", function(e) {
+            NoticeBanner._mark_read(e.target);
 
-            }
         });
-        notices.on("click", function(elm){
-            NoticeBanner._toggle_notice(elm.target);
-        });
-        $(NoticeBanner.dom_target).find(".notice-body-with-title, .notice-list").addClass("sr-only");
     },
 
-    _toggle_notice: function(title_elm){
-        var children = $(title_elm).parent().children(".notice-body-with-title, .notice-list");
-        $.each(children, function(idx, child){
-            if ($(child).hasClass("sr-only")){
-                console.log("removing");
-                console.log(child);
-                $(child).removeClass("sr-only");
-            } else {
-                $(child).addClass("sr-only");
-                console.log("adding");
-                console.log(child);
-            }
-        });
-        NoticeBanner._mark_read(children);
-    },
-
-    _mark_read: function(children) {
-        if($(children[0]).hasClass("sr-only") === false){
-            id_hash = $(children[0]).parent().parent().attr("id");
-            WSData.mark_notices_read([id_hash]);
-            var new_tag = $(children[0]).parent().children(".new-status");
+    _mark_read: function(elm) {
+        // Looks backwards because class isn't removed until elm is shown,
+        // which happens long after click event fires,
+        // if has class element was just shown
+        if($(elm).parent().hasClass('collapsed')){
+            var notice_id = $(elm).parents(".notice-container").first().attr('id');
+            WSData.mark_notices_read([notice_id]);
+            var new_tag = $(elm).parent().siblings(".new-status").first();
             new_tag.hide();
 
         }

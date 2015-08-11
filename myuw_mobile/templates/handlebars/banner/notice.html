@@ -13,7 +13,8 @@
 					<li class="notice-content-list-item clearfix">
 			            <div class="notice-category-icon"><i class="fa {{ icon_class }}" title="{{ category }}" aria-hidden="true"></i></div>
 			            {{ #unless is_read }}<span class="new-status">New</span>{{ /unless }}
-						{{{ notice_content }}}
+						<a href="#" class="crit-notice-title collapsed" data-toggle="collapse" data-target="#{{ id_hash }}_div">{{{ notice_title }}}</a>
+                        <div id="{{ id_hash }}_div" class="collapse">{{{ notice_body }}}</div>
 					</li>
 				</div>
 				{{ /each }}
