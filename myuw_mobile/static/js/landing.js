@@ -27,8 +27,7 @@ var Landing = {
                 Landing.load_cards_for_viewport();
                 Landing.is_desktop = Landing.get_is_desktop();
             }
-        })
-
+        });
     },
 
     get_is_desktop: function() {
@@ -50,6 +49,9 @@ var Landing = {
         }
     },
     _load_desktop_cards: function() {
+        // reset content divs
+        $("#landing_content").html('');
+        $("#landing_accounts").html('');
         var desktop_body_cards = [
             FinalExamCard,
             GradeCard,
@@ -78,6 +80,9 @@ var Landing = {
     },
 
     _load_mobile_cards: function() {
+        // reset content divs
+        $("#landing_content").html('');
+        $("#landing_accounts").html('');
         var mobile_cards = [
             FinalExamCard,
             GradeCard,
