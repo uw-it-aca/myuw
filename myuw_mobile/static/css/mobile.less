@@ -429,11 +429,23 @@ body {
 
 			ul {margin-top: 5px; margin-bottom: 10px;}
 			li {margin-left: -20px;}
-        }
-        
-        
+        }  
     }
-    
+}
+
+#app_messages {
+	.message-banner {background-color: #72adcb;color:#fff;
+		.message-text {padding:10px 15px;font-size: 13px;
+			a {text-decoration: underline; color:#fff;
+				&.btn-link {padding: 0;margin: 0;vertical-align: 0;font-size: inherit;}
+			} 
+		}
+	}
+	.message-dialog {
+		.modal-content {
+			.modal-body {}
+		}
+	}
 }
 
 /*** notice banner - critical notices on landing page ***/
@@ -453,7 +465,7 @@ body {
 				        &:active, a:focus {text-decoration: none;}    
 			        }
 					.new-status {padding: 0 3px; background: #f5d300; float: right; border-radius: 4px;margin-right: 20px; font-size: 12px;}
-			        .notice-body-with-title {margin-bottom: 1em; padding: 10px 10px;}
+			        .notice-body-with-title {margin-bottom: 1em; padding: 10px 10px;display:inline-block;}
 			        .notice-body-without-title { }
 			        .notice-list {padding-top:5px;}
 				}
