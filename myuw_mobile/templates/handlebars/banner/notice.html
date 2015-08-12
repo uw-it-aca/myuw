@@ -9,7 +9,7 @@
         <div class="critical-notices-container">
 			<ul class="notice-content-list">				
 				{{ #each notices }}
-				<div id="{{ id_hash }}" class="notice-container" tabindex="0">
+				<div id="{{ id_hash }}" class="notice-container">
 					<li class="notice-content-list-item clearfix">
 			            <div class="notice-category-icon"><i class="fa {{ icon_class }}" title="{{ category }}" aria-hidden="true"></i></div>
 			            {{ #unless is_read }}<span class="new-status">New</span>{{ /unless }}
