@@ -15,7 +15,6 @@ var Landing = {
         $("#main-content").html(template());
 
         NoticeBanner.render_init($("#notice_banner_location"));
-        CalendarBanner.render_init($("#calendar_banner_location"));
 
         Landing.load_cards_for_viewport();
         // Set initial display state
@@ -49,9 +48,7 @@ var Landing = {
         }
     },
     _load_desktop_cards: function() {
-        // reset content divs
-        $("#landing_content").html('');
-        $("#landing_accounts").html('');
+        Landing._reset_content_divs();
         var desktop_body_cards = [
             FinalExamCard,
             GradeCard,
@@ -75,14 +72,13 @@ var Landing = {
             FutureQuarterCard1,
             SummerRegStatusCard1
         ];
-        Cards.load_cards_in_order(desktop_body_cards, $("#landing_content"));
-        Cards.load_cards_in_order(desktop_sidebar_cards, $("#landing_accounts"));
+        Cards.load_cards_in_order(desktop_body_cards, $("#landing_content_cards"));
+        Cards.load_cards_in_order(desktop_sidebar_cards, $("#landing_accounts_cards"));
+        CalendarBanner.render_init($("#calendar_banner_location_desktop"));
     },
 
     _load_mobile_cards: function() {
-        // reset content divs
-        $("#landing_content").html('');
-        $("#landing_accounts").html('');
+        Landing._reset_content_divs();
         var mobile_cards = [
             FinalExamCard,
             GradeCard,
@@ -103,7 +99,15 @@ var Landing = {
             FutureQuarterCard1,
             SummerRegStatusCard1
         ];
-        Cards.load_cards_in_order(mobile_cards, $("#landing_content"));
+        Cards.load_cards_in_order(mobile_cards, $("#landing_content_cards"));
+        CalendarBanner.render_init($("#calendar_banner_location_mobile"));
+    },
+
+    _reset_content_divs: function() {
+        $("#landing_content_cards").html('');
+        $("#landing_accounts_cards").html('');
+        $("#calendar_banner_location_desktop").html('');
+        $("#calendar_banner_location_mobile").html('');
     }
 
 };

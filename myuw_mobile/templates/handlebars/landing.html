@@ -5,11 +5,13 @@
     <div class="container landing-wrapper">	    
 	    <div class="row">	    
 		    <div id="landing_content" class="col-md-8">
-				{% if request.is_mobile or request.is_tablet %}<div id="calendar_banner_location"></div>{% endif %}
+				<div id="calendar_banner_location_mobile"></div>
 			    <div id="notice_banner_location"></div>
+                <div id="landing_content_cards"></div>
 		    </div>
 		    <div id="landing_accounts" class="col-md-4">
-				{% if not request.is_mobile and not request.is_tablet %}<div id="calendar_banner_location"></div>{% endif %}
+                <div id="calendar_banner_location_desktop"></div>
+                <div id="landing_accounts_cards"></div>
 		    </div>
 	    </div>
     </div>
