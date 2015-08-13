@@ -58,19 +58,19 @@ var Landing = {
             RegStatusCard,
             SummerEFSCard,
             SummerRegStatusCardA,
+            CriticalInfoCard,
+            InternationalStuCard,
             VisualScheduleCard,
             TextbookCard,
-            CourseCard
+            CourseCard,
+            FutureQuarterCard1,
+            SummerRegStatusCard1
         ];
         var desktop_sidebar_cards = [
             HfsCard,
             TuitionCard,
-            CriticalInfoCard,
-            InternationalStuCard,
             LibraryCard,
-            EventsCard,
-            FutureQuarterCard1,
-            SummerRegStatusCard1
+            EventsCard
         ];
         Cards.load_cards_in_order(desktop_body_cards, $("#landing_content_cards"));
         Cards.load_cards_in_order(desktop_sidebar_cards, $("#landing_accounts_cards"));
@@ -94,6 +94,7 @@ var Landing = {
             TextbookCard,
             CourseCard,
             HfsCard,
+            TuitionCard,
             LibraryCard,
             EventsCard,
             FutureQuarterCard1,
