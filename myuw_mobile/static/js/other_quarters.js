@@ -21,15 +21,15 @@ var Quarters = {
             return;
         }
 
-        var urlprefix = "/mobile";
+        var urlprefix = "/";
         var path = window.location.pathname;
-        var matches = path.match(/^\/mobile\/future_quarters(\/.*)$/);
+        var matches = path.match(/^\/future_quarters(\/.*)$/);
         if (matches) {
             urlprefix = urlprefix + matches[1];
         }
 
         var is_visual = false;
-        if (urlprefix === "/mobile/visual") {
+        if (urlprefix === "/visual") {
             is_visual = true;
         }
 
@@ -48,10 +48,10 @@ var Quarters = {
 
             var url;
             if (is_visual) {
-                url = "/mobile/visual/"+term;
+                url = "/visual/"+term;
             }
             else {
-                url = "/mobile/"+term;
+                url = "/"+term;
             }
             var hist = window.History;
             hist.pushState(state, "", url);

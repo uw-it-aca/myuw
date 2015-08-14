@@ -108,13 +108,13 @@ var CourseList = {
                     state: "instructor",
                     instructor: ev.target.rel,
                     term: term
-                },  "", "/mobile/instructor/"+term+"/"+ev.target.rel);
+                },  "", "/instructor/"+term+"/"+ev.target.rel);
             }
             else {
                 hist.pushState({
                     state: "instructor",
                     instructor: ev.target.rel
-                },  "", "/mobile/instructor/"+ev.target.rel);
+                },  "", "/instructor/"+ev.target.rel);
             }
             return false;
         });
@@ -125,7 +125,7 @@ var CourseList = {
                 var hist = window.History;
                 hist.replaceState({
                     state: "course_list"
-                },  "", "/mobile/");
+                },  "", "/");
                 return false;
             });
         }
@@ -133,7 +133,7 @@ var CourseList = {
             WSData.log_interaction("course_list_view_visual_schedule", term);
             var hist = window.History;
             var state = { state: "visual" };
-            var url = "/mobile/visual";
+            var url = "/visual";
 
             if (term) {
                 state.term = term;

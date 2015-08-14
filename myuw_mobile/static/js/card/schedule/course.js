@@ -124,13 +124,13 @@ var CourseCard = {
                     state: "instructor",
                     instructor: ev.target.rel,
                     term: term
-                },  "", "/mobile/instructor/"+term+"/"+ev.target.rel);
+                },  "", "/instructor/"+term+"/"+ev.target.rel);
             }
             else {
                 hist.pushState({
                     state: "instructor",
                     instructor: ev.target.rel
-                },  "", "/mobile/instructor/"+ev.target.rel);
+                },  "", "/instructor/"+ev.target.rel);
             }
             return false;
         });

@@ -65,7 +65,7 @@
 	    <div class="courseTBD">
 		    <h6>Courses with meeting times to be determined:</h6>
 		    {{#each courses_meeting_tbd }}
-	        <a href="/mobile/visual/{{section_index}}" class="show_section_details {{curriculum}}_{{course_number}}{{section_id}}" rel="{{section_index}}"> 
+	        <a href="/visual/{{section_index}}" class="show_section_details {{curriculum}}_{{course_number}}{{section_id}}" rel="{{section_index}}"> 
 	        <div class="c{{color_id}} visual-course pull-left"> 
 		        <div class="visual-course-id">{{curriculum}} {{course_number}}{{section_id}}</div> 
 	        </div> 
@@ -87,9 +87,9 @@
         {% tplhandlebars "visual_schedule_day" %}
             {{#each meetings}}
                 {{#if term}}
-                <a href="/mobile/visual/{{term}}/{{section_index}}" class="show_section_details {{curriculum}}_{{course_number}}{{section_id}}" rel="{{section_index}}">
+                <a href="/visual/{{term}}/{{section_index}}" class="show_section_details {{curriculum}}_{{course_number}}{{section_id}}" rel="{{section_index}}">
                 {{else}}
-                <a href="/mobile/visual/{{section_index}}" class="show_section_details {{curriculum}}_{{course_number}}{{section_id}}" rel="{{section_index}}">
+                <a href="/visual/{{section_index}}" class="show_section_details {{curriculum}}_{{course_number}}{{section_id}}" rel="{{section_index}}">
                 {{/if}}
             <div class="c{{color_id}} visual-course" style="position: absolute; top:{{time_percentage start ../start_time ../end_time}}%; height:{{time_percentage_height start end ../start_time ../end_time}}%;">
 	            <div class="visual-course-id">{{curriculum}} {{course_number}}{{section_id}}</div>

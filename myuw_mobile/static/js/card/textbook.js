@@ -92,7 +92,7 @@ var TextbookCard = {
             hist.pushState({
                 state: "textbooks",
                 term: term
-            },  "", "/mobile/textbooks/"+term);
+            },  "", "/textbooks/"+term);
             return false;
         });
 

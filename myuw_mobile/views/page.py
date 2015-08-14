@@ -29,7 +29,7 @@ def index(request,
         "year": year,
         "quarter": quarter,
         "summer_term": summer_term,
-        "home_url": "/mobile",
+        "home_url": "/",
         "err": None,
         "user": {
             "netid": None,

@@ -69,52 +69,50 @@ $(document).ready(function() {
         var hist = window.History,
             matches;
 
-        if (path === "/mobile/" || path === "/mobile") {
+        // All version are at the same place
+        path = path.replace(/^\/mobile/, "");
+
+        if (path.match(/^\/landing/)) {
+            // The old "home" url was at /landing/ - just send that to "/"
             hist.replaceState({
                 state: "landing",
-            },  "", "/mobile/landing/");
-            return;
+            },  "", "/");
         }
-        else if (path.match(/^\/mobile\/landing/)) {
-            hist.replaceState({
-                state: "landing",
-            },  "", "/mobile/landing/");
-        }
-        else if (path.match(/^\/mobile\/textbooks\/[0-9]{4}[-,a-z]+\/[%A-Z0-9]+$/)) {
-            matches = path.match(/^\/mobile\/textbooks\/([0-9]{4}[-,a-z]+)\/([%A-Z0-9]+)$/);
+        else if (path.match(/^\/textbooks\/[0-9]{4}[-,a-z]+\/[%A-Z0-9]+$/)) {
+            matches = path.match(/^\/textbooks\/([0-9]{4}[-,a-z]+)\/([%A-Z0-9]+)$/);
             hist.replaceState({
                 state: "textbooks",
                 term: matches[1],
                 textbook: matches[2]
             },  "", path);
         }
-        else if (path.match(/^\/mobile\/textbooks\/[0-9]{4}[-,a-z]+\/?$/i)) {
-            matches = path.match(/^\/mobile\/textbooks\/([0-9]{4}[-,a-z]+)\/?$/i);
+        else if (path.match(/^\/textbooks\/[0-9]{4}[-,a-z]+\/?$/i)) {
+            matches = path.match(/^\/textbooks\/([0-9]{4}[-,a-z]+)\/?$/i);
             hist.replaceState({
                 state: "textbooks",
                 term: matches[1]
             },  "", path);
         }
-        else if (path.match(/^\/mobile\/textbooks\/?/)) {
+        else if (path.match(/^\/textbooks\/?/)) {
             hist.replaceState({
                 state: "textbooks",
                 term: "current"
             },  "", path);
         }
-        else if (path.match(/^\/mobile\/future_quarters\/[0-9]{4},[-,a-z]+/)) {
-            matches = path.match(/^\/mobile\/future_quarters\/([0-9]{4},[-,a-z]+)/);
+        else if (path.match(/^\/future_quarters\/[0-9]{4},[-,a-z]+/)) {
+            matches = path.match(/^\/future_quarters\/([0-9]{4},[-,a-z]+)/);
             hist.replaceState({
                 state: "future_quarters",
                 term: matches[1],
             },  "", path);
         }
-        else if (path.match(/^\/mobile\/notices/)) {
+        else if (path.match(/^\/notices/)) {
             hist.replaceState({
                 state: "notices",
-            },  "", "/mobile/notices/");
+            },  "", "/notices/");
         }
-        else if (path.match(/^\/mobile\/resource\/([a-z]+)/)) {
-            matches = path.match(/^\/mobile\/resource\/([a-z]+)\/?([a-z]+)?/);
+        else if (path.match(/^\/resource\/([a-z]+)/)) {
+            matches = path.match(/^\/resource\/([a-z]+)\/?([a-z]+)?/);
 
             var category = (matches ? matches[1] : ""),
                 topic = (matches ? matches[2] : undefined),
@@ -127,19 +125,19 @@ $(document).ready(function() {
                 state: "category_page",
                 category: category,
                 topic: topic
-            },  "", "/mobile/resource/" + slug );
+            },  "", "/resource/" + slug );
         }
-        else if (path.match(/^\/mobile\/academic_calendar/)) {
+        else if (path.match(/^\/academic_calendar/)) {
             hist.replaceState({
                 state: "academic_calendar",
-            },  "", "/mobile/academic_calendar/");
+            },  "", "/cademic_calendar/");
         }
 
         else {
             // Now we fall back to the landing page
             hist.replaceState({
                 state: "landing",
-            },  "", "/mobile/landing/");
+            },  "", "/");
         }
 
 
@@ -163,7 +161,7 @@ $(document).ready(function() {
         var hist = window.History;
         hist.pushState({
             state: "finabala",
-        },  "", "/mobile/finabala");
+        },  "", "/finabala");
 
         return false;
     });

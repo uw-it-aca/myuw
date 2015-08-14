@@ -208,7 +208,7 @@ var VisualSchedule = {
             WSData.log_interaction("visual_schedule_view_course_list", term);
             var hist = window.History;
             var state = { state: "course_list" };
-            var url = "/mobile/";
+            var url = "/";
 
             if (term) {
                 state.term = term;
@@ -226,7 +226,7 @@ var VisualSchedule = {
                 var hist = window.History;
                 hist.pushState({
                     state: "course_list"
-                },  "", "/mobile/");
+                },  "", "/");
                 return false;
             });
         }
@@ -241,13 +241,13 @@ var VisualSchedule = {
                     state: "visual",
                     course_index: course_id,
                     term: term
-                },  "", "/mobile/visual/"+term+"/"+course_id);
+                },  "", "/visual/"+term+"/"+course_id);
             }
             else {
                 hist.pushState({
                     state: "visual",
                     course_index: course_id,
-                },  "", "/mobile/visual/"+course_id);
+                },  "", "/visual/"+course_id);
             }
             CourseModal.show_course_modal(term, course_id);
 

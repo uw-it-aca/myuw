@@ -171,7 +171,7 @@ WSData = {
     fetch_event_data: function(callback, err_callback, args) {
         if (WSData._department_events === null) {
             $.ajax({
-                    url: "/mobile/api/v1/deptcal/",
+                    url: "/api/v1/deptcal/",
                     dataType: "JSON",
 
                     type: "GET",
@@ -208,7 +208,7 @@ WSData = {
 
     fetch_academic_calendar_events: function(callback, err_callback, args) {
         if (!WSData._academic_calendar_data) {
-            var url = "/mobile/api/v1/academic_events";
+            var url = "/api/v1/academic_events";
 
             if (WSData._is_running_url(url)) {
                 WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
@@ -240,7 +240,7 @@ WSData = {
 
     fetch_current_academic_calendar_events: function(callback, err_callback, args) {
         if (!WSData._current_academic_calendar_data) {
-            var url = "/mobile/api/v1/academic_events/current/";
+            var url = "/api/v1/academic_events/current/";
 
             if (WSData._is_running_url(url)) {
                 WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
@@ -272,7 +272,7 @@ WSData = {
 
     fetch_book_data: function(term, callback, err_callback, args) {
         if (!WSData._book_data[term]) {
-            var url = "/mobile/api/v1/book/" + term;
+            var url = "/api/v1/book/" + term;
 
             if (WSData._is_running_url(url)) {
                 WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
@@ -310,7 +310,7 @@ WSData = {
 
     fetch_course_data_for_term: function(term, callback, err_callback, args) {
         if (!WSData._course_data[term]) {
-            var url = "/mobile/api/v1/schedule/"+term;
+            var url = "/api/v1/schedule/"+term;
 
             if (WSData._is_running_url(url)) {
                 WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
@@ -375,7 +375,7 @@ WSData = {
         }
 
         $.ajax({
-            url: "/mobile/api/v1/grades/"+term,
+            url: "/api/v1/grades/"+term,
             type: 'GET',
             success: function(results) {
                 WSData._grade_data[term] = results;
@@ -389,7 +389,7 @@ WSData = {
 
     fetch_current_week_data: function(callback, err_callback, args) {
         $.ajax({
-            url: "/mobile/api/v1/current_week/",
+            url: "/api/v1/current_week/",
             type: 'GET',
             success: function(results) {
                 callback.apply(null, [results, args]);
@@ -407,7 +407,7 @@ WSData = {
     fetch_link_data: function(callback, err_callback, args) {
             if (WSData._link_data === null) {
                 $.ajax({
-                    url: "/mobile/api/v1/links/",
+                    url: "/api/v1/links/",
                     dataType: "JSON",
 
                     type: "GET",
@@ -432,7 +432,7 @@ WSData = {
         var instructor_regid = args[1];
         if (WSData._instructor_data[instructor_regid] === undefined) {
             $.ajax({
-                    url: "/mobile/api/v1/person/"+instructor_regid,
+                    url: "/api/v1/person/"+instructor_regid,
                     dataType: "JSON",
 
                     type: "GET",
@@ -509,7 +509,7 @@ WSData = {
     fetch_hfs_data: function(callback, err_callback, args) {
         if (WSData._hfs_data === null) {
             $.ajax({
-                    url: "/mobile/api/v1/hfs/",
+                    url: "/api/v1/hfs/",
                     dataType: "JSON",
 
                     type: "GET",
@@ -535,7 +535,7 @@ WSData = {
     fetch_library_data: function(callback, err_callback, args) {
         if (WSData._library_data === null) {
             $.ajax({
-                    url: "/mobile/api/v1/library/",
+                    url: "/api/v1/library/",
                     dataType: "JSON",
 
                     type: "GET",
@@ -561,7 +561,7 @@ WSData = {
     fetch_tuition_data: function(callback, err_callback, args) {
         if (WSData._tuition_data === null) {
             $.ajax({
-                    url: "/mobile/api/v1/finance/",
+                    url: "/api/v1/finance/",
                     dataType: "JSON",
 
                     type: "GET",
@@ -586,7 +586,7 @@ WSData = {
 
     fetch_notice_data: function(callback, err_callback, args) {
         if (WSData._notice_data === null) {
-            var url = "/mobile/api/v1/notices/";
+            var url = "/api/v1/notices/";
 
             if (WSData._is_running_url(url)) {
                 WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
@@ -620,7 +620,7 @@ WSData = {
     fetch_oquarter_data: function(callback, err_callback, args) {
         if (WSData._oquarter_data === null) {
             $.ajax({
-                    url: "/mobile/api/v1/oquarters/",
+                    url: "/api/v1/oquarters/",
                     dataType: "JSON",
 
                     type: "GET",
@@ -645,7 +645,7 @@ WSData = {
         var category = args[0];
         if (WSData._category_link_data[category] === undefined) {
             $.ajax({
-                    url: "/mobile/api/v1/categorylinks/" + category,
+                    url: "/api/v1/categorylinks/" + category,
                     dataType: "JSON",
                     type: "GET",
                     accepts: {html: "application/json"},
@@ -667,7 +667,7 @@ WSData = {
 
     fetch_profile_data: function(callback, err_callback, args) {
         if (WSData._profile_data === null) {
-            var url = "/mobile/api/v1/profile/";
+            var url = "/api/v1/profile/";
 
             if (WSData._is_running_url(url)) {
                 WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
@@ -699,7 +699,7 @@ WSData = {
 
     fetch_myplan_data: function(callback, err_callback, args) {
         if (WSData._myplan_data === null) {
-            var url = "/mobile/api/v1/myplan/";
+            var url = "/api/v1/myplan/";
 
             if (WSData._is_running_url(url)) {
                 WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
@@ -733,7 +733,7 @@ WSData = {
     fetch_uwemail_data: function(callback, err_callback, args) {
         if (WSData._uwemail_data === null) {
             $.ajax({
-                    url: "/mobile/api/v1/uwemail/",
+                    url: "/api/v1/uwemail/",
                     dataType: "JSON",
 
                     type: "GET",
@@ -761,7 +761,7 @@ WSData = {
     save_links: function(links) {
         var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;
         $.ajax({
-                url: "/mobile/api/v1/links/",
+                url: "/api/v1/links/",
                 dataType: "JSON",
                 data: JSON.stringify(links),
                 type: "PUT",
@@ -779,7 +779,7 @@ WSData = {
     mark_notices_read: function(notice_hashes) {
         var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;
         $.ajax({
-                url: "/mobile/api/v1/notices/",
+                url: "/api/v1/notices/",
                 dataType: "JSON",
                 data: JSON.stringify({"notice_hashes": notice_hashes}),
                 type: "PUT",
@@ -804,7 +804,7 @@ WSData = {
         }
 
         $.ajax({
-                url: "/mobile/logger/" + interaction_type + logging_term,
+                url: "/logger/" + interaction_type + logging_term,
                 type: "GET",
                 success: function(results) {},
                 error: function(xhr, status, error) {}

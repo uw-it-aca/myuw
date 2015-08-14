@@ -23,12 +23,12 @@
                     hist.pushState({
                         state: "textbooks",
                         term: settings.term
-                    },  "", "/mobile/textbooks/"+settings.term);
+                    },  "", "/textbooks/"+settings.term);
                 }
                 else {
                     hist.pushState({
                         state: "textbooks"
-                    },  "", "/mobile/textbooks");
+                    },  "", "/textbooks");
                 }
                 return false;
             });
@@ -40,12 +40,12 @@
                     hist.pushState({
                         state: "final_exams",
                         term: settings.term
-                    },  "", "/mobile/final_exams/"+settings.term);
+                    },  "", "/final_exams/"+settings.term);
                 }
                 else {
                     hist.pushState({
                         state: "final_exams"
-                    },  "", "/mobile/final_exams");
+                    },  "", "/final_exams");
                 }
                 return false;
             });
@@ -55,7 +55,7 @@
                     var hist = window.History;
                     hist.pushState({
                         state: "future_quarters"
-                    },  "", "/mobile/future_quarters" + settings.visual);
+                    },  "", "/future_quarters" + settings.visual);
                     return false;
                 });
             }
