@@ -45,6 +45,8 @@ def get_identity(request):
         res += ' Pce'
     if affi["stud_employee"]:
         res += ' StudEmployee'
+    if affi["faculty"]:
+        res += ' Faculty'
     if len(res) == no_affiliation_lengthmark:
         res += 'None'
     res += ', Campuses:'

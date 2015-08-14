@@ -100,4 +100,12 @@ def is_student_employee():
     """
     return _is_member('uw_affiliation_student-employee')
 
+
+def is_faculty():
+    """
+    Return True if the user is UW faculty
+    """
+    return _is_member('uw_faculty')
+
+
 # The is_student function is in pws.py

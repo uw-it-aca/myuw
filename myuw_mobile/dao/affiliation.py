@@ -8,7 +8,7 @@ from myuw_mobile.dao.schedule import get_current_quarter_schedule
 from myuw_mobile.dao.gws import is_grad_student, is_undergrad_student
 from myuw_mobile.dao.gws import is_pce_student, is_student_employee
 from myuw_mobile.dao.gws import is_seattle_student, is_bothell_student
-from myuw_mobile.dao.gws import is_tacoma_student
+from myuw_mobile.dao.gws import is_tacoma_student, is_faculty
 from myuw_mobile.dao.enrollment import get_main_campus
 
 logger = logging.getLogger(__name__)
@@ -21,6 +21,7 @@ def get_all_affiliations(request):
     ["undergrad"]: True if the user is currently an UW undergraduate student.
     ["pce"]: True if the user is currently an UW PCE student.
     ["stud_employee"]: True if the user is currently a student employee.
+    ["faculty"]: True if the user is currently faculty.
     ["seattle"]: True if the user is an UW Seattle student
                  in the current quarter.
     ["bothell"]: True if the user is an UW Bothell student
@@ -40,6 +41,7 @@ def get_all_affiliations(request):
             "undergrad": is_undergrad_student(),
             "pce": is_pce_student(),
             "stud_employee": is_student_employee(),
+            "faculty": is_faculty(),
             "seattle": enrolled_campuses["seattle"] or is_seattle_student(),
             "bothell": enrolled_campuses["bothell"] or is_bothell_student(),
             "tacoma": enrolled_campuses["tacoma"] or is_tacoma_student(),

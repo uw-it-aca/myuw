@@ -90,6 +90,11 @@
 
 	<div id="app_messages">
 		<div class="message-banner">
+            {% if user.affiliations.stud_employee %}
+                {% if user.affiliations.faculty %}
+                {% else %}
+                {% endif %}
+            {% endif %}
 			<div class="container message-text">
 				<strong>It's a new MyUW!</strong> MyUW shows you personal, critical, and timely information. <a class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn how it works.</a> Not ready yet? <a href="#">Switch back to the old MyUW.</a>
 			</div>
