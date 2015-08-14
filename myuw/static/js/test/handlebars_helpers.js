@@ -3,7 +3,7 @@ moment = require("../../vendor/js/moment.2.8.3.min.js");
 
 require("../handlebars-helpers.js");
 
-var assert = require("assert")
+var assert = require("assert");
 describe('Handlebar-helpers', function(){
     describe('phonenumber', function(){
         it('should replace 10 digits with a formatted phone number', function(){
@@ -15,8 +15,8 @@ describe('Handlebar-helpers', function(){
             var template = Handlebars.compile("{{formatPhoneNumber '5551234'}}");
             var output = template();
             assert.equal(output, "5551234");
-            var template = Handlebars.compile("{{formatPhoneNumber 'abcdefghij'}}");
-            var output = template();
+            template = Handlebars.compile("{{formatPhoneNumber 'abcdefghij'}}");
+            output = template();
             assert.equal(output, "abcdefghij");
         });
 
@@ -47,8 +47,8 @@ describe('Handlebar-helpers', function(){
             var template = Handlebars.compile("{{toUrlSafe ' '}}");
             var output = template();
             assert.equal(output, "%20");
-            var template = Handlebars.compile("{{toUrlSafe '_   _'}}");
-            var output = template();
+            template = Handlebars.compile("{{toUrlSafe '_   _'}}");
+            output = template();
             assert.equal(output, "_%20%20%20_");
         });
     });
@@ -59,8 +59,8 @@ describe('Handlebar-helpers', function(){
             var output = template();
             assert.equal(output, "ok!");
 
-            var template = Handlebars.compile("{{toLowerCase 'È'}}");
-            var output = template();
+            template = Handlebars.compile("{{toLowerCase 'È'}}");
+            output = template();
             assert.equal(output, "è");
         });
         it ("should be ok with blank values", function() {

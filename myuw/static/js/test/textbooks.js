@@ -1,6 +1,6 @@
 TextBooks = require("../textbooks.js");
 
-var assert = require("assert")
+var assert = require("assert");
 describe('TextBooks', function(){
     describe('process_book_data', function(){
         it('should have no book data', function(){
