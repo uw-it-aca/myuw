@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'south', 'compressor', 'restclients', 'templatetag_handlebars',
-    'myuw_mobile', 'userservice', 'django_client_logger',
+    'myuw', 'userservice', 'django_client_logger',
 )
 
 MIDDLEWARE_CLASSES = (
