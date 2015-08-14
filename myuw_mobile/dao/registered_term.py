@@ -4,17 +4,16 @@ This module encapsulates the access of the term data
 """
 
 import logging
-from myuw_mobile.dao.term import is_a_term, is_b_term, is_full_summer_term
-from myuw_mobile.dao.term import get_current_summer_term, get_comparison_date
-from myuw_mobile.dao.term import get_quarter, get_current_quarter
-from myuw_mobile.dao.schedule import get_next_quarter_schedule
-from myuw_mobile.dao.schedule import get_next_autumn_quarter_schedule
-from myuw_mobile.dao.schedule import has_summer_quarter_section
-from myuw_mobile.dao.schedule import get_current_quarter_schedule
-from myuw_mobile.dao import get_user_model
-from myuw_mobile.models import SeenRegistration
 from django.utils import timezone
 from datetime import datetime, timedelta
+from myuw_mobile.models import SeenRegistration
+from myuw_mobile.dao.term import is_a_term, is_b_term, is_full_summer_term,\
+    get_comparison_date, get_specific_quarter, get_current_quarter
+from myuw_mobile.dao.term.current import get_current_summer_term
+from myuw_mobile.dao.schedule import has_summer_quarter_section,\
+    get_current_quarter_schedule, get_next_quarter_schedule,\
+    get_next_autumn_quarter_schedule
+from myuw_mobile.dao import get_user_model
 
 
 logger = logging.getLogger(__name__)
@@ -228,7 +227,7 @@ def should_highlight_future_quarters(schedule, request):
         else:
             # MUWM-3009
             if summer_term == "B":
-                term_obj = get_quarter(term["year"], "summer")
+                term_obj = get_specific_quarter(term["year"], "summer")
 
                 bterm_start = term_obj.bterm_first_date
                 bterm_start_dt = datetime(bterm_start.year,

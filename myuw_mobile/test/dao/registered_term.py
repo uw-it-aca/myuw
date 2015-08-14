@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.conf import settings
 from django.test.client import RequestFactory
 from restclients.models import ClassSchedule, Term, Section, Person
-from myuw_mobile.dao.term import _get_term_by_year_and_quarter
+from myuw_mobile.dao.term import get_specific_quarter
 from myuw_mobile.dao.schedule import _get_schedule
 from myuw_mobile.dao.registered_term import _get_registered_summer_terms,\
     _must_displayed_separately, _get_registered_future_quarters
@@ -18,7 +18,7 @@ class TestRegisteredTerm(TestCase):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
-            term = _get_term_by_year_and_quarter(2013, "summer")
+            term = get_specific_quarter(2013, "summer")
             schedule = _get_schedule(regid, term)
             data = _get_registered_summer_terms(schedule.sections)
             self.assertTrue(data["B"])
@@ -28,7 +28,7 @@ class TestRegisteredTerm(TestCase):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
-            term = _get_term_by_year_and_quarter(2013, "summer")
+            term = get_specific_quarter(2013, "summer")
             schedule = _get_schedule(regid, term)
             self.assertTrue(_must_displayed_separately(schedule))
 
@@ -40,11 +40,11 @@ class TestRegisteredTerm(TestCase):
             now_request.session = {}
 
             regid = "9136CCB8F66711D5BE060004AC494FFE"
-            term1 = _get_term_by_year_and_quarter(2013, "summer")
+            term1 = get_specific_quarter(2013, "summer")
             schedule1 = _get_schedule(regid, term1)
             self.assertEqual(len(schedule1.sections), 3)
 
-            term2 = _get_term_by_year_and_quarter(2013, "autumn")
+            term2 = get_specific_quarter(2013, "autumn")
             schedule2 = _get_schedule(regid, term2)
             self.assertEqual(len(schedule2.sections), 1)
 

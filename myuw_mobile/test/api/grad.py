@@ -79,16 +79,16 @@ class TestGrad(TestCase):
         self.assertEqual(len(committee['members']), 1)
 
         self.assertIsNotNone(data.get("leaves"))
-        self.assertEquals(len(data["leaves"]), 5)
+        self.assertEquals(len(data["leaves"]), 3)
         leave = data["leaves"][0]
         self.assertEqual(leave['reason'],
                          "Dissertation/Thesis research/writing")
         self.assertEqual(leave['submit_date'],
                          "2012-09-10T09:40:03")
-        self.assertEqual(leave['status'], "paid")
+        self.assertEqual(leave['status'], "requested")
         self.assertEqual(len(leave['terms']), 1)
-        self.assertEqual(leave['terms'][0]['quarter'], "Autumn")
-        self.assertEqual(leave['terms'][0]['year'], 2012)
+        self.assertEqual(leave['terms'][0]['quarter'], "Spring")
+        self.assertEqual(leave['terms'][0]['year'], 2013)
 
         self.assertIsNotNone(data.get("petitions"))
         self.assertEquals(len(data["petitions"]), 6)

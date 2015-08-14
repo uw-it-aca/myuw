@@ -6,14 +6,13 @@ import logging
 import traceback
 from restclients.models.sws import ClassSchedule
 from restclients.sws.registration import get_schedule_by_regid_and_term
-from myuw_mobile.dao.pws import get_regid_of_current_user
-from myuw_mobile.dao.term import get_current_quarter, get_next_quarter
-from myuw_mobile.dao.term import get_current_summer_term
-from myuw_mobile.dao.term import get_next_autumn_quarter
-from myuw_mobile.dao.term import is_half_summer_term
-from myuw_mobile.dao.term import is_full_summer_term, is_same_summer_term
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logback import log_resp_time, log_exception
+from myuw_mobile.dao.pws import get_regid_of_current_user
+from myuw_mobile.dao.term import get_current_quarter, get_next_quarter,\
+    is_half_summer_term, is_full_summer_term, is_same_summer_term
+from myuw_mobile.dao.term.current import get_next_autumn_quarter,\
+    get_current_summer_term
 
 logger = logging.getLogger(__name__)
 

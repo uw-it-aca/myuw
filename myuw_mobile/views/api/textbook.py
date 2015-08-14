@@ -3,8 +3,8 @@ from django.http import HttpResponse
 import json
 from myuw_mobile.dao.schedule import get_schedule_by_term
 from myuw_mobile.dao.schedule import filter_schedule_sections_by_summer_term
-from myuw_mobile.dao.term import get_quarter, get_current_quarter
-from myuw_mobile.dao.term import get_current_summer_term
+from myuw_mobile.dao.term import get_specific_quarter, get_current_quarter
+from myuw_mobile.dao.term.current import get_current_summer_term
 from myuw_mobile.dao.textbook import get_textbook_by_schedule
 from myuw_mobile.dao.textbook import get_verba_link_by_schedule
 from myuw_mobile.logger.timer import Timer
@@ -28,7 +28,7 @@ class Textbook(RESTDispatch):
         timer = Timer()
         logger = logging.getLogger(__name__)
 
-        term = get_quarter(year=year, quarter=quarter)
+        term = get_specific_quarter(year=year, quarter=quarter)
         schedule = get_schedule_by_term(term)
         if summer_term is not None:
             summer_term = summer_term.replace(",", "")

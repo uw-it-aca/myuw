@@ -21,9 +21,8 @@ class MyGrad(RESTDispatch):
         GET returns 200 with the student account balances
         of the current user
         """
-
-        timer = Timer()
         logger = logging.getLogger(__name__)
+        timer = Timer()
         degree_reqs = get_grad_degree_for_current_user()
         committee_reqs = get_grad_committee_for_current_user()
         leave_reqs = get_grad_leave_for_current_user()
@@ -34,9 +33,9 @@ class MyGrad(RESTDispatch):
             log_data_not_found_response(logger, timer)
             return data_not_found()
 
-        log_success_response(logger, timer)
         grad_json_data = get_json(degree_reqs, committee_reqs,
-                                  leave_reqs, petition_reqs)
+                                  leave_reqs, petition_reqs,
+                                  request)
         logger.debug(grad_json_data)
-
+        log_success_response(logger, timer)
         return HttpResponse(json.dumps(grad_json_data))

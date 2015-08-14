@@ -4,7 +4,7 @@ import json
 from myuw_mobile.views.rest_dispatch import RESTDispatch
 from myuw_mobile.dao.registered_term import get_registered_future_quarters
 from myuw_mobile.dao.registered_term import should_highlight_future_quarters
-from myuw_mobile.dao.term import get_next_non_summer_quarter
+from myuw_mobile.dao.term.current import get_next_non_summer_quarter
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.logger.logresp import log_success_response
 

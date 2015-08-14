@@ -8,6 +8,8 @@ from myuw_mobile.test.dao.notice import TestNotices
 from myuw_mobile.test.models import TestUserNotices
 from myuw_mobile.test.academic_events import TestAcademicEvents
 from myuw_mobile.test.dao.term import TestTerm
+from myuw_mobile.test.dao.term_current import TestTermCurrent
+from myuw_mobile.test.dao.term_specific import TestTermSpecific
 from myuw_mobile.test.dao.canvas import TestCanvas
 from myuw_mobile.test.dao.card_display_dates import TestDisplayValues
 from myuw_mobile.test.userservice_validation import TestValidation

@@ -1,6 +1,6 @@
 import logging
 from django.http import HttpResponse
-from myuw_mobile.dao.term import get_quarter, is_past
+from myuw_mobile.dao.term import get_specific_quarter, is_past
 from myuw_mobile.logger.timer import Timer
 from myuw_mobile.dao.card_display_dates import in_show_grades_period
 from myuw_mobile.views.api.base_schedule import StudClasSche
@@ -23,7 +23,7 @@ class StudClasScheFutureQuar(StudClasSche):
         if summer_term and len(summer_term) > 1:
             smr_term = summer_term.title()
 
-        request_term = get_quarter(year, quarter)
+        request_term = get_specific_quarter(year, quarter)
         if not request_term:
             return HttpResponse(status=404)
 
