@@ -2,9 +2,13 @@
 This module provides affiliations of the current user
 """
 
+import os
+import json
 import logging
+from django.conf import settings
 from myuw.logger.logback import log_info
 from myuw.dao.schedule import get_current_quarter_schedule
+from myuw.dao.pws import get_netid_of_current_user
 from myuw.dao.gws import is_grad_student, is_undergrad_student
 from myuw.dao.gws import is_pce_student, is_student_employee
 from myuw.dao.gws import is_seattle_student, is_bothell_student
@@ -12,6 +16,9 @@ from myuw.dao.gws import is_tacoma_student, is_faculty
 from myuw.dao.enrollment import get_main_campus
 
 logger = logging.getLogger(__name__)
+
+MANDATORY_SWITCH = "mandatory_switch"
+OPTIN_SWITCH = "optin_switch"
 
 
 def get_all_affiliations(request):
@@ -133,3 +140,40 @@ def get_base_campus(request):
             campus = ""
             pass
     return campus
+
+
+def is_mandatory_switch_user():
+    username = get_netid_of_current_user()
+    return _is_user_in_list(username, MANDATORY_SWITCH)
+
+
+def is_optin_switch_user():
+    username = get_netid_of_current_user()
+    return _is_user_in_list(username, OPTIN_SWITCH)
+
+
+def _is_user_in_list(username, user_type):
+    if MANDATORY_SWITCH == user_type:
+        file_path = getattr(settings, "MYUW_MANDATORY_SWITCH_PATH", None)
+        if not file_path:
+            current_dir = os.path.dirname(os.path.realpath(__file__))
+
+            file_path = os.path.abspath(os.path.join(current_dir,
+                                                     "..", "data",
+                                                     "required-list.txt"))
+
+    else:
+        file_path = getattr(settings, "MYUW_OPTIN_SWITCH_PATH", None)
+        if not file_path:
+            current_dir = os.path.dirname(os.path.realpath(__file__))
+
+            file_path = os.path.abspath(os.path.join(current_dir,
+                                                     "..", "data",
+                                                     "optin-list.txt"))
+
+    with open(file_path) as data_source:
+        for line in data_source:
+            if line.rstrip() == username:
+                return True
+
+    return False
