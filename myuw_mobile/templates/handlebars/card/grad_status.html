@@ -63,7 +63,7 @@
                              <div class="pull-right">
                                  <span class="card-badge-value">
                                  {{#not_equal status 'approved'}}
-                                     <span class="{{#equal status 'approved'}}text-danger{{/equal}}">{{status}}</span>
+                                     <span class="{{#equal status 'approved'}}text-danger{{/equal}}">{{capitalizeString status}}</span>
                                  {{/not_equal}}
                                  {{#equal status 'approved'}}
                                      Approved. &nbsp; <a target="_blank" href="https://apps.grad.uw.edu/mgp-stu/uwnetid/default.aspx" class="pull-right">Pay Your Fee To Confirm</a>
