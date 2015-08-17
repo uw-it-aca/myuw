@@ -20,7 +20,8 @@
 				{{ /each }}
 			</ul>
         </div>
-        
+        {{ #if total_unread }}
         <div class="other-notices-link"><a href="/notices">{{ total_unread }} more new {{ pluralize total_unread "notice" "notices" }}</a></div>
+        {{ /if }}
     </div>
 {% endtplhandlebars %}
