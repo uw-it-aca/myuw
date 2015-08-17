@@ -63,7 +63,7 @@ class TestGrad(TestCase):
         self.assertIsNone(degree["exam_date"])
         self.assertEqual(degree["target_award_year"], 2015)
         self.assertEqual(degree["target_award_quarter"], "Winter")
-
+        # committees
         self.assertIsNotNone(data.get("committees"))
         self.assertEquals(len(data["committees"]), 3)
         committee = data["committees"][0]
@@ -77,7 +77,7 @@ class TestGrad(TestCase):
         self.assertEqual(committee['start_date'],
                          "2012-12-07T08:26:14")
         self.assertEqual(len(committee['members']), 1)
-
+        # leaves
         self.assertIsNotNone(data.get("leaves"))
         self.assertEquals(len(data["leaves"]), 3)
         leave = data["leaves"][0]
@@ -89,10 +89,11 @@ class TestGrad(TestCase):
         self.assertEqual(len(leave['terms']), 1)
         self.assertEqual(leave['terms'][0]['quarter'], "Spring")
         self.assertEqual(leave['terms'][0]['year'], 2013)
-
+        # petitions
         self.assertIsNotNone(data.get("petitions"))
         self.assertEquals(len(data["petitions"]), 7)
         petition = data["petitions"][6]
+        print petition
         self.assertEqual(petition['description'],
                          "Doctoral degree - Extend ten year limit")
         self.assertEqual(petition['submit_date'],
