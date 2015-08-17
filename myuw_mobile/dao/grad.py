@@ -5,6 +5,7 @@ the Grad School request resource.
 
 import logging
 import traceback
+from datetime import date, datetime, timedelta
 from restclients.grad.degree import get_degree_by_regid
 from restclients.grad.committee import get_committee_by_regid
 from restclients.grad.leave import get_leave_by_regid
@@ -86,14 +87,14 @@ def get_grad_petition_for_current_user():
 
 def get_json(degree, committee, leave, petition, request):
     return {
-        "degrees": json_data_degree(degree, request),
-        "committees": json_data(committee),
-        "leaves": json_data_leave(leave, request),
-        "petitions": json_data_petition(petition, request)
+        "degrees": degree_to_json(degree, request),
+        "committees": to_json(committee),
+        "leaves": leave_to_json(leave, request),
+        "petitions": petition_to_json(petition, request)
         }
 
 
-def json_data(req_data):
+def to_json(req_data):
     """
     Simply convert the request object into JSON
     without any update of the data.
@@ -106,7 +107,7 @@ def json_data(req_data):
     return result
 
 
-def json_data_degree(req_data, request):
+def degree_to_json(req_data, request):
     """
     Convert the degree request list object into JSON
     and remove the list item if it should not be shown.
@@ -119,7 +120,7 @@ def json_data_degree(req_data, request):
     return result
 
 
-def json_data_leave(req_data, request):
+def leave_to_json(req_data, request):
     """
     Convert the leave request list object into JSON
     and remove the list item if it should not be shown.
@@ -167,7 +168,7 @@ def append_if_fn_apply(fn, result, item, now):
         result.append(req_json)
 
 
-def json_data_petition(req_data, request):
+def petition_to_json(req_data, request):
     """
     Convert the petition request list object into JSON
     and remove the list item if it should not be shown.
@@ -175,6 +176,19 @@ def json_data_petition(req_data, request):
     if req_data is None or len(req_data) == 0:
         return None
     result = []
+    now = get_comparison_datetime(request)
     for item in req_data:
-        result.append(item.json_data())
+        if item.is_dept_pending() and item.is_gs_pending() or\
+                item.is_dept_deny() and item.is_gs_pending() or\
+                item.is_dept_approve() and item.is_gs_pending():
+            result.append(item.json_data())
+            continue
+
+        if is_before_eof_2weeks_since_decision_date(item.decision_date, now):
+            result.append(item.json_data())
     return result
+
+
+def is_before_eof_2weeks_since_decision_date(decision_date, now):
+    return decision_date is not None and\
+        now < decision_date + timedelta(days=15)

@@ -1,8 +1,10 @@
 from django.test import TestCase
 from django.conf import settings
-from myuw_mobile.dao.grad import get_grad_degree_for_current_user,\
-    get_grad_committee_for_current_user, get_leave_by_regid,\
-    get_grad_petition_for_current_user, json_data_leave
+from datetime import date, datetime, timedelta
+from myuw_mobile.dao.grad import get_degree_by_regid,\
+    get_leave_by_regid, get_committee_by_regid,\
+    get_petition_by_regid, leave_to_json, petition_to_json,\
+    is_before_eof_2weeks_since_decision_date
 from django.test.client import RequestFactory
 
 
@@ -17,18 +19,18 @@ class TestGrad(TestCase):
         with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
                            RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
+            degree_reqs = get_degree_by_regid(
+                '9136CCB8F66711D5BE060004AC494FFE')
+            self.assertIsNotNone(degree_reqs)
             now_request = RequestFactory().get("/")
             now_request.session = {}
-            degree_reqs = get_grad_degree_for_current_user()
-            self.assertIsNotNone(degree_reqs)
 
     def test_get_grad_committee_for_current_user(self):
         with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
                            RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            committee_reqs = get_grad_committee_for_current_user()
+            committee_reqs = get_committee_by_regid(
+                '9136CCB8F66711D5BE060004AC494FFE')
             self.assertIsNotNone(committee_reqs)
 
     def test_get_grad_leave_for_current_user(self):
@@ -42,7 +44,7 @@ class TestGrad(TestCase):
             # winter
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-07"
-            json_data = json_data_leave(leave_reqs, now_request)
+            json_data = leave_to_json(leave_reqs, now_request)
             self.assertEquals(len(json_data), 4)
             leave = json_data[0]
             self.assertEquals(leave["status"], "requested")
@@ -57,7 +59,7 @@ class TestGrad(TestCase):
             # spring
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-06-07"
-            json_data = json_data_leave(leave_reqs, now_request)
+            json_data = leave_to_json(leave_reqs, now_request)
             self.assertEquals(len(json_data), 3)
             leave = json_data[0]
             self.assertEquals(leave["status"], "requested")
@@ -69,7 +71,7 @@ class TestGrad(TestCase):
 
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-06-08"
-            json_data = json_data_leave(leave_reqs, now_request)
+            json_data = leave_to_json(leave_reqs, now_request)
             self.assertEquals(len(json_data), 2)
             leave = json_data[0]
             self.assertEquals(leave["status"], "requested")
@@ -79,16 +81,63 @@ class TestGrad(TestCase):
             # summer
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-08-28"
-            json_data = json_data_leave(leave_reqs, now_request)
+            json_data = leave_to_json(leave_reqs, now_request)
             self.assertEquals(len(json_data), 1)
             leave = json_data[0]
             self.assertEquals(leave["status"], "requested")
+
+    def test_is_before_eof_2weeks_since_decision_date(self):
+        self.assertTrue(is_before_eof_2weeks_since_decision_date(
+                datetime(2013, 2, 10, 0, 0, 0),
+                datetime(2013, 2, 24, 0, 0, 0)))
+        self.assertFalse(is_before_eof_2weeks_since_decision_date(
+                datetime(2013, 2, 10, 0, 0, 0),
+                datetime(2013, 2, 25, 0, 0, 0)))
+        self.assertTrue(is_before_eof_2weeks_since_decision_date(
+                datetime(2013, 6, 10, 0, 0, 0),
+                datetime(2013, 6, 10, 0, 0, 0)))
 
     def test_get_grad_petition_for_current_user(self):
         with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
                            RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            petition_reqs = get_grad_petition_for_current_user()
+            petition_reqs = get_petition_by_regid(
+                '9136CCB8F66711D5BE060004AC494FFE')
             self.assertIsNotNone(petition_reqs)
+            self.assertEquals(len(petition_reqs), 7)
+            now_request = RequestFactory().get("/")
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-04-10"
+            json_data = petition_to_json(petition_reqs, now_request)
+            self.assertEquals(len(json_data), 7)
+            peti = json_data[0]
+            self.assertEqual(peti["dept_recommend"], "Pending")
+            self.assertEqual(peti["gradschool_decision"], "Pending")
+            peti = json_data[1]
+            self.assertEquals(peti["decision_date"], "2013-04-10T16:32:28")
+            self.assertEqual(peti["dept_recommend"], "Withdraw")
+            self.assertEqual(peti["gradschool_decision"], "Withdraw")
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-04-25"
+            json_data = petition_to_json(petition_reqs, now_request)
+            self.assertEquals(len(json_data), 7)
+            peti = json_data[6]
+            self.assertEquals(peti["decision_date"], "2013-04-10T16:32:28")
+            self.assertEqual(peti["dept_recommend"], "Approve")
+            self.assertEqual(peti["gradschool_decision"], "Approved")
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-04-26"
+            json_data = petition_to_json(petition_reqs, now_request)
+            self.assertEquals(len(json_data), 3)
+            peti = json_data[0]
+            self.assertEqual(peti["dept_recommend"], "Pending")
+            self.assertEqual(peti["gradschool_decision"], "Pending")
+            peti = json_data[1]
+            self.assertIsNone(peti["decision_date"])
+            self.assertEqual(peti["dept_recommend"], "Deny")
+            self.assertEqual(peti["gradschool_decision"], "Pending")
+            peti = json_data[2]
+            self.assertIsNone(peti["decision_date"])
+            self.assertEqual(peti["dept_recommend"], "Approve")
+            self.assertEqual(peti["gradschool_decision"], "Pending")
