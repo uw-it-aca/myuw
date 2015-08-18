@@ -158,7 +158,7 @@ def has_legacy_preference():
 
     try:
         saved = UserMigrationPreference.objects.get(username=username)
-        if True == saved.use_legacy_site:
+        if saved.use_legacy_site:
             return True
     except UserMigrationPreference.DoesNotExist:
         return False
