@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, include, url
-from myuw.views.mobile_login import user_login
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.finance import Finance
 from myuw.views.api.hfs import HfsBalances
@@ -20,7 +19,6 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns = patterns(
     'myuw.views',
-    url(r'login', 'mobile_login.user_login', name="myuw_login"),
     url(r'admin/dates', 'display_dates.override'),
     url(r'^logger/(?P<interaction_type>\w+)$', 'logger.log_interaction'),
     url(r'^api/v1/book/current/?$',

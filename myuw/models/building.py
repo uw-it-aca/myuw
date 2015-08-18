@@ -9,3 +9,4 @@ class Building(models.Model):
 
     class Meta:
         db_table = "myuw_mobile_building"
+        app_label = "myuw"

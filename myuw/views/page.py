@@ -1,4 +1,5 @@
-from django.http import HttpResponse
+import re
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
@@ -6,7 +7,10 @@ from django.conf import settings
 import logging
 from userservice.user import UserService
 from myuw.dao.term import get_current_quarter
+from myuw.dao.pws import is_student
 from myuw.dao.affiliation import get_all_affiliations
+from myuw.dao.affiliation import is_mandatory_switch_user
+from myuw.dao.affiliation import is_optin_switch_user, has_legacy_preference
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_data_not_found_response
 from myuw.logger.logresp import log_invalid_netid_response
@@ -22,6 +26,32 @@ def index(request,
           year=None,
           quarter=None,
           summer_term=None):
+
+    netid = UserService().get_user()
+    if not netid:
+        log_invalid_netid_response(logger, timer)
+        return invalid_session()
+
+    if _is_mobile(request):
+        # On mobile devices, all students get the current myuw.  Non-students
+        # are sent to the legacy site.
+        if not is_student():
+            return _redirect_to_legacy_site()
+    else:
+        # On the desktop, we're migrating users over.  There are 2 classes of
+        # users - mandatory and opt-in switchers.  The mandatory users, who
+        # are users who haven't been at the UW long enough to be accustomed to
+        # the existing myuw.
+        # The other class of users can opt to use the legacy myuw instead.
+        # Check to see if they have a set preference, and if not, keep them on
+        # the new version
+        if not is_mandatory_switch_user():
+            if is_optin_switch_user():
+                if has_legacy_preference():
+                    return _redirect_to_legacy_site()
+            else:
+                return _redirect_to_legacy_site()
+
     timer = Timer()
     logger = logging.getLogger('myuw.views.page.index')
 
@@ -38,10 +68,6 @@ def index(request,
         "card_display_dates": get_card_visibilty_date_values(request),
     }
 
-    netid = UserService().get_user()
-    if not netid:
-        log_invalid_netid_response(logger, timer)
-        return invalid_session()
     context["user"]["session_key"] = request.session.session_key
     log_session(netid, request.session.session_key, request)
     my_uwemail_forwarding = get_email_forwarding_for_current_user()
@@ -65,3 +91,22 @@ def index(request,
     return render_to_response("index.html",
                               context,
                               context_instance=RequestContext(request))
+
+
+def _is_mobile(request):
+    user_agent = request.META.get("HTTP_USER_AGENT")
+
+    # This is the check we were doing in our apache config...
+    if re.match('.*iPhone.*', user_agent):
+        return True
+
+    if re.match('.*Android.*Mobile.*', user_agent):
+        return True
+    return False
+
+
+def _redirect_to_legacy_site():
+    legacy_url = getattr(settings,
+                         "MYUW_USER_SERVLET_URL",
+                         "https://myuw.washington.edu/servlet/user")
+    return HttpResponseRedirect(legacy_url)
