@@ -48,21 +48,21 @@ class TestGrad(TestCase):
         data = json.loads(response.content)
 
         self.assertIsNotNone(data.get("degrees"))
-        self.assertEquals(len(data["degrees"]), 5)
+        self.assertEquals(len(data["degrees"]), 8)
         degree = data["degrees"][0]
         self.assertEqual(degree["req_type"], "Masters Request")
-        self.assertEqual(degree["submit_date"], "2015-03-11T20:53:32")
+        self.assertEqual(degree["submit_date"], "2013-03-11T20:53:32")
         self.assertEqual(
             degree["degree_title"],
             "Master Of Landscape Architecture/Master Of Architecture")
         self.assertEqual(degree["major_full_name"],
                          "Landscape Arch/Architecture (Concurrent)")
         self.assertEqual(degree["status"],
-                         "Awaiting Dept Action (Final Exam)")
+                         "Awaiting Dept Action")
         self.assertIsNone(degree["exam_place"])
         self.assertIsNone(degree["exam_date"])
-        self.assertEqual(degree["target_award_year"], 2015)
-        self.assertEqual(degree["target_award_quarter"], "Winter")
+        self.assertEqual(degree["target_award_year"], 2013)
+        self.assertEqual(degree["target_award_quarter"], "Spring")
         # committees
         self.assertIsNotNone(data.get("committees"))
         self.assertEquals(len(data["committees"]), 3)
@@ -93,7 +93,6 @@ class TestGrad(TestCase):
         self.assertIsNotNone(data.get("petitions"))
         self.assertEquals(len(data["petitions"]), 7)
         petition = data["petitions"][6]
-        print petition
         self.assertEqual(petition['description'],
                          "Doctoral degree - Extend ten year limit")
         self.assertEqual(petition['submit_date'],

@@ -4,7 +4,7 @@ from datetime import date, datetime, timedelta
 from myuw_mobile.dao.grad import get_degree_by_regid,\
     get_leave_by_regid, get_committee_by_regid,\
     get_petition_by_regid, leave_to_json, petition_to_json,\
-    is_before_eof_2weeks_since_decision_date
+    is_before_eof_2weeks_since_decision_date, degree_to_json
 from django.test.client import RequestFactory
 
 
@@ -25,7 +25,7 @@ class TestGrad(TestCase):
             now_request = RequestFactory().get("/")
             now_request.session = {}
 
-    def test_get_grad_committee_for_current_user(self):
+    def test_get_grad_committee(self):
         with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
                            RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
@@ -33,58 +33,52 @@ class TestGrad(TestCase):
                 '9136CCB8F66711D5BE060004AC494FFE')
             self.assertIsNotNone(committee_reqs)
 
-    def test_get_grad_leave_for_current_user(self):
+    def test_get_grad_degree(self):
         with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
                            RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
-            leave_reqs = get_leave_by_regid('9136CCB8F66711D5BE060004AC494FFE')
-            self.assertIsNotNone(leave_reqs)
-            self.assertEquals(len(leave_reqs), 5)
+            degree_reqs = get_degree_by_regid(
+                '9136CCB8F66711D5BE060004AC494FFE')
+            self.assertIsNotNone(degree_reqs)
+            self.assertEquals(len(degree_reqs), 8)
             now_request = RequestFactory().get("/")
-            # winter
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-03-07"
-            json_data = leave_to_json(leave_reqs, now_request)
-            self.assertEquals(len(json_data), 4)
-            leave = json_data[0]
-            self.assertEquals(leave["status"], "requested")
-            leave = json_data[1]
-            self.assertEquals(leave["status"], "withdrawn")
-            leave = json_data[2]
-            self.assertEquals(leave["status"], "paid")
-            leave = json_data[3]
-            self.assertEquals(leave["status"], "approved")
-            self.assertEquals(len(leave["terms"]), 1)
-
-            # spring
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-06-07"
-            json_data = leave_to_json(leave_reqs, now_request)
-            self.assertEquals(len(json_data), 3)
-            leave = json_data[0]
-            self.assertEquals(leave["status"], "requested")
-            leave = json_data[1]
-            self.assertEquals(leave["status"], "withdrawn")
-            leave = json_data[2]
-            self.assertEquals(leave["status"], "approved")
-            self.assertEquals(len(leave["terms"]), 1)
 
             now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-06-08"
-            json_data = leave_to_json(leave_reqs, now_request)
-            self.assertEquals(len(json_data), 2)
-            leave = json_data[0]
-            self.assertEquals(leave["status"], "requested")
-            leave = json_data[1]
-            self.assertEquals(leave["status"], "withdrawn")
+            now_request.session["myuw_override_date"] = "2013-08-27"
+            json_data = degree_to_json(degree_reqs, now_request)
+            self.assertEquals(len(json_data), 8)
+            degree = json_data[0]
+            self.assertTrue(degree["status"].startswith("Awaiting "))
+            degree = json_data[1]
+            self.assertTrue(degree["status"].startswith("Awaiting "))
+            degree = json_data[2]
+            self.assertTrue(degree["status"].startswith("Awaiting "))
+            degree = json_data[3]
+            self.assertEquals(degree["status"], "Recommended by Dept")
+            degree = json_data[4]
+            self.assertEquals(degree["status"], "Withdrawn")
+            degree = json_data[5]
+            self.assertEquals(degree["status"], "Candidacy Granted")
+            degree = json_data[6]
+            self.assertEquals(degree["status"], "Graduated by Grad School")
+            degree = json_data[7]
+            self.assertEquals(degree["status"], "Did not graduate")
 
-            # summer
+            # after the end of following term
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-08-28"
-            json_data = leave_to_json(leave_reqs, now_request)
-            self.assertEquals(len(json_data), 1)
-            leave = json_data[0]
-            self.assertEquals(leave["status"], "requested")
+            json_data = degree_to_json(degree_reqs, now_request)
+            self.assertEquals(len(json_data), 5)
+            degree = json_data[0]
+            self.assertTrue(degree["status"].startswith("Awaiting "))
+            degree = json_data[1]
+            self.assertTrue(degree["status"].startswith("Awaiting "))
+            degree = json_data[2]
+            self.assertTrue(degree["status"].startswith("Awaiting "))
+            degree = json_data[3]
+            self.assertEquals(degree["status"], "Recommended by Dept")
+            degree = json_data[4]
+            self.assertEquals(degree["status"], "Withdrawn")
 
     def test_is_before_eof_2weeks_since_decision_date(self):
         self.assertTrue(is_before_eof_2weeks_since_decision_date(
@@ -96,8 +90,96 @@ class TestGrad(TestCase):
         self.assertTrue(is_before_eof_2weeks_since_decision_date(
                 datetime(2013, 6, 10, 0, 0, 0),
                 datetime(2013, 6, 10, 0, 0, 0)))
+        self.assertTrue(is_before_eof_2weeks_since_decision_date(
+                None,
+                datetime(2013, 6, 10, 0, 0, 0)))
 
-    def test_get_grad_petition_for_current_user(self):
+    def test_get_grad_leave(self):
+        with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
+                           RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                           RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
+            leave_reqs = get_leave_by_regid('9136CCB8F66711D5BE060004AC494FFE')
+            self.assertIsNotNone(leave_reqs)
+            self.assertEquals(len(leave_reqs), 5)
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-12-07"
+            json_data = leave_to_json(leave_reqs, now_request)
+            self.assertEquals(len(json_data), 5)
+            leave = json_data[2]
+            self.assertEquals(leave["status"], "paid")
+            leave = json_data[3]
+            self.assertEquals(leave["status"], "denied")
+            # denied shows until eof 2012 autumn
+            leave = json_data[4]
+            self.assertEquals(leave["status"], "approved")
+            # the 1st approved shows until eof last instruction 2012 autumn
+            # the 2nd approved shows until eof last instruction 2013 spring
+            self.assertEquals(len(leave["terms"]), 2)
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2012-12-08"
+            json_data = leave_to_json(leave_reqs, now_request)
+            self.assertEquals(len(json_data), 5)
+            leave = json_data[2]
+            self.assertEquals(leave["status"], "paid")
+            # paid shows until eof 2013 winter
+            leave = json_data[4]
+            self.assertEquals(leave["status"], "approved")
+            self.assertEquals(len(leave["terms"]), 1)
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-01-07"
+            json_data = leave_to_json(leave_reqs, now_request)
+            self.assertEquals(len(json_data), 4)
+            leave = json_data[2]
+            self.assertEquals(leave["status"], "paid")
+            # paid shows until eof 2013 winter
+            leave = json_data[3]
+            self.assertEquals(leave["status"], "approved")
+            # the end of winter 2013
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-03-27"
+            json_data = leave_to_json(leave_reqs, now_request)
+            self.assertEquals(len(json_data), 3)
+            leave = json_data[0]
+            self.assertEquals(leave["status"], "requested")
+            leave = json_data[1]
+            self.assertEquals(leave["status"], "withdrawn")
+            leave = json_data[2]
+            self.assertEquals(leave["status"], "approved")
+            self.assertEquals(len(leave["terms"]), 1)
+            # this approved shows until eof last instruction 2013 spring
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-06-07"
+            json_data = leave_to_json(leave_reqs, now_request)
+            self.assertEquals(len(json_data), 3)
+            leave = json_data[0]
+            self.assertEquals(leave["status"], "requested")
+            leave = json_data[1]
+            self.assertEquals(leave["status"], "withdrawn")
+            leave = json_data[2]
+            self.assertEquals(leave["status"], "approved")
+            self.assertEquals(len(leave["terms"]), 1)
+            # this approved shows until eof last instruction 2013 spring
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-06-08"
+            json_data = leave_to_json(leave_reqs, now_request)
+            self.assertEquals(len(json_data), 2)
+            leave = json_data[0]
+            self.assertEquals(leave["status"], "requested")
+            leave = json_data[1]
+            self.assertEquals(leave["status"], "withdrawn")
+            # withdrawn shows until eof 2013 summer
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-08-28"
+            json_data = leave_to_json(leave_reqs, now_request)
+            self.assertEquals(len(json_data), 1)
+            leave = json_data[0]
+            self.assertEquals(leave["status"], "requested")
+            # requested always shows
+
+    def test_get_grad_petition(self):
         with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
                            RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
