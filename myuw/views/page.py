@@ -36,7 +36,7 @@ def index(request,
         # On mobile devices, all students get the current myuw.  Non-students
         # are sent to the legacy site.
         if not is_student():
-            return _redirect_to_legacy_site()
+            return redirect_to_legacy_site()
     else:
         # On the desktop, we're migrating users over.  There are 2 classes of
         # users - mandatory and opt-in switchers.  The mandatory users, who
@@ -48,9 +48,9 @@ def index(request,
         if not is_mandatory_switch_user():
             if is_optin_switch_user():
                 if has_legacy_preference():
-                    return _redirect_to_legacy_site()
+                    return redirect_to_legacy_site()
             else:
-                return _redirect_to_legacy_site()
+                return redirect_to_legacy_site()
 
     timer = Timer()
     logger = logging.getLogger('myuw.views.page.index')
@@ -105,7 +105,7 @@ def _is_mobile(request):
     return False
 
 
-def _redirect_to_legacy_site():
+def redirect_to_legacy_site():
     legacy_url = getattr(settings,
                          "MYUW_USER_SERVLET_URL",
                          "https://myuw.washington.edu/servlet/user")

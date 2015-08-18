@@ -138,6 +138,84 @@ class TestLoginRedirects(TestCase):
         response = self.client.get(url, **_get_desktop_args())
         self.assertEquals(response.status_code, 200)
 
+    @override_settings(MYUW_USER_SERVLET_URL="http://some-test-server/myuw")
+    def test_set_legacy_preferences(self):
+        # Clear any existing data...
+        UserMigrationPreference.objects.all().delete()
+
+        username = "test_set_pref"
+        new_url = reverse('myuw_pref_new_site')
+        old_url = reverse('myuw_pref_old_site')
+
+        # Set a preference for the new site, with no existing preference
+        get_user(username)
+        self.client.login(username=username,
+                          password=get_user_pass(username))
+        response = self.client.get(new_url)
+
+        new_valid_url = "http://testserver/"
+        old_valid_url = "http://some-test-server/myuw"
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.get("Location"), new_valid_url)
+
+        obj = UserMigrationPreference.objects.get(username=username)
+        self.assertFalse(obj.use_legacy_site)
+
+        # Set a preference again for the new site
+        response = self.client.get(new_url)
+
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.get("Location"), new_valid_url)
+
+        obj = UserMigrationPreference.objects.get(username=username)
+        self.assertFalse(obj.use_legacy_site)
+
+        # Go to the set old preference url, but don't post
+        response = self.client.get(old_url)
+
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.get("Location"), old_valid_url)
+
+        obj = UserMigrationPreference.objects.get(username=username)
+        self.assertFalse(obj.use_legacy_site)
+
+        # POST to the set old preference url, changing preference
+        response = self.client.post(old_url)
+
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.get("Location"), old_valid_url)
+
+        obj = UserMigrationPreference.objects.get(username=username)
+        self.assertTrue(obj.use_legacy_site)
+
+        # POST again
+        response = self.client.post(old_url)
+
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.get("Location"), old_valid_url)
+
+        obj = UserMigrationPreference.objects.get(username=username)
+        self.assertTrue(obj.use_legacy_site)
+
+        # POST to the set old preference url, without an existing preference
+        UserMigrationPreference.objects.all().delete()
+        response = self.client.get(old_url)
+
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.get("Location"), old_valid_url)
+
+        with self.assertRaises(UserMigrationPreference.DoesNotExist):
+            UserMigrationPreference.objects.get(username=username)
+
+        # Replace a legacy preference with a new one
+        response = self.client.get(new_url)
+
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.get("Location"), new_valid_url)
+
+        obj = UserMigrationPreference.objects.get(username=username)
+        self.assertFalse(obj.use_legacy_site)
+
 
 def _get_mobile_args():
     return {'HTTP_USER_AGENT': ("Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 "
