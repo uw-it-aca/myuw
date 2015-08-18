@@ -6,6 +6,10 @@ from django.db import models
 
 
 class Migration(SchemaMigration):
+    # This is ugly, but without updating the migration history all of the
+    # previous migrations are run again...
+    db.execute("UPDATE south_migrationhistory set app_name='myuw' WHERE "
+               "app_name='myuw_mobile'")
 
     def forwards(self, orm):
         # Adding model 'UserMigrationPreference'
