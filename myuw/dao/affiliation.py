@@ -14,6 +14,7 @@ from myuw.dao.gws import is_pce_student, is_student_employee
 from myuw.dao.gws import is_seattle_student, is_bothell_student
 from myuw.dao.gws import is_tacoma_student, is_faculty
 from myuw.dao.enrollment import get_main_campus
+from myuw.models import UserMigrationPreference
 
 logger = logging.getLogger(__name__)
 
@@ -150,6 +151,18 @@ def is_mandatory_switch_user():
 def is_optin_switch_user():
     username = get_netid_of_current_user()
     return _is_user_in_list(username, OPTIN_SWITCH)
+
+
+def has_legacy_preference():
+    username = get_netid_of_current_user()
+
+    try:
+        saved = UserMigrationPreference.objects.get(username=username)
+        if saved.use_legacy_site:
+            return True
+    except UserMigrationPreference.DoesNotExist:
+        return False
+    return False
 
 
 def _is_user_in_list(username, user_type):

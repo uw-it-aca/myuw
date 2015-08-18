@@ -2,6 +2,7 @@ import hashlib
 from datetime import datetime
 from django.utils import timezone
 from django.db import models
+from myuw.models.building import Building
 
 
 class CategoryLinks(models.Model):
@@ -154,3 +155,8 @@ class SeenRegistration(models.Model):
 
     class Meta:
         db_table = "myuw_mobile_seenregistration"
+
+
+class UserMigrationPreference(models.Model):
+    username = models.CharField(max_length=20, db_index=True, unique=True)
+    use_legacy_site = models.BooleanField(default=False)

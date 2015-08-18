@@ -1,33 +1,34 @@
 # -*- coding: utf-8 -*-
-import datetime
+from south.utils import datetime_utils as datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
 
 
 class Migration(SchemaMigration):
+    # This is ugly, but without updating the migration history all of the
+    # previous migrations are run again...
+    db.execute("UPDATE south_migrationhistory set app_name='myuw' WHERE "
+               "app_name='myuw_mobile'")
 
     def forwards(self, orm):
-        # Adding model 'SeenRegistration'
-        db.create_table(u'myuw_mobile_seenregistration', (
+        # Adding model 'UserMigrationPreference'
+        db.create_table(u'myuw_usermigrationpreference', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['myuw.User'], on_delete=models.PROTECT)),
-            ('year', self.gf('django.db.models.fields.PositiveSmallIntegerField')(db_index=True)),
-            ('quarter', self.gf('django.db.models.fields.CharField')(max_length=10, db_index=True)),
-            ('summer_term', self.gf('django.db.models.fields.CharField')(max_length=1)),
-            ('first_seen_date', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('username', self.gf('django.db.models.fields.CharField')(unique=True, max_length=20, db_index=True)),
+            ('use_legacy_site', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
-        db.send_create_signal(u'myuw', ['SeenRegistration'])
+        db.send_create_signal(u'myuw', ['UserMigrationPreference'])
 
 
     def backwards(self, orm):
-        # Deleting model 'SeenRegistration'
-        db.delete_table(u'myuw_mobile_seenregistration')
+        # Deleting model 'UserMigrationPreference'
+        db.delete_table(u'myuw_usermigrationpreference')
 
 
     models = {
-        u'myuw.building': {
-            'Meta': {'object_name': 'Building'},
+        'myuw.building': {
+            'Meta': {'object_name': 'Building', 'db_table': "'myuw_mobile_building'"},
             'code': ('django.db.models.fields.CharField', [], {'max_length': '6', 'db_index': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'latititude': ('django.db.models.fields.CharField', [], {'max_length': '40'}),
@@ -35,7 +36,7 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '200'})
         },
         u'myuw.categorylinks': {
-            'Meta': {'object_name': 'CategoryLinks'},
+            'Meta': {'object_name': 'CategoryLinks', 'db_table': "'myuw_mobile_categorylinks'"},
             'campus': ('django.db.models.fields.CharField', [], {'max_length': '8', 'null': 'True'}),
             'category_id': ('django.db.models.fields.CharField', [], {'max_length': '80'}),
             'category_name': ('django.db.models.fields.CharField', [], {'max_length': '80'}),
@@ -46,7 +47,7 @@ class Migration(SchemaMigration):
             'url': ('django.db.models.fields.CharField', [], {'max_length': '150'})
         },
         u'myuw.coursecolor': {
-            'Meta': {'object_name': 'CourseColor'},
+            'Meta': {'object_name': 'CourseColor', 'db_table': "'myuw_mobile_coursecolor'"},
             'color_id': ('django.db.models.fields.PositiveIntegerField', [], {}),
             'course_number': ('django.db.models.fields.CharField', [], {'max_length': '3'}),
             'curriculum_abbr': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
@@ -58,7 +59,7 @@ class Migration(SchemaMigration):
             'year': ('django.db.models.fields.PositiveSmallIntegerField', [], {'db_index': 'True'})
         },
         u'myuw.seenregistration': {
-            'Meta': {'object_name': 'SeenRegistration'},
+            'Meta': {'object_name': 'SeenRegistration', 'db_table': "'myuw_mobile_seenregistration'"},
             'first_seen_date': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'quarter': ('django.db.models.fields.CharField', [], {'max_length': '10', 'db_index': 'True'}),
@@ -67,7 +68,7 @@ class Migration(SchemaMigration):
             'year': ('django.db.models.fields.PositiveSmallIntegerField', [], {'db_index': 'True'})
         },
         u'myuw.studentaccountsbalances': {
-            'Meta': {'object_name': 'StudentAccountsBalances'},
+            'Meta': {'object_name': 'StudentAccountsBalances', 'db_table': "'myuw_mobile_studentaccountsbalances'"},
             'asof_datetime': ('django.db.models.fields.DateTimeField', [], {}),
             'employee_id': ('django.db.models.fields.CharField', [], {'db_index': 'True', 'max_length': '10', 'null': 'True', 'blank': 'True'}),
             'husky_card': ('django.db.models.fields.DecimalField', [], {'default': '0.0', 'max_digits': '6', 'decimal_places': '2'}),
@@ -77,21 +78,27 @@ class Migration(SchemaMigration):
             'student_number': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '10', 'db_index': 'True'})
         },
         u'myuw.tuitiondate': {
-            'Meta': {'object_name': 'TuitionDate'},
+            'Meta': {'object_name': 'TuitionDate', 'db_table': "'myuw_mobile_tuitiondate'"},
             'date': ('django.db.models.fields.DateField', [], {}),
             'date_stored': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['myuw.User']", 'unique': 'True', 'on_delete': 'models.PROTECT'})
         },
         u'myuw.user': {
-            'Meta': {'object_name': 'User'},
+            'Meta': {'object_name': 'User', 'db_table': "'myuw_mobile_user'"},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'last_visit': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2014, 10, 27, 0, 0)'}),
+            'last_visit': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2015, 8, 18, 0, 0)'}),
             'uwnetid': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '16'}),
             'uwregid': ('django.db.models.fields.CharField', [], {'max_length': '32', 'unique': 'True', 'null': 'True', 'db_index': 'True'})
         },
+        u'myuw.usermigrationpreference': {
+            'Meta': {'object_name': 'UserMigrationPreference'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'use_legacy_site': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '20', 'db_index': 'True'})
+        },
         u'myuw.usernotices': {
-            'Meta': {'unique_together': "(('notice_hash', 'user'),)", 'object_name': 'UserNotices'},
+            'Meta': {'unique_together': "(('notice_hash', 'user'),)", 'object_name': 'UserNotices', 'db_table': "'myuw_mobile_usernotices'"},
             'first_viewed': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'is_read': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),

@@ -57,7 +57,7 @@ class Migration(SchemaMigration):
         db.create_table(u'myuw_mobile_usernotices', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('notice_hash', self.gf('django.db.models.fields.CharField')(max_length=32)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['myuw_mobile.User'], on_delete=models.PROTECT)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['myuw.User'], on_delete=models.PROTECT)),
             ('first_viewed', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('marked_read', self.gf('django.db.models.fields.DateTimeField')(null=True)),
             ('is_read', self.gf('django.db.models.fields.BooleanField')(default=False)),
@@ -79,7 +79,7 @@ class Migration(SchemaMigration):
         # Adding model 'TuitionDate'
         db.create_table(u'myuw_mobile_tuitiondate', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['myuw_mobile.User'], unique=True, on_delete=models.PROTECT)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['myuw.User'], unique=True, on_delete=models.PROTECT)),
             ('date_stored', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('date', self.gf('django.db.models.fields.DateField')()),
         ))
@@ -110,7 +110,7 @@ class Migration(SchemaMigration):
 
 
     models = {
-        u'myuw_mobile.building': {
+        u'myuw.building': {
             'Meta': {'object_name': 'Building'},
             'code': ('django.db.models.fields.CharField', [], {'max_length': '6', 'db_index': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -118,7 +118,7 @@ class Migration(SchemaMigration):
             'longitude': ('django.db.models.fields.CharField', [], {'max_length': '40'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '200'})
         },
-        u'myuw_mobile.categorylinks': {
+        u'myuw.categorylinks': {
             'Meta': {'object_name': 'CategoryLinks'},
             'campus': ('django.db.models.fields.CharField', [], {'max_length': '8', 'null': 'True'}),
             'category_id': ('django.db.models.fields.CharField', [], {'max_length': '80'}),
@@ -128,7 +128,7 @@ class Migration(SchemaMigration):
             'title': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
             'url': ('django.db.models.fields.CharField', [], {'max_length': '150'})
         },
-        u'myuw_mobile.coursecolor': {
+        u'myuw.coursecolor': {
             'Meta': {'object_name': 'CourseColor'},
             'color_id': ('django.db.models.fields.PositiveIntegerField', [], {}),
             'course_number': ('django.db.models.fields.CharField', [], {'max_length': '3'}),
@@ -140,7 +140,7 @@ class Migration(SchemaMigration):
             'section_id': ('django.db.models.fields.CharField', [], {'max_length': '2'}),
             'year': ('django.db.models.fields.PositiveSmallIntegerField', [], {'db_index': 'True'})
         },
-        u'myuw_mobile.studentaccountsbalances': {
+        u'myuw.studentaccountsbalances': {
             'Meta': {'object_name': 'StudentAccountsBalances'},
             'asof_datetime': ('django.db.models.fields.DateTimeField', [], {}),
             'employee_id': ('django.db.models.fields.CharField', [], {'db_index': 'True', 'max_length': '10', 'null': 'True', 'blank': 'True'}),
@@ -150,29 +150,29 @@ class Migration(SchemaMigration):
             'residence_hall_dining': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '7', 'decimal_places': '2', 'blank': 'True'}),
             'student_number': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '10', 'db_index': 'True'})
         },
-        u'myuw_mobile.tuitiondate': {
+        u'myuw.tuitiondate': {
             'Meta': {'object_name': 'TuitionDate'},
             'date': ('django.db.models.fields.DateField', [], {}),
             'date_stored': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['myuw_mobile.User']", 'unique': 'True', 'on_delete': 'models.PROTECT'})
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['myuw.User']", 'unique': 'True', 'on_delete': 'models.PROTECT'})
         },
-        u'myuw_mobile.user': {
+        u'myuw.user': {
             'Meta': {'object_name': 'User'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'last_visit': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2014, 9, 12, 0, 0)'}),
             'uwnetid': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '16'}),
             'uwregid': ('django.db.models.fields.CharField', [], {'max_length': '32', 'unique': 'True', 'null': 'True', 'db_index': 'True'})
         },
-        u'myuw_mobile.usernotices': {
+        u'myuw.usernotices': {
             'Meta': {'object_name': 'UserNotices'},
             'first_viewed': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'is_read': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'marked_read': ('django.db.models.fields.DateTimeField', [], {'null': 'True'}),
             'notice_hash': ('django.db.models.fields.CharField', [], {'max_length': '32'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['myuw_mobile.User']", 'on_delete': 'models.PROTECT'})
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['myuw.User']", 'on_delete': 'models.PROTECT'})
         }
     }
 
-    complete_apps = ['myuw_mobile']
+    complete_apps = ['myuw']
