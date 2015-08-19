@@ -296,7 +296,7 @@ var Notices = {
         var critical = Notices._get_critical(WSData.notice_data(), "StudentFinAid");
         var finaid_critical_tags = ["tuition_aidhold",
                                     "tuition_missingdocs",
-                                    "tuition_loanpromissory ",
+                                    "tuition_loanpromissory",
                                     "tuition_loancounseling",
                                     "tuition_acceptreject",
                                     "tuition_disbursedateA",

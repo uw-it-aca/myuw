@@ -57,7 +57,7 @@
                 {
                     "Name": "Date",
                     "DataType": "date",
-                    "Value": "next-week"
+                    "Value": "next_week"
                 },
                 {
                     "Name": "DisplayBegin",
@@ -67,7 +67,7 @@
                 {
                     "Name": "DisplayEnd",
                     "DataType": "date",
-                    "Value": "next-week"
+                    "Value": "next_week"
                 },
                 {
                     "Name": "Quarter",
@@ -166,6 +166,305 @@
             "NoticeCategory": "StudentDAD",
             "NoticeContent": "<span class=\"notice-body-without-title\"> Spring quarter ends </span><span class=\"date\"> Friday, June 6</span>.",
             "NoticeType": "QtrEnd"
+        },
+        {
+            "NoticeAttributes": null,
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "<span class=\"notice-title\">Enroll in Direct Deposit for Aid Funds</span>&nbsp<span class=\"notice-body-with-title\"><a href=\"https://sdb.admin.uw.edu/students/uwnetid/emt.asp\">Sign up for direct deposit</a> of your Financial Aid Funds.</span>",
+            "NoticeType": "DirectDeposit"
+        },
+        {
+            "NoticeAttributes": null,
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "Enroll in Direct Deposit",
+            "NoticeType": "DirectDepositShort"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "DataType": "date",
+                    "Name": "DisplayBegin",
+                    "Value": "20150101"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "DisplayEnd",
+                    "Value": "20150228"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "Date",
+                    "Value": "today"
+                },
+                {
+                    "DataType": "string",
+                    "Name": "AIDYR",
+                    "Value": "2015-2016"
+                }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "<span class=\"notice-title\">Submit 2015-2016 FAFSA by Feb 28th</span>&nbsp;<span class=\"notice-body-with-title\">If you haven't already, complete your 2015-2016 <a href=\"https://fafsa.gov\">Financial Aid Application</a> before Sat, Feb 28 priority consideration.</span>",
+            "NoticeType": "AidPriorityDate"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "Submit 2015-2016 FAFSA by Sat, Feb 28",
+            "NoticeType": "AidPriorityDateShort"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "DataType": "date",
+                    "Name": "DisplayBegin",
+                    "Value": "20150301"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "DisplayEnd",
+                    "Value": "20150601"
+                },
+                {
+                    "DataType": "string",
+                    "Name": "AIDYR",
+                    "Value": "2015-2016"
+                }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "<span class=\"notice-title\"> 2015-2016 FAFSA aid still available</span>&nbsp;<span class=\"notice-body-with-title\">You can still <a href=\"https://fafsa.gov\">apply for financial aid</a> even though the priority deadline has passed.</span>",
+            "NoticeType": "AidReminder"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "You can still apply for 2015-2016 aid",
+            "NoticeType": "AidReminderShort"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "DataType": "date",
+                    "Name": "DisplayBegin",
+                    "Value": "20150318"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "DisplayEnd",
+                    "Value": "20150331"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "Date",
+                    "Value": "next_week"
+                }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "<span class=\"notice-title\">Summer Aid Application available April 1st</span>&nbsp;<span class=\"notice-body-with-title\">Summer Financial Aid Application will be available Wed, Apr 1.</span>",
+            "NoticeType": "SummerAidDate"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "DataType": "date",
+                    "Name": "DisplayBegin",
+                    "Value": "20150318"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "DisplayEnd",
+                    "Value": "20150331"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "Date",
+                    "Value": "20150401"
+                }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "Summer Aid Application available Wed, Apr 1",
+            "NoticeType": "SummerAidDateShort"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "DataType": "date",
+                    "Name": "DisplayBegin",
+                    "Value": "20150401"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "DisplayEnd",
+                    "Value": "20150730"
+                }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "<span class=\"notice-title\">Summer Financial Aid Application now available</span>&nbsp;<span class=\"notice-body-with-title\">The <a href=\"https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">Summer Financial Aid Application</a> is now available.<span>",
+            "NoticeType": "SummerAidAvail"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "DataType": "date",
+                    "Name": "DisplayBegin",
+                    "Value": "20150401"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "DisplayEnd",
+                    "Value": "20150730"
+                }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "Summer Aid Application now available",
+            "NoticeType": "SummerAidAvailShort"
+        },
+        {
+            "NoticeAttributes": null,
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "<span class=\"notice-title\">Accept or Reject Your Financial Aid</span>&nbsp;<span class=\"notice-body-with-title\">You have been awarded financial aid and you need to <a href=\"https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">accept/reject</a> the award(s) now in order to avoid cancellation.</span>",
+            "NoticeType": "AcceptRejectAward"
+        },
+        {
+            "NoticeAttributes": null,
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "Accept/reject your aid award",
+            "NoticeType": "AcceptRejectAwardShort"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "DataType": "date",
+                    "Name": "DisplayBegin",
+                    "Value": "20150608"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "DisplayEnd",
+                    "Value": "20150623"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "Date",
+                    "Value": "future"
+                }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "<span class=\"notice-title\">Financial Aid Disbursement Begins Thurs, June 18</span>&nbsp;<span class=\"notice-body-with-title\">Financial Aid disbursement begins on Thurs, June 18. Aid that exceeds your account charges will take 2-3 days to appear in your bank account.</span>",
+            "NoticeType": "DisburseDateA"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "DataType": "date",
+                    "Name": "DisplayBegin",
+                    "Value": "20150608"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "DisplayEnd",
+                    "Value": "20150623"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "Date",
+                    "Value": "20150618"
+                }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "Aid disbursement begins Thurs, June 18",
+            "NoticeType": "DisburseDateAShort"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "DataType": "date",
+                    "Name": "DisplayBegin",
+                    "Value": "20150608"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "DisplayEnd",
+                    "Value": "20150623"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "Date",
+                    "Value": "future"
+                }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "<span class=\"notice-title\">Financial Aid Disbursement begins Thurs, June 18</span>&nbsp;<span class=\"notice-body-with-title\">Financial Aid disbursement begins on Thurs, June 18. Aid that exceeds your account charges can take up to 10 business days to get by mail.</span>",
+            "NoticeType": "DisburseDateB"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "DataType": "date",
+                    "Name": "DisplayBegin",
+                    "Value": "20150608"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "DisplayEnd",
+                    "Value": "20150623"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "Date",
+                    "Value": "20150618"
+                }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "Aid Disbursement begins Thurs, June 18",
+            "NoticeType": "DisburseDateBShort"
+        },
+        {
+            "NoticeAttributes": null,
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "<span class=\"notice-title\">Loan entrance counseling required</span>&nbsp;<span class=\"notice-body-with-title\">You need to complete <a href=\"https://studentloans.gov\">Entrance Counseling</a> for your Loan(s).</span>",
+            "NoticeType": "LoanCounseling"
+        },
+        {
+            "NoticeAttributes": null,
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "Loan entrance counseling required",
+            "NoticeType": "LoanCounselingShort"
+        },
+        {
+            "NoticeAttributes": null,
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "<span class=\"notice-title\">Loan Master Promissory Note required</span>&nbsp;<span class=\"notice-body-with-title\">You may have a Master Promissory Note that needs to be signed, please check your messages on <a href=\"https://sdb/admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">Financial Aid Status</a>.</span>",
+            "NoticeType": "LoanPromissory"
+        },
+        {
+            "NoticeAttributes": null,
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "Loan Master Promissory Note needs signing",
+            "NoticeType": "LoanPromissoryShort"
+        },
+        {
+            "NoticeAttributes": null,
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "<span class=\"notice-title\">Missing Financial Aid documents</span>&nbsp;<span class=\"notice-body-with-title\">Your aid has not been disbursed because you need to <a href=\"https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\"> submit missing documents.</a></span>",
+            "NoticeType": "MissingDocs"
+        },
+        {
+            "NoticeAttributes": null,
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "Aid not disbursed because of missing documents",
+            "NoticeType": "MissingDocsShort"
+        },
+        {
+            "NoticeAttributes": null,
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "<span class=\"notice-title\">Financial Aid Hold</span>&nbsp;<span class=\"notice-body-with-title\">You have a <a href=\"https://sdb/admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">hold</a> on your financial aid.</span>",
+            "NoticeType": "AidHold"
+        },
+        {
+            "NoticeAttributes": null,
+            "NoticeCategory": "StudentFinAid",
+            "NoticeContent": "You have a hold on your aid",
+            "NoticeType": "AidHoldShort"
         }
     ],
     "Person": {
