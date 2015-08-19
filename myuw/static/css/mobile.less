@@ -434,16 +434,19 @@ body {
 }
 
 #app_messages {
-	.message-banner {background-color: #72adcb;color:#fff;
-		.message-text {padding:10px 15px;font-size: 13px;
+	.message-banner {background-color: #558097;color:#fff; //#72adcb too light
+		.message-text {padding:10px 15px;font-size: 15px;text-align: center;
 			a {text-decoration: underline; color:#fff;
 				&.btn-link {padding: 0;margin: 0;vertical-align: 0;font-size: inherit;}
 			} 
+			.message-not-ready {font-size: 12px;font-style: italic;display: inline-block;}
 		}
 	}
 	.message-dialog {
 		.modal-content {
+			.modal-header {}
 			.modal-body {}
+			.modal-footer {}
 		}
 	}
 }
