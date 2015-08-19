@@ -194,7 +194,7 @@
                 {
                     "DataType": "date",
                     "Name": "Date",
-                    "Value": "20150228"
+                    "Value": "today"
                 },
                 {
                     "DataType": "string",
@@ -255,7 +255,7 @@
                 {
                     "DataType": "date",
                     "Name": "Date",
-                    "Value": "20150401"
+                    "Value": "next_week"
                 }
             ],
             "NoticeCategory": "StudentFinAid",
@@ -345,7 +345,7 @@
                 {
                     "DataType": "date",
                     "Name": "Date",
-                    "Value": "20150618"
+                    "Value": "future"
                 }
             ],
             "NoticeCategory": "StudentFinAid",
@@ -389,7 +389,7 @@
                 {
                     "DataType": "date",
                     "Name": "Date",
-                    "Value": "20150618"
+                    "Value": "future"
                 }
             ],
             "NoticeCategory": "StudentFinAid",
