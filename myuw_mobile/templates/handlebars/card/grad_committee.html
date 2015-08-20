@@ -12,7 +12,7 @@
                             {{ #each members}}
                             <li class="committee-member">
                                 <span style="display: block">{{first_name}} {{last_name}}{{#if member_type}},
-                                    {{member_type}}{{/if}}{{#if reading_type}}, reading_type:{{reading_type}}{{/if}}</span>
+                                    {{member_type}}{{/if}}{{#if reading_type}} ,{{reading_type}}{{/if}}</span>
                                 {{#if dept}}<span style="display: block">{{dept}}</span>{{/if}}
                                 {{#if email}}<span style="display: block"><a href="mailto:{{email}}">{{email}}</a></span>{{/if}}
                             </li>
