@@ -2,7 +2,7 @@
 {% tplhandlebars "future_quarter_card" %}
 
 <h3 id="future_quarters" class="sr-only">Upcoming quarters you are registered for</h3>
-<div aria-labeledby="future_quarters">
+<div aria-labelledby="future_quarters">
   
     {{ #each terms }}
     <div class="card" style="position:relative;"  data-name="FutureCard" data-type="card" data-identifier="{{ quarter }} {{ year }}{{ #if summer_term }} {{ summer_term }} {{ /if }}">
