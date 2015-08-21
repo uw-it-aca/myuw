@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Mobile MyUW</title>
+    <title>MyUW</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -90,13 +90,8 @@
 
 	<div id="app_messages">
 		<div class="message-banner">
-            {% if user.affiliations.stud_employee %}
-                {% if user.affiliations.faculty %}
-                {% else %}
-                {% endif %}
-            {% endif %}
 			<div class="container message-text">
-				<h2>It's a new MyUW!</h2> MyUW shows you personal, critical, and timely information. <a class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn how it works.</a> <br /><span class="message-not-ready">Not ready yet? <a href="#">Switch back to the old MyUW.</a></span>				
+				{% if user.affiliations.fyp %}<h2>Welcome to MyUW!</h2>{% else %}<h2>It's a new MyUW!</h2>{% endif %} MyUW shows you personal, critical, and timely information. <a class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn how it works.</a> {% if not user.affiliations.fyp %}<br /><span class="message-not-ready">Not ready yet? <a href="#">Switch back to the old MyUW.</a><!-- <form action="{% url 'myuw.views.choose.old_site' %} " method=POST>{% csrf_token %} btn link 'Switch Back to Old MyUW' </form> --> </span>{% endif %}				
 			</div>
 		</div>
 		
@@ -106,36 +101,45 @@
 		    	<div class="modal-content">
 		    		<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h3 class="modal-title" id="myModalLabel">MyUW 2015: Designed for student needs</h3>
+						<h3 class="modal-title" id="myModalLabel">{% if user.affiliations.fyp %}MyUW{% else %}MyUW 2015{% endif %}: Designed for student needs</h3>
 		    		</div>
 					<div class="modal-body">
-						<p>It's a new MyUW! We did lots of research to understand student needs and we rebuilt and curated MyUW to focus on these needs. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">We'd love your feedback!</a></p>
+						<p>{% if not user.affiliations.fyp %}It's a new MyUW!{% endif %} We did lots of research to understand student needs and we {% if not user.affiliations.fyp %}re{% endif%}built and curated MyUW to focus on these needs. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">We'd love your feedback!</a></p>
 						
 						<h3>Different content appears, depending on the week</h3>
 						<p>As your quarter rolls on, we'll present the information and resources that are most useful on cards, the most important at the top</p>
 						<ul>
-							<li>Visual Schedule with map links to find your classes</li>
-							<li>Course Cards with links to Catalyst and Canvas, research guides, and instructor contact info</li>
-							<li>Registration materials near your registration date</li>
-							<li>Final Grades as soon as they come in</li>
-							<li>Husky, Tuition, and Library account information is always visible</li>
-							<li>Links to all these resources, and more, are categorized and always available on Resource pages.</li>
+							<li><strong>Visual Schedule</strong> with map links to find your classes</li>
+							<li><strong>Course Cards</strong> with links to Catalyst and Canvas, research guides, and instructor contact info</li>
+							{% if user.affiliations.fyp %}
+							<li><strong>ThriveUW</strong> messaging each week to help you adjust to and succeed at UW</li>
+							{% endif %}
+							<li><strong>Registration</strong> materials near your registration date</li>
+							<li><strong>Final Grades</strong> as soon as they come in</li>
+							<li><strong>Husky, Tuition, and Library account</strong> information is always visible</li>
+							<li>Links to all these resources, and more, are categorized and always available on <strong>Resource pages.</strong></li>
 						</ul>
+						{% if not user.affiliations.fyp %}
 						<h3>Switch back to the old MyUW</h3>
 						<p>You can use the old version of MyUW, and we'll continue take you there until Winter Break, or when you choose to switch back, whichever comes first.</p> 
+						{% endif %}
 						
 						<!-- if employee -->
+						{% if user.affiliations.stud_employee %}
 						<h3>Student Employees</h3>
-						<p>A link to Employee Self-Services (ESS) is on the <a href="/resource/employment">Employment page</a>, but you can also use the <a href="https://myuw.washington.edu/servlet/main/?tab=7">old version of MyUW</a> to access additional employment resources.</p>
+						<p>A link to Employee Self-Services (ESS) is on the <a href="/resource/employment">Employment page</a>, but you can also use the <a href="https://myuw.washington.edu/servlet/main/?tab=7" target="_blank">old version of MyUW</a> to access additional employment resources.</p>
+						{% endif %}
 						<!-- /if employee -->
 						
 						<!-- if instructor -->
+						{% if user.affiliations.faculty %}
 						<h3>Instructor or TA for a class?</h3>
 						<p><a href="https://myuw.washington.edu/servlet/main/?tab=8" target="_blank">Use the old version of MyUW to access your teaching resources.</a> We're working on moving this content to this new version of MyUW so you'll eventually have everything in one place.</p>
+						{% endif %}
 						<!-- /if instructor -->
 		    		</div>
 					<div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 			    	</div>
 		    	</div>
 			</div>
