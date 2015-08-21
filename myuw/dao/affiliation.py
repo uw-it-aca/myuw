@@ -45,11 +45,19 @@ def get_all_affiliations(request):
     """
 
     enrolled_campuses = get_current_quarter_course_campuses(request)
+    is_fyp = False
+
+    try:
+        is_fyp = is_mandatory_switch_user()
+    except Exception as ex:
+        # This fails in unit tests w/o userservice
+        is_fyp = False
+
     data = {"grad": is_grad_student(),
             "undergrad": is_undergrad_student(),
             "pce": is_pce_student(),
             "stud_employee": is_student_employee(),
-            "fyp": is_mandatory_switch_user(),
+            "fyp": is_fyp,
             "faculty": is_faculty(),
             "seattle": enrolled_campuses["seattle"] or is_seattle_student(),
             "bothell": enrolled_campuses["bothell"] or is_bothell_student(),
