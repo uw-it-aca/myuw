@@ -49,6 +49,7 @@ def get_all_affiliations(request):
             "undergrad": is_undergrad_student(),
             "pce": is_pce_student(),
             "stud_employee": is_student_employee(),
+            "fyp": is_mandatory_switch_user(),
             "faculty": is_faculty(),
             "seattle": enrolled_campuses["seattle"] or is_seattle_student(),
             "bothell": enrolled_campuses["bothell"] or is_bothell_student(),
