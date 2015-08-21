@@ -246,11 +246,14 @@ var titilizeTerm = function(term) {
 };
 
 var capitalizeString = function(string) {
-    if (string !== undefined && string.match(/^[ab]-term$/gi)) {
-        value = string.split("-");
-        return value[0].toUpperCase() + "-" + value[1].charAt(0).toUpperCase() + value[1].slice(1);
+    if (string !== undefined) {
+        if (string.match(/^[ab]-term$/gi)) {
+            value = string.split("-");
+            return value[0].toUpperCase() + "-" + value[1].charAt(0).toUpperCase() + value[1].slice(1);
+        }
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string;
 };
 
 var isScrolledIntoView = function(elem) {
