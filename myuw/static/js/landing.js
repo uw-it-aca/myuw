@@ -67,6 +67,7 @@ var Landing = {
             SummerRegStatusCard1
         ];
         var desktop_sidebar_cards = [
+            EmpFacStudentCard,
             HfsCard,
             TuitionCard,
             LibraryCard,
