@@ -244,7 +244,7 @@ var titilizeTerm = function(term) {
 };
 
 var capitalizeString = function(string) {
-    if (string.match(/^[ab]-term$/gi)) {
+    if (string !== undefined && string.match(/^[ab]-term$/gi)) {
         value = string.split("-");
         return value[0].toUpperCase() + "-" + value[1].charAt(0).toUpperCase() + value[1].slice(1);
     }

@@ -1,15 +1,15 @@
 NOTICE_CATEGORIES = {
-    "StudentALR_IntlStuCheckIn": {
+    "StudentALR_IntlStuCheckin": {
         "myuw_category": "Holds",
         "location_tags": ['notices_holds', 'reg_card_holds'],
         "critical": True
     },
-    "StudentALR_IntlStuCheckIn": {
+    "StudentALR_IntlStuCheckin": {
         "myuw_category": "Holds",
         "location_tags": ['notices_holds', 'reg_card_holds'],
         "critical": True
     },
-    "StudentALR_IntlStuCheckIn": {
+    "StudentALR_IntlStuCheckin": {
         "myuw_category": "Holds",
         "location_tags": ['notices_holds', 'reg_card_holds'],
         "critical": True
@@ -340,12 +340,12 @@ NOTICE_CATEGORIES = {
         "location_tags": ['checklist_feespaid'],
         "critical": False
     },
-    "NewStudentCLIST_IntlStuCheckInA": {
+    "NewStudentCLIST_IntlStuCheckinA": {
         "myuw_category": "Admission",
         "location_tags": ['checklist_iss_before'],
         "critical": False
     },
-    "NewStudentCLIST_IntlStuCheckInB": {
+    "NewStudentCLIST_IntlStuCheckinB": {
         "myuw_category": "Admission",
         "location_tags": ['checklist_iss_after'],
         "critical": False
@@ -486,22 +486,22 @@ NOTICE_CATEGORIES = {
         "location_tags": ['tuition_acceptreject_title'],
         "critical": False
     },
-    "StudentFinAid_DisbursDateA": {
+    "StudentFinAid_DisburseDateA": {
         "myuw_category": "Fees & Finances",
         "location_tags": ['tuition_disbursedateA', 'notices_date_sort'],
         "critical": True
     },
-    "StudentFinAid_DisbursDateAShort": {
+    "StudentFinAid_DisburseDateAShort": {
         "myuw_category": "Fees & Finances",
         "location_tags": ['tuition_disbursedateA_title'],
         "critical": False
     },
-    "StudentFinAid_DisbursDateB": {
+    "StudentFinAid_DisburseDateB": {
         "myuw_category": "Fees & Finances",
         "location_tags": ['tuition_disbursedateB', 'notices_date_sort'],
         "critical": True
     },
-    "StudentFinAid_DisbursDateBShort": {
+    "StudentFinAid_DisburseDateBShort": {
         "myuw_category": "Fees & Finances",
         "location_tags": ['tuition_disbursedateB_title'],
         "critical": False

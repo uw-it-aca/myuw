@@ -10,7 +10,7 @@
             ],
             "NoticeCategory": "StudentALR",
             "NoticeContent": "<span class=\"notice-title\">Online ISS information session required before registration</span><span class=\"notice-body-with-title\">All new international students are required to complete the <a href=\"https://catalysttools.washington.edu/webq/survey/torre/79003\">International Student Services (ISS) Online Information Session</a> before registering for classes. You will need your UW NetID and password to access the online ISS information session. After you arrive on campus, the International Student Services (ISS) must collect copies of your immigration documents.</span>",
-            "NoticeType": "IntlStuCheckIn"
+            "NoticeType": "IntlStuCheckin"
         },
         {
             "NoticeAttributes": [
@@ -47,8 +47,40 @@
 
             ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": "<span class=\"notice-title\">Quarter Begins</span><span class=\"notice-body-with-title\">Summer quarter begins <span class=\"date\">June 23, 2014</span>.</span>",
+            "NoticeContent": "<span class=\"notice-title\">Quarter Begins</span><span class=\"notice-body-with-title\">Summer quarter begins </span><span class=\"date\">June 23, 2014</span>.",
             "NoticeType": "QtrBegin"
+        },
+       {
+            "NoticeAttributes": [
+             {
+                 "Name": "Date",
+                 "DataType": "date",
+                 "Value": "future_end"
+             },
+             {
+                 "Name": "Begin",
+                 "DataType": "date",
+                 "Value": "future"
+             },
+             {
+                 "Name": "End",
+                 "DataType": "date",
+                 "Value": "future_end"
+             },
+             {
+                 "Name": "Quarter",
+                 "DataType": "string",
+                 "Value": "Spring"
+             },
+             {
+                 "Name": "Link",
+                 "DataType": "url",
+                 "Value": "http://www.uw.edu"
+             }
+           ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": "<span class=\"notice-body-without-title\"> Summer quarter ends </span><span class=\"date\">July 23</span>.",
+            "NoticeType": "QtrEnd"
         },
         {
             "NoticeAttributes": [
@@ -128,6 +160,150 @@
             "NoticeContent": "You can <a href=\"https://sdb.admin.washington.edu/students/uwnetid/finaidstatus.asp\">review the status</a> of your financial aid application online.",
             "NoticeType": "FinAid"
         },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "DirectDeposit",
+            "NoticeContent": "<span class=\"notice-title\">Enroll in Direct Deposit for Aid Funds</span>&nbsp;<span class=\"notice-body-with-title\"><a href=\"https://sdb.admin.uw.edu/students/uwnetid/emt.asp\">Sign up for direct deposit</a> of your Financial Aid Funds</span>"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "DirectDepositShort",
+            "NoticeContent": "Enroll in Direct Deposit"
+        },
+        {
+            "NoticeAttributes": [
+               {
+               "Name": "Year",
+               "DataType": "string",
+               "Value": "2016"
+               },
+               {
+               "Name": "Date",
+               "DataType": "date",
+               "Value": "20130228"
+               },
+               {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "20130101"
+               },
+               {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "20130228"
+               }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "AidPriorityDate",
+            "NoticeContent": "<span class=\"notice-title\">Submit 2013 FAFSA by Feb 28th</span>&nbsp;<span class=\"notice-body-with-title\">If you haven't already, complete your 2013 <a href=\"https://fafsa.gov\">Financial Aid Application</a> before Feb 28th for priority consideration</span>"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "AidPriorityDateShort",
+            "NoticeContent": "Submit 2013 FAFSA by Feb 28th"
+        },
+        {
+            "NoticeAttributes": [
+               {
+               "Name": "Year",
+               "DataType": "string",
+               "Value": "2016"
+               },
+               {
+               "Name": "Date",
+               "DataType": "date",
+               "Value": "20130601"
+               },
+               {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "20130301"
+               },
+               {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "20130601"
+               }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "AidReminder",
+            "NoticeContent": "<span class=\"notice-title\">2013 FAFSA aid still available</span>&nbsp<span class=\"notice-body-with-title\">You can still <a href=\"https://fafsa.gov\">apply for financial aid</a> even though the prior deadline has passed</span>"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "AidReminderShort",
+            "NoticeContent": "You can still apply for 2013 aid"
+        },
+                {
+            "NoticeAttributes": [
+               {
+               "Name": "Year",
+               "DataType": "string",
+               "Value": "2013"
+               },
+               {
+               "Name": "Date",
+               "DataType": "date",
+               "Value": "20130401"
+               },
+               {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "20130318"
+               },
+               {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "20130331"
+               }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "SummerAidDate",
+            "NoticeContent": "<span class=\"notice-title\">Summer Aid Application available April 1st</span>&nbsp;<span class=\"notice-body-with-title\">Summer Financial Aid Application will be available</span> <span class=\"date\">April 1st</span>."
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "SummerAidDateShort",
+            "NoticeContent": "Summer Aid Application available <span class=\"date\">Apr 1st</span>."
+        },
+        {
+            "NoticeAttributes": [
+               {
+               "Name": "Year",
+               "DataType": "string",
+               "Value": "2013"
+               },
+               {
+               "Name": "Date",
+               "DataType": "date",
+               "Value": "20130801"
+               },
+               {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "20130401"
+               },
+               {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "20130801"
+               }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "SummerAidAvail",
+            "NoticeContent": "<span class=\"notice-title\">Summer Financial Aid Application now available</span>&nbsp<span class=\"notice-body-with-title\">The <a href=\"https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">Summer Financial Aid Application</a> is now available</span>"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "SummerAidAvailShort",
+            "NoticeContent": "Summer aid Application now available"
+        },
        {
             "NoticeAttributes": [],
             "NoticeCategory": "NewStudentFOOT",
@@ -144,7 +320,7 @@
             "NoticeAttributes": [],
             "NoticeCategory": "NewStudentCLIST",
             "NoticeContent": "<span class=\"notice-title\">Register for Required Online Information Session for International Students</span>&nbsp;<span class=\"notice-body-with-title\" >You must <a href=\"https://catalyst.uw.edu/webq/survey/torre/79003\">complete the International Student Services (ISS) Online Information Session</a>. The session includes important information about your benefits and responsibilities on an F-1 or J-1 student visa.</span>",
-            "NoticeType": "IntlStuCheckInA"
+            "NoticeType": "IntlStuCheckinA"
         },
        {
             "NoticeAttributes": [],
