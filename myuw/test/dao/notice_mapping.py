@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.conf import settings
 from django.test.client import RequestFactory
 from restclients.sws.notice import get_notices_by_regid
-from myuw.dao.notice_mapping import map_notice_category
+from myuw.dao.notice_mapping import map_notice_category,\
     get_open_date, get_close_date, is_after_eof_days_after_open,\
     is_before_bof_days_before_close, apply_showhide, categorize_notices
 

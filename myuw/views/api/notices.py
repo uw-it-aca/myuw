@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from myuw.views.rest_dispatch import RESTDispatch
 from myuw.dao.notice import get_notices_for_current_user
 from myuw.dao.notice import mark_notices_read_for_current_user
+from myuw.dao.notice_mapping import get_json_for_notices
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
 from datetime import datetime
