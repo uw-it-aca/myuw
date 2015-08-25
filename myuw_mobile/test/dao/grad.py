@@ -62,7 +62,7 @@ class TestGrad(TestCase):
             degree = json_data[6]
             self.assertEquals(degree["status"], "Graduated by Grad School")
             degree = json_data[7]
-            self.assertEquals(degree["status"], "Did not graduate")
+            self.assertEquals(degree["status"], "Did Not Graduate")
 
             # after the end of following term
             now_request.session = {}
