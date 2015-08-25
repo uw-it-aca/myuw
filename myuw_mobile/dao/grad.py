@@ -216,9 +216,8 @@ def petition_to_json(req_data, request):
     result = []
     now = get_comparison_datetime(request)
     for item in req_data:
-        if item.is_dept_pending() and item.is_gs_pending() or\
-                item.is_dept_deny() and item.is_gs_pending() or\
-                item.is_dept_approve() and item.is_gs_pending():
+        if item.is_gs_pending():
+            # in all three status of dept
             # show during the status
             result.append(item.json_data())
             continue
