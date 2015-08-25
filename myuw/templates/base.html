@@ -87,16 +87,16 @@
     </div>
             
     <div id="page-modal"></div>
-
-	<div id="app_messages">
+	{% if not request.is_mobile and not request.is_tablet %}
+	<div id="app_messages" role="complementary">
 		<div class="message-banner">
 			<div class="container message-text">
-				{% if user.affiliations.fyp %}<h2>Welcome to MyUW!</h2>{% else %}<h2>It's a new MyUW!</h2>{% endif %} MyUW shows you personal, critical, and timely information. <a class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn how it works.</a> {% if not user.affiliations.fyp %}<br /><span class="message-not-ready">Not ready yet? <a href="#">Switch back to the old MyUW.</a><!-- <form action="{% url 'myuw.views.choose.old_site' %} " method=POST>{% csrf_token %} btn link 'Switch Back to Old MyUW' </form> --> </span>{% endif %}				
+				{% if user.affiliations.fyp %}<h2>Welcome to MyUW!</h2>{% else %}<h2>It's a new MyUW!</h2>{% endif %} MyUW shows you personal, critical, and timely information. <a href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn how it works.</a> {% if not user.affiliations.fyp %}<br /><span class="message-not-ready">Not ready yet? <a href="#">Switch back to the old MyUW.</a><!-- <form action="{% url 'myuw.views.choose.old_site' %} " method=POST>{% csrf_token %} btn link 'Switch Back to Old MyUW' </form> --> </span>{% endif %}				
 			</div>
 		</div>
 		
 		<!-- App messages modal -->
-		<div class="modal fade" id="message_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal fade" id="message_modal" tabindex="-1" role="dialog" aria-labelledby="MyUWMessageModal">
 			<div class="modal-dialog message-dialog" role="document">
 		    	<div class="modal-content">
 		    		<div class="modal-header">
@@ -145,7 +145,7 @@
 			</div>
 		</div>
 	</div>
-
+	{% endif %}
     <div id="app_content">
         {% block content %}{% endblock %}
     </div>
@@ -185,14 +185,45 @@
     
         <div class="footer-bar" role="contentinfo">         
             <div class="container footer-links" style="position:relative;">
-                <ul>
-                    <li><a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi"><i class="fa fa-envelope" role="presentation"></i> Contact</a></li>
-                     <li><a href="//www.washington.edu/online/terms/">Terms</a></li> 
-                     <li style="border:none;"><a href="//www.washington.edu/online/privacy/">Privacy</a></li>
-                     <li style="border:none;"><div id="developer">
-            <span class="label label-danger">{% if request.is_mobile %}mobile{% elif request.is_tablet %}tablet{% else %}desktop{% endif %}</span>
-        </div></li> 
-                     <!--<li style="border:none; position:absolute; right:0; top:50%; margin-top:-6px;"><a href="//myuw.washington.edu/servlet/user"><i class="fa fa-desktop" role="presentation" aria-hidden="true"></i> Desktop Version</a></li> -->
+                <ul class="footer-links-list">
+                    <li class="footer-links-list-item"><a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi"><i class="fa fa-envelope" role="presentation"></i> Contact</a></li>
+                     <li class="footer-links-list-item"><a href="//www.washington.edu/online/terms/">Terms</a></li> 
+                     <li class="footer-links-list-item" style="border:none;"><a href="//www.washington.edu/online/privacy/">Privacy</a></li>
+                     <li class="footer-links-list-item" style="border:none;"><div id="developer"><span class="label label-danger">{% if request.is_mobile %}mobile{% elif request.is_tablet %}tablet{% else %}desktop{% endif %}</span></div></li> 
+					{% if request.is_mobile or request.is_tablet %}
+					<li class="footer-links-list-item" style="border:none; position:absolute; right:0; top:50%; margin-top:-16px;">
+					 	<button class="btn btn-link" style="font-size: 11px;" data-toggle="modal" data-target="#myuw-footer-modal"><i class="fa fa-desktop" role="presentation" aria-hidden="true"></i> Looking for something else?</button>
+					 	
+						<div class="modal fade" id="myuw-footer-modal" tabindex="-1" role="dialog" aria-labelledby="MyUWFooterModal">
+							<div class="modal-dialog" role="document">
+							    <div class="modal-content">
+									<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h3 class="modal-title">Looking for something else?</h3>
+									</div>
+									<div class="modal-body">
+									<p>Everything you need should be here. As your quarter rolls on, we present the information and resources that are most useful on cards, the most important at the top. Links to all the resources are categorized and always available on Resource pages. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Did we miss something? We'd love your feedback!</a></p>
+										<h3 class="modal-title">Learn more about what's here</h3>
+										<ul>
+											<li><strong>Visual Schedule</strong> with map links to find your classes</li>
+											<li><strong>Course Cards</strong> with links to Catalyst and Canvas, research guides, and instructor contact info</li>
+											{% if user.affiliations.fyp %}
+											<li><strong>ThriveUW</strong> messaging each week to help you adjust to and succeed at UW</li>
+											{% endif %}
+											<li><strong>Registration</strong> materials near your registration date</li>
+											<li><strong>Final Grades</strong> as soon as they come in</li>
+											<li><strong>Husky, Tuition, and Library account</strong> information is always visible</li> 
+											<li>Links to all these resources, and more, are categorized and always available on <strong>Resource pages.</strong></li>
+										</ul>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+									</div>
+							    </div>
+							</div>
+						</div>
+					</li> 
+					{% endif %}
                 </ul>
                 <div>&copy; {% now "Y" %} University of Washington</div>
             </div>
