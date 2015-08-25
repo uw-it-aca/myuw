@@ -20,15 +20,6 @@ var GradCommitteeCard = {
             GradCommitteeCard.dom_target.hide();
             return;
         }
-
-        for (var k = 0; k < mygrad_data.committees.length; k += 1) {
-            var members = mygrad_data.committees[k].members;
-            for (var j = 0; j < members.length; j += 1) {
-                if (members[j].member_type === "member") {
-                    members[j].member_type = null;
-                }
-            }
-        }
         GradCommitteeCard.dom_target.html(template(mygrad_data));
     },
 
