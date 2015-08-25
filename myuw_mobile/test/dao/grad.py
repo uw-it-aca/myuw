@@ -44,9 +44,23 @@ class TestGrad(TestCase):
             now_request = RequestFactory().get("/")
 
             now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-08-27"
+            now_request.session["myuw_override_date"] = "2013-04-24"
             json_data = degree_to_json(degree_reqs, now_request)
             self.assertEquals(len(json_data), 8)
+            degree = json_data[4]
+            self.assertEquals(degree["status"], "Withdrawn")
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-04-25"
+            json_data = degree_to_json(degree_reqs, now_request)
+            self.assertEquals(len(json_data), 7)
+            degree = json_data[4]
+            self.assertEquals(degree["status"], "Candidacy Granted")
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-08-27"
+            json_data = degree_to_json(degree_reqs, now_request)
+            self.assertEquals(len(json_data), 7)
             degree = json_data[0]
             self.assertTrue(degree["status"].startswith("Awaiting "))
             degree = json_data[1]
@@ -56,19 +70,17 @@ class TestGrad(TestCase):
             degree = json_data[3]
             self.assertEquals(degree["status"], "Recommended by Dept")
             degree = json_data[4]
-            self.assertEquals(degree["status"], "Withdrawn")
-            degree = json_data[5]
             self.assertEquals(degree["status"], "Candidacy Granted")
-            degree = json_data[6]
+            degree = json_data[5]
             self.assertEquals(degree["status"], "Graduated by Grad School")
-            degree = json_data[7]
+            degree = json_data[6]
             self.assertEquals(degree["status"], "Did Not Graduate")
 
             # after the end of following term
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-08-28"
             json_data = degree_to_json(degree_reqs, now_request)
-            self.assertEquals(len(json_data), 5)
+            self.assertEquals(len(json_data), 4)
             degree = json_data[0]
             self.assertTrue(degree["status"].startswith("Awaiting "))
             degree = json_data[1]
@@ -77,8 +89,6 @@ class TestGrad(TestCase):
             self.assertTrue(degree["status"].startswith("Awaiting "))
             degree = json_data[3]
             self.assertEquals(degree["status"], "Recommended by Dept")
-            degree = json_data[4]
-            self.assertEquals(degree["status"], "Withdrawn")
 
     def test_is_before_eof_2weeks_since_decision_date(self):
         self.assertTrue(is_before_eof_2weeks_since_decision_date(
