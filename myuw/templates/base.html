@@ -91,7 +91,7 @@
 	<div id="app_messages" role="complementary">
 		<div class="message-banner">
 			<div class="container message-text">
-				{% if user.affiliations.fyp %}<h2>Welcome to MyUW!</h2>{% else %}<h2>It's a new MyUW!</h2>{% endif %} MyUW shows you personal, critical, and timely information. <a href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn how it works.</a> {% if not user.affiliations.fyp %}<br /><span class="message-not-ready">Not ready yet? <a href="#">Switch back to the old MyUW.</a><!-- <form action="{% url 'myuw.views.choose.old_site' %} " method=POST>{% csrf_token %} btn link 'Switch Back to Old MyUW' </form> --> </span>{% endif %}				
+				{% if user.affiliations.fyp %}<h2>Welcome to MyUW!</h2>{% else %}<h2>It's a new MyUW!</h2>{% endif %} MyUW shows you personal, critical, and timely information. <a href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn how it works.</a> {% if not user.affiliations.fyp %}<br /><div class="message-not-ready">Not ready yet? <form action="{% url 'myuw.views.choose.old_site' %}" method="post">{% csrf_token %}<button class="btn btn-link">Switch back to the old MyUW.</button></form></div>{% endif %} 				
 			</div>
 		</div>
 		
