@@ -1,10 +1,7 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "textbooks" %}
 
-	<div class="container row textbooks-container">
-	    
-	    <div class="col-md-8">       
-	 
+	<div class="container row textbooks-container">	 
 	        <h2 id="future_cards_header"><span style="text-transform:uppercase;">{{quarter}} {{year}} {{summer_term}}</span> Textbooks</h2>
 	 
 	        {{#each sections}}
@@ -85,8 +82,5 @@
 	        <div style="margin-top:20px;">
 	            <p class="text-muted">Information on course textbooks is collected by and provided courtesy of <a href="http://www.bookstore.washington.edu">University Book Store</a> and is subject to change regularly and without notice.</p>
 	        </div>
-	
-	    </div>
-		<div class="col-md-4"><!-- accounts column --></div>
 	</div>
              {% endtplhandlebars %}
