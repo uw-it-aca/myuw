@@ -130,7 +130,7 @@ $(document).ready(function() {
         else if (path.match(/^\/academic_calendar/)) {
             hist.replaceState({
                 state: "academic_calendar",
-            },  "", "/cademic_calendar/");
+            },  "", "/academic_calendar/");
         }
 
         else {
