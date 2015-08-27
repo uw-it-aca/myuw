@@ -1,0 +1,49 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "grade_card_content" %}
+
+{{#if display_grade_card}}
+    <div class="card clearfix"  data-name="GradeCard" data-type="card">
+                        
+        <h3>Final Grades</h3>
+
+        {{ #if display_note }}
+        <span class="official-note">These grades are not official until midnight on {{toFriendlyDate term.grade_submission_deadline}}.</span>
+        {{ /if }}
+
+        {{ #if display_grades }}
+        <div class="card-badge-container clearfix">		
+            <ul class="unstyled-list">
+                {{ #each sections }}
+                    {{ #if display_grade }}
+                    <li class="clearfix">
+                        <div class="card-badge">		
+							<div class="pull-left">
+		                <!--i class="fa fa-check-square c{{color_id}}Color"></i -->
+								<div class="c{{color_id}} simplesquare" aria-hidden="true"></div>
+								<span class="card-badge-inline-label">{{curriculum_abbr }} {{course_number}}</span>
+		            		</div>
+							<div class="pull-right">
+                                {{ #if no_grade }}<span class="card-badge-nograde-value">No grade yet</span> {{ /if }}
+								<span class="card-badge-value pull-right">{{grade}}</span>
+			    			</div>
+                        </div>
+                    </li>
+                    {{ /if }}
+                {{ /each }}
+            </ul>
+        </div>
+        {{ /if }}
+
+
+    	<div id="grade_card_resources">
+            <h4 class="sr-only">Resources</h4>
+    	    <ul class="unstyled-list">
+				<li><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx">View credits and GPA</a></li>
+                <li><a href="https://uwstudent.washington.edu/student/myplan/audit?methodToCall=audit&viewId=DegreeAudit-FormView">Degree Audit Reporting System (DARS)</a></li>
+                <li><a href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp">Unofficial Transcript</a></li>
+            </ul>
+    	</div>
+        
+    </div>
+{{ /if }}
+{% endtplhandlebars %}

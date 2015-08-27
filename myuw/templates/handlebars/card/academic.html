@@ -1,0 +1,57 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "academic_card_content" %}
+
+    {{#if display_card}}
+        <div aria-labelledby="my_academics" data-name="AcademicsCard" data-type="card">
+            <div class="card">
+                <div class="fade-in">
+                
+                    <h3>Academics</h3>
+                    <div class="class-standing">
+	                    <ul class="academics_list"> 
+	                        <li>
+		                        <h4>Class standing</h4>
+		                        <p>{{ class_level }}</p>
+	                        </li>
+	                        
+	                        {{#if majors}}
+	                        <li>
+	                            <h4>{{ pluralize_by_size majors "Major" "Majors"}}</h4>
+	                            	<ul>
+		                           	{{#each majors}}  
+		                           		<li>{{full_name}}</li>
+								   	{{/each}}
+	                            	</ul>
+	                        </li>
+	                        {{/if}}
+	                        {{#if minors}}
+	                        <li>
+	                            <h4>{{ pluralize_by_size minors "Minor" "Minors"}}</h4>
+	                            <ul>
+								{{#each minors}}  
+	                            	<li>{{full_name}}</li>
+	                            {{/each}}
+	                            </ul>
+	                        </li>
+	                        {{/if}}
+	                    </ul>
+                     </div>
+                     
+                    <div id="academic_card_resources" class="slide-hide" aria-hidden="true">
+                        <h4>Resources</h4>
+                        <ul class="reg-resources-list">
+                            <li><a href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/" target="_blank">MyPlan</a> (Academic Planning)</li>
+                            <li><a href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree" target="_blank">Check Your Degree Progress (DARS)</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card-disclosure">
+                        <a id="toggle_academic_card_resources" aria-controls="reg_resources" href="#" title="Expand to show additional academic resources">SHOW MORE</a>
+                    </div>
+                    
+                
+            </div>
+        </div>     
+    </div>
+    {{/if}}
+{% endtplhandlebars %}
