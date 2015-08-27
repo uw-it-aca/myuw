@@ -1,0 +1,100 @@
+        {% load templatetag_handlebars %}
+        {% tplhandlebars "visual_schedule" %}
+        <div class="row-fluid">
+	        <div class="span12">
+		        <div class="visual-schedule {{schedule_hours_class}}" >
+			
+		            <div class="time-bar day-col2 hours-{{total_hours}} clearfix ">
+			
+			            {{#each display_hours}}
+			        	<div class="hour-label" style="position:absolute;top:{{time_percentage position ../start_time ../end_time }}%;"><p>{{format_schedule_hour hour}}</p>
+			            </div>
+			            {{/each}}
+		            </div>
+
+		            <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+		                <div class="day-label">MON</div>
+		                <div class="day-col hours-{{total_hours}}">
+		                {{ show_days_meetings monday start_time end_time }}
+		                </div>
+		            </div>
+		
+		            <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+		                <div class="day-label">TUE</div>
+		                <div class="day-col hours-{{total_hours}}">
+		                {{ show_days_meetings tuesday start_time end_time }}
+		                </div>
+		            </div>
+		
+		            <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+		                <div class="day-label">WED</div>
+		                <div class="day-col hours-{{total_hours}}">
+		                {{ show_days_meetings wednesday start_time end_time }}
+		                </div>
+		            </div>
+		
+		            <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+		                <div class="day-label">THU</div>
+		                <div class="day-col hours-{{total_hours}}">
+		                {{ show_days_meetings thursday start_time end_time }}
+		                </div>
+		            </div>
+		
+		            <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+		                <div class="day-label">FRI</div>
+		                <div class="day-col hours-{{total_hours}}">
+		                {{ show_days_meetings friday start_time end_time }}
+		                </div>
+		            </div>
+		
+		            {{#if has_6_days}}
+		            <div class="six-day">
+		                <div class="day-label">SAT</div>
+		                <div class="day-col hours-{{total_hours}}">
+		                {{ show_days_meetings saturday start_time end_time }}
+		                </div>
+		            </div>
+		            {{/if}}
+
+		        </div>
+	        </div>
+        </div>
+     <div class="row-fluid">
+ <!-- begin - if there are meetings with times to be arranged -->  
+	    {{#if courses_meeting_tbd }}
+	    <div class="courseTBD">
+		    <h6>Courses with meeting times to be determined:</h6>
+		    {{#each courses_meeting_tbd }}
+	        <a href="/visual/{{section_index}}" class="show_section_details {{curriculum}}_{{course_number}}{{section_id}}" rel="{{section_index}}"> 
+	        <div class="c{{color_id}} visual-course pull-left"> 
+		        <div class="visual-course-id">{{curriculum}} {{course_number}}{{section_id}}</div> 
+	        </div> 
+	        </a>
+	    {{/each}}
+	     </div>
+	    {{/if}}
+
+ <!-- end - if there are meetings with times to be arranged --> 
+     </div>  
+        
+	<div class="row-fluid" id="addi_links">
+	</div>  
+
+        {% endtplhandlebars %}
+
+
+
+        {% tplhandlebars "visual_schedule_day" %}
+            {{#each meetings}}
+                {{#if term}}
+                <a href="/visual/{{term}}/{{section_index}}" class="show_section_details {{curriculum}}_{{course_number}}{{section_id}}" rel="{{section_index}}">
+                {{else}}
+                <a href="/visual/{{section_index}}" class="show_section_details {{curriculum}}_{{course_number}}{{section_id}}" rel="{{section_index}}">
+                {{/if}}
+            <div class="c{{color_id}} visual-course" style="position: absolute; top:{{time_percentage start ../start_time ../end_time}}%; height:{{time_percentage_height start end ../start_time ../end_time}}%;">
+	            <div class="visual-course-id">{{curriculum}} {{course_number}}{{section_id}}</div>
+            </div>
+            </a>
+            {{/each}}
+        {% endtplhandlebars %}
+

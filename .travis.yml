@@ -13,10 +13,10 @@ before_script:
   - cp travis-ci/manage.py manage.py
   - python manage.py syncdb --noinput
 script:
-  - pep8 myuw_mobile/ --exclude=migrations
-  - jshint myuw_mobile/static/js/  --verbose
-  - mocha myuw_mobile/static/js/test/ --recursive
-  - coverage run --source=myuw_mobile/ --omit=myuw_mobile/migrations/* manage.py test myuw_mobile
+  - pep8 myuw/ --exclude=migrations
+  - jshint myuw/static/js/  --verbose
+  - mocha myuw/static/js/test/ --recursive
+  - coverage run --source=myuw/ --omit=myuw/migrations/* manage.py test myuw
 after_script:
   - coveralls
 notifications:

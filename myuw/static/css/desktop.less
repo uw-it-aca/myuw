@@ -1,0 +1,278 @@
+/*** breakpoints ***/
+
+@desktop: ~"screen and (min-width: 768px)";
+@widescreen: ~"screen and (min-width: 1200px)";
+
+/*** less variables ***/
+@myuw: #efe2cd;
+@uwpurple: #4b2e84;
+@lighttan: #e8e3d3;
+@darktan: #85754d;
+@icon-break-color: #AB9765;
+@notice-bg: #FDFFF7;
+
+.button-variant(@color; @background; @border) {
+color: @color;
+background-color: @background;
+border-color: @border;}
+
+//.btn-myuww {
+  //.button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
+  //.button-variant(#fff; #6D569B; #4A3673);
+//}
+
+@yellow: #f5d300;
+@gray: #ccc;
+
+@line-height-base: 20px;
+
+/*** font size ***/
+@font-base: 14px;
+@font-meta: 12px; 
+
+@font-header-large: 22px;
+@font-header-medium: 20px;
+@font-header-small: 18px;
+@font-header-smaller: 16px;
+
+/*** global ***/
+
+@media @desktop { 
+	
+	.container {max-width: 970px;}
+    #app_content { max-width: 970px; 
+	      min-height: 100%;
+		  height: auto;
+		  margin: 0 auto -60px;
+		  padding: 0 0 60px;
+    }
+}
+
+
+/*** Larger headers ***/
+
+/* card headers */
+
+#app_content .card h3, #app_content #FutureQuarterCardA .card h4, #app_content #FutureQuarterCard1 .card h4, #app_content #CourseCard .card h4, {
+    font-size: 24px;
+}
+
+/* stand-alone page headers */
+
+#app_content .academic_cal-container .acal-main h2, #app_content .future-quarter-container h2, #app_content .textbooks-container h2, #app_content .notices-container h2, #app_content .category-container h2{
+    font-size: 26px;
+    margin-top: 1.5em;
+}
+
+/* stand-alone page subheaders */
+
+#app_content .academic_cal-container .acal-main .acal-page-events h2, #app_content .category-container .category-content h3, #app_content .textbooks-container h3 {
+    font-size: 22px;
+}
+
+/* landing page banner headers */
+
+#app_notices .notice-header, #app_acal .acal-header h2 {
+    font-size: 24px;
+    margin-top: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* textbook page header */
+
+#app_content .textbooks-container h2 {
+    margin-bottom: 1em;
+}
+
+
+
+
+#app_header {
+	
+	.header-cover {
+		
+		.container {
+			
+			.header-profile {
+				.profile-bio {
+					.profile-student-info {
+	            		.profile-name { /*font-weight: bold; font-size: 18.4px;*/}
+					}
+					.profile-student-major {text-align: right;
+						.student-major-list {list-style: none;}
+					}
+				}
+				.profile-addresses {
+					.profile-mailing {}
+					.profile-local-address {margin-left:0;}
+					.profile-perm-address {margin-left:0;}
+				
+				}
+			}
+			
+			.header-w {
+				img {width:inherit; }
+			}
+		}
+	}
+}
+
+body {
+	
+	a {
+		&:hover { text-decoration: underline; color: #334baa; }
+	}
+	
+}
+
+#calendar_banner_location_desktop {
+	#app_acal {padding-bottom: 0;padding-left: 10px;padding-right: 10px;border-bottom:none;
+		.acal-header h2 {}
+	}
+}
+
+#app_content {
+	
+	.card {
+		.card-disclosure {
+			a {
+				&:hover {background-color:#ddd;}
+			}
+		}
+	}
+
+	.category-container {
+		.category-content {
+			h3 {font-size: 20px; margin-top: 35px;}
+		}
+	}
+
+	// Grades card
+	#GradeCard {	
+		.card {
+			.card-badge-container {
+				ul.unstyled-list {
+					li {
+						.card-badge {padding: 0 20px;
+							.card-badge-inline-label {font-size: initial; }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// Acal page
+	.academic_cal-container {
+		.acal-main {
+			h2 { }
+			center {border-bottom: 1px solid #eee;}
+			.acal-page-filters { width:60%;margin-top:0; margin-bottom:0;
+				#myuw-event-filter-breaks, #myuw-event-filter-all, #myuw-event-filter-classes {font-size:15px;}
+				.myuw-selected-button {}
+			}
+			.acal-page-events {
+				h2 {font-size: 20px;}
+				center {}
+				.acal-page-event-list { 
+					.acal-page-event-list-item { 
+						.acal-page-event-date {}
+						.acal-page-event-title {}						
+					}
+				}
+			}
+		}
+	}
+
+	// Notices page
+	.notices-container { 
+		.notice-header-metadata {font-size:14px;
+		}
+		.notice-accordion {
+			.disclosure {
+				.disclosure-heading {
+					.disclosure-meta {
+						.disclosure-critical {font-size:14px;}
+					}
+				}
+				.disclosure-content {
+					.notice-category {font-size:14px;
+						span.notice-new {font-size:12px;}
+					}
+					.notice-content {
+						.notice-title {font-size: 18px;}
+                        .notice-body-with-title{font-size: 16px;}
+                        .notice-body-without-title {font-size: 16px;}
+					}
+				}
+			}
+		}
+	}
+
+	// textbooks page
+    
+    .textbooks-container {
+		h4 {font-size: @font-header-smaller;}
+		.dl-books {font-size: @font-base;margin-left: 10px;}
+	}
+
+
+} //end #app_content
+
+#app_notices { border-bottom: none;
+    
+    .notice-header { 
+    }
+    .critical-notices-container {
+	    .notice-content {
+	        
+	        .notice-panel-heading {background-color:transparent;padding: 0 0;
+		        .notice-panel-title /*h3*/ {
+			        a {color:#4d66ca;padding-left: 5px;}
+			        a:active, a:focus {text-decoration: underline;}
+			        .notice-critical-label {color:#fff; background-color:#a94442;padding: 0 7px;border-radius: 4px;font-weight:400;font-size:12px;}
+			        .fa-usd {padding-left: 3px;}
+		        }
+	        }
+	        .notice-panel-collapse {
+		        .notice-panel-body {}
+	        }
+	    }
+	    
+    }
+    
+    .other-notices-link {
+	    
+    }
+    .notice-unread { /*background-color: white; color:#444;*/ font-weight:normal; /*border:1px solid #444;*/ position: absolute; right: 15px; top: 50%; margin-top: -5px; }
+    
+    .notice-information { font-size: 11px; font-weight:normal; display: block; white-space: nowrap; margin-top: -15px; line-height: normal; }
+}
+
+#app_footer { background: darken(@lighttan, 5%); margin-top: 10px; padding-top: 15px;
+    
+    // navigation bar
+    .navigation-bar { margin-bottom: 10px;        
+        .navigation-list {
+			a:hover {text-decoration: none;color:#777;}
+			.navigation-item {
+			}	
+		}
+	}
+}
+
+/*** week counter ***/
+	
+#week_counter_location {
+	.week-counter {
+		.counter-text {font-style: italic;font-size: 85%;margin-top:5px;margin-bottom: 2px;}
+		.progress {height:15px; margin: 3px 0 5px 0;width:100%;
+			.progress-bar-empty {background-color: #eee;}
+			.progress-bar-success {background-color: #ccc;}
+			.myuw-week-progress {width:8.989%;
+				&.break {width:1px;}
+			.finals-text {}	
+			}
+		}
+	}
+}

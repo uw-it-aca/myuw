@@ -1,0 +1,27 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "notice_banner" %}
+    
+    <div id="app_notices">
+        <div class="notice-header">
+            <h3 class="notice-header text-danger">Critical Notices</h3>
+        </div>
+        
+        <div class="critical-notices-container">
+			<ul class="notice-content-list">				
+				{{ #each notices }}
+				<div id="{{ id_hash }}" class="notice-container">
+					<li class="notice-content-list-item clearfix">
+			            <div class="notice-category-icon"><i class="fa {{ icon_class }}" title="{{ category }}" aria-hidden="true"></i></div>
+			            {{ #unless is_read }}<span class="new-status">New</span>{{ /unless }}
+						<a href="#" class="crit-notice-title collapsed" data-toggle="collapse" data-target="#{{ id_hash }}_div" aria-controls="{{ id_hash }}_div">{{{ notice_title }}}</a>
+                        <div id="{{ id_hash }}_div" class="collapse">{{{ notice_body }}}</div>
+					</li>
+				</div>
+				{{ /each }}
+			</ul>
+        </div>
+        <div class="other-notices-link"><a href="/notices">{{ #if total_unread }}{{ total_unread }} more new {{ pluralize total_unread "notice" "notices" }}{{ else }}View all notices{{ /if }}</a></div>
+       
+
+    </div>
+{% endtplhandlebars %}
