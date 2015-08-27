@@ -98,6 +98,6 @@ class TestGrad(TestCase):
         self.assertEqual(petition['submit_date'],
                          "2013-04-06T16:32:28")
         self.assertEqual(petition['decision_date'],
-                         "2013-04-10T16:32:28")
+                         "2013-04-10T00:00:00")
         self.assertEqual(petition['dept_recommend'], "Approve")
         self.assertEqual(petition['gradschool_decision'], "Approved")
