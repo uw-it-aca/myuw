@@ -207,19 +207,11 @@ class TestGrad(TestCase):
             self.assertEqual(peti["dept_recommend"], "Pending")
             self.assertEqual(peti["gradschool_decision"], "Pending")
             peti = json_data[1]
-            self.assertEquals(peti["decision_date"], "2013-04-10T16:32:28")
+            self.assertEquals(peti["decision_date"], "2013-04-10T00:00:00")
             self.assertEqual(peti["dept_recommend"], "Withdraw")
             self.assertEqual(peti["gradschool_decision"], "Withdraw")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-04-25"
-            json_data = petition_to_json(petition_reqs, now_request)
-            self.assertEquals(len(json_data), 7)
-            peti = json_data[6]
-            self.assertEquals(peti["decision_date"], "2013-04-10T16:32:28")
-            self.assertEqual(peti["dept_recommend"], "Approve")
-            self.assertEqual(peti["gradschool_decision"], "Approved")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-04-26"
             json_data = petition_to_json(petition_reqs, now_request)
             self.assertEquals(len(json_data), 3)
             peti = json_data[0]
