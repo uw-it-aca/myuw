@@ -486,22 +486,22 @@ NOTICE_CATEGORIES = {
         "location_tags": ['tuition_acceptreject_title'],
         "critical": False
     },
-    "StudentFinAid_DisbursDateA": {
+    "StudentFinAid_DisburseDateA": {
         "myuw_category": "Fees & Finances",
         "location_tags": ['tuition_disbursedateA', 'notices_date_sort'],
         "critical": True
     },
-    "StudentFinAid_DisbursDateAShort": {
+    "StudentFinAid_DisburseDateAShort": {
         "myuw_category": "Fees & Finances",
         "location_tags": ['tuition_disbursedateA_title'],
         "critical": False
     },
-    "StudentFinAid_DisbursDateB": {
+    "StudentFinAid_DisburseDateB": {
         "myuw_category": "Fees & Finances",
         "location_tags": ['tuition_disbursedateB', 'notices_date_sort'],
         "critical": True
     },
-    "StudentFinAid_DisbursDateBShort": {
+    "StudentFinAid_DisburseDateBShort": {
         "myuw_category": "Fees & Finances",
         "location_tags": ['tuition_disbursedateB_title'],
         "critical": False

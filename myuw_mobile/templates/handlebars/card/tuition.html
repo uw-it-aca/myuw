@@ -19,51 +19,90 @@
         <!-- if tuition due date has passed and balance is greater than 0 -->
         {{ #if past_due }}
         <div class="card-critical-alert">
-            <i class="fa fa-exclamation-circle"></i> {{ #if is_pce}} Your PCE tuition is past due.{{ else  }}You have a balance that may be past due. {{ /if }}<a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">See your statement for details</a>.
+            <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ #if is_pce}} Your PCE tuition is past due.{{ else  }}You have a balance that may be past due. {{ /if }}<a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">See your statement for details</a>.
         </div>
         {{ /if }}
         <!-- end if -->
-                        
+
+        {{ #unless has_balance }}
+        <!-- if tuition balance is 0 -->
+        <div class="card-badge-container">
+            <div class="card-badge">
+                <span class="card-badge-label" style="line-height:20px;">{{ #if is_pce}}Your PCE tuition<br/> has been paid{{ else  }}Your tuition and fees have been paid{{ /if }}</span>
+                <div class="card-badge-action" style="margin-top:10px; text-align:right;"><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">See tuition statement</a></div>
+            </div>
+        </div>
+        {{ /unless }}
+
+        {{ #if has_balance }}
+        <!-- else, there is a balance -->
         <div class="card-badge-container">
 	    <ul class="card_list">
 		<li>
-                    <div class="card-badge clearfix">
-                        <div class="pull-left">
-                            <h4 class="card-badge-label">You owe</h4>
-                        </div>
-                        <div class="pull-right">
-                            <span class="card-badge-value text-danger">${{ tuition_accbalance }}</span>
+	            <div class="card-badge clearfix">
+	                <div class="pull-left">
+	                    <h4 class="card-badge-label">You owe</h4>
+	                </div>
+			<div class="pull-right">
+	                    <span class="card-badge-value text-danger">${{ tuition_accbalance }}</span>
 			    &nbsp;
-                            <span class="card-badge-action pull-right"><a href="http://f2.washington.edu/fm/sfs/tuition/payment">Make payment</a></span>
-                        </div>
-                    </div>
+	                    <span class="card-badge-action pull-right"><a href="http://f2.washington.edu/fm/sfs/tuition/payment">Make payment</a></span>
+	                </div>
+	            </div>
 		</li>
-                {{ #if tuition_date }}
-                <li>
-                    <div class="card-badge clearfix">
-                        <div class="pull-left">
-                            <h4 class="card-badge-label">Tuition due </h4>
-                        </div>
-                        <div class="pull-right">
-                            <span class="card-badge-value" aria-hidden="true">{{ toFriendlyDate tuition_due }}</span>
-                            <span class="sr-only">{{ toFriendlyDateVerbose tuition_due }}</span>
+	        {{ #if tuition_date }}
+	        <li>
+	            <div class="card-badge clearfix">
+	                <div class="pull-left">
+	                    <h4 class="card-badge-label">Tuition due </h4>
+	                </div>
+			<div class="pull-right">
+	                    <span class="card-badge-value" aria-hidden="true">{{ toFriendlyDate tuition_due }}</span>
+			    <span class="sr-only">{{ toFriendlyDateVerbose tuition_due }}</span>
 			    &nbsp;
-                            <span class="card-badge-action pull-right">in {{ tuition_date_offset }} days</span>
+	                    <span class="card-badge-action pull-right">in {{ tuition_date_offset }} days</span>
+	                </div>
+	            </div>
+		</li>
+	        {{ /if }}
+	    </ul>
+	</div>
+	<!-- end if has_balance -->
+	{{ /if }}
+
+	<!-- finaid notices begin -->
+        {{ #if finaid_notices }}
+        <div class="finaid-notices-container">
+            <h4>Financial Aid</h4>
+            <ul class="panel-group finaid-notices-panel-group" id="tui_finaid_notices_accordion" role="tablist" aria-multiselectable="true">
+                {{ #each finaid_notices}}
+                <li class="panel panel-default finaid-panel-default">
+                    <div class="panel-heading finaid-panel-heading" role="tab" id="Tf{{id_hash}}">
+                        <span class="panel-title finaid-panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#tui_finaid_notices_accordion" href="#collapseTf{{id_hash}}" aria-expanded="true" aria-controls="collapseTf{{id_hash}}">
+                                <span class="caret" aria-hidden="true"></span> {{{short_content}}}
+                            </a>
+                        </span>
+                    </div>
+                    <div id="collapseTf{{id_hash}}" class="panel-collapse collapse finaid-panel-collapse" role="tabpanel" aria-labelledby="headingTf{{id_hash}}">
+                        <div class="panel-body finaid-panel-body">
+                            {{{ notice_content }}}
                         </div>
                     </div>
                 </li>
-                {{ /if }}
-	    </ul>
+                {{ /each }}
+            </ul>
         </div>
+        {{ /if }}
+	<!-- finaid notices end -->
 
         <div class="card-related-messages">
             <p><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx">Give access to your tuition account and financial aid information</a> to parents or other third parties.</p>
-                            
+
             {{ #each pce_tuition_dup }}
             <p class="pce-message">{{{ this.notice_content }}}</p>
             {{ /each }}
         </div>
     </div>
 
-    
     {% endtplhandlebars %}
