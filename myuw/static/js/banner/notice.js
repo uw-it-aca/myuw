@@ -21,7 +21,7 @@ var NoticeBanner = {
             NoticeBanner._split_notice_titles(notices);
 
             var html = template({
-                "total_unread": Notices.get_total_unread(),
+                "total_unread": Notices.get_unread_non_critical_count(),
                 "notices": notices
             });
             NoticeBanner.dom_target.html(html);

@@ -291,6 +291,18 @@ var Notices = {
     get_total_unread: function (){
         return Notices._get_unread_count(Notices.get_notice_page_notices());
     },
+    
+    get_unread_non_critical_count: function() {
+        var all_non_critical = [];
+        var all_notices = Notices.get_notice_page_notices();
+        for (i = 0; i < all_notices.length; i++) {
+            if (!all_notices[i].is_critical) {
+                all_non_critical.push(all_notices[i]);
+            }
+        }
+
+        return Notices._get_unread_count(all_non_critical);
+    },
 
     get_unread_count_by_category: function () {
         var i,
