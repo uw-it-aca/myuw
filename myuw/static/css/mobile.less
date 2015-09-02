@@ -1,7 +1,7 @@
 /*** breakpoints ***/
 
 @phablet: ~"screen and (min-width: 768px)";
-@landscape: ~"screen and (min-width: 1024px)";
+@under922: ~"screen and (max-width: 992px)";
 
 /*** less variables ***/
 @myuw: #efe2cd;
@@ -463,7 +463,11 @@ body {
 }
 
 /*** notice banner - critical notices on landing page ***/
-#app_notices { margin: 0; border-bottom: 1px solid #ddd; position: relative; padding-bottom: 15px;
+@media @under922 {
+    #app_notices { border-bottom: 1px solid #ddd; }
+}
+
+#app_notices { margin: 0; position: relative; padding-bottom: 15px;
     
     .notice-header { font-size: @font-header-smaller; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600;
         a {font-family: 'encode_sans_normalbold'; color: #444;}
@@ -494,8 +498,12 @@ body {
 
 /*** academic calendar banner ***/
 .acal-break-icon {color: @icon-break-color; font-size:.7em; line-height: 20px; vertical-align: text-top;} // for both banner & acal landing page
-#app_acal { margin: 0; position: relative; padding-bottom: 15px;border-bottom: 1px solid lightgray; 
-    
+
+@media @under922 {
+ #app_acal { border-bottom: 1px solid #ddd; margin-bottom: 10px;}
+}
+
+#app_acal { margin: 0; position: relative; padding-bottom: 15px;    
     .acal-header { 
         h2 {font-size: @font-header-smaller; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600;/*font-family: 'encode_sans_normalbold';*/color: #85754d;}
         .view-all {border:none;font-size: 14px;color: #4d66ca;margin-top: 17px;}
