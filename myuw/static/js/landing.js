@@ -81,7 +81,6 @@ var Landing = {
     _load_mobile_cards: function() {
         Landing._reset_content_divs();
         var mobile_cards = [
-            EmpFacStudentCard,
             FinalExamCard,
             GradeCard,
             FutureQuarterCardA,
@@ -95,6 +94,7 @@ var Landing = {
             VisualScheduleCard,
             TextbookCard,
             CourseCard,
+			EmpFacStudentCard,
             HfsCard,
             TuitionCard,
             LibraryCard,
