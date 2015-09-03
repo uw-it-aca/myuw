@@ -6,29 +6,23 @@ https://docs.google.com/document/d/14q26auOLPU34KFtkUmC_bkoo5dAwegRzgpwmZEQMhaU
 
 from django.conf import settings
 from datetime import datetime, timedelta
-from myuw.dao.term import get_comparison_date,\
-    is_in_summer_b_term, is_summer_term,\
-    get_current_quarter, get_next_quarter,\
-    get_term_after, get_last_term, get_bof_1st_instruction,\
+from myuw.dao.term import get_comparison_datetime,\
+    get_current_quarter, get_next_quarter, get_previous_quarter,\
+    get_term_after
+from myuw.dao.term.current import is_summer_term,\
+    is_in_summer_b_term, get_bof_1st_instruction,\
     get_eof_last_instruction, get_bof_7d_before_last_instruction,\
     get_eof_7d_after_class_start, get_eof_last_final_exam
+from myuw.dao.term.specific import get_first_day_term_after
 
 
 def in_show_grades_period(term, request):
-    """
-    return true if it is within the grades display window -
-    before the 1st day of next quarter
-    """
-    comparison_date = get_comparison_date(request)
-    next_term = get_term_after(term)
-    return comparison_date < next_term.first_day_quarter
+    return get_comparison_datetime(request) < get_first_day_term_after(term)
 
 
 def get_card_visibilty_date_values(request=None):
-    now = get_comparison_date(request)
-    after_midnight = datetime(now.year, now.month, now.day,
-                              0, 0, 1)
-    values = get_values_by_date(after_midnight, request)
+    values = get_values_by_date(get_comparison_datetime(request),
+                                request)
     set_js_overrides(request, values)
     return values
 
@@ -37,7 +31,7 @@ def get_values_by_date(now, request):
     """
     now is a datetime object of 1 second after the beginning of the day.
     """
-    last_term = get_last_term(request)
+    last_term = get_previous_quarter(request)
 
     return {
         "is_after_7d_before_last_instruction":

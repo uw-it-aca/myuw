@@ -153,7 +153,7 @@ class TestLoginRedirects(TestCase):
                           password=get_user_pass(username))
         response = self.client.get(new_url)
 
-        new_valid_url = "http://testserver/"
+        new_valid_url = "http://testserver/mobile/"
         old_valid_url = "http://some-test-server/myuw"
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.get("Location"), new_valid_url)
