@@ -10,7 +10,6 @@ from myuw.logger.logresp import log_data_not_found_response
 from myuw.logger.logresp import log_success_response
 
 
-
 class ThriveMessages(RESTDispatch):
     """
     Performs actions on resource at /api/v1/thrive/.
