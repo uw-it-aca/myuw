@@ -2,7 +2,8 @@ from django.test import TestCase
 import datetime
 import csv
 import StringIO
-from myuw.dao.thrive import _get_offset, _make_urls, _is_displayed, _make_thrive_payload
+from myuw.dao.thrive import _get_offset, _make_urls, _is_displayed, \
+    _make_thrive_payload
 from restclients.models.sws import Term
 
 
@@ -34,14 +35,17 @@ class TestThrive(TestCase):
             self.assertEqual(offset_post, 1)
 
     def test_make_urls(self):
-        one_url_row = '9,11/23/2015,autumn,-10,title,this is the message,try this,urlone,http://www.google.com'
+        one_url_row = '9,11/23/2015,autumn,-10,title,this is the message,' \
+                      'try this,urlone,http://www.google.com'
         string = StringIO.StringIO(one_url_row)
         reader = csv.reader(string)
         for row in reader:
             urls = _make_urls(row)
             self.assertEqual(len(urls), 1)
 
-        three_url_row = '9,11/23/2015,autumn,-10,title,this is the message,try this,urlone,http://www.google.com,urltwo,http://www.uw.edu,urlthree,http://my.uw.edu'
+        three_url_row = '9,11/23/2015,autumn,-10,title,this is the message,' \
+                        'try this,urlone,http://www.google.com,urltwo,' \
+                        'http://www.uw.edu,urlthree,http://my.uw.edu'
         string = StringIO.StringIO(three_url_row)
         reader = csv.reader(string)
         for row in reader:
@@ -52,14 +56,16 @@ class TestThrive(TestCase):
             self.assertEqual(urls[2]['title'], "urlthree")
             self.assertEqual(urls[2]['href'], "http://my.uw.edu")
 
-        no_url_row = '9,11/23/2015,autumn,-10,title,this is the message,try this'
+        no_url_row = '9,11/23/2015,autumn,-10,title,this is the message,try' \
+                     ' this'
         string = StringIO.StringIO(no_url_row)
         reader = csv.reader(string)
         for row in reader:
             urls = _make_urls(row)
             self.assertEqual(len(urls), 0)
 
-        empty_url_row = '9,11/23/2015,autumn,-10,title,this is the message,try this,,,,,,'
+        empty_url_row = '9,11/23/2015,autumn,-10,title,this is the message,' \
+                        'try this,,,,,,'
         string = StringIO.StringIO(empty_url_row)
         reader = csv.reader(string)
         for row in reader:
@@ -67,7 +73,8 @@ class TestThrive(TestCase):
             self.assertEqual(len(urls), 0)
 
     def test_is_displayed(self):
-        one_url_row = '9,11/23/2015,autumn,-10,title,this is the message,try this,urlone,http://www.google.com'
+        one_url_row = '9,11/23/2015,autumn,-10,title,this is the message,try' \
+                      ' this,urlone,http://www.google.com'
         string = StringIO.StringIO(one_url_row)
         reader = csv.reader(string)
         for row in reader:
@@ -83,11 +90,21 @@ class TestThrive(TestCase):
             self.assertFalse(_is_displayed(row, 'autumn', -3))
 
     def test_make_payload(self):
-        three_url_row = '9,11/23/2015,autumn,-10,title,this is the message,try this,urlone,http://www.google.com,urltwo,http://www.uw.edu,urlthree,http://my.uw.edu'
+        three_url_row = '9,11/23/2015,autumn,-10,title,this is the ' \
+                        'message,try this,urlone,http://www.google.com,' \
+                        'urltwo,http://www.uw.edu,urlthree,http://my.uw.edu'
         string = StringIO.StringIO(three_url_row)
         reader = csv.reader(string)
         for row in reader:
             payload = _make_thrive_payload(row)
-            target_payload = {'message': 'this is the message', 'urls': [{'href': 'http://www.google.com', 'title': 'urlone'}, {'href': 'http://www.uw.edu', 'title': 'urltwo'}, {'href': 'http://my.uw.edu', 'title': 'urlthree'}], 'try_this': 'try this', 'title': 'title'}
+            target_payload = {'message': 'this is the message',
+                              'urls': [
+                                  {'href': 'http://www.google.com',
+                                   'title': 'urlone'},
+                                  {'href': 'http://www.uw.edu',
+                                   'title': 'urltwo'},
+                                  {'href': 'http://my.uw.edu',
+                                   'title': 'urlthree'}
+                              ],
+                              'try_this': 'try this', 'title': 'title'}
             self.assertDictEqual(payload, target_payload)
-
