@@ -6,6 +6,8 @@ from myuw.dao.term import get_comparison_date, get_current_quarter
 """
 Gets the thrive message for the current day/quarter
 """
+
+
 def get_current_message(request):
     current_date = get_comparison_date(request)
     current_qtr = get_current_quarter(request)
@@ -32,6 +34,8 @@ def _get_message_for_quarter_date(current_date, term):
 Return true if message is for current quarter and current date falls within the
 display range for a given message.  Message will display for 7 days.
 """
+
+
 def _is_displayed(row, current_quarter, current_offset):
     display_quarter = row[2]
     display_offset = int(row[3])
@@ -43,6 +47,8 @@ def _is_displayed(row, current_quarter, current_offset):
 """
 Builds a message payload from a given thrive message row
 """
+
+
 def _make_thrive_payload(row):
 
     payload = {'title': row[4],
@@ -56,6 +62,8 @@ def _make_thrive_payload(row):
 """
 Supports up to 3 URLS per row as defined in the spec
 """
+
+
 def _make_urls(row):
     urls = []
     try:
@@ -82,6 +90,8 @@ def _make_urls(row):
 """
 Calculates the offset from the current date and start of quarter date
 """
+
+
 def _get_offset(current_date, term):
     start_date = term.first_day_quarter
     return (current_date - start_date).days
