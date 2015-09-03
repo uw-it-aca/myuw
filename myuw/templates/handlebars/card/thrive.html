@@ -6,16 +6,18 @@
     <!-- Engineers doing design work, high quality HTML to follow! /s -->
     <h4>{{ title }}</h4>
     <p>{{{ message }}}</p>
-    <h4>Try This</h4>
-    <p>{{{ try_this }}}</p>
+    {{ #if try_this }}
+        <h4>Try This</h4>
+        <p>{{{ try_this }}}</p>
+    {{ /if }}
     {{ #if urls  }}
-    <ul>
-    {{ #each urls }}
-        <li>
-            <a href="{{ href }}">{{ title }}</a>
-        </li>
-    {{ /each }}
-    </ul>
+        <ul>
+        {{ #each urls }}
+            <li>
+                <a href="{{ href }}">{{ title }}</a>
+            </li>
+        {{ /each }}
+        </ul>
     {{ /if }}
 
     </div>

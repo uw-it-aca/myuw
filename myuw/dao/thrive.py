@@ -17,7 +17,6 @@ def get_current_message(request):
 
 def _get_message_for_quarter_date(current_date, term):
     offset = _get_offset(current_date, term)
-    print "Current Date: %s\nOffset from SoQ: %s\nSoQ:%s" % (current_date, offset, term.first_day_quarter)
 
     path = os.path.join(
         os.path.dirname(__file__),
@@ -27,8 +26,12 @@ def _get_message_for_quarter_date(current_date, term):
         # skip headers
         next(reader)
         for row in reader:
-            if _is_displayed(row, term.quarter, offset):
-                return _make_thrive_payload(row)
+            try:
+                if len(row[3]) > 0:
+                    if _is_displayed(row, term.quarter, offset):
+                        return _make_thrive_payload(row)
+            except IndexError:
+                pass
 
 
 """
@@ -51,10 +54,16 @@ Builds a message payload from a given thrive message row
 
 
 def _make_thrive_payload(row):
+    try_this = None
+    try:
+        if len(row[6]) > 0:
+            try_this = row[6]
+    except IndexError:
+        pass
 
     payload = {'title': row[4],
                'message': row[5],
-               'try_this': row[6],
+               'try_this': try_this,
                'urls': _make_urls(row)}
 
     return payload
