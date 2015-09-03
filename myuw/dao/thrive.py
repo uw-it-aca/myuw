@@ -17,6 +17,7 @@ def get_current_message(request):
 
 def _get_message_for_quarter_date(current_date, term):
     offset = _get_offset(current_date, term)
+    print "Current Date: %s\nOffset from SoQ: %s\nSoQ:%s" % (current_date, offset, term.first_day_quarter)
 
     path = os.path.join(
         os.path.dirname(__file__),

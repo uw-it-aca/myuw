@@ -2,6 +2,21 @@
     {% tplhandlebars "thrive_card" %}
     
     <div class="row card">
-        <p>Thrive content</p>
+        <h3>POUNDThrive UW</h3>
+    <!-- Engineers doing design work, high quality HTML to follow! /s -->
+    <h4>{{ title }}</h4>
+    <p>{{{ message }}}</p>
+    <h4>Try This</h4>
+    <p>{{{ try_this }}}</p>
+    {{ #if urls  }}
+    <ul>
+    {{ #each urls }}
+        <li>
+            <a href="{{ href }}">{{ title }}</a>
+        </li>
+    {{ /each }}
+    </ul>
+    {{ /if }}
+
     </div>
 {% endtplhandlebars %}
