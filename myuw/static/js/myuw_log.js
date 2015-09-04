@@ -26,11 +26,20 @@ function MyuwLog()  {
         this.card_logger.info(JSON.stringify(message));
     };
     this.log_link = function(link, action) {
+        var parent_cards = $(link).closest('.card');
+        var card_name;
+        var card_info;
+        if (parent_cards.length > 0){
+            card_info = $(parent_cards[0]).attr('data-identifier');
+            card_name = $(parent_cards[0]).attr('data-name');
+        }
 
         var href = $(link).attr('href');
         if (href !== "#") {
             var message = {href: $(link).attr('href'),
-                           action: action};
+                           action: action,
+                           source_card: card_name,
+                           card_info: card_info};
             if (href.indexOf("notices") > -1) {
                 message.unread_notice_count = Notices.get_total_unread();
             }
