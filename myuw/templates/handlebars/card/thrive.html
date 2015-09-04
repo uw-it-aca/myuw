@@ -1,24 +1,25 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "thrive_card" %}
     
-    <div class="row card">
-        <h3>POUNDThrive UW</h3>
-    <!-- Engineers doing design work, high quality HTML to follow! /s -->
-    <h4>{{ title }}</h4>
-    <p>{{{ message }}}</p>
-    {{ #if try_this }}
-        <h4>Try This</h4>
-        <p>{{{ try_this }}}</p>
-    {{ /if }}
-    {{ #if urls  }}
-        <ul>
-        {{ #each urls }}
-            <li>
-                <a href="{{ href }}">{{ title }}</a>
-            </li>
-        {{ /each }}
-        </ul>
-    {{ /if }}
+    <div class="card" data-type="card">
+        <h3>#ThriveUW</h3>
+        <!-- Engineers doing design work, high quality HTML to follow! /s -->
+        <h4>{{ title }}</h4>
+        <p>{{{ message }}}</p>
+        {{ #if try_this }}
+            <h4>Try This</h4>
+            <p>{{{ try_this }}}</p>
+        {{ /if }}
+        {{ #if urls  }}
+            <h4>For More Help</h4>
+            <ul>
+            {{ #each urls }}
+                <li>
+                    <a href="{{ href }}">{{ title }}</a>
+                </li>
+            {{ /each }}
+            </ul>
+        {{ /if }}
 
     </div>
 {% endtplhandlebars %}
