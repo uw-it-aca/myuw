@@ -90,7 +90,11 @@
     	            <!-- collapsy 2 content -->
     	            <div id="collapseTwo" class="slide-hide" aria-hidden="true" style="display: none;">
                         <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
+                            {% if request.is_mobile %} 
+                            <div class="col-md-12">
+                            {% else %}
+                            <div class="col-md-10 col-md-offset-1">
+                            {% endif %}
             	                <div class="disclosure-content">
             	                    <ul class="notices_list">
             		                    {{# each today.notices }}
@@ -145,7 +149,11 @@
     	            <!-- collapsy 3 content -->
     	            <div id="collapseThree" class="slide-hide" aria-hidden="true" style="display: none;">
                         <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
+                            {% if request.is_mobile %} 
+                            <div class="col-md-12">
+                            {% else %}
+                            <div class="col-md-10 col-md-offset-1">
+                            {% endif %}
             	                <div class="disclosure-content">
             	                    <ul class="notices_list">
             		                    {{# each week.notices }}
@@ -198,7 +206,11 @@
     	            <!-- collapsy 4 content -->
     	            <div id="collapseFour" class="slide-hide" aria-hidden="true" style="display: none;">
                         <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
+                            {% if request.is_mobile %} 
+                            <div class="col-md-12">
+                            {% else %}
+                            <div class="col-md-10 col-md-offset-1">
+                            {% endif %}
             	                <div class="disclosure-content">
             						<ul class="notices_list">
             		                    {{# each next_week.notices }}
@@ -251,7 +263,11 @@
     	            <!-- collapsy 5 content -->
     	            <div id="collapseFive" class="slide-hide" aria-hidden="true" style="display: none;">
                         <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
+                            {% if request.is_mobile %} 
+                            <div class="col-md-12">
+                            {% else %}
+                            <div class="col-md-10 col-md-offset-1">
+                            {% endif %}
             	                <div class="disclosure-content"> 
             						<ul class="notices_list">
             		                    {{# each future.notices }}
@@ -304,7 +320,11 @@
     	            <!-- collapsy legal content -->
     	            <div id="collapseSix" class="slide-hide" aria-hidden="true" style="display: none;">
                         <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
+                            {% if request.is_mobile %} 
+                            <div class="col-md-12">
+                            {% else %}
+                            <div class="col-md-10 col-md-offset-1">
+                            {% endif %}
             	                <div class="disclosure-content"> 
             						<ul class="notices_list">
             		                    {{# each legal.notices }}
