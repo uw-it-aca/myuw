@@ -13,11 +13,13 @@ def log_session(netid, session_key, request):
         session_key = ''
 
     session_hash = hashlib.md5(session_key).hexdigest()
+    is_mobile = request.is_mobile or request.is_tablet
     log_entry = {'netid': netid,
                  'session_key': session_hash,
                  'class_level': None,
                  'is_grad': None,
-                 'campus': None}
+                 'campus': None,
+                 'is_mobile': bool(is_mobile)}
     try:
         level = get_current_quarter_enrollment(request).class_level
         log_entry['class_level'] = level
