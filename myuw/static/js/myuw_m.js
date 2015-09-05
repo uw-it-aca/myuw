@@ -255,10 +255,14 @@ var isScrolledIntoView = function(elem) {
     var docViewTop = $(window).scrollTop();
     var docViewBottom = docViewTop + $(window).height();
 
+    var elmHeight = $(elem).height();
     var elemTop = $(elem).offset().top;
-    var elemBottom = elemTop + $(elem).height();
+    var elmBottom = elemTop + elmHeight;
 
-    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+    //TODO: Change this to report if 80% of card is in the viewport
+
+
+    return ((elmBottom <= docViewBottom) && (elemTop >= docViewTop));
 };
 var de_bouncer = function($,cf,of, interval){
     var debounce = function (func, threshold, execAsap) {
@@ -319,6 +323,7 @@ var get_new_visible_cards = function(){
             if(!window.viewed_cards.hasOwnProperty(card_id)){
                 window.viewed_cards[card_id] = card.element;
                 window.myuw_log.log_card(card, "view");
+                //TODO: Store the card ID and a start time, log time interval when card is no longer in viewport
             }
         }
 
@@ -367,6 +372,7 @@ var _init_link_logging = function() {
 
 var _init_card_logging = function() {
     window.setTimeout(log_loaded_cards, 4000);
+    //TODO: Create per-card events that fire on load and log 'read' if card is in viewport
     window.viewed_cards = {};
     de_bouncer(jQuery,'smartscroll', 'scroll', 100);
     $(window).smartscroll(function(e) {
