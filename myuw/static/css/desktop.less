@@ -1,6 +1,6 @@
 /*** breakpoints ***/
 
-@desktop: ~"screen and (min-width: 768px)";
+@desktop: ~"screen and (min-width: 992px)";
 @widescreen: ~"screen and (min-width: 1200px)";
 
 /*** less variables ***/
@@ -84,6 +84,13 @@ border-color: @border;}
     margin-bottom: 1em;
 }
 
+/* category page headers */ 
+.category-content h3.category-sub-header { 
+    margin-top: 15px !important;
+}
+.category-content .col-lg-12 { 
+    margin-bottom: 20px; /* this goes here because it's actually for spacing on the h3s */
+}
 
 
 
@@ -126,7 +133,7 @@ body {
 }
 
 #calendar_banner_location_desktop {
-	#app_acal {padding-bottom: 0;padding-left: 10px;padding-right: 10px;border-bottom:none;
+	#app_acal {padding-bottom: 0;padding-left: 10px;padding-right: 10px;
 		.acal-header h2 {}
 	}
 }
@@ -219,13 +226,9 @@ body {
 
 } //end #app_content
 
-#app_notices { border-bottom: none;
-    
-    .notice-header { 
-    }
+#app_notices {    
     .critical-notices-container {
-	    .notice-content {
-	        
+	    .notice-content {	        
 	        .notice-panel-heading {background-color:transparent;padding: 0 0;
 		        .notice-panel-title /*h3*/ {
 			        a {color:#4d66ca;padding-left: 5px;}
