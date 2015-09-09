@@ -9,6 +9,10 @@ function MyuwLog()  {
     this.init = function() {
         this.link_logger = this.get_logger('link');
         this.card_logger = this.get_logger('card');
+
+        $(window).unload(function() {
+            window.myuw_log.send_links();
+        });
     };
 
     this.log_card = function(card, action) {
