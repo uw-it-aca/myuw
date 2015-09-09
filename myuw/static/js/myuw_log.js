@@ -73,20 +73,31 @@ function MyuwLog()  {
 
     this.get_appender = function() {
         var json_layout = new log4javascript.JsonLayout(true);
-        var ajax_append = new log4javascript.AjaxAppender('/logging/log');
-        ajax_append.setLayout(json_layout);
-        ajax_append.setBatchSize(20);
-        ajax_append.addHeader("X-CSRFToken", csrf_token);
-        return ajax_append;
+        var append;
+        if (window.location.hash == "#console") {
+            append = new log4javascript.BrowserConsoleAppender('/logging/log');
+        }
+        else {
+            append = new log4javascript.AjaxAppender('/logging/log');
+            append.setBatchSize(20);
+            append.addHeader("X-CSRFToken", csrf_token);
+        }
+        append.setLayout(json_layout);
+        return append;
     };
 }
 
 var LogUtils = {
     PERCENTAGE_VISIBLE_THRESHOLD: 0.80,
 
+    current_visible_cards: {},
+
     get_new_visible_cards: function(){
         var cards = LogUtils.get_all_cards(),
             card_id;
+
+        var new_cards = [];
+        var removed_cards = [];
 
         $(cards).each(function(i, card){
             if(LogUtils.isScrolledIntoView(card.element)){
