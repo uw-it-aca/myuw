@@ -76,3 +76,183 @@ function MyuwLog()  {
         return ajax_append;
     };
 }
+
+var LogUtils = {
+    PERCENTAGE_VISIBLE_THRESHOLD: 0.80,
+
+    get_new_visible_cards: function(){
+        var cards = LogUtils.get_all_cards(),
+            card_id;
+
+        $(cards).each(function(i, card){
+            if(LogUtils.isScrolledIntoView(card.element)){
+                card_id = $(card.element).attr('data-name') +
+                    ($(card.element).attr('data-identifier') === undefined ? "" : $(card.element).attr('data-identifier'));
+                if(!window.viewed_cards.hasOwnProperty(card_id)){
+                    window.viewed_cards[card_id] = card.element;
+                    window.myuw_log.log_card(card, "view");
+                    //TODO: Store the card ID and a start time, log time interval when card is no longer in viewport
+                }
+            }
+
+        });
+    },
+
+    isScrolledIntoView: function(elem) {
+       var docViewTop = $(window).scrollTop();
+       var docViewBottom = docViewTop + $(window).height();
+
+       var elmHeight = $(elem).height();
+       var elemTop = $(elem).offset().top;
+       var elemBottom = elemTop + elmHeight;
+
+       return LogUtils.isInViewport(docViewTop, docViewBottom, elemTop, elemBottom);
+    },
+
+    isInViewport: function(viewport_top, viewport_bottom, elem_top, elem_bottom) {
+        // 2 cases of completely off-screen
+        if (elem_bottom < viewport_top) {
+            return false;
+        }
+        if (elem_top > viewport_bottom) {
+            return false;
+        }
+
+        // If it's fully on-screen...
+        if ((elem_bottom <= viewport_bottom) && (elem_top >= viewport_top)) {
+            return true;
+        }
+
+        var visible_height;
+        // If we're above the viewport:
+        if (elem_top < viewport_top) {
+            visible_height = elem_bottom - viewport_top;
+        }
+        else {
+            visible_height = viewport_bottom - elem_top;
+        }
+        var actual_height = elem_bottom - elem_top;
+        var viewport_size = viewport_bottom - viewport_top;
+
+        // If the top or bottom of the element is off-screen...
+        // it can be on-screen if 80% of the card is visible
+        if (visible_height >= actual_height * LogUtils.PERCENTAGE_VISIBLE_THRESHOLD) {
+            return true;
+        }
+
+        // or if the card takes up 80% of the screen
+        if (visible_height >= viewport_size * LogUtils.PERCENTAGE_VISIBLE_THRESHOLD) {
+            return true;
+        }
+
+        return false;
+    },
+
+    get_new_visible_links: function () {
+        var links = LogUtils.get_links_in_view();
+        $(links).each(function(i, link) {
+            var href = $(link).attr('href');
+            if(!window.viewed_links.hasOwnProperty(href)){
+                window.viewed_links[href] = link;
+                window.myuw_log.log_link(link, "view");
+            }
+
+        });
+    },
+
+    get_links_in_view: function(){
+       var links = [];
+       $("a").each(function (i, link_elm) {
+           var href = $(link_elm).attr('href');
+           if (href !== "#"){
+               if(LogUtils.isScrolledIntoView(link_elm)){
+                   //Ensure link or parents aren't hidden
+                   if ($(link_elm).attr("aria-hidden") !== true &&
+                           $(link_elm).parents('*[aria-hidden="true"]').length === 0){
+                       links.push(link_elm);
+                   }
+               }
+           }
+       });
+       return links;
+    },
+
+    get_all_cards: function(){
+       var cards = [],
+           pos = 0;
+       $("div").find("[data-type='card']").each(function (i, card) {
+           pos++;
+           cards.push({element: card, pos: pos});
+       });
+       return cards;
+    },
+
+    _init_link_logging: function() {
+       $(document).on("click", "a", function () {
+           window.myuw_log.log_link(this, "click");
+           window.myuw_log.send_links();
+       });
+       LogUtils.de_bouncer(jQuery,'smartscroll', 'scroll', 100);
+       window.viewed_links = {};
+       $(window).smartscroll(function(e) {
+           LogUtils.get_new_visible_links();
+       });
+       //To pick up links visible before scrolling (waiting 2s so content can load)
+       // TODO - change this to do something when content loads.
+       window.setTimeout(LogUtils.get_new_visible_links, 2000);
+    },
+
+    _init_card_logging: function() {
+       window.setTimeout(LogUtils.log_loaded_cards, 4000);
+       //TODO: Create per-card events that fire on load and log 'read' if card is in viewport
+       window.viewed_cards = {};
+       LogUtils.de_bouncer(jQuery,'smartscroll', 'scroll', 100);
+       $(window).smartscroll(function(e) {
+           LogUtils.get_new_visible_cards();
+       });
+    },
+
+    de_bouncer: function($,cf,of, interval){
+       var debounce = function (func, threshold, execAsap) {
+           var timeout;
+           return function debounced () {
+               var obj = this, args = arguments;
+               function delayed () {
+                   if (!execAsap)
+                       func.apply(obj, args);
+                   timeout = null;
+               }
+               if (timeout)
+                   clearTimeout(timeout);
+               else if (execAsap)
+                   func.apply(obj, args);
+               timeout = setTimeout(delayed, threshold || interval);
+           };
+       };
+       jQuery.fn[cf] = function(fn){  return fn ? this.bind(of, debounce(fn)) : this.trigger(cf); };
+    },
+
+    log_loaded_cards: function(){
+       var cards = LogUtils.get_all_cards();
+       $(cards).each(function(i, card){
+           window.myuw_log.log_card(card, "loaded");
+       });
+    },
+
+    init_logging: function () {
+       myuwlog = new MyuwLog();
+
+       myuwlog.init();
+       window.myuw_log = myuwlog;
+       LogUtils._init_link_logging();
+       LogUtils._init_card_logging();
+    }
+
+};
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.LogUtils = LogUtils;
+

@@ -2,7 +2,7 @@
 var data;
 
 $(document).ready(function() {
-    init_logging();
+    LogUtils.init_logging();
     init_profile_events();
     var course_data = null;
     var book_data = null;
@@ -244,142 +244,15 @@ var titilizeTerm = function(term) {
 };
 
 var capitalizeString = function(string) {
-    if (string !== undefined && string.match(/^[ab]-term$/gi)) {
+    if (string === undefined) {
+        return;
+    }
+    if (string.match(/^[ab]-term$/gi)) {
         value = string.split("-");
         return value[0].toUpperCase() + "-" + value[1].charAt(0).toUpperCase() + value[1].slice(1);
     }
     return string.charAt(0).toUpperCase() + string.slice(1);
 };
-
-var isScrolledIntoView = function(elem) {
-    var docViewTop = $(window).scrollTop();
-    var docViewBottom = docViewTop + $(window).height();
-
-    var elmHeight = $(elem).height();
-    var elemTop = $(elem).offset().top;
-    var elmBottom = elemTop + elmHeight;
-
-    //TODO: Change this to report if 80% of card is in the viewport
-
-
-    return ((elmBottom <= docViewBottom) && (elemTop >= docViewTop));
-};
-var de_bouncer = function($,cf,of, interval){
-    var debounce = function (func, threshold, execAsap) {
-        var timeout;
-        return function debounced () {
-            var obj = this, args = arguments;
-            function delayed () {
-                if (!execAsap)
-                    func.apply(obj, args);
-                timeout = null;
-            }
-            if (timeout)
-                clearTimeout(timeout);
-            else if (execAsap)
-                func.apply(obj, args);
-            timeout = setTimeout(delayed, threshold || interval);
-        };
-    };
-    jQuery.fn[cf] = function(fn){  return fn ? this.bind(of, debounce(fn)) : this.trigger(cf); };
-};
-var get_links_in_view = function(){
-    var links = [];
-    $("a").each(function (i, link_elm) {
-        var href = $(link_elm).attr('href');
-        if (href !== "#"){
-            if(isScrolledIntoView(link_elm)){
-                //Ensure link or parents aren't hidden
-                if ($(link_elm).attr("aria-hidden") !== true &&
-                        $(link_elm).parents('*[aria-hidden="true"]').length === 0){
-                    links.push(link_elm);
-                }
-            }
-        }
-    });
-    return links;
-};
-
-var get_new_visible_links = function () {
-    var links = get_links_in_view();
-    $(links).each(function(i, link) {
-        var href = $(link).attr('href');
-        if(!window.viewed_links.hasOwnProperty(href)){
-            window.viewed_links[href] = link;
-            window.myuw_log.log_link(link, "view");
-        }
-
-    });
-};
-
-var get_new_visible_cards = function(){
-    var cards = get_all_cards(),
-        card_id;
-
-    $(cards).each(function(i, card){
-        if(isScrolledIntoView(card.element)){
-            card_id = $(card.element).attr('data-name') +
-                ($(card.element).attr('data-identifier') === undefined ? "" : $(card.element).attr('data-identifier'));
-            if(!window.viewed_cards.hasOwnProperty(card_id)){
-                window.viewed_cards[card_id] = card.element;
-                window.myuw_log.log_card(card, "view");
-                //TODO: Store the card ID and a start time, log time interval when card is no longer in viewport
-            }
-        }
-
-    });
-};
-
-var get_all_cards = function(){
-    var cards = [],
-        pos = 0;
-    $("div").find("[data-type='card']").each(function (i, card) {
-        pos++;
-        cards.push({element: card, pos: pos});
-    });
-    return cards;
-};
-
-var log_loaded_cards = function(){
-    var cards = get_all_cards();
-    $(cards).each(function(i, card){
-        window.myuw_log.log_card(card, "loaded");
-    });
-};
-
-var init_logging = function () {
-    myuwlog = new MyuwLog();
-
-    myuwlog.init();
-    window.myuw_log = myuwlog;
-    _init_link_logging();
-    _init_card_logging();
-};
-
-var _init_link_logging = function() {
-    $(document).on("click", "a", function () {
-        window.myuw_log.log_link(this, "click");
-        window.myuw_log.send_links();
-    });
-    de_bouncer(jQuery,'smartscroll', 'scroll', 100);
-    window.viewed_links = {};
-    $(window).smartscroll(function(e) {
-        get_new_visible_links();
-    });
-    //To pick up links visible before scrolling (waiting 2s so content can load)
-    window.setTimeout(get_new_visible_links, 2000);
-};
-
-var _init_card_logging = function() {
-    window.setTimeout(log_loaded_cards, 4000);
-    //TODO: Create per-card events that fire on load and log 'read' if card is in viewport
-    window.viewed_cards = {};
-    de_bouncer(jQuery,'smartscroll', 'scroll', 100);
-    $(window).smartscroll(function(e) {
-        get_new_visible_cards();
-    });
-};
-
 
 var init_profile_events = function () {
     Profile.add_events();
