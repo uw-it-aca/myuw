@@ -74,7 +74,7 @@ var NoticeBanner = {
             'Fees & Finances': 'fa-usd text-success',
             'Graduation': 'fa-graduation-cap',
             'Admission': 'fa-university text-academics',
-            'Registration': 'fa-clock-o text-info',
+            'Registration': 'fa-pencil-square-o text-info',
             'Insurance': 'fa-medkit text-insurance',
             'Legal': 'fa-gavel text-muted',
             'Visa': 'fa-globe text-visa'
