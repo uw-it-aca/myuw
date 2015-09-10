@@ -1,11 +1,17 @@
 
 var log = require("../myuw_log.js");
 var LogUtils = log.LogUtils;
+var jsdom = require('jsdom');
+
+var doc = jsdom.jsdom("<html></html>"),
+    window = doc.parentWindow;
+
+var $ = jQuery = require('jquery')(window);
 
 var assert = require("assert");
 
 describe("Logging", function() {
-    describe("viewport_test", function() {
+    describe("Viewport Test", function() {
         it('should say an element fully on-screen is in the viewport', function() {
             assert.equal(LogUtils.isInViewport(0, 50, 10, 20), true);
         });
@@ -45,4 +51,15 @@ describe("Logging", function() {
             assert.equal(LogUtils.isInViewport(100, 110, 20, 200), true);
         });
     });
+
+    describe("Visible Cards", function() {
+        global.$ = $;
+        it('should return the name of the card', function() {
+            var el = $("<div data-name='test-card-name'></div>");
+            var card = { element: el, pos: 1 };
+            assert.equal(LogUtils.get_card_name(card), "test-card-name");
+        });
+    });
 });
+
+

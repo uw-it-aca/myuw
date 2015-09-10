@@ -18,7 +18,7 @@ function MyuwLog()  {
     this.log_card = function(card, action) {
         var message = "";
         if (typeof(card.element)=== "object"){
-            message = {card_name: $(card.element).attr('data-name'),
+            message = {card_name: LogUtils.get_card_name(card),
                        card_info: $(card.element).attr('data-identifier'),
                        card_position: card.pos,
                        action: action};
@@ -261,6 +261,10 @@ var LogUtils = {
        window.myuw_log = myuwlog;
        LogUtils._init_link_logging();
        LogUtils._init_card_logging();
+    },
+
+    get_card_name: function(card) {
+        return $(card.element).attr('data-name');
     }
 
 };
