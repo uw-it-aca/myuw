@@ -6,7 +6,7 @@ var jsdom = require('jsdom');
 var doc = jsdom.jsdom("<html></html>"),
     window = doc.parentWindow;
 
-var $ = jQuery = require('jquery')(window);
+var $ = require('jquery')(window);
 
 var assert = require("assert");
 
