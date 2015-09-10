@@ -265,8 +265,62 @@ var LogUtils = {
 
     get_card_name: function(card) {
         return $(card.element).attr('data-name');
-    }
+    },
 
+    evaluateCurrentlyVisibleCards: function(cards) {
+        var values = {
+            scrolled_out: [],
+            scrolled_in: []
+        };
+
+        var new_visible_cards = {};
+        for (var i = 0, len = cards.length; i < len; i++) {
+            var card = cards[i];
+            var card_name = LogUtils.get_card_name(card);
+
+            if (LogUtils.current_visible_cards[card_name]) {
+                new_visible_cards[card_name] = LogUtils.current_visible_cards[card_name];
+                delete LogUtils.current_visible_cards[card_name];
+            }
+            else {
+                new_visible_cards[card_name] = {
+                    card: card,
+                    first_onscreen: new Date().getTime(),
+                    rand: Math.random().toString(36).substring(2)
+                };
+
+                values.scrolled_in.push(card);
+            }
+        }
+        for (key in LogUtils.current_visible_cards) {
+            if (LogUtils.current_visible_cards.hasOwnProperty(key)) {
+                if (!new_visible_cards[key]) {
+                    values.scrolled_out.push(LogUtils.current_visible_cards[key]);
+                    delete LogUtils.current_visible_cards[key];
+                }
+            }
+        }
+
+
+
+        LogUtils.current_visible_cards = new_visible_cards;
+        return values;
+    },
+
+    getCurrentlyVisibleCards: function() {
+        var list = [];
+        for (key in LogUtils.current_visible_cards) {
+            if (LogUtils.current_visible_cards.hasOwnProperty(key)) {
+                list.push(LogUtils.current_visible_cards[key]);
+            }
+        }
+        return list;
+    },
+
+    // This should only be used in the test harness.
+    _resetVisibleCards: function() {
+        LogUtils.current_visible_cards = {};
+    }
 };
 
 /* node.js exports */

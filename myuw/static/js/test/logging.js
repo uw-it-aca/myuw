@@ -59,6 +59,85 @@ describe("Logging", function() {
             var card = { element: el, pos: 1 };
             assert.equal(LogUtils.get_card_name(card), "test-card-name");
         });
+        it('should return both cards as being "viewed"', function() {
+            LogUtils._resetVisibleCards();
+            var el1 = $("<div data-name='tc1'></div>");
+            var el2 = $("<div data-name='tc2'></div>");
+
+            var c1 = { element: el1, pos: 1};
+            var c2 = { element: el2, pos: 2};
+
+            var values = LogUtils.evaluateCurrentlyVisibleCards([c1, c2]);
+            assert.equal(values.scrolled_out.length, 0);
+            assert.equal(values.scrolled_in.length, 2);
+        });
+
+        it ('should return right number of cards as being currently visible', function() {
+            LogUtils._resetVisibleCards();
+            var el1 = $("<div data-name='tca1'></div>");
+            var el2 = $("<div data-name='tca2'></div>");
+
+            var c1 = { element: el1, pos: 1};
+            var c2 = { element: el2, pos: 2};
+
+            LogUtils.evaluateCurrentlyVisibleCards([c1, c2]);
+
+            var visible = LogUtils.getCurrentlyVisibleCards();
+            assert.equal(visible.length, 2);
+
+            LogUtils.evaluateCurrentlyVisibleCards([c1, c2]);
+            visible = LogUtils.getCurrentlyVisibleCards();
+            assert.equal(visible.length, 2);
+
+            LogUtils.evaluateCurrentlyVisibleCards([c1]);
+            visible = LogUtils.getCurrentlyVisibleCards();
+            assert.equal(visible.length, 1);
+
+            LogUtils.evaluateCurrentlyVisibleCards([c2]);
+            visible = LogUtils.getCurrentlyVisibleCards();
+            assert.equal(visible.length, 1);
+
+            LogUtils.evaluateCurrentlyVisibleCards([]);
+            visible = LogUtils.getCurrentlyVisibleCards();
+            assert.equal(visible.length, 0);
+        });
+
+        it ('should have a different random identifier for each scroll onto the screen', function() {
+            LogUtils._resetVisibleCards();
+            var el1 = $("<div data-name='tca1'></div>");
+            var c1 = { element: el1, pos: 1};
+
+            LogUtils.evaluateCurrentlyVisibleCards([c1]);
+            var visible = LogUtils.getCurrentlyVisibleCards()[0];
+
+            var initial_id = visible.rand;
+
+            LogUtils.evaluateCurrentlyVisibleCards([]);
+            LogUtils.evaluateCurrentlyVisibleCards([c1]);
+
+            var visible = LogUtils.getCurrentlyVisibleCards()[0];
+            var id2 = visible.rand;
+
+            assert.notEqual(id2, initial_id);
+        });
+
+        it('should return both cards as being scrolled off the screen', function() {
+            LogUtils._resetVisibleCards();
+            var el1 = $("<div data-name='tcb1'></div>");
+            var el2 = $("<div data-name='tcb2'></div>");
+
+            var c1 = { element: el1, pos: 1};
+            var c2 = { element: el2, pos: 2};
+
+            var values = LogUtils.evaluateCurrentlyVisibleCards([c1, c2]);
+            assert.equal(values.scrolled_out.length, 0);
+            assert.equal(values.scrolled_in.length, 2);
+
+            var values = LogUtils.evaluateCurrentlyVisibleCards([]);
+            assert.equal(values.scrolled_out.length, 2);
+            assert.equal(values.scrolled_in.length, 0);
+        });
+
     });
 });
 
