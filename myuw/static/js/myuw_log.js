@@ -292,6 +292,7 @@ var LogUtils = {
                 values.scrolled_in.push(card);
             }
         }
+        var key;
         for (key in LogUtils.current_visible_cards) {
             if (LogUtils.current_visible_cards.hasOwnProperty(key)) {
                 if (!new_visible_cards[key]) {
@@ -308,7 +309,8 @@ var LogUtils = {
     },
 
     getCurrentlyVisibleCards: function() {
-        var list = [];
+        var list = [],
+            key;
         for (key in LogUtils.current_visible_cards) {
             if (LogUtils.current_visible_cards.hasOwnProperty(key)) {
                 list.push(LogUtils.current_visible_cards[key]);

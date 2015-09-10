@@ -115,7 +115,7 @@ describe("Logging", function() {
             LogUtils.evaluateCurrentlyVisibleCards([]);
             LogUtils.evaluateCurrentlyVisibleCards([c1]);
 
-            var visible = LogUtils.getCurrentlyVisibleCards()[0];
+            visible = LogUtils.getCurrentlyVisibleCards()[0];
             var id2 = visible.rand;
 
             assert.notEqual(id2, initial_id);
@@ -133,7 +133,7 @@ describe("Logging", function() {
             assert.equal(values.scrolled_out.length, 0);
             assert.equal(values.scrolled_in.length, 2);
 
-            var values = LogUtils.evaluateCurrentlyVisibleCards([]);
+            values = LogUtils.evaluateCurrentlyVisibleCards([]);
             assert.equal(values.scrolled_out.length, 2);
             assert.equal(values.scrolled_in.length, 0);
         });
