@@ -14,13 +14,21 @@ function MyuwLog()  {
         });
     };
 
-    this.log_card = function(card, action) {
-        var message = "";
+    this.log_card = function(card, action, extra_args) {
+        var message = "",
+            key;
         if (typeof(card.element)=== "object"){
+            extra_args = extra_args || {};
             message = {card_name: LogUtils.get_card_name(card),
                        card_info: $(card.element).attr('data-identifier'),
                        card_position: card.pos,
                        action: action};
+
+            for (key in extra_args) {
+                if (extra_args.hasOwnProperty(key)) {
+                    message[key] = extra_args[key];
+                }
+            }
         }else if (typeof(card) === "string"){
             message = {card_name: card,
                        action: action};
@@ -285,7 +293,7 @@ var LogUtils = {
                     rand: Math.random().toString(36).substring(2)
                 };
 
-                values.scrolled_in.push(card);
+                values.scrolled_in.push(new_visible_cards[card_name]);
             }
         }
         var key;
@@ -306,9 +314,20 @@ var LogUtils = {
 
     logCardOnscreenChanges: function(changes) {
         var i,
-            len;
+            len,
+            card;
         for (i = 0, len = changes.scrolled_in.length; i < len; i++) {
-            window.myuw_log.log_card(changes.scrolled_in[i], "view");
+            window.myuw_log.log_card(changes.scrolled_in[i].card, "view", {
+                rand: changes.scrolled_in[i].rand
+            });
+        }
+        for (i = 0, len = changes.scrolled_out.length; i < len; i++) {
+            card = changes.scrolled_out[i].card;
+            window.myuw_log.log_card(card, "time_viewed", {
+                time_visible: ((new Date().getTime()) - changes.scrolled_out[i].first_onscreen) / 1000,
+                final: true,
+                rand: changes.scrolled_out[i].rand
+            });
         }
     },
 

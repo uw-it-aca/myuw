@@ -263,6 +263,18 @@ describe("Logging", function() {
             assert.equal(log1.card_position, "2");
             assert.equal(log1.action, "view");
 
+            log_entries = [];
+
+            var values = LogUtils.evaluateCurrentlyVisibleCards([c1]);
+            LogUtils.logCardOnscreenChanges(values);
+
+            log1 = JSON.parse(log_entries[0]["0"]);
+            assert.equal(log1.card_name, "tce2");
+            assert.equal(log1.card_position, "2");
+            assert.equal(log1.final, true);
+            assert.ok(log1.time_visible >= 0.0);
+            assert.equal(log1.action, "time_viewed");
+
         });
     });
 });
