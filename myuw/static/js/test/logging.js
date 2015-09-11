@@ -265,7 +265,7 @@ describe("Logging", function() {
 
             log_entries = [];
 
-            var values = LogUtils.evaluateCurrentlyVisibleCards([c1]);
+            values = LogUtils.evaluateCurrentlyVisibleCards([c1]);
             LogUtils.logCardOnscreenChanges(values);
 
             log1 = JSON.parse(log_entries[0]["0"]);
