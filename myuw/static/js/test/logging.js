@@ -1,6 +1,7 @@
 
 var log = require("../myuw_log.js");
 var LogUtils = log.LogUtils;
+var MyuwLog = log.MyuwLog;
 var jsdom = require('jsdom');
 
 var doc = jsdom.jsdom("<html></html>"),
@@ -187,6 +188,46 @@ describe("Logging", function() {
             assert.equal(visible.is_newly_read, false);
 
 
+        });
+    });
+
+    describe("the actual logging", function() {
+        it("should handle the basics", function() {
+            LogUtils._resetVisibleCards();
+
+            var log_entries = [];
+            var my_log = new MyuwLog();
+            my_log.card_logger = {
+                info: function() {
+                    log_entries.push(arguments);
+                }
+            };
+
+            window = window || {};
+            window.myuw_log = my_log;
+            global.window = window;
+
+            var el1 = $("<div data-name='tcd1'></div>");
+            var c1 = { element: el1, pos: 1};
+
+            window.myuw_log.log_card(c1, "view");
+            window.myuw_log.log_card(c1, "woot");
+            window.myuw_log.log_card(c1, "view");
+
+            var log1 = JSON.parse(log_entries[0]["0"]);
+            assert.equal(log1.card_name, "tcd1");
+            assert.equal(log1.card_position, "1");
+            assert.equal(log1.action, "view");
+
+            log1 = JSON.parse(log_entries[1]["0"]);
+            assert.equal(log1.card_name, "tcd1");
+            assert.equal(log1.card_position, "1");
+            assert.equal(log1.action, "woot");
+
+            log1 = JSON.parse(log_entries[2]["0"]);
+            assert.equal(log1.card_name, "tcd1");
+            assert.equal(log1.card_position, "1");
+            assert.equal(log1.action, "view");
         });
     });
 });

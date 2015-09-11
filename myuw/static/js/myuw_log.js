@@ -5,7 +5,6 @@ function MyuwLog()  {
     this.card_logger = undefined;
     this.appender = undefined;
 
-
     this.init = function() {
         this.link_logger = this.get_logger('link');
         this.card_logger = this.get_logger('card');
@@ -344,4 +343,5 @@ if (typeof exports == "undefined") {
     var exports = {};
 }
 exports.LogUtils = LogUtils;
+exports.MyuwLog = MyuwLog;
 
