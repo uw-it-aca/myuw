@@ -39,3 +39,4 @@ from myuw.test.loggers import TestSessionLog
 from myuw.test.dao.calendar_mapping import TestCalendarMapping
 from myuw.test.dao.calendar import TestCalendar
 from myuw.test.cache import TestCustomCachePolicy
+from myuw.test.dao.thrive import TestThrive

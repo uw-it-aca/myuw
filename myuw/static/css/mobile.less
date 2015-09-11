@@ -393,9 +393,9 @@ body {
         .container { min-height: 50px; position: relative; 
             
             .header-netid { font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 26px; line-height: 50px; 
-                
+                .icon-user {color: #F3EACC; opacity: 0.7;font-size: 20px;}
                 a { color: lighten(@darktan, 30%); white-space:nowrap;}
-                i { font-size: 14px; margin-left: 6px;}
+                i.fa { font-size: 14px; margin-left: 6px;}
             }
             
             .header-profile { color: #fff; font-size: 12px; 
@@ -650,7 +650,9 @@ body {
 					}
 				}
 			}
-			#grade_card_resources {}
+			#grade_card_resources {
+				.unstyled-list {padding-top: 10px;}
+			}
 		}
 	}
 	
@@ -924,6 +926,14 @@ body {
         .card {
             
         }
+    }
+
+
+// ThriveUW 
+
+#ThriveCard { 
+    h4 { font-family: 'Roboto', sans-serif; font-weight: 500; color: @darktan; margin-top: 1.5em; margin-bottom: .5em; font-size: 16px; } 
+    ul { list-style-type: none;padding-left: 0; }
     }
 
     // textbook card

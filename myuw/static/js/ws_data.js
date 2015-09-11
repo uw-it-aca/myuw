@@ -21,6 +21,7 @@ WSData = {
     _academic_calendar_data: null,
     _current_academic_calendar_data: null,
     _myplan_data: null,
+    _thrive_data: null,
 
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
@@ -166,6 +167,9 @@ WSData = {
     },
     dept_event_data: function() {
         return WSData._department_events;
+    },
+    thrive_data: function() {
+        return WSData._thrive_data;
     },
 
     fetch_event_data: function(callback, err_callback, args) {
@@ -811,5 +815,36 @@ WSData = {
         });
     },
 
+    fetch_thrive_data: function(callback, err_callback, args) {
+        if (WSData._thrive_data === null) {
+            var url = "/api/v1/thrive/";
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+            $.ajax({
+                url: url,
+                    dataType: "JSON",
+
+                    type: "GET",
+                    accepts: {html: "text/html"},
+                    success: function(results) {
+                        WSData._thrive_data = results;
+                        WSData._run_success_callbacks_for_url(url);
+                    },
+                    error: function(xhr, status, error) {
+                        WSData._run_error_callbacks_for_url(url);
+                    }
+                 });
+              }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
 
 };
