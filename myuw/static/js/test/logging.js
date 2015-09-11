@@ -229,6 +229,41 @@ describe("Logging", function() {
             assert.equal(log1.card_position, "1");
             assert.equal(log1.action, "view");
         });
+        it("should log new cards that scroll onto the page", function() {
+            LogUtils._resetVisibleCards();
+
+            var log_entries = [];
+            var my_log = new MyuwLog();
+            my_log.card_logger = {
+                info: function() {
+                    log_entries.push(arguments);
+                }
+            };
+
+            window = window || {};
+            window.myuw_log = my_log;
+            global.window = window;
+
+            var el1 = $("<div data-name='tce1'></div>");
+            var c1 = { element: el1, pos: 1};
+
+            var el2 = $("<div data-name='tce2'></div>");
+            var c2 = { element: el2, pos: 2};
+
+            var values = LogUtils.evaluateCurrentlyVisibleCards([c1, c2]);
+            LogUtils.logCardOnscreenChanges(values);
+
+            log1 = JSON.parse(log_entries[0]["0"]);
+            assert.equal(log1.card_name, "tce1");
+            assert.equal(log1.card_position, "1");
+            assert.equal(log1.action, "view");
+
+            log1 = JSON.parse(log_entries[1]["0"]);
+            assert.equal(log1.card_name, "tce2");
+            assert.equal(log1.card_position, "2");
+            assert.equal(log1.action, "view");
+
+        });
     });
 });
 

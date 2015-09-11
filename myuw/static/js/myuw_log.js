@@ -93,23 +93,19 @@ var LogUtils = {
 
     get_new_visible_cards: function(){
         var cards = LogUtils.get_all_cards(),
-            card_id;
+            card_id,
+            visible_cards = [];
 
-        var new_cards = [];
-        var removed_cards = [];
 
         $(cards).each(function(i, card){
             if(LogUtils.isScrolledIntoView(card.element)){
-                card_id = $(card.element).attr('data-name') +
-                    ($(card.element).attr('data-identifier') === undefined ? "" : $(card.element).attr('data-identifier'));
-                if(!window.viewed_cards.hasOwnProperty(card_id)){
-                    window.viewed_cards[card_id] = card.element;
-                    window.myuw_log.log_card(card, "view");
-                    //TODO: Store the card ID and a start time, log time interval when card is no longer in viewport
-                }
+                visible_cards.push(card);
             }
 
         });
+
+        var log_values = LogUtils.evaluateCurrentlyVisibleCards(visible_cards);
+        LogUtils.logCardOnscreenChanges(log_values);
     },
 
     isScrolledIntoView: function(elem) {
@@ -219,7 +215,6 @@ var LogUtils = {
     _init_card_logging: function() {
        window.setTimeout(LogUtils.log_loaded_cards, 4000);
        //TODO: Create per-card events that fire on load and log 'read' if card is in viewport
-       window.viewed_cards = {};
        LogUtils.de_bouncer(jQuery,'smartscroll', 'scroll', 100);
        $(window).smartscroll(function(e) {
            LogUtils.get_new_visible_cards();
@@ -307,6 +302,14 @@ var LogUtils = {
 
         LogUtils.current_visible_cards = new_visible_cards;
         return values;
+    },
+
+    logCardOnscreenChanges: function(changes) {
+        var i,
+            len;
+        for (i = 0, len = changes.scrolled_in.length; i < len; i++) {
+            window.myuw_log.log_card(changes.scrolled_in[i], "view");
+        }
     },
 
     getCurrentlyVisibleCards: function() {
