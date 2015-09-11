@@ -75,7 +75,6 @@ var GradeCard = {
             }
             if (course_data.sections[index].is_primary_section && !course_data.sections[index].is_auditor) {
                 if (!course_data.sections[index].hide_for_early_summer_display) {
-                    console.log(course_data.sections[index]);
                     course_data.sections[index].display_grade = true;
                     has_section_to_display = true;
                 }
