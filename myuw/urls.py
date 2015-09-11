@@ -12,6 +12,7 @@ from myuw.views.api.textbook import Textbook, TextbookCur
 from myuw.views.api.notices import Notices
 from myuw.views.api.myplan import MyPlan
 from myuw.views.api.academic_events import AcademicEvents
+from myuw.views.api.thrive import ThriveMessages
 from myuw.views.page import index
 from myuw.views.api.calendar import DepartmentalCalendar
 from django.contrib.auth.decorators import login_required
@@ -37,6 +38,8 @@ urlpatterns = patterns(
         name="myuw_finance_api"),
     url(r'^api/v1/hfs/$', login_required(HfsBalances().run),
         name="myuw_hfs_api"),
+    url(r'^api/v1/thrive/$', login_required(ThriveMessages().run),
+        name="myuw_thrive_api"),
     url(r'^api/v1/library/$', login_required(MyLibInfo().run),
         name="myuw_library_api"),
     url(r'^api/v1/oquarters/$',
