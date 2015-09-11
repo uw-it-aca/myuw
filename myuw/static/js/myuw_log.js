@@ -286,6 +286,8 @@ var LogUtils = {
                 new_visible_cards[card_name] = {
                     card: card,
                     first_onscreen: new Date().getTime(),
+                    is_newly_read: false,
+                    has_been_read: false,
                     rand: Math.random().toString(36).substring(2)
                 };
 
@@ -313,7 +315,19 @@ var LogUtils = {
             key;
         for (key in LogUtils.current_visible_cards) {
             if (LogUtils.current_visible_cards.hasOwnProperty(key)) {
-                list.push(LogUtils.current_visible_cards[key]);
+                var card = LogUtils.current_visible_cards[key];
+                card.time_visible = ((new Date().getTime()) - card.first_onscreen) / 1000;
+
+                if (card.time_visible >= 1.0) {
+                    if (!card.has_been_read) {
+                        card.is_newly_read = true;
+                    }
+                    else {
+                        card.is_newly_read = false;
+                    }
+                    card.has_been_read = true;
+                }
+                list.push(card);
             }
         }
         return list;

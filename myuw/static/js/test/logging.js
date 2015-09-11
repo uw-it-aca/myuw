@@ -138,6 +138,56 @@ describe("Logging", function() {
             assert.equal(values.scrolled_in.length, 0);
         });
 
+        it('should report a card as "read" after one second, but only once', function() {
+            LogUtils._resetVisibleCards();
+            var el1 = $("<div data-name='tcc1'></div>");
+
+            var c1 = { element: el1, pos: 1};
+
+            var values = LogUtils.evaluateCurrentlyVisibleCards([c1]);
+
+            visible = LogUtils.getCurrentlyVisibleCards()[0];
+            assert.equal(visible.is_newly_read, false);
+            assert.ok(visible.time_visible < 1.0);
+
+            // Hacking some direct access...
+            visible.first_onscreen -= 1000;
+
+            visible = LogUtils.getCurrentlyVisibleCards()[0];
+
+            assert.ok(visible.time_visible >= 1.0);
+            assert.equal(visible.is_newly_read, true);
+
+            // Make sure is_newly_read is only true once:
+            visible = LogUtils.getCurrentlyVisibleCards()[0];
+
+            assert.ok(visible.time_visible >= 1.0);
+            assert.equal(visible.is_newly_read, false);
+
+            // Scroll off, then back on, make sure everything behaves like it's new:
+            LogUtils.evaluateCurrentlyVisibleCards([]);
+            LogUtils.evaluateCurrentlyVisibleCards([c1]);
+
+            visible = LogUtils.getCurrentlyVisibleCards()[0];
+            assert.equal(visible.is_newly_read, false);
+            assert.ok(visible.time_visible < 1.0);
+
+            // Hacking some direct access...
+            visible.first_onscreen -= 1000;
+
+            visible = LogUtils.getCurrentlyVisibleCards()[0];
+
+            assert.ok(visible.time_visible >= 1.0);
+            assert.equal(visible.is_newly_read, true);
+
+            // Make sure is_newly_read is only true once:
+            visible = LogUtils.getCurrentlyVisibleCards()[0];
+
+            assert.ok(visible.time_visible >= 1.0);
+            assert.equal(visible.is_newly_read, false);
+
+
+        });
     });
 });
 
