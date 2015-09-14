@@ -55,6 +55,7 @@ var PCETuitionCard = {
         var source = $("#tuition_card").html();
         var template = Handlebars.compile(source);
         PCETuitionCard.dom_target.html(template(template_data));
+        LogUtils.cardLoaded(PCETuitionCard.name, PCETuitionCard.dom_target);
     },
 
     _days_from_today: function (date) {

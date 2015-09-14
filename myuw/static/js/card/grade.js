@@ -96,6 +96,7 @@ var GradeCard = {
         var grades_template = Handlebars.compile(source);
         GradeCard.dom_target.html(grades_template(course_data));
         GradeCard.add_events(term);
+        LogUtils.cardLoaded(GradeCard.name, GradeCard.dom_target);
     },
 
     add_events: function(term) {

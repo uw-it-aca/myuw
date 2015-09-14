@@ -72,6 +72,7 @@ var TuitionCard = {
         var source = $("#tuition_card").html();
         var template = Handlebars.compile(source);
         TuitionCard.dom_target.html(template(template_data));
+        LogUtils.cardLoaded(TuitionCard.name, TuitionCard.dom_target);
     },
 
     _days_from_today: function (date) {

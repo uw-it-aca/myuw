@@ -276,6 +276,44 @@ describe("Logging", function() {
             assert.equal(log1.action, "time_viewed");
 
         });
+        it ("should log cards when they load", function() {
+
+            var log_entries = [];
+            var my_log = new MyuwLog();
+            my_log.card_logger = {
+                info: function() {
+                    log_entries.push(arguments);
+                }
+            };
+
+            window = window || {};
+            window.myuw_log = my_log;
+            global.window = window;
+
+            // Monkey-patch jquery so all elements are 100px tall
+            $.prototype.height = function() { return 100; };
+
+            // Monkey-patch jquery so all elements are at 10px
+            $.prototype.offset = function() { return { top: 10 }; };
+
+            LogUtils.registerCardLoadEvents();
+            LogUtils.cardLoaded("TestCard", $("<div></div>"));
+
+            log1 = JSON.parse(log_entries[0]["0"]);
+            assert.equal(log1.card_name, "TestCard");
+            assert.equal(log1.on_screen, true);
+            assert.equal(log1.action, "loaded");
+
+            log_entries = [];
+            // Monkey-patch jquery so all elements are at 10px
+            $.prototype.offset = function() { return { top: 200 }; };
+            LogUtils.cardLoaded("TestCard2", $("<div></div>"));
+
+            log1 = JSON.parse(log_entries[0]["0"]);
+            assert.equal(log1.card_name, "TestCard2");
+            assert.equal(log1.on_screen, false);
+            assert.equal(log1.action, "loaded");
+        });
     });
 });
 

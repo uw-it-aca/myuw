@@ -193,5 +193,6 @@ var RegStatusCard = {
         RegStatusCard._add_events();
 
         RegStatusCard.dom_target.html(content);
+        LogUtils.cardLoaded(RegStatusCard.name, RegStatusCard.dom_target);
     }
 };

@@ -96,7 +96,6 @@ function MyuwLog()  {
 
 var LogUtils = {
     PERCENTAGE_VISIBLE_THRESHOLD: 0.80,
-
     current_visible_cards: {},
 
     get_new_visible_cards: function(){
@@ -215,18 +214,14 @@ var LogUtils = {
        $(window).smartscroll(function(e) {
            LogUtils.get_new_visible_links();
        });
-       //To pick up links visible before scrolling (waiting 2s so content can load)
-       // TODO - change this to do something when content loads.
-       window.setTimeout(LogUtils.get_new_visible_links, 2000);
     },
 
     _init_card_logging: function() {
-       window.setTimeout(LogUtils.log_loaded_cards, 4000);
-       //TODO: Create per-card events that fire on load and log 'read' if card is in viewport
-       LogUtils.de_bouncer(jQuery,'smartscroll', 'scroll', 100);
-       $(window).smartscroll(function(e) {
-           LogUtils.get_new_visible_cards();
-       });
+        LogUtils.registerCardLoadEvents();
+        LogUtils.de_bouncer(jQuery,'smartscroll', 'scroll', 100);
+        $(window).smartscroll(function(e) {
+            LogUtils.get_new_visible_cards();
+        });
     },
 
     de_bouncer: function($,cf,of, interval){
@@ -247,13 +242,6 @@ var LogUtils = {
            };
        };
        jQuery.fn[cf] = function(fn){  return fn ? this.bind(of, debounce(fn)) : this.trigger(cf); };
-    },
-
-    log_loaded_cards: function(){
-       var cards = LogUtils.get_all_cards();
-       $(cards).each(function(i, card){
-           window.myuw_log.log_card(card, "loaded");
-       });
     },
 
     init_logging: function () {
@@ -357,6 +345,25 @@ var LogUtils = {
     // This should only be used in the test harness.
     _resetVisibleCards: function() {
         LogUtils.current_visible_cards = {};
+    },
+
+    registerCardLoadEvents: function() {
+        $(window).on("myuw:card_load", LogUtils._logCardLoaded);
+    },
+
+    _logCardLoaded: function(ev, name, el) {
+        var message = {
+            action: "loaded",
+            card_name: name,
+            on_screen: LogUtils.isScrolledIntoView(el)
+        };
+        window.myuw_log.card_logger.info(JSON.stringify(message));
+        LogUtils.get_new_visible_cards();
+        LogUtils.get_new_visible_links();
+    },
+
+    cardLoaded: function(name, el) {
+        $(window).trigger("myuw:card_load", [ name, el ]);
     }
 };
 

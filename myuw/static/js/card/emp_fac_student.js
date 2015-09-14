@@ -16,5 +16,6 @@ var EmpFacStudentCard = {
             show_card: user.stud_employee | user.faculty
         };
         EmpFacStudentCard.dom_target.html(template(template_data));
+        LogUtils.cardLoaded(EmpFacStudentCard.name, EmpFacStudentCard.dom_target);
     }
 };

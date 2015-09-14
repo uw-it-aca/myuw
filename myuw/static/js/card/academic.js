@@ -24,6 +24,7 @@ var AcademicCard = {
         else {
             AcademicCard.dom_target.html(template(academic_data));
             AcademicCard.add_events();
+            LogUtils.cardLoaded(AcademicCard.name, AcademicCard.dom_target);
         }
     },
 

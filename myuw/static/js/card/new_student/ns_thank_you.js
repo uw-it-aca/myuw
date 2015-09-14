@@ -37,6 +37,7 @@ var ThankYouCard = {
         if (notice_hashes.length > 0){
             ThankYouCard.dom_target.html(template({'notices': notices}));
             ThankYouCard.mark_notices_read(notice_hashes);
+            LogUtils.cardLoaded(ThankYouCard.name, ThankYouCard.dom_target);
         } else {
             ThankYouCard.dom_target.hide();
         }

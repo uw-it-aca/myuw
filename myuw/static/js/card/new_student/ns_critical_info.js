@@ -43,6 +43,7 @@ var CriticalInfoCard = {
         } else {
             CriticalInfoCard.dom_target.hide();
         }
+        LogUtils.cardLoaded(CriticalInfoCard.name, CriticalInfoCard.dom_target);
 
     },
     render_error: function () {
