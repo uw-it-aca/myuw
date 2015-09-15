@@ -86,7 +86,7 @@ function MyuwLog()  {
         // Periodically log how long cards have been on screen
         if (!LogUtils.on_screen_interval_check) {
             LogUtils.on_screen_interval_check = window.setInterval(function() {
-                LogUtils.get_new_visible_cards();
+                LogUtils.periodicVisibilityLogging();
             }, LogUtils.PERIODIC_ONSCREEN_INTERVAL);
         }
         return log;
@@ -394,6 +394,24 @@ var LogUtils = {
                 time_visible: ((new Date().getTime()) - changes.scrolled_out[i].first_onscreen) / 1000,
                 final: true,
                 rand: changes.scrolled_out[i].rand
+            });
+        }
+    },
+
+    periodicVisibilityLogging: function() {
+        var cards = LogUtils.getCurrentlyVisibleCards();
+        for (var i = 0, len = cards.length; i < len; i++) {
+            var card = cards[i];
+            if (card.is_newly_read) {
+                window.myuw_log.log_card(card.card, "read", {
+                    rand: card.rand
+                });
+            }
+
+            window.myuw_log.log_card(card.card, "time_viewed", {
+                time_visible: ((new Date().getTime()) - card.first_onscreen) / 1000,
+                final: false,
+                rand: card.rand
             });
         }
     },
