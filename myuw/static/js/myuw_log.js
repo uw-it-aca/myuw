@@ -105,6 +105,7 @@ function MyuwLog()  {
 
 var LogUtils = {
     PERCENTAGE_VISIBLE_THRESHOLD: 0.50,
+    PERCENTAGE_OFFSCREEN_THRESHOLD: 0.05,
     PERIODIC_ONSCREEN_INTERVAL: 1000,
     PERIODIC_SEND_INTERVAL: 2000,
     current_visible_cards: {},
@@ -175,6 +176,47 @@ var LogUtils = {
 
         return false;
     },
+
+    // Only used on elements that have been on-viewport
+    isOffViewport: function(viewport_top, viewport_bottom, elem_top, elem_bottom) {
+        // 2 cases of completely off-screen
+        if (elem_bottom < viewport_top) {
+            return true;
+        }
+        if (elem_top > viewport_bottom) {
+            return true;
+        }
+
+        // If it's fully on-screen...
+        if ((elem_bottom <= viewport_bottom) && (elem_top >= viewport_top)) {
+            return false;
+        }
+
+        var visible_height;
+        // If we're above the viewport:
+        if (elem_top < viewport_top) {
+            visible_height = elem_bottom - viewport_top;
+        }
+        else {
+            visible_height = viewport_bottom - elem_top;
+        }
+        var actual_height = elem_bottom - elem_top;
+        var viewport_size = viewport_bottom - viewport_top;
+
+        // If the top or bottom of the element is off-screen...
+        // it's offscreen if 5% or less is visible
+        if (visible_height > actual_height * LogUtils.PERCENTAGE_OFFSCREEN_THRESHOLD) {
+            return false;
+        }
+
+        // or if the card takes up 5% or less of the screen
+        if (visible_height > viewport_size * LogUtils.PERCENTAGE_OFFSCREEN_THRESHOLD) {
+            return false;
+        }
+
+        return true;
+    },
+
 
     get_new_visible_links: function () {
         var links = LogUtils.get_links_in_view();
