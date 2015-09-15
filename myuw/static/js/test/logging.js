@@ -290,7 +290,17 @@ describe("Logging", function() {
             var el1 = $("<div data-name='tcd1'></div>");
             var c1 = { element: el1, pos: 1};
 
+            var original_height = $.prototype.height;
+            var original_width = $.prototype.width;
+
+            $.prototype.height = function() { return 200; };
+            $.prototype.width = function() { return 500; };
+
             window.myuw_log.log_card(c1, "view");
+
+            $.prototype.height = function() { return 300; };
+            $.prototype.width = function() { return 600; };
+
             window.myuw_log.log_card(c1, "woot");
             window.myuw_log.log_card(c1, "view");
 
@@ -298,16 +308,23 @@ describe("Logging", function() {
             assert.equal(log1.card_name, "tcd1");
             assert.equal(log1.card_position, "1");
             assert.equal(log1.action, "view");
+            assert.equal(log1.screen_width, 500);
+            assert.equal(log1.screen_height, 200);
 
             log1 = JSON.parse(log_entries[1]["0"]);
             assert.equal(log1.card_name, "tcd1");
             assert.equal(log1.card_position, "1");
             assert.equal(log1.action, "woot");
+            assert.equal(log1.screen_width, 600);
+            assert.equal(log1.screen_height, 300);
 
             log1 = JSON.parse(log_entries[2]["0"]);
             assert.equal(log1.card_name, "tcd1");
             assert.equal(log1.card_position, "1");
             assert.equal(log1.action, "view");
+
+            $.prototype.height = original_height;
+            $.prototype.width = original_width;
         });
         it("should log new cards that scroll onto the page", function() {
             LogUtils._resetVisibleCards();
@@ -370,6 +387,9 @@ describe("Logging", function() {
             window.myuw_log = my_log;
             global.window = window;
 
+            var original_height = $.prototype.height;
+            var original_offset = $.prototype.offset;
+
             // Monkey-patch jquery so all elements are 100px tall
             $.prototype.height = function() { return 100; };
 
@@ -393,6 +413,9 @@ describe("Logging", function() {
             assert.equal(log1.card_name, "TestCard2");
             assert.equal(log1.on_screen, false);
             assert.equal(log1.action, "loaded");
+
+            $.prototype.offset = original_offset;
+            $.prototype.height = original_height;
         });
     });
 });

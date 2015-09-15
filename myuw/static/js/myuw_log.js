@@ -34,6 +34,9 @@ function MyuwLog()  {
                        action: action};
         }
 
+        message.screen_width = $(window).width();
+        message.screen_height = $(window).height();
+
         this.card_logger.info(JSON.stringify(message));
     };
     this.log_link = function(link, action) {
@@ -431,7 +434,9 @@ var LogUtils = {
         var message = {
             action: "loaded",
             card_name: name,
-            on_screen: LogUtils.isScrolledIntoView(el)
+            on_screen: LogUtils.isScrolledIntoView(el),
+            screen_width: $(window).width(),
+            screen_height: $(window).height()
         };
         window.myuw_log.card_logger.info(JSON.stringify(message));
         LogUtils.get_new_visible_cards();
