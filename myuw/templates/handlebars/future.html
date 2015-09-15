@@ -1,0 +1,11 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "future" %}
+
+<div class="container future-quarter-container">
+	<h2 id="main">Preview {{titleFormatTerm term}}</h2>
+    <div class="row">     
+        <div id="future_content" class="col-md-8"></div>
+		<div id="landing_accounts" class="col-md-4"><!-- accounts column --></div>
+    </div>
+</div>	  
+    {% endtplhandlebars %}
