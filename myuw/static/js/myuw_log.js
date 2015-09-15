@@ -113,7 +113,8 @@ var LogUtils = {
     get_new_visible_cards: function(){
         var cards = LogUtils.get_all_cards(),
             card_id,
-            visible_cards = [];
+            visible_cards = [],
+            offscreen = [];
 
 
         $(cards).each(function(i, card){
@@ -121,21 +122,25 @@ var LogUtils = {
                 visible_cards.push(card);
             }
 
+            else if(LogUtils.isOffViewport(card.element)){
+                offscreen.push(card);
+            }
         });
 
-        var log_values = LogUtils.evaluateCurrentlyVisibleCards(visible_cards, []);
+        var log_values = LogUtils.evaluateCurrentlyVisibleCards(visible_cards, offscreen);
         LogUtils.logCardOnscreenChanges(log_values);
     },
 
     isScrolledIntoView: function(elem) {
-       var docViewTop = $(window).scrollTop();
-       var docViewBottom = docViewTop + $(window).height();
+        var docViewTop = $(window).scrollTop();
+        var docViewBottom = docViewTop + $(window).height();
 
-       var elmHeight = $(elem).height();
-       var elemTop = $(elem).offset().top;
-       var elemBottom = elemTop + elmHeight;
+        var elmHeight = $(elem).height();
+        var offset = $(elem).offset();
+        var elemTop = $(elem).offset().top;
+        var elemBottom = elemTop + elmHeight;
 
-       return LogUtils.isInViewport(docViewTop, docViewBottom, elemTop, elemBottom);
+        return LogUtils.isInViewport(docViewTop, docViewBottom, elemTop, elemBottom);
     },
 
     isInViewport: function(viewport_top, viewport_bottom, elem_top, elem_bottom) {
@@ -307,7 +312,13 @@ var LogUtils = {
     },
 
     get_card_name: function(card) {
-        return $(card.element).attr('data-name');
+        var name = $(card.element).attr('data-name');
+        var identifier = $(card.element).attr('data-identifier');
+
+        if (identifier) {
+            return name + "-" + identifier;
+        }
+        return name;
     },
 
     evaluateCurrentlyVisibleCards: function(cards, offscreen) {
