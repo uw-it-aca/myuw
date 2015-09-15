@@ -58,7 +58,9 @@ function MyuwLog()  {
         }
     };
     this.send_links = function() {
-        this.appender.sendAllRemaining();
+        if (this.appender.sendAllRemaining) {
+            this.appender.sendAllRemaining();
+        }
     };
 
     this.get_logger = function(name) {
