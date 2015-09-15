@@ -29,16 +29,16 @@ describe("Logging", function() {
             assert.equal(LogUtils.isInViewport(0, 100, 20, 1000000), true);
         });
 
-        it('should say an element mostly below-screen, but taking 50% of the screen, is off-screen', function() {
-            assert.equal(LogUtils.isInViewport(0, 100, 50, 1000000), false);
+        it('should say an element mostly below-screen, but taking 40% of the screen, is off-screen', function() {
+            assert.equal(LogUtils.isInViewport(0, 100, 60, 1000000), false);
         });
 
         it('should say an element mostly above-screen, but taking 80% of the screen, is on-screen', function() {
             assert.equal(LogUtils.isInViewport(10000, 10100, 0, 10080), true);
         });
 
-        it('should say an element mostly above-screen, but taking 50% of the screen, is off-screen', function() {
-            assert.equal(LogUtils.isInViewport(10000, 10100, 0, 10050), false);
+        it('should say an element mostly above-screen, but taking 40% of the screen, is off-screen', function() {
+            assert.equal(LogUtils.isInViewport(10000, 10100, 0, 10040), false);
         });
 
         it('should say an element completely above the viewport is off-screen', function() {
