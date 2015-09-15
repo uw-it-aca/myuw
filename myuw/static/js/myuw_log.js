@@ -123,7 +123,7 @@ var LogUtils = {
 
         });
 
-        var log_values = LogUtils.evaluateCurrentlyVisibleCards(visible_cards);
+        var log_values = LogUtils.evaluateCurrentlyVisibleCards(visible_cards, []);
         LogUtils.logCardOnscreenChanges(log_values);
     },
 
@@ -310,14 +310,16 @@ var LogUtils = {
         return $(card.element).attr('data-name');
     },
 
-    evaluateCurrentlyVisibleCards: function(cards) {
+    evaluateCurrentlyVisibleCards: function(cards, offscreen) {
         var values = {
             scrolled_out: [],
             scrolled_in: []
         };
 
         var new_visible_cards = {};
-        for (var i = 0, len = cards.length; i < len; i++) {
+        var i, len;
+
+        for (i = 0, len = cards.length; i < len; i++) {
             var card = cards[i];
             var card_name = LogUtils.get_card_name(card);
 
@@ -337,17 +339,25 @@ var LogUtils = {
                 values.scrolled_in.push(new_visible_cards[card_name]);
             }
         }
+
+
+        var newly_offscreen_keys = {};
         var key;
+        for (i = 0, len = offscreen.length; i < len; i++) {
+            key = LogUtils.get_card_name(offscreen[i]);
+            newly_offscreen_keys[key] = true;
+        }
         for (key in LogUtils.current_visible_cards) {
             if (LogUtils.current_visible_cards.hasOwnProperty(key)) {
-                if (!new_visible_cards[key]) {
+                if (newly_offscreen_keys[key]) {
                     values.scrolled_out.push(LogUtils.current_visible_cards[key]);
                     delete LogUtils.current_visible_cards[key];
                 }
+                else {
+                    new_visible_cards[key] = LogUtils.current_visible_cards[key];
+                }
             }
         }
-
-
 
         LogUtils.current_visible_cards = new_visible_cards;
         return values;

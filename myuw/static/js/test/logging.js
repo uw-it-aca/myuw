@@ -109,12 +109,12 @@ describe("Logging", function() {
             var c1 = { element: el1, pos: 1};
             var c2 = { element: el2, pos: 2};
 
-            var values = LogUtils.evaluateCurrentlyVisibleCards([c1, c2]);
+            var values = LogUtils.evaluateCurrentlyVisibleCards([c1, c2], []);
             assert.equal(values.scrolled_out.length, 0);
             assert.equal(values.scrolled_in.length, 2);
         });
 
-        it ('should return right number of cards as being currently visible', function() {
+        it ('should return right number of cards as being currently visible when none of the cards pass the off-screen threshold', function() {
             LogUtils._resetVisibleCards();
             var el1 = $("<div data-name='tca1'></div>");
             var el2 = $("<div data-name='tca2'></div>");
@@ -122,26 +122,65 @@ describe("Logging", function() {
             var c1 = { element: el1, pos: 1};
             var c2 = { element: el2, pos: 2};
 
-            LogUtils.evaluateCurrentlyVisibleCards([c1, c2]);
+            LogUtils.evaluateCurrentlyVisibleCards([c1, c2], []);
 
             var visible = LogUtils.getCurrentlyVisibleCards();
             assert.equal(visible.length, 2);
 
-            LogUtils.evaluateCurrentlyVisibleCards([c1, c2]);
+            LogUtils.evaluateCurrentlyVisibleCards([c1, c2], []);
             visible = LogUtils.getCurrentlyVisibleCards();
             assert.equal(visible.length, 2);
 
-            LogUtils.evaluateCurrentlyVisibleCards([c1]);
+            LogUtils.evaluateCurrentlyVisibleCards([c1], []);
+            visible = LogUtils.getCurrentlyVisibleCards();
+            assert.equal(visible.length, 2);
+
+            LogUtils.evaluateCurrentlyVisibleCards([c2], []);
+            visible = LogUtils.getCurrentlyVisibleCards();
+            assert.equal(visible.length, 2);
+
+            LogUtils.evaluateCurrentlyVisibleCards([], []);
+            visible = LogUtils.getCurrentlyVisibleCards();
+            assert.equal(visible.length, 2);
+        });
+        it ('should return right number of cards as being currently visible when cards do pass the off-screen threshold', function() {
+            LogUtils._resetVisibleCards();
+            var el1 = $("<div data-name='tca1'></div>");
+            var el2 = $("<div data-name='tca2'></div>");
+
+            var c1 = { element: el1, pos: 1};
+            var c2 = { element: el2, pos: 2};
+
+            LogUtils.evaluateCurrentlyVisibleCards([c1, c2], []);
+
+            var visible = LogUtils.getCurrentlyVisibleCards();
+            assert.equal(visible.length, 2);
+
+            LogUtils.evaluateCurrentlyVisibleCards([c1], []);
+            visible = LogUtils.getCurrentlyVisibleCards();
+            assert.equal(visible.length, 2);
+
+            LogUtils.evaluateCurrentlyVisibleCards([c2], []);
+            visible = LogUtils.getCurrentlyVisibleCards();
+            assert.equal(visible.length, 2);
+
+            LogUtils.evaluateCurrentlyVisibleCards([], []);
+            visible = LogUtils.getCurrentlyVisibleCards();
+            assert.equal(visible.length, 2);
+
+            LogUtils.evaluateCurrentlyVisibleCards([], [c1]);
             visible = LogUtils.getCurrentlyVisibleCards();
             assert.equal(visible.length, 1);
 
-            LogUtils.evaluateCurrentlyVisibleCards([c2]);
+            LogUtils.evaluateCurrentlyVisibleCards([], [c1]);
             visible = LogUtils.getCurrentlyVisibleCards();
             assert.equal(visible.length, 1);
 
-            LogUtils.evaluateCurrentlyVisibleCards([]);
+            LogUtils.evaluateCurrentlyVisibleCards([], [c2]);
             visible = LogUtils.getCurrentlyVisibleCards();
             assert.equal(visible.length, 0);
+
+
         });
 
         it ('should have a different random identifier for each scroll onto the screen', function() {
@@ -149,13 +188,13 @@ describe("Logging", function() {
             var el1 = $("<div data-name='tca1'></div>");
             var c1 = { element: el1, pos: 1};
 
-            LogUtils.evaluateCurrentlyVisibleCards([c1]);
+            LogUtils.evaluateCurrentlyVisibleCards([c1], []);
             var visible = LogUtils.getCurrentlyVisibleCards()[0];
 
             var initial_id = visible.rand;
 
-            LogUtils.evaluateCurrentlyVisibleCards([]);
-            LogUtils.evaluateCurrentlyVisibleCards([c1]);
+            LogUtils.evaluateCurrentlyVisibleCards([], [c1]);
+            LogUtils.evaluateCurrentlyVisibleCards([c1], []);
 
             visible = LogUtils.getCurrentlyVisibleCards()[0];
             var id2 = visible.rand;
@@ -171,11 +210,11 @@ describe("Logging", function() {
             var c1 = { element: el1, pos: 1};
             var c2 = { element: el2, pos: 2};
 
-            var values = LogUtils.evaluateCurrentlyVisibleCards([c1, c2]);
+            var values = LogUtils.evaluateCurrentlyVisibleCards([c1, c2], []);
             assert.equal(values.scrolled_out.length, 0);
             assert.equal(values.scrolled_in.length, 2);
 
-            values = LogUtils.evaluateCurrentlyVisibleCards([]);
+            values = LogUtils.evaluateCurrentlyVisibleCards([], [c2, c1]);
             assert.equal(values.scrolled_out.length, 2);
             assert.equal(values.scrolled_in.length, 0);
         });
@@ -186,7 +225,7 @@ describe("Logging", function() {
 
             var c1 = { element: el1, pos: 1};
 
-            var values = LogUtils.evaluateCurrentlyVisibleCards([c1]);
+            var values = LogUtils.evaluateCurrentlyVisibleCards([c1], []);
 
             visible = LogUtils.getCurrentlyVisibleCards()[0];
             assert.equal(visible.is_newly_read, false);
@@ -207,8 +246,8 @@ describe("Logging", function() {
             assert.equal(visible.is_newly_read, false);
 
             // Scroll off, then back on, make sure everything behaves like it's new:
-            LogUtils.evaluateCurrentlyVisibleCards([]);
-            LogUtils.evaluateCurrentlyVisibleCards([c1]);
+            LogUtils.evaluateCurrentlyVisibleCards([], [c1]);
+            LogUtils.evaluateCurrentlyVisibleCards([c1], []);
 
             visible = LogUtils.getCurrentlyVisibleCards()[0];
             assert.equal(visible.is_newly_read, false);
@@ -291,7 +330,7 @@ describe("Logging", function() {
             var el2 = $("<div data-name='tce2'></div>");
             var c2 = { element: el2, pos: 2};
 
-            var values = LogUtils.evaluateCurrentlyVisibleCards([c1, c2]);
+            var values = LogUtils.evaluateCurrentlyVisibleCards([c1, c2], []);
             LogUtils.logCardOnscreenChanges(values);
 
             log1 = JSON.parse(log_entries[0]["0"]);
@@ -306,7 +345,7 @@ describe("Logging", function() {
 
             log_entries = [];
 
-            values = LogUtils.evaluateCurrentlyVisibleCards([c1]);
+            values = LogUtils.evaluateCurrentlyVisibleCards([c1], [c2]);
             LogUtils.logCardOnscreenChanges(values);
 
             log1 = JSON.parse(log_entries[0]["0"]);
