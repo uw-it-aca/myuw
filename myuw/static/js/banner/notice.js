@@ -21,7 +21,7 @@ var NoticeBanner = {
             NoticeBanner._split_notice_titles(notices);
 
             var html = template({
-                "total_unread": Notices.get_total_unread(),
+                "total_unread": Notices.get_unread_non_critical_count(),
                 "notices": notices
             });
             NoticeBanner.dom_target.html(html);
@@ -74,7 +74,7 @@ var NoticeBanner = {
             'Fees & Finances': 'fa-usd text-success',
             'Graduation': 'fa-graduation-cap',
             'Admission': 'fa-university text-academics',
-            'Registration': 'fa-clock-o text-info',
+            'Registration': 'fa-pencil-square-o text-info',
             'Insurance': 'fa-medkit text-insurance',
             'Legal': 'fa-gavel text-muted',
             'Visa': 'fa-globe text-visa'

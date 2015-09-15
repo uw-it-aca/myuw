@@ -96,6 +96,7 @@ var Landing = {
             VisualScheduleCard,
             TextbookCard,
             CourseCard,
+			EmpFacStudentCard,
             HfsCard,
             TuitionCard,
             LibraryCard,
