@@ -1,6 +1,6 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "ns_critical_info" %}
-    <div id="UpdateCriticalInfo" class="card clearfix"  data-type="card">
+    <div id="UpdateCriticalInfo" class="card clearfix" data-name="NS-CriticalInfo" data-type="card">
         <h3>Update Critical Information</h3>
         {{ #each notices }}
             <div class="notice-content">{{{ notice_content }}}</div>
