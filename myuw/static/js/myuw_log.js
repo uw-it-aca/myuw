@@ -72,9 +72,18 @@ function MyuwLog()  {
         log4javascript.logLog.setQuietMode(true);
 
         //ensure logs are sent if a user doesn't navigate away
-        window.setInterval(function() {
-            window.myuw_log.send_links();
-        }, 5000);
+        if (!LogUtils.send_remaining_interval) {
+            LogUtils.send_remaining_interval = window.setInterval(function() {
+                window.myuw_log.send_links();
+            }, LogUtils.PERIODIC_SEND_INTERVAL);
+        }
+
+        // Periodically log how long cards have been on screen
+        if (!LogUtils.on_screen_interval_check) {
+            LogUtils.on_screen_interval_check = window.setInterval(function() {
+                LogUtils.get_new_visible_cards();
+            }, LogUtils.PERIODIC_ONSCREEN_INTERVAL);
+        }
         return log;
     };
 
@@ -95,7 +104,9 @@ function MyuwLog()  {
 }
 
 var LogUtils = {
-    PERCENTAGE_VISIBLE_THRESHOLD: 0.80,
+    PERCENTAGE_VISIBLE_THRESHOLD: 0.50,
+    PERIODIC_ONSCREEN_INTERVAL: 1000,
+    PERIODIC_SEND_INTERVAL: 2000,
     current_visible_cards: {},
 
     get_new_visible_cards: function(){
