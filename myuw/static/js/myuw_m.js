@@ -4,6 +4,7 @@ var data;
 $(document).ready(function() {
     LogUtils.init_logging();
     init_profile_events();
+    init_modal_events();
     var course_data = null;
     var book_data = null;
     // This is to prevent multiple events on load from making
@@ -259,4 +260,8 @@ var capitalizeString = function(string) {
 
 var init_profile_events = function () {
     Profile.add_events();
+};
+
+var init_modal_events = function () {
+    Modal.add_events();
 };
