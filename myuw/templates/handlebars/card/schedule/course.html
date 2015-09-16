@@ -98,7 +98,7 @@
 	                </div>
                     {{/each}}
 					<div class="card-related-messages">
-                        <!--Submit your evaluation by {{toMonthDay evaluation_data.close_date}}.-->Evaluations are available here for <span class="myuw-eval-close-date">{{toMoreDay evaluation_data.close_date}}</span> and take only 5-10 minutes to complete.
+                        Evaluations are accessible here on MyUW for <span class="myuw-eval-close-date">{{toMoreDay evaluation_data.close_date}}</span> and take only 5-10 minutes to complete.
                 	</div>
             	</div>
 
@@ -202,7 +202,6 @@
                 {{else}}
 				<strong>No instructor information available for this <span class="text-lowercase">{{ucfirst meetings.0.type}}</span>.</strong>
 				{{/if}}
-			</div>
 
                 {{ #if canvas_grade }}
                 <div class="canvasGradeBox" style="font-style: italic; color: #888;">
@@ -242,6 +241,7 @@
                 </div>
 -->
 
+			</div>
         </div>
     </div>
     {{/each}}

@@ -85,9 +85,27 @@ var RegStatusCard = {
 
         var finaid_tags = ["reg_summeraid_avail_title"];
 
+        var financial_aid_notices = Notices.get_ordered_finaid_notices(finaid_tags);
+
+        // Bug MUWM-3306
+        var hide_card = true;
+        if (financial_aid_notices && financial_aid_notices.length) {
+            hide_card = false;
+        }
+        if (display_reg_dates.length) {
+            hide_card = false;
+        }
+        if (reg_holds.length) {
+            hide_card = false;
+        }
+
+        if (hide_card) {
+            return;
+        }
+
         //Get hold count from notice attrs
         var hold_count = reg_holds.length;
-        return template({"finaid_notices": Notices.get_ordered_finaid_notices(finaid_tags),
+        return template({"finaid_notices": financial_aid_notices,
                          "reg_notices": reg_notices,
                          "reg_holds": reg_holds,
                          "card": card,

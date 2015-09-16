@@ -4,7 +4,6 @@ var ThriveCard = {
 
     render_init: function() {
         WSData.fetch_thrive_data(ThriveCard.render_upon_data, ThriveCard.render_error);
-        ThriveCard._render();
     },
 
     render_upon_data: function () {
