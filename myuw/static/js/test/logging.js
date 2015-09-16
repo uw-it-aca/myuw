@@ -421,3 +421,21 @@ describe("Logging", function() {
 });
 
 
+    describe("Visible Links", function() {
+        global.$ = $;
+        it('should return tue right disclosed state for a links parent', function() {
+            var undisclosed = $("<div aria-hidden='true'>")[0];
+            var link1 = $("<a href='http://www.google.com'>Google</a>")[0];
+
+            undisclosed = $(undisclosed).append(link1)[0];
+            var undis_link = $(undisclosed).children('a')[0];
+            assert.equal(LogUtils.is_link_disclosed(undis_link), false);
+
+            var disclosed = $("<div aria-hidden='false'>")[0];
+            disclosed = $(disclosed).append(link1)[0];
+            var dis_link = $(disclosed).children('a')[0];
+            assert.equal(LogUtils.is_link_disclosed(dis_link), true);
+
+        });
+    });
+

@@ -247,14 +247,19 @@ var LogUtils = {
            if (href !== "#"){
                if(LogUtils.isScrolledIntoView(link_elm)){
                    //Ensure link or parents aren't hidden
-                   if ($(link_elm).attr("aria-hidden") !== true &&
-                           $(link_elm).parents('*[aria-hidden="true"]').length === 0){
+                   if(LogUtils.is_link_disclosed(link_elm)){
                        links.push(link_elm);
                    }
                }
            }
        });
        return links;
+    },
+
+    is_link_disclosed: function(elm) {
+        return $(elm).attr("aria-hidden") !== true &&
+               $(elm).parents('[aria-hidden="true"]').length === 0;
+
     },
 
     get_all_cards: function(){
