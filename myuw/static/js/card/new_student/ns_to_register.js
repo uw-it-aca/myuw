@@ -49,6 +49,7 @@ var ToRegisterCard = {
                                                      'pre_measles': pre_measles,
                                                      'post_measles': post_measles,
                                                      'pre_orient': pre_orient}));
+            LogUtils.cardLoaded(ToRegisterCard.name, ToRegisterCard.dom_target);
         } else {
             ToRegisterCard.dom_target.hide();
         }

@@ -15,10 +15,10 @@ var ThriveCard = {
 
     _render: function () {
         var thrive = WSData.thrive_data();
-        console.log(thrive);
         var source = $("#thrive_card").html();
         var template = Handlebars.compile(source);
         ThriveCard.dom_target.html(template(thrive));
+        LogUtils.cardLoaded(ThriveCard.name, ThriveCard.dom_target);
     },
 
     _has_all_data: function () {

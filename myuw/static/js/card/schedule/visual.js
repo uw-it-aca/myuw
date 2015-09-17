@@ -48,6 +48,7 @@ var VisualScheduleCard = {
         }
         VisualScheduleCard.render_schedule(course_data, term);
         FinalExamSchedule.render(course_data, term, true);
+        LogUtils.cardLoaded(VisualScheduleCard.name, VisualScheduleCard.dom_target);
     },
         
     render_schedule: function(course_data, term) {

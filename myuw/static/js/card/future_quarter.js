@@ -32,6 +32,7 @@ var FutureQuarterCard = {
         }
         else {
             FutureQuarterCard.dom_target.html(template(oquarter_data));
+            LogUtils.cardLoaded(FutureQuarterCard.name, FutureQuarterCard.dom_target);
         }
     },
 

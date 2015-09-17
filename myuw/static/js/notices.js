@@ -126,7 +126,7 @@ var Notices = {
         });
 
         // Event for marking notices as read on scroll, debounced
-        de_bouncer(jQuery,'smartscroll', 'scroll', 100);
+        LogUtils.de_bouncer(jQuery,'smartscroll', 'scroll', 100);
         $(window).smartscroll(function() {
                   Notices.get_notices_in_view_and_mark_read();
         });
@@ -392,7 +392,7 @@ var Notices = {
             if ($(element).hasClass('slide-show')) {
                 $.each($(element).find('ul.notices_list').children(), function (idx, notice) {
                     notice = $(notice).find('div.notice-container').first();
-                    if (isScrolledIntoView($(notice))) {
+                    if (LogUtils.isScrolledIntoView($(notice))) {
                         if ($(notice).hasClass('unread')) {
                             notice_hashes.push($(notice).attr('id'));
                             $(notice).removeClass('unread');

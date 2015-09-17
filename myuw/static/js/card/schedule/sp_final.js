@@ -33,6 +33,7 @@ var FinalExamCard = {
         template = Handlebars.compile(source);
         FinalExamCard.dom_target.html(template(course_data));
         FinalExamSchedule.render(course_data, FinalExamCard.term, false);
+        LogUtils.cardLoaded(FinalExamCard.name, FinalExamCard.dom_target);
     }
 
 };

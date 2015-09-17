@@ -12,6 +12,7 @@ var CourseCard = {
             return;
         }
         CourseCard._render();
+        LogUtils.cardLoaded(CourseCard.name, CourseCard.dom_target);
     },
 
     render_error: function() {
