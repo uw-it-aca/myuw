@@ -21,6 +21,8 @@ def log_session(netid, session_key, request):
     try:
         level = get_current_quarter_enrollment(request).class_level
         log_entry['class_level'] = level
+        is_mobile = request.is_mobile or request.is_tablet
+        log_entry['is_mobile'] = bool(is_mobile)
     except AttributeError:
         pass
     log_entry['is_grad'] = is_grad_student()

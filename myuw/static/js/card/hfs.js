@@ -22,6 +22,7 @@ var HfsCard = {
             HfsCard.dom_target.hide();
         } else {
             HfsCard.dom_target.html(template(hfs_data));
+            LogUtils.cardLoaded(HfsCard.name, HfsCard.dom_target);
         }
     },
 

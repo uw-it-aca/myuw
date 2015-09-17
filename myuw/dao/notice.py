@@ -84,6 +84,9 @@ def _get_user_notices(notices):
         user_notice = UserNotices()
         user_notice.notice_hash = notice.id_hash
         user_notice.user = user
+        cattype = notice.notice_category + notice.notice_type
+        user_notice.notice_cattype = cattype
+
         user_notices_to_create.append(user_notice)
 
     try:

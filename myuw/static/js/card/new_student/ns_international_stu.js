@@ -26,6 +26,7 @@ var InternationalStuCard = {
         var notices = Notices.get_notices_for_tag("checklist_fiuts");
         if (notices.length > 0){
             InternationalStuCard.dom_target.html(template({'notices': notices}));
+            LogUtils.cardLoaded(InternationalStuCard.name, InternationalStuCard.dom_target);
         } else {
             InternationalStuCard.dom_target.hide();
         }
