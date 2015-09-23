@@ -95,6 +95,7 @@ var TextbookCard = {
             },  "", "/textbooks/"+term);
             return false;
         });
+        LogUtils.cardLoaded(TextbookCard.name, TextbookCard.dom_target);
 
     }
 

@@ -72,6 +72,8 @@ var TuitionCard = {
         var source = $("#tuition_card").html();
         var template = Handlebars.compile(source);
         TuitionCard.dom_target.html(template(template_data));
+        LogUtils.cardLoaded(TuitionCard.name, TuitionCard.dom_target);
+        TuitionCard._init_events();
     },
 
     _days_from_today: function (date) {
@@ -84,6 +86,18 @@ var TuitionCard = {
             return true;
         }
         return false;
-    }
+    },
 
+    _init_events: function(){
+        $(".finaid-panel-default").find('a').each(function(idx, elm){
+            $(elm).on('click', function(e){
+                var content = $(e.target).parents('li').find('.finaid-panel-collapse');
+                if(content.attr('aria-hidden')){
+                    content.attr('aria-hidden', false);
+                } else{
+                    content.attr('aria-hidden', true);
+                }
+            });
+        });
+    }
 };

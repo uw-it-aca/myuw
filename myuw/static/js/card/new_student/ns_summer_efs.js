@@ -24,6 +24,7 @@ var SummerEFSCard = {
         var notices = Notices.get_notices_for_tag("checklist_summerreg");
         if (ToRegisterCard.has_to_register_notices()){
             SummerEFSCard.dom_target.html(template({'notices': notices}));
+            LogUtils.cardLoaded(SummerEFSCard.name, SummerEFSCard.dom_target);
         } else {
             SummerEFSCard.dom_target.hide();
         }

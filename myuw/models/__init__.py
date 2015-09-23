@@ -116,6 +116,7 @@ class UserNotices(models.Model):
     first_viewed = models.DateTimeField(auto_now_add=True)
     marked_read = models.DateTimeField(null=True)
     is_read = models.BooleanField(default=False)
+    notice_cattype = models.CharField(max_length=256, null=True, blank=True)
 
     @staticmethod
     def generate_hash(notice):

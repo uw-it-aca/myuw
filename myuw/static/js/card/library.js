@@ -24,6 +24,7 @@ var LibraryCard = {
         }
         else {
             LibraryCard.dom_target.html(template(library_data));
+            LogUtils.cardLoaded(LibraryCard.name, LibraryCard.dom_target);
         }
     },
 

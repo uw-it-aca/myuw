@@ -66,6 +66,7 @@ var EventsCard = {
                                              cal_links: cal_links
                                         }));
         EventsCard.add_events();
+        LogUtils.cardLoaded(EventsCard.name, EventsCard.dom_target);
     },
 
     _has_all_data: function () {
