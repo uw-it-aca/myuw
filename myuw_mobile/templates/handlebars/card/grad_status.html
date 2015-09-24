@@ -20,9 +20,9 @@
                                     <div class="pull-left">
                                         <span class="card-badge-label">Department Recommendation</span>
                                     </div>
-                                    <div class="pull-right">
+                                    <span>
                                         <span class="card-badge-value">{{dept_recommend}}</span>
-                                    </div>
+                                    </span>
                                 </li>
                                 {{/if}}
 
@@ -31,9 +31,9 @@
                                     <div class="pull-left">
                                         <span class="card-badge-label">Graduate School Decision</span>
                                     </div>
-                                    <div class="pull-right">
+                                    <span>
                                         <span class="card-badge-value">{{gradschool_decision}}</span>
-                                    </div>
+                                    </span>
                                 </li>
                                 {{/if}}
                             </ul>
@@ -60,7 +60,7 @@
                              <div class="pull-left">
                                 <span class="card-badge-label">Status</span>
                              </div>
-                             <div class="pull-right">
+                             <span>
                                  <span class="card-badge-value">
                                  {{#not_equal status 'approved'}}
                                      {{capitalizeString status}}
@@ -69,7 +69,7 @@
                                      Approved<br /><a target="_blank" href="https://apps.grad.uw.edu/mgp-stu/uwnetid/default.aspx" class="pull-right" style="font-weight: normal;">&nbsp;Pay Your Fee To Confirm</a>
                                  {{/equal}}
                                  </span>
-                             </div>
+                             </span>
                         </div>
                     </li>
                     {{/each}}
@@ -93,9 +93,9 @@
                                 <div class="pull-left">
                                     <span class="card-badge-label">Status</span>
                                 </div>
-                                <div class="pull-right">
+                                <span>
                                     <span class="card-badge-value">{{status}}</span>
-                                </div>
+                                </span>
                             </div>
                         </div>
                     </li>
