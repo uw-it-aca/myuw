@@ -2,7 +2,7 @@
     "13833": [{
                 "isbn":"9781256396362",
                 "title":"Writ of BC",
-                "authors": [{"name":"Mcdermott"}],
+                "authors": [{"name":"Mcdermott\"}],
                 "price":58.00,
                 "used_price":null,
                 "required":true,
