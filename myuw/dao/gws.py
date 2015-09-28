@@ -94,11 +94,11 @@ def is_pce_student():
     return _is_member('uw_affiliation_extension-student')
 
 
-def is_student_employee():
+def is_employee():
     """
     Return True if the user is an UW student employee (valid in 15 days)
     """
-    return _is_member('uw_affiliation_student-employee')
+    return _is_member('uw_employee')
 
 
 def is_faculty():
