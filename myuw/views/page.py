@@ -20,6 +20,9 @@ from myuw.dao.uwemail import get_email_forwarding_for_current_user
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.logger.session_log import log_session
 
+LOGOUT_URL = "https://weblogin.washington.edu/" \
+             "?logout_action=1&two=myuw&one=myuw.washington.edu"
+
 
 @login_required
 def index(request,
@@ -111,10 +114,10 @@ def redirect_to_legacy_site():
                          "https://myuw.washington.edu/servlet/user")
     return HttpResponseRedirect(legacy_url)
 
+
 def logout(request):
     # Expires current myuw session
     request.session.flush()
-    logout_url = "https://weblogin.washington.edu/?logout_action=1&two=myuw&one=myuw.washington.edu"
 
     # Redirects to weblogin logout page
-    return HttpResponseRedirect(logout_url)
+    return HttpResponseRedirect(LOGOUT_URL)
