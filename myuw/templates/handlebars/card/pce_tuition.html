@@ -1,0 +1,64 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "pce_tuition_card" %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="row">
+                    <div class="col-xs-11">
+                        <h3>PCE Account Balance</h3>
+
+                        <!-- if tuition due date has passed and balance is greater than 0 -->
+                        <div class="card-critical-alert todo">
+                            <i class="fa fa-exclamation-circle"></i> Your PCE tuition is past due.
+                        </div>
+                        <!-- end if -->
+
+                        <!-- if tuition due date is TODAY -->
+                        <div class="card-critical-alert todo">
+                            <i class="fa fa-exclamation-circle"></i> PCE tuition is due today.
+                        </div>
+                        <!-- end if -->
+
+                        <!-- if pce tuition balance is 0 -->
+                        <div class="row card-badge-container">
+                            <div class="col-xs-12">
+                                <div class="card-badge">
+                                    <span class="card-badge-label">Your PCE tuition has been paid</span>
+                                    <span class="card-badge-label"><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">See tuition statement</a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- else, there is a balance -->
+                        <div class="row card-badge-container">
+                                <div class="col-xs-6">
+                                    <div class="card-badge">
+                                        <span class="card-badge-label">You owe</span>
+                                        <span class="card-badge-value text-danger">${{ pce_accbalance }}</span>
+                                        <span class="card-badge-label"><a href="http://f2.washington.edu/fm/sfs/tuition/payment">Pay tuition</a></span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="card-badge">
+                                        <span class="card-badge-label">Tuition due</span>
+                                        <span class="card-badge-value todo">5/28/2014</span> <!-- this is tuition_due_date but only the actual date -->
+                                        <span class="card-badge-label todo">in 10 days</span><!-- var needed here. this could be removed if it's very complicated for some reason. -->
+                                    </div>
+                                </div>
+                        </div>
+                        <!-- end if -->
+
+                        <div class="card-related-messages">
+                            <p><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx">Authorize release of your tuition account and financial aid information</a> to your parents or other third parties.</p>
+                            {{ #each pce_tuition_dup }}
+                            <p>{{{ this.notice_content }}}</p>
+                            {{ /each }}
+                        </div>
+                    </div>
+                   <div class="col-xs-1 nav-card-arrow" style="text-align:center;">
+                        <a href="/category/finances"><i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+       </div>
+    </div>
+    {% endtplhandlebars %}

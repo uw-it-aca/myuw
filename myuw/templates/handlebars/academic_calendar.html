@@ -1,0 +1,47 @@
+	{% load templatetag_handlebars %}
+    {% tplhandlebars "calendar_events" %}
+    <div class="container academic_cal-container">
+       <div class="acal-main">
+            <h2 id="main">Academic Calendar</h2>
+            <a href="//www.washington.edu/students/reg/calendar.html">View detailed calendar</a> <!--| <a href="//www.washington.edu/calendar/academic/">Subscribe to detailed</a> -->
+			<center>
+	            <div class="btn-group btn-group-justified acal-page-filters" role="tablist">
+		            <div class="btn-group" role="group">
+	                    <button type="button" id="myuw-event-filter-all" class="btn btn-default myuw-selected-button" role="tab">All</button>
+	                </div>
+		            <div class="btn-group" role="group">
+	                    <button type="button" id="myuw-event-filter-breaks" class="btn btn-default" role="tab"><i class="fa fa-circle acal-break-icon" aria-hidden="true"></i> Breaks</button>
+	                </div>
+	                <!--<div class="btn-group" role="group">
+	                    <button type="button" id="myuw-event-filter-classes" class="btn btn-default" role="tab">Classes</button>
+	                </div>-->
+	            </div>
+			</center>
+           <div class="acal-page-events" aria-labelledby="acal-quarters">
+                {{#each terms }}
+                {{#if term_break }}
+                {{ #each events }}
+                <div class="acal-page-event acal-page-event-break">
+	                <div class="acal-page-term-break">
+                        <div class="acal-page-event-title">{{#if myuw_categories.breaks }}<i class="fa fa-circle acal-break-icon" aria-hidden="true"></i> {{/if}} <a href="{{ event_url }}">{{ summary }}</a></div>
+                        <div class="acal-page-event-date"><strong>{{ acal_page_date_format start end }}</strong></div>
+	                </div>
+                </div>
+                {{/each}}
+
+                {{else}}
+                <h2 id="acal-quarters">{{ quarter }} {{ year }}</h2>
+                <ul class="acal-page-event-list">
+                    {{ #each events }}
+                    <li class="acal-page-event-list-item acal-page-event {{#if myuw_categories.breaks }}acal-page-event-break{{/if}}{{#if myuw_categories.classes}}acal-page-event-class{{/if}}">
+                        <div class="acal-page-event-date"><strong>{{ acal_page_date_format start end }}</strong></div>
+                        <div class="acal-page-event-title">{{#if myuw_categories.breaks }}<i class="fa fa-circle acal-break-icon" aria-hidden="true"></i> {{/if}} <a href="{{ event_url }}">{{ summary }}</a></div>
+                    </li>
+                    {{ /each }}
+                </ul>
+                {{/if}}
+                {{ /each }}
+           </div>
+        </div>
+    </div>
+    {% endtplhandlebars %}

@@ -1,0 +1,113 @@
+{% extends wrapper_template %}
+{% block content %}
+
+<h2>Override card display values</h2>
+<h3>Set the date</h3>
+<form action="{% url 'myuw.views.display_dates.override' %}" method="POST">
+{% csrf_token %}
+
+Override date: <input type="text" name="date" value="{{ myuw_override_date }}" placeholder="YYYY-MM-DD"/>
+{% if date_error %}
+<p>Error with date: {{ date_error }}</p>
+{% endif %}
+
+<h3>Set individual values - overrides the date above</h3>
+<p>
+These checkboxes will test the javascript code, but they don't mean server-side date logic is correct:
+</p>
+
+Is after the grade submission deadline: <br />
+<label><input type="radio" name="myuw_after_submission" value="yes" {% if myuw_after_submission_true %}checked="checked"{% endif %} > Yes </label>
+<label><input type="radio" name="myuw_after_submission" value="no" {% if myuw_after_submission_false %}checked="checked"{% endif %} > No </label>
+<label><input type="radio" name="myuw_after_submission" value="" {% if myuw_after_submission_unset %}checked="checked"{% endif %} > Unset</label>
+<br/>
+Is after the last day of classes: <br />
+<label><input type="radio" name="myuw_after_last_day" value="yes" {% if myuw_after_last_day_true %}checked="checked"{% endif %} > Yes </label>
+<label><input type="radio" name="myuw_after_last_day" value="no" {% if myuw_after_last_day_false %}checked="checked"{% endif %} > No </label>
+<label><input type="radio" name="myuw_after_last_day" value="" {% if myuw_after_last_day_unset %}checked="checked"{% endif %} > Unset</label>
+<br/>
+Is after the start of the registration display period: <br />
+<label><input type="radio" name="myuw_after_reg" value="yes" {% if myuw_after_reg_true %}checked="checked"{% endif %} > Yes </label>
+<label><input type="radio" name="myuw_after_reg" value="no" {% if myuw_after_reg_false %}checked="checked"{% endif %} > No </label>
+<label><input type="radio" name="myuw_after_reg" value="" {% if myuw_after_reg_unset %}checked="checked"{% endif %} > Unset</label>
+<br/>
+Is before the end of finals week: <br />
+<label><input type="radio" name="myuw_before_finals_end" value="yes" {% if myuw_before_finals_end_true %}checked="checked"{% endif %} > Yes </label>
+<label><input type="radio" name="myuw_before_finals_end" value="no" {% if myuw_before_finals_end_false %}checked="checked"{% endif %} > No </label>
+<label><input type="radio" name="myuw_before_finals_end" value="" {% if myuw_before_finals_end_unset %}checked="checked"{% endif %} > Unset</label>
+<br/>
+Is before the last day of classes: <br />
+<label><input type="radio" name="myuw_before_last_day" value="yes" {% if myuw_before_last_day_true %}checked="checked"{% endif %} > Yes </label>
+<label><input type="radio" name="myuw_before_last_day" value="no" {% if myuw_before_last_day_false %}checked="checked"{% endif %} > No </label>
+<label><input type="radio" name="myuw_before_last_day" value="" {% if myuw_before_last_day_unset %}checked="checked"{% endif %} > Unset</label>
+<br/>
+Is before the end of the registration display period: <br />
+<label><input type="radio" name="myuw_before_end_of_reg_display" value="yes" {% if myuw_before_end_of_reg_display_true %}checked="checked"{% endif %} > Yes </label>
+<label><input type="radio" name="myuw_before_end_of_reg_display" value="no" {% if myuw_before_end_of_reg_display_false %}checked="checked"{% endif %} > No </label>
+<label><input type="radio" name="myuw_before_end_of_reg_display" value="" {% if myuw_before_end_of_reg_display_unset %}checked="checked"{% endif %} > Unset</label>
+<br/>
+
+Is before first day of the term: <br />
+<label><input type="radio" name="myuw_before_first_day" value="yes" {% if myuw_before_first_day_true %}checked="checked"{% endif %} > Yes </label>
+<label><input type="radio" name="myuw_before_first_day" value="no" {% if myuw_before_first_day_false %}checked="checked"{% endif %} > No </label>
+<label><input type="radio" name="myuw_before_first_day" value="" {% if myuw_before_first_day_unset %}checked="checked"{% endif %} > Unset</label>
+<br/>
+
+Is after course evaluation display start: <br />
+<label><input type="radio" name="myuw_after_eval_start" value="yes" {% if myuw_after_eval_start_true %}checked="checked"{% endif %} > Yes </label>
+<label><input type="radio" name="myuw_after_eval_start" value="no" {% if myuw_after_eval_start_false %}checked="checked"{% endif %} > No </label>
+<label><input type="radio" name="myuw_after_eval_start" value="" {% if myuw_after_eval_start_unset %}checked="checked"{% endif %} > Unset</label>
+<br/>
+<p>
+<input type="submit" value="Go!"/>
+</p>
+
+</form>
+
+<h2>Debugging Info:</h2>
+
+{% if is_using_mock_data %}
+<div style="border: 1px solid red;">
+Using mock data.  "Now" is artificially set to {{ actual_now_date }} to make
+it so you don't always need to override the current date to see data.
+</div>
+{% endif %}
+
+<h3>Dates and terms</h3>
+<p>Actual:</p>
+{{ actual_now_date }} - {{ actual_now_term_quarter }} {{ actual_now_term_year }}
+
+<p>Effective:</p>
+{{ effective_now_date }} - {{ effective_now_term_quarter }} {{ effective_now_term_year }}
+
+<h3>Seen Registration Periods</h3>
+<p>Shows all seen registration periods, and the date they were first seen.  You can override the date to before/on/after this as needed for testing.</p>
+
+{% for reg in seen_registrations %}
+ <div>
+    <h4>{{ reg.year }} {{ reg.quarter }} {{ reg.summer }}</h4>
+    <p>{{ reg.date_seen }}</p>
+ </div>
+{% endfor %}
+
+<h3>Values used - for now, and based on your overrides above</h3>
+
+<table style="border-spacing: 10px 0px; border-collapse: separate;">
+    <thead>
+        <tr>
+            <th>&nbsp;</th><th>Value used</th><th>Value without overrides</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>is_after_grade_submission_deadline</td><td>{{ values_used.is_after_grade_submission_deadline}}</td><td>{{ values_now.is_after_grade_submission_deadline}}</td></tr>
+        <tr><td>is_after_last_day_of_classes</td><td>{{ values_used.is_after_last_day_of_classes}}</td><td>{{ values_now.is_after_last_day_of_classes}}</td></tr>
+        <tr><td>is_after_start_of_registration_display_period</td><td>{{ values_used.is_after_start_of_registration_display_period}}</td><td>{{ values_now.is_after_start_of_registration_display_period}}</td></tr>
+        <tr><td>is_before_end_of_finals_week</td><td>{{ values_used.is_before_end_of_finals_week}}</td><td>{{ values_now.is_before_end_of_finals_week}}</td></tr>
+        <tr><td>is_before_last_day_of_classes</td><td>{{ values_used.is_before_last_day_of_classes}}</td><td>{{ values_now.is_before_last_day_of_classes}}</td></tr>
+        <tr><td>is_before_end_of_registration_display_period</td><td>{{ values_used.is_before_end_of_registration_display_period}}</td><td>{{ values_now.is_before_end_of_registration_display_period}}</td></tr>
+        <tr><td>is_before_first_day_of_term</td><td>{{ values_used.is_before_first_day_of_term}}</td><td>{{ values_now.is_before_first_day_of_term}}</td></tr>
+        <tr><td>is_after_7d_before_last_instruction</td><td>{{ values_used.is_after_7d_before_last_instruction}}</td><td>{{ values_now.is_after_7d_before_last_instruction}}</td></tr>
+    </tbody>
+</table>
+
+{% endblock %}

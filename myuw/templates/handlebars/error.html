@@ -1,0 +1,14 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "error_header" %}
+<div class="alert alert-error server-error">
+    <div class="error-title"><i class="icon-exclamation-sign pull-left icon-huge"></i>Uh-oh...</div>
+ There was a problem connecting to MyUW Mobile. Please bear with us as we resolve the issue. If the problem persists please contact us or use the full site.
+    <div class="error-buttons">
+        <a class="btn btn-large" href="http://my.uw.edu/servlet/main" target="_blank"><i class="icon-external-link"></i> Full Site</a><a class="btn btn-large" href="https://myuw.washington.edu/cgi-bin/contactmyuw.cgi"  target="_blank"><i class="icon-envelope"></i> Contact Us</a>
+    </div>
+</div>
+
+    {% endtplhandlebars %}
+
+    {% tplhandlebars "error_body" %}
+    {% endtplhandlebars %}

@@ -1,0 +1,80 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "hfs_card_content" %}
+
+<div class="card clearfix"  data-name="HFSCard" data-type="card">
+
+    <h3 aria-hidden="true">Husky Card &amp; Dining</h3>
+    <h3 class="sr-only">Husky Card account and Dining account</h3>
+
+    <div class="card-badge-container">
+	<ul class="card_list">
+            {{#if student_husky_card}}
+            <li>
+                <div class="card-badge clearfix">
+                    {{#with student_husky_card}}
+                    <div class="pull-left">
+                        <h4 class="card-badge-label" aria-hidden="true">Student Husky Card</h4>
+                        <h4 class="sr-only">Student Husky Account</h4>
+                    </div>
+                    <div class="pull-right">
+                        <span class="card-badge-value">${{ formatPrice balance }}</span>
+                    </div>
+                    {{#if last_updated }}
+                        <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
+                    {{/if}}
+                    {{/with}}
+                </div>
+            </li>
+            {{/if}}
+
+            {{#if employee_husky_card}}
+            <li>
+                <div class="card-badge clearfix">
+                    {{#with employee_husky_card}}
+                    <div class="pull-left">
+                        <h4 class="card-badge-label" aria-hidden="true">Employee Husky Card</h4>
+                        <h4 class="sr-only">Employee Husky Account</h4>
+                    </div>
+                    <div class="pull-right">
+                        <span class="card-badge-value">${{ formatPrice balance }}</span>
+                    </div>
+                    {{#if last_updated }}
+                        <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
+                    {{/if}}
+                    {{/with}}
+                </div>
+            </li>
+            {{/if}}
+
+            {{#if resident_dining}}
+            <li>
+                <div class="card-badge clearfix">
+                    {{#with resident_dining}}
+                    <div class="pull-left">
+                        <h4 class="card-badge-label">Resident Dining</h4>
+                    </div>
+                    <div class="pull-right">
+                        <span class="card-badge-value">${{ formatPrice balance }}</span>
+                    </div>
+                    {{#if last_updated }}
+                        <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
+                    {{/if}}
+                    {{/with}}
+                </div>
+            </li>
+            {{/if}}
+	</ul>
+	    {{#if student_husky_card}}
+        <div class="card-badge pull-right" style="margin:0; padding-bottom:0;">
+            <div class="card-badge-action"><a href="{{ student_husky_card.add_funds_url }}" target="_blank">Add funds to your accounts</a></div>
+        </div>
+        {{ else }}
+            {{#if employee_husky_card}}
+            <div class="card-badge pull-right" style="margin:0; padding-bottom:0;">
+                <div class="card-badge-action"><a href="{{ employee_husky_card.add_funds_url }}" target="_blank">Add funds to your accounts</a></div>
+            </div>
+            {{ /if}}
+        {{ /if }}
+    </div>
+</div>
+{% endtplhandlebars %}
