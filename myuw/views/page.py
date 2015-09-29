@@ -2,6 +2,7 @@ import re
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from django.template import RequestContext
 from django.conf import settings
 import logging
@@ -116,8 +117,8 @@ def redirect_to_legacy_site():
 
 
 def logout(request):
-    # Expires current myuw session
-    request.session.flush()
+    # Ends current myuw session
+    logout(request)
 
     # Redirects to weblogin logout page
     return HttpResponseRedirect(LOGOUT_URL)
