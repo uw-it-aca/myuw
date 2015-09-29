@@ -42,10 +42,10 @@ class TestLogoutLink(TestCase):
         get_user('javerage')
         self.client.login(username='javerage',
                           password=get_user_pass('javerage'))
-        # old_session_id = self.client.cookies['sessionid'].value
+        old_session_id = self.client.cookies['sessionid'].value
         response = self.client.get(logout_url, **_get_desktop_args())
-        # new_session_id = self.client.cookies['sessionid'].value
-        # self.assertNotEqual(old_session_id, new_session_id)
+        new_session_id = self.client.cookies['sessionid'].value
+        self.assertNotEqual(old_session_id, new_session_id)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response["Location"], LOGOUT_URL)
 
