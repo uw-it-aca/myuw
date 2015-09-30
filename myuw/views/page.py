@@ -118,7 +118,10 @@ def redirect_to_legacy_site():
 
 def logout(request):
     # Ends current myuw session
+    logger = logging.getLogger('myuw')
+    logger.info("is logged pre %s" % request.user.is_authenticated())
     django_logout(request)
+    logger.info("is logged post %s" % request.user.is_authenticated())
 
     # Redirects to weblogin logout page
     return HttpResponseRedirect(LOGOUT_URL)
