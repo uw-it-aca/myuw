@@ -3,7 +3,7 @@ from django.conf import settings
 from django.test.client import RequestFactory
 from datetime import datetime
 from myuw.dao.term import get_default_date, get_comparison_datetime,\
-    get_specific_quarter
+    get_specific_term
 from myuw.dao.card_display_dates import get_card_visibilty_date_values,\
     in_show_grades_period, is_before_bof_term,\
     is_before_eof_7d_after_class_start,\
@@ -555,7 +555,7 @@ class TestDisplayValues(TestCase):
 
     def test_in_show_grades_period(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
-            term = get_specific_quarter(2013, "winter")
+            term = get_specific_term(2013, "winter")
             now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-27"

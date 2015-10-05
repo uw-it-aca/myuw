@@ -6,13 +6,14 @@ import logging
 import traceback
 from restclients.models.sws import ClassSchedule
 from restclients.sws.registration import get_schedule_by_regid_and_term
+from restclients.sws.section import is_half_summer_term,\
+    is_full_summer_term, is_same_summer_term
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time, log_exception
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import get_current_quarter, get_next_quarter,\
-    is_half_summer_term, is_full_summer_term, is_same_summer_term
-from myuw.dao.term.current import get_next_autumn_quarter,\
-    get_current_summer_term
+    get_next_autumn_quarter, get_current_summer_term
+
 
 logger = logging.getLogger(__name__)
 
@@ -96,5 +97,5 @@ def has_summer_quarter_section(schedule):
     """
     return (schedule is not None and
             len(schedule.sections) > 0 and
-            schedule.term.quarter == "summer"
+            schedule.term.is_summer_quarter()
             )

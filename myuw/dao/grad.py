@@ -13,9 +13,9 @@ from restclients.grad.petition import get_petition_by_regid
 from myuw.logger.logback import log_exception
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.gws import is_grad_student
-from myuw.dao.term import get_comparison_datetime
-from myuw.dao.term.specific import get_eof_term_after_yq,\
-    get_eof_term_yq, get_eof_last_instruction_yq
+from myuw.dao.term import get_comparison_datetime,\
+    get_eod_specific_quarter_after, get_eod_specific_quarter,\
+    get_eod_specific_quarter_last_instruction
 
 
 logger = logging.getLogger(__name__)
@@ -132,8 +132,8 @@ def degree_to_json(req_data, request):
                 item.is_status_candidacy() or\
                 item.is_status_not_graduate():
             # show until eof the following quarter
-            if now < get_eof_term_after_yq(item.target_award_year,
-                                           item.target_award_quarter):
+            if now < get_eod_specific_quarter_after(item.target_award_year,
+                                                    item.target_award_quarter):
                 result.append(item.json_data())
             continue
 
@@ -182,13 +182,13 @@ def leave_to_json(req_data, request):
     for item in req_data:
         if item.is_status_approved():
             # show until the end of the last instruction day of the leave term
-            append_if_fn_apply(get_eof_last_instruction_yq,
+            append_if_fn_apply(get_eod_specific_quarter_last_instruction,
                                result, item, now)
             continue
 
         if item.is_status_denied() or item.is_status_paid():
             # show until the end of the leave term
-            append_if_fn_apply(get_eof_term_yq,
+            append_if_fn_apply(get_eod_specific_quarter,
                                result, item, now)
             continue
 
@@ -199,7 +199,7 @@ def leave_to_json(req_data, request):
 
         if item.is_status_withdrawn():
             # show until eof the following quarter
-            append_if_fn_apply(get_eof_term_after_yq,
+            append_if_fn_apply(get_eod_specific_quarter_after,
                                result, item, now)
             continue
 

@@ -7,9 +7,8 @@ from myuw.test.dao.notice_categorization import TestNoticeCategories
 from myuw.test.dao.notice import TestNotices
 from myuw.test.models import TestUserNotices
 from myuw.test.academic_events import TestAcademicEvents
+from myuw.test.dao import TestDao
 from myuw.test.dao.term import TestTerm
-from myuw.test.dao.term_current import TestTermCurrent
-from myuw.test.dao.term_specific import TestTermSpecific
 from myuw.test.dao.canvas import TestCanvas
 from myuw.test.dao.card_display_dates import TestDisplayValues
 from myuw.test.userservice_validation import TestValidation
