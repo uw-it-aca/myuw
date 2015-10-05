@@ -9,8 +9,7 @@ from django.conf import settings
 from restclients.models.sws import Term
 from restclients.util.datetime_convertor import convert_to_begin_of_day,\
     convert_to_end_of_day
-from restclients.util.summer_term import is_a_term, is_b_term,\
-    is_full_summer_term, is_same_summer_term
+from restclients.util.summer_term import is_a_term, is_b_term
 from restclients.sws.term import get_term_by_date, get_specific_term,\
     get_current_term, get_next_term, get_previous_term,\
     get_term_before, get_term_after, get_next_autumn_term,\
@@ -166,21 +165,6 @@ def get_next_autumn_quarter(request):
     Return the Term object for the next autumn quarter in the same year.
     """
     return get_next_autumn_term(get_current_quarter(request))
-
-
-def summer_term_overlaped(request, given_summer_term):
-    """
-    @return true if:
-    1). this is not a summer quarter or
-    2). the given_summer_term is overlaped with the
-        current summer term in the request
-    """
-    current_summer_term = get_current_summer_term(request)
-    if given_summer_term is None or current_summer_term is None:
-        return True
-    return (is_same_summer_term(current_summer_term, given_summer_term) or
-            is_full_summer_term(given_summer_term) and
-            is_b_term(current_summer_term))
 
 
 def get_eod_current_summer_aterm(request):

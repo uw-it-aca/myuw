@@ -85,7 +85,7 @@ def load_schedule(request, schedule, summer_term=""):
         evaluation_json_data = json_for_evaluation(
             request,
             get_evaluations_by_section(section),
-            section.summer_term)
+            section)
         if evaluation_json_data is not None:
             section_data["evaluation_data"] = evaluation_json_data
 

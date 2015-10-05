@@ -6,8 +6,8 @@ from restclients.models.sws import ClassSchedule, Term, Section, Person
 from myuw.dao.term import get_specific_term, is_past,\
     get_default_date, get_comparison_date,\
     get_current_quarter, get_next_quarter, is_past,\
-    get_next_non_summer_quarter, summer_term_overlaped,\
-    get_next_autumn_quarter, is_in_summer_a_term, is_in_summer_b_term,\
+    get_next_non_summer_quarter, get_next_autumn_quarter,\
+    is_in_summer_a_term, is_in_summer_b_term,\
     get_bod_current_term_class_start, get_eod_7d_after_class_start,\
     get_eod_current_term, get_eod_current_term_last_instruction,\
     get_bod_7d_before_last_instruction, get_eod_current_term_last_final_exam,\
@@ -180,22 +180,6 @@ class TestTerm(TestCase):
             quarter = get_next_autumn_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'autumn')
-
-    def test_summer_term_overlaped(self):
-        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-07-10"
-            self.assertTrue(summer_term_overlaped(now_request, 'A-term'))
-            self.assertFalse(summer_term_overlaped(now_request, 'Full-term'))
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-08-10"
-            self.assertTrue(summer_term_overlaped(now_request, 'B-term'))
-            self.assertTrue(summer_term_overlaped(now_request, 'Full-term'))
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-03-10"
-            self.assertTrue(summer_term_overlaped(now_request, 'None'))
-            self.assertTrue(summer_term_overlaped(now_request, '-'))
 
     def test_is_in_summer_a_term(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):

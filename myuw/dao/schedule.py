@@ -6,7 +6,7 @@ import logging
 import traceback
 from restclients.models.sws import ClassSchedule
 from restclients.sws.registration import get_schedule_by_regid_and_term
-from restclients.util.summer_term import is_half_summer_term
+from restclients.util.summer_term import is_a_term, is_b_term
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time, log_exception
 from myuw.dao.pws import get_regid_of_current_user
@@ -98,3 +98,11 @@ def has_summer_quarter_section(schedule):
             len(schedule.sections) > 0 and
             schedule.term.is_summer_quarter()
             )
+
+
+def is_half_summer_term(str):
+    """
+    return True if the given str is A-term or B-term
+    @return True if the given str is A-term or B-term
+    """
+    return is_a_term(str) or is_b_term(str)
