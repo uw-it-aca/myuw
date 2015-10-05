@@ -6,8 +6,7 @@ import logging
 import traceback
 from restclients.models.sws import ClassSchedule
 from restclients.sws.registration import get_schedule_by_regid_and_term
-from restclients.sws.section import is_half_summer_term,\
-    is_full_summer_term, is_same_summer_term
+from restclients.util.summer_term import is_half_summer_term
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time, log_exception
 from myuw.dao.pws import get_regid_of_current_user
@@ -81,12 +80,12 @@ def filter_schedule_sections_by_summer_term(schedule, summer_term):
     """
     Filter the schedule sections by the give summer_term.
     """
-    if (has_summer_quarter_section(schedule) and
-            is_half_summer_term(summer_term)):
+    if has_summer_quarter_section(schedule) and\
+            is_half_summer_term(summer_term):
         filtered_sections = []
         for section in schedule.sections:
-            if (is_full_summer_term(section.summer_term) or
-                    is_same_summer_term(section.summer_term, summer_term)):
+            if section.is_full_summer_term() or\
+                    section.is_same_summer_term(summer_term):
                 filtered_sections.append(section)
         schedule.sections = filtered_sections
 

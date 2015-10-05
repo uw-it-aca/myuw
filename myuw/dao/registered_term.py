@@ -7,8 +7,8 @@ import logging
 from django.utils import timezone
 from datetime import datetime, timedelta
 from myuw.models import SeenRegistration
-from restclients.sws.section import is_half_summer_term,\
-    is_full_summer_term, is_same_summer_term, is_a_term, is_b_term
+from restclients.util.summer_term import is_full_summer_term,\
+    is_same_summer_term, is_a_term, is_b_term
 from myuw.dao.term import get_current_summer_term,\
     get_comparison_date, get_specific_term, get_current_quarter
 from myuw.dao.schedule import has_summer_quarter_section,\
@@ -37,7 +37,7 @@ def get_current_summer_term_in_schedule(schedule, request):
     return the current summer term
     """
     summer_term = ""
-    if schedule.term.quarter == 'summer':
+    if schedule.term.is_summer_quarter():
         if has_summer_quarter_section(schedule):
             if _must_displayed_separately(schedule):
                 summer_term = get_current_summer_term(request)
@@ -53,14 +53,14 @@ def get_registered_future_quarters(request):
     """
     next_quar_sche = get_next_quarter_schedule(request)
     next_autumn_sche = None
-    if next_quar_sche and next_quar_sche.term.quarter == 'summer':
+    if next_quar_sche and next_quar_sche.term.is_summer_quarter():
         next_autumn_sche = get_next_autumn_quarter_schedule(request)
 
     # MUWM-3010
     current = get_current_quarter(request)
-    if current.quarter == "summer":
+    if current.is_summer_quarter():
         summer_term = get_current_summer_term(request)
-        if summer_term == "a-term":
+        if is_a_term(summer_term):
             summer = get_current_quarter_schedule(request)
             next_autumn_sche = next_quar_sche
             next_quar_sche = summer
@@ -83,7 +83,7 @@ def _get_registered_future_quarters(request, next_quar_sche, next_autumn_sche):
     if next_quar_sche is not None and len(next_quar_sche.sections) > 0:
         next_quarter = next_quar_sche.term
 
-        if next_quarter.quarter == "summer":
+        if next_quarter.is_summer_quarter():
             sumr_tms = _get_registered_summer_terms(next_quar_sche.sections)
             # MUWM-3010
             # Filter out A-term and Full-term sections once summer term has
@@ -95,7 +95,7 @@ def _get_registered_future_quarters(request, next_quar_sche, next_autumn_sche):
             bterm_started = False
 
             has_b = sumr_tms[B_TERM]
-            if current.quarter == "summer":
+            if current.is_summer_quarter():
                 if now >= current.first_day_quarter:
                     summer_started = True
 
@@ -205,9 +205,9 @@ def should_highlight_future_quarters(schedule, request):
 
     for term in schedule:
         summer_term = "F"
-        if term["summer_term"] == "a-term":
+        if is_a_term(term["summer_term"]):
             summer_term = "A"
-        if term["summer_term"] == "b-term":
+        if is_b_term(term["summer_term"]):
             summer_term = "B"
 
         sr_get_or_create = SeenRegistration.objects.get_or_create
