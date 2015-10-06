@@ -192,9 +192,8 @@
                      <li class="footer-links-list-item"><a href="//www.washington.edu/online/privacy/">Privacy</a></li> 
                      <li class="footer-links-list-item" style="border:none;"><a href="logout">Log out</a></li>
 					{% if request.is_mobile or request.is_tablet %}
-					<li class="footer-links-list-item" style="border:none; position:absolute; right:0; top:50%; margin-top:-16px;">
-					 	<button class="btn btn-link" style="font-size: 11px;" data-toggle="modal" data-target="#myuw-footer-modal"><i class="fa fa-desktop" role="presentation" aria-hidden="true"></i> Looking for something else?</button>
-					 	
+					<li class="footer-links-list-item desktop-footer-link">
+					 	<button class="btn-link" data-toggle="modal" data-target="#myuw-footer-modal"><i class="fa fa-desktop" role="presentation" aria-hidden="true"></i> Looking for something else?</button>
 						<div class="modal fade" id="myuw-footer-modal" tabindex="-1" role="dialog" aria-labelledby="MyUWFooterModal">
 							<div class="modal-dialog" role="document">
 							    <div class="modal-content">
@@ -226,7 +225,7 @@
 					</li> 
 					{% endif %}
                 </ul>
-                <div>&copy; {% now "Y" %} University of Washington</div>
+                <div style="clear:both;">&copy; {% now "Y" %} University of Washington</div>
             </div>
         </div>
     
