@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'south', 'compressor', 'restclients', 'templatetag_handlebars',
-    'myuw_mobile', 'userservice', 'django_client_logger',
+    'myuw', 'userservice', 'django_client_logger',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -75,7 +75,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Los_Angeles'
 
 USE_I18N = True
 
@@ -88,3 +88,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+    #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
+COMPRESS_ENABLED = False

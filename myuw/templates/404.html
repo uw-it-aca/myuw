@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}404 Error{% endblock title %}
+
+{% block content %}
+    <script type="application/javascript">
+        Navbar.render_navbar();
+    </script>
+    
+    <div class="container error-container" role="main" aria-labelledby="myuw-404-error">
+        
+        <div class="card">
+            <h1 id="myuw-404-error">404: Page Not Found</h1>
+            <p>The page you requested was not found or is no longer on this server. Please check the URL for misspellings or errors and try again.</p>
+            <p>If you clicked a link on another page to get here, you may want to let the owner of that page know that there's a problem with the link.</p>
+        </div>
+        
+    </div>
+
+{% endblock content %}

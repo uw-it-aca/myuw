@@ -1,0 +1,24 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "student_empfac_card_content" %}
+
+{{#if show_card }}
+<div class="card"  data-name="StuEmpFacCard" data-type="card">
+	<h3 class="sr-only">Student Employee or Faculty</h3>
+
+	<!-- if employee -->
+    {{#if is_student_employee}}
+	<h3>Student Employees</h3>
+	<p>A link to Employee Self-Services (ESS) is on the <a href="/resource/employment">Employment page</a>, but you can also use the <a href="https://myuw.washington.edu/servlet/main/?tab=7" target="_blank">old version of MyUW</a> to access additional employment resources.</p>
+	{{/if}}
+	<!-- /if employee -->
+	
+	<!-- if instructor -->
+    {{#if is_faculty}}
+	<h3>Instructor or TA for a class?</h3>
+	<p><a href="https://myuw.washington.edu/servlet/main/?tab=8" target="_blank">Use the old version of MyUW to access your teaching resources.</a> We're working on moving this content to this new version of MyUW so you'll eventually have everything in one place.</p>
+	{{/if}}
+	<!-- /if instructor -->
+
+</div>
+{{/if}}
+{% endtplhandlebars %}
