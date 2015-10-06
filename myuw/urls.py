@@ -80,6 +80,7 @@ urlpatterns = patterns(
 
     url(r'^choose/new', 'choose.new_site', name="myuw_pref_new_site"),
     url(r'^choose/legacy', 'choose.old_site', name="myuw_pref_old_site"),
+    url(r'^logout', 'page.logout', name="myuw_logout"),
 
     url(r'.*', 'page.index', name="myuw_home"),
 )
