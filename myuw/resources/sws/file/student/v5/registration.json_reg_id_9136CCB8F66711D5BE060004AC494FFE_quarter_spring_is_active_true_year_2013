@@ -73,7 +73,19 @@
             "RegID":"9136CCB8F66711D5BE060004AC494FFE",
             "SectionID":"AQ",
             "Year":"2013"
+        },
+        {
+            "Href": "\/student\/v5\/registration\/2013,spring,EFS_FAIL,101,AQ,9136CCB8F66711D5BE060004AC494FFE,.json",
+            "CourseNumber":"121",
+            "CurriculumAbbreviation":"EFS_FAIL",
+            "DuplicateCode":"2",
+            "Instructor":null,
+            "Quarter":"spring",
+            "RegID":"9136CCB8F66711D5BE060004AC494FFE",
+            "SectionID":"AQ",
+            "Year":"2013"
         }
+
     ],
-    "TotalCount":"5"
+    "TotalCount":"6"
 }
