@@ -21,8 +21,7 @@ from myuw.dao.uwemail import get_email_forwarding_for_current_user
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.logger.session_log import log_session
 
-LOGOUT_URL = "https://weblogin.washington.edu/" \
-             "?logout_action=1&two=myuw&one=myuw.washington.edu"
+LOGOUT_URL = "/user_logout"
 
 
 @login_required
@@ -118,10 +117,7 @@ def redirect_to_legacy_site():
 
 def logout(request):
     # Ends current myuw session
-    logger = logging.getLogger('myuw')
-    logger.info("is logged pre %s" % request.user.is_authenticated())
     django_logout(request)
-    logger.info("is logged post %s" % request.user.is_authenticated())
 
     # Redirects to weblogin logout page
     return HttpResponseRedirect(LOGOUT_URL)
