@@ -16,7 +16,8 @@ XFrame = 'django.middleware.clickjacking.XFrameOptionsMiddleware'
 UserService = 'userservice.user.UserServiceMiddleware'
 AUTH_BACKEND = 'django.contrib.auth.backends.ModelBackend'
 
-LOGOUT_URL = 'http://testserver/user_logout'
+LOGOUT_URL = "%s%s" % ('https://weblogin.washington.edu/',
+                       '?logout_action=1&two=myuw&one=myuw.washington.edu')
 
 
 @override_settings(MIDDLEWARE_CLASSES=(Session,

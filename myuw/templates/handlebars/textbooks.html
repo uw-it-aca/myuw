@@ -3,6 +3,9 @@
 
 	<div class="container textbooks-container">	 
 	        <h2 id="future_cards_header"><span style="text-transform:uppercase;">{{quarter}} {{year}}</span> {{summer_term}} Textbooks</h2>
+            {{#unless sections}}
+            <div class="lead">An error has occurred and we can't display textbooks at the moment. Please try again later.</div>
+            {{/unless}}
 	 
 	        {{#each sections}}
 	        
@@ -79,8 +82,10 @@
 	               <!-- <p class="text-muted">Read the University Book Store's <a href="http://uw-seattle.verbacompare.com/" target="_blank">price comparison policies</a></p> -->
 	        {{/if}}
 	
+            {{#if sections}}
 	        <div style="margin-top:20px;">
 	            <p class="text-muted">Information on course textbooks is collected by and provided courtesy of <a href="http://www.bookstore.washington.edu">University Book Store</a> and is subject to change regularly and without notice.</p>
 	        </div>
+            {{/if}}
 	</div>
              {% endtplhandlebars %}

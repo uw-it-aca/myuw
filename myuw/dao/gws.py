@@ -109,3 +109,11 @@ def is_faculty():
 
 
 # The is_student function is in pws.py
+
+
+def is_employee():
+    """
+    Return True if the user is an UW employee
+    in the current quarter
+    """
+    return _is_member('uw_employee')
