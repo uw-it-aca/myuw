@@ -2,6 +2,7 @@ import re
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout as django_logout
 from django.template import RequestContext
 from django.conf import settings
 import logging
@@ -19,6 +20,8 @@ from myuw.views.rest_dispatch import invalid_session
 from myuw.dao.uwemail import get_email_forwarding_for_current_user
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.logger.session_log import log_session
+
+LOGOUT_URL = "/user_logout"
 
 
 @login_required

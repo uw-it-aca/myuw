@@ -84,11 +84,12 @@ function MyuwLog()  {
         }
 
         // Periodically log how long cards have been on screen
-        if (!LogUtils.on_screen_interval_check) {
-            LogUtils.on_screen_interval_check = window.setInterval(function() {
-                LogUtils.periodicVisibilityLogging();
-            }, LogUtils.PERIODIC_ONSCREEN_INTERVAL);
-        }
+        // Disabled due to MUWM-3384
+        //if (!LogUtils.on_screen_interval_check) {
+        //    LogUtils.on_screen_interval_check = window.setInterval(function() {
+        //        LogUtils.periodicVisibilityLogging();
+        //    }, LogUtils.PERIODIC_ONSCREEN_INTERVAL);
+        //}
         return log;
     };
 

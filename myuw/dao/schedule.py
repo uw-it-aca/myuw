@@ -16,6 +16,7 @@ from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time, log_exception
 
 logger = logging.getLogger(__name__)
+EARLY_FALL_START = "EARLY FALL START"
 
 
 def _get_schedule(regid, term):
@@ -30,7 +31,17 @@ def _get_schedule(regid, term):
              str(regid) + ',' + str(term.year) + ',' + term.quarter)
     timer = Timer()
     try:
-        return get_schedule_by_regid_and_term(regid, term, False)
+        schedule = get_schedule_by_regid_and_term(regid, term, False)
+
+        # XXX - 2015 workaround for MUWM-3390.
+        # We want something different for 2016 - MUWM-3391
+        non_early_start_sections = []
+        for section in schedule.sections:
+            if EARLY_FALL_START != section.institute_name:
+                non_early_start_sections.append(section)
+
+        schedule.sections = non_early_start_sections
+        return schedule
     except Exception as ex:
         log_exception(logger,
                       logid,
