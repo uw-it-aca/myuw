@@ -11,9 +11,9 @@ var EmpFacStudentCard = {
         var template = Handlebars.compile(source);
         var template_data;
         template_data = {
+            is_student_employee: user.stud_employee,
             is_employee: user.employee,
-            is_faculty: user.faculty,
-            show_card: user.employee | user.faculty
+            show_card: user.employee
         };
         EmpFacStudentCard.dom_target.html(template(template_data));
         LogUtils.cardLoaded(EmpFacStudentCard.name, EmpFacStudentCard.dom_target);
