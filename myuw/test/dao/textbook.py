@@ -14,9 +14,9 @@ class TestTextbooks(TestCase):
         schedule = _get_schedule(regid, term)
 
         books = get_textbook_by_schedule(schedule)
-        self.assertEquals(len(books), 5)
+        self.assertEquals(len(books), 1)
         self.assertEquals(books["13833"][0].title,
-                          "Quantum Chemistry (6th Edition)")
+                          "2 P/S Tutorials In Introductory Physics")
         self.assertEquals(get_textbook_by_schedule(None), None)
 
     def test_get_verba_by_schedule(self):
