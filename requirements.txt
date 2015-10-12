@@ -9,7 +9,7 @@ django-templatetag-handlebars
 Django-UserService==1.0.2
 unittest2
 AuthZ-Group
--e git+https://github.com/uw-it-aca/uw-restclients.git#egg=RestClients
+-e git+https://github.com/uw-it-aca/uw-restclients.git@1f3cb9b45473eb130c0bb4fb53444e4169c7e3bb#egg=RestClients
 -e git+https://github.com/abztrakt/django-mobileesp/#egg=django_mobileesp
 -e git+https://github.com/uw-it-aca/django-supporttools.git#egg=SupportTools
 -e git://github.com/vegitron/permissions_logging#egg=PermissionsLogging
