@@ -1,0 +1,12 @@
+{
+    "11646": [{
+              "isbn":"9780521600491",
+              "title":"History Of Archaeological Thought (2e 06)",
+              "authors":[{"name":"Trigger" }],
+              "price":45.00,
+              "used_price":null,
+              "required":true,
+              "notes":"required",
+              "cover_image":null
+             }]
+}
