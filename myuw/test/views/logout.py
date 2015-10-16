@@ -18,6 +18,7 @@ AUTH_BACKEND = 'django.contrib.auth.backends.ModelBackend'
 
 LOGOUT_URL = "http://testserver/user_logout"
 
+
 @override_settings(MIDDLEWARE_CLASSES=(Session,
                                        Common,
                                        CsrfView,
