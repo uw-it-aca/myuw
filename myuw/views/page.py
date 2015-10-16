@@ -117,7 +117,7 @@ def redirect_to_legacy_site():
 
 def logout(request):
     # Expires current myuw session
-    request.session.flush()
+    django_logout(request)
     logout_url = "%s%s" % ("https://weblogin.washington.edu/",
                            "?logout_action=1&two=myuw&one=myuw.washington.edu")
 
