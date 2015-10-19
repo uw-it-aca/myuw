@@ -126,7 +126,7 @@
 						{% endif %}
 						
 						<!-- if employee -->
-						{% if user.affiliations.stud_employee %}
+						{% if user.affiliations.employee %}
 						<h3>Student Employees</h3>
 						<p>A link to Employee Self-Services (ESS) is on the <a href="/resource/employment">Employment page</a>, but you can also use the <a href="https://myuw.washington.edu/servlet/main/?tab=7" target="_blank">old version of MyUW</a> to access additional employment resources.</p>
 						{% endif %}
@@ -190,10 +190,10 @@
                     <li class="footer-links-list-item"><a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi"><i class="fa fa-envelope" role="presentation"></i> Contact</a></li>
                      <li class="footer-links-list-item"><a href="//www.washington.edu/online/terms/">Terms</a></li> 
                      <li class="footer-links-list-item"><a href="//www.washington.edu/online/privacy/">Privacy</a></li> 
-                     <li class="footer-links-list-item" style="border:none;"><a href="logout">Log out</a></li>
+                     <li class="footer-links-list-item" style="border:none;"><a href="/logout">Log out</a></li>
 					{% if request.is_mobile or request.is_tablet %}
 					<li class="footer-links-list-item desktop-footer-link">
-					 	<button class="btn-link" data-toggle="modal" data-target="#myuw-footer-modal"><i class="fa fa-desktop" role="presentation" aria-hidden="true"></i> Looking for something else?</button>
+                                            <button class="btn-link" data-toggle="modal" data-target="#myuw-footer-modal"><i class="fa fa-desktop" role="presentation" aria-hidden="true"></i> Looking for something else?</button>
 						<div class="modal fade" id="myuw-footer-modal" tabindex="-1" role="dialog" aria-labelledby="MyUWFooterModal">
 							<div class="modal-dialog" role="document">
 							    <div class="modal-content">
