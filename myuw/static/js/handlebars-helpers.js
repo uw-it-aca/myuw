@@ -373,3 +373,20 @@ Handlebars.registerHelper('greater_than', function(value1, value2, options) {
         return options.fn(this);
     }
 });
+
+Handlebars.registerHelper('not_first', function(index, block) {
+    // display block if the index greater than 0
+    if (arguments.length < 2)
+        throw new Error("Handlebars Helper not_first needs 1 parameter");
+    if(parseInt(index) > 0) {
+        return block.fn(this);
+    }
+});
+
+Handlebars.registerHelper('not_equal', function(obj, value, block) {
+    if (arguments.length < 3)
+        throw new Error("Handlebars Helper not_equal needs 2 parameters");
+    if(obj != value) {
+        return block.fn(this);
+    }
+});

@@ -11,8 +11,8 @@ from django.contrib.auth.decorators import login_required
 from myuw.dao import get_user_model
 from myuw.dao.card_display_dates import get_values_by_date
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
-from myuw.dao.term import get_comparison_date, is_using_file_dao
-from myuw.dao.term import get_default_date
+from myuw.dao import is_using_file_dao
+from myuw.dao.term import get_default_date, get_comparison_date
 from myuw.models import SeenRegistration
 from django.test.client import RequestFactory
 from restclients.sws.term import get_term_by_date

@@ -1,0 +1,32 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "gradcommittee_card_content" %}
+
+    <div aria-labeledby="graduate_committees" class="card">
+        <h3>Your Committees</h3>
+        <div class="card-badge-container" id="committee-reqs">
+            <ul class="card-list">
+                {{ #each committees}}
+                    <li>
+                        <h4>{{committee_type}}</h4>
+                        <ol class="card-list">
+                            {{ #each members}}
+                            <li class="committee-member">
+                                <span style="display: block">{{first_name}} {{last_name}}{{#if member_type}},
+                                    {{member_type}}{{/if}}{{#if reading_type}}, {{reading_type}}{{/if}}</span>
+                                {{#if dept}}<span style="display: block">{{dept}}</span>{{/if}}
+                                {{#if email}}<span style="display: block"><a href="mailto:{{email}}">{{email}}</a></span>{{/if}}
+                            </li>
+                            {{/each}}
+                        </ol>
+                    </li>
+                    {{/each}}
+            </ul>
+        </div>
+        <div class="pull-right">
+            <div class="card-badge-action">
+                <a href="http://www.grad.uw.edu/mygrad/student.htm">Go to MyGrad</a>
+            </div>
+        </div>
+        <br class="clearfix" />
+    </div>
+    {% endtplhandlebars %}

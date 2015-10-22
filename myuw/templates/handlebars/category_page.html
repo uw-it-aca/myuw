@@ -2,28 +2,22 @@
     {% tplhandlebars "category_page" %}
 
 <div class="category-container">
-
     <div class="container">
-        
         <h2 class="category-header">{{category_name}}</h2>
-        
         <div class="category-content">
-            
-			<div class="row">
-            {{ #each link_data }}
-				<div class="col-lg-12">
+	    <div class="row">
+                {{ #each link_data }}
+		<div class="col-lg-12">
 	            <h3 id="{{subcat_slug}}" class="category-sub-header">{{ subcategory }}</h3>
 	            {{ #each links }}
-	                <ul class="category-links">
-	                    <li> <a href="{{ url }}" {{#if new_tab }}target="_blank"{{ /if }}>{{ title }}</a></li>
-	                </ul>
+	            <ul class="category-links">
+	                <li> <a href="{{ url }}" {{#if new_tab }}target="_blank"{{ /if }}>{{ title }}</a></li>
+	            </ul>
 	            {{ /each }}
-				</div>
-            {{ /each }}
-			</div>
-        
+		</div>
+                {{ /each }}
+	    </div>
         </div>
-        
     </div>
 </div>
-    {% endtplhandlebars %}
+{% endtplhandlebars %}

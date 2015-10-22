@@ -11,9 +11,9 @@
 
         {{#if visual_data.latest_ending}}
         {{#with visual_data}}
-        
+
          <div id="final-visual-schedule" class="visual-schedule {{schedule_hours_class}}" aria-hidden="true">
-			
+
              <div class="exam-time-bar exam-day-col2 hours-{{total_hours}} clearfix ">
                  {{#each display_hours}}
                  <div class="hour-label" style="position:absolute;top:{{time_percentage position ../start_time ../end_time }}%;"><p>{{format_schedule_hour hour hour_count}}</p>
@@ -72,7 +72,7 @@
                  </div>
              </div>
          </div>
-                
+
          {{/with}}
          {{/if}}
 
@@ -108,19 +108,17 @@
                  </tbody>
              </table>
          </div-->
-                
 
         <!-- begin - if there are meetings with times to be arranged -->
         {{#if tbd}}
         <div class="courseTBD" aria-hidden="true">
             <h5>Courses with final exam meeting times to be determined or courses with no final exam:</h5>
             {{#each tbd}}
-    	    <div class="pull-left course-box"> 
-    	        <div class="c{{color_id}} course-info">{{curriculum_abbr}} {{course_number}}&nbsp;{{section_id}}</div>
-    	        <div style="font-size:.8em; color:#555; text-align:center; margin-top:3px;">Room TBD</div>
-    	    </div> 
+            <div class="pull-left course-box">
+                <div class="c{{color_id}} course-info">{{curriculum_abbr}} {{course_number}}&nbsp;{{section_id}}</div>
+                <div style="font-size:.8em; color:#555; text-align:center; margin-top:3px;">Room TBD</div>
+            </div>
             {{/each}}
-            
         </div>
         {{/if}}
         <!-- end - if there are meetings with times to be arranged -->
