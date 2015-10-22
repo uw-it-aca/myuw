@@ -1,0 +1,189 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "ClassWebsiteUrl": "",
+    "Course": {
+        "CourseNumber": "101",
+        "CurriculumAbbreviation": "EFS_FAILT",
+        "Href": "/student/v5/course/2013,spring,EFS_FAILT,101.json",
+        "Quarter": "spring",
+        "Year": 2013
+    },
+    "CourseCampus": "Seattle",
+    "CourseDescription": "Builds writing confidence through frequent informal writing, and introductions to key learning strategies. Includes user-friendly orientation to library and research documents, revision skills, and peer review work central to 100- and 200-level college writing assignments. Offered: A.",
+    "CourseHasVariableContent": false,
+    "CourseTitle": "WRITING READY",
+    "CourseTitleLong": "WRITING READY: PREPARING FOR COLLEGE WRITING",
+    "CreditControl": "fixed credit",
+    "CurrentEnrollment": 16,
+    "Curriculum": {
+        "CollegeName": "ARTS & SCI",
+        "DepartmentAbbreviation": "EFS_FAILT",
+        "TimeScheduleLinkAbbreviation": "98engl"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": false,
+    "DuplicateEnrollmentAllowed": false,
+    "EndDate": "2013-09-18",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": "",
+    "FeeBudget": "",
+    "FeeType": "",
+    "FinalExam": {
+        "Building": "*",
+        "Date": "0000-00-00",
+        "EndTime": "00:00",
+        "MeetingStatus": "1",
+        "RoomNumber": "*",
+        "StartTime": "00:00"
+    },
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": "",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [
+        {
+            "DelegateLevel": "department",
+            "Person": {
+                "Href": "/student/v5/person/260A0DEC95CB11D78BAA000629C31437.json",
+                "Name": "BUSCH,CAROLYN J",
+                "RegID": "260A0DEC95CB11D78BAA000629C31437"
+            }
+        },
+        {
+            "DelegateLevel": "curriculum",
+            "Person": {
+                "Href": "/student/v5/person/260A0DEC95CB11D78BAA000629C31437.json",
+                "Name": "BUSCH,CAROLYN J",
+                "RegID": "260A0DEC95CB11D78BAA000629C31437"
+            }
+        }
+    ],
+    "GradingSystem": "standard",
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": "EARLY FALL START",
+    "JointSections": [],
+    "LimitEstimateEnrollment": 18,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "SAV",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Monday"
+                    },
+                    {
+                        "Name": "Tuesday"
+                    },
+                    {
+                        "Name": "Wednesday"
+                    },
+                    {
+                        "Name": "Thursday"
+                    },
+                    {
+                        "Name": "Friday"
+                    }
+                ],
+                "Text": "MTWTF"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "12:00",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2013,spring,EFS_FAILT,101,H,9F94490E82B111DA9767000629C31437"
+                    },
+                    "Person": {
+                        "Href": "/student/v5/person/260A0DEC95CB11D78BAA000629C31437.json",
+                        "Name": "ROMPOGREN,JUSTINA C",
+                        "RegID": "260A0DEC95CB11D78BAA000629C31437"
+                    },
+                    "TSPrint": true
+                }
+            ],
+            "MeetingIndex": "1",
+            "MeetingType": "lecture",
+            "RoomNumber": "137",
+            "RoomToBeArranged": false,
+            "StartTime": "09:30"
+        }
+    ],
+    "MinimumTermCredit": "5.0",
+    "PrimarySection": {
+        "CourseNumber": "101",
+        "CurriculumAbbreviation": "EFS_FAILT",
+        "Href": "/student/v5/course/2013,spring,EFS_FAILT,101/H.json",
+        "Quarter": "spring",
+        "SectionID": "AQ",
+        "Year": 2013
+    },
+    "Registrations": {
+        "CourseNumber": "101",
+        "CurriculumAbbreviation": "EFS_FAILT",
+        "Href": "/student/v5/registration.json?year=2013&quarter=spring&curriculum_abbreviation=EFS_FAILT&course_number=101&section_id=AQ&reg_id=&is_active=True&instructor_reg_id=&verbose=False",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": null,
+        "PageStart": null,
+        "Quarter": "spring",
+        "RegID": null,
+        "SectionID": "AQ",
+        "Verbose": false,
+        "Year": 2013
+    },
+    "ResearchCredit": false,
+    "RoomCapacity": 30,
+    "SLN": "13870",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "AQ",
+    "SectionType": "lecture",
+    "SelfRegistrationAllowed": false,
+    "ServiceLearning": false,
+    "StartDate": "2013-08-24",
+    "StudentCreditHours": "  80.0",
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2013,spring.json",
+        "Quarter": "spring",
+        "Year": 2013
+    },
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": []
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": []
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": []
+        }
+    }
+}

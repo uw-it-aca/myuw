@@ -188,33 +188,33 @@
             <div class="container footer-links" style="position:relative;">
                 <ul class="footer-links-list">
                     <li class="footer-links-list-item"><a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi"><i class="fa fa-envelope" role="presentation"></i> Contact</a></li>
-                    <li class="footer-links-list-item"><a href="//www.washington.edu/online/terms/">Terms</a></li>
-                    <li class="footer-links-list-item"><a href="//www.washington.edu/online/privacy/">Privacy</a></li>
-                    <li class="footer-links-list-item" style="border:none;"><a href="logout">Log out</a></li>
-                    {% if request.is_mobile or request.is_tablet %}
-                    <li class="footer-links-list-item" style="border:none; position:absolute; right:0; top:50%; margin-top:-16px;">
-                        <button class="btn btn-link" style="font-size: 11px;" data-toggle="modal" data-target="#myuw-footer-modal"><i class="fa fa-desktop" role="presentation" aria-hidden="true"></i> Looking for something else?</button>
-                        <div class="modal fade" id="myuw-footer-modal" tabindex="-1" role="dialog" aria-labelledby="MyUWFooterModal">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h3 class="modal-title">Looking for something else?</h3>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Everything you need should be here. As your quarter rolls on, we present the information and resources that are most useful on cards, the most important at the top. Links to all the resources are categorized and always available on Resource pages. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Did we miss something? We'd love your feedback!</a></p>
-                                        <h3 class="modal-title">Learn more about what's here</h3>
-                                        <ul>
-                                            <li><strong>Visual Schedule</strong> with map links to find your classes</li>
-                                            <li><strong>Course Cards</strong> with links to Catalyst and Canvas, research guides, and instructor contact info</li>
-                                            {% if user.affiliations.fyp %}
-					    <li><strong>ThriveUW</strong> messaging each week to help you adjust to and succeed at UW</li>
-                                            {% endif %}
-                                            <li><strong>Registration</strong> materials near your registration date</li>
-                                            <li><strong>Final Grades</strong> as soon as they come in</li>
-                                            <li><strong>Husky, Tuition, and Library account</strong> information is always visible</li>
-                                            <li>Links to all these resources, and more, are categorized and always available on <strong>Resource pages.</strong></li>
-                                        </ul>
+                     <li class="footer-links-list-item"><a href="//www.washington.edu/online/terms/">Terms</a></li>
+                     <li class="footer-links-list-item"><a href="//www.washington.edu/online/privacy/">Privacy</a></li>
+                     <li class="footer-links-list-item" style="border:none;"><a href="logout">Log out</a></li>
+                     {% if request.is_mobile or request.is_tablet %}
+                     <li class="footer-links-list-item desktop-footer-link">
+                         <button class="btn-link" data-toggle="modal" data-target="#myuw-footer-modal"><i class="fa fa-desktop" role="presentation" aria-hidden="true"></i> Looking for something else?</button>
+                         <div class="modal fade" id="myuw-footer-modal" tabindex="-1" role="dialog" aria-labelledby="MyUWFooterModal">
+                             <div class="modal-dialog" role="document">
+                                 <div class="modal-content">
+                                     <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                         <h3 class="modal-title">Looking for something else?</h3>
+                                     </div>
+                                     <div class="modal-body">
+                                         <p>Everything you need should be here. As your quarter rolls on, we present the information and resources that are most useful on cards, the most important at the top. Links to all the resources are categorized and always available on Resource pages. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Did we miss something? We'd love your feedback!</a></p>
+                                         <h3 class="modal-title">Learn more about what's here</h3>
+                                         <ul>
+                                             <li><strong>Visual Schedule</strong> with map links to find your classes</li>
+                                             <li><strong>Course Cards</strong> with links to Catalyst and Canvas, research guides, and instructor contact info</li>
+                                             {% if user.affiliations.fyp %}
+                                             <li><strong>ThriveUW</strong> messaging each week to help you adjust to and succeed at UW</li>
+                                             {% endif %}
+                                             <li><strong>Registration</strong> materials near your registration date</li>
+                                             <li><strong>Final Grades</strong> as soon as they come in</li>
+                                             <li><strong>Husky, Tuition, and Library account</strong> information is always visible</li>
+                                             <li>Links to all these resources, and more, are categorized and always available on <strong>Resource pages.</strong></li>
+                                         </ul>
                                      </div>
                                      <div class="modal-footer">
                                          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -225,7 +225,7 @@
                      </li>
                      {% endif %}
                 </ul>
-                <div>&copy; {% now "Y" %} University of Washington</div>
+                <div style="clear:both;">&copy; {% now "Y" %} University of Washington</div>
             </div>
         </div>
     </div>
