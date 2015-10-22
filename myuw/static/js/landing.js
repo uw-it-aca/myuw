@@ -64,6 +64,8 @@ var Landing = {
             VisualScheduleCard,
             TextbookCard,
             CourseCard,
+            GradStatusCard,
+            GradCommitteeCard,
             FutureQuarterCard1,
             SummerRegStatusCard1
         ];
@@ -96,11 +98,13 @@ var Landing = {
             VisualScheduleCard,
             TextbookCard,
             CourseCard,
-			EmpFacStudentCard,
+            GradStatusCard,
+            EmpFacStudentCard,
             HfsCard,
             TuitionCard,
             LibraryCard,
             EventsCard,
+            GradCommitteeCard,
             FutureQuarterCard1,
             SummerRegStatusCard1
         ];

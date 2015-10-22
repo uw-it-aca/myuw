@@ -588,13 +588,12 @@ body {
         .card-badge-container {
             .card_list { list-style: none; padding-left: 0; }                
             .card-badge {  padding: 8px 10px 10px 0px; position: relative;
-
                 .card-badge-label { display: block; font-weight: bold; /*line-height: 35px;*/ }
                 .card-badge-action { display: block; font-weight: normal; line-height: 35px; margin-top: -10px; 
                     a { display: block; }
                 }
                 
-                .card-badge-value { display: block; font-size: 22px; font-weight: bold; line-height: 35px; text-align: right; }
+                .card-badge-value { display: block; font-size: 22px; font-weight: bold;  text-align: right; }
                 .card-badge-note { font-weight: normal; color: #888; margin-top: 35px; position: absolute; bottom: -3px; font-size: 12px; }
             }
         }
@@ -743,6 +742,43 @@ body {
 		}
 		*/
 	// --- END NEW STUDENT CHECKLIST CARDS --- //
+
+    
+    // graduate student content card 
+    div#GradStatusCard, div#GradCommitteeCard {
+        ul, ol { list-style-type: none; padding-left: 0; }
+        h3 { margin-bottom: 0 !important; }
+        #petition-reqs, #leave-reqs, #degree-reqs, #committee-reqs { 
+            h4 { color: #85754d;
+                font-family: "Roboto",sans-serif;
+                font-size: 16px;
+                font-weight: 500;
+                margin-bottom: .5em;
+                margin-top: 1.5em;
+                }
+            h5 { color: #444444 !important;
+                font-family: "Roboto",sans-serif;
+                font-size: 16px !important;
+                font-weight: 400;
+                margin-top: 0px; 
+                text-transform: uppercase; }
+            .degree-title { line-height: 1.25em; margin-bottom: 10px; font-size: 16px; }
+        }
+        #committee-reqs { 
+            h5 { margin-top: 10px; }
+            ul.card-list ul { 
+                padding-bottom: 10px; 
+            }
+            li.committee-member { padding-bottom: 8px; }
+        }
+        .pull-left { max-width: 60%; }
+        .card-badge-label { font-weight: bold; padding-bottom: 5px; line-height: 1.25em; padding-right: 1.2em; }
+        .card-badge-value { font-size: 14px; }
+                     
+    }
+    
+    
+    // end graduate student content card 
 
 
 
@@ -1540,7 +1576,7 @@ body {
 						line-height: 3em;
 						margin-left: -12px;
 						border:none;
-					} 
+					}
             }
         }
     }

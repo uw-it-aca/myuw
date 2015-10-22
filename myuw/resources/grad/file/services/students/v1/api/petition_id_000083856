@@ -1,0 +1,41 @@
+[
+    {"description":"Doctoral degree - Extend ten year limit",
+     "submitDate":"2015-03-26T16:32:28.64",
+     "deptRecommend":"Pending",
+     "gradSchoolDecision":"Pending"},
+
+    {"description":"Doctoral degree - Extend ten year limit",
+     "submitDate":"2013-04-06T16:32:28.64",
+     "decisionDate":"2013-04-10T00:00:00",
+     "deptRecommend":"Withdraw",
+     "gradSchoolDecision":"Withdraw"},
+
+    {"description":"Doctoral degree - Extend ten year limit",
+     "submitDate":"2015-03-26T16:32:28.64",
+     "deptRecommend":"Deny",
+     "gradSchoolDecision":"Pending"},
+
+    {"description":"Doctoral degree - Extend ten year limit",
+     "submitDate":"2013-04-06T16:32:28.64",
+     "decisionDate":"2013-04-10T00:00:00",
+     "deptRecommend":"Deny",
+     "gradSchoolDecision":"Not approved"},
+
+    {"description":"Doctoral degree - Extend ten year limit",
+     "submitDate":"2013-04-06T16:32:28.64",
+     "decisionDate":"2013-04-10T00:00:00",
+     "deptRecommend":"Deny",
+     "gradSchoolDecision":"Approved"},
+
+    {"description":"Doctoral degree - Extend ten year limit",
+     "submitDate":"2014-03-26T13:24:58.633",
+     "deptRecommend":"Approve",
+     "gradSchoolDecision":"Pending"},
+
+    {"description":"Doctoral degree - Extend ten year limit",
+     "submitDate":"2013-04-06T16:32:28.64",
+     "decisionDate":"2013-04-10T00:00:00",
+     "deptRecommend":"Approve",
+     "gradSchoolDecision":"Approved"
+    }
+]

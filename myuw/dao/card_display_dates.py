@@ -6,29 +6,24 @@ https://docs.google.com/document/d/14q26auOLPU34KFtkUmC_bkoo5dAwegRzgpwmZEQMhaU
 
 from django.conf import settings
 from datetime import datetime, timedelta
-from myuw.dao.term import get_comparison_date,\
-    is_in_summer_b_term, is_summer_term,\
-    get_current_quarter, get_next_quarter,\
-    get_term_after, get_last_term, get_bof_1st_instruction,\
-    get_eof_last_instruction, get_bof_7d_before_last_instruction,\
-    get_eof_7d_after_class_start, get_eof_last_final_exam
+from myuw.dao.term import get_comparison_datetime,\
+    get_current_quarter, get_next_quarter, get_previous_quarter,\
+    get_term_after, is_in_summer_quarter,\
+    is_in_summer_b_term, get_bod_current_term_class_start,\
+    get_eod_current_term_last_instruction, get_bod_7d_before_last_instruction,\
+    get_eod_7d_after_class_start, get_eod_current_term_last_final_exam
+from myuw.dao.term import get_bod_class_start_quarter_after as\
+    get_bod_quarter_after
 
 
 def in_show_grades_period(term, request):
-    """
-    return true if it is within the grades display window -
-    before the 1st day of next quarter
-    """
-    comparison_date = get_comparison_date(request)
-    next_term = get_term_after(term)
-    return comparison_date < next_term.first_day_quarter
+    return (term is not None and request is not None and
+            get_comparison_datetime(request) < get_bod_quarter_after(term))
 
 
 def get_card_visibilty_date_values(request=None):
-    now = get_comparison_date(request)
-    after_midnight = datetime(now.year, now.month, now.day,
-                              0, 0, 1)
-    values = get_values_by_date(after_midnight, request)
+    values = get_values_by_date(get_comparison_datetime(request),
+                                request)
     set_js_overrides(request, values)
     return values
 
@@ -37,7 +32,7 @@ def get_values_by_date(now, request):
     """
     now is a datetime object of 1 second after the beginning of the day.
     """
-    last_term = get_last_term(request)
+    last_term = get_previous_quarter(request)
 
     return {
         "is_after_7d_before_last_instruction":
@@ -66,7 +61,7 @@ def get_values_by_date(now, request):
             is_before_bof_term(now, request),
         "is_before_last_day_of_classes":
             is_before_last_day_of_classes(now, request),
-        "is_summer": is_summer_term(request),
+        "is_summer": is_in_summer_quarter(request),
         "is_after_summer_b": is_in_summer_b_term(request),
         "current_summer_term": "%s,%s" % (last_term.year, "summer"),
         "last_term": "%s,%s" % (last_term.year, last_term.quarter),
@@ -78,7 +73,7 @@ def is_before_bof_term(now, request):
     The term switches after the grade submission deadline.
     @return true if it is before the begining of the 1st day of instruction
     """
-    return now < get_bof_1st_instruction(request)
+    return now < get_bod_current_term_class_start(request)
 
 
 def is_before_eof_7d_after_class_start(now, request):
@@ -86,7 +81,7 @@ def is_before_eof_7d_after_class_start(now, request):
     @return true if it is before the end of the 7 days
     after the instruction start day
     """
-    return now < get_eof_7d_after_class_start(request)
+    return now < get_eod_7d_after_class_start(request)
 
 
 def is_after_7d_before_last_instruction(now, request):
@@ -94,14 +89,14 @@ def is_after_7d_before_last_instruction(now, request):
     @return true if it is after the begining of 7 days
     before instruction end
     """
-    return now > get_bof_7d_before_last_instruction(request)
+    return now > get_bod_7d_before_last_instruction(request)
 
 
 def is_before_last_day_of_classes(now, request):
     """
     @return true if it is before the end of the last day of classes
     """
-    return now < get_eof_last_instruction(request)
+    return now < get_eod_current_term_last_instruction(request)
 
 
 def is_after_last_day_of_classes(now, request):
@@ -115,7 +110,7 @@ def is_before_eof_finals_week(now, request):
     """
     @return true if it is before the end of the last day of finalsweek
     """
-    return now < get_eof_last_final_exam(request)
+    return now < get_eod_current_term_last_final_exam(request)
 
 
 def is_after_bof_and_before_eof_reg_period(now, request):

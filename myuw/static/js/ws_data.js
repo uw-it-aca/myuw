@@ -9,6 +9,7 @@ WSData = {
     _library_data: null,
     _tuition_data: null,
     _grade_data: {},
+    _mygrad_data: null,
     _notice_data: null,
     _instructor_data: {},
     _link_data: null,
@@ -140,6 +141,10 @@ WSData = {
 
     link_data: function() {
         return WSData._link_data;
+    },
+
+    mygrad_data: function() {
+        return WSData._mygrad_data;
     },
 
     notice_data: function() {
@@ -555,6 +560,30 @@ WSData = {
                         }
                     });
               }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
+    fetch_mygrad_data: function(callback, err_callback, args) {
+        if (WSData._mygrad_data === null) {
+            $.ajax({
+                url: "/api/v1/grad/",
+                dataType: "JSON",
+
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    WSData._mygrad_data = results;
+                    callback.apply(null, args);
+                },
+                error: function(xhr, status, error) {
+                    err_callback.call(null, status, error);
+                }
+            });
+        }
         else {
             window.setTimeout(function() {
                 callback.apply(null, args);
