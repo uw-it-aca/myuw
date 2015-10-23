@@ -10,41 +10,41 @@
         </div>
     {{/if}}
     {{#if total_sections}}
-	<!--Adding SR only final exam schedule-->
-	<h3 class="sr-only">Your {{ucfirst quarter}} {{year}} final exam</h3>
-	<div class="final_schedule_table sr-only">
-	     <table>
-	         <thead>
-	             <tr>
-	                 <th scope="col">Class</th>
-	                 <th scope="col">Exam date and time</th>
-	                 <th scope="col">Exam location</th>
-	             </tr>
-	         </thead>
-	         <tbody>
-	             {{#each list_data}}
-	             <tr>
-	                 <th scope="row">{{curriculum_abbr}} {{course_number}} {{course_title}}</td>
-	                 {{#with final_exam}}
-	                 <td>{{formatDateAsDate start_date}}, {{formatDateAsTimeAMPM start_date}} - {{formatDateAsTimeAMPM end_date}}</td>
-	                 <td>
-	                     {{#if building_tbd}}
-	                     Room TBD
-	                     {{else}}
-	                         {{#if latitude}}
-	                         <a href="http://maps.google.com/maps?q={{latitude }},{{longitude }}+({{encodeForMaps building_name}})&z=18" target="_blank" class="show_map_modal" rel="{{building_name}}">
-	                         {{/if}}
-	                         {{building}} {{room_number}}
-	                         {{#if final_exam.latitude}}</a>{{/if}}
-	                     {{/if}}
-	                 </td>
-	                 {{/with}}
-	             </tr>
-	             {{/each}}
-	         </tbody>
-	     </table>
-	</div>
-	
+    <!--Adding SR only final exam schedule-->
+    <h3 class="sr-only">Your {{ucfirst quarter}} {{year}} final exam</h3>
+    <div class="final_schedule_table sr-only">
+	<table>
+	    <thead>
+	        <tr>
+	            <th scope="col">Class</th>
+	            <th scope="col">Exam date and time</th>
+	            <th scope="col">Exam location</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        {{#each list_data}}
+	        <tr>
+	            <th scope="row">{{curriculum_abbr}} {{course_number}} {{course_title}}</th>
+                    {{#with final_exam}}
+<td>{{formatDateAsDate start_date}}, {{formatDateAsTimeAMPM start_date}} - {{formatDateAsTimeAMPM end_date}}</td>
+                    <td>
+	                {{#if building_tbd}}
+	                Room TBD
+	                {{else}}
+	                {{#if latitude}}
+	                <a href="http://maps.google.com/maps?q={{latitude }},{{longitude }}+({{encodeForMaps building_name}})&z=18" target="_blank" class="show_map_modal" rel="{{building_name}}">
+	                    {{/if}}
+	                    {{building}} {{room_number}}
+	                    {{#if final_exam.latitude}}</a>{{/if}}
+	                {{/if}}
+	            </td>
+	            {{/with}}
+	        </tr>
+	        {{/each}}
+	    </tbody>
+	</table>
+    </div>
+
     <h3 id="quarter-info" aria-hidden="true">
         {{ucfirst quarter}} {{year}} Courses
         {{#if summer_term}}
@@ -55,76 +55,72 @@
     {{#if display_hours }}
     <!-- week view -->
     <div class="visual-schedule {{schedule_hours_class}}" aria-hidden="true">
-	
-	    <div class="time-bar day-col2 hours-{{total_hours}} clearfix ">
-		
-	        {{#each display_hours}}
-	        <div class="hour-label" style="position:absolute;top:{{time_percentage position ../start_time ../end_time }}%;"><p>{{format_schedule_hour hour hour_count}}</p>
-	        </div>
-	        {{/each}}
+	<div class="time-bar day-col2 hours-{{total_hours}} clearfix ">
+	    {{#each display_hours}}
+	    <div class="hour-label" style="position:absolute;top:{{time_percentage position ../start_time ../end_time }}%;"><p>{{format_schedule_hour hour hour_count}}</p>
 	    </div>
+	    {{/each}}
+	</div>
 
-	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
-	        <div class="day-label">MON</div>
-	        <div class="day-col hours-{{total_hours}}">
-	            {{ show_card_days_meetings monday start_time end_time }}
-	        </div>
+	<div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+	    <div class="day-label">MON</div>
+	    <div class="day-col hours-{{total_hours}}">
+	        {{ show_card_days_meetings monday start_time end_time }}
 	    </div>
-	
-	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
-	        <div class="day-label">TUE</div>
-	        <div class="day-col hours-{{total_hours}}">
-	            {{ show_card_days_meetings tuesday start_time end_time }}
-	        </div>
+	</div>
+
+	<div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+	    <div class="day-label">TUE</div>
+	    <div class="day-col hours-{{total_hours}}">
+	        {{ show_card_days_meetings tuesday start_time end_time }}
 	    </div>
-	       
-	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
-	        <div class="day-label">WED</div>
-	        <div class="day-col hours-{{total_hours}}">
-	            {{ show_card_days_meetings wednesday start_time end_time }}
-	        </div>
+	</div>
+
+	<div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+	    <div class="day-label">WED</div>
+	    <div class="day-col hours-{{total_hours}}">
+	        {{ show_card_days_meetings wednesday start_time end_time }}
 	    </div>
-	
-	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
-	        <div class="day-label">THU</div>
-	        <div class="day-col hours-{{total_hours}}">
-	            {{ show_card_days_meetings thursday start_time end_time }}
-	        </div>
+	</div>
+
+	<div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+	    <div class="day-label">THU</div>
+	    <div class="day-col hours-{{total_hours}}">
+	        {{ show_card_days_meetings thursday start_time end_time }}
 	    </div>
-	
-	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
-	        <div class="day-label">FRI</div>
-	        <div class="day-col hours-{{total_hours}}">
-	            {{ show_card_days_meetings friday start_time end_time }}
-	        </div>
+	</div>
+
+	<div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+	    <div class="day-label">FRI</div>
+	    <div class="day-col hours-{{total_hours}}">
+	        {{ show_card_days_meetings friday start_time end_time }}
 	    </div>
-	
-	    {{#if has_6_days}}
-	    <div class="six-day">
-	        <div class="day-label">SAT</div>
-	        <div class="day-col hours-{{total_hours}}">
-	            {{ show_card_days_meetings saturday start_time end_time }}
-	        </div>
+	</div>
+
+	{{#if has_6_days}}
+	<div class="six-day">
+	    <div class="day-label">SAT</div>
+	    <div class="day-col hours-{{total_hours}}">
+	        {{ show_card_days_meetings saturday start_time end_time }}
 	    </div>
-	    {{/if}}
-           
+	</div>
+	{{/if}}
     </div>
     {{/if}}
     <!-- end week view -->
-    
-    <!-- begin - if there are meetings with times to be arranged -->  
+
+    <!-- begin - if there are meetings with times to be arranged -->
     {{#if courses_meeting_tbd }}
     <div class="courseTBD" aria-hidden="true">
-        {{#each courses_meeting_tbd }} 
-	    <div class="pull-left course-box"> 
+        {{#each courses_meeting_tbd }}
+	    <div class="pull-left course-box">
 	        <div class="c{{color_id}} course-info">{{curriculum}} {{course_number}}&nbsp;{{section_id}}</div>
 	        <div style="font-size:.8em; color:#555; text-align:center; margin-top:3px;">Room TBD</div>
-	    </div> 
+	    </div>
         {{/each}}
-        
     </div>
     {{/if}}
-    <!-- end - if there are meetings with times to be arranged --> 
+    <!-- end - if there are meetings with times to be arranged -->
 
     <div class="card-disclosure" aria-hidden="true"><a class="show_finalexams" id="toggle_finalexams" href="#" aria-controls="final_exam_schedule_panel"  title="Show Final Exam Schedule">Show Final Exam Schedule</a></div>
     <div id="final_exam_schedule_panel" class="slide-hide" aria-hidden="true"></div>
