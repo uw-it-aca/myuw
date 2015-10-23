@@ -42,7 +42,7 @@ var VisualScheduleCard = {
     _render: function() {
         var term = VisualScheduleCard.term;
         var course_data = WSData.normalized_course_data(term);
-        if (course_data.sections.length === 0) {
+        if (course_data.sections.length === 0 && !user.pce) {
             VisualScheduleCard.dom_target.html(CardWithNoCourse.render(term));
             return;
         }
@@ -55,6 +55,7 @@ var VisualScheduleCard = {
         VisualScheduleCard.shown_am_marker = false;
         var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
         var visual_data = {
+            is_pce: user.pce,
             total_sections: course_data.sections.length,
             year: course_data.year, 
             quarter: course_data.quarter,
