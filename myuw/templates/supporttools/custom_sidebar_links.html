@@ -27,11 +27,6 @@
     <li><a href="{{ url }}">Canvas Web Service</a></li>
     {% endif %}
 
-    {% url 'restclients.views.proxy' 'grad' 'index.html' as grad_url %}
-    {% if grad_url %}
-    <li><a href="{{ grad_url }}">MyGrad Request Web Service</a></li>
-    {% endif %}
-
     {% url 'restclients.views.proxy' 'iasystem' 'index.html' as ias_url %}
     {% if ias_url %}
     <li><a href="{{ ias_url }}">IASystem Web Service</a></li>
@@ -49,7 +44,7 @@
         }
     </script>
     <form onsubmit="return direct_to_hfs_service()">
-        <div class="form-group">
+        <div class="form-group">    
             <input type="text" id="hfs_service_input" class="form-control">&nbsp;<input type="submit" value="Go" class="btn btn-primary btn-sm" />
         </div>
     </form>
@@ -70,7 +65,7 @@
 {% if url %}
     <h4>UW Bookstore Web Service:</h4>
     <form action="{% url 'restclients.views.proxy' 'book' 'myuw/myuw_beta.ubs' %}" method="GET">
-
+        
         <div class="form-group">
         Term: <select name="quarter" class="form-control">
             <option value="spring">spring</option>
@@ -94,11 +89,11 @@
             return false;
         }
     </script>
-
+    
     <form onsubmit="return direct_to_netid_service()">
-        <div class="form-group">
+        <div class="form-group">    
             <input type="text" id="netid_service_input" class="form-control">&nbsp;<input type="submit" value="Go" class="btn btn-primary btn-sm" />
         </div>
     </form>
-
+        
 {% endif %}

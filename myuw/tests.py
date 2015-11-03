@@ -7,12 +7,10 @@ from myuw.test.dao.notice_categorization import TestNoticeCategories
 from myuw.test.dao.notice import TestNotices
 from myuw.test.models import TestUserNotices
 from myuw.test.academic_events import TestAcademicEvents
-from myuw.test.dao import TestDao
 from myuw.test.dao.term import TestTerm
 from myuw.test.dao.canvas import TestCanvas
 from myuw.test.dao.card_display_dates import TestDisplayValues
 from myuw.test.userservice_validation import TestValidation
-from myuw.test.dao.grad import TestGrad
 from myuw.test.dao.hfs import TestHFS
 from myuw.test.dao.library import TestLibrary
 from myuw.test.dao.building import TestBuildings
@@ -23,7 +21,6 @@ from myuw.test.dao.uwemail import TestUwEmail
 from myuw.test.api.schedule import TestSchedule as APISchedule
 from myuw.test.api.books import TestBooks
 from myuw.test.api.cur_books import TestCurBooks
-from myuw.test.api.grad import TestGrad
 from myuw.test.api.hfs import TestHFS as TestHFSAPI
 from myuw.test.api.profile import TestProfile
 from myuw.test.api.library import TestLibrary as TestLibraryAPI

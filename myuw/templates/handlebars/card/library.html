@@ -1,6 +1,6 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "library_card_content" %}
-
+    
     <div class="card clearfix"  data-name="LibraryCard" data-type="card">
 
         <h3>Library Account</h3>
@@ -10,13 +10,14 @@
             <i aria-hidden="true" class="fa fa-info-circle"></i><span class="sr-only">You have items ready!</span> <a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/myAccountMenu.do?activity=requests" target="_blank">{{ holds_ready }} requested {{ pluralize holds_ready "item" "items" }} ready</a>
         </div>
         {{/if}}
-
+        
         <div class="card-badge-container">
+
 	    <ul class="card_list">
                 {{#if items_loaned }}
                 <li>
-                    <div class="card-badge clearfix">
-                        <div class="pull-left">
+                    <div class="card-badge clearfix">     
+                        <div class="pull-left">                   
                             <h4 class="card-badge-label">Items out</h4>
                         </div>
                         <div class="pull-right">
@@ -27,31 +28,31 @@
                     </div>
                 </li>
                 {{/if}}
-
+                    
                 {{#if next_due }}
                 <li>
-                    <div class="card-badge clearfix">
-                        <div class="pull-left">
+                    <div class="card-badge clearfix">         
+                        <div class="pull-left"> 
                             <h4 class="card-badge-label">Next item due</h4>
                         </div>
                         <div class="pull-right">
                             <span class="card-badge-value" aria-hidden="true">{{toFriendlyDate next_due }}</span>
                             <span class="sr-only">{{ toFriendlyDateVerbose next_due }}</span>
 			    &nbsp;
-                            <span class="card-badge-action pull-right">{{toFromNowDate next_due}}</span>
+                            <span class="card-badge-action pull-right">{{toFromNowDate next_due}}</span> 
                         </div>
                     </div>
                 </li>
                 {{/if}}
-
+                        
                 {{#if fines}}
 		<li>
-                    <div class="card-badge clearfix">
-                        <div class="pull-left">
+                    <div class="card-badge clearfix">  
+                        <div class="pull-left"> 
                             <h4 class="card-badge-label">You owe</h4>
                         </div>
                         <div class="pull-right">
-                            <span class="card-badge-value text-danger">${{ formatPrice fines }}</span>
+                            <span class="card-badge-value text-danger">${{ formatPrice fines }}</span> 
 			    &nbsp;
                             <span class="card-badge-action pull-right"><a href="https://p.lib.washington.edu/payfines/" target="_blank">Pay fees</a></span>
                         </div>

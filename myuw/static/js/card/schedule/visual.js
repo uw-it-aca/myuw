@@ -55,7 +55,6 @@ var VisualScheduleCard = {
         VisualScheduleCard.shown_am_marker = false;
         var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
         var visual_data = {
-            is_pce: user.pce,
             total_sections: course_data.sections.length,
             year: course_data.year, 
             quarter: course_data.quarter,

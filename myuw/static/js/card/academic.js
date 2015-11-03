@@ -16,7 +16,9 @@ var AcademicCard = {
     _render: function (academic_data) {
         var source = $("#academic_card_content").html();
         var template = Handlebars.compile(source);
+        academic_data.display_card = true;
         if (!academic_data.class_level || academic_data.class_level === "NON_MATRIC") {
+            academic_data.display_card = false;
             AcademicCard.dom_target.hide();
         }
         else {
@@ -37,19 +39,19 @@ var AcademicCard = {
         $("#toggle_academic_card_resources").on("click", function(ev) {
             ev.preventDefault();
             $("#academic_card_resources").toggleClass("slide-show");
-            var card = "AcademicsCard";
+            var card = $(ev.target).closest("[data-type='card']");
 
             if ($("#academic_card_resources").hasClass("slide-show")) {
                 $("#toggle_academic_card_resources").text("SHOW LESS");
                 $("#toggle_academic_card_resources").attr("title", "Hide additional academic resources");
                 $("#academic_card_resources").attr("aria-hidden", "false");
-                window.myuw_log.log_card(card, "expand academic resources");
+                window.myuw_log.log_card(card, "expand");
             }
             else {
                 $("#toggle_academic_card_resources").text("SHOW MORE");
                 $("#toggle_academic_card_resources").attr("title", "Expand to show additional academic resources");
                 $("#academic_card_resources").attr("aria-hidden", "true");
-                window.myuw_log.log_card(card, "collapse academic resources");
+                window.myuw_log.log_card(card, "collapse");
 
                 setTimeout(function() {
                     $("#toggle_academic_card_resources").text("SHOW MORE");
@@ -63,4 +65,6 @@ var AcademicCard = {
         AcademicCard.dom_target.hide();
 //        AcademicCard.dom_target.html('');
     }
+
+    
 };
