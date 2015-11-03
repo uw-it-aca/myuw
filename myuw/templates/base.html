@@ -7,33 +7,33 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="">
- 
+
    {% load compress %}
    {% load static %}
 
    {% compress css %}
     <!-- styles -->
     <link href="{% static 'vendor/css/bootstrap-3.3.5.min.css' %}" rel="stylesheet">
-    <link href="{% static 'vendor/css/font-awesome-4.2.0.min.css' %}" rel="stylesheet">  
-	<link href="{% static 'vendor/css/user-fonts.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/css/font-awesome-4.2.0.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/css/user-fonts.css' %}" rel="stylesheet">
     <link href="{% static 'css/mobile.less' %}" rel="stylesheet" type="text/less">
    {% endcompress %}
-   
-   	 <!-- add desktop styles -->
-   	{% if not request.is_mobile and not request.is_tablet %}
-    {% compress css %}
-    <link rel="stylesheet" type="text/less" href="{% static 'css/desktop.less' %}"/>
-    {% endcompress %}
-    {% endif %}
 
-    <!-- google fonts -->   
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-	<link href='//fonts.googleapis.com/css?family=Roboto:400,500,300,100' rel='stylesheet' type='text/css'>
-    
-    <!-- favicon -->
-    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+   <!-- add desktop styles -->
+   {% if not request.is_mobile and not request.is_tablet %}
+   {% compress css %}
+   <link rel="stylesheet" type="text/less" href="{% static 'css/desktop.less' %}"/>
+   {% endcompress %}
+   {% endif %}
 
-    <!-- ios icons -->
+   <!-- google fonts -->
+   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+   <link href='//fonts.googleapis.com/css?family=Roboto:400,500,300,100' rel='stylesheet' type='text/css'>
+
+   <!-- favicon -->
+   <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+   <!-- ios icons -->
     <link rel="apple-touch-icon-precomposed" sizes="180x180" href="{% static 'images/apple-touch-icon-180x180-precomposed.png' %}">
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{% static 'images/apple-touch-icon-152x152-precomposed.png' %}">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/apple-touch-icon-144x144-precomposed.png' %}">
@@ -43,35 +43,34 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/apple-touch-icon-72x72-precomposed.png' %}">
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'images/apple-touch-icon-57x57-precomposed.png' %}">
     <link rel="apple-touch-icon-precomposed" href="{% static 'images/apple-touch-icon-precomposed.png' %}">
-    
+
     <!-- android icons -->
     <link rel="shortcut icon" sizes="196x196" href="{% static 'images/android-196x196.png' %}">
-        
+
     {% load templatetag_handlebars %}
   </head>
-  
+
   <body>
-        
     {% csrf_token %}
 
     <div id="app_header">
         <div class="header-bar" role="navigation" title="Home, email, and categorized resources">
             <div class="container clearfix">
                 <div class="pull-left header-myuw"><a href="/" title="Go to MyUW Home"><h1 id="main_header">MYUW</h1></a></div>
-                	<div class="pull-right">
-	                	<ul id="top_navigation_link_list" class="top_navigation_list">
-		                    <li><div class="header-email" id="uwemail"></div></li>
-		                    <li><div class="header-resources"><a href="#" id="categories_link"><i class="fa fa-th" role="presentation"></i> Resources</a></div></li>
-	                	</ul>
-                	</div>
-            	</div>
-        	</div>
-                
+                <div class="pull-right">
+                    <ul id="top_navigation_link_list" class="top_navigation_list">
+                        <li><div class="header-email" id="uwemail"></div></li>
+                        <li><div class="header-resources"><a href="#" id="categories_link"><i class="fa fa-th" role="presentation"></i> Resources</a></div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <div class="header-cover" role="region" aria-labelledby="profile_information">
-	    <h2 class="sr-only" id="profile_information">Profile information</h2>    
+            <h2 class="sr-only" id="profile_information">Profile information</h2>
             <div class="container clearfix">
                 <div id="profile">
-	                <!-- DIV below gets replaced with content from profile.html-->
+                <!-- DIV below gets replaced with content from profile.html-->
                     <div class="header-netid">
                         <a href="#" id="toggle_my_profile" aria-controls="my_profile">{{ user.netid }}
                             <i id="my_profile_arrow" class="fa fa-chevron-down" aria-hidden="true"></i>
@@ -83,164 +82,159 @@
                 </div>
                 <div class="header-w" role="presentation"><img src="{% static 'images/w-logo-white.png' %}"></div>
             </div>
-            
         </div>
     </div>
-            
+
     <div id="page-modal"></div>
-	{% if not request.is_mobile and not request.is_tablet %}
-	<div id="app_messages" role="complementary">
-		<div class="message-banner">
-			<div class="container message-text">
-				{% if user.affiliations.fyp %}<h2>Welcome to MyUW!</h2>{% else %}<h2>It's a new MyUW!</h2>{% endif %} MyUW shows you personal, critical, and timely information. <a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn how it works.</a> {% if not user.affiliations.fyp %}<br /><div class="message-not-ready">Not ready yet? <form action="{% url 'myuw.views.choose.old_site' %}" method="post">{% csrf_token %}<button class="btn btn-link">Switch back to the old MyUW.</button></form></div>{% endif %}
-			</div>
-		</div>
-		
-		<!-- App messages modal -->
-		<div class="modal fade" id="message_modal" tabindex="-1" role="dialog" aria-labelledby="MyUWMessageModal" aria-hidden="true">
-			<div class="modal-dialog message-dialog" role="document">
-		    	<div class="modal-content">
-		    		<div class="modal-header">
-						<button id="modal_close" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h3 class="modal-title" id="myModalLabel">{% if user.affiliations.fyp %}MyUW{% else %}MyUW 2015{% endif %}: Designed to meet student needs</h3>
-		    		</div>
-					<div class="modal-body">
-						<p>{% if not user.affiliations.fyp %}It's a new MyUW!{% endif %} We did lots of research to understand student needs and we {% if not user.affiliations.fyp %}re{% endif%}built and curated MyUW to focus on these needs. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">We'd love your feedback!</a></p>
-						
-						<h3>Different content appears, depending on the week</h3>
-						<p>As your quarter rolls on, we'll present the information and resources that are most useful on cards, the most important at the top</p>
-						<ul>
-							<li><strong>Visual Schedule</strong> with map links to find your classes</li>
-							<li><strong>Course Cards</strong> with links to Catalyst and Canvas, research guides, and instructor contact info</li>
-							{% if user.affiliations.fyp %}
-							<li><strong>ThriveUW</strong> messaging each week to help you adjust to and succeed at UW</li>
-							{% endif %}
-							<li><strong>Registration</strong> materials near your registration date</li>
-							<li><strong>Final Grades</strong> as soon as they come in</li>
-							<li><strong>Husky, Tuition, and Library account</strong> information is always visible</li>
-							<li>Links to all these resources, and more, are categorized and always available on <strong>Resource pages.</strong></li>
-						</ul>
-						{% if not user.affiliations.fyp %}
-						<h3>Switch back to the old MyUW</h3>
-						<p>You can use the old version of MyUW, and we'll continue take you there until Winter Break, or when you choose to switch back, whichever comes first.</p> 
-						{% endif %}
-						
-						<!-- if employee -->
-						{% if user.affiliations.employee %}
-						<h3>Student Employees</h3>
-						<p>A link to Employee Self-Services (ESS) is on the <a href="/resource/employment">Employment page</a>, but you can also use the <a href="https://myuw.washington.edu/servlet/main/?tab=7" target="_blank">old version of MyUW</a> to access additional employment resources.</p>
-						{% endif %}
-						<!-- /if employee -->
-						
-						<!-- if instructor -->
-						{% if user.affiliations.faculty %}
-						<h3>Instructor or TA for a class?</h3>
-						<p><a href="https://myuw.washington.edu/servlet/main/?tab=8" target="_blank">Use the old version of MyUW to access your teaching resources.</a> We're working on moving this content to this new version of MyUW so you'll eventually have everything in one place.</p>
-						{% endif %}
-						<!-- /if instructor -->
-		    		</div>
-					<div class="modal-footer">
-				        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-			    	</div>
-		    	</div>
-			</div>
-		</div>
-	</div>
-	{% endif %}
+    {% if not request.is_mobile and not request.is_tablet %}
+    <div id="app_messages" role="complementary">
+        <div class="message-banner">
+            <div class="container message-text">
+                {% if user.affiliations.fyp %}<h2>Welcome to MyUW!</h2>{% else %}<h2>It's a new MyUW!</h2>{% endif %} MyUW shows you personal, critical, and timely information. <a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn how it works.</a> {% if not user.affiliations.fyp %}<br /><div class="message-not-ready">Not ready yet? <form action="{% url 'myuw.views.choose.old_site' %}" method="post">{% csrf_token %}<button class="btn btn-link">Switch back to the old MyUW.</button></form></div>{% endif %}
+            </div>
+        </div>
+
+        <!-- App messages modal -->
+        <div class="modal fade" id="message_modal" tabindex="-1" role="dialog" aria-labelledby="MyUWMessageModal" aria-hidden="true">
+            <div class="modal-dialog message-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button id="modal_close" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title" id="myModalLabel">{% if user.affiliations.fyp %}MyUW{% else %}MyUW 2015{% endif %}: Designed to meet student needs</h3>
+                    </div>
+                    <div class="modal-body">
+		        <p>{% if not user.affiliations.fyp %}It's a new MyUW!{% endif %} We did lots of research to understand student needs and we {% if not user.affiliations.fyp %}re{% endif%}built and curated MyUW to focus on these needs. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">We'd love your feedback!</a></p>
+
+                        <h3>Different content appears, depending on the week</h3>
+                        <p>As your quarter rolls on, we'll present the information and resources that are most useful on cards, the most important at the top</p>
+                        <ul>
+                            <li><strong>Visual Schedule</strong> with map links to find your classes</li>
+                            <li><strong>Course Cards</strong> with links to Catalyst and Canvas, research guides, and instructor contact info</li>
+                            {% if user.affiliations.fyp %}
+                            <li><strong>ThriveUW</strong> messaging each week to help you adjust to and succeed at UW</li>
+                            {% endif %}
+                            <li><strong>Registration</strong> materials near your registration date</li>
+                            <li><strong>Final Grades</strong> as soon as they come in</li>
+                            <li><strong>Husky, Tuition, and Library account</strong> information is always visible</li>
+                            <li>Links to all these resources, and more, are categorized and always available on <strong>Resource pages.</strong></li>
+                        </ul>
+
+                        {% if not user.affiliations.fyp %}
+                        <h3>Switch back to the old MyUW</h3>
+                        <p>You can use the old version of MyUW, and we'll continue take you there until Winter Break, or when you choose to switch back, whichever comes first.</p>
+                        {% endif %}
+
+                        <!-- if employee -->
+                        {% if user.affiliations.stud_employee %}
+                        <h3>Student Employees</h3>
+                        <p>A link to Employee Self-Services (ESS) is on the <a href="/resource/employment">Employment page</a>, but you can also use the <a href="https://myuw.washington.edu/servlet/user?tab=7" target="_blank">old version of MyUW</a> to access additional employment resources.</p>
+                        {% endif %}
+                        <!-- /if employee -->
+
+                        <!-- if instructor -->
+                        {% if user.affiliations.faculty %}
+                        <h3>Instructor or TA for a class?</h3>
+<p><a href="https://myuw.washington.edu/servlet/user?tab=8" target="_blank">Use the old version of MyUW to access your teaching resources.</a> We're working on moving this content to this new version of MyUW so you'll eventually have everything in one place.</p>
+                        {% endif %}
+                        <!-- /if instructor -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
     <div id="app_content">
         {% block content %}{% endblock %}
     </div>
     <!-- /content -->
-    
+
     <!-- footer -->
     <div id="app_footer">
-        <div class="container navigation-bar" role="navigation" aria-labelledby="categories"> 
+        <div class="container navigation-bar" role="navigation" aria-labelledby="categories">
             <h2 id="categories" class="sr-only">Categorized Resources</h2>
             <ul class="clearfix navigation-list">
                 <li class="pull-left">
                     <a href="/resource/academics" class="navigation-item hover"><span class="navigation-item-text">Academics</span>
-					<div class="subcategories">Registration, Advising, Grades&#8230;</div></a>
+                        <div class="subcategories">Registration, Advising, Grades&#8230;</div></a>
                 </li>
                 <li class="pull-left">
                     <a href="/resource/finances" class="navigation-item hover"><span class="navigation-item-text">Finances</span>
-					<div class="subcategories">Financial Aid, Taxes, Tuition&#8230;</div></a>
+                        <div class="subcategories">Financial Aid, Taxes, Tuition&#8230;</div></a>
                 </li>
                 <li class="pull-left">
                     <a href="/resource/studentcampuslife" class="navigation-item hover"><span class="navigation-item-text">Student &amp; Campus Life</span>
-					<div class="subcategories">Housing & Dining, Wellness, Transportation&#8230;</div></a>
+                        <div class="subcategories">Housing & Dining, Wellness, Transportation&#8230;</div></a>
                 </li>
                 <li class="pull-left">
                     <a href="/resource/eventsactivities" class="navigation-item hover"><span class="navigation-item-text">Events &amp; Activities</span>
-					<div class="subcategories">Campus Events, News, Social Media&#8230;</div></a>
+                        <div class="subcategories">Campus Events, News, Social Media&#8230;</div></a>
                 </li>
                 <li class="pull-left">
                     <a href="/resource/toolssoftware" class="navigation-item hover"><span class="navigation-item-text">Tools &amp; Software</span>
-					<div class="subcategories">Learning Tools, Email, Directory&#8230;</div></a>
+                        <div class="subcategories">Learning Tools, Email, Directory&#8230;</div></a>
                 </li>
                 <li class="pull-left">
                     <a href="/resource/employment" class="navigation-item hover"><span class="navigation-item-text">Employment</span>
-					<div class="subcategories">Career Center, Husky Jobs, Employee Self-Service&#8230;</div></a>
+                        <div class="subcategories">Career Center, Husky Jobs, Employee Self-Service&#8230;</div></a>
                 </li>
             </ul>
         </div>
-    
-        <div class="footer-bar" role="contentinfo">         
+
+        <div class="footer-bar" role="contentinfo">
             <div class="container footer-links" style="position:relative;">
                 <ul class="footer-links-list">
                     <li class="footer-links-list-item"><a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi"><i class="fa fa-envelope" role="presentation"></i> Contact</a></li>
-                     <li class="footer-links-list-item"><a href="//www.washington.edu/online/terms/">Terms</a></li> 
-                     <li class="footer-links-list-item"><a href="//www.washington.edu/online/privacy/">Privacy</a></li> 
-                     <li class="footer-links-list-item" style="border:none;"><a href="/logout">Log out</a></li>
-					{% if request.is_mobile or request.is_tablet %}
-					<li class="footer-links-list-item desktop-footer-link">
-                                            <button class="btn-link" data-toggle="modal" data-target="#myuw-footer-modal"><i class="fa fa-desktop" role="presentation" aria-hidden="true"></i> Looking for something else?</button>
-						<div class="modal fade" id="myuw-footer-modal" tabindex="-1" role="dialog" aria-labelledby="MyUWFooterModal">
-							<div class="modal-dialog" role="document">
-							    <div class="modal-content">
-									<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									<h3 class="modal-title">Looking for something else?</h3>
-									</div>
-									<div class="modal-body">
-									<p>Everything you need should be here. As your quarter rolls on, we present the information and resources that are most useful on cards, the most important at the top. Links to all the resources are categorized and always available on Resource pages. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Did we miss something? We'd love your feedback!</a></p>
-										<h3 class="modal-title">Learn more about what's here</h3>
-										<ul>
-											<li><strong>Visual Schedule</strong> with map links to find your classes</li>
-											<li><strong>Course Cards</strong> with links to Catalyst and Canvas, research guides, and instructor contact info</li>
-											{% if user.affiliations.fyp %}
-											<li><strong>ThriveUW</strong> messaging each week to help you adjust to and succeed at UW</li>
-											{% endif %}
-											<li><strong>Registration</strong> materials near your registration date</li>
-											<li><strong>Final Grades</strong> as soon as they come in</li>
-											<li><strong>Husky, Tuition, and Library account</strong> information is always visible</li> 
-											<li>Links to all these resources, and more, are categorized and always available on <strong>Resource pages.</strong></li>
-										</ul>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-									</div>
-							    </div>
-							</div>
-						</div>
-					</li> 
-					{% endif %}
+                     <li class="footer-links-list-item"><a href="//www.washington.edu/online/terms/">Terms</a></li>
+                     <li class="footer-links-list-item"><a href="//www.washington.edu/online/privacy/">Privacy</a></li>
+                     <li class="footer-links-list-item" style="border:none;"><a href="logout">Log out</a></li>
+                     {% if request.is_mobile or request.is_tablet %}
+                     <li class="footer-links-list-item desktop-footer-link">
+                         <button class="btn-link" data-toggle="modal" data-target="#myuw-footer-modal"><i class="fa fa-desktop" role="presentation" aria-hidden="true"></i> Looking for something else?</button>
+                         <div class="modal fade" id="myuw-footer-modal" tabindex="-1" role="dialog" aria-labelledby="MyUWFooterModal">
+                             <div class="modal-dialog" role="document">
+                                 <div class="modal-content">
+                                     <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                         <h3 class="modal-title">Looking for something else?</h3>
+                                     </div>
+                                     <div class="modal-body">
+                                         <p>Everything you need should be here. As your quarter rolls on, we present the information and resources that are most useful on cards, the most important at the top. Links to all the resources are categorized and always available on Resource pages. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Did we miss something? We'd love your feedback!</a></p>
+                                         <h3 class="modal-title">Learn more about what's here</h3>
+                                         <ul>
+                                             <li><strong>Visual Schedule</strong> with map links to find your classes</li>
+                                             <li><strong>Course Cards</strong> with links to Catalyst and Canvas, research guides, and instructor contact info</li>
+                                             {% if user.affiliations.fyp %}
+                                             <li><strong>ThriveUW</strong> messaging each week to help you adjust to and succeed at UW</li>
+                                             {% endif %}
+                                             <li><strong>Registration</strong> materials near your registration date</li>
+                                             <li><strong>Final Grades</strong> as soon as they come in</li>
+                                             <li><strong>Husky, Tuition, and Library account</strong> information is always visible</li>
+                                             <li>Links to all these resources, and more, are categorized and always available on <strong>Resource pages.</strong></li>
+                                         </ul>
+                                     </div>
+                                     <div class="modal-footer">
+                                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </li>
+                     {% endif %}
                 </ul>
                 <div style="clear:both;">&copy; {% now "Y" %} University of Washington</div>
             </div>
         </div>
-    
     </div>
     <!-- /footer -->
-    
+
     <!-- dev bar -->
-        
-        
-        
- 
-     <!-- do not compress - lack of trailing semicolons breaks concatenation -->
+
+    <!-- do not compress - lack of trailing semicolons breaks concatenation -->
     <script src="{% static 'vendor/js/jquery-1.11.0.min.js' %}"></script>
     <script src="{% static 'vendor/js/bootstrap-3.1.1.min.js' %}"></script>
-    
     <script src="{% static 'vendor/js/jquery.cookie-1.4.1.min.js' %}"></script>
     <script src="{% static 'vendor/js/ios-orientationchange-fix.min.js' %}"></script>
     <script src="{% static 'vendor/js/handlebars-v2.0.0.js' %}"></script>
@@ -248,7 +242,7 @@
     <script src="{% static 'vendor/js/jquery.ba-dotimeout-1.0.js' %}"></script>
     <script src="{% static 'vendor/js/moment.2.8.3.min.js' %}"></script>
     <script src="{% static 'vendor/js/moment-timezone-2010-2020v0.3.0.min.js' %}"></script>
-     
+
     {% compress js %}
     <!-- app files -->
     <script src="{% static 'js/modal.js' %}"></script>
@@ -263,7 +257,7 @@
     <script src="{% static 'js/other_quarters.js' %}"></script>
     <script src="{% static 'js/myuw_m.js' %}"></script>
     <script src="{% static 'js/handlebars-helpers.js' %}"></script>
-    <script src="{% static 'vendor/js/uw-alert.js' %}"></script> 
+    <script src="{% static 'vendor/js/uw-alert.js' %}"></script>
     <script src="{% static 'js/libraries.js' %}"></script>
     <script src="{% static 'js/notices.js' %}"></script>
     <script src="{% static 'js/landing.js' %}"></script>
@@ -276,6 +270,7 @@
     <script src="{% static 'js/banner/common_loading.js' %}"></script>
     <script src="{% static 'js/banner/profile.js' %}"></script>
     <script src="{% static 'js/banner/notice.js' %}"></script>
+    <script src="{% static 'js/banner/pce.js' %}"></script>
     <script src="{% static 'js/banner/calendar.js' %}"></script>
     <script src="{% static 'js/card/error.js' %}"></script>
     <script src="{% static 'js/card/academic.js' %}"></script>
@@ -284,6 +279,8 @@
     <script src="{% static 'js/card/hfs.js' %}"></script>
     <script src="{% static 'js/card/no_course.js' %}"></script>
     <script src="{% static 'js/card/library.js' %}"></script>
+    <script src="{% static 'js/card/grad_status.js' %}"></script>
+    <script src="{% static 'js/card/grad_committee.js' %}"></script>
     <script src="{% static 'js/card/loading.js' %}"></script>
     <script src="{% static 'js/card/pce_tuition.js' %}"></script>
     <script src="{% static 'js/card/reg_status.js' %}"></script>
@@ -304,8 +301,8 @@
     <script src="{% static 'js/card/new_student/ns_to_register.js' %}"></script>
     <script src="{% static 'js/card/new_student/ns_international_stu.js' %}"></script>
     {% endcompress %}
-    
-     {% if not has_less_compiled %}
+
+    {% if not has_less_compiled %}
     <!-- less js -->
     <script src="{% static 'vendor/js/less-2.0.0.min.js' %}" type="text/javascript"></script>
     {% endif %}
@@ -316,15 +313,10 @@
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
       ga('create', '{{ GOOGLE_ANALYTICS_KEY }}', { 'userId': '{% hash_netid user.netid %}' });
       ga('send', 'pageview');
-    
     </script>
     {% endif %}
     {% include 'logger.html' %}
-
-
   </body>
 </html>
-

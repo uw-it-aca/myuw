@@ -15,7 +15,7 @@ before_script:
   - cp travis-ci/manage.py manage.py
   - python manage.py syncdb --noinput
 script:
-  - pep8 myuw/ --exclude=migrations
+  - pep8 myuw/ --exclude=migrations,myuw/static
   - jshint myuw/static/js/  --verbose
   - mocha myuw/static/js/test/ --recursive
   - coverage run --source=myuw/ --omit=myuw/migrations/* manage.py test myuw
