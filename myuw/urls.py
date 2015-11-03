@@ -1,10 +1,8 @@
 from django.conf.urls import patterns, include, url
-from django.contrib.auth.decorators import login_required
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.finance import Finance
 from myuw.views.api.hfs import HfsBalances
 from myuw.views.api.future_schedule import StudClasScheFutureQuar
-from myuw.views.api.grad import MyGrad
 from myuw.views.api.library import MyLibInfo
 from myuw.views.api.profile import MyProfile
 from myuw.views.api.category_links import CategoryLinks
@@ -17,6 +15,7 @@ from myuw.views.api.academic_events import AcademicEvents
 from myuw.views.api.thrive import ThriveMessages
 from myuw.views.page import index
 from myuw.views.api.calendar import DepartmentalCalendar
+from django.contrib.auth.decorators import login_required
 
 
 urlpatterns = patterns(
@@ -37,8 +36,6 @@ urlpatterns = patterns(
         name="myuw_links_api"),
     url(r'^api/v1/finance/$', login_required(Finance().run),
         name="myuw_finance_api"),
-    url(r'^api/v1/grad/$', login_required(MyGrad().run),
-        name="myuw_grad_api"),
     url(r'^api/v1/hfs/$', login_required(HfsBalances().run),
         name="myuw_hfs_api"),
     url(r'^api/v1/thrive/$', login_required(ThriveMessages().run),

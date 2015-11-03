@@ -86,7 +86,7 @@ def load_schedule(request, schedule, summer_term=""):
             evaluation_json_data = json_for_evaluation(
                 request,
                 get_evaluations_by_section(section),
-                section)
+                section.summer_term)
         except Exception as ex:
             evaluation_json_data = None
 
