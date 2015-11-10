@@ -22,7 +22,7 @@ class IASystemTest(TestCase):
             term = Term()
             term.year = 2013
             term.quarter = "summer"
-            section = new Section()
+            section = Section()
             section.summer_term = "A-term"
             section.term = term
 
@@ -53,7 +53,7 @@ class IASystemTest(TestCase):
             term = Term()
             term.year = 2013
             term.quarter = "summer"
-            section = new Section()
+            section = Section()
             section.summer_term = "A-term"
             section.term = term
             schedule = _get_schedule(regid, term)
