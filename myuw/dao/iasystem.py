@@ -66,7 +66,8 @@ def json_for_evaluation(request, evaluations, section):
     json_data = []
     for evaluation in evaluations:
         if summer_term_overlaped(request, section):
-            if now < evaluation.eval_open_date or\
+            if evaluation.is_completed or\
+                    now < evaluation.eval_open_date or\
                     now >= evaluation.eval_close_date:
                 continue
 

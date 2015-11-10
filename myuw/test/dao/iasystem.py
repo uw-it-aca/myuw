@@ -3,7 +3,7 @@ import pytz
 from django.test import TestCase
 from django.conf import settings
 from django.test.client import RequestFactory
-from restclients.models.sws import Term, Section
+from restclients.models.sws import Section, Term
 from restclients.iasystem.evaluation import get_evaluation_by_id
 from myuw.dao.iasystem import json_for_evaluation,\
     _get_evaluations_by_section_and_student, summer_term_overlaped
@@ -22,7 +22,7 @@ class IASystemTest(TestCase):
             term = Term()
             term.year = 2013
             term.quarter = "summer"
-            section = new Section()
+            section = Section()
             section.summer_term = "A-term"
             section.term = term
 
@@ -53,7 +53,7 @@ class IASystemTest(TestCase):
             term = Term()
             term.year = 2013
             term.quarter = "summer"
-            section = new Section()
+            section = Section()
             section.summer_term = "A-term"
             section.term = term
             schedule = _get_schedule(regid, term)
@@ -73,6 +73,7 @@ class IASystemTest(TestCase):
                              datetime.datetime(2013, 7, 23,
                                                6, 59, 59,
                                                tzinfo=pytz.utc))
+            self.assertFalse(evals[0].is_completed)
 
             now_request = RequestFactory().get("/")
             # after open date, before show date
@@ -202,6 +203,7 @@ class IASystemTest(TestCase):
                              datetime.datetime(2013, 7, 1,
                                                7, 59, 59,
                                                tzinfo=pytz.utc))
+            self.assertFalse(evals[0].is_completed)
             self.assertEqual(evals[1].eval_open_date,
                              datetime.datetime(2013, 6, 5,
                                                7, 0, 0,
@@ -210,6 +212,7 @@ class IASystemTest(TestCase):
                              datetime.datetime(2013, 6, 17,
                                                6, 59, 59,
                                                tzinfo=pytz.utc))
+            self.assertFalse(evals[1].is_completed)
             self.assertEqual(evals[2].eval_open_date,
                              datetime.datetime(2013, 6, 10,
                                                7, 0, 0,
@@ -218,6 +221,7 @@ class IASystemTest(TestCase):
                              datetime.datetime(2013, 6, 19,
                                                6, 59, 59,
                                                tzinfo=pytz.utc))
+            self.assertTrue(evals[2].is_completed)
             now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-05-30"
@@ -247,27 +251,25 @@ class IASystemTest(TestCase):
             self.assertEqual(len(json_data['evals']), 2)
             self.assertEqual(json_data['close_date'],
                              "2013-06-17T06:59:59+00:00")
-            # after open dates of three evals
+            # after open dates of the 3rd completed eval
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-06-10"
             json_data = json_for_evaluation(now_request, evals, None)
             self.assertIsNotNone(json_data)
-            self.assertEqual(len(json_data['evals']), 3)
-            self.assertEqual(json_data['close_date'],
-                             "2013-06-17T06:59:59+00:00")
-            # after close date of one eval
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-06-17"
-            json_data = json_for_evaluation(now_request, evals, None)
             self.assertEqual(len(json_data['evals']), 2)
             self.assertEqual(json_data['close_date'],
-                             "2013-06-19T06:59:59+00:00")
-            # after close date of two evals
+                             "2013-06-17T06:59:59+00:00")
+            # after close date of the 2nd eval
             now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-06-19"
+            now_request.session["myuw_override_date"] = "2013-06-17"
             json_data = json_for_evaluation(now_request, evals, None)
             self.assertEqual(len(json_data['evals']), 1)
             self.assertEqual(json_data['close_date'],
                              "2013-07-01T07:59:59+00:00")
+            # after close date of last eval
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-07-02"
+            json_data = json_for_evaluation(now_request, evals, None)
+            self.assertIsNone(json_data)
             # for spring 2013, grade submission deadline is
             # the day after tomorrow!
