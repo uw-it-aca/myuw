@@ -139,7 +139,7 @@ class IASystemTest(TestCase):
             json_data = json_for_evaluation(now_request, evals, None)
             self.assertIsNone(json_data)
 
-    def test_multiple_instructor(self):
+    def test_multiple_instructors(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
                            RESTCLIENTS_IASYSTEM_DAO_CLASS=FDAO_IAS):
@@ -174,7 +174,7 @@ class IASystemTest(TestCase):
             self.assertEqual(evals[0].instructor_ids[1], 123456782)
             self.assertEqual(evals[0].instructor_ids[2], 123456798)
 
-    def test_multiple_instructor(self):
+    def test_multiple_evals(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
                            RESTCLIENTS_IASYSTEM_DAO_CLASS=FDAO_IAS):
