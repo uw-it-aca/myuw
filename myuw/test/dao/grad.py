@@ -189,6 +189,14 @@ class TestGrad(TestCase):
             self.assertEquals(leave["status"], "requested")
             # requested always shows
 
+            leave_reqs = get_leave_by_regid('12345678901234567890123456789012')
+            self.assertIsNotNone(leave_reqs)
+            self.assertEquals(len(leave_reqs), 7)
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2014-06-19"
+            json_data = leave_to_json(leave_reqs, now_request)
+            self.assertIsNone(json_data, 0)
+
     def test_get_grad_petition(self):
         with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
                            RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
