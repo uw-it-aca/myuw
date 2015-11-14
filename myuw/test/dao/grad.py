@@ -15,8 +15,7 @@ FDAO_GRA = 'restclients.dao_implementation.grad.File'
 class TestGrad(TestCase):
 
     def test_null_system_key(self):
-        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
-                           RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             reqs = get_degree_by_regid(
                 '00000000000000000000000000000001')
             self.assertIsNone(reqs)
