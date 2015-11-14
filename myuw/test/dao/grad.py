@@ -16,20 +16,16 @@ class TestGrad(TestCase):
 
     def test_null_system_key(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
-            reqs = get_degree_by_regid(
-                '00000000000000000000000000000001')
+            reqs = get_degree_by_regid('00000000000000000000000000000001')
             self.assertIsNone(reqs)
 
-            reqs = get_committee_by_regid(
-                '00000000000000000000000000000001')
+            reqs = get_committee_by_regid('00000000000000000000000000000001')
             self.assertIsNone(reqs)
 
-            reqs = get_leave_by_regid(
-                '00000000000000000000000000000001')
+            reqs = get_leave_by_regid('00000000000000000000000000000001')
             self.assertIsNone(reqs)
 
-            reqs = get_petition_by_regid(
-                '00000000000000000000000000000001')
+            reqs = get_petition_by_regid('00000000000000000000000000000001')
             self.assertIsNone(reqs)
 
     def test_get_grad_committee(self):
@@ -49,6 +45,7 @@ class TestGrad(TestCase):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
             now_request = RequestFactory().get("/")
+
             degree_reqs = get_degree_by_regid(
                 '12345678901234567890123456789012')
             self.assertIsNotNone(degree_reqs)
