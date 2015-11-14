@@ -15,15 +15,25 @@ FDAO_GRA = 'restclients.dao_implementation.grad.File'
 
 class TestGrad(TestCase):
 
-    def test_get_grad_degree_for_current_user(self):
+    def test_get_request_non_grad_student(self):
         with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
                            RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
-            degree_reqs = get_degree_by_regid(
-                '9136CCB8F66711D5BE060004AC494FFE')
-            self.assertIsNotNone(degree_reqs)
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
+            reqs = get_degree_by_regid(
+                '00000000000000000000000000000001')
+            self.assertIsNone(reqs)
+
+            reqs = get_committee_by_regid(
+                '00000000000000000000000000000001')
+            self.assertIsNone(reqs)
+
+            reqs = get_leave_by_regid(
+                '00000000000000000000000000000001')
+            self.assertIsNone(reqs)
+
+            reqs = get_petition_by_regid(
+                '00000000000000000000000000000001')
+            self.assertIsNone(reqs)
 
     def test_get_grad_committee(self):
         with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
