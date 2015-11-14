@@ -8,16 +8,14 @@ from myuw.dao.grad import get_degree_by_regid,\
 from django.test.client import RequestFactory
 
 
-FDAO_PWS = 'restclients.dao_implementation.pws.File'
 FDAO_SWS = 'restclients.dao_implementation.sws.File'
 FDAO_GRA = 'restclients.dao_implementation.grad.File'
 
 
 class TestGrad(TestCase):
 
-    def test_get_request_non_grad_student(self):
-        with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
-                           RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+    def test_null_system_key(self):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
             reqs = get_degree_by_regid(
                 '00000000000000000000000000000001')
@@ -36,21 +34,20 @@ class TestGrad(TestCase):
             self.assertIsNone(reqs)
 
     def test_get_grad_committee(self):
-        with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
-                           RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
             committee_reqs = get_committee_by_regid(
                 '9136CCB8F66711D5BE060004AC494FFE')
             self.assertIsNotNone(committee_reqs)
+            self.assertEquals(len(committee_reqs), 3)
+
             committee_reqs = get_committee_by_regid(
                 '9136CCB8F66711D5BE060004AC494F31')
-            self.assertIsNotNone(committee_reqs)
             self.assertEquals(len(committee_reqs), 0)
             self.assertIsNone(to_json(committee_reqs))
 
     def test_get_grad_degree(self):
-        with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
-                           RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
             now_request = RequestFactory().get("/")
             degree_reqs = get_degree_by_regid(
@@ -126,8 +123,7 @@ class TestGrad(TestCase):
                 datetime(2013, 6, 10, 0, 0, 0)))
 
     def test_get_grad_leave(self):
-        with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
-                           RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
             now_request = RequestFactory().get("/")
             leave_reqs = get_leave_by_regid('9136CCB8F66711D5BE060004AC494F31')
@@ -224,8 +220,7 @@ class TestGrad(TestCase):
             self.assertIsNone(json_data, 0)
 
     def test_get_grad_petition(self):
-        with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
-                           RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
             now_request = RequestFactory().get("/")
 
