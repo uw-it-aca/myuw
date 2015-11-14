@@ -54,7 +54,7 @@ class TestGrad(TestCase):
         self.assertEquals(len(json_data), 8)
         degree = json_data[4]
         self.assertEquals(degree["status"], "Withdrawn")
-        
+
         now_request.session = {}
         now_request.session["myuw_override_date"] = "2013-04-25"
         json_data = degree_to_json(degree_reqs, now_request)
