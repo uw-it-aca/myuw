@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.conf import settings
 from datetime import date, datetime, timedelta
 from myuw.dao.grad import get_degree_by_regid,\
-    get_leave_by_regid, get_committee_by_regid,\
+    get_leave_by_regid, get_committee_by_regid, to_json,\
     get_petition_by_regid, leave_to_json, petition_to_json,\
     is_before_eof_2weeks_since_decision_date, degree_to_json
 from django.test.client import RequestFactory
@@ -32,16 +32,27 @@ class TestGrad(TestCase):
             committee_reqs = get_committee_by_regid(
                 '9136CCB8F66711D5BE060004AC494FFE')
             self.assertIsNotNone(committee_reqs)
+            committee_reqs = get_committee_by_regid(
+                '9136CCB8F66711D5BE060004AC494F31')
+            self.assertIsNotNone(committee_reqs)
+            self.assertEquals(len(committee_reqs), 0)
+            self.assertIsNone(to_json(committee_reqs))
 
     def test_get_grad_degree(self):
         with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
                            RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
+            now_request = RequestFactory().get("/")
+            degree_reqs = get_degree_by_regid(
+                '12345678901234567890123456789012')
+            self.assertIsNotNone(degree_reqs)
+            self.assertEquals(len(degree_reqs), 0)
+            self.assertIsNone(degree_to_json(degree_reqs, now_request))
+
             degree_reqs = get_degree_by_regid(
                 '9136CCB8F66711D5BE060004AC494FFE')
             self.assertIsNotNone(degree_reqs)
             self.assertEquals(len(degree_reqs), 8)
-            now_request = RequestFactory().get("/")
 
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-04-24"
@@ -108,10 +119,15 @@ class TestGrad(TestCase):
         with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
                            RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
+            now_request = RequestFactory().get("/")
+            leave_reqs = get_leave_by_regid('9136CCB8F66711D5BE060004AC494F31')
+            self.assertIsNotNone(leave_reqs)
+            self.assertEquals(len(leave_reqs), 0)
+            self.assertIsNone(leave_to_json(leave_reqs, now_request))
+
             leave_reqs = get_leave_by_regid('9136CCB8F66711D5BE060004AC494FFE')
             self.assertIsNotNone(leave_reqs)
             self.assertEquals(len(leave_reqs), 5)
-            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-12-07"
             json_data = leave_to_json(leave_reqs, now_request)
@@ -201,11 +217,17 @@ class TestGrad(TestCase):
         with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
                            RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA):
+            now_request = RequestFactory().get("/")
+
+            petition_reqs = get_petition_by_regid(
+                '9136CCB8F66711D5BE060004AC494F31')
+            self.assertEquals(len(petition_reqs), 0)
+            self.assertIsNone(petition_to_json(petition_reqs, now_request))
+
             petition_reqs = get_petition_by_regid(
                 '9136CCB8F66711D5BE060004AC494FFE')
             self.assertIsNotNone(petition_reqs)
             self.assertEquals(len(petition_reqs), 7)
-            now_request = RequestFactory().get("/")
 
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-04-10"
