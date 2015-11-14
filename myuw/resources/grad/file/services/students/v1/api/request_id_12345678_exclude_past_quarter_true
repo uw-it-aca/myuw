@@ -1,17 +1,1 @@
-[{
-    "syskey":781822,
-    "requestId":99003,
-    "requestType":"General Exam Request",
-    "degreeTitle":"Doctor Of Philosophy (Geography)",
-    "status":"Candidacy Granted",
-    "examPlace":"Smith Hall, Room 409",
-    "examDate":"2013-10-28T14:15:00",
-    "targetAwardYear":2013,
-    "targetAwardQuarter":"autumn",
-    "requestSubmitDate":"2013-10-13T11:46:15.267",
-    "major":"GEOG",
-    "majorFullName":"Geography",
-    "pathway":0,
-    "degreeLevel":4,
-    "degreeType":1
-}]
+[]
