@@ -32,7 +32,7 @@ AUTH_BACKEND = 'django.contrib.auth.backends.ModelBackend'
                                        ),
                    AUTHENTICATION_BACKENDS=(AUTH_BACKEND,)
                    )
-class TestGrad(TestCase):
+class TestApiGrad(TestCase):
     def setUp(self):
         self.client = Client()
 

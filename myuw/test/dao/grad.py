@@ -12,7 +12,7 @@ FDAO_SWS = 'restclients.dao_implementation.sws.File'
 FDAO_GRA = 'restclients.dao_implementation.grad.File'
 
 
-class TestGrad(TestCase):
+class TestDaoGrad(TestCase):
 
     def test_get_grad_committee(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
