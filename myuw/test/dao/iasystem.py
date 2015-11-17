@@ -17,33 +17,6 @@ FDAO_IAS = 'restclients.dao_implementation.iasystem.File'
 
 class IASystemTest(TestCase):
 
-    def test_summer_term_overlaped(self):
-        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
-            term = Term()
-            term.year = 2013
-            term.quarter = "summer"
-            section = Section()
-            section.summer_term = "A-term"
-            section.term = term
-
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-07-10"
-            self.assertTrue(summer_term_overlaped(now_request, section))
-            section.summer_term = "Full-term"
-            self.assertFalse(summer_term_overlaped(now_request, section))
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-08-10"
-            self.assertTrue(summer_term_overlaped(now_request, section))
-
-            section.summer_term = "B-term"
-            self.assertTrue(summer_term_overlaped(now_request, section))
-
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-03-10"
-            self.assertTrue(summer_term_overlaped(now_request, 'None'))
-            self.assertTrue(summer_term_overlaped(now_request, '-'))
-
     def test_get_evaluations_by_section(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
@@ -53,9 +26,6 @@ class IASystemTest(TestCase):
             term = Term()
             term.year = 2013
             term.quarter = "summer"
-            section = Section()
-            section.summer_term = "A-term"
-            section.term = term
             schedule = _get_schedule(regid, term)
             evals = None
             for section in schedule.sections:

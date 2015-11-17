@@ -21,8 +21,6 @@ from myuw.dao.uwemail import get_email_forwarding_for_current_user
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.logger.session_log import log_session
 
-
-logger = logging.getLogger(__name__)
 LOGOUT_URL = "/user_logout"
 
 
@@ -41,7 +39,6 @@ def index(request,
         # On mobile devices, all students get the current myuw.  Non-students
         # are sent to the legacy site.
         if not is_student():
-            logger.info("%s not a student, redirect to legacy!" % netid)
             return redirect_to_legacy_site()
     else:
         # On the desktop, we're migrating users over.  There are 2 classes of
@@ -59,6 +56,8 @@ def index(request,
                 return redirect_to_legacy_site()
 
     timer = Timer()
+    logger = logging.getLogger('myuw.views.page.index')
+
     context = {
         "year": year,
         "quarter": quarter,

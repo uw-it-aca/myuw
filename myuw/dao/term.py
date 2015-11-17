@@ -7,15 +7,10 @@ from datetime import date, datetime, timedelta
 import logging
 import traceback
 from django.conf import settings
-from restclients.models.sws import Term
-from restclients.util.datetime_convertor import convert_to_begin_of_day,\
-    convert_to_end_of_day
-from restclients.sws.section import is_a_term, is_b_term, is_full_summer_term
-from restclients.sws.term import get_term_by_date, get_specific_term,\
-    get_current_term, get_next_term, get_previous_term,\
-    get_term_before, get_term_after, get_next_autumn_term,\
-    get_next_non_summer_term
-from myuw.dao import is_using_file_dao
+import restclients.sws.term as sws_term
+from restclients.dao import SWS_DAO
+from restclients.sws.term import get_term_by_date, get_term_after
+from restclients.sws.term import get_term_before, get_current_term
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time, log_exception
 

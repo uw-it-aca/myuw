@@ -4,9 +4,8 @@ from restclients.pws import PWS
 from restclients.exceptions import DataFailureException
 from restclients.iasystem import evaluation
 from myuw.dao.student_profile import get_profile_of_current_user
-from myuw.dao.term import get_comparison_datetime, is_b_term,\
-    convert_to_begin_of_day, get_current_summer_term,\
-    get_bod_7d_before_last_instruction, get_eod_current_term
+from myuw.dao.term import get_comparison_date, term_matched,\
+    get_bof_7d_before_last_instruction, get_eof_term
 
 
 def get_evaluations_by_section(section):
