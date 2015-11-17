@@ -85,7 +85,7 @@ class TestGrad(TestCase):
                          "Dissertation/Thesis research/writing")
         self.assertEqual(leave['submit_date'],
                          "2012-09-10T09:40:03")
-        self.assertEqual(leave['status'], "requested")
+        self.assertEqual(leave['status'], "Requested")
         self.assertEqual(len(leave['terms']), 1)
         self.assertEqual(leave['terms'][0]['quarter'], "Spring")
         self.assertEqual(leave['terms'][0]['year'], 2013)
