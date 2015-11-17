@@ -15,6 +15,11 @@ class TestGrad(TestCase):
             '10000000000000000000000000000002')
         self.assertIsNotNone(committee_reqs)
         self.assertEquals(len(committee_reqs), 3)
+        json_data = to_json(committee_reqs)
+        self.assertIsNotNone(json_data)
+        self.assertEquals(len(json_data), 3)
+        self.assertEquals(len(json_data[1]['members']), 3)
+        self.assertEquals(len(json_data[2]['members']), 4)
 
         committee_reqs = get_committee_by_regid(
             '10000000000000000000000000000003')
