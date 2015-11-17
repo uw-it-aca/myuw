@@ -31,7 +31,7 @@ var GradCommitteeCard = {
     },
 
     show_error: function() {
-        GradCommitteeCard.dom_target.html(CardWithError.render("GradCommittee"));
+        GradCommitteeCard.dom_target.html(CardWithError.render("Your Committees"));
     }
 
 };
