@@ -7,10 +7,9 @@ import logging
 from django.utils import timezone
 from datetime import datetime, timedelta
 from myuw.models import SeenRegistration
-from restclients.util.summer_term import is_full_summer_term,\
-    is_a_term, is_b_term
 from myuw.dao.term import get_current_summer_term,\
-    get_comparison_date, get_specific_term, get_current_quarter
+    get_comparison_date, get_specific_term, get_current_quarter,\
+    is_a_term, is_b_term, is_full_summer_term
 from myuw.dao.schedule import has_summer_quarter_section,\
     get_current_quarter_schedule, get_next_quarter_schedule,\
     get_next_autumn_quarter_schedule

@@ -141,6 +141,9 @@ def degree_to_json(req_data, request):
         if is_before_eof_2weeks_since_decision_date(item.decision_date, now):
             # show for 2 weeks after the decision date
             result.append(item.json_data())
+
+    if len(result) == 0:
+        return None
     return result
 
 
@@ -203,6 +206,8 @@ def leave_to_json(req_data, request):
                                result, item, now)
             continue
 
+    if len(result) == 0:
+        return None
     return result
 
 
@@ -226,4 +231,7 @@ def petition_to_json(req_data, request):
         if is_before_eof_2weeks_since_decision_date(item.decision_date, now):
             # show for 2 weeks after the decision date
             result.append(item.json_data())
+
+    if len(result) == 0:
+        return None
     return result

@@ -32,16 +32,16 @@ AUTH_BACKEND = 'django.contrib.auth.backends.ModelBackend'
                                        ),
                    AUTHENTICATION_BACKENDS=(AUTH_BACKEND,)
                    )
-class TestGrad(TestCase):
+class TestApiGrad(TestCase):
     def setUp(self):
         self.client = Client()
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_javerage(self):
         url = reverse("myuw_grad_api")
-        get_user('javerage')
-        self.client.login(username='javerage',
-                          password=get_user_pass('javerage'))
+        get_user('seagrad')
+        self.client.login(username='seagrad',
+                          password=get_user_pass('seagrad'))
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertIsNotNone(response.content)
@@ -85,7 +85,7 @@ class TestGrad(TestCase):
                          "Dissertation/Thesis research/writing")
         self.assertEqual(leave['submit_date'],
                          "2012-09-10T09:40:03")
-        self.assertEqual(leave['status'], "requested")
+        self.assertEqual(leave['status'], "Requested")
         self.assertEqual(len(leave['terms']), 1)
         self.assertEqual(leave['terms'][0]['quarter'], "Spring")
         self.assertEqual(leave['terms'][0]['year'], 2013)
@@ -101,3 +101,18 @@ class TestGrad(TestCase):
                          "2013-04-10T00:00:00")
         self.assertEqual(petition['dept_recommend'], "Approve")
         self.assertEqual(petition['gradschool_decision'], "Approved")
+
+    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
+    def test_none(self):
+        url = reverse("myuw_grad_api")
+        get_user('none')
+        self.client.login(username='none',
+                          password=get_user_pass('none'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertIsNotNone(response.content)
+        data = json.loads(response.content)
+        self.assertIsNone(data.get("degrees"))
+        self.assertIsNone(data.get("committees"))
+        self.assertIsNone(data.get("leaves"))
+        self.assertIsNone(data.get("petitions"))

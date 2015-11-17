@@ -5,7 +5,7 @@
 <body>
 
 <div class="group">
-    <span class="member" type="eff_member">eight</span>
+    <span class="member" type="eff_member">tacgrad</span>
     <div class="parent_group">
         <a rel="parent_group" class="group"  href='/restclients/view/gws/group_sws/v2/group/uw_affiliation_graduate/'>uw_affiliation_graduate</a>
     </div>

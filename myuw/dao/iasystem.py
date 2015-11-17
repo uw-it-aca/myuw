@@ -3,9 +3,8 @@ from django.utils import timezone
 from restclients.pws import PWS
 from restclients.exceptions import DataFailureException
 from restclients.iasystem import evaluation
-from restclients.util.summer_term import is_b_term
 from myuw.dao.student_profile import get_profile_of_current_user
-from myuw.dao.term import get_comparison_datetime,\
+from myuw.dao.term import get_comparison_datetime, is_b_term,\
     convert_to_begin_of_day, get_current_summer_term,\
     get_bod_7d_before_last_instruction, get_eod_current_term
 

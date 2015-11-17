@@ -42,7 +42,7 @@ var GradStatusCard = {
     },
 
     show_error: function() {
-        GradStatusCard.dom_target.html(CardWithError.render("GradStatus"));
+        GradStatusCard.dom_target.html(CardWithError.render("Graduate Request Status"));
     }
 
 };
