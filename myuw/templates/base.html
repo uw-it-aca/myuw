@@ -127,26 +127,25 @@
                         <!-- if employee -->
                         {% if user.affiliations.stud_employee %}
                         <h3>Student Employees</h3>
-                        <p>A link to Employee Self-Services (ESS) is on the <a href="/resource/employment">Employment page</a>, but you can also use the <a href="https://myuw.washington.edu/servlet/main/?tab=7" target="_blank">old version of MyUW</a> to access additional employment resources.</p>
+                        <p>A link to Employee Self-Services (ESS) is on the <a href="/resource/employment">Employment page</a>, but you can also use the <a href="https://myuw.washington.edu/servlet/user?tab=7" target="_blank">old version of MyUW</a> to access additional employment resources.</p>
                         {% endif %}
                         <!-- /if employee -->
 
                         <!-- if instructor -->
                         {% if user.affiliations.faculty %}
                         <h3>Instructor or TA for a class?</h3>
-<p><a href="https://myuw.washington.edu/servlet/main/?tab=8" target="_blank">Use the old version of MyUW to access your teaching resources.</a> We're working on moving this content to this new version of MyUW so you'll eventually have everything in one place.</p>
+<p><a href="https://myuw.washington.edu/servlet/user?tab=8" target="_blank">Use the old version of MyUW to access your teaching resources.</a> We're working on moving this content to this new version of MyUW so you'll eventually have everything in one place.</p>
                         {% endif %}
                         <!-- /if instructor -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     {% endif %}
-
     <div id="app_content">
         {% block content %}{% endblock %}
     </div>
@@ -271,6 +270,7 @@
     <script src="{% static 'js/banner/common_loading.js' %}"></script>
     <script src="{% static 'js/banner/profile.js' %}"></script>
     <script src="{% static 'js/banner/notice.js' %}"></script>
+    <script src="{% static 'js/banner/pce.js' %}"></script>
     <script src="{% static 'js/banner/calendar.js' %}"></script>
     <script src="{% static 'js/card/error.js' %}"></script>
     <script src="{% static 'js/card/academic.js' %}"></script>

@@ -117,7 +117,7 @@ def redirect_to_legacy_site():
 
 
 def logout(request):
-    # Ends current myuw session
+    # Expires current myuw session
     django_logout(request)
 
     # Redirects to weblogin logout page
