@@ -3,6 +3,9 @@ jinter
 jbothell
 jnew
 eight
+seagrad
+botgrad
+tacgrad
 none
 b3306a
 b3306b

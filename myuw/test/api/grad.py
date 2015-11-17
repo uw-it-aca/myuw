@@ -39,9 +39,9 @@ class TestGrad(TestCase):
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_javerage(self):
         url = reverse("myuw_grad_api")
-        get_user('javerage')
-        self.client.login(username='javerage',
-                          password=get_user_pass('javerage'))
+        get_user('seagrad')
+        self.client.login(username='seagrad',
+                          password=get_user_pass('seagrad'))
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertIsNotNone(response.content)

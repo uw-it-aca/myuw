@@ -10,27 +10,14 @@ from django.test.client import RequestFactory
 
 class TestGrad(TestCase):
 
-    def test_null_system_key(self):
-        reqs = get_degree_by_regid('00000000000000000000000000000001')
-        self.assertIsNone(reqs)
-
-        reqs = get_committee_by_regid('00000000000000000000000000000001')
-        self.assertIsNone(reqs)
-
-        reqs = get_leave_by_regid('00000000000000000000000000000001')
-        self.assertIsNone(reqs)
-
-        reqs = get_petition_by_regid('00000000000000000000000000000001')
-        self.assertIsNone(reqs)
-
     def test_get_grad_committee(self):
         committee_reqs = get_committee_by_regid(
-            '9136CCB8F66711D5BE060004AC494FFE')
+            '10000000000000000000000000000002')
         self.assertIsNotNone(committee_reqs)
         self.assertEquals(len(committee_reqs), 3)
 
         committee_reqs = get_committee_by_regid(
-            '9136CCB8F66711D5BE060004AC494F31')
+            '10000000000000000000000000000003')
         self.assertEquals(len(committee_reqs), 0)
         self.assertIsNone(to_json(committee_reqs))
 
@@ -38,13 +25,13 @@ class TestGrad(TestCase):
         now_request = RequestFactory().get("/")
 
         degree_reqs = get_degree_by_regid(
-            '12345678901234567890123456789012')
+            '10000000000000000000000000000004')
         self.assertIsNotNone(degree_reqs)
         self.assertEquals(len(degree_reqs), 0)
         self.assertIsNone(degree_to_json(degree_reqs, now_request))
 
         degree_reqs = get_degree_by_regid(
-            '9136CCB8F66711D5BE060004AC494FFE')
+            '10000000000000000000000000000002')
         self.assertIsNotNone(degree_reqs)
         self.assertEquals(len(degree_reqs), 8)
 
@@ -111,12 +98,12 @@ class TestGrad(TestCase):
 
     def test_get_grad_leave(self):
         now_request = RequestFactory().get("/")
-        leave_reqs = get_leave_by_regid('9136CCB8F66711D5BE060004AC494F31')
+        leave_reqs = get_leave_by_regid('10000000000000000000000000000003')
         self.assertIsNotNone(leave_reqs)
         self.assertEquals(len(leave_reqs), 0)
         self.assertIsNone(leave_to_json(leave_reqs, now_request))
 
-        leave_reqs = get_leave_by_regid('9136CCB8F66711D5BE060004AC494FFE')
+        leave_reqs = get_leave_by_regid('10000000000000000000000000000002')
         self.assertIsNotNone(leave_reqs)
         self.assertEquals(len(leave_reqs), 5)
         now_request.session = {}
@@ -124,12 +111,12 @@ class TestGrad(TestCase):
         json_data = leave_to_json(leave_reqs, now_request)
         self.assertEquals(len(json_data), 5)
         leave = json_data[2]
-        self.assertEquals(leave["status"], "paid")
+        self.assertEquals(leave["status"], "Paid")
         leave = json_data[3]
-        self.assertEquals(leave["status"], "denied")
+        self.assertEquals(leave["status"], "Denied")
         # denied shows until eof 2012 autumn
         leave = json_data[4]
-        self.assertEquals(leave["status"], "approved")
+        self.assertEquals(leave["status"], "Approved")
         # the 1st approved shows until eof last instruction 2012 autumn
         # the 2nd approved shows until eof last instruction 2013 spring
         self.assertEquals(len(leave["terms"]), 2)
@@ -139,10 +126,10 @@ class TestGrad(TestCase):
         json_data = leave_to_json(leave_reqs, now_request)
         self.assertEquals(len(json_data), 5)
         leave = json_data[2]
-        self.assertEquals(leave["status"], "paid")
+        self.assertEquals(leave["status"], "Paid")
         # paid shows until eof 2013 winter
         leave = json_data[4]
-        self.assertEquals(leave["status"], "approved")
+        self.assertEquals(leave["status"], "Approved")
         self.assertEquals(len(leave["terms"]), 1)
 
         now_request.session = {}
@@ -150,21 +137,21 @@ class TestGrad(TestCase):
         json_data = leave_to_json(leave_reqs, now_request)
         self.assertEquals(len(json_data), 4)
         leave = json_data[2]
-        self.assertEquals(leave["status"], "paid")
+        self.assertEquals(leave["status"], "Paid")
         # paid shows until eof 2013 winter
         leave = json_data[3]
-        self.assertEquals(leave["status"], "approved")
+        self.assertEquals(leave["status"], "Approved")
         # the end of winter 2013
         now_request.session = {}
         now_request.session["myuw_override_date"] = "2013-03-27"
         json_data = leave_to_json(leave_reqs, now_request)
         self.assertEquals(len(json_data), 3)
         leave = json_data[0]
-        self.assertEquals(leave["status"], "requested")
+        self.assertEquals(leave["status"], "Requested")
         leave = json_data[1]
-        self.assertEquals(leave["status"], "withdrawn")
+        self.assertEquals(leave["status"], "Withdrawn")
         leave = json_data[2]
-        self.assertEquals(leave["status"], "approved")
+        self.assertEquals(leave["status"], "Approved")
         self.assertEquals(len(leave["terms"]), 1)
         # this approved shows until eof last instruction 2013 spring
         now_request.session = {}
@@ -172,11 +159,11 @@ class TestGrad(TestCase):
         json_data = leave_to_json(leave_reqs, now_request)
         self.assertEquals(len(json_data), 3)
         leave = json_data[0]
-        self.assertEquals(leave["status"], "requested")
+        self.assertEquals(leave["status"], "Requested")
         leave = json_data[1]
-        self.assertEquals(leave["status"], "withdrawn")
+        self.assertEquals(leave["status"], "Withdrawn")
         leave = json_data[2]
-        self.assertEquals(leave["status"], "approved")
+        self.assertEquals(leave["status"], "Approved")
         self.assertEquals(len(leave["terms"]), 1)
         # this approved shows until eof last instruction 2013 spring
         now_request.session = {}
@@ -184,19 +171,19 @@ class TestGrad(TestCase):
         json_data = leave_to_json(leave_reqs, now_request)
         self.assertEquals(len(json_data), 2)
         leave = json_data[0]
-        self.assertEquals(leave["status"], "requested")
+        self.assertEquals(leave["status"], "Requested")
         leave = json_data[1]
-        self.assertEquals(leave["status"], "withdrawn")
+        self.assertEquals(leave["status"], "Withdrawn")
         # withdrawn shows until eof 2013 summer
         now_request.session = {}
         now_request.session["myuw_override_date"] = "2013-08-28"
         json_data = leave_to_json(leave_reqs, now_request)
         self.assertEquals(len(json_data), 1)
         leave = json_data[0]
-        self.assertEquals(leave["status"], "requested")
+        self.assertEquals(leave["status"], "Requested")
         # requested always shows
 
-        leave_reqs = get_leave_by_regid('12345678901234567890123456789012')
+        leave_reqs = get_leave_by_regid('10000000000000000000000000000004')
         self.assertIsNotNone(leave_reqs)
         self.assertEquals(len(leave_reqs), 7)
         now_request.session = {}
@@ -208,12 +195,12 @@ class TestGrad(TestCase):
         now_request = RequestFactory().get("/")
 
         petition_reqs = get_petition_by_regid(
-            '9136CCB8F66711D5BE060004AC494F31')
+            '10000000000000000000000000000003')
         self.assertEquals(len(petition_reqs), 0)
         self.assertIsNone(petition_to_json(petition_reqs, now_request))
 
         petition_reqs = get_petition_by_regid(
-            '9136CCB8F66711D5BE060004AC494FFE')
+            '10000000000000000000000000000002')
         self.assertIsNotNone(petition_reqs)
         self.assertEquals(len(petition_reqs), 7)
 
