@@ -1,0 +1,115 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "gradstatus_card_content" %}
+
+    <div aria-labeledby="graduate_status" class="card">
+        <h3>Graduate Request Status</h3>
+
+        <!-- petitions -->
+        {{#if petitions }}
+            <div class="card-badge-container" id="petition-reqs">
+                <h4>Petition Requests</h4>
+
+                <ul class="card_list">
+                    {{ #each petitions}}
+                    <li>
+                        <div class="card-badge clearfix">
+                            <h5>{{description}}</h5>
+                            <ul class="recommendation-list">
+                                {{#if dept_recommend}}
+                                <li class="clearfix">
+                                    <div class="pull-left">
+                                        <span class="card-badge-label">Department Recommendation</span>
+                                    </div>
+                                    <span>
+                                        <span class="card-badge-value">{{dept_recommend}}</span>
+                                    </span>
+                                </li>
+                                {{/if}}
+
+                                {{#if gradschool_decision}}
+                                <li class="clearfix">
+                                    <div class="pull-left">
+                                        <span class="card-badge-label">Graduate School Decision</span>
+                                    </div>
+                                    <span>
+                                        <span class="card-badge-value">{{gradschool_decision}}</span>
+                                    </span>
+                                </li>
+                                {{/if}}
+                            </ul>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        {{/if}}
+        <!-- end petitions -->
+
+        <!-- leave -->
+        {{#if leaves }}
+            <div class="card-badge-container" id="leave-reqs">
+                <h4>Leave Requests</h4>
+
+                <ul class="card_list">
+                    {{ #each leaves}}
+                    <li>
+                        <div class="card-badge clearfix">
+                            <h5>
+                               {{#each terms}}{{#not_first @index}}, {{/not_first}}{{quarter}} {{year}}{{/each}} Leave
+                            </h5>
+                             <div class="pull-left">
+                                <span class="card-badge-label">Status</span>
+                             </div>
+                             <span>
+                                 <span class="card-badge-value">
+                                 {{#not_equal status 'Approved'}}
+                                     {{status}}
+                                 {{/not_equal}}
+                                 {{#equal status 'Approved'}}
+                                     Approved<br /><a target="_blank" href="https://apps.grad.uw.edu/mgp-stu/uwnetid/default.aspx" class="pull-right" style="font-weight: normal;">&nbsp;Pay Your Fee To Confirm</a>
+                                 {{/equal}}
+                                 </span>
+                             </span>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        {{/if}}
+        <!-- end leave -->
+
+        <!-- degrees -->
+        {{#if degrees }}
+            <div class="card-badge-container" id="degree-reqs">
+                <h4>Degree and Exam Requests</h4>
+
+                <ul class="card_list">
+                    {{ #each degrees}}
+                    <li>
+                        <div class="card-badge clearfix"><!--<span class="card-badge-value">{{req_type}}</span>-->
+                            <h5>{{req_type}}, {{target_award_quarter}} {{target_award_year}}</h5>
+                            <div>
+                                <div class="degree-title">{{degree_title}}</div>
+                                <div class="pull-left">
+                                    <span class="card-badge-label">Status</span>
+                                </div>
+                                <span>
+                                    <span class="card-badge-value">{{status}}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        {{/if}}
+        <!-- end degrees -->
+
+        <div class="pull-right">
+            <div class="card-badge-action">
+                <a href="http://www.grad.uw.edu/mygrad/student.htm">Go to MyGrad</a>
+            </div>
+        </div>
+        <br class="clearfix" />
+    </div>
+    {% endtplhandlebars %}
