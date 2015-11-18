@@ -116,3 +116,9 @@ class TestApiGrad(TestCase):
         self.assertIsNone(data.get("committees"))
         self.assertIsNone(data.get("leaves"))
         self.assertIsNone(data.get("petitions"))
+
+        get_user('jinter')
+        self.client.login(username='jinter',
+                          password=get_user_pass('jinter'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
