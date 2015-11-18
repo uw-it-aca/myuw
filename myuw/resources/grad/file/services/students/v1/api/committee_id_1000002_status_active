@@ -38,7 +38,7 @@
                  "email":"lll@oge.sld.pe"},
                 {"nameFirst":"Bet",
                  "nameLast":"Shell-Duncan",
-                 "memberType":"member",
+                 "memberType":"gsr",
                  "readingType":null,
                  "status":"active",
                  "dept":"Anthropology",
@@ -52,7 +52,14 @@
      "status":"active",
      "startDate":"2013-06-07T00:00:00",
      "endDate":null,
-     "members":[{"nameFirst":"Bet",
+     "members":[{"nameFirst":"James T.",
+                 "nameLast":"Pfeiffer",
+                 "memberType":"member",
+                 "readingType":null,
+                 "status":"active",
+                 "dept":"Global Health",
+                 "email":"jjj@uw.edu"},
+                 {"nameFirst":"Bet",
                  "nameLast":"Duncan",
                  "memberType":"chair",
                  "readingType":"chair",
@@ -72,14 +79,7 @@
                  "readingType":null,
                  "status":"active",
                  "dept":"Anthropology",
-                 "email":"sss@u.washington.edu"},
-                {"nameFirst":"James T.",
-                 "nameLast":"Pfeiffer",
-                 "memberType":"member",
-                 "readingType":null,
-                 "status":"active",
-                 "dept":"Global Health",
-                 "email":"jjj@uw.edu"}
+                 "email":"sss@u.washington.edu"}
               ]
     }
 ]
