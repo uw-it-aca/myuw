@@ -10,7 +10,7 @@
                 <div class="myuw-events-info">Showing events in the next 14 days.</div>
                     {{ #each grouped_events_display}}
                     <ul class="myuw-events-list">
-
+                        
                             <li class="myuw-events-list-item">
                                 <div class="myuw-events-date">{{ acal_page_date_format start_date end_date }}</div>
                                 <div>
@@ -27,6 +27,7 @@
 	                                <div class="myuw-events-location"><em>Location not available</em></div>
 	                            {{ /if }}
                             </li>
+                        
                     </ul>
                     {{ /each }}
                     {{ #if needs_disclosure }}

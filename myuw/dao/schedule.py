@@ -91,12 +91,12 @@ def filter_schedule_sections_by_summer_term(schedule, summer_term):
     """
     Filter the schedule sections by the give summer_term.
     """
-    if has_summer_quarter_section(schedule) and\
-            is_half_summer_term(summer_term):
+    if (has_summer_quarter_section(schedule) and
+            is_half_summer_term(summer_term)):
         filtered_sections = []
         for section in schedule.sections:
-            if section.is_full_summer_term() or\
-                    section.is_same_summer_term(summer_term):
+            if (is_full_summer_term(section.summer_term) or
+                    is_same_summer_term(section.summer_term, summer_term)):
                 filtered_sections.append(section)
         schedule.sections = filtered_sections
 
@@ -107,13 +107,5 @@ def has_summer_quarter_section(schedule):
     """
     return (schedule is not None and
             len(schedule.sections) > 0 and
-            schedule.term.is_summer_quarter()
+            schedule.term.quarter == "summer"
             )
-
-
-def is_half_summer_term(str):
-    """
-    return True if the given str is A-term or B-term
-    @return True if the given str is A-term or B-term
-    """
-    return is_a_term(str) or is_b_term(str)

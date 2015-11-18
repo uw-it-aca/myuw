@@ -29,34 +29,23 @@ def _get_evaluations_by_section_and_student(section, student_number):
         return None
 
 
-def summer_term_overlaped(request, given_section):
-    """
-    @return true if:
-    1). this is not a summer quarter or
-    2). the given_summer_term is overlaped with the
-        current summer term in the request
-    """
-    current_summer_term = get_current_summer_term(request)
-    if given_section is None or current_summer_term is None:
-        return True
-    return (given_section.is_same_summer_term(current_summer_term) or
-            given_section.is_full_summer_term() and
-            is_b_term(current_summer_term))
-
-
-def json_for_evaluation(request, evaluations, section):
+def json_for_evaluation(request, evaluations, section_summer_term):
     if evaluations is None:
         return None
     local_tz = timezone.get_current_timezone()
-    now = local_tz.localize(get_comparison_datetime(request))
+    today = get_comparison_date(request)
+    now = local_tz.localize(
+        datetime(today.year, today.month, today.day, 0, 0, 1))
 
     # the start date of the default show window
-    show_date = get_bod_7d_before_last_instruction(request)
-    on_dt = local_tz.localize(convert_to_begin_of_day(show_date))
+    show_date = get_bof_7d_before_last_instruction(request)
+    on_dt = local_tz.localize(
+        datetime(show_date.year, show_date.month, show_date.day, 0, 0, 0))
 
     # the end date of the default show window
-    hide_date = get_eod_current_term(request, True)
-    off_dt = local_tz.localize(convert_to_begin_of_day(hide_date))
+    hide_date = get_eof_term(request, True)
+    off_dt = local_tz.localize(
+        datetime(hide_date.year, hide_date.month, hide_date.day, 0, 0, 0))
 
     if now < on_dt or now > off_dt:
         return None
@@ -64,7 +53,7 @@ def json_for_evaluation(request, evaluations, section):
     pws = PWS()
     json_data = []
     for evaluation in evaluations:
-        if summer_term_overlaped(request, section):
+        if term_matched(request, section_summer_term):
             if now < evaluation.eval_open_date or\
                     now >= evaluation.eval_close_date:
                 continue

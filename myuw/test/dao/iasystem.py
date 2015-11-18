@@ -6,7 +6,7 @@ from django.test.client import RequestFactory
 from restclients.models.sws import Term, Section
 from restclients.iasystem.evaluation import get_evaluation_by_id
 from myuw.dao.iasystem import json_for_evaluation,\
-    _get_evaluations_by_section_and_student, summer_term_overlaped
+    _get_evaluations_by_section_and_student
 from myuw.dao.schedule import _get_schedule
 
 
@@ -73,18 +73,16 @@ class IASystemTest(TestCase):
                              datetime.datetime(2013, 7, 23,
                                                6, 59, 59,
                                                tzinfo=pytz.utc))
-
             now_request = RequestFactory().get("/")
             # after open date, before show date
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-16"
-            json_data = json_for_evaluation(now_request, evals, section)
+            json_data = json_for_evaluation(now_request, evals, "A-term")
             self.assertIsNone(json_data)
-
             # after show date
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-17"
-            json_data = json_for_evaluation(now_request, evals, section)
+            json_data = json_for_evaluation(now_request, evals, "A-term")
             self.assertIsNotNone(json_data)
             self.assertEqual(len(json_data['evals']), 1)
             self.assertEqual(json_data['close_date'],
@@ -92,7 +90,7 @@ class IASystemTest(TestCase):
             # before close date
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-22"
-            json_data = json_for_evaluation(now_request, evals, section)
+            json_data = json_for_evaluation(now_request, evals, "A-term")
             self.assertIsNotNone(json_data)
             self.assertEqual(len(json_data['evals']), 1)
             self.assertEqual(json_data['close_date'],
@@ -100,7 +98,7 @@ class IASystemTest(TestCase):
             # before hide date but after close date
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-24"
-            json_data = json_for_evaluation(now_request, evals, section)
+            json_data = json_for_evaluation(now_request, evals, "A-term")
             self.assertIsNone(json_data)
 
     def test_json_for_evaluation(self):
