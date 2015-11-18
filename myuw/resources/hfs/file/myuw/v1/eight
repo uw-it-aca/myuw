@@ -3,11 +3,11 @@
   "student_husky_card": {
     "balance": 100.23,
     "last_transaction_date": "2014-06-02T15:17:16.789",
-    "add_funds_url": "https://www.hfs.washington.edu/olco"
+    "add_funds_url": "https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx"
   },
   "resident_dining": {
     "balance": 15.1,
     "last_transaction_date": "2014-06-01T13:15:36.573",
-    "add_funds_url": "https://www.hfs.washington.edu/olco"
+    "add_funds_url": "https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx"
   }
 }
