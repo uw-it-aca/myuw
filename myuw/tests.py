@@ -1,4 +1,4 @@
-from django.test import TestCasef
+from django.test import TestCase
 from myuw.test.models import TestUserNotices
 from myuw.test.academic_events import TestAcademicEvents
 from myuw.test.dao import TestDao
