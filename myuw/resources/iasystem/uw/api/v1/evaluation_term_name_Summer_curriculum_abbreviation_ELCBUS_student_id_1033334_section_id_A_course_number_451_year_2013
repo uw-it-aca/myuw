@@ -25,9 +25,10 @@
                 "href":"https://uw.iasystem.org/api/v1/evaluation",
                 "rel":"collection filter"}],
      "version":"1.0",
-     "items":[
-              {"href":"https://uw.iasystem.org/api/v1/evaluation/130767",
-               "data":[{"name":"id",
+     "items":
+       [
+             {"href": "https://uw.iasystem.org/api/v1/evaluation/130767",
+              "data": [{"name":"id",
                         "prompt":"Id",
                         "value":"130767"},
                         {"prompt":"Year",
@@ -49,17 +50,20 @@
                          "name":"closeDate",
                          "value":"2013-07-29T06:59:59Z"}
                          ],
-               "links":[{"rel":"publishedto",
+              "links": [{"rel":"publishedto",
                          "href":"https://uw.iasystem.org/survey/130808",
                          "prompt":"Evaluation URL"}],
-               "meta":[{"value":"evaluation",
+              "meta": [{"value":"evaluation",
                         "name":"type"},
                         {"name":"id",
-                        "value":"1"},
+                         "value":"1"},
                         {"value":"2",
-                        "name":"childId"},
+                         "name":"childId"},
                         {"name":"childId",
-                        "value":"3"}]
+                         "value":"3"},
+                        {"value":"4",
+                         "name":"childId"}
+                      ]
              },
             {"meta":[{"value":"section",
                       "name":"type"},
@@ -89,6 +93,19 @@
             "meta":[{"name":"type",
                      "value":"instructor"},
                     {"value":"3",
-                     "name":"id"}]}
-          ]
-}}
+                     "name":"id"}]
+          },
+          {"data":[{"name":"evaluationId",
+                    "value":"130767"},
+                   {"name":"studentId",
+                    "value":"1033334"},
+                   {"value":false,
+                    "name":"isCompleted"}],
+           "meta":[{"value":"evaluation completion",
+                    "name":"type"},
+                   {"value":"4",
+                    "name":"id"}]
+          }
+       ]
+    }
+}
