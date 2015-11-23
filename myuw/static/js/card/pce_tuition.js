@@ -10,7 +10,7 @@ var PCETuitionCard = {
 
 
     render_error: function () {
-        PCETuitionCard.dom_target.html(CardWithError.render());
+        PCETuitionCard.dom_target.html(CardWithError.render("PCE Tuition Card"));
     },
 
     render_upon_data: function() {
