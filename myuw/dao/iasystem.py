@@ -62,7 +62,6 @@ def json_for_evaluation(request, evaluations, section):
         return None
 
     pws = PWS()
-    earliest_close_date = None
     json_data = []
     for evaluation in evaluations:
         if summer_term_overlaped(request, section):
@@ -70,13 +69,11 @@ def json_for_evaluation(request, evaluations, section):
                     now >= evaluation.eval_close_date:
                 continue
 
-            if earliest_close_date is None or\
-                    evaluation.eval_close_date < earliest_close_date:
-                earliest_close_date = evaluation.eval_close_date
-
-            json_item = {'instructors': [],
-                         'url': evaluation.eval_url,
-                         'is_multi_instr': len(evaluation.instructor_ids) > 1}
+            json_item = {
+                'instructors': [],
+                'url': evaluation.eval_url,
+                'close_date': datetime_str(evaluation.eval_close_date),
+                'is_multi_instr': len(evaluation.instructor_ids) > 1}
 
             for eid in evaluation.instructor_ids:
                 instructor_json = {}
@@ -86,12 +83,8 @@ def json_for_evaluation(request, evaluations, section):
                 json_item['instructors'].append(instructor_json)
 
             json_data.append(json_item)
-    # althrough each item has its own close date, we
-    # only take one - the earliest.
-    # earliest_close_date string format: 2013-08-29 06:59:59+00:00
     if len(json_data) > 0:
-        return {'evals': json_data,
-                'close_date': datetime_str(earliest_close_date)}
+        return {'evals': json_data}
 
     return None
 
