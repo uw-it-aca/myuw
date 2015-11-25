@@ -72,9 +72,10 @@
             {{ #if evaluation_data }}
                 <div class="myuw-course-eval">
                     <h5 class="scheduleHeading">Course Evaluations</h5>
-		    <div class="eval-related-messages">Evaluate your instructor(s):</div>
+		    <div class="eval-related-messages">Evaluate your instructor(s), and only take a few mins to complete.</div>
                     {{ #each evaluation_data.evals }}
 	                <div>
+                            <span class="myuw-eval-close-date">Evaluation closes {{ formatDateAsDate close_date }}</span> (at 11:59PM):
                             {{ #if is_multi_instr }}
 			    <a class="myuw-eval-multi-link" href="{{ url }}" target="_blank"><span class="myuw-eval-name">{{ ../../curriculum_abbr }} {{../../course_number}} {{../../section_id}} Evaluation</span></a>
                             <ul class="myuw-eval-multi-list">
@@ -97,9 +98,6 @@
                             {{/if}}
                         </div>
                         {{/each}}
-                        <div class="card-related-messages">
-                            Evaluations are accessible here on MyUW for <span class="myuw-eval-close-date">{{toMoreDay evaluation_data.close_date}}</span> and take only 5-10 minutes to complete.
-                        </div>
                 </div>
 
                 <div id="course{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
