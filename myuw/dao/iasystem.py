@@ -69,12 +69,11 @@ def json_for_evaluation(request, evaluations, section):
                     now >= evaluation.eval_close_date:
                 continue
 
-            if evaluation.eval_close_date < off_dt:
-                off_dt = evaluation.eval_close_date
-
-            json_item = {'instructors': [],
-                         'url': evaluation.eval_url,
-                         'is_multi_instr': len(evaluation.instructor_ids) > 1}
+            json_item = {
+                'instructors': [],
+                'url': evaluation.eval_url,
+                'close_date': datetime_str(evaluation.eval_close_date),
+                'is_multi_instr': len(evaluation.instructor_ids) > 1}
 
             for eid in evaluation.instructor_ids:
                 instructor_json = {}
@@ -84,10 +83,12 @@ def json_for_evaluation(request, evaluations, section):
                 json_item['instructors'].append(instructor_json)
 
             json_data.append(json_item)
-    # althrough each item has its own close date, we
-    # only take one - the earliest.
     if len(json_data) > 0:
-        return {'evals': json_data,
-                'close_date': off_dt.isoformat()}
+        return {'evals': json_data}
 
     return None
+
+
+def datetime_str(localized_datetime):
+    fmt = '%Y-%m-%d %H:%M:%S %Z%z'
+    return localized_datetime.strftime(fmt)
