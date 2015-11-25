@@ -767,25 +767,29 @@ body {
     // graduate student content card
     div#GradStatusCard, div#GradCommitteeCard {
         ul, ol { list-style-type: none; padding-left: 0; }
-        h3 { margin-bottom: 0 !important; }
+        #petition-reqs, #leave-reqs, #degree-reqs, #committee-reqs {
+            margin-top:24px;
+            }
         #petition-reqs, #leave-reqs, #degree-reqs, #committee-reqs {
             h4 { color: #85754d;
                 font-family: "Roboto",sans-serif;
                 font-size: 16px;
                 font-weight: 500;
                 margin-bottom: .5em;
-                margin-top: 1.5em;
                 }
             h5 { color: #444444 !important;
                 font-family: "Roboto",sans-serif;
                 font-size: 16px !important;
                 font-weight: 400;
                 margin-top: 0px;
-                text-transform: uppercase; }
-            .degree-title { line-height: 1.25em; margin-bottom: 10px; font-size: 16px; }
+                }
+            .degree-title { line-height: 1.25em; margin-bottom: 10px; margin-top: -10px; font-size: 14px; }
         }
         #committee-reqs {
             h5 { margin-top: 10px; }
+            ul.card-list > li {
+                padding-bottom: 1em;
+            }
             ul.card-list ul {
                 padding-bottom: 10px;
             }
@@ -794,6 +798,7 @@ body {
         .pull-left { max-width: 60%; }
         .card-badge-label { font-weight: bold; padding-bottom: 5px; line-height: 1.25em; padding-right: 1.2em; }
         .card-badge-value { font-size: 14px; }
+        .card-badge-action {padding-bottom: 10px; padding-right: 10px;}
     }
     // end graduate student content card
 
