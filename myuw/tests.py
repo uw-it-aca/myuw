@@ -14,6 +14,7 @@ from myuw.test.dao.card_display_dates import TestDisplayValues
 from myuw.test.userservice_validation import TestValidation
 from myuw.test.dao.grad import TestDaoGrad
 from myuw.test.dao.hfs import TestHFS as TestDaoHFS
+from myuw.test.dao.iasystem import IASystemTest as IASystemDaoTest
 from myuw.test.dao.library import TestLibrary
 from myuw.test.dao.building import TestBuildings
 from myuw.test.dao.category_links import TestCategoryLinks
