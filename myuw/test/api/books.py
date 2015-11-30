@@ -33,7 +33,7 @@ IMAGE_URL_PREFIX = 'www7.bookstore.washington.edu/MyUWImage.taf'
                                        ),
                    AUTHENTICATION_BACKENDS=(AUTH_BACKEND,)
                    )
-class TestBooks(TestCase):
+class TestApiBooks(TestCase):
     def setUp(self):
         self.client = Client()
 

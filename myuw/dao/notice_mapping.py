@@ -6,12 +6,11 @@ This module provides utility the following functions:
 3. convert notice object into json format
 """
 import logging
-from myuw.dao.notice_categorization import NOTICE_CATEGORIES
 import pytz
 from datetime import datetime, timedelta
 from django.utils import timezone
 from myuw.dao.notice_categorization import NOTICE_CATEGORIES
-from myuw.dao.term import get_comparison_date
+from myuw.dao.term import get_comparison_datetime
 
 
 logger = logging.getLogger(__name__)
@@ -62,12 +61,9 @@ def apply_showhide(request, notices):
     """
     if notices is None:
         return None
-    today = get_comparison_date(request)
     local_tz = timezone.get_current_timezone()
     now = local_tz.localize(
-        datetime(today.year,
-                 today.month,
-                 today.day, 0, 0, 1)).astimezone(pytz.utc)
+        get_comparison_datetime(request)).astimezone(pytz.utc)
     for notice in notices:
         if notice.notice_category != "StudentFinAid":
             continue

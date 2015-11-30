@@ -1,7 +1,7 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "card_with_error" %}
-<div class="card error-card" style="position:relative;">
-    <h3><span class="text-muted">{{ card_name }}</h3>
+<div class="card" style="position:relative;">
+    <h3>{{ card_name }}</h3>
     <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error has occurred and we can't load this content right now. Please try again in a few minutes.</p>
 </div>
 {% endtplhandlebars %}

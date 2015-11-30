@@ -9,20 +9,19 @@
 		    <div class="visual-course-id c{{color_id}}">{{curriculum}} {{course_number}}&nbsp;{{section_id}}</div>
         </div>
         <div class="visual-info" style="z-index: 1; position: absolute; top:{{top}}%; height:{{height}}%;">
-			<div class="visual-location">
-			    {{#if building_tbd}}
-			        Room TBD
-			    {{else}}
-			        {{#if latitude}}
-			            <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" class="show_visual_map" rel="{{building_name}}">
-			         {{/if}}
-			         {{building}} {{room}}
-			         {{#if latitude}}</a>{{/if}}
-			    {{/if}}
-			</div>
+	    <div class="visual-location">
+		{{#if building_tbd}}
+		Room TBD
+		{{else}}
+		{{#if latitude}}
+		<a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" class="show_visual_map" rel="{{building_name}}">
+		    {{/if}}
+		    {{building}} {{room}}
+		    {{#if latitude}}</a>{{/if}}
+		{{/if}}
+	    </div>
         </div>
    {{/unless}}
 {{/each}}
 
 {% endtplhandlebars %}
-

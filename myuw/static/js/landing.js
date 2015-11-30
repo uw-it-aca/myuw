@@ -16,6 +16,8 @@ var Landing = {
 
         NoticeBanner.render_init($("#notice_banner_location"));
 
+        PceBanner.render_init($("#pce_banner_location"));
+
         Landing.load_cards_for_viewport();
         // Set initial display state
         Landing.is_desktop = Landing.get_is_desktop();
@@ -47,6 +49,7 @@ var Landing = {
             Landing._load_mobile_cards();
         }
     },
+
     _load_desktop_cards: function() {
         Landing._reset_content_divs();
         var desktop_body_cards = [
@@ -64,6 +67,8 @@ var Landing = {
             VisualScheduleCard,
             TextbookCard,
             CourseCard,
+            GradStatusCard,
+            GradCommitteeCard,
             FutureQuarterCard1,
             SummerRegStatusCard1
         ];
@@ -96,11 +101,13 @@ var Landing = {
             VisualScheduleCard,
             TextbookCard,
             CourseCard,
-			EmpFacStudentCard,
+            GradStatusCard,
+            EmpFacStudentCard,
             HfsCard,
             TuitionCard,
             LibraryCard,
             EventsCard,
+            GradCommitteeCard,
             FutureQuarterCard1,
             SummerRegStatusCard1
         ];

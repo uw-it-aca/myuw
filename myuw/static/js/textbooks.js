@@ -8,7 +8,7 @@ var TextBooks = {
         TextBooks.anchor_textbook = textbook;
         showLoading();
         CommonLoading.render_init();
-        WSData.fetch_book_data(term, TextBooks._fetch_course_data);
+        WSData.fetch_book_data(term, TextBooks._fetch_course_data, TextBooks.render_books);
     },
 
     _fetch_course_data: function() {
@@ -16,6 +16,10 @@ var TextBooks = {
     },
 
     process_book_data: function(book_data, course_data) {
+        if (!book_data) {
+            // If we had an error loading bookstore content
+            return;
+        }
         var template_data = {
             "sections": [],
             "quarter": course_data.quarter,

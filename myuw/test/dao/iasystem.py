@@ -6,7 +6,7 @@ from django.test.client import RequestFactory
 from restclients.models.sws import Term, Section
 from restclients.iasystem.evaluation import get_evaluation_by_id
 from myuw.dao.iasystem import json_for_evaluation,\
-    _get_evaluations_by_section_and_student
+    _get_evaluations_by_section_and_student, summer_term_overlaped
 from myuw.dao.schedule import _get_schedule
 
 
@@ -17,6 +17,33 @@ FDAO_IAS = 'restclients.dao_implementation.iasystem.File'
 
 class IASystemTest(TestCase):
 
+    def test_summer_term_overlaped(self):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
+            term = Term()
+            term.year = 2013
+            term.quarter = "summer"
+            section = Section()
+            section.summer_term = "A-term"
+            section.term = term
+
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-07-10"
+            self.assertTrue(summer_term_overlaped(now_request, section))
+            section.summer_term = "Full-term"
+            self.assertFalse(summer_term_overlaped(now_request, section))
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-08-10"
+            self.assertTrue(summer_term_overlaped(now_request, section))
+
+            section.summer_term = "B-term"
+            self.assertTrue(summer_term_overlaped(now_request, section))
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-03-10"
+            self.assertTrue(summer_term_overlaped(now_request, 'None'))
+            self.assertTrue(summer_term_overlaped(now_request, '-'))
+
     def test_get_evaluations_by_section(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
@@ -26,6 +53,9 @@ class IASystemTest(TestCase):
             term = Term()
             term.year = 2013
             term.quarter = "summer"
+            section = Section()
+            section.summer_term = "A-term"
+            section.term = term
             schedule = _get_schedule(regid, term)
             evals = None
             for section in schedule.sections:
@@ -43,16 +73,18 @@ class IASystemTest(TestCase):
                              datetime.datetime(2013, 7, 23,
                                                6, 59, 59,
                                                tzinfo=pytz.utc))
+
             now_request = RequestFactory().get("/")
             # after open date, before show date
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-16"
-            json_data = json_for_evaluation(now_request, evals, "A-term")
+            json_data = json_for_evaluation(now_request, evals, section)
             self.assertIsNone(json_data)
+
             # after show date
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-17"
-            json_data = json_for_evaluation(now_request, evals, "A-term")
+            json_data = json_for_evaluation(now_request, evals, section)
             self.assertIsNotNone(json_data)
             self.assertEqual(len(json_data['evals']), 1)
             self.assertEqual(json_data['close_date'],
@@ -60,7 +92,7 @@ class IASystemTest(TestCase):
             # before close date
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-22"
-            json_data = json_for_evaluation(now_request, evals, "A-term")
+            json_data = json_for_evaluation(now_request, evals, section)
             self.assertIsNotNone(json_data)
             self.assertEqual(len(json_data['evals']), 1)
             self.assertEqual(json_data['close_date'],
@@ -68,7 +100,7 @@ class IASystemTest(TestCase):
             # before hide date but after close date
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-24"
-            json_data = json_for_evaluation(now_request, evals, "A-term")
+            json_data = json_for_evaluation(now_request, evals, section)
             self.assertIsNone(json_data)
 
     def test_json_for_evaluation(self):
