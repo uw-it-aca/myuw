@@ -24,8 +24,8 @@ from myuw.test.dao.calendar_mapping import TestCalendarMapping
 from myuw.test.dao.calendar import TestCalendar
 from myuw.test.dao.thrive import TestThrive
 from myuw.test.api.schedule import TestSchedule as APISchedule
-from myuw.test.api.books import TestBooks
-from myuw.test.api.cur_books import TestCurBooks
+from myuw.test.api.books import TestApiBooks
+from myuw.test.api.cur_books import TestApiCurBooks
 from myuw.test.api.grad import TestApiGrad
 from myuw.test.api.hfs import TestHFS as TestHFSAPI
 from myuw.test.api.profile import TestProfile

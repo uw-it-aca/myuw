@@ -1,10 +1,10 @@
 {
-    "13833": [{
-                "isbn":"9781256396362",
-                "title":"Writ of BC",
+    "13458": [{
+                "isbn":"9781256496062",
+                "title":"ESS Stuff 'n Things",
                 "authors": [{"name":"Mcdermott"}],
                 "price":58.00,
-                "used_price":20.00,
+                "used_price":null,
                 "required":true,
                 "notes":null,
                 "cover_image": null
