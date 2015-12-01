@@ -21,8 +21,8 @@ from myuw.test.dao.finance import TestFinance
 from myuw.test.dao.textbook import TestTextbooks
 from myuw.test.dao.uwemail import TestUwEmail
 from myuw.test.api.schedule import TestSchedule as APISchedule
-from myuw.test.api.books import TestBooks
-from myuw.test.api.cur_books import TestCurBooks
+from myuw.test.api.books import TestApiBooks
+from myuw.test.api.cur_books import TestApiCurBooks
 from myuw.test.api.grad import TestApiGrad
 from myuw.test.api.hfs import TestHFS as TestHFSAPI
 from myuw.test.api.profile import TestProfile

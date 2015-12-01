@@ -30,7 +30,7 @@ class Textbook(RESTDispatch):
 
         term = get_specific_term(year=year, quarter=quarter)
         schedule = get_schedule_by_term(term)
-        if summer_term is not None:
+        if summer_term is not None and len(summer_term) > 0:
             summer_term = summer_term.replace(",", "")
             filter_schedule_sections_by_summer_term(schedule, summer_term)
 
