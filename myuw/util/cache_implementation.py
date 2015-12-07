@@ -1,5 +1,5 @@
 import re
-from restclients.cache_implementation import TimedCache
+from restclients.cache_implementation import MemcachedCache, TimedCache
 
 
 FIVE_SECONDS = 5
@@ -27,6 +27,18 @@ def get_myuw_sws_cache_time(url):
 
     # person, AccountBalance
     return FOUR_HOURS
+
+
+class MyUWMemcachedCache(MemcachedCache):
+
+    def _get_time(self, service, url):
+        if "myplan" == service:
+            return FIVE_SECONDS
+
+        if "sws" == service:
+            return get_myuw_sws_cache_time(url)
+
+        return FOUR_HOURS
 
 
 class MyUWCache(TimedCache):
