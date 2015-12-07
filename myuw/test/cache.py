@@ -1,14 +1,55 @@
 from django.test import TestCase
 from restclients.mock_http import MockHTTP
-from myuw.util.cache_implementation import MyUWCache
+from myuw.util.cache_implementation import MyUWCache, get_cache_time
 from restclients.models import CacheEntryTimed
 from datetime import timedelta
 
 
 CACHE = 'myuw.util.cache_implementation.MyUWCache'
+MEMCACHE = 'myuw.util.cache_implementation.MyUWMemcachedCache'
+FIVE_SECONDS = 5
+FIFTEEN_MINS = 60 * 15
+ONE_HOUR = 60 * 60
+FOUR_HOURS = 60 * 60 * 4
+ONE_DAY = 60 * 60 * 24
+ONE_WEEK = 60 * 60 * 24 * 7
 
 
 class TestCustomCachePolicy(TestCase):
+
+    def test_get_cache_time(self):
+        self.assertEquals(get_cache_time(
+                "sws", "/student/myuwcachetest1"), FOUR_HOURS)
+        self.assertEquals(get_cache_time(
+                "sws", "/student/v5/term/2013,spring.json"), ONE_WEEK)
+        self.assertEquals(get_cache_time(
+                "sws", "/student/v5/term/current.json"), ONE_DAY)
+        self.assertEquals(get_cache_time(
+                "sws", "/student/v5/course"), ONE_HOUR)
+        self.assertEquals(get_cache_time(
+                "sws", "/student/v5/enrollment"), ONE_HOUR)
+        self.assertEquals(get_cache_time(
+                "sws", "/student/v5/notice"), ONE_HOUR)
+        self.assertEquals(get_cache_time(
+                "sws", "/student/v5/registration"), FIFTEEN_MINS)
+        self.assertEquals(get_cache_time(
+                "myplan", "/api/plan/"), FIVE_SECONDS)
+        self.assertEquals(get_cache_time(
+                "grad", "/services/students"), FOUR_HOURS)
+        self.assertEquals(get_cache_time(
+                "iasystem", "/uw/api/v1/evaluation"), FOUR_HOURS)
+        self.assertEquals(get_cache_time(
+                "iasystem", "/uwb/api/v1/evaluation"), FOUR_HOURS)
+        self.assertEquals(get_cache_time(
+                "iasystem", "/uwt/api/v1/evaluation"), FOUR_HOURS)
+        self.assertEquals(get_cache_time(
+                "digitlib", "/php/currics/service.php"), FOUR_HOURS)
+        self.assertEquals(get_cache_time(
+                "uwnetid", "/nws/v1/uwnetid"), FOUR_HOURS)
+        self.assertEquals(get_cache_time(
+                "gws", "group_sws/v2/group"), FOUR_HOURS)
+
+
     def test_sws_default_policies(self):
         with self.settings(RESTCLIENTS_DAO_CACHE_CLASS=CACHE):
             cache = MyUWCache()
