@@ -34,7 +34,7 @@ def get_cache_time(service, url):
 
 class MyUWMemcachedCache(MemcachedCache):
 
-    def _get_time(self, service, url):
+    def get_cache_expiration_time(self, service, url):
         return get_cache_time(service, url)
 
 
