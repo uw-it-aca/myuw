@@ -26,3 +26,5 @@ notifications:
       urls:
         - https://yarn.cac.washington.edu/rest/botalyst/v1/travis-ci
 sudo: false
+services:
+  - memcached
