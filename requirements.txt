@@ -9,6 +9,7 @@ django-templatetag-handlebars
 Django-UserService==1.0.2
 unittest2
 AuthZ-Group
+python-binary-memcached
 -e git+https://github.com/uw-it-aca/uw-restclients.git@qa#egg=RestClients
 -e git+https://github.com/abztrakt/django-mobileesp/#egg=django_mobileesp
 -e git+https://github.com/uw-it-aca/django-supporttools.git#egg=SupportTools

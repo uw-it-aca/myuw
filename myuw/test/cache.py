@@ -1,10 +1,16 @@
-from django.test import TestCase
-from restclients.mock_http import MockHTTP
-from myuw.util.cache_implementation import MyUWCache, get_cache_time
-from restclients.models import CacheEntryTimed
 from datetime import timedelta
+from unittest2 import skipIf
+from django.test import TestCase
+from django.conf import settings
+from restclients.mock_http import MockHTTP
+from restclients.models import CacheEntryTimed
+from restclients.exceptions import DataFailureException
+from restclients.dao import SWS_DAO
+from myuw.util.cache_implementation import MyUWCache, get_cache_time,\
+    MyUWMemcachedCache
 
 
+SWS = 'restclients.dao_implementation.sws.File'
 CACHE = 'myuw.util.cache_implementation.MyUWCache'
 MEMCACHE = 'myuw.util.cache_implementation.MyUWMemcachedCache'
 FIVE_SECONDS = 5
@@ -262,35 +268,19 @@ class TestCustomCachePolicy(TestCase):
             response = cache.getCache('sws', '/student/v5/notice/xx', {})
             self.assertEquals(response, None)
 
-    def test_default_policies(self):
-        with self.settings(RESTCLIENTS_DAO_CACHE_CLASS=CACHE):
-            cache = MyUWCache()
-            ok_response = MockHTTP()
-            ok_response.status = 200
-            ok_response.data = "xx"
-
-            response = cache.getCache('no_such', '/student/myuwcachetest1', {})
-            self.assertEquals(response, None)
-            cache.processResponse(
-                "no_such", "/student/myuwcachetest1", ok_response)
-            response = cache.getCache('no_such', '/student/myuwcachetest1', {})
-            self.assertEquals(response["response"].data, 'xx')
-
-            cache_entry = CacheEntryTimed.objects.get(
-                service="no_such", url="/student/myuwcachetest1")
-            # Cached response is returned after 3 hours and 58 minutes
-            orig_time_saved = cache_entry.time_saved
-            cache_entry.time_saved = (orig_time_saved -
-                                      timedelta(minutes=(60 * 4)-2))
-            cache_entry.save()
-
-            response = cache.getCache('no_such', '/student/myuwcachetest1', {})
-            self.assertNotEquals(response, None)
-
-            # Cached response is not returned after 4 hours and 1 minute
-            cache_entry.time_saved = (orig_time_saved -
-                                      timedelta(minutes=(60 * 4)+1))
-            cache_entry.save()
-
-            response = cache.getCache('no_such', '/student/myuwcachetest1', {})
-            self.assertEquals(response, None)
+    @skipIf(not getattr(settings, 'RESTCLIENTS_TEST_MEMCACHED', False),\
+                "Needs configuration to test memcached cache")
+    def test_calling_myuw_get_cache_expiration_time(self):
+        with self.settings(RESTCLIENTS_DAO_CACHE_CLASS=MEMCACHE,
+                           RESTCLIENTS_SWS_DAO_CLASS=SWS):
+            cache = MyUWMemcachedCache()
+            c_entry = cache.getCache(
+                'sws', '/student/v5/term/2013,summer.json', {})
+            self.assertIsNone(c_entry)
+            sws = SWS_DAO()
+            response = None
+            try:
+                response = sws.getURL('/student/v5/term/2013,summer.json', {})
+            except DataFailureException as ex:
+                self.assertEquals(ex.msg , "MyUWMemcachedCache")
+                self.assertIsNone(response)

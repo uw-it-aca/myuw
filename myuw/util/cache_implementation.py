@@ -1,5 +1,7 @@
 import re
+from django.conf import settings
 from restclients.cache_implementation import MemcachedCache, TimedCache
+from restclients.exceptions import DataFailureException
 
 
 FIVE_SECONDS = 5
@@ -35,6 +37,8 @@ def get_cache_time(service, url):
 class MyUWMemcachedCache(MemcachedCache):
 
     def get_cache_expiration_time(self, service, url):
+        if getattr(settings, 'RESTCLIENTS_TEST_MEMCACHED', False):
+            raise DataFailureException(url, 555, "MyUWMemcachedCache")
         return get_cache_time(service, url)
 
 
