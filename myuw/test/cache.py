@@ -268,8 +268,8 @@ class TestCustomCachePolicy(TestCase):
             response = cache.getCache('sws', '/student/v5/notice/xx', {})
             self.assertEquals(response, None)
 
-    @skipIf(not getattr(settings, 'RESTCLIENTS_TEST_MEMCACHED', False),\
-                "Needs configuration to test memcached cache")
+    @skipIf(not getattr(settings, 'RESTCLIENTS_TEST_MEMCACHED', False),
+            "Needs configuration to test memcached cache")
     def test_calling_myuw_get_cache_expiration_time(self):
         with self.settings(RESTCLIENTS_DAO_CACHE_CLASS=MEMCACHE,
                            RESTCLIENTS_SWS_DAO_CLASS=SWS):
@@ -282,5 +282,5 @@ class TestCustomCachePolicy(TestCase):
             try:
                 response = sws.getURL('/student/v5/term/2013,summer.json', {})
             except DataFailureException as ex:
-                self.assertEquals(ex.msg , "MyUWMemcachedCache")
+                self.assertEquals(ex.msg, "MyUWMemcachedCache")
                 self.assertIsNone(response)
