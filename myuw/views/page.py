@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as django_logout
 from django.template import RequestContext
 from django.conf import settings
+from django.views.decorators.cache import cache_control
 import logging
 from userservice.user import UserService
 from myuw.dao.term import get_current_quarter
@@ -27,6 +28,7 @@ LOGOUT_URL = "/user_logout"
 
 
 @login_required
+@cache_control(max_age=0, no_cache=True, no_store=True, must_revalidate=True)
 def index(request,
           year=None,
           quarter=None,

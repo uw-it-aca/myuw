@@ -97,3 +97,7 @@ STATICFILES_FINDERS = (
 )
 
 COMPRESS_ENABLED = False
+
+# Test the memcached cache code
+RESTCLIENTS_TEST_MEMCACHED = True
+RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
