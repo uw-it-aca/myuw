@@ -207,6 +207,7 @@ def _get_summer_term(term):
 
 
 def _get_actual_now(now):
+    # Want to make sure that we have a full day, not just today/tomorrow
     actual_now = timezone.now()
     return datetime(now.year, now.month, now.day, actual_now.hour,
                     actual_now.minute, actual_now.second,
@@ -257,7 +258,6 @@ def should_highlight_future_quarters(registered_future_quarters, request):
     for term in registered_future_quarters:
         model, newly_created, now_datetime =\
             save_seen_registration_obj(get_user_model(), request, term)
-        # Want to make sure that we have a full day, not just today/tomorrow
 
         if not newly_created:
             # MUWM-3009
