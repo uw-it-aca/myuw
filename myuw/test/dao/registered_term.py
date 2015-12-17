@@ -156,8 +156,8 @@ class TestRegisteredTerm(TestCase):
                 uwregid='9136CCB8F66711D5BE060004AC494FFE')
 
             model, created, now_datetime, summer_term =\
-                save_seen_registration_obj(
-                user, now_request, registered_future_quarters[0])
+                save_seen_registration_obj(user, now_request,
+                                           registered_future_quarters[0])
             self.assertTrue(created)
             self.assertEqual(model.user.uwnetid, "javerage")
             self.assertEqual(model.year, 2014)
@@ -171,8 +171,8 @@ class TestRegisteredTerm(TestCase):
             self.assertEqual(len(qset), 1)
 
             model1, created1, now_datetime1, summer_term1 =\
-                save_seen_registration_obj(
-                user, now_request, registered_future_quarters[0])
+                save_seen_registration_obj(user, now_request,
+                                           registered_future_quarters[0])
             self.assertFalse(created1)
             qset1 = SeenRegistration.objects.filter(user=user,
                                                     year=2014,
