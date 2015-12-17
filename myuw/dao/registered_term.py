@@ -238,7 +238,7 @@ def save_seen_registration_obj(user, request, term):
         quarter=quarter,
         summer_term=summer_term,
         defaults={'first_seen_date': now_datetime})
-    return model, created, now_datetime
+    return model, created, now_datetime, summer_term
 
 
 def _get_bterm_start(term):
@@ -256,7 +256,7 @@ def should_highlight_future_quarters(registered_future_quarters, request):
     # MUWM-2373
 
     for term in registered_future_quarters:
-        model, newly_created, now_datetime =\
+        model, newly_created, now_datetime, summer_term =\
             save_seen_registration_obj(get_user_model(), request, term)
 
         if not newly_created:
