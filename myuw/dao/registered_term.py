@@ -196,45 +196,73 @@ def _get_registered_summer_terms(registered_summer_sections):
     return data
 
 
+def _get_summer_term(term):
+    if is_a_term(term["summer_term"]):
+        return "A"
+    if is_b_term(term["summer_term"]):
+        return "B"
+    if is_full_summer_term(term["summer_term"]):
+        return "F"
+    return "E"   # Empty string
+
+
+def _get_actual_now(now):
+    actual_now = timezone.now()
+    return datetime(now.year, now.month, now.day, actual_now.hour,
+                    actual_now.minute, actual_now.second,
+                    tzinfo=actual_now.tzinfo)
+
+
+def save_seen_registration_obj(user, request, term):
+    year = term["year"]
+    quarter = term["quarter"]
+    summer_term = _get_summer_term(term)
+
+    qset = SeenRegistration.objects.filter(user=user,
+                                           year=year,
+                                           quarter=quarter,
+                                           summer_term=summer_term,
+                                           )
+    if len(qset) > 1:
+        logger.warn(
+            "%s with user=%s, year=%d, quarter=%d, summer_term=%s" %
+            ("Multiple Objects", user, year, quarter, summer_term))
+        # MUWM-3137, remove bad data
+        qset.delete()
+
+    now_datetime = _get_actual_now(get_comparison_date(request))
+    model, created = SeenRegistration.objects.get_or_create(
+        user=user,
+        year=year,
+        quarter=quarter,
+        summer_term=summer_term,
+        defaults={'first_seen_date': now_datetime})
+    return model, created, now_datetime
+
+
+def _get_bterm_start(term):
+    summer_term = get_specific_term(term["year"], "summer")
+    bterm_start = summer_term.bterm_first_date
+    return datetime(bterm_start.year,
+                    bterm_start.month,
+                    bterm_start.day,
+                    0, 0, 0, tzinfo=timezone.now().tzinfo)
+
+
 # MUWM-2210
-def should_highlight_future_quarters(schedule, request):
+def should_highlight_future_quarters(registered_future_quarters, request):
     should_highlight = False
     # MUWM-2373
-    now = get_comparison_date(request)
 
-    for term in schedule:
-        summer_term = "F"
-        if is_a_term(term["summer_term"]):
-            summer_term = "A"
-        if is_b_term(term["summer_term"]):
-            summer_term = "B"
-
-        sr_get_or_create = SeenRegistration.objects.get_or_create
-        model, created = sr_get_or_create(user=get_user_model(),
-                                          year=term["year"],
-                                          quarter=term["quarter"],
-                                          summer_term=summer_term,
-                                          )
-
+    for term in registered_future_quarters:
+        model, newly_created, now_datetime =\
+            save_seen_registration_obj(get_user_model(), request, term)
         # Want to make sure that we have a full day, not just today/tomorrow
-        actual_now = timezone.now()
-        now_datetime = datetime(now.year, now.month, now.day, actual_now.hour,
-                                actual_now.minute, actual_now.second,
-                                tzinfo=actual_now.tzinfo)
-        if created:
-            model.first_seen_date = now_datetime
-            model.save()
-        else:
+
+        if not newly_created:
             # MUWM-3009
             if summer_term == "B":
-                term_obj = get_specific_term(term["year"], "summer")
-
-                bterm_start = term_obj.bterm_first_date
-                bterm_start_dt = datetime(bterm_start.year,
-                                          bterm_start.month,
-                                          bterm_start.day,
-                                          0, 0, 0, tzinfo=actual_now.tzinfo)
-
+                bterm_start_dt = _get_bterm_start(term)
                 new_highlight = bterm_start_dt - timedelta(days=8)
 
                 seen_before = model.first_seen_date < bterm_start_dt
