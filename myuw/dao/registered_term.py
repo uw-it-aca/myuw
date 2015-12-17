@@ -201,9 +201,7 @@ def _get_summer_term(term):
         return "A"
     if is_b_term(term["summer_term"]):
         return "B"
-    if is_full_summer_term(term["summer_term"]):
-        return "F"
-    return "E"   # Empty string
+    return "F"   # non-summer terms and full summer term
 
 
 def _get_actual_now(now):
