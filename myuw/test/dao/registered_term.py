@@ -112,15 +112,8 @@ class TestRegisteredTerm(TestCase):
             self.assertEqual(terms[0]['quarter'], "Autumn")
             self.assertEqual(terms[0]['summer_term'], "")
 
-    def test_get_registered_future_quarters(self):
-        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
-                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
-
-            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-12-10"
-
-            regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = get_specific_term(2014, "winter")
             winter2014_sche = _get_schedule(regid, term)
             self.assertIsNotNone(winter2014_sche)
