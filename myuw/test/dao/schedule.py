@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.conf import settings
+from django.test.client import RequestFactory
 from restclients.models.sws import ClassSchedule, Term, Section, Person
+from myuw.dao.term import get_current_quarter, get_next_quarter
 from myuw.dao.schedule import _get_schedule,\
     has_summer_quarter_section, filter_schedule_sections_by_summer_term
 
@@ -62,3 +64,25 @@ class TestSchedule(TestCase):
             self.assertFalse(filtered_has_b_term)
             self.assertTrue(filtered_has_full_term)
             self.assertTrue(filtered_has_a_term)
+
+    def test_winter_quarter_schedule(self):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
+
+            regid = "9136CCB8F66711D5BE060004AC494FFE"
+
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-11-30"
+            cur_term = get_current_quarter(now_request)
+            self.assertEqual(cur_term.year, 2013)
+            self.assertEqual(cur_term.quarter, "autumn")
+
+            next_term = get_next_quarter(now_request)
+            self.assertEqual(next_term.year, 2014)
+            self.assertEqual(next_term.quarter, "winter")
+            self.assertFalse(cur_term == next_term)
+
+            winter2014_sche = _get_schedule(regid, next_term)
+            self.assertIsNotNone(winter2014_sche)
+            self.assertEqual(len(winter2014_sche.sections), 5)
