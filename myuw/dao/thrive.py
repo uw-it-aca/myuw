@@ -70,7 +70,7 @@ def _make_thrive_payload(row):
 
 
 """
-Supports up to 3 URLS per row as defined in the spec
+Supports up to 5 URLS per row as defined in the spec
 """
 
 
@@ -94,6 +94,21 @@ def _make_urls(row):
                          'href': row[12]})
     except IndexError:
         return urls
+
+    try:
+        if len(row[13]) > 0 and len(row[14]) > 0:
+            urls.append({'title': row[13],
+                         'href': row[14]})
+    except IndexError:
+        return urls
+
+    try:
+        if len(row[15]) > 0 and len(row[16]) > 0:
+            urls.append({'title': row[15],
+                         'href': row[16]})
+    except IndexError:
+        return urls
+
     return urls
 
 

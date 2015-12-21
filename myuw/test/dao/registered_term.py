@@ -2,10 +2,13 @@ from django.test import TestCase
 from django.conf import settings
 from django.test.client import RequestFactory
 from restclients.models import ClassSchedule, Term, Section, Person
-from myuw.dao.term import get_specific_term
+from myuw.dao.term import get_specific_term, get_next_non_summer_quarter,\
+    is_a_term, is_b_term, is_full_summer_term
 from myuw.dao.schedule import _get_schedule
 from myuw.dao.registered_term import _get_registered_summer_terms,\
-    _must_displayed_separately, _get_registered_future_quarters
+    _must_displayed_separately, _get_registered_future_quarters,\
+    save_seen_registration_obj
+from myuw.models import SeenRegistration, User
 
 
 FDAO_SWS = 'restclients.dao_implementation.sws.File'
@@ -108,3 +111,132 @@ class TestRegisteredTerm(TestCase):
             self.assertTrue(terms[0]['year'] == 2013)
             self.assertEqual(terms[0]['quarter'], "Autumn")
             self.assertEqual(terms[0]['summer_term'], "")
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-12-10"
+            term = get_specific_term(2014, "winter")
+            winter2014_sche = _get_schedule(regid, term)
+            self.assertIsNotNone(winter2014_sche)
+            self.assertEqual(len(winter2014_sche.sections), 5)
+            registered_future_quarters =\
+                _get_registered_future_quarters(now_request,
+                                                winter2014_sche,
+                                                None)
+
+            self.assertEqual(len(registered_future_quarters), 1)
+            term1 = registered_future_quarters[0]
+            self.assertEqual(term1["quarter"], "Winter")
+            self.assertEqual(term1["year"], 2014)
+            self.assertEqual(term1["section_count"], 5)
+
+    def test_save_seen_registration_obj(self):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-12-10"
+
+            regid = "9136CCB8F66711D5BE060004AC494FFE"
+            term = get_specific_term(2014, "winter")
+            winter2014_sche = _get_schedule(regid, term)
+            self.assertIsNotNone(winter2014_sche)
+            self.assertEqual(len(winter2014_sche.sections), 5)
+            registered_future_quarters = _get_registered_future_quarters(
+                now_request,  winter2014_sche, None)
+
+            user, created = User.objects.get_or_create(
+                uwnetid='javerage',
+                uwregid='9136CCB8F66711D5BE060004AC494FFE')
+
+            model, created, now_datetime, summer_term =\
+                save_seen_registration_obj(user, now_request,
+                                           registered_future_quarters[0])
+            self.assertTrue(created)
+            self.assertEqual(model.user.uwnetid, "javerage")
+            self.assertEqual(model.year, 2014)
+            self.assertEqual(model.quarter, "Winter")
+            self.assertEqual(model.summer_term, "F")
+            qset = SeenRegistration.objects.filter(user=user,
+                                                   year=2014,
+                                                   quarter="Winter",
+                                                   summer_term="F",
+                                                   )
+            self.assertEqual(len(qset), 1)
+
+            model1, created1, now_datetime1, summer_term1 =\
+                save_seen_registration_obj(user, now_request,
+                                           registered_future_quarters[0])
+            self.assertFalse(created1)
+            qset1 = SeenRegistration.objects.filter(user=user,
+                                                    year=2014,
+                                                    quarter="Winter",
+                                                    summer_term="F",
+                                                    )
+            self.assertEqual(len(qset1), 1)
+
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-5-10"
+
+            regid = "9136CCB8F66711D5BE060004AC494FFE"
+            term = get_specific_term(2013, "summer")
+            summer2013_sche = _get_schedule(regid, term)
+            self.assertIsNotNone(summer2013_sche)
+            self.assertEqual(len(summer2013_sche.sections), 3)
+            registered_future_quarters = _get_registered_future_quarters(
+                now_request,  summer2013_sche, None)
+            self.assertEqual(len(registered_future_quarters), 2)
+
+            quarter = registered_future_quarters[0]
+            model, created, now_datetime, summer_term =\
+                save_seen_registration_obj(user, now_request,
+                                           quarter)
+            self.assertTrue(created)
+            self.assertEqual(model.user.uwnetid, "javerage")
+            self.assertEqual(model.year, 2013)
+            self.assertEqual(model.quarter, "Summer")
+            self.assertEqual(model.summer_term, "A")
+            qset = SeenRegistration.objects.filter(user=user,
+                                                   year=2013,
+                                                   quarter="Summer",
+                                                   summer_term="A",
+                                                   )
+            self.assertEqual(len(qset), 1)
+
+            model1, created1, now_datetime1, summer_term1 =\
+                save_seen_registration_obj(user, now_request,
+                                           quarter)
+            self.assertFalse(created1)
+            qset1 = SeenRegistration.objects.filter(user=user,
+                                                    year=2013,
+                                                    quarter="Summer",
+                                                    summer_term="A",
+                                                    )
+            self.assertEqual(len(qset1), 1)
+
+            quarter = registered_future_quarters[1]
+            model, created, now_datetime, summer_term =\
+                save_seen_registration_obj(user, now_request,
+                                           quarter)
+            self.assertTrue(created)
+            self.assertEqual(model.user.uwnetid, "javerage")
+            self.assertEqual(model.year, 2013)
+            self.assertEqual(model.quarter, "Summer")
+            self.assertEqual(model.summer_term, "B")
+            qset = SeenRegistration.objects.filter(user=user,
+                                                   year=2013,
+                                                   quarter="Summer",
+                                                   summer_term="B",
+                                                   )
+            self.assertEqual(len(qset), 1)
+
+            model1, created1, now_datetime1, summer_term1 =\
+                save_seen_registration_obj(user, now_request,
+                                           quarter)
+            self.assertFalse(created1)
+            qset1 = SeenRegistration.objects.filter(user=user,
+                                                    year=2013,
+                                                    quarter="Summer",
+                                                    summer_term="B",
+                                                    )
+            self.assertEqual(len(qset1), 1)
