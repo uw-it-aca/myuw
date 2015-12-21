@@ -33,7 +33,7 @@ IMAGE_URL_PREFIX = 'www7.bookstore.washington.edu/MyUWImage.taf'
                                        ),
                    AUTHENTICATION_BACKENDS=(AUTH_BACKEND,)
                    )
-class TestBooks(TestCase):
+class TestApiBooks(TestCase):
     def setUp(self):
         self.client = Client()
 
@@ -55,14 +55,13 @@ class TestBooks(TestCase):
                           ("%s/m?section_id=AB12345&quarter=spring" %
                            VERBACOMPARE_URL_PREFIX))
         self.assertEquals(
-            data["18545"][0]["cover_image_url"],
+            data["18532"][0]["cover_image_url"],
             ("%s?isbn=9780878935970&key=46c9ef715edb2ec69517e2c8e6ec9c18" %
              IMAGE_URL_PREFIX))
-        self.assertEquals(len(data["18545"][0]["authors"]), 1)
-        self.assertEquals(data["18545"][0]["is_required"], True)
-        self.assertEquals(data["18545"][0]["price"], None)
-        self.assertEquals(data["18545"][0]["used_price"], None)
-        self.assertEquals(data["18545"][0]["isbn"], '9780878935970')
-        self.assertEquals(data["18545"][0]["notes"], 'required')
-
-        self.assertEquals(data["18545"][1]["price"], 44.0)
+        self.assertEquals(len(data["18532"][0]["authors"]), 1)
+        self.assertEquals(data["18532"][0]["is_required"], True)
+        self.assertEquals(data["18532"][0]["price"], None)
+        self.assertEquals(data["18532"][0]["used_price"], None)
+        self.assertEquals(data["18532"][0]["isbn"], '9780878935970')
+        self.assertEquals(data["18532"][0]["notes"], 'required')
+        self.assertEquals(data["18532"][0]["price"], None)
