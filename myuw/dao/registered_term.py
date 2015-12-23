@@ -223,9 +223,9 @@ def save_seen_registration_obj(user, request, term):
                                            summer_term=summer_term,
                                            )
     if len(qset) > 1:
-        logger.warn(
-            "%s with user=%s, year=%d, quarter=%d, summer_term=%s" %
-            ("Multiple Objects", user, year, quarter, summer_term))
+        logger.warning(
+            "%s with user=%s, year=%d, quarter=%s, summer_term=%s" %
+            ("Multiple Objects", user.uwnetid, year, quarter, summer_term))
         # MUWM-3137, remove bad data
         qset.delete()
 
