@@ -84,31 +84,43 @@ class TestTerm(TestCase):
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'spring')
 
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-04-01"
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'spring')
 
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-25"
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'winter')
 
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-26"
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'winter')
 
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-27"
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'spring')
 
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-31"
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'spring')
 
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-06-24"
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
@@ -116,11 +128,15 @@ class TestTerm(TestCase):
 
             # Spring's grade submission deadline is today, so we're not after
             # that, which is why this is an exception to the rule
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-06-23"
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'spring')
 
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-06-18"
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
@@ -135,21 +151,29 @@ class TestTerm(TestCase):
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'summer')
 
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-04-01"
             quarter = get_next_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'summer')
 
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-31"
             quarter = get_next_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'summer')
 
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-06-24"
             quarter = get_next_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'autumn')
 
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-06-23"
             quarter = get_next_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
@@ -187,15 +211,19 @@ class TestTerm(TestCase):
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-10"
             self.assertTrue(is_in_summer_a_term(now_request))
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-08-10"
             self.assertFalse(is_in_summer_a_term(now_request))
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-08-26"
             self.assertTrue(is_in_summer_b_term(now_request))
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-10"
             self.assertFalse(is_in_summer_a_term(now_request))
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-10"
             self.assertFalse(is_in_summer_b_term(now_request))
@@ -208,16 +236,19 @@ class TestTerm(TestCase):
             self.assertEqual(
                 get_eod_current_term_last_instruction(now_request),
                 datetime(2013, 6, 8, 0, 0, 0))
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-10"
             self.assertEqual(
                 get_eod_current_term_last_instruction(now_request, True),
                 datetime(2013, 7, 25, 0, 0, 0))
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-10"
             self.assertEqual(
                 get_eod_current_term_last_instruction(now_request),
                 datetime(2013, 8, 24, 0, 0, 0))
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-08-10"
             self.assertEqual(
@@ -231,10 +262,12 @@ class TestTerm(TestCase):
             now_request.session["myuw_override_date"] = "2013-05-10"
             self.assertEqual(get_bod_7d_before_last_instruction(now_request),
                              datetime(2013, 5, 31, 0, 0, 0))
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-10"
             self.assertEqual(get_bod_7d_before_last_instruction(now_request),
                              datetime(2013, 7, 17, 0, 0, 0))
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-08-10"
             self.assertEqual(get_bod_7d_before_last_instruction(now_request),
@@ -247,10 +280,12 @@ class TestTerm(TestCase):
             now_request.session["myuw_override_date"] = "2013-05-10"
             self.assertEqual(get_bod_current_term_class_start(now_request),
                              datetime(2013, 4, 1, 0, 0, 0))
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-10"
             self.assertEqual(get_bod_current_term_class_start(now_request),
                              datetime(2013, 6, 24, 0, 0, 0))
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-08-10"
             self.assertEqual(get_bod_current_term_class_start(now_request),
@@ -263,10 +298,12 @@ class TestTerm(TestCase):
             now_request.session["myuw_override_date"] = "2013-05-10"
             self.assertEqual(get_eod_7d_after_class_start(now_request),
                              datetime(2013, 4, 9, 0, 0, 0))
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-10"
             self.assertEqual(get_eod_7d_after_class_start(now_request),
                              datetime(2013, 7, 2, 0, 0, 0))
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-08-10"
             self.assertEqual(get_eod_7d_after_class_start(now_request),
@@ -291,10 +328,12 @@ class TestTerm(TestCase):
             now_request.session["myuw_override_date"] = "2013-03-10"
             self.assertEqual(get_eod_current_term(now_request),
                              datetime(2013, 3, 27, 0, 0, 0))
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-10"
             self.assertEqual(get_eod_current_term(now_request, True),
                              datetime(2013, 7, 25, 0, 0, 0))
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-08-10"
             self.assertEqual(get_eod_current_term(now_request),
@@ -308,11 +347,13 @@ class TestTerm(TestCase):
             self.assertEqual(
                 get_eod_current_term_last_final_exam(now_request),
                 datetime(2013, 3, 23, 0, 0, 0))
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-07-10"
             self.assertEqual(
                 get_eod_current_term_last_final_exam(now_request, True),
                 datetime(2013, 7, 25, 0, 0, 0))
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-08-10"
             self.assertEqual(
