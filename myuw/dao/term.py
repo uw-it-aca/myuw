@@ -74,14 +74,19 @@ def get_current_quarter(request):
     for the current quarter refered in the user session.
     """
     timer = Timer()
+    if hasattr(request, 'myuw_current_quarter'):
+        return request.myuw_current_quarter
+
     try:
         comparison_date = get_comparison_date(request)
         term = get_term_by_date(comparison_date)
         after = get_term_after(term)
 
         if comparison_date > term.grade_submission_deadline.date():
+            request.myuw_current_quarter = after
             return after
 
+        request.myuw_current_quarter = term
         return term
     except Exception as ex:
         print ex
