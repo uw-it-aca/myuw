@@ -105,7 +105,11 @@ def get_next_quarter(request):
     Returna restclients.models.sws.Term object
     for the current quarter refered in the user session.
     """
-    return get_term_after(get_current_quarter(request))
+    if hasattr(request, 'myuw_next_quarter'):
+        return request.myuw_next_quarter
+    term = get_term_after(get_current_quarter(request))
+    request.myuw_next_quarter = term
+    return term
 
 
 def get_previous_quarter(request):
