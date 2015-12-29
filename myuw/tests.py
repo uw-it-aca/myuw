@@ -1,5 +1,6 @@
 from django.test import TestCase
 from myuw.test.models import TestUserNotices
+from myuw.test.page import TestPageMethods
 from myuw.test.academic_events import TestAcademicEvents
 from myuw.test.dao import TestDao
 from myuw.test.dao.course_color import TestCourseColors
