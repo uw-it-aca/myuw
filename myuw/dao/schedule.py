@@ -64,7 +64,13 @@ def get_current_quarter_schedule(request):
     """
     Return the actively enrolled sections in the current quarter
     """
-    return get_schedule_by_term(get_current_quarter(request))
+    if hasattr(request, "myuw_current_quarter_schedule"):
+        return request.myuw_current_quarter_schedule
+
+    schedule = get_schedule_by_term(get_current_quarter(request))
+    request.myuw_current_quarter_schedule = schedule
+
+    return schedule
 
 
 def get_next_quarter_schedule(request):

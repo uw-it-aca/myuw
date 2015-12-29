@@ -45,6 +45,9 @@ def get_all_affiliations(request):
                 according to the SWS Enrollment.
     """
 
+    if hasattr(request, 'myuw_user_affiliations'):
+        return request.myuw_user_affiliations
+
     enrolled_campuses = get_current_quarter_course_campuses(request)
     is_fyp = False
 
@@ -73,6 +76,7 @@ def get_all_affiliations(request):
     #    we use registered sections in the current quarter
     #    to determine the campuses.
     log_info(logger, data)
+    request.myuw_user_affiliations = data
     return data
 
 
