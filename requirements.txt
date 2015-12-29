@@ -17,3 +17,4 @@ python-binary-memcached
 -e git://github.com/devights/django_client_logger#egg=django_client_logger
 #  If you're using a MySQL database, you may also need mysql-python
 # mysql-python
+yajl

@@ -30,6 +30,7 @@ class TestDisplayValues(TestCase):
             self.assertFalse(values["is_after_grade_submission_deadline"])
             self.assertFalse(values["is_before_first_day_of_term"])
             # spring, after grade submission
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-27"
             values = get_card_visibilty_date_values(now_request)
@@ -39,6 +40,7 @@ class TestDisplayValues(TestCase):
             now = get_comparison_datetime(now_request)
             self.assertTrue(is_before_bof_term(now, now_request))
             # spring, before instruction begins
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-31"
             values = get_card_visibilty_date_values(now_request)
@@ -47,6 +49,7 @@ class TestDisplayValues(TestCase):
             self.assertTrue(is_before_bof_term(now, now_request))
 
             # spring, instruction begins
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-04-01"
             values = get_card_visibilty_date_values(now_request)
@@ -63,12 +66,14 @@ class TestDisplayValues(TestCase):
             self.assertFalse(is_before_bof_term(now, now_request))
 
             # autumn
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-08-21"
             values = get_card_visibilty_date_values(now_request)
             self.assertTrue(values["is_after_last_day_of_classes"])
             self.assertFalse(values["is_after_grade_submission_deadline"])
             self.assertFalse(values["is_before_first_day_of_term"])
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-08-22"
             values = get_card_visibilty_date_values(now_request)
@@ -76,52 +81,62 @@ class TestDisplayValues(TestCase):
             self.assertTrue(values["is_after_grade_submission_deadline"])
             self.assertTrue(values["is_before_first_day_of_term"])
 
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-09-24"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_before_first_day_of_term"])
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-09-23"
             values = get_card_visibilty_date_values(now_request)
             self.assertTrue(values["is_before_first_day_of_term"])
 
             # winter
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-12-17"
             values = get_card_visibilty_date_values(now_request)
             self.assertTrue(values["is_after_last_day_of_classes"])
             self.assertFalse(values["is_after_grade_submission_deadline"])
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-12-18"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_after_last_day_of_classes"])
             self.assertTrue(values["is_after_grade_submission_deadline"])
 
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-01-07"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_before_first_day_of_term"])
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-01-06"
             values = get_card_visibilty_date_values(now_request)
             self.assertTrue(values["is_before_first_day_of_term"])
 
             # summer
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-06-12"
             values = get_card_visibilty_date_values(now_request)
             self.assertTrue(values["is_after_last_day_of_classes"])
             self.assertFalse(values["is_after_grade_submission_deadline"])
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-06-13"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_after_last_day_of_classes"])
             self.assertTrue(values["is_after_grade_submission_deadline"])
 
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-06-18"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_before_first_day_of_term"])
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-06-17"
             values = get_card_visibilty_date_values(now_request)
@@ -136,10 +151,12 @@ class TestDisplayValues(TestCase):
             self.assertFalse(values["is_after_grade_submission_deadline"])
             self.assertFalse(values["is_before_eof_7days_of_term"])
             # spring
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-27"
             values = get_card_visibilty_date_values(now_request)
             self.assertTrue(values["is_before_eof_7days_of_term"])
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-04-08"
             values = get_card_visibilty_date_values(now_request)
@@ -148,6 +165,7 @@ class TestDisplayValues(TestCase):
             self.assertTrue(
                 is_before_eof_7d_after_class_start(now, now_request))
 
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-04-09"
             values = get_card_visibilty_date_values(now_request)
@@ -156,16 +174,19 @@ class TestDisplayValues(TestCase):
             self.assertFalse(
                 is_before_eof_7d_after_class_start(now, now_request))
 
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-08-21"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_after_grade_submission_deadline"])
 
             # autumn
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-08-22"
             values = get_card_visibilty_date_values(now_request)
             self.assertTrue(values["is_before_eof_7days_of_term"])
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-10-01"
             values = get_card_visibilty_date_values(now_request)
@@ -174,6 +195,7 @@ class TestDisplayValues(TestCase):
             self.assertTrue(
                 is_before_eof_7d_after_class_start(now, now_request))
 
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-10-02"
             values = get_card_visibilty_date_values(now_request)
@@ -182,16 +204,19 @@ class TestDisplayValues(TestCase):
             self.assertFalse(
                 is_before_eof_7d_after_class_start(now, now_request))
 
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-12-18"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_after_grade_submission_deadline"])
 
             # winter
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-12-19"
             values = get_card_visibilty_date_values(now_request)
             self.assertTrue(values["is_before_eof_7days_of_term"])
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-01-14"
             values = get_card_visibilty_date_values(now_request)
@@ -200,6 +225,7 @@ class TestDisplayValues(TestCase):
             self.assertTrue(
                 is_before_eof_7d_after_class_start(now, now_request))
 
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-01-15"
             values = get_card_visibilty_date_values(now_request)
@@ -208,11 +234,13 @@ class TestDisplayValues(TestCase):
             self.assertFalse(
                 is_before_eof_7d_after_class_start(now, now_request))
 
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-06-12"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_after_grade_submission_deadline"])
             # summer
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-06-13"
             values = get_card_visibilty_date_values(now_request)
@@ -226,6 +254,7 @@ class TestDisplayValues(TestCase):
                 is_before_eof_7d_after_class_start(now, now_request))
 
             # A-term, Full-term
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-06-26"
             values = get_card_visibilty_date_values(now_request)
@@ -235,6 +264,7 @@ class TestDisplayValues(TestCase):
                 is_before_eof_7d_after_class_start(now, now_request))
 
             # B-term
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-07-26"
             values = get_card_visibilty_date_values(now_request)
@@ -250,32 +280,46 @@ class TestDisplayValues(TestCase):
             now_request.session["myuw_override_date"] = "2013-05-30"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_after_7d_before_last_instruction"])
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-05-31"
             values = get_card_visibilty_date_values(now_request)
             self.assertTrue(values["is_after_7d_before_last_instruction"])
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-06-24"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_after_7d_before_last_instruction"])
             # summer a-term
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-07-10"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_after_7d_before_last_instruction"])
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-07-11"
             values = get_card_visibilty_date_values(now_request)
             self.assertTrue(values["is_after_7d_before_last_instruction"])
             # b-term start
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-07-19"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_after_7d_before_last_instruction"])
             # summer b-term or full-term
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-08-09"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_after_7d_before_last_instruction"])
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-08-10"
             values = get_card_visibilty_date_values(now_request)
             self.assertTrue(values["is_after_7d_before_last_instruction"])
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
             now_request.session["myuw_override_date"] = "2012-08-22"
             values = get_card_visibilty_date_values(now_request)
             self.assertFalse(values["is_after_7d_before_last_instruction"])
@@ -352,6 +396,7 @@ class TestDisplayValues(TestCase):
                 values["is_before_end_of_registration_display_period"])
 
             # 2013 winter after
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-16"
             now = get_comparison_datetime(now_request)
@@ -374,6 +419,7 @@ class TestDisplayValues(TestCase):
             self.assertTrue(is_before_eof_finals_week(now, now_request))
             self.assertFalse(is_before_last_day_of_classes(now, now_request))
 
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-06-15"
             values = get_card_visibilty_date_values(now_request)
@@ -383,10 +429,12 @@ class TestDisplayValues(TestCase):
             self.assertFalse(is_before_eof_finals_week(now, now_request))
 
             # autumn
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-12-13"
             values = get_card_visibilty_date_values(now_request)
             self.assertTrue(values["is_before_end_of_finals_week"])
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-12-14"
             values = get_card_visibilty_date_values(now_request)
@@ -395,10 +443,12 @@ class TestDisplayValues(TestCase):
             self.assertFalse(is_before_eof_finals_week(now, now_request))
 
             # winter
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-22"
             values = get_card_visibilty_date_values(now_request)
             self.assertTrue(values["is_before_end_of_finals_week"])
+            now_request = RequestFactory().get("/")
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-03-23"
             values = get_card_visibilty_date_values(now_request)

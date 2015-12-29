@@ -1,7 +1,7 @@
 """
 This module gives access to building data
 """
-import json
+import yajl
 import os
 from myuw.models.building import Building
 
@@ -15,7 +15,7 @@ def get_building_by_code(code):
         '..', 'data', 'buildings.json')
 
     f = open(path)
-    building_data = json.loads(f.read())
+    building_data = yajl.loads(f.read())
 
     if code in building_data:
         data = building_data[code]
