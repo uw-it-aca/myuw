@@ -103,6 +103,8 @@ class TestAcademicEvents(TestCase):
         events = AcademicEvents().filter_too_future_events(request, [past])
         self.assertEquals(len(events), 0)
 
+        request = RequestFactory().get("/")
+        request.session = {}
         request.session["myuw_override_date"] = "2013-01-01"
         events = AcademicEvents().filter_too_future_events(request, [past])
         self.assertEquals(len(events), 1)
