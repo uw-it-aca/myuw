@@ -10,6 +10,7 @@ from myuw.dao.term import get_comparison_datetime, is_b_term,\
 
 
 def get_evaluations_by_section(section):
+    return None
     return _get_evaluations_by_section_and_student(
         section, get_profile_of_current_user().student_number)
 
