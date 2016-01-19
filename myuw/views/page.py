@@ -102,6 +102,9 @@ def index(request,
 def _is_mobile(request):
     user_agent = request.META.get("HTTP_USER_AGENT")
 
+    if not user_agent:
+        return False
+
     # This is the check we were doing in our apache config...
     if re.match('.*iPhone.*', user_agent):
         return True
