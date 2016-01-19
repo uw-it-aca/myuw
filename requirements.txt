@@ -2,7 +2,7 @@ Django==1.6
 South
 ordereddict
 simplejson
-django-compressor
+django-compressor<2.0
 BeautifulSoup
 urllib3==1.10.2
 django-templatetag-handlebars
