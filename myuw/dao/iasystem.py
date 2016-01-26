@@ -5,8 +5,8 @@ from restclients.exceptions import DataFailureException
 from restclients.iasystem import evaluation
 from myuw.dao.student_profile import get_profile_of_current_user
 from myuw.dao.term import get_comparison_datetime, is_b_term,\
-    convert_to_begin_of_day, get_current_summer_term,\
-    get_bod_7d_before_last_instruction, get_eod_current_term
+    get_current_summer_term, get_bod_7d_before_last_instruction,\
+    get_eod_current_term
 
 
 def get_evaluations_by_section(section):
@@ -44,21 +44,52 @@ def summer_term_overlaped(request, given_section):
             is_b_term(current_summer_term))
 
 
+def _get_local_tz():
+    return timezone.get_current_timezone()
+
+
+def is_winthin_default_show_windown(request):
+    """
+    @return true if the comparison date is inside the
+    default show window range
+    """
+    now = _get_local_tz().localize(get_comparison_datetime(request))
+    return (now >= _get_default_show_start(request) or
+            now < _get_default_show_end(request))
+
+
+def _get_default_show_start(request):
+    """
+    @return default show window starting datetime in local time zone
+    """
+    return _get_local_tz().localize(
+        get_bod_7d_before_last_instruction(request))
+
+
+def _get_default_show_end(request):
+    """
+    @return default show window ending datetime in local time zone
+    """
+    return _get_local_tz().localize(get_eod_current_term(request, True))
+
+
 def json_for_evaluation(request, evaluations, section):
+    """
+    @return the json format of only the evaluations that
+    should be shown.
+    The show window starts: 7 days before last inst
+    or eveluation openning date, whichever comes later
+    The show window ends: the midnight at the end of current term
+    grade submission deadline or at the evaluation close date,
+    """
     if evaluations is None:
         return None
-    local_tz = timezone.get_current_timezone()
-    now = local_tz.localize(get_comparison_datetime(request))
+    now = _get_local_tz().localize(get_comparison_datetime(request))
 
-    # the start date of the default show window
-    show_date = get_bod_7d_before_last_instruction(request)
-    on_dt = local_tz.localize(convert_to_begin_of_day(show_date))
+    on_dt = _get_default_show_start(request)
+    off_dt = _get_default_show_end(request)
 
-    # the end date of the default show window
-    hide_date = get_eod_current_term(request, True)
-    off_dt = local_tz.localize(convert_to_begin_of_day(hide_date))
-
-    if now < on_dt or now > off_dt:
+    if now < on_dt or now >= off_dt:
         return None
 
     pws = PWS()

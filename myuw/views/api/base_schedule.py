@@ -16,7 +16,7 @@ from myuw.logger.logresp import log_data_not_found_response
 from myuw.logger.logresp import log_success_response
 from myuw.views.rest_dispatch import RESTDispatch, data_not_found
 from myuw.dao.iasystem import get_evaluations_by_section,\
-    json_for_evaluation
+    json_for_evaluation, is_winthin_default_show_windown
 
 
 class StudClasSche(RESTDispatch):
@@ -82,16 +82,17 @@ def load_schedule(request, schedule, summer_term=""):
 #        if section.is_primary_section:
         section_data["lib_subj_guide"] = get_subject_guide_by_section(section)
 
-        try:
-            evaluation_json_data = json_for_evaluation(
-                request,
-                get_evaluations_by_section(section),
-                section)
-        except Exception as ex:
-            evaluation_json_data = None
+        if is_winthin_default_show_windown(request):
+            try:
+                evaluation_json_data = json_for_evaluation(
+                    request,
+                    get_evaluations_by_section(section),
+                    section)
+            except Exception as ex:
+                evaluation_json_data = None
 
-        if evaluation_json_data is not None:
-            section_data["evaluation_data"] = evaluation_json_data
+            if evaluation_json_data is not None:
+                section_data["evaluation_data"] = evaluation_json_data
 
         if section.section_label() in canvas_data_by_course_id:
             enrollment = canvas_data_by_course_id[section.section_label()]
