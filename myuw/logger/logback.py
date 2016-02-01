@@ -1,5 +1,5 @@
 import logging
-from userservice.user import UserService
+from userservice.user import UserService, UninitializedError
 from myuw.logger.timer import Timer
 
 
@@ -37,9 +37,13 @@ def get_logging_userid():
     the user is acting as someone else, otherwise
     <actual user netid> no_override: <actual user netid>
     """
-    user_svc = UserService()
-    override_userid = user_svc.get_override_user()
-    actual_userid = user_svc.get_original_user()
+    try:
+        user_svc = UserService()
+        override_userid = user_svc.get_override_user()
+        actual_userid = user_svc.get_original_user()
+    except UninitializedError:
+        return None
+
     log_format = 'base_user: %s acting_user: %s is_override: %s'
     try:
         if override_userid:
