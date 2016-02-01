@@ -12,7 +12,7 @@ var CourseEvalPanel = {
 
         // failed to fetch the eval data for the section
         var eval_data_err = (!has_valid_eval &&  eval_data.sections[index].evaluation_data === null ? true :false);
-        c_section.eval_data_err = eval_data_err
+        c_section.eval_data_err = eval_data_err;
 
         var source = $("#course_eval_panel").html();
         var template = Handlebars.compile(source);
