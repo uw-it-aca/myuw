@@ -10,12 +10,22 @@ from restclients.pws import PWS
 from userservice.user import UserService
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time, log_exception, log_info
+import re
 
 logger = logging.getLogger(__name__)
 
 
 def get_netid_of_current_user():
-    return UserService().get_user()
+    username = UserService().get_user()
+
+    username = descope_uw_username(username)
+    return username
+
+
+def descope_uw_username(username):
+    if re.match(r'.*@washington.edu$', username):
+        return username.replace('@washington.edu', '')
+    return username
 
 
 def _get_person_of_current_user():
