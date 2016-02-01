@@ -7,7 +7,7 @@ var TuitionCard = {
         TuitionCard._ajax_count = 2;
         WSData.fetch_tuition_data(TuitionCard.render_upon_data, TuitionCard.render_error);
         WSData.fetch_notice_data(TuitionCard.render_upon_data, TuitionCard.render_error);
-        WSData.fetch_course_data_for_term('current', TuitionCard.render_upon_data, CourseCard.render_error);
+        WSData.fetch_course_data_for_term('current', TuitionCard.render_upon_data, CourseCards.render_error);
     },
 
 

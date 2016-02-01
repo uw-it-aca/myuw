@@ -1,12 +1,23 @@
+"""
+This class encapsulates the interactions with restclient
+to iasystem web service.
+"""
+
+import logging
+import traceback
 from datetime import datetime
 from django.utils import timezone
 from restclients.pws import PWS
 from restclients.exceptions import DataFailureException
 from restclients.iasystem import evaluation
+from myuw.logger.logback import log_exception
 from myuw.dao.student_profile import get_profile_of_current_user
 from myuw.dao.term import get_comparison_datetime, is_b_term,\
     get_current_summer_term, get_bod_7d_before_last_instruction,\
     get_eod_current_term
+
+
+logger = logging.getLogger(__name__)
 
 
 def get_evaluations_by_section(section):
@@ -25,8 +36,11 @@ def _get_evaluations_by_section_and_student(section, student_number):
         return evaluation.search_evaluations(section.course_campus.lower(),
                                              **search_params)
 
-    except DataFailureException:
-        return None
+    except DataFailureException as ex:
+        log_exception(logger,
+                      id,
+                      traceback.format_exc())
+    return None
 
 
 def summer_term_overlaped(request, given_section):
@@ -48,10 +62,10 @@ def _get_local_tz():
     return timezone.get_current_timezone()
 
 
-def is_winthin_default_show_windown(request):
+def in_coursevel_fetch_window(request):
     """
     @return true if the comparison date is inside the
-    default show window range
+    default show window range of course eval
     """
     now = _get_local_tz().localize(get_comparison_datetime(request))
     return (now >= _get_default_show_start(request) or
@@ -76,26 +90,21 @@ def _get_default_show_end(request):
 def json_for_evaluation(request, evaluations, section):
     """
     @return the json format of only the evaluations that
-    should be shown.
-    The show window starts: 7 days before last inst
-    or eveluation openning date, whichever comes later
-    The show window ends: the midnight at the end of current term
-    grade submission deadline or at the evaluation close date,
+    should be shown; [] if none should be displaued at the moment;
+    or None if error in fetching data.
+    This function should not be called if not in
+    in_coursevel_fetch_window.
     """
     if evaluations is None:
         return None
     now = _get_local_tz().localize(get_comparison_datetime(request))
 
-    on_dt = _get_default_show_start(request)
-    off_dt = _get_default_show_end(request)
-
-    if now < on_dt or now >= off_dt:
-        return None
-
     pws = PWS()
     json_data = []
     for evaluation in evaluations:
+
         if summer_term_overlaped(request, section):
+
             if evaluation.is_completed or\
                     now < evaluation.eval_open_date or\
                     now >= evaluation.eval_close_date:
@@ -105,7 +114,8 @@ def json_for_evaluation(request, evaluations, section):
                 'instructors': [],
                 'url': evaluation.eval_url,
                 'close_date': datetime_str(evaluation.eval_close_date),
-                'is_multi_instr': len(evaluation.instructor_ids) > 1}
+                'is_multi_instr': len(evaluation.instructor_ids) > 1
+                }
 
             for eid in evaluation.instructor_ids:
                 instructor_json = {}
@@ -113,12 +123,8 @@ def json_for_evaluation(request, evaluations, section):
                 instructor_json['instructor_name'] = instructor.display_name
                 instructor_json['instructor_title'] = instructor.title1
                 json_item['instructors'].append(instructor_json)
-
             json_data.append(json_item)
-    if len(json_data) > 0:
-        return {'evals': json_data}
-
-    return None
+    return json_data
 
 
 def datetime_str(localized_datetime):

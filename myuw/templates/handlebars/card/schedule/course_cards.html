@@ -1,0 +1,12 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "course_card_list" %}
+
+<h3 id="your_courses" class="sr-only">Your {{ucfirst quarter}} {{year}} Courses</h3>
+<div aria-labelledby="your_courses">
+
+    {{#each sections}}
+    <div id="course_card{{index}}" class="card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
+    </div>
+    {{/each}}
+</div>
+{% endtplhandlebars %}
