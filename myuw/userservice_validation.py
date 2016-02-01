@@ -25,7 +25,7 @@ def _validate(username, regex):
 
 
 def transform(username):
-    start = username.lower()
+    start = username.lower().strip()
     if re.match(".*@.*", start):
         return start
 

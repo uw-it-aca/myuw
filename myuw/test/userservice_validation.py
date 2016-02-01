@@ -25,6 +25,7 @@ class TestValidation(TestCase):
 
     def test_transform(self):
         self.assertEquals(transform("JAVERAGE"), "javerage@washington.edu")
+        self.assertEquals(transform("  JAVERAGE  "), "javerage@washington.edu")
         self.assertEquals(transform("javerage@washington.edu"),
                           "javerage@washington.edu")
         self.assertEquals(transform("javerage@gmail.com"),
