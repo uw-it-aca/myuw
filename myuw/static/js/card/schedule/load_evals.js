@@ -21,7 +21,7 @@ var LoadCourseEval = {
             section.quarter = course_data.quarter;
             section.summer_term = course_data.summer_term;
 
-            CourseEvalPanel.render(section, fetched_eval_data);
+            CourseCardContentPanel.render(section, fetched_eval_data);
         }
         LoadCourseEval.add_events();
     },

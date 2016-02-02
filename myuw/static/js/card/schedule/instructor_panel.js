@@ -8,5 +8,3 @@ var CourseInstructorPanel = {
         $('#course_instructor' + c_section.index).html(raw);
     }
 };
-
- 

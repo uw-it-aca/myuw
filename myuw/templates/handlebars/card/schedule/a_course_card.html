@@ -1,5 +1,5 @@
 {% load templatetag_handlebars %}
-    {% tplhandlebars "a_course_card_content" %}
+    {% tplhandlebars "course_card_strut" %}
 
     <div class=" c{{color_id}}Border" style="position:absolute; top:0; left:0; right:0;">&nbsp;</div>
         
@@ -9,7 +9,7 @@
                 <span class="shortTitle" style="display:block;">{{ course_title }}</span>
             </h4>
 
-            <div id="course-eval{{index}}">
+            <div id="course_card_content{{index}}">
             </div>
         </div>
     </div>
