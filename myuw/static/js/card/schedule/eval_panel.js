@@ -16,13 +16,11 @@ var CourseEvalPanel = {
 
         var source = $("#course_eval_panel").html();
         var template = Handlebars.compile(source);
-        $('#course-eval' + index).html(template(c_section));
+        var raw = template(c_section);
+        $('#course-eval' + index).html(raw);
 
         CourseSchePanel.render(c_section);
 
-        if (c_section.class_website_url || c_section.lib_subj_guide || c_section.canvas_url) {
-            c_section.has_resources = true;
-        }
         CourseResourcePanel.render(c_section);
 
         CourseInstructorPanel.render(c_section);

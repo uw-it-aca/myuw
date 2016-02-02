@@ -17,7 +17,6 @@ var LoadCourseEval = {
         var index;
         for (index = 0; index < course_sections.length; index++) {
             section = course_sections[index];
-            section.index = index;
             section.year = course_data.year;
             section.quarter = course_data.quarter;
             section.summer_term = course_data.summer_term;

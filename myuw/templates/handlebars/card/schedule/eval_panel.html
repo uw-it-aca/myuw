@@ -10,7 +10,6 @@
         <div id="course_instructor{{index}}">
         </div>
     </div>
-
 {{ /unless }}
 
 {{ #if has_eval}}
@@ -31,7 +30,9 @@
                     {{ #each instructors }}
                         <li class="myuw-eval-multi-list-item">
                             <span class="myuw-eval-name">{{ instructor_name }}</span>
-                            <div class="myuw-eval-title">{{ instructor_title }}</div>
+                            {{ #if instructor_title }}
+                                <div class="myuw-eval-title">{{ instructor_title }}</div>
+                            {{/if}}
                         </li>
                     {{/each}}
 
@@ -42,7 +43,9 @@
                     {{ #each instructors }}
                         <li class="myuw-eval-list-item">
                             <a class="myuw-eval-link" href="{{ ../url }}" target="_blank"><span class="myuw-eval-name"><span class="myuw-eval-name">{{ instructor_name }}</span></a>
-                            <div class="myuw-eval-title">{{ instructor_title }}</div>
+                            {{ #if instructor_title }}
+                                <div class="myuw-eval-title">{{ instructor_title }}</div>
+                            {{/if}}
                         </li>
                     {{/each}}
 

@@ -42,14 +42,13 @@ var CourseCards = {
 
         var source = $("#course_card_list").html();
         var courses_template = Handlebars.compile(source);
-        CourseCards.dom_target.html(courses_template(course_data));
+        var raw = courses_template(course_data);
+        CourseCards.dom_target.html(raw);
 
         var index;
         for (index = 0; index < course_data.sections.length; index += 1) {
-            course_data.sections[index].index = index;
             ACourseCard.render(term, course_data.sections[index]);
         }
-
 
         if (term === 'current' && window.card_display_dates.in_coursevel_fetch_window) {
             WSData.fetch_iasystem_data(LoadCourseEval.render_upon_data, null);

@@ -4,6 +4,7 @@ var CourseResourcePanel = {
 
         var source = $("#course_resource_panel").html();
         var template = Handlebars.compile(source);
-        $('#course-resource' + c_section.index).html(template(c_section));
+        var raw = template(c_section);
+        $('#course-resource' + c_section.index).html(raw);
     }
 };

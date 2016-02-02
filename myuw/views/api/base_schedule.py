@@ -137,5 +137,11 @@ def load_schedule(request, schedule, summer_term=""):
                                                   'course_number',
                                                   'section_id',
                                                   ))
+    # add section index
+    index = 0
+    for section in json_data["sections"]:
+        section["index"] = index
+        index = index + 1
+
     json_data["is_grad_student"] = is_grad_student()
     return json_data
