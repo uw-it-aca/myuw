@@ -22,7 +22,7 @@ Academics,Libraries,,,http://lib.washington.edu/,UW Libraries,http://library.uwb
 Academics,Graduation,,,http://grad.uw.edu/mygrad/student.htm,Application for Graduation,http://grad.uw.edu/mygrad/student.htm,Applying for Graduation,http://grad.uw.edu/mygrad/student.htm,Applying to Graduate,no
 Finances,Financial Aid,,,http://www.washington.edu/students/osfa/,Financial Aid and Scholarships,http://www.bothell.washington.edu/financialaid,Financial Aid and Scholarships,http://www.tacoma.uw.edu/uwt/financial-aid,Financial Aid and Scholarships,no
 Finances,Financial Aid,https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx,Financial Aid Status,,,,,,,yes
-Finances,Taxes,https://sdb.admin.uw.edu/sisStudents/uwnetid/irs1098tconsent.aspx,Form 1098-T,,,,,,,yes
+Finances,Taxes,https://sdb.admin.uw.edu/sisStudents/uwnetid/irs1098t.aspx,Form 1098-T,,,,,,,yes
 Finances,Taxes,http://f2.washington.edu/fm/sfs/tax,Student Tax Information,,,,,,,no
 Finances,Tuition,http://f2.washington.edu/fm/sfs/tuition,Tuition Overview,,,,,,,no
 Student & Campus Life,Housing & Dining,https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx,Add Funds to Husky Card,,,,,,,yes
