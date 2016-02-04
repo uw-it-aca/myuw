@@ -89,7 +89,6 @@ def get_current_quarter(request):
         request.myuw_current_quarter = term
         return term
     except Exception as ex:
-        print ex
         log_exception(logger,
                       'get_current_term',
                       traceback.format_exc())

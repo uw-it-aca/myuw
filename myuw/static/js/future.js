@@ -14,7 +14,7 @@ var FutureQuarter = {
         NoticeBanner.render_init($("#notice_banner_location"));
 
         var cards = [VisualScheduleCard,
-                     CourseCard,
+                     CourseCards,
                      TextbookCard];
 
         Cards.load_cards_in_order(cards, $("#future_content"), term);

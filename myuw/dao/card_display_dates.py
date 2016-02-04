@@ -14,6 +14,7 @@ from myuw.dao.term import get_comparison_datetime,\
     get_eod_7d_after_class_start, get_eod_current_term_last_final_exam
 from myuw.dao.term import get_bod_class_start_quarter_after as\
     get_bod_quarter_after
+from myuw.dao.iasystem import in_coursevel_fetch_window
 
 
 def in_show_grades_period(term, request):
@@ -65,6 +66,7 @@ def get_values_by_date(now, request):
         "is_after_summer_b": is_in_summer_b_term(request),
         "current_summer_term": "%s,%s" % (last_term.year, "summer"),
         "last_term": "%s,%s" % (last_term.year, last_term.quarter),
+        "in_coursevel_fetch_window": in_coursevel_fetch_window(request),
     }
 
 
@@ -190,7 +192,8 @@ def set_js_overrides(request, values):
            'myuw_before_end_of_reg_display': before_reg,
            'myuw_before_first_day': 'is_before_first_day_of_term',
            'myuw_before_end_of_first_week': 'is_before_eof_7days_of_term',
-           'myuw_after_eval_start': 'is_after_7d_before_last_instruction'
+           'myuw_after_eval_start': 'is_after_7d_before_last_instruction',
+           'myuw_in_coursevel_fetch_window': 'in_coursevel_fetch_window'
            }
 
     for key, value in MAP.iteritems():

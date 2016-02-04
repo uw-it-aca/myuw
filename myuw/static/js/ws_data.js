@@ -6,6 +6,7 @@ WSData = {
     _profile_data: null,
     _uwemail_data: null,
     _hfs_data: null,
+    _iasystem_data: null,
     _library_data: null,
     _tuition_data: null,
     _grade_data: {},
@@ -125,6 +126,10 @@ WSData = {
     grade_data_for_term: function(term) {
         if (!term) { term = ''; }
         return WSData._grade_data[term];
+    },
+
+    iasystem_data: function() {
+        return WSData._iasystem_data;
     },
 
     hfs_data: function() {
@@ -534,6 +539,40 @@ WSData = {
                         }
                     });
               }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
+    fetch_iasystem_data: function(callback, err_callback, args) {
+        if (WSData._iasystem_data === null) {
+            var url = "/api/v1/ias/";
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+            $.ajax({
+                url: url,
+                dataType: "JSON",
+
+                type: 'GET',
+                accepts: {html: "application/json"},
+                success: function(results) {
+                    WSData._iasystem_data = results;
+                    if (callback !== null) {
+                        callback.apply(null, args);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    err_callback.call(null, status, error);
+                }
+            });
+        }
         else {
             window.setTimeout(function() {
                 callback.apply(null, args);

@@ -1,0 +1,36 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "course_card_content_panel" %}
+
+{{ #unless has_eval}}
+    <div id="sche_on_course_card{{index}}">
+    </div>
+    <div id="course_details{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
+        <div id="course_resource{{index}}">
+        </div>
+        <div id="course_instructor{{index}}">
+        </div>
+    </div>
+{{ /unless }}
+
+{{ #if has_eval}}
+    <div class="myuw-course-eval" id="course_eval{{index}}" >
+    </div>
+
+    <div id="course_details{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
+
+        <div id="sche_on_course_card{{index}}">
+        </div>
+
+        <div id="course_resource{{index}}">
+        </div>
+    
+        <div id="course_instructor{{index}}">
+        </div>
+    </div>
+{{ /if }}
+
+    <div class="card-disclosure">
+        <a class="slide-link" href="#" aria-controls="course_details{{index}}" title="Show course details">Show course details</a>
+    </div>
+
+{% endtplhandlebars %}

@@ -28,7 +28,13 @@
     {% include "handlebars/card/events.html" %}
     {% include "handlebars/card/emp_fac_student.html" %}
     {% include "handlebars/card/thrive.html" %}
-    {% include "handlebars/card/schedule/course.html" %}
+    {% include "handlebars/card/schedule/course_cards.html" %}
+    {% include "handlebars/card/schedule/a_course_card.html" %}
+    {% include "handlebars/card/schedule/course_card_content.html" %}
+    {% include "handlebars/card/schedule/course_sche_panel.html" %}
+    {% include "handlebars/card/schedule/eval_panel.html" %}
+    {% include "handlebars/card/schedule/course_resource_panel.html" %}
+    {% include "handlebars/card/schedule/instructor_panel.html" %}
     {% include "handlebars/card/schedule/final_panel.html" %}
     {% include "handlebars/card/schedule/sp_final.html" %}
     {% include "handlebars/card/schedule/final_day.html" %}
@@ -106,7 +112,8 @@
         "is_summer": {{ card_display_dates.is_summer|yesno:"true, false"}},
         "current_summer_term": "{{ card_display_dates.current_summer_term}}",
         "is_after_summer_b_start": {{ card_display_dates.is_after_summer_b|yesno:"true, false"}},
-        "last_term": "{{ card_display_dates.last_term }}"
+        "last_term": "{{ card_display_dates.last_term }}",
+        "in_coursevel_fetch_window": "{{ card_display_dates.in_coursevel_fetch_window }}"
     };
     </script>
 

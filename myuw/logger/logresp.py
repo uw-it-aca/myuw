@@ -22,6 +22,10 @@ def log_data_not_found_response(logger, timer):
              timer)
 
 
+def log_invalid_request(logger, timer, msg):
+    log_time(logger, msg, timer)
+
+
 def log_invalid_netid_response(logger, timer):
     log_time(logger, 'invalid netid, abort', timer)
 
