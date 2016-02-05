@@ -569,7 +569,9 @@ WSData = {
                     }
                 },
                 error: function(xhr, status, error) {
-                    err_callback.call(null, status, error);
+                    if (err_callback !== null) {
+                        err_callback.call(null, status, error);
+                    }
                 }
             });
         }
