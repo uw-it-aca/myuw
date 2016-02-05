@@ -31,21 +31,27 @@ var LoadCourseEval = {
             ev.preventDefault();
             var hidden_block = $(ev.target).parent().siblings(".slide-hide")[0];
             var slide_link = this;
+            var slide_link_text = this.text;
                         
             $(hidden_block).toggleClass("slide-show");
             var card = $(ev.target).closest("[data-type='card']");
 
             if ($(hidden_block).hasClass("slide-show")) {
-                $(slide_link).text("HIDE COURSE DETAILS");
-                $(slide_link).attr("title", "Hide course information");
+
+                var text = (slide_link_text === "Show Instructors") ? "HIDE INSTRUCTORS" : "HIDE COURSE DETAILS";
+                var title = (slide_link_text === "Show Instructors") ? "Hide Instructors" : "Hide course details";
+                $(slide_link).text(text);
+                $(slide_link).attr("title", title);
                 $(hidden_block).attr("aria-hidden", "false");
-                 window.myuw_log.log_card(card, "expand");
+                window.myuw_log.log_card(card, "expand");
             }
             else {
-                $(slide_link).attr("title", "Show course information");
+                var text = (slide_link_text === "Hide Instructors") ? "SHOW INSTRUCTORS" : "SHOW COURSE DETAILS";
+                var title = (slide_link_text === "Hide Instructors") ? "Show Instructors" : "Show course details";
+                $(slide_link).attr("title", title);
                 $(hidden_block).attr("aria-hidden", "true");
                 setTimeout(function() {
-                      $(slide_link).text("SHOW COURSE DETAILS");
+                      $(slide_link).text(text);
                 }, 700);
                 window.myuw_log.log_card(card, "collapse");
             }
