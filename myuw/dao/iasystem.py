@@ -21,7 +21,6 @@ logger = logging.getLogger(__name__)
 
 
 def get_evaluations_by_section(section):
-    return None
     return _get_evaluations_by_section_and_student(
         section, get_profile_of_current_user().student_number)
 

@@ -3,6 +3,11 @@ var GradStatusCard = {
     dom_target: undefined,
 
     render_init: function() {
+        if (!window.user.grad) {
+            $("#GradStatusCard").hide();
+            return;
+        }
+
         WSData.fetch_mygrad_data(GradStatusCard.render_upon_data, GradStatusCard.show_error);
     },
 

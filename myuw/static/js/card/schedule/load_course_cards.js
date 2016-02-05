@@ -4,6 +4,11 @@ var CourseCards = {
     term: 'current',
 
     render_init: function() {
+        if (!window.user.grad && !window.user.undergrad) {
+            $("#CourseCards").hide();
+            return;
+        }
+
         WSData.fetch_course_data_for_term(CourseCards.term, CourseCards.render_upon_data, CourseCards.render_error);
     },
 
@@ -44,11 +49,6 @@ var CourseCards = {
         var courses_template = Handlebars.compile(source);
         var raw = courses_template(course_data);
         CourseCards.dom_target.html(raw);
-
-        var index;
-        for (index = 0; index < course_data.sections.length; index += 1) {
-            ACourseCard.render(term, course_data.sections[index]);
-        }
 
         if (term === 'current' && window.card_display_dates.in_coursevel_fetch_window) {
             WSData.fetch_iasystem_data(LoadCourseEval.render_upon_data, null);
