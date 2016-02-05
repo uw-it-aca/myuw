@@ -44,17 +44,16 @@ var CourseCards = {
             CourseCards.dom_target.html(CardWithNoCourse.render(term));
             return;
         }
+        if (term === 'current' && window.card_display_dates.in_coursevel_fetch_window) {
+            WSData.fetch_iasystem_data(LoadCourseEval.render_upon_data, null);
+        }
 
         var source = $("#course_card_list").html();
         var courses_template = Handlebars.compile(source);
         var raw = courses_template(course_data);
         CourseCards.dom_target.html(raw);
 
-        if (term === 'current' && window.card_display_dates.in_coursevel_fetch_window) {
-            WSData.fetch_iasystem_data(LoadCourseEval.render_upon_data, null);
-        } else {
-            LoadCourseEval.render(term, false);
-        }
+        LoadCourseEval.render(term, false);
 
         CourseCards.add_events(term);
     },
