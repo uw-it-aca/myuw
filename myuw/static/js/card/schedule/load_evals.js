@@ -33,26 +33,28 @@ var LoadCourseEval = {
             var slide_link_text = this.text;
             var is_instr = (slide_link_text.match(/instructors$/i) ? true : false);
             var hidden_block = $('#' + this.getAttribute("aria-controls"));
+            var new_text;
+            var new_title;
 
             $(hidden_block).toggleClass("slide-show");
             var card = $(ev.target).closest("[data-type='card']");
 
             if ($(hidden_block).hasClass("slide-show")) {
 
-                var text = is_instr ? "HIDE INSTRUCTORS" : "HIDE COURSE DETAILS";
-                var title = is_instr ? "Hide Instructors" : "Hide course details";
-                $(slide_link).text(text);
-                $(slide_link).attr("title", title);
+                new_text = is_instr ? "HIDE INSTRUCTORS" : "HIDE COURSE DETAILS";
+                new_title = is_instr ? "Hide Instructors" : "Hide course details";
+                $(slide_link).text(new_text);
+                $(slide_link).attr("title", new_title);
                 $(hidden_block).attr("aria-hidden", "false");
                 window.myuw_log.log_card(card, "expand");
             }
             else {
-                var text = is_instr ? "SHOW INSTRUCTORS" : "SHOW COURSE DETAILS";
-                var title = is_instr ? "Show Instructors" : "Show course details";
-                $(slide_link).attr("title", title);
+                new_text = is_instr ? "SHOW INSTRUCTORS" : "SHOW COURSE DETAILS";
+                new_title = is_instr ? "Show Instructors" : "Show course details";
+                $(slide_link).attr("title", new_title);
                 $(hidden_block).attr("aria-hidden", "true");
                 setTimeout(function() {
-                      $(slide_link).text(text);
+                      $(slide_link).text(new_text);
                 }, 700);
                 window.myuw_log.log_card(card, "collapse");
             }
