@@ -1,14 +1,9 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "course_sche_panel" %}
-{{ #unless has_eval}}
-<h5 class="scheduleHeading sr-only"><!--{{ucfirst meetings.0.type}}--> Schedule</h5>
-{{ /unless }}
 
-{{ #if has_eval}}
-<h5 class="scheduleHeading">
-    {{ucfirst meetings.0.type}} Schedule
+<h5 class="scheduleHeading{{ #unless has_eval}} sr-only{{ /unless }}">
+{{ #if has_eval}}{{ucfirst meetings.0.type}}{{ /if }} Schedule
 </h5>
-{{ /if }}
 
 {{ #if canvas_grade }}
     <div class="canvasGradeBox" style="position: absolute; width: 100px; top: -3px; right:0;">
