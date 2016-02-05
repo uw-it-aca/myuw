@@ -1,7 +1,7 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "course_sche_panel" %}
 
-<h5 class="scheduleHeading">
+<h5 class="scheduleHeading sr-only">
     {{ #if has_eval}}{{ucfirst meetings.0.type}}{{ /if }} Schedule
 </h5>
 
