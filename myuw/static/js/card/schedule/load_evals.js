@@ -29,25 +29,26 @@ var LoadCourseEval = {
     add_events: function() {
         $(".slide-link").on("click", function(ev) {
             ev.preventDefault();
-            var hidden_block = $(ev.target).parent().siblings(".slide-hide")[0];
             var slide_link = this;
             var slide_link_text = this.text;
-                        
+            var is_instr = (slide_link_text.match(/instructors$/i) ? true : false);
+            var hidden_block = $('#' + this.getAttribute("aria-controls"));
+
             $(hidden_block).toggleClass("slide-show");
             var card = $(ev.target).closest("[data-type='card']");
 
             if ($(hidden_block).hasClass("slide-show")) {
 
-                var text = (slide_link_text === "Show Instructors") ? "HIDE INSTRUCTORS" : "HIDE COURSE DETAILS";
-                var title = (slide_link_text === "Show Instructors") ? "Hide Instructors" : "Hide course details";
+                var text = is_instr ? "HIDE INSTRUCTORS" : "HIDE COURSE DETAILS";
+                var title = is_instr ? "Hide Instructors" : "Hide course details";
                 $(slide_link).text(text);
                 $(slide_link).attr("title", title);
                 $(hidden_block).attr("aria-hidden", "false");
                 window.myuw_log.log_card(card, "expand");
             }
             else {
-                var text = (slide_link_text === "Hide Instructors") ? "SHOW INSTRUCTORS" : "SHOW COURSE DETAILS";
-                var title = (slide_link_text === "Hide Instructors") ? "Show Instructors" : "Show course details";
+                var text = is_instr ? "SHOW INSTRUCTORS" : "SHOW COURSE DETAILS";
+                var title = is_instr ? "Show Instructors" : "Show course details";
                 $(slide_link).attr("title", title);
                 $(hidden_block).attr("aria-hidden", "true");
                 setTimeout(function() {
