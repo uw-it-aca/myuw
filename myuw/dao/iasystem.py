@@ -67,8 +67,14 @@ def in_coursevel_fetch_window(request):
     @return true if the comparison date is inside the
     default show window range of course eval
     """
-    now = _get_local_tz().localize(get_comparison_datetime(request))
-    return (now >= _get_default_show_start(request) or
+    now = get_comparison_datetime(request)
+    logger.debug("Is %s in_coursevel_fetch_window (%s, %s)=>%s" % (
+            now,
+            _get_default_show_start(request),
+            _get_default_show_end(request),
+            (now >= _get_default_show_start(request) and
+             now < _get_default_show_end(request))))
+    return (now >= _get_default_show_start(request) and
             now < _get_default_show_end(request))
 
 
@@ -76,15 +82,14 @@ def _get_default_show_start(request):
     """
     @return default show window starting datetime in local time zone
     """
-    return _get_local_tz().localize(
-        get_bod_7d_before_last_instruction(request))
+    return get_bod_7d_before_last_instruction(request)
 
 
 def _get_default_show_end(request):
     """
     @return default show window ending datetime in local time zone
     """
-    return _get_local_tz().localize(get_eod_current_term(request, True))
+    return get_eod_current_term(request, True)
 
 
 def json_for_evaluation(request, evaluations, section):
@@ -97,6 +102,8 @@ def json_for_evaluation(request, evaluations, section):
     """
     if evaluations is None:
         return None
+
+    # to compare with timezone aware datetime object
     now = _get_local_tz().localize(get_comparison_datetime(request))
 
     pws = PWS()
@@ -104,6 +111,12 @@ def json_for_evaluation(request, evaluations, section):
     for evaluation in evaluations:
 
         if summer_term_overlaped(request, section):
+
+            logger.debug(
+            "Is %s within eval open close dates (%s, %s)==>%s" % (
+                now, evaluation.eval_open_date, evaluation.eval_close_date,
+                (now >= evaluation.eval_open_date and
+                 now < evaluation.eval_close_date)))
 
             if evaluation.is_completed or\
                     now < evaluation.eval_open_date or\
