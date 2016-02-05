@@ -26,7 +26,8 @@ var CourseCardContentPanel = {
         CourseSchePanel.render(c_section);
 
         CourseResourcePanel.render(c_section);
-
-        CourseInstructorPanel.render(c_section);
+        if (c_section.instructors) {
+            CourseInstructorPanel.render(c_section);
+        }
     }
 };
