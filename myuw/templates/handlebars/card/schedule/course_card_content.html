@@ -6,10 +6,18 @@
     </div>
     <div id="course_resource{{index}}">
     </div>
-    <div id="course_details{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
-        <div id="course_instructor{{index}}">
+
+    {{#if instructors}}
+        <div id="course_details{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true">
+            <div id="course_instructor{{index}}">
+            </div>
         </div>
-    </div>
+        <div class="card-disclosure">
+            <a class="slide-link" href="#" aria-controls="course_details{{index}}" title="Show Instructors">Show Instructors</a>
+        </div>
+    {{else}}
+        <div class="card-faux-disclosure"><strong>No instructor information available</div>
+    {{/if}}
 {{ /unless }}
 
 {{ #if has_eval}}
@@ -23,14 +31,17 @@
 
         <div id="course_resource{{index}}">
         </div>
-    
-        <div id="course_instructor{{index}}">
-        </div>
+        {{#if instructors}}
+            <div id="course_instructor{{index}}">
+            </div>
+        {{else}}
+            <div class="card-faux-disclosure"><strong>No instructor information available</div>
+         {{/if}}
     </div>
-{{ /if }}
-
     <div class="card-disclosure">
         <a class="slide-link" href="#" aria-controls="course_details{{index}}" title="Show course details">Show course details</a>
     </div>
+
+{{ /if }}
 
 {% endtplhandlebars %}
