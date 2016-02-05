@@ -2,6 +2,7 @@ from django.http import HttpResponse
 import logging
 from operator import itemgetter
 import json
+import time
 from myuw.dao.schedule import get_schedule_by_term
 from myuw.dao.schedule import filter_schedule_sections_by_summer_term
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
@@ -27,7 +28,7 @@ class IASystem(RESTDispatch):
         GET /api/v1/ias/current
         """
         timer = Timer()
-
+        time.sleep(20)
         term = get_current_quarter(request)
         if term is None:
             log_invalid_request(logger, timer, "get_current_quarter ==> None")
