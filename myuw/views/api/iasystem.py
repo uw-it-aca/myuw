@@ -3,6 +3,7 @@ import logging
 from operator import itemgetter
 import json
 import time
+from myuw.dao.gws import is_student
 from myuw.dao.schedule import get_schedule_by_term
 from myuw.dao.schedule import filter_schedule_sections_by_summer_term
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
@@ -10,7 +11,7 @@ from myuw.dao.term import get_comparison_date, get_current_quarter
 from myuw.dao.iasystem import get_evaluations_by_section,\
     json_for_evaluation, in_coursevel_fetch_window
 from myuw.logger.logresp import log_data_not_found_response,\
-    log_invalid_request, log_success_response
+    log_msg, log_success_response
 from myuw.logger.timer import Timer
 from myuw.views.rest_dispatch import RESTDispatch, data_not_found
 
@@ -27,36 +28,39 @@ class IASystem(RESTDispatch):
         """
         GET /api/v1/ias/current
         """
+        time.sleep(10)
         timer = Timer()
-        time.sleep(20)
+        if not is_student():
+            log_msg(logger, timer, "Not a student, no eval data")
+            return data_not_found()
+
         term = get_current_quarter(request)
         if term is None:
-            log_invalid_request(logger, timer, "get_current_quarter ==> None")
+            log_msg(logger, timer, "current term is None")
             return data_not_found()
 
         if not in_coursevel_fetch_window(request):
             # The window starts: 7 days before last inst
             # ends: the midnight at the end of current term
             # grade submission deadline
-            log_invalid_request(logger, timer, "not in fetching window")
-            return HttpResponse({})
+            log_msg(logger, timer, "Not in fetching window")
+            return data_not_found()
 
         schedule = get_schedule_by_term(term)
         if schedule is None:
-            # exception
-            log_data_not_found_response(logger, timer)
-            return data_not_found()
+            log_msg(logger, timer, "Error in current schedule")
+            return data_error()
 
         if not schedule.json_data():
-            log_data_not_found_response(logger, timer)
-            return HttpResponse({})
+            log_msg(logger, timer, "schedule.json_data is None")
+            return data_error()
 
         summer_term = get_current_summer_term_in_schedule(schedule, request)
 
         resp_data = load_course_eval(request, schedule, summer_term)
         if resp_data is None:
-            log_data_not_found_response(logger, timer)
-            return data_not_found()
+            log_msg(logger, timer, "failed to load course eval")
+            return data_error()
 
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(resp_data))

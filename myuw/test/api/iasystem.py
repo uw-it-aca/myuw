@@ -38,38 +38,35 @@ class TestIasystemApi(TestCase):
         self.client = Client()
 
     @skipIf(missing_url("myuw_iasystem_api"), "ias urls not configured")
-    def test_javerage(self):
+    def test_javerage_normal_cases(self):
         url = reverse("myuw_iasystem_api")
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 302)
+
         get_user('javerage')
         self.client.login(username='javerage',
                           password=get_user_pass('javerage'))
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.status_code, 404)
 
+        # after show date 2013 Spring
+        session = self.client.session
+        session["myuw_override_date"] = "2013-05-31"
+        session.save()
+        response = self.client.get(url)
         data = json.loads(response.content)
-
+        self.assertEquals(response.status_code, 200)
         self.assertEquals(data["term"]["year"], 2013)
         self.assertEquals(data["term"]["quarter"], 'Spring')
         self.assertEquals(len(data["sections"]), 5)
 
-        # after open date, before show date
+        # before show date
         session = self.client.session
         session["myuw_override_date"] = "2013-07-16"
         session.save()
 
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
-        data = json.loads(response.content)
-
-        self.assertEquals(data["term"]["year"], 2013)
-        self.assertEquals(data["term"]["quarter"], 'Summer')
-        self.assertEquals(len(data["sections"]), 2)
-
-        eval = data["sections"][0]["evaluation_data"]
-        self.assertEquals(len(eval), 0)
-
-        eval = data["sections"][1]["evaluation_data"]
-        self.assertEquals(len(eval), 0)
+        self.assertEquals(response.status_code, 404)
 
         # after show date
         session = self.client.session
@@ -89,34 +86,28 @@ class TestIasystemApi(TestCase):
         self.assertEquals(len(eval), 0)
 
     @skipIf(missing_url("myuw_iasystem_api"), "ias urls not configured")
-    def test_none_current_term(self):
+    def test_eight_2013_spring(self):
+        url = reverse("myuw_iasystem_api")
+        get_user('eight')
+        self.client.login(username='eight', password=get_user_pass('eight'))
+        session = self.client.session
+        session["myuw_override_date"] = "2013-06-08"
+        session.save()
+        response = self.client.get(url)
+
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertEquals(data["term"]["year"], 2013)
+        self.assertEquals(data["term"]["quarter"], 'Spring')
+        self.assertEquals(len(data["sections"]), 8)
+
+    @skipIf(missing_url("myuw_iasystem_api"), "ias urls not configured")
+    def test_user_none(self):
         url = reverse("myuw_iasystem_api")
         get_user('none')
         self.client.login(username='none', password=get_user_pass('none'))
         response = self.client.get(url)
-
-        self.assertEquals(response.status_code, 200)
-
-        data = json.loads(response.content)
-
-        self.assertEquals(data["term"]["year"], 2013)
-        self.assertEquals(data["term"]["quarter"], 'Spring')
-        self.assertEquals(len(data["sections"]), 0)
-
-    @skipIf(missing_url("myuw_iasystem_api"), "ias urls not configured")
-    def test_eight_current_term(self):
-        url = reverse("myuw_iasystem_api")
-        get_user('eight')
-        self.client.login(username='eight', password=get_user_pass('eight'))
-        response = self.client.get(url)
-
-        self.assertEquals(response.status_code, 200)
-
-        data = json.loads(response.content)
-
-        self.assertEquals(data["term"]["year"], 2013)
-        self.assertEquals(data["term"]["quarter"], 'Spring')
-        self.assertEquals(len(data["sections"]), 8)
+        self.assertEquals(response.status_code, 404)
 
     @skipIf(missing_url("myuw_iasystem_api"), "ias urls not configured")
     def test_missing_current_term(self):
@@ -125,7 +116,6 @@ class TestIasystemApi(TestCase):
         self.client.login(username='err_user',
                           password=get_user_pass('err_user'))
         response = self.client.get(url)
-
         self.assertEquals(response.status_code, 404)
 
     @skipIf(missing_url("myuw_iasystem_api"), "ias urls not configured")
