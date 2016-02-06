@@ -112,7 +112,7 @@
         "current_summer_term": "{{ card_display_dates.current_summer_term}}",
         "is_after_summer_b_start": {{ card_display_dates.is_after_summer_b|yesno:"true, false"}},
         "last_term": "{{ card_display_dates.last_term }}",
-        "in_coursevel_fetch_window": "{{ card_display_dates.in_coursevel_fetch_window }}"
+        "in_coursevel_fetch_window": {{ card_display_dates.in_coursevel_fetch_window|yesno:"true, false"}}
     };
     </script>
 
