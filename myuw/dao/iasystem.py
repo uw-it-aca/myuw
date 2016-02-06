@@ -113,10 +113,11 @@ def json_for_evaluation(request, evaluations, section):
         if summer_term_overlaped(request, section):
 
             logger.debug(
-            "Is %s within eval open close dates (%s, %s)==>%s" % (
-                now, evaluation.eval_open_date, evaluation.eval_close_date,
-                (now >= evaluation.eval_open_date and
-                 now < evaluation.eval_close_date)))
+                "Is %s within eval open close dates (%s, %s)==>%s" % (
+                    now, evaluation.eval_open_date,
+                    evaluation.eval_close_date,
+                    (now >= evaluation.eval_open_date and
+                     now < evaluation.eval_close_date)))
 
             if evaluation.is_completed or\
                     now < evaluation.eval_open_date or\
