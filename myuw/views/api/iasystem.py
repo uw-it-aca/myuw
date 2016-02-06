@@ -28,7 +28,6 @@ class IASystem(RESTDispatch):
         """
         GET /api/v1/ias/current
         """
-        time.sleep(10)
         timer = Timer()
         if not is_student():
             log_msg(logger, timer, "Not a student, no eval data")
