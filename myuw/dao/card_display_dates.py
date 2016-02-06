@@ -4,6 +4,7 @@ based on dates in either the current, next, or previous term.
 https://docs.google.com/document/d/14q26auOLPU34KFtkUmC_bkoo5dAwegRzgpwmZEQMhaU
 """
 
+import logging
 from django.conf import settings
 from datetime import datetime, timedelta
 from myuw.dao.term import get_comparison_datetime,\
@@ -15,6 +16,9 @@ from myuw.dao.term import get_comparison_datetime,\
 from myuw.dao.term import get_bod_class_start_quarter_after as\
     get_bod_quarter_after
 from myuw.dao.iasystem import in_coursevel_fetch_window
+
+
+logger = logging.getLogger(__name__)
 
 
 def in_show_grades_period(term, request):
@@ -78,6 +82,9 @@ def is_before_bof_term(now, request):
     The term switches after the grade submission deadline.
     @return true if it is before the begining of the 1st day of instruction
     """
+    logger.debug("%s is_before_bof_term %s ==> %s" % (
+            now, get_bod_current_term_class_start(request),
+            now < get_bod_current_term_class_start(request)))
     return now < get_bod_current_term_class_start(request)
 
 
@@ -86,6 +93,9 @@ def is_before_eof_7d_after_class_start(now, request):
     @return true if it is before the end of the 7 days
     after the instruction start day
     """
+    logger.debug("%s is_before_eof_7d_after_class_start %s ==> %s" % (
+            now, get_eod_7d_after_class_start(request),
+            now < get_eod_7d_after_class_start(request)))
     return now < get_eod_7d_after_class_start(request)
 
 
@@ -94,6 +104,9 @@ def is_after_7d_before_last_instruction(now, request):
     @return true if it is after the begining of 7 days
     before instruction end
     """
+    logger.debug("%s is_after_7d_before_last_instruction %s ==> %s" % (
+            now, get_bod_7d_before_last_instruction(request),
+            now > get_bod_7d_before_last_instruction(request)))
     return now > get_bod_7d_before_last_instruction(request)
 
 
@@ -101,6 +114,9 @@ def is_before_last_day_of_classes(now, request):
     """
     @return true if it is before the end of the last day of classes
     """
+    logger.debug("%s is_before_last_day_of_classes %s ==> %s" % (
+            now, get_eod_current_term_last_instruction(request),
+            now < get_eod_current_term_last_instruction(request)))
     return now < get_eod_current_term_last_instruction(request)
 
 
@@ -108,6 +124,8 @@ def is_after_last_day_of_classes(now, request):
     """
     @return true if it is on or after the last day of classes
     """
+    logger.debug("%s is_after_last_day_of_classes ==> %s" % (
+            now, (not is_before_last_day_of_classes(now, request))))
     return not is_before_last_day_of_classes(now, request)
 
 
@@ -115,6 +133,9 @@ def is_before_eof_finals_week(now, request):
     """
     @return true if it is before the end of the last day of finalsweek
     """
+    logger.debug("%s is_before_eof_finals_week %s ==> %s" % (
+            now, get_eod_current_term_last_final_exam(request),
+            now < get_eod_current_term_last_final_exam(request)))
     return now < get_eod_current_term_last_final_exam(request)
 
 
