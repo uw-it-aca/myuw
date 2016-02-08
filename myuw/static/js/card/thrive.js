@@ -3,7 +3,11 @@ var ThriveCard = {
     dom_target: undefined,
 
     render_init: function() {
-        WSData.fetch_thrive_data(ThriveCard.render_upon_data, ThriveCard.render_error);
+        if (window.user.fyp) {
+            WSData.fetch_thrive_data(ThriveCard.render_upon_data, ThriveCard.render_error);
+            return;
+        }
+        $("#ThriveCard").hide();
     },
 
     render_upon_data: function () {

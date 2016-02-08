@@ -15,13 +15,16 @@ from myuw.dao.term import get_comparison_date
 from myuw.logger.logresp import log_data_not_found_response
 from myuw.logger.logresp import log_success_response
 from myuw.views.rest_dispatch import RESTDispatch, data_not_found
-from myuw.dao.iasystem import get_evaluations_by_section,\
-    json_for_evaluation
 
 
 class StudClasSche(RESTDispatch):
 
     def make_http_resp(self, logger, timer, term, request, summer_term=None):
+        """
+        @return class schedule data in json format
+                {} no schedule found (not registered)
+                status 404: data error
+        """
         if term is None:
             log_data_not_found_response(logger, timer)
             return data_not_found()
@@ -82,17 +85,6 @@ def load_schedule(request, schedule, summer_term=""):
 #        if section.is_primary_section:
         section_data["lib_subj_guide"] = get_subject_guide_by_section(section)
 
-        try:
-            evaluation_json_data = json_for_evaluation(
-                request,
-                get_evaluations_by_section(section),
-                section)
-        except Exception as ex:
-            evaluation_json_data = None
-
-        if evaluation_json_data is not None:
-            section_data["evaluation_data"] = evaluation_json_data
-
         if section.section_label() in canvas_data_by_course_id:
             enrollment = canvas_data_by_course_id[section.section_label()]
             canvas_url = enrollment.course_url
@@ -145,5 +137,11 @@ def load_schedule(request, schedule, summer_term=""):
                                                   'course_number',
                                                   'section_id',
                                                   ))
+    # add section index
+    index = 0
+    for section in json_data["sections"]:
+        section["index"] = index
+        index = index + 1
+
     json_data["is_grad_student"] = is_grad_student()
     return json_data

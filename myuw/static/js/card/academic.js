@@ -3,6 +3,10 @@ var AcademicCard = {
     dom_target: undefined,
 
     render_init: function() {
+        if (!window.user.grad && !window.user.undergrad) {
+            $("#AcademicCard").hide();
+            return;
+        }
         WSData.fetch_profile_data(AcademicCard.render_upon_data, AcademicCard.show_error);
     },
 

@@ -4,12 +4,15 @@ var TuitionCard = {
     _ajax_count: 0,
 
     render_init: function() {
+        if (!window.user.grad && !window.user.undergrad) {
+            $("#TuitionCard").hide();
+            return;
+        }
         TuitionCard._ajax_count = 2;
         WSData.fetch_tuition_data(TuitionCard.render_upon_data, TuitionCard.render_error);
         WSData.fetch_notice_data(TuitionCard.render_upon_data, TuitionCard.render_error);
-        WSData.fetch_course_data_for_term('current', TuitionCard.render_upon_data, CourseCard.render_error);
+        WSData.fetch_course_data_for_term('current', TuitionCard.render_upon_data, CourseCards.render_error);
     },
-
 
     render_error: function () {
         $(TuitionCard.dom_target).html(CardWithError.render("Tuition & Fees"));
