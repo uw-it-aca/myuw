@@ -5,12 +5,7 @@
 {{ #if has_eval}}{{ucfirst meetings.0.type}}{{ /if }} Schedule
 </h5>
 
-{{ #if canvas_grade }}
-    <div class="canvasGradeBox" style="position: absolute; width: 100px; top: -3px; right:0;">
-        <span class="canvasGrade" style="font-size: 22px;">{{ canvas_grade }}%</span>
-        <span class="canvasGradeLabel" style="font-size: 12px; cursor: pointer; display:block; margin-top:-3px;" title="See note">Canvas Grade*</span>
-    </div>
-{{ /if }}
+{{> canvas_grade }}
 
 <table class="table table-condensed table-course-schedule">
     <thead class="sr-only">
