@@ -51,6 +51,9 @@ var CourseCards = {
             WSData.fetch_iasystem_data(LoadCourseEval.render_upon_data, null);
         }
 
+        Handlebars.registerPartial("canvas_grade", $("#canvas_grade_tmpl").html());
+        Handlebars.registerPartial("canvas_grade_note", $("#canvas_grade_note_tmpl").html());
+
         var source = $("#course_card_list").html();
         var courses_template = Handlebars.compile(source);
         var raw = courses_template(course_data);
