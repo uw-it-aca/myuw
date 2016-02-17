@@ -5,9 +5,7 @@ var CardWithNoCourse = {
         if ($(".no_courses_dupe_blocker").length) {
             return "";
         }
-        var term_str = (term === 'current'
-                        ? 'Current Quarter'
-                        : titilizeTerm(term));
+        var term_str = (term === 'current' ? 'Current Quarter' : titilizeTerm(term));
         var source   = $("#card_with_no_course").html();
         var template = Handlebars.compile(source);
         var raw = template({term: term_str});
