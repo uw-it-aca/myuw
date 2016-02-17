@@ -4,6 +4,7 @@ from operator import itemgetter
 import json
 import time
 from myuw.dao.gws import is_student
+from myuw.dao.pws import get_netid_of_current_user
 from myuw.dao.schedule import get_schedule_by_term
 from myuw.dao.schedule import filter_schedule_sections_by_summer_term
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
@@ -26,9 +27,12 @@ class IASystem(RESTDispatch):
 
     def GET(self, request):
         """
-        GET /api/v1/ias/current
+        GET /api/v1/ias/
         """
         timer = Timer()
+        if get_netid_of_current_user() == "eight":
+            time.sleep(10)
+
         if not is_student():
             log_msg(logger, timer, "Not a student, no eval data")
             return data_not_found()
