@@ -11,9 +11,10 @@ from myuw.dao.term import get_comparison_date, get_current_quarter
 from myuw.dao.iasystem import get_evaluations_by_section,\
     json_for_evaluation, in_coursevel_fetch_window
 from myuw.logger.logresp import log_data_not_found_response,\
-    log_msg, log_success_response
+    log_msg, log_invalid_current_term, log_success_response
 from myuw.logger.timer import Timer
-from myuw.views.rest_dispatch import RESTDispatch, data_not_found
+from myuw.views.rest_dispatch import RESTDispatch, data_not_found,\
+    invalid_term
 
 
 logger = logging.getLogger(__name__)
@@ -30,13 +31,13 @@ class IASystem(RESTDispatch):
         """
         timer = Timer()
         if not is_student():
-            log_msg(logger, timer, "Not a student, no eval data")
+            log_msg(logger, timer, "Not a student, abort!")
             return data_not_found()
 
         term = get_current_quarter(request)
         if term is None:
-            log_msg(logger, timer, "current term is None")
-            return data_not_found()
+            log_invalid_current_term(logger, timer)
+            return invalid_term()
 
         if not in_coursevel_fetch_window(request):
             # The window starts: 7 days before last inst
@@ -56,11 +57,12 @@ class IASystem(RESTDispatch):
 
         summer_term = get_current_summer_term_in_schedule(schedule, request)
 
-        resp_data = load_course_eval(request, schedule, summer_term)
-        if resp_data is None:
-            log_msg(logger, timer, "failed to load course eval")
-            return data_error()
+        filter_schedule_sections_by_summer_term(schedule, summer_term)
+        if len(schedule.sections) == 0:
+            log_data_not_found_response(logger, time)
+            return data_not_found()
 
+        resp_data = load_course_eval(request, schedule, summer_term)
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(resp_data))
 
@@ -73,13 +75,8 @@ def load_course_eval(request, schedule, summer_term=""):
     "{}" if whouldn't display any; or
     None if a data error.
     """
-
-    filter_schedule_sections_by_summer_term(schedule, summer_term)
     json_data = schedule.json_data()
     json_data["summer_term"] = summer_term
-
-    if len(schedule.sections) == 0:
-        return json_data
 
     section_index = 0
     for section in schedule.sections:

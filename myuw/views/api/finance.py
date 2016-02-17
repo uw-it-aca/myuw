@@ -1,12 +1,16 @@
 import logging
 from django.http import HttpResponse
 import json
-from myuw.views.rest_dispatch import RESTDispatch, data_not_found
+from myuw.dao.gws import is_student
 from myuw.dao.finance import get_account_balances_for_current_user
 from myuw.dao.notice import get_tuition_due_date
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_data_not_found_response
-from myuw.logger.logresp import log_success_response
+from myuw.logger.logresp import log_data_not_found_response, log_msg,\
+    log_success_response
+from myuw.views.rest_dispatch import RESTDispatch, data_not_found, data_error
+
+
+logger = logging.getLogger(__name__)
 
 
 class Finance(RESTDispatch):
@@ -19,19 +23,19 @@ class Finance(RESTDispatch):
         GET returns 200 with the student account balances
         of the current user
         """
-
         timer = Timer()
-        logger = logging.getLogger(__name__)
+        if not is_student():
+            log_msg(logger, timer, "Not a student, abort!")
+            return data_not_found()
+
         balances = get_account_balances_for_current_user()
 
         if balances is None:
-            log_data_not_found_response(logger, timer)
-            return data_not_found()
+            log_msg(logger, timer, "Account balances data error")
+            return data_error()
 
-        log_success_response(logger, timer)
-        logger.debug(balances.json_data())
         date = get_tuition_due_date()
         response = balances.json_data()
         response['tuition_due'] = str(date)
-
+        log_success_response(logger, timer)
         return HttpResponse(json.dumps(response))

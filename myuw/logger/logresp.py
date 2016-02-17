@@ -16,9 +16,20 @@ def log_success_response_with_affiliation(logger, timer, request):
              timer)
 
 
+def log_msg(logger, timer, msg):
+    log_time(logger, msg, timer)
+
+
 def log_data_not_found_response(logger, timer):
-    log_time(logger, 'Data not found',
-             timer)
+    log_time(logger, 'Data not found', timer)
+
+
+def log_invalid_current_term(logger, timer):
+    log_time(logger, 'Current term not found', timer)
+
+
+def log_invalid_specified_term(logger, timer):
+    log_time(logger, 'Specified term not found', timer)
 
 
 def log_invalid_netid_response(logger, timer):
@@ -27,10 +38,6 @@ def log_invalid_netid_response(logger, timer):
 
 def log_invalid_regid_response(logger, timer):
     log_time(logger, 'Invalid regid, abort', timer)
-
-
-def log_msg(logger, timer, msg):
-    log_time(logger, msg, timer)
 
 
 def get_identity(request):

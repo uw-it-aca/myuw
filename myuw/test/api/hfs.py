@@ -58,12 +58,7 @@ class TestHFS(TestCase):
                           password=get_user_pass('javerage'))
 
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
-
-        data = json.loads(response.content)
-        self.assertFalse("employee_husky_card" in data)
-        self.assertFalse("resident_dining" in data)
-        self.assertFalse("student_husky_card" in data)
+        self.assertEquals(response.status_code, 543)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_eight(self):

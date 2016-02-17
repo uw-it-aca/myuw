@@ -21,12 +21,19 @@ var CourseCards = {
     },
 
     render_error: function() {
-        if (CourseCards.term === "current") {
-            CourseCards.dom_target.html(CardWithNoCourse.render(titilizeTerm(CourseCards.term)));
-        } else {
-            $("#future_content").html(CardWithNoCourse.render(titilizeTerm(CourseCards.term)));
+        var error_code = WSData.course_data_error_code();
+        if (error_code == 410) {
+            Error410.render();
+            return;
         }
-
+        var raw = (error_code === 404
+                   ? CardWithNoCourse.render(CourseCards.term)
+                   : CardWithError.render("Course Information"));
+        if (CourseCards.term === "current") {
+            CourseCards.dom_target.html(raw);
+        } else {
+            $("#future_content").html(raw);
+        }
     },
 
     _has_all_data: function () {
@@ -40,10 +47,6 @@ var CourseCards = {
         var term = CourseCards.term;
         var course_data = WSData.normalized_course_data(term);
 
-        if (course_data.sections.length === 0) {
-            CourseCards.dom_target.html(CardWithNoCourse.render(term));
-            return;
-        }
         if (term === 'current' && window.card_display_dates.in_coursevel_fetch_window) {
             WSData.fetch_iasystem_data(LoadCourseEval.render_upon_data, null);
         }

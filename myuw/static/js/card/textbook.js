@@ -2,6 +2,7 @@ var TextbookCard = {
     name: 'TextbookCard',
     dom_target: undefined,
     term: undefined,
+    _ajax_count: 0,
 
     render_init: function() {
         if (!window.user.grad && !window.user.undergrad) {
@@ -13,29 +14,25 @@ var TextbookCard = {
                 return;
             }
         }
-
+        TextbookCard._ajax_count = 2;
+        WSData.fetch_book_data(TextbookCard.term, TextbookCard.render_upon_data, TextbookCard.render_error);
         WSData.fetch_course_data_for_term(TextbookCard.term, TextbookCard.render_upon_data, TextbookCard.render_error);
-        WSData.fetch_book_data(TextbookCard.term, TextbookCard.render_upon_data, TextbookCard.textbook_error);
     },
-
 
     _has_all_data: function () {
         return (WSData.book_data(TextbookCard.term) && WSData.course_data_for_term(TextbookCard.term));
     },
 
     render_upon_data: function(args) {
-        //If more than one data source, multiple callbacks point to this function
-        //Delay rendering until all requests are complete
-        //Do something smart about not showing error if AJAX is pending
         if (TextbookCard._has_all_data()) {
             TextbookCard._render();
         }
     },
 
-    textbook_error: function() {
+    render_error: function() {
         var book_error_code = WSData.book_data_error_code();
         var course_error_code = WSData.course_data_error_code();
-        if (book_error_code === 404 && (course_error_code === null || course_error_code === 404)) {
+        if (course_error_code === 404 || book_error_code === 404) {
             $("#TextbookCard").hide();
             return;
         }
@@ -103,4 +100,3 @@ var TextbookCard = {
     }
 
 };
-
