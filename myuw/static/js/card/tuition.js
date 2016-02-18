@@ -4,7 +4,7 @@ var TuitionCard = {
     _ajax_count: 0,
 
     render_init: function() {
-        if (!window.user.grad && !window.user.undergrad) {
+        if (!window.user.student) {
             $("#TuitionCard").hide();
             return;
         }

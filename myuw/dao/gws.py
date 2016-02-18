@@ -68,18 +68,24 @@ def is_current_grad_student():
 
 
 def is_student():
-    return is_grad_student() or is_undergrad_student()
+    return is_graduate_student() or is_undergrad_student()
+
+
+def is_graduate_student():
+    """
+    Return True if the user is In SDB, class is one of
+    (00, 08, 11, 12, 13, 14), and status is not O or N)
+    in the current, previous, or future quarter
+    """
+    return _is_member('uw_affiliation_graduate')
 
 
 def is_grad_student():
     """
-    Return True if the user is an UW graduate student
+    Return True if the user is class-08 graduate student
     in the current, previous, or future quarter
-    (Note by fl, 10/19/2012:
-    If the student is a graduate and PCE student,
-    uw affiliation group only reflects the first one.)
     """
-    return _is_member('uw_affiliation_graduate')
+    return _is_member('uw_affiliation_graduate-grad')
 
 
 def is_undergrad_student():

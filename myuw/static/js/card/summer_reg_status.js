@@ -3,7 +3,7 @@ var SummerRegStatusCard = {
     dom_target: undefined,
 
     render_init: function() {
-        if (!window.user.grad && !window.user.undergrad) {
+        if (!window.user.student) {
             $("#SummerRegStatusCardA").hide();
             $("#SummerRegStatusCard1").hide();
         }

@@ -5,7 +5,7 @@ var GradeCard = {
     show_only_aterm: false,
 
     render_init: function() {
-        if (!window.user.grad && !window.user.undergrad) {
+        if (!window.user.student) {
             $("#GradeCard").hide();
             return;
         }

@@ -4,7 +4,7 @@ var FinalExamCard = {
     term: 'current',
 
     render_init: function(term, course_index) {
-        if (!window.user.grad && !window.user.undergrad ||
+        if (!window.user.student ||
             !(window.card_display_dates.is_after_last_day_of_classes &&
               window.card_display_dates.is_before_end_of_finals_week)) {
             $("#FinalExamCard").hide();

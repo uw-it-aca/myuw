@@ -4,7 +4,7 @@ var CourseCards = {
     term: 'current',
 
     render_init: function() {
-        if (!window.user.grad && !window.user.undergrad) {
+        if (!window.user.student) {
             $("#CourseCards").hide();
             return;
         }
