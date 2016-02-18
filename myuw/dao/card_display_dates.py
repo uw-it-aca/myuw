@@ -37,9 +37,6 @@ def get_values_by_date(now, request):
     """
     now is a datetime object of 1 second after the beginning of the day.
     """
-    if get_current_quarter(request) is None:
-        return None
-
     last_term = get_previous_quarter(request)
 
     return {
