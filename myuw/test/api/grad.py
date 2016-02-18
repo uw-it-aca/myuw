@@ -109,16 +109,11 @@ class TestApiGrad(TestCase):
         self.client.login(username='none',
                           password=get_user_pass('none'))
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
-        self.assertIsNotNone(response.content)
-        data = json.loads(response.content)
-        self.assertIsNone(data.get("degrees"))
-        self.assertIsNone(data.get("committees"))
-        self.assertIsNone(data.get("leaves"))
-        self.assertIsNone(data.get("petitions"))
+        self.assertEquals(response.status_code, 404)
+        self.assertEquals(response.content, 'Data not found')
 
         get_user('jinter')
         self.client.login(username='jinter',
                           password=get_user_pass('jinter'))
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 404)
+        self.assertEquals(response.status_code, 543)

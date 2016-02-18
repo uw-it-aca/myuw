@@ -1,6 +1,7 @@
 import logging
 from django.http import HttpResponse
 import json
+from myuw.dao.gws import is_student
 from myuw.dao.schedule import get_schedule_by_term
 from myuw.dao.schedule import filter_schedule_sections_by_summer_term
 from myuw.dao.term import get_specific_term, get_current_quarter,\
@@ -8,9 +9,11 @@ from myuw.dao.term import get_specific_term, get_current_quarter,\
 from myuw.dao.textbook import get_textbook_by_schedule
 from myuw.dao.textbook import get_verba_link_by_schedule
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_data_not_found_response
-from myuw.logger.logresp import log_success_response
-from myuw.views.rest_dispatch import RESTDispatch, data_not_found
+from myuw.logger.logresp import log_success_response, log_msg
+from myuw.views.rest_dispatch import RESTDispatch, data_error, data_not_found
+
+
+logger = logging.getLogger(__name__)
 
 
 class Textbook(RESTDispatch):
@@ -26,7 +29,9 @@ class Textbook(RESTDispatch):
 
     def respond(self, year, quarter, summer_term):
         timer = Timer()
-        logger = logging.getLogger(__name__)
+        if not is_student():
+            log_msg(logger, timer, "Not a student, abort!")
+            return data_not_found()
 
         term = get_specific_term(year=year, quarter=quarter)
         schedule = get_schedule_by_term(term)
@@ -36,8 +41,8 @@ class Textbook(RESTDispatch):
 
         book_data = get_textbook_by_schedule(schedule)
         if book_data is None:
-            log_data_not_found_response(logger, timer)
-            return data_not_found()
+            log_msg(logger, timer, "Textbook data error")
+            return data_error()
 
         verba_link = get_verba_link_by_schedule(schedule)
 

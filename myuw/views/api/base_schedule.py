@@ -12,49 +12,46 @@ from myuw.dao.schedule import get_schedule_by_term
 from myuw.dao.schedule import filter_schedule_sections_by_summer_term
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
 from myuw.dao.term import get_comparison_date
-from myuw.logger.logresp import log_data_not_found_response
-from myuw.logger.logresp import log_success_response
-from myuw.views.rest_dispatch import RESTDispatch, data_not_found
-from myuw.dao.iasystem import get_evaluations_by_section,\
-    json_for_evaluation
+from myuw.logger.logresp import log_data_not_found_response,\
+    log_success_response, log_msg
+from myuw.views.rest_dispatch import RESTDispatch, data_not_found, data_error
 
 
 class StudClasSche(RESTDispatch):
 
     def make_http_resp(self, logger, timer, term, request, summer_term=None):
-        if term is None:
-            log_data_not_found_response(logger, timer)
-            return data_not_found()
-
+        """
+        @return class schedule data in json format
+                status 404: no schedule found (not registered)
+                status 543: data error
+        """
         schedule = get_schedule_by_term(term)
         if schedule is None:
-            log_data_not_found_response(logger, timer)
-            return data_not_found()
+            log_msg(logger, timer, "Failed to fetch schedule")
+            return data_error()
 
         if not schedule.json_data():
-            log_data_not_found_response(logger, timer)
-            return HttpResponse({})
+            log_msg(logger, timer, "schedule.json_data is None")
+            return data_error()
 
         if summer_term is None:
             summer_term = get_current_summer_term_in_schedule(schedule,
                                                               request)
 
-        resp_data = load_schedule(request, schedule, summer_term)
-        if resp_data is None:
+        filter_schedule_sections_by_summer_term(schedule, summer_term)
+        if len(schedule.sections) == 0:
             log_data_not_found_response(logger, timer)
             return data_not_found()
 
+        resp_data = load_schedule(request, schedule, summer_term)
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(resp_data))
 
 
 def load_schedule(request, schedule, summer_term=""):
-    filter_schedule_sections_by_summer_term(schedule, summer_term)
+
     json_data = schedule.json_data()
     json_data["summer_term"] = summer_term
-
-    if len(schedule.sections) == 0:
-        return json_data
 
     colors = get_colors_by_schedule(schedule)
     if colors is None and len(schedule.sections) > 0:
@@ -81,17 +78,6 @@ def load_schedule(request, schedule, summer_term=""):
         section_index += 1
 #        if section.is_primary_section:
         section_data["lib_subj_guide"] = get_subject_guide_by_section(section)
-
-        try:
-            evaluation_json_data = json_for_evaluation(
-                request,
-                get_evaluations_by_section(section),
-                section)
-        except Exception as ex:
-            evaluation_json_data = None
-
-        if evaluation_json_data is not None:
-            section_data["evaluation_data"] = evaluation_json_data
 
         if section.section_label() in canvas_data_by_course_id:
             enrollment = canvas_data_by_course_id[section.section_label()]
@@ -145,5 +131,11 @@ def load_schedule(request, schedule, summer_term=""):
                                                   'course_number',
                                                   'section_id',
                                                   ))
+    # add section index
+    index = 0
+    for section in json_data["sections"]:
+        section["index"] = index
+        index = index + 1
+
     json_data["is_grad_student"] = is_grad_student()
     return json_data

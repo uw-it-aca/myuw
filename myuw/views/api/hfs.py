@@ -1,12 +1,14 @@
 import logging
 import time
-from django.http import HttpResponse
 import simplejson as json
-from myuw.views.rest_dispatch import RESTDispatch, data_not_found
+from django.http import HttpResponse
 from myuw.dao.hfs import get_account_balances_for_current_user
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_data_not_found_response
-from myuw.logger.logresp import log_success_response
+from myuw.logger.logresp import log_msg, log_success_response
+from myuw.views.rest_dispatch import RESTDispatch, data_not_found, data_error
+
+
+logger = logging.getLogger(__name__)
 
 
 class HfsBalances(RESTDispatch):
@@ -21,14 +23,13 @@ class HfsBalances(RESTDispatch):
         """
 
         timer = Timer()
-        logger = logging.getLogger(__name__)
         balances = get_account_balances_for_current_user()
 
         if balances is None:
-            log_data_not_found_response(logger, timer)
-            return HttpResponse('{}')
+            log_msg(logger, timer, "HFS data error")
+            return data_error()
 
-        log_success_response(logger, timer)
         resp_json = balances.json_data(use_custom_date_format=True)
         logger.debug(resp_json)
+        log_success_response(logger, timer)
         return HttpResponse(json.dumps(resp_json))

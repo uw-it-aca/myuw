@@ -53,7 +53,7 @@ class TestFutureSchedule(TestCase):
                       kwargs={'year': 2015,
                               'quarter': 'autumn'})
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 404)
+        self.assertEquals(response.status_code, 543)
 
         url = reverse("myuw_future_summer_schedule_api",
                       kwargs={'year': 2013,

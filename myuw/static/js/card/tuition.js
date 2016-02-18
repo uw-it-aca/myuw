@@ -4,15 +4,25 @@ var TuitionCard = {
     _ajax_count: 0,
 
     render_init: function() {
+        if (!window.user.grad && !window.user.undergrad) {
+            $("#TuitionCard").hide();
+            return;
+        }
         TuitionCard._ajax_count = 2;
         WSData.fetch_tuition_data(TuitionCard.render_upon_data, TuitionCard.render_error);
         WSData.fetch_notice_data(TuitionCard.render_upon_data, TuitionCard.render_error);
-        WSData.fetch_course_data_for_term('current', TuitionCard.render_upon_data, CourseCard.render_error);
     },
 
+    _has_all_data: function () {
+        if (WSData.tuition_data() && WSData.notice_data()) {
+            return true;
+        }
+        return false;
+    },
 
     render_error: function () {
-        $(TuitionCard.dom_target).html(CardWithError.render("Tuition & Fees"));
+        var raw = CardWithError.render("Tuition & Fees");
+        TuitionCard.dom_target.html(raw);
     },
 
     render_upon_data: function() {
@@ -79,13 +89,6 @@ var TuitionCard = {
     _days_from_today: function (date) {
         var today = new Date();
         return Math.ceil((date - today) / (1000*60*60*24));
-    },
-
-    _has_all_data: function () {
-        if (WSData.tuition_data() && WSData.notice_data() && WSData.normalized_course_data()) {
-            return true;
-        }
-        return false;
     },
 
     _init_events: function(){

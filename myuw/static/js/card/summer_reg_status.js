@@ -3,7 +3,13 @@ var SummerRegStatusCard = {
     dom_target: undefined,
 
     render_init: function() {
-        if (window.card_display_dates.is_after_start_of_summer_reg_display_period1 || window.card_display_dates.is_after_start_of_summer_reg_display_periodA) {
+        if (!window.user.grad && !window.user.undergrad) {
+            $("#SummerRegStatusCardA").hide();
+            $("#SummerRegStatusCard1").hide();
+        }
+        if (window.card_display_dates.is_after_start_of_summer_reg_display_period1 ||
+            window.card_display_dates.is_after_start_of_summer_reg_display_periodA) {
+
             WSData.fetch_myplan_data(RegStatusCard.render_upon_data, RegStatusCard.render_error);
             WSData.fetch_notice_data(SummerRegStatusCard.render_upon_data, SummerRegStatusCard.render_error);
             WSData.fetch_oquarter_data(SummerRegStatusCard.render_upon_data, SummerRegStatusCard.render_error);

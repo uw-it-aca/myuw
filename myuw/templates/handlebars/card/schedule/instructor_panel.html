@@ -1,0 +1,31 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "course_card_instructor_panel" %}
+
+    <div class="instructors">
+        <h5>Instructors</h5>
+        <ol>
+            {{#each instructors}}
+                <li class="instructor-container">
+                    <div class="contact-info-container">
+                        <div><strong>{{full_name}}</strong></div>
+
+                        {{# if whitepages_publish}}
+                            <span class="my-text-muted" style="display: block;">{{title1}}</span>
+                            <span style="display: block;"><a href="mailto:{{email1}}">{{email1}}</a></span>
+                            <span style="display: block;"><a href="tel:+1{{phone1}}">{{phone1}}</a></span>
+                            {{# if phone2}}
+                                <span style="display: block;"><a href="tel:+1{{phone2}}">{{phone2}}</a></span>
+                            {{/if}}
+                            <span style="display: block;">{{address1}}</span>
+                        {{else}}
+                            <span class="my-text-muted" style="font-size:12px;">No contact information available for this instructor.</span>
+                        {{/if}}
+                    </div>
+                </li>
+            {{/each}}
+        </ol>
+    </div>
+
+    {{> canvas_grade_note }}
+
+{% endtplhandlebars %}

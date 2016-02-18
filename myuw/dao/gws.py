@@ -67,6 +67,10 @@ def is_current_grad_student():
     return _is_member('uw_affiliation_graduate-current')
 
 
+def is_student():
+    return is_grad_student() or is_undergrad_student()
+
+
 def is_grad_student():
     """
     Return True if the user is an UW graduate student

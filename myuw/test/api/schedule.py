@@ -57,15 +57,9 @@ class TestSchedule(TestCase):
         self.client.login(username='none', password=get_user_pass('none'))
         response = self.client.get(url)
 
-        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.status_code, 404)
+        self.assertEquals(response.content, 'Data not found')
 
-        data = json.loads(response.content)
-
-        self.assertEquals(data["term"]["year"], 2013)
-        self.assertEquals(data["term"]["quarter"], 'Spring')
-        self.assertEquals(len(data["sections"]), 0)
-
-    @skipIf(missing_url("myuw_current_schedule"), "myuw urls not configured")
     def test_eight_current_term(self):
         url = reverse("myuw_current_schedule")
         get_user('eight')
@@ -88,7 +82,7 @@ class TestSchedule(TestCase):
                           password=get_user_pass('err_user'))
         response = self.client.get(url)
 
-        self.assertEquals(response.status_code, 404)
+        self.assertEquals(response.status_code, 543)
 
     @skipIf(missing_url("myuw_current_schedule"), "myuw urls not configured")
     def test_summer_terms(self):
