@@ -20,14 +20,7 @@ var VisualScheduleCard = {
     },
 
     render_error: function() {
-        var error_code = WSData.course_data_error_code();
-        if (error_code == 410) {
-            var page_source = $("#future_410_error").html();
-            var template = Handlebars.compile(page_source);
-            $("#main-content").html(template({}));
-            return;
-        }
-        // other errors: course card displays the message
+        // CourseCards displays the message
         $("#VisualScheduleCard").hide();
     },
 

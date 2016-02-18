@@ -22,7 +22,7 @@ var FinalExamCard = {
     },
 
     render_error: function() {
-        // course card displays the message
+        // CourseCards displays the message
         $("#FinalExamCard").hide();
     },
 
