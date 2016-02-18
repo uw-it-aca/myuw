@@ -1,8 +1,9 @@
-from django.http import HttpResponse
-import logging
-from operator import itemgetter
 import json
+import logging
 import time
+from operator import itemgetter
+from django.conf import settings
+from django.http import HttpResponse
 from myuw.dao.gws import is_student
 from myuw.dao.pws import get_netid_of_current_user
 from myuw.dao.schedule import get_schedule_by_term
@@ -18,6 +19,7 @@ from myuw.views.rest_dispatch import RESTDispatch, data_not_found
 
 
 logger = logging.getLogger(__name__)
+MOCKDAO = 'restclients.dao_implementation.iasystem.File'
 
 
 class IASystem(RESTDispatch):
@@ -30,7 +32,11 @@ class IASystem(RESTDispatch):
         GET /api/v1/ias/
         """
         timer = Timer()
-        if get_netid_of_current_user() == "eight":
+        dao_class = getattr(settings,
+                            "RESTCLIENTS_IASYSTEM_DAO_CLASS",
+                            MOCKDAO)
+        if dao_class == MOCKDAO and\
+                get_netid_of_current_user() == "eight":
             time.sleep(10)
 
         if not is_student():
