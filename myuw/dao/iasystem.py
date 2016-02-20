@@ -4,7 +4,6 @@ to iasystem web service.
 """
 
 import logging
-import traceback
 from datetime import datetime
 from django.utils import timezone
 from restclients.pws import PWS
@@ -26,21 +25,14 @@ def get_evaluations_by_section(section):
 
 
 def _get_evaluations_by_section_and_student(section, student_number):
-    try:
-        search_params = {'year': section.term.year,
-                         'term_name': section.term.quarter.capitalize(),
-                         'curriculum_abbreviation': section.curriculum_abbr,
-                         'course_number': section.course_number,
-                         'section_id': section.section_id,
-                         'student_id': student_number}
-        return evaluation.search_evaluations(section.course_campus.lower(),
-                                             **search_params)
-
-    except DataFailureException as ex:
-        log_exception(logger,
-                      id,
-                      traceback.format_exc())
-    return None
+    search_params = {'year': section.term.year,
+                     'term_name': section.term.quarter.capitalize(),
+                     'curriculum_abbreviation': section.curriculum_abbr,
+                     'course_number': section.course_number,
+                     'section_id': section.section_id,
+                     'student_id': student_number}
+    return evaluation.search_evaluations(section.course_campus.lower(),
+                                         **search_params)
 
 
 def summer_term_overlaped(request, given_section):

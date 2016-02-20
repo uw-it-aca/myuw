@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.conf import settings
 from django.test.client import RequestFactory
+from restclients.exceptions import DataFailureException
 from restclients.models.sws import ClassSchedule, Term, Section, Person
 from myuw.dao.term import get_current_quarter, get_next_quarter
 from myuw.dao.schedule import _get_schedule,\
@@ -26,8 +27,9 @@ class TestSchedule(TestCase):
             term = Term()
             term.year = 2012
             term.quarter = "autumn"
-            schedule = _get_schedule(regid, term)
-            self.assertFalse(has_summer_quarter_section(schedule))
+            self.assertRaises(DataFailureException,
+                              _get_schedule,
+                              regid, term)
 
     def test_filter_schedule_sections_by_summer_term(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,

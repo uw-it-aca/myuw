@@ -1,13 +1,17 @@
 import logging
 import json
+import traceback
+from datetime import datetime
 from django.http import HttpResponse
-from myuw.views.rest_dispatch import RESTDispatch
 from myuw.dao.notice import get_notices_for_current_user
 from myuw.dao.notice import mark_notices_read_for_current_user
 from myuw.dao.notice_mapping import get_json_for_notices
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response
-from datetime import datetime
+from myuw.logger.logresp import log_success_response, log_err
+from myuw.views.rest_dispatch import RESTDispatch, data_error
+
+
+logger = logging.getLogger(__name__)
 
 
 class Notices(RESTDispatch):
@@ -19,12 +23,14 @@ class Notices(RESTDispatch):
         GET returns 200 with a list of notices for the current user
         """
         timer = Timer()
-        logger = logging.getLogger(__name__)
-        notice_json = get_json_for_notices(
-            request, get_notices_for_current_user())
-        log_success_response(logger, timer)
-
-        return HttpResponse(json.dumps(notice_json))
+        try:
+            notice_json = get_json_for_notices(
+                request, get_notices_for_current_user())
+            log_success_response(logger, timer)
+            return HttpResponse(json.dumps(notice_json))
+        except Exception:
+            log_err(logger, timer, traceback.format_exc())
+            return data_error()
 
     def _get_json(self, notices):
         return self._get_json_for_date(notices, datetime.now())

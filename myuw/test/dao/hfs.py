@@ -1,5 +1,6 @@
 from django.test import TestCase
 from decimal import *
+from restclients.exceptions import DataFailureException
 from myuw.dao.hfs import get_account_balances_by_uwnetid
 
 
@@ -20,5 +21,6 @@ class TestHFS(TestCase):
             "https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx")
 
         # Missing account
-        self.assertEquals(get_account_balances_by_uwnetid("123notanetid"),
-                          None)
+        self.assertRaises(DataFailureException,
+                          get_account_balances_by_uwnetid,
+                          "123notanetid")

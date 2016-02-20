@@ -5,8 +5,9 @@ This module provides affiliations of the current user
 import os
 import json
 import logging
+import traceback
 from django.conf import settings
-from myuw.logger.logback import log_info
+from myuw.logger.logback import log_info, log_exception
 from myuw.dao.schedule import get_current_quarter_schedule
 from myuw.dao.pws import get_netid_of_current_user
 from myuw.dao.gws import is_grad_student, is_undergrad_student
@@ -16,8 +17,8 @@ from myuw.dao.gws import is_tacoma_student, is_faculty
 from myuw.dao.enrollment import get_main_campus
 from myuw.models import UserMigrationPreference
 
-logger = logging.getLogger(__name__)
 
+logger = logging.getLogger(__name__)
 MANDATORY_SWITCH = "mandatory_switch"
 OPTIN_SWITCH = "optin_switch"
 
@@ -50,12 +51,11 @@ def get_all_affiliations(request):
 
     enrolled_campuses = get_current_quarter_course_campuses(request)
     is_fyp = False
-
     try:
         is_fyp = is_mandatory_switch_user()
     except Exception as ex:
         # This fails in unit tests w/o userservice
-        is_fyp = False
+        pass
 
     data = {"grad": is_grad_student(),
             "undergrad": is_undergrad_student(),
@@ -110,8 +110,6 @@ def _get_official_campuses(campuses):
     official_campuses = {'official_seattle': False,
                          'official_bothell': False,
                          'official_tacoma': False}
-    if campuses is None:
-        return {}
     for campus in campuses:
         if campus == "Seattle":
             official_campuses['official_seattle'] = True
@@ -127,7 +125,14 @@ def get_current_quarter_course_campuses(request):
     Returns a dictionary indicating the campuses that the student
     has enrolled in the current quarter.
     """
-    return _get_campuses_by_schedule(get_current_quarter_schedule(request))
+    try:
+        current_quarter_sche = get_current_quarter_schedule(request)
+    except Exception as ex:
+        log_exception(logger,
+                      'get_current_quarter_course_campuses',
+                      traceback.format_exc())
+        current_quarter_sche = None
+    return _get_campuses_by_schedule(current_quarter_sche)
 
 
 def get_base_campus(request):

@@ -32,9 +32,9 @@ def _get_calendars(enrollments):
 def _get_enrollments(request):
     majors = []
     minors = []
+    try:
+        enrollment = get_current_quarter_enrollment(request)
 
-    enrollment = get_current_quarter_enrollment(request)
-    if enrollment is not None:
         if len(enrollment.majors) > 0:
             for major in enrollment.majors:
                 majors.append(major.major_name)
@@ -42,7 +42,8 @@ def _get_enrollments(request):
         if len(enrollment.minors) > 0:
             for minor in enrollment.minors:
                 minors.append(minor.short_name)
-
+    except Exception:
+        pass
     return {'is_grad': is_grad_student(),
             'majors': majors,
             'minors': minors}

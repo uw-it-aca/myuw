@@ -41,7 +41,8 @@ var FutureQuarterCard = {
     },
 
     render_error: function() {
-        FutureQuarterCard.dom_target.html(CardWithError.render());
+        $("#FutureQuarterCardA").html(CardWithError.render("Future Quarter"));
+        $("#FutureQuarterCard1").hide();
     },
 
     _has_all_data: function () {
