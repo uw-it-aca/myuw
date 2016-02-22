@@ -3,6 +3,11 @@ var GradCommitteeCard = {
     dom_target: undefined,
 
     render_init: function() {
+        if (!window.user.grad) {
+            $("#GradCommitteeCard").hide();
+            return;
+        }
+
         WSData.fetch_mygrad_data(GradCommitteeCard.render_upon_data, GradCommitteeCard.show_error);
     },
 

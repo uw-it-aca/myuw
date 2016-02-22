@@ -4,6 +4,9 @@ var TextbookCard = {
     term: undefined,
 
     render_init: function() {
+        if (!window.user.grad && !window.user.undergrad) {
+            $("#TextbookCard").hide();
+        }
         if (TextbookCard.term === 'current') {
             if (!window.card_display_dates.is_before_eof_7days_of_term) {
                 $("#TextbookCard").hide();

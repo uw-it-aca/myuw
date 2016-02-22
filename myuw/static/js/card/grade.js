@@ -5,6 +5,11 @@ var GradeCard = {
     show_only_aterm: false,
 
     render_init: function() {
+        if (!window.user.grad && !window.user.undergrad) {
+            $("#GradeCard").hide();
+            return;
+        }
+
         GradeCard.term = null;
         if (window.card_display_dates.is_after_last_day_of_classes) {
             GradeCard.term = 'current';
@@ -24,10 +29,10 @@ var GradeCard = {
 
         if (GradeCard.term) {
             WSData.fetch_course_data_for_term(GradeCard.term, GradeCard.render_upon_data, GradeCard.render_error);
+            return;
         }
-        else {
-            GradeCard.dom_target.hide();
-        }
+
+        $("#GradeCard").hide();
     },
 
     render_upon_data: function() {

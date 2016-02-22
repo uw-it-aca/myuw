@@ -3,6 +3,10 @@ var FutureQuarterCard = {
     dom_target: undefined,
 
     render_init: function() {
+        if (!window.user.grad && !window.user.undergrad) {
+            $("#FutureQuarterCardA").hide();
+            $("#FutureQuarterCard1").hide();
+        }
         WSData.fetch_oquarter_data(FutureQuarterCard.render_upon_data, FutureQuarterCard.render_error);
     },
 

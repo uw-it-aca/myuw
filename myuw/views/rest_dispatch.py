@@ -41,19 +41,32 @@ class RESTDispatch:
             return invalid_method()
 
 
-def invalid_session():
-    response = HttpResponse('No valid userid in session')
-    response.status_code = 400
+def _make_response(status_code, reason_phrase):
+    response = HttpResponse(reason_phrase)
+    response.status_code = status_code
+    response.reason_phrase = reason_phrase
     return response
+
+
+def invalid_session():
+    return _make_response(400, "No valid userid in session")
+
+
+def invalid_term():
+    return _make_response(400, "Invalid requested term")
 
 
 def data_not_found():
-    response = HttpResponse('Data not found')
-    response.status_code = 404
-    return response
+    return _make_response(404, "Data not found")
 
 
 def invalid_method():
-    response = HttpResponse("Method not allowed")
-    response.status_code = 405
-    return response
+    return _make_response(405, "Method not allowed")
+
+
+def invalid_future_term():
+    return _make_response(410, "Invalid requested future term")
+
+
+def data_error():
+    return _make_response(543, "Data not available due to an error")
