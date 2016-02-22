@@ -1,6 +1,6 @@
 {
 "Current":
-   {"Href":"\/student\/v5\/registration.json?year=2013&quarter=autumn&curriculum_abbreviation=&course_number=&section_id=&reg_id=10000000000000000000000000000004&is_active=true&instructor_reg_id=&verbose=&changed_since_date=&transcriptable_course=yes",
+   {"Href":"\/student\/v5\/registration.json?year=2013&quarter=autumn&curriculum_abbreviation=&course_number=&section_id=&reg_id=FE36CCB8F66711D5BE060004AC494FCD&is_active=true&instructor_reg_id=&verbose=&changed_since_date=&transcriptable_course=yes",
    "CourseNumber":"",
    "CurriculumAbbreviation":null,
    "InstructorRegID":"",
@@ -8,7 +8,7 @@
    "PageSize":null,
    "PageStart":null,
    "Quarter":"autumn",
-   "RegID":"10000000000000000000000000000004",
+   "RegID":"FE36CCB8F66711D5BE060004AC494FCD",
    "SectionID":"",
    "Verbose":false,
    "Year":2013},
