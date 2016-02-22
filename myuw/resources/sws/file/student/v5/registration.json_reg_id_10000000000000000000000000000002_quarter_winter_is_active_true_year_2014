@@ -1,0 +1,21 @@
+{
+"Current":
+   {"Href":"\/student\/v5\/registration.json?year=2014&quarter=winter&curriculum_abbreviation=&course_number=&section_id=&reg_id=10000000000000000000000000000002&is_active=true&instructor_reg_id=&verbose=&changed_since_date=&transcriptable_course=yes",
+   "CourseNumber":"",
+   "CurriculumAbbreviation":null,
+   "InstructorRegID":"",
+   "IsActive":true,
+   "PageSize":null,
+   "PageStart":null,
+   "Quarter":"winter",
+   "RegID":"10000000000000000000000000000002",
+   "SectionID":"",
+   "Verbose":false,
+   "Year":2014},
+"Next":null,
+"PageSize":null,
+"PageStart":null,
+"Previous":null,
+"Registrations":[],
+"TotalCount":0
+}
