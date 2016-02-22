@@ -36,7 +36,7 @@ var TextbookCard = {
             $("#TextbookCard").hide();
             return;
         }
-        TextbookCard.dom_target.html(CardWithError.render("Textbook"));
+        TextbookCard.dom_target.html(CardWithError.render("Textbooks"));
     },
 
     _render: function () {

@@ -33,6 +33,6 @@ var ThriveCard = {
     },
 
     render_error: function () {
-        ThriveCard.dom_target.html('');
+        $("#ThriveCard").hide();
     }
 };

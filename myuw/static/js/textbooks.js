@@ -8,11 +8,16 @@ var TextBooks = {
         TextBooks.anchor_textbook = textbook;
         showLoading();
         CommonLoading.render_init();
-        WSData.fetch_book_data(term, TextBooks._fetch_course_data, TextBooks.render_books);
+        WSData.fetch_book_data(term, TextBooks.render_books, TextBooks.render_error);
+        WSData.fetch_course_data_for_term(TextBooks.term, TextBooks.render_books);
     },
 
-    _fetch_course_data: function() {
-        WSData.fetch_course_data_for_term(TextBooks.term, TextBooks.render_books);
+    render_error: function() {
+        var err_status = WSData._book_data_error_status;
+        if (err_status === 543) {
+            var raw = CardWithError.render("Textbooks");
+            $("#main-content").html(raw);
+        }
     },
 
     process_book_data: function(book_data, course_data) {

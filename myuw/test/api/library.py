@@ -57,4 +57,10 @@ class TestLibrary(TestCase):
         self.client.login(username='nouser',
                           password=get_user_pass('nouser'))
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 404)
+        self.assertEquals(response.status_code, 543)
+
+        get_user('none')
+        self.client.login(username='none',
+                          password=get_user_pass('none'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)

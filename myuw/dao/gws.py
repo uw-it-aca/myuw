@@ -4,7 +4,6 @@ with the UW Affiliation Group API resource
 """
 
 import logging
-import traceback
 from django.conf import settings
 from restclients.gws import GWS
 from myuw.dao.pws import get_netid_of_current_user
@@ -24,15 +23,10 @@ def _is_member(groupid):
     try:
         return GWS().is_effective_member(groupid,
                                          get_netid_of_current_user())
-    except Exception as ex:
-        log_exception(logger,
-                      'gws.is_effective_member of ' + groupid,
-                      traceback.format_exc())
     finally:
         log_resp_time(logger,
                       'gws.is_effective_member of ' + groupid,
                       timer)
-    return None
 
 
 def is_seattle_student():

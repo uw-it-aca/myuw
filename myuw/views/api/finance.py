@@ -1,12 +1,13 @@
-import logging
-from django.http import HttpResponse
 import json
+import logging
+import traceback
+from django.http import HttpResponse
 from myuw.dao.gws import is_student
 from myuw.dao.finance import get_account_balances_for_current_user
 from myuw.dao.notice import get_tuition_due_date
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_data_not_found_response, log_msg,\
-    log_success_response
+    log_success_response, log_err
 from myuw.views.rest_dispatch import RESTDispatch, data_not_found, data_error
 
 
@@ -24,18 +25,19 @@ class Finance(RESTDispatch):
         of the current user
         """
         timer = Timer()
-        if not is_student():
-            log_msg(logger, timer, "Not a student, abort!")
-            return data_not_found()
+        try:
+            if not is_student():
+                log_msg(logger, timer, "Not a student, abort!")
+                return data_not_found()
 
-        balances = get_account_balances_for_current_user()
+            balances = get_account_balances_for_current_user()
 
-        if balances is None:
-            log_msg(logger, timer, "Account balances data error")
+            date = get_tuition_due_date()
+            response = balances.json_data()
+            response['tuition_due'] = str(date)
+
+            log_success_response(logger, timer)
+            return HttpResponse(json.dumps(response))
+        except Exception:
+            log_err(logger, timer, traceback.format_exc())
             return data_error()
-
-        date = get_tuition_due_date()
-        response = balances.json_data()
-        response['tuition_due'] = str(date)
-        log_success_response(logger, timer)
-        return HttpResponse(json.dumps(response))

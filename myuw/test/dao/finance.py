@@ -1,4 +1,5 @@
 from django.test import TestCase
+from restclients.exceptions import DataFailureException
 from myuw.dao.finance import _get_account_balances_by_regid
 
 
@@ -9,6 +10,10 @@ class TestFinance(TestCase):
         finance = _get_account_balances_by_regid(regid)
         self.assertEquals(finance.tuition_accbalance, '12345.00')
 
-        self.assertEquals(_get_account_balances_by_regid(None), None)
+        self.assertRaises(DataFailureException,
+                          _get_account_balances_by_regid,
+                          "none")
 
-        self.assertEquals(_get_account_balances_by_regid("123"), None)
+        self.assertRaises(DataFailureException,
+                          _get_account_balances_by_regid,
+                          "123")

@@ -6,7 +6,7 @@ from myuw.logger.timer import Timer
 from myuw.dao.thrive import get_current_message
 from myuw.dao.affiliation import is_mandatory_switch_user
 from myuw.logger.logresp import log_data_not_found_response,\
-    log_success_response, log_msg
+    log_success_response, log_msg, log_err
 from myuw.views.rest_dispatch import RESTDispatch, data_not_found, data_error
 
 
@@ -29,13 +29,12 @@ class ThriveMessages(RESTDispatch):
         is_firstyear = is_mandatory_switch_user()
 
         timer = Timer()
-        message = None
+
         if not is_firstyear:
             log_msg(logger, timer, "Not first year, abort!")
             return data_not_found()
 
         message = get_current_message(request)
-
         if message is None:
             log_msg(logger, timer, "Thrive data error")
             return data_error()

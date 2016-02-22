@@ -1,6 +1,7 @@
-import logging
-from django.http import HttpResponse
 import json
+import logging
+import traceback
+from django.http import HttpResponse
 from myuw.dao.gws import is_student
 from myuw.dao.schedule import get_schedule_by_term
 from myuw.dao.schedule import filter_schedule_sections_by_summer_term
@@ -9,7 +10,7 @@ from myuw.dao.term import get_specific_term, get_current_quarter,\
 from myuw.dao.textbook import get_textbook_by_schedule
 from myuw.dao.textbook import get_verba_link_by_schedule
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response, log_msg
+from myuw.logger.logresp import log_success_response, log_msg, log_err
 from myuw.views.rest_dispatch import RESTDispatch, data_error, data_not_found
 
 
@@ -29,27 +30,28 @@ class Textbook(RESTDispatch):
 
     def respond(self, year, quarter, summer_term):
         timer = Timer()
-        if not is_student():
-            log_msg(logger, timer, "Not a student, abort!")
-            return data_not_found()
+        try:
+            if not is_student():
+                log_msg(logger, timer, "Not a student, abort!")
+                return data_not_found()
 
-        term = get_specific_term(year=year, quarter=quarter)
-        schedule = get_schedule_by_term(term)
-        if summer_term is not None and len(summer_term) > 0:
-            summer_term = summer_term.replace(",", "")
-            filter_schedule_sections_by_summer_term(schedule, summer_term)
+            term = get_specific_term(year=year, quarter=quarter)
+            schedule = get_schedule_by_term(term)
+            if summer_term is not None and len(summer_term) > 0:
+                summer_term = summer_term.replace(",", "")
+                filter_schedule_sections_by_summer_term(schedule, summer_term)
 
-        book_data = get_textbook_by_schedule(schedule)
-        if book_data is None:
-            log_msg(logger, timer, "Textbook data error")
+            book_data = get_textbook_by_schedule(schedule)
+
+            verba_link = get_verba_link_by_schedule(schedule)
+
+            by_sln = index_by_sln(book_data)
+            by_sln["verba_link"] = verba_link
+            log_success_response(logger, timer)
+            return HttpResponse(json.dumps(by_sln))
+        except Exception:
+            log_err(logger, timer, traceback.format_exc())
             return data_error()
-
-        verba_link = get_verba_link_by_schedule(schedule)
-
-        by_sln = index_by_sln(book_data)
-        by_sln["verba_link"] = verba_link
-        log_success_response(logger, timer)
-        return HttpResponse(json.dumps(by_sln))
 
 
 def index_by_sln(book_data):

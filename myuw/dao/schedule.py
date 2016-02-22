@@ -3,7 +3,6 @@ This module provides access to registered class schedule and sections
 """
 
 import logging
-import traceback
 from restclients.models.sws import ClassSchedule
 from restclients.sws.registration import get_schedule_by_regid_and_term
 from myuw.logger.timer import Timer
@@ -41,15 +40,10 @@ def _get_schedule(regid, term):
 
         schedule.sections = non_early_start_sections
         return schedule
-    except Exception as ex:
-        log_exception(logger,
-                      logid,
-                      traceback.format_exc())
     finally:
         log_resp_time(logger,
                       logid,
                       timer)
-    return None
 
 
 def get_schedule_by_term(term):

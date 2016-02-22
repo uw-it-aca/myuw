@@ -6,6 +6,7 @@ var FutureQuarterCard = {
         if (!window.user.student) {
             $("#FutureQuarterCardA").hide();
             $("#FutureQuarterCard1").hide();
+            return;
         }
         WSData.fetch_oquarter_data(FutureQuarterCard.render_upon_data, FutureQuarterCard.render_error);
     },
@@ -14,7 +15,6 @@ var FutureQuarterCard = {
         if (!FutureQuarterCard._has_all_data()) {
             return;
         }
-
         if (WSData.oquarter_data().highlight_future_quarters) {
             FutureQuarterCard.dom_target = $('#FutureQuarterCardA');
             $("#FutureQuarterCard1").hide();
@@ -23,7 +23,6 @@ var FutureQuarterCard = {
             FutureQuarterCard.dom_target = $('#FutureQuarterCard1');
             $("#FutureQuarterCardA").hide();
         }
-
         FutureQuarterCard._render(WSData.oquarter_data());
     },
 
@@ -41,7 +40,8 @@ var FutureQuarterCard = {
     },
 
     render_error: function() {
-        FutureQuarterCard.dom_target.html(CardWithError.render());
+        $("#FutureQuarterCardA").html(CardWithError.render("Future Quarter"));
+        $("#FutureQuarterCard1").hide();
     },
 
     _has_all_data: function () {
