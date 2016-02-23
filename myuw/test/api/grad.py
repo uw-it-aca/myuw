@@ -116,4 +116,4 @@ class TestApiGrad(TestCase):
         self.client.login(username='jinter',
                           password=get_user_pass('jinter'))
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 543)
+        self.assertEquals(response.status_code, 404)

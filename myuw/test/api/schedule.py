@@ -81,8 +81,8 @@ class TestSchedule(TestCase):
         self.client.login(username='err_user',
                           password=get_user_pass('err_user'))
         response = self.client.get(url)
-
-        self.assertEquals(response.status_code, 543)
+        print response
+        self.assertEquals(response.status_code, 400)
 
     @skipIf(missing_url("myuw_current_schedule"), "myuw urls not configured")
     def test_summer_terms(self):
