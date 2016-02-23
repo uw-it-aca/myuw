@@ -7,8 +7,9 @@ from myuw.dao.enrollment import get_current_quarter_enrollment
 from myuw.dao.student_profile import get_profile_of_current_user
 from myuw.dao.gws import is_grad_student
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response, log_err, log_msg
-from myuw.views.rest_dispatch import RESTDispatch, data_error, data_not_found
+from myuw.logger.logresp import log_success_response, log_msg
+from myuw.views.rest_dispatch import RESTDispatch, data_not_found,\
+    handle_exception
 
 
 logger = logging.getLogger(__name__)
@@ -47,5 +48,4 @@ class MyProfile(RESTDispatch):
             log_success_response(logger, timer)
             return HttpResponse(json.dumps(response))
         except Exception:
-            log_err(logger, timer, traceback.format_exc())
-            return data_error()
+            return handle_exception(logger, timer, traceback)

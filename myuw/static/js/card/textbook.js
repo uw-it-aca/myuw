@@ -30,8 +30,8 @@ var TextbookCard = {
     },
 
     render_error: function() {
-        var book_error_code = WSData.book_data_error_code();
-        var course_error_code = WSData.course_data_error_code();
+        var book_error_code = WSData.book_data_error_code(TextbookCard.term);
+        var course_error_code = WSData.course_data_error_code(TextbookCard.term);
         if (course_error_code === 404 || book_error_code === 404) {
             $("#TextbookCard").hide();
             return;

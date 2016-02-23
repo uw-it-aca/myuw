@@ -43,7 +43,7 @@ var GradeCard = {
     },
 
     render_error: function() {
-        var course_error_code = WSData.course_data_error_code();
+        var course_error_code = WSData.course_data_error_code(GradeCard.term);
         if (course_error_code === null || course_error_code === 404) {
             $("#GradeCard").hide();
             return;

@@ -7,8 +7,8 @@ from myuw.dao.notice import get_notices_for_current_user
 from myuw.dao.notice import mark_notices_read_for_current_user
 from myuw.dao.notice_mapping import get_json_for_notices
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response, log_err
-from myuw.views.rest_dispatch import RESTDispatch, data_error
+from myuw.logger.logresp import log_success_response
+from myuw.views.rest_dispatch import RESTDispatch, handle_exception
 
 
 logger = logging.getLogger(__name__)
@@ -29,8 +29,7 @@ class Notices(RESTDispatch):
             log_success_response(logger, timer)
             return HttpResponse(json.dumps(notice_json))
         except Exception:
-            log_err(logger, timer, traceback.format_exc())
-            return data_error()
+            return handle_exception(logger, timer, traceback)
 
     def _get_json(self, notices):
         return self._get_json_for_date(notices, datetime.now())

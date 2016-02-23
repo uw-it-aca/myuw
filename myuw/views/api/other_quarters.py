@@ -6,8 +6,8 @@ from myuw.dao.registered_term import get_registered_future_quarters
 from myuw.dao.registered_term import should_highlight_future_quarters
 from myuw.dao.term import get_next_non_summer_quarter
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response, log_err
-from myuw.views.rest_dispatch import RESTDispatch, data_error
+from myuw.logger.logresp import log_success_response
+from myuw.views.rest_dispatch import RESTDispatch, handle_exception
 
 
 logger = logging.getLogger(__name__)
@@ -54,5 +54,4 @@ class RegisteredFutureQuarters(RESTDispatch):
             log_success_response(logger, timer)
             return HttpResponse(json.dumps(resp_data))
         except Exception:
-            log_err(logger, timer, traceback.format_exc())
-            return data_error()
+            return handle_exception(logger, timer, traceback)

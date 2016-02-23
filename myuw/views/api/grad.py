@@ -7,8 +7,9 @@ from myuw.dao.grad import get_grad_degree_for_current_user,\
     get_grad_committee_for_current_user, get_grad_leave_for_current_user,\
     get_grad_petition_for_current_user, get_json
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_msg, log_success_response, log_err
-from myuw.views.rest_dispatch import RESTDispatch, data_error, data_not_found
+from myuw.logger.logresp import log_msg, log_success_response
+from myuw.views.rest_dispatch import RESTDispatch, data_not_found,\
+    handle_exception
 
 
 logger = logging.getLogger(__name__)
@@ -42,5 +43,4 @@ class MyGrad(RESTDispatch):
             log_success_response(logger, timer)
             return HttpResponse(json.dumps(grad_json_data))
         except Exception:
-            log_err(logger, timer, traceback.format_exc())
-            return data_error()
+            return handle_exception(logger, timer, traceback)

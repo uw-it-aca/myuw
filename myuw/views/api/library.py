@@ -4,8 +4,8 @@ import traceback
 from django.http import HttpResponse
 from myuw.dao.library import get_account_info_for_current_user
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response, log_err
-from myuw.views.rest_dispatch import RESTDispatch, data_error
+from myuw.logger.logresp import log_success_response
+from myuw.views.rest_dispatch import RESTDispatch, handle_exception
 
 
 logger = logging.getLogger(__name__)
@@ -30,5 +30,4 @@ class MyLibInfo(RESTDispatch):
             log_success_response(logger, timer)
             return HttpResponse(json.dumps(resp_json))
         except Exception:
-            log_err(logger, timer, traceback.format_exc())
-            return data_error()
+            return handle_exception(logger, timer, traceback)

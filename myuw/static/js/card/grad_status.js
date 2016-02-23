@@ -8,7 +8,7 @@ var GradStatusCard = {
             return;
         }
 
-        WSData.fetch_mygrad_data(GradStatusCard.render_upon_data, GradStatusCard.show_error);
+        WSData.fetch_mygrad_data(GradStatusCard.render_upon_data, GradStatusCard.render_error);
     },
 
     render_upon_data: function() {
@@ -46,8 +46,13 @@ var GradStatusCard = {
         return false;
     },
 
-    show_error: function() {
-        GradStatusCard.dom_target.html(CardWithError.render("Graduate Request Status"));
+    render_error: function(status) {
+        if (status === 404) {
+            GradStatusCard.dom_target.hide();
+            return;
+        }
+        var raw = CardWithError.render("Graduate Request Status");
+        GradStatusCard.dom_target.html(raw);
     }
 
 };

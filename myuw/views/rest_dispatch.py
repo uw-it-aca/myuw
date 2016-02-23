@@ -1,6 +1,9 @@
-from django.http import HttpResponse
 import json
+import sys
+from django.http import HttpResponse
 from userservice.user import UserService
+from restclients.exceptions import DataFailureException
+from myuw.logger.logresp import log_err, log_data_not_found_response
 
 
 class RESTDispatch:
@@ -40,6 +43,13 @@ class RESTDispatch:
         else:
             return invalid_method()
 
+
+def handle_exception(logger, timer, stack_trace):
+    log_err(logger, timer, stack_trace.format_exc())
+    exc_type, exc_value, exc_traceback = sys.exc_info()
+    if exc_value.status == 404:
+        return data_not_found()
+    return data_error()
 
 def _make_response(status_code, reason_phrase):
     response = HttpResponse(reason_phrase)
