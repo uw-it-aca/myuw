@@ -77,12 +77,11 @@ class TestSchedule(TestCase):
     @skipIf(missing_url("myuw_current_schedule"), "myuw urls not configured")
     def test_missing_current_term(self):
         url = reverse("myuw_current_schedule")
-        get_user('err_user')
-        self.client.login(username='err_user',
-                          password=get_user_pass('err_user'))
+        get_user('jerror')
+        self.client.login(username='jerror',
+                          password=get_user_pass('jerror'))
         response = self.client.get(url)
-        print response
-        self.assertEquals(response.status_code, 400)
+        self.assertEquals(response.status_code, 543)
 
     @skipIf(missing_url("myuw_current_schedule"), "myuw urls not configured")
     def test_summer_terms(self):

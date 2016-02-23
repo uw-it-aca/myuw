@@ -30,6 +30,6 @@ var SummerEFSCard = {
         }
     },
     render_error: function () {
-        SummerEFSCard.dom_target.html(CardWithError.render(SummerEFSCard.name));
+        SummerEFSCard.dom_target.html(CardWithError.render("New Student Summer Early Fall Start"));
     },
 };

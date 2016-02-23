@@ -45,7 +45,7 @@ var ThankYouCard = {
 
     },
     render_error: function () {
-        ThankYouCard.dom_target.html(CardWithError.render(ThankYouCard.name));
+        ThankYouCard.dom_target.html(CardWithError.render("New Student Check-list"));
     },
 
     mark_notices_read: function(notice_hashes) {
