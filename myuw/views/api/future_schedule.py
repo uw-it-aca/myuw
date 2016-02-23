@@ -4,9 +4,9 @@ from django.http import HttpResponse
 from myuw.dao.term import get_specific_term, is_past
 from myuw.dao.card_display_dates import in_show_grades_period
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_err, log_msg
+from myuw.logger.logresp import log_msg
 from myuw.views.api.base_schedule import StudClasSche
-from myuw.views.rest_dispatch import data_error, invalid_future_term
+from myuw.views.rest_dispatch import invalid_future_term, handle_exception
 
 
 logger = logging.getLogger(__name__)
@@ -43,5 +43,4 @@ class StudClasScheFutureQuar(StudClasSche):
             return self.make_http_resp(timer, request_term,
                                        request, smr_term)
         except Exception:
-            log_err(logger, timer, traceback.format_exc())
-            return data_error()
+            return handle_exception(logger, timer, traceback)

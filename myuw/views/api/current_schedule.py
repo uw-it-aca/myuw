@@ -3,8 +3,7 @@ import traceback
 from django.http import HttpResponse
 from myuw.dao.term import get_current_quarter
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_err
-from myuw.views.rest_dispatch import data_error
+from myuw.views.rest_dispatch import handle_exception
 from myuw.views.api.base_schedule import StudClasSche
 
 
@@ -29,5 +28,4 @@ class StudClasScheCurQuar(StudClasSche):
                                        get_current_quarter(request),
                                        request)
         except Exception:
-            log_err(logger, timer, traceback.format_exc())
-            return data_error()
+            return handle_exception(logger, timer, traceback)

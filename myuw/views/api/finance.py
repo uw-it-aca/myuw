@@ -7,8 +7,9 @@ from myuw.dao.finance import get_account_balances_for_current_user
 from myuw.dao.notice import get_tuition_due_date
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_data_not_found_response, log_msg,\
-    log_success_response, log_err
-from myuw.views.rest_dispatch import RESTDispatch, data_not_found, data_error
+    log_success_response
+from myuw.views.rest_dispatch import RESTDispatch, data_not_found,\
+    handle_exception
 
 
 logger = logging.getLogger(__name__)
@@ -39,5 +40,4 @@ class Finance(RESTDispatch):
             log_success_response(logger, timer)
             return HttpResponse(json.dumps(response))
         except Exception:
-            log_err(logger, timer, traceback.format_exc())
-            return data_error()
+            return handle_exception(logger, timer, traceback)

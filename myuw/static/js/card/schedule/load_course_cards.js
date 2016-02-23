@@ -21,7 +21,7 @@ var CourseCards = {
     },
 
     render_error: function() {
-        var error_code = WSData.course_data_error_code();
+        var error_code = WSData.course_data_error_code(CourseCards.term);
         if (error_code == 410) {
             Error410.render();
             return;

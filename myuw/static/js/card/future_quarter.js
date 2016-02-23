@@ -9,6 +9,8 @@ var FutureQuarterCard = {
             return;
         }
         WSData.fetch_oquarter_data(FutureQuarterCard.render_upon_data, FutureQuarterCard.render_error);
+
+        FutureQuarterCard.dom_target = $("#FutureQuarterCardA");
     },
 
     render_upon_data: function() {
@@ -16,7 +18,6 @@ var FutureQuarterCard = {
             return;
         }
         if (WSData.oquarter_data().highlight_future_quarters) {
-            FutureQuarterCard.dom_target = $('#FutureQuarterCardA');
             $("#FutureQuarterCard1").hide();
         }
         else {
@@ -39,9 +40,13 @@ var FutureQuarterCard = {
         }
     },
 
-    render_error: function() {
-        $("#FutureQuarterCardA").html(CardWithError.render("Future Quarter"));
+    render_error: function(status) {
         $("#FutureQuarterCard1").hide();
+        if (status === 404) {
+            FutureQuarterCard.dom_target.hide();
+            return;
+        }
+        FutureQuarterCard.dom_target.html(CardWithError.render("Future Quarter"));
     },
 
     _has_all_data: function () {

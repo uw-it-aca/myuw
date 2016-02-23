@@ -20,7 +20,11 @@ var TuitionCard = {
         return false;
     },
 
-    render_error: function () {
+    render_error: function (status) {
+        if (status === 404) {
+            TuitionCard.dom_target.hide();
+            return;
+        }
         var raw = CardWithError.render("Tuition & Fees");
         TuitionCard.dom_target.html(raw);
     },

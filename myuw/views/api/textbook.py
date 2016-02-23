@@ -10,8 +10,9 @@ from myuw.dao.term import get_specific_term, get_current_quarter,\
 from myuw.dao.textbook import get_textbook_by_schedule
 from myuw.dao.textbook import get_verba_link_by_schedule
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response, log_msg, log_err
-from myuw.views.rest_dispatch import RESTDispatch, data_error, data_not_found
+from myuw.logger.logresp import log_success_response, log_msg
+from myuw.views.rest_dispatch import RESTDispatch, handle_exception,\
+    data_not_found
 
 
 logger = logging.getLogger(__name__)
@@ -50,8 +51,7 @@ class Textbook(RESTDispatch):
             log_success_response(logger, timer)
             return HttpResponse(json.dumps(by_sln))
         except Exception:
-            log_err(logger, timer, traceback.format_exc())
-            return data_error()
+            return handle_exception(logger, timer, traceback)
 
 
 def index_by_sln(book_data):

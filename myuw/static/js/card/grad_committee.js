@@ -8,7 +8,7 @@ var GradCommitteeCard = {
             return;
         }
 
-        WSData.fetch_mygrad_data(GradCommitteeCard.render_upon_data, GradCommitteeCard.show_error);
+        WSData.fetch_mygrad_data(GradCommitteeCard.render_upon_data, GradCommitteeCard.render_error);
     },
 
     render_upon_data: function() {
@@ -35,8 +35,13 @@ var GradCommitteeCard = {
         return false;
     },
 
-    show_error: function() {
-        GradCommitteeCard.dom_target.html(CardWithError.render("Your Committees"));
+    render_error: function(status) {
+        if (status === 404) {
+            GradCommitteeCard.dom_target.hide();
+            return;
+        }
+        var raw = CardWithError.render("Your Committees");
+        GradCommitteeCard.dom_target.html(raw);
     }
 
 };

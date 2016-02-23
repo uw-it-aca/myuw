@@ -14,9 +14,10 @@ from myuw.dao.term import get_comparison_date, get_current_quarter
 from myuw.dao.iasystem import get_evaluations_by_section,\
     json_for_evaluation, in_coursevel_fetch_window
 from myuw.logger.logresp import log_data_not_found_response,\
-    log_msg, log_err, log_success_response
+    log_msg, log_success_response
 from myuw.logger.timer import Timer
-from myuw.views.rest_dispatch import RESTDispatch, data_not_found, data_error
+from myuw.views.rest_dispatch import RESTDispatch, data_not_found,\
+    handle_exception
 
 
 logger = logging.getLogger(__name__)
@@ -66,8 +67,7 @@ class IASystem(RESTDispatch):
             log_success_response(logger, timer)
             return HttpResponse(json.dumps(resp_data))
         except Exception:
-            log_err(logger, timer, traceback.format_exc())
-            return data_error()
+            return handle_exception(logger, timer, traceback)
 
 
 def load_course_eval(request, schedule, summer_term=""):

@@ -30,7 +30,11 @@ var RegStatusCard = {
         }
         return false;
     },
-    render_error: function () {
+    render_error: function (status) {
+        if (status === 404) {
+            RegStatusCard.dom_target.hide();
+            return;
+        }
         RegStatusCard.dom_target.html(CardWithError.render("Registration"));
     },
 
