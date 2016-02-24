@@ -26,7 +26,7 @@ var CourseCards = {
             Error410.render();
             return;
         }
-        var raw = (error_code === 404 ? CardWithNoCourse.render(CourseCards.term) : CardWithError.render("Course Information"));
+        var raw = (error_code === 404 ? CardWithNoCourse.render(CourseCards.term) : CardWithError.render("Schedule & Course Info"));
         if (CourseCards.term === "current") {
             CourseCards.dom_target.html(raw);
         } else {

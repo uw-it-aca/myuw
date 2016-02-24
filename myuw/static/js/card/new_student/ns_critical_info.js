@@ -47,6 +47,6 @@ var CriticalInfoCard = {
 
     },
     render_error: function () {
-        CriticalInfoCard.dom_target.html(CardWithError.render("New Student Critical Information"));
+        CriticalInfoCard.dom_target.html(CardWithError.render("Update Critical Information"));
     },
 };

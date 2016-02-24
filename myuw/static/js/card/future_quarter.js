@@ -46,7 +46,7 @@ var FutureQuarterCard = {
             FutureQuarterCard.dom_target.hide();
             return;
         }
-        FutureQuarterCard.dom_target.html(CardWithError.render("Future Quarter"));
+        FutureQuarterCard.dom_target.html(CardWithError.render("Future Quarter Courses"));
     },
 
     _has_all_data: function () {
