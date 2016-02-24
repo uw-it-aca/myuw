@@ -81,7 +81,7 @@ class TestFutureSchedule(TestCase):
                               'quarter': 'summer'})
         get_user('jerror')
         self.client.login(username='jerror',
-                          password=get_user_pass('javerage'))
+                          password=get_user_pass('jerror'))
         response = self.client.get(url)
         self.assertEquals(response.status_code, 543)
 
@@ -90,7 +90,7 @@ class TestFutureSchedule(TestCase):
                               'quarter': 'autumn'})
         get_user('jerror')
         self.client.login(username='jerror',
-                          password=get_user_pass('javerage'))
+                          password=get_user_pass('jerror'))
         response = self.client.get(url)
         self.assertEquals(response.status_code, 404)
 
