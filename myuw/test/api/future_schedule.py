@@ -1,3 +1,4 @@
+
 from django.test import TestCase
 from django.test.client import Client
 from django.core.urlresolvers import reverse
@@ -72,6 +73,26 @@ class TestFutureSchedule(TestCase):
         data = json.loads(response.content)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(len(data["sections"]), 2)
+
+    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
+    def test_error(self):
+        url = reverse("myuw_future_schedule_api",
+                      kwargs={'year': 2013,
+                              'quarter': 'summer'})
+        get_user('jerror')
+        self.client.login(username='jerror',
+                          password=get_user_pass('javerage'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 543)
+
+        url = reverse("myuw_future_schedule_api",
+                      kwargs={'year': 2013,
+                              'quarter': 'autumn'})
+        get_user('jerror')
+        self.client.login(username='jerror',
+                          password=get_user_pass('javerage'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_past_quarter(self):
