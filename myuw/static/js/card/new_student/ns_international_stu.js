@@ -32,6 +32,6 @@ var InternationalStuCard = {
         }
     },
     render_error: function () {
-        InternationalStuCard.dom_target.html(CardWithError.render(InternationalStuCard.name));
+        InternationalStuCard.dom_target.html(CardWithError.render("International Student Resources"));
     },
 };

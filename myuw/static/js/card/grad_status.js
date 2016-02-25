@@ -25,6 +25,10 @@ var GradStatusCard = {
             GradStatusCard.dom_target.hide();
             return;
         }
+        if (mygrad_data.degree_err && mygrad_data.leave_err && mygrad_data.petit_err) {
+            GradStatusCard.render_error();
+            return;
+        }
 
         if (mygrad_data.petitions !== null) {
             for (var i = 0; i < mygrad_data.petitions.length; i += 1) {
@@ -47,10 +51,6 @@ var GradStatusCard = {
     },
 
     render_error: function(status) {
-        if (status === 404) {
-            GradStatusCard.dom_target.hide();
-            return;
-        }
         var raw = CardWithError.render("Graduate Request Status");
         GradStatusCard.dom_target.html(raw);
     }

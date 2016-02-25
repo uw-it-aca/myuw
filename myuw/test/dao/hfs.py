@@ -24,3 +24,11 @@ class TestHFS(TestCase):
         self.assertRaises(DataFailureException,
                           get_account_balances_by_uwnetid,
                           "123notanetid")
+
+        self.assertRaises(DataFailureException,
+                          get_account_balances_by_uwnetid,
+                          "none")
+
+        self.assertRaises(DataFailureException,
+                          get_account_balances_by_uwnetid,
+                          "jerror")

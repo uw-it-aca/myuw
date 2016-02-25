@@ -103,7 +103,7 @@ class TestApiGrad(TestCase):
         self.assertEqual(petition['gradschool_decision'], "Approved")
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
-    def test_none(self):
+    def test_error(self):
         url = reverse("myuw_grad_api")
         get_user('none')
         self.client.login(username='none',
@@ -112,8 +112,8 @@ class TestApiGrad(TestCase):
         self.assertEquals(response.status_code, 404)
         self.assertEquals(response.content, 'Data not found')
 
-        get_user('jinter')
-        self.client.login(username='jinter',
-                          password=get_user_pass('jinter'))
+        get_user('jerror')
+        self.client.login(username='jerror',
+                          password=get_user_pass('jerror'))
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 404)
+        self.assertEquals(response.status_code, 543)

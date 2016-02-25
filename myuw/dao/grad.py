@@ -52,16 +52,7 @@ def get_grad_petition_for_current_user():
     return get_petition_by_regid(get_regid_of_current_user())
 
 
-def get_json(degree, committee, leave, petition, request):
-    return {
-        "degrees": degree_to_json(degree, request),
-        "committees": to_json(committee),
-        "leaves": leave_to_json(leave, request),
-        "petitions": petition_to_json(petition, request)
-        }
-
-
-def to_json(req_data):
+def committee_to_json(req_data):
     """
     Simply convert the request object into JSON
     without filtering the data.
