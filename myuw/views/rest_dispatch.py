@@ -2,7 +2,8 @@ import json
 import sys
 from django.http import HttpResponse
 from userservice.user import UserService
-from restclients.exceptions import DataFailureException, InvalidNetID
+from restclients.exceptions import DataFailureException,\
+    InvalidNetID, InvalidRegID
 from myuw.logger.logresp import log_err, log_data_not_found_response
 
 
@@ -47,7 +48,8 @@ class RESTDispatch:
 def handle_exception(logger, timer, stack_trace):
     log_err(logger, timer, stack_trace.format_exc())
     exc_type, exc_value, exc_traceback = sys.exc_info()
-    if isinstance(exc_value, InvalidNetID):
+    if isinstance(exc_value, InvalidNetID) or\
+            isinstance(exc_value, InvalidRegID):
         return invalid_session()
     if isinstance(exc_value, DataFailureException) and\
             exc_value.status == 404:

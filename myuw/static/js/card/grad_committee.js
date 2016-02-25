@@ -25,6 +25,11 @@ var GradCommitteeCard = {
             GradCommitteeCard.dom_target.hide();
             return;
         }
+        if (mygrad_data.comm_err) {
+            GradCommitteeCard.render_error();
+            return;
+        }
+
         GradCommitteeCard.dom_target.html(template(mygrad_data));
     },
 
@@ -36,10 +41,6 @@ var GradCommitteeCard = {
     },
 
     render_error: function(status) {
-        if (status === 404) {
-            GradCommitteeCard.dom_target.hide();
-            return;
-        }
         var raw = CardWithError.render("Your Committees");
         GradCommitteeCard.dom_target.html(raw);
     }

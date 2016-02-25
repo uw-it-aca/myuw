@@ -112,12 +112,6 @@ class TestApiGrad(TestCase):
         self.assertEquals(response.status_code, 404)
         self.assertEquals(response.content, 'Data not found')
 
-        get_user('jinter')
-        self.client.login(username='jinter',
-                          password=get_user_pass('jinter'))
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 404)
-
         get_user('jerror')
         self.client.login(username='jerror',
                           password=get_user_pass('jerror'))
