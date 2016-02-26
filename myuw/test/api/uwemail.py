@@ -51,3 +51,17 @@ class TestUWEmail(TestCase):
         self.assertEquals(data["is_uwlive"], False)
         self.assertEquals(data["is_uwgmail"], True)
         self.assertEquals(data["permitted"], True)
+
+    def test_error(self):
+        url = reverse("myuw_email_api")
+        get_user('jerror')
+        self.client.login(username='jerror',
+                          password=get_user_pass('jerror'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 543)
+
+        get_user('nouser')
+        self.client.login(username='nouser',
+                          password=get_user_pass('nouser'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)

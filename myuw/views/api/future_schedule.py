@@ -1,9 +1,15 @@
 import logging
+import traceback
 from django.http import HttpResponse
 from myuw.dao.term import get_specific_term, is_past
-from myuw.logger.timer import Timer
 from myuw.dao.card_display_dates import in_show_grades_period
+from myuw.logger.timer import Timer
+from myuw.logger.logresp import log_msg
 from myuw.views.api.base_schedule import StudClasSche
+from myuw.views.rest_dispatch import invalid_future_term, handle_exception
+
+
+logger = logging.getLogger(__name__)
 
 
 class StudClasScheFutureQuar(StudClasSche):
@@ -17,23 +23,24 @@ class StudClasScheFutureQuar(StudClasSche):
         the given year, quarter.
         Return the course sections of full term and matched term
         if a specific summer-term is given
+        @return class schedule data in json format
+                status 404: no schedule found (not registered)
+                status 543: data error
         """
         timer = Timer()
-        smr_term = ""
-        if summer_term and len(summer_term) > 1:
-            smr_term = summer_term.title()
+        try:
+            smr_term = ""
+            if summer_term and len(summer_term) > 1:
+                smr_term = summer_term.title()
 
-        request_term = get_specific_term(year, quarter)
-        if not request_term:
-            return HttpResponse(status=404)
+            request_term = get_specific_term(year, quarter)
 
-        if is_past(request_term, request):
-            if not in_show_grades_period(request_term, request):
-                return HttpResponse(status=410)
+            if is_past(request_term, request):
+                if not in_show_grades_period(request_term, request):
+                    log_msg(logger, timer, "Future term has pasted")
+                    return invalid_future_term()
 
-        return self.make_http_resp(
-            logging.getLogger(__name__),
-            timer,
-            request_term,
-            request,
-            smr_term)
+            return self.make_http_resp(timer, request_term,
+                                       request, smr_term)
+        except Exception:
+            return handle_exception(logger, timer, traceback)

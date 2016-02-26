@@ -58,12 +58,24 @@ class TestHFS(TestCase):
                           password=get_user_pass('javerage'))
 
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.status_code, 404)
 
-        data = json.loads(response.content)
-        self.assertFalse("employee_husky_card" in data)
-        self.assertFalse("resident_dining" in data)
-        self.assertFalse("student_husky_card" in data)
+        get_user('none')
+        self.client.login(username='none',
+                          password=get_user_pass('javerage'))
+
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+
+    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
+    def test_error(self):
+        url = reverse("myuw_hfs_api")
+        get_user('jerror')
+        self.client.login(username='jerror',
+                          password=get_user_pass('javerage'))
+
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 543)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_eight(self):

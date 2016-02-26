@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.conf import settings
 from django.test.client import RequestFactory
 from myuw.dao.grad import get_degree_by_regid,\
-    get_leave_by_regid, get_committee_by_regid, to_json,\
+    get_leave_by_regid, get_committee_by_regid, committee_to_json,\
     get_petition_by_regid, leave_to_json, petition_to_json,\
     is_before_eof_2weeks_since_decision_date, degree_to_json
 
@@ -21,7 +21,7 @@ class TestDaoGrad(TestCase):
                 '10000000000000000000000000000002')
             self.assertIsNotNone(committee_reqs)
             self.assertEquals(len(committee_reqs), 3)
-            json_data = to_json(committee_reqs)
+            json_data = committee_to_json(committee_reqs)
             self.assertIsNotNone(json_data)
             self.assertEquals(len(json_data), 3)
             self.assertEquals(len(json_data[1]['members']), 3)
@@ -30,7 +30,7 @@ class TestDaoGrad(TestCase):
             committee_reqs = get_committee_by_regid(
                 '10000000000000000000000000000003')
             self.assertEquals(len(committee_reqs), 0)
-            self.assertIsNone(to_json(committee_reqs))
+            self.assertIsNone(committee_to_json(committee_reqs))
 
     def test_get_grad_degree(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,

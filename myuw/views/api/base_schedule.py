@@ -1,7 +1,7 @@
-from django.http import HttpResponse
-import logging
-from operator import itemgetter
 import json
+import logging
+from django.http import HttpResponse
+from operator import itemgetter
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_enrolled_courses
 from myuw.dao.canvas import get_indexed_by_decrosslisted
@@ -12,68 +12,55 @@ from myuw.dao.schedule import get_schedule_by_term
 from myuw.dao.schedule import filter_schedule_sections_by_summer_term
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
 from myuw.dao.term import get_comparison_date
-from myuw.logger.logresp import log_data_not_found_response
-from myuw.logger.logresp import log_success_response
+from myuw.logger.logresp import log_data_not_found_response,\
+    log_success_response, log_msg
 from myuw.views.rest_dispatch import RESTDispatch, data_not_found
+
+
+logger = logging.getLogger(__name__)
 
 
 class StudClasSche(RESTDispatch):
 
-    def make_http_resp(self, logger, timer, term, request, summer_term=None):
+    def make_http_resp(self, timer, term, request, summer_term=None):
         """
         @return class schedule data in json format
-                {} no schedule found (not registered)
-                status 404: data error
+                status 404: no schedule found (not registered)
         """
-        if term is None:
-            log_data_not_found_response(logger, timer)
-            return data_not_found()
-
         schedule = get_schedule_by_term(term)
-        if schedule is None:
-            log_data_not_found_response(logger, timer)
-            return data_not_found()
-
-        if not schedule.json_data():
-            log_data_not_found_response(logger, timer)
-            return HttpResponse({})
 
         if summer_term is None:
             summer_term = get_current_summer_term_in_schedule(schedule,
                                                               request)
 
-        resp_data = load_schedule(request, schedule, summer_term)
-        if resp_data is None:
+        filter_schedule_sections_by_summer_term(schedule, summer_term)
+        if len(schedule.sections) == 0:
             log_data_not_found_response(logger, timer)
             return data_not_found()
 
+        resp_data = load_schedule(request, schedule, summer_term)
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(resp_data))
 
 
 def load_schedule(request, schedule, summer_term=""):
-    filter_schedule_sections_by_summer_term(schedule, summer_term)
+
     json_data = schedule.json_data()
     json_data["summer_term"] = summer_term
 
-    if len(schedule.sections) == 0:
-        return json_data
-
     colors = get_colors_by_schedule(schedule)
-    if colors is None and len(schedule.sections) > 0:
-        return None
 
     buildings = get_buildings_by_schedule(schedule)
 
     # Removing call to Canvas pending MUWM-2106
     # Too much!  MUWM-2270
-    # canvas_data_by_course_id = []
-    canvas_data_by_primary_course_id = get_canvas_enrolled_courses()
-
-    primary = canvas_data_by_primary_course_id
-    canvas_data_by_course_id = get_indexed_by_decrosslisted(primary,
-                                                            schedule.sections)
-
+    canvas_data_by_course_id = []
+    try:
+        canvas_data_by_course_id = get_indexed_by_decrosslisted(
+            get_canvas_enrolled_courses(), schedule.sections)
+    except Exception as ex:
+        logger.error(ex)
+        pass
     # Since the schedule is restclients, and doesn't know
     # about color ids, backfill that data
     section_index = 0
@@ -82,8 +69,13 @@ def load_schedule(request, schedule, summer_term=""):
         color = colors[section.section_label()]
         section_data["color_id"] = color
         section_index += 1
-#        if section.is_primary_section:
-        section_data["lib_subj_guide"] = get_subject_guide_by_section(section)
+        # if section.is_primary_section:
+        try:
+            section_data["lib_subj_guide"] =\
+                get_subject_guide_by_section(section)
+        except Exception as ex:
+            logger.error(ex)
+            pass
 
         if section.section_label() in canvas_data_by_course_id:
             enrollment = canvas_data_by_course_id[section.section_label()]

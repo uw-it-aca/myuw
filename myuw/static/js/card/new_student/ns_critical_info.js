@@ -47,6 +47,6 @@ var CriticalInfoCard = {
 
     },
     render_error: function () {
-        CriticalInfoCard.dom_target.html(CardWithError.render(CriticalInfoCard.name));
+        CriticalInfoCard.dom_target.html(CardWithError.render("Update Critical Information"));
     },
 };

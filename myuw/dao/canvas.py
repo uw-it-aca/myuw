@@ -1,11 +1,10 @@
+import logging
 from restclients.canvas.enrollments import Enrollments as CanvasEnrollments
 from restclients.canvas.sections import Sections
 from restclients.canvas.courses import Courses
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time, log_exception
-import logging
-import traceback
 
 
 logger = logging.getLogger(__name__)
@@ -14,6 +13,7 @@ logger = logging.getLogger(__name__)
 def get_canvas_enrolled_courses():
     """
     Returns calendar information for the current term.
+    Raises: DataFailureException
     """
     timer = Timer()
     try:
@@ -21,16 +21,11 @@ def get_canvas_enrolled_courses():
         return get_indexed_data_for_regid(regid)
     except AttributeError:
         # If course is not in canvas, skip
-        pass
-    except Exception as ex:
-        log_exception(logger,
-                      'get_canvas_enrolled_courses',
-                      traceback.format_exc())
+        return []
     finally:
         log_resp_time(logger,
                       'get_canvas_enrolled_courses',
                       timer)
-    return []
 
 
 def get_indexed_data_for_regid(regid):

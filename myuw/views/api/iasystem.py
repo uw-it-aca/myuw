@@ -1,6 +1,7 @@
 import json
 import logging
 import time
+import traceback
 from operator import itemgetter
 from django.conf import settings
 from django.http import HttpResponse
@@ -15,7 +16,8 @@ from myuw.dao.iasystem import get_evaluations_by_section,\
 from myuw.logger.logresp import log_data_not_found_response,\
     log_msg, log_success_response
 from myuw.logger.timer import Timer
-from myuw.views.rest_dispatch import RESTDispatch, data_not_found
+from myuw.views.rest_dispatch import RESTDispatch, data_not_found,\
+    handle_exception
 
 
 logger = logging.getLogger(__name__)
@@ -32,47 +34,40 @@ class IASystem(RESTDispatch):
         GET /api/v1/ias/
         """
         timer = Timer()
-        dao_class = getattr(settings,
-                            "RESTCLIENTS_IASYSTEM_DAO_CLASS",
-                            MOCKDAO)
-        if dao_class == MOCKDAO and\
-                get_netid_of_current_user() == "eight":
-            time.sleep(10)
+        try:
+            dao_class = getattr(settings,
+                                "RESTCLIENTS_IASYSTEM_DAO_CLASS",
+                                MOCKDAO)
+            if dao_class == MOCKDAO and\
+                    get_netid_of_current_user() == "eight":
+                time.sleep(10)
 
-        if not is_student():
-            log_msg(logger, timer, "Not a student, no eval data")
-            return data_not_found()
+            if not is_student():
+                log_msg(logger, timer, "Not a student, abort!")
+                return data_not_found()
 
-        term = get_current_quarter(request)
-        if term is None:
-            log_msg(logger, timer, "current term is None")
-            return data_not_found()
+            if not in_coursevel_fetch_window(request):
+                # The window starts: 7 days before last inst
+                # ends: the midnight at the end of current term
+                # grade submission deadline
+                log_msg(logger, timer, "Not in fetching window")
+                return data_not_found()
+            term = get_current_quarter(request)
+            schedule = get_schedule_by_term(term)
 
-        if not in_coursevel_fetch_window(request):
-            # The window starts: 7 days before last inst
-            # ends: the midnight at the end of current term
-            # grade submission deadline
-            log_msg(logger, timer, "Not in fetching window")
-            return data_not_found()
+            summer_term = get_current_summer_term_in_schedule(
+                schedule, request)
 
-        schedule = get_schedule_by_term(term)
-        if schedule is None:
-            log_msg(logger, timer, "Error in current schedule")
-            return data_error()
+            filter_schedule_sections_by_summer_term(schedule, summer_term)
+            if len(schedule.sections) == 0:
+                log_data_not_found_response(logger, time)
+                return data_not_found()
 
-        if not schedule.json_data():
-            log_msg(logger, timer, "schedule.json_data is None")
-            return data_error()
-
-        summer_term = get_current_summer_term_in_schedule(schedule, request)
-
-        resp_data = load_course_eval(request, schedule, summer_term)
-        if resp_data is None:
-            log_msg(logger, timer, "failed to load course eval")
-            return data_error()
-
-        log_success_response(logger, timer)
-        return HttpResponse(json.dumps(resp_data))
+            resp_data = load_course_eval(request, schedule, summer_term)
+            log_success_response(logger, timer)
+            return HttpResponse(json.dumps(resp_data))
+        except Exception:
+            return handle_exception(logger, timer, traceback)
 
 
 def load_course_eval(request, schedule, summer_term=""):
@@ -83,13 +78,8 @@ def load_course_eval(request, schedule, summer_term=""):
     "{}" if whouldn't display any; or
     None if a data error.
     """
-
-    filter_schedule_sections_by_summer_term(schedule, summer_term)
     json_data = schedule.json_data()
     json_data["summer_term"] = summer_term
-
-    if len(schedule.sections) == 0:
-        return json_data
 
     section_index = 0
     for section in schedule.sections:

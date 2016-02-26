@@ -20,15 +20,8 @@ var VisualScheduleCard = {
     },
 
     render_error: function() {
-        var error_code = WSData.course_data_error_code();
-        if (error_code == 410) {
-            var page_source = $("#future_410_error").html();
-            var template = Handlebars.compile(page_source);
-            $("#main-content").html(template({}));
-        }
-        else {
-            VisualScheduleCard.dom_target.html(CardWithNoCourse.render(titilizeTerm(VisualScheduleCard.term)));
-        }
+        // CourseCards displays the message
+        $("#VisualScheduleCard").hide();
     },
 
     render_upon_data: function(course_index) {
@@ -42,12 +35,11 @@ var VisualScheduleCard = {
     _render: function() {
         var term = VisualScheduleCard.term;
         var course_data = WSData.normalized_course_data(term);
-        if (course_data.sections.length === 0) {
-            VisualScheduleCard.dom_target.html(CardWithNoCourse.render(term));
-            return;
-        }
+
         VisualScheduleCard.render_schedule(course_data, term);
+
         FinalExamSchedule.render(course_data, term, true);
+
         LogUtils.cardLoaded(VisualScheduleCard.name, VisualScheduleCard.dom_target);
     },
         

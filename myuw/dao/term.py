@@ -4,7 +4,6 @@ This module direct interfaces with restclient for the term data
 
 from datetime import date, datetime, timedelta
 import logging
-import traceback
 from django.conf import settings
 from restclients.models.sws import Term
 from restclients.util.datetime_convertor import convert_to_begin_of_day,\
@@ -88,15 +87,10 @@ def get_current_quarter(request):
 
         request.myuw_current_quarter = term
         return term
-    except Exception as ex:
-        log_exception(logger,
-                      'get_current_term',
-                      traceback.format_exc())
     finally:
         log_resp_time(logger,
                       'get_current_term',
                       timer)
-    return None
 
 
 def get_next_quarter(request):

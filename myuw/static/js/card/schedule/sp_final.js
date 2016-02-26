@@ -22,7 +22,8 @@ var FinalExamCard = {
     },
 
     render_error: function() {
-        FinalExamCard.dom_target.html(CardWithNoCourse.render(titilizeTerm(FinalExamCard.term)));
+        // CourseCards displays the message
+        $("#FinalExamCard").hide();
     },
 
     render_upon_data: function(course_index) {
