@@ -42,17 +42,14 @@ var TextbookCard = {
     _render: function () {
         var term = TextbookCard.term;
         var course_data = WSData.course_data_for_term(term);
+        var textbook_data  = TextBooks.process_book_data(WSData.book_data(term), course_data);
         var no_book_assigned = true;
-        var registered = true;
         var section_book_data = [];
-        if (course_data.sections.length === 0) {
-            registered = false;
-        } else {
-            var textbook_data  = TextBooks.process_book_data(WSData.book_data(term), course_data);
 
-            $.each(textbook_data.sections, function (sec_idx, section) {
-                var required = 0;
-                var optional = 0;
+        $.each(textbook_data.sections, function (sec_idx, section) {
+            var required = 0;
+            var optional = 0;
+            if (section.books) {
                 $.each(section.books, function (book_idx, book, section) {
                     if (book.is_required) {
                         required += 1;
@@ -63,19 +60,19 @@ var TextbookCard = {
                         no_book_assigned = false;
                     }
                 });
-                var course_id = section.curriculum + " " + section.course_number + " " + section.section_id;
+            }
+            var course_id = section.curriculum + " " + section.course_number + " " + section.section_id;
 
-                var section_data = {"course_id": course_id,
-                                    "color_id": section.color_id,
-                                    "required": required,
-                                    "total": required + optional,
-                                    "no_course_books": (required + optional) ? false :true
-                                   };
-                section_book_data.push(section_data);
-            });
-        }
-        var template_data = {"registered": registered,
-                             "term": term,
+            var section_data = {"course_id": course_id,
+                                "color_id": section.color_id,
+                                "required": required,
+                                "total": required + optional,
+                                "no_course_books": (required + optional) ? false :true
+                               };
+            section_book_data.push(section_data);
+        });
+
+        var template_data = {"term": term,
                              "no_book_assigned": no_book_assigned,
                              "quarter": course_data.quarter,
                              "year": course_data.year,
@@ -84,7 +81,8 @@ var TextbookCard = {
 
         var source = $("#textbook_card").html();
         var template = Handlebars.compile(source);
-        TextbookCard.dom_target.html(template(template_data));
+        var raw = template(template_data);
+        TextbookCard.dom_target.html(raw);
 
         $(".show_textbooks").on("click", function(ev) {
             WSData.log_interaction("card_view_future_textbooks", term);
