@@ -3,8 +3,9 @@ import logging
 import traceback
 from django.http import HttpResponse
 from myuw.dao.gws import is_student
-from myuw.dao.schedule import get_schedule_by_term
-from myuw.dao.schedule import filter_schedule_sections_by_summer_term
+from restclients.exceptions import DataFailureException
+from myuw.dao.schedule import get_schedule_by_term,\
+    filter_schedule_sections_by_summer_term
 from myuw.dao.term import get_specific_term, get_current_quarter,\
     get_current_summer_term
 from myuw.dao.textbook import get_textbook_by_schedule
@@ -38,16 +39,25 @@ class Textbook(RESTDispatch):
 
             term = get_specific_term(year=year, quarter=quarter)
             schedule = get_schedule_by_term(term)
+
             if summer_term is not None and len(summer_term) > 0:
                 summer_term = summer_term.replace(",", "")
                 filter_schedule_sections_by_summer_term(schedule, summer_term)
 
+            if len(schedule.sections) == 0:
+                log_data_not_found_response(logger, timer)
+                return data_not_found()
+
             book_data = get_textbook_by_schedule(schedule)
-
-            verba_link = get_verba_link_by_schedule(schedule)
-
             by_sln = index_by_sln(book_data)
-            by_sln["verba_link"] = verba_link
+
+            try:
+                verba_link = get_verba_link_by_schedule(schedule)
+                by_sln["verba_link"] = verba_link
+            except DataFailureException as ex:
+                if ex.status != 404:
+                    raise
+
             log_success_response(logger, timer)
             return HttpResponse(json.dumps(by_sln))
         except Exception:
