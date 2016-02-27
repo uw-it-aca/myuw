@@ -80,6 +80,7 @@
         "academic_calendar": "Academic Calendar"
     };
     window.user = {
+        "student": {{ user.affiliations.student|yesno:"true, false" }},
         "grad": {{ user.affiliations.grad|yesno:"true, false" }},
         "undergrad": {{ user.affiliations.undergrad|yesno:"true, false" }},
         "pce": {{ user.affiliations.pce|yesno:"true, false" }},

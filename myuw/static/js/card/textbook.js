@@ -5,7 +5,7 @@ var TextbookCard = {
     _ajax_count: 0,
 
     render_init: function() {
-        if (!window.user.grad && !window.user.undergrad) {
+        if (!window.user.student) {
             $("#TextbookCard").hide();
         }
         if (TextbookCard.term === 'current') {

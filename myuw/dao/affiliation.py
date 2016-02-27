@@ -10,10 +10,9 @@ from django.conf import settings
 from myuw.logger.logback import log_info, log_exception
 from myuw.dao.schedule import get_current_quarter_schedule
 from myuw.dao.pws import get_netid_of_current_user
-from myuw.dao.gws import is_grad_student, is_undergrad_student
-from myuw.dao.gws import is_pce_student, is_student_employee, is_employee
-from myuw.dao.gws import is_seattle_student, is_bothell_student
-from myuw.dao.gws import is_tacoma_student, is_faculty
+from myuw.dao.gws import is_grad_student, is_undergrad_student, is_student,\
+    is_pce_student, is_student_employee, is_employee, is_faculty,\
+    is_seattle_student, is_bothell_student, is_tacoma_student
 from myuw.dao.enrollment import get_main_campus
 from myuw.models import UserMigrationPreference
 
@@ -26,6 +25,7 @@ OPTIN_SWITCH = "optin_switch"
 def get_all_affiliations(request):
     """
     return a dictionary of affiliation indicators.
+    ["student"]: True if the user is currently an UW student.
     ["grad"]: True if the user is currently an UW graduate student.
     ["undergrad"]: True if the user is currently an UW undergraduate student.
     ["pce"]: True if the user is currently an UW PCE student.
@@ -59,6 +59,7 @@ def get_all_affiliations(request):
 
     data = {"grad": is_grad_student(),
             "undergrad": is_undergrad_student(),
+            "student": is_student(),
             "pce": is_pce_student(),
             "stud_employee": is_student_employee(),
             "employee": is_employee(),

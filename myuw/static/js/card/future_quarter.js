@@ -3,7 +3,7 @@ var FutureQuarterCard = {
     dom_target: undefined,
 
     render_init: function() {
-        if (!window.user.grad && !window.user.undergrad) {
+        if (!window.user.student) {
             $("#FutureQuarterCardA").hide();
             $("#FutureQuarterCard1").hide();
             return;

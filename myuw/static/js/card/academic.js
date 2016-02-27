@@ -3,7 +3,7 @@ var AcademicCard = {
     dom_target: undefined,
 
     render_init: function() {
-        if (!window.user.grad && !window.user.undergrad) {
+        if (!window.user.student) {
             $("#AcademicCard").hide();
             return;
         }

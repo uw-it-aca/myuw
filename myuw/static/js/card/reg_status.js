@@ -3,7 +3,7 @@ var RegStatusCard = {
     dom_target: undefined,
 
     render_init: function() {
-        if ((!window.user.grad && !window.user.undergrad) ||
+        if (!window.user.student ||
             !(window.card_display_dates.is_after_start_of_registration_display_period &&
               window.card_display_dates.is_before_end_of_registration_display_period)) {
             $("#RegStatusCard").hide();

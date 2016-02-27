@@ -4,7 +4,7 @@ var VisualScheduleCard = {
     term: 'current',
 
     render_init: function(term, course_index) {
-        if (!window.user.grad && !window.user.undergrad ||
+        if (!window.user.student ||
             !window.card_display_dates.is_before_last_day_of_classes) {
             $("#VisualScheduleCard").hide();
             return;

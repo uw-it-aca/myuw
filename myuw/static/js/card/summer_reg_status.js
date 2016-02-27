@@ -3,8 +3,9 @@ var SummerRegStatusCard = {
     dom_target: undefined,
 
     render_init: function() {
-        if (!window.card_display_dates.is_after_start_of_summer_reg_display_period1 &&
-            !window.card_display_dates.is_after_start_of_summer_reg_display_periodA) {
+        if (!window.user.student ||
+            (!window.card_display_dates.is_after_start_of_summer_reg_display_period1 &&
+             !window.card_display_dates.is_after_start_of_summer_reg_display_periodA)) {
             $("#SummerRegStatusCardA").hide();
             $("#SummerRegStatusCard1").hide();
             return;
