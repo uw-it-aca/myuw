@@ -3,13 +3,13 @@ import logging
 from django.http import HttpResponse
 from operator import itemgetter
 from myuw.dao.building import get_buildings_by_schedule
-from myuw.dao.canvas import get_canvas_enrolled_courses
-from myuw.dao.canvas import get_indexed_by_decrosslisted
+from myuw.dao.canvas import get_canvas_enrolled_courses,\
+    get_indexed_by_decrosslisted
 from myuw.dao.course_color import get_colors_by_schedule
 from myuw.dao.gws import is_grad_student
 from myuw.dao.library import get_subject_guide_by_section
-from myuw.dao.schedule import get_schedule_by_term
-from myuw.dao.schedule import filter_schedule_sections_by_summer_term
+from myuw.dao.schedule import get_schedule_by_term,\
+    filter_schedule_sections_by_summer_term
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
 from myuw.dao.term import get_comparison_date
 from myuw.logger.logresp import log_data_not_found_response,\
@@ -46,14 +46,13 @@ class StudClasSche(RESTDispatch):
 def load_schedule(request, schedule, summer_term=""):
 
     json_data = schedule.json_data()
+
     json_data["summer_term"] = summer_term
 
     colors = get_colors_by_schedule(schedule)
 
     buildings = get_buildings_by_schedule(schedule)
 
-    # Removing call to Canvas pending MUWM-2106
-    # Too much!  MUWM-2270
     canvas_data_by_course_id = []
     try:
         canvas_data_by_course_id = get_indexed_by_decrosslisted(
@@ -79,12 +78,12 @@ def load_schedule(request, schedule, summer_term=""):
 
         if section.section_label() in canvas_data_by_course_id:
             enrollment = canvas_data_by_course_id[section.section_label()]
-            canvas_url = enrollment.course_url
-            canvas_name = enrollment.course_name
             # canvas_grade = enrollment.final_grade
-            section_data["canvas_url"] = canvas_url
-            section_data["canvas_name"] = canvas_name
             # section_data["canvas_grade"] = canvas_grade
+            canvas_course = enrollment.course
+            if not canvas_course.is_unpublished():
+                section_data["canvas_url"] = canvas_course.course_url
+                section_data["canvas_name"] = canvas_course.name
 
         # MUWM-596
         if section.final_exam and section.final_exam.building:

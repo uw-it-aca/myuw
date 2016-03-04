@@ -38,8 +38,8 @@ def get_indexed_data_for_regid(regid):
 
 
 def get_indexed_by_decrosslisted(by_primary, sws_sections):
-
     for section in sws_sections:
+        base_id = section.section_label()
         alternate_id = None
         try:
             sis_id = section.canvas_section_sis_id()
@@ -47,9 +47,8 @@ def get_indexed_by_decrosslisted(by_primary, sws_sections):
             primary_course = Courses().get_course(canvas_section.course_id)
             alternate_id = primary_course.sws_course_id()
         except Exception as ex:
-            alternate_id = section.section_label()
-
-        base_id = section.section_label()
+            # primary section doesn't have canvas_section_sis_id
+            alternate_id = base_id
 
         if base_id not in by_primary:
             if alternate_id in by_primary:
