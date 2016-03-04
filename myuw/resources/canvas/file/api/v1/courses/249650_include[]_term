@@ -1,1 +1,20 @@
-{"sis_course_id":"2013-spring-TRAIN-100-B","hide_final_grades":false,"course_code":"TRAIN 100","end_at":null,"id":249650,"default_view":"syllabus","account_id":84378,"name":"MECHANICS","workflow_state":"available","public_syllabus":false,"enrollments":[{"type":"teacher"}],"calendar":{"ics":"https://canvas.uw.edu/feeds/calendars/course_UdeVj2RQpRVlZDSJdWYn3xFQ1EjDNojfypjM9h1h.ics"},"start_at":null,"term":{"sis_term_id":"2013-spring","start_at":"2013-06-15T07:00:00Z","id":810,"name":"Summer 2013","end_at":"2013-08-16T08:00:00Z"}}
+{
+"sis_course_id":"2013-spring-TRAIN-100-A",
+"hide_final_grades":false,
+"course_code":"TRAIN 100",
+"end_at":null,
+"id":249650,
+"default_view":"syllabus",
+"account_id":84378,
+"name":"SCRUM MASTER",
+"workflow_state":"unpublished",
+"public_syllabus":false,
+"enrollments":[{"type":"teacher"}],
+"calendar":{"ics":"https://canvas.uw.edu/feeds/calendars/course_UdeVj2RQpRVlZDSJdWYn3xFQ1EjDNojfypjM9h1h.ics"},
+"start_at":null,
+"term":{"sis_term_id":"2013-spring",
+        "start_at":"2013-04-01T07:00:00Z",
+        "id":810,
+        "name":"SCRUM MASTER",
+        "end_at":"2013-06-07T08:00:00Z"}
+}

@@ -49,6 +49,19 @@ class TestSchedule(TestCase):
         self.assertEquals(data["term"]["year"], 2013)
         self.assertEquals(data["term"]["quarter"], 'Spring')
         self.assertEquals(len(data["sections"]), 5)
+        for section in data["sections"]:
+            if section["curriculum_abbr"] == "PHYS" and\
+                    section["course_number"] == "121" and\
+                    section["section_id"] == "A":
+                self.assertEquals(section["canvas_url"],
+                                  "https://canvas.uw.edu/courses/249652")
+                self.assertEquals(section["canvas_name"],
+                                  "MECHANICS")
+
+            if section["curriculum_abbr"] == "TRAIN" and\
+                    section["course_number"] == "100" and\
+                    section["section_id"] == "A":
+                self.assertRaises(KeyError, section.get("canvas_url"))
 
     @skipIf(missing_url("myuw_current_schedule"), "myuw urls not configured")
     def test_none_current_term(self):

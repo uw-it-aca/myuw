@@ -6,16 +6,16 @@
         "enrollment_state": "active",
         "type": "TeacherEnrollment",
         "course_section_id": 225705,
-        "course_id": 149650,
+        "course_id": 249650,
         "html_url": "https://canvas.uw.edu/courses/149650/users/496168",
         "user": {
-            "login_id": "eight",
-            "sis_user_id": "12345678901234567890123456789012",
-            "sortable_name": "STUDENT, EIGHT AVERAGE",
-            "short_name": "EIGHT AVERAGE STUDENT",
+            "login_id": "javerage",
+            "sis_user_id": "9136CCB8F66711D5BE060004AC494FFE",
+            "sortable_name": "STUDENT, JAVERAGE AVERAGE",
+            "short_name": "JAVERAGE AVERAGE STUDENT",
             "id": 496168,
-            "name": "EIGHT AVERAGE STUDENT",
-            "sis_login_id": "eight"
+            "name": "JAVERAGE AVERAGE STUDENT",
+            "sis_login_id": "javerage"
         },
         "id": 1667135,
         "updated_at": "2012-09-25T12:09:46-06:00",
@@ -46,13 +46,13 @@
         },
         "html_url": "https://uw.test.instructure.com/courses/862539/users/496164",
         "user": {
-            "login_id": "eight",
-            "sis_user_id": "12345678901234567890123456789012",
-            "sortable_name": "STUDENT, EIGHT AVERAGE",
-            "short_name": "EIGHT AVERAGE STUDENT",
+            "login_id": "javerage",
+            "sis_user_id": "9136CCB8F66711D5BE060004AC494FFE",
+            "sortable_name": "STUDENT, JAVERAGE AVERAGE",
+            "short_name": "JAVERAGE AVERAGE STUDENT",
             "id": 496168,
-            "name": "EIGHT AVERAGE STUDENT",
-            "sis_login_id": "eight"
+            "name": "JAVERAGE AVERAGE STUDENT",
+            "sis_login_id": "javerage"
         }
     },
     {
@@ -78,13 +78,13 @@
         },
         "html_url": "https://uw.test.instructure.com/courses/862539/users/496164",
         "user": {
-            "login_id": "eight",
-            "sis_user_id": "12345678901234567890123456789012",
-            "sortable_name": "STUDENT, EIGHT AVERAGE",
-            "short_name": "EIGHT AVERAGE STUDENT",
+            "login_id": "javerage",
+            "sis_user_id": "9136CCB8F66711D5BE060004AC494FFE",
+            "sortable_name": "STUDENT, JAVERAGE AVERAGE",
+            "short_name": "JAVERAGE AVERAGE STUDENT",
             "id": 496168,
-            "name": "EIGHT AVERAGE STUDENT",
-            "sis_login_id": "eight"
+            "name": "JAVERAGE AVERAGE STUDENT",
+            "sis_login_id": "javerage"
         }
     }
 
