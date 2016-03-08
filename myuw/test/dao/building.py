@@ -21,9 +21,3 @@ class TestBuildings(TestCase):
 
         buildings = get_buildings_by_schedule(schedule)
         self.assertEquals(len(buildings), 3)
-
-        term.year = 2001
-        schedule = _get_schedule(regid, term)
-
-        buildings = get_buildings_by_schedule(schedule)
-        self.assertEquals(buildings, None)

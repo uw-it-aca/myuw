@@ -35,10 +35,13 @@ var LibraryCard = {
         return false;
     },
 
-    show_error: function() {
-        // don't show card if no account
-//        LibraryCard.dom_target.html('');
-        LibraryCard.dom_target.hide();
+    show_error: function(status) {
+        if (status === 404) {
+            LibraryCard.dom_target.hide();
+            return;
+        }
+        var raw = CardWithError.render("Library Account");
+        LibraryCard.dom_target.html(raw);
     }
 
 };

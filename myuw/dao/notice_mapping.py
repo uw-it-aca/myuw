@@ -59,8 +59,6 @@ def apply_showhide(request, notices):
     This function will apply the show/hide logic on each notice,
     update the notice atttibutes accordingly.
     """
-    if notices is None:
-        return None
     local_tz = timezone.get_current_timezone()
     now = local_tz.localize(
         get_comparison_datetime(request)).astimezone(pytz.utc)
@@ -119,6 +117,8 @@ def get_json_for_notices(request, notices):
     applied on the corresponding notices.
     """
     notice_json = []
+    if not notices:
+        return notice_json
 
     for notice in apply_showhide(request, notices):
 

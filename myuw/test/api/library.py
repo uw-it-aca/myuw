@@ -53,8 +53,20 @@ class TestLibrary(TestCase):
 
     def test_invalid_books(self):
         url = reverse("myuw_library_api")
-        get_user('nouser')
-        self.client.login(username='nouser',
-                          password=get_user_pass('nouser'))
+        get_user('nodata')
+        self.client.login(username='nodata',
+                          password=get_user_pass('nodata'))
         response = self.client.get(url)
         self.assertEquals(response.status_code, 404)
+
+        get_user('none')
+        self.client.login(username='none',
+                          password=get_user_pass('none'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+        get_user('jerror')
+        self.client.login(username='jerror',
+                          password=get_user_pass('jerror'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 543)

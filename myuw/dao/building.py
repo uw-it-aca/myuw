@@ -33,9 +33,8 @@ def get_buildings_by_schedule(schedule):
     for the given class schedule. Return None if the schedule
     contains no section.
     """
-    if schedule is None or len(schedule.sections) == 0:
-        return None
     buildings = {}
+
     for section in schedule.sections:
         if section.final_exam and section.final_exam.building:
             code = section.final_exam.building

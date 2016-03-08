@@ -3,7 +3,12 @@ var GradStatusCard = {
     dom_target: undefined,
 
     render_init: function() {
-        WSData.fetch_mygrad_data(GradStatusCard.render_upon_data, GradStatusCard.show_error);
+        if (!window.user.grad) {
+            $("#GradStatusCard").hide();
+            return;
+        }
+
+        WSData.fetch_mygrad_data(GradStatusCard.render_upon_data, GradStatusCard.render_error);
     },
 
     render_upon_data: function() {
@@ -18,6 +23,10 @@ var GradStatusCard = {
         var template = Handlebars.compile(source);
         if (!mygrad_data.degrees && !mygrad_data.leaves && !mygrad_data.petitions) {
             GradStatusCard.dom_target.hide();
+            return;
+        }
+        if (mygrad_data.degree_err && mygrad_data.leave_err && mygrad_data.petit_err) {
+            GradStatusCard.render_error();
             return;
         }
 
@@ -41,8 +50,9 @@ var GradStatusCard = {
         return false;
     },
 
-    show_error: function() {
-        GradStatusCard.dom_target.html(CardWithError.render("Graduate Request Status"));
+    render_error: function(status) {
+        var raw = CardWithError.render("Graduate Request Status");
+        GradStatusCard.dom_target.html(raw);
     }
 
 };

@@ -4,7 +4,6 @@ with the UW Affiliation Group API resource
 """
 
 import logging
-import traceback
 from django.conf import settings
 from restclients.gws import GWS
 from myuw.dao.pws import get_netid_of_current_user
@@ -24,15 +23,10 @@ def _is_member(groupid):
     try:
         return GWS().is_effective_member(groupid,
                                          get_netid_of_current_user())
-    except Exception as ex:
-        log_exception(logger,
-                      'gws.is_effective_member of ' + groupid,
-                      traceback.format_exc())
     finally:
         log_resp_time(logger,
                       'gws.is_effective_member of ' + groupid,
                       timer)
-    return None
 
 
 def is_seattle_student():
@@ -67,15 +61,25 @@ def is_current_grad_student():
     return _is_member('uw_affiliation_graduate-current')
 
 
-def is_grad_student():
+def is_student():
+    return is_graduate_student() or is_undergrad_student()
+
+
+def is_graduate_student():
     """
-    Return True if the user is an UW graduate student
+    Return True if the user is In SDB, class is one of
+    (00, 08, 11, 12, 13, 14), and status is not O or N)
     in the current, previous, or future quarter
-    (Note by fl, 10/19/2012:
-    If the student is a graduate and PCE student,
-    uw affiliation group only reflects the first one.)
     """
     return _is_member('uw_affiliation_graduate')
+
+
+def is_grad_student():
+    """
+    Return True if the user is class-08 graduate student
+    in the current, previous, or future quarter
+    """
+    return _is_member('uw_affiliation_graduate-grad')
 
 
 def is_undergrad_student():

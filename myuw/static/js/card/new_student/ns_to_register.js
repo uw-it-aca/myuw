@@ -56,7 +56,7 @@ var ToRegisterCard = {
 
     },
     render_error: function () {
-        ToRegisterCard.dom_target.html(CardWithError.render(ToRegisterCard.name));
+        ToRegisterCard.dom_target.html(CardWithError.render("To Register for Classes"));
     },
 
     has_to_register_notices: function () {

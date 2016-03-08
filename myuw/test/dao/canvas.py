@@ -15,16 +15,21 @@ class TestCanvas(TestCase):
 
             data = get_indexed_data_for_regid(
                 "12345678901234567890123456789012")
-            physics = data['2013,spring,PHYS,121/A']
+            physics = data['2013,spring,PHYS,121/A'].course
             self.assertEquals(physics.course_url,
-                              'https://canvas.uw.edu/courses/149650')
+                              'https://canvas.uw.edu/courses/249652')
+            self.assertFalse(physics.is_unpublished())
+
+            has_section_b = '2013,spring,TRAIN,100/B' in data
+            self.assertTrue(has_section_b)
 
             has_section_a = '2013,spring,TRAIN,100/A' in data
-            self.assertFalse(has_section_a)
+            self.assertTrue(has_section_a)
 
-            train = data['2013,spring,TRAIN,100/B']
+            train = data['2013,spring,TRAIN,100/A'].course
             self.assertEquals(train.course_url,
                               'https://canvas.uw.edu/courses/249650')
+            self.assertFalse(physics.is_unpublished())
 
     def test_crosslinks_lookup(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
@@ -38,10 +43,15 @@ class TestCanvas(TestCase):
             canvas_data_by_course_id = get_indexed_by_decrosslisted(
                 data, schedule.sections)
 
-            physics = data['2013,spring,PHYS,121/A']
+            physics = data['2013,spring,PHYS,121/A'].course
             self.assertEquals(physics.course_url,
-                              'https://canvas.uw.edu/courses/149650')
+                              'https://canvas.uw.edu/courses/249652')
+            self.assertFalse(physics.is_unpublished())
 
-            train = data['2013,spring,TRAIN,100/A']
+            has_section_a = '2013,spring,TRAIN,100/A' in data
+            self.assertTrue(has_section_a)
+
+            train = data['2013,spring,TRAIN,100/A'].course
             self.assertEquals(train.course_url,
                               'https://canvas.uw.edu/courses/249650')
+            self.assertTrue(train.is_unpublished())

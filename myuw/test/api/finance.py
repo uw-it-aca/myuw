@@ -54,3 +54,12 @@ class TestFinance(TestCase):
         # dao_implementation/sws.py's File implementation
         compare = datetime.strptime(data['tuition_due'], "%Y-%m-%d").date()
         self.assertTrue(compare > datetime.now().date())
+
+    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
+    def test_jerror(self):
+        url = reverse("myuw_finance_api")
+        get_user('jerror')
+        self.client.login(username='jerror',
+                          password=get_user_pass('jerror'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 543)

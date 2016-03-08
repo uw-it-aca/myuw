@@ -14,6 +14,13 @@ def log_exception(logger, action, exc_info):
                  exc_info.splitlines())
 
 
+def log_exception_with_timer(logger, timer, exc_info):
+    logger.error("%s - %s Time=%.3f milliseconds" %
+                 (get_logging_userid(),
+                  exc_info.splitlines(),
+                  timer.get_elapsed()))
+
+
 def log_info(logger, message):
     logger.info("%s %s", get_logging_userid(), message)
 

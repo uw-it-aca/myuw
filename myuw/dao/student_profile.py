@@ -5,7 +5,6 @@ provides student record information of the current user
 
 from django.conf import settings
 import logging
-import traceback
 from restclients.sws.person import get_person_by_regid
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.logger.timer import Timer
@@ -24,12 +23,7 @@ def get_profile_of_current_user():
     id = "%s %s" % ('get sws.person by regid', regid)
     try:
         return get_person_by_regid(regid)
-    except Exception:
-        log_exception(logger,
-                      id,
-                      traceback.format_exc())
     finally:
         log_resp_time(logger,
                       id,
                       timer)
-    return None
