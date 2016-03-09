@@ -49,6 +49,19 @@ class TestSchedule(TestCase):
         self.assertEquals(data["term"]["year"], 2013)
         self.assertEquals(data["term"]["quarter"], 'Spring')
         self.assertEquals(len(data["sections"]), 5)
+        for section in data["sections"]:
+            if section["curriculum_abbr"] == "PHYS" and\
+                    section["course_number"] == "121" and\
+                    section["section_id"] == "A":
+                self.assertEquals(section["canvas_url"],
+                                  "https://canvas.uw.edu/courses/249652")
+                self.assertEquals(section["canvas_name"],
+                                  "MECHANICS")
+
+            if section["curriculum_abbr"] == "TRAIN" and\
+                    section["course_number"] == "100" and\
+                    section["section_id"] == "A":
+                self.assertRaises(KeyError, section.get("canvas_url"))
 
     @skipIf(missing_url("myuw_current_schedule"), "myuw urls not configured")
     def test_none_current_term(self):
@@ -57,15 +70,9 @@ class TestSchedule(TestCase):
         self.client.login(username='none', password=get_user_pass('none'))
         response = self.client.get(url)
 
-        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.status_code, 404)
+        self.assertEquals(response.content, 'Data not found')
 
-        data = json.loads(response.content)
-
-        self.assertEquals(data["term"]["year"], 2013)
-        self.assertEquals(data["term"]["quarter"], 'Spring')
-        self.assertEquals(len(data["sections"]), 0)
-
-    @skipIf(missing_url("myuw_current_schedule"), "myuw urls not configured")
     def test_eight_current_term(self):
         url = reverse("myuw_current_schedule")
         get_user('eight')
@@ -83,12 +90,11 @@ class TestSchedule(TestCase):
     @skipIf(missing_url("myuw_current_schedule"), "myuw urls not configured")
     def test_missing_current_term(self):
         url = reverse("myuw_current_schedule")
-        get_user('err_user')
-        self.client.login(username='err_user',
-                          password=get_user_pass('err_user'))
+        get_user('jerror')
+        self.client.login(username='jerror',
+                          password=get_user_pass('jerror'))
         response = self.client.get(url)
-
-        self.assertEquals(response.status_code, 404)
+        self.assertEquals(response.status_code, 543)
 
     @skipIf(missing_url("myuw_current_schedule"), "myuw urls not configured")
     def test_summer_terms(self):

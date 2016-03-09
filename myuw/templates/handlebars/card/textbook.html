@@ -1,6 +1,6 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "textbook_card" %}
-{{#if registered}}
+
 <div class="card"  data-name="TextbookCard" data-type="card">
     <div class="fade-in">
         <h3>Textbooks</h3>
@@ -30,5 +30,5 @@
         {{/unless}}
     </div>
 </div>
-{{ /if }}
+
 {% endtplhandlebars %}

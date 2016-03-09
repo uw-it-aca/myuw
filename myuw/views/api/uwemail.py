@@ -1,11 +1,14 @@
-import logging
-from django.http import HttpResponse
 import json
-from myuw.views.rest_dispatch import RESTDispatch, data_not_found
+import logging
+import traceback
+from django.http import HttpResponse
 from myuw.dao.uwemail import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_data_not_found_response
 from myuw.logger.logresp import log_success_response
+from myuw.views.rest_dispatch import RESTDispatch, handle_exception
+
+
+logger = logging.getLogger(__name__)
 
 
 class UwEmail(RESTDispatch):
@@ -18,15 +21,11 @@ class UwEmail(RESTDispatch):
         GET returns 200 with the uwemail forwarding
         of the current user
         """
-
         timer = Timer()
-        logger = logging.getLogger(__name__)
-        my_uwemail_forwarding = get_email_forwarding_for_current_user()
-        if my_uwemail_forwarding is None:
-            log_data_not_found_response(logger, timer)
-            return data_not_found()
-
-        log_success_response(logger, timer)
-        resp_json = my_uwemail_forwarding.json_data()
-        logger.debug(resp_json)
-        return HttpResponse(json.dumps(resp_json))
+        try:
+            my_uwemail_forwarding = get_email_forwarding_for_current_user()
+            resp_json = my_uwemail_forwarding.json_data()
+            log_success_response(logger, timer)
+            return HttpResponse(json.dumps(resp_json))
+        except Exception:
+            return handle_exception(logger, timer, traceback)

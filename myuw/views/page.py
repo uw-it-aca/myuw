@@ -1,4 +1,6 @@
 import re
+import logging
+import traceback
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.contrib.auth.decorators import login_required
@@ -6,7 +8,6 @@ from django.contrib.auth import logout as django_logout
 from django.template import RequestContext
 from django.conf import settings
 from django.views.decorators.cache import cache_control
-import logging
 from userservice.user import UserService
 from myuw.dao.term import get_current_quarter
 from myuw.dao.pws import is_student
@@ -14,13 +15,13 @@ from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.affiliation import is_mandatory_switch_user
 from myuw.dao.affiliation import is_optin_switch_user, has_legacy_preference
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_data_not_found_response
+from myuw.logger.logback import log_exception
 from myuw.logger.logresp import log_invalid_netid_response
 from myuw.logger.logresp import log_success_response_with_affiliation
+from myuw.logger.session_log import log_session
 from myuw.views.rest_dispatch import invalid_session
 from myuw.dao.uwemail import get_email_forwarding_for_current_user
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
-from myuw.logger.session_log import log_session
 
 
 logger = logging.getLogger(__name__)
@@ -76,18 +77,23 @@ def index(request,
 
     context["user"]["session_key"] = request.session.session_key
     log_session(netid, request.session.session_key, request)
-    my_uwemail_forwarding = get_email_forwarding_for_current_user()
-    if my_uwemail_forwarding is not None and my_uwemail_forwarding.is_active():
-        c_user = context["user"]
-        c_user["email_is_uwgmail"] = my_uwemail_forwarding.is_uwgmail()
-        c_user["email_is_uwlive"] = my_uwemail_forwarding.is_uwlive()
+    try:
+        my_uwemail_forwarding = get_email_forwarding_for_current_user()
+        if my_uwemail_forwarding.is_active():
+            c_user = context["user"]
+            c_user["email_is_uwgmail"] = my_uwemail_forwarding.is_uwgmail()
+            c_user["email_is_uwlive"] = my_uwemail_forwarding.is_uwlive()
+    except Exception:
+        log_exception(logger,
+                      'get_email_forwarding_for_current_user',
+                      traceback.format_exc())
+        pass
 
     context["user"]["netid"] = netid
     if year is None or quarter is None:
         cur_term = get_current_quarter(request)
         if cur_term is None:
             context["err"] = "No current quarter data!"
-            log_data_not_found_response(logger, timer)
         else:
             context["year"] = cur_term.year
             context["quarter"] = cur_term.quarter

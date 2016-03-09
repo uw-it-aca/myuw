@@ -4,7 +4,6 @@ and section modules in restclients
 """
 
 import logging
-import traceback
 from myuw.models import CourseColor
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.logger.timer import Timer
@@ -20,26 +19,13 @@ def get_colors_by_schedule(schedule):
 
 
 def get_colors_by_regid_and_schedule(regid, schedule):
-    if schedule is None or len(schedule.sections) == 0:
-        return None
-    timer = Timer()
-    try:
-        return _indexed_colors_by_section_label(
-            CourseColor.objects.filter(
-                regid=regid,
-                year=schedule.term.year,
-                quarter=schedule.term.quarter),
-            regid,
-            schedule)
-    except Exception as ex:
-        log_exception(logger,
-                      'query CourseColor',
-                      traceback.format_exc())
-    finally:
-        log_resp_time(logger,
-                      'query CourseColor',
-                      timer)
-    return None
+    return _indexed_colors_by_section_label(
+        CourseColor.objects.filter(
+            regid=regid,
+            year=schedule.term.year,
+            quarter=schedule.term.quarter),
+        regid,
+        schedule)
 
 
 def _indexed_colors_by_section_label(query, regid, schedule):

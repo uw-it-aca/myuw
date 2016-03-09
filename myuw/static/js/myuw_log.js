@@ -49,7 +49,7 @@ function MyuwLog()  {
         }
 
         var href = $(link).attr('href');
-        if (href !== "#") {
+        if (href && href !== "#") {
             var message = {href: $(link).attr('href'),
                            action: action,
                            source_card: card_name,

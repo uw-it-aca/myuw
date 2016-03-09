@@ -3,15 +3,17 @@ var RegStatusCard = {
     dom_target: undefined,
 
     render_init: function() {
-        if (window.card_display_dates.is_after_start_of_registration_display_period &&
-            window.card_display_dates.is_before_end_of_registration_display_period) {
-            WSData.fetch_notice_data(RegStatusCard.render_upon_data,RegStatusCard.render_error);
-            WSData.fetch_oquarter_data(RegStatusCard.render_upon_data, RegStatusCard.render_error);
-        }
-        else {
+        if (!window.user.student ||
+            !(window.card_display_dates.is_after_start_of_registration_display_period &&
+              window.card_display_dates.is_before_end_of_registration_display_period)) {
             $("#RegStatusCard").hide();
+            return;
         }
+
+        WSData.fetch_notice_data(RegStatusCard.render_upon_data,RegStatusCard.render_error);
+        WSData.fetch_oquarter_data(RegStatusCard.render_upon_data, RegStatusCard.render_error);
     },
+
     render_upon_data: function() {
         //If more than one data source, multiple callbacks point to this function
         //Delay rendering until all requests are complete
@@ -28,7 +30,11 @@ var RegStatusCard = {
         }
         return false;
     },
-    render_error: function () {
+    render_error: function (status) {
+        if (status === 404) {
+            RegStatusCard.dom_target.hide();
+            return;
+        }
         RegStatusCard.dom_target.html(CardWithError.render("Registration"));
     },
 

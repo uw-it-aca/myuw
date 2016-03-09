@@ -3,16 +3,23 @@ var SummerRegStatusCard = {
     dom_target: undefined,
 
     render_init: function() {
-        if (window.card_display_dates.is_after_start_of_summer_reg_display_period1 || window.card_display_dates.is_after_start_of_summer_reg_display_periodA) {
-            WSData.fetch_myplan_data(RegStatusCard.render_upon_data, RegStatusCard.render_error);
-            WSData.fetch_notice_data(SummerRegStatusCard.render_upon_data, SummerRegStatusCard.render_error);
-            WSData.fetch_oquarter_data(SummerRegStatusCard.render_upon_data, SummerRegStatusCard.render_error);
+        if (!window.user.student ||
+            (!window.card_display_dates.is_after_start_of_summer_reg_display_period1 &&
+             !window.card_display_dates.is_after_start_of_summer_reg_display_periodA)) {
+            $("#SummerRegStatusCardA").hide();
+            $("#SummerRegStatusCard1").hide();
+            return;
         }
+        WSData.fetch_notice_data(SummerRegStatusCard.render_upon_data, SummerRegStatusCard.render_error);
+        WSData.fetch_oquarter_data(SummerRegStatusCard.render_upon_data, SummerRegStatusCard.render_error);
+        WSData.fetch_myplan_data(SummerRegStatusCard.render_upon_data, SummerRegStatusCard.render_error);
 
         if (!window.card_display_dates.is_after_start_of_summer_reg_display_period1) {
+            SummerRegStatusCard.dom_target = $('#SummerRegStatusCardA');
             $("#SummerRegStatusCard1").hide();
         }
         if (!window.card_display_dates.is_after_start_of_summer_reg_display_periodA) {
+            SummerRegStatusCard.dom_target = $('#SummerRegStatusCard1');
             $("#SummerRegStatusCardA").hide();
         }
     },
@@ -24,13 +31,11 @@ var SummerRegStatusCard = {
         if (!RegStatusCard._has_all_data()) {
             return;
         }
-
         SummerRegStatusCard._render();
     },
 
-    render_error: function() {
-        $("#SummerRegStatusCardA").html(CardWithError.render("Registration"));
-        $("#SummerRegStatusCard1").html(CardWithError.render("Registration"));
+    render_error: function(status) {
+        SummerRegStatusCard.dom_target.hide();
     },
 
     _render: function() {

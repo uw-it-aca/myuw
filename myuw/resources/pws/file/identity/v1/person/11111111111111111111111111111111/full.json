@@ -1,0 +1,53 @@
+{
+"DisplayName":"JAMES NEW STUDENT",
+"EduPersonAffiliations":["member",
+                         "student",
+                         "alum",
+                         "staff",
+                         "employee"],
+"IsTestEntity":true,
+"PriorUWNetIDs":[],
+"PriorUWRegIDs":[],
+"RegisteredFirstMiddleName":"JAMES ERROR",
+"RegisteredName":"JAMES ERROR STUDENT",
+"RegisteredSurname":"STUDENT",
+"UIDNumber":"35443",
+"UWNetID":"jerror",
+"UWRegID":"11111111111111111111111111111111",
+"WhitepagesPublish":false,
+"PersonAffiliations":
+   {"AlumPersonAffiliation":{"DevelopmentID":"1111111111"},
+    "EmployeePersonAffiliation":
+           {"EmployeeID":"111111111",
+            "EmployeeWhitePages":{"Address1":null,
+                                  "Address2":null,
+                                  "Department1":null,
+                                  "Department2":null,
+                                  "Email1":null,
+                                  "Email2":null,
+                                  "Fax":null,
+                                  "Name":null,
+                                  "Phone1":null,
+                                  "Phone2":null,
+                                  "PublishInDirectory":false,
+                                  "Title1":null,
+                                  "Title2":null,
+                                  "TouchDial":null,
+                                  "VoiceMail":null},
+            "HomeDepartment":"C&C TEST BUDGET",
+            "MailStop":null},
+       "StudentPersonAffiliation":
+           {"StudentNumber":"1111111",
+            "StudentSystemKey":"111111111",
+            "StudentWhitePages":{"Class":null,
+                                 "Department1":null,
+                                 "Department2":null,
+                                 "Department3":null,
+                                 "Email":null,
+                                 "Name":null,
+                                 "Phone":null,
+                                 "PublishInDirectory":false
+                                 }
+           }
+    }
+}

@@ -55,8 +55,8 @@ class TestLoginRedirects(TestCase):
     def test_random_non_student_mobile(self):
         del settings.MYUW_USER_SERVLET_URL
         url = reverse("myuw_home")
-        get_user('random')
-        self.client.login(username='random', password=get_user_pass('random'))
+        get_user('staff')
+        self.client.login(username='staff', password=get_user_pass('staff'))
         response = self.client.get(url, **_get_mobile_args())
 
         # This is the default...
@@ -68,8 +68,8 @@ class TestLoginRedirects(TestCase):
     @override_settings(MYUW_USER_SERVLET_URL="http://some-test-server/myuw")
     def test_random_non_student_mobile_override_url(self):
         url = reverse("myuw_home")
-        get_user('random')
-        self.client.login(username='random', password=get_user_pass('random'))
+        get_user('staff')
+        self.client.login(username='staff', password=get_user_pass('staff'))
         response = self.client.get(url, **_get_mobile_args())
 
         valid_url = "http://some-test-server/myuw"
@@ -80,8 +80,8 @@ class TestLoginRedirects(TestCase):
     @override_settings(MYUW_USER_SERVLET_URL="http://some-test-server/myuw")
     def test_random_desktop_user(self):
         url = reverse("myuw_home")
-        get_user('random2')
-        self.client.login(username='random2', password=get_user_pass('random'))
+        get_user('staff1')
+        self.client.login(username='staff1', password=get_user_pass('staff'))
         response = self.client.get(url, **_get_desktop_args())
 
         valid_url = "http://some-test-server/myuw"
@@ -97,7 +97,7 @@ class TestLoginRedirects(TestCase):
         url = reverse("myuw_home")
         get_user('47e5e5631c3d3e0ad70047290a629c4c')
         self.client.login(username='47e5e5631c3d3e0ad70047290a629c4c',
-                          password=get_user_pass('random'))
+                          password=get_user_pass('staff'))
         response = self.client.get(url, **_get_desktop_args())
 
         self.assertEquals(response.status_code, 200)
@@ -116,7 +116,7 @@ class TestLoginRedirects(TestCase):
         url = reverse("myuw_home")
         get_user(username)
         self.client.login(username=username,
-                          password=get_user_pass('random'))
+                          password=get_user_pass('staff'))
         response = self.client.get(url, **_get_desktop_args())
 
         # By default, they get sent to the new site

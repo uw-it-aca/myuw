@@ -1,8 +1,13 @@
 import logging
+import traceback
 from django.http import HttpResponse
 from myuw.dao.term import get_current_quarter
 from myuw.logger.timer import Timer
+from myuw.views.rest_dispatch import handle_exception
 from myuw.views.api.base_schedule import StudClasSche
+
+
+logger = logging.getLogger(__name__)
 
 
 class StudClasScheCurQuar(StudClasSche):
@@ -13,10 +18,14 @@ class StudClasScheCurQuar(StudClasSche):
     def GET(self, request):
         """
         GET returns 200 with the current quarter course section schedule
+        @return class schedule data in json format
+                status 404: no schedule found (not registered)
+                status 543: data error
         """
-        return self.make_http_resp(
-            logging.getLogger(__name__),
-            Timer(),
-            get_current_quarter(request),
-            request
-            )
+        timer = Timer()
+        try:
+            return self.make_http_resp(timer,
+                                       get_current_quarter(request),
+                                       request)
+        except Exception:
+            return handle_exception(logger, timer, traceback)
