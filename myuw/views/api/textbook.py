@@ -11,7 +11,8 @@ from myuw.dao.term import get_specific_term, get_current_quarter,\
 from myuw.dao.textbook import get_textbook_by_schedule
 from myuw.dao.textbook import get_verba_link_by_schedule
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response, log_msg
+from myuw.logger.logresp import log_success_response, log_msg,\
+    log_data_not_found_response
 from myuw.views.rest_dispatch import RESTDispatch, handle_exception,\
     data_not_found
 
