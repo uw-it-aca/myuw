@@ -2,8 +2,9 @@ import json
 import logging
 import traceback
 from django.http import HttpResponse
-from myuw.dao.registered_term import get_registered_future_quarters
-from myuw.dao.registered_term import should_highlight_future_quarters
+from restclients.exceptions import DataFailureException
+from myuw.dao.registered_term import get_registered_future_quarters,\
+    should_highlight_future_quarters
 from myuw.dao.term import get_next_non_summer_quarter
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
@@ -25,12 +26,16 @@ class RegisteredFutureQuarters(RESTDispatch):
         """
         timer = Timer()
         try:
-            future_quarters = get_registered_future_quarters(request)
+            try:
+                future_quarters = get_registered_future_quarters(request)
+            except DataFailureException as ex:
+                if ex.status != 404:
+                    raise
+                future_quarters = []
 
             resp_data = {
                 "terms": future_quarters
                 }
-
             next_non_summer = get_next_non_summer_quarter(request)
             next_year = next_non_summer.year
             next_quarter = next_non_summer.quarter
