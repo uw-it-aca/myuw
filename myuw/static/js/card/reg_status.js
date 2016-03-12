@@ -14,6 +14,13 @@ var RegStatusCard = {
         WSData.fetch_oquarter_data(RegStatusCard.render_upon_data, RegStatusCard.render_error);
     },
 
+    _has_all_data: function () {
+        if (WSData.notice_data() && WSData.oquarter_data()) {
+            return true;
+        }
+        return false;
+    },
+
     render_upon_data: function() {
         //If more than one data source, multiple callbacks point to this function
         //Delay rendering until all requests are complete
@@ -24,23 +31,12 @@ var RegStatusCard = {
         RegStatusCard._render();
     },
 
-    _has_all_data: function () {
-        if (WSData.notice_data() && WSData.oquarter_data()) {
-            return true;
-        }
-        return false;
-    },
     render_error: function (status) {
-        if (status === 404) {
-            RegStatusCard.dom_target.hide();
-            return;
-        }
+        // status should never be 404
         RegStatusCard.dom_target.html(CardWithError.render("Registration"));
     },
 
     _render_for_term: function(quarter, card) {
-        var source = $("#reg_status_card").html();
-        var template = Handlebars.compile(source);
         var reg_notices = Notices.get_notices_for_tag("reg_card_messages");
         var reg_holds = Notices.get_notices_for_tag("reg_card_holds");
         var reg_date = Notices.get_notices_for_tag("est_reg_date");
@@ -70,11 +66,12 @@ var RegStatusCard = {
             next_term_data = WSData.oquarter_data().next_term_data;
             var terms = WSData.oquarter_data().terms;
             year = next_term_data.year;
-
-            for (i = 0; i < terms.length; i++) {
-                var term = terms[i];
-                if ((term.quarter == quarter) && term.section_count) {
-                    has_registration = true;
+            if (terms) {
+                for (i = 0; i < terms.length; i++) {
+                    var term = terms[i];
+                    if ((term.quarter == quarter) && term.section_count) {
+                        has_registration = true;
+                    }
                 }
             }
         }
@@ -84,8 +81,9 @@ var RegStatusCard = {
             year = next_term_data.year;
             has_registration = next_term_data.has_registration;
         }
-
         if (has_registration) {
+            // leave to future quarter card
+            RegStatusCard.dom_target.hide();
             return;
         }
 
@@ -109,20 +107,22 @@ var RegStatusCard = {
             return;
         }
 
-        //Get hold count from notice attrs
-        var hold_count = reg_holds.length;
-        return template({"finaid_notices": financial_aid_notices,
+        var temp_data = {"finaid_notices": financial_aid_notices,
                          "reg_notices": reg_notices,
                          "reg_holds": reg_holds,
                          "card": card,
                          "is_tacoma": window.user.tacoma,
                          "is_bothell": window.user.bothell,
                          "is_seattle": window.user.seattle,
-                         "hold_count": hold_count,
+                         "hold_count": reg_holds.length,
                          "est_reg_date": display_reg_dates,
                          "reg_next_quarter" : quarter,
-                         "reg_next_year": year
-                         });
+                         "reg_next_year": year,
+                         };
+        var source = $("#reg_status_card").html();
+        var template = Handlebars.compile(source);
+        var raw = template(temp_data);
+        return raw;
     },
 
     _add_events: function(card) {
@@ -205,8 +205,12 @@ var RegStatusCard = {
     },
 
     _render: function () {
-        var next_term_data = WSData.oquarter_data().next_term_data;
-        var reg_next_quarter = next_term_data.quarter;
+        var next_term_data, reg_next_quarter;
+        if (WSData.oquarter_data()) {
+            next_term_data = WSData.oquarter_data().next_term_data;
+            reg_next_quarter = next_term_data.quarter;
+        }
+
         content = RegStatusCard._render_for_term(reg_next_quarter);
 
         if (!content) {

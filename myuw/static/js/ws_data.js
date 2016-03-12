@@ -158,6 +158,10 @@ WSData = {
         return WSData._notice_data;
     },
 
+    notice_data_error_code: function() {
+        return WSData._notice_data_error_status;
+    },
+
     oquarter_data: function() {
         return WSData._oquarter_data;
     },

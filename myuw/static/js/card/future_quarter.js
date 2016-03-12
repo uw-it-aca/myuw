@@ -31,7 +31,7 @@ var FutureQuarterCard = {
         var source = $("#future_quarter_card").html();
         var template = Handlebars.compile(source);
 
-        if (!oquarter_data.terms.length) {
+        if (!oquarter_data.terms || !oquarter_data.terms.length) {
             FutureQuarterCard.dom_target.hide();
         }
         else {
