@@ -1,8 +1,6 @@
 var RegStatusCard = {
     name: 'RegStatusCard',
     dom_target: undefined,
-    oquarter_data_error: undefined,
-    notice_data_error: undefined,
 
     render_init: function() {
         if (!window.user.student ||
@@ -12,22 +10,12 @@ var RegStatusCard = {
             return;
         }
 
-        WSData.fetch_notice_data(RegStatusCard.render_upon_data,RegStatusCard.verify_error);
-        WSData.fetch_oquarter_data(RegStatusCard.render_upon_data, RegStatusCard.verify_error);
-    },
-
-    verify_error: function(status) {
-        if (status) {
-            RegStatusCard.oquarter_data_error = status;
-        }
-        if (WSData.notice_data_error_code()) {
-            RegStatusCard.notice_data_error = WSData.notice_data_error_code();
-        }
-        RegStatusCard.render_error();
+        WSData.fetch_notice_data(RegStatusCard.render_upon_data,RegStatusCard.render_error);
+        WSData.fetch_oquarter_data(RegStatusCard.render_upon_data, RegStatusCard.render_error);
     },
 
     _has_all_data: function () {
-        if (WSData.notice_data() && (WSData.oquarter_data() || RegStatusCard.oquarter_data_error === 404)) {
+        if (WSData.notice_data() && WSData.oquarter_data()) {
             return true;
         }
         return false;
@@ -43,16 +31,8 @@ var RegStatusCard = {
         RegStatusCard._render();
     },
 
-    render_error: function () {
-        if (RegStatusCard.oquarter_data_error === 404) {
-            if (!RegStatusCard.notice_data_error) {
-                return;
-            }
-            if (RegStatusCard.notice_data_error === 404) {
-                RegStatusCard.dom_target.hide();
-                return;
-            }
-        }
+    render_error: function (status) {
+        // status should never be 404
         RegStatusCard.dom_target.html(CardWithError.render("Registration"));
     },
 
@@ -82,25 +62,23 @@ var RegStatusCard = {
         }
 
         var year, has_registration, next_term_data;
-        if (WSData.oquarter_data()) {
-            if (quarter == "Summer") {
-                next_term_data = WSData.oquarter_data().next_term_data;
-                var terms = WSData.oquarter_data().terms;
-                year = next_term_data.year;
+        if (quarter == "Summer") {
+            next_term_data = WSData.oquarter_data().next_term_data;
+            var terms = WSData.oquarter_data().terms;
+            year = next_term_data.year;
 
-                for (i = 0; i < terms.length; i++) {
-                    var term = terms[i];
-                    if ((term.quarter == quarter) && term.section_count) {
-                        has_registration = true;
-                    }
+            for (i = 0; i < terms.length; i++) {
+                var term = terms[i];
+                if ((term.quarter == quarter) && term.section_count) {
+                    has_registration = true;
                 }
             }
-            else {
-                next_term_data = WSData.oquarter_data().next_term_data;
-                quarter = next_term_data.quarter;
-                year = next_term_data.year;
-                has_registration = next_term_data.has_registration;
-            }
+        }
+        else {
+            next_term_data = WSData.oquarter_data().next_term_data;
+            quarter = next_term_data.quarter;
+            year = next_term_data.year;
+            has_registration = next_term_data.has_registration;
         }
         if (has_registration) {
             // leave to future quarter card
