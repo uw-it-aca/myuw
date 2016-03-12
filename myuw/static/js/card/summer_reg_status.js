@@ -35,7 +35,7 @@ var SummerRegStatusCard = {
     },
 
     render_error: function(status) {
-        SummerRegStatusCard.dom_target.hide();
+        SummerRegStatusCard.dom_target.html(CardWithError.render("Summer Registration"));
     },
 
     _render: function() {
