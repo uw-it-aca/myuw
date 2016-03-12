@@ -66,11 +66,12 @@ var RegStatusCard = {
             next_term_data = WSData.oquarter_data().next_term_data;
             var terms = WSData.oquarter_data().terms;
             year = next_term_data.year;
-
-            for (i = 0; i < terms.length; i++) {
-                var term = terms[i];
-                if ((term.quarter == quarter) && term.section_count) {
-                    has_registration = true;
+            if (terms) {
+                for (i = 0; i < terms.length; i++) {
+                    var term = terms[i];
+                    if ((term.quarter == quarter) && term.section_count) {
+                        has_registration = true;
+                    }
                 }
             }
         }
