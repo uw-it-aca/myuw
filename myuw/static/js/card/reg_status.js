@@ -1,6 +1,8 @@
 var RegStatusCard = {
     name: 'RegStatusCard',
     dom_target: undefined,
+    oquarter_data_error: undefined,
+    notice_data_error: undefined,
 
     render_init: function() {
         if (!window.user.student ||
@@ -10,8 +12,25 @@ var RegStatusCard = {
             return;
         }
 
-        WSData.fetch_notice_data(RegStatusCard.render_upon_data,RegStatusCard.render_error);
-        WSData.fetch_oquarter_data(RegStatusCard.render_upon_data, RegStatusCard.render_error);
+        WSData.fetch_notice_data(RegStatusCard.render_upon_data,RegStatusCard.verify_error);
+        WSData.fetch_oquarter_data(RegStatusCard.render_upon_data, RegStatusCard.verify_error);
+    },
+
+    verify_error: function(status) {
+        if (status) {
+            RegStatusCard.oquarter_data_error = status;
+        }
+        if (WSData.notice_data_error_code()) {
+            RegStatusCard.notice_data_error = WSData.notice_data_error_code();
+        }
+        RegStatusCard.render_error();
+    },
+
+    _has_all_data: function () {
+        if (WSData.notice_data() && (WSData.oquarter_data() || RegStatusCard.oquarter_data_error === 404)) {
+            return true;
+        }
+        return false;
     },
 
     render_upon_data: function() {
@@ -24,23 +43,20 @@ var RegStatusCard = {
         RegStatusCard._render();
     },
 
-    _has_all_data: function () {
-        if (WSData.notice_data() && WSData.oquarter_data()) {
-            return true;
-        }
-        return false;
-    },
-    render_error: function (status) {
-        if (status === 404) {
-            RegStatusCard.dom_target.hide();
-            return;
+    render_error: function () {
+        if (RegStatusCard.oquarter_data_error === 404) {
+            if (!RegStatusCard.notice_data_error) {
+                return;
+            }
+            if (RegStatusCard.notice_data_error === 404) {
+                RegStatusCard.dom_target.hide();
+                return;
+            }
         }
         RegStatusCard.dom_target.html(CardWithError.render("Registration"));
     },
 
     _render_for_term: function(quarter, card) {
-        var source = $("#reg_status_card").html();
-        var template = Handlebars.compile(source);
         var reg_notices = Notices.get_notices_for_tag("reg_card_messages");
         var reg_holds = Notices.get_notices_for_tag("reg_card_holds");
         var reg_date = Notices.get_notices_for_tag("est_reg_date");
@@ -66,26 +82,29 @@ var RegStatusCard = {
         }
 
         var year, has_registration, next_term_data;
-        if (quarter == "Summer") {
-            next_term_data = WSData.oquarter_data().next_term_data;
-            var terms = WSData.oquarter_data().terms;
-            year = next_term_data.year;
+        if (WSData.oquarter_data()) {
+            if (quarter == "Summer") {
+                next_term_data = WSData.oquarter_data().next_term_data;
+                var terms = WSData.oquarter_data().terms;
+                year = next_term_data.year;
 
-            for (i = 0; i < terms.length; i++) {
-                var term = terms[i];
-                if ((term.quarter == quarter) && term.section_count) {
-                    has_registration = true;
+                for (i = 0; i < terms.length; i++) {
+                    var term = terms[i];
+                    if ((term.quarter == quarter) && term.section_count) {
+                        has_registration = true;
+                    }
                 }
             }
+            else {
+                next_term_data = WSData.oquarter_data().next_term_data;
+                quarter = next_term_data.quarter;
+                year = next_term_data.year;
+                has_registration = next_term_data.has_registration;
+            }
         }
-        else {
-            next_term_data = WSData.oquarter_data().next_term_data;
-            quarter = next_term_data.quarter;
-            year = next_term_data.year;
-            has_registration = next_term_data.has_registration;
-        }
-
         if (has_registration) {
+            // leave to future quarter card
+            RegStatusCard.dom_target.hide();
             return;
         }
 
@@ -109,20 +128,22 @@ var RegStatusCard = {
             return;
         }
 
-        //Get hold count from notice attrs
-        var hold_count = reg_holds.length;
-        return template({"finaid_notices": financial_aid_notices,
+        var temp_data = {"finaid_notices": financial_aid_notices,
                          "reg_notices": reg_notices,
                          "reg_holds": reg_holds,
                          "card": card,
                          "is_tacoma": window.user.tacoma,
                          "is_bothell": window.user.bothell,
                          "is_seattle": window.user.seattle,
-                         "hold_count": hold_count,
+                         "hold_count": reg_holds.length,
                          "est_reg_date": display_reg_dates,
                          "reg_next_quarter" : quarter,
-                         "reg_next_year": year
-                         });
+                         "reg_next_year": year,
+                         };
+        var source = $("#reg_status_card").html();
+        var template = Handlebars.compile(source);
+        var raw = template(temp_data);
+        return raw;
     },
 
     _add_events: function(card) {
@@ -205,8 +226,12 @@ var RegStatusCard = {
     },
 
     _render: function () {
-        var next_term_data = WSData.oquarter_data().next_term_data;
-        var reg_next_quarter = next_term_data.quarter;
+        var next_term_data, reg_next_quarter;
+        if (WSData.oquarter_data()) {
+            next_term_data = WSData.oquarter_data().next_term_data;
+            reg_next_quarter = next_term_data.quarter;
+        }
+
         content = RegStatusCard._render_for_term(reg_next_quarter);
 
         if (!content) {

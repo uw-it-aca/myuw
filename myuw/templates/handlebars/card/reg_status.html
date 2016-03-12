@@ -1,7 +1,7 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "reg_status_card" %}
 
-    <div class="card"  data-name="RegistrationCard" data-type="card" data-identifier="{{reg_next_quarter}}{{ reg_next_year }}">
+    <div class="card"  data-name="RegistrationCard" data-type="card" data-identifier="{{ #if reg_next_quarter}}{{reg_next_quarter}}{{/if}}{{ #if reg_next_year}}{{ reg_next_year }}{{/if}}">
         <div class="fade-in">
             <h3>Registration: {{reg_next_quarter}} {{ reg_next_year }}</h3>
 
