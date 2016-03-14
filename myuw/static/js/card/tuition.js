@@ -21,10 +21,7 @@ var TuitionCard = {
     },
 
     render_error: function (status) {
-        if (status === 404) {
-            TuitionCard.dom_target.hide();
-            return;
-        }
+        // neither tuition nor notice returns 404
         var raw = CardWithError.render("Tuition & Fees");
         TuitionCard.dom_target.html(raw);
     },
