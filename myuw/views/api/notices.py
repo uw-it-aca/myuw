@@ -23,6 +23,8 @@ class Notices(RESTDispatch):
     def GET(self, request):
         """
         GET returns 200 with a list of notices for the current user
+                        with an empty array if no notice.
+                    543 for data error
         """
         timer = Timer()
         try:
