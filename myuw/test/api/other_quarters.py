@@ -72,4 +72,6 @@ class TestOtherQuarters(TestCase):
         self.client.login(username='nouser',
                           password=get_user_pass('nouser'))
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 404)
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertEquals(len(data["terms"]), 0)
