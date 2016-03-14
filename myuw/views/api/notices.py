@@ -2,7 +2,9 @@ import logging
 import json
 import traceback
 from datetime import datetime
+from restclients.exceptions import DataFailureException
 from django.http import HttpResponse
+from myuw.dao.gws import is_student
 from myuw.dao.notice import get_notices_for_current_user
 from myuw.dao.notice import mark_notices_read_for_current_user
 from myuw.dao.notice_mapping import get_json_for_notices
@@ -24,8 +26,14 @@ class Notices(RESTDispatch):
         """
         timer = Timer()
         try:
-            notice_json = get_json_for_notices(
-                request, get_notices_for_current_user())
+            notice_json = []
+            if is_student():
+                try:
+                    notice_json = get_json_for_notices(
+                        request, get_notices_for_current_user())
+                except DataFailureException as ex:
+                    if ex.status != 404:
+                        raise
             log_success_response(logger, timer)
             return HttpResponse(json.dumps(notice_json))
         except Exception:
