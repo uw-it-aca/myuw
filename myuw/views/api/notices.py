@@ -30,12 +30,9 @@ class Notices(RESTDispatch):
         try:
             notice_json = []
             if is_student():
-                try:
-                    notice_json = get_json_for_notices(
-                        request, get_notices_for_current_user())
-                except DataFailureException as ex:
-                    if ex.status != 404:
-                        raise
+                notice_json = get_json_for_notices(
+                    request, get_notices_for_current_user())
+
             log_success_response(logger, timer)
             return HttpResponse(json.dumps(notice_json))
         except Exception:
