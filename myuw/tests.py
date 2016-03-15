@@ -30,12 +30,14 @@ from myuw.test.api.cur_books import TestApiCurBooks
 from myuw.test.api.grad import TestApiGrad
 from myuw.test.api.hfs import TestHFS as TestHFSAPI
 from myuw.test.api.profile import TestProfile
+from myuw.test.api.iasystem import TestIasystemApi
 from myuw.test.api.library import TestLibrary as TestLibraryAPI
 from myuw.test.api.category_links import TestLinks
 from myuw.test.api.finance import TestFinance as TestFinanceAPI
 from myuw.test.api.future_schedule import TestFutureSchedule
 from myuw.test.api.other_quarters import TestOtherQuarters
 from myuw.test.api.notices import TestNotices
+from myuw.test.api.thrive import TestApiThrive
 from myuw.test.api.uwemail import TestUWEmail as TestUwEmailAPI
 from myuw.test.api.academic_calendar import TestCalendarAPI
 from myuw.test.cache import TestCustomCachePolicy

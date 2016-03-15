@@ -4,13 +4,14 @@ var FinalExamCard = {
     term: 'current',
 
     render_init: function(term, course_index) {
-        if (window.card_display_dates.is_after_last_day_of_classes &&
-            window.card_display_dates.is_before_end_of_finals_week) {
-            WSData.fetch_current_course_data(FinalExamCard.render_upon_data, FinalExamCard.render_error);
-        }
-        else {
+        if (!window.user.student ||
+            !(window.card_display_dates.is_after_last_day_of_classes &&
+              window.card_display_dates.is_before_end_of_finals_week)) {
             $("#FinalExamCard").hide();
+            return;
         }
+
+        WSData.fetch_current_course_data(FinalExamCard.render_upon_data, FinalExamCard.render_error);
     },
 
     _has_all_data: function () {
@@ -21,7 +22,8 @@ var FinalExamCard = {
     },
 
     render_error: function() {
-        FinalExamCard.dom_target.html(CardWithNoCourse.render(titilizeTerm(FinalExamCard.term)));
+        // CourseCards displays the message
+        $("#FinalExamCard").hide();
     },
 
     render_upon_data: function(course_index) {

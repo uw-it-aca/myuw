@@ -33,7 +33,12 @@ var HfsCard = {
         return false;
     },
 
-    render_error: function () {
-        HfsCard.dom_target.html(CardWithError.render("Husky Card & Dining"));
+    render_error: function (status) {
+        if (status === 404) {
+            HfsCard.dom_target.hide();
+            return;
+        }
+        var raw = CardWithError.render("Husky Card & Dining");
+        HfsCard.dom_target.html(raw);
     }
 };

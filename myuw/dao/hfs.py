@@ -4,7 +4,6 @@ the student account balances (MyUW HFS) web service.
 """
 
 import logging
-import traceback
 from restclients.hfs.idcard import get_hfs_accounts
 from restclients.exceptions import DataFailureException
 from myuw.logger.logback import log_exception
@@ -21,15 +20,7 @@ def get_account_balances_by_uwnetid(uwnetid):
     """
     if uwnetid is None:
         return None
-    id = "%s %s" % ('get_hfs_accounts', uwnetid)
-
-    try:
-        return get_hfs_accounts(uwnetid)
-    except Exception as ex:
-        log_exception(logger,
-                      id,
-                      traceback.format_exc())
-    return None
+    return get_hfs_accounts(uwnetid)
 
 
 def get_account_balances_for_current_user():

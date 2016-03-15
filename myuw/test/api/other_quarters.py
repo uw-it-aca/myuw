@@ -59,3 +59,19 @@ class TestOtherQuarters(TestCase):
         self.assertEquals(data["terms"][0]['credits'], '2.0')
         self.assertEquals(data["terms"][0]['last_final_exam_date'],
                           '2013-08-23 23:59:59')
+
+    def test_error(self):
+        url = reverse("myuw_other_quarters_api")
+        get_user('jerror')
+        self.client.login(username='jerror',
+                          password=get_user_pass('jerror'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 543)
+
+        get_user('nouser')
+        self.client.login(username='nouser',
+                          password=get_user_pass('nouser'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertEquals(len(data["terms"]), 0)

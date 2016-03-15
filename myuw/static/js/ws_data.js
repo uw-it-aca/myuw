@@ -1,24 +1,27 @@
 WSData = {
     _book_data: {},
-    _book_data_error_status: null,
+    _book_data_error_status: {},
+    _category_link_data: {},
     _course_data: {},
-    _course_data_error_status: null,
-    _profile_data: null,
-    _uwemail_data: null,
-    _hfs_data: null,
-    _library_data: null,
-    _tuition_data: null,
+    _course_data_error_status: {},
+    _department_events: null,
     _grade_data: {},
+    _hfs_data: null,
     _mygrad_data: null,
+    _iasystem_data: null,
+    _library_data: null,
+    _oquarter_data: null,
     _notice_data: null,
+    _notice_data_error_status: null,
+    _profile_data: null,
+    _profile_data_error_status: null,
+    _uwemail_data: null,
+    _tuition_data: null,
     _instructor_data: {},
     _link_data: null,
-    _oquarter_data: null,
-    _category_link_data: {},
     _success_callbacks: {},
     _error_callbacks: {},
     _callback_args: {},
-    _department_events: null,
     _academic_calendar_data: null,
     _current_academic_calendar_data: null,
     _myplan_data: null,
@@ -87,12 +90,12 @@ WSData = {
         return WSData._book_data[term];
     },
 
-    book_data_error_code: function() {
-        return WSData._book_data_error_status;
+    book_data_error_code: function(term) {
+        return WSData._book_data_error_status[term];
     },
 
-    course_data_error_code: function() {
-        return WSData._course_data_error_status;
+    course_data_error_code: function(term) {
+        return WSData._course_data_error_status[term];
     },
     normalized_course_data: function(term) {
         var course_data;
@@ -125,6 +128,10 @@ WSData = {
     grade_data_for_term: function(term) {
         if (!term) { term = ''; }
         return WSData._grade_data[term];
+    },
+
+    iasystem_data: function() {
+        return WSData._iasystem_data;
     },
 
     hfs_data: function() {
@@ -192,7 +199,7 @@ WSData = {
                         }
                     },
                     error: function(xhr, status, error) {
-                        err_callback.call(null, status, error);
+                        err_callback.call(null, xhr.status, error);
                         }
                     });
               }
@@ -300,7 +307,7 @@ WSData = {
                     WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {
-                    WSData._book_data_error_status = xhr.status;
+                    WSData._book_data_error_status[term] = xhr.status;
                     WSData._run_error_callbacks_for_url(url);
                 }
                 });
@@ -360,7 +367,7 @@ WSData = {
                     WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {
-                    WSData._course_data_error_status = xhr.status;
+                    WSData._course_data_error_status[term] = xhr.status;
                     WSData._run_error_callbacks_for_url(url);
                 }
             });
@@ -390,8 +397,8 @@ WSData = {
                 WSData._grade_data[term] = results;
                 err_callback.call(null, status, error);
             },
-            error: function() {
-                err_callback.call(null, status, error);
+            error: function(xhr, status, error) {
+                err_callback.call(null, xhr.status, error);
             }
         });
     },
@@ -530,10 +537,46 @@ WSData = {
                         }
                     },
                     error: function(xhr, status, error) {
-                        err_callback.call(null, status, error);
+                        err_callback.call(null, xhr.status, error);
                         }
                     });
               }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
+    fetch_iasystem_data: function(callback, err_callback, args) {
+        if (WSData._iasystem_data === null) {
+            var url = "/api/v1/ias/";
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+            $.ajax({
+                url: url,
+                dataType: "JSON",
+
+                type: 'GET',
+                accepts: {html: "application/json"},
+                success: function(results) {
+                    WSData._iasystem_data = results;
+                    if (callback !== null) {
+                        callback.apply(null, args);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    if (err_callback !== null) {
+                        err_callback.call(null, xhr.status, error);
+                    }
+                }
+            });
+        }
         else {
             window.setTimeout(function() {
                 callback.apply(null, args);
@@ -556,7 +599,7 @@ WSData = {
                         }
                     },
                     error: function(xhr, status, error) {
-                        err_callback.call(null, status, error);
+                        err_callback.call(null, xhr.status, error);
                         }
                     });
               }
@@ -580,7 +623,7 @@ WSData = {
                     callback.apply(null, args);
                 },
                 error: function(xhr, status, error) {
-                    err_callback.call(null, status, error);
+                    err_callback.call(null, xhr.status, error);
                 }
             });
         }
@@ -606,7 +649,7 @@ WSData = {
                         }
                     },
                     error: function(xhr, status, error) {
-                        err_callback.call(null, status, error);
+                        err_callback.call(null, xhr.status, error);
                         }
                     });
               }
@@ -639,6 +682,7 @@ WSData = {
                     WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {
+                    WSData._notice_data_error_status = xhr.status;
                     WSData._run_error_callbacks_for_url(url);
                 }
             });
@@ -663,7 +707,7 @@ WSData = {
                         callback.apply(null, args);
                         },
                     error: function(xhr, status, error) {
-                        err_callback.call(null, status, error);
+                        err_callback.call(null, xhr.status, error);
                         }
                     });
               }
@@ -687,7 +731,7 @@ WSData = {
                         callback.apply(null, args);
                         },
                     error: function(xhr, status, error) {
-                        err_callback.call(null, status, error);
+                        err_callback.call(null, xhr.status, error);
                         }
                     });
               }
@@ -719,6 +763,7 @@ WSData = {
                         WSData._run_success_callbacks_for_url(url);
                     },
                     error: function(xhr, status, error) {
+                        WSData._profile_data_error_status = xhr.status;
                         WSData._run_error_callbacks_for_url(url);
                     }
                  });
@@ -751,6 +796,7 @@ WSData = {
                         WSData._run_success_callbacks_for_url(url);
                     },
                     error: function(xhr, status, error) {
+                        WSData._mygrad_data_error_status = xhr.status;
                         WSData._run_error_callbacks_for_url(url);
                     }
                  });
@@ -779,7 +825,7 @@ WSData = {
                     },
                     error: function(xhr, status, error) {
                         if (err_callback) {
-                            err_callback.call(null, status, error);
+                            err_callback.call(null, xhr.status, error);
                         }
                     }
                  });

@@ -1,5 +1,6 @@
 from django.test import TestCase
 import datetime
+from restclients.exceptions import DataFailureException
 from myuw.dao.library import _get_account_by_uwnetid
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.schedule import _get_schedule
@@ -18,7 +19,9 @@ class TestLibrary(TestCase):
         javerage_acct = _get_account_by_uwnetid('javerage')
         self.assertEquals(javerage_acct.next_due, datetime.date(2014, 5, 27))
 
-        self.assertEquals(_get_account_by_uwnetid("123notarealuser"), None)
+        self.assertRaises(DataFailureException,
+                          _get_account_by_uwnetid,
+                          "123notarealuser")
 
     def test_get_subject_guide_by_section(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,

@@ -4,7 +4,6 @@ the SWS Personal Financial resource.
 """
 
 import logging
-import traceback
 from restclients.sws.financial import get_account_balances_by_regid
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time, log_exception, log_info
@@ -25,15 +24,10 @@ def _get_account_balances_by_regid(user_regid):
     id = "%s %s" % ('_get_account_balances_by_regid', user_regid)
     try:
         return get_account_balances_by_regid(user_regid)
-    except Exception:
-        log_exception(logger,
-                      id,
-                      traceback.format_exc())
     finally:
         log_resp_time(logger,
                       id,
                       timer)
-    return None
 
 
 def get_account_balances_for_current_user():
