@@ -81,10 +81,17 @@ class TestNotices(TestCase):
         self.assertEquals(response.content, '')
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
-    def test_javerage_books(self):
+    def test_error_cases(self):
         url = reverse("myuw_notices_api")
         get_user('jerror')
         self.client.login(username='jerror',
                           password=get_user_pass('jerror'))
         response = self.client.get(url)
         self.assertEquals(response.status_code, 543)
+
+        get_user('staff')
+        self.client.login(username='staff',
+                          password=get_user_pass('staff'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.content, '[]')
