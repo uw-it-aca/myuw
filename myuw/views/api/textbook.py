@@ -83,8 +83,11 @@ class TextbookCur(Textbook):
         """
         GET returns 200 with the current quarter Textbook
         """
-        term = get_current_quarter(request)
-        summer_term = ""
-        if term.quarter == "summer":
-            summer_term = get_current_summer_term(request)
-        return self.respond(term.year, term.quarter, summer_term)
+        try:
+            term = get_current_quarter(request)
+            summer_term = ""
+            if term.quarter == "summer":
+                summer_term = get_current_summer_term(request)
+            return self.respond(term.year, term.quarter, summer_term)
+        except Exception:
+            return handle_exception(logger, timer, traceback)

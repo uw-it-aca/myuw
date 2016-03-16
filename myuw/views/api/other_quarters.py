@@ -21,8 +21,10 @@ class RegisteredFutureQuarters(RESTDispatch):
 
     def GET(self, request):
         """
-        GET returns 200 with the registered future quarters
-        of the current user
+        GET returns 200 with the registered future quarters of the current user
+                    if not registered, returns 200 with
+                                       the future year & quarter.
+                    543: data error
         """
         timer = Timer()
         try:

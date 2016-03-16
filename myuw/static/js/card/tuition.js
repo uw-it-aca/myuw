@@ -21,7 +21,9 @@ var TuitionCard = {
     },
 
     render_error: function (status) {
+        // notice never returns 404.
         if (status === 404) {
+            // not student or SDB can't find the regid
             TuitionCard.dom_target.hide();
             return;
         }

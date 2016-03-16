@@ -42,6 +42,7 @@ class MyGrad(RESTDispatch):
                 committee_reqs = get_grad_committee_for_current_user()
                 json_ret["committees"] = committee_to_json(committee_reqs)
             except DataFailureException as ex:
+                logger.error(ex)
                 if ex.status != 404:
                     json_ret["comm_err"] = ex.status
 
@@ -49,6 +50,7 @@ class MyGrad(RESTDispatch):
                 degree_reqs = get_grad_degree_for_current_user()
                 json_ret["degrees"] = degree_to_json(degree_reqs, request)
             except DataFailureException as ex:
+                logger.error(ex)
                 if ex.status != 404:
                     json_ret["degree_err"] = ex.status
 
@@ -56,6 +58,7 @@ class MyGrad(RESTDispatch):
                 leave_reqs = get_grad_leave_for_current_user()
                 json_ret["leaves"] = leave_to_json(leave_reqs, request)
             except DataFailureException as ex:
+                logger.error(ex)
                 if ex.status != 404:
                     json_ret["leave_err"] = ex.status
 
@@ -64,6 +67,7 @@ class MyGrad(RESTDispatch):
                 json_ret["petitions"] = petition_to_json(
                     petition_reqs, request)
             except DataFailureException as ex:
+                logger.error(ex)
                 if ex.status != 404:
                     json_ret["petit_err"] = ex.status
 

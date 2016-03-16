@@ -56,10 +56,16 @@ class TestFinance(TestCase):
         self.assertTrue(compare > datetime.now().date())
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
-    def test_jerror(self):
+    def test_errors(self):
         url = reverse("myuw_finance_api")
         get_user('jerror')
         self.client.login(username='jerror',
                           password=get_user_pass('jerror'))
         response = self.client.get(url)
         self.assertEquals(response.status_code, 543)
+
+        get_user('staff')
+        self.client.login(username='staff',
+                          password=get_user_pass('staff'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
