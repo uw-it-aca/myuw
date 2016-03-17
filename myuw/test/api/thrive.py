@@ -41,29 +41,18 @@ class TestApiThrive(TestCase):
         get_user('javerage')
         self.client.login(username='javerage',
                           password=get_user_pass('javerage'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertEquals(data["title"], "Fail Forward")
 
         session = self.client.session
         session["myuw_override_date"] = "2015-02-12"
         session.save()
-
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
-
-        data = json.loads(response.content)
-        self.assertEquals(data["title"], "Internships and Exploration")
+        self.assertEquals(response.status_code, 404)
 
         session["myuw_override_date"] = "2015-02-21"
         session.save()
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
-
-        data = json.loads(response.content)
-        self.assertEquals(data["title"], "Revisiting Plans, Exploring Options")
-
-    def test_error(self):
-        url = reverse("myuw_thrive_api")
-        get_user('jerror')
-        self.client.login(username='jerror',
-                          password=get_user_pass('jerror'))
         response = self.client.get(url)
         self.assertEquals(response.status_code, 404)
