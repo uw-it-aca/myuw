@@ -1,0 +1,15 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "reg_res_plan_unread_courses_tmpl" %}
+<div>
+    {{# unless plan_data.has_ready_courses}}
+        <h4 class="quarter-heading">Your {{reg_next_quarter}} {{ reg_next_year }} plan</h4>
+    {{/unless}}
+    <div class="card-badge-label">Not ready for registration</div>
+    {{ #each plan_data.courses }}
+        {{ #unless registrations_available }}
+            {{ curriculum_abbr }} {{ course_number }} <br />
+        {{ /unless }}
+    {{ /each}}
+</div>
+
+{% endtplhandlebars %}

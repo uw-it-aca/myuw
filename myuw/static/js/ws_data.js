@@ -24,7 +24,7 @@ WSData = {
     _callback_args: {},
     _academic_calendar_data: null,
     _current_academic_calendar_data: null,
-    _myplan_data: null,
+    _myplan_data: {},
     _thrive_data: null,
 
 
@@ -218,8 +218,13 @@ WSData = {
         return WSData._current_academic_calendar_data;
     },
 
-    myplan_data: function() {
-        return WSData._myplan_data;
+    myplan_data: function(year, quarter) {
+        if (WSData._myplan_data[year]) {
+            if (WSData._myplan_data[year][quarter]) {
+                return WSData._myplan_data[year][quarter];
+            }
+        }
+        return null;
     },
 
     fetch_academic_calendar_events: function(callback, err_callback, args) {
@@ -775,9 +780,9 @@ WSData = {
         }
     },
 
-    fetch_myplan_data: function(callback, err_callback, args) {
-        if (WSData._myplan_data === null) {
-            var url = "/api/v1/myplan/";
+    fetch_myplan_data: function(year, quarter, callback, err_callback, args) {
+        if (WSData.myplan_data(year, quarter) === null) {
+            var url = "/api/v1/myplan/"+year+"/"+quarter;
 
             if (WSData._is_running_url(url)) {
                 WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
@@ -787,27 +792,28 @@ WSData = {
             WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
             $.ajax({
                 url: url,
-                    dataType: "JSON",
+                dataType: "JSON",
 
-                    type: "GET",
-                    accepts: {html: "text/html"},
-                    success: function(results) {
-                        WSData._myplan_data = results;
-                        WSData._run_success_callbacks_for_url(url);
-                    },
-                    error: function(xhr, status, error) {
-                        WSData._mygrad_data_error_status = xhr.status;
-                        WSData._run_error_callbacks_for_url(url);
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    if (!WSData._myplan_data[year]) {
+                        WSData._myplan_data[year] = {};
                     }
-                 });
-              }
+                    WSData._myplan_data[year][quarter] = results;
+                    WSData._run_success_callbacks_for_url(url);
+                },
+                error: function(xhr, status, error) {
+                    WSData._run_error_callbacks_for_url(url);
+                }
+            });
+        }
         else {
             window.setTimeout(function() {
                 callback.apply(null, args);
             }, 0);
         }
     },
-
 
     fetch_uwemail_data: function(callback, err_callback, args) {
         if (WSData._uwemail_data === null) {

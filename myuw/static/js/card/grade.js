@@ -105,28 +105,44 @@ var GradeCard = {
     },
 
     add_events: function(term) {
-        $("#toggle_grade_card_resources").on("click", function(ev) {
+        $(".toggle_grade_card_resources").on("click", function(ev) {
             ev.preventDefault();
             var card = $(ev.target).closest("[data-type='card']");
-            $("#grade_card_resources").toggleClass("slide-show");
+            var div = $("#grade_card_resources");
+            var expose = $("#show_grade_resources_wrapper");
+            var hide = $("#hide_grade_resources_wrapper");
 
-            if ($("#grade_card_resources").hasClass("slide-show")) {
-                $("#toggle_grade_card_resources").text("SHOW LESS");
-                $("#toggle_grade_card_resources").attr("title", "Hide additional grade resources");
-                $("#grade_card_resources").attr("aria-hidden", "false");
+            if (div.css('display') == 'none') {
+                div.show();
+                div.attr("hidden", false);
+                // Without this timeout, the animation doesn't happen - the block just appears.
+                window.setTimeout(function() {
+                    div.toggleClass("slide-show");
+                    expose.attr("hidden", true);
+                    expose.attr("aria-hidden", true);
+                    hide.attr("hidden", false);
+                    hide.attr("aria-hidden", false);
+
+                    div.attr("aria-expanded", true);
+                    div.focus();
+                }, 0);
+
                 window.myuw_log.log_card(card, "expand");
             }
             else {
-                $("#toggle_grade_card_resources").text("SHOW MORE");
-                $("#toggle_grade_card_resources").attr("title", "Expand to show additional grade resources");
-                $("#grade_card_resources").attr("aria-hidden", "true");
+                div.toggleClass("slide-show");
                 window.myuw_log.log_card(card, "collapse");
 
                 setTimeout(function() {
-                    $("#toggle_grade_card_resources").text("SHOW MORE");
+                    expose.attr("hidden", false);
+                    expose.attr("aria-hidden", false);
+                    hide.attr("hidden", true);
+                    hide.attr("aria-hidden", true);
+                    div.attr("aria-expanded", false);
+                    div.attr("hidden", true);
+                    div.hide();
                 }, 700);
             }
         });
-        
     },
 };

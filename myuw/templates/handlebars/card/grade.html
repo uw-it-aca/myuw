@@ -34,7 +34,9 @@
         </div>
         {{ /if }}
 
-        <div id="grade_card_resources">
+        <div id="grade_card_resources" class="slide-hide"
+             aria-hidden="true" aria-label="Resources related to final grades"
+             style="display: none">
             <h4 class="sr-only">Resources</h4>
             <ul class="unstyled-list">
                 <li><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx">View credits and GPA</a></li>
@@ -42,6 +44,21 @@
                 <li><a href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp">Unofficial Transcript</a></li>
             </ul>
         </div>
+        <div class="card-disclosure">
+            <span id="show_grade_resources_wrapper">
+                <span id="show_grade_resources_label" class="sr-only">Show links related to final grades</span>
+                <a class="toggle_grade_card_resources" aria-controls="grade_card_resources"
+                   aria-labelledby="show_grade_resources_label" href="#"
+                   title="Expand to show additional grade resources">SHOW MORE</a>
+            </span>
+            <span id="hide_grade_resources_wrapper" hidden aria-hidden="true">
+                <span id="hide_grade_resources_label" class="sr-only">Hide links related to final grades</span>
+                <a class="toggle_grade_card_resources" aria-controls="grade_card_resources"
+                   aria-labelledby="hide_grade_resources_label" href="#"
+                   title="Collapse to hide additional grade resources">SHOW LESS</a>
+            </span>
+        </div>
+
     </div>
 {{ /if }}
 {% endtplhandlebars %}

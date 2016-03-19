@@ -1,117 +1,88 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "reg_status_card" %}
 
-    <div class="card"  data-name="RegistrationCard" data-type="card" data-identifier="{{reg_next_quarter}}{{ reg_next_year }}">
-        <div class="fade-in">
-            <h3>Registration: {{reg_next_quarter}} {{ reg_next_year }}</h3>
+<div id="RegStatusCard" class="card"  data-name="RegistrationCard" data-type="card" data-identifier="{{reg_next_quarter}}{{reg_next_year}}">
+    <div class="fade-in">
 
-            {{ #if hold_count }}
-                <div class="card-critical-alert" role="status">
+        <h3>Registration: {{reg_next_quarter}} {{reg_next_year}}</h3>
 
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span class="sr-only">You have registration holds!</span>
-                    <a id="show_reg_holds{{#if card}}_{{card}}{{/if}}" class="reg_disclosure{{#if card}}_{{card}}{{/if}}" aria-controls="reg_holds" href="#" title="Expand to show holds information">Show {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
-                    <a id="hide_reg_holds{{#if card}}_{{card}}{{/if}}" class="reg_disclosure{{#if card}}_{{card}}{{/if}}" style="display: none" aria-controls="reg_holds" href="#" title="Collapse to hide holds information">Hide {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
-
-                    <div id="reg_holds{{#if card}}_{{card}}{{/if}}" class="slide-hide" aria-hidden="true" style="text-align:left;">
-                        <h4 class="sr-only">Registration holds</h4>
-                        <div class="reg-holds">
-
-                            <ul class="reg-holds-list">
-                                {{ #each reg_holds }}
-                                <li>{{{ notice_content }}}</li>
-                                {{ /each }}
-                            </ul>
-
-                        </div>
-                    </div>
-
-                </div>
-            {{ /if }}
-
-            <!-- finaid notices begin -->
-            {{ #if finaid_notices }}
-            <div class="finaid-notices-container">
-                <h4>Financial Aid</h4>
-                <ul class="panel-group finaid-notices-panel-group" id="reg_finaid_notices_accordion" role="tablist" aria-multiselectable="true">
-                    {{ #each finaid_notices}}
-                    <li class="panel panel-default finaid-panel-default">
-                        <div class="panel-heading finaid-panel-heading" role="tab" id="Reg{{id_hash}}">
-                            <span class="panel-title finaid-panel-title">
-                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#reg_finaid_notices_accordion" href="#collapseReg{{id_hash}}" aria-expanded="true" aria-controls="collapseReg{{id_hash}}">
-                                    <span class="caret" aria-hidden="true"></span> {{{short_content}}}
-                                </a>
-                            </span>
-                        </div>
-                        <div id="collapseReg{{id_hash}}" class="panel-collapse collapse finaid-panel-collapse" role="tabpanel" aria-labelledby="headingReg{{id_hash}}">
-                            <div class="panel-body finaid-panel-body">
-                                {{{ notice_content }}}
-                            </div>
-                        </div>
-                    </li>
-                    {{ /each }}
-                </ul>
-            </div>
-            {{ /if }}
-            <!-- finaid notices end -->
-
-            <h4 class="sr-only">Registration Information</h4>
-            <div class="est-reg-date">
-                <p>
-                    {{ #each est_reg_date }}
-                        {{{ notice_content }}}
-                    {{ /each }}
-                </p>
-            </div>
-            <h4 class="sr-only">Registration Resources</h4>
-	    <div class="pull-right">
-	        <ul class="reg-resources-list">
-	            {{ #if is_tacoma }}
-	                <li><a target="_blank" href="http://www.washington.edu/students/timeschd/T/">Browse time schedule</a></li>
-	                <li><a target="_blank" href="http://www.tacoma.washington.edu/enrollment_apps/timeschedule/search.cfm">Tacoma Time Schedule Quick Search</a></li>
-	            {{ /if }}
-	            {{ #if is_bothell }}
-	                <li><a target="_blank" href="http://www.uwb.edu/registration/time">Browse time schedule</a></li>
-	            {{ /if }}
-	            {{ #if is_seattle }}
-	                <li><a target="_blank" href="http://www.washington.edu/students/timeschd/">Browse time schedule</a></li>
-	            {{ /if }}
-	            </ul>
-	    </div>
-	    <!-- CHARLON: not sure why a clearfix wasn't working on the DIV below, but the inline style was... -->
-            <div id="reg_resources{{#if card}}_{{card}}{{/if}}" class="slide-hide" style="clear:both;" aria-hidden="true">
-
-               <!-- {{ #if reg_notices }}
-                <h4 class="">Notices</h4>
-                <ul class="reg-notice-list">
-                  {{ #each reg_notices }}
-                      <li>
-                        {{{ notice_content }}}
-                      </li>
-                  {{ /each }}
-                </ul>
-                {{/if}} -->
-                <h4>Resources</h4>
-                <ul class="reg-resources-list">
-                    <li><a target="_blank" href="https://sdb.admin.uw.edu/students/uwnetid/register.asp">Registration</a></li>
-                    <li><a target="_blank" href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">MyPlan</a> (Academic Planning)</li>
-                    <li><a target="_blank" href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree">Check Your Degree Progress (DARS)</a></li>
-                </ul>
-                <!-- data from MyPlan -->
-                <div style="display: none;">
-                    {{ #each plan_data }}
-                    {{ curriculum_abbr }} {{ course_number }} - {{ #if registrations_available }} Available{{/if}}
-                    <br/>
-                    {{ #each sections }}
-                    Section {{ section_id }}<br />
-                    {{ /each }}
-                    {{ /each }}
-                </div>
-            </div>
-
-            <div class="card-disclosure">
-                <a id="show_reg_resources{{# if card }}_{{card}}{{/if}}" aria-controls="reg_resources" href="#" title="Expand to show additional registration resources">Show more</a>
-            </div>
+        <div class="card-badge-container">
+            <ul title="Registration Information" style="list-style-type: none; padding-left: 0;">
+                {{#if hold_count}}
+                    {{> reg_holds }}
+                {{/if}}
+            </ul>
         </div>
-    </div>
 
-    {% endtplhandlebars %}
+        <!-- <h4 class="sr-only">Registration Information</h4> -->
+        <!-- not sure if we need this h4 here -->
+
+        <!-- Estimated Registration Date -->
+        <div class="card-badge-container">
+            <ul class="card_list">
+                {{#unless registration_is_open}}
+                    {{> notice_est_reg_date }}
+                {{/unless}}
+
+                <li>
+		    {{#if plan_data.courses}}
+                        {{> show_plan_courses }}
+		    {{else}}
+                        {{> show_plan_without_courses }}
+                    {{/if}}
+		</li>
+	    </ul>
+        </div>
+
+	<h4 class="sr-only">Registration Resources</h4>
+	{{#unless registration_is_open}}
+            {{> reg_not_open_resources }}
+	{{/unless}}
+
+	<!-- CHARLON: not sure why a clearfix wasn't working on the DIV below, but the inline style was... -->
+	<span id="reg_resources_desc" class="sr-only">{{reg_next_quarter}} {{reg_next_year}} plan</span>
+        <div id="reg_resources{{#if card}}_{{card}}{{/if}}"
+             aria-labelledby="reg_resources_desc" aria-expanded="false"
+             class="slide-hide reg_resources_disc" style="clear:both;" aria-hidden="true">
+            <div class="myplan-data">
+                {{#if plan_data.has_ready_courses}}
+                    {{> reg_res_plan_courses }}
+                {{/if}}
+
+                {{#if plan_data.has_unready_courses}}
+                    {{> reg_res_plan_unread_courses }}
+                {{/if}}
+            </div>
+
+            {{> reg_resources }}
+        </div>
+
+        <div class="card-disclosure">
+            {{#if plan_data.courses}}
+                <span id="show_reg_resources_wrapper{{#if card}}_{{card}}{{/if}}">
+                    <span id="show_plan_reg_resources_label{{#if card}}_{{card}}{{/if}}" class="sr-only">Expand to show additional registration resources</span>
+                    <a class="show_reg_resources{{#if card}}_{{card}}{{/if}}" aria-controls="reg_resources"
+                       aria-labelledby="show_plan_reg_resources_label{{#if card}}_{{card}}{{/if}}"
+                       href="#" title="Expand to show additional registration resources">Show {{reg_next_quarter}} {{reg_next_year}} plan</a>
+                </span>
+                <span id="hide_reg_resources_wrapper{{#if card}}_{{card}}{{/if}}" hidden aria-hidden="true">
+                    <span id="hide_plan_reg_resources_label{{#if card}}_{{card}}{{/if}}" class="sr-only">Collapse to hide additional registration resources</span>
+                    <a class="show_reg_resources{{#if card}}_{{card}}{{/if}}" aria-controls="reg_resources" aria-labelledby="hide_plan_reg_resources_label{{#if card}}_{{card}}{{/if}}" href="#" title="Collapse to hide additional registration resources">Hide {{reg_next_quarter}} {{reg_next_year}} plan</a>
+                </span>
+
+            {{else}}
+                <span id="show_reg_resources_wrapper{{#if card}}_{{card}}{{/if}}">
+                    <span id="show_plan_reg_resources_label{{#if card}}_{{card}}{{/if}}" class="sr-only">Expand to show additional registration resources</span>
+                    <a class="show_reg_resources{{#if card}}_{{card}}{{/if}}" aria-controls="reg_resources" aria-labelledby="show_plan_reg_resources_label{{#if card}}_{{card}}{{/if}}" href="#" title="Expand to show additional registration resources">Show more</a>
+                </span>
+                <span id="hide_reg_resources_wrapper{{#if card}}_{{card}}{{/if}}" hidden aria-hidden="true">
+                    <span id="hide_plan_reg_resources_label{{#if card}}_{{card}}{{/if}}" class="sr-only">Collapse to hide additional registration resources</span>
+                    <a class="show_reg_resources{{#if card}}_{{card}}{{/if}}" aria-controls="reg_resources" aria-labelledby="hide_plan_reg_resources_label{{#if card}}_{{card}}{{/if}}" href="#" title="Collapse to hide additional registration resources">Show less</a>
+                </span>
+            {{/if}}
+        </div>
+
+    </div>
+</div>
+
+{% endtplhandlebars %}

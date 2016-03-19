@@ -3,8 +3,21 @@ var RegStatusCard = {
     dom_target: undefined,
 
     render_init: function() {
-        if (!window.user.student ||
-            !(window.card_display_dates.is_after_start_of_registration_display_period &&
+        if (!window.user.student) {
+            $("#RegStatusCard").hide();
+            return;
+        }
+
+        Handlebars.registerPartial("reg_holds", $("#reg_holds_tmpl").html());
+        Handlebars.registerPartial("notice_est_reg_date", $("#notice_est_reg_date_tmpl").html());
+        Handlebars.registerPartial("show_plan_courses", $("#myplan_courses_tmpl").html());
+        Handlebars.registerPartial("show_plan_without_courses", $("#myplan_without_course_tmpl").html());
+        Handlebars.registerPartial("reg_not_open_resources", $("#reg_not_open_resources_tmpl").html());
+        Handlebars.registerPartial("reg_res_plan_courses", $("#reg_res_plan_courses_tmpl").html());
+        Handlebars.registerPartial("reg_res_plan_unread_courses", $("#reg_res_plan_unread_courses_tmpl").html());
+        Handlebars.registerPartial("reg_resources", $("#reg_resources_tmpl").html());
+
+        if (!(window.card_display_dates.is_after_start_of_registration_display_period &&
               window.card_display_dates.is_before_end_of_registration_display_period)) {
             $("#RegStatusCard").hide();
             return;
@@ -30,9 +43,10 @@ var RegStatusCard = {
         }
         return false;
     },
+
     render_error: function (status) {
-        // neither api data returns 404
-        // if oquarter data or notice data failed, display error
+        // none of the api data returns 404.
+        // if any data failure, display error
         RegStatusCard.dom_target.html(CardWithError.render("Registration"));
     },
 
@@ -46,17 +60,30 @@ var RegStatusCard = {
         var display_reg_dates = [];
         for (i = 0; i < reg_date.length; i++) {
             var notice = reg_date[i];
+            var show_notice = false;
+            var registration_date = null;
             for (j = 0; j < notice.attributes.length; j++) {
                 var attribute = notice.attributes[j];
+
+                // Extract the registration date:
+                if (attribute.name == "Date") {
+                    registration_date = attribute.value;
+                }
+
                 if (quarter == "Summer") {
                     if ((attribute.name == "Quarter") && (attribute.value == "Summer")) {
-                        display_reg_dates.push(notice);
+                        show_notice = true;
                     }
                 }
                 else {
-                    if ((attribute.name == "Quarter") && (attribute.value != "Summer")) {
-                        display_reg_dates.push(notice);
+                    if ((attribute.name == "Quarter") && (attribute.value == quarter)) {
+                        show_notice = true;
                     }
+                }
+
+                if (show_notice) {
+                    display_reg_dates.push({ "notice": notice, "date": registration_date });
+                    registration_is_open = false;
                 }
             }
         }
@@ -85,19 +112,26 @@ var RegStatusCard = {
             return;
         }
 
-        var finaid_tags = ["reg_summeraid_avail_title"];
+        var all_plan_data = WSData.myplan_data(year, quarter);
+        var plan_data = {};
+        if (all_plan_data && all_plan_data.terms) {
+            plan_data = all_plan_data.terms[0];
+        }
 
+        var finaid_tags = ["reg_summeraid_avail_title"];
         var financial_aid_notices = Notices.get_ordered_finaid_notices(finaid_tags);
 
-        // Bug MUWM-3306
         var hide_card = true;
         if (financial_aid_notices && financial_aid_notices.length) {
+             hide_card = false;
+        }
+        if (hide_card && display_reg_dates.length) {
             hide_card = false;
         }
-        if (display_reg_dates.length) {
+        if (hide_card && reg_holds.length) {
             hide_card = false;
         }
-        if (reg_holds.length) {
+        if (hide_card && plan_data.length) {
             hide_card = false;
         }
 
@@ -105,95 +139,157 @@ var RegStatusCard = {
             return;
         }
 
+        //Get hold count from notice attrs
+        var hold_count = reg_holds.length;
         var source = $("#reg_status_card").html();
         var template = Handlebars.compile(source);
-        var template_data = {"finaid_notices": financial_aid_notices,
-                             "reg_notices": reg_notices,
-                             "reg_holds": reg_holds,
-                             "card": summer_card_label,
-                             "is_tacoma": window.user.tacoma,
-                             "is_bothell": window.user.bothell,
-                             "is_seattle": window.user.seattle,
-                             "hold_count": reg_holds.length,
-                             "est_reg_date": display_reg_dates,
-                             "reg_next_quarter" : quarter,
-                             "reg_next_year": year,
-                            };
+        var template_data = {
+            "finaid_notices": financial_aid_notices,
+            "reg_notices": reg_notices,
+            "reg_holds": reg_holds,
+            "card": summer_card_label,
+            "registration_is_open": registration_is_open,
+            "is_tacoma": window.user.tacoma || window.user.tacoma_affil,
+            "is_bothell": window.user.bothell || window.user.bothell_affil,
+            "is_seattle": window.user.seattle || window.user.seattle_affil,
+            "hold_count": reg_holds.length,
+            "est_reg_date": display_reg_dates,
+            "reg_next_quarter" : quarter,
+            "reg_next_year": year,
+            "plan_data": plan_data
+        };
         var raw = template(template_data);
         return raw;
     },
 
     _add_events: function(summer_label) {
         // show registration resources
-        var id, holds_class;
+        var card_disclosure_class, holds_class, unready_courses;
         if (summer_label) {
-            id = "#show_reg_resources_"+summer_label;
+            card_disclosure_class = ".show_reg_resources_"+summer_label;
             holds_class = ".reg_disclosure_"+summer_label;
+            unready_courses = ".myplan_unready_courses_disclosure_"+summer_label;
         }
         else {
-            id = "#show_reg_resources";
+            card_disclosure_class = ".show_reg_resources";
             holds_class = ".reg_disclosure";
+            unready_courses = ".myplan_unready_courses_disclosure";
         }
 
-        // Prevent a closure on card
-        (function(label) {
-            $('body').on('click', id, function (ev) {
-                var div, expose;
-                if (label) {
+        // show registration resource
+        (function(summer_card_label) {
+            $('body').on('click', card_disclosure_class, function (ev) {
+                ev.preventDefault();
+                var card = $(ev.target).closest("[data-type='card']");
+
+                var div, expose, hide;
+                if (summer_card_label) {
                     // summer reg card
-                    div = $("#reg_resources_"+label);
-                    expose = $("#show_reg_resources_"+label);
+                    div = $("#reg_resources_"+summer_card_label);
+                    expose = $("#show_reg_resources_wrapper_"+summer_card_label);
+                    hide = $("#hide_reg_resources_wrapper_"+summer_card_label);
                 }
                 else {
                     div = $("#reg_resources");
-                    expose = $("#show_reg_resources");
+                    expose = $("#show_reg_resources_wrapper");
+                    hide = $("#hide_reg_resources_wrapper");
                 }
 
-                ev.preventDefault();
-                var card = $(ev.target).closest("[data-type='card']");
                 div.toggleClass("slide-show");
 
                 if (div.hasClass("slide-show")) {
-                    expose.text("Show less");
+                    expose.attr("hidden", true);
+                    expose.attr("aria-hidden", true);
+                    hide.attr("hidden", false);
+                    hide.attr("aria-hidden", false);
                     div.attr('aria-hidden', 'false');
-                    expose.attr('title', 'Collapse to hide additional registration resources');
-                    window.myuw_log.log_card(card, "expand");
+                    window.myuw_log.log_card(card, "expand-res");
                 } else {
-                    div.attr('aria-hidden', 'true');
-                    expose.attr('title', 'Expand to show additional registration resources');
-                    window.myuw_log.log_card(card, "collapse");
+                    window.myuw_log.log_card(card, "collapse-res");
                     setTimeout(function() {
-                        expose.text("Show more");
+                        expose.attr("hidden", false);
+                        expose.attr("aria-hidden", false);
+                        hide.attr("hidden", true);
+                        hide.attr("aria-hidden", true);
+                        div.attr('aria-hidden', 'true');
                     }, 700);
                 }
+            });
+
+            // show myplan unready course details
+            $('body').on('click', unready_courses, function (ev) {
+                ev.preventDefault();
+                var card = $(ev.target).closest("[data-type='card']");
+
+                var div, expose, hide;
+                if (summer_card_label) {
+                    div = $("#myplan_unready_courses_"+summer_card_label);
+                    expose = $("#show_unready_courses_wrapper_"+summer_card_label);
+                    hide = $("#hide_unready_courses_wrapper_"+summer_card_label);
+                }
+                else {
+                    div = $("#myplan_unready_courses");
+                    expose = $("#show_unready_courses_wrapper");
+                    hide = $("#hide_unready_courses_wrapper");
+                }
+
+                div.toggleClass("slide-show");
+
+                if (div.hasClass("slide-show")) {
+                    expose.attr("hidden", true);
+                    expose.attr("aria-hidden", true);
+                    hide.attr("hidden", false);
+                    hide.attr("aria-hidden", false);
+                    div.attr('aria-hidden', 'false');
+                    window.myuw_log.log_card(card, "expand-myplan");
+                } else {
+                    window.myuw_log.log_card(card, "collapse-myplan");
+                    setTimeout(function() {
+                        expose.attr("hidden", false);
+                        expose.attr("aria-hidden", false);
+                        hide.attr("hidden", true);
+                        hide.attr("aria-hidden", true);
+                        div.attr("aria-hidden", true);
+                    }, 700);
+                }
+
             });
 
             // show hold details
             $('body').on('click', holds_class, function (ev) {
                 ev.preventDefault();
+                var card = $(ev.target).closest("[data-type='card']");
+
                 var div, expose, hide;
-                if (label) {
-                    div = $("#reg_holds_"+label);
-                    expose = $("#show_reg_holds_"+label);
-                    hide = $("#hide_reg_holds_"+label);
+                if (summer_card_label) {
+                    div = $("#reg_holds_"+summer_card_label);
+                    expose = $("#show_reg_holds_wrapper_"+summer_card_label);
+                    hide = $("#hide_reg_holds_wrapper_"+summer_card_label);
                 }
                 else {
                     div = $("#reg_holds");
-                    expose = $("#show_reg_holds");
-                    hide = $("#hide_reg_holds");
+                    expose = $("#show_reg_holds_wrapper");
+                    hide = $("#hide_reg_holds_wrapper");
                 }
 
                 div.toggleClass("slide-show");
+
                 if (div.hasClass("slide-show")) {
-                    expose.hide();
-                    hide.show();
-                    window.myuw_log.log_card("RegHolds", "expand");
+                    expose.attr("hidden", true);
+                    expose.attr("aria-hidden", true);
+                    hide.attr("hidden", false);
+                    hide.attr("aria-hidden", false);
+                    div.attr("aria-hidden", false);
+                    window.myuw_log.log_card(card, "expand-holds");
                 }
                 else {
-                    window.myuw_log.log_card("RegHolds", "collapse");
+                    window.myuw_log.log_card(card, "collapse-holds");
                     setTimeout(function () {
-                        expose.show();
-                        hide.hide();
+                        expose.attr("hidden", false);
+                        expose.attr("aria-hidden", false);
+                        hide.attr("hidden", true);
+                        hide.attr("aria-hidden", true);
+                        div.attr("aria-hidden", true);
                     }, 700);
                 }
             });
@@ -204,15 +300,22 @@ var RegStatusCard = {
     _render: function () {
         var next_term_data = WSData.oquarter_data().next_term_data;
         var reg_next_quarter = next_term_data.quarter;
-        var content = RegStatusCard._render_for_term(reg_next_quarter);
 
-        if (!content) {
-            RegStatusCard.dom_target.hide();
-            return;
+        if (WSData.myplan_data(next_term_data.year, next_term_data.quarter)) {
+            var content = RegStatusCard._render_for_term(reg_next_quarter);
+
+            if (!content) {
+                RegStatusCard.dom_target.hide();
+                return;
+            }
+
+            RegStatusCard.dom_target.html(content);
+            RegStatusCard._add_events();
+            LogUtils.cardLoaded(RegStatusCard.name, RegStatusCard.dom_target);
         }
-
-        RegStatusCard.dom_target.html(content);
-        RegStatusCard._add_events();
-        LogUtils.cardLoaded(RegStatusCard.name, RegStatusCard.dom_target);
+        else {
+            WSData.fetch_myplan_data(next_term_data.year, next_term_data.quarter, RegStatusCard.render_upon_data, RegStatusCard.render_error);
+        }
     }
+
 };

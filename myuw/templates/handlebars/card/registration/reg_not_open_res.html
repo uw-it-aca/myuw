@@ -1,0 +1,21 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "reg_not_open_resources_tmpl" %}
+<div class="pull-right">
+    <ul class="reg-resources-list">
+        {{ #if is_tacoma }}
+            <li class="pull-right time_schedule_link"><span id="tacoma_time_schedule" class="sr-only">Browse time schedule for Tacoma</span><a aria-labelledby="tacoma_time_schedule" target="_blank" href="http://www.washington.edu/students/timeschd/T/">Browse time schedule for Tacoma</a></li>
+
+            <li class="pull-right"><a class="bold_text" target="_blank" href="http://www.tacoma.washington.edu/enrollment_apps/timeschedule/search.cfm">Tacoma Time Schedule Quick Search</a></li>
+        {{ /if }}
+
+        {{ #if is_bothell }}
+            <li><span id="bothell_time_schedule" class="sr-only">Browse time schedule for Bothell</span><a aria-labelledby="bothell_time_schedule" target="_blank" href="http://www.uwb.edu/registration/time">Browse time schedule for Bothell</a></li>
+        {{ /if }}
+
+        {{ #if is_seattle }}
+            <li><span id="seattle_time_schedule" class="sr-only">Browse time schedule for Seattle</span><a aria-labelledby="seattle_time_schedule" target="_blank" href="http://www.washington.edu/students/timeschd/">Browse time schedule</a></li>
+        {{ /if }}
+    </ul>
+</div>
+
+{% endtplhandlebars %}

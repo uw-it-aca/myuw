@@ -1,0 +1,14 @@
+[
+    {
+        "Term":{"Quarter":"Spring","Year":2013},
+        "RegistrationHref":"http://example.com/RegistrationHref",
+        "MyPlanHref":"http://example.com/MyPlan",
+        "Courses":[
+            {
+                "CurriculumAbbreviation":"PHYS",
+                "CourseNumber":"121",
+                "RegistrationAvailable":false,
+                "Sections":[]}
+                ]
+    }
+]

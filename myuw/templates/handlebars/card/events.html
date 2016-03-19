@@ -30,7 +30,8 @@
                     </ul>
                     {{ /each }}
                     {{ #if needs_disclosure }}
-                        <div id="events_card_more" class="slide-hide" aria-hidden="true">
+                        <div id="events_card_more" class="slide-hide" aria-hidden="true"
+                              aria-label="Additional events" style="display: none;">
                             {{ #each grouped_events_hide}}
                             <ul class="myuw-events-list">
                                 <li class="myuw-events-list-item">
@@ -60,7 +61,20 @@
                             {{ /if }}
                         </div>
                         <div class="card-disclosure">
-                            <a id="toggle_event_card_resources" aria-controls="..." href="#" title="Expand to show additional events">SHOW ({{ hidden_event_count }}) MORE</a>
+                            <span id="show_event_resources_wrapper">
+                                <span id="show_event_resources_label"
+                                      class="sr-only">Show {{ hidden_event_count }} more {{ pluralize hidden_event_count 'event' 'events' }}</span>
+                                <a class="toggle_event_card_resources" aria-controls="events_card_more"
+                                   aria-labelledby="show_event_resources_label" href="#"
+                                   title="Expand to show additional events">SHOW ({{ hidden_event_count }}) MORE</a>
+                            </span>
+                            <span id="hide_event_resources_wrapper" hidden aria-hidden="true">
+                                <span id="hide_event_resources_label"
+                                      class="sr-only">Hide {{ hidden_event_count }} more {{ pluralize hidden_event_count 'event' 'events' }}</span>
+                                <a class="toggle_event_card_resources" aria-controls="events_card_more"
+                                   aria-labelledby="hide_event_resources_label" href="#"
+                                   title="Hide additional event resources">SHOW LESS</a>
+                            </span>
                         </div>
                     {{ else }}
                             {{ #if multi_cal }}

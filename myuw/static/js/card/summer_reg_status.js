@@ -22,7 +22,6 @@ var SummerRegStatusCard = {
 
         WSData.fetch_notice_data(SummerRegStatusCard.render_upon_data, SummerRegStatusCard.render_error);
         WSData.fetch_oquarter_data(SummerRegStatusCard.render_upon_data, SummerRegStatusCard.render_error);
-        // WSData.fetch_myplan_data(SummerRegStatusCard.render_upon_data, SummerRegStatusCard.render_error);
     },
 
     render_upon_data: function() {
@@ -42,14 +41,21 @@ var SummerRegStatusCard = {
     },
 
     _render: function() {
-        var content = RegStatusCard._render_for_term('Summer', SummerRegStatusCard.label);
-        if (!content) {
-            SummerRegStatusCard.dom_target.hide();
-            return;
+        var year = WSData.oquarter_data().next_term_data.year;
+
+        if (WSData.myplan_data(year, "Summer")) {
+            var content = RegStatusCard._render_for_term('Summer', SummerRegStatusCard.label);
+            if (!content) {
+                SummerRegStatusCard.dom_target.hide();
+                return;
+            }
+            SummerRegStatusCard.dom_target.html(content);
+            RegStatusCard._add_events(SummerRegStatusCard.label);
+            LogUtils.cardLoaded(SummerRegStatusCard.name, SummerRegStatusCard.dom_target);
         }
-        SummerRegStatusCard.dom_target.html(content);
-        RegStatusCard._add_events(SummerRegStatusCard.label);
-        LogUtils.cardLoaded(SummerRegStatusCard.name, SummerRegStatusCard.dom_target);
+        else {
+            WSData.fetch_myplan_data(year, "Summer", SummerRegStatusCard.render_upon_data, SummerRegStatusCard.render_error);
+        }
     }
 };
 

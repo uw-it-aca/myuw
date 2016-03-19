@@ -1,0 +1,42 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "reg_holds_tmpl" %}
+<li>
+    <div class="card-badge card-critical-alert " role="status">
+        <div class="reg-holds-container clearfix">
+
+            <div class="pull-left">
+                <h4 class="card-badge-label">Holds</h4>
+            </div>
+            <div class="pull-right">
+                <div class="card-badge-value">
+                    <span class="sr-only">You have registration holds!</span>
+                    <span id="show_reg_holds_wrapper{{#if card}}_{{card}}{{/if}}">
+                        <a id="show_reg_holds{{#if card}}_{{card}}{{/if}}"
+                           class="reg_disclosure{{#if card}}_{{card}}{{/if}}"
+                           aria-controls="reg_holds"
+                           href="#" title="Expand to show holds information"><i class="fa fa-sort-desc fa-rotate-270" aria-hidden="true"></i> {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
+                    </span>
+                    <span id="hide_reg_holds_wrapper{{#if card}}_{{card}}{{/if}}" hidden aria-hidden="true">
+                        <a id="hide_reg_holds{{#if card}}_{{card}}{{/if}}"
+                           class="reg_disclosure{{#if card}}_{{card}}{{/if}}"
+                           aria-controls="reg_holds" href="#"
+                           title="Collapse to hide holds information"><i class="fa fa-sort-desc" aria-hidden="true"></i> {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
+                    </span>
+                </div>
+            </div>
+
+            <div id="reg_holds{{#if card}}_{{card}}{{/if}}" class="slide-hide reg_holds_disc" aria-hidden="true" style="text-align:left;">
+                <h4 class="sr-only">Registration holds</h4>
+                <div class="reg-holds">
+                    <ul class="reg-holds-list">
+                        {{ #each reg_holds }}
+                            <li>{{{ notice_content }}}</li>
+                        {{ /each }}
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</li>
+{% endtplhandlebars %}

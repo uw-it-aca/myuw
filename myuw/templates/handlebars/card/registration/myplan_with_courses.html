@@ -1,0 +1,77 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "myplan_courses_tmpl" %}
+
+<div id="reg_details" class="card-badge reg-details-container clearfix">
+    <div class="reg-details">
+
+        <div class="pull-left">
+            <h4 class="card-badge-label">In <span style="font: 18px/normal 'museo-sans',Helvetica,Arial,Verdana,sans-serif;">MyPlan</h4>
+        </div>
+
+        <div class="pull-right">&nbsp;
+            <div class="card-badge-value">
+                <span class="course-ready">{{ plan_data.ready_count }}
+                    {{ pluralize plan_data.ready_count "course" "courses" }} ready
+                </span>
+                <br/>
+                {{ #if plan_data.unready_count }} {{ plan_data.unready_count }} not ready{{/if}}
+            </div>
+
+            <div style="text-align:right;">
+            {{ #if plan_data.has_sections }}
+                <span id="show_unready_courses_wrapper{{#if card }}_{{card}}{{/if}}">
+                    <span class="sr-only" id="show_unready_course_details_label{{#if card }}_{{card}}{{/if}}">See more details about unready courses</span>
+                    <a href="javascript:void(0)" aria-labelledby="show_unready_course_details_label{{#if card }}_{{card}}{{/if}}" class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}"><i class="fa fa-sort-desc fa-rotate-270" aria-hidden="true"></i> Show details</a>
+                </span>
+
+                <span id="hide_unready_courses_wrapper{{#if card }}_{{card}}{{/if}}" hidden aria-hidden="true">
+                    <span id="hide_unready_course_details_label{{#if card }}_{{card}}{{/if}}" class="sr-only">Hide details for unready courses</span>
+                    <a href="javascript:void(0)" aria-labelledby="hide_unready_course_details_label{{#if card }}_{{card}}{{/if}}" class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}"><i class="fa fa-sort-desc" aria-hidden="true"></i> Hide details</a>
+                </span>
+            {{ else }}
+                <a style="margin-top:8px;" target="_blank" href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Add Sections</a>
+            {{ /if}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myplan_unready_courses{{#if card }}_{{card}}{{/if}}" class="slide-hide course-not-ready-details">
+    <h4 class="card-badge-label">Not ready for registration</h4>
+    <ul id="courses_not_ready_list" class="courses-not-ready-list">
+        {{ #each plan_data.courses }}
+            {{ #unless registrations_available }}
+                 <li class="courses-not-ready-list-item">{{ curriculum_abbr }}
+                     {{ course_number }}</li>
+                 <!--{{ #unless @last }}<br />{{/unless}}-->
+             {{ /unless }}
+         {{ /each}}
+    </ul>
+
+    <div class="card-badge-label">Possible issues</div>
+
+    <ul class="fa-ul courses-not-ready-issues">
+        <li>Too many/too few sections selected for a course</li>
+        <li>Time conflict with registered course</li>
+        <li>Time conflict with a selected section</li>
+        <li>Planned courses are jointly offered versions of one course</li>
+    </ul>
+
+    <div class="pull-right edit-plan-link">
+        <a title="Edit plan to fix issues" target="_blank" href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Edit plan to fix issues</a>
+    </div>
+</div>
+
+{{ #if registration_is_open }}
+    <div class="reg-details-open">
+        {{ #unless plan_data.ready_count }}
+            <a target="_blank" href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Edit plan to fix issues</a><br />
+            <span class="reg-link">or enter SLNs on <a target="_blank" href="https://sdb.admin.washington.edu/students/uwnetid/register.asp">Registration screen</a></span>
+        {{ else }}
+            <a target="_blank" href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Start registration through MyPlan</a><br />
+            <span class="reg-link">or enter SLNs on <a target="_blank" href="//sdb.admin.washington.edu/students/uwnetid/register.asp">Registration screen</a></span>
+        {{ /unless }}
+    </div>
+{{ /if}}
+
+{% endtplhandlebars %}

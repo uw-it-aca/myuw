@@ -21,6 +21,14 @@
     {% include "handlebars/card/loading.html" %}
     {% include "handlebars/card/no_course.html" %}
     {% include "handlebars/card/pce_tuition.html" %}
+    {% include "handlebars/card/registration/holds.html" %}
+    {% include "handlebars/card/registration/myplan_with_courses.html" %}
+    {% include "handlebars/card/registration/myplan_without_course.html" %}
+    {% include "handlebars/card/registration/notice_est_reg_date.html" %}
+    {% include "handlebars/card/registration/reg_not_open_res.html" %}
+    {% include "handlebars/card/registration/reg_res_plan_courses.html" %}
+    {% include "handlebars/card/registration/reg_res_plan_unread_courses.html" %}
+    {% include "handlebars/card/registration/reg_resources.html" %}
     {% include "handlebars/card/reg_status.html" %}
     {% include "handlebars/card/tuition.html" %}
     {% include "handlebars/card/textbook.html" %}
@@ -91,6 +99,9 @@
         "seattle": {{ user.affiliations.official_seattle|yesno:"true, false" }},
         "bothell": {{ user.affiliations.official_bothell|yesno:"true, false" }},
         "tacoma": {{ user.affiliations.official_tacoma|yesno:"true, false" }},
+        "seattle_affil": {{ user.affiliations.seattle|yesno:"true, false" }},
+        "bothell_affil": {{ user.affiliations.bothell|yesno:"true, false" }},
+        "tacoma_affil": {{ user.affiliations.tacoma|yesno:"true, false" }},
         "email_is_uwgmail": {{ user.email_is_uwgmail|yesno:"true, false" }},
         "email_is_uwlive": {{ user.email_is_uwlive|yesno:"true, false" }},
         "netid": "{{ user.netid }}"
