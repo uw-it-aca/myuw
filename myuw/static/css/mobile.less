@@ -620,7 +620,22 @@ body {
         .reg_status_table td { border-top: none !important; }
 
         .reg_resources_disc {
-            .card-badge-label { font-weight: bold; }
+            h4 {font-weight:500; margin-bottom: 3px;}
+            .card-badge-label {
+                font-weight: bold;
+                padding-bottom:5px;
+            }
+            .reg-status-table {
+                margin-left:10px;
+                margin-bottom: 10px;
+                .reg-status-table-row {
+                    td {padding:0px;}
+                }
+            }
+            .reg-resources {
+                .reg-resources-list { list-style: none; padding-left: 0; }
+                .no-header-space {padding-top:10px;}
+            }
         }
 
         .card-noncritical-alert {
@@ -899,53 +914,178 @@ body {
 
     // registration card
     #RegStatusCard, #SummerRegStatusCardA, #SummerRegStatusCard1, #TuitionCard {
-	    .card {
-		    h4 {font-family: 'Roboto', sans-serif; font-weight: 500; color: @darktan; margin-top: 1.5em; margin-bottom: .5em; font-size: 16px;  }
-	        .reg-holds-list { list-style: none; padding: 0; margin-top: 1em; color:#913f16;
-		        a {color:#4d66ca; text-decoration: none;}
+        .card {
+	    .card-badge-container {
+	        h4 {
+                    font-family: 'Roboto',
+                    sans-serif; font-weight: 500;
+                    color: @darktan;
+                    margin-top: 1.5em;
+                    margin-bottom: .5em;
+                    font-size: 16px;
+                }
 
-		        ul { margin-top:5px;
-	            	li { margin-bottom: 1em; }
-	            }
-                    li { margin-bottom: 1em; }
-	        }     
+                .card-critical-alert {
+                    .reg-holds-container {
+                        .card-badge-label {
+                            line-height: 0px;
+                        }
+                        .card-badge-value {
+                            font-size: inherit;
+                            font-weight: bold;
+                            line-height: 20px;
+                            a {text-decoration: none;}
+                        }
+                        .reg_holds_disc {
+                            background: rgba(255, 140, 138, 0.16);
+                            .reg-holds {
+                                padding: 8px;
+                                margin-top: 8px;
 
-	        .est-reg-date { margin-bottom: 20px; }
-	        .reg-notice-list { list-style: none; padding: 5px 0; 
-	             
-	            li { margin-bottom: 1em; }
-	        }
-	        .reg-resources-list { list-style: none; padding-left: 0; }
-	        .notice-list { margin-top: 5px; margin-bottom: 10px; list-style: disc; 
-	            li { margin-bottom: 0;}
-	        }
-	        .notice-title { display: block; font-weight: bold; margin-bottom: 2px; }
-	        .finaid-notices-container {
-	                ul { list-style-type: none; } 		
-				    .finaid-notices-panel-group {padding-left:0;line-height: 24px;		    
-					    .finaid-panel-default {border:none; box-shadow: none;-webkit-box-shadow: none; margin-left: -10px; margin-right: -10px; 
-						    .finaid-panel-heading {padding: 0px 0px;background-color: transparent;
-							    .finaid-panel-title {font-size:14px;padding: 0 10px;
-								    a {color: #4d66ca;
-									    &.collapsed {
-										    span {
-											    &.caret {filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);-webkit-transform:rotate(270deg);-ms-transform:rotate(270deg);transform:rotate(270deg)}
-											    }
-									    }
-									 
-								    }
-							    }
-						    }
-						    .finaid-panel-collapse {
-							    .finaid-panel-body {border-top: none;padding: 5px 10px;margin-top: 5px;background-color:#fcf8e3;line-height:20px;
-									span.notice-title {display:none;}
-								}
-						    }
-					    }					
-				    }
+	                        .reg-holds-list {
+                                    list-style: none;
+                                    padding: 0;
+                                    margin-top: 1em;
+                                    color:#913f16;
+		                    a {color:#4d66ca; text-decoration: none;}
+		                    ul { margin-top:5px;
+	                                 li { margin-bottom: 1em; }
+	                               }
+                                    li { margin-bottom: 1em; }
+                                }
+                            }
+	                }
+                    }
+                }
+
+                .est-reg-date-container {
+	            .est-reg-date {
+                        margin-bottom: 20px;
+                        .card-badge-label {
+                            line-height: 18px;
+                            margin-top: 0px;}
+                        .card-badge-value {
+                            line-height: 18px;
+                            font-size: 16px;
+                            .est-reg-time {
+                                font-size: 75%;
+                                font-weight:normal;}
+                        }
+                    }
+                }
+
+                .reg-details-container {
+                    .reg-details {
+                        .card-badge-label {}
+                        .card-badge-value {
+                            font-size: 14px;
+                            line-height:18px;
+                            font-weight:normal;
+                            .course-ready {font-weight: bold;}
+                        }
+                    }
+                }
+
+                .course-not-ready-details {
+                    background-color:@detail-section;
+                    margin-top:0px;
+                    margin-left:-10px;
+                    margin-right:-10px;
+                    padding-left:10px;
+                    padding-right:10px;
+                    .card-badge-label {
+                        margin-top:15px;
+                        margin-bottom:10px;
+                    }
+                    //padding-bottom:8px;
+                    //width: 100%;
+                    .courses-not-ready-message {}
+                    .courses-not-ready-list {
+                        list-style-type: none;
+                        padding-left: 10px;
+                        margin-bottom:5px;
+                        .courses-not-ready-list-item {}
+                    }
+                    .courses-not-ready-issues {
+                        list-style-type:circle;
+                        li {line-height:18px;padding-bottom:8px;
+                            i {color:rgba(238, 150, 16, 0.79)}
+                           }
+                    }
+                    .edit-plan-link {padding: 5px 0 10px 5px;}
+                }
+
+                .reg-details-closed-container {
+                    .reg-details-closed {
+                        .card-badge-label {
+                            margin-top: 0px;
+                        }
+                        .card-badge-value {
+                            line-height: 25px;
+                        }
+                    }
+                    .edit-plan-link {
+                        padding: 5px 0 10px 5px;
+                    }
+                }
+            }
+
+            // reg resources links
+            .reg_resources_disc {
+                .reg-resources-list {
+                    list-style: none;
+                    padding-left: 0;
+                }
+                .no-header-space {padding-top:10px;}
+                .reg-details-open {
+                    margin-top:10px;
+                    .reg-link {
+                        font-size:12px;
+                        margin-top:10px;
+                    }
+                }
+            }
+
+	    .finaid-notices-container {
+		.finaid-notices-panel-group {
+                    list-style-type: none;
+                    padding-left:0;
+                    line-height: 24px;
+		    .finaid-panel-default {
+                        border:none;
+                        box-shadow:
+                        none;-webkit-box-shadow: none;
+                        margin-left: -10px;
+                        margin-right: -10px;
+			.finaid-panel-heading {
+                            padding: 0px 0px;
+                            background-color: transparent;
+			    .finaid-panel-title {
+                                font-size:14px;
+                                padding: 0 10px;
+				a {color: #4d66ca;
+				   &.collapsed {
+				       span {
+					   &.caret {filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);-webkit-transform:rotate(270deg);-ms-transform:rotate(270deg);transform:rotate(270deg)}
+				       }
+				   }
+				  }
 			    }
 			}
-        
+			.finaid-panel-collapse {
+			    .finaid-panel-body {
+                                border-top: none;
+                                padding: 5px 10px;
+                                margin-top: 5px;
+                                background-color:#fcf8e3;
+                                line-height:20px;
+				span.notice-title {display:none;}
+			    }
+			}
+		    }
+		}
+	    }
+	}
     }
     
     // course cards
