@@ -66,18 +66,7 @@
 
     <div class="pull-right edit-plan-link">
         <a title="Edit plan to fix issues" target="_blank"
-           href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Edit plan to fix issues</a>
+           href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Edit plan in MyPlan</a>
     </div>
 </div>
-
-{{ #if registration_is_open }}
-    <div class="reg-details-open">
-        <a target="_blank"
-           href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">
-            {{ #unless plan_data.ready_count }}Edit plan to fix issues{{ else }}Start registration through MyPlan{{ /unless }}
-        </a><br />
-        <span class="reg-link">or enter SLNs on <a target="_blank" href="https://sdb.admin.washington.edu/students/uwnetid/register.asp">Registration screen</a></span>
-    </div>
-{{ /if}}
-
 {% endtplhandlebars %}
