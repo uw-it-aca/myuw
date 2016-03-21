@@ -11,8 +11,7 @@ var RegStatusCard = {
         Handlebars.registerPartial("reg_holds", $("#reg_holds_tmpl").html());
         Handlebars.registerPartial("reg_finaid_notices", $("#reg_finaid_notices_tmpl").html());
         Handlebars.registerPartial("notice_est_reg_date", $("#notice_est_reg_date_tmpl").html());
-        Handlebars.registerPartial("show_plan_courses", $("#myplan_courses_tmpl").html());
-        Handlebars.registerPartial("show_plan_without_courses", $("#myplan_without_course_tmpl").html());
+        Handlebars.registerPartial("in_myplan", $("#in_myplan_tmpl").html());
         Handlebars.registerPartial("reg_resources", $("#reg_resources_tmpl").html());
         Handlebars.registerPartial("reg_res_plan_courses", $("#reg_res_plan_courses_tmpl").html());
         Handlebars.registerPartial("reg_res_plan_unready_courses", $("#reg_res_plan_unready_courses_tmpl").html());
