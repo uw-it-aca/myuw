@@ -16,6 +16,7 @@
 @brown: #633a31;
 @gray: #ccc;
 @blue: #1155cc;
+@detail-section: rgba(100, 185, 84, 0.08);
 
 .button-variant(@color; @background; @border) {
 color: @color;
@@ -574,53 +575,132 @@ body {
     	margin-top: 20px;
     	padding: 10px;
     	
-		h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small;  margin-top: 10px; margin-bottom: 15px; color: @darktan; }
-        h4 { font-family:'Roboto'; font-weight: 400; font-size: 16px;  color: #444; }
+        h3 {
+            font-family: 'encode_sans_normalbold';
+            font-size: @font-header-small;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            color: @darktan; }
+        h4 {
+            font-family:'Roboto';
+            font-weight: 400;
+            font-size: 16px;
+            color: #444; }
         
         .card-content {  }
         
-        .card-critical-alert { background: rgb(240,219,208); padding: 8px; margin-bottom: 1em; color: #af4b1a; text-align: center;        
-	        i {font-size: 1.5em; vertical-align: middle; margin-right: .2em;}	        
-			a { color: #af4b1a; text-decoration: underline; }
+        .card-critical-alert {
+            // background: rgb(240,219,208); padding: 8px; color: #af4b1a;
+            margin-bottom: 1em;
+            text-align: center;
+
+            i {font-size: 1.5em; vertical-align: middle; margin-right: .2em;}
+	    a { color: #af4b1a; text-decoration: underline; }
+
+            .reg_holds_disc {
+                background: rgba(255, 140, 138, 0.16);
+                margin-left: -10px;
+                margin-right: -10px;
+                margin-top: 28px;
+            }
+
+            .holds_icon { color:grey;  font-size: 15px; }
         }
 
-        .card-noncritical-alert { background: rgb(221,229,239); padding: 8px; margin-bottom: 1em; color: #444; text-align: center;
-	        i { font-size: 1.5em; vertical-align: middle; margin-right: .2em;}	        
-			a {  text-decoration: underline; }
+        .quarter-heading, .resources-heading { color:@darktan; }
+
+        .reg_status_table td { height: 10px; }
+
+        .card-badge-label { font-weight: bold; }
+
+        .borderless td, .borderless th {
+            border: none;
+        }
+        .reg_status_table th { border-top: none !important; }
+        .reg_status_table td { border-top: none !important; }
+
+        .reg_resources_disc {
+            .card-badge-label { font-weight: bold; }
+        }
+
+        .card-noncritical-alert {
+            background: rgb(221,229,239);
+            padding: 8px;
+            margin-bottom: 1em;
+            color: #444;
+            text-align: center;
+	    i { font-size: 1.5em; vertical-align: middle; margin-right: .2em;}
+	    a {  text-decoration: underline; }
         }
         
         .card-badge-container {
             .card_list { list-style: none; padding-left: 0; }                
-            .card-badge {  padding: 8px 10px 10px 0px; position: relative;
-                .card-badge-label { display: block; font-weight: bold; /*line-height: 35px;*/ }
-                .card-badge-action { display: block; font-weight: normal; line-height: 35px; margin-top: -10px; 
+            .card-badge {
+                padding: 8px 0px 10px 0px;
+                position: relative;
+                .card-badge-label {
+                    display: block;
+                    font-weight: bold;
+                /*line-height: 35px;*/ }
+                .card-badge-action {
+                    display: block;
+                    font-weight: normal;
+                    line-height: 35px;
+                    margin-top: -10px;
                     a { display: block; }
                 }
-                
-                .card-badge-value { display: block; font-size: 22px; font-weight: bold;  text-align: right; }
-                .card-badge-note { font-weight: normal; color: #888; margin-top: 35px; position: absolute; bottom: -3px; font-size: 12px; }
+
+                .card-badge-value {
+                    display: block;
+                    font-size: 22px;
+                    font-weight: bold;
+                    text-align: right;
+                }
+
+                .card-badge-note {
+                    font-weight: normal;
+                    color: #888;
+                    margin-top: 35px;
+                    position: absolute;
+                    bottom: -3px;
+                    font-size: 12px;
+                }
             }
         }
         
-        .card-related-messages { margin: 1em 0; font-size: 12px;
+        .card-related-messages {
+            margin: 1em 0;
+            font-size: 12px;
             
             // override pce message
             .pce-message { color: #888; margin-top: 1em; }
-            
         }
         
         /*.nav-card-arrow { height: @line-height-base; position: absolute; right: 0; display: inline-block; top: 50%; margin-top: -@line-height-base / 2; }*/
         
-        ul.fina-notice-list { padding-left: 0px; 
-            
+        ul.fina-notice-list {
+            padding-left: 0px;
             li { padding-bottom: 8px; }
-            
         }
         
-        ul.unstyled-list, ol.unstyled-list { padding-left: 0px; list-style-type: none; line-height: 23px; }
-        ul.unstyled, ol.unstyled { padding-left: 0px; list-style-type: none; line-height: 23px; }
+        ul.unstyled-list, ol.unstyled-list {
+            padding-left: 0px;
+            list-style-type: none;
+            line-height: 23px; }
+        ul.unstyled, ol.unstyled {
+            padding-left: 0px;
+            list-style-type: none;
+            line-height: 23px; }
         
-        .card-disclosure {  margin-left: -10px; margin-right: -10px; margin-bottom: -10px; margin-top: 1em; /*padding-left: 10px;*/ border-top: solid 1px #eee; text-transform: uppercase; text-align: center; font-size: 12px;background-color: #efefef;
+        .card-disclosure {
+            margin-left: -10px;
+            margin-right: -10px;
+            margin-bottom: -10px;
+            margin-top: 1em; /*padding-left: 10px;*/
+            border-top: solid 1px #eee;
+            text-transform: uppercase;
+            text-align: center; font-size:
+            12px;background-color: #efefef;
             a { color: #444; display:block; line-height:40px; }
         }
         
@@ -634,8 +714,18 @@ body {
         
         
         .card-resources-list { list-style: none; padding-left: 0; }
-
-            
+        .bold_text { font-weight: bold; }
+        .course_not_ready_details {
+            background-color:@detail-section;
+            margin-top:0px;
+            margin-left:-10px;
+            margin-right:-10px;
+            padding-left:10px;
+            padding-right:10px;
+            .card-badge-label { font-weight: bold; }
+            //padding-bottom:8px;
+            //width: 100%;
+        }
     }
     
     // PCE card & PCE notice on Visual Schedule
