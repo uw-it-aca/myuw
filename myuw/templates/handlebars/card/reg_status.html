@@ -10,10 +10,6 @@
             {{> notice_est_reg_date }}
         {{/unless}}
 
-        {{ #if finaid_notices }}
-            {{> reg_finaid_notices }}
-        {{/if}}
-
         {{#if hold_count}}
             {{> reg_holds }}
         {{/if}}
@@ -33,6 +29,10 @@
         {{/if}}
 
         {{> reg_resources }}
+
+        {{ #if finaid_notices }}
+            {{> reg_finaid_notices }}
+        {{/if}}
 
         {{#if plan_data}}
 	    <span id="reg_resources_desc" class="sr-only">{{reg_next_quarter}} {{reg_next_year}} plan</span>
@@ -64,15 +64,6 @@
                         <a class="show_reg_resources{{#if card}}_{{card}}{{/if}}" aria-controls="reg_resources" aria-labelledby="hide_plan_reg_resources_label{{#if card}}_{{card}}{{/if}}" href="#" title="Collapse to hide {{reg_next_quarter}} {{reg_next_year}} plan">Hide {{reg_next_quarter}} {{reg_next_year}} plan</a>
                     </span>
 
-                {{else}}
-                    <span id="show_reg_resources_wrapper{{#if card}}_{{card}}{{/if}}">
-                        <span id="show_plan_reg_resources_label{{#if card}}_{{card}}{{/if}}" class="sr-only">Expand to show additional registration resources</span>
-                        <a class="show_reg_resources{{#if card}}_{{card}}{{/if}}" aria-controls="reg_resources" aria-labelledby="show_plan_reg_resources_label{{#if card}}_{{card}}{{/if}}" href="#" title="Expand to show additional registration resources">Show more</a>
-                    </span>
-                    <span id="hide_reg_resources_wrapper{{#if card}}_{{card}}{{/if}}" hidden aria-hidden="true">
-                        <span id="hide_plan_reg_resources_label{{#if card}}_{{card}}{{/if}}" class="sr-only">Collapse to hide additional registration resources</span>
-                        <a class="show_reg_resources{{#if card}}_{{card}}{{/if}}" aria-controls="reg_resources" aria-labelledby="hide_plan_reg_resources_label{{#if card}}_{{card}}{{/if}}" href="#" title="Collapse to hide additional registration resources">Show less</a>
-                    </span>
                 {{/if}}
             </div>
         {{/if}}
