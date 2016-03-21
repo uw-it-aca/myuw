@@ -90,7 +90,10 @@ var RegStatusCard = {
         }
 
         var year, has_registration, next_term_data;
+        var finaid_tags = ["reg_summeraid_avail_title"];
+        var financial_aid_notices;
         if (quarter == "Summer") {
+            financial_aid_notices = Notices.get_ordered_finaid_notices(finaid_tags);
             next_term_data = WSData.oquarter_data().next_term_data;
             var terms = WSData.oquarter_data().terms;
             year = next_term_data.year;
@@ -121,9 +124,6 @@ var RegStatusCard = {
                 plan_data = all_plan_data.terms[0];
             }
         }
-
-        var finaid_tags = ["reg_summeraid_avail_title"];
-        var financial_aid_notices = Notices.get_ordered_finaid_notices(finaid_tags);
 
         var hide_card = true;
         if (financial_aid_notices && financial_aid_notices.length) {
