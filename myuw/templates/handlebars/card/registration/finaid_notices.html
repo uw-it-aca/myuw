@@ -1,0 +1,31 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "reg_finaid_notices_tmpl" %}
+
+<div class="card-badge-container finaid-notices-container">
+
+    <h4>Financial Aid</h4>
+
+    <ul class="panel-group finaid-notices-reg-panel-group" id="reg_finaid_notices_accordion" role="tablist" aria-multiselectable="true">
+
+        {{ #each finaid_notices}}
+            <li class="panel panel-default finaid-panel-default">
+
+                <div id="Reg{{id_hash}}{{#if ../card}}_smr{{/if}}" class="panel-heading finaid-panel-heading" role="tab">
+                    <span class="panel-title finaid-panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#reg_finaid_notices_accordion" href="#collapseReg{{id_hash}}{{#if ../card}}_smr{{/if}}" aria-expanded="true" aria-controls="collapseReg{{id_hash}}{{#if ../card}}_smr{{/if}}">
+                            <span class="caret" aria-hidden="true"></span>
+                            {{{short_content}}}
+                        </a>
+                    </span>
+                </div>
+                <div id="collapseReg{{id_hash}}{{#if ../card}}_smr{{/if}}" class="panel-collapse collapse finaid-panel-collapse" role="tabpanel" aria-labelledby="headingReg{{id_hash}}{{#if ../card}}_smr{{/if}}">
+                    <div class="panel-body finaid-panel-body">
+                        {{{ notice_content }}}
+                    </div>
+                </div>
+            </li>
+        {{ /each }}
+    </ul>
+</div>
+
+{% endtplhandlebars %}

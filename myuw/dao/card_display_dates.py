@@ -66,6 +66,7 @@ def get_values_by_date(now, request):
             is_before_bof_term(now, request),
         "is_before_last_day_of_classes":
             is_before_last_day_of_classes(now, request),
+        "myplan_peak_load": myplan_peak_load(now, request),
         "is_summer": is_in_summer_quarter(request),
         "is_after_summer_b": is_in_summer_b_term(request),
         "current_summer_term": "%s,%s" % (last_term.year, "summer"),
@@ -163,6 +164,13 @@ def is_after_bof_and_before_eof_summer_reg_periodA(now, request):
     return reg_data["after_summerA_start"]
 
 
+def myplan_peak_load(now, request):
+    reg_data = get_reg_data(now, request)
+    logger.debug("%s myplan_peak_load ==> %s" % (
+            now, reg_data["myplan_peak_load"]))
+    return reg_data["myplan_peak_load"]
+
+
 def get_reg_data(now, request):
     """
     now is the second after mid-night
@@ -171,6 +179,7 @@ def get_reg_data(now, request):
         "after_start": False,
         "after_summer1_start": False,
         "after_summerA_start": False,
+        "myplan_peak_load": False,
     }
     next_term = get_next_quarter(request)
     get_term_reg_data(now, next_term, term_reg_data)
@@ -185,6 +194,15 @@ def get_reg_data(now, request):
 
 
 def get_term_reg_data(now, term, data):
+    reg_day = False
+    if (now >= term.registration_period1_start and\
+            now < term.registration_period1_end) or\
+            (now >= term.registration_period2_start and\
+                 now < term.registration_period2_end):
+        reg_day = True
+    peak_time = False
+    data["myplan_peak_load"] = (reg_day and peak_time)
+
     if term.quarter == "summer":
         if now >= term.registration_period1_start - timedelta(days=7) and\
                 now < term.registration_period1_start + timedelta(days=7):

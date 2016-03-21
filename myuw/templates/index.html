@@ -22,12 +22,12 @@
     {% include "handlebars/card/no_course.html" %}
     {% include "handlebars/card/pce_tuition.html" %}
     {% include "handlebars/card/registration/holds.html" %}
+    {% include "handlebars/card/registration/est_reg_date.html" %}
+    {% include "handlebars/card/registration/finaid_notices.html" %}
     {% include "handlebars/card/registration/myplan_with_courses.html" %}
     {% include "handlebars/card/registration/myplan_without_course.html" %}
-    {% include "handlebars/card/registration/notice_est_reg_date.html" %}
-    {% include "handlebars/card/registration/reg_not_open_res.html" %}
     {% include "handlebars/card/registration/reg_res_plan_courses.html" %}
-    {% include "handlebars/card/registration/reg_res_plan_unread_courses.html" %}
+    {% include "handlebars/card/registration/reg_res_plan_unready_courses.html" %}
     {% include "handlebars/card/registration/reg_resources.html" %}
     {% include "handlebars/card/reg_status.html" %}
     {% include "handlebars/card/tuition.html" %}
@@ -120,6 +120,7 @@
         "is_before_first_day_of_term": {{ card_display_dates.is_before_first_day_of_term|yesno:"true, false" }},
         "is_before_eof_7days_of_term": {{ card_display_dates.is_before_eof_7days_of_term|yesno:"true, false" }},
         "is_after_7d_before_last_instruction": {{ card_display_dates.is_after_7d_before_last_instruction|yesno:"true, false"}},
+        "myplan_peak_load": {{card_display_dates.myplan_peak_load|yesno:"true, false"}},
         "is_summer": {{ card_display_dates.is_summer|yesno:"true, false"}},
         "current_summer_term": "{{ card_display_dates.current_summer_term}}",
         "is_after_summer_b_start": {{ card_display_dates.is_after_summer_b|yesno:"true, false"}},

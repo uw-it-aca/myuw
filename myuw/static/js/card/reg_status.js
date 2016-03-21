@@ -9,13 +9,13 @@ var RegStatusCard = {
         }
 
         Handlebars.registerPartial("reg_holds", $("#reg_holds_tmpl").html());
+        Handlebars.registerPartial("reg_finaid_notices", $("#reg_finaid_notices_tmpl").html());
         Handlebars.registerPartial("notice_est_reg_date", $("#notice_est_reg_date_tmpl").html());
         Handlebars.registerPartial("show_plan_courses", $("#myplan_courses_tmpl").html());
         Handlebars.registerPartial("show_plan_without_courses", $("#myplan_without_course_tmpl").html());
-        Handlebars.registerPartial("reg_not_open_resources", $("#reg_not_open_resources_tmpl").html());
-        Handlebars.registerPartial("reg_res_plan_courses", $("#reg_res_plan_courses_tmpl").html());
-        Handlebars.registerPartial("reg_res_plan_unread_courses", $("#reg_res_plan_unread_courses_tmpl").html());
         Handlebars.registerPartial("reg_resources", $("#reg_resources_tmpl").html());
+        Handlebars.registerPartial("reg_res_plan_courses", $("#reg_res_plan_courses_tmpl").html());
+        Handlebars.registerPartial("reg_res_plan_unready_courses", $("#reg_res_plan_unready_courses_tmpl").html());
 
         if (!(window.card_display_dates.is_after_start_of_registration_display_period &&
               window.card_display_dates.is_before_end_of_registration_display_period)) {
@@ -55,6 +55,7 @@ var RegStatusCard = {
         var reg_holds = Notices.get_notices_for_tag("reg_card_holds");
         var reg_date = Notices.get_notices_for_tag("est_reg_date");
         var i, j;
+        var registration_is_open;
 
         // Filter estimated registration dates for summer...
         var display_reg_dates = [];
@@ -112,10 +113,13 @@ var RegStatusCard = {
             return;
         }
 
-        var all_plan_data = WSData.myplan_data(year, quarter);
-        var plan_data = {};
-        if (all_plan_data && all_plan_data.terms) {
-            plan_data = all_plan_data.terms[0];
+        var plan_data = undefined;
+        if (! window.card_display_dates.myplan_peak_load) {
+            var all_plan_data = WSData.myplan_data(year, quarter);
+            plan_data = {};
+            if (all_plan_data && all_plan_data.terms) {
+                plan_data = all_plan_data.terms[0];
+            }
         }
 
         var finaid_tags = ["reg_summeraid_avail_title"];
@@ -314,7 +318,9 @@ var RegStatusCard = {
             LogUtils.cardLoaded(RegStatusCard.name, RegStatusCard.dom_target);
         }
         else {
-            WSData.fetch_myplan_data(next_term_data.year, next_term_data.quarter, RegStatusCard.render_upon_data, RegStatusCard.render_error);
+            if (! window.card_display_dates.myplan_peak_load) {
+                WSData.fetch_myplan_data(next_term_data.year, next_term_data.quarter, RegStatusCard.render_upon_data, RegStatusCard.render_error);
+            }
         }
     }
 
