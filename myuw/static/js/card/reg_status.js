@@ -113,7 +113,7 @@ var RegStatusCard = {
             return;
         }
 
-        var plan_data = undefined;
+        var plan_data;
         if (! window.card_display_dates.myplan_peak_load) {
             var all_plan_data = WSData.myplan_data(year, quarter);
             plan_data = {};
