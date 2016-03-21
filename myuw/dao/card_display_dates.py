@@ -195,10 +195,10 @@ def get_reg_data(now, request):
 
 def get_term_reg_data(now, term, data):
     reg_day = False
-    if (now >= term.registration_period1_start and\
-            now < term.registration_period1_end) or\
-            (now >= term.registration_period2_start and\
-                 now < term.registration_period2_end):
+    if (now >= term.registration_period1_start and
+        now < term.registration_period1_end) or\
+        (now >= term.registration_period2_start and
+         now < term.registration_period2_end):
         reg_day = True
     peak_time = False
     data["myplan_peak_load"] = (reg_day and peak_time)
