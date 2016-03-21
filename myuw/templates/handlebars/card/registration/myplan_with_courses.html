@@ -20,16 +20,23 @@
             <div style="text-align:right;">
             {{ #if plan_data.has_sections }}
                 <span id="show_unready_courses_wrapper{{#if card }}_{{card}}{{/if}}">
-                    <span class="sr-only" id="show_unready_course_details_label{{#if card }}_{{card}}{{/if}}">See more details about unready courses</span>
-                    <a href="javascript:void(0)" aria-labelledby="show_unready_course_details_label{{#if card }}_{{card}}{{/if}}" class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}"><i class="fa fa-sort-desc fa-rotate-270" aria-hidden="true"></i> Show details</a>
+                    <span id="show_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
+                          class="sr-only">See more details about unready courses</span>
+                    <a href="javascript:void(0)"
+                       aria-labelledby="show_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
+                       class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}"><i class="fa fa-sort-desc fa-rotate-270" aria-hidden="true"></i> See details</a>
                 </span>
 
                 <span id="hide_unready_courses_wrapper{{#if card }}_{{card}}{{/if}}" hidden aria-hidden="true">
-                    <span id="hide_unready_course_details_label{{#if card }}_{{card}}{{/if}}" class="sr-only">Hide details for unready courses</span>
-                    <a href="javascript:void(0)" aria-labelledby="hide_unready_course_details_label{{#if card }}_{{card}}{{/if}}" class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}"><i class="fa fa-sort-desc" aria-hidden="true"></i> Hide details</a>
+                    <span id="hide_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
+                          class="sr-only">Hide details for unready courses</span>
+                    <a href="javascript:void(0)"
+                       aria-labelledby="hide_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
+                       class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}"><i class="fa fa-sort-desc" aria-hidden="true"></i> Hide details</a>
                 </span>
             {{ else }}
-                <a style="margin-top:8px;" target="_blank" href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Add Sections</a>
+                <a style="margin-top:8px;" target="_blank"
+                   href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Add Sections</a>
             {{ /if}}
             </div>
         </div>
@@ -58,19 +65,18 @@
     </ul>
 
     <div class="pull-right edit-plan-link">
-        <a title="Edit plan to fix issues" target="_blank" href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Edit plan to fix issues</a>
+        <a title="Edit plan to fix issues" target="_blank"
+           href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Edit plan to fix issues</a>
     </div>
 </div>
 
 {{ #if registration_is_open }}
     <div class="reg-details-open">
-        {{ #unless plan_data.ready_count }}
-            <a target="_blank" href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Edit plan to fix issues</a><br />
-            <span class="reg-link">or enter SLNs on <a target="_blank" href="https://sdb.admin.washington.edu/students/uwnetid/register.asp">Registration screen</a></span>
-        {{ else }}
-            <a target="_blank" href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Start registration through MyPlan</a><br />
-            <span class="reg-link">or enter SLNs on <a target="_blank" href="//sdb.admin.washington.edu/students/uwnetid/register.asp">Registration screen</a></span>
-        {{ /unless }}
+        <a target="_blank"
+           href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">
+            {{ #unless plan_data.ready_count }}Edit plan to fix issues{{ else }}Start registration through MyPlan{{ /unless }}
+        </a><br />
+        <span class="reg-link">or enter SLNs on <a target="_blank" href="https://sdb.admin.washington.edu/students/uwnetid/register.asp">Registration screen</a></span>
     </div>
 {{ /if}}
 
