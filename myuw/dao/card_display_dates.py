@@ -194,14 +194,34 @@ def get_reg_data(now, request):
 
 
 def get_term_reg_data(now, term, data):
-    reg_day = False
-    if (now >= term.registration_period1_start and
-        now < term.registration_period1_end) or\
-        (now >= term.registration_period2_start and
-         now < term.registration_period2_end):
-        reg_day = True
-    peak_time = False
-    data["myplan_peak_load"] = (reg_day and peak_time)
+    period1_peak_start = datetime(term.registration_period1_start.year,
+                                  term.registration_period1_start.month,
+                                  term.registration_period1_start.day,
+                                  5, 30, 0)
+    period1_peak_end = datetime(term.registration_period1_start.year,
+                                term.registration_period1_start.month,
+                                term.registration_period1_start.day,
+                                6, 30, 0)
+    period2_peak_start = datetime(term.registration_period2_start.year,
+                                  term.registration_period2_start.month,
+                                  term.registration_period2_start.day,
+                                  5, 30, 0)
+    period2_peak_end = datetime(term.registration_period2_start.year,
+                                term.registration_period2_start.month,
+                                term.registration_period2_start.day,
+                                6, 30, 0)
+    period3_peak_start = datetime(term.registration_period3_start.year,
+                                  term.registration_period3_start.month,
+                                  term.registration_period3_start.day,
+                                  5, 30, 0)
+    period3_peak_end = datetime(term.registration_period3_start.year,
+                                term.registration_period3_start.month,
+                                term.registration_period3_start.day,
+                                6, 30, 0)
+    if (now >= period1_peak_start and now < period1_peak_end) or\
+            (now >= period2_peak_start and now < period2_peak_end) or\
+            (now >= period3_peak_start and now < period3_peak_end):
+        data["myplan_peak_load"] = True
 
     if term.quarter == "summer":
         if now >= term.registration_period1_start - timedelta(days=7) and\
@@ -232,6 +252,7 @@ def set_js_overrides(request, values):
            'myuw_before_first_day': 'is_before_first_day_of_term',
            'myuw_before_end_of_first_week': 'is_before_eof_7days_of_term',
            'myuw_after_eval_start': 'is_after_7d_before_last_instruction',
+           'myplan_peak_load': 'myplan_peak_load',
            'myuw_in_coursevel_fetch_window': 'in_coursevel_fetch_window'
            }
 

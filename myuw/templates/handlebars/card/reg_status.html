@@ -15,17 +15,7 @@
         {{/if}}
 
         {{#if plan_data}}
-            <div class="card-badge-container">
-                <ul class="card_list">
-                    <li>
-		        {{#if plan_data.courses}}
-                            {{> show_plan_courses }}
-		        {{else}}
-                            {{> show_plan_without_courses }}
-                        {{/if}}
-		    </li>
-	        </ul>
-            </div>
+            {{> in_myplan }}
         {{/if}}
 
         {{> reg_resources }}
