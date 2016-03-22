@@ -70,18 +70,19 @@ var RegStatusCard = {
                 }
 
                 if (quarter == "Summer") {
-                    if ((attribute.name == "Quarter") && (attribute.value == "Summer")) {
+                    if (attribute.name === "Quarter" && attribute.value === "Summer") {
                         show_notice = true;
                     }
                 }
                 else {
-                    if ((attribute.name == "Quarter") && (attribute.value == quarter)) {
+                    if (attribute.name === "Quarter" && attribute.value === quarter) {
                         show_notice = true;
                     }
                 }
 
                 if (show_notice) {
-                    display_reg_dates.push({ "notice": notice, "date": registration_date });
+                    display_reg_dates.push({"notice": notice,
+                                            "date": registration_date });
                     registration_is_open = false;
                 }
             }
@@ -127,13 +128,13 @@ var RegStatusCard = {
         if (financial_aid_notices && financial_aid_notices.length) {
              hide_card = false;
         }
-        if (hide_card && display_reg_dates.length) {
+        if (hide_card && display_reg_dates && display_reg_dates.length) {
             hide_card = false;
         }
-        if (hide_card && reg_holds.length) {
+        if (hide_card && reg_holds && reg_holds.length) {
             hide_card = false;
         }
-        if (hide_card && plan_data.length) {
+        if (hide_card && plan_data && plan_data.length) {
             hide_card = false;
         }
 
