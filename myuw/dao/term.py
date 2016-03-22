@@ -44,6 +44,7 @@ def get_default_datetime():
                         0, 0, 1)
     return datetime.now()
 
+
 def get_comparison_datetime(request):
     """
     To test at various points in the year, return the datetime
@@ -64,7 +65,7 @@ def get_comparison_datetime(request):
                 try:
                     date_format = "%Y-%m-%d"
                     override_date = datetime.strptime(val, date_format) + \
-                                    timedelta(seconds=1)
+                        timedelta(seconds=1)
                 except Exception:
                     raise
             except Exception as ex:
@@ -82,6 +83,7 @@ def get_comparison_date(request):
     """
     now = get_comparison_datetime(request)
     return now.date()
+
 
 def get_current_quarter(request):
     """

@@ -86,7 +86,8 @@ def override(request):
 def _handle_post(request, context):
     if request.POST["date"]:
         try:
-            date_obj = datetime.strptime(request.POST["date"], "%Y-%m-%d %H:%M:%S")
+            date_obj = datetime.strptime(request.POST["date"],
+                                         "%Y-%m-%d %H:%M:%S")
             request.session["myuw_override_date"] = request.POST["date"]
         except Exception as ex:
             context["date_error"] = str(ex)
