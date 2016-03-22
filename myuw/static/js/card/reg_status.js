@@ -53,14 +53,15 @@ var RegStatusCard = {
         var reg_holds = Notices.get_notices_for_tag("reg_card_holds");
         var reg_date = Notices.get_notices_for_tag("est_reg_date");
         var i, j;
-        var registration_is_open;
+        var registration_is_open = true;
+        var display_reg_dates = [];
 
         // Filter estimated registration dates for summer...
-        var display_reg_dates = [];
         for (i = 0; i < reg_date.length; i++) {
             var notice = reg_date[i];
             var show_notice = false;
             var registration_date = null;
+
             for (j = 0; j < notice.attributes.length; j++) {
                 var attribute = notice.attributes[j];
 
@@ -69,13 +70,15 @@ var RegStatusCard = {
                     registration_date = attribute.value;
                 }
 
-                if (quarter == "Summer") {
-                    if (attribute.name === "Quarter" && attribute.value === "Summer") {
+                if (quarter === "Summer") {
+                    if (attribute.name === "Quarter" &&
+                        attribute.value === "Summer") {
                         show_notice = true;
                     }
                 }
                 else {
-                    if (attribute.name === "Quarter" && attribute.value === quarter) {
+                    if (attribute.name === "Quarter" &&
+                        attribute.value === quarter) {
                         show_notice = true;
                     }
                 }
@@ -89,14 +92,15 @@ var RegStatusCard = {
         }
 
         var year, has_registration, next_term_data;
-        var finaid_tags = ["reg_summeraid_avail_title"];
         var financial_aid_notices;
+
         if (quarter == "Summer") {
+            var finaid_tags = ["reg_summeraid_avail_title"];
             financial_aid_notices = Notices.get_ordered_finaid_notices(finaid_tags);
             next_term_data = WSData.oquarter_data().next_term_data;
-            var terms = WSData.oquarter_data().terms;
             year = next_term_data.year;
 
+            var terms = WSData.oquarter_data().terms;
             for (i = 0; i < terms.length; i++) {
                 var term = terms[i];
                 if ((term.quarter == quarter) && term.section_count) {
@@ -312,8 +316,8 @@ var RegStatusCard = {
 
         if (window.card_display_dates.myplan_peak_load ||
             WSData.myplan_data(next_term_data.year, next_term_data.quarter)) {
-            var content = RegStatusCard._render_for_term(reg_next_quarter);
 
+            var content = RegStatusCard._render_for_term(reg_next_quarter);
             if (!content) {
                 RegStatusCard.dom_target.hide();
                 return;
