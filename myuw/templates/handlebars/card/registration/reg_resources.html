@@ -18,7 +18,16 @@
             <li class="reg-details-open">
                 <a target="_blank"
                    class="reg-link"
-                   href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">{{#if registration_is_open}}{{#unless plan_data.courses_ready}}Edit plan in{{else}}Register using{{/unless}} {{/if}}MyPlan</a>
+                   href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">
+                    {{#if registration_is_open}}
+                        {{#unless plan_data.ready_count}}
+                            Edit plan in
+                        {{else}}
+                            Register using
+                        {{/unless}}
+                        &nbsp;
+                   {{/if}}MyPlan
+                </a>
             </li>
         {{/if}}
 
