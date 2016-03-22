@@ -303,7 +303,14 @@ var RegStatusCard = {
         var next_term_data = WSData.oquarter_data().next_term_data;
         var reg_next_quarter = next_term_data.quarter;
 
-        if (WSData.myplan_data(next_term_data.year, next_term_data.quarter)) {
+        if (! window.card_display_dates.myplan_peak_load &&
+            ! WSData.myplan_data(next_term_data.year, next_term_data.quarter)) {
+            WSData.fetch_myplan_data(next_term_data.year, next_term_data.quarter, RegStatusCard.render_upon_data, RegStatusCard.render_error);
+            return;
+        }
+
+        if (window.card_display_dates.myplan_peak_load ||
+            WSData.myplan_data(next_term_data.year, next_term_data.quarter)) {
             var content = RegStatusCard._render_for_term(reg_next_quarter);
 
             if (!content) {
@@ -315,11 +322,5 @@ var RegStatusCard = {
             RegStatusCard._add_events();
             LogUtils.cardLoaded(RegStatusCard.name, RegStatusCard.dom_target);
         }
-        else {
-            if (! window.card_display_dates.myplan_peak_load) {
-                WSData.fetch_myplan_data(next_term_data.year, next_term_data.quarter, RegStatusCard.render_upon_data, RegStatusCard.render_error);
-            }
-        }
     }
-
 };
