@@ -6,12 +6,12 @@ from datetime import date, datetime, timedelta
 import logging
 from django.conf import settings
 from restclients.models.sws import Term
-from restclients.util.datetime_convertor import convert_to_begin_of_day,\
+from restclients.util.datetime_convertor import convert_to_begin_of_day, \
     convert_to_end_of_day
 from restclients.sws.section import is_a_term, is_b_term, is_full_summer_term
-from restclients.sws.term import get_term_by_date, get_specific_term,\
-    get_current_term, get_next_term, get_previous_term,\
-    get_term_before, get_term_after, get_next_autumn_term,\
+from restclients.sws.term import get_term_by_date, get_specific_term, \
+    get_current_term, get_next_term, get_previous_term, \
+    get_term_before, get_term_after, get_next_autumn_term, \
     get_next_non_summer_term
 from myuw.dao import is_using_file_dao
 from myuw.logger.timer import Timer
@@ -26,46 +26,62 @@ def get_default_date():
     A hook to help with mock data testing - put the default date
     right in the middle of the "current" term.
     """
+    return get_default_datetime().date()
+
+
+def get_default_datetime():
+    """
+    A hook to help with mock data testing - put the default datetime
+    right in the middle of the "current" term.
+    """
     if is_using_file_dao():
         term = get_current_term()
         first_day = term.first_day_quarter
+        default_date = first_day + timedelta(days=14)
+        return datetime(default_date.year,
+                        default_date.month,
+                        default_date.day,
+                        0, 0, 1)
+    return datetime.now()
 
-        return first_day + timedelta(days=14)
-    return datetime.now().date()
-
-
-def get_comparison_date(request):
+def get_comparison_datetime(request):
     """
-    To test at various points in the year, return the date
+    To test at various points in the year, return the datetime
     overriden if specified in the request;
-    otherwise return the default date.
+    otherwise return the default datetime. Format: YYYY-MM-DDTHH:MM:SS
     """
-    FORMAT = "%Y-%m-%d"
+    FORMAT = "%Y-%m-%d %H:%M:%S"
 
     override_date = None
     if request:
         if "myuw_override_date" in request.session:
             try:
                 val = request.session["myuw_override_date"]
-                test_date = datetime.strptime(val, FORMAT)
-                override_date = val
+                override_date = datetime.strptime(val, FORMAT)
+            except ValueError:
+                # Accepts an override date as well, but adds 1 second
+                # so date logic works
+                try:
+                    date_format = "%Y-%m-%d"
+                    override_date = datetime.strptime(val, date_format) + \
+                                    timedelta(seconds=1)
+                except Exception:
+                    raise
             except Exception as ex:
                 pass
 
     if override_date:
-        return datetime.strptime(override_date, "%Y-%m-%d").date()
+        return override_date
 
-    return get_default_date()
+    return get_default_datetime()
 
 
-def get_comparison_datetime(request):
+def get_comparison_date(request):
     """
-    Convert the get_comparison_date to a datetime value
-    representing 1 second after midnight
+    Convert the get_comparison_datetime to a date value
     """
-    now = get_comparison_date(request)
-    return datetime(now.year, now.month, now.day, 0, 0, 1)
-
+    now = get_comparison_datetime(request)
+    return now.date()
 
 def get_current_quarter(request):
     """
@@ -197,8 +213,8 @@ def get_bod_current_term_class_start(request, break_at_a_term=False):
     or the beginning of summer B-term if applicable
     """
     return _get_correspond_eod(
-        get_current_quarter(request).get_bod_first_day(),
-        request, break_at_a_term)
+            get_current_quarter(request).get_bod_first_day(),
+            request, break_at_a_term)
 
 
 def get_eod_7d_after_class_start(request, break_at_a_term=False):
@@ -228,8 +244,8 @@ def get_eod_current_term(request, break_at_a_term=False):
     deadline or the end of summer a-term if applicable
     """
     return _get_correspond_eod(
-        get_current_quarter(request).get_eod_grade_submission(),
-        request, break_at_a_term)
+            get_current_quarter(request).get_eod_grade_submission(),
+            request, break_at_a_term)
 
 
 def get_eod_current_term_last_instruction(request, break_at_a_term=False):
@@ -238,8 +254,8 @@ def get_eod_current_term_last_instruction(request, break_at_a_term=False):
     for current quarter and current summer A-term if applicable
     """
     return _get_correspond_eod(
-        get_current_quarter(request).get_eod_last_instruction(),
-        request, break_at_a_term)
+            get_current_quarter(request).get_eod_last_instruction(),
+            request, break_at_a_term)
 
 
 def get_bod_7d_before_last_instruction(request):
@@ -279,7 +295,7 @@ def get_eod_specific_quarter_after(year, quarter):
     Only the summer full term is relevant.
     """
     return get_term_after(
-        get_specific_term(year, quarter)).get_eod_grade_submission()
+            get_specific_term(year, quarter)).get_eod_grade_submission()
 
 
 def get_eod_specific_quarter_last_instruction(year, quarter):
