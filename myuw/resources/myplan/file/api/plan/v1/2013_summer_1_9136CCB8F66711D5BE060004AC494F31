@@ -1,6 +1,12 @@
 [
     {
-        "Term":{"Quarter":"Spring","Year":2013},
+        "Term":{
+            "Quarter":"Summer",
+            "Year":2013,
+            "Id":"20133",
+            "Label":"Summer 2013",
+            "OpenForRegistration":true
+         },
         "RegistrationHref":"http://example.com/RegistrationHref",
         "MyPlanHref":"http://example.com/MyPlan",
         "Courses":[
@@ -8,7 +14,18 @@
                 "CurriculumAbbreviation":"PHYS",
                 "CourseNumber":"121",
                 "RegistrationAvailable":false,
-                "Sections":[]}
-                ]
-    }
+                "Sections":[]},
+            {
+                "CurriculumAbbreviation":"CSE",
+                "CourseNumber":"101",
+                "RegistrationAvailable":true,
+                "Sections":[{"SectionId":"A"}]},
+            {
+                "CurriculumAbbreviation":"TRAIN",
+                "CourseNumber":"101",
+                "RegistrationAvailable":true,
+                "Sections":[{"SectionId":"A"}]
+               }
+          ]
+   }
 ]
