@@ -49,7 +49,7 @@ class TestMyPlanApi(TestCase):
         self.assertEquals(len(data["terms"][0]["courses"]), 5)
         self.assertEquals(data["terms"][0]["has_unready_courses"], True)
         self.assertEquals(data["terms"][0]["has_ready_courses"], False)
-        self.assertEquals(data["terms"][0]["has_sections"], True)
+        self.assertEquals(data["terms"][0]["has_sections"], False)
         self.assertEquals(data["terms"][0]["ready_count"], 0)
         self.assertEquals(data["terms"][0]["unready_count"], 5)
 
