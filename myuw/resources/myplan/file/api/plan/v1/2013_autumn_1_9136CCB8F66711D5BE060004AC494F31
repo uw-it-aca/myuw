@@ -5,7 +5,7 @@
              "Year":2013,
              "Id":"20134",
              "Label":"Autumn 2013",
-             "OpenForRegistration":true
+             "OpenForRegistration": true
              },
         "RegistrationHref":"https://uwkseval.cac.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/20134",
         "MyPlanHref":"https://uwkseval.cac.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/plan/20134",
@@ -21,18 +21,13 @@
                 "CurriculumAbbreviation":"PHYS",
                 "CourseNumber":"121",
                 "RegistrationAvailable":false,
-                "Sections":[
-                    {"SectionId":"AA"},
-                    {"SectionId":"AC"}
-                ]},
+                "Sections":[]
+            },
             {
                 "CurriculumAbbreviation":"CSE",
                 "CourseNumber":"102",
                 "RegistrationAvailable":false,
-                "Sections":[
-                    {"SectionId":"A"},
-                    {"SectionId":"B"},
-                    {"SectionId":"C"}]
+                "Sections":[]
             },
             {
                 "CurriculumAbbreviation":"ART",
