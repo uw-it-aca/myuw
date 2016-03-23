@@ -15,18 +15,10 @@
         {{/unless}}
 
         {{#if plan_data }}
-            <li class="reg-details-open">
+            <li{{#unless registration_is_open}} class="reg-details-open"{{/unless}}>
                 <a target="_blank"
                    class="reg-link"
-                   href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">
-                    {{#if registration_is_open}}
-                        {{#unless plan_data.ready_count}}
-                            Edit plan in
-                        {{else}}
-                            Register using
-                        {{/unless}}
-                   {{/if}}MyPlan
-                </a>
+                   href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">{{#if registration_is_open}}{{#unless plan_data.ready_count}}Edit plan in{{else}}Register using{{/unless}} {{/if}}MyPlan</a>
             </li>
         {{/if}}
 
@@ -73,7 +65,6 @@
         {{ /if }}
 
         <li>
-            <span class="sr-only">Go to DARS</span>
             <a target="_blank" href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree">Audit your degree (DARS)</a>
         </li>
     </ul>
