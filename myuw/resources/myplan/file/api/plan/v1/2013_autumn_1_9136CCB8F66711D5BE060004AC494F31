@@ -1,23 +1,51 @@
 [
     {
-        "Term":{"Quarter":"Spring","Year":2013},
-        "RegistrationHref":"http://example.com/RegistrationHref",
-        "MyPlanHref":"http://example.com/MyPlan",
+        "Term":{
+             "Quarter":"Autumn",
+             "Year":2013,
+             "Id":"20134",
+             "Label":"Autumn 2013",
+             "OpenForRegistration": true
+             },
+        "RegistrationHref":"https://uwkseval.cac.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/20134",
+        "MyPlanHref":"https://uwkseval.cac.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/plan/20134",
+        "AuditHref":"https://uwkseval.cac.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit",
+        "PlanAuditHref":"https://uwkseval.cac.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/plan",
+        "DegreeAuditHref":"https://uwkseval.cac.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree",
+        "PlanValidationHref":"https://uwkseval.cac.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/planValidation/20134",
+        "CourseSearchHref":"https://uwkseval.cac.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/course",
+        "RegisteredCoursesCount":0,
+        "RegisteredSectionsCount":0,
         "Courses":[
             {
                 "CurriculumAbbreviation":"PHYS",
                 "CourseNumber":"121",
                 "RegistrationAvailable":false,
-                "Sections":[
-                    {"SectionId":"AA"},
-                    {"SectionId":"AC"}
-                ]},
+                "Sections":[]
+            },
             {
                 "CurriculumAbbreviation":"CSE",
                 "CourseNumber":"102",
                 "RegistrationAvailable":false,
-                "Sections":[
-                    {"SectionId":"A"},
-                    {"SectionId":"B"},
-                    {"SectionId":"C"}]}]}
+                "Sections":[]
+            },
+            {
+                "CurriculumAbbreviation":"ART",
+                "CourseNumber":"140",
+                "RegistrationAvailable":false,
+                "Sections":[]
+            },
+            {
+                "CurriculumAbbreviation":"B ARTS",
+                "CourseNumber":"141",
+                "RegistrationAvailable":false,
+                "Sections":[]
+            },
+            {
+                "CurriculumAbbreviation":"ART",
+                "CourseNumber":"191",
+                "RegistrationAvailable":false,
+                "Sections":[]}
+       ]
+   }
 ]

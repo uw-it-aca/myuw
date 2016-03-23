@@ -1,23 +1,63 @@
 [
     {
-        "Term":{"Quarter":"Spring","Year":2013},
+        "Term":{
+            "Quarter":"Spring",
+            "Id":"20132",
+            "Label":"Spring 2013",
+            "OpenForRegistration":true,
+            "Year":2013},
         "RegistrationHref":"http://example.com/RegistrationHref",
         "MyPlanHref":"http://example.com/MyPlan",
         "Courses":[
             {
                 "CurriculumAbbreviation":"PHYS",
                 "CourseNumber":"121",
-                "RegistrationAvailable":false,
+                "RegistrationAvailable":true,
                 "Sections":[
                     {"SectionId":"AA"},
-                    {"SectionId":"AC"}
+                    {"SectionId":"AG"},
+                    {"SectionId":"AQ"},
+                    {"SectionId":"AV"}
                 ]},
             {
-                "CurriculumAbbreviation":"CSE",
+                "CurriculumAbbreviation":"ESS",
                 "CourseNumber":"102",
-                "RegistrationAvailable":false,
+                "RegistrationAvailable":true,
                 "Sections":[
                     {"SectionId":"A"},
-                    {"SectionId":"B"},
-                    {"SectionId":"C"}]}]}
+                    {"SectionId":"AB"}]
+            },
+            {
+                "CurriculumAbbreviation":"ROLING",
+                "CourseNumber":"310",
+                "RegistrationAvailable":true,
+                "Sections":[
+                    {"SectionId":"A"}
+                ]
+            },
+            {
+                "CurriculumAbbreviation":"T ARTS",
+                "CourseNumber":"110",
+                "RegistrationAvailable":true,
+                "Sections":[
+                    {"SectionId":"A"}
+                ]
+            },
+            {
+                "CurriculumAbbreviation":"ARCTIC",
+                "CourseNumber":"200",
+                "RegistrationAvailable": true,
+                "Sections":[
+                    {"SectionId":"A"}
+                ]},
+            {
+                "CurriculumAbbreviation":"BESS",
+                "CourseNumber":"102",
+                "RegistrationAvailable":true,
+                "Sections":[
+                    {"SectionId":"A"},
+                    {"SectionId":"AB"}]
+            }
+      ]
+   }
 ]
