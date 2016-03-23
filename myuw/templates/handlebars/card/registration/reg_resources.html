@@ -7,37 +7,39 @@
 
     <ul class="reg-resources-list no-header-space">
 
-        {{#unless registration_is_open}}
-        <li>
-            <a target="_blank"
-               href="https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp">Pre-Registration Requirements</a>
-        </li>
-        {{/unless}}
-
         {{#if plan_data }}
-            <li class="reg-details-open">
-                <a target="_blank"
-                   class="reg-link"
-                   href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">
-                    {{#if registration_is_open}}
-                        {{#unless plan_data.ready_count}}
-                            Edit plan in
-                        {{else}}
-                            Register using
-                        {{/unless}}
-                        &nbsp;
-                   {{/if}}MyPlan
-                </a>
-            </li>
+                {{#if registration_is_open}}
+                <li>
+                {{#unless plan_data.ready_count}}
+                <a target="_blank" class="focus-link"
+                href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Edit plan in MyPlan</a>
+                {{else}}
+                <a target="_blank" class="focus-link"
+                href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Register using MyPlan</a>
+                {{/unless}}
+                </li>
+                {{/if}}
         {{/if}}
 
         {{#if registration_is_open}}
-            <li>
+            <li class="focus-link last-focus-link">
                 <a target="_blank"
                    class="reg-link"
                    href="https://sdb.admin.uw.edu/students/uwnetid/register.asp">Register using SLN codes</a>
             </li>
         {{/if}}
+
+        {{#unless registration_is_open}}
+        <li class="focus-link last-focus-link">
+            <a target="_blank"
+               href="https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp">Pre-Registration Requirements</a>
+        </li>
+        <li>
+            <a target="_blank"
+               href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">MyPlan</a>
+        </li>
+        {{/unless}}
+
 
         {{ #if is_tacoma }}
             <li>
