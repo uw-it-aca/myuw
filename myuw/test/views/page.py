@@ -60,5 +60,6 @@ class TestPageMethods(TestCase):
         get_user('jnone')
         self.client.login(username='jnone',
                           password=get_user_pass('jnone'))
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
+        response = self.client.get(url,
+                                   HTTP_USER_AGENT='Fake Android Mobile')
+        self.assertEquals(response.status_code, 302)
