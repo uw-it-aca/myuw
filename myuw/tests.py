@@ -1,6 +1,5 @@
 from django.test import TestCase
 from myuw.test.models import TestUserNotices
-from myuw.test.page import TestPageMethods
 from myuw.test.academic_events import TestAcademicEvents
 from myuw.test.dao import TestDao
 from myuw.test.dao.course_color import TestCourseColors
@@ -43,6 +42,7 @@ from myuw.test.api.academic_calendar import TestCalendarAPI
 from myuw.test.cache import TestCustomCachePolicy
 from myuw.test.context_processors import TestContextProcessors
 from myuw.test.loggers import TestSessionLog
+from myuw.test.views.page import TestPageMethods
 from myuw.test.views.logout import TestLogoutLink
 from myuw.test.views.mobile_login import TestLoginRedirects
 from myuw.test.views.rest_dispatch import TestDispatchErrorCases

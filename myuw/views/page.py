@@ -8,6 +8,7 @@ from django.contrib.auth import logout as django_logout
 from django.template import RequestContext
 from django.conf import settings
 from django.views.decorators.cache import cache_control
+from restclients.exceptions import DataFailureException
 from userservice.user import UserService
 from myuw.dao.term import get_current_quarter
 from myuw.dao.pws import is_student
@@ -43,9 +44,14 @@ def index(request,
     if _is_mobile(request):
         # On mobile devices, all students get the current myuw.  Non-students
         # are sent to the legacy site.
-        if not is_student():
-            logger.info("%s not a student, redirect to legacy!" % netid)
+        try:
+            if not is_student():
+                logger.info("%s not a student, redirect to legacy!" % netid)
+                return redirect_to_legacy_site()
+        except DataFailureException as ex:
+            logger.info("%s %s, redirect to legacy!" % (netid, ex))
             return redirect_to_legacy_site()
+
     else:
         # On the desktop, we're migrating users over.  There are 2 classes of
         # users - mandatory and opt-in switchers.  The mandatory users, who
