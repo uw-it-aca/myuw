@@ -51,7 +51,7 @@ def index(request,
             log_exception(logger,
                           '%s is_student' % netid,
                           traceback.format_exc())
-            logger.info("%s redirect to legacy!" % netid)
+            logger.info("%s, redirected to legacy!" % netid)
             return redirect_to_legacy_site()
 
     else:
