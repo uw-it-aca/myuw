@@ -1,5 +1,4 @@
 staff
-jnone
 jerror
 javerage
 jinter
