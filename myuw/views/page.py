@@ -8,7 +8,6 @@ from django.contrib.auth import logout as django_logout
 from django.template import RequestContext
 from django.conf import settings
 from django.views.decorators.cache import cache_control
-from restclients.exceptions import DataFailureException
 from userservice.user import UserService
 from myuw.dao.term import get_current_quarter
 from myuw.dao.pws import is_student
@@ -48,7 +47,7 @@ def index(request,
             if not is_student():
                 logger.info("%s not a student, redirect to legacy!" % netid)
                 return redirect_to_legacy_site()
-        except DataFailureException as ex:
+        except Exception as ex:
             logger.info("%s %s, redirect to legacy!" % (netid, ex))
             return redirect_to_legacy_site()
 
