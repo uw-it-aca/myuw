@@ -12,10 +12,10 @@
                 <li>
                 {{#unless plan_data.ready_count}}
                     <a target="_blank" class="focus-link"
-                href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Edit plan in MyPlan</a>
+                href="{{plan_data.myplan_href}}">Edit plan in MyPlan</a>
                 {{else}}
                     <a target="_blank" class="focus-link"
-                href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Register using MyPlan</a>
+                href="{{plan_data.registration_href}}">Register using MyPlan</a>
                 {{/unless}}
                 </li>
             {{/if}}
@@ -77,7 +77,7 @@
 
         <li>
             <span class="sr-only">Go to DARS</span>
-            <a target="_blank" href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree">Audit your degree (DARS)</a>
+            <a target="_blank" href="{{plan_data.degree_audit_href}}">Audit your degree (DARS)</a>
         </li>
     </ul>
 </div>

@@ -17,7 +17,7 @@
 
                             {{ #unless plan_data.has_sections }}
                                 <a style="margin-top:8px;" target="_blank"
-                                   href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Add Sections</a>
+                                   href="{{plan_data.myplan_href}}">Add Sections</a>
                             {{ else }}
                                 <span id="show_unready_courses_wrapper{{#if card }}_{{card}}{{/if}}">
                                     <span id="show_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
@@ -64,7 +64,7 @@
         </div>
         <div class="pull-right edit-plan-link">
             <a title="Edit plan to fix issues" target="_blank"
-               href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Edit plan in MyPlan</a>
+               href="{{plan_data.myplan_href}}">Edit plan in MyPlan</a>
         </div>
     </div>
 
@@ -79,7 +79,7 @@
                 <div class="card-badge-value">No courses in your plan</div>
                 <div style="text-align:right;">
                     <a class="pull-right" target="_blank"
-                       href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Add courses</a>
+                       href="{{plan_data.course_search_href}}">Add courses</a>
                 </div>
             </div>
         </div>
