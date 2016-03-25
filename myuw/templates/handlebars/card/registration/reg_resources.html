@@ -8,17 +8,17 @@
     <ul class="reg-resources-list no-header-space">
 
         {{#if plan_data }}
-                {{#if registration_is_open}}
+            {{#if registration_is_open}}
                 <li>
                 {{#unless plan_data.ready_count}}
-                <a target="_blank" class="focus-link"
+                    <a target="_blank" class="focus-link"
                 href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Edit plan in MyPlan</a>
                 {{else}}
-                <a target="_blank" class="focus-link"
+                    <a target="_blank" class="focus-link"
                 href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">Register using MyPlan</a>
                 {{/unless}}
                 </li>
-                {{/if}}
+            {{/if}}
         {{/if}}
 
         {{#if registration_is_open}}
@@ -44,7 +44,7 @@
         {{ #if is_tacoma }}
             <li>
                 <span id="tacoma_time_schedule" class="sr-only">Browse time schedule for Tacoma</span>
-                <a aria-labelledby="tacoma_time_schedule" target="_blank" href="http://www.washington.edu/students/timeschd/T/">Time Schedule</a></li>
+                <a aria-labelledby="tacoma_time_schedule" target="_blank" href="http://www.washington.edu/students/timeschd/T/">Time Schedule Browse</a></li>
 
             <li>
                 <a aria-labelledby="tacoma_time_schedule_search"
