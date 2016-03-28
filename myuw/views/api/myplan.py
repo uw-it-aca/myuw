@@ -66,7 +66,6 @@ class MyPlan(RESTDispatch):
 
             log_success_response(logger, timer)
             return HttpResponse(json.dumps(base_json))
-        except Exception as ex:
-            print ex
+        except Exception:
             log_err(logger, timer, traceback.format_exc())
             return HttpResponse('[]')
