@@ -44,7 +44,7 @@ var SummerRegStatusCard = {
 
     _render: function() {
         var year = WSData.oquarter_data().next_term_data.year;
-        if (! window.card_display_dates.myplan_smreg_peak_load &&
+        if (! window.card_display_dates.myplan_peak_load &&
             ! WSData.myplan_data(year, "Summer")) {
             WSData.fetch_myplan_data(year, "Summer",
                                      SummerRegStatusCard.render_upon_data,
@@ -57,7 +57,7 @@ var SummerRegStatusCard = {
             myplan_data = WSData.myplan_data(year, "Summer");
         }
 
-        if (window.card_display_dates.myplan_smreg_peak_load || myplan_data) {
+        if (window.card_display_dates.myplan_peak_load || myplan_data) {
             var content = RegStatusCard._render_for_term(myplan_data,
                                                          'Summer',
                                                          SummerRegStatusCard.label);
