@@ -8,12 +8,18 @@ var RegStatusCard = {
             return;
         }
 
-        Handlebars.registerPartial("reg_holds", $("#reg_holds_tmpl").html());
-        Handlebars.registerPartial("reg_finaid_notices", $("#reg_finaid_notices_tmpl").html());
-        Handlebars.registerPartial("notice_est_reg_date", $("#notice_est_reg_date_tmpl").html());
-        Handlebars.registerPartial("in_myplan", $("#in_myplan_tmpl").html());
-        Handlebars.registerPartial("reg_resources", $("#reg_resources_tmpl").html());
-        Handlebars.registerPartial("myplan_courses", $("#myplan_courses_tmpl").html());
+        Handlebars.registerPartial("reg_holds",
+                                   $("#reg_holds_tmpl").html());
+        Handlebars.registerPartial("reg_finaid_notices",
+                                   $("#reg_finaid_notices_tmpl").html());
+        Handlebars.registerPartial("notice_est_reg_date",
+                                   $("#notice_est_reg_date_tmpl").html());
+        Handlebars.registerPartial("in_myplan",
+                                   $("#in_myplan_tmpl").html());
+        Handlebars.registerPartial("reg_resources",
+                                   $("#reg_resources_tmpl").html());
+        Handlebars.registerPartial("myplan_courses",
+                                   $("#myplan_courses_tmpl").html());
 
         if (!(window.card_display_dates.is_after_start_of_registration_display_period &&
               window.card_display_dates.is_before_end_of_registration_display_period)) {
@@ -21,8 +27,10 @@ var RegStatusCard = {
             return;
         }
 
-        WSData.fetch_notice_data(RegStatusCard.render_upon_data,RegStatusCard.render_error);
-        WSData.fetch_oquarter_data(RegStatusCard.render_upon_data, RegStatusCard.render_error);
+        WSData.fetch_notice_data(RegStatusCard.render_upon_data,
+                                 RegStatusCard.render_error);
+        WSData.fetch_oquarter_data(RegStatusCard.render_upon_data,
+                                   RegStatusCard.render_error);
     },
 
     render_upon_data: function() {
@@ -48,7 +56,7 @@ var RegStatusCard = {
         RegStatusCard.dom_target.html(CardWithError.render("Registration"));
     },
 
-    _render_for_term: function(quarter, summer_card_label) {
+    _render_for_term: function(myplan_data, quarter, summer_card_label) {
         var reg_notices = Notices.get_notices_for_tag("reg_card_messages");
         var reg_holds = Notices.get_notices_for_tag("reg_card_holds");
         var reg_date = Notices.get_notices_for_tag("est_reg_date");
@@ -119,13 +127,9 @@ var RegStatusCard = {
             return;
         }
 
-        var plan_data;
-        if (! window.card_display_dates.myplan_peak_load) {
-            var all_plan_data = WSData.myplan_data(year, quarter);
-            plan_data = {};
-            if (all_plan_data && all_plan_data.terms) {
-                plan_data = all_plan_data.terms[0];
-            }
+        var plan_data = null;
+        if (myplan_data && myplan_data.terms) {
+            plan_data = myplan_data.terms[0];
         }
 
         var hide_card = true;
@@ -310,14 +314,23 @@ var RegStatusCard = {
 
         if (! window.card_display_dates.myplan_peak_load &&
             ! WSData.myplan_data(next_term_data.year, next_term_data.quarter)) {
-            WSData.fetch_myplan_data(next_term_data.year, next_term_data.quarter, RegStatusCard.render_upon_data, RegStatusCard.render_error);
+            WSData.fetch_myplan_data(next_term_data.year,
+                                     next_term_data.quarter,
+                                     RegStatusCard.render_upon_data,
+                                     RegStatusCard.render_error);
             return;
         }
 
-        if (window.card_display_dates.myplan_peak_load ||
-            WSData.myplan_data(next_term_data.year, next_term_data.quarter)) {
+        var myplan_data;
+        if (! window.card_display_dates.myplan_peak_load) {
+            myplan_data = WSData.myplan_data(next_term_data.year,
+                                             next_term_data.quarter);
+        }
 
-            var content = RegStatusCard._render_for_term(reg_next_quarter);
+        if (window.card_display_dates.myplan_peak_load || myplan_data) {
+
+            var content = RegStatusCard._render_for_term(myplan_data,
+                                                         reg_next_quarter);
             if (!content) {
                 RegStatusCard.dom_target.hide();
                 return;
@@ -325,7 +338,8 @@ var RegStatusCard = {
 
             RegStatusCard.dom_target.html(content);
             RegStatusCard._add_events();
-            LogUtils.cardLoaded(RegStatusCard.name, RegStatusCard.dom_target);
+            LogUtils.cardLoaded(RegStatusCard.name,
+                                RegStatusCard.dom_target);
         }
     }
 };

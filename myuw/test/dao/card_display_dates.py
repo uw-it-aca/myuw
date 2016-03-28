@@ -11,7 +11,8 @@ from myuw.dao.card_display_dates import get_card_visibilty_date_values,\
     is_after_last_day_of_classes, is_before_eof_finals_week, \
     is_after_bof_and_before_eof_reg_period,\
     is_after_bof_and_before_eof_summer_reg_period1,\
-    is_after_bof_and_before_eof_summer_reg_periodA
+    is_after_bof_and_before_eof_summer_reg_periodA,\
+    during_myplan_peak_load, during_myplan_smreg_peak_load
 
 
 FDAO_SWS = 'restclients.dao_implementation.sws.File'
@@ -614,3 +615,54 @@ class TestDisplayValues(TestCase):
             # spring quarter starts
             now_request.session["myuw_override_date"] = "2013-04-01"
             self.assertFalse(in_show_grades_period(term, now_request))
+
+    def test_myplan_peak_load_period(self):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-04-15 05:29:59"
+            now = get_comparison_datetime(now_request)
+            self.assertFalse(during_myplan_smreg_peak_load(now, now_request))
+            self.assertFalse(during_myplan_peak_load(now, now_request))
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-04-15 05:30:00"
+            now = get_comparison_datetime(now_request)
+            self.assertTrue(during_myplan_smreg_peak_load(now, now_request))
+            self.assertFalse(during_myplan_peak_load(now, now_request))
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-04-16 06:29:00"
+            now = get_comparison_datetime(now_request)
+            self.assertTrue(during_myplan_smreg_peak_load(now, now_request))
+            self.assertFalse(during_myplan_peak_load(now, now_request))
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-05-10 06:29:00"
+            now = get_comparison_datetime(now_request)
+            self.assertTrue(during_myplan_smreg_peak_load(now, now_request))
+            self.assertTrue(during_myplan_peak_load(now, now_request))
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-05-10 06:30:00"
+            now = get_comparison_datetime(now_request)
+            self.assertTrue(during_myplan_smreg_peak_load(now, now_request))
+            self.assertTrue(during_myplan_peak_load(now, now_request))
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-05-22 06:30:00"
+            now = get_comparison_datetime(now_request)
+            self.assertTrue(during_myplan_smreg_peak_load(now, now_request))
+            self.assertTrue(during_myplan_peak_load(now, now_request))
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-05-23 06:29:00"
+            now = get_comparison_datetime(now_request)
+            self.assertFalse(during_myplan_smreg_peak_load(now, now_request))
+            self.assertTrue(during_myplan_peak_load(now, now_request))
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-06-23 06:30:01"
+            now = get_comparison_datetime(now_request)
+            self.assertFalse(during_myplan_smreg_peak_load(now, now_request))
+            self.assertFalse(during_myplan_peak_load(now, now_request))
