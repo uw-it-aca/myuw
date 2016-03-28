@@ -12,10 +12,10 @@
                 <li>
                 {{#unless plan_data.ready_count}}
                     <a target="_blank" class="focus-link"
-                href="{{plan_data.myplan_href}}">Edit plan in MyPlan</a>
+                       href="{{plan_data.myplan_href}}">Edit plan in MyPlan</a>
                 {{else}}
                     <a target="_blank" class="focus-link"
-                href="{{plan_data.registration_href}}">Register using MyPlan</a>
+                       href="{{plan_data.registration_href}}">Register using MyPlan</a>
                 {{/unless}}
                 </li>
             {{/if}}
@@ -44,7 +44,9 @@
         {{ #if is_tacoma }}
             <li>
                 <span id="tacoma_time_schedule" class="sr-only">Browse time schedule for Tacoma</span>
-                <a aria-labelledby="tacoma_time_schedule" target="_blank" href="http://www.washington.edu/students/timeschd/T/">Time Schedule Browse</a></li>
+                <a aria-labelledby="tacoma_time_schedule"
+                   target="_blank"
+                   href="http://www.washington.edu/students/timeschd/T/">Time Schedule Browse</a></li>
 
             <li>
                 <a aria-labelledby="tacoma_time_schedule_search"
@@ -60,7 +62,8 @@
                     Browse time schedule for Bothell
                 </span>
                 <a aria-labelledby="bothell_time_schedule"
-                   target="_blank" href="http://www.uwb.edu/registration/time">Time Schedule</a>
+                   target="_blank"
+                   href="http://www.uwb.edu/registration/time">Time Schedule</a>
             </li>
         {{ /if }}
 
@@ -71,14 +74,18 @@
                     Browse time schedule for Seattle
                 </span>
                 <a aria-labelledby="seattle_time_schedule"
-                   target="_blank" href="http://www.washington.edu/students/timeschd/">Time Schedule</a>
+                   target="_blank"
+                   href="http://www.washington.edu/students/timeschd/">Time Schedule</a>
             </li>
         {{ /if }}
 
-        <li>
-            <span class="sr-only">Go to DARS</span>
-            <a target="_blank" href="{{plan_data.degree_audit_href}}">Audit your degree (DARS)</a>
-        </li>
+        {{#if plan_data }}
+            <li>
+                <span class="sr-only">Go to DARS</span>
+                <a target="_blank"
+                   href="{{plan_data.degree_audit_href}}">Audit your degree (DARS)</a>
+            </li>
+        {{ /if }}
     </ul>
 </div>
 
