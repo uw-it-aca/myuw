@@ -619,6 +619,12 @@ class TestDisplayValues(TestCase):
     def test_myplan_peak_loads(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             now_request = RequestFactory().get("/")
+
+            now_request.session = {}
+            now_request.session["myuw_override_date"] = "2013-04-14 06:00:00"
+            values = get_card_visibilty_date_values(now_request)
+            self.assertFalse(values["myplan_peak_load"])
+
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-04-15 05:29:59"
             now = get_comparison_datetime(now_request)
@@ -676,10 +682,5 @@ class TestDisplayValues(TestCase):
 
             now_request.session = {}
             now_request.session["myuw_override_date"] = "2013-06-23 06:00:00"
-            values = get_card_visibilty_date_values(now_request)
-            self.assertTrue(values["myplan_peak_load"])
-
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-11-23 06:00:00"
             values = get_card_visibilty_date_values(now_request)
             self.assertTrue(values["myplan_peak_load"])

@@ -166,7 +166,7 @@ def is_after_bof_and_before_eof_summer_reg_periodA(now, request):
 
 def during_myplan_peak_load(now, request):
     reg_data = get_reg_data(now, request)
-    logger.debug("%s during_myplan_peak_load ==> %s" % (
+    logger.debug("%s myplan_peak_load ==> %s" % (
             now, reg_data["myplan_peak_load"]))
     return reg_data["myplan_peak_load"]
 
