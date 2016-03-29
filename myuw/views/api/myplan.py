@@ -6,7 +6,8 @@ from restclients.exceptions import DataFailureException
 from restclients.myplan import get_plan
 from myuw.dao.pws import get_regid_of_current_user
 from restclients.sws.section import get_section_by_label
-from myuw.dao.term import get_current_quarter
+from myuw.dao.card_display_dates import during_myplan_peak_load
+from myuw.dao.term import get_current_quarter, get_comparison_datetime
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response, log_msg,\
     log_data_not_found_response, log_err
@@ -24,6 +25,13 @@ class MyPlan(RESTDispatch):
     def GET(self, request, year, quarter):
         timer = Timer()
         try:
+            no_myplan_access = during_myplan_peak_load(
+                get_comparison_datetime(request), request)
+            if no_myplan_access:
+                log_msg(logger, timer,
+                        "No MyPlan access during their peak load, abort!")
+                return HttpResponse('[]')
+
             plan = get_plan(regid=get_regid_of_current_user(),
                             year=year,
                             quarter=quarter.lower(),
