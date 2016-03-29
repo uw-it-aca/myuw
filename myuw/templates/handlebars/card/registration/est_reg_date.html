@@ -5,7 +5,7 @@
     <div class="card-badge est-reg-date-container clearfix">
         <div class="est-reg-date" aria-labelledby="est_reg_date">
 
-            {{ #each est_reg_date }}
+            {{ #with est_reg_date }}
             <span class="sr-only est_reg_date">Estimated Registration Date:
                 {{{ toFriendlyDateVerbose date }}}</span>
             <div class="pull-left" style="display:inline-block;">
@@ -16,7 +16,7 @@
             <div class="pull-right">
                 <div class="card-badge-value">{{{ toFriendlyDate date }}}<br/><span class="est-reg-time">at 6:00 AM</span></div>
             </div>
-            {{ /each }}
+            {{ /with }}
         </div>
     </div>
 </div>

@@ -5,27 +5,27 @@
      data-type="card" data-identifier="{{reg_next_quarter}}{{reg_next_year}}">
     <div class="card">
         <div class="fade-in">
-    
+
             <h3>Registration: {{reg_next_quarter}} {{reg_next_year}}</h3>
-    
-            {{#unless registration_is_open}}
+
+            {{#if est_reg_date}}
                 {{> notice_est_reg_date }}
-            {{/unless}}
-    
+            {{/if}}
+
             {{#if hold_count}}
                 {{> reg_holds }}
             {{/if}}
-    
+
             {{#if plan_data}}
                 {{> in_myplan }}
             {{/if}}
-    
+
             {{> reg_resources }}
-    
+
             {{ #if finaid_notices }}
                 {{> reg_finaid_notices }}
             {{/if}}
-    
+
             {{#if plan_data}}
                 {{> myplan_courses }}
             {{/if}}

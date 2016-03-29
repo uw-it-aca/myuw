@@ -57,44 +57,41 @@ var RegStatusCard = {
     },
 
     _render_for_term: function(myplan_data, quarter, summer_card_label) {
-        var reg_notices = Notices.get_notices_for_tag("reg_card_messages");
+        var est_reg_date_notices = Notices.get_notices_for_tag("est_reg_date");
+        var display_est_reg_date;
+        var is_summer_reg = (quarter === "Summer");
+        var reg_is_open = false;
+        var has_est_reg_date_notice = false;
+        var pre_reg_notice = Notices.get_notices_for_tag("reg_card_messages");
         var reg_holds = Notices.get_notices_for_tag("reg_card_holds");
-        var reg_date = Notices.get_notices_for_tag("est_reg_date");
         var i, j;
-        var registration_is_open = true;
-        var display_reg_dates = [];
 
-        // Filter estimated registration dates for summer...
-        for (i = 0; i < reg_date.length; i++) {
-            var notice = reg_date[i];
-            var show_notice = false;
+        // Get estimated registration date for the quarter
+        for (i = 0; i < est_reg_date_notices.length; i++) {
+            var notice = est_reg_date_notices[i];
             var registration_date = null;
 
+            // 1. Extract the registration date:
             for (j = 0; j < notice.attributes.length; j++) {
                 var attribute = notice.attributes[j];
-
-                // Extract the registration date:
                 if (attribute.name == "Date") {
                     registration_date = attribute.value;
+                    break;
                 }
-
-                if (quarter === "Summer") {
-                    if (attribute.name === "Quarter" &&
-                        attribute.value === "Summer") {
-                        show_notice = true;
-                    }
-                }
-                else {
-                    if (attribute.name === "Quarter" &&
-                        attribute.value === quarter) {
-                        show_notice = true;
-                    }
-                }
-
-                if (show_notice) {
-                    display_reg_dates.push({"notice": notice,
-                                            "date": registration_date });
-                    registration_is_open = false;
+            }
+            // 2. Determine the quarter
+            for (j = 0; j < notice.attributes.length; j++) {
+                var attribute = notice.attributes[j];
+                if ((is_summer_reg &&
+                     attribute.name === "Quarter" &&
+                     attribute.value === "Summer") ||
+                    (attribute.name === "Quarter" &&
+                     attribute.value === quarter)) {
+                    has_est_reg_date_notice = true;
+                    reg_is_open = (notice.is_reg_open_day === true);
+                    display_est_reg_date = {"notice": notice,
+                                            "date": registration_date };
+                    break;
                 }
             }
         }
@@ -102,7 +99,7 @@ var RegStatusCard = {
         var year, has_registration, next_term_data;
         var financial_aid_notices;
 
-        if (quarter == "Summer") {
+        if (is_summer_reg) {
             var finaid_tags = ["reg_summeraid_avail_title"];
             financial_aid_notices = Notices.get_ordered_finaid_notices(finaid_tags);
             next_term_data = WSData.oquarter_data().next_term_data;
@@ -136,7 +133,7 @@ var RegStatusCard = {
         if (financial_aid_notices && financial_aid_notices.length) {
              hide_card = false;
         }
-        if (hide_card && display_reg_dates && display_reg_dates.length) {
+        if (hide_card && display_est_reg_date) {
             hide_card = false;
         }
         if (hide_card && reg_holds && reg_holds.length) {
@@ -156,15 +153,15 @@ var RegStatusCard = {
         var template = Handlebars.compile(source);
         var template_data = {
             "finaid_notices": financial_aid_notices,
-            "reg_notices": reg_notices,
+            "pre_reg_notice": pre_reg_notice,
             "reg_holds": reg_holds,
             "card": summer_card_label,
-            "registration_is_open": registration_is_open,
+            "registration_is_open": (reg_is_open || !has_est_reg_date_notice),
             "is_tacoma": window.user.tacoma || window.user.tacoma_affil,
             "is_bothell": window.user.bothell || window.user.bothell_affil,
             "is_seattle": window.user.seattle || window.user.seattle_affil,
             "hold_count": reg_holds.length,
-            "est_reg_date": display_reg_dates,
+            "est_reg_date": display_est_reg_date,
             "reg_next_quarter" : quarter,
             "reg_next_year": year,
             "plan_data": plan_data

@@ -4,7 +4,9 @@ This module direct interfaces with restclient for the term data
 
 from datetime import date, datetime, timedelta
 import logging
+import pytz
 from django.conf import settings
+from django.utils import timezone
 from restclients.models.sws import Term
 from restclients.util.datetime_convertor import convert_to_begin_of_day, \
     convert_to_end_of_day
@@ -83,6 +85,15 @@ def get_comparison_date(request):
     """
     now = get_comparison_datetime(request)
     return now.date()
+
+
+def get_comparison_datetime_with_tz(request):
+    """
+    @return the local timezone awared datetime object
+    """
+    local_tz = timezone.get_current_timezone()
+    return local_tz.localize(
+        get_comparison_datetime(request)).astimezone(pytz.utc)
 
 
 def get_current_quarter(request):

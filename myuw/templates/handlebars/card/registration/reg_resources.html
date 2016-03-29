@@ -10,7 +10,7 @@
         {{#if plan_data }}
             {{#if registration_is_open}}
                 <li>
-                {{#unless plan_data.ready_count}}
+                {{#unless plan_data.has_ready_courses}}
                     <a target="_blank" class="focus-link"
                        href="{{plan_data.myplan_href}}">Edit plan in MyPlan</a>
                 {{else}}
@@ -30,14 +30,16 @@
         {{/if}}
 
         {{#unless registration_is_open}}
-        <li class="focus-link last-focus-link">
-            <a target="_blank"
-               href="https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp">Pre-Registration Requirements</a>
-        </li>
-        <li>
-            <a target="_blank"
-               href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">MyPlan</a>
-        </li>
+            {{#if pre_reg_notice}}
+                <li class="focus-link last-focus-link">
+                    <a target="_blank"
+                       href="https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp">Pre-Registration Requirements</a>
+                </li>
+            {{/if}}
+            <li>
+                <a target="_blank"
+                   href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">MyPlan</a>
+            </li>
         {{/unless}}
 
 
@@ -83,7 +85,7 @@
             <li>
                 <span class="sr-only">Go to DARS</span>
                 <a target="_blank"
-                   href="{{plan_data.degree_audit_href}}">Audit your degree (DARS)</a>
+                   href="{{#if plan_data }}{{plan_data.degree_audit_href}}{{else}}https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree{{/if}}">Audit your degree (DARS)</a>
             </li>
         {{ /if }}
     </ul>
