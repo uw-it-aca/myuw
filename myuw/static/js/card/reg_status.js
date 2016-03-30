@@ -64,7 +64,7 @@ var RegStatusCard = {
         var has_est_reg_date_notice = false;
         var pre_reg_notice = Notices.get_notices_for_tag("reg_card_messages");
         var reg_holds = Notices.get_notices_for_tag("reg_card_holds");
-        var i, j;
+        var i, j, attribute;
 
         // Get estimated registration date for the quarter
         for (i = 0; i < est_reg_date_notices.length; i++) {
@@ -73,7 +73,7 @@ var RegStatusCard = {
 
             // 1. Extract the registration date:
             for (j = 0; j < notice.attributes.length; j++) {
-                var attribute = notice.attributes[j];
+                attribute = notice.attributes[j];
                 if (attribute.name == "Date") {
                     registration_date = attribute.value;
                     break;
@@ -81,7 +81,7 @@ var RegStatusCard = {
             }
             // 2. Determine the quarter
             for (j = 0; j < notice.attributes.length; j++) {
-                var attribute = notice.attributes[j];
+                attribute = notice.attributes[j];
                 if ((is_summer_reg &&
                      attribute.name === "Quarter" &&
                      attribute.value === "Summer") ||
