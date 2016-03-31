@@ -390,3 +390,26 @@ Handlebars.registerHelper('not_equal', function(obj, value, block) {
         return block.fn(this);
     }
 });
+
+Handlebars.registerHelper('get_quarter_code', function(quarter_str) {
+    if (arguments.length < 1) {
+        throw new Error("Handlebars Helper quarter_code needs 1 parameter");
+        return;
+    }
+    var q = quarter_str.toLowerCase();
+    if(q === "winter") {
+        return 1;
+    }
+    else if(q === "spring") {
+        return 2;
+    }
+    else if(q === "summer") {
+        return 3;
+    }
+    else if(q === "autumn") {
+        return 4;
+    }
+    else {
+        return "";
+    }
+});

@@ -18,13 +18,8 @@
                            href="{{plan_data.registration_href}}">Register using MyPlan</a>
                     {{/unless}}
                 {{else}}
-                    {{ #if card}}
-                        <a target="_blank" class="focus-link"
-                           href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/20163">Register using MyPlan</a>
-                    {{else}}
-                        <a target="_blank" class="focus-link"
-                           href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/20164">Register using MyPlan</a>
-                    {{/if}}
+                    <a target="_blank" class="focus-link"
+                       href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/{{reg_next_year}}{{get_quarter_code reg_next_quarter}}">Register using MyPlan</a>
                 {{/if}}
             </li>
 
