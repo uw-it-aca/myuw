@@ -2,6 +2,8 @@ from django.test import TestCase
 from myuw.test.models import TestUserNotices
 from myuw.test.academic_events import TestAcademicEvents
 from myuw.test.dao import TestDao
+from myuw.test.dao.calendar_mapping import TestCalendarMapping
+from myuw.test.dao.calendar import TestCalendar
 from myuw.test.dao.course_color import TestCourseColors
 from myuw.test.dao.registered_term import TestRegisteredTerm
 from myuw.test.dao.schedule import TestSchedule
@@ -18,11 +20,10 @@ from myuw.test.dao.grad import TestDaoGrad
 from myuw.test.dao.hfs import TestHFS as TestDaoHFS
 from myuw.test.dao.iasystem import IASystemDaoTest
 from myuw.test.dao.library import TestLibrary
+from myuw.test.dao.pws import TestPwsDao
 from myuw.test.dao.textbook import TestTextbooks
-from myuw.test.dao.uwemail import TestUwEmail
-from myuw.test.dao.calendar_mapping import TestCalendarMapping
-from myuw.test.dao.calendar import TestCalendar
 from myuw.test.dao.thrive import TestThrive
+from myuw.test.dao.uwemail import TestUwEmail
 from myuw.test.api.schedule import TestSchedule as APISchedule
 from myuw.test.api.books import TestApiBooks
 from myuw.test.api.cur_books import TestApiCurBooks
