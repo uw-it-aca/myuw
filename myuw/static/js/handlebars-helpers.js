@@ -394,7 +394,6 @@ Handlebars.registerHelper('not_equal', function(obj, value, block) {
 Handlebars.registerHelper('get_quarter_code', function(quarter_str) {
     if (arguments.length < 1) {
         throw new Error("Handlebars Helper quarter_code needs 1 parameter");
-        return;
     }
     var q = quarter_str.toLowerCase();
     if(q === "winter") {
