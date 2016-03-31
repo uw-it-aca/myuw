@@ -159,7 +159,7 @@ var RegStatusCard = {
             "reg_holds": reg_holds,
             "card": summer_card_label,
             "registration_is_open": (reg_is_open || !has_est_reg_date_notice),
-            "is_my_1st_reg_day": notice.is_my_1st_reg_day,
+            "is_my_1st_reg_day": is_my_1st_reg_day,
             "is_tacoma": window.user.tacoma || window.user.tacoma_affil,
             "is_bothell": window.user.bothell || window.user.bothell_affil,
             "is_seattle": window.user.seattle || window.user.seattle_affil,
