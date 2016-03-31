@@ -108,9 +108,8 @@ def is_before_bof_days_before_close(now, notice, n_days):
 
 
 def get_est_reg_info(request, notice):
-    ret = { "is_my_1st_reg_day": False,
-            "my_reg_has_opened": False
-           }
+    ret = {"is_my_1st_reg_day": False,
+           "my_reg_has_opened": False}
     now = get_comparison_datetime_with_tz(request)
     for attribute in notice.attributes:
         if attribute.data_type == "date" and\
