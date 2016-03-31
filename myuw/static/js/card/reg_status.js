@@ -61,7 +61,7 @@ var RegStatusCard = {
         var display_est_reg_date;
         var is_summer_reg = (quarter === "Summer");
         var reg_is_open = false;
-        var is_today_the_est_reg_date = false;
+        var is_my_1st_reg_day = false;
         var has_est_reg_date_notice = false;
         var pre_reg_notice = Notices.get_notices_for_tag("reg_card_messages");
         var reg_holds = Notices.get_notices_for_tag("reg_card_holds");

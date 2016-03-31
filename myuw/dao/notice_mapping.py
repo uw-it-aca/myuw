@@ -108,8 +108,9 @@ def is_before_bof_days_before_close(now, notice, n_days):
 
 
 def get_est_reg_info(request, notice):
-    ret = {"is_today_the_est_reg_date": False,
-           "my_reg_has_opened": False}
+    ret = { "is_my_1st_reg_day": False,
+            "my_reg_has_opened": False
+           }
     now = get_comparison_datetime_with_tz(request)
     for attribute in notice.attributes:
         if attribute.data_type == "date" and\
@@ -146,8 +147,7 @@ def get_json_for_notices(request, notices):
             data['location_tags'] = notice.location_tags
 
         else:
-            data = notice.json_data(
-                include_abbr_week_month_day_format=True)
+            data = notice.json_data(include_abbr_week_month_day_format=True)
             data['category'] = notice.custom_category
             data['sws_category'] = notice.notice_category
             data['is_critical'] = notice.is_critical
