@@ -61,6 +61,7 @@ var RegStatusCard = {
         var display_est_reg_date;
         var is_summer_reg = (quarter === "Summer");
         var reg_is_open = false;
+        var is_today_the_est_reg_date = false;
         var has_est_reg_date_notice = false;
         var pre_reg_notice = Notices.get_notices_for_tag("reg_card_messages");
         var reg_holds = Notices.get_notices_for_tag("reg_card_holds");
@@ -88,7 +89,8 @@ var RegStatusCard = {
                     (attribute.name === "Quarter" &&
                      attribute.value === quarter)) {
                     has_est_reg_date_notice = true;
-                    reg_is_open = (notice.is_reg_open_day === true);
+                    reg_is_open = notice.my_reg_has_opened;
+                    is_my_1st_reg_day = notice.is_my_1st_reg_day;
                     display_est_reg_date = {"notice": notice,
                                             "date": registration_date };
                     break;
@@ -157,6 +159,7 @@ var RegStatusCard = {
             "reg_holds": reg_holds,
             "card": summer_card_label,
             "registration_is_open": (reg_is_open || !has_est_reg_date_notice),
+            "is_my_1st_reg_day": notice.is_my_1st_reg_day,
             "is_tacoma": window.user.tacoma || window.user.tacoma_affil,
             "is_bothell": window.user.bothell || window.user.bothell_affil,
             "is_seattle": window.user.seattle || window.user.seattle_affil,

@@ -107,17 +107,19 @@ def is_before_bof_days_before_close(now, notice, n_days):
     return now < get_close_date(notice) - timedelta(days=n_days)
 
 
-def is_today_the_est_reg_date(request, notice):
-    """
-    @return true is today is the estimated registration date for the user
-    """
+def get_est_reg_info(request, notice):
+    ret = {"is_today_the_est_reg_date": False,
+           "my_reg_has_opened": False}
     now = get_comparison_datetime_with_tz(request)
     for attribute in notice.attributes:
         if attribute.data_type == "date" and\
                 attribute.name == "Date":
+            ret["is_my_1st_reg_day"] =\
+                (now.date() == attribute._date_value.date())
+
             reg_start = attribute._date_value + timedelta(hours=6)
-            return now >= reg_start
-    return false
+            ret["my_reg_has_opened"] = (now >= reg_start)
+    return ret
 
 
 def get_json_for_notices(request, notices):
@@ -153,9 +155,12 @@ def get_json_for_notices(request, notices):
             data['is_read'] = notice.is_read
             data['location_tags'] = notice.location_tags
 
-            if "est_reg_date" in notice.location_tags and\
-                    is_today_the_est_reg_date(request, notice):
-                data['is_reg_open_day'] = True
+            if "est_reg_date" in notice.location_tags:
+                est_reg = get_est_reg_info(request, notice)
+                data["is_my_1st_reg_day"] =\
+                    est_reg["is_my_1st_reg_day"]
+                data["my_reg_has_opened"] =\
+                    est_reg["my_reg_has_opened"]
 
         notice_json.append(data)
     return notice_json

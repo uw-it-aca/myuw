@@ -7,21 +7,22 @@
 
     <ul class="reg-resources-list no-header-space">
 
-        {{#if plan_data }}
-            {{#if registration_is_open}}
-                <li>
-                {{#unless plan_data.has_ready_courses}}
-                    <a target="_blank" class="focus-link"
-                       href="{{plan_data.myplan_href}}">Edit plan in MyPlan</a>
+        {{#if registration_is_open}}
+            <li>
+                {{#if plan_data }}
+                    {{#unless plan_data.has_ready_courses}}
+                        <a target="_blank" class="focus-link"
+                           href="{{plan_data.myplan_href}}">Edit plan in MyPlan</a>
+                    {{else}}
+                        <a target="_blank" class="focus-link"
+                           href="{{plan_data.registration_href}}">Register using MyPlan</a>
+                    {{/unless}}
                 {{else}}
                     <a target="_blank" class="focus-link"
-                       href="{{plan_data.registration_href}}">Register using MyPlan</a>
-                {{/unless}}
-                </li>
-            {{/if}}
-        {{/if}}
+                       href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/">Register using MyPlan</a>
+                {{/if}}
+            </li>
 
-        {{#if registration_is_open}}
             <li class="focus-link last-focus-link">
                 <a target="_blank"
                    class="reg-link"
@@ -41,7 +42,6 @@
                    href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">MyPlan</a>
             </li>
         {{/unless}}
-
 
         {{ #if is_tacoma }}
             <li>
@@ -81,13 +81,11 @@
             </li>
         {{ /if }}
 
-        {{#if plan_data }}
-            <li>
-                <span class="sr-only">Go to DARS</span>
-                <a target="_blank"
-                   href="{{#if plan_data }}{{plan_data.degree_audit_href}}{{else}}https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree{{/if}}">Audit your degree (DARS)</a>
-            </li>
-        {{ /if }}
+        <li>
+            <span class="sr-only">Go to DARS</span>
+            <a target="_blank"
+               href="{{#if plan_data }}{{plan_data.degree_audit_href}}{{else}}https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree{{/if}}">Audit your degree (DARS)</a>
+        </li>
     </ul>
 </div>
 

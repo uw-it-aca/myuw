@@ -2,15 +2,14 @@
     {% tplhandlebars "reg_holds_tmpl" %}
 
 <div class="card-badge-container" title="Registration Holds">
-    <!--
-    <ul title="Registration Holds" style="list-style-type: none; padding-left: 0;">
-    <li>
-    -->
     <div class="card-badge card-critical-alert " role="status">
         <div class="reg-holds-container clearfix">
-            <div class="pull-left">
-                <h4 class="card-badge-label pull-left">Holds</h4>
-            </div>
+            {{#unless is_my_1st_reg_day }}
+                <div class="pull-left">
+                    <h4 class="card-badge-label pull-left">Holds</h4>
+                </div>
+            {{else}}
+            {{/unless}}
 
             <div class="pull-right">
                 <div class="card-badge-value">
