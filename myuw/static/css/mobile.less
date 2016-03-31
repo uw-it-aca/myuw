@@ -566,7 +566,7 @@ body {
 
     // cards
     .card {  
-        
+
         border: 1px solid;
         border-color: #e5e6e9 #dfe0e4 #d0d1d5;
         position: relative; 	
@@ -574,7 +574,7 @@ body {
    	    box-shadow: rgba(0, 0, 0, 0.25) 1px 1px 2px -1px;
     	margin-top: 20px;
     	padding: 10px;
-    	
+
         h3 {
             font-family: 'encode_sans_normalbold';
             font-size: @font-header-small;
@@ -586,9 +586,9 @@ body {
             font-weight: 400;
             font-size: 16px;
             color: #444; }
-        
+
         .card-content {  }
-        
+
         .card-critical-alert {
             // background: rgb(240,219,208); padding: 8px; color: #af4b1a;
             margin-bottom: 1em;
@@ -596,15 +596,6 @@ body {
 
             i {font-size: 1.5em; vertical-align: middle; margin-right: .2em;}
             a { color: #af4b1a; text-decoration: underline; }
-
-            .reg_holds_disc {
-                background: rgba(255, 140, 138, 0.16);
-                margin-left: -10px;
-                margin-right: -10px;
-                margin-top: 28px;
-            }
-
-            .holds_icon { color:grey;  font-size: 15px; }
         }
 
         .quarter-heading, .resources-heading { color:@darktan; }
@@ -619,11 +610,13 @@ body {
         .reg_status_table th { border-top: none !important; }
         .reg_status_table td { border-top: none !important; }
 
+// Redundant remove? //
         .reg_resources_disc {
             .card-badge-label {
                 font-weight: bold;
             }
         }
+// END Redundant remove? //
 
         .card-noncritical-alert {
             background: rgb(221,229,239);
@@ -902,55 +895,51 @@ body {
     // registration card
     #RegStatusCard, #SummerRegStatusCardA, #SummerRegStatusCard1, #TuitionCard {
 
-// DOES THIS BELONG HERE?? //
         .card {
-// END -- DOES THIS BELONG HERE?? //
+	        .card-critical-alert {margin-bottom: 0;}
 	        .card-badge-container {
 // STUFF PATRICK ADDED //
-                .card-critical-alert {
-                    .reg-holds-container {
-                        .card-badge-label {
-                            line-height: 0px;
-                        }
-                        .card-badge-value {
-                            font-size: inherit;
-                            font-weight: bold;
-                            line-height: 20px;
-                            a {text-decoration: none;}
-                        }
-                        .reg_holds_disc {
-                            background: rgba(255, 140, 138, 0.16);
-                            .reg-holds {
-                                padding: 8px;
-                                margin-top: 8px;
-
-	                        .reg-holds-list {
+                .reg-holds-container {
+                    .card-badge-label {
+                        line-height: 0px;
+                    }
+                    .card-badge-value {
+                        font-size: 17px;
+                        font-weight: bold;
+                        line-height: 20px;
+                        i {font-size: 1em; padding-right: 4px;}
+                    }
+                    .reg_holds_disc {
+                        background: rgba(255, 140, 138, 0.16);
+                        margin-left: -10px;
+                        margin-right: -20px;
+                        margin-top: 28px;
+                        .reg-holds {
+                            padding: 8px;
+                            margin-top: 8px;
+                            .reg-holds-list {
                                     list-style: none;
                                     padding: 0;
-// DOES THIS BELONG HERE?? //
-                                   /* margin-top: 1em; */
-// END -- DOES THIS BELONG HERE?? //
                                     color:#913f16;
-		                    a {color:#4d66ca; text-decoration: none;}
-		                    ul { margin-top:5px;
-	                                 li { margin-bottom: 1em; }
-	                               }
-                                    li { margin-bottom: 1em; }
-                                }
+                                    a {color:#4d66ca; text-decoration: none;}
+                                    ul { margin-top:5px;
+                                             li { margin-bottom: 1em; }
+                                    }
                             }
-	                }
+                        }
                     }
                 }
 
                 .est-reg-date-container {
-    	            .est-reg-date {
+                    .est-reg-date {
                             margin-bottom: 20px;
                             .card-badge-label {
                                 line-height: 18px;
-                                margin-top: 0px;}
+                                margin-top: 0px;
+                                width:9em;}
                             .card-badge-value {
                                 line-height: 18px;
-                                font-size: 16px;
+                                font-size: 17px;
                                 .est-reg-time {
                                     font-size: 75%;
                                     font-weight:normal;}
@@ -961,15 +950,14 @@ body {
                 // In MyPlan
                 .reg-details-container {
                     .reg-details {
-// DOES THIS BELONG HERE?? //
-                        .card-badge-label {}
-// END -- DOES THIS BELONG HERE?? //
+                        ul {padding-left:0;}
                         .card-badge-value {
                             list-style-type: none;
-                            font-size: 14px;
+                            font-size: 16px;
                             line-height:18px;
-                            font-weight:normal;
-                            .course-ready {font-weight: bold;}
+                            .courses-not-ready {font-weight: normal; font-size:14px;
+                                    a {padding-left:4px;}
+                            }
                         }
                     }
                 }
@@ -1031,7 +1019,7 @@ body {
     				    td {padding:0px;}
     			    }
     		    }
-			   	.reg-resources-list { list-style: none; padding-left: 0; 
+                .reg-resources-list { list-style: none; padding: 2em 0;
                     .focus-link {font-weight: bold;}
                     .last-focus-link {padding-bottom: 20px;} 
 			   	}

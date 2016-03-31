@@ -2,7 +2,11 @@
     {% tplhandlebars "reg_holds_tmpl" %}
 
 <div class="card-badge-container" title="Registration Holds">
-    <div class="card-badge card-critical-alert " role="status">
+    <div class="card-badge card-critical-alert" role="status">
+    <!--
+    <ul title="Registration Holds" style="list-style-type: none; padding-left: 0;">
+    <li>
+    -->
         <div class="reg-holds-container clearfix">
             {{#unless is_my_1st_reg_day }}
                 <div class="pull-left">
@@ -18,13 +22,13 @@
                         <a id="show_reg_holds{{#if card}}_{{card}}{{/if}}"
                            class="reg_disclosure{{#if card}}_{{card}}{{/if}}"
                            aria-controls="reg_holds"
-                           href="#" title="Expand to show holds information"><i class="fa fa-sort-desc fa-rotate-270" aria-hidden="true"></i> {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
+                           href="#" title="Expand to show holds information"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
                     </span>
                     <span id="hide_reg_holds_wrapper{{#if card}}_{{card}}{{/if}}" hidden aria-hidden="true">
                         <a id="hide_reg_holds{{#if card}}_{{card}}{{/if}}"
                            class="reg_disclosure{{#if card}}_{{card}}{{/if}}"
                            aria-controls="reg_holds" href="#"
-                           title="Collapse to hide holds information"><i class="fa fa-sort-desc" aria-hidden="true"></i> Hide {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
+                           title="Collapse to hide holds information"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Hide {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
                     </span>
                 </div>
             </div>

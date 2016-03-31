@@ -7,16 +7,16 @@
     <div id="reg_details" class="card-badge reg-details-container clearfix">
 
         <div class="reg-details">
-            <h4 class="card-badge-label pull-left">In <span style="font: 18px/normal 'museo-sans',Helvetica,Arial,Verdana,sans-serif;">MyPlan</span></h4>
+            <h4 class="card-badge-label pull-left">In MyPlan</h4>
 
-            <div class="pull-right">&nbsp;
+            <div class="pull-right">
                 <ul class="card-badge-value">
-                    <li class="course-ready">{{ plan_data.ready_count }} {{ pluralize plan_data.ready_count "course" "courses" }} ready</li>
+                    <li>{{ plan_data.ready_count }} {{ pluralize plan_data.ready_count "course" "courses" }} ready</li>
                     {{ #if plan_data.unready_count }}
-                        <li>{{ plan_data.unready_count }} not ready
+                        <li class="courses-not-ready">{{ plan_data.unready_count }} not ready
 
                             {{ #unless plan_data.has_sections }}
-                                <a style="margin-top:8px;" target="_blank"
+                                <a target="_blank"
                                    href="{{plan_data.myplan_href}}">Add Sections</a>
                             {{ else }}
                                 <span id="show_unready_courses_wrapper{{#if card }}_{{card}}{{/if}}">
