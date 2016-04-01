@@ -43,9 +43,17 @@ def index(request,
     if _is_mobile(request):
         # On mobile devices, all students get the current myuw.  Non-students
         # are sent to the legacy site.
-        if not is_student():
-            logger.info("%s not a student, redirect to legacy!" % netid)
+        try:
+            if not is_student():
+                logger.info("%s not a student, redirect to legacy!" % netid)
+                return redirect_to_legacy_site()
+        except Exception as ex:
+            log_exception(logger,
+                          '%s is_student' % netid,
+                          traceback.format_exc())
+            logger.info("%s, redirected to legacy!" % netid)
             return redirect_to_legacy_site()
+
     else:
         # On the desktop, we're migrating users over.  There are 2 classes of
         # users - mandatory and opt-in switchers.  The mandatory users, who
