@@ -13,60 +13,64 @@
 
         <div class="myplan-data">
             {{#if plan_data.has_ready_courses}}
-                <div class="card-badge-label">
-
+                <div>
                     <h5>Ready for registration</h5>
-
-                    {{ #each plan_data.courses }} <!--Course-->
-                        {{ #if registrations_available }}
-                            {{ curriculum_abbr }} {{ course_number }}
-
-                            <table class="reg-status-table table table-condensed borderless" style="border-width: 0;">
-                                <thead class="sr-only">
-                                    <tr>
-                                        <td>Section</td>
-                                        <td>Day</td>
-                                        <td>Time</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {{ #each sections }} <!--Section-->
-                                         <tr class="reg-status-table-row">
-                                             <td>{{ section_id }}</td>
-
-                                             {{#each section_data.meetings}}
-                                                  {{#if days_tbd }}
-                                                      Days and times to be arranged<br/>
-                                                  {{else}}
-                                                      <td>
-                                                          {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
-                                                          meeting_days.tuesday}}<abbr title="Tuesday">T</abbr>{{/if}}{{#if
-                                                          meeting_days.wednesday}}<abbr title="Wednesday">W</abbr>{{/if}}{{#if
-                                                          meeting_days.thursday}}<abbr title="Thursday">Th</abbr>{{/if}}{{#if
-                                                          meeting_days.friday}}<abbr title="Friday">F</abbr>{{/if}}{{#if
-                                                          meeting_days.saturday}}<abbr title="Saturday">Sa</abbr>{{/if}}{{#if
-                                                          meeting_days.sunday}}<abbr title="Sunday">Su</abbr>{{/if}}
-                                                      </td>
-                                                      <td>{{formatTime start_time}} - {{formatTimeAMPM end_time}}</td>
-                                                  {{/if}}
-                                              {{/each}}
-                                         </tr>
-                                     {{ /each }} <!--Section end-->
-                                </tbody>
-                            </table>
-                        {{/if}}
-                    {{/each}} <!--Course end-->
+                    <ul class="courses-ready-list">
+                        {{ #each plan_data.courses }} <!--Course-->
+                            <li>
+                            {{ #if registrations_available }}
+                                {{ curriculum_abbr }} {{ course_number }}
+                                <table class="reg-status-table table table-condensed borderless" style="border-width: 0;">
+                                    <thead class="sr-only">
+                                        <tr>
+                                            <td>Section</td>
+                                            <td>Day</td>
+                                            <td>Time</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{ #each sections }} <!--Section-->
+                                             <tr class="reg-status-table-row">
+                                                 <td>{{ section_id }}</td>
+                                                 {{#each section_data.meetings}}
+                                                      {{#if days_tbd }}
+                                                          Days and times to be arranged<br/>
+                                                      {{else}}
+                                                          <td>
+                                                              {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
+                                                              meeting_days.tuesday}}<abbr title="Tuesday">T</abbr>{{/if}}{{#if
+                                                              meeting_days.wednesday}}<abbr title="Wednesday">W</abbr>{{/if}}{{#if
+                                                              meeting_days.thursday}}<abbr title="Thursday">Th</abbr>{{/if}}{{#if
+                                                              meeting_days.friday}}<abbr title="Friday">F</abbr>{{/if}}{{#if
+                                                              meeting_days.saturday}}<abbr title="Saturday">Sa</abbr>{{/if}}{{#if
+                                                              meeting_days.sunday}}<abbr title="Sunday">Su</abbr>{{/if}}
+                                                          </td>
+                                                          <td>{{formatTime start_time}} - {{formatTimeAMPM end_time}}</td>
+                                                      {{/if}}
+                                                  {{/each}}
+                                             </tr>
+                                         {{ /each }} <!--Section end-->
+                                    </tbody>
+                                </table>
+                            {{/if}}
+                            </li>
+                        {{/each}} <!--Course end-->
+                    </ul>
                 </div>
             {{/if}} <!-- has_ready_courses end-->
 
             {{#if plan_data.has_unready_courses}}
-                 <div class="card-badge-label">
+                 <div>
                      <h5>Not ready for registration</h5>
-                     {{ #each plan_data.courses }}
-                         {{ #unless registrations_available }}
-                             {{ curriculum_abbr }} {{ course_number }} <br />
-                         {{ /unless }}
-                     {{ /each}}
+                     <ul class="courses-not-ready-list">
+                        {{ #each plan_data.courses }}
+                        <li>
+                            {{ #unless registrations_available }}
+                            {{ curriculum_abbr }} {{ course_number }} <br />
+                            {{ /unless }}
+                        </li>
+                         {{ /each}}
+                     </ul>
                  </div>
             {{/if}}
         </div>

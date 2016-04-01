@@ -24,7 +24,7 @@
                                           class="sr-only">See more details about unready courses</span>
                                     <a href="javascript:void(0)"
                                        aria-labelledby="show_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
-                                       class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}"><i class="fa fa-sort-desc fa-rotate-270" aria-hidden="true"></i> See details</a>
+                                       class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}">See details</a>
                                 </span>
 
                                 <span id="hide_unready_courses_wrapper{{#if card }}_{{card}}{{/if}}" hidden aria-hidden="true">
@@ -32,7 +32,7 @@
                                           class="sr-only">Hide details for unready courses</span>
                                     <a href="javascript:void(0)"
                                        aria-labelledby="hide_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
-                                       class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}"><i class="fa fa-sort-desc" aria-hidden="true"></i> Hide details</a>
+                                       class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}">Hide details</a>
                                 </span>
                             {{ /unless}}
                         </li>
@@ -43,7 +43,7 @@
     </div>
 
     <div id="myplan_unready_courses{{#if card }}_{{card}}{{/if}}" class="slide-hide course-not-ready-details">
-        <h4 class="card-badge-label">Not ready for registration</h4>
+        <h4>Not ready for registration</h4>
         <ul id="courses_not_ready_list" class="courses-not-ready-list">
             {{ #each plan_data.courses }}
                 {{ #unless registrations_available }}
@@ -54,7 +54,7 @@
         </ul>
 
         <div>
-            <h5 class="card-badge-label">One or more of the issues below will prevent these courses from being sent to registration:</h5>
+            <p>One or more of the issues below will prevent these courses from being sent to registration:</p>
             <ul class="fa-ul courses-not-ready-issues">
                 <li>Too many/too few sections selected for a course</li>
                 <li>Time conflict with registered course</li>
@@ -73,7 +73,7 @@
     <div id="reg_details" class="reg-details-closed-container clearfix">
         <div class="reg-details-closed">
             <div class="pull-left">
-                <h4 class="card-badge-label">In <span style="font: 18px/normal 'museo-sans',Helvetica,Arial,Verdana,sans-serif;">MyPlan</span></h4>
+                <h4 class="card-badge-label">In MyPlan</span></h4>
             </div>
             <div class="pull-right">
                 <div class="card-badge-value">No courses in your plan</div>

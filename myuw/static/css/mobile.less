@@ -959,16 +959,18 @@ body {
                                     a {padding-left:4px;}
                             }
                         }
+                        h4 {font-size: 15px; color:rgb(68, 68, 68);}
                     }
                 }
 
                 .course-not-ready-details {
-                    background-color:@detail-section;
+                    background-color:#eee;
                     margin-top:0px;
                     margin-left:-10px;
                     margin-right:-10px;
                     padding-left:10px;
                     padding-right:10px;
+                    h4 {font-size: 14px; font-weight:bold;}
                     .card-badge-label {
                         margin-top:15px;
                         margin-bottom:10px;
@@ -979,8 +981,7 @@ body {
                     .courses-not-ready-list {
                         list-style-type: none;
                         padding-left: 10px;
-                        margin-bottom:5px;
-                        .courses-not-ready-list-item {}
+                        margin-bottom:20px;
                     }
                     .courses-not-ready-issues {
                         list-style-type:disc;
@@ -990,7 +991,6 @@ body {
                     }
                     .edit-plan-link {padding: 5px 0 10px 5px;}
                 }
-
                 .reg-details-closed-container {
                     .reg-details-closed {
                         .card-badge-label {
@@ -1010,7 +1010,15 @@ body {
                 .reg-link {margin-top:10px;}
             // CLOSING Card-badge-container //
 	        }
-
+            .myplan-data {
+                h5 {font-weight:bold; margin-top:15px;}
+                padding-bottom: 20px;
+            }
+            .courses-not-ready-list, .courses-ready-list {
+                list-style-type: none;
+                padding-left: 10px;
+                margin-bottom:20px;
+            }
     	    .reg_resources_disc {
     		    h4 {font-weight:500; margin-bottom: 3px;}
     		    .card-badge-label {padding-bottom:5px;}
@@ -1019,7 +1027,7 @@ body {
     				    td {padding:0px;}
     			    }
     		    }
-                .reg-resources-list { list-style: none; padding: 2em 0;
+                .reg-resources-list { list-style: none; padding: 1em 0;
                     .focus-link {font-weight: bold;}
                     .last-focus-link {padding-bottom: 20px;} 
 			   	}
