@@ -595,7 +595,7 @@ body {
             text-align: left;
 
             i {font-size: 1.5em; vertical-align: middle; margin-right: .2em;}
-            a { color: #af4b1a; text-decoration: underline; }
+            a { color: #a94442; text-decoration: underline; }
         }
 
         .quarter-heading, .resources-heading { color:@darktan; }
@@ -894,10 +894,10 @@ body {
 
     // registration card
     #RegStatusCard, #SummerRegStatusCardA, #SummerRegStatusCard1, #TuitionCard {
-
+        .reg-date {font-weight: bold;}
         .card {
-	        .card-critical-alert {margin-bottom: 0;}
-	        .card-badge-container {
+            .card-critical-alert {margin-bottom: 0;}
+            .card-badge-container {
 // STUFF PATRICK ADDED //
                 .reg-holds-container {
                     .card-badge-label {
@@ -915,13 +915,13 @@ body {
                         margin-right: -20px;
                         margin-top: 28px;
                         .reg-holds {
-                            padding: 8px;
+                            padding: 10px;
                             margin-top: 8px;
                             .reg-holds-list {
                                     list-style: none;
                                     padding: 0;
-                                    color:#913f16;
-                                    a {color:#4d66ca; text-decoration: none;}
+                                    color:#a94442;
+                                    a {color:#913f16; text-decoration: none;}
                                     ul { margin-top:5px;
                                              li { margin-bottom: 1em; }
                                     }
@@ -1045,26 +1045,27 @@ body {
 // End --- STUFF PATRICK ADDED //
 
     	    .finaid-notices-container {
-        		.finaid-notices-panel-group {
+                h4 {font-weight: bold; color: #85754d;}
+                .finaid-notices-panel-group {
                             list-style-type: none;
                             padding-left:0;
                             line-height: 24px;
-        		    .finaid-panel-default {
+                            .finaid-panel-default {
                                 border:none;
                                 box-shadow:
                                 none;-webkit-box-shadow: none;
                                 margin-left: -10px;
                                 margin-right: -10px;
-            			.finaid-panel-heading {
+                                .finaid-panel-heading {
                                         padding: 0px 0px;
                                         background-color: transparent;
-            			    .finaid-panel-title {
+                                        .finaid-panel-title {
                                             font-size:14px;
                                             padding: 0 10px;
-                				a {color: #4d66ca;
-                				   &.collapsed {
-                				       span {
-                					   &.caret {filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);-webkit-transform:rotate(270deg);-ms-transform:rotate(270deg);transform:rotate(270deg)}
+                                            a {color: #4d66ca;
+                                                &.collapsed {
+                                                span {
+                                                &.caret {filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);-webkit-transform:rotate(270deg);-ms-transform:rotate(270deg);transform:rotate(270deg)}
                 				       }
                 				   }
                                 }

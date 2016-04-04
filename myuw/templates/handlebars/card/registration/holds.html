@@ -8,14 +8,14 @@
     <li>
     -->
         <div class="reg-holds-container clearfix">
-            {{#unless is_my_1st_reg_day }}
+            {{#unless myplan_peak_load }}
                 <div class="pull-left">
                     <h4 class="card-badge-label pull-left">Holds</h4>
                 </div>
+                <div class="pull-right">
             {{else}}
+                <div class="pull-left">
             {{/unless}}
-
-            <div class="pull-right">
                 <div class="card-badge-value">
                     <span class="sr-only">You have registration holds!</span>
                     <span id="show_reg_holds_wrapper{{#if card}}_{{card}}{{/if}}">
