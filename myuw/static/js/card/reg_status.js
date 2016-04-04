@@ -167,7 +167,8 @@ var RegStatusCard = {
             "est_reg_date": display_est_reg_date,
             "reg_next_quarter" : quarter,
             "reg_next_year": year,
-            "plan_data": plan_data
+            "plan_data": plan_data,
+            "myplan_peak_load": window.card_display_dates.myplan_peak_load
         };
         var raw = template(template_data);
         return raw;
