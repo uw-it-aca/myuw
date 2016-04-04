@@ -114,11 +114,10 @@ def get_est_reg_info(request, notice):
     for attribute in notice.attributes:
         if attribute.data_type == "date" and\
                 attribute.name == "Date":
-            ret["is_my_1st_reg_day"] =\
-                (now.date() == attribute._date_value.date())
-
-            reg_start = attribute._date_value + timedelta(hours=6)
+            reg_start = attribute._date_value
             ret["my_reg_has_opened"] = (now >= reg_start)
+            ret["is_my_1st_reg_day"] =\
+                (now >= reg_start and now < reg_start + timedelta(hours=24))
     return ret
 
 

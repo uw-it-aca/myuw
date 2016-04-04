@@ -103,7 +103,7 @@ class TestNotices(TestCase):
         self.client.login(username='jinter',
                           password=get_user_pass('jinter'))
         session = self.client.session
-        session["myuw_override_date"] = "2013-04-26 00:00:00"
+        session["myuw_override_date"] = "2013-05-09 23:59:59"
         session.save()
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
@@ -117,7 +117,7 @@ class TestNotices(TestCase):
                 self.assertFalse(el["my_reg_has_opened"])
 
         session = self.client.session
-        session["myuw_override_date"] = "2013-05-10 06:00:01"
+        session["myuw_override_date"] = "2013-05-10 00:00:01"
         session.save()
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
@@ -134,7 +134,7 @@ class TestNotices(TestCase):
         self.client.login(username='jbothell',
                           password=get_user_pass('jbothell'))
         session = self.client.session
-        session["myuw_override_date"] = "2014-02-14 06:00:01"
+        session["myuw_override_date"] = "2014-02-14 00:00:01"
         session.save()
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
