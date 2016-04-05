@@ -5,12 +5,12 @@
             {
                "Name": "DisplayBegin",
                "DataType": "date",
-               "Value": "20140920"
+               "Value": "20130401"
             },
             {
                "Name": "DisplayEnd",
                "DataType": "date",
-               "Value": "20141015"
+               "Value": "20130501"
             }
             ],
             "NoticeCategory": "StudentGEN",
@@ -22,17 +22,17 @@
                 {
                     "Name": "Date",
                     "DataType": "date",
-                    "Value": "next_week"
+                    "Value": "20130510"
                 },
                 {
                     "Name": "DisplayBegin",
                     "DataType": "date",
-                    "Value": "yesterday"
+                    "Value": "20130425"
                 },
                 {
                     "Name": "DisplayEnd",
                     "DataType": "date",
-                    "Value": "next_week"
+                    "Value": "20130510"
                 },
                 {
                     "Name": "Quarter",
@@ -42,8 +42,30 @@
 
             ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": "<span class=\"notice-title\">Estimated Registration Date</span><span class=\"notice-body-with-title\">Your estimated Period I Priority Registration Date for autumn quarter is <span class=\"date\"> Thurs, May 15</span>. Registration begins at 6:00 AM. <a href=\"http://www.washington.edu/students/reg/priorau14.html\">View your Period 1 Priority Registration Date</a>.</span>",
+            "NoticeContent": "<span class=\"notice-title\">Estimated Registration Date</span><span class=\"notice-body-with-title\">Your estimated Period I Priority Registration Date for autumn quarter is <span class=\"date\">Fri, May 10</span>. Registration begins at 6:00 AM. <a href=\"http://www.washington.edu/students/reg/priorau14.html\">View your Period 1 Priority Registration Date</a>.</span>",
             "NoticeType": "EstPd1RegDate"
+        },
+        {
+            "NoticeAttributes": [
+                                {
+                                        "DataType": "string",
+                                        "Name": "Quarter",
+                                        "Value": "Autumn"
+                                },
+                                {
+                                        "DataType": "date",
+                                        "Name": "DisplayBegin",
+                                        "Value": "20130502"
+                                },
+                                {
+                                        "DataType": "date",
+                                        "Name": "DisplayEnd",
+                                        "Value": "20130509"
+                                }
+                        ],
+                        "NoticeCategory": "StudentALR",
+                        "NoticeContent": "<span class=\"notice-title\">Pre-Registration Requirement</span><span class=\"notice-body-with-title\">Beginning one week prior to each quarter's registration period, you can make all the required Notices and Insurance/Optional Charges selections. You will then be able to go directly into Web Registration when your priority registration period begins. If you have not already done so, <a href=\"https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp\">go to the Insurance/Optional Charges</a> services nowto complete these requirements prior to registering for summer quarter.</span>",
+                       "NoticeType": "PreRegNow"
         },
 
         {

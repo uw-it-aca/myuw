@@ -33,16 +33,30 @@
                 </ul>
             </div>
 
-            <div id="academic_card_resources" class="slide-hide" aria-hidden="true">
+            <div id="academic_card_resources" class="slide-hide" aria-hidden="true"
+                 aria-label="Resources related to major and class standing" style="display: none;">
                 <h4>Resources</h4>
                 <ul class="reg-resources-list">
-                    <li><a href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/" target="_blank">MyPlan</a> (Academic Planning)</li>
-                    <li><a href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree" target="_blank">Check Your Degree Progress</a> (DARS)</li>
+                    <li><a href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/"
+                           target="_blank">MyPlan</a> (Academic Planning)</li>
+                    <li><a href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree"
+                           target="_blank">Check Your Degree Progress</a> (DARS)</li>
                 </ul>
             </div>
 
             <div class="card-disclosure">
-                <a id="toggle_academic_card_resources" aria-controls="reg_resources" href="#" title="Expand to show additional academic resources">SHOW MORE</a>
+                <span id="show_academic_resources_wrapper">
+                    <span id="show_academic_resources_label" class="sr-only">Show links to academics resources</span>
+                    <a class="toggle_academic_card_resources" aria-controls="academic_card_resources"
+                       aria-labelledby="show_academic_resources_label" href="#"
+                       title="Expand to show additional academic resources">SHOW MORE</a>
+                </span>
+                <span id="hide_academic_resources_wrapper" hidden aria-hidden="true">
+                    <span id="hide_academic_resources_label" class="sr-only">Hide links to academics resources</span>
+                    <a class="toggle_academic_card_resources" aria-controls="academic_card_resources"
+                       aria-labelledby="hide_academic_resources_label" href="#"
+                       title="Collapse to hide additional academic resources">SHOW LESS</a>
+                </span>
             </div>
         </div>
     </div>

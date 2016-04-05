@@ -21,6 +21,12 @@
     {% include "handlebars/card/loading.html" %}
     {% include "handlebars/card/no_course.html" %}
     {% include "handlebars/card/pce_tuition.html" %}
+    {% include "handlebars/card/registration/holds.html" %}
+    {% include "handlebars/card/registration/est_reg_date.html" %}
+    {% include "handlebars/card/registration/finaid_notices.html" %}
+    {% include "handlebars/card/registration/in_myplan.html" %}
+    {% include "handlebars/card/registration/myplan_courses.html" %}
+    {% include "handlebars/card/registration/reg_resources.html" %}
     {% include "handlebars/card/reg_status.html" %}
     {% include "handlebars/card/tuition.html" %}
     {% include "handlebars/card/textbook.html" %}
@@ -91,6 +97,9 @@
         "seattle": {{ user.affiliations.official_seattle|yesno:"true, false" }},
         "bothell": {{ user.affiliations.official_bothell|yesno:"true, false" }},
         "tacoma": {{ user.affiliations.official_tacoma|yesno:"true, false" }},
+        "seattle_affil": {{ user.affiliations.seattle|yesno:"true, false" }},
+        "bothell_affil": {{ user.affiliations.bothell|yesno:"true, false" }},
+        "tacoma_affil": {{ user.affiliations.tacoma|yesno:"true, false" }},
         "email_is_uwgmail": {{ user.email_is_uwgmail|yesno:"true, false" }},
         "email_is_uwlive": {{ user.email_is_uwlive|yesno:"true, false" }},
         "netid": "{{ user.netid }}"
@@ -109,6 +118,7 @@
         "is_before_first_day_of_term": {{ card_display_dates.is_before_first_day_of_term|yesno:"true, false" }},
         "is_before_eof_7days_of_term": {{ card_display_dates.is_before_eof_7days_of_term|yesno:"true, false" }},
         "is_after_7d_before_last_instruction": {{ card_display_dates.is_after_7d_before_last_instruction|yesno:"true, false"}},
+        "myplan_peak_load": {{card_display_dates.myplan_peak_load|yesno:"true, false"}},
         "is_summer": {{ card_display_dates.is_summer|yesno:"true, false"}},
         "current_summer_term": "{{ card_display_dates.current_summer_term}}",
         "is_after_summer_b_start": {{ card_display_dates.is_after_summer_b|yesno:"true, false"}},

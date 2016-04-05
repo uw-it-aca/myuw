@@ -1,0 +1,89 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "in_myplan_tmpl" %}
+
+<div class="card-badge-container">
+
+  {{#if plan_data.courses}}
+    <div id="reg_details" class="card-badge reg-details-container clearfix">
+
+        <div class="reg-details">
+            <h4 class="card-badge-label pull-left">In MyPlan</h4>
+
+            <div class="pull-right">
+                <ul class="card-badge-value">
+                    <li>{{ plan_data.ready_count }} {{ pluralize plan_data.ready_count "course" "courses" }} ready</li>
+                    {{ #if plan_data.unready_count }}
+                        <li class="courses-not-ready">{{ plan_data.unready_count }} not ready
+
+                            {{ #unless plan_data.has_sections }}
+                                <a target="_blank"
+                                   href="{{plan_data.myplan_href}}">Add Sections</a>
+                            {{ else }}
+                                <span id="show_unready_courses_wrapper{{#if card }}_{{card}}{{/if}}">
+                                    <span id="show_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
+                                          class="sr-only">See more details about unready courses</span>
+                                    <a href="javascript:void(0)"
+                                       aria-labelledby="show_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
+                                       class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}">See details</a>
+                                </span>
+
+                                <span id="hide_unready_courses_wrapper{{#if card }}_{{card}}{{/if}}" hidden aria-hidden="true">
+                                    <span id="hide_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
+                                          class="sr-only">Hide details for unready courses</span>
+                                    <a href="javascript:void(0)"
+                                       aria-labelledby="hide_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
+                                       class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}">Hide details</a>
+                                </span>
+                            {{ /unless}}
+                        </li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="myplan_unready_courses{{#if card }}_{{card}}{{/if}}" class="slide-hide course-not-ready-details">
+        <h4>Not ready for registration</h4>
+        <ul id="courses_not_ready_list" class="courses-not-ready-list">
+            {{ #each plan_data.courses }}
+                {{ #unless registrations_available }}
+                    <li class="courses-not-ready-list-item">{{ curriculum_abbr }} {{ course_number }}</li>
+                    <!--{{ #unless @last }}<br />{{/unless}}-->
+                {{ /unless }}
+            {{ /each}}
+        </ul>
+
+        <div>
+            <p>One or more of the issues below will prevent these courses from being sent to registration:</p>
+            <ul class="fa-ul courses-not-ready-issues">
+                <li>Too many/too few sections selected for a course</li>
+                <li>Time conflict with registered course</li>
+                <li>Time conflict with a selected section</li>
+                <li>Planned courses are jointly offered versions of one course</li>
+            </ul>
+        </div>
+        <div class="pull-right edit-plan-link">
+            <a title="Edit plan to fix issues" target="_blank"
+               href="{{plan_data.myplan_href}}">Edit plan in MyPlan</a>
+        </div>
+    </div>
+
+  {{else}}
+
+    <div id="reg_details" class="reg-details-closed-container clearfix">
+        <div class="reg-details-closed">
+            <div class="pull-left">
+                <h4 class="card-badge-label">In MyPlan</span></h4>
+            </div>
+            <div class="pull-right">
+                <div class="card-badge-value">No courses in your plan</div>
+                <div style="text-align:right;">
+                    <a class="pull-right" target="_blank"
+                       href="{{plan_data.course_search_href}}">Add courses</a>
+                </div>
+            </div>
+        </div>
+    </div>
+  {{/if}}
+</div>
+{% endtplhandlebars %}

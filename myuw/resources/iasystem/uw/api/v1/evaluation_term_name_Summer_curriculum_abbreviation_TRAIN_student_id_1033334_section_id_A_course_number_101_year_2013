@@ -128,4 +128,5 @@
                "rel":"self",
                "href":"https://uw.iasystem.org/api/v1/evaluation?year=2013&term_name=Summer&curriculum_abbreviation=TRAIN&section_id=A&course_number=101"}],
      "href":"https://uw.iasystem.org/api/v1/evaluation"
-}}
+     }
+}

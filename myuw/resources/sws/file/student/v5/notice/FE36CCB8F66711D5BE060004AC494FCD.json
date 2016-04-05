@@ -41,9 +41,30 @@
             "NoticeType": "QtrBegin"
         },
         {
-            "NoticeAttributes": [],
+            "NoticeAttributes": [
+                {
+                    "Name": "Date",
+                    "DataType": "date",
+                    "Value": "20140214"
+                },
+                {
+                    "Name": "DisplayBegin",
+                    "DataType": "date",
+                    "Value": "20140201"
+                },
+                {
+                    "Name": "DisplayEnd",
+                    "DataType": "date",
+                    "Value": "20140303"
+                },
+                {
+                    "Name": "Quarter",
+                    "DataType": "string",
+                    "Value": "Spring"
+                }
+            ],
             "NoticeCategory": "StudentDAD",
-            "NoticeContent": "<span class=\"notice-title\">Estimated Registration Date</span><span class=\"notice-body-with-title\">Your estimated Period I Priority Registration Date for winter quarter is <span class=\"date\"></span>. Registration begins at 6:00 AM. <a href=\"http://www.washington.edu/students/reg/priorsp15.html\">View your Priority I Registration Date.</a></span>",
+            "NoticeContent": "<span class=\"notice-title\">Estimated Registration Date</span><span class=\"notice-body-with-title\">Your estimated Period I Priority Registration Date for spring quarter is <span class=\"date\"></span>. Registration begins at 6:00 AM. <a href=\"http://www.washington.edu/students/reg/priorsp15.html\">View your Priority I Registration Date.</a></span>",
             "NoticeType": "EstPd1RegDate"
         },
         {

@@ -1,0 +1,23 @@
+[
+    {
+        "Term":{"Quarter":"Spring","Year":2013},
+        "RegistrationHref":"http://example.com/RegistrationHref",
+        "MyPlanHref":"http://example.com/MyPlan",
+        "Courses":[
+            {
+                "CurriculumAbbreviation":"PHYS",
+                "CourseNumber":"121",
+                "RegistrationAvailable":true,
+                "Sections":[
+                    {"SectionId":"AA"},
+                    {"SectionId":"AC"}
+                ]},
+            {
+                "CurriculumAbbreviation":"CSE",
+                "CourseNumber":"102",
+                "RegistrationAvailable":false,
+                "Sections":[
+                    {"SectionId":"A"},
+                    {"SectionId":"B"},
+                    {"SectionId":"C"}]}]}
+]
