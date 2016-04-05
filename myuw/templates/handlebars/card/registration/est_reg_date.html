@@ -1,0 +1,24 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "notice_est_reg_date_tmpl" %}
+
+<div class="card-badge-container">
+    <div class="card-badge est-reg-date-container clearfix">
+        <div class="est-reg-date" aria-labelledby="est_reg_date">
+
+            {{ #with est_reg_date }}
+            <span class="sr-only est_reg_date">Estimated Registration Date:
+                {{{ toFriendlyDateVerbose date }}}</span>
+            <div class="pull-left" style="display:inline-block;">
+                <h4 class="card-badge-label">Est. Registration Date
+                            <!-- <br /><span class="" style="font-size:75%; font-weight:normal; font-style:italic;">(Estimated)</span>-->
+                </h4>
+            </div>
+            <div class="pull-right">
+                <div class="card-badge-value">{{{ toFriendlyDate date }}}<br/><span class="est-reg-time">at 6:00 AM</span></div>
+            </div>
+            {{ /with }}
+        </div>
+    </div>
+</div>
+
+{% endtplhandlebars %}

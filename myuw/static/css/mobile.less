@@ -16,6 +16,7 @@
 @brown: #633a31;
 @gray: #ccc;
 @blue: #1155cc;
+@detail-section: rgba(100, 185, 84, 0.08);
 
 .button-variant(@color; @background; @border) {
 color: @color;
@@ -565,7 +566,7 @@ body {
 
     // cards
     .card {  
-        
+
         border: 1px solid;
         border-color: #e5e6e9 #dfe0e4 #d0d1d5;
         position: relative; 	
@@ -573,54 +574,128 @@ body {
    	    box-shadow: rgba(0, 0, 0, 0.25) 1px 1px 2px -1px;
     	margin-top: 20px;
     	padding: 10px;
-    	
-		h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small;  margin-top: 10px; margin-bottom: 15px; color: @darktan; }
-        h4 { font-family:'Roboto'; font-weight: 400; font-size: 16px;  color: #444; }
-        
+
+        h3 {
+            font-family: 'encode_sans_normalbold';
+            font-size: @font-header-small;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            color: @darktan; }
+        h4 {
+            font-family:'Roboto';
+            font-weight: 400;
+            font-size: 16px;
+            color: #444; }
+
         .card-content {  }
-        
-        .card-critical-alert { background: rgb(240,219,208); padding: 8px; margin-bottom: 1em; color: #af4b1a; text-align: center;        
-	        i {font-size: 1.5em; vertical-align: middle; margin-right: .2em;}	        
-			a { color: #af4b1a; text-decoration: underline; }
+
+        .card-critical-alert {
+            // background: rgb(240,219,208); padding: 8px; color: #af4b1a;
+            margin-bottom: 1em;
+            text-align: left;
+
+            i {font-size: 1.5em; vertical-align: middle; margin-right: .2em;}
+            a { color: #a94442; text-decoration: underline; }
         }
 
-        .card-noncritical-alert { background: rgb(221,229,239); padding: 8px; margin-bottom: 1em; color: #444; text-align: center;
-	        i { font-size: 1.5em; vertical-align: middle; margin-right: .2em;}	        
-			a {  text-decoration: underline; }
+        .quarter-heading, .resources-heading { color:@darktan; }
+
+        .reg_status_table td { height: 10px; }
+
+        .card-badge-label { font-weight: bold; }
+
+        .borderless td, .borderless th {
+            border: none;
+        }
+        .reg_status_table th { border-top: none !important; }
+        .reg_status_table td { border-top: none !important; }
+
+// Redundant remove? //
+        .reg_resources_disc {
+            .card-badge-label {
+                font-weight: bold;
+            }
+        }
+// END Redundant remove? //
+
+        .card-noncritical-alert {
+            background: rgb(221,229,239);
+            padding: 8px;
+            margin-bottom: 1em;
+            color: #444;
+            text-align: center;
+	    i { font-size: 1.5em; vertical-align: middle; margin-right: .2em;}
+	    a {  text-decoration: underline; }
         }
         
         .card-badge-container {
             .card_list { list-style: none; padding-left: 0; }                
-            .card-badge {  padding: 8px 10px 10px 0px; position: relative;
-                .card-badge-label { display: block; font-weight: bold; /*line-height: 35px;*/ }
-                .card-badge-action { display: block; font-weight: normal; line-height: 35px; margin-top: -10px; 
+            .card-badge {
+                padding: 8px 10px 10px 0px;
+                position: relative;
+                .card-badge-label {
+                    display: block;
+                    font-weight: bold;
+                /*line-height: 35px;*/ }
+                .card-badge-action {
+                    display: block;
+                    font-weight: normal;
+                    line-height: 35px;
+                    margin-top: -10px;
                     a { display: block; }
                 }
-                
-                .card-badge-value { display: block; font-size: 22px; font-weight: bold;  text-align: right; }
-                .card-badge-note { font-weight: normal; color: #888; margin-top: 35px; position: absolute; bottom: -3px; font-size: 12px; }
+
+                .card-badge-value {
+                    display: block;
+                    font-size: 22px;
+                    font-weight: bold;
+                    text-align: right;
+                }
+
+                .card-badge-note {
+                    font-weight: normal;
+                    color: #888;
+                    margin-top: 35px;
+                    position: absolute;
+                    bottom: -3px;
+                    font-size: 12px;
+                }
             }
         }
         
-        .card-related-messages { margin: 1em 0; font-size: 12px;
+        .card-related-messages {
+            margin: 1em 0;
+            font-size: 12px;
             
             // override pce message
             .pce-message { color: #888; margin-top: 1em; }
-            
         }
         
         /*.nav-card-arrow { height: @line-height-base; position: absolute; right: 0; display: inline-block; top: 50%; margin-top: -@line-height-base / 2; }*/
         
-        ul.fina-notice-list { padding-left: 0px; 
-            
+        ul.fina-notice-list {
+            padding-left: 0px;
             li { padding-bottom: 8px; }
-            
         }
         
-        ul.unstyled-list, ol.unstyled-list { padding-left: 0px; list-style-type: none; line-height: 23px; }
-        ul.unstyled, ol.unstyled { padding-left: 0px; list-style-type: none; line-height: 23px; }
+        ul.unstyled-list, ol.unstyled-list {
+            padding-left: 0px;
+            list-style-type: none;
+            line-height: 23px; }
+        ul.unstyled, ol.unstyled {
+            padding-left: 0px;
+            list-style-type: none;
+            line-height: 23px; }
         
-        .card-disclosure {  margin-left: -10px; margin-right: -10px; margin-bottom: -10px; margin-top: 1em; /*padding-left: 10px;*/ border-top: solid 1px #eee; text-transform: uppercase; text-align: center; font-size: 12px;background-color: #efefef;
+        .card-disclosure {
+            margin-left: -10px;
+            margin-right: -10px;
+            margin-bottom: -10px;
+            margin-top: 1em; /*padding-left: 10px;*/
+            border-top: solid 1px #eee;
+            text-transform: uppercase;
+            text-align: center; font-size:
+            12px;background-color: #efefef;
             a { color: #444; display:block; line-height:40px; }
         }
         
@@ -634,8 +709,18 @@ body {
         
         
         .card-resources-list { list-style: none; padding-left: 0; }
-
-            
+        .bold_text { font-weight: bold; }
+        .course_not_ready_details {
+            background-color:@detail-section;
+            margin-top:0px;
+            margin-left:-10px;
+            margin-right:-10px;
+            padding-left:10px;
+            padding-right:10px;
+            .card-badge-label { font-weight: bold; }
+            //padding-bottom:8px;
+            //width: 100%;
+        }
     }
     
     // PCE card & PCE notice on Visual Schedule
@@ -809,53 +894,198 @@ body {
 
     // registration card
     #RegStatusCard, #SummerRegStatusCardA, #SummerRegStatusCard1, #TuitionCard {
-	    .card {
-		    h4 {font-family: 'Roboto', sans-serif; font-weight: 500; color: @darktan; margin-top: 1.5em; margin-bottom: .5em; font-size: 16px;  }
-	        .reg-holds-list { list-style: none; padding: 0; margin-top: 1em; color:#913f16;
-		        a {color:#4d66ca; text-decoration: none;}
+        .reg-date {font-weight: bold;}
+        .card {
+            .card-critical-alert {margin-bottom: 0;}
+            .card-badge-container {
+// STUFF PATRICK ADDED //
+                .reg-holds-container {
+                    .card-badge-label {
+                        line-height: 0px;
+                    }
+                    .card-badge-value {
+                        font-size: 17px;
+                        font-weight: bold;
+                        line-height: 20px;
+                        i {font-size: 1em; padding-right: 4px;}
+                    }
+                    .reg_holds_disc {
+                        background: rgba(255, 140, 138, 0.16);
+                        margin-left: -10px;
+                        margin-right: -20px;
+                        margin-top: 28px;
+                        .reg-holds {
+                            padding: 10px;
+                            margin-top: 8px;
+                            .reg-holds-list {
+                                    list-style: none;
+                                    padding: 0;
+                                    color:#a94442;
+                                    a {color:#913f16; text-decoration: none;}
+                                    li { margin-bottom: 1em; }
+                            }
+                        }
+                    }
+                }
 
-		        ul { margin-top:5px;
-	            	li { margin-bottom: 1em; }
-	            }
+                .est-reg-date-container {
+                    .est-reg-date {
+                            margin-bottom: 20px;
+                            .card-badge-label {
+                                line-height: 18px;
+                                margin-top: 0px;
+                                width:9em;}
+                            .card-badge-value {
+                                line-height: 18px;
+                                font-size: 17px;
+                                .est-reg-time {
+                                    font-size: 75%;
+                                    font-weight:normal;}
+                            }
+                        }
+                }
+
+                // In MyPlan
+                .reg-details-container {
+                    .reg-details {
+                        ul {padding-left:0;}
+                        .card-badge-value {
+                            list-style-type: none;
+                            font-size: 16px;
+                            line-height:18px;
+                            .courses-not-ready {font-weight: normal; font-size:14px;
+                                    a {padding-left:4px;}
+                            }
+                        }
+                        h4 {font-size: 15px; color:rgb(68, 68, 68);}
+                    }
+                }
+
+                .course-not-ready-details {
+                    background-color:#eee;
+                    margin-top:0px;
+                    margin-left:-10px;
+                    margin-right:-10px;
+                    padding-left:10px;
+                    padding-right:10px;
+                    h4 {font-size: 14px; font-weight:bold;}
+                    .card-badge-label {
+                        margin-top:15px;
+                        margin-bottom:10px;
+                    }
+                    //padding-bottom:8px;
+                    //width: 100%;
+                    .courses-not-ready-message {}
+                    .courses-not-ready-list {
+                        list-style-type: none;
+                        padding-left: 10px;
+                        margin-bottom:20px;
+                    }
+                    .courses-not-ready-issues {
+                        list-style-type:disc;
+                        li {line-height:18px;padding-bottom:8px;
+                            i {color:rgba(238, 150, 16, 0.79)}
+                           }
+                    }
+                    .edit-plan-link {padding: 5px 0 10px 5px;}
+                }
+                .reg-details-closed-container {
+                    .reg-details-closed {
+                        .card-badge-label {
+                            margin-top: 0px;
+                        }
+                        .card-badge-value {
+                            line-height: 25px;
+                        }
+                    }
+                    .edit-plan-link {
+                        padding: 5px 0 10px 5px;
+                    }
+                }
+    	        .reg-details-open {margin-top:10px; text-align:right;
+    		        .reg-link {font-size:12px;}
+                }
+                .reg-link {margin-top:10px;}
+            // CLOSING Card-badge-container //
+	        }
+            .myplan-data {
+                h5 {font-weight:bold; margin-top:15px;}
+                padding-bottom: 20px;
+            }
+            .courses-not-ready-list, .courses-ready-list {
+                list-style-type: none;
+                padding-left: 10px;
+                margin-bottom:20px;
+            }
+    	    .reg_resources_disc {
+    		    h4 {font-weight:500; margin-bottom: 3px;}
+    		    .card-badge-label {padding-bottom:5px;}
+    		    .reg-status-table {margin-left:10px; margin-bottom: 10px;
+    			    .reg-status-table-row {
+    				    td {padding:0px;}
+                        td:nth-child(1) {width: 15%;}
+                        td:nth-child(2) {width: 20%;}
+                        td:nth-child(3) {width: 40%;}
+    			    }
+    		    }
+                .reg-resources-list { list-style: none; padding: 1em 0;
+                    .focus-link {font-weight: bold;}
+                    .last-focus-link {padding-bottom: 20px;} 
+			   	}
+			   	.no-header-space {padding-top:10px;}
+    	    }
+    
+            .reg-notice-list { list-style: none; padding: 5px 0;
                     li { margin-bottom: 1em; }
-	        }     
+            }
+            .notice-list { margin-top: 5px; margin-bottom: 10px; list-style: disc;
+             li { margin-bottom: 0;}
+            }
+            .notice-title { display: block; font-weight: bold; margin-bottom: 2px; }
 
-	        .est-reg-date { margin-bottom: 20px; }
-	        .reg-notice-list { list-style: none; padding: 5px 0; 
-	             
-	            li { margin-bottom: 1em; }
-	        }
-	        .reg-resources-list { list-style: none; padding-left: 0; }
-	        .notice-list { margin-top: 5px; margin-bottom: 10px; list-style: disc; 
-	            li { margin-bottom: 0;}
-	        }
-	        .notice-title { display: block; font-weight: bold; margin-bottom: 2px; }
-	        .finaid-notices-container {
-	                ul { list-style-type: none; } 		
-				    .finaid-notices-panel-group {padding-left:0;line-height: 24px;		    
-					    .finaid-panel-default {border:none; box-shadow: none;-webkit-box-shadow: none; margin-left: -10px; margin-right: -10px; 
-						    .finaid-panel-heading {padding: 0px 0px;background-color: transparent;
-							    .finaid-panel-title {font-size:14px;padding: 0 10px;
-								    a {color: #4d66ca;
-									    &.collapsed {
-										    span {
-											    &.caret {filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);-webkit-transform:rotate(270deg);-ms-transform:rotate(270deg);transform:rotate(270deg)}
-											    }
-									    }
-									 
-								    }
-							    }
-						    }
-						    .finaid-panel-collapse {
-							    .finaid-panel-body {border-top: none;padding: 5px 10px;margin-top: 5px;background-color:#fcf8e3;line-height:20px;
-									span.notice-title {display:none;}
-								}
-						    }
-					    }					
-				    }
-			    }
-			}
-        
+// End --- STUFF PATRICK ADDED //
+
+    	    .finaid-notices-container {
+                h4 {font-weight: bold; color: #85754d;}
+                .finaid-notices-panel-group {
+                            list-style-type: none;
+                            padding-left:0;
+                            line-height: 24px;
+                            .finaid-panel-default {
+                                border:none;
+                                box-shadow:
+                                none;-webkit-box-shadow: none;
+                                margin-left: -10px;
+                                margin-right: -10px;
+                                .finaid-panel-heading {
+                                        padding: 0px 0px;
+                                        background-color: transparent;
+                                        .finaid-panel-title {
+                                            font-size:14px;
+                                            padding: 0 10px;
+                                            a {color: #4d66ca;
+                                                &.collapsed {
+                                                span {
+                                                &.caret {filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);-webkit-transform:rotate(270deg);-ms-transform:rotate(270deg);transform:rotate(270deg)}
+                				       }
+                				   }
+                                }
+            			    }
+            			}
+            			.finaid-panel-collapse {
+            			    .finaid-panel-body {
+                                            border-top: none;
+                                            padding: 5px 10px;
+                                            margin-top: 5px;
+                                            background-color:#fcf8e3;
+                                            line-height:20px;
+            				span.notice-title {display:none;}
+            			    }
+            			}
+    		        }   
+    		    }
+    	    }
+	    }
     }
     
     // course cards

@@ -97,36 +97,51 @@ var EventsCard = {
     },
 
     add_events: function() {
-        $("#toggle_event_card_resources").on("click", function(ev) {
+        $(".toggle_event_card_resources").on("click", function(ev) {
             ev.preventDefault();
-            $("#events_card_more").toggleClass("slide-show");
             var card = $(ev.target).closest("[data-type='card']");
+            var div = $("#events_card_more");
+            var expose = $("#show_event_resources_wrapper");
+            var hide = $("#hide_event_resources_wrapper");
 
-            if ($("#events_card_more").hasClass("slide-show")) {
-                window.user.event_toggle_text = $("#toggle_event_card_resources").text();
-                $("#toggle_event_card_resources").text("SHOW LESS");
-                $("#toggle_event_card_resources").attr("title", "Hide additional academic resources");
-                $("#events_card_more").attr("aria-hidden", "false");
+            if (div.css('display') == 'none') {
+                div.show();
+                div.attr("hidden", false);
+                // Without this timeout, the animation doesn't happen - the block just appears.
+                window.setTimeout(function() {
+                    div.toggleClass("slide-show");
+                    expose.attr("hidden", true);
+                    expose.attr("aria-hidden", true);
+                    hide.attr("hidden", false);
+                    hide.attr("aria-hidden", false);
+
+                    div.attr("aria-expanded", true);
+                    div.focus();
+                }, 0);
+
                 window.myuw_log.log_card(card, "expand");
             }
             else {
-                if (window.user.event_toggle_text === undefined) {
-                    $("#toggle_event_card_resources").text("SHOW MORE");
-                } else {
-                    $("#toggle_event_card_resources").text(window.user.event_toggle_text);
-                }
-
-                $("#toggle_event_card_resources").attr("title", "Expand to show additional academic resources");
-                $("#events_card_more").attr("aria-hidden", "true");
+                div.toggleClass("slide-show");
                 window.myuw_log.log_card(card, "collapse");
+
+                setTimeout(function() {
+                    expose.attr("hidden", false);
+                    expose.attr("aria-hidden", false);
+                    hide.attr("hidden", true);
+                    hide.attr("aria-hidden", true);
+                    div.attr("aria-expanded", false);
+                    div.attr("hidden", true);
+                    div.hide();
+                }, 700);
             }
+
         });
     },
 
     show_error: function() {
+        EventsCard.dom_target.hide();
     }
-
-    
 };
 
 /* node.js exports */

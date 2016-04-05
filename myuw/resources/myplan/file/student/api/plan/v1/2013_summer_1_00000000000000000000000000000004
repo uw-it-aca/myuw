@@ -1,0 +1,29 @@
+[
+    {
+        "Term":{"Quarter":"Summer","Year":2013},
+        "RegistrationHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/20133",
+        "MyPlanHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/plan/20133",
+        "AuditHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit",
+        "PlanAuditHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/plan",
+        "DegreeAuditHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree",
+        "PlanValidationHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/planValidation/20133",
+        "CourseSearchHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/course",
+        "RegisteredCoursesCount":0,
+        "RegisteredSectionsCount":0,
+        "Courses":[
+            {
+                "CurriculumAbbreviation":"PHYS",
+                "CourseNumber":"121",
+                "RegistrationAvailable":true,
+                "Sections":[
+                    {"SectionId":"AA"},
+                    {"SectionId":"AC"}
+                ]},
+            {
+                "CurriculumAbbreviation":"TRAIN",
+                "CourseNumber":"101",
+                "RegistrationAvailable":true,
+                "Sections":[
+                    {"SectionId":"A"}
+                    ]}]}
+]

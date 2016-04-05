@@ -61,8 +61,9 @@ urlpatterns = patterns(
     url(r'^api/v1/library/$', login_required(MyLibInfo().run),
         name="myuw_library_api"
         ),
-    url(r'^api/v1/myplan/?$', login_required(MyPlan().run),
-        name="myuw_myplan"
+    url(r'^api/v1/myplan/(?P<year>\d{4})/(?P<quarter>[a-zA-Z]+)',
+        login_required(MyPlan().run),
+        name="myuw_myplan_api"
         ),
     url(r'^api/v1/notices/$', login_required(Notices().run),
         name="myuw_notices_api"
