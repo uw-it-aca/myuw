@@ -6,7 +6,7 @@
 <form action="{% url 'myuw.views.display_dates.override' %}" method="POST">
 {% csrf_token %}
 
-Override date: <input type="text" name="date" value="{{ myuw_override_date }}" placeholder="YYYY-MM-DD"/>
+Override date: <input type="text" name="date" value="{{ myuw_override_date }}" placeholder="YYYY-MM-DD HH:MM:SS"/>
 {% if date_error %}
 <p>Error with date: {{ date_error }}</p>
 {% endif %}

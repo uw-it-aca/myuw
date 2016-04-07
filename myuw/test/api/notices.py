@@ -95,3 +95,54 @@ class TestNotices(TestCase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.content, '[]')
+
+    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
+    def test_est_reg_date(self):
+        url = reverse("myuw_notices_api")
+        get_user('jinter')
+        self.client.login(username='jinter',
+                          password=get_user_pass('jinter'))
+        session = self.client.session
+        session["myuw_override_date"] = "2013-05-09 23:59:59"
+        session.save()
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+        data = json.loads(response.content)
+        self.assertEquals(len(data), 31)
+        for el in data:
+            if el["category"] == "Registration" and\
+                    'est_reg_date' in el["location_tags"]:
+                self.assertFalse(el["is_my_1st_reg_day"])
+                self.assertFalse(el["my_reg_has_opened"])
+
+        session = self.client.session
+        session["myuw_override_date"] = "2013-05-10 00:00:01"
+        session.save()
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+        data = json.loads(response.content)
+        self.assertEquals(len(data), 31)
+        for el in data:
+            if el["category"] == "Registration" and\
+                    'est_reg_date' in el["location_tags"]:
+                self.assertTrue(el["is_my_1st_reg_day"])
+                self.assertTrue(el["my_reg_has_opened"])
+
+        get_user('jbothell')
+        self.client.login(username='jbothell',
+                          password=get_user_pass('jbothell'))
+        session = self.client.session
+        session["myuw_override_date"] = "2014-02-14 00:00:01"
+        session.save()
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+        data = json.loads(response.content)
+        self.assertEquals(len(data), 14)
+        for el in data:
+            if el["category"] == "Registration" and\
+                    'est_reg_date' in el["location_tags"]:
+                self.assertTrue(el["is_my_1st_reg_day"])
+                self.assertTrue(el["my_reg_has_opened"])

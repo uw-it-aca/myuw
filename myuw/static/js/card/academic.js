@@ -38,25 +38,43 @@ var AcademicCard = {
     },
 
     add_events: function() {
-        $("#toggle_academic_card_resources").on("click", function(ev) {
+        $(".toggle_academic_card_resources").on("click", function(ev) {
             ev.preventDefault();
-            $("#academic_card_resources").toggleClass("slide-show");
-            var card = "AcademicsCard";
 
-            if ($("#academic_card_resources").hasClass("slide-show")) {
-                $("#toggle_academic_card_resources").text("SHOW LESS");
-                $("#toggle_academic_card_resources").attr("title", "Hide additional academic resources");
-                $("#academic_card_resources").attr("aria-hidden", "false");
-                window.myuw_log.log_card(card, "expand academic resources");
+            var div = $("#academic_card_resources");
+            var expose = $("#show_academic_resources_wrapper");
+            var hide = $("#hide_academic_resources_wrapper");
+            var card = $(ev.target).closest("[data-type='card']");
+
+            if (div.css('display') == 'none') {
+                div.show();
+                div.attr("hidden", false);
+                // Without this timeout, the animation doesn't happen - the block just appears.
+                window.setTimeout(function() {
+                    div.toggleClass("slide-show");
+                    expose.attr("hidden", true);
+                    expose.attr("aria-hidden", true);
+                    hide.attr("hidden", false);
+                    hide.attr("aria-hidden", false);
+
+                    div.attr("aria-expanded", true);
+                    div.focus();
+                }, 0);
+
+                window.myuw_log.log_card(card, "expand");
             }
             else {
-                $("#toggle_academic_card_resources").text("SHOW MORE");
-                $("#toggle_academic_card_resources").attr("title", "Expand to show additional academic resources");
-                $("#academic_card_resources").attr("aria-hidden", "true");
-                window.myuw_log.log_card(card, "collapse academic resources");
+                div.toggleClass("slide-show");
+                window.myuw_log.log_card(card, "collapse");
 
                 setTimeout(function() {
-                    $("#toggle_academic_card_resources").text("SHOW MORE");
+                    expose.attr("hidden", false);
+                    expose.attr("aria-hidden", false);
+                    hide.attr("hidden", true);
+                    hide.attr("aria-hidden", true);
+                    div.attr("aria-expanded", false);
+                    div.attr("hidden", true);
+                    div.hide();
                 }, 700);
             }
         });
@@ -65,6 +83,5 @@ var AcademicCard = {
     show_error: function() {
         // don't show card if no account
         AcademicCard.dom_target.hide();
-//        AcademicCard.dom_target.html('');
     }
 };

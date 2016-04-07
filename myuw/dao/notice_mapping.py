@@ -6,11 +6,9 @@ This module provides utility the following functions:
 3. convert notice object into json format
 """
 import logging
-import pytz
 from datetime import datetime, timedelta
-from django.utils import timezone
 from myuw.dao.notice_categorization import NOTICE_CATEGORIES
-from myuw.dao.term import get_comparison_datetime
+from myuw.dao.term import get_comparison_datetime_with_tz
 
 
 logger = logging.getLogger(__name__)
@@ -59,9 +57,7 @@ def apply_showhide(request, notices):
     This function will apply the show/hide logic on each notice,
     update the notice atttibutes accordingly.
     """
-    local_tz = timezone.get_current_timezone()
-    now = local_tz.localize(
-        get_comparison_datetime(request)).astimezone(pytz.utc)
+    now = get_comparison_datetime_with_tz(request)
     for notice in notices:
         if notice.notice_category != "StudentFinAid":
             continue
@@ -111,6 +107,20 @@ def is_before_bof_days_before_close(now, notice, n_days):
     return now < get_close_date(notice) - timedelta(days=n_days)
 
 
+def get_est_reg_info(request, notice):
+    ret = {"is_my_1st_reg_day": False,
+           "my_reg_has_opened": False}
+    now = get_comparison_datetime_with_tz(request)
+    for attribute in notice.attributes:
+        if attribute.data_type == "date" and\
+                attribute.name == "Date":
+            reg_start = attribute._date_value
+            ret["my_reg_has_opened"] = (now >= reg_start)
+            ret["is_my_1st_reg_day"] =\
+                (now >= reg_start and now < reg_start + timedelta(hours=24))
+    return ret
+
+
 def get_json_for_notices(request, notices):
     """
     @return the json data of notices with the specific show/hide logic
@@ -135,13 +145,20 @@ def get_json_for_notices(request, notices):
             data['location_tags'] = notice.location_tags
 
         else:
-            data = notice.json_data(
-                include_abbr_week_month_day_format=True)
+            data = notice.json_data(include_abbr_week_month_day_format=True)
             data['category'] = notice.custom_category
             data['sws_category'] = notice.notice_category
             data['is_critical'] = notice.is_critical
             data['id_hash'] = notice.id_hash
             data['is_read'] = notice.is_read
             data['location_tags'] = notice.location_tags
+
+            if "est_reg_date" in notice.location_tags:
+                est_reg = get_est_reg_info(request, notice)
+                data["is_my_1st_reg_day"] =\
+                    est_reg["is_my_1st_reg_day"]
+                data["my_reg_has_opened"] =\
+                    est_reg["my_reg_has_opened"]
+
         notice_json.append(data)
     return notice_json

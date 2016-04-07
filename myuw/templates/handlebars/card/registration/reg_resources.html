@@ -1,0 +1,92 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "reg_resources_tmpl" %}
+
+<div class="card-badge-container reg_resources_disc">
+
+    <h4 class="sr-only">Registration resources</h4>
+
+    <ul class="reg-resources-list no-header-space">
+
+        {{#if registration_is_open}}
+            <li>
+                {{#if plan_data }}
+                    {{#unless plan_data.has_ready_courses}}
+                        <a target="_blank" class="focus-link"
+                           href="{{plan_data.myplan_href}}">Edit plan in MyPlan</a>
+                    {{else}}
+                        <a target="_blank" class="focus-link"
+                           href="{{plan_data.registration_href}}">Register using MyPlan</a>
+                    {{/unless}}
+                {{else}}
+                    <a target="_blank" class="focus-link"
+                       href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/{{reg_next_year}}{{get_quarter_code reg_next_quarter}}">Register using MyPlan</a>
+                {{/if}}
+            </li>
+
+            <li class="focus-link last-focus-link">
+                <a target="_blank"
+                   class="reg-link"
+                   href="https://sdb.admin.uw.edu/students/uwnetid/register.asp">Register using SLN codes</a>
+            </li>
+        {{/if}}
+
+        {{#unless registration_is_open}}
+            {{#if pre_reg_notice}}
+                <li class="focus-link last-focus-link">
+                    <a target="_blank"
+                       href="https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp">Pre-Registration Requirements</a>
+                </li>
+            {{/if}}
+            <li>
+                <a target="_blank"
+                   href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">MyPlan</a>
+            </li>
+        {{/unless}}
+
+        {{ #if is_tacoma }}
+            <li>
+                <span id="tacoma_time_schedule" class="sr-only">Browse time schedule for Tacoma</span>
+                <a aria-labelledby="tacoma_time_schedule"
+                   target="_blank"
+                   href="http://www.washington.edu/students/timeschd/T/">Time Schedule Browse</a></li>
+
+            <li>
+                <a aria-labelledby="tacoma_time_schedule_search"
+                   target="_blank"
+                   href="http://www.tacoma.washington.edu/enrollment_apps/timeschedule/search.cfm">Time Schedule Search</a>
+            </li>
+        {{ /if }}
+
+        {{ #if is_bothell }}
+            <li>
+                <span id="bothell_time_schedule"
+                      class="sr-only">
+                    Browse time schedule for Bothell
+                </span>
+                <a aria-labelledby="bothell_time_schedule"
+                   target="_blank"
+                   href="http://www.uwb.edu/registration/time">Time Schedule</a>
+            </li>
+        {{ /if }}
+
+        {{ #if is_seattle }}
+            <li>
+                <span id="seattle_time_schedule"
+                      class="sr-only">
+                    Browse time schedule for Seattle
+                </span>
+                <a aria-labelledby="seattle_time_schedule"
+                   target="_blank"
+                   href="http://www.washington.edu/students/timeschd/">Time Schedule</a>
+            </li>
+        {{ /if }}
+
+        <li>
+            <span class="sr-only">Go to DARS</span>
+            <a target="_blank"
+               href="{{#if plan_data }}{{plan_data.degree_audit_href}}{{else}}https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree{{/if}}">Audit your degree (DARS)</a>
+        </li>
+    </ul>
+</div>
+
+{% endtplhandlebars %}

@@ -31,6 +31,7 @@ from myuw.test.api.grad import TestApiGrad
 from myuw.test.api.hfs import TestHFS as TestHFSAPI
 from myuw.test.api.profile import TestProfile
 from myuw.test.api.iasystem import TestIasystemApi
+from myuw.test.api.myplan import TestMyPlanApi
 from myuw.test.api.library import TestLibrary as TestLibraryAPI
 from myuw.test.api.category_links import TestLinks
 from myuw.test.api.finance import TestFinance as TestFinanceAPI

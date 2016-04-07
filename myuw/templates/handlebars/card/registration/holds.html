@@ -1,0 +1,54 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "reg_holds_tmpl" %}
+
+<div class="card-badge-container" title="Registration Holds">
+    <div class="card-badge card-critical-alert" role="status">
+    <!--
+    <ul title="Registration Holds" style="list-style-type: none; padding-left: 0;">
+    <li>
+    -->
+        <div class="reg-holds-container clearfix">
+            {{#unless myplan_peak_load }}
+                <div class="pull-left">
+                    <h4 class="card-badge-label pull-left">Holds</h4>
+                </div>
+                <div class="pull-right">
+            {{else}}
+                <div class="pull-left">
+            {{/unless}}
+                <div class="card-badge-value">
+                    <span class="sr-only">You have registration holds!</span>
+                    <span id="show_reg_holds_wrapper{{#if card}}_{{card}}{{/if}}">
+                        <a id="show_reg_holds{{#if card}}_{{card}}{{/if}}"
+                           class="reg_disclosure{{#if card}}_{{card}}{{/if}}"
+                           aria-controls="reg_holds"
+                           href="#" title="Expand to show holds information"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
+                    </span>
+                    <span id="hide_reg_holds_wrapper{{#if card}}_{{card}}{{/if}}" hidden aria-hidden="true">
+                        <a id="hide_reg_holds{{#if card}}_{{card}}{{/if}}"
+                           class="reg_disclosure{{#if card}}_{{card}}{{/if}}"
+                           aria-controls="reg_holds" href="#"
+                           title="Collapse to hide holds information"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Hide {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
+                    </span>
+                </div>
+            </div>
+
+            <div id="reg_holds{{#if card}}_{{card}}{{/if}}" class="slide-hide reg_holds_disc" aria-hidden="true" style="text-align:left;">
+                <h4 class="sr-only">Registration holds</h4>
+                <div class="reg-holds">
+                    <ul class="reg-holds-list" title="Registration holds">
+                        {{ #each reg_holds }}
+                            <li>{{{ notice_content }}}</li>
+                        {{ /each }}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    </li>
+    </ul>
+    -->
+</div>
+
+{% endtplhandlebars %}
