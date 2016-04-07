@@ -18,7 +18,7 @@ var PCETuitionCard = {
         }
         // _render should be called only once.
         if (!isCardRenderCalled(PCETuitionCard.name)) {
-            setCardRenderCalled(RegStatusCard.name);
+            setCardRenderCalled(PCETuitionCard.name);
             PCETuitionCard._render();
         }
     },
