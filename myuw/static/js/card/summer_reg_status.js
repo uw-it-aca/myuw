@@ -43,10 +43,10 @@ var SummerRegStatusCard = {
         }
 
         // _render should be called only once.
-        if (!isCardRenderCalled(SummerRegStatusCard.name)) {
-            setCardRenderCalled(SummerRegStatusCard.name);
-            SummerRegStatusCard._render();
+        if (renderedCardOnce(SummerRegStatusCard.name)) {
+            return;
         }
+        SummerRegStatusCard._render();
     },
 
     render_error: function(status) {

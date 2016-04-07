@@ -271,12 +271,10 @@ var init_modal_events = function () {
     Modal.add_events();
 };
 
-var isCardRenderCalled = function(card_name) {
-    return multi_res_card_render_called[card_name];
-};
-
-var setCardRenderCalled = function(card_name) {
+var renderedCardOnce = function(card_name) {
+    var rendered = multi_res_card_render_called[card_name]
     multi_res_card_render_called[card_name] = true;
+    return rendered;
 };
 
 var resetCardRenderCalled = function() {

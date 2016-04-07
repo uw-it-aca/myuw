@@ -36,10 +36,10 @@ var TextbookCard = {
             return;
         }
         // _render should be called only once.
-        if (!isCardRenderCalled(TextbookCard.name)) {
-            setCardRenderCalled(TextbookCard.name);
-            TextbookCard._render();
+        if (renderedCardOnce(TextbookCard.name)) {
+            return;
         }
+        TextbookCard._render();
     },
 
     render_error: function() {

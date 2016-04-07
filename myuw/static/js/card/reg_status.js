@@ -53,10 +53,10 @@ var RegStatusCard = {
         }
 
         // _render should be called only once.
-        if (!isCardRenderCalled(RegStatusCard.name)) {
-            setCardRenderCalled(RegStatusCard.name);
-            RegStatusCard._render();
+        if (renderedCardOnce(RegStatusCard.name)) {
+            return;
         }
+        RegStatusCard._render();
     },
 
     _has_all_data: function () {

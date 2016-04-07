@@ -37,12 +37,11 @@ var TuitionCard = {
         if (!TuitionCard._has_all_data()) {
             return;
         }
-        // _render should be called only once.
-        if (!isCardRenderCalled(TuitionCard.name)) {
-            setCardRenderCalled(TuitionCard.name);
-            TuitionCard._render();
-        }
 
+        // _render should be called only once.
+        if (renderedCardOnce(TuitionCard.name)) {
+            return;
+        }
         TuitionCard._render();
     },
 
