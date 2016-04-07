@@ -2,6 +2,7 @@ var SummerRegStatusCard = {
     name: 'SummerRegStatusCard',
     dom_target: undefined,
     label: undefined,
+    render_called: false,
 
     render_init: function() {
         if (window.user.student && window.card_display_dates.is_after_start_of_summer_reg_display_periodA) {
@@ -27,13 +28,26 @@ var SummerRegStatusCard = {
     },
 
     render_upon_data: function() {
-        //If more than one data source, multiple callbacks point to this function
-        //Delay rendering until all requests are complete
-        //Do something smart about not showing error if AJAX is pending
+        // Having multiple callbacks come to this function,
+        // delay rendering until all requests are complete.
         if (!RegStatusCard._has_all_data()) {
             return;
         }
-        SummerRegStatusCard._render();
+
+        var year = WSData.oquarter_data().next_term_data.year;
+        if (! window.card_display_dates.myplan_peak_load &&
+            ! WSData.myplan_data(year, "Summer")) {
+            WSData.fetch_myplan_data(year, "Summer",
+                                     SummerRegStatusCard.render_upon_data,
+                                     SummerRegStatusCard.render_error);
+            return;
+        }
+
+        // _render should be called only once.
+        if (!SummerRegStatusCard.render_called) {
+            SummerRegStatusCard.render_called = true;
+            SummerRegStatusCard._render();
+        }
     },
 
     render_error: function(status) {
@@ -44,14 +58,6 @@ var SummerRegStatusCard = {
 
     _render: function() {
         var year = WSData.oquarter_data().next_term_data.year;
-        if (! window.card_display_dates.myplan_peak_load &&
-            ! WSData.myplan_data(year, "Summer")) {
-            WSData.fetch_myplan_data(year, "Summer",
-                                     SummerRegStatusCard.render_upon_data,
-                                     SummerRegStatusCard.render_error);
-            return;
-        }
-
         var myplan_data;
         if (! window.card_display_dates.myplan_peak_load) {
             myplan_data = WSData.myplan_data(year, "Summer");
