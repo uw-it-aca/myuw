@@ -2,9 +2,9 @@ var TextbookCard = {
     name: 'TextbookCard',
     dom_target: undefined,
     term: undefined,
-    _ajax_count: 0,
 
     render_init: function() {
+        TextbookCard.dom_target = $('#TextbookCard');
         if (!window.user.student) {
             $("#TextbookCard").hide();
         }
@@ -14,19 +14,32 @@ var TextbookCard = {
                 return;
             }
         }
-        TextbookCard._ajax_count = 2;
-        WSData.fetch_book_data(TextbookCard.term, TextbookCard.render_upon_data, TextbookCard.render_error);
-        WSData.fetch_course_data_for_term(TextbookCard.term, TextbookCard.render_upon_data, TextbookCard.render_error);
+        WSData.fetch_book_data(TextbookCard.term,
+                               TextbookCard.render_upon_data,
+                               TextbookCard.render_error);
+        WSData.fetch_course_data_for_term(TextbookCard.term,
+                                          TextbookCard.render_upon_data,
+                                          TextbookCard.render_error);
     },
 
     _has_all_data: function () {
-        return (WSData.book_data(TextbookCard.term) && WSData.course_data_for_term(TextbookCard.term));
+        if (WSData.book_data(TextbookCard.term) && WSData.course_data_for_term(TextbookCard.term)) {
+            return true;
+        }
+        return false;
     },
 
     render_upon_data: function(args) {
-        if (TextbookCard._has_all_data()) {
-            TextbookCard._render();
+        // Having multiple callbacks come to this function,
+        // delay rendering until all requests are complete.
+        if (!TextbookCard._has_all_data()) {
+            return;
         }
+        // _render should be called only once.
+        if (renderedCardOnce(TextbookCard.name)) {
+            return;
+        }
+        TextbookCard._render();
     },
 
     render_error: function() {
