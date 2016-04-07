@@ -1,7 +1,6 @@
 var RegStatusCard = {
     name: 'RegStatusCard',
     dom_target: undefined,
-    render_called: false,
 
     render_init: function() {
         if (!window.user.student) {
@@ -54,8 +53,8 @@ var RegStatusCard = {
         }
 
         // _render should be called only once.
-        if (!RegStatusCard.render_called) {
-            RegStatusCard.render_called = true;
+        if (!isCardRenderCalled(RegStatusCard.name)) {
+            setCardRenderCalled(RegStatusCard.name);
             RegStatusCard._render();
         }
     },

@@ -1,7 +1,6 @@
 var PCETuitionCard = {
     name: 'PCETuitionCard',
     dom_target: undefined,
-    render_called: false,
 
     render_init: function() {
         WSData.fetch_tuition_data(PCETuitionCard.render_upon_data, PCETuitionCard.render_error);
@@ -18,8 +17,8 @@ var PCETuitionCard = {
             return;
         }
         // _render should be called only once.
-        if (!PCETuitionCard.render_called) {
-            PCETuitionCard.render_called = true;
+        if (!isCardRenderCalled(PCETuitionCard.name)) {
+            setCardRenderCalled(RegStatusCard.name);
             PCETuitionCard._render();
         }
     },

@@ -1,5 +1,6 @@
-// mobile javascript
+// javascript
 var data;
+var multi_res_card_render_called = {};
 
 $(document).ready(function() {
     LogUtils.init_logging();
@@ -11,11 +12,15 @@ $(document).ready(function() {
     // multiple web service calls.  This is required due to the
     // fix for MUWM-368
     var loaded_url = null;
+    var render_called = {};
 
     History.Adapter.bind(window,'statechange',function(){
         var history_state = History.getState();
         var data = history_state.data;
         var state = data.state;
+
+        // Reset all the multiple resourse card render records
+        resetCardRenderCalled();
 
         var state_url = history_state.url;
         // This is the check of the same url, to prevent
@@ -264,4 +269,16 @@ var init_profile_events = function () {
 
 var init_modal_events = function () {
     Modal.add_events();
+};
+
+var isCardRenderCalled = function(card_name) {
+    return multi_res_card_render_called[card_name];
+};
+
+var setCardRenderCalled = function(card_name) {
+    multi_res_card_render_called[card_name] = true;
+};
+
+var resetCardRenderCalled = function() {
+    multi_res_card_render_called = {};
 };

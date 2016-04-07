@@ -2,7 +2,6 @@ var SummerRegStatusCard = {
     name: 'SummerRegStatusCard',
     dom_target: undefined,
     label: undefined,
-    render_called: false,
 
     render_init: function() {
         if (window.user.student && window.card_display_dates.is_after_start_of_summer_reg_display_periodA) {
@@ -44,8 +43,8 @@ var SummerRegStatusCard = {
         }
 
         // _render should be called only once.
-        if (!SummerRegStatusCard.render_called) {
-            SummerRegStatusCard.render_called = true;
+        if (!isCardRenderCalled(SummerRegStatusCard.name)) {
+            setCardRenderCalled(SummerRegStatusCard.name);
             SummerRegStatusCard._render();
         }
     },

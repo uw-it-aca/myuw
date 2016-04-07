@@ -2,9 +2,9 @@ var TextbookCard = {
     name: 'TextbookCard',
     dom_target: undefined,
     term: undefined,
-    render_called: false,
 
     render_init: function() {
+        TextbookCard.dom_target = $('#TextbookCard');
         if (!window.user.student) {
             $("#TextbookCard").hide();
         }
@@ -14,8 +14,12 @@ var TextbookCard = {
                 return;
             }
         }
-        WSData.fetch_book_data(TextbookCard.term, TextbookCard.render_upon_data, TextbookCard.render_error);
-        WSData.fetch_course_data_for_term(TextbookCard.term, TextbookCard.render_upon_data, TextbookCard.render_error);
+        WSData.fetch_book_data(TextbookCard.term,
+                               TextbookCard.render_upon_data,
+                               TextbookCard.render_error);
+        WSData.fetch_course_data_for_term(TextbookCard.term,
+                                          TextbookCard.render_upon_data,
+                                          TextbookCard.render_error);
     },
 
     _has_all_data: function () {
@@ -32,8 +36,8 @@ var TextbookCard = {
             return;
         }
         // _render should be called only once.
-        if (!TextbookCard.render_called) {
-            TextbookCard.render_called = true;
+        if (!isCardRenderCalled(TextbookCard.name)) {
+            setCardRenderCalled(TextbookCard.name);
             TextbookCard._render();
         }
     },
