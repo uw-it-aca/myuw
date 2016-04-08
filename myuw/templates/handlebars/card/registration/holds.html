@@ -16,24 +16,25 @@
             {{else}}
                 <div class="pull-left">
             {{/unless}}
+
                 <div class="card-badge-value">
                     <span class="sr-only">You have registration holds!</span>
                     <span id="show_reg_holds_wrapper{{#if card}}_{{card}}{{/if}}">
                         <a id="show_reg_holds{{#if card}}_{{card}}{{/if}}"
                            class="reg_disclosure{{#if card}}_{{card}}{{/if}}"
-                           aria-controls="reg_holds"
+                           aria-controls="reg_holds{{#if card}}_{{card}}{{/if}}"
                            href="#" title="Expand to show holds information"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
                     </span>
                     <span id="hide_reg_holds_wrapper{{#if card}}_{{card}}{{/if}}" hidden aria-hidden="true">
                         <a id="hide_reg_holds{{#if card}}_{{card}}{{/if}}"
                            class="reg_disclosure{{#if card}}_{{card}}{{/if}}"
-                           aria-controls="reg_holds" href="#"
+                           aria-controls="reg_holds{{#if card}}_{{card}}{{/if}}" href="#"
                            title="Collapse to hide holds information"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Hide {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
                     </span>
                 </div>
             </div>
 
-            <div id="reg_holds{{#if card}}_{{card}}{{/if}}" class="slide-hide reg_holds_disc" aria-hidden="true" style="text-align:left;">
+            <div id="reg_holds{{#if card}}_{{card}}{{/if}}" class="slide-hide reg_holds_disc" aria-hidden="true" style="text-align:left; display: none;" aria-expanded="false" hidden>
                 <h4 class="sr-only">Registration holds</h4>
                 <div class="reg-holds">
                     <ul class="reg-holds-list" title="Registration holds">
