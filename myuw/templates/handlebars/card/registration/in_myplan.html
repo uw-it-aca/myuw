@@ -4,7 +4,7 @@
 <div class="card-badge-container">
 
   {{#if plan_data.courses}}
-    <div id="reg_details" class="card-badge reg-details-container clearfix">
+    <div id="in_myplan" class="card-badge reg-details-container clearfix">
 
         <div class="reg-details">
             <h4 class="card-badge-label pull-left">In MyPlan</h4>
@@ -23,6 +23,7 @@
                                     <span id="show_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
                                           class="sr-only">See more details about unready courses</span>
                                     <a href="javascript:void(0)"
+                                       aria-controls="myplan_unready_courses{{#if card }}_{{card}}{{/if}}"
                                        aria-labelledby="show_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
                                        class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}">See details</a>
                                 </span>
@@ -31,6 +32,7 @@
                                     <span id="hide_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
                                           class="sr-only">Hide details for unready courses</span>
                                     <a href="javascript:void(0)"
+                                       aria-controls="myplan_unready_courses{{#if card }}_{{card}}{{/if}}"
                                        aria-labelledby="hide_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
                                        class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}">Hide details</a>
                                 </span>
@@ -42,7 +44,7 @@
         </div>
     </div>
 
-    <div id="myplan_unready_courses{{#if card }}_{{card}}{{/if}}" class="slide-hide course-not-ready-details">
+    <div id="myplan_unready_courses{{#if card }}_{{card}}{{/if}}" class="slide-hide course-not-ready-details" hidden aria-hidden="true" aria-expanded="false" style="display: none;">
         <h4>Not ready for registration</h4>
         <ul id="courses_not_ready_list" class="courses-not-ready-list">
             {{ #each plan_data.courses }}

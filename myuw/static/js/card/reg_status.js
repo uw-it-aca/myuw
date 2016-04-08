@@ -191,20 +191,20 @@ var RegStatusCard = {
     },
 
     _add_events: function(summer_label) {
-        // show registration resources
+
         var card_disclosure_class, holds_class, unready_courses;
         if (summer_label) {
-            card_disclosure_class = ".show_reg_resources_"+summer_label;
+            card_disclosure_class = ".show_myplan_courses_"+summer_label;
             holds_class = ".reg_disclosure_"+summer_label;
             unready_courses = ".myplan_unready_courses_disclosure_"+summer_label;
         }
         else {
-            card_disclosure_class = ".show_reg_resources";
+            card_disclosure_class = ".show_myplan_courses";
             holds_class = ".reg_disclosure";
             unready_courses = ".myplan_unready_courses_disclosure";
         }
 
-        // show registration resource
+        // show myplan courses
         (function(summer_card_label) {
             $('body').on('click', card_disclosure_class, function (ev) {
                 ev.preventDefault();
@@ -213,33 +213,42 @@ var RegStatusCard = {
                 var div, expose, hide;
                 if (summer_card_label) {
                     // summer reg card
-                    div = $("#reg_resources_"+summer_card_label);
-                    expose = $("#show_reg_resources_wrapper_"+summer_card_label);
-                    hide = $("#hide_reg_resources_wrapper_"+summer_card_label);
+                    div = $("#myplan_courses_"+summer_card_label);
+                    expose = $("#show_myplan_courses_wrapper_"+summer_card_label);
+                    hide = $("#hide_myplan_courses_wrapper_"+summer_card_label);
                 }
                 else {
-                    div = $("#reg_resources");
-                    expose = $("#show_reg_resources_wrapper");
-                    hide = $("#hide_reg_resources_wrapper");
+                    div = $("#myplan_courses");
+                    expose = $("#show_myplan_courses_wrapper");
+                    hide = $("#hide_myplan_courses_wrapper");
                 }
 
                 div.toggleClass("slide-show");
-
+                div.css("display", div.css("display") === 'none' ? '' : 'none');
                 if (div.hasClass("slide-show")) {
                     expose.attr("hidden", true);
                     expose.attr("aria-hidden", true);
                     hide.attr("hidden", false);
                     hide.attr("aria-hidden", false);
-                    div.attr('aria-hidden', 'false');
+                    div.show();
+                    div.attr('aria-hidden', false);
+                    div.attr("aria-expanded", true);
+                    div.attr("hidden", false);
+                    div.focus();
+
                     window.myuw_log.log_card(card, "expand-res");
-                } else {
+                }
+                else {
                     window.myuw_log.log_card(card, "collapse-res");
                     setTimeout(function() {
                         expose.attr("hidden", false);
                         expose.attr("aria-hidden", false);
                         hide.attr("hidden", true);
                         hide.attr("aria-hidden", true);
-                        div.attr('aria-hidden', 'true');
+                        div.attr('aria-hidden', true);
+                        div.attr("aria-expanded", false);
+                        div.attr("hidden", true);
+                        div.hide();
                     }, 700);
                 }
             });
@@ -262,22 +271,31 @@ var RegStatusCard = {
                 }
 
                 div.toggleClass("slide-show");
-
+                div.css("display", div.css("display") === 'none' ? '' : 'none');
                 if (div.hasClass("slide-show")) {
                     expose.attr("hidden", true);
                     expose.attr("aria-hidden", true);
                     hide.attr("hidden", false);
                     hide.attr("aria-hidden", false);
-                    div.attr('aria-hidden', 'false');
+                    div.show();
+                    div.attr('aria-hidden', false);
+                    div.attr("aria-expanded", true);
+                    div.attr("hidden", false);
+                    div.focus();
+
                     window.myuw_log.log_card(card, "expand-myplan");
-                } else {
+                }
+                else {
                     window.myuw_log.log_card(card, "collapse-myplan");
                     setTimeout(function() {
                         expose.attr("hidden", false);
                         expose.attr("aria-hidden", false);
                         hide.attr("hidden", true);
                         hide.attr("aria-hidden", true);
-                        div.attr("aria-hidden", true);
+                        div.attr('aria-hidden', true);
+                        div.attr("aria-expanded", false);
+                        div.attr("hidden", true);
+                        div.hide();
                     }, 700);
                 }
 
@@ -301,13 +319,18 @@ var RegStatusCard = {
                 }
 
                 div.toggleClass("slide-show");
-
+                div.css("display", div.css("display") === 'none' ? '' : 'none');
                 if (div.hasClass("slide-show")) {
                     expose.attr("hidden", true);
                     expose.attr("aria-hidden", true);
                     hide.attr("hidden", false);
                     hide.attr("aria-hidden", false);
-                    div.attr("aria-hidden", false);
+                    div.show();
+                    div.attr('aria-hidden', false);
+                    div.attr("aria-expanded", true);
+                    div.attr("hidden", false);
+                    div.focus();
+
                     window.myuw_log.log_card(card, "expand-holds");
                 }
                 else {
@@ -318,6 +341,9 @@ var RegStatusCard = {
                         hide.attr("hidden", true);
                         hide.attr("aria-hidden", true);
                         div.attr("aria-hidden", true);
+                        div.attr("aria-expanded", false);
+                        div.attr("hidden", true);
+                        div.hide();
                     }, 700);
                 }
             });
