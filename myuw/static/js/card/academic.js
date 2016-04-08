@@ -40,43 +40,11 @@ var AcademicCard = {
     add_events: function() {
         $(".toggle_academic_card_resources").on("click", function(ev) {
             ev.preventDefault();
-
+            var card = $(ev.target).closest("[data-type='card']");
             var div = $("#academic_card_resources");
             var expose = $("#show_academic_resources_wrapper");
             var hide = $("#hide_academic_resources_wrapper");
-            var card = $(ev.target).closest("[data-type='card']");
-
-            if (div.css('display') == 'none') {
-                div.show();
-                div.attr("hidden", false);
-                // Without this timeout, the animation doesn't happen - the block just appears.
-                window.setTimeout(function() {
-                    div.toggleClass("slide-show");
-                    expose.attr("hidden", true);
-                    expose.attr("aria-hidden", true);
-                    hide.attr("hidden", false);
-                    hide.attr("aria-hidden", false);
-
-                    div.attr("aria-expanded", true);
-                    div.focus();
-                }, 0);
-
-                window.myuw_log.log_card(card, "expand");
-            }
-            else {
-                div.toggleClass("slide-show");
-                window.myuw_log.log_card(card, "collapse");
-
-                setTimeout(function() {
-                    expose.attr("hidden", false);
-                    expose.attr("aria-hidden", false);
-                    hide.attr("hidden", true);
-                    hide.attr("aria-hidden", true);
-                    div.attr("aria-expanded", false);
-                    div.attr("hidden", true);
-                    div.hide();
-                }, 700);
-            }
+            toggle_card_disclosure(card, div, expose, hide, "");
         });
     },
 

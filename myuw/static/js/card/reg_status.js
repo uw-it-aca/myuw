@@ -222,35 +222,7 @@ var RegStatusCard = {
                     expose = $("#show_myplan_courses_wrapper");
                     hide = $("#hide_myplan_courses_wrapper");
                 }
-
-                div.toggleClass("slide-show");
-                div.css("display", div.css("display") === 'none' ? '' : 'none');
-                if (div.hasClass("slide-show")) {
-                    expose.attr("hidden", true);
-                    expose.attr("aria-hidden", true);
-                    hide.attr("hidden", false);
-                    hide.attr("aria-hidden", false);
-                    div.show();
-                    div.attr('aria-hidden', false);
-                    div.attr("aria-expanded", true);
-                    div.attr("hidden", false);
-                    div.focus();
-
-                    window.myuw_log.log_card(card, "expand-res");
-                }
-                else {
-                    window.myuw_log.log_card(card, "collapse-res");
-                    setTimeout(function() {
-                        expose.attr("hidden", false);
-                        expose.attr("aria-hidden", false);
-                        hide.attr("hidden", true);
-                        hide.attr("aria-hidden", true);
-                        div.attr('aria-hidden', true);
-                        div.attr("aria-expanded", false);
-                        div.attr("hidden", true);
-                        div.hide();
-                    }, 700);
-                }
+                toggle_card_disclosure(card, div, expose, hide, "myplan_courses");
             });
 
             // show myplan unready course details
@@ -269,36 +241,7 @@ var RegStatusCard = {
                     expose = $("#show_unready_courses_wrapper");
                     hide = $("#hide_unready_courses_wrapper");
                 }
-
-                div.toggleClass("slide-show");
-                div.css("display", div.css("display") === 'none' ? '' : 'none');
-                if (div.hasClass("slide-show")) {
-                    expose.attr("hidden", true);
-                    expose.attr("aria-hidden", true);
-                    hide.attr("hidden", false);
-                    hide.attr("aria-hidden", false);
-                    div.show();
-                    div.attr('aria-hidden', false);
-                    div.attr("aria-expanded", true);
-                    div.attr("hidden", false);
-                    div.focus();
-
-                    window.myuw_log.log_card(card, "expand-myplan");
-                }
-                else {
-                    window.myuw_log.log_card(card, "collapse-myplan");
-                    setTimeout(function() {
-                        expose.attr("hidden", false);
-                        expose.attr("aria-hidden", false);
-                        hide.attr("hidden", true);
-                        hide.attr("aria-hidden", true);
-                        div.attr('aria-hidden', true);
-                        div.attr("aria-expanded", false);
-                        div.attr("hidden", true);
-                        div.hide();
-                    }, 700);
-                }
-
+                toggle_card_disclosure(card, div, expose, hide, "myplan_unready_courses");
             });
 
             // show hold details
@@ -317,35 +260,7 @@ var RegStatusCard = {
                     expose = $("#show_reg_holds_wrapper");
                     hide = $("#hide_reg_holds_wrapper");
                 }
-
-                div.toggleClass("slide-show");
-                div.css("display", div.css("display") === 'none' ? '' : 'none');
-                if (div.hasClass("slide-show")) {
-                    expose.attr("hidden", true);
-                    expose.attr("aria-hidden", true);
-                    hide.attr("hidden", false);
-                    hide.attr("aria-hidden", false);
-                    div.show();
-                    div.attr('aria-hidden', false);
-                    div.attr("aria-expanded", true);
-                    div.attr("hidden", false);
-                    div.focus();
-
-                    window.myuw_log.log_card(card, "expand-holds");
-                }
-                else {
-                    window.myuw_log.log_card(card, "collapse-holds");
-                    setTimeout(function () {
-                        expose.attr("hidden", false);
-                        expose.attr("aria-hidden", false);
-                        hide.attr("hidden", true);
-                        hide.attr("aria-hidden", true);
-                        div.attr("aria-hidden", true);
-                        div.attr("aria-expanded", false);
-                        div.attr("hidden", true);
-                        div.hide();
-                    }, 700);
-                }
+                toggle_card_disclosure(card, div, expose, hide, "reg_holds");
             });
 
         })(summer_label);

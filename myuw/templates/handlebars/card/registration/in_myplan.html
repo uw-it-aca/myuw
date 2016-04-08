@@ -44,7 +44,10 @@
         </div>
     </div>
 
-    <div id="myplan_unready_courses{{#if card }}_{{card}}{{/if}}" class="slide-hide course-not-ready-details" hidden aria-hidden="true" aria-expanded="false" style="display: none;">
+    <div id="myplan_unready_courses{{#if card }}_{{card}}{{/if}}"
+         class="slide-hide course-not-ready-details"
+         aria-label="Myplan course unready for registration"
+         hidden aria-hidden="true" aria-expanded="false" style="display: none;">
         <h4>Not ready for registration</h4>
         <ul id="courses_not_ready_list" class="courses-not-ready-list">
             {{ #each plan_data.courses }}

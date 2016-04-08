@@ -8,7 +8,10 @@
     </div>
 
     {{#if instructors}}
-        <div id="course_details{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true" hidden aria-expanded="false" style="display: none;">
+        <div id="course_details{{index}}" class="slide-hide"
+             aria-label="Course instructor information"
+             rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
+             aria-hidden="true" hidden aria-expanded="false" style="display: none;">
             <div id="course_instructor{{index}}">
             </div>
         </div>
@@ -31,7 +34,10 @@
     <div class="myuw-course-eval" id="course_eval{{index}}" >
     </div>
 
-    <div id="course_details{{index}}" class="slide-hide" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-hidden="true"  hidden aria-expanded="false" style="display: none;">
+    <div id="course_details{{index}}" class="slide-hide"
+         aria-label="Additional course resources"
+         rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
+         aria-hidden="true"  hidden aria-expanded="false" style="display: none;">
 
         <div id="sche_on_course_card{{index}}">
         </div>

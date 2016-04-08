@@ -34,37 +34,7 @@ var LoadCourseEval = {
             var div = $("#" + item_index);
             var expose = $("#show_" + item_index + "_wrapper");
             var hide = $("#hide_"  + item_index + "_wrapper");
-
-            div.toggleClass("slide-show");
-            div.css("display", div.css("display") === 'none' ? '' : 'none');
-
-            if (div.hasClass("slide-show")) {
-                window.setTimeout(function() {
-                    div.show();
-                    expose.attr("hidden", true);
-                    expose.attr("aria-hidden", true);
-                    hide.attr("hidden", false);
-                    hide.attr("aria-hidden", false);
-                    div.attr("aria-expanded", true);
-                    div.attr("aria-hidden", true);
-                    div.attr("hidden", false);
-                    div.focus();
-                }, 0);
-                window.myuw_log.log_card(card, "expand");
-            }
-            else {
-                window.setTimeout(function() {
-                    div.hide();
-                    expose.attr("hidden", false);
-                    expose.attr("aria-hidden", false);
-                    hide.attr("hidden", true);
-                    hide.attr("aria-hidden", true);
-                    div.attr("aria-expanded", false);
-                    div.attr("aria-hidden", true);
-                    div.attr("hidden", true);
-                }, 700);
-                window.myuw_log.log_card(card, "collapse");
-            }
+            toggle_card_disclosure(card, div, expose, hide, item_index);
         });
     }
 };
