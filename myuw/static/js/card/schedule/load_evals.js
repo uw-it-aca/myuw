@@ -27,34 +27,38 @@ var LoadCourseEval = {
     },
     
     add_events: function() {
-        $(".slide-link").on("click", function(ev) {
+        $(".toggle_course_card_disclosure").on("click", function(ev) {
             ev.preventDefault();
-            var slide_link = this;
-            var slide_link_text = this.text;
-            var is_instr = (slide_link_text.match(/instructors$/i) ? true : false);
-            var hidden_block = $('#' + this.getAttribute("aria-controls"));
-            var new_text;
-            var new_title;
-
-            $(hidden_block).toggleClass("slide-show");
             var card = $(ev.target).closest("[data-type='card']");
+            var item_index = this.getAttribute("aria-controls");
+            var toggled_block = $("#" + item_index);
+            var expose = $("#show_" + item_index + "_wrapper");
+            var hide = $("#hide_"  + item_index + "_wrapper");
 
-            if ($(hidden_block).hasClass("slide-show")) {
-
-                new_text = is_instr ? "HIDE INSTRUCTORS" : "HIDE COURSE DETAILS";
-                new_title = is_instr ? "Hide Instructors" : "Hide course details";
-                $(slide_link).text(new_text);
-                $(slide_link).attr("title", new_title);
-                $(hidden_block).attr("aria-hidden", "false");
+            toggled_block.toggleClass("slide-show");
+            if (toggled_block.css('display') == 'none') {
+                window.setTimeout(function() {
+                    toggled_block.show();
+                    expose.attr("hidden", true);
+                    expose.attr("aria-hidden", true);
+                    hide.attr("hidden", false);
+                    hide.attr("aria-hidden", false);
+                    toggled_block.attr("aria-expanded", true);
+                    toggled_block.attr("hidden", false);
+                    toggled_block.focus();
+                }, 0);
                 window.myuw_log.log_card(card, "expand");
             }
             else {
-                new_text = is_instr ? "SHOW INSTRUCTORS" : "SHOW COURSE DETAILS";
-                new_title = is_instr ? "Show Instructors" : "Show course details";
-                $(slide_link).attr("title", new_title);
-                $(hidden_block).attr("aria-hidden", "true");
-                setTimeout(function() {
-                      $(slide_link).text(new_text);
+                window.setTimeout(function() {
+                    toggled_block.hide();
+                    expose.attr("hidden", false);
+                    expose.attr("aria-hidden", false);
+                    hide.attr("hidden", true);
+                    hide.attr("aria-hidden", true);
+                    toggled_block.attr("aria-expanded", false);
+                    toggled_block.attr("aria-hidden", true);
+                    toggled_block.attr("hidden", true);
                 }, 700);
                 window.myuw_log.log_card(card, "collapse");
             }
