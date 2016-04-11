@@ -17,12 +17,19 @@
         </div>
         <div class="card-disclosure">
             <span id="show_course_details{{index}}_wrapper">
-                <span id="show_instructors_label{{index}}" class="sr-only">Show instructors</span>
-                <a class="slide-link toggle_course_card_disclosure" id="show_instructors{{index}}" href="#" aria-controls="course_details{{index}}" aria-labelledby="show_instructors_label{{index}}" title="Show instructors">Show instructors</a>
+                <a class="toggle_course_card_disclosure"
+                   id="show_instructors{{index}}"
+                   href="#"
+                   aria-controls="course_details{{index}}"
+                   title="Expand to show instructor contact information">Show instructors</a>
             </span>
-            <span id="hide_course_details{{index}}_wrapper" hidden aria-hidden="true">
-                <span id="hide_instructors_label{{index}}" class="sr-only">Hide instructors</span>
-                <a class="slide-link toggle_course_card_disclosure" id="hide_instructors{{index}}" href="#" aria-controls="course_details{{index}}" aria-labelledby="hide_instructors_label{{index}}" title="Hide instructors">Hide instructors</a>
+            <span id="hide_course_details{{index}}_wrapper"
+                  hidden aria-hidden="true">
+                <a class="toggle_course_card_disclosure"
+                   id="hide_instructors{{index}}"
+                   href="#"
+                   aria-controls="course_details{{index}}"
+                   title="Collapse to hide instructor contact information">Hide instructors</a>
             </span>
         </div>
     {{else}}
@@ -37,7 +44,7 @@
     <div id="course_details{{index}}" class="slide-hide"
          aria-label="Additional course resources"
          rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
-         aria-hidden="true"  hidden aria-expanded="false" style="display: none;">
+         aria-hidden="true" hidden aria-expanded="false" style="display: none;">
 
         <div id="sche_on_course_card{{index}}">
         </div>
@@ -53,12 +60,16 @@
     </div>
     <div class="card-disclosure">
         <span id="show_course_details{{index}}_wrapper">
-            <span id="show_course_details_label{{index}}" class="sr-only">Show course details</span>
-            <a class="slide-link toggle_course_card_disclosure" id="show_course_details{{index}}" href="#" aria-controls="course_details{{index}}" aria-labelledby="show_course_details_label{{index}}" title="Show course details">Show course details</a>
+            <a class="toggle_course_card_disclosure"
+               id="show_course_details{{index}}"
+               href="#" aria-controls="course_details{{index}}"
+               title="Expand to show course details">Show course details</a>
         </span>
         <span id="hide_course_details{{index}}_wrapper" hidden aria-hidden="true">
-            <span id="hide_course_details_label{{index}}" class="sr-only">Hide course details</span>
-            <a class="slide-link toggle_course_card_disclosure" id="hide_course_details{{index}}" href="#" aria-controls="course_details{{index}}" aria-labelledby="hide_course_details_label{{index}}" title="Hide course details">Hide course details</a>
+            <a class="toggle_course_card_disclosure"
+               id="hide_course_details{{index}}"
+               href="#" aria-controls="course_details{{index}}"
+               title="Collapse to hide course details">Hide course details</a>
         </span>
     </div>
 

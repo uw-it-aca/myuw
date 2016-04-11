@@ -20,20 +20,16 @@
                                    href="{{plan_data.myplan_href}}">Add Sections</a>
                             {{ else }}
                                 <span id="show_unready_courses_wrapper{{#if card }}_{{card}}{{/if}}">
-                                    <span id="show_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
-                                          class="sr-only">See more details about unready courses</span>
-                                    <a href="javascript:void(0)"
+                                    <a href="#"
                                        aria-controls="myplan_unready_courses{{#if card }}_{{card}}{{/if}}"
-                                       aria-labelledby="show_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
+                                       title="Expand to show unready course in myplan"
                                        class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}">See details</a>
                                 </span>
 
                                 <span id="hide_unready_courses_wrapper{{#if card }}_{{card}}{{/if}}" hidden aria-hidden="true">
-                                    <span id="hide_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
-                                          class="sr-only">Hide details for unready courses</span>
-                                    <a href="javascript:void(0)"
+                                    <a href="#"
                                        aria-controls="myplan_unready_courses{{#if card }}_{{card}}{{/if}}"
-                                       aria-labelledby="hide_unready_course_details_label{{#if card }}_{{card}}{{/if}}"
+                                       title="Collapse to hide unready course in myplan"
                                        class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}">Hide details</a>
                                 </span>
                             {{ /unless}}

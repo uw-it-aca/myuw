@@ -23,12 +23,14 @@
                         <a id="show_reg_holds{{#if card}}_{{card}}{{/if}}"
                            class="reg_disclosure{{#if card}}_{{card}}{{/if}}"
                            aria-controls="reg_holds{{#if card}}_{{card}}{{/if}}"
-                           href="#" title="Expand to show holds information"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
+                           href="#"
+                           title="Expand to show holds information"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
                     </span>
                     <span id="hide_reg_holds_wrapper{{#if card}}_{{card}}{{/if}}" hidden aria-hidden="true">
                         <a id="hide_reg_holds{{#if card}}_{{card}}{{/if}}"
                            class="reg_disclosure{{#if card}}_{{card}}{{/if}}"
-                           aria-controls="reg_holds{{#if card}}_{{card}}{{/if}}" href="#"
+                           aria-controls="reg_holds{{#if card}}_{{card}}{{/if}}"
+                           href="#"
                            title="Collapse to hide holds information"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Hide {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
                     </span>
                 </div>
