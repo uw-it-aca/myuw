@@ -5,11 +5,13 @@ import csv
 import os
 
 
-class Res_Links(object):
+class Res_Links:
     """
     Read the resource links froma file and store them
     in an array of ResCategoryLink objects.
     """
+
+    _singleton = None
 
     def __init__(self):
         self.links = []
@@ -89,8 +91,11 @@ class Res_Links(object):
                     link.set_category_id(category)
                     self.links.append(link)
 
-    def get_all_links(self):
-        return self.links
+    @classmethod
+    def get_all_links(cls):
+        if cls._singleton is None:
+            cls._singleton = Res_Links()
+        return cls._singleton.links
 
 
 def _get_category_id(category_name):
@@ -109,7 +114,7 @@ def _get_links_by_category_and_campus(search_category_id,
                                       campus,
                                       affiliations):
     selected_links = []
-    all_links = Res_Links().get_all_links()
+    all_links = Res_Links.get_all_links()
 
     for link in all_links:
         if not link.category_id_matched(search_category_id):
