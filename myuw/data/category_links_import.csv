@@ -7,7 +7,7 @@ Academics,Registration,all,https://notify.uw.edu/,Notify.UW,,,,,,,yes
 Academics,Registration,all,https://sdb.admin.uw.edu/students/uwnetid/register.asp,Registration,,,,,,,yes
 Academics,Registration,all,,,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,,,yes
 Academics,Registration,all,,,http://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,http://www.uwb.edu/registration/time,UW Bothell Time Schedule,http://www.tacoma.uw.edu/ts-quicksearch/,UW Tacoma Time Schedule,no
-Academics,Registration,pce,Professional & Continuing Education Time Schedule,http://www.washington.edu/students/timeschd/95index.html,,,,,,,
+Academics,Registration,pce,Professional & Continuing Education Time Schedule,http://www.washington.edu/students/timeschd/95index.html,,,,,,,no
 Academics,Advising & Tutoring,all,,,http://careers.washington.edu/,Career Center,http://www.bothell.washington.edu/careers,Career Services,http://www.tacoma.washington.edu/studentaffairs/SS/cde_about.cfm,Career Development,no
 Academics,Advising & Tutoring,ugrad,,,http://depts.washington.edu/aspuw/clue/home/,Center for Learning and Undergraduate Enrichment (CLUE),,,http://www.tacoma.uw.edu/teaching-learning-center/teaching-learning-center,Teaching and Learning Center,no
 Academics,Advising & Tutoring,all,,,http://iss.washington.edu/,International Student Services (ISS),http://www.uwb.edu/iss,International Student Services (ISS),http://www.tacoma.uw.edu/uwt/taxonomy/term/252,International Student Services (ISS),no
@@ -24,7 +24,7 @@ Academics,Libraries,all,,,http://lib.washington.edu/,UW Libraries,http://library
 Academics,Graduation,all,,,http://www.washington.edu/students/reg/grad.html,Application for Graduation,https://www.uwb.edu/registration/graduation/apply,Applying for Graduation,http://www.tacoma.uw.edu/node/37921,Applying to Graduate,no
 Finances,Financial Aid,all,,,http://www.washington.edu/students/osfa/,Financial Aid and Scholarships,http://www.bothell.washington.edu/financialaid,Financial Aid and Scholarships,http://www.tacoma.uw.edu/uwt/financial-aid,Financial Aid and Scholarships,no
 Finances,Financial Aid,all,https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx,Financial Aid Status,,,,,,,yes
-Finances,Financial Aid,grad,Graduate Funding Information Service (GFIS),http://www.lib.washington.edu/commons/services/gfis,,,,,,,
+Finances,Financial Aid,grad,Graduate Funding Information Service (GFIS),http://www.lib.washington.edu/commons/services/gfis,,,,,,,no
 Finances,Taxes,all,https://sdb.admin.uw.edu/sisStudents/uwnetid/irs1098t.aspx,Form 1098-T,,,,,,,yes
 Finances,Taxes,all,http://f2.washington.edu/fm/sfs/tax,Student Tax Information,,,,,,,no
 Finances,Tuition,all,http://f2.washington.edu/fm/sfs/tuition,Tuition Overview,,,,,,,no
@@ -36,10 +36,10 @@ Student & Campus Life,Health & Wellness,all,,,http://www.washington.edu/counseli
 Student & Campus Life,Health & Wellness,all,,,http://depts.washington.edu/hhpccweb/,Hall Health Center,http://www.uwb.edu/studentservices/health-matters,Student Health Resource,http://www.tacoma.washington.edu/studentaffairs/SHW/shs_healthservices_about.cfm,Student Health Services (SHS),no
 Student & Campus Life,Health & Wellness,all,,,http://depts.washington.edu/ima/,Recreational Sports Programs (IMA),http://www.uwb.edu/studentlife/rec-wellness,Recreation and Wellness,http://www.tacoma.washington.edu/studentaffairs/SI/rec_fit_about.cfm,Recreation & Fitness,no
 Student & Campus Life,Health & Wellness,all,,,http://www.washington.edu/ship/,Student Health Insurance,http://www.uwb.edu/studentservices/insurance,Student Health Insurance,http://www.tacoma.uw.edu/ses/health/insurance,Student Health Insurance,no
-Student & Campus Life,Support Services,grad,Graduate School Core Programs,http://grad.uw.edu/for-students-and-post-docs/core-programs/,,,,,,,
+Student & Campus Life,Support Services,grad,Graduate School Core Programs,http://grad.uw.edu/for-students-and-post-docs/core-programs/,,,,,,,no
 Student & Campus Life,Support Services,all,,,http://www.washington.edu/admin/dso/uw-resources.html,Disability Resources,http://www.bothell.washington.edu/studentservices/drs,Disability Resources for Students (DRS),http://www.tacoma.washington.edu/studentaffairs/SHW/dss_about.cfm,Disability Support Services (DSS),no
 Student & Campus Life,Support Services,all,,,http://www.washington.edu/omad/,Diversity Resources,http://www.uwb.edu/diversity,Diversity Resources,http://www.tacoma.uw.edu/diversity,Diversity Resources,no
-Student & Campus Life,Support Services,grad,Graduate Opportunities & Minority Achievement Program (GO-MAP),http://grad.uw.edu/diversity/go-map/,,,,,,,
+Student & Campus Life,Support Services,grad,Graduate Opportunities & Minority Achievement Program (GO-MAP),http://grad.uw.edu/diversity/go-map/,,,,,,,no
 Student & Campus Life,Support Services,all,http://depts.washington.edu/qcenter/wordpress/,Q Center,,,,,,,no
 Student & Campus Life,Support Services,all,http://depts.washington.edu/womenctr/,Women's Center,,,,,,,no
 Student & Campus Life,Support Services,all,,,http://www.washington.edu/safecampus/,SafeCampus,http://www.washington.edu/safecampus/uwb/,SafeCampus,http://www.washington.edu/safecampus/uwt/,SafeCampus,no
