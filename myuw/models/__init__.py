@@ -3,32 +3,7 @@ from datetime import datetime
 from django.utils import timezone
 from django.db import models
 from myuw.models.building import Building
-
-
-class CategoryLinks(models.Model):
-    url = models.CharField(max_length=150)
-    title = models.CharField(max_length=150)
-    campus = models.CharField(max_length=8, null=True)
-    category_id = models.CharField(max_length=80)
-    category_name = models.CharField(max_length=80)
-    sub_category = models.CharField(max_length=80)
-    new_tab = models.BooleanField(default=False)
-
-    def json_data(self):
-        data = {
-            "title": self.title,
-            "url": self.url,
-            "new_tab": self.new_tab
-        }
-        return data
-
-    def set_category_id(self, category_name):
-        category_id = category_name.lower()
-        category_id = "".join(c for c in category_id if c.isalpha())
-        self.category_id = category_id
-
-    class Meta:
-        db_table = "myuw_mobile_categorylinks"
+from myuw.models.res_category_link import ResCategoryLink
 
 
 class CourseColor(models.Model):
