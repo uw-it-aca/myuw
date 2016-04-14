@@ -297,6 +297,7 @@ var toggle_card_disclosure = function(card, div_toggled, a_expose, a_hide, label
             div_toggled.attr("aria-expanded", true);
             div_toggled.attr("aria-hidden", false);
             div_toggled.attr("hidden", false);
+            div_toggled.attr("tabindex", "0");
             div_toggled.focus();
         }, 0);
         window.myuw_log.log_card(card, "expand"+log_label);
@@ -310,6 +311,7 @@ var toggle_card_disclosure = function(card, div_toggled, a_expose, a_hide, label
             a_hide.attr("aria-hidden", true);
             div_toggled.attr("aria-expanded", false);
             div_toggled.attr("aria-hidden", true);
+            div_toggled.attr("tabindex", "-1");
             div_toggled.attr("hidden", true);
         }, 700);
         window.myuw_log.log_card(card, "collapse"+log_label);
