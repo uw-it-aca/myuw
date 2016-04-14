@@ -1,98 +1,142 @@
 from django.db.models import Q
-from myuw.models import CategoryLinks
-from myuw.dao.affiliation import get_base_campus
+from myuw.models.res_category_link import ResCategoryLink
+from myuw.dao.affiliation import get_base_campus, get_all_affiliations
 import csv
 import os
 
 
-def get_links_for_category(search_category_id, request):
-    return _get_links_by_category_and_campus(search_category_id,
-                                             get_base_campus(request))
+class Res_Links:
+    """
+    Read the resource links froma file and store them
+    in an array of ResCategoryLink objects.
+    """
 
+    _singleton = None
 
-def _get_links_by_category_and_campus(search_category_id, campus):
-    links = []
-    path = os.path.join(
-        os.path.dirname(__file__),
-        '..', 'data', 'category_links_import.csv')
-    with open(path, 'rbU') as csvfile:
-        reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+    def __init__(self):
+        self.links = []
+        path = os.path.join(
+            os.path.dirname(__file__),
+            '..', 'data', 'category_links_import.csv')
 
-        for row in reader:
-            category = row[0]
-            category_id = _get_category_id(category)
-            subcategory = row[1]
-            central_url = row[2]
-            central_title = row[3]
-            seattle_url = row[4]
-            seattle_title = row[5]
-            bothell_url = row[6]
-            bothell_title = row[7]
-            tacoma_url = row[8]
-            tacoma_title = row[9]
+        with open(path, 'rbU') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',', quotechar='"')
 
-            new_tab = False
-            if row[10] == "yes":
-                new_tab = True
+            for row in reader:
+                category = row[0]
+                category_id = _get_category_id(category)
+                subcategory = row[1]
+                affiliation = row[2]
+                central_url = row[3]
+                central_title = row[4]
+                seattle_url = row[5]
+                seattle_title = row[6]
+                bothell_url = row[7]
+                bothell_title = row[8]
+                tacoma_url = row[9]
+                tacoma_title = row[10]
 
-            if (category_id != search_category_id):
-                continue
+                new_tab = False
+                if row[11] == "yes":
+                    new_tab = True
 
-            if len(central_url) > 0:
-                link = CategoryLinks(
-                    url=central_url,
-                    title=central_title,
-                    category_name=category,
-                    sub_category=subcategory,
-                    new_tab=new_tab
-                )
-                if len(central_title) == 0:
-                    link.title = link.url
-                links.append(link)
+                if len(central_url) > 0:
+                    link = ResCategoryLink(
+                        url=central_url,
+                        title=central_title,
+                        affiliation=affiliation,
+                        category_name=category,
+                        sub_category=subcategory,
+                        new_tab=new_tab
+                        )
+                    link.set_category_id(category)
+                    self.links.append(link)
 
-            if len(seattle_url) > 0 and campus == "seattle":
-                link = CategoryLinks(
-                    url=seattle_url,
-                    title=seattle_title,
-                    category_name=category,
-                    sub_category=subcategory,
-                    campus="seattle",
-                    new_tab=new_tab
-                )
-                if len(seattle_title) == 0:
-                    link.title = link.url
-                link.set_category_id(category)
-                links.append(link)
-            if len(bothell_url) > 0 and campus == "bothell":
-                link = CategoryLinks(
-                    url=bothell_url,
-                    title=bothell_title,
-                    category_name=category,
-                    sub_category=subcategory,
-                    campus="bothell",
-                    new_tab=new_tab
-                )
-                if len(bothell_title) == 0:
-                    link.title = link.url
-                link.set_category_id(category)
-                links.append(link)
-            if len(tacoma_url) > 0 and campus == "tacoma":
-                link = CategoryLinks(
-                    url=tacoma_url,
-                    title=tacoma_title,
-                    category_name=category,
-                    sub_category=subcategory,
-                    campus="tacoma",
-                    new_tab=new_tab
-                )
-                if len(tacoma_title) == 0:
-                    link.title = link.url
-                link.set_category_id(category)
-                links.append(link)
-    return links
+                if len(seattle_url) > 0:
+                    link = ResCategoryLink(
+                        url=seattle_url,
+                        title=seattle_title,
+                        affiliation=affiliation,
+                        campus=ResCategoryLink.SEATTLE,
+                        category_name=category,
+                        sub_category=subcategory,
+                        new_tab=new_tab
+                        )
+                    link.set_category_id(category)
+                    self.links.append(link)
+
+                if len(bothell_url) > 0:
+                    link = ResCategoryLink(
+                        url=bothell_url,
+                        title=bothell_title,
+                        affiliation=affiliation,
+                        campus=ResCategoryLink.BOTHELL,
+                        category_name=category,
+                        sub_category=subcategory,
+                        new_tab=new_tab
+                        )
+                    link.set_category_id(category)
+                    self.links.append(link)
+
+                if len(tacoma_url) > 0:
+                    link = ResCategoryLink(
+                        url=tacoma_url,
+                        title=tacoma_title,
+                        affiliation=affiliation,
+                        campus=ResCategoryLink.TACOMA,
+                        category_name=category,
+                        sub_category=subcategory,
+                        new_tab=new_tab
+                        )
+                    link.set_category_id(category)
+                    self.links.append(link)
+
+    @classmethod
+    def get_all_links(cls):
+        if cls._singleton is None:
+            cls._singleton = Res_Links()
+        return cls._singleton.links
 
 
 def _get_category_id(category_name):
     category_id = category_name.lower()
     category_id = "".join(c for c in category_id if c.isalpha())
     return category_id
+
+
+def get_links_for_category(search_category_id, request):
+    return _get_links_by_category_and_campus(search_category_id,
+                                             get_base_campus(request),
+                                             get_all_affiliations(request))
+
+
+def _get_links_by_category_and_campus(search_category_id,
+                                      campus,
+                                      affiliations):
+    selected_links = []
+    all_links = Res_Links.get_all_links()
+
+    for link in all_links:
+        if not link.category_id_matched(search_category_id):
+            continue
+
+        if link.all_affiliation() and link.campus_matched(campus):
+            selected_links.append(link)
+            continue
+
+        if link.campus_matched(campus) and\
+                affiliations["grad"] and link.for_grad():
+            selected_links.append(link)
+            continue
+
+        if link.campus_matched(campus) and\
+                affiliations["undergrad"] and link.for_undergrad():
+            selected_links.append(link)
+            continue
+
+        if link.campus_matched(campus) and\
+                affiliations["pce"] and link.for_pce():
+            selected_links.append(link)
+            continue
+
+    return selected_links
