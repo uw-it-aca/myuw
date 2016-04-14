@@ -22,14 +22,14 @@
                                 <span id="show_unready_courses_wrapper{{#if card }}_{{card}}{{/if}}">
                                     <a href="#"
                                        aria-controls="myplan_unready_courses{{#if card }}_{{card}}{{/if}}"
-                                       title="Expand to show unready course in myplan"
+                                       title="Expand to show courses not ready"
                                        class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}">See details</a>
                                 </span>
 
                                 <span id="hide_unready_courses_wrapper{{#if card }}_{{card}}{{/if}}" hidden aria-hidden="true">
                                     <a href="#"
                                        aria-controls="myplan_unready_courses{{#if card }}_{{card}}{{/if}}"
-                                       title="Collapse to hide unready course in myplan"
+                                       title="Collapse to hide courses not ready"
                                        class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}">Hide details</a>
                                 </span>
                             {{ /unless}}
@@ -42,7 +42,7 @@
 
     <div id="myplan_unready_courses{{#if card }}_{{card}}{{/if}}"
          class="slide-hide course-not-ready-details"
-         aria-label="Myplan course unready for registration"
+         aria-label="Courses not ready for registration"
          hidden aria-hidden="true" aria-expanded="false" style="display: none;">
         <h4>Not ready for registration</h4>
         <ul id="courses_not_ready_list" class="courses-not-ready-list">
