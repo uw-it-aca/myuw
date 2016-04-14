@@ -20,7 +20,7 @@ class TestCategoryLinks(TestCase):
         links = _get_links_by_category_and_campus(category_id,
                                                   "bothell",
                                                   affi)
-        self.assertEquals(len(links), 23)
+        self.assertEquals(len(links), 22)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "tacoma",
@@ -41,7 +41,7 @@ class TestCategoryLinks(TestCase):
         links = _get_links_by_category_and_campus(category_id,
                                                   "bothell",
                                                   affi)
-        self.assertEquals(len(links), 25)
+        self.assertEquals(len(links), 24)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "tacoma",
