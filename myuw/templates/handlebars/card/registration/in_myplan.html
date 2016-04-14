@@ -43,7 +43,8 @@
     <div id="myplan_unready_courses{{#if card }}_{{card}}{{/if}}"
          class="slide-hide course-not-ready-details"
          aria-label="Courses not ready for registration"
-         hidden aria-hidden="true" aria-expanded="false" style="display: none;">
+         hidden aria-hidden="true" aria-expanded="false"
+         style="display: none;" tabindex="-1">
         <h4>Not ready for registration</h4>
         <ul id="courses_not_ready_list" class="courses-not-ready-list">
             {{ #each plan_data.courses }}
