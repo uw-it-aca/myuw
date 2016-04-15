@@ -13,19 +13,20 @@ class TestCategoryLinks(TestCase):
         val = URLValidator()
         for link in all_links:
             try:
+                link.url.decode('ascii')
+            except UnicodeDecodeError:
+                self.fail("%s url has non-ASCII text: %s" %
+                          (link.title, link.url))
+
+            try:
                 val(link.url)
             except ValidationError, e:
                 self.fail("Invalid url:" + link.url)
 
             try:
-                link.url.decode('ascii')
-            except UnicodeDecodeError:
-                self.fail("Invalid url:" + link.url)
-
-            try:
                 link.title.decode('ascii')
             except UnicodeDecodeError:
-                self.fail("Invalid title:" + link.title)
+                self.fail("Link title has non-ASCII text:" + link.title)
 
     def test_undergrad_category(self):
         category_id = _get_category_id("Student & Campus Life")
