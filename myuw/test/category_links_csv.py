@@ -1,4 +1,7 @@
 #!/usr/bin/pyton
+"""
+Sanity check for category/links CSV
+"""
 
 from django.test import TestCase
 import os
@@ -9,9 +12,9 @@ urlfields = [3, 5, 7, 9]
 
 
 def check_ascii(s):
-    '''
+    """
     Ensure entire string is ASCII
-    '''
+    """
     try:
         s.decode('ascii')
     except UnicodeDecodeError:
@@ -21,20 +24,20 @@ def check_ascii(s):
 
 
 def validate_URL(s):
-    '''
+    """
     Sanity check to make sure something looks like a URL
-    '''
+    """
     return s.startswith('http')
 
 
 class TestCategoryCSV(TestCase):
-    '''
+    """
     Test the resource links/categories CSV for:
         * Lack of trailing commas
         * Same number of fields in each record
         * No Unicode characters
         * Fields that should be URLs actually look like URLs
-    '''
+    """
     def test_csv_format(self):
 
         csvpath = os.path.join(
