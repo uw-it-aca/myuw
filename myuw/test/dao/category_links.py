@@ -60,10 +60,6 @@ class TestCategoryLinks(TestCase):
         self.assertEquals(len(links), 5)
 
     @staticmethod
-    def validate_URL(url):
-        return url.startswith('http')
-
-    @staticmethod
     def validate_ascii(s):
         try:
             s.decode('ascii')
@@ -88,8 +84,3 @@ class TestCategoryLinks(TestCase):
                         'Found non-ASCII text %s in resource link %s'
                         % (s, link.title)
                     )
-
-            if not(self.validate_URL(link.url)):
-                self.fail(
-                    'Expected URL, got "%s"' % link.url
-                )
