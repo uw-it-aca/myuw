@@ -18,6 +18,11 @@ class TestCategoryLinks(TestCase):
                 self.fail("Invalid url:" + link.url)
 
             try:
+                link.url.decode('ascii')
+            except UnicodeDecodeError:
+                self.fail("Invalid url:" + link.url)
+
+            try:
                 link.title.decode('ascii')
             except UnicodeDecodeError:
                 self.fail("Invalid title:" + link.title)
