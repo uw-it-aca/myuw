@@ -21,12 +21,8 @@ class Res_Links:
 
         with open(path, 'rbU') as csvfile:
             reader = csv.reader(csvfile, delimiter=',', quotechar='"')
-            is_column_headings = True
+            reader.next()
             for row in reader:
-                if is_column_headings:
-                    is_column_headings = False
-                    continue
-
                 category = row[0]
                 category_id = _get_category_id(category)
                 subcategory = row[1]
