@@ -15,7 +15,12 @@ class TestCategoryLinks(TestCase):
             try:
                 val(link.url)
             except ValidationError, e:
-                self.assertIsNone(link.url, "Invalid " + link.url)
+                self.fail("Invalid url:" + link.url)
+
+            try:
+                link.title.decode('ascii')
+            except UnicodeDecodeError:
+                self.fail("Invalid title:" + link.title)
 
     def test_undergrad_category(self):
         category_id = _get_category_id("Student & Campus Life")
