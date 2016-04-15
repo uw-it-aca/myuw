@@ -1,10 +1,21 @@
 from django.test import TestCase
-import datetime
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
 from myuw.dao.category_links import _get_links_by_category_and_campus, \
-    _get_category_id
+    _get_category_id, Res_Links
 
 
 class TestCategoryLinks(TestCase):
+
+    def test_get_all_likes(self):
+        all_links = Res_Links.get_all_links()
+        self.assertEquals(len(all_links), 157)
+        val = URLValidator()
+        for link in all_links:
+            try:
+                val(link.url)
+            except ValidationError, e:
+                self.assertIsNone(link.url, "Invalid " + link.url)
 
     def test_undergrad_category(self):
         category_id = _get_category_id("Student & Campus Life")
