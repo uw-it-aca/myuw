@@ -74,7 +74,3 @@ def campus_human_readable(campus):
     else:
         # Capitalize first letter
         return campus[0:1].upper() + campus[1:]
-
-
-if __name__ == '__main__':
-    check_all()
