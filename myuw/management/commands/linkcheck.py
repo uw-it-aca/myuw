@@ -38,7 +38,7 @@ def get_http_status(url):
             'GET',
             url,
             headers={'User-Agent': ua},
-            retries = urllib3.Retry(redirect=10, connect=2, read=2)
+            retries=urllib3.Retry(redirect=10, connect=2, read=2)
         )
         return result.status
 
