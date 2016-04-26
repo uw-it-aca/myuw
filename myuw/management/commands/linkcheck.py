@@ -20,7 +20,7 @@ ua = 'Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
 class Command(BaseCommand):
 
     help = ('Test all resource links for non-200 status codes after'
-    ' following redirects')
+            ' following redirects')
 
     def handle(self, *args, **kwargs):
         try:
