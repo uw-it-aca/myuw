@@ -14,7 +14,7 @@ urllib3.disable_warnings()
 # Need limit of 1, otherwise sdb gives us a 403
 http = urllib3.PoolManager(1, timeout=8)
 # Need to override UA for some links, e.g. LinkedIn
-user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+ua = 'Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
 
 
 class Command(BaseCommand):
@@ -37,7 +37,7 @@ def get_http_status(url):
         result = http.request(
             'GET',
             url,
-            headers={'User-Agent': user_agent},
+            headers={'User-Agent': ua},
             retries = urllib3.Retry(redirect=10, connect=2, read=2)
         )
         return result.status
