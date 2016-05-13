@@ -80,3 +80,29 @@ class TestCategoryLinks(TestCase):
                                                   "",
                                                   affi)
         self.assertEquals(len(links), 5)
+
+    @staticmethod
+    def validate_ascii(s):
+        try:
+            s.decode('ascii')
+        except UnicodeDecodeError:
+            return False
+
+        return True
+
+    def test_all_links_sanity(self):
+        all_links = Res_Links.get_all_links()
+
+        for link in all_links:
+            strings = (
+                link.url,
+                link.title,
+                link.category_name,
+                link.sub_category,
+            )
+            for s in strings:
+                if not(self.validate_ascii(s)):
+                    self.fail(
+                        'Found non-ASCII text %s in resource link %s'
+                        % (s, link.title)
+                    )
