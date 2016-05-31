@@ -170,8 +170,7 @@ def is_mandatory_switch_user():
 
 
 def is_optin_switch_user():
-    username = get_netid_of_current_user()
-    return _is_user_in_list(username, OPTIN_SWITCH)
+    return is_undergrad_student() or is_grad_student()
 
 
 def has_legacy_preference():

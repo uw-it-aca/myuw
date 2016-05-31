@@ -112,31 +112,31 @@ class TestLoginRedirects(TestCase):
         # Delete any preference that might have been set, to test the
         # default state.
         UserMigrationPreference.objects.all().delete()
-        username = "cfcd208495d565ef66e7dff9f98764da"
+        username = "eight"  # required desktop_user
         url = reverse("myuw_home")
         get_user(username)
         self.client.login(username=username,
-                          password=get_user_pass('staff'))
+                          password=get_user_pass('eight'))
         response = self.client.get(url, **_get_desktop_args())
 
         # By default, they get sent to the new site
         self.assertEquals(response.status_code, 200)
 
         # Test with a saved preference of the old site
-        obj = UserMigrationPreference.objects.create(username=username,
+        regid = "12345678901234567890123456789012"
+        obj = UserMigrationPreference.objects.create(username=regid,
                                                      use_legacy_site=True)
-
+        # can't opt out
         response = self.client.get(url, **_get_desktop_args())
-
-        valid_url = "http://some-test-server/myuw"
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.get("Location"), valid_url)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.get("Location"), None)
 
         # Test with a saved preference for the new site
         obj.use_legacy_site = False
         obj.save()
         response = self.client.get(url, **_get_desktop_args())
         self.assertEquals(response.status_code, 200)
+        UserMigrationPreference.objects.all().delete()
 
     @override_settings(MYUW_USER_SERVLET_URL="http://some-test-server/myuw")
     def test_set_legacy_preferences(self):
