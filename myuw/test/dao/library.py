@@ -42,11 +42,36 @@ class TestLibrary(TestCase):
                     self.assertEquals(
                         get_subject_guide_by_section(section),
                         "http://guides.lib.uw.edu/friendly.php?s=research/pnw")
+                if section.curriculum_abbr == 'PHYS':
+                    self.assertEquals(
+                        get_subject_guide_by_section(section),
+                        "%s?%s" % ("http://guides.lib.uw.edu/friendly.php",
+                                   "s=research/physics_astronomy"))
+
+    def test_get_subject_guide_by_section(self):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
+            regid = "12345678901234567890123456789012"
+            term = Term()
+            term.year = 2013
+            term.quarter = "spring"
+            schedule = _get_schedule(regid, term)
+            for section in schedule.sections:
                 if section.curriculum_abbr == 'ROLING' and\
                         section.course_number == '310':
                     self.assertEquals(
                         get_subject_guide_by_section(section),
                         "http://guides.lib.uw.edu/tacoma")
+
+    def test_get_subject_guide_by_section(self):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
+            regid = "FE36CCB8F66711D5BE060004AC494FCD"
+            term = Term()
+            term.year = 2013
+            term.quarter = "spring"
+            schedule = _get_schedule(regid, term)
+            for section in schedule.sections:
                 if section.curriculum_abbr == 'BISSEB' and\
                         section.course_number == '259':
                     self.assertEquals(
@@ -57,8 +82,3 @@ class TestLibrary(TestCase):
                     self.assertEquals(
                         get_subject_guide_by_section(section),
                         "http://guides.lib.uw.edu/bothell/")
-                if section.curriculum_abbr == 'PHYS':
-                    self.assertEquals(
-                        get_subject_guide_by_section(section),
-                        "%s?%s" % ("http://guides.lib.uw.edu/friendly.php",
-                                   "s=research/physics_astronomy"))
