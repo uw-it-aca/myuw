@@ -8,7 +8,8 @@ from restclients.library.mylibinfo import get_account
 from restclients.library.currics import get_subject_guide_for_section,\
     get_default_subject_guide
 from restclients.exceptions import DataFailureException
-from myuw.logger.logback import log_exception
+from myuw.logger.logback import log_time
+from myuw.logger.timer import Timer
 from myuw.dao.pws import get_netid_of_current_user
 
 
@@ -37,7 +38,14 @@ def get_subject_guide_by_section(section):
         return None
     get_default = False
     section_campus = section.course_campus.lower()
+    section_logid = "(%s %s %s, %s)" % (section.curriculum_abbr,
+                                        section.course_number,
+                                        section.section_id,
+                                        section_campus)
+    timer = Timer()
     try:
+        logid = "%s%s" % ('get_subject_guide_for_section',
+                          section_logid)
         subject_guide = get_subject_guide_for_section(section)
         if subject_guide.is_default_guide:
             default_campus = subject_guide.default_guide_campus.lower()
@@ -46,8 +54,13 @@ def get_subject_guide_by_section(section):
     except DataFailureException as ex:
         if ex.status == 404:
             get_default = True
+        else:
+            raise
 
     if get_default:
+        logid = "%s%s" % ('get_default_subject_guide',
+                          section_logid)
         subject_guide = get_default_subject_guide(section_campus)
 
+    log_time(logger, logid, timer)
     return subject_guide.guide_url
