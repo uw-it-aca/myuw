@@ -32,11 +32,33 @@ class TestLibrary(TestCase):
             term.quarter = "spring"
             schedule = _get_schedule(regid, term)
             for section in schedule.sections:
-                if section.curriculum_abbr == 'TRAIN':
+                if section.curriculum_abbr == 'TRAIN' and\
+                        section.course_number == '101':
                     self.assertEquals(
                         get_subject_guide_by_section(section),
-                        "http://www.lib.washington.edu/subject/")
+                        "http://guides.lib.uw.edu/research")
+                if section.curriculum_abbr == 'TRAIN' and\
+                        section.course_number == '100':
+                    self.assertEquals(
+                        get_subject_guide_by_section(section),
+                        "http://guides.lib.uw.edu/friendly.php?s=research/pnw")
+                if section.curriculum_abbr == 'ROLING' and\
+                        section.course_number == '310':
+                    self.assertEquals(
+                        get_subject_guide_by_section(section),
+                        "http://guides.lib.uw.edu/tacoma")
+                if section.curriculum_abbr == 'BISSEB' and\
+                        section.course_number == '259':
+                    self.assertEquals(
+                        get_subject_guide_by_section(section),
+                        "http://guides.lib.uw.edu/bothell/businternational")
+                if section.curriculum_abbr == 'BCWRIT' and\
+                        section.course_number == '500':
+                    self.assertEquals(
+                        get_subject_guide_by_section(section),
+                        "http://guides.lib.uw.edu/bothell/")
                 if section.curriculum_abbr == 'PHYS':
                     self.assertEquals(
                         get_subject_guide_by_section(section),
-                        "http://guides.lib.washington.edu/physics_astronomy")
+                        "%s?%s" % ("http://guides.lib.uw.edu/friendly.php",
+                                   "s=research/physics_astronomy"))
