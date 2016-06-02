@@ -36,6 +36,12 @@
     {% if ias_url %}
     <li><a href="{{ ias_url }}">IASystem Web Service</a></li>
     {% endif %}
+
+    {% url 'restclients.views.proxy' 'libcurrics' 'index.html' as libcurrics_url %}
+    {% if libcurrics_url %}
+    <li><a href="{{ libcurrics_url }}">Library Subject Guide</a></li>
+    {% endif %}
+
 </ul>
 
 {% url 'restclients.views.proxy' 'hfs' 'myuw/v1' as url %}
@@ -53,19 +59,18 @@
             <input type="text" id="hfs_service_input" class="form-control">&nbsp;<input type="submit" value="Go" class="btn btn-primary btn-sm" />
         </div>
     </form>
-
 {% endif %}
-
+<br>
 {% url 'restclients.views.proxy' 'libraries' '' as url %}
 {% if url %}
-    <h4>Library Web Service:</h4>
+    <h4>My Library Account Info:</h4>
     <form action="{% url 'restclients.views.proxy' 'libraries' 'mylibinfo/v1/' %}" method="GET">
         <div class="form-group">
             <input type="text" name="id" class="form-control" />&nbsp;<input type="submit" value="go" class="btn btn-primary btn-sm" />
         </div>
     </form>
 {% endif %}
-
+<br>
 {% url 'restclients.views.proxy' 'book' '' as url %}
 {% if url %}
     <h4>UW Bookstore Web Service:</h4>
