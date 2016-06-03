@@ -34,10 +34,26 @@ var RegStatusCard = {
     },
 
     render_upon_data: function() {
-        //If more than one data source, multiple callbacks point to this function
-        //Delay rendering until all requests are complete
-        //Do something smart about not showing error if AJAX is pending
+        // Having multiple callbacks point to this function
+        // delay rendering until all requests are complete.
         if (!RegStatusCard._has_all_data()) {
+            return;
+        }
+
+        var next_term_data = WSData.oquarter_data().next_term_data;
+        var reg_next_quarter = next_term_data.quarter;
+
+        if (! window.card_display_dates.myplan_peak_load &&
+            ! WSData.myplan_data(next_term_data.year, next_term_data.quarter)) {
+            WSData.fetch_myplan_data(next_term_data.year,
+                                     next_term_data.quarter,
+                                     RegStatusCard.render_upon_data,
+                                     RegStatusCard.render_error);
+            return;
+        }
+
+        // _render should be called only once.
+        if (renderedCardOnce(RegStatusCard.name)) {
             return;
         }
         RegStatusCard._render();
@@ -175,20 +191,20 @@ var RegStatusCard = {
     },
 
     _add_events: function(summer_label) {
-        // show registration resources
+
         var card_disclosure_class, holds_class, unready_courses;
         if (summer_label) {
-            card_disclosure_class = ".show_reg_resources_"+summer_label;
+            card_disclosure_class = ".show_myplan_courses_"+summer_label;
             holds_class = ".reg_disclosure_"+summer_label;
             unready_courses = ".myplan_unready_courses_disclosure_"+summer_label;
         }
         else {
-            card_disclosure_class = ".show_reg_resources";
+            card_disclosure_class = ".show_myplan_courses";
             holds_class = ".reg_disclosure";
             unready_courses = ".myplan_unready_courses_disclosure";
         }
 
-        // show registration resource
+        // show myplan courses
         (function(summer_card_label) {
             $('body').on('click', card_disclosure_class, function (ev) {
                 ev.preventDefault();
@@ -197,35 +213,16 @@ var RegStatusCard = {
                 var div, expose, hide;
                 if (summer_card_label) {
                     // summer reg card
-                    div = $("#reg_resources_"+summer_card_label);
-                    expose = $("#show_reg_resources_wrapper_"+summer_card_label);
-                    hide = $("#hide_reg_resources_wrapper_"+summer_card_label);
+                    div = $("#myplan_courses_"+summer_card_label);
+                    expose = $("#show_myplan_courses_wrapper_"+summer_card_label);
+                    hide = $("#hide_myplan_courses_wrapper_"+summer_card_label);
                 }
                 else {
-                    div = $("#reg_resources");
-                    expose = $("#show_reg_resources_wrapper");
-                    hide = $("#hide_reg_resources_wrapper");
+                    div = $("#myplan_courses");
+                    expose = $("#show_myplan_courses_wrapper");
+                    hide = $("#hide_myplan_courses_wrapper");
                 }
-
-                div.toggleClass("slide-show");
-
-                if (div.hasClass("slide-show")) {
-                    expose.attr("hidden", true);
-                    expose.attr("aria-hidden", true);
-                    hide.attr("hidden", false);
-                    hide.attr("aria-hidden", false);
-                    div.attr('aria-hidden', 'false');
-                    window.myuw_log.log_card(card, "expand-res");
-                } else {
-                    window.myuw_log.log_card(card, "collapse-res");
-                    setTimeout(function() {
-                        expose.attr("hidden", false);
-                        expose.attr("aria-hidden", false);
-                        hide.attr("hidden", true);
-                        hide.attr("aria-hidden", true);
-                        div.attr('aria-hidden', 'true');
-                    }, 700);
-                }
+                toggle_card_disclosure(card, div, expose, hide, "myplan_courses");
             });
 
             // show myplan unready course details
@@ -244,27 +241,7 @@ var RegStatusCard = {
                     expose = $("#show_unready_courses_wrapper");
                     hide = $("#hide_unready_courses_wrapper");
                 }
-
-                div.toggleClass("slide-show");
-
-                if (div.hasClass("slide-show")) {
-                    expose.attr("hidden", true);
-                    expose.attr("aria-hidden", true);
-                    hide.attr("hidden", false);
-                    hide.attr("aria-hidden", false);
-                    div.attr('aria-hidden', 'false');
-                    window.myuw_log.log_card(card, "expand-myplan");
-                } else {
-                    window.myuw_log.log_card(card, "collapse-myplan");
-                    setTimeout(function() {
-                        expose.attr("hidden", false);
-                        expose.attr("aria-hidden", false);
-                        hide.attr("hidden", true);
-                        hide.attr("aria-hidden", true);
-                        div.attr("aria-hidden", true);
-                    }, 700);
-                }
-
+                toggle_card_disclosure(card, div, expose, hide, "myplan_unready_courses");
             });
 
             // show hold details
@@ -283,27 +260,7 @@ var RegStatusCard = {
                     expose = $("#show_reg_holds_wrapper");
                     hide = $("#hide_reg_holds_wrapper");
                 }
-
-                div.toggleClass("slide-show");
-
-                if (div.hasClass("slide-show")) {
-                    expose.attr("hidden", true);
-                    expose.attr("aria-hidden", true);
-                    hide.attr("hidden", false);
-                    hide.attr("aria-hidden", false);
-                    div.attr("aria-hidden", false);
-                    window.myuw_log.log_card(card, "expand-holds");
-                }
-                else {
-                    window.myuw_log.log_card(card, "collapse-holds");
-                    setTimeout(function () {
-                        expose.attr("hidden", false);
-                        expose.attr("aria-hidden", false);
-                        hide.attr("hidden", true);
-                        hide.attr("aria-hidden", true);
-                        div.attr("aria-hidden", true);
-                    }, 700);
-                }
+                toggle_card_disclosure(card, div, expose, hide, "reg_holds");
             });
 
         })(summer_label);
@@ -312,16 +269,6 @@ var RegStatusCard = {
     _render: function () {
         var next_term_data = WSData.oquarter_data().next_term_data;
         var reg_next_quarter = next_term_data.quarter;
-
-        if (! window.card_display_dates.myplan_peak_load &&
-            ! WSData.myplan_data(next_term_data.year, next_term_data.quarter)) {
-            WSData.fetch_myplan_data(next_term_data.year,
-                                     next_term_data.quarter,
-                                     RegStatusCard.render_upon_data,
-                                     RegStatusCard.render_error);
-            return;
-        }
-
         var myplan_data;
         if (! window.card_display_dates.myplan_peak_load) {
             myplan_data = WSData.myplan_data(next_term_data.year,

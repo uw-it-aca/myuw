@@ -30,8 +30,10 @@
                     </ul>
                     {{ /each }}
                     {{ #if needs_disclosure }}
-                        <div id="events_card_more" class="slide-hide" aria-hidden="true"
-                              aria-label="Additional events" style="display: none;">
+                        <div id="events_card_more" class="slide-hide"
+                             aria-hidden="true" hidden aria-expanded="false"
+                             aria-label="Additional events"
+                             style="display: none;" tabindex="-1">
                             {{ #each grouped_events_hide}}
                             <ul class="myuw-events-list">
                                 <li class="myuw-events-list-item">

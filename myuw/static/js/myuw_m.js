@@ -1,5 +1,6 @@
-// mobile javascript
+// javascript
 var data;
+var multi_res_card_render_called = {};
 
 $(document).ready(function() {
     LogUtils.init_logging();
@@ -11,11 +12,15 @@ $(document).ready(function() {
     // multiple web service calls.  This is required due to the
     // fix for MUWM-368
     var loaded_url = null;
+    var render_called = {};
 
     History.Adapter.bind(window,'statechange',function(){
         var history_state = History.getState();
         var data = history_state.data;
         var state = data.state;
+
+        // Reset all the multiple resourse card render records
+        resetCardRenderCalled();
 
         var state_url = history_state.url;
         // This is the check of the same url, to prevent
@@ -264,4 +269,51 @@ var init_profile_events = function () {
 
 var init_modal_events = function () {
     Modal.add_events();
+};
+
+var renderedCardOnce = function(card_name) {
+    var rendered = multi_res_card_render_called[card_name];
+    multi_res_card_render_called[card_name] = true;
+    return rendered;
+};
+
+var resetCardRenderCalled = function() {
+    multi_res_card_render_called = {};
+};
+
+var toggle_card_disclosure = function(card, div_toggled, a_expose, a_hide, label) {
+    var log_label = label==="" ? "" : " " + label;
+    div_toggled.toggleClass("slide-show");
+    div_toggled.css("display",
+                    div_toggled.css("display") === 'none' ? '' : 'none');
+
+    if (div_toggled.hasClass("slide-show")) {
+        window.setTimeout(function() {
+            div_toggled.show();
+            a_expose.attr("hidden", true);
+            a_expose.attr("aria-hidden", true);
+            a_hide.attr("hidden", false);
+            a_hide.attr("aria-hidden", false);
+            div_toggled.attr("aria-expanded", true);
+            div_toggled.attr("aria-hidden", false);
+            div_toggled.attr("hidden", false);
+            div_toggled.attr("tabindex", "0");
+            div_toggled.focus();
+        }, 0);
+        window.myuw_log.log_card(card, "expand"+log_label);
+    }
+    else {
+        window.setTimeout(function() {
+            div_toggled.hide();
+            a_expose.attr("hidden", false);
+            a_expose.attr("aria-hidden", false);
+            a_hide.attr("hidden", true);
+            a_hide.attr("aria-hidden", true);
+            div_toggled.attr("aria-expanded", false);
+            div_toggled.attr("aria-hidden", true);
+            div_toggled.attr("tabindex", "-1");
+            div_toggled.attr("hidden", true);
+        }, 700);
+        window.myuw_log.log_card(card, "collapse"+log_label);
+    }
 };

@@ -1,16 +1,16 @@
 var TuitionCard = {
     name: 'TuitionCard',
     dom_target: undefined,
-    _ajax_count: 0,
 
     render_init: function() {
         if (!window.user.student) {
             $("#TuitionCard").hide();
             return;
         }
-        TuitionCard._ajax_count = 2;
-        WSData.fetch_tuition_data(TuitionCard.render_upon_data, TuitionCard.render_error);
-        WSData.fetch_notice_data(TuitionCard.render_upon_data, TuitionCard.render_error);
+        WSData.fetch_tuition_data(TuitionCard.render_upon_data,
+                                  TuitionCard.render_error);
+        WSData.fetch_notice_data(TuitionCard.render_upon_data,
+                                 TuitionCard.render_error);
     },
 
     _has_all_data: function () {
@@ -32,7 +32,14 @@ var TuitionCard = {
     },
 
     render_upon_data: function() {
+        // Having multiple callbacks come to this function,
+        // delay rendering until all requests are complete.
         if (!TuitionCard._has_all_data()) {
+            return;
+        }
+
+        // _render should be called only once.
+        if (renderedCardOnce(TuitionCard.name)) {
             return;
         }
         TuitionCard._render();
