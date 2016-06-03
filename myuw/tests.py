@@ -24,7 +24,7 @@ from myuw.test.dao.pws import TestPwsDao
 from myuw.test.dao.textbook import TestTextbooks
 from myuw.test.dao.thrive import TestThrive
 from myuw.test.dao.uwemail import TestUwEmail
-from myuw.test.api.schedule import TestSchedule as APISchedule
+from myuw.test.api.current_schedule import TestSchedule as APISchedule
 from myuw.test.api.books import TestApiBooks
 from myuw.test.api.cur_books import TestApiCurBooks
 from myuw.test.api.grad import TestApiGrad
