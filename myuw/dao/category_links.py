@@ -21,7 +21,7 @@ class Res_Links:
 
         with open(path, 'rbU') as csvfile:
             reader = csv.reader(csvfile, delimiter=',', quotechar='"')
-
+            reader.next()
             for row in reader:
                 category = row[0]
                 category_id = _get_category_id(category)

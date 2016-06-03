@@ -1,0 +1,23 @@
+{
+    "subjectGuide": {
+        "askUsLink": "http://www.tacoma.uw.edu/library/contact-us",
+        "askUsText": "UW librarians are also available to help answer your general questions by email, phone, text, or 24/7 real-time chat.",
+        "defaultGuideForCampus": "tacoma",
+        "discipline": "your discipline",
+        "findLibrarianLink": "http://www.tacoma.uw.edu/library/subject-librarians",
+        "findLibrarianText": "UW subject librarians are your personal guides to the Libraries, with specialty knowledge of specific disciplines. Search this list to find the one that fits your subject or program of study.",
+        "guideLink": "http://guides.lib.uw.edu/tacoma",
+        "guideText": "UW Tacoma Research Guides",
+        "howDoILink": "http://guides.lib.uw.edu/research",
+        "howDoIText": "This online guide addresses common research and library tasks with short video tutorials and links to other UW help guides.",
+        "libraries": [
+            {
+                "description": "The UW Tacoma Library is part of the UW Libraries, and serves the students, faculty and staff of the University of Washington Tacoma.",
+                "name": "UW Tacoma Library",
+                "url": "http://www.tacoma.uw.edu/library"
+            }
+        ],
+        "writingGuideLink": "http://guides.lib.uw.edu/tacoma/citations",
+        "writingGuideText": "Find citation style guides, citation management tools, and writing/grammar help."
+    }
+}
