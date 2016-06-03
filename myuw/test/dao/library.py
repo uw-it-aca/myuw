@@ -32,11 +32,13 @@ class TestLibrary(TestCase):
             term.quarter = "spring"
             schedule = _get_schedule(regid, term)
             for section in schedule.sections:
+                # has subject guide link
                 if section.curriculum_abbr == 'BISSEB' and\
                         section.course_number == '259':
                     self.assertEquals(
                         get_subject_guide_by_section(section),
                         "http://guides.lib.uw.edu/bothell/businternational")
+                # 404, general guide link
                 if section.curriculum_abbr == 'BCWRIT' and\
                         section.course_number == '500':
                     self.assertEquals(
@@ -51,18 +53,21 @@ class TestLibrary(TestCase):
             term.quarter = "spring"
             schedule = _get_schedule(regid, term)
             for section in schedule.sections:
+                # 404, general guide link
                 if section.curriculum_abbr == 'TRAIN' and\
                         section.course_number == '101':
                     self.assertEquals(
                         get_subject_guide_by_section(section),
                         "http://guides.lib.uw.edu/research")
 
+                # has subject guide link
                 if section.curriculum_abbr == 'TRAIN' and\
                         section.course_number == '100':
                     self.assertEquals(
                         get_subject_guide_by_section(section),
                         "http://guides.lib.uw.edu/friendly.php?s=research/pnw")
 
+                # has subject guide link
                 if section.curriculum_abbr == 'PHYS' and\
                         section.course_number == '121':
                     self.assertEquals(
@@ -79,11 +84,20 @@ class TestLibrary(TestCase):
             term.quarter = "spring"
             schedule = _get_schedule(regid, term)
             for section in schedule.sections:
+                # 404, general guide link
                 if section.curriculum_abbr == 'ROLING' and\
                         section.course_number == '310':
                     self.assertEquals(
                         get_subject_guide_by_section(section),
                         "http://guides.lib.uw.edu/tacoma")
+
+                if section.curriculum_abbr == 'T%20ARTS' and\
+                        section.course_number == '110':
+                    self.assertEquals(
+                        get_subject_guide_by_section(section),
+                        "http://guides.lib.uw.edu/tacoma")
+
+                # has subject guide link
                 if section.curriculum_abbr == 'ARCTIC' and\
                         section.course_number == '200':
                     self.assertEquals(

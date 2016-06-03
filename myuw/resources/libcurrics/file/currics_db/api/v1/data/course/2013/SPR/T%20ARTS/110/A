@@ -1,0 +1,28 @@
+{
+    "subjectGuide": {
+        "askUsLink": "http://www.lib.washington.edu/about/contact",
+        "askUsText": "UW librarians are also available to help answer your general questions by email, phone, text, or 24/7 real-time chat.",
+        "defaultGuideForCampus": "seattle",
+        "discipline": "your discipline",
+        "findLibrarianLink": "http://guides.lib.uw.edu/research/subject-librarians",
+        "findLibrarianText": "UW subject librarians are your personal guides to the Libraries, with specialty knowledge of specific disciplines. Search this list to find the one that fits your subject or program of study.",
+        "guideLink": "http://guides.lib.uw.edu/research",
+        "guideText": "UW Libraries Research Guides",
+        "howDoILink": "http://guides.lib.uw.edu/research/faq",
+        "howDoIText": "This online guide addresses common research and library tasks with short video tutorials and links to other UW help guides.",
+        "libraries": [
+            {
+                "description": "The Suzzallo and Allen Libraries offer print and electronic resources in support of all the major academic disciplines, and is the largest library at the University of Washington.",
+                "name": "Suzzallo & Allen Libraries",
+                "url": "http://www.lib.washington.edu/suzzallo"
+            },
+            {
+                "description": "Odegaard provides a wide range of services and tools in support of undergraduate learning and research, and is home to the Odegaard Writing and Research Center.",
+                "name": "Odegaard Undergraduate Library & Learning Commons",
+                "url": "http://www.lib.washington.edu/ougl"
+            }
+        ],
+        "writingGuideLink": "http://guides.lib.uw.edu/research/citations",
+        "writingGuideText": "Find citation style guides, citation management tools, and writing/grammar help."
+    }
+}
