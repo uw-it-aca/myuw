@@ -32,7 +32,7 @@ class TestFutureSchedule(MyuwApiTest):
         self.assertEquals(response.status_code, 200)
         self.assertEquals(len(data["sections"]), 2)
 
-        response=self.get_schedule_summer(
+        response = self.get_schedule_summer(
             year=2013, quarter='summer', summer_term='b-term')
         data = json.loads(response.content)
         self.assertEquals(response.status_code, 200)

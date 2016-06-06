@@ -25,7 +25,7 @@ class TestFinance(MyuwApiTest):
         self.set_user('jerror')
         response = self.get_response_by_reverse('myuw_finance_api')
         self.assertEquals(response.status_code, 543)
-        
+
         self.set_user('staff')
         response = self.get_response_by_reverse('myuw_finance_api')
         self.assertEquals(response.status_code, 404)
