@@ -24,9 +24,30 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         try:
-            check_all()
+            check_all_links()
         except Exception as e:
             raise CommandError(e)
+
+
+def check_all_links():
+
+    links = Res_Links.get_all_links()
+    for link in links:
+        out = check_and_format_link(link)
+        if out is not None:
+            print out
+
+
+def check_and_format_link(link, ignore=[200]):
+    result = get_http_status(link.url)
+
+    if result in ignore:
+        return None
+
+    else:
+        campus = make_campus_human_readable(link.campus)
+        fmt = (link.title, campus, link.url, result)
+        return 'Link Title: %s, %s, URL: %s returned %s' % fmt
 
 
 def get_http_status(url):
@@ -46,31 +67,10 @@ def get_http_status(url):
         return repr(sys.exc_info()[1])
 
 
-def check_and_format(link, ignore=[200]):
-    result = get_http_status(link.url)
-
-    if result in ignore:
-        return None
-
-    else:
-        campus = campus_human_readable(link.campus)
-        fmt = (campus, link.title, link.url, result)
-        return 'URL (%s) %s (%s) returned %s' % fmt
-
-
-def check_all():
-
-    links = Res_Links.get_all_links()
-    for link in links:
-        out = check_and_format(link)
-        if out is not None:
-            print out
-
-
-def campus_human_readable(campus):
+def make_campus_human_readable(campus):
 
     if campus is None:
-        return 'All'
+        return 'All Campuses'
     else:
         # Capitalize first letter
         return campus[0:1].upper() + campus[1:]
