@@ -39,7 +39,7 @@ class TestNotices(TestCase):
             regid = "9136CCB8F66711D5BE060004AC494F31"
             notices = _get_notices_by_regid(regid)
             self.assertIsNotNone(notices)
-            self.assertEquals(len(notices), 30)
+            self.assertEquals(len(notices), 31)
             self.assertEquals(notices[12].custom_category,
                               "Fees & Finances")
             self.assertFalse(notices[12].is_critical)

@@ -10,6 +10,7 @@ import json
 override_servlet_url = override_settings(
     MYUW_USER_SERVLET_URL='http://some-test-server/myuw')
 
+
 @require_url('myuw_home')
 class TestLoginRedirects(MyuwApiTest):
 
