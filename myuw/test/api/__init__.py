@@ -17,8 +17,8 @@ def missing_url(name):
     return False
 
 
-def require_url(url):
-    return skipIf(missing_url(url), 'myuw urls not configured')
+def require_url(url, message='myuw urls not configured'):
+    return skipIf(missing_url(url), message)
 
 
 def get_user(username):
