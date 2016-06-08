@@ -62,9 +62,6 @@ standard_test_override = override_settings(
 @standard_test_override
 class MyuwApiTest(TestCase):
 
-    def setUp(self):
-        self.client = Client()
-
     def set_user(self, user):
         get_user(user)
         self.client.login(username=user,
