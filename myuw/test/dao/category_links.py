@@ -1,10 +1,32 @@
 from django.test import TestCase
-import datetime
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
 from myuw.dao.category_links import _get_links_by_category_and_campus, \
-    _get_category_id
+    _get_category_id, Res_Links
 
 
 class TestCategoryLinks(TestCase):
+
+    def test_get_all_likes(self):
+        all_links = Res_Links.get_all_links()
+        self.assertEquals(len(all_links), 157)
+        val = URLValidator()
+        for link in all_links:
+            try:
+                link.url.decode('ascii')
+            except UnicodeDecodeError:
+                self.fail("%s url has non-ASCII text: %s" %
+                          (link.title, link.url))
+
+            try:
+                val(link.url)
+            except ValidationError, e:
+                self.fail("Invalid url:" + link.url)
+
+            try:
+                link.title.decode('ascii')
+            except UnicodeDecodeError:
+                self.fail("Link title has non-ASCII text:" + link.title)
 
     def test_undergrad_category(self):
         category_id = _get_category_id("Student & Campus Life")

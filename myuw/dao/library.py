@@ -5,9 +5,11 @@ the SWS Personal Financial resource.
 
 import logging
 from restclients.library.mylibinfo import get_account
-from restclients.digitlib.curric import get_subject_guide
+from restclients.library.currics import get_subject_guide_for_section,\
+    get_default_subject_guide
 from restclients.exceptions import DataFailureException
-from myuw.logger.logback import log_exception
+from myuw.logger.logback import log_time
+from myuw.logger.timer import Timer
 from myuw.dao.pws import get_netid_of_current_user
 
 
@@ -34,7 +36,31 @@ def get_subject_guide_by_section(section):
     """
     if section is None:
         return None
-    return get_subject_guide(section.curriculum_abbr,
-                             section.sln,
-                             section.term.quarter,
-                             section.term.year)
+    get_default = False
+    section_campus = section.course_campus.lower()
+    section_logid = "(%s %s %s, %s)" % (section.curriculum_abbr,
+                                        section.course_number,
+                                        section.section_id,
+                                        section_campus)
+    timer = Timer()
+    try:
+        logid = "%s%s" % ('get_subject_guide_for_section',
+                          section_logid)
+        subject_guide = get_subject_guide_for_section(section)
+        if subject_guide.is_default_guide:
+            default_campus = subject_guide.default_guide_campus.lower()
+            if default_campus != section_campus:
+                get_default = True
+    except DataFailureException as ex:
+        if ex.status == 404:
+            get_default = True
+        else:
+            raise
+
+    if get_default:
+        logid = "%s%s" % ('get_default_subject_guide',
+                          section_logid)
+        subject_guide = get_default_subject_guide(section_campus)
+
+    log_time(logger, logid, timer)
+    return subject_guide.guide_url
