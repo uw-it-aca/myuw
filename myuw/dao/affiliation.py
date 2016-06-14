@@ -208,3 +208,10 @@ def _is_user_in_list(username, user_type):
             file_path = os.path.abspath(os.path.join(current_dir,
                                                      "..", "data",
                                                      "optin-list.txt"))
+
+    with open(file_path) as data_source:
+        for line in data_source:
+            if line.rstrip() == username:
+                return True
+
+    return False

@@ -75,7 +75,7 @@ class TestCalendar(TestCase):
         self.assertEqual(event_response['active_cals'][0]['title'],
                          "Department of Five Events")
 
-    def test_all_day(self):
+    def test_all_day_1(self):
         cal = {'5_current': None}
         event_response = get_events(cal, self.now)
         self.assertTrue(event_response['events'][3]['is_all_day'])
@@ -85,7 +85,7 @@ class TestCalendar(TestCase):
         event_response = get_events(cal, self.now)
         self.assertEqual(event_response['events'][3]['event_location'], "")
 
-    def test_all_day(self):
+    def test_all_day_2(self):
         cal = {'5_current': None}
         event_response = get_events(cal, self.now)
         self.assertTrue(event_response['events'][3]['is_all_day'])

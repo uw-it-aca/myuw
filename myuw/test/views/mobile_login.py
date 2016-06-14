@@ -2,143 +2,117 @@ from django.test import TestCase
 from django.conf import settings
 from django.test.client import Client
 from django.core.urlresolvers import reverse
-from unittest2 import skipIf
-from myuw.test.api import missing_url, get_user, get_user_pass
+from myuw.test.api import MyuwApiTest, require_url
 from myuw.models import UserMigrationPreference
 from django.test.utils import override_settings
 import json
 
-
-FDAO_SWS = 'restclients.dao_implementation.sws.File'
-Session = 'django.contrib.sessions.middleware.SessionMiddleware'
-Common = 'django.middleware.common.CommonMiddleware'
-CsrfView = 'django.middleware.csrf.CsrfViewMiddleware'
-Auth = 'django.contrib.auth.middleware.AuthenticationMiddleware'
-RemoteUser = 'django.contrib.auth.middleware.RemoteUserMiddleware'
-Message = 'django.contrib.messages.middleware.MessageMiddleware'
-XFrame = 'django.middleware.clickjacking.XFrameOptionsMiddleware'
-UserService = 'userservice.user.UserServiceMiddleware'
-AUTH_BACKEND = 'django.contrib.auth.backends.ModelBackend'
+override_servlet_url = override_settings(
+    MYUW_USER_SERVLET_URL='http://some-test-server/myuw')
 
 
-@override_settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
-                   MIDDLEWARE_CLASSES=(Session,
-                                       Common,
-                                       CsrfView,
-                                       Auth,
-                                       RemoteUser,
-                                       Message,
-                                       XFrame,
-                                       UserService,
-                                       ),
-                   AUTHENTICATION_BACKENDS=(AUTH_BACKEND,),
-                   MYUW_USER_SERVLET_URL="http://some-test-server/myuw",
-                   )
-class TestLoginRedirects(TestCase):
-    def setUp(self):
-        self.client = Client()
+@require_url('myuw_home')
+class TestLoginRedirects(MyuwApiTest):
 
-    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
+    _mobile_args = {
+        'HTTP_USER_AGENT': ("Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 "
+                            "like Mac OS X) AppleWebKit/536.26 (KHTML, "
+                            "like Gecko) Version/6.0 Mobile/10B329 "
+                            "Safari/8536.25")}
+
+    _desktop_args = {
+        'HTTP_USER_AGENT': ("Mozilla/5.0 (compatible; MSIE 10.0; Windows "
+                            "NT 6.2; ARM; Trident/6.0; Touch)")}
+
+    def get_home_desktop(self):
+        return self.client.get(reverse('myuw_home'), **self._desktop_args)
+
+    def get_home_mobile(self):
+        return self.client.get(reverse('myuw_home'), **self._mobile_args)
+
+    @override_servlet_url
     def test_student_mobile(self):
-        url = reverse("myuw_home")
-        get_user('javerage')
-        self.client.login(username='javerage',
-                          password=get_user_pass('javerage'))
-        response = self.client.get(url, **_get_mobile_args())
+        self.set_user('javerage')
+        response = self.get_home_mobile()
 
         valid_url = "http://testserver%s" % reverse("myuw_home")
         self.assertEquals(response.status_code, 200)
 
-    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     # Putting this here to remove it, to make sure we're testing the default
-    @override_settings(MYUW_USER_SERVLET_URL="http://some-test-server/myuw")
+    @override_servlet_url
     def test_random_non_student_mobile(self):
         del settings.MYUW_USER_SERVLET_URL
-        url = reverse("myuw_home")
-        get_user('staff')
-        self.client.login(username='staff', password=get_user_pass('staff'))
-        response = self.client.get(url, **_get_mobile_args())
+        self.set_user('staff')
+        response = self.get_home_mobile()
 
         # This is the default...
         valid_url = "https://myuw.washington.edu/servlet/user"
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.get("Location"), valid_url)
 
-    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
-    @override_settings(MYUW_USER_SERVLET_URL="http://some-test-server/myuw")
+    @override_servlet_url
     def test_random_non_student_mobile_override_url(self):
-        url = reverse("myuw_home")
-        get_user('staff')
-        self.client.login(username='staff', password=get_user_pass('staff'))
-        response = self.client.get(url, **_get_mobile_args())
+        self.set_user('staff')
+        response = self.get_home_mobile()
 
         valid_url = "http://some-test-server/myuw"
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.get("Location"), valid_url)
 
-    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
-    @override_settings(MYUW_USER_SERVLET_URL="http://some-test-server/myuw")
+    @override_servlet_url
     def test_random_desktop_user(self):
         url = reverse("myuw_home")
-        get_user('staff1')
-        self.client.login(username='staff1', password=get_user_pass('staff'))
-        response = self.client.get(url, **_get_desktop_args())
+        self.set_user('staff1')
+        response = self.get_home_desktop()
 
         valid_url = "http://some-test-server/myuw"
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.get("Location"), valid_url)
 
-    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
-    @override_settings(MYUW_USER_SERVLET_URL="http://some-test-server/myuw")
+    @override_servlet_url
     # Putting this here to remove it, to make sure we're testing the default
     @override_settings(MYUW_MANDATORY_SWITCH_PATH="/tmp/xx")
-    def test_required_migration_desktop_user(self):
+    def test_required_migration_desktop_user_1(self):
         del settings.MYUW_MANDATORY_SWITCH_PATH
-        url = reverse("myuw_home")
-        get_user('47e5e5631c3d3e0ad70047290a629c4c')
-        self.client.login(username='47e5e5631c3d3e0ad70047290a629c4c',
-                          password=get_user_pass('staff'))
-        response = self.client.get(url, **_get_desktop_args())
-
+        self.set_user('javerage')
+        response = self.get_home_desktop()
         self.assertEquals(response.status_code, 200)
 
-    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
-    @override_settings(MYUW_USER_SERVLET_URL="http://some-test-server/myuw")
+    @override_servlet_url
     # Putting this here to remove it, to make sure we're testing the default
     @override_settings(MYUW_OPTIN_SWITCH_PATH="/tmp/xx")
-    def test_required_migration_desktop_user(self):
+    def test_required_migration_desktop_user_2(self):
         del settings.MYUW_OPTIN_SWITCH_PATH
 
         # Delete any preference that might have been set, to test the
         # default state.
         UserMigrationPreference.objects.all().delete()
-        username = "eight"  # required desktop_user
-        url = reverse("myuw_home")
-        get_user(username)
-        self.client.login(username=username,
-                          password=get_user_pass('eight'))
-        response = self.client.get(url, **_get_desktop_args())
+        username = "jbothell"
+        self.set_user(username)
+        response = self.get_home_desktop()
 
         # By default, they get sent to the new site
         self.assertEquals(response.status_code, 200)
 
         # Test with a saved preference of the old site
-        regid = "12345678901234567890123456789012"
+        regid = "jbothell"
         obj = UserMigrationPreference.objects.create(username=regid,
                                                      use_legacy_site=True)
-        # can't opt out
-        response = self.client.get(url, **_get_desktop_args())
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.get("Location"), None)
+
+        response = self.get_home_desktop()
+
+        valid_url = "http://some-test-server/myuw"
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.get("Location"), valid_url)
 
         # Test with a saved preference for the new site
         obj.use_legacy_site = False
         obj.save()
-        response = self.client.get(url, **_get_desktop_args())
+        response = self.get_home_desktop()
         self.assertEquals(response.status_code, 200)
         UserMigrationPreference.objects.all().delete()
 
-    @override_settings(MYUW_USER_SERVLET_URL="http://some-test-server/myuw")
+    @override_servlet_url
     def test_set_legacy_preferences(self):
         # Clear any existing data...
         UserMigrationPreference.objects.all().delete()
@@ -148,9 +122,7 @@ class TestLoginRedirects(TestCase):
         old_url = reverse('myuw_pref_old_site')
 
         # Set a preference for the new site, with no existing preference
-        get_user(username)
-        self.client.login(username=username,
-                          password=get_user_pass(username))
+        self.set_user(username)
         response = self.client.get(new_url)
 
         new_valid_url = "http://testserver/"
@@ -215,15 +187,3 @@ class TestLoginRedirects(TestCase):
 
         obj = UserMigrationPreference.objects.get(username=username)
         self.assertFalse(obj.use_legacy_site)
-
-
-def _get_mobile_args():
-    return {'HTTP_USER_AGENT': ("Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 "
-                                "like Mac OS X) AppleWebKit/536.26 (KHTML, "
-                                "like Gecko) Version/6.0 Mobile/10B329 "
-                                "Safari/8536.25")}
-
-
-def _get_desktop_args():
-    return {'HTTP_USER_AGENT': ("Mozilla/5.0 (compatible; MSIE 10.0; Windows "
-                                "NT 6.2; ARM; Trident/6.0; Touch)")}

@@ -1,69 +1,40 @@
-from django.test import TestCase
-from django.test.client import Client
-from django.core.urlresolvers import reverse
-from unittest2 import skipIf
-from myuw.test.api import missing_url, get_user, get_user_pass
+from myuw.test.api import MyuwApiTest, require_url
 from django.test.utils import override_settings
+from django.core.urlresolvers import reverse
 import json
 
 
-FDAO_SWS = 'restclients.dao_implementation.sws.File'
-Session = 'django.contrib.sessions.middleware.SessionMiddleware'
-Common = 'django.middleware.common.CommonMiddleware'
-CsrfView = 'django.middleware.csrf.CsrfViewMiddleware'
-Auth = 'django.contrib.auth.middleware.AuthenticationMiddleware'
-RemoteUser = 'django.contrib.auth.middleware.RemoteUserMiddleware'
-Message = 'django.contrib.messages.middleware.MessageMiddleware'
-XFrame = 'django.middleware.clickjacking.XFrameOptionsMiddleware'
-UserService = 'userservice.user.UserServiceMiddleware'
-AUTH_BACKEND = 'django.contrib.auth.backends.ModelBackend'
+@require_url('myuw_notices_api')
+class TestNotices(MyuwApiTest):
 
+    def get_notices_response(self):
+        return self.get_response_by_reverse('myuw_notices_api')
 
-@override_settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
-                   MIDDLEWARE_CLASSES=(Session,
-                                       Common,
-                                       CsrfView,
-                                       Auth,
-                                       RemoteUser,
-                                       Message,
-                                       XFrame,
-                                       UserService,
-                                       ),
-                   AUTHENTICATION_BACKENDS=(AUTH_BACKEND,)
-                   )
-class TestNotices(TestCase):
-    def setUp(self):
-        self.client = Client()
+    def put_notice(self, data):
+        url = reverse('myuw_notices_api')
+        return self.client.put(url, data)
 
-    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
-    def test_javerage_books(self):
-        url = reverse("myuw_notices_api")
-        get_user('javerage')
-        self.client.login(username='javerage',
-                          password=get_user_pass('javerage'))
-        response = self.client.get(url)
+    def test_javerage_notices(self):
+        self.set_user('javerage')
+        response = self.get_notices_response()
         self.assertEquals(response.status_code, 200)
 
         data = json.loads(response.content)
 
         self.assertEquals(len(data), 23)
-
-        self.assertEquals(data[0]["is_read"], False)
+        self.assertFalse(data[0]["is_read"])
 
         hash_value = data[0]["id_hash"]
 
-        response = self.client.put(
-            url,
-            data='{"notice_hashes":["%s"]}' % hash_value)
+        response = self.put_notice('{"notice_hashes":["%s"]}' % hash_value)
 
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.content, '')
 
-        response = self.client.get(url)
+        response = self.get_notices_response()
         self.assertEquals(response.status_code, 200)
 
         data = json.loads(response.content)
-
         self.assertEquals(len(data), 23)
 
         match = False
@@ -74,38 +45,25 @@ class TestNotices(TestCase):
 
         self.assertEquals(match, True)
 
-        response = self.client.put(
-            url, data='{"notice_hashes":["fake-fake-fake"]}')
+        response = self.put_notice('{"notice_hashes":["fake-fake-fake"]}')
 
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.content, '')
 
-    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_error_cases(self):
-        url = reverse("myuw_notices_api")
-        get_user('jerror')
-        self.client.login(username='jerror',
-                          password=get_user_pass('jerror'))
-        response = self.client.get(url)
+        self.set_user('jerror')
+        response = self.get_notices_response()
         self.assertEquals(response.status_code, 543)
 
-        get_user('staff')
-        self.client.login(username='staff',
-                          password=get_user_pass('staff'))
-        response = self.client.get(url)
+        self.set_user('staff')
+        response = self.get_notices_response()
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.content, '[]')
 
-    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_est_reg_date(self):
-        url = reverse("myuw_notices_api")
-        get_user('jinter')
-        self.client.login(username='jinter',
-                          password=get_user_pass('jinter'))
-        session = self.client.session
-        session["myuw_override_date"] = "2013-05-09 23:59:59"
-        session.save()
-        response = self.client.get(url)
+        self.set_user('jinter')
+        self.set_date('2013-05-09 23:59:59')
+        response = self.get_notices_response()
         self.assertEquals(response.status_code, 200)
 
         data = json.loads(response.content)
@@ -116,10 +74,8 @@ class TestNotices(TestCase):
                 self.assertFalse(el["is_my_1st_reg_day"])
                 self.assertFalse(el["my_reg_has_opened"])
 
-        session = self.client.session
-        session["myuw_override_date"] = "2013-05-10 00:00:01"
-        session.save()
-        response = self.client.get(url)
+        self.set_date('2013-05-10 00:00:01')
+        response = self.get_notices_response()
         self.assertEquals(response.status_code, 200)
 
         data = json.loads(response.content)
@@ -130,13 +86,9 @@ class TestNotices(TestCase):
                 self.assertTrue(el["is_my_1st_reg_day"])
                 self.assertTrue(el["my_reg_has_opened"])
 
-        get_user('jbothell')
-        self.client.login(username='jbothell',
-                          password=get_user_pass('jbothell'))
-        session = self.client.session
-        session["myuw_override_date"] = "2014-02-14 00:00:01"
-        session.save()
-        response = self.client.get(url)
+        self.set_user('jbothell')
+        self.set_date('2014-02-14 00:00:01')
+        response = self.get_notices_response()
         self.assertEquals(response.status_code, 200)
 
         data = json.loads(response.content)

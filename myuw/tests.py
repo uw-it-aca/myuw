@@ -1,4 +1,3 @@
-from django.test import TestCase
 from myuw.test.models import TestUserNotices
 from myuw.test.academic_events import TestAcademicEvents
 from myuw.test.dao import TestDao
@@ -24,7 +23,7 @@ from myuw.test.dao.pws import TestPwsDao
 from myuw.test.dao.textbook import TestTextbooks
 from myuw.test.dao.thrive import TestThrive
 from myuw.test.dao.uwemail import TestUwEmail
-from myuw.test.api.schedule import TestSchedule as APISchedule
+from myuw.test.api.current_schedule import TestSchedule as APISchedule
 from myuw.test.api.books import TestApiBooks
 from myuw.test.api.cur_books import TestApiCurBooks
 from myuw.test.api.grad import TestApiGrad
@@ -37,8 +36,8 @@ from myuw.test.api.category_links import TestLinks
 from myuw.test.api.finance import TestFinance as TestFinanceAPI
 from myuw.test.api.future_schedule import TestFutureSchedule
 from myuw.test.api.other_quarters import TestOtherQuarters
-from myuw.test.api.notices import TestNotices
-# from myuw.test.api.thrive import TestApiThrive
+from myuw.test.api.notices import TestNotices as TestNoticesAPI
+from myuw.test.api.thrive import TestApiThrive
 from myuw.test.api.uwemail import TestUWEmail as TestUwEmailAPI
 from myuw.test.api.academic_calendar import TestCalendarAPI
 from myuw.test.cache import TestCustomCachePolicy
