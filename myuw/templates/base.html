@@ -89,11 +89,11 @@
     {% if not request.is_mobile and not request.is_tablet %}
     <div id="app_messages" role="complementary">
         <div class="message-banner">
+            {% if user.affiliations.grad %}
             <div class="container message-text">
-                {% if user.affiliations.grad %}
                 <h2>Welcome to MyUW!</h2>&nbsp; MyUW shows you personal, critical, and timely information. <a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn how it works.</a>
-                {% endif %}
             </div>
+            {% endif %}
             {# Keeping code here as scumby believes we'll likely reuse this in the next few weeks#}
                {% if false %}<div class="advert message-text"><h2>Earn $25 Husky Card Credit - <a id="survey" href="https://catalyst.uw.edu/webq/survey/fournier/290956" target="_blank">Volunteers Needed for 1-Hour UW-IT Interview</a></h2></div>{% endif %}
         </div>
