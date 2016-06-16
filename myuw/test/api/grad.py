@@ -1,53 +1,19 @@
-import json
-from unittest2 import skipIf
 from datetime import datetime
-from django.test.utils import override_settings
-from django.test import TestCase
-from django.test.client import Client
-from django.core.urlresolvers import reverse
-from myuw.test.api import missing_url, get_user, get_user_pass
+from myuw.test.api import MyuwApiTest, require_url
+import json
 
 
-FDAO_SWS = 'restclients.dao_implementation.sws.File'
-Session = 'django.contrib.sessions.middleware.SessionMiddleware'
-Common = 'django.middleware.common.CommonMiddleware'
-CsrfView = 'django.middleware.csrf.CsrfViewMiddleware'
-Auth = 'django.contrib.auth.middleware.AuthenticationMiddleware'
-RemoteUser = 'django.contrib.auth.middleware.RemoteUserMiddleware'
-Message = 'django.contrib.messages.middleware.MessageMiddleware'
-XFrame = 'django.middleware.clickjacking.XFrameOptionsMiddleware'
-UserService = 'userservice.user.UserServiceMiddleware'
-AUTH_BACKEND = 'django.contrib.auth.backends.ModelBackend'
+@require_url('myuw_grad_api')
+class TestApiGrad(MyuwApiTest):
 
-
-@override_settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
-                   MIDDLEWARE_CLASSES=(Session,
-                                       Common,
-                                       CsrfView,
-                                       Auth,
-                                       RemoteUser,
-                                       Message,
-                                       XFrame,
-                                       UserService,
-                                       ),
-                   AUTHENTICATION_BACKENDS=(AUTH_BACKEND,)
-                   )
-class TestApiGrad(TestCase):
-    def setUp(self):
-        self.client = Client()
-
-    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_javerage(self):
-        url = reverse("myuw_grad_api")
-        get_user('seagrad')
-        self.client.login(username='seagrad',
-                          password=get_user_pass('seagrad'))
-        response = self.client.get(url)
+        self.set_user('seagrad')
+        response = self.get_response_by_reverse('myuw_grad_api')
         self.assertEquals(response.status_code, 200)
         self.assertIsNotNone(response.content)
         data = json.loads(response.content)
 
-        self.assertIsNotNone(data.get("degrees"))
+        self.assertIn('degrees', data)
         self.assertEquals(len(data["degrees"]), 8)
         degree = data["degrees"][0]
         self.assertEqual(degree["req_type"], "Masters Request")
@@ -102,18 +68,12 @@ class TestApiGrad(TestCase):
         self.assertEqual(petition['dept_recommend'], "Approve")
         self.assertEqual(petition['gradschool_decision'], "Approved")
 
-    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_error(self):
-        url = reverse("myuw_grad_api")
-        get_user('none')
-        self.client.login(username='none',
-                          password=get_user_pass('none'))
-        response = self.client.get(url)
+        self.set_user('none')
+        response = self.get_response_by_reverse('myuw_grad_api')
         self.assertEquals(response.status_code, 404)
         self.assertEquals(response.content, 'Data not found')
 
-        get_user('jerror')
-        self.client.login(username='jerror',
-                          password=get_user_pass('jerror'))
-        response = self.client.get(url)
+        self.set_user('jerror')
+        response = self.get_response_by_reverse('myuw_grad_api')
         self.assertEquals(response.status_code, 543)

@@ -30,7 +30,7 @@ class TestTerm(TestCase):
             now_request.session = {}
             self.assertFalse(is_past(term, now_request))
 
-    def test_is_past(self):
+    def test_is_past_1(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             term = get_specific_term(2014, "winter")
             self.assertEqual(term.year, 2014)
@@ -179,7 +179,7 @@ class TestTerm(TestCase):
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'summer')
 
-    def test_is_past(self):
+    def test_is_past_2(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             quarter = get_specific_term(2013, 'autumn')
             now_request = RequestFactory().get("/")

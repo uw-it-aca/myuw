@@ -176,11 +176,8 @@ class TestCourseColors(TestCase):
         self.assertEquals
         (colors[section.section_label()], 1, "1st section gets the 1st color")
 
-        try:
-            c2 = colors[section2.section_label()]
-            self.fail("There shouldn't be a color for section 2")
-        except KeyError as ex:
-            pass
+        self.assertNotIn(section2.section_label, colors,
+                         "There shouldn't be a color for section 2")
 
         self.assertEquals
         (colors[section3.section_label()], 3, "3rd section gets the 3rd color")

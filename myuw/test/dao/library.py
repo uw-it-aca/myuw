@@ -91,7 +91,7 @@ class TestLibrary(TestCase):
                         get_subject_guide_by_section(section),
                         "http://guides.lib.uw.edu/tacoma")
 
-                if section.curriculum_abbr == 'T%20ARTS' and\
+                if section.curriculum_abbr == 'T ARTS' and\
                         section.course_number == '110':
                     self.assertEquals(
                         get_subject_guide_by_section(section),

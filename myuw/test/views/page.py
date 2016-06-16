@@ -63,3 +63,25 @@ class TestPageMethods(TestCase):
         response = self.client.get(url,
                                    HTTP_USER_AGENT='Fake Android Mobile')
         self.assertEquals(response.status_code, 302)
+
+    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
+    def test_grad_access(self):
+        url = reverse("myuw_home")
+        get_user('seagrad')
+        self.client.login(username='seagrad',
+                          password=get_user_pass('seagrad'))
+        response = self.client.get(
+            url,
+            HTTP_USER_AGENT="Mozilla/4.0 (compatible; MSIE 5.01; WebISOGet")
+        self.assertEquals(response.status_code, 200)
+
+    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
+    def test_undergrad_access(self):
+        url = reverse("myuw_home")
+        get_user('javerage')
+        self.client.login(username='javerage',
+                          password=get_user_pass('javerage'))
+        response = self.client.get(
+            url,
+            HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
+        self.assertEquals(response.status_code, 200)
