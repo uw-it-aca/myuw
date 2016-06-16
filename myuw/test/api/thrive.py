@@ -9,7 +9,7 @@ class TestApiThrive(MyuwApiTest):
         return self.get_response_by_reverse('myuw_thrive_api')
 
     def test_javerage_email(self):
-        self.set_user('javerage')
+        self.set_user('jnew')
         response = self.get_thrive_response()
         self.assertEquals(response.status_code, 200)
         data = json.loads(response.content)

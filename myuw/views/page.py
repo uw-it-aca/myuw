@@ -11,9 +11,8 @@ from django.views.decorators.cache import cache_control
 from userservice.user import UserService
 from myuw.dao.term import get_current_quarter
 from myuw.dao.pws import is_student
-from myuw.dao.affiliation import get_all_affiliations
-from myuw.dao.affiliation import is_mandatory_switch_user
-from myuw.dao.affiliation import is_optin_switch_user, has_legacy_preference
+from myuw.dao.affiliation import get_all_affiliations, is_optin_user,\
+    is_newmyuw_user, has_legacy_preference
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_exception
 from myuw.logger.logresp import log_invalid_netid_response
@@ -62,12 +61,11 @@ def index(request,
         # The other class of users can opt to use the legacy myuw instead.
         # Check to see if they have a set preference, and if not, keep them on
         # the new version
-        if not is_mandatory_switch_user():
-            if is_optin_switch_user():
-                if has_legacy_preference():
-                    return redirect_to_legacy_site()
-            else:
+        if is_newmyuw_user():
+            if has_legacy_preference():
                 return redirect_to_legacy_site()
+        elif not is_optin_user():
+            return redirect_to_legacy_site()
 
     timer = Timer()
     context = {

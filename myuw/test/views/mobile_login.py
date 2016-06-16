@@ -74,9 +74,8 @@ class TestLoginRedirects(MyuwApiTest):
     @override_settings(MYUW_MANDATORY_SWITCH_PATH="/tmp/xx")
     def test_required_migration_desktop_user_1(self):
         del settings.MYUW_MANDATORY_SWITCH_PATH
-        self.set_user('47e5e5631c3d3e0ad70047290a629c4c')
+        self.set_user('javerage')
         response = self.get_home_desktop()
-
         self.assertEquals(response.status_code, 200)
 
     @override_servlet_url
@@ -88,7 +87,7 @@ class TestLoginRedirects(MyuwApiTest):
         # Delete any preference that might have been set, to test the
         # default state.
         UserMigrationPreference.objects.all().delete()
-        username = "cfcd208495d565ef66e7dff9f98764da"
+        username = "jbothell"
         self.set_user(username)
         response = self.get_home_desktop()
 
@@ -96,7 +95,8 @@ class TestLoginRedirects(MyuwApiTest):
         self.assertEquals(response.status_code, 200)
 
         # Test with a saved preference of the old site
-        obj = UserMigrationPreference.objects.create(username=username,
+        regid = "jbothell"
+        obj = UserMigrationPreference.objects.create(username=regid,
                                                      use_legacy_site=True)
 
         response = self.get_home_desktop()
@@ -110,6 +110,7 @@ class TestLoginRedirects(MyuwApiTest):
         obj.save()
         response = self.get_home_desktop()
         self.assertEquals(response.status_code, 200)
+        UserMigrationPreference.objects.all().delete()
 
     @override_servlet_url
     def test_set_legacy_preferences(self):
