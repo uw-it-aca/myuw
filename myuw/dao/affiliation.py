@@ -17,9 +17,9 @@ from myuw.dao.enrollment import get_main_campus
 from myuw.models import UserMigrationPreference
 
 
+THRIVE = "thrive"
+OPTIN = "optin"
 logger = logging.getLogger(__name__)
-MANDATORY_SWITCH = "mandatory_switch"
-OPTIN_SWITCH = "optin_switch"
 
 
 def get_all_affiliations(request):
@@ -164,14 +164,8 @@ def get_base_campus(request):
     return campus
 
 
-def is_mandatory_switch_user():
-    username = get_netid_of_current_user()
-    return _is_user_in_list(username, MANDATORY_SWITCH)
-
-
-def is_optin_switch_user():
-    username = get_netid_of_current_user()
-    return _is_user_in_list(username, OPTIN_SWITCH)
+def is_newmyuw_user():
+    return is_undergrad_student() or is_grad_student()
 
 
 def has_legacy_preference():
@@ -186,15 +180,25 @@ def has_legacy_preference():
     return False
 
 
+def is_optin_user():
+    return _is_user_in_list(
+        get_netid_of_current_user(), OPTIN)
+
+
+def is_thrive_viewer():
+    return _is_user_in_list(
+        get_netid_of_current_user(), THRIVE)
+
+
 def _is_user_in_list(username, user_type):
-    if MANDATORY_SWITCH == user_type:
+    if THRIVE == user_type:
         file_path = getattr(settings, "MYUW_MANDATORY_SWITCH_PATH", None)
         if not file_path:
             current_dir = os.path.dirname(os.path.realpath(__file__))
 
             file_path = os.path.abspath(os.path.join(current_dir,
                                                      "..", "data",
-                                                     "required-list.txt"))
+                                                     "thrive-viewer-list.txt"))
 
     else:
         file_path = getattr(settings, "MYUW_OPTIN_SWITCH_PATH", None)
