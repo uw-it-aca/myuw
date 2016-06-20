@@ -165,7 +165,8 @@ def get_base_campus(request):
 
 
 def is_newmyuw_user():
-    return is_undergrad_student() or is_grad_student()
+    # return is_undergrad_student() or is_grad_student()
+    return is_undergrad_student()
 
 
 def has_legacy_preference():
