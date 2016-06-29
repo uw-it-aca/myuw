@@ -32,7 +32,7 @@ class TestLoginRedirects(MyuwApiTest):
 
     @override_servlet_url
     def test_student_mobile(self):
-        self.set_user('javerage')
+        self.set_user('jnew')
         response = self.get_home_mobile()
 
         valid_url = "http://testserver%s" % reverse("myuw_home")
@@ -74,7 +74,7 @@ class TestLoginRedirects(MyuwApiTest):
     @override_settings(MYUW_MANDATORY_SWITCH_PATH="/tmp/xx")
     def test_required_migration_desktop_user_1(self):
         del settings.MYUW_MANDATORY_SWITCH_PATH
-        self.set_user('javerage')
+        self.set_user('jnew')
         response = self.get_home_desktop()
         self.assertEquals(response.status_code, 200)
 
