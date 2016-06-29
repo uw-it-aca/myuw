@@ -56,7 +56,7 @@ def is_tacoma_student():
 def is_graduate_student():
     """
     Return True if the user is an UW graduate student
-    in the current or previous quarter
+    within 90 day, and status is not EO or applicaNt.
     """
     return _is_member('uw_affiliation_graduate')
 
@@ -64,7 +64,7 @@ def is_graduate_student():
 def is_current_graduate_student():
     """
     Return True if the user is In SDB, class is one of
-    (00, 08, 11, 12, 13, 14), and status is E or L
+    (00, 08, 11, 12, 13, 14), and status is Enrolled or on Leave
     """
     return _is_member('uw_affiliation_graduate-current')
 
@@ -72,7 +72,7 @@ def is_current_graduate_student():
 def is_grad_student():
     """
     Return True if the user is class-08 graduate student
-    in the current, previous, or future quarter
+    within 90 day, and status is not EO or applicaNt
     """
     return _is_member('uw_affiliation_graduate-grad')
 
@@ -80,19 +80,19 @@ def is_grad_student():
 def is_undergrad_student():
     """
     Return True if the user is an UW undergraduate student
-    in the current, previous, or future quarter
+    class is one of (01, 02, 03, 04, 05, 06),
+    within 90 day, and status is not EO or applicaNt
     """
     return _is_member('uw_affiliation_undergraduate')
 
 
 def is_student():
-    return is_graduate_student() or is_undergrad_student()
+    return is_undergrad_student() or is_graduate_student()
 
 
 def is_pce_student():
     """
-    Return True if the user is an UW PEC student
-    in the current, previous, or future quarter
+    Return True if the user is an UW PEC student within 90 day
     """
     return _is_member('uw_affiliation_extension-student')
 
