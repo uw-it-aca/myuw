@@ -167,6 +167,8 @@ def get_base_campus(request):
 
 
 def is_oldmyuw_user():
+    if has_legacy_preference():
+        return True
     if is_optin_user():
         return False
     if is_staff_employee():
@@ -174,8 +176,6 @@ def is_oldmyuw_user():
     if is_faculty():
         return True
     if is_current_graduate_student():
-        return True
-    if has_legacy_preference():
         return True
     if is_undergrad_student():
         return False

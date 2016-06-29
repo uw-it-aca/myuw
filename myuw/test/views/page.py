@@ -91,7 +91,6 @@ class TestPageMethods(TestCase):
             HTTP_USER_AGENT="Mozilla/4.0 (compatible; MSIE 5.01; WebISOGet")
         self.assertEquals(response.status_code, 302)
 
-
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_undergrad_access(self):
         url = reverse("myuw_home")
