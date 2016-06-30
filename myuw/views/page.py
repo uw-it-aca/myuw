@@ -11,8 +11,7 @@ from django.views.decorators.cache import cache_control
 from userservice.user import UserService
 from myuw.dao.term import get_current_quarter
 from myuw.dao.pws import is_student
-from myuw.dao.affiliation import get_all_affiliations, is_optin_user,\
-    is_newmyuw_user, has_legacy_preference
+from myuw.dao.affiliation import get_all_affiliations, is_oldmyuw_user
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_exception
 from myuw.logger.logresp import log_invalid_netid_response
@@ -54,17 +53,7 @@ def index(request,
             return redirect_to_legacy_site()
 
     else:
-        # On the desktop, we're migrating users over.  There are 2 classes of
-        # users - mandatory and opt-in switchers.  The mandatory users, who
-        # are users who haven't been at the UW long enough to be accustomed to
-        # the existing myuw.
-        # The other class of users can opt to use the legacy myuw instead.
-        # Check to see if they have a set preference, and if not, keep them on
-        # the new version
-        if is_newmyuw_user():
-            if has_legacy_preference():
-                return redirect_to_legacy_site()
-        elif not is_optin_user():
+        if is_oldmyuw_user():
             return redirect_to_legacy_site()
 
     timer = Timer()

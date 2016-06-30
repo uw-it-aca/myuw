@@ -10,9 +10,11 @@ from django.conf import settings
 from myuw.logger.logback import log_info, log_exception
 from myuw.dao.schedule import get_current_quarter_schedule
 from myuw.dao.pws import get_netid_of_current_user
-from myuw.dao.gws import is_grad_student, is_undergrad_student, is_student,\
+from myuw.dao.gws import is_grad_student, is_student,\
+    is_current_graduate_student, is_undergrad_student,\
     is_pce_student, is_student_employee, is_employee, is_faculty,\
-    is_seattle_student, is_bothell_student, is_tacoma_student
+    is_seattle_student, is_bothell_student, is_tacoma_student,\
+    is_staff_employee
 from myuw.dao.enrollment import get_main_campus
 from myuw.models import UserMigrationPreference
 
@@ -164,9 +166,20 @@ def get_base_campus(request):
     return campus
 
 
-def is_newmyuw_user():
-    # return is_undergrad_student() or is_grad_student()
-    return is_undergrad_student()
+def is_oldmyuw_user():
+    if has_legacy_preference():
+        return True
+    if is_optin_user():
+        return False
+    if is_staff_employee():
+        return True
+    if is_faculty():
+        return True
+    if is_current_graduate_student():
+        return True
+    if is_undergrad_student():
+        return False
+    return True
 
 
 def has_legacy_preference():

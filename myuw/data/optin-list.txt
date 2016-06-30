@@ -1,5 +1,9 @@
-staff
+botgrad
+javerage
 jerror
+jinter
+seagrad
+tacgrad
 none
 none1
 none2
