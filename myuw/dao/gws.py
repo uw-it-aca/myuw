@@ -53,31 +53,26 @@ def is_tacoma_student():
     return _is_member('uw_affiliation_tacoma-student')
 
 
-def is_current_grad_student():
-    """
-    Return True if the user is an UW graduate student
-    in the current quarter
-    """
-    return _is_member('uw_affiliation_graduate-current')
-
-
-def is_student():
-    return is_graduate_student() or is_undergrad_student()
-
-
 def is_graduate_student():
     """
-    Return True if the user is In SDB, class is one of
-    (00, 08, 11, 12, 13, 14), and status is not O or N)
-    in the current, previous, or future quarter
+    Return True if the user is an UW graduate student
+    within 90 day, and status is not EO or applicaNt.
     """
     return _is_member('uw_affiliation_graduate')
+
+
+def is_current_graduate_student():
+    """
+    Return True if the user is In SDB, class is one of
+    (00, 08, 11, 12, 13, 14), and status is Enrolled or on Leave
+    """
+    return _is_member('uw_affiliation_graduate-current')
 
 
 def is_grad_student():
     """
     Return True if the user is class-08 graduate student
-    in the current, previous, or future quarter
+    within 90 day, and status is not EO or applicaNt
     """
     return _is_member('uw_affiliation_graduate-grad')
 
@@ -85,15 +80,19 @@ def is_grad_student():
 def is_undergrad_student():
     """
     Return True if the user is an UW undergraduate student
-    in the current, previous, or future quarter
+    class is one of (01, 02, 03, 04, 05, 06),
+    within 90 day, and status is not EO or applicaNt
     """
     return _is_member('uw_affiliation_undergraduate')
 
 
+def is_student():
+    return is_undergrad_student() or is_graduate_student()
+
+
 def is_pce_student():
     """
-    Return True if the user is an UW PEC student
-    in the current, previous, or future quarter
+    Return True if the user is an UW PEC student within 90 day
     """
     return _is_member('uw_affiliation_extension-student')
 
@@ -107,7 +106,7 @@ def is_student_employee():
 
 def is_faculty():
     """
-    Return True if the user is UW faculty
+    Return True if the user is UW faculty currently
     """
     return _is_member('uw_faculty')
 
@@ -117,7 +116,14 @@ def is_faculty():
 
 def is_employee():
     """
-    Return True if the user is an UW employee
-    in the current quarter
+    Return True if the user is an UW employee currently
     """
     return _is_member('uw_employee')
+
+
+def is_staff_employee():
+    """
+    Return True if the user is identified an UW staff employee
+    within 15 days
+    """
+    return _is_member('uw_affiliation_staff-employee')
