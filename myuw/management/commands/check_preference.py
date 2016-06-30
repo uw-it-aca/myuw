@@ -26,4 +26,4 @@ class Command(BaseCommand):
         if pref:
             print "%s prefers the legacy MyUW" % username
         else:
-            print "%s doesn't prefers the legacy MyUW" % username
+            print "%s doesn't prefer the legacy MyUW" % username
