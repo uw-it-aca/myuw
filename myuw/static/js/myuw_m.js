@@ -260,7 +260,11 @@ var capitalizeString = function(string) {
     if (!string) {
         return "";
     }
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.replace(/\w\S*/g,
+                          function(txt){
+                              return (txt.charAt(0).toUpperCase() +
+                                      txt.substr(1).toLowerCase());
+                          });
 };
 
 var init_profile_events = function () {

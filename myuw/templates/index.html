@@ -103,6 +103,11 @@
         "email_is_uwlive": {{ user.email_is_uwlive|yesno:"true, false" }},
         "netid": "{{ user.netid }}"
     };
+    window.term = {
+        "year": "{{year}}",
+        "quarter": "{{quarter}}",
+        "summer_term": "{{summer_term}}"
+    };
     window.card_display_dates = {
         "is_after_grade_submission_deadline": {{ card_display_dates.is_after_grade_submission_deadline|yesno:"true, false" }},
         "is_after_last_day_of_classes": {{ card_display_dates.is_after_last_day_of_classes|yesno:"true, false" }},
