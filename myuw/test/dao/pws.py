@@ -9,7 +9,7 @@ class TestPwsDao(TestCase):
     def test_not_in_pws_netid(self):
         self.assertRaises(InvalidNetID,
                           PWS().get_person_by_netid,
-                          "notarealnetid")
+                          "thisisnotarealnetid")
 
     def test_pws_err(self):
         self.assertRaises(DataFailureException,
