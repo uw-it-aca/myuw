@@ -1,18 +1,15 @@
 from django.test import TestCase
-from myuw.userservice_validation import validate
+from myuw.userservice_validation import validate, INVALID_STRING,\
+    UPPERCASE, NO_USER
 
 
 class TestValidation(TestCase):
 
     def test_validation(self):
-        invalid_string = ("Username not a valid netid (starts with a letter, "
-                          "then 0-7 letters or numbers)")
-
         self.assertEquals(validate("javerage"), None)
-        self.assertEquals(validate(""), "No override user supplied")
-        self.assertEquals(validate("JaVeRaGe"),
-                          "Usernames must be all lowercase")
-        self.assertEquals(validate("a_canvas"), invalid_string)
-        self.assertEquals(validate("99invalid"), invalid_string)
+        self.assertEquals(validate(""), NO_USER)
+        self.assertEquals(validate("JaVeRaGe"), UPPERCASE)
+        self.assertEquals(validate("a_canvas"), None)
+        self.assertEquals(validate("99invalid"), INVALID_STRING)
         self.assertEquals(validate("thisisfartoolongtobeanetid"),
-                          invalid_string)
+                          INVALID_STRING)
