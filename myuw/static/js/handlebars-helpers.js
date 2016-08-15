@@ -110,6 +110,10 @@ Handlebars.registerHelper("termNoYear", function(term) {
 });
 
 
+Handlebars.registerHelper('toTitleCase', function(term_str) {
+    return titilizeTerm(term_str);
+});
+
 Handlebars.registerHelper("capitalizeString", function(str) {
     return capitalizeString(str);
 });
