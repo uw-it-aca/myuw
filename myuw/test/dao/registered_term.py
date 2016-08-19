@@ -49,7 +49,7 @@ class TestRegisteredTerm(TestCase):
 
             term2 = get_specific_term(2013, "autumn")
             schedule2 = _get_schedule(regid, term2)
-            self.assertEqual(len(schedule2.sections), 1)
+            self.assertEqual(len(schedule2.sections), 2)
 
             terms = _get_registered_future_quarters(now_request, schedule1,
                                                     schedule2)

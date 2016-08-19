@@ -12,6 +12,10 @@
     {{#if total_sections}}
     <!--Adding SR only final exam schedule-->
     <h3 class="sr-only">Your {{ucfirst quarter}} {{year}} final exam</h3>
+    {{# if has_early_fall_start }}
+    <a href="#" class="show_full_term_meetings">Show {{ucfirst quarter}} Full Term Courses</a>
+    <a href="#" class="show_efs_meetings" style="display: none;">Show {{ucfirst quarter}} Early Fall Start Courses</a>
+    {{/if}}
     <div class="final_schedule_table sr-only">
 	<table>
 	    <thead>

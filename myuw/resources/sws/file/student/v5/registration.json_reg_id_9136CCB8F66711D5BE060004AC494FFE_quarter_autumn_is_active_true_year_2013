@@ -29,7 +29,19 @@
             "RegID":"9136CCB8F66711D5BE060004AC494FFE",
             "SectionID":"A",
             "Year":"2013"
+        },
+        {
+            "Href": "\/student\/v5\/registration\/2013,autumn,EFS_OK,101,AQ,9136CCB8F66711D5BE060004AC494FFE,.json",
+            "CourseNumber":"121",
+            "CurriculumAbbreviation":"EFS_OK",
+            "DuplicateCode":"2",
+            "Instructor":null,
+            "Quarter":"autumn",
+            "RegID":"9136CCB8F66711D5BE060004AC494FFE",
+            "SectionID":"AQ",
+            "Year":"2013"
         }
+
     ],
     "TotalCount":"1"
 }

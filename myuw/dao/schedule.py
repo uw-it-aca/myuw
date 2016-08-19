@@ -11,6 +11,7 @@ from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import get_current_quarter, get_next_quarter,\
     get_next_autumn_quarter, get_current_summer_term,\
     is_a_term, is_b_term
+from myuw.dao.term import get_comparison_date
 
 
 logger = logging.getLogger(__name__)
@@ -29,29 +30,36 @@ def _get_schedule(regid, term):
              str(regid) + ',' + str(term.year) + ',' + term.quarter)
     timer = Timer()
     try:
-        schedule = get_schedule_by_regid_and_term(regid, term, False)
-
-        # XXX - 2015 workaround for MUWM-3390.
-        # We want something different for 2016 - MUWM-3391
-        non_early_start_sections = []
-        for section in schedule.sections:
-            if EARLY_FALL_START != section.institute_name:
-                non_early_start_sections.append(section)
-
-        schedule.sections = non_early_start_sections
-        return schedule
+        return get_schedule_by_regid_and_term(regid, term, False)
     finally:
         log_resp_time(logger,
                       logid,
                       timer)
 
 
-def get_schedule_by_term(term):
+def get_schedule_by_term(request, term):
     """
     Return the actively enrolled sections for the current user
     in the given term/quarter
     """
-    return _get_schedule(get_regid_of_current_user(), term)
+    # 2016 approach for MUWM-3390/3391
+    # If we're in the EFS period, include the sections.  Otherwise,
+    # exclude them.
+    schedule = _get_schedule(get_regid_of_current_user(), term)
+    comparison_date = get_comparison_date(request)
+
+    included_sections = []
+    for section in schedule.sections:
+        if EARLY_FALL_START != section.institute_name:
+            included_sections.append(section)
+        else:
+            end_date = section.end_date
+            if end_date >= comparison_date:
+                included_sections.append(section)
+
+    schedule.sections = included_sections
+
+    return schedule
 
 
 def get_current_quarter_schedule(request):
@@ -61,7 +69,7 @@ def get_current_quarter_schedule(request):
     if hasattr(request, "myuw_current_quarter_schedule"):
         return request.myuw_current_quarter_schedule
 
-    schedule = get_schedule_by_term(get_current_quarter(request))
+    schedule = get_schedule_by_term(request, get_current_quarter(request))
     request.myuw_current_quarter_schedule = schedule
 
     return schedule
@@ -74,7 +82,7 @@ def get_next_quarter_schedule(request):
     # MUWM-1981
     if get_next_quarter(request) == get_current_quarter(request):
         return None
-    return get_schedule_by_term(get_next_quarter(request))
+    return get_schedule_by_term(request, get_next_quarter(request))
 
 
 def get_next_autumn_quarter_schedule(request):
@@ -84,7 +92,7 @@ def get_next_autumn_quarter_schedule(request):
     # MUWM-1981
     if get_next_autumn_quarter(request) == get_current_quarter(request):
         return None
-    return get_schedule_by_term(get_next_autumn_quarter(request))
+    return get_schedule_by_term(request, get_next_autumn_quarter(request))
 
 
 def filter_schedule_sections_by_summer_term(schedule, summer_term):

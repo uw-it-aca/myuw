@@ -1,6 +1,7 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "visual_schedule_card_day" %}
 {{#each meetings}}
+    <div {{#if has_early_fall_start }}class="{{#if early_fall_start}}efs_course{{else}}non_efs_course{{/if}}" {{#unless early_fall_start}}style="display: none;"{{/unless}}{{/if}}>
     {{#unless is_meeting}}
         <div class="{{#if start_at_hr}}hour-marker{{else}}halfhour-marker{{/if}}" style="position:absolute; top:{{top}}%; height:{{height}}%;">
         </div>
@@ -22,6 +23,7 @@
 	    </div>
         </div>
    {{/unless}}
+   </div>
 {{/each}}
 
 {% endtplhandlebars %}
