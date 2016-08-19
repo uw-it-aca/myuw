@@ -12,10 +12,10 @@
     {{#if total_sections}}
     <!--Adding SR only final exam schedule-->
     <h3 class="sr-only">Your {{ucfirst quarter}} {{year}} final exam</h3>
-    {{# if has_early_fall_start }}
+   <!-- {{# if has_early_fall_start }}
     <a href="#" class="show_full_term_meetings">Show {{ucfirst quarter}} Full Term Courses</a>
     <a href="#" class="show_efs_meetings" style="display: none;">Show {{ucfirst quarter}} Early Fall Start Courses</a>
-    {{/if}}
+    {{/if}}-->
     <div class="final_schedule_table sr-only">
 	<table>
 	    <thead>
@@ -52,9 +52,15 @@
     <h3 id="quarter-info" aria-hidden="true">
         {{ucfirst quarter}} {{year}} Courses
         {{#if summer_term}}
-        <span class="shortTitle">{{summer_term}}</small>
+        <span class="shortTitle">{{summer_term}}</span>
         {{/if}}
     </h3>
+     {{# if has_early_fall_start }}
+    <div class="efs-switcher">
+        <a href="#" class="show_full_term_meetings"><span class="shortTitle">Early Fall Start</span> <span class="efs-switcher-link-text">show Full Term</span></a>
+        <a href="#" class="show_efs_meetings" style="display: none;"><span class="shortTitle">Full Term </span> <span class="efs-switcher-link-text">show Early Fall Start</span></a>
+    </div>
+    {{/if}}
 
     {{#if display_hours }}
     <!-- week view -->
