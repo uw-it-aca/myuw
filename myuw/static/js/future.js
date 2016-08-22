@@ -11,7 +11,7 @@ var FutureQuarter = {
         var template = Handlebars.compile(page_source);
         $("#main-content").html(template({"term": term}));
 
-        window.is_future_quarter_page = true;
+        VisualScheduleCard.force_visual_schedule_display();
         NoticeBanner.render_init($("#notice_banner_location"));
 
         var cards = [VisualScheduleCard,
@@ -21,3 +21,9 @@ var FutureQuarter = {
         Cards.load_cards_in_order(cards, $("#future_content"), term);
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.FutureQuarter = FutureQuarter;
