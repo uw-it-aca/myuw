@@ -47,6 +47,7 @@ var VisualScheduleCard = {
         VisualScheduleCard.shown_am_marker = false;
         var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
         var visual_data = {
+            has_early_fall_start: course_data.has_early_fall_start,
             is_pce: user.pce,
             total_sections: course_data.sections.length,
             year: course_data.year, 
@@ -106,7 +107,9 @@ var VisualScheduleCard = {
                         room_tbd: meeting.room_tbd,
                         room: meeting.room,
                         latitude: meeting.latitude,
-                        longitude: meeting.longitude
+                        longitude: meeting.longitude,
+                        early_fall_start: section.early_fall_start,
+                        has_early_fall_start: course_data.has_early_fall_start
                     };
 
                     day_index = 0;
@@ -211,6 +214,7 @@ var VisualScheduleCard = {
         source   = $("#visual_schedule_card_content").html();
         template = Handlebars.compile(source);
         VisualScheduleCard.dom_target.html(template(visual_data));
+
         VisualScheduleCard.add_events(term);
     },
             
@@ -250,6 +254,21 @@ var VisualScheduleCard = {
                       $("#toggle_finalexams").text("Show Final Exam Schedule");
                }, 700);
             }
+        });
+
+        $(".show_full_term_meetings").on("click", function(ev) {
+            $(".efs_course").hide();
+            $(".non_efs_course").show();
+            $(".show_efs_meetings").show();
+            $(".show_full_term_meetings").hide();
+            return false;
+        });
+        $(".show_efs_meetings").on("click", function(ev) {
+            $(".efs_course").show();
+            $(".non_efs_course").hide();
+            $(".show_full_term_meetings").show();
+            $(".show_efs_meetings").hide();
+            return false;
         });
     }
 };
