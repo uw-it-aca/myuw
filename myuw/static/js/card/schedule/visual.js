@@ -3,9 +3,22 @@ var VisualScheduleCard = {
     dom_target: undefined,
     term: 'current',
 
-    render_init: function(term, course_index) {
+    should_display_card: function() {
         if (!window.user.student ||
             !window.card_display_dates.is_before_last_day_of_classes) {
+                if (!window.force_visual_schedule_display) {
+                    return false;
+                }
+        }
+        return true;
+    },
+
+    force_visual_schedule_display: function() {
+        window.force_visual_schedule_display = true;
+    },
+
+    render_init: function(term, course_index) {
+        if (!VisualScheduleCard.should_display_card()) {
             $("#VisualScheduleCard").hide();
             return;
         }
@@ -272,3 +285,9 @@ var VisualScheduleCard = {
         });
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.VisualScheduleCard = VisualScheduleCard;
