@@ -6,8 +6,10 @@ var VisualScheduleCard = {
     render_init: function(term, course_index) {
         if (!window.user.student ||
             !window.card_display_dates.is_before_last_day_of_classes) {
-            $("#VisualScheduleCard").hide();
-            return;
+                if (!window.is_future_quarter_page) {
+                    $("#VisualScheduleCard").hide();
+                    return;
+                }
         }
         WSData.fetch_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_upon_data, VisualScheduleCard.render_error);
     },
