@@ -8,6 +8,7 @@ from myuw.test.dao.registered_term import TestRegisteredTerm
 from myuw.test.dao.schedule import TestSchedule
 from myuw.test.dao.notice_mapping import TestMapNotices
 from myuw.test.dao.notice_categorization import TestNoticeCategories
+from myuw.test.dao.affiliations import TestAffilliations
 from myuw.test.dao.notice import TestNotices
 from myuw.test.dao.term import TestTerm
 from myuw.test.dao.building import TestBuildings
