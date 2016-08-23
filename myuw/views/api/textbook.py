@@ -29,9 +29,9 @@ class Textbook(RESTDispatch):
         """
         GET returns 200 with textbooks for the current quarter
         """
-        return self.respond(year, quarter, summer_term)
+        return self.respond(request, year, quarter, summer_term)
 
-    def respond(self, year, quarter, summer_term):
+    def respond(self, request, year, quarter, summer_term):
         timer = Timer()
         try:
             if not is_student():
@@ -39,7 +39,7 @@ class Textbook(RESTDispatch):
                 return data_not_found()
 
             term = get_specific_term(year=year, quarter=quarter)
-            schedule = get_schedule_by_term(term)
+            schedule = get_schedule_by_term(request, term)
 
             if summer_term is not None and len(summer_term) > 0:
                 summer_term = summer_term.replace(",", "")
@@ -88,6 +88,6 @@ class TextbookCur(Textbook):
             summer_term = ""
             if term.quarter == "summer":
                 summer_term = get_current_summer_term(request)
-            return self.respond(term.year, term.quarter, summer_term)
+            return self.respond(request, term.year, term.quarter, summer_term)
         except Exception:
             return handle_exception(logger, timer, traceback)

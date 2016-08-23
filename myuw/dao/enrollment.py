@@ -36,4 +36,4 @@ def get_main_campus(request):
         return campuses
     for major in enrollment.majors:
         campuses.append(major.campus)
-        return campuses
+    return campuses

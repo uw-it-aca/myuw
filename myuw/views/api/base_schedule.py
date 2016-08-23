@@ -18,6 +18,7 @@ from myuw.views.rest_dispatch import RESTDispatch, data_not_found
 
 
 logger = logging.getLogger(__name__)
+EARLY_FALL_START = "EARLY FALL START"
 
 
 class StudClasSche(RESTDispatch):
@@ -27,7 +28,7 @@ class StudClasSche(RESTDispatch):
         @return class schedule data in json format
                 status 404: no schedule found (not registered)
         """
-        schedule = get_schedule_by_term(term)
+        schedule = get_schedule_by_term(request, term)
 
         if summer_term is None:
             summer_term = get_current_summer_term_in_schedule(schedule,
@@ -68,6 +69,10 @@ def load_schedule(request, schedule, summer_term=""):
         color = colors[section.section_label()]
         section_data["color_id"] = color
         section_index += 1
+
+        if EARLY_FALL_START == section.institute_name:
+            section_data["early_fall_start"] = True
+            json_data["has_early_fall_start"] = True
         # if section.is_primary_section:
         try:
             section_data["lib_subj_guide"] =\
