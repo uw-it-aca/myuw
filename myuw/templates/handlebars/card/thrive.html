@@ -1,12 +1,52 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "thrive_card" %}
 
+<!-- DESIGN CHANGES: HUSKY EX AND CARD HEADER -->
+<h3 style="
+    /* margin-top: 25px; */
+"><span style="font-size: 16px; font-weight: 500;
+             ">Thrive - First Year</span><br>Husky Experience</h3>
+<!-- END DESIGN CHANGES -->
+
+<!-- DESIGN CHANGES: WEEKLY ITEM HEADER & CALLOUT -->
+<div style="
+    /* margin: -10px; */
+    padding: 10px;
+    px;
+    background-color: #9df1ff;
+    ">
+  <h4 style="
+    /* background-color: rgba(255,202,0,0.5); */
+    /* padding: 10px; */
+    font-weight: 400;
+    margin-bottom: -20px;
+    margin-top: 4px;
+    font-size: 14px;
+ ">Week 3: Study Skills</h4>
+  <h4 style="
+    font-size: 18px;
+    /* margin-top: -6px; */
+    font-family: 'encode_sans_normalbold';
+">Study Smarter, Not Harder</h4>
+sample text here
+</div>
+<!-- END DESIGN CHANGES -->
+
+
     <div class="card" data-type="card" data-name="ThriveCard" data-identifier="{{ title }}">
         <h3>#ThriveUW</h3>
-        <!-- Engineers doing design work, high quality HTML to follow! /s -->
         <h4>{{ title }}</h4>
         <p>{{{ message }}}</p>
         {{ #if try_this }}
+
+
+<!-- DESIGN CHANGES: PADDING FOR REST OF CONTENT TO MATCH CALLOUT -->
+<div style="
+    padding: 10px;
+    margin-top: -15px;
+">
+<!-- END DESIGN CHANGES -->
+
             <h4>Try This</h4>
             <p>{{{ try_this }}}</p>
         {{ /if }}
@@ -20,6 +60,29 @@
             {{ /each }}
             </ul>
         {{ /if }}
+
+<!-- DESIGN CHANGES: FOOTER LINKS -->
+    <div style="
+    color: lightgrey;
+    /* border-top: 1px solid lightgrey; */
+    margin-top: 9px;
+    padding-top: 10px;">
+        <a style="
+    /* float: right; */
+    font-size: 12px;
+    font-weight: 200;
+    /* margin-top: 18px; */
+    /* position: absolute; */
+    /* margin-left: 89px; */
+    ">What is Thrive?</a> | <a style="
+    font-size: 12px;
+    font-weight: 200;
+    ">View Thrive messages</a>
+    </div>
+</div>
+<!-- END DESIGN CHANGES -->
+
+
 
     </div>
 {% endtplhandlebars %}
