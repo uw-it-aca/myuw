@@ -67,6 +67,8 @@
     {% include "handlebars/quarter_books.html" %}
     {% include "handlebars/visual_schedule.html" %}
     {% include "handlebars/academic_calendar.html" %}
+    {% include "handlebars/thrive.html" %}
+    {% include "handlebars/thrive_messages.html" %}
     {% include "handlebars/category_page.html" %}
 
     <script>
@@ -82,7 +84,9 @@
         "grades": "Grades",
         "notices": "MyUW: Notices",
         "category_page": "MyUW: Category",
-        "academic_calendar": "Academic Calendar"
+        "academic_calendar": "Academic Calendar",
+        "thrive": "What is Thrive",
+        "thrive_messages": "Thrive Messages"
     };
     window.user = {
         "student": {{ user.affiliations.student|yesno:"true, false" }},
