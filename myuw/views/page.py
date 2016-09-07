@@ -33,6 +33,7 @@ def index(request,
           quarter=None,
           summer_term=None):
 
+    timer = Timer()
     netid = UserService().get_user()
     if not netid:
         log_invalid_netid_response(logger, timer)
@@ -45,7 +46,7 @@ def index(request,
             if not is_student():
                 logger.info("%s not a student, redirect to legacy!" % netid)
                 return redirect_to_legacy_site()
-        except Exception as ex:
+        except Exception:
             log_exception(logger,
                           '%s is_student' % netid,
                           traceback.format_exc())
@@ -56,7 +57,6 @@ def index(request,
         if is_oldmyuw_user():
             return redirect_to_legacy_site()
 
-    timer = Timer()
     context = {
         "year": year,
         "quarter": quarter,
