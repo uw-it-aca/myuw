@@ -56,13 +56,15 @@ Builds a message payload from a given thrive message row
 def _make_thrive_payload(row):
     try_this = None
     try:
-        if len(row[6]) > 0:
-            try_this = row[6]
+        if len(row[8]) > 0:
+            try_this = row[8]
     except IndexError:
         pass
 
-    payload = {'title': row[4],
-               'message': row[5],
+    payload = {'title': row[6],
+               'message': row[7],
+               'week_label': row[4],
+               'category_label': row[5],
                'try_this': try_this,
                'urls': _make_urls(row)}
 
@@ -76,40 +78,16 @@ Supports up to 5 URLS per row as defined in the spec
 
 def _make_urls(row):
     urls = []
-    try:
-        if len(row[7]) > 0 and len(row[8]) > 0:
-            urls.append({'title': row[7],
-                         'href': row[8]})
-    except IndexError:
-        return urls
-    try:
-        if len(row[9]) > 0 and len(row[10]) > 0:
-            urls.append({'title': row[9],
-                         'href': row[10]})
-    except IndexError:
-        return urls
-    try:
-        if len(row[11]) > 0 and len(row[12]) > 0:
-            urls.append({'title': row[11],
-                         'href': row[12]})
-    except IndexError:
-        return urls
-
-    try:
-        if len(row[13]) > 0 and len(row[14]) > 0:
-            urls.append({'title': row[13],
-                         'href': row[14]})
-    except IndexError:
-        return urls
-
-    try:
-        if len(row[15]) > 0 and len(row[16]) > 0:
-            urls.append({'title': row[15],
-                         'href': row[16]})
-    except IndexError:
-        return urls
+    for i in range(9, 17, 2):
+        try:
+            if len(row[i]) > 0 and len(row[i+1]) > 0:
+                urls.append({'title': row[i],
+                             'href': row[i + 1]})
+        except IndexError:
+            return urls
 
     return urls
+
 
 
 """
