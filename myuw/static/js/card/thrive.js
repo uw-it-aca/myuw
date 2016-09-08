@@ -18,6 +18,8 @@ var ThriveCard = {
     },
 
     _render: function () {
+        Handlebars.registerPartial('thrive_highlight', $("#thrive_highlight").html());
+        Handlebars.registerPartial('thrive_learnmore', $("#thrive_learnmore").html());
         var thrive = WSData.thrive_data();
         var source = $("#thrive_card").html();
         var template = Handlebars.compile(source);

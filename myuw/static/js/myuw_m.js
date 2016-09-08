@@ -66,7 +66,7 @@ $(document).ready(function() {
             document.title = window.page_titles.academic_calendar;
         }
         else if (state === "thrive_messages") {
-            ThriveMessages.show_content();
+            ThriveMessages.show_messages();
             document.title = window.page_titles.thrive_messages;
         }
         else if (state === "thrive") {

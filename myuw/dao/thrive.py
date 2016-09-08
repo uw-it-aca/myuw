@@ -1,6 +1,8 @@
 import csv
 import os
-from myuw.dao.term import get_comparison_date, get_current_quarter
+import datetime
+from myuw.dao.term import get_comparison_date, get_current_quarter,\
+    get_bod_current_term_class_start
 
 
 """
@@ -12,6 +14,25 @@ def get_current_message(request):
     current_date = get_comparison_date(request)
     current_qtr = get_current_quarter(request)
     messages = _get_message_for_quarter_date(current_date, current_qtr)
+    return messages
+
+
+def get_previous_messages(request):
+    start_date = get_bod_current_term_class_start(request).date() -\
+                 datetime.timedelta(days=6)
+    current_date = get_comparison_date(request)
+    current_qtr = get_current_quarter(request)
+    messages = []
+    while (True):
+        m = _get_message_for_quarter_date(start_date, current_qtr)
+        if m:
+            messages.append(_get_message_for_quarter_date(
+                start_date, current_qtr))
+
+        start_date += datetime.timedelta(days=7)
+        if start_date > current_date:
+            break
+
     return messages
 
 

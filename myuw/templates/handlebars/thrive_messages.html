@@ -1,10 +1,12 @@
 	{% load templatetag_handlebars %}
     {% tplhandlebars "thrive_messages" %}
     <div class="container thrive_messages">
-            <h2 id="main">Thrive Messages</h2>
-           <div>
-             Thrive Messages
-           </div>
-        </div>
+      <h4>Thrive</h4>
+      <h2 id="main">Husky Experience</h2>
+      {{#each message_groups}}
+        {{#each this}}
+          {{{this}}}
+        {{/each}}
+      {{/each}}
     </div>
     {% endtplhandlebars %}

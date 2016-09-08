@@ -1,39 +1,16 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "thrive_card" %}
-
     <div class="card" data-type="card" data-name="ThriveCard" data-identifier="{{ title }}">
         <h3>
             <span>Thrive - First Year</span>
             <br>Husky Experience
         </h3>
-        <div class="thrive-message-highlight {{ slugify category_label }}">
-            <h4>
-                <div class="thrive-category">{{ week_label }}: {{ category_label }}</div>
-                <span class="thrive-week-title">
-                    {{ title }}
-                </span>
-            </h4>
-            <p>{{{ message }}}</p>
-        </div>
+        {{> thrive_highlight }}
         <div class="thrive-trythis-learnmore">
-            {{ #if try_this }}
-            <h4>Try This</h4>
-            <p>{{{ try_this }}}</p>
-            {{ /if }}
-            {{ #if urls  }}
-                <h4>Learn More</h4>
-                <ul>
-                {{ #each urls }}
-                    <li>
-                        <a href="{{ href }}" target="_blank">{{ title }}</a>
-                    </li>
-                {{ /each }}
-                </ul>
-            {{ /if }}
-
-            <div class="thrive-card-footer">
-                <a href="/thrive/">What is Thrive?</a> | <a href="/thrive_messages/">View Thrive messages</a>
-            </div>
+          {{> thrive_learnmore }}
+          <div class="thrive-card-footer">
+              <a href="/thrive/">What is Thrive?</a> | <a href="/thrive_messages/">View Thrive messages</a>
+          </div>
         </div>
     </div>
 {% endtplhandlebars %}
