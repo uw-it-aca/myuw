@@ -4,9 +4,11 @@
       <h4>Thrive</h4>
       <h2 id="main">Husky Experience</h2>
       {{#each message_groups}}
+      <div class="row">
         {{#each this}}
           {{{this}}}
         {{/each}}
+      </div>
       {{/each}}
     </div>
     {% endtplhandlebars %}
