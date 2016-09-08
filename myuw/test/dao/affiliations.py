@@ -24,3 +24,18 @@ class TestAffilliations(TestCase):
             now_request.user = user
             UserServiceMiddleware().process_request(now_request)
             affiliations = get_all_affiliations(now_request)
+
+    def test_fyp_enrollment(self):
+        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
+            now_request = RequestFactory().get("/")
+            now_request.session = {}
+
+            user = User.objects.create_user(username='javerage',
+                                            email='javerage@example.com',
+                                            password='')
+
+            now_request.user = user
+            UserServiceMiddleware().process_request(now_request)
+            affiliations = get_all_affiliations(now_request)
+            self.assertTrue(affiliations['fyp'])
