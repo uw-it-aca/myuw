@@ -22,6 +22,7 @@ Academics,Grades & Transcripts,all,https://sdb.admin.uw.edu/students/uwnetid/uno
 Academics,Libraries,all,,,https://eres.lib.washington.edu/,Electronic Course Reserves,,,,,yes
 Academics,Libraries,all,,,http://lib.washington.edu/,UW Libraries,http://library.uwb.edu/,UW Bothell Library,http://www.tacoma.uw.edu/library,UW Tacoma Library,no
 Academics,Graduation,all,,,http://www.washington.edu/students/reg/grad.html,Application for Graduation,https://www.uwb.edu/registration/graduation/apply,Applying for Graduation,http://www.tacoma.uw.edu/node/37921,Applying to Graduate,no
+Academics,Husky Experience,fyp,/thrive_messages,Thrive Messages,,,,,,,no
 Finances,Financial Aid,all,,,http://www.washington.edu/students/osfa/,Financial Aid and Scholarships,http://www.bothell.washington.edu/financialaid,Financial Aid and Scholarships,http://www.tacoma.uw.edu/uwt/financial-aid,Financial Aid and Scholarships,no
 Finances,Financial Aid,all,https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx,Financial Aid Status,,,,,,,yes
 Finances,Financial Aid,grad,http://www.lib.washington.edu/commons/services/gfis,Graduate Funding Information Service (GFIS),,,,,,,no
