@@ -28,6 +28,7 @@ Finances,Financial Aid,grad,http://www.lib.washington.edu/commons/services/gfis,
 Finances,Taxes,all,https://sdb.admin.uw.edu/sisStudents/uwnetid/irs1098t.aspx,Form 1098-T,,,,,,,yes
 Finances,Taxes,all,http://f2.washington.edu/fm/sfs/tax,Student Tax Information,,,,,,,no
 Finances,Tuition,all,http://f2.washington.edu/fm/sfs/tuition,Tuition Overview,,,,,,,no
+Student & Campus Life,Husky Experience,fyp,/thrive_messages,Thrive Messages,,,,,,,no
 Student & Campus Life,Housing & Dining,all,https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx,Add Funds to Husky Card,,,,,,,yes
 Student & Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/dining/,Campus Dining,http://www.uwb.edu/food,Campus Dining,http://www.tacoma.uw.edu/uwt/convenience-store/welcome-0,Campus Dining,no
 Student & Campus Life,Housing & Dining,all,https://www.hfs.washington.edu/myhfs/ledger.aspx,Check HFS Balance,,,,,,,yes
