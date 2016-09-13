@@ -13,35 +13,36 @@ Gets the thrive message for the current day/quarter
 def get_current_message(request):
     current_date = get_comparison_date(request)
     current_qtr = get_current_quarter(request)
-    messages = _get_message_for_quarter_date(current_date, current_qtr)
-    return messages
+    messages = _get_messages_for_quarter_dates([current_date], current_qtr)
+    return messages[0] if len(messages) else None
+
+
+"""
+Gets the thrive messages up to the currrent date in the current quarter
+"""
 
 
 def get_previous_messages(request):
     start_date = get_bod_current_term_class_start(request).date() -\
-                 datetime.timedelta(days=6)
+                 datetime.timedelta(days=10)
     current_date = get_comparison_date(request)
     current_qtr = get_current_quarter(request)
-    messages = []
-    while (True):
-        m = _get_message_for_quarter_date(start_date, current_qtr)
-        if m:
-            messages.append(_get_message_for_quarter_date(
-                start_date, current_qtr))
 
-        start_date += datetime.timedelta(days=7)
-        if start_date > current_date:
-            break
+    dates = []
+    if current_date >= start_date:
+        while start_date <= current_date:
+            dates.append(start_date)
+            start_date += datetime.timedelta(days=1)
 
+    messages = _get_messages_for_quarter_dates(dates, current_qtr)
     return messages
 
 
-def _get_message_for_quarter_date(current_date, term):
-    offset = _get_offset(current_date, term)
-
+def _get_messages_for_quarter_dates(dates, term):
     path = os.path.join(
         os.path.dirname(__file__),
         '..', 'data', 'thrive_content.csv')
+    rows = {}
     with open(path, 'rbU') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
         # skip headers
@@ -49,10 +50,15 @@ def _get_message_for_quarter_date(current_date, term):
         for row in reader:
             try:
                 if len(row[3]) > 0:
-                    if _is_displayed(row, term.quarter, offset):
-                        return _make_thrive_payload(row)
+                    for date in dates:
+                        offset = _get_offset(date, term)
+                        if _is_displayed(row, term.quarter, offset):
+                            rows[reader.line_num] = row
+                            break
             except IndexError:
                 pass
+
+    return [_make_thrive_payload(rows[row]) for row in sorted(rows.keys())]
 
 
 """
