@@ -6,6 +6,7 @@ class ResCategoryLink(models.Model):
     UGRAD = 'ugrad'
     GRAD = 'grad'
     PCE = 'pce'
+    FYP = 'fyp'
     SEATTLE = 'seattle'
     BOTHELL = 'bothell'
     TACOMA = 'tacoma'
@@ -33,6 +34,9 @@ class ResCategoryLink(models.Model):
 
     def for_pce(self):
         return self.affiliation == ResCategoryLink.PCE
+
+    def for_fyp(self):
+        return self.affiliation == ResCategoryLink.FYP
 
     def campus_matched(self, acampus):
         return (self.for_all_campus() or

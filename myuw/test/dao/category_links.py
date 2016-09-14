@@ -3,13 +3,14 @@ from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from myuw.dao.category_links import _get_links_by_category_and_campus, \
     _get_category_id, Res_Links
+import re
 
 
 class TestCategoryLinks(TestCase):
 
     def test_get_all_likes(self):
         all_links = Res_Links.get_all_links()
-        self.assertEquals(len(all_links), 157)
+        self.assertEquals(len(all_links), 159)
         val = URLValidator()
         for link in all_links:
             try:
@@ -20,8 +21,10 @@ class TestCategoryLinks(TestCase):
 
             try:
                 val(link.url)
-            except ValidationError, e:
-                self.fail("Invalid url:" + link.url)
+            except ValidationError:
+                # allow relative references
+                if not re.match('^/[\w/]+$', link.url):
+                    self.fail("Invalid url:" + link.url)
 
             try:
                 link.title.decode('ascii')
@@ -37,17 +40,17 @@ class TestCategoryLinks(TestCase):
         links = _get_links_by_category_and_campus(category_id,
                                                   "seattle",
                                                   affi)
-        self.assertEquals(len(links), 24)
+        self.assertEquals(len(links), 25)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "bothell",
                                                   affi)
-        self.assertEquals(len(links), 22)
+        self.assertEquals(len(links), 23)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "tacoma",
                                                   affi)
-        self.assertEquals(len(links), 22)
+        self.assertEquals(len(links), 23)
 
     def test_grad_category(self):
         category_id = _get_category_id("Student & Campus Life")

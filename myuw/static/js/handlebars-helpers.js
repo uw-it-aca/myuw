@@ -404,3 +404,8 @@ Handlebars.registerHelper('get_quarter_code', function(quarter_str) {
         return "";
     }
 });
+
+Handlebars.registerHelper('slugify', function(value) {
+    var slug = value.replace(/[^\w\s]+/gi, '').replace(/ +/gi, '-');
+    return slug.toLowerCase();
+});

@@ -54,8 +54,8 @@ def get_all_affiliations(request):
     enrolled_campuses = get_current_quarter_course_campuses(request)
     is_fyp = False
     try:
-        is_fyp = is_mandatory_switch_user()
-    except Exception as ex:
+        is_fyp = is_thrive_viewer()
+    except Exception:
         # This fails in unit tests w/o userservice
         pass
 
