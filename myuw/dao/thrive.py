@@ -116,7 +116,6 @@ def _make_urls(row):
     return urls
 
 
-
 """
 Calculates the offset from the current date and start of quarter date
 """

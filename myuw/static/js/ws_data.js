@@ -960,8 +960,4 @@ WSData = {
         }
     },
 
-    thrive_data: function() {
-        return WSData._thrive_data;
-    },
-
 };
