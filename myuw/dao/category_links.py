@@ -130,7 +130,8 @@ def _get_links_by_category_and_campus(search_category_id,
             continue
 
         if link.campus_matched(campus) and\
-                affiliations["undergrad"] and link.for_undergrad():
+                affiliations["undergrad"] and\
+                (link.for_undergrad() or link.for_fyp()):
             selected_links.append(link)
             continue
 

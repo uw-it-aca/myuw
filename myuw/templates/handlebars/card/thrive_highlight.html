@@ -1,0 +1,12 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "thrive_highlight" %}
+        <div class="thrive-message-highlight {{ slugify category_label }}">
+            <h4>
+                <div class="thrive-category">{{ week_label }}: {{ category_label }}</div>
+                <span class="thrive-week-title">
+                    {{ title }}
+                </span>
+            </h4>
+            <p>{{{ message }}}</p>
+        </div>
+{% endtplhandlebars %}

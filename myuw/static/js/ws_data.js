@@ -928,4 +928,36 @@ WSData = {
         }
     },
 
+    fetch_thrive_data_history: function(callback, err_callback, args) {
+        if (WSData._thrive_data === null) {
+            var url = "/api/v1/thrive/?history=1";
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+            $.ajax({
+                url: url,
+                    dataType: "JSON",
+
+                    type: "GET",
+                    accepts: {html: "text/html"},
+                    success: function(results) {
+                        WSData._thrive_data = results;
+                        WSData._run_success_callbacks_for_url(url);
+                    },
+                    error: function(xhr, status, error) {
+                        WSData._run_error_callbacks_for_url(url);
+                    }
+                 });
+              }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
 };

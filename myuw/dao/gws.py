@@ -11,7 +11,7 @@ from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time, log_exception
 
 
-logger = logging.getLogger('myuw.dao.gws.Member')
+logger = logging.getLogger(__name__)
 
 
 def _is_member(groupid):
