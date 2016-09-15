@@ -1,0 +1,11 @@
+	{% load templatetag_handlebars %}
+    {% tplhandlebars "thrive_message" %}
+      <div id="ThriveCard" class="col-md-6">
+        <div class="card" data-type="card" data-name="ThriveCard" data-identifier="{{ title }}">
+          {{> thrive_highlight }}
+          <div class="thrive-trythis-learnmore">
+            {{> thrive_learnmore }}
+          </div>
+        </div>
+     </div>
+    {% endtplhandlebars %}

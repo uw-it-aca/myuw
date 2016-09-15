@@ -1,6 +1,8 @@
 import csv
 import os
-from myuw.dao.term import get_comparison_date, get_current_quarter
+import datetime
+from myuw.dao.term import get_comparison_date, get_current_quarter,\
+    get_bod_current_term_class_start
 
 
 """
@@ -11,16 +13,36 @@ Gets the thrive message for the current day/quarter
 def get_current_message(request):
     current_date = get_comparison_date(request)
     current_qtr = get_current_quarter(request)
-    messages = _get_message_for_quarter_date(current_date, current_qtr)
+    messages = _get_messages_for_quarter_dates([current_date], current_qtr)
+    return messages[0] if len(messages) else None
+
+
+"""
+Gets the thrive messages up to the currrent date in the current quarter
+"""
+
+
+def get_previous_messages(request):
+    start_date = get_bod_current_term_class_start(request).date() -\
+                 datetime.timedelta(days=10)
+    current_date = get_comparison_date(request)
+    current_qtr = get_current_quarter(request)
+
+    dates = []
+    if current_date >= start_date:
+        while start_date <= current_date:
+            dates.append(start_date)
+            start_date += datetime.timedelta(days=1)
+
+    messages = _get_messages_for_quarter_dates(dates, current_qtr)
     return messages
 
 
-def _get_message_for_quarter_date(current_date, term):
-    offset = _get_offset(current_date, term)
-
+def _get_messages_for_quarter_dates(dates, term):
     path = os.path.join(
         os.path.dirname(__file__),
         '..', 'data', 'thrive_content.csv')
+    rows = {}
     with open(path, 'rbU') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
         # skip headers
@@ -28,10 +50,15 @@ def _get_message_for_quarter_date(current_date, term):
         for row in reader:
             try:
                 if len(row[3]) > 0:
-                    if _is_displayed(row, term.quarter, offset):
-                        return _make_thrive_payload(row)
+                    for date in dates:
+                        offset = _get_offset(date, term)
+                        if _is_displayed(row, term.quarter, offset):
+                            rows[reader.line_num] = row
+                            break
             except IndexError:
                 pass
+
+    return [_make_thrive_payload(rows[row]) for row in sorted(rows.keys())]
 
 
 """
@@ -56,13 +83,15 @@ Builds a message payload from a given thrive message row
 def _make_thrive_payload(row):
     try_this = None
     try:
-        if len(row[6]) > 0:
-            try_this = row[6]
+        if len(row[8]) > 0:
+            try_this = row[8]
     except IndexError:
         pass
 
-    payload = {'title': row[4],
-               'message': row[5],
+    payload = {'title': row[6],
+               'message': row[7],
+               'week_label': row[4],
+               'category_label': row[5],
                'try_this': try_this,
                'urls': _make_urls(row)}
 
@@ -76,38 +105,13 @@ Supports up to 5 URLS per row as defined in the spec
 
 def _make_urls(row):
     urls = []
-    try:
-        if len(row[7]) > 0 and len(row[8]) > 0:
-            urls.append({'title': row[7],
-                         'href': row[8]})
-    except IndexError:
-        return urls
-    try:
-        if len(row[9]) > 0 and len(row[10]) > 0:
-            urls.append({'title': row[9],
-                         'href': row[10]})
-    except IndexError:
-        return urls
-    try:
-        if len(row[11]) > 0 and len(row[12]) > 0:
-            urls.append({'title': row[11],
-                         'href': row[12]})
-    except IndexError:
-        return urls
-
-    try:
-        if len(row[13]) > 0 and len(row[14]) > 0:
-            urls.append({'title': row[13],
-                         'href': row[14]})
-    except IndexError:
-        return urls
-
-    try:
-        if len(row[15]) > 0 and len(row[16]) > 0:
-            urls.append({'title': row[15],
-                         'href': row[16]})
-    except IndexError:
-        return urls
+    for i in range(9, 17, 2):
+        try:
+            if len(row[i]) > 0 and len(row[i+1]) > 0:
+                urls.append({'title': row[i],
+                             'href': row[i + 1]})
+        except IndexError:
+            return urls
 
     return urls
 

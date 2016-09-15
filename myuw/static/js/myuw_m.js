@@ -65,6 +65,14 @@ $(document).ready(function() {
             AcademicCalendar.show_events();
             document.title = window.page_titles.academic_calendar;
         }
+        else if (state === "thrive_messages") {
+            ThriveMessages.show_messages();
+            document.title = window.page_titles.thrive_messages;
+        }
+        else if (state === "thrive") {
+            Thrive.show_content();
+            document.title = window.page_titles.thrive;
+        }
 
         loaded_url = state_url;
     });
@@ -137,6 +145,16 @@ $(document).ready(function() {
             hist.replaceState({
                 state: "academic_calendar",
             },  "", "/academic_calendar/");
+        }
+        else if (path.match(/^\/thrive_messages/)) {
+            hist.replaceState({
+                state: "thrive_messages",
+            },  "", "/thrive_messages/");
+        }
+        else if (path.match(/^\/thrive/)) {
+            hist.replaceState({
+                state: "thrive",
+            },  "", "/thrive/");
         }
 
         else {
