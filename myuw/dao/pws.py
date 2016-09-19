@@ -38,6 +38,14 @@ def get_regid_of_current_user():
     return res.uwregid
 
 
+def get_display_name_of_current_user():
+    """
+    Return the regid of the current user
+    """
+    res = _get_person_of_current_user()
+    return res.display_name
+
+
 def is_student():
     """
     Return true if the user is an
