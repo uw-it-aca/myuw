@@ -40,7 +40,7 @@ def get_regid_of_current_user():
 
 def get_display_name_of_current_user():
     """
-    Return the regid of the current user
+    Return the display_name of the current user
     """
     res = _get_person_of_current_user()
     return res.display_name
