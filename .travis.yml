@@ -15,15 +15,25 @@ before_script:
   - npm install jquery
   - npm install datejs
   - npm install jsdom@3
+  - npm install istanbul
+  - npm install coveralls
+  - gem install coveralls-lcov
   - cp travis-ci/manage.py manage.py
   - python manage.py syncdb --noinput
 script:
+  - which mocha
+  - which _mocha
+  - which istanbul
+  - ls -l ./node_modules/.bin/_mocha
+  - ls -l ./node_modules/mocha/bin/_mocha
   - pep8 myuw/ --exclude=migrations,myuw/static
   - jshint myuw/static/js/  --verbose
   - mocha myuw/static/js/test/ --recursive
+  - istanbul cover --include-all-sources -x "**/vendor/**" -x "**/site-packages/**" ./node_modules/mocha/bin/_mocha -- -R spec myuw/static/js/test/
   - coverage run --source=myuw/ --omit=myuw/migrations/* manage.py test myuw
+  - coveralls-lcov -v -n coverage/lcov.info > js-coverage.json
 after_script:
-  - coveralls
+  - coveralls --merge=js-coverage.json
 notifications:
   webhooks:
       urls:
