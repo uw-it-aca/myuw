@@ -1,6 +1,0 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "uwemail-content" %}
-{{#if login_url}}
-<a href="{{ login_url }}" target="_blank" title="Open {{ title }} in new tab"><i class="{{#if icon}}fa {{ icon }}{{else}}hidden{{/if}}" aria-hidden="true"></i> {{ title }}</a>
-{{/if}}
-{% endtplhandlebars %}

@@ -1,6 +1,6 @@
 from django.test import TestCase
-from myuw.dao.emaillink import get_service_url_for_address,\
-    EmailServiceUrlException
+from myuw.dao.emaillink import get_service_url_for_address
+from myuw.dao.exceptions import EmailServiceUrlException
 
 
 class TestEmailServiceUrl(TestCase):
@@ -13,11 +13,11 @@ class TestEmailServiceUrl(TestCase):
              ("https://mail.google.com", "UW Gmail", "fa-google")),
             ("javerage@exchange.washington.edu",
              ("https://outlook.office365.com", "UW Office 365", "fa-windows")),
-            ("javerage@gmail.com",
+            ("javerage@GMail.com",
              ("https://mail.google.com,GMail", "fa-google")),
-            ("javerage@hotmail.com",
+            ("javerage@HOTMAIL.com",
              ("https://mail.live.com/m", "Hotmail", "fa-windows")),
-            ("javerage@yahoo.com",
+            ("javerage@Yahoo.com",
              ("https://mail.yahoo.com", "Yahoo", "fa-yahoo")),
             ("javerage@comcast.net",
              ("https://login.comcast.net", "Comcast", "fa-envelope")),
@@ -25,7 +25,7 @@ class TestEmailServiceUrl(TestCase):
              ("https://www.msn.com", "MSN", "fa-windows")),
             ("javerage@aol.com",
              ("https://my.screenname.aol.com", "AOL", "fa-envelope")),
-            ("javerage@live.com",
+            ("javerage@Live.com",
              ("https://mail.live.com/m", "MS Live", "fa-envelope")),
             ("javerage@163.com",
              ("https://mail.163.com/", "NetEase", "fa-envelope")),
@@ -40,9 +40,9 @@ class TestEmailServiceUrl(TestCase):
             ("javerage@126.com",
              ("https://mail.126.com", "NetEase", "fa-envelope")),
             ("javerage@qq.com",
-             ("https://en.mail.qq.com/cgi-bin/loginpage", "QQMail",
+             ("https://en.mail.qq.com", "QQMail",
               "fa-envelope")),
-            ("javerage@icloud.com",
+            ("javerage@iCloud.com",
              ("https://www.icloud.com", "iCloud Mail", "fa-apple")),
         ]
 
@@ -58,3 +58,6 @@ class TestEmailServiceUrl(TestCase):
 
         with self.assertRaises(EmailServiceUrlException):
             get_service_url_for_address("notanemailaddress")
+
+        with self.assertRaises(EmailServiceUrlException):
+            get_service_url_for_address({})

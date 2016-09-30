@@ -6,10 +6,7 @@ email address and service provider login
 import re
 import os
 import csv
-
-
-class EmailServiceUrlException(Exception):
-    pass
+from myuw.dao.exceptions import EmailServiceUrlException
 
 
 def get_service_url_for_address(address):
@@ -22,7 +19,10 @@ def get_service_url_for_address(address):
         # skip header
         next(reader)
         for row in reader:
-            if re.match('.*[@\.]%s$' % row[0], address, re.I):
-                return (row[1], row[2], row[3])
+            try:
+                if re.match('.*[@\.]%s$' % row[0], address, re.I):
+                    return (row[1], row[2], row[3])
+            except TypeError:
+                raise EmailServiceUrlException("Non-string address")
 
     raise EmailServiceUrlException()
