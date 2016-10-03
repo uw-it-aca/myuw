@@ -1,3 +1,4 @@
+import os
 from unittest2 import skipIf
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
@@ -18,6 +19,8 @@ def missing_url(name):
 
 
 def require_url(url, message='myuw urls not configured'):
+    if "FORCE_VIEW_TESTS" in os.environ:
+        return skipIf(False, message)
     return skipIf(missing_url(url), message)
 
 
