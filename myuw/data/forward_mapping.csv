@@ -1,13 +1,13 @@
-domain,login_url,title,icon_style
+domain,login_url,link_title,icon_style
 deskmail.washington.edu,https://alpine.washington.edu,UW Deskmail,fa-envelope
-gamail.uw.edu,https://mail.google.com,UW Gmail,fa-google
+gmail.uw.edu,https://mail.google.com,UW Gmail,fa-google
 exchange.washington.edu,https://outlook.office365.com,UW Office 365,fa-windows
-gmail.com,https://mail.google.com,GMail,fa-google
+gmail.com,https://mail.google.com,Gmail,fa-google
 hotmail.com,https://mail.live.com/m,Hotmail,fa-windows
-yahoo.com,https://mail.yahoo.com,Yahoo,fa-yahoo
-comcast.net,https://login.comcast.net,Comcast,fa-envelope
-msn.com,https://www.msn.com,MSN,fa-windows
-aol.com,https://my.screenname.aol.com,AOL,fa-envelope
+yahoo.com,https://mail.yahoo.com,Yahoo Mail,fa-yahoo
+comcast.net,https://login.comcast.net,Comcast Mail,fa-envelope
+msn.com,https://www.msn.com,MSN Mail,fa-windows
+aol.com,https://my.screenname.aol.com,AOL Mail,fa-envelope
 live.com,https://mail.live.com/m,MS Live,fa-envelope
 163.com,https://mail.163.com/,NetEase,fa-envelope
 outlook.com,https://www.outlook.com,Outlook,fa-windows
