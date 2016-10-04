@@ -1,57 +1,37 @@
 from django.test import TestCase
-from myuw.dao.emaillink import get_service_url_for_address
 from myuw.dao.exceptions import EmailServiceUrlException
+from myuw.dao.emaillink import get_service_url_for_address
+from restclients.uwnetid.subscription import get_email_forwarding
 
 
 class TestEmailServiceUrl(TestCase):
 
     def test_(self):
-        addresses = [
-            ("javerage@javerage.deskmail.washington.edu",
-             ("https://alpine.washington.edu", "UW Deskmail", "fa-envelope")),
-            ("javerage@gamail.uw.edu",
-             ("https://mail.google.com", "UW Gmail", "fa-google")),
-            ("javerage@exchange.washington.edu",
-             ("https://outlook.office365.com", "UW Office 365", "fa-windows")),
-            ("javerage@GMail.com",
-             ("https://mail.google.com,Gmail", "fa-google")),
-            ("javerage@HOTMAIL.com",
-             ("https://mail.live.com/m", "Hotmail", "fa-windows")),
-            ("javerage@Yahoo.com",
-             ("https://mail.yahoo.com", "Yahoo Mail", "fa-yahoo")),
-            ("javerage@comcast.net",
-             ("https://login.comcast.net", "Comcast Mail", "fa-envelope")),
-            ("javerage@msn.com",
-             ("https://www.msn.com", "MSN", "fa-windows")),
-            ("javerage@aol.com",
-             ("https://my.screenname.aol.com", "AOL Mail", "fa-envelope")),
-            ("javerage@Live.com",
-             ("https://mail.live.com/m", "MS Live", "fa-envelope")),
-            ("javerage@163.com",
-             ("https://mail.163.com/", "NetEase", "fa-envelope")),
-            ("javerage@outlook.com",
-             ("https://www.outlook.com", "Outlook", "fa-windows")),
-            ("javerage@earthlink.net",
-             ("https://webmail.earthlink.net", "EarthLink", "fa-envelope")),
-            ("javerage@mac.com",
-             ("https://www.icloud.com", "Mac Mail", "fa-apple")),
-            ("javerage@me.com",
-             ("https://www.icloud.com", "Mobile Me", "fa-apple")),
-            ("javerage@126.com",
-             ("https://mail.126.com", "NetEase", "fa-envelope")),
-            ("javerage@qq.com",
-             ("https://en.mail.qq.com", "QQMail",
-              "fa-envelope")),
-            ("javerage@iCloud.com",
-             ("https://www.icloud.com", "iCloud Mail", "fa-apple")),
-        ]
+        netids = [('javerage', "https://gmail.uw.edu"),
+                  ('javg001', "https://alpine.washington.edu"),
+                  ('javg002', "https://outlook.office365.com"),
+                  ('javg003', "https://mail.google.com"),
+                  ('javg004', "https://mail.live.com"),
+                  ('javg005', "https://mail.yahoo.com"),
+                  ('javg006', "https://login.comcast.net"),
+                  ('javg007', "https://mail.live.com"),
+                  ('javg008', "https://my.screenname.aol.com"),
+                  ('javg009', "https://mail.live.com"),
+                  ('javg010', "https://mail.163.com"),
+                  ('javg011', "https://www.outlook.com"),
+                  ('javg012', "https://webmail.earthlink.net"),
+                  ('javg013', "https://www.icloud.com"),
+                  ('javg014', "https://www.icloud.com"),
+                  ('javg015', "https://mail.126.com"),
+                  ('javg016', "https://en.mail.qq.com"),
+                  ('javg017', "https://www.icloud.com")]
 
-        for address in addresses:
-            url, title, icon = get_service_url_for_address(
-                address[0])
-        self.assertEquals(url, address[1][0])
-        self.assertEquals(title, address[1][1])
-        self.assertEquals(icon, address[1][2])
+        for netid in netids:
+            fwd = get_email_forwarding(netid[0])
+            url, title, icon = get_service_url_for_address(fwd.fwd)
+        self.assertEquals(url, netid[1])
+        self.assertGreater(len(title), 0)
+        self.assertGreater(len(icon), 0)
 
         with self.assertRaises(EmailServiceUrlException):
             get_service_url_for_address("user@unknowndomain.com")

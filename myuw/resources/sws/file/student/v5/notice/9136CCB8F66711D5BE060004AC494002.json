@@ -1,0 +1,387 @@
+{
+    "Notices": [
+        {
+            "NoticeAttributes": [
+                {
+                    "Name": "Date",
+                    "DataType": "date",
+                    "Value": "week"
+                }
+            ],
+            "NoticeCategory": "StudentALR",
+            "NoticeContent": "<span class=\"notice-title\">Online ISS information session required before registration</span><span class=\"notice-body-with-title\">All new international students are required to complete the <a href=\"https://catalysttools.washington.edu/webq/survey/torre/79003\">International Student Services (ISS) Online Information Session</a> before registering for classes. You will need your UW NetID and password to access the online ISS information session. After you arrive on campus, the International Student Services (ISS) must collect copies of your immigration documents.</span>",
+            "NoticeType": "IntlStuCheckin"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "Name": "Date",
+                    "DataType": "date",
+                    "Value": "future_end"
+                },
+                {
+                    "Name": "Begin",
+                    "DataType": "date",
+                    "Value": "future"
+                },
+                {
+                    "Name": "End",
+                    "DataType": "date",
+                    "Value": "future_end"
+                },
+                {
+                    "Name": "Quarter",
+                    "DataType": "string",
+                    "Value": "Summer"
+                },
+                {
+                    "Name": "Link",
+                    "DataType": "url",
+                    "Value": "http://www.uw.edu"
+                },
+                {
+                    "Name": "Bogus",
+                    "DataType": "unknown",
+                    "Value": "42"
+                }
+
+            ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": "<span class=\"notice-title\">Quarter Begins</span><span class=\"notice-body-with-title\">Summer quarter begins </span><span class=\"date\">June 23, 2014</span>.",
+            "NoticeType": "QtrBegin"
+        },
+       {
+            "NoticeAttributes": [
+             {
+                 "Name": "Date",
+                 "DataType": "date",
+                 "Value": "future_end"
+             },
+             {
+                 "Name": "Begin",
+                 "DataType": "date",
+                 "Value": "future"
+             },
+             {
+                 "Name": "End",
+                 "DataType": "date",
+                 "Value": "future_end"
+             },
+             {
+                 "Name": "Quarter",
+                 "DataType": "string",
+                 "Value": "Spring"
+             },
+             {
+                 "Name": "Link",
+                 "DataType": "url",
+                 "Value": "http://www.uw.edu"
+             }
+           ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": "<span class=\"notice-body-without-title\"> Summer quarter ends </span><span class=\"date\">July 23</span>.",
+            "NoticeType": "QtrEnd"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "Name": "Date",
+                    "DataType": "date",
+                    "Value": "next_week"
+                }   
+            ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": "<span class=\"notice-title\">Estimated Registration Date</span><span class=\"notice-body-with-title\">Your estimated Period I Priority Registration Date for winter quarter is <span class=\"date\">May 13, 2014</span>. Registration begins at 6:00 AM. <a href=\"http://www.washington.edu/students/reg/priorsp15.html\">View your Priority I Registration Date.</a></span>",
+            "NoticeType": "EstPd1RegDate"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "Name": "Date",
+                    "DataType": "date",
+                    "Value": "week"
+                }
+            ],
+            "NoticeCategory": "StudentALR",
+            "NoticeContent": "<span class=\"notice-title\">Pre-Registration Requirement</span><span class=\"notice-body-with-title\">Beginning one week prior to each quarter's registration period you can make all the required Notices and Insurance&#47Optional Charges selections. You will then be able to go directly into Web Registration when your priority registration period begins. If you have not already done so <a href=\"https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp\">go to the Insurance&#47Optional Charges</a> services now to complete these requirements prior to registering for autumn quarter.</span>",
+            "NoticeType": "PreRegNow"
+        },
+        {
+            "NoticeAttributes": [
+                {
+                    "Name": "Holds",
+                    "DataType": "string",
+                    "Value": "3"
+                }
+            ],
+            "NoticeCategory": "StudentALR",
+            "NoticeContent": "<span class=\"notice-title\">Registration/Transcript Holds</span><span class=\"notice-body-with-title\">The following offices have placed administrative holds on your academic record. These will prevent registration and/or ordering official transcripts. To resolve these holds, contact the office(s) listed below.</span><ul class=\"notice-list\"><li>Registration and Transcript hold(s) placed by Library Account Services, Suzzallo, 1st Floor 206-543-1174</li><li>Registration and Transcript hold(s) placed by Student Fiscal Services, 129 Schmitz, 206-543-4694</li><li>Registration hold(s) placed by Financial Aid Office, 105 Schmitz, 206-543-6101</li></ul><span class=\"notice-body-with-title\"><a href=\"http://www.washington.edu/students/reg/regrest.html#Q2\">What is an administrative hold?</a></span>",
+            "NoticeType": "AdminHolds"
+        },
+        {
+            "NoticeAttributes": [
+            {
+                 "Name": "Date",
+                 "DataType": "date",
+                 "Value": "next_week"
+             }
+            ],
+            "NoticeCategory": "StudentGEN",
+            "NoticeContent": "<span class=\"notice-title\">Your Tuition Balance</span><span class=\"notice-body-with-title\"><a href='https://sdb.admin.washington.edu/students/uwnetid/tuition.asp'>Tuition Account Balance</A>: $12345.00 CR <a href='https://sdb.admin.washington.edu/students/uwnetid/tuition.asp'>details</a></span>",
+            "NoticeType": "AcctBalance"
+        },
+       {
+            "NoticeAttributes": [
+            {
+                 "Name": "Date",
+                 "DataType": "date",
+                 "Value": "future"
+             }
+            ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": "<span class=\"notice-title\">Tuition Due</span><span class=\"notice-body-with-title\">Payment of tuition and tuition-related fees for winter quarter is due <span class=\"date\"></span>. For details, <a href=\"https://sdb.admin.washington.edu/students/UWNetID/tuition.asp\">view your Tuition Statement</a>.</span>",
+            "NoticeType": "TuitDue"
+        },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentGEN",
+            "NoticeContent": "Thank you for confirming your intention to enroll at the University of Washington for autumn quarter 2014. Your new Student Enrollment and Orientation Fee has been accepted and recorded.",
+            "NoticeType": "ThankYouRemark"
+        },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentGEN",
+            "NoticeContent": "The Office of the Registrar has received payment for the following fees: New Student Enrollment & Orientation Fee",
+            "NoticeType": "FeesPaid"
+        },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentCLIST",
+            "NoticeContent": "You can <a href=\"https://sdb.admin.washington.edu/students/uwnetid/finaidstatus.asp\">review the status</a> of your financial aid application online.",
+            "NoticeType": "FinAid"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "DirectDeposit",
+            "NoticeContent": "<span class=\"notice-title\">Enroll in Direct Deposit for Aid Funds</span>&nbsp;<span class=\"notice-body-with-title\"><a href=\"https://sdb.admin.uw.edu/students/uwnetid/emt.asp\">Sign up for direct deposit</a> of your Financial Aid Funds</span>"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "DirectDepositShort",
+            "NoticeContent": "Enroll in Direct Deposit"
+        },
+        {
+            "NoticeAttributes": [
+               {
+               "Name": "Year",
+               "DataType": "string",
+               "Value": "2016"
+               },
+               {
+               "Name": "Date",
+               "DataType": "date",
+               "Value": "20130228"
+               },
+               {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "20130101"
+               },
+               {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "20130228"
+               }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "AidPriorityDate",
+            "NoticeContent": "<span class=\"notice-title\">Submit 2013 FAFSA by Feb 28th</span>&nbsp;<span class=\"notice-body-with-title\">If you haven't already, complete your 2013 <a href=\"https://fafsa.gov\">Financial Aid Application</a> before Feb 28th for priority consideration</span>"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "AidPriorityDateShort",
+            "NoticeContent": "Submit 2013 FAFSA by Feb 28th"
+        },
+        {
+            "NoticeAttributes": [
+               {
+               "Name": "Year",
+               "DataType": "string",
+               "Value": "2016"
+               },
+               {
+               "Name": "Date",
+               "DataType": "date",
+               "Value": "20130601"
+               },
+               {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "20130301"
+               },
+               {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "20130601"
+               }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "AidReminder",
+            "NoticeContent": "<span class=\"notice-title\">2013 FAFSA aid still available</span>&nbsp<span class=\"notice-body-with-title\">You can still <a href=\"https://fafsa.gov\">apply for financial aid</a> even though the prior deadline has passed</span>"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "AidReminderShort",
+            "NoticeContent": "You can still apply for 2013 aid"
+        },
+                {
+            "NoticeAttributes": [
+               {
+               "Name": "Year",
+               "DataType": "string",
+               "Value": "2013"
+               },
+               {
+               "Name": "Date",
+               "DataType": "date",
+               "Value": "20130401"
+               },
+               {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "20130318"
+               },
+               {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "20130331"
+               }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "SummerAidDate",
+            "NoticeContent": "<span class=\"notice-title\">Summer Aid Application available April 1st</span>&nbsp;<span class=\"notice-body-with-title\">Summer Financial Aid Application will be available</span> <span class=\"date\">April 1st</span>."
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "SummerAidDateShort",
+            "NoticeContent": "Summer Aid Application available <span class=\"date\">Apr 1st</span>."
+        },
+        {
+            "NoticeAttributes": [
+               {
+               "Name": "Year",
+               "DataType": "string",
+               "Value": "2013"
+               },
+               {
+               "Name": "Date",
+               "DataType": "date",
+               "Value": "20130801"
+               },
+               {
+               "Name": "Begin",
+               "DataType": "date",
+               "Value": "20130401"
+               },
+               {
+               "Name": "End",
+               "DataType": "date",
+               "Value": "20130801"
+               }
+            ],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "SummerAidAvail",
+            "NoticeContent": "<span class=\"notice-title\">Summer Financial Aid Application now available</span>&nbsp<span class=\"notice-body-with-title\">The <a href=\"https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">Summer Financial Aid Application</a> is now available</span>"
+        },
+        {
+            "NoticeAttributes": [],
+            "NoticeCategory": "StudentFinAid",
+            "NoticeType": "SummerAidAvailShort",
+            "NoticeContent": "Summer aid Application now available"
+        },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentFOOT",
+            "NoticeContent": "<span class=\"notice-title\">Critical Summer Registration Information</span>&nbsp;<span class=\"notice-body-with-title\"><a href=\"http://fyp.washington.edu/sumreg\">Read the Summer Registration Guide</a> for instructions on how to register for both summer and autumn classes. If you have further questions, call First Year Programs at 206-543-4905.</span>",
+            "NoticeType": "SummerRegInfo"
+        },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentCLIST",
+            "NoticeContent": "<span class=\"notice-title\">Set Up UW Email</span>&nbsp;<span class=\"notice-body-with-title\"><a href=\"http://www.washington.edu/itconnect/connect/email/#students\">Set up your UW inbox</a> so you can receive important emails from instructors and UW departments.",
+            "NoticeType": "EmailServices"
+        },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentCLIST",
+            "NoticeContent": "<span class=\"notice-title\">Register for Required Online Information Session for International Students</span>&nbsp;<span class=\"notice-body-with-title\" >You must <a href=\"https://catalyst.uw.edu/webq/survey/torre/79003\">complete the International Student Services (ISS) Online Information Session</a>. The session includes important information about your benefits and responsibilities on an F-1 or J-1 student visa.</span>",
+            "NoticeType": "IntlStuCheckinA"
+        },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentCLIST",
+            "NoticeContent": "<span class=\"notice-title\">Register for Advising &#47O Orientation and Class Registration</span>&nbsp;<span class=\"notice-body-with-title\">You haven't registered for an Advising &#47O Orientation session yet. <strong>You will register for your first quarter classes during this session</strong>. <a href=\"http://fyp.washington.edu/getting-started-at-the-university-of-washington/\">Sign up for a session</a>.</span>",
+            "NoticeType": "AdvOrientRegDateA"
+        },
+       {
+            "NoticeAttributes": [],
+            "NoticeCategory": "NewStudentCLIST",
+            "NoticeContent": "<span class=\"notice-title\">Submit Measles Immunization</span>&nbsp;<span class=\"notice-body-with-title\">Your Measles Immunization Form has not been processed at Hall Health Center. You cannot register for classes until you have submitted this form and it has been processed. Please <a href=\"http://www.washington.edu/students/reg/immunization.html\">complete and submit the form</a> as early as possible to ensure that it is processed before your registration date.</span>",
+            "NoticeType": "MeaslesA"
+        },
+		  {
+            "NoticeAttributes": [
+             {
+                 "Name": "Date",
+                 "DataType": "date",
+                 "Value": "future_end"
+             },
+             {
+                 "Name": "Begin",
+                 "DataType": "date",
+                 "Value": "future"
+             },
+             {
+                 "Name": "End",
+                 "DataType": "date",
+                 "Value": "future_end"
+             },
+             {
+                 "Name": "Quarter",
+                 "DataType": "string",
+                 "Value": "Spring"
+             },
+             {
+                 "Name": "Link",
+                 "DataType": "url",
+                 "Value": "http://www.uw.edu"
+             }
+           ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": "<span class=\"notice-body-without-title\"> Summer quarter begins <span class=\"date\"> June 13</span>.</span>",
+            "NoticeType": "QtrEnd"
+        },
+       {
+            "NoticeAttributes": [
+              {
+                "Name": "ResidencyStatus",
+                "DataType": "string",
+                "Value": "1"
+              }
+            ],
+            "NoticeCategory": "NewStudentGEN",
+            "NoticeContent": "<span class=\"notice-title\">Expected Status</span>&nbsp;<span class=\"notice-body-with-title\">Your expected status at the University:</span>&nbsp;<ul class=\"notice-list\"> <li>Campus: SEATTLE</li><li>Class Standing: FRESHMAN</li><li>School/College: Arts & Sciences</li><li>Department: PRE MAJOR (A&S)</li><li>Student Number: 1522136</li><li>Residency Status: RES-IMMIGR</li></ul> <span class=\"notice-body-with-title\"><a href=\"http://www.washington.edu/students/reg/whatsthis.html\">Have questions? Read the Notes and Definitions</a></span>",
+            "NoticeType": "StatusSummary"
+        }
+    ],
+    "Person": {
+        "Href": "",
+        "Name": "Jade AVERAGE STUDENT",
+        "RegID": "9136CCB8F66711D5BE060004AC494002"
+    }
+}
