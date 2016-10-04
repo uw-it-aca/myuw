@@ -8,7 +8,7 @@ class TestEmailServiceUrl(TestCase):
 
     def test_(self):
         netids = [('javerage', "https://gmail.uw.edu"),
-                  ('javg001', "https://alpine.washington.edu"),
+                  ('javg001', "http://alpine.washington.edu"),
                   ('javg002', "https://outlook.office365.com"),
                   ('javg003', "https://mail.google.com"),
                   ('javg004', "https://mail.live.com"),
