@@ -59,14 +59,14 @@
                 <div class="pull-left header-myuw"><a href="/" title="Go to MyUW Home"><h1 id="main_header">MYUW</h1></a></div>
                 <div class="pull-right">
                     <ul id="top_navigation_link_list" class="top_navigation_list">
+                        {% if user.email_forward_url %}
                         <li>
-                            <div class="header-email" id="uwemail">
-                              {% if user.email_forward_url %}
-                              <a href="{{ user.email_forward_url }}" target="_blank" title="Open {{ user.email_forward_title }} in new tab"><i class="fa {{ user.email_forward_icon }}" aria-hidden="true"></i> {{ user.email_forward_title }}</a>
-                              {% endif %}
+                            <div class="header-email" id="uwemail">                             
+                              <a href="{{ user.email_forward_url }}" target="_blank" title="Open {{ user.email_forward_title }} in new tab"><i class="fa {{ user.email_forward_icon }}" aria-hidden="true">&nbsp;</i>{{ user.email_forward_title }}</a>                            
                             </div>
                         </li>
-                        <li><div class="header-resources"><a href="#" id="categories_link"><i class="fa fa-th" role="presentation"></i> Resources</a></div></li>
+                        {% endif %}
+                        <li><div class="header-resources"><a href="#" id="categories_link"><i class="fa fa-th" role="presentation">&nbsp;</i>Resources</a></div></li>
                     </ul>
                 </div>
             </div>
