@@ -15,7 +15,6 @@ WSData = {
     _notice_data_error_status: null,
     _profile_data: null,
     _profile_data_error_status: null,
-    _uwemail_data: null,
     _tuition_data: null,
     _instructor_data: {},
     _link_data: null,
@@ -174,9 +173,6 @@ WSData = {
         return WSData._profile_data;
     },
 
-    uwemail_data: function() {
-        return WSData._uwemail_data;
-    },
     dept_event_data: function() {
         return WSData._department_events;
     },
@@ -808,34 +804,6 @@ WSData = {
                 }
             });
         }
-        else {
-            window.setTimeout(function() {
-                callback.apply(null, args);
-            }, 0);
-        }
-    },
-
-    fetch_uwemail_data: function(callback, err_callback, args) {
-        if (WSData._uwemail_data === null) {
-            $.ajax({
-                    url: "/api/v1/uwemail/",
-                    dataType: "JSON",
-
-                    type: "GET",
-                    accepts: {html: "text/html"},
-                    success: function(results) {
-                        WSData._uwemail_data = results;
-                        if (callback !== null) {
-                            callback.apply(null, args);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        if (err_callback) {
-                            err_callback.call(null, xhr.status, error);
-                        }
-                    }
-                 });
-              }
         else {
             window.setTimeout(function() {
                 callback.apply(null, args);

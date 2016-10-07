@@ -10,7 +10,6 @@ from myuw.views.api.library import MyLibInfo
 from myuw.views.api.profile import MyProfile
 from myuw.views.api.category_links import CategoryLinks
 from myuw.views.api.other_quarters import RegisteredFutureQuarters
-from myuw.views.api.uwemail import UwEmail
 from myuw.views.api.textbook import Textbook, TextbookCur
 from myuw.views.api.notices import Notices
 from myuw.views.api.myplan import MyPlan
@@ -90,9 +89,6 @@ urlpatterns = patterns(
         ),
     url(r'^api/v1/thrive/$', login_required(ThriveMessages().run),
         name="myuw_thrive_api"
-        ),
-    url(r'^api/v1/uwemail/$', login_required(UwEmail().run),
-        name="myuw_email_api"
         ),
     url(r'^choose/new', 'choose.new_site', name="myuw_pref_new_site"
         ),

@@ -1,0 +1,36 @@
+{
+  "uwNetID" : "javg007",
+  "subscriptionList" : [
+    {
+      "subscriptionCode" : 105,
+      "subscriptionName" : "U Forwarding",
+      "permitted" : true,
+      "statusCode" : 20,
+      "statusName" : "Active",
+      "actions" : [
+        "Show"
+      ],
+      "dataField" : "FWD",
+      "dataValue" : "javg007@MSN.com",
+      "permits" : [
+        {
+          "type" : "permit",
+          "mode" : "implicit",
+          "categoryCode" : 1,
+          "categoryName" : "Undergraduate",
+          "statusCode" : 1,
+          "statusName" : "current"
+        },
+        {
+          "type" : "permit",
+          "mode" : "implicit",
+          "categoryCode" : 16,
+          "categoryName" : "Alumni",
+          "statusCode" : 1,
+          "statusName" : "current"
+        }
+      ]
+    }
+  ],
+  "timeStamp" : "Fri, 25 Jul 2014 13:24:03 -0700"
+}
