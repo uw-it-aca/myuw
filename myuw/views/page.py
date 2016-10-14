@@ -12,6 +12,8 @@ from userservice.user import UserService
 from myuw.dao.term import get_current_quarter
 from myuw.dao.pws import is_student
 from myuw.dao.affiliation import get_all_affiliations, is_oldmyuw_user
+from myuw.dao.emaillink import get_service_url_for_address
+from myuw.dao.exceptions import EmailServiceUrlException
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_exception
 from myuw.logger.logresp import log_invalid_netid_response
@@ -76,8 +78,18 @@ def index(request,
         my_uwemail_forwarding = get_email_forwarding_for_current_user()
         if my_uwemail_forwarding.is_active():
             c_user = context["user"]
-            c_user["email_is_uwgmail"] = my_uwemail_forwarding.is_uwgmail()
-            c_user["email_is_uwlive"] = my_uwemail_forwarding.is_uwlive()
+            try:
+                (c_user['email_forward_url'],
+                 c_user['email_forward_title'],
+                 c_user['email_forward_icon']) = get_service_url_for_address(
+                     my_uwemail_forwarding.fwd)
+            except EmailServiceUrlException:
+                c_user['login_url'] = None
+                c_user['title'] = None
+                c_user['icon'] = None
+                logger.info('No Mail Url: %s' % (
+                    my_uwemail_forwarding.fwd))
+
     except Exception:
         log_exception(logger,
                       'get_email_forwarding_for_current_user',
