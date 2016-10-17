@@ -5,7 +5,6 @@
     <div id="static-links"></div>
 
     <!-- component content templates -->
-    {% include "handlebars/banner/email.html" %}
     {% include "handlebars/banner/profile.html" %}
     {% include "handlebars/banner/notice.html" %}
     {% include "handlebars/banner/calendar.html" %}
@@ -106,8 +105,9 @@
         "seattle_affil": {{ user.affiliations.seattle|yesno:"true, false" }},
         "bothell_affil": {{ user.affiliations.bothell|yesno:"true, false" }},
         "tacoma_affil": {{ user.affiliations.tacoma|yesno:"true, false" }},
-        "email_is_uwgmail": {{ user.email_is_uwgmail|yesno:"true, false" }},
-        "email_is_uwlive": {{ user.email_is_uwlive|yesno:"true, false" }},
+        "email_forward_url": "{{ user.email_forward_url }}",
+        "email_forward_title": "{{ user.email_forward_title }}",
+        "email_forward_icon": "{{ user.email_forward_icon }}",
         "netid": "{{ user.netid }}"
     };
     window.term = {

@@ -1,0 +1,62 @@
+
+{
+    "DisplayName": "Janet Average Student",
+    "EduPersonAffiliations": [
+        "member",
+        "student",
+        "alum",
+        "staff",
+        "employee"
+    ],
+    "IsTestEntity": true,
+    "PriorUWNetIDs": [],
+    "PriorUWRegIDs": [],
+    "RegisteredFirstMiddleName": "Janet AVERAGE",
+    "RegisteredName": "Janet AVERAGE STUDENT",
+    "RegisteredSurname": "STUDENT",
+    "UIDNumber": "35443",
+    "UWNetID": "javg008",
+    "UWRegID": "9136CCB8F66711D5BE060004AC494008",
+    "WhitepagesPublish": true,
+    "PersonAffiliations": {
+        "AlumPersonAffiliation": {
+            "DevelopmentID": "0000773877"
+        },
+        "EmployeePersonAffiliation": {
+            "EmployeeID": "123456789",
+            "EmployeeWhitePages": {
+                "Address1": null,
+                "Address2": null,
+                "Department1": null,
+                "Department2": null,
+                "Email1": null,
+                "Email2": null,
+                "Fax": null,
+                "Name": null,
+                "Phone1": null,
+                "Phone2": null,
+                "PublishInDirectory": true,
+                "Title1": "Senior Lecturer",
+                "Title2": null,
+                "TouchDial": null,
+                "VoiceMail": null
+            },
+            "HomeDepartment": "C&C TEST BUDGET",
+            "MailStop": null
+        },
+        "StudentPersonAffiliation": {
+            "StudentNumber": "1033008",
+            "StudentSystemKey": "000083856",
+            "StudentWhitePages": {
+                "Class": null,
+                "Department1": null,
+                "Department2": null,
+                "Department3": null,
+                "Email": null,
+                "Name": null,
+                "Phone": null,
+                "PublishInDirectory": false
+            }
+        }
+    }
+}
