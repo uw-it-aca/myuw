@@ -14,7 +14,7 @@ class TestFinance(MyuwApiTest):
         data = json.loads(response.content)
 
         self.assertEquals(data['tuition_accbalance'], '12345.00')
-        self.assertEquals(data['pce_accbalance'], '0.00')
+        self.assertEquals(data['pce_accbalance'], '1000.00')
 
         # this date is set to future = today + timedelta(weeks=3) in
         # dao_implementation/sws.py's File implementation
