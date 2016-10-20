@@ -7,7 +7,7 @@ from restclients.uwnetid.subscription import get_email_forwarding
 class TestEmailServiceUrl(TestCase):
 
     def test_(self):
-        netids = [('javerage', "https://gmail.uw.edu"),
+        netids = [('javerage', "http://gmail.uw.edu"),
                   ('javg001', "http://alpine.washington.edu"),
                   ('javg002', "https://outlook.office365.com"),
                   ('javg003', "https://mail.google.com"),
@@ -29,9 +29,9 @@ class TestEmailServiceUrl(TestCase):
         for netid in netids:
             fwd = get_email_forwarding(netid[0])
             url, title, icon = get_service_url_for_address(fwd.fwd)
-        self.assertEquals(url, netid[1])
-        self.assertGreater(len(title), 0)
-        self.assertGreater(len(icon), 0)
+            self.assertEquals(url, netid[1])
+            self.assertGreater(len(title), 0)
+            self.assertGreater(len(icon), 0)
 
         with self.assertRaises(EmailServiceUrlException):
             get_service_url_for_address("user@unknowndomain.com")
