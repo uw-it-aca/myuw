@@ -56,6 +56,11 @@
         {{ /if }}
 
         {{ #if has_balance }}
+            {{ #if is_credit }}
+        <div class="card-badge-container">
+            You have a credit: ${{ plain_tuition }}
+        </div>
+            {{ else }}
         <!-- else, there is a balance -->
         <div class="card-badge-container">
 	    <ul class="card_list">
@@ -88,6 +93,8 @@
 	        {{ /if }}
 	    </ul>
 	</div>
+        <!-- end if tuition_credit -->
+    {{ /if }} 
 	<!-- end if has_balance -->
 	{{ /if }}
 
