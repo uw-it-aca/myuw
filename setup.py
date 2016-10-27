@@ -1,14 +1,56 @@
-#!/usr/bin/env python
+import os
+from setuptools import setup
 
-from distutils.core import setup
+README = """
+See the README on `GitHub
+<https://github.com/uw-it-aca/myuw>`_.
+"""
 
-print "\n\n\n\n************************************************************"
-print "         If you're installing MyUW,  you must also install"
-print "               each dependency in requirements.txt"
-print "************************************************************\n\n\n\n"
+# The VERSION file is created by travis-ci, based on the tag name
+version_path = 'myuw/VERSION'
+VERSION = open(os.path.join(os.path.dirname(__file__), version_path)).read()
+VERSION = VERSION.replace("\n", "")
 
-setup(name='MyUW',
-      version='4.0',
-      description='',
-      install_requires=[] # uh... move requirements.txt into here
-     )
+# allow setup.py to be run from any path
+os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
+
+url = "https://github.com/uw-it-aca/myuw"
+setup(
+    name='MyUW',
+    version=VERSION,
+    packages=['myuw'],
+    author="UW-IT AXDD",
+    author_email="aca-it@uw.edu",
+    include_package_data=True,
+    install_requires=[
+        'Django==1.6',
+        'South',
+        'ordereddict',
+        'simplejson',
+        'django-compressor<2.0',
+        'BeautifulSoup',
+        'urllib3==1.10.2',
+        'django-templatetag-handlebars',
+        'Django-UserService==1.0.2',
+        'unittest2',
+        'AuthZ-Group',
+        'python-binary-memcached',
+        'UW-RestClients',
+        'Django-SupportTools',
+        'django_mobileesp',
+        'django_client_logger',
+        'yajl',
+    ],
+    license='Apache License, Version 2.0',
+    description=('MyUW is the portal of the University of Washington'),
+    long_description=README,
+    url=url,
+    classifiers=[
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: Apache Software License',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2.7',
+    ],
+)
+
