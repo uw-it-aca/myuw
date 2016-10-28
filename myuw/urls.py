@@ -1,5 +1,9 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
+from myuw.views.page import index, logout
+from myuw.views.display_dates import override
+from myuw.views.choose import new_site, old_site
+from myuw.views.logger import log_interaction
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.finance import Finance
 from myuw.views.api.hfs import HfsBalances
@@ -19,11 +23,10 @@ from myuw.views.page import index
 from myuw.views.api.calendar import DepartmentalCalendar
 
 
-urlpatterns = patterns(
-    'myuw.views',
-    url(r'admin/dates', 'display_dates.override'
+urlpatterns = [
+    url(r'admin/dates', override
         ),
-    url(r'^logger/(?P<interaction_type>\w+)$', 'logger.log_interaction'
+    url(r'^logger/(?P<interaction_type>\w+)$', log_interaction
         ),
     url(r'^api/v1/academic_events$', login_required(AcademicEvents().run),
         name="myuw_academic_calendar"
@@ -90,11 +93,11 @@ urlpatterns = patterns(
     url(r'^api/v1/thrive/$', login_required(ThriveMessages().run),
         name="myuw_thrive_api"
         ),
-    url(r'^choose/new', 'choose.new_site', name="myuw_pref_new_site"
+    url(r'^choose/new', new_site, name="myuw_pref_new_site"
         ),
-    url(r'^choose/legacy', 'choose.old_site', name="myuw_pref_old_site"
+    url(r'^choose/legacy', old_site, name="myuw_pref_old_site"
         ),
-    url(r'^logout', 'page.logout', name="myuw_logout"
+    url(r'^logout', logout, name="myuw_logout"
         ),
-    url(r'.*', 'page.index', name="myuw_home"),
-)
+    url(r'.*', index, name="myuw_home"),
+]
