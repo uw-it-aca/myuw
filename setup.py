@@ -30,7 +30,7 @@ setup(
         'BeautifulSoup',
         'urllib3==1.10.2',
         'django-templatetag-handlebars',
-        'django-userservice',
+        'django-userservice==1.2.1',
         'unittest2',
         'AuthZ-Group',
         'python-binary-memcached',
