@@ -24,7 +24,7 @@ from myuw.views.api.calendar import DepartmentalCalendar
 
 
 urlpatterns = [
-    url(r'admin/dates', override
+    url(r'admin/dates', override, name="myuw_date_override"
         ),
     url(r'^logger/(?P<interaction_type>\w+)$', log_interaction
         ),
