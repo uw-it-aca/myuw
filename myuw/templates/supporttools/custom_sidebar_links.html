@@ -9,48 +9,48 @@
 
 <h3>Web Services</h3>
 <ul>
-    {% url 'restclients.views.proxy' 'sws' 'student/v5' as sws_url %}
+    {% url 'restclients_proxy' 'sws' 'student/v5' as sws_url %}
     {% if sws_url %}
     <li><a href="{{ sws_url }}">{{ restclients_sws_link|default:"Browse Student Web Service" }}</a></li>
     {% endif %}
-    {% url 'restclients.views.proxy' 'pws' 'identity/v1' as pws_url %}
+    {% url 'restclients_proxy' 'pws' 'identity/v1' as pws_url %}
     {% if pws_url %}
     <li><a href="{{ pws_url }}">{{ restclients_pws_link|default:"Browse Person Web Service" }}</a></li>
     {% endif %}
-    {% url 'restclients.views.proxy' 'gws' '' as url %}
+    {% url 'restclients_proxy' 'gws' '' as url %}
     {% if url %}
     <li><a href="{{ url }}">UW Groups Web Service</a></li>
     {% endif %}
 
-    {% url 'restclients.views.proxy' 'canvas' '' as url %}
+    {% url 'restclients_proxy' 'canvas' '' as url %}
     {% if url %}
     <li><a href="{{ url }}">Canvas Web Service</a></li>
     {% endif %}
 
-    {% url 'restclients.views.proxy' 'grad' 'index.html' as grad_url %}
+    {% url 'restclients_proxy' 'grad' 'index.html' as grad_url %}
     {% if grad_url %}
     <li><a href="{{ grad_url }}">MyGrad Request Web Service</a></li>
     {% endif %}
 
-    {% url 'restclients.views.proxy' 'iasystem' 'index.html' as ias_url %}
+    {% url 'restclients_proxy' 'iasystem' 'index.html' as ias_url %}
     {% if ias_url %}
     <li><a href="{{ ias_url }}">IASystem Web Service</a></li>
     {% endif %}
 
-    {% url 'restclients.views.proxy' 'libcurrics' 'index.html' as libcurrics_url %}
+    {% url 'restclients_proxy' 'libcurrics' 'index.html' as libcurrics_url %}
     {% if libcurrics_url %}
     <li><a href="{{ libcurrics_url }}">Library Subject Guide</a></li>
     {% endif %}
 
 </ul>
 
-{% url 'restclients.views.proxy' 'hfs' 'myuw/v1' as url %}
+{% url 'restclients_proxy' 'hfs' 'myuw/v1' as url %}
 {% if url %}
     <h4>HFS Web Service:</h4>
     <script>
         function direct_to_hfs_service() {
             var netid = document.getElementById("hfs_service_input").value;
-            window.location.href = "{% url 'restclients.views.proxy' 'hfs' '/myuw/v1/' %}/" + netid;
+            window.location.href = "{% url 'restclients_proxy' 'hfs' '/myuw/v1/' %}/" + netid;
             return false;
         }
     </script>
@@ -61,20 +61,20 @@
     </form>
 {% endif %}
 <br>
-{% url 'restclients.views.proxy' 'libraries' '' as url %}
+{% url 'restclients_proxy' 'libraries' '' as url %}
 {% if url %}
     <h4>My Library Account Info:</h4>
-    <form action="{% url 'restclients.views.proxy' 'libraries' 'mylibinfo/v1/' %}" method="GET">
+    <form action="{% url 'restclients_proxy' 'libraries' 'mylibinfo/v1/' %}" method="GET">
         <div class="form-group">
             <input type="text" name="id" class="form-control" />&nbsp;<input type="submit" value="go" class="btn btn-primary btn-sm" />
         </div>
     </form>
 {% endif %}
 <br>
-{% url 'restclients.views.proxy' 'book' '' as url %}
+{% url 'restclients_proxy' 'book' '' as url %}
 {% if url %}
     <h4>UW Bookstore Web Service:</h4>
-    <form action="{% url 'restclients.views.proxy' 'book' 'myuw/myuw_beta.ubs' %}" method="GET">
+    <form action="{% url 'restclients_proxy' 'book' 'myuw/myuw_beta.ubs' %}" method="GET">
 
         <div class="form-group">
         Term: <select name="quarter" class="form-control">
@@ -89,13 +89,13 @@
     </form>
 {% endif %}
 
-{% url 'restclients.views.proxy' 'uwnetid' '/nws/v1/uwnetid' as url %}
+{% url 'restclients_proxy' 'uwnetid' '/nws/v1/uwnetid' as url %}
 {% if url %}
     <h4>Netid Web Service:</h4>
     <script>
         function direct_to_netid_service() {
             var netid = document.getElementById("netid_service_input").value;
-            window.location.href = "{% url 'restclients.views.proxy' 'uwnetid' '/nws/v1/uwnetid' %}/" + netid + "/subscription/105";
+            window.location.href = "{% url 'restclients_proxy' 'uwnetid' '/nws/v1/uwnetid' %}/" + netid + "/subscription/105";
             return false;
         }
     </script>
