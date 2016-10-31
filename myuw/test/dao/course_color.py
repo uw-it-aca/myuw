@@ -1,5 +1,7 @@
 from django.test import TestCase
 from django.conf import settings
+from django.test.client import RequestFactory
+from userservice.user import UserServiceMiddleware
 from restclients.models import ClassSchedule, Term, Section, Person
 from myuw.dao.course_color import get_colors_by_regid_and_schedule
 from myuw.dao.schedule import _get_schedule
@@ -9,6 +11,10 @@ FDAO_SWS = 'restclients.dao_implementation.sws.File'
 
 
 class TestCourseColors(TestCase):
+    def setUp(self):
+        fake_request = RequestFactory()
+        fake_request.session = {}
+        UserServiceMiddleware().process_request(fake_request)
 
     def test_single_course(self):
         term = Term()
