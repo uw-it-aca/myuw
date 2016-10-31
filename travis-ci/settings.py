@@ -119,3 +119,4 @@ COMPRESS_ROOT = "compress_root"
 # Test the memcached cache code
 RESTCLIENTS_TEST_MEMCACHED = True
 RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
+USERSERVICE_ADMIN_GROUP = "x"
