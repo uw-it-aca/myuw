@@ -182,7 +182,7 @@ class TestCourseColors(TestCase):
         self.assertEquals
         (colors[section.section_label()], 1, "1st section gets the 1st color")
 
-        self.assertNotIn(section2.section_label, colors,
+        self.assertNotIn(section2.section_label(), colors,
                          "There shouldn't be a color for section 2")
 
         self.assertEquals
