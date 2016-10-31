@@ -97,6 +97,7 @@ STATICFILES_FINDERS = (
 )
 
 COMPRESS_ENABLED = False
+COMPRESS_ROOT = "compress_root"
 
 # Test the memcached cache code
 RESTCLIENTS_TEST_MEMCACHED = True

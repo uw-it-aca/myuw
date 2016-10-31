@@ -19,7 +19,7 @@ before_script:
   - npm install coveralls
   - gem install coveralls-lcov
   - cp travis-ci/manage.py manage.py
-  - python manage.py syncdb --noinput
+  - python manage.py migrate
 script:
   - which mocha
   - which _mocha
