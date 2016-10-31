@@ -35,7 +35,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'south', 'compressor', 'restclients', 'templatetag_handlebars',
+    'compressor', 'restclients', 'templatetag_handlebars',
     'myuw', 'userservice', 'django_client_logger',
 )
 
