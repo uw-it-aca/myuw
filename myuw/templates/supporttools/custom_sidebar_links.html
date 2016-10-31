@@ -4,7 +4,7 @@
     {% if user_override_url %}
     <li><a href="{{ user_override_url }}">{{ userservice_link|default:"User Override" }}</a></li>
     {% endif %}
-    <li><a href="{% url 'myuw.views.display_dates.override' %}">Date testing</a></li>
+    <li><a href="{% url 'myuw_date_override' %}">Date testing</a></li>
 </ul>
 
 <h3>Web Services</h3>
