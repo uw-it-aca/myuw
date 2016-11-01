@@ -5,6 +5,8 @@ from myuw.dao.library import _get_account_by_uwnetid
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.schedule import _get_schedule
 from restclients.models.sws import Term
+from django.test.client import RequestFactory
+from userservice.user import UserServiceMiddleware
 
 
 FDAO_SWS = 'restclients.dao_implementation.sws.File'
@@ -12,6 +14,10 @@ FDAO_PWS = 'restclients.dao_implementation.pws.File'
 
 
 class TestLibrary(TestCase):
+    def setUp(self):
+        fake_request = RequestFactory()
+        fake_request.session = {}
+        UserServiceMiddleware().process_request(fake_request)
 
     def test_get_account_balance(self):
         self.assertEquals(_get_account_by_uwnetid(None), None)

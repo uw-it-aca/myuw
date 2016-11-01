@@ -101,3 +101,12 @@ class TestPageMethods(TestCase):
             url,
             HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
         self.assertEquals(response.status_code, 200)
+
+    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
+    def test_support_links(self):
+        url = reverse("myuw_date_override")
+        get_user('jbothell')
+        self.client.login(username='jbothell',
+                          password=get_user_pass('jbothell'))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)

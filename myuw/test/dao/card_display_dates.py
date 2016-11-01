@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
+from userservice.user import UserServiceMiddleware
 from datetime import datetime
 from myuw.dao.term import get_default_date, get_comparison_datetime,\
     get_specific_term
@@ -26,6 +27,7 @@ class TestDisplayValues(TestCase):
         now_request.session = {
             'myuw_override_date': date
         }
+        UserServiceMiddleware().process_request(now_request)
         return now_request
 
     def get_visibility_for_date(self, date):

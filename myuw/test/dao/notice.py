@@ -1,4 +1,6 @@
 from django.test import TestCase
+from django.test.client import RequestFactory
+from userservice.user import UserServiceMiddleware
 from myuw.dao.notice import _get_notices_by_regid
 
 
@@ -13,6 +15,9 @@ class TestNotices(TestCase):
                            RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
 
             # no regid
+            fake_request = RequestFactory().get('/')
+            fake_request.session = {}
+            UserServiceMiddleware().process_request(fake_request)
             notices = _get_notices_by_regid(None)
             self.assertEquals(notices, None)
 
