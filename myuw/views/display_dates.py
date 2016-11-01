@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import RequestContext
 from userservice.user import UserService
 from authz_group import Group
@@ -50,7 +50,7 @@ def override(request):
     group_name = settings.USERSERVICE_ADMIN_GROUP
     is_admin = g.is_member_of_group(actual_user, group_name)
     if is_admin is False:
-        return render_to_response('no_access.html', {})
+        return render(request, 'no_access.html', {})
 
     context = {}
     if request.method == "POST":
@@ -79,8 +79,7 @@ def override(request):
     add_date_term_info(request, context)
 
     add_seen_registration_context(request, context)
-    return render_to_response("display_dates/override.html", context,
-                              context_instance=RequestContext(request))
+    return render(request, "display_dates/override.html", context)
 
 
 def _handle_post(request, context):

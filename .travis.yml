@@ -4,7 +4,6 @@ services:
   - memcached
 python:
   - "2.7"
-  - "2.6"
 install: pip install -r requirements.txt
 before_script:
   - pip install coverage
@@ -19,14 +18,14 @@ before_script:
   - npm install coveralls
   - gem install coveralls-lcov
   - cp travis-ci/manage.py manage.py
-  - python manage.py syncdb --noinput
+  - python manage.py migrate
 script:
   - which mocha
   - which _mocha
   - which istanbul
   - ls -l ./node_modules/.bin/_mocha
   - ls -l ./node_modules/mocha/bin/_mocha
-  - pep8 myuw/ --exclude=migrations,myuw/static
+  - pep8 myuw/ --exclude=migrations,myuw/south_migrations,myuw/static
   - jshint myuw/static/js/  --verbose
   - mocha myuw/static/js/test/ --recursive
   - istanbul cover --include-all-sources -x "**/vendor/**" -x "**/site-packages/**" ./node_modules/mocha/bin/_mocha -- -R spec myuw/static/js/test/

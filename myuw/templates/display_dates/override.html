@@ -3,7 +3,7 @@
 
 <h2>Override card display values</h2>
 <h3>Set the date</h3>
-<form action="{% url 'myuw.views.display_dates.override' %}" method="POST">
+<form action="{% url 'myuw_date_override' %}" method="POST">
 {% csrf_token %}
 
 Override date: <input type="text" name="date" value="{{ myuw_override_date }}" placeholder="YYYY-MM-DD HH:MM:SS"/>

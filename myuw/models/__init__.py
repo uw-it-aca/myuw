@@ -39,7 +39,7 @@ class User(models.Model):
                                db_index=True,
                                unique=True)
 
-    last_visit = models.DateTimeField(default=timezone.now())
+    last_visit = models.DateTimeField(default=timezone.now)
 
     class Meta:
         db_table = "myuw_mobile_user"
@@ -77,7 +77,7 @@ class StudentAccountsBalances(models.Model):
 
 
 class TuitionDate(models.Model):
-    user = models.ForeignKey('User', on_delete=models.PROTECT, unique=True)
+    user = models.OneToOneField('User', on_delete=models.PROTECT)
     date_stored = models.DateTimeField(auto_now=True)
     date = models.DateField()
 
