@@ -3,6 +3,7 @@ import pytz
 from django.test import TestCase
 from django.conf import settings
 from django.test.client import RequestFactory
+from userservice.user import UserServiceMiddleware
 from restclients.models.sws import Section, Term
 from restclients.iasystem.evaluation import get_evaluation_by_id
 from myuw.dao.iasystem import json_for_evaluation,\
@@ -16,6 +17,10 @@ FDAO_IAS = 'restclients.dao_implementation.iasystem.File'
 
 
 class IASystemDaoTest(TestCase):
+    def setUp(self):
+        fake_request = RequestFactory()
+        fake_request.session = {}
+        UserServiceMiddleware().process_request(fake_request)
 
     def test_summer_term_overlaped(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
