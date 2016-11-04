@@ -16,6 +16,8 @@ from myuw.dao.gws import is_grad_student, is_student,\
     is_seattle_student, is_bothell_student, is_tacoma_student,\
     is_staff_employee
 from myuw.dao.enrollment import get_main_campus
+from myuw.dao.instructor_schedule import is_instructor
+from myuw.dao.exceptions import UnsupportedAffiliationException
 from myuw.models import UserMigrationPreference
 
 
@@ -67,6 +69,7 @@ def get_all_affiliations(request):
             "employee": is_employee(),
             "fyp": is_fyp,
             "faculty": is_faculty(),
+            "instructor": is_instructor(request),
             "seattle": enrolled_campuses["seattle"] or is_seattle_student(),
             "bothell": enrolled_campuses["bothell"] or is_bothell_student(),
             "tacoma": enrolled_campuses["tacoma"] or is_tacoma_student(),
@@ -166,20 +169,36 @@ def get_base_campus(request):
     return campus
 
 
-def is_oldmyuw_user():
+def valid_myuw_user(request, is_mobile):
+    if is_mobile:
+        # on mobile devices, prioritize affiliation over preference
+        if is_undergrad_student():
+            return
+
     if has_legacy_preference():
-        return True
+        invalid_myuw_user('legacy preference')
+
     if is_optin_user():
-        return False
+        return
+
     if is_staff_employee():
-        return True
+        invalid_myuw_user('staff employee affiliation')
+
     if is_faculty():
-        return True
+        invalid_myuw_user('faculty affiliation')
+
     if is_current_graduate_student():
-        return True
+        invalid_myuw_user('graduate student affiliation')
+
     if is_undergrad_student():
-        return False
-    return True
+        invalid_myuw_user('student affiliation')
+
+    invalid_myuw_user('unsupported affiliation')
+
+
+def invalid_myuw_user(reason):
+    netid = get_netid_of_current_user()
+    raise UnsupportedAffiliationException("%s: %s" % (netid, reason))
 
 
 def has_legacy_preference():

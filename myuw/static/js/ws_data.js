@@ -381,6 +381,62 @@ WSData = {
 
     },
 
+    fetch_instructed_course_data_for_term: function(term, callback, err_callback, args) {
+        if (!WSData._course_data[term]) {
+            var url = "/api/v1/instructor_schedule/"+term;
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+
+            $.ajax({
+                url: url,
+                dataType: "JSON",
+
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    // MUWM-549 and MUWM-552
+                    var sections = results.sections;
+                    var section_count = sections.length;
+                    for (var index = 0; index < section_count; index++) {
+                        section = sections[index];
+
+                        var canvas_url = section.canvas_url;
+                        if (canvas_url) {
+                            if (section.class_website_url == canvas_url) {
+                                section.class_website_url = null;
+                            }
+                            var matches = canvas_url.match(/\/([0-9]+)$/);
+                            var canvas_id = matches[1];
+                            var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
+
+                            if (section.class_website_url == alternate_url) {
+                                section.class_website_url = null;
+                            }
+                        }
+                    }
+                    WSData._course_data_error_status = null;
+                    WSData._course_data[term] = results;
+                    WSData._run_success_callbacks_for_url(url);
+                },
+                error: function(xhr, status, error) {
+                    WSData._course_data_error_status[term] = xhr.status;
+                    WSData._run_error_callbacks_for_url(url);
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+
+    },
+
     fetch_grades_for_term: function(term, callback, err_callback, args) {
         if (!term) { term = ''; }
 

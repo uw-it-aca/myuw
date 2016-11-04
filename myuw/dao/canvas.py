@@ -2,6 +2,7 @@ import logging
 from restclients.canvas.enrollments import Enrollments as CanvasEnrollments
 from restclients.canvas.sections import Sections
 from restclients.canvas.courses import Courses
+from restclients.exceptions import DataFailureException
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time, log_exception
@@ -54,6 +55,17 @@ def get_indexed_by_decrosslisted(by_primary, sws_sections):
             if alternate_id in by_primary:
                 by_primary[base_id] = by_primary[alternate_id]
     return by_primary
+
+
+def get_canvas_course_from_section(sws_section):
+    try:
+        return Courses().get_course_by_sis_id(
+            sws_section.canvas_course_sis_id())
+    except DataFailureException as err:
+        if err.status == 404:
+            return None
+
+        raise
 
 
 def _indexed_by_course_id(enrollments):

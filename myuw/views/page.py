@@ -11,9 +11,11 @@ from django.views.decorators.cache import cache_control
 from userservice.user import UserService
 from myuw.dao.term import get_current_quarter
 from myuw.dao.pws import is_student
-from myuw.dao.affiliation import get_all_affiliations, is_oldmyuw_user
+from myuw.dao.affiliation import get_all_affiliations, valid_myuw_user
 from myuw.dao.emaillink import get_service_url_for_address
-from myuw.dao.exceptions import EmailServiceUrlException
+from myuw.dao.instructor_schedule import is_instructor
+from myuw.dao.exceptions import EmailServiceUrlException,\
+    UnsupportedAffiliationException
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_exception
 from myuw.logger.logresp import log_invalid_netid_response
@@ -41,23 +43,17 @@ def index(request,
         log_invalid_netid_response(logger, timer)
         return invalid_session()
 
-    if _is_mobile(request):
-        # On mobile devices, all students get the current myuw.  Non-students
-        # are sent to the legacy site.
-        try:
-            if not is_student():
-                logger.info("%s not a student, redirect to legacy!" % netid)
-                return redirect_to_legacy_site()
-        except Exception:
-            log_exception(logger,
-                          '%s is_student' % netid,
-                          traceback.format_exc())
-            logger.info("%s, redirected to legacy!" % netid)
-            return redirect_to_legacy_site()
-
-    else:
-        if is_oldmyuw_user():
-            return redirect_to_legacy_site()
+    try:
+        valid_myuw_user(request, _is_mobile(request))
+    except UnsupportedAffiliationException as err:
+        logger.info("%s, redirect to legacy!" % (err))
+        return redirect_to_legacy_site()
+    except Exception:
+        log_exception(logger,
+                      '%s is_student' % netid,
+                      traceback.format_exc())
+        logger.info("%s, redirected to legacy!" % netid)
+        return redirect_to_legacy_site()
 
     context = {
         "year": year,
@@ -106,6 +102,10 @@ def index(request,
             context["quarter"] = cur_term.quarter
     else:
         pass
+
+    context['disabled_features'] = getattr(
+        settings, "MYUW_DISABLED_FEATURES", [])
+
     log_success_response_with_affiliation(logger, timer, request)
     return render(request, "index.html", context)
 
