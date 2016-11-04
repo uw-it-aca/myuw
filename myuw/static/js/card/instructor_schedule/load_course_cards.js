@@ -54,7 +54,6 @@ var InstructorCourseCards = {
         var raw = courses_template(course_data);
         InstructorCourseCards.dom_target.html(raw);
 
-        var course_data = WSData.normalized_course_data(term);
         var course_sections = course_data.sections;
         var index;
         for (index = 0; index < course_sections.length; index++) {
