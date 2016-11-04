@@ -45,6 +45,10 @@
     {% include "handlebars/card/schedule/final_day.html" %}
     {% include "handlebars/card/schedule/visual.html" %}
     {% include "handlebars/card/schedule/visual_day.html" %}
+    {% include "handlebars/card/instructor_schedule/course_cards.html" %}
+    {% include "handlebars/card/instructor_schedule/course_card_content.html" %}
+    {% include "handlebars/card/instructor_schedule/course_sche_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/course_resource_panel.html" %}
     {% include "handlebars/card/new_student/ns_critical_info.html" %}
     {% include "handlebars/card/new_student/ns_international_stu.html" %}
     {% include "handlebars/card/new_student/ns_summer_efs.html" %}
@@ -78,6 +82,7 @@
         "landing": "MyUW Home",
         "course_list": "MyUW",
         "visual": "MyUW: Visual Schedule",
+        "instructor_schedule": "Teaching Schedule",
         "finabala": "Financial Balances",
         "future_quarters": "MyUW: View Future Quarters",
         "textbooks": "MyUW: Textbooks",
@@ -96,6 +101,7 @@
         "undergrad": {{ user.affiliations.undergrad|yesno:"true, false" }},
         "pce": {{ user.affiliations.pce|yesno:"true, false" }},
         "stud_employee": {{ user.affiliations.stud_employee|yesno:"true, false" }},
+        "instructor": {{ user.affiliations.instructor|yesno:"true, false" }},
         "employee": {{ user.affiliations.employee|yesno:"true, false" }},
         "fyp": {{ user.affiliations.fyp|yesno:"true, false" }},
         "faculty": {{ user.affiliations.faculty|yesno:"true, false" }},
@@ -110,6 +116,11 @@
         "email_forward_icon": "{{ user.email_forward_icon }}",
         "netid": "{{ user.netid }}"
     };
+    window.disabled_features = {
+        {% for feature in disabled_features %}
+        "{{feature}}": true,
+        {% endfor %}
+    }
     window.term = {
         "year": "{{year}}",
         "quarter": "{{quarter}}",

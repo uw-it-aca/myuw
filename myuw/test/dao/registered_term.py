@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.conf import settings
 from django.test.client import RequestFactory
-from restclients.models import ClassSchedule, Term, Section, Person
+from restclients.models.sws import ClassSchedule, Term, Section, Person
 from myuw.dao.term import get_specific_term, get_next_non_summer_quarter,\
     is_a_term, is_b_term, is_full_summer_term
 from myuw.dao.schedule import _get_schedule
