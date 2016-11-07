@@ -57,9 +57,20 @@
 
         {{ #if has_balance }}
             {{ #if is_credit }}
-        <div class="card-badge-container">
-            You have a credit: ${{ plain_tuition }}
-        </div>
+            <div class="card-badge-container">
+                <ul class="card_list">
+                    <li>
+                        <div class="card-badge clearfix">
+                            <div class="pull-left">
+                                <h4 class="card-badge-label">Account Credit</h4>
+                            </div>
+                            <div class="pull-right">
+                                <span class="card-badge-value">+${{ plain_tuition }} CR</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
             {{ else }}
         <!-- else, there is a balance -->
         <div class="card-badge-container">
