@@ -35,7 +35,7 @@ class TestLoginRedirects(MyuwApiTest):
         self.set_user('jnew')
         response = self.get_home_mobile()
 
-        valid_url = "http://testserver%s" % reverse("myuw_home")
+        valid_url = reverse("myuw_home")
         self.assertEquals(response.status_code, 200)
 
     # Putting this here to remove it, to make sure we're testing the default
@@ -125,7 +125,7 @@ class TestLoginRedirects(MyuwApiTest):
         self.set_user(username)
         response = self.client.get(new_url)
 
-        new_valid_url = "http://testserver/"
+        new_valid_url = "/"
         old_valid_url = "http://some-test-server/myuw"
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.get("Location"), new_valid_url)

@@ -22,6 +22,23 @@ SECRET_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 DEBUG = True
 
 TEMPLATE_DEBUG = True
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+
 
 ALLOWED_HOSTS = []
 
@@ -35,7 +52,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'south', 'compressor', 'restclients', 'templatetag_handlebars',
+    'compressor', 'restclients', 'templatetag_handlebars',
     'myuw', 'userservice', 'django_client_logger',
 )
 
@@ -97,7 +114,9 @@ STATICFILES_FINDERS = (
 )
 
 COMPRESS_ENABLED = False
+COMPRESS_ROOT = "compress_root"
 
 # Test the memcached cache code
 RESTCLIENTS_TEST_MEMCACHED = True
 RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
+USERSERVICE_ADMIN_GROUP = "x"

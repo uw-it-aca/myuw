@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
+from userservice.user import UserServiceMiddleware
 from myuw.dao.canvas import get_indexed_data_for_regid
 from myuw.dao.canvas import get_indexed_by_decrosslisted
 from myuw.dao.schedule import _get_schedule
@@ -10,6 +11,11 @@ FDAO_SWS = 'restclients.dao_implementation.sws.File'
 
 
 class TestCanvas(TestCase):
+    def setUp(self):
+        fake_request = RequestFactory()
+        fake_request.session = {}
+        UserServiceMiddleware().process_request(fake_request)
+
     def test_crosslinks(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
 
