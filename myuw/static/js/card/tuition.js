@@ -45,14 +45,35 @@ var TuitionCard = {
         TuitionCard._render();
     },
 
+    process_tuition: function(data) {
+        var is_credit = false;
+        if (data.match(" CR")) {
+            is_credit = true;
+            data = data.replace(" CR", "");
+        }
+        return {
+            tuition: data,
+            is_credit: is_credit
+        };
+    },
+
     _render: function () {
         var template_data = WSData.tuition_data(),
             tuition_due_notice,
             display_date,
-            due_date;
+            due_date,
+            has_credit_values;
 
         template_data.pce_tuition_dup = Notices.get_notices_for_tag("pce_tuition_dup");
         template_data.is_pce = false;
+
+        if (template_data.pce_accbalance == '0.00') {
+            template_data.pce_accbalance = 0;
+        }
+
+        has_credit_values = TuitionCard.process_tuition(template_data.tuition_accbalance);
+        template_data.plain_tuition = has_credit_values.tuition;
+        template_data.is_credit = has_credit_values.is_credit;
 
         tuition_due_notice = Notices.get_notices_for_tag("tuition_due_date")[0];
         if (tuition_due_notice !== undefined) {
@@ -117,3 +138,9 @@ var TuitionCard = {
         });
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.TuitionCard = TuitionCard;

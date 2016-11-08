@@ -127,7 +127,7 @@
              }
             ],
             "NoticeCategory": "StudentGEN",
-            "NoticeContent": "<span class=\"notice-title\">Your Tuition Balance</span><span class=\"notice-body-with-title\"><a href='https://sdb.admin.washington.edu/students/uwnetid/tuition.asp'>Tuition Account Balance</A>: $12345.00 CR <a href='https://sdb.admin.washington.edu/students/uwnetid/tuition.asp'>details</a></span>",
+            "NoticeContent": "<span class=\"notice-title\">Your Tuition Balance</span><span class=\"notice-body-with-title\"><a href='https://sdb.admin.washington.edu/students/uwnetid/tuition.asp'>Tuition Account Balance</A>: $100.00 CR <a href='https://sdb.admin.washington.edu/students/uwnetid/tuition.asp'>details</a></span>",
             "NoticeType": "AcctBalance"
         },
        {
