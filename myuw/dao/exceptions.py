@@ -10,4 +10,8 @@ class EmailServiceUrlException(Exception):
 
 class CanvasNonSWSException(Exception):
     """Non-academic (adhoc) Canvas course"""
+
+
+class UnsupportedAffiliationException(Exception):
+    """User not associated with supported affiliation"""
     pass
