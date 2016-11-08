@@ -71,26 +71,6 @@ def get_current_quarter_instructor_schedule(request):
     return schedule
 
 
-def get_next_quarter_instructor_instructor_schedule(request):
-    """
-    Return sections instructor is teaching in the next quarter
-    """
-    # MUWM-1981
-    if get_next_quarter(request) == get_current_quarter(request):
-        return None
-    return get_instructor_schedule_by_term(get_next_quarter(request))
-
-
-def get_next_autumn_quarter_instructor_schedule(request):
-    """
-    Return sections instructor is teaching in the next autumn quarter
-    """
-    # MUWM-1981
-    if get_next_autumn_quarter(request) == get_current_quarter(request):
-        return None
-    return get_instructor_schedule_by_term(get_next_autumn_quarter(request))
-
-
 def get_limit_estimate_enrollment_for_section(section):
     section_status = get_section_status_by_label(section.section_label())
     return section_status.limit_estimated_enrollment
