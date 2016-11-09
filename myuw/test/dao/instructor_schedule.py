@@ -2,7 +2,6 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User
 from restclients.models.sws import Term, Section
-from myuw.dao.exceptions import UnsupportedAffiliationException
 from myuw.dao.instructor_schedule import is_instructor,\
     get_current_quarter_instructor_schedule,\
     get_limit_estimate_enrollment_for_section
@@ -25,10 +24,7 @@ class TestInstructorSchedule(TestCase):
                                             password='')
             now_request.user = user
             UserServiceMiddleware().process_request(now_request)
-            try:
-                is_instructor(now_request)
-            except UnsupportedAffiliationException:
-                self.fail('is_instructor raised exception')
+            self.assertTrue(is_instructor(now_request))
 
     def test_get_current_quarter_instructor_schedule(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
