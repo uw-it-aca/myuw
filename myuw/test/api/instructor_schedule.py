@@ -1,9 +1,10 @@
-from myuw.test.api import require_url, MyuwApiTest
+from myuw.test.api import MyuwApiTest
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User
 from userservice.user import UserServiceMiddleware
 from myuw.views.api.instructor_schedule import load_schedule
-from myuw.dao.instructor_schedule import get_current_quarter_instructor_schedule
+from myuw.dao.instructor_schedule import\
+    get_current_quarter_instructor_schedule
 
 
 FDAO_SWS = 'restclients.dao_implementation.sws.File'
@@ -11,9 +12,7 @@ FDAO_PWS = 'restclients.dao_implementation.pws.File'
 FDAO_Canvas = 'restclients.dao_implementation.canvas.File'
 
 
-#@require_url('myuw_instructor_schedule')
 class TestInstructorSchedule(MyuwApiTest):
-
     def test_bill_current_term(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
