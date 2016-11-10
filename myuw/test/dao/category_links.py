@@ -82,4 +82,4 @@ class TestCategoryLinks(TestCase):
         links = _get_links_by_category_and_campus(category_id,
                                                   "",
                                                   affi)
-        self.assertEquals(len(links), 5)
+        self.assertEquals(len(links), 6)
