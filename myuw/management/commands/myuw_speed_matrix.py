@@ -7,16 +7,22 @@ from myuw.test.api import get_user, get_user_pass
 from django.test.utils import override_settings
 import time
 
+
 class Command(BaseCommand):
-    def handle(self, *args, **kwargs):
+    def add_arguments(self, parser):
+        parser.add_argument('--url_name', help="The named MyUW URL to test")
+
+    def handle(self, *args, **options):
         get_user('javerage')
 
         skipped = []
 
-
         print "URL Name,0 seconds,0.1 seconds,0.5 seconds,1.0 seconds"
         for pattern in urlpatterns:
             values = [pattern.name]
+
+            if options["url_name"] and pattern.name != options["url_name"]:
+                continue
             if pattern.name is None:
                 skipped.append(pattern.regex.pattern)
                 continue
@@ -42,12 +48,14 @@ class Command(BaseCommand):
                 continue
 
             delay = 0.0
-            for delay in [0.0, 0.1, 0.5, 1.0]:
+            delay_values = [0.0, 0.1, 0.5, 1.0]
+            for delay in delay_values:
                 @override_settings(RESTCLIENTS_MOCKDATA_DELAY=delay)
                 def run_it():
 
                     client = Client()
-                    client.login(username='javerage', password=get_user_pass('javerage'))
+                    client.login(username='javerage',
+                                 password=get_user_pass('javerage'))
                     t0 = time.time()
                     resp = client.get(reverse(pattern.name))
                     t1 = time.time()
