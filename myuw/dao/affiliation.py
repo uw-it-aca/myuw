@@ -83,6 +83,42 @@ def get_all_affiliations(request):
     return data
 
 
+def get_fast_affiliations(request):
+    """
+    A list of affiliations that can be done in a single lookup.
+    ["student"]: True if the user is currently an UW student.
+    ["grad"]: True if the user is currently an UW graduate student.
+    ["undergrad"]: True if the user is currently an UW undergraduate student.
+    ["pce"]: True if the user is currently an UW PCE student.
+    ["employee"]: True if the user is currently a uw employee.
+    ["stud_employee"]: True if the user is currently a student employee.
+    ["faculty"]: True if the user is currently faculty.
+
+    """
+    if hasattr(request, 'myuw_fast_user_affiliations'):
+        return request.myuw_fast_user_affiliations
+
+    is_fyp = False
+    try:
+        is_fyp = is_thrive_viewer()
+    except Exception:
+        # This fails in unit tests w/o userservice
+        pass
+
+    data = {"grad": request_cached_is_grad_student(request),
+            "undergrad": request_cached_is_undergrad(request),
+            "student": request_cached_is_student(request),
+            "pce": request_cached_is_pce_student(request),
+            "stud_employee": request_cached_is_student_employee(request),
+            "employee": request_cached_is_employee(request),
+            "fyp": is_fyp,
+            "faculty": request_cached_is_faculty(request),
+            }
+
+    request.myuw_fast_user_affiliations = data
+    return data
+
+
 def _get_campuses_by_schedule(schedule):
     """
     Returns a dictionary indicating the campuses that the student
@@ -229,3 +265,54 @@ def _is_user_in_list(username, user_type):
                 return True
 
     return False
+
+
+def _build_cache_method(name, method):
+    name = "myuw_cache_%s" % name
+
+    def generated(request):
+        if hasattr(request, name):
+            print "Hey, cached: ", name
+            return getattr(request, name)
+        value = method()
+        setattr(request, name, value)
+        return value
+    return generated
+
+
+request_cached_is_grad_student = _build_cache_method("grad_student",
+                                                     is_grad_student)
+
+
+request_cached_is_undergrad = _build_cache_method("undergrad",
+                                                  is_undergrad_student)
+
+
+request_cached_is_student = _build_cache_method("student",
+                                                is_student)
+
+
+request_cached_is_pce_student = _build_cache_method("pce_student",
+                                                    is_pce_student)
+
+request_cached_is_student_employee = _build_cache_method("student_employee",
+                                                         is_student_employee)
+
+
+request_cached_is_employee = _build_cache_method("student_employee",
+                                                 is_employee)
+
+
+request_cached_is_faculty = _build_cache_method("faculty",
+                                                is_faculty)
+
+
+def index_affiliation_prefetch():
+    return [request_cached_is_grad_student,
+            request_cached_is_undergrad,
+            request_cached_is_student,
+            request_cached_is_pce_student,
+            request_cached_is_student_employee,
+            request_cached_is_employee,
+            request_cached_is_faculty,
+            ]

@@ -11,13 +11,14 @@ from django.views.decorators.cache import cache_control
 from userservice.user import UserService
 from myuw.dao.term import get_current_quarter
 from myuw.dao.pws import is_student
-from myuw.dao.affiliation import get_all_affiliations, is_oldmyuw_user
+from myuw.dao.affiliation import (get_fast_affiliations, is_oldmyuw_user,
+                                  index_affiliation_prefetch)
 from myuw.dao.emaillink import get_service_url_for_address
 from myuw.dao.exceptions import EmailServiceUrlException
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_exception
 from myuw.logger.logresp import log_invalid_netid_response
-from myuw.logger.logresp import log_success_response_with_affiliation
+from myuw.logger.logresp import log_success_response
 from myuw.logger.session_log import log_session
 from myuw.views.rest_dispatch import invalid_session
 from myuw.dao.uwemail import get_email_forwarding_for_current_user
@@ -40,6 +41,8 @@ def index(request,
     if not netid:
         log_invalid_netid_response(logger, timer)
         return invalid_session()
+
+    prefetch_index_resources(request)
 
     if _is_mobile(request):
         # On mobile devices, all students get the current myuw.  Non-students
@@ -67,13 +70,12 @@ def index(request,
         "err": None,
         "user": {
             "netid": None,
-            "affiliations": get_all_affiliations(request)
+            "affiliations": get_fast_affiliations(request)
         },
         "card_display_dates": get_card_visibilty_date_values(request),
     }
 
     context["user"]["session_key"] = request.session.session_key
-    log_session(netid, request.session.session_key, request)
     try:
         my_uwemail_forwarding = get_email_forwarding_for_current_user()
         if my_uwemail_forwarding.is_active():
@@ -106,7 +108,7 @@ def index(request,
             context["quarter"] = cur_term.quarter
     else:
         pass
-    log_success_response_with_affiliation(logger, timer, request)
+    log_success_response(logger, timer)
     return render(request, "index.html", context)
 
 
@@ -138,3 +140,12 @@ def logout(request):
 
     # Redirects to weblogin logout page
     return HttpResponseRedirect(LOGOUT_URL)
+
+
+def prefetch_index_resources(request):
+    prefetch_methods = []
+    prefetch_methods.extend(index_affiliation_prefetch())
+
+    # TODO - thread these, but not if we're caching in sqlite
+    for method in prefetch_methods:
+        method(request)

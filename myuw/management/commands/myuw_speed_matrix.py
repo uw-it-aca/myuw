@@ -49,6 +49,7 @@ class Command(BaseCommand):
 
             delay = 0.0
             delay_values = [0.0, 0.1, 0.5, 1.0]
+            delay_values = [0.0]
             for delay in delay_values:
                 @override_settings(RESTCLIENTS_MOCKDATA_DELAY=delay)
                 def run_it():
