@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 from myuw.urls import urlpatterns
 from myuw.test.api import get_user, get_user_pass
+from myuw.util.cache_implementation import TestingMemoryCache
 from django.test.utils import override_settings
 import time
 
@@ -49,9 +50,10 @@ class Command(BaseCommand):
 
             delay = 0.0
             delay_values = [0.0, 0.1, 0.5, 1.0]
-            delay_values = [1.0]
+#            delay_values = [1.0]
             cache_dao = 'myuw.util.cache_implementation.TestingMemoryCache'
             for delay in delay_values:
+                TestingMemoryCache.clear_cache()
                 @override_settings(RESTCLIENTS_MOCKDATA_DELAY=delay,
                                    RESTCLIENTS_USE_THREADING=True,
                                    MYUW_PREFETCH_THREADING=True,

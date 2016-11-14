@@ -67,3 +67,7 @@ class TestingMemoryCache(object):
 
     def _get_key(self, service, url):
         return "%s__%s" % (service, url)
+
+    @classmethod
+    def clear_cache(cls):
+        TestingMemoryCache.cache = {}
