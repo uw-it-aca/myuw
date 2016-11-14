@@ -54,6 +54,7 @@ class MyUWCache(TimedCache):
 
 class TestingMemoryCache(object):
     cache = {}
+
     def getCache(self, service, url, headers):
         key = self._get_key(service, url)
         if key in TestingMemoryCache.cache:
