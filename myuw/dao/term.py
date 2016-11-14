@@ -138,7 +138,11 @@ def get_previous_quarter(request):
     """
     for the current quarter refered in the user session.
     """
-    return get_term_before(get_current_quarter(request))
+    if hasattr(request, "myuw_previous_quarter"):
+        return request.myuw_previous_quarter
+    term = get_term_before(get_current_quarter(request))
+    request.myuw_previous_quarter = term
+    return term
 
 
 def is_past(term, request):
@@ -318,3 +322,7 @@ def get_eod_specific_quarter_last_instruction(year, quarter):
     Only the summer full term is relevant.
     """
     return get_specific_term(year, quarter).get_eod_last_instruction()
+
+
+def index_terms_prefetch():
+    return []

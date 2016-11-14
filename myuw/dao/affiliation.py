@@ -272,7 +272,6 @@ def _build_cache_method(name, method):
 
     def generated(request):
         if hasattr(request, name):
-            print "Hey, cached: ", name
             return getattr(request, name)
         value = method()
         setattr(request, name, value)

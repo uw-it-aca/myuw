@@ -49,9 +49,13 @@ class Command(BaseCommand):
 
             delay = 0.0
             delay_values = [0.0, 0.1, 0.5, 1.0]
-            delay_values = [0.0]
+            delay_values = [1.0]
+            cache_dao = 'myuw.util.cache_implementation.TestingMemoryCache'
             for delay in delay_values:
-                @override_settings(RESTCLIENTS_MOCKDATA_DELAY=delay)
+                @override_settings(RESTCLIENTS_MOCKDATA_DELAY=delay,
+                                   RESTCLIENTS_USE_THREADING=True,
+                                   MYUW_PREFETCH_THREADING=True,
+                                   RESTCLIENTS_DAO_CACHE_CLASS=cache_dao)
                 def run_it():
 
                     client = Client()

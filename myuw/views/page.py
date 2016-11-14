@@ -9,7 +9,7 @@ from django.template import RequestContext
 from django.conf import settings
 from django.views.decorators.cache import cache_control
 from userservice.user import UserService
-from myuw.dao.term import get_current_quarter
+from myuw.dao.term import get_current_quarter, index_terms_prefetch
 from myuw.dao.pws import is_student
 from myuw.dao.affiliation import (get_fast_affiliations, is_oldmyuw_user,
                                   index_affiliation_prefetch)
@@ -23,6 +23,7 @@ from myuw.logger.session_log import log_session
 from myuw.views.rest_dispatch import invalid_session
 from myuw.dao.uwemail import get_email_forwarding_for_current_user
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
+from myuw.util.thread import PrefetchThread
 
 
 logger = logging.getLogger(__name__)
@@ -145,7 +146,16 @@ def logout(request):
 def prefetch_index_resources(request):
     prefetch_methods = []
     prefetch_methods.extend(index_affiliation_prefetch())
+    prefetch_methods.extend(index_terms_prefetch())
 
-    # TODO - thread these, but not if we're caching in sqlite
+    prefetch_threads = []
     for method in prefetch_methods:
-        method(request)
+        thread = PrefetchThread()
+        thread.method = method
+        thread.request = request
+        thread.start()
+        prefetch_threads.append(thread)
+
+    for i in range(len(prefetch_threads)):
+        thread = prefetch_threads[i]
+        thread.join()
