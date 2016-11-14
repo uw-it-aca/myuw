@@ -30,5 +30,9 @@ class Thread(threading.Thread):
 class PrefetchThread(Thread):
 
     def run(self):
-        UserServiceMiddleware().process_request(self.request)
-        self.method(self.request)
+        try:
+            UserServiceMiddleware().process_request(self.request)
+            self.method(self.request)
+        except Exception as ex:
+            # We need to be sure that any prefetch errors don't crash the page!
+            pass
