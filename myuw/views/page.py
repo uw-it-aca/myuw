@@ -22,6 +22,7 @@ from myuw.logger.logresp import log_success_response
 from myuw.logger.session_log import log_session
 from myuw.views.rest_dispatch import invalid_session
 from myuw.dao.uwemail import get_email_forwarding_for_current_user
+from myuw.dao.uwemail import index_forwarding_prefetch
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.util.thread import PrefetchThread
 
@@ -146,7 +147,8 @@ def logout(request):
 def prefetch_index_resources(request):
     prefetch_methods = []
     prefetch_methods.extend(index_affiliation_prefetch())
-    prefetch_methods.extend(index_terms_prefetch())
+    prefetch_methods.extend(index_terms_prefetch(request))
+    prefetch_methods.extend(index_forwarding_prefetch())
 
     prefetch_threads = []
     for method in prefetch_methods:

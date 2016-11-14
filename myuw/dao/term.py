@@ -324,5 +324,33 @@ def get_eod_specific_quarter_last_instruction(year, quarter):
     return get_specific_term(year, quarter).get_eod_last_instruction()
 
 
-def index_terms_prefetch():
-    return []
+# The affilliation method caches values on the request object, but this one
+# is just designed to get values into our caching system.
+def _get_term_method(year, quarter):
+    def generated(request):
+        get_specific_term(year, quarter)
+    return generated
+
+
+def index_terms_prefetch(request):
+    # This triggers a call to get_current_term when using the file dao.
+    # That request won't happen on test/production
+    compare = get_comparison_date(request)
+    year = compare.year
+    month = compare.year
+
+    methods = []
+
+    for quarter in ('autumn', 'summer', 'spring', 'winter'):
+        methods.append(_get_term_method(year, quarter))
+
+    if month < 4:
+        methods.append(_get_term_method(year-1, 'autumn'))
+
+    if month > 6:
+        methods.append(_get_term_method(year+1, 'winter'))
+
+    if month > 9:
+        methods.append(_get_term_method(year+1, 'spring'))
+
+    return methods
