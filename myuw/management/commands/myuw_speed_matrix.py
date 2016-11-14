@@ -54,6 +54,7 @@ class Command(BaseCommand):
             cache_dao = 'myuw.util.cache_implementation.TestingMemoryCache'
             for delay in delay_values:
                 TestingMemoryCache.clear_cache()
+
                 @override_settings(RESTCLIENTS_MOCKDATA_DELAY=delay,
                                    RESTCLIENTS_USE_THREADING=True,
                                    MYUW_PREFETCH_THREADING=True,
