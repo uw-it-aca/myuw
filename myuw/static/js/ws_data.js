@@ -4,6 +4,8 @@ WSData = {
     _category_link_data: {},
     _course_data: {},
     _course_data_error_status: {},
+    _instructed_course_data: {},
+    _instructed_course_data_error_status: {},
     _department_events: null,
     _grade_data: {},
     _hfs_data: null,
@@ -122,6 +124,30 @@ WSData = {
 
     course_data_for_term: function(term) {
         return WSData._course_data[term];
+    },
+
+    instructed_course_data_error_code: function(term) {
+        return WSData._instructed_course_data_error_status[term];
+    },
+    normalized_instructed_course_data: function(term) {
+        var course_data;
+        if (term) {
+            course_data = WSData.instructed_course_data_for_term(term);
+        } else {
+            course_data = WSData.current_instructed_course_data();
+        }
+        if (course_data) {
+            WSData._normalize_instructors(course_data);
+        }
+        return course_data;
+    },
+
+    current_instructed_course_data: function() {
+        return WSData._instructed_course_data.current;
+    },
+
+    instructed_course_data_for_term: function(term) {
+        return WSData._instructed_course_data[term];
     },
 
     grade_data_for_term: function(term) {
@@ -369,6 +395,62 @@ WSData = {
                 },
                 error: function(xhr, status, error) {
                     WSData._course_data_error_status[term] = xhr.status;
+                    WSData._run_error_callbacks_for_url(url);
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+
+    },
+
+    fetch_instructed_course_data_for_term: function(term, callback, err_callback, args) {
+        if (!WSData._instructed_course_data[term]) {
+            var url = "/api/v1/instructor_schedule/"+term;
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+
+            $.ajax({
+                url: url,
+                dataType: "JSON",
+                async: true,
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    // MUWM-549 and MUWM-552
+                    var sections = results.sections;
+                    var section_count = sections.length;
+                    for (var index = 0; index < section_count; index++) {
+                        section = sections[index];
+
+                        var canvas_url = section.canvas_url;
+                        if (canvas_url) {
+                            if (section.class_website_url == canvas_url) {
+                                section.class_website_url = null;
+                            }
+                            var matches = canvas_url.match(/\/([0-9]+)$/);
+                            var canvas_id = matches[1];
+                            var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
+
+                            if (section.class_website_url == alternate_url) {
+                                section.class_website_url = null;
+                            }
+                        }
+                    }
+                    WSData._instructed_course_data_error_status = null;
+                    WSData._instructed_course_data[term] = results;
+                    WSData._run_success_callbacks_for_url(url);
+                },
+                error: function(xhr, status, error) {
+                    WSData._instructed_course_data_error_status[term] = xhr.status;
                     WSData._run_error_callbacks_for_url(url);
                 }
             });

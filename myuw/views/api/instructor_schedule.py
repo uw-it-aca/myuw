@@ -30,7 +30,7 @@ class InstSche(RESTDispatch):
     def make_http_resp(self, timer, term, request, summer_term=None):
         """
         @return instructor schedule data in json format
-                status 404: no schedule found (not registered)
+                status 404: no schedule found (teaching no courses)
         """
         schedule = get_instructor_schedule_by_term(term)
         resp_data = load_schedule(request, schedule)
