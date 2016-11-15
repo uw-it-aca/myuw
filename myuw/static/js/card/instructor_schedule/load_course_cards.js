@@ -89,7 +89,7 @@ var InstructorCourseCards = {
     },
 
     is_disabled: function () {
-        return (window.disabled_features.hasOwnProperty('instructor_schedule')
-                && window.disabled_features.instructor_schedule);
+        return (window.disabled_features.hasOwnProperty('instructor_schedule') &&
+                window.disabled_features.instructor_schedule);
     }
 };
