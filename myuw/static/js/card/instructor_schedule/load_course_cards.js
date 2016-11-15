@@ -4,6 +4,11 @@ var InstructorCourseCards = {
     term: 'current',
 
     render_init: function() {
+        if (myuwFeatureDisabled('instructor_schedule')) {
+            $("#InstructorCourseCards").hide();
+            return;
+        }
+
         WSData.fetch_instructed_course_data_for_term(InstructorCourseCards.term, InstructorCourseCards.render_upon_data, InstructorCourseCards.render_error);
     },
 

@@ -115,6 +115,11 @@
         "email_forward_icon": "{{ user.email_forward_icon }}",
         "netid": "{{ user.netid }}"
     };
+    window.disabled_features = {
+        {% for feature in disabled_features %}
+        "{{feature}}": true{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    }
     window.term = {
         "year": "{{year}}",
         "quarter": "{{quarter}}",

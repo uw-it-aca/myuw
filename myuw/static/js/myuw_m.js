@@ -339,3 +339,8 @@ var toggle_card_disclosure = function(card, div_toggled, a_expose, a_hide, label
         window.myuw_log.log_card(card, "collapse"+log_label);
     }
 };
+
+var myuwFeatureDisabled = function(feature) {
+    return (window.disabled_features.hasOwnProperty(feature) &&
+            window.disabled_features[feature]);
+};
