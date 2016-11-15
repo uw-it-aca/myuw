@@ -1094,6 +1094,46 @@ body {
 	    }
     }
     
+    // instructor course cards
+
+    #InstructorCourseCards {
+
+        .card {
+
+            .scheduleHeading {
+                opacity: .5;
+                margin-bottom: 2px;
+            }
+            .meeting_type {
+                text-transform: capitalize;
+            }
+            table.course_schedule, table.table-course-schedule { width: 100%;
+               th {
+                   font-weight: 100;
+                   text-transform: uppercase;
+                   opacity: .5;
+               }
+               td {
+                   width: 25%;
+               }
+            }
+            ul { line-height: 56px;
+                li:first-child {
+                    left: 0%;
+                }
+                li {
+                    display: inline-block;
+                    text-decoration: none;
+                    background-color: #eee;
+                    color: #333;
+                    margin: 10px 0;
+                    padding: 0 12px;
+                    border: 1px solid gray;
+                }
+            }
+        }
+    }
+
     // course cards
     
     #CourseCards {
