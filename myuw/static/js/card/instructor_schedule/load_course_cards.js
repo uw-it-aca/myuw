@@ -26,7 +26,7 @@ var InstructorCourseCards = {
             // no instructed courses found
             $("#InstructorCourseCards").hide();
         } else {
-            raw = CardWithError.render("Instructed Courses");
+            raw = CardWithError.render("Teaching Schedule");
             InstructorCourseCards.dom_target.html(raw);
         }
     },
@@ -66,12 +66,6 @@ var InstructorCourseCards = {
             var course_id = ev.currentTarget.getAttribute("rel");
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');
             WSData.log_interaction("open_course_website_"+course_id, term);
-        });
-
-        $(".lib_subject_guide").on("click", function(ev) {
-            var course_id = ev.currentTarget.getAttribute("rel");
-            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("open_lib_subject_guide_"+course_id, term);
         });
 
         $(".show_map").on("click", function(ev) {
