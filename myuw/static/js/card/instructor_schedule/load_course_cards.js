@@ -4,7 +4,7 @@ var InstructorCourseCards = {
     term: 'current',
 
     render_init: function() {
-        if (InstructorCourseCards.is_disabled()) {
+        if (myuwFeatureDisabled('instructor_schedule')) {
             $("#InstructorCourseCards").hide();
             return;
         }
@@ -86,10 +86,5 @@ var InstructorCourseCards = {
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');
             WSData.log_interaction("open_course_canvas_website_"+course_id, term);
         });
-    },
-
-    is_disabled: function () {
-        return (window.disabled_features.hasOwnProperty('instructor_schedule') &&
-                window.disabled_features.instructor_schedule);
     }
 };

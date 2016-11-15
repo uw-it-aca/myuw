@@ -117,7 +117,7 @@
     };
     window.disabled_features = {
         {% for feature in disabled_features %}
-        "{{feature}}": true,
+        "{{feature}}": true{% if not forloop.last %},{% endif %}
         {% endfor %}
     }
     window.term = {
