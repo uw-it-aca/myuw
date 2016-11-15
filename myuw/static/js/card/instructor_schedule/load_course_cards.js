@@ -4,6 +4,11 @@ var InstructorCourseCards = {
     term: 'current',
 
     render_init: function() {
+        if (InstructorCourseCards.is_disabled()) {
+            $("#InstructorCourseCards").hide();
+            return;
+        }
+
         WSData.fetch_instructed_course_data_for_term(InstructorCourseCards.term, InstructorCourseCards.render_upon_data, InstructorCourseCards.render_error);
     },
 
@@ -81,5 +86,10 @@ var InstructorCourseCards = {
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');
             WSData.log_interaction("open_course_canvas_website_"+course_id, term);
         });
+    },
+
+    is_disabled: function () {
+        return (window.disabled_features.hasOwnProperty('instructor_schedule')
+                && window.disabled_features.instructor_schedule);
     }
 };
