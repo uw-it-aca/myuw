@@ -306,7 +306,19 @@ request_cached_is_faculty = _build_cache_method("faculty",
                                                 is_faculty)
 
 
-def index_affiliation_prefetch():
+def wrapped_is_seattle(request):
+    return is_seattle_student()
+
+
+def wrapped_is_tacoma(request):
+    return is_tacoma_student()
+
+
+def wrapped_is_bothell(request):
+    return is_bothell_student()
+
+
+def affiliation_prefetch():
     return [request_cached_is_grad_student,
             request_cached_is_undergrad,
             request_cached_is_student,
@@ -314,4 +326,7 @@ def index_affiliation_prefetch():
             request_cached_is_student_employee,
             request_cached_is_employee,
             request_cached_is_faculty,
+            wrapped_is_seattle,
+            wrapped_is_tacoma,
+            wrapped_is_bothell,
             ]

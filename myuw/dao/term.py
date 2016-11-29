@@ -332,7 +332,7 @@ def _get_term_method(year, quarter):
     return generated
 
 
-def index_terms_prefetch(request):
+def current_terms_prefetch(request):
     # This triggers a call to get_current_term when using the file dao.
     # That request won't happen on test/production
     compare = get_comparison_date(request)

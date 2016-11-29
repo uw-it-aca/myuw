@@ -9,10 +9,10 @@ from django.template import RequestContext
 from django.conf import settings
 from django.views.decorators.cache import cache_control
 from userservice.user import UserService
-from myuw.dao.term import get_current_quarter, index_terms_prefetch
+from myuw.dao.term import get_current_quarter, current_terms_prefetch
 from myuw.dao.pws import is_student
 from myuw.dao.affiliation import (get_fast_affiliations, is_oldmyuw_user,
-                                  index_affiliation_prefetch)
+                                  affiliation_prefetch)
 from myuw.dao.emaillink import get_service_url_for_address
 from myuw.dao.exceptions import EmailServiceUrlException
 from myuw.logger.timer import Timer
@@ -24,7 +24,7 @@ from myuw.views.rest_dispatch import invalid_session
 from myuw.dao.uwemail import get_email_forwarding_for_current_user
 from myuw.dao.uwemail import index_forwarding_prefetch
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
-from myuw.util.thread import PrefetchThread
+from myuw.views import prefetch
 
 
 logger = logging.getLogger(__name__)
@@ -146,18 +146,8 @@ def logout(request):
 
 def prefetch_index_resources(request):
     prefetch_methods = []
-    prefetch_methods.extend(index_affiliation_prefetch())
-    prefetch_methods.extend(index_terms_prefetch(request))
+    prefetch_methods.extend(affiliation_prefetch())
+    prefetch_methods.extend(current_terms_prefetch(request))
     prefetch_methods.extend(index_forwarding_prefetch())
 
-    prefetch_threads = []
-    for method in prefetch_methods:
-        thread = PrefetchThread()
-        thread.method = method
-        thread.request = request
-        thread.start()
-        prefetch_threads.append(thread)
-
-    for i in range(len(prefetch_threads)):
-        thread = prefetch_threads[i]
-        thread.join()
+    prefetch(request, prefetch_methods)
