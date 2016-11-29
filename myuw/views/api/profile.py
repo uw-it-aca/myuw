@@ -2,8 +2,10 @@ import json
 import logging
 import traceback
 from django.http import HttpResponse
-from myuw.dao.affiliation import get_base_campus, affiliation_prefetch
-from myuw.dao.enrollment import get_current_quarter_enrollment
+from myuw.dao.affiliation import affiliation_prefetch
+from myuw.dao.enrollment import (get_current_quarter_enrollment,
+                                 get_main_campus,
+                                 enrollment_prefetch)
 from myuw.dao.student_profile import get_profile_of_current_user
 from myuw.dao.term import current_terms_prefetch
 from myuw.dao.gws import is_grad_student
@@ -35,7 +37,15 @@ class MyProfile(RESTDispatch):
             profile = get_profile_of_current_user()
             response = profile.json_data()
             response['display_name'] = get_display_name_of_current_user()
-            response['campus'] = get_base_campus(request)
+
+            campuses = get_main_campus(request)
+
+            if 'Seattle' in campuses:
+                response['campus'] = 'Seattle'
+            elif 'Tacoma' in campuses:
+                response['campus'] = 'Tacoma'
+            elif 'Bothell' in campuses:
+                response['campus'] = 'Bothell'
             response['is_grad_student'] = is_grad_student()
             try:
                 enrollment = get_current_quarter_enrollment(request)
@@ -61,5 +71,6 @@ def prefetch_profile_resources(request):
     prefetch_methods = []
     prefetch_methods.extend(affiliation_prefetch())
     prefetch_methods.extend(current_terms_prefetch(request))
+    prefetch_methods.extend(enrollment_prefetch())
 
     prefetch(request, prefetch_methods)
