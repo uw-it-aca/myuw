@@ -7,7 +7,7 @@ from restclients.exceptions import DataFailureException,\
 from myuw.logger.logresp import log_err, log_data_not_found_response
 
 
-class RESTDispatch:
+class RESTDispatch(object):
     """
     Handles passing on the request to the correct view
     method based on the request type.
