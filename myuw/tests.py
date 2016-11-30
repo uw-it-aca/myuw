@@ -45,6 +45,7 @@ from myuw.test.api.dept_calendar import TestDeptCalAPI
 from myuw.test.cache import TestCustomCachePolicy
 from myuw.test.context_processors import TestContextProcessors
 from myuw.test.loggers import TestSessionLog
+from myuw.test.views.choose import TestChoose
 from myuw.test.views.page import TestPageMethods
 from myuw.test.views.logout import TestLogoutLink
 from myuw.test.views.mobile_login import TestLoginRedirects
