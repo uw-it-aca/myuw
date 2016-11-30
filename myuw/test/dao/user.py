@@ -1,5 +1,6 @@
 from django.test import TransactionTestCase
 from django.conf import settings
+from myuw.models import UserMigrationPreference
 from myuw.dao.user import set_preference_to_new_myuw,\
     set_preference_to_old_myuw, has_legacy_preference, has_newmyuw_preference,\
     is_optin_user, is_fyp_thrive_viewer, is_oldmyuw_user
@@ -18,20 +19,38 @@ class TestUserDao(TransactionTestCase):
         self.assertFalse(is_fyp_thrive_viewer('nobody'))
 
     def test_has_legacy_preference(self):
-        set_preference_to_old_myuw('javerage')
-        self.assertTrue(has_legacy_preference('javerage'))
         self.assertFalse(has_legacy_preference('nobody'))
 
+        with self.assertRaises(UserMigrationPreference.DoesNotExist):
+            UserMigrationPreference.objects.get(username='iprefold')
+
+        set_preference_to_old_myuw('iprefold')
+        obj = UserMigrationPreference.objects.get(username='iprefold')
+        self.assertTrue(obj.use_legacy_site)
+        self.assertTrue(has_legacy_preference('iprefold'))
+
     def test_has_newmyuw_preference(self):
-        set_preference_to_new_myuw('iprefnew')
-        self.assertTrue(has_newmyuw_preference('iprefnew'))
         self.assertFalse(has_newmyuw_preference('nobody'))
 
+        with self.assertRaises(UserMigrationPreference.DoesNotExist):
+            UserMigrationPreference.objects.get(username='iprefnew')
+
+        set_preference_to_new_myuw('iprefnew')
+        self.assertTrue(has_newmyuw_preference('iprefnew'))
+        obj = UserMigrationPreference.objects.get(username='iprefnew')
+        self.assertFalse(obj.use_legacy_site)
+
     def test_is_oldmyuw_user(self):
+        get_request_with_user('nobody')
+        self.assertTrue(is_oldmyuw_user())
+
         get_request_with_user('jnew')
         self.assertFalse(is_oldmyuw_user())
 
-        # grad but opt_in
+        get_request_with_user('javerage')
+        self.assertFalse(is_oldmyuw_user())
+
+        # cur grad opt_in
         get_request_with_user('seagrad')
         self.assertFalse(is_oldmyuw_user())
 
