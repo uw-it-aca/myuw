@@ -10,28 +10,6 @@ FDAO_PWS = 'restclients.dao_implementation.pws.File'
 FDAO_SWS = 'restclients.dao_implementation.sws.File'
 LDAO_SWS = 'restclients.dao_implementation.sws.Live'
 
-Session = 'django.contrib.sessions.middleware.SessionMiddleware'
-Common = 'django.middleware.common.CommonMiddleware'
-CsrfView = 'django.middleware.csrf.CsrfViewMiddleware'
-Auth = 'django.contrib.auth.middleware.AuthenticationMiddleware'
-RemoteUser = 'django.contrib.auth.middleware.RemoteUserMiddleware'
-Message = 'django.contrib.messages.middleware.MessageMiddleware'
-XFrame = 'django.middleware.clickjacking.XFrameOptionsMiddleware'
-UserService = 'userservice.user.UserServiceMiddleware'
-AUTH_BACKEND = 'django.contrib.auth.backends.ModelBackend'
-
-standard_test_override = override_settings(
-    RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
-    MIDDLEWARE_CLASSES=(Session,
-                        Common,
-                        CsrfView,
-                        Auth,
-                        RemoteUser,
-                        Message,
-                        XFrame,
-                        UserService,),
-    AUTHENTICATION_BACKENDS=(AUTH_BACKEND,))
-
 
 def get_request_with_date(date_str):
     now_request = RequestFactory().get("/")

@@ -6,7 +6,7 @@ from django.test.utils import override_settings
 from django.test import TestCase
 from django.test.client import Client
 from django.core.urlresolvers import reverse
-
+from myuw.test import FDAO_SWS
 
 def missing_url(name):
     try:
@@ -37,7 +37,6 @@ def get_user_pass(username):
     return 'pass'
 
 
-FDAO_SWS = 'restclients.dao_implementation.sws.File'
 Session = 'django.contrib.sessions.middleware.SessionMiddleware'
 Common = 'django.middleware.common.CommonMiddleware'
 CsrfView = 'django.middleware.csrf.CsrfViewMiddleware'

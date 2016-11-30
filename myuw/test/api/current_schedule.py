@@ -1,6 +1,5 @@
-from myuw.test.api import MyuwApiTest, standard_test_override,\
-    require_url
 import json
+from myuw.test.api import MyuwApiTest, require_url
 
 
 @require_url('myuw_current_schedule')

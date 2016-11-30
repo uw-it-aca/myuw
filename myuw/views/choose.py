@@ -9,13 +9,11 @@ from myuw.views.page import redirect_to_legacy_site
 
 @login_required
 def new_site(request):
-    print "===============new_site %s" % get_netid_of_current_user()
     set_preference_to_new_myuw(get_netid_of_current_user())
     return HttpResponseRedirect(reverse("myuw_home"))
 
 
 @login_required
 def old_site(request):
-    print "===============old_site %s" % get_netid_of_current_user()
     set_preference_to_old_myuw(get_netid_of_current_user())
     return redirect_to_legacy_site()
