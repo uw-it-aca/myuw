@@ -11,7 +11,8 @@ from django.views.decorators.cache import cache_control
 from userservice.user import UserService
 from myuw.dao.term import get_current_quarter
 from myuw.dao.pws import is_student
-from myuw.dao.affiliation import get_all_affiliations, is_oldmyuw_user
+from myuw.dao.affiliation import get_all_affiliations
+from myuw.dao.user import is_oldmyuw_user
 from myuw.dao.emaillink import get_service_url_for_address
 from myuw.dao.exceptions import EmailServiceUrlException
 from myuw.logger.timer import Timer

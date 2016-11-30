@@ -1,6 +1,5 @@
 from myuw.test.models import TestUserNotices
 from myuw.test.academic_events import TestAcademicEvents
-from myuw.test.dao import TestDao
 from myuw.test.dao.calendar_mapping import TestCalendarMapping
 from myuw.test.dao.calendar import TestCalendar
 from myuw.test.dao.course_color import TestCourseColors
@@ -25,6 +24,7 @@ from myuw.test.dao.textbook import TestTextbooks
 from myuw.test.dao.thrive import TestThrive
 from myuw.test.dao.uwemail import TestUwEmail
 from myuw.test.dao.emaillink import TestEmailServiceUrl
+from myuw.test.dao.user import TestUserDao
 from myuw.test.api.current_schedule import TestSchedule as APISchedule
 from myuw.test.api.books import TestApiBooks
 from myuw.test.api.cur_books import TestApiCurBooks

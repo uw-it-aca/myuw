@@ -5,10 +5,7 @@ import StringIO
 from myuw.dao.thrive import _get_offset, _make_urls, _is_displayed, \
     _make_thrive_payload
 from restclients.models.sws import Term
-
-
-FDAO_SWS = 'restclients.dao_implementation.sws.File'
-FDAO_PWS = 'restclients.dao_implementation.pws.File'
+from myuw.test import FDAO_SWS, FDAO_PWS
 
 
 class TestThrive(TestCase):

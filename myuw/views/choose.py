@@ -1,29 +1,21 @@
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from myuw.models import UserMigrationPreference
+from myuw.dao.user import set_preference_to_new_myuw,\
+    set_preference_to_old_myuw
 from myuw.dao.pws import get_netid_of_current_user
-from userservice.user import UserService
 from myuw.views.page import redirect_to_legacy_site
 
 
 @login_required
 def new_site(request):
-    username = get_netid_of_current_user()
-    obj, x = UserMigrationPreference.objects.get_or_create(username=username)
-    obj.use_legacy_site = False
-    obj.save()
-
+    print "===============new_site %s" % get_netid_of_current_user()
+    set_preference_to_new_myuw(get_netid_of_current_user())
     return HttpResponseRedirect(reverse("myuw_home"))
 
 
 @login_required
 def old_site(request):
-    if "POST" == request.method:
-        username = get_netid_of_current_user()
-        get_or_create = UserMigrationPreference.objects.get_or_create
-        obj, is_new = get_or_create(username=username)
-        obj.use_legacy_site = True
-        obj.save()
-
+    print "===============old_site %s" % get_netid_of_current_user()
+    set_preference_to_old_myuw(get_netid_of_current_user())
     return redirect_to_legacy_site()

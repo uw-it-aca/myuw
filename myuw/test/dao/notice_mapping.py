@@ -3,18 +3,17 @@ from django.test import TestCase
 from datetime import datetime
 from django.utils import timezone
 from django.conf import settings
-from django.test.client import RequestFactory
 from restclients.sws.notice import get_notices_by_regid
 from myuw.dao.notice_mapping import map_notice_category,\
     get_open_date, get_close_date, is_after_eof_days_after_open,\
     is_before_bof_days_before_close, apply_showhide, categorize_notices
-
-
-FDAO_SWS = 'restclients.dao_implementation.sws.File'
-FDAO_PWS = 'restclients.dao_implementation.pws.File'
+from myuw.test import FDAO_SWS, FDAO_PWS, get_request_with_date,\
+    get_request_with_user
 
 
 class TestMapNotices(TestCase):
+    def setUp(self):
+        get_request_with_user('javerage')
 
     def test_map_notice_category(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
@@ -129,10 +128,8 @@ class TestMapNotices(TestCase):
                            RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
 
-            now_request = RequestFactory().get("/")
             # within 14 days after open
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-01-15"
+            now_request = get_request_with_date("2013-01-15")
             notices = apply_showhide(
                 now_request,
                 categorize_notices(get_notices_by_regid(regid)))
@@ -140,8 +137,7 @@ class TestMapNotices(TestCase):
             self.assertTrue(notice.is_critical)
 
             # after 14 days after open
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-01-16"
+            now_request = get_request_with_date("2013-01-16")
             notices = apply_showhide(
                 now_request,
                 categorize_notices(get_notices_by_regid(regid)))
@@ -149,8 +145,7 @@ class TestMapNotices(TestCase):
             self.assertFalse(notice.is_critical)
 
             # before 14 days before close
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-02-12"
+            now_request = get_request_with_date("2013-02-12")
             notices = apply_showhide(
                 now_request,
                 categorize_notices(get_notices_by_regid(regid)))
@@ -158,8 +153,7 @@ class TestMapNotices(TestCase):
             self.assertFalse(notice.is_critical)
 
             # within 14 days before close
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-02-13"
+            now_request = get_request_with_date("2013-02-13")
             notices = apply_showhide(
                 now_request,
                 categorize_notices(get_notices_by_regid(regid)))

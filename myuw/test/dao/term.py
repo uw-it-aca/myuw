@@ -1,7 +1,6 @@
 from datetime import datetime
 from django.test import TestCase
 from django.conf import settings
-from django.test.client import RequestFactory
 from restclients.models.sws import ClassSchedule, Term, Section, Person
 from myuw.dao.term import get_specific_term, is_past,\
     get_default_date, get_comparison_date,\
@@ -13,37 +12,33 @@ from myuw.dao.term import get_specific_term, is_past,\
     get_bod_7d_before_last_instruction, get_eod_current_term_last_final_exam,\
     get_bod_class_start_quarter_after, get_eod_specific_quarter,\
     get_eod_specific_quarter_after, get_eod_specific_quarter_last_instruction
-
-
-FDAO_SWS = 'restclients.dao_implementation.sws.File'
-LDAO_SWS = 'restclients.dao_implementation.sws.Live'
+from myuw.test import FDAO_SWS, LDAO_SWS, FDAO_PWS, get_request_with_date,\
+    get_request_with_user
 
 
 class TestTerm(TestCase):
+    def setUp(self):
+        get_request_with_user('javerage')
 
     def test_get_term(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
+            now_request = get_request_with_date(None)
             term = get_specific_term(2013, "summer")
             self.assertEqual(term.year, 2013)
             self.assertEqual(term.quarter, "summer")
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
             self.assertFalse(is_past(term, now_request))
 
     def test_is_past_1(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
+            now_request = get_request_with_date(None)
             term = get_specific_term(2014, "winter")
             self.assertEqual(term.year, 2014)
             self.assertEqual(term.quarter, "winter")
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
             self.assertFalse(is_past(term, now_request))
 
             term = get_specific_term(2013, "winter")
             self.assertEqual(term.year, 2013)
             self.assertEqual(term.quarter, "winter")
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
             self.assertTrue(is_past(term, now_request))
 
     def test_default_date(self):
@@ -62,8 +57,7 @@ class TestTerm(TestCase):
 
     def test_comparison_date(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
+            now_request = get_request_with_date(None)
             no_override = get_comparison_date(now_request)
             self.assertEquals(no_override.year, 2013)
             self.assertEquals(no_override.month, 4)
@@ -77,104 +71,77 @@ class TestTerm(TestCase):
 
     def test_current_quarter(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
+            now_request = get_request_with_date(None)
 
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'spring')
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-04-01"
+            now_request = get_request_with_date("2013-04-01")
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'spring')
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-03-25"
+            now_request = get_request_with_date("2013-03-25")
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'winter')
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-03-26"
+            now_request = get_request_with_date("2013-03-26")
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'winter')
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-03-27"
+            now_request = get_request_with_date("2013-03-27")
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'spring')
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-03-31"
+            now_request = get_request_with_date("2013-03-31")
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'spring')
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-06-24"
+            now_request = get_request_with_date("2013-06-24")
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'summer')
 
             # Spring's grade submission deadline is today, so we're not after
             # that, which is why this is an exception to the rule
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-06-23"
+            now_request = get_request_with_date("2013-06-23")
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'spring')
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-06-18"
+            now_request = get_request_with_date("2013-06-18")
             quarter = get_current_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'spring')
 
     def test_next_quarter(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-
+            now_request = get_request_with_date(None)
             quarter = get_next_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'summer')
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-04-01"
+            now_request = get_request_with_date("2013-04-01")
             quarter = get_next_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'summer')
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-03-31"
+            now_request = get_request_with_date("2013-03-31")
             quarter = get_next_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'summer')
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-06-24"
+            now_request = get_request_with_date("2013-06-24")
             quarter = get_next_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'autumn')
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-06-23"
+            now_request = get_request_with_date("2013-06-23")
             quarter = get_next_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'summer')
@@ -182,130 +149,88 @@ class TestTerm(TestCase):
     def test_is_past_2(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
             quarter = get_specific_term(2013, 'autumn')
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2014-01-01"
+            now_request = get_request_with_date("2014-01-01")
             self.assertTrue(is_past(quarter, now_request))
 
     def test_get_next_non_summer_quarter(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-04-01"
+            now_request = get_request_with_date("2013-04-01")
             quarter = get_next_non_summer_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'autumn')
 
     def test_get_next_autumn_quarter(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-04-01"
+            now_request = get_request_with_date("2013-04-01")
             quarter = get_next_autumn_quarter(now_request)
             self.assertEquals(quarter.year, 2013)
             self.assertEquals(quarter.quarter, 'autumn')
 
     def test_is_in_summer_a_term(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-07-10"
+            now_request = get_request_with_date("2013-07-10")
             self.assertTrue(is_in_summer_a_term(now_request))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-08-10"
+            now_request = get_request_with_date("2013-08-10")
             self.assertFalse(is_in_summer_a_term(now_request))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-08-26"
+            now_request = get_request_with_date("2013-08-26")
             self.assertTrue(is_in_summer_b_term(now_request))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-03-10"
+            now_request = get_request_with_date("2013-03-10")
             self.assertFalse(is_in_summer_a_term(now_request))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-03-10"
+            now_request = get_request_with_date("2013-03-10")
             self.assertFalse(is_in_summer_b_term(now_request))
 
     def test_get_eod_current_term_last_instruction(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-05-10"
+            now_request = get_request_with_date("2013-05-10")
             self.assertEqual(
                 get_eod_current_term_last_instruction(now_request),
                 datetime(2013, 6, 8, 0, 0, 0))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-07-10"
+            now_request = get_request_with_date("2013-07-10")
             self.assertEqual(
                 get_eod_current_term_last_instruction(now_request, True),
                 datetime(2013, 7, 25, 0, 0, 0))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-07-10"
+            now_request = get_request_with_date("2013-07-10")
             self.assertEqual(
                 get_eod_current_term_last_instruction(now_request),
                 datetime(2013, 8, 24, 0, 0, 0))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-08-10"
+            now_request = get_request_with_date("2013-08-10")
             self.assertEqual(
                 get_eod_current_term_last_instruction(now_request, True),
                 datetime(2013, 8, 24, 0, 0, 0))
 
     def test_get_bod_7d_before_last_instruction(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-05-10"
+            now_request = get_request_with_date("2013-05-10")
             self.assertEqual(get_bod_7d_before_last_instruction(now_request),
                              datetime(2013, 5, 31, 0, 0, 0))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-07-10"
+            now_request = get_request_with_date("2013-07-10")
             self.assertEqual(get_bod_7d_before_last_instruction(now_request),
                              datetime(2013, 7, 17, 0, 0, 0))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-08-10"
+            now_request = get_request_with_date("2013-08-10")
             self.assertEqual(get_bod_7d_before_last_instruction(now_request),
                              datetime(2013, 8, 16, 0, 0, 0))
 
     def test_get_bod_current_term_class_start(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-05-10"
+            now_request = get_request_with_date("2013-05-10")
             self.assertEqual(get_bod_current_term_class_start(now_request),
                              datetime(2013, 4, 1, 0, 0, 0))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-07-10"
+            now_request = get_request_with_date("2013-07-10")
             self.assertEqual(get_bod_current_term_class_start(now_request),
                              datetime(2013, 6, 24, 0, 0, 0))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-08-10"
+            now_request = get_request_with_date("2013-08-10")
             self.assertEqual(get_bod_current_term_class_start(now_request),
                              datetime(2013, 6, 24, 0, 0, 0))
 
     def test_get_eod_7d_after_class_start(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-05-10"
+            now_request = get_request_with_date("2013-05-10")
             self.assertEqual(get_eod_7d_after_class_start(now_request),
                              datetime(2013, 4, 9, 0, 0, 0))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-07-10"
+            now_request = get_request_with_date("2013-07-10")
             self.assertEqual(get_eod_7d_after_class_start(now_request),
                              datetime(2013, 7, 2, 0, 0, 0))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-08-10"
+            now_request = get_request_with_date("2013-08-10")
             self.assertEqual(get_eod_7d_after_class_start(now_request),
                              datetime(2013, 7, 2, 0, 0, 0))
 
@@ -323,39 +248,27 @@ class TestTerm(TestCase):
 
     def test_get_eod_current_term(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-03-10"
+            now_request = get_request_with_date("2013-03-10")
             self.assertEqual(get_eod_current_term(now_request),
                              datetime(2013, 3, 27, 0, 0, 0))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-07-10"
+            now_request = get_request_with_date("2013-07-10")
             self.assertEqual(get_eod_current_term(now_request, True),
                              datetime(2013, 7, 25, 0, 0, 0))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-08-10"
+            now_request = get_request_with_date("2013-08-10")
             self.assertEqual(get_eod_current_term(now_request),
                              datetime(2013, 8, 28, 0, 0, 0))
 
     def test_get_eod_current_term_last_final_exam(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-03-10"
+            now_request = get_request_with_date("2013-03-10")
             self.assertEqual(
                 get_eod_current_term_last_final_exam(now_request),
                 datetime(2013, 3, 23, 0, 0, 0))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-07-10"
+            now_request = get_request_with_date("2013-07-10")
             self.assertEqual(
                 get_eod_current_term_last_final_exam(now_request, True),
                 datetime(2013, 7, 25, 0, 0, 0))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-08-10"
+            now_request = get_request_with_date("2013-08-10")
             self.assertEqual(
                 get_eod_current_term_last_final_exam(now_request),
                 datetime(2013, 8, 24, 0, 0, 0))

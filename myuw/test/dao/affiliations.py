@@ -1,41 +1,23 @@
 from django.test import TestCase
 from django.conf import settings
-from django.test.client import RequestFactory
-from django.contrib.auth.models import User
 from myuw.dao.affiliation import get_all_affiliations
-from userservice.user import UserServiceMiddleware
-
-
-FDAO_SWS = 'restclients.dao_implementation.sws.File'
-FDAO_PWS = 'restclients.dao_implementation.pws.File'
+from myuw.test import FDAO_SWS, FDAO_PWS,\
+    get_request_with_date, get_request_with_user
 
 
 class TestAffilliations(TestCase):
+    def setUp(self):
+        get_request_with_user('javerage')
+
     def test_eos_enrollment(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-
-            user = User.objects.create_user(username='jeos',
-                                            email='jeos@example.com',
-                                            password='')
-
-            now_request.user = user
-            UserServiceMiddleware().process_request(now_request)
+            now_request = get_request_with_user('jeos')
             affiliations = get_all_affiliations(now_request)
 
     def test_fyp_enrollment(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-
-            user = User.objects.create_user(username='javerage',
-                                            email='javerage@example.com',
-                                            password='')
-
-            now_request.user = user
-            UserServiceMiddleware().process_request(now_request)
+            now_request = get_request_with_user('javerage')
             affiliations = get_all_affiliations(now_request)
             self.assertTrue(affiliations['fyp'])

@@ -1,23 +1,18 @@
 from django.test import TestCase
-from django.test.client import RequestFactory
-from userservice.user import UserServiceMiddleware
 from myuw.dao.notice import _get_notices_by_regid
-
-
-FDAO_SWS = 'restclients.dao_implementation.sws.File'
-FDAO_PWS = 'restclients.dao_implementation.pws.File'
+from myuw.test import FDAO_SWS, FDAO_PWS, get_request_with_date,\
+    get_request_with_user
 
 
 class TestNotices(TestCase):
+    def setUp(self):
+        get_request_with_user('javerage')
 
     def test_get_notice_by_regid(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
 
             # no regid
-            fake_request = RequestFactory().get('/')
-            fake_request.session = {}
-            UserServiceMiddleware().process_request(fake_request)
             notices = _get_notices_by_regid(None)
             self.assertEquals(notices, None)
 

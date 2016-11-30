@@ -2,13 +2,8 @@ from django.test import TestCase
 from restclients.exceptions import DataFailureException
 from restclients.exceptions import InvalidNetID
 from restclients.pws import PWS
-from django.test.client import RequestFactory
-from django.contrib.auth.models import User
 from myuw.dao.pws import get_display_name_of_current_user
-from userservice.user import UserServiceMiddleware
-
-
-FDAO_PWS = 'restclients.dao_implementation.pws.File'
+from myuw.test import FDAO_SWS, FDAO_PWS, get_request_with_user
 
 
 class TestPwsDao(TestCase):
@@ -25,13 +20,6 @@ class TestPwsDao(TestCase):
 
     def test_display_name(self):
         with self.settings(RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-09-20"
-            user = User.objects.create_user(username='javerage',
-                                            email='none@example.com',
-                                            password='')
-            now_request.user = user
-            UserServiceMiddleware().process_request(now_request)
+            get_request_with_user('javerage')
             name = get_display_name_of_current_user()
             self.assertEqual(name, 'J. Average Student')

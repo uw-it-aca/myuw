@@ -2,25 +2,18 @@ import datetime
 import pytz
 from django.test import TestCase
 from django.conf import settings
-from django.test.client import RequestFactory
-from userservice.user import UserServiceMiddleware
 from restclients.models.sws import Section, Term
 from restclients.iasystem.evaluation import get_evaluation_by_id
 from myuw.dao.iasystem import json_for_evaluation,\
     _get_evaluations_by_section_and_student, summer_term_overlaped
 from myuw.dao.schedule import _get_schedule
-
-
-FDAO_SWS = 'restclients.dao_implementation.sws.File'
-FDAO_PWS = 'restclients.dao_implementation.pws.File'
-FDAO_IAS = 'restclients.dao_implementation.iasystem.File'
+from myuw.test import FDAO_SWS, FDAO_PWS, FDAO_IAS, get_request_with_date,\
+    get_request_with_user
 
 
 class IASystemDaoTest(TestCase):
     def setUp(self):
-        fake_request = RequestFactory()
-        fake_request.session = {}
-        UserServiceMiddleware().process_request(fake_request)
+        get_request_with_user('javerage')
 
     def test_summer_term_overlaped(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
@@ -31,23 +24,17 @@ class IASystemDaoTest(TestCase):
             section.summer_term = "A-term"
             section.term = term
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-07-10"
+            now_request = get_request_with_date("2013-07-10")
             self.assertTrue(summer_term_overlaped(now_request, section))
             section.summer_term = "Full-term"
             self.assertFalse(summer_term_overlaped(now_request, section))
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-08-10"
+            now_request = get_request_with_date("2013-08-10")
             self.assertTrue(summer_term_overlaped(now_request, section))
 
             section.summer_term = "B-term"
             self.assertTrue(summer_term_overlaped(now_request, section))
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-03-10"
+            now_request = get_request_with_date("2013-03-10")
             self.assertTrue(summer_term_overlaped(now_request, 'None'))
             self.assertTrue(summer_term_overlaped(now_request, '-'))
 
@@ -82,26 +69,23 @@ class IASystemDaoTest(TestCase):
                                                tzinfo=pytz.utc))
             self.assertFalse(evals[0].is_completed)
 
-            now_request = RequestFactory().get("/")
+            now_request = get_request_with_date(None)
 
             # after open date
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-07-03"
+            now_request = get_request_with_date("2013-07-03")
             json_data = json_for_evaluation(now_request, evals, section)
             self.assertIsNotNone(json_data)
             self.assertEqual(len(json_data), 1)
             self.assertEqual(json_data[0]['close_date'],
                              "2013-07-23 06:59:59 UTC+0000")
             # before close date
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-07-22"
+            now_request = get_request_with_date("2013-07-22")
             json_data = json_for_evaluation(now_request, evals, section)
             self.assertIsNotNone(json_data)
             self.assertEqual(len(json_data), 1)
 
             # after close date
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-07-24"
+            now_request = get_request_with_date("2013-07-24")
             json_data = json_for_evaluation(now_request, evals, section)
             self.assertEqual(len(json_data), 0)
 
@@ -112,32 +96,27 @@ class IASystemDaoTest(TestCase):
 
             evals = get_evaluation_by_id(132136, "seattle")
             self.assertIsNotNone(evals)
-            now_request = RequestFactory().get("/")
+            now_request = get_request_with_date("2013-03-11")
             # before open date
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-03-11"
             json_data = json_for_evaluation(now_request, evals, None)
             self.assertEqual(len(json_data), 0)
 
             # after open date
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-03-13"
+            now_request = get_request_with_date("2013-03-13")
             json_data = json_for_evaluation(now_request, evals, None)
             self.assertIsNotNone(json_data)
             self.assertEqual(len(json_data), 1)
             self.assertEqual(json_data[0]['close_date'],
                              "2013-03-23 07:59:59 UTC+0000")
 
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-03-22"
+            now_request = get_request_with_date("2013-03-22")
             json_data = json_for_evaluation(now_request, evals, None)
             self.assertIsNotNone(json_data)
             self.assertEqual(len(json_data), 1)
             self.assertEqual(json_data[0]['close_date'],
                              "2013-03-23 07:59:59 UTC+0000")
             # after close date
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-03-24"
+            now_request = get_request_with_date("2013-03-24")
             json_data = json_for_evaluation(now_request, evals, None)
             self.assertEqual(len(json_data), 0)
 
@@ -224,33 +203,25 @@ class IASystemDaoTest(TestCase):
                                                6, 59, 59,
                                                tzinfo=pytz.utc))
             self.assertTrue(evals[2].is_completed)
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-05-30"
+            now_request = get_request_with_date("2013-05-30")
             json_data = json_for_evaluation(now_request, evals, None)
             self.assertEqual(len(json_data), 0)
 
             # open dates of 1 eval
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-05-31"
+            now_request = get_request_with_date("2013-05-31")
             json_data = json_for_evaluation(now_request, evals, None)
             self.assertIsNotNone(json_data)
             self.assertEqual(len(json_data), 1)
             self.assertEqual(json_data[0]['close_date'],
                              "2013-07-01 07:59:59 UTC+0000")
             # after open dates of 1 eval
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-06-04"
+            now_request = get_request_with_date("2013-06-04")
             json_data = json_for_evaluation(now_request, evals, None)
             self.assertIsNotNone(json_data)
             self.assertEqual(len(json_data), 1)
 
             # after open dates of two evals
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-06-05"
+            now_request = get_request_with_date("2013-06-05")
             json_data = json_for_evaluation(now_request, evals, None)
             self.assertIsNotNone(json_data)
             self.assertEqual(len(json_data), 2)
@@ -260,33 +231,25 @@ class IASystemDaoTest(TestCase):
                              "2013-06-17 06:59:59 UTC+0000")
 
             # after open dates of three evals
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-06-10"
+            now_request = get_request_with_date("2013-06-10")
             json_data = json_for_evaluation(now_request, evals, None)
             self.assertIsNotNone(json_data)
             self.assertEqual(len(json_data), 2)
 
             # after close date of one eval
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-06-17"
+            now_request = get_request_with_date("2013-06-17")
             json_data = json_for_evaluation(now_request, evals, None)
             self.assertEqual(len(json_data), 1)
             self.assertEqual(json_data[0]['close_date'],
                              "2013-07-01 07:59:59 UTC+0000")
 
             # after close date of two evals
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-06-19"
+            now_request = get_request_with_date("2013-06-19")
             json_data = json_for_evaluation(now_request, evals, None)
             self.assertEqual(len(json_data), 1)
 
             # after close date of last eval
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-07-02"
+            now_request = get_request_with_date("2013-07-02")
             json_data = json_for_evaluation(now_request, evals, None)
             self.assertEqual(len(json_data), 0)
             # for spring 2013, grade submission deadline is

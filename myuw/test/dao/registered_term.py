@@ -1,6 +1,5 @@
 from django.test import TestCase
 from django.conf import settings
-from django.test.client import RequestFactory
 from restclients.models import ClassSchedule, Term, Section, Person
 from myuw.dao.term import get_specific_term, get_next_non_summer_quarter,\
     is_a_term, is_b_term, is_full_summer_term
@@ -9,13 +8,14 @@ from myuw.dao.registered_term import _get_registered_summer_terms,\
     _must_displayed_separately, _get_registered_future_quarters,\
     save_seen_registration_obj
 from myuw.models import SeenRegistration, User
-
-
-FDAO_SWS = 'restclients.dao_implementation.sws.File'
-FDAO_PWS = 'restclients.dao_implementation.pws.File'
+from myuw.test import FDAO_SWS, FDAO_PWS, get_request_with_date,\
+    get_request_with_user
 
 
 class TestRegisteredTerm(TestCase):
+
+    def setUp(self):
+        get_request_with_user('javerage')
 
     def test_get_registered_summer_terms(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
@@ -38,10 +38,6 @@ class TestRegisteredTerm(TestCase):
     def test_get_registered_future_quarters(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
-
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term1 = get_specific_term(2013, "summer")
             schedule1 = _get_schedule(regid, term1)
@@ -51,8 +47,9 @@ class TestRegisteredTerm(TestCase):
             schedule2 = _get_schedule(regid, term2)
             self.assertEqual(len(schedule2.sections), 2)
 
-            terms = _get_registered_future_quarters(now_request, schedule1,
-                                                    schedule2)
+            now_request = get_request_with_user('javerage')
+            terms = _get_registered_future_quarters(
+                now_request, schedule1, schedule2)
             self.assertTrue(len(terms) == 3)
             self.assertTrue(terms[0]['year'] == 2013)
             self.assertEqual(terms[0]['quarter'], "Summer")
@@ -66,15 +63,13 @@ class TestRegisteredTerm(TestCase):
             self.assertEqual(terms[2]['quarter'], "Autumn")
             self.assertEqual(terms[2]['summer_term'], "")
 
+            now_request = get_request_with_user('javerage')
             terms = _get_registered_future_quarters(now_request, None, None)
             self.assertEqual(len(terms), 0)
 
             # MUWM-3010
             # Baseline pre-summer
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-04-01"
-
+            now_request = get_request_with_date("2013-04-01")
             terms = _get_registered_future_quarters(now_request, schedule1,
                                                     schedule2)
             self.assertTrue(len(terms) == 3)
@@ -91,9 +86,7 @@ class TestRegisteredTerm(TestCase):
             self.assertEqual(terms[2]['summer_term'], "")
 
             # Summer has started - so no a-term
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-06-30"
+            now_request = get_request_with_date("2013-06-30")
             terms = _get_registered_future_quarters(now_request, schedule1,
                                                     schedule2)
             self.assertTrue(len(terms) == 2)
@@ -107,9 +100,7 @@ class TestRegisteredTerm(TestCase):
             self.assertEqual(terms[1]['summer_term'], "")
 
             # Summer b-term has started - so no a-term or b-term
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-07-30"
+            now_request = get_request_with_date("2013-07-30")
             terms = _get_registered_future_quarters(now_request, schedule1,
                                                     schedule2)
             self.assertTrue(len(terms) == 1)
@@ -118,9 +109,7 @@ class TestRegisteredTerm(TestCase):
             self.assertEqual(terms[0]['quarter'], "Autumn")
             self.assertEqual(terms[0]['summer_term'], "")
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-12-10"
+            now_request = get_request_with_date("2013-12-10")
             term = get_specific_term(2014, "winter")
             winter2014_sche = _get_schedule(regid, term)
             self.assertIsNotNone(winter2014_sche)
@@ -139,10 +128,7 @@ class TestRegisteredTerm(TestCase):
     def test_save_seen_registration_obj(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-12-10"
-
+            now_request = get_request_with_date("2013-12-10")
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = get_specific_term(2014, "winter")
             winter2014_sche = _get_schedule(regid, term)
@@ -181,10 +167,7 @@ class TestRegisteredTerm(TestCase):
                                                     )
             self.assertEqual(len(qset1), 1)
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-5-10"
-
+            now_request = get_request_with_date("2013-5-10")
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = get_specific_term(2013, "summer")
             summer2013_sche = _get_schedule(regid, term)

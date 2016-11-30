@@ -7,33 +7,12 @@ from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
 from myuw.views.page import _is_mobile
 from myuw.test.api import missing_url, get_user, get_user_pass
+from myuw.test import standard_test_override, get_request_with_user
 
 
-FDAO_SWS = 'restclients.dao_implementation.sws.File'
-Session = 'django.contrib.sessions.middleware.SessionMiddleware'
-Common = 'django.middleware.common.CommonMiddleware'
-CsrfView = 'django.middleware.csrf.CsrfViewMiddleware'
-Auth = 'django.contrib.auth.middleware.AuthenticationMiddleware'
-RemoteUser = 'django.contrib.auth.middleware.RemoteUserMiddleware'
-Message = 'django.contrib.messages.middleware.MessageMiddleware'
-XFrame = 'django.middleware.clickjacking.XFrameOptionsMiddleware'
-UserService = 'userservice.user.UserServiceMiddleware'
-AUTH_BACKEND = 'django.contrib.auth.backends.ModelBackend'
-
-
-@override_settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
-                   MIDDLEWARE_CLASSES=(Session,
-                                       Common,
-                                       CsrfView,
-                                       Auth,
-                                       RemoteUser,
-                                       Message,
-                                       XFrame,
-                                       UserService,
-                                       ),
-                   AUTHENTICATION_BACKENDS=(AUTH_BACKEND,),
-                   MYUW_USER_SERVLET_URL="http://some-test-server/myuw",
+@override_settings(MYUW_USER_SERVLET_URL="http://some-test-server/myuw",
                    )
+@standard_test_override
 class TestPageMethods(TestCase):
     def setUp(self):
         self.client = Client()

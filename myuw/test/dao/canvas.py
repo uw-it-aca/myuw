@@ -1,20 +1,14 @@
 from django.test import TestCase
-from django.test.client import RequestFactory
-from userservice.user import UserServiceMiddleware
 from myuw.dao.canvas import get_indexed_data_for_regid
 from myuw.dao.canvas import get_indexed_by_decrosslisted
 from myuw.dao.schedule import _get_schedule
 from myuw.dao.term import get_current_quarter
-
-
-FDAO_SWS = 'restclients.dao_implementation.sws.File'
+from myuw.test import FDAO_SWS, FDAO_PWS, get_request_with_user
 
 
 class TestCanvas(TestCase):
     def setUp(self):
-        fake_request = RequestFactory()
-        fake_request.session = {}
-        UserServiceMiddleware().process_request(fake_request)
+        get_request_with_user('javerage')
 
     def test_crosslinks(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
@@ -42,8 +36,7 @@ class TestCanvas(TestCase):
             data = get_indexed_data_for_regid(
                 "12345678901234567890123456789012")
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
+            now_request = get_request_with_user('javerage')
             term = get_current_quarter(now_request)
             schedule = _get_schedule("12345678901234567890123456789012", term)
             canvas_data_by_course_id = get_indexed_by_decrosslisted(

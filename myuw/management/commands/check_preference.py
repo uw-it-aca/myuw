@@ -5,25 +5,22 @@ Test all the links in the CSV for non-200 status codes (after redirects).
 
 import sys
 from django.core.management.base import BaseCommand, CommandError
-from myuw.models import UserMigrationPreference
+from myuw.dao import has_newmyuw_preference, has_legacy_preference
 
 
 class Command(BaseCommand):
-    args = "<user netid>"
+
     help = "Find the Migration Preference for the given user"
 
-    def handle(self, *args, **kwargs):
-        if len(args) < 1:
-            raise CommandError("Invalid argument %s" % args)
-        username = args[0]
-        pref = False
-        try:
-            saved = UserMigrationPreference.objects.get(username=username)
-            if saved.use_legacy_site:
-                pref = True
-        except UserMigrationPreference.DoesNotExist:
-            pass
-        if pref:
+    def add_arguments(self, parser):
+        parser.add_argument('netid')
+
+    def handle(self, *args, **options):
+        username = options['netid']
+        if has_legacy_preference(username):
             print "%s prefers the legacy MyUW" % username
-        else:
-            print "%s doesn't prefer the legacy MyUW" % username
+            return
+        if has_newmyuw_preference(username):
+            print "%s prefer the new MyUW" % username
+            return
+        print "%s doesn't have a preference" % username

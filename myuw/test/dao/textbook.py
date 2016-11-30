@@ -2,11 +2,15 @@ from django.test import TestCase
 from myuw.dao.schedule import _get_schedule
 from restclients.models import Term
 from restclients.exceptions import DataFailureException
-from myuw.dao.textbook import get_textbook_by_schedule
-from myuw.dao.textbook import get_verba_link_by_schedule
+from myuw.dao.textbook import get_textbook_by_schedule,\
+    get_verba_link_by_schedule
+from myuw.test import get_request_with_user, standard_test_override
 
 
 class TestTextbooks(TestCase):
+    def setUp(self):
+        get_request_with_user('javerage')
+
     def test_get_by_schedule(self):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = Term()

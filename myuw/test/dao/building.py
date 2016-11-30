@@ -1,18 +1,16 @@
-from django.test import TestCase
-from django.test.client import RequestFactory
-from userservice.user import UserServiceMiddleware
 import datetime
+from django.test import TestCase
 from myuw.dao.building import get_building_by_code, \
     get_buildings_by_schedule
 from myuw.dao.schedule import _get_schedule
 from restclients.models.sws import Term
+from myuw.test import get_request_with_user
 
 
 class TestBuildings(TestCase):
+
     def setUp(self):
-        fake_request = RequestFactory()
-        fake_request.session = {}
-        UserServiceMiddleware().process_request(fake_request)
+        get_request_with_user('javerage')
 
     def test_get_by_code(self):
         building = get_building_by_code('ELC')

@@ -1,21 +1,18 @@
 from django.test import TestCase
 from django.conf import settings
-from django.test.client import RequestFactory
-from django.contrib.auth.models import User
 from restclients.exceptions import DataFailureException
 from restclients.models.sws import ClassSchedule, Term, Section, Person
 from myuw.dao.term import get_current_quarter, get_next_quarter
 from myuw.dao.schedule import _get_schedule,\
     has_summer_quarter_section, filter_schedule_sections_by_summer_term
 from myuw.dao.schedule import get_schedule_by_term
-from userservice.user import UserServiceMiddleware
-
-
-FDAO_SWS = 'restclients.dao_implementation.sws.File'
-FDAO_PWS = 'restclients.dao_implementation.pws.File'
+from myuw.test import FDAO_SWS, FDAO_PWS,\
+    get_request_with_date, get_request_with_user
 
 
 class TestSchedule(TestCase):
+    def setUp(self):
+        get_request_with_user('javerage')
 
     def test_has_summer_quarter_section(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
@@ -76,9 +73,7 @@ class TestSchedule(TestCase):
 
             regid = "9136CCB8F66711D5BE060004AC494FFE"
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-11-30"
+            now_request = get_request_with_date("2013-11-30")
             cur_term = get_current_quarter(now_request)
             self.assertEqual(cur_term.year, 2013)
             self.assertEqual(cur_term.quarter, "autumn")
@@ -98,9 +93,7 @@ class TestSchedule(TestCase):
 
             regid = "9136CCB8F66711D5BE060004AC494FFE"
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-09-01"
+            now_request = get_request_with_date("2013-09-01")
             cur_term = get_current_quarter(now_request)
             self.assertEqual(cur_term.year, 2013)
             self.assertEqual(cur_term.quarter, "autumn")
@@ -116,19 +109,11 @@ class TestSchedule(TestCase):
 
             regid = "9136CCB8F66711D5BE060004AC494FFE"
 
-            now_request = RequestFactory().get("/")
-            now_request.session = {}
-            now_request.session["myuw_override_date"] = "2013-09-20"
+            now_request = get_request_with_date("2013-09-20")
             cur_term = get_current_quarter(now_request)
             self.assertEqual(cur_term.year, 2013)
             self.assertEqual(cur_term.quarter, "autumn")
-
-            user = User.objects.create_user(username='javerage',
-                                            email='none@example.com',
-                                            password='')
-
-            now_request.user = user
-            UserServiceMiddleware().process_request(now_request)
+            get_request_with_user('javerage', now_request)
             cur_term = get_current_quarter(now_request)
             fall_efs_schedule = get_schedule_by_term(now_request, cur_term)
             self.assertIsNotNone(fall_efs_schedule)
