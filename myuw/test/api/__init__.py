@@ -6,7 +6,8 @@ from django.test.utils import override_settings
 from django.test import TestCase
 from django.test.client import Client
 from django.core.urlresolvers import reverse
-from myuw.test import FDAO_SWS
+from myuw.test import FDAO_SWS, get_user, get_user_pass
+
 
 def missing_url(name):
     try:
@@ -22,19 +23,6 @@ def require_url(url, message='myuw urls not configured'):
     if "FORCE_VIEW_TESTS" in os.environ:
         return skipIf(False, message)
     return skipIf(missing_url(url), message)
-
-
-def get_user(username):
-    try:
-        user = User.objects.get(username=username)
-        return user
-    except Exception as ex:
-        user = User.objects.create_user(username, password='pass')
-        return user
-
-
-def get_user_pass(username):
-    return 'pass'
 
 
 Session = 'django.contrib.sessions.middleware.SessionMiddleware'
