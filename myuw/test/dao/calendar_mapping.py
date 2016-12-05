@@ -3,12 +3,12 @@ from myuw.dao.calendar_mapping import \
     get_calendars_for_minors, get_calendars_for_majors, \
     get_calendars_for_gradmajors, _get_enrollments, \
     _get_calendars, _get_calendar_ids_from_text
-from myuw.test import get_request_with_user
+from myuw.test import get_request
 
 
 class TestCalendarMapping(TestCase):
     def setUp(self):
-        get_request_with_user('javerage')
+        get_request()
 
     def test_get_by_major(self):
         enrollments = {'majors': ['NON MATRICULATED'],

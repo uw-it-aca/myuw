@@ -4,12 +4,12 @@ from userservice.user import UserServiceMiddleware
 from restclients.models import ClassSchedule, Term, Section, Person
 from myuw.dao.course_color import get_colors_by_regid_and_schedule
 from myuw.dao.schedule import _get_schedule
-from myuw.test import FDAO_SWS, get_request_with_user
+from myuw.test import get_request
 
 
 class TestCourseColors(TestCase):
     def setUp(self):
-        get_request_with_user('javerage')
+        get_request()
 
     def test_single_course(self):
         term = Term()
@@ -107,22 +107,21 @@ class TestCourseColors(TestCase):
         (colors[section2.section_label()], 2, "2nd section gets the 2nd color")
 
     def test_primary_secondary(self):
-        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS):
-            regid = "00000000000000000000000000000003"
-            term = Term()
-            term.year = 2012
-            term.quarter = "summer"
-            schedule = _get_schedule(regid, term)
-            colors = get_colors_by_regid_and_schedule(regid, schedule)
+        regid = "00000000000000000000000000000003"
+        term = Term()
+        term.year = 2012
+        term.quarter = "summer"
+        schedule = _get_schedule(regid, term)
+        colors = get_colors_by_regid_and_schedule(regid, schedule)
 
-            self.assertEquals
-            (colors["2012,summer,PHYS,121/A"], 1, "Primary gets the 1st color")
-            msg = "Secondary gets the 1st color, secondary version"
-            self.assertEquals(
-                colors["2012,summer,PHYS,121/AC"], "1a", msg)
-            msg = "Second secondary gets the 1st color, secondary version"
-            self.assertEquals(
-                colors["2012,summer,PHYS,121/AQ"], "1a", msg)
+        self.assertEquals
+        (colors["2012,summer,PHYS,121/A"], 1, "Primary gets the 1st color")
+        msg = "Secondary gets the 1st color, secondary version"
+        self.assertEquals(
+            colors["2012,summer,PHYS,121/AC"], "1a", msg)
+        msg = "Second secondary gets the 1st color, secondary version"
+        self.assertEquals(
+            colors["2012,summer,PHYS,121/AQ"], "1a", msg)
 
     def test_drop_then_new_add(self):
         term = Term()

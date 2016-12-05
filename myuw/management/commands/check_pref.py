@@ -5,7 +5,7 @@ Test all the links in the CSV for non-200 status codes (after redirects).
 
 import sys
 from django.core.management.base import BaseCommand, CommandError
-from myuw.dao import has_newmyuw_preference, has_legacy_preference
+from myuw.dao.user import has_newmyuw_preference, has_legacy_preference
 
 
 class Command(BaseCommand):

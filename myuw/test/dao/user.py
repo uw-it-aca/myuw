@@ -3,8 +3,8 @@ from django.conf import settings
 from myuw.models import UserMigrationPreference
 from myuw.dao.user import set_preference_to_new_myuw,\
     set_preference_to_old_myuw, has_legacy_preference, has_newmyuw_preference,\
-    is_optin_user, is_fyp_thrive_viewer, is_oldmyuw_user
-from myuw.test import get_request_with_user, FDAO_PWS
+    is_optin_user, is_oldmyuw_user
+from myuw.test import get_request_with_user
 
 
 class TestUserDao(TransactionTestCase):
@@ -13,10 +13,6 @@ class TestUserDao(TransactionTestCase):
         self.assertTrue(is_optin_user('javerage'))
         self.assertTrue(is_optin_user('seagrad'))
         self.assertFalse(is_optin_user('nobody'))
-
-    def test_is_fyp_thrive_viewer(self):
-        self.assertTrue(is_fyp_thrive_viewer('javerage'))
-        self.assertFalse(is_fyp_thrive_viewer('nobody'))
 
     def test_has_legacy_preference(self):
         self.assertFalse(has_legacy_preference('nobody'))

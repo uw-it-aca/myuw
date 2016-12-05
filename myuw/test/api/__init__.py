@@ -6,7 +6,7 @@ from django.test.utils import override_settings
 from django.test import TestCase
 from django.test.client import Client
 from django.core.urlresolvers import reverse
-from myuw.test import FDAO_SWS, get_user, get_user_pass
+from myuw.test import fdao_sws_override, get_user, get_user_pass
 
 
 def missing_url(name):
@@ -34,10 +34,7 @@ Message = 'django.contrib.messages.middleware.MessageMiddleware'
 XFrame = 'django.middleware.clickjacking.XFrameOptionsMiddleware'
 UserService = 'userservice.user.UserServiceMiddleware'
 AUTH_BACKEND = 'django.contrib.auth.backends.ModelBackend'
-
-
 standard_test_override = override_settings(
-    RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
     MIDDLEWARE_CLASSES=(Session,
                         Common,
                         CsrfView,
@@ -49,6 +46,7 @@ standard_test_override = override_settings(
     AUTHENTICATION_BACKENDS=(AUTH_BACKEND,))
 
 
+@fdao_sws_override
 @standard_test_override
 class MyuwApiTest(TestCase):
 

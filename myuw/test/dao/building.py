@@ -4,13 +4,13 @@ from myuw.dao.building import get_building_by_code, \
     get_buildings_by_schedule
 from myuw.dao.schedule import _get_schedule
 from restclients.models.sws import Term
-from myuw.test import get_request_with_user
+from myuw.test import get_request
 
 
 class TestBuildings(TestCase):
 
     def setUp(self):
-        get_request_with_user('javerage')
+        get_request()
 
     def test_get_by_code(self):
         building = get_building_by_code('ELC')

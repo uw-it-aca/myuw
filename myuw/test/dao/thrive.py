@@ -5,31 +5,31 @@ import StringIO
 from myuw.dao.thrive import _get_offset, _make_urls, _is_displayed, \
     _make_thrive_payload
 from restclients.models.sws import Term
-from myuw.test import FDAO_SWS, FDAO_PWS
+from myuw.test import fdao_sws_override, fdao_pws_override
 
 
+@fdao_pws_override
+@fdao_sws_override
 class TestThrive(TestCase):
 
     def test_get_offset(self):
-        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
-                           RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS):
-            term = Term()
-            term.year = 2013
-            term.quarter = "autumn"
-            term.first_day_quarter = datetime.date(2013, 9, 11)
+        term = Term()
+        term.year = 2013
+        term.quarter = "autumn"
+        term.first_day_quarter = datetime.date(2013, 9, 11)
 
-            date_prev = datetime.date(2013, 9, 10)
-            date_equal = datetime.date(2013, 9, 11)
-            date_post = datetime.date(2013, 9, 12)
+        date_prev = datetime.date(2013, 9, 10)
+        date_equal = datetime.date(2013, 9, 11)
+        date_post = datetime.date(2013, 9, 12)
 
-            offset_prev = _get_offset(date_prev, term)
-            self.assertEqual(offset_prev, -1)
+        offset_prev = _get_offset(date_prev, term)
+        self.assertEqual(offset_prev, -1)
 
-            offset_equal = _get_offset(date_equal, term)
-            self.assertEqual(offset_equal, 0)
+        offset_equal = _get_offset(date_equal, term)
+        self.assertEqual(offset_equal, 0)
 
-            offset_post = _get_offset(date_post, term)
-            self.assertEqual(offset_post, 1)
+        offset_post = _get_offset(date_post, term)
+        self.assertEqual(offset_post, 1)
 
     def test_make_urls(self):
         one_url_row = '9,11/23/2015,autumn,-10,week_label,category_label,'\

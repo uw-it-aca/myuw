@@ -14,13 +14,13 @@ from myuw.dao.card_display_dates import get_card_visibilty_date_values,\
     is_after_bof_and_before_eof_summer_reg_period1,\
     is_after_bof_and_before_eof_summer_reg_periodA,\
     during_myplan_peak_load
-from myuw.test import FDAO_SWS, get_request_with_date, get_request_with_user
+from myuw.test import fdao_sws_override, get_request_with_date, get_request
 
 
-@override_settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS)
+@fdao_sws_override
 class TestDisplayValues(TestCase):
     def setUp(self):
-        get_request_with_user('javerage')
+        get_request()
 
     def get_visibility_for_date(self, date):
         now_request = get_request_with_date(date)
