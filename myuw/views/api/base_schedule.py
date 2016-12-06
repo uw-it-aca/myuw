@@ -3,8 +3,7 @@ import logging
 from django.http import HttpResponse
 from operator import itemgetter
 from myuw.dao.building import get_buildings_by_schedule
-from myuw.dao.canvas import get_canvas_enrolled_courses,\
-    get_indexed_by_decrosslisted
+from myuw.dao.canvas import CanvasCourses, canvas_courses_prefetch
 from myuw.dao.affiliation import affiliation_prefetch
 from myuw.dao.course_color import get_colors_by_schedule
 from myuw.dao.gws import is_grad_student
@@ -61,13 +60,8 @@ def load_schedule(request, schedule, summer_term=""):
 
     buildings = get_buildings_by_schedule(schedule)
 
-    canvas_data_by_course_id = []
-    try:
-        canvas_data_by_course_id = get_indexed_by_decrosslisted(
-            get_canvas_enrolled_courses(), schedule.sections)
-    except Exception as ex:
-        logger.error(ex)
-        pass
+    canvas_courses = CanvasCourses()
+
     # Since the schedule is restclients, and doesn't know
     # about color ids, backfill that data
     section_index = 0
@@ -88,14 +82,12 @@ def load_schedule(request, schedule, summer_term=""):
             logger.error(ex)
             pass
 
-        if section.section_label() in canvas_data_by_course_id:
-            enrollment = canvas_data_by_course_id[section.section_label()]
-            # canvas_grade = enrollment.final_grade
-            # section_data["canvas_grade"] = canvas_grade
-            canvas_course = enrollment.course
-            if not canvas_course.is_unpublished():
-                section_data["canvas_url"] = canvas_course.course_url
-                section_data["canvas_name"] = canvas_course.name
+        canvas_course_url = canvas_courses.get_url_for_section(
+            section.section_label())
+        if canvas_course_url:
+            section_data["canvas_url"] = canvas_course_url
+            section_data["canvas_name"] = canvas_courses.get_name_for_section(
+                section.section_label())
 
         # MUWM-596
         if section.final_exam and section.final_exam.building:
@@ -156,5 +148,6 @@ def prefetch_schedule_resources(request):
     prefetch_methods.extend(library_resource_prefetch())
     prefetch_methods.extend(affiliation_prefetch())
     prefetch_methods.extend(person_prefetch())
+    prefetch_methods.extend(canvas_courses_prefetch())
 
     prefetch(request, prefetch_methods)
