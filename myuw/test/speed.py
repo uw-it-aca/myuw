@@ -52,9 +52,9 @@ class TestPageSpeeds(TestCase):
         delta = t1-t0
 
         # Assert greater to make sure we're actually running the code.
-        # There are 2 known rounds of requests made, which should take .5
+        # There are 3 known rounds of requests made, which should take .5
         # seconds each
-        self.assertGreater(delta, 1.0)
+        self.assertGreater(delta, 1.5)
         # Make sure there aren't more requests made.  0.5 seconds should be
         # enough time to generate the view!
-        self.assertLess(delta, 1.5)
+        self.assertLess(delta, 2.0)
