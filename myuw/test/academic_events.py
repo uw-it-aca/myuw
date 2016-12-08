@@ -2,7 +2,7 @@ from django.test import TestCase
 from myuw.views.api.academic_events import AcademicEvents
 from icalendar import Calendar, Event
 from datetime import datetime, date
-from django.test.client import RequestFactory
+from myuw.test import get_request_with_date
 
 
 class TestAcademicEvents(TestCase):
@@ -74,9 +74,7 @@ class TestAcademicEvents(TestCase):
         self.assertEquals(len(categories.keys()), 4)
 
     def test_filter_past(self):
-        request = RequestFactory().get("/")
-        request.session = {}
-        request.session["myuw_override_date"] = "2011-01-01"
+        request = get_request_with_date("2011-01-01")
 
         past = Event()
         past.add('dtstart', date(2010, 01, 01))
@@ -86,14 +84,12 @@ class TestAcademicEvents(TestCase):
         events = AcademicEvents().filter_past_events(request, [past])
         self.assertEquals(len(events), 0)
 
-        request.session["myuw_override_date"] = "2010-12-30"
+        request = get_request_with_date("2010-12-30")
         events = AcademicEvents().filter_past_events(request, [past])
         self.assertEquals(len(events), 1)
 
     def test_filter_future(self):
-        request = RequestFactory().get("/")
-        request.session = {}
-        request.session["myuw_override_date"] = "2012-12-01"
+        request = get_request_with_date("2012-12-01")
 
         past = Event()
         past.add('dtstart', date(2014, 01, 01))
@@ -103,16 +99,12 @@ class TestAcademicEvents(TestCase):
         events = AcademicEvents().filter_too_future_events(request, [past])
         self.assertEquals(len(events), 0)
 
-        request = RequestFactory().get("/")
-        request.session = {}
-        request.session["myuw_override_date"] = "2013-01-01"
+        request = get_request_with_date("2013-01-01")
         events = AcademicEvents().filter_too_future_events(request, [past])
         self.assertEquals(len(events), 1)
 
     def test_current_filter(self):
-        request = RequestFactory().get("/")
-        request.session = {}
-        request.session["myuw_override_date"] = "2012-12-10"
+        request = get_request_with_date("2012-12-10")
 
         e1 = Event()
         e1.add('dtstart', date(2012, 12, 1))
