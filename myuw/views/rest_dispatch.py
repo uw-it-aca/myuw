@@ -5,6 +5,7 @@ from userservice.user import UserService
 from restclients.exceptions import DataFailureException,\
     InvalidNetID, InvalidRegID
 from myuw.logger.logresp import log_err, log_data_not_found_response
+from myuw.util.performance import log_response_time
 
 
 class RESTDispatch:
@@ -12,6 +13,7 @@ class RESTDispatch:
     Handles passing on the request to the correct view
     method based on the request type.
     """
+    @log_response_time
     def run(self, *args, **named_args):
         request = args[0]
 

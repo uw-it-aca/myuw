@@ -22,6 +22,7 @@ from myuw.logger.session_log import log_session
 from myuw.views.rest_dispatch import invalid_session
 from myuw.dao.uwemail import get_email_forwarding_for_current_user
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
+from myuw.util.performance import log_response_time
 
 
 logger = logging.getLogger(__name__)
@@ -30,6 +31,7 @@ LOGOUT_URL = "/user_logout"
 
 @login_required
 @cache_control(max_age=0, no_cache=True, no_store=True, must_revalidate=True)
+@log_response_time
 def index(request,
           year=None,
           quarter=None,
