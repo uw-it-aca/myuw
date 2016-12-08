@@ -26,6 +26,7 @@ from myuw.dao.uwemail import index_forwarding_prefetch
 from myuw.dao.enrollment import enrollment_prefetch
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.views import prefetch
+from myuw.util.performance import log_response_time
 
 
 logger = logging.getLogger(__name__)
@@ -34,6 +35,7 @@ LOGOUT_URL = "/user_logout"
 
 @login_required
 @cache_control(max_age=0, no_cache=True, no_store=True, must_revalidate=True)
+@log_response_time
 def index(request,
           year=None,
           quarter=None,

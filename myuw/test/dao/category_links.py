@@ -10,7 +10,7 @@ class TestCategoryLinks(TestCase):
 
     def test_get_all_likes(self):
         all_links = Res_Links.get_all_links()
-        self.assertEquals(len(all_links), 159)
+        self.assertEquals(len(all_links), 155)
         val = URLValidator()
         for link in all_links:
             try:
@@ -40,17 +40,17 @@ class TestCategoryLinks(TestCase):
         links = _get_links_by_category_and_campus(category_id,
                                                   "seattle",
                                                   affi)
-        self.assertEquals(len(links), 25)
+        self.assertEquals(len(links), 23)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "bothell",
                                                   affi)
-        self.assertEquals(len(links), 23)
+        self.assertEquals(len(links), 22)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "tacoma",
                                                   affi)
-        self.assertEquals(len(links), 23)
+        self.assertEquals(len(links), 22)
 
     def test_grad_category(self):
         category_id = _get_category_id("Student & Campus Life")
@@ -61,17 +61,17 @@ class TestCategoryLinks(TestCase):
         links = _get_links_by_category_and_campus(category_id,
                                                   "seattle",
                                                   affi)
-        self.assertEquals(len(links), 26)
+        self.assertEquals(len(links), 24)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "bothell",
                                                   affi)
-        self.assertEquals(len(links), 24)
+        self.assertEquals(len(links), 23)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "tacoma",
                                                   affi)
-        self.assertEquals(len(links), 24)
+        self.assertEquals(len(links), 23)
 
     def test_pce_links(self):
         category_id = _get_category_id("Student & Campus Life")
@@ -82,4 +82,4 @@ class TestCategoryLinks(TestCase):
         links = _get_links_by_category_and_campus(category_id,
                                                   "",
                                                   affi)
-        self.assertEquals(len(links), 5)
+        self.assertEquals(len(links), 6)
