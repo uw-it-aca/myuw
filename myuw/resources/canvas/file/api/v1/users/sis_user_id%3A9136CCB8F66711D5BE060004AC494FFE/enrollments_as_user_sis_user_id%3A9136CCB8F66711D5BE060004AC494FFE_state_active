@@ -7,7 +7,7 @@
         "type": "TeacherEnrollment",
         "course_section_id": 225705,
         "course_id": 249650,
-        "html_url": "https://canvas.uw.edu/courses/149650/users/496168",
+        "html_url": "https://uw.test.instructure.com/courses/249650/users/496168",
         "user": {
             "login_id": "javerage",
             "sis_user_id": "9136CCB8F66711D5BE060004AC494FFE",
@@ -68,6 +68,8 @@
         "enrollment_state": "active",
         "role": "StudentEnrollment",
         "last_activity_at": null,
+        "sis_course_id": "2013-spring-PHYS-121-A",
+        "sis_section_id": "2013-spring-PHYS-121-A--",
         "total_activity_time": 250,
         "grades": {
             "html_url": "https://uw.test.instructure.com/courses/862539/grades/496164",
