@@ -1,6 +1,7 @@
 import logging
 from myuw.models import UserMigrationPreference
-from myuw.dao import is_optin_user, get_netid_of_current_user
+from myuw.dao import _is_optin_user as is_optin_user
+from myuw.dao import get_netid_of_current_user
 from myuw.dao.gws import is_staff_employee, is_student_employee,\
     is_undergrad_student, is_current_graduate_student, is_employee, is_faculty
 

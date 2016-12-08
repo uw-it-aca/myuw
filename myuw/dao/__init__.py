@@ -25,7 +25,7 @@ THRIVE = "thrive"
 OPTIN = "optin"
 
 
-def is_optin_user(uwnetid):
+def _is_optin_user(uwnetid):
     return _is_netid_in_list(uwnetid, OPTIN)
 
 
