@@ -6,9 +6,8 @@ import logging
 import traceback
 from django.conf import settings
 from myuw.logger.logback import log_info, log_exception
-from myuw.dao import is_fyp_thrive_viewer
+from myuw.dao import is_fyp_thrive_viewer, get_netid_of_current_user
 from myuw.dao.schedule import get_current_quarter_schedule
-from myuw.dao.pws import get_netid_of_current_user
 from myuw.dao.gws import is_grad_student, is_student,\
     is_current_graduate_student, is_undergrad_student,\
     is_pce_student, is_student_employee, is_employee, is_faculty,\
