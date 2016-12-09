@@ -7,7 +7,7 @@ import logging
 from restclients.hfs.idcard import get_hfs_accounts
 from restclients.exceptions import DataFailureException
 from myuw.logger.logback import log_exception
-from myuw.dao.pws import get_netid_of_current_user
+from myuw.dao import get_netid_of_current_user
 
 
 logger = logging.getLogger(__name__)

@@ -6,9 +6,9 @@ with the UW Affiliation Group API resource
 import logging
 from django.conf import settings
 from restclients.gws import GWS
-from myuw.dao.pws import get_netid_of_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time, log_exception
+from myuw.dao import get_netid_of_current_user
 
 
 logger = logging.getLogger(__name__)

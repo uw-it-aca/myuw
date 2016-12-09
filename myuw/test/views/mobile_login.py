@@ -1,11 +1,9 @@
-from django.test import TestCase
 from django.conf import settings
-from django.test.client import Client
 from django.core.urlresolvers import reverse
 from myuw.test.api import MyuwApiTest, require_url
 from myuw.models import UserMigrationPreference
 from django.test.utils import override_settings
-import json
+
 
 override_servlet_url = override_settings(
     MYUW_USER_SERVLET_URL='http://some-test-server/myuw')
@@ -142,17 +140,8 @@ class TestLoginRedirects(MyuwApiTest):
         obj = UserMigrationPreference.objects.get(username=username)
         self.assertFalse(obj.use_legacy_site)
 
-        # Go to the set old preference url, but don't post
+        # Go to the set old preference url
         response = self.client.get(old_url)
-
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.get("Location"), old_valid_url)
-
-        obj = UserMigrationPreference.objects.get(username=username)
-        self.assertFalse(obj.use_legacy_site)
-
-        # POST to the set old preference url, changing preference
-        response = self.client.post(old_url)
 
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.get("Location"), old_valid_url)
@@ -160,7 +149,7 @@ class TestLoginRedirects(MyuwApiTest):
         obj = UserMigrationPreference.objects.get(username=username)
         self.assertTrue(obj.use_legacy_site)
 
-        # POST again
+        # POST
         response = self.client.post(old_url)
 
         self.assertEquals(response.status_code, 302)
@@ -168,16 +157,6 @@ class TestLoginRedirects(MyuwApiTest):
 
         obj = UserMigrationPreference.objects.get(username=username)
         self.assertTrue(obj.use_legacy_site)
-
-        # POST to the set old preference url, without an existing preference
-        UserMigrationPreference.objects.all().delete()
-        response = self.client.get(old_url)
-
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.get("Location"), old_valid_url)
-
-        with self.assertRaises(UserMigrationPreference.DoesNotExist):
-            UserMigrationPreference.objects.get(username=username)
 
         # Replace a legacy preference with a new one
         response = self.client.get(new_url)
