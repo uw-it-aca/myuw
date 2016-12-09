@@ -20,12 +20,14 @@ class Command(BaseCommand):
         '4. Move the mapping file into myuw/dao/;\n' +\
         '5. Add and commit the notice_categorization.py'
 
-    args = "<spreadsheet csv path>, <outfile>"
+    def add_arguments(self, parser):
+        parser.add_argument('spreadsheet-csv-path')
+        parser.add_argument('outfile')
 
     def handle(self, *args, **options):
         try:
-            csv_path = args[0]
-            outfile = args[1]
+            csv_path = options['spreadsheet-csv-path']
+            outfile = options['outfile']
             output_string = "NOTICE_CATEGORIES = {\n"
             with open(csv_path, "rb") as f_obj:
                 reader = csv.reader(f_obj)

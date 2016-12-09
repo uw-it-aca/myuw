@@ -2,25 +2,20 @@
 This module provides affiliations of the current user
 """
 
-import os
-import json
 import logging
 import traceback
 from django.conf import settings
 from myuw.logger.logback import log_info, log_exception
+from myuw.dao import is_fyp_thrive_viewer, get_netid_of_current_user
 from myuw.dao.schedule import get_current_quarter_schedule
-from myuw.dao.pws import get_netid_of_current_user
 from myuw.dao.gws import is_grad_student, is_student,\
     is_current_graduate_student, is_undergrad_student,\
     is_pce_student, is_student_employee, is_employee, is_faculty,\
     is_seattle_student, is_bothell_student, is_tacoma_student,\
     is_staff_employee
 from myuw.dao.enrollment import get_main_campus
-from myuw.models import UserMigrationPreference
 
 
-THRIVE = "thrive"
-OPTIN = "optin"
 logger = logging.getLogger(__name__)
 
 
@@ -81,6 +76,10 @@ def get_all_affiliations(request):
     log_info(logger, data)
     request.myuw_user_affiliations = data
     return data
+
+
+def is_thrive_viewer():
+    return is_fyp_thrive_viewer(get_netid_of_current_user())
 
 
 def _get_campuses_by_schedule(schedule):
@@ -164,68 +163,3 @@ def get_base_campus(request):
             campus = ""
             pass
     return campus
-
-
-def is_oldmyuw_user():
-    if has_legacy_preference():
-        return True
-    if is_optin_user():
-        return False
-    if is_staff_employee():
-        return True
-    if is_faculty():
-        return True
-    if is_current_graduate_student():
-        return True
-    if is_undergrad_student():
-        return False
-    return True
-
-
-def has_legacy_preference():
-    username = get_netid_of_current_user()
-
-    try:
-        saved = UserMigrationPreference.objects.get(username=username)
-        if saved.use_legacy_site:
-            return True
-    except UserMigrationPreference.DoesNotExist:
-        return False
-    return False
-
-
-def is_optin_user():
-    return _is_user_in_list(
-        get_netid_of_current_user(), OPTIN)
-
-
-def is_thrive_viewer():
-    return _is_user_in_list(
-        get_netid_of_current_user(), THRIVE)
-
-
-def _is_user_in_list(username, user_type):
-    if THRIVE == user_type:
-        file_path = getattr(settings, "MYUW_MANDATORY_SWITCH_PATH", None)
-        if not file_path:
-            current_dir = os.path.dirname(os.path.realpath(__file__))
-
-            file_path = os.path.abspath(os.path.join(current_dir,
-                                                     "..", "data",
-                                                     "thrive-viewer-list.txt"))
-
-    else:
-        file_path = getattr(settings, "MYUW_OPTIN_SWITCH_PATH", None)
-        if not file_path:
-            current_dir = os.path.dirname(os.path.realpath(__file__))
-
-            file_path = os.path.abspath(os.path.join(current_dir,
-                                                     "..", "data",
-                                                     "optin-list.txt"))
-
-    with open(file_path) as data_source:
-        for line in data_source:
-            if line.rstrip() == username:
-                return True
-
-    return False

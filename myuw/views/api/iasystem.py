@@ -5,8 +5,8 @@ import traceback
 from operator import itemgetter
 from django.conf import settings
 from django.http import HttpResponse
+from myuw.dao import get_netid_of_current_user
 from myuw.dao.gws import is_student
-from myuw.dao.pws import get_netid_of_current_user
 from myuw.dao.schedule import get_schedule_by_term
 from myuw.dao.schedule import filter_schedule_sections_by_summer_term
 from myuw.dao.registered_term import get_current_summer_term_in_schedule

@@ -2,11 +2,7 @@ import json
 import pytz
 from unittest2 import skipIf
 from datetime import date, datetime
-from django.test.utils import override_settings
 from django.test import TestCase
-from django.test.client import Client
-from django.core.urlresolvers import reverse
-from myuw.test.api import missing_url, get_user, get_user_pass
 from myuw.dao.calendar import get_events
 
 
