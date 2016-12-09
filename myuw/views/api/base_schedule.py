@@ -60,7 +60,12 @@ def load_schedule(request, schedule, summer_term=""):
 
     buildings = get_buildings_by_schedule(schedule)
 
-    canvas_enrollments = get_canvas_active_enrollments()
+    canvas_enrollments = {}
+    try:
+        canvas_enrollments = get_canvas_active_enrollments()
+    except Exception as ex:
+        logger.error(ex)
+        pass
 
     # Since the schedule is restclients, and doesn't know
     # about color ids, backfill that data
