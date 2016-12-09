@@ -8,6 +8,6 @@ class EmailServiceUrlException(Exception):
     pass
 
 
-class CanavsNonSWSException(Exception):
+class CanvasNonSWSException(Exception):
     """Non-academic (adhoc) Canvas course"""
     pass

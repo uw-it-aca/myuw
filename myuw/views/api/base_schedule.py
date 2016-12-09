@@ -3,8 +3,7 @@ import logging
 from django.http import HttpResponse
 from operator import itemgetter
 from myuw.dao.building import get_buildings_by_schedule
-from myuw.dao.canvas import get_canvas_active_enrollments,\
-    get_canvas_course_url_from_enrollment, canvas_prefetch
+from myuw.dao.canvas import get_canvas_active_enrollments, canvas_prefetch
 from myuw.dao.affiliation import affiliation_prefetch
 from myuw.dao.course_color import get_colors_by_schedule
 from myuw.dao.gws import is_grad_student
@@ -15,7 +14,6 @@ from myuw.dao.schedule import get_schedule_by_term,\
     filter_schedule_sections_by_summer_term
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
 from myuw.dao.term import get_comparison_date, current_terms_prefetch
-from myuw.dao.exceptions import CanavsNonSWSException
 from myuw.logger.logresp import log_data_not_found_response,\
     log_success_response, log_msg
 from myuw.views.rest_dispatch import RESTDispatch, data_not_found
@@ -84,10 +82,11 @@ def load_schedule(request, schedule, summer_term=""):
             logger.error(ex)
             pass
 
-        section_label = section.section_label()
-        if section_label in canvas_enrollments:
-            section_data["canvas_url"] = get_canvas_course_url_from_enrollment(
-                canvas_enrollments[section_label])
+        try:
+            section_data["canvas_url"] = canvas_enrollments[
+                section.section_label()].course_url
+        except KeyError:
+            pass
 
         # MUWM-596
         if section.final_exam and section.final_exam.building:
