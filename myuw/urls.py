@@ -5,7 +5,8 @@ from myuw.views.display_dates import override
 from myuw.views.choose import new_site, old_site
 from myuw.views.logger import log_interaction
 from myuw.views.api.current_schedule import StudClasScheCurQuar
-from myuw.views.api.instructor_schedule import InstScheCurQuar
+from myuw.views.api.instructor_schedule import InstScheCurQuar,\
+    InstScheFutuQuar, InstSchePastQuar
 from myuw.views.api.finance import Finance
 from myuw.views.api.hfs import HfsBalances
 from myuw.views.api.future_schedule import StudClasScheFutureQuar
@@ -93,7 +94,15 @@ urlpatterns = [
         ),
     url(r'^api/v1/instructor_schedule/current/?$',
         login_required(InstScheCurQuar().run),
-        name="myuw_instructor_schedule"
+        name="myuw_instructor_current_schedule_api"
+        ),
+    url(r'^api/v1/instructor_schedule/future/?$',
+        login_required(InstScheFutuQuar().run),
+        name="myuw_instructor_schedule_next_quarter_api"
+        ),
+    url(r'^api/v1/instructor_schedule/past/?$',
+        login_required(InstSchePastQuar().run),
+        name="myuw_instructor_schedule_prev_quarter_api"
         ),
     url(r'^api/v1/thrive/$', login_required(ThriveMessages().run),
         name="myuw_thrive_api"
