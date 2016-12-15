@@ -3,8 +3,9 @@ from django.test.client import RequestFactory
 from django.contrib.auth.models import User
 from userservice.user import UserServiceMiddleware
 from myuw.views.api.instructor_schedule import load_schedule
-from myuw.dao.instructor_schedule import\
-    get_current_quarter_instructor_schedule
+from myuw.dao.instructor_schedule import (
+    get_current_quarter_instructor_schedule)
+
 
 
 @require_url('myuw_instructor_current_schedule_api')
