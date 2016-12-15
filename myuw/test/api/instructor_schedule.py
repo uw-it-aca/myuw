@@ -7,7 +7,6 @@ from myuw.dao.instructor_schedule import (
     get_current_quarter_instructor_schedule)
 
 
-
 @require_url('myuw_instructor_current_schedule_api')
 class TestInstructorCurrentSchedule(MyuwApiTest):
     def test_bill_current_term(self):
