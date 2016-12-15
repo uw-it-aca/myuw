@@ -9,7 +9,6 @@ from myuw.dao.instructor_schedule import\
     get_past_quarter_instructor_schedule
 
 
-
 FDAO_SWS = 'restclients.dao_implementation.sws.File'
 FDAO_PWS = 'restclients.dao_implementation.pws.File'
 FDAO_Canvas = 'restclients.dao_implementation.canvas.File'
