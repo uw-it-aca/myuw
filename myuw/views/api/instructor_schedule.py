@@ -1,6 +1,6 @@
 import json
 import traceback
-from myuw.dao.term import get_current_quarter
+from myuw.dao.term import get_current_quarter, get_next_quarter
 from myuw.logger.timer import Timer
 from myuw.views.rest_dispatch import handle_exception
 
@@ -19,6 +19,7 @@ from myuw.dao.term import get_comparison_date
 from myuw.logger.logresp import log_data_not_found_response,\
     log_success_response, log_msg
 from myuw.views.rest_dispatch import RESTDispatch, data_not_found
+from restclients.sws.term import get_term_before, get_term_after
 
 
 logger = logging.getLogger(__name__)
@@ -154,6 +155,58 @@ class InstScheCurQuar(InstSche):
         try:
             return self.make_http_resp(timer,
                                        get_current_quarter(request),
+                                       request)
+        except Exception:
+            return handle_exception(logger, timer, traceback)
+
+
+class InstScheFutuQuar(InstSche):
+    """
+    Performs actions on resource at /api/v1/instructor/schedule/next/.
+    """
+
+    def GET(self, request):
+        """
+        GET returns 200 with a future quarter course section schedule
+        Integer "offset" parameter sets how many quarters forward (default: 1)
+        @return class schedule data in json format
+                status 404: no schedule found (not registered)
+                status 543: data error
+        """
+        timer = Timer()
+        term = get_current_quarter(request)
+        offset = int(request.GET.get('offset', 1))
+        for index in range(offset):
+            term = get_term_after(term)
+        try:
+            return self.make_http_resp(timer,
+                                       term,
+                                       request)
+        except Exception:
+            return handle_exception(logger, timer, traceback)
+
+
+class InstSchePastQuar(InstSche):
+    """
+    Performs actions on resource at /api/v1/instructor/schedule/previous/.
+    """
+
+    def GET(self, request):
+        """
+        GET returns 200 with a past quarter course section schedule
+        Integer "offset" parameter sets how many quarters past (default: 1)
+        @return class schedule data in json format
+                status 404: no schedule found (not registered)
+                status 543: data error
+        """
+        timer = Timer()
+        term = get_current_quarter(request)
+        offset = int(request.GET.get('offset', 1))
+        for index in range(offset):
+            term = get_term_before(term)
+        try:
+            return self.make_http_resp(timer,
+                                       term,
                                        request)
         except Exception:
             return handle_exception(logger, timer, traceback)
