@@ -6,13 +6,12 @@ import logging
 from restclients.sws.section import get_sections_by_instructor_and_term,\
     get_section_by_url
 from restclients.sws.section_status import get_section_status_by_label
-from restclients.sws.term import get_term_before, get_term_after
 from restclients.models.sws import ClassSchedule
 from restclients.exceptions import DataFailureException
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time
 from myuw.dao.pws import get_person_of_current_user
-from myuw.dao.term import get_current_quarter, get_next_quarter
+from myuw.dao.term import get_current_quarter
 
 
 logger = logging.getLogger(__name__)
@@ -70,30 +69,6 @@ def get_current_quarter_instructor_schedule(request):
     request.myuw_current_quarter_instructor_schedule = schedule
 
     return schedule
-
-
-def get_future_quarter_instructor_schedule(request):
-    """
-    Return sections instructor is teaching in the next quarter
-    """
-    term = get_current_quarter(request)
-    offset = int(request.GET.get('offset', 1))
-    for index in range(offset):
-        term = get_term_after(term)
-    return get_instructor_schedule_by_term(term)
-
-
-def get_past_quarter_instructor_schedule(request):
-    """
-    Return sections instructor is teaching in a past quarter
-    """
-    if get_next_quarter(request) == get_current_quarter(request):
-        return None
-    term = get_current_quarter(request)
-    offset = int(request.GET.get('offset', 1))
-    for index in range(offset):
-        term = get_term_before(term)
-    return get_instructor_schedule_by_term(term)
 
 
 def get_limit_estimate_enrollment_for_section(section):

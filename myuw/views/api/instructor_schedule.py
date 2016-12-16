@@ -1,6 +1,5 @@
 import json
 import traceback
-from myuw.dao.term import get_current_quarter, get_next_quarter
 from myuw.logger.timer import Timer
 from myuw.views.rest_dispatch import handle_exception
 
@@ -15,7 +14,8 @@ from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
     get_limit_estimate_enrollment_for_section
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
-from myuw.dao.term import get_comparison_date
+from myuw.dao.term import get_current_quarter, get_next_quarter
+from myuw.dao.term import get_specific_term, is_past
 from myuw.logger.logresp import log_data_not_found_response,\
     log_success_response, log_msg
 from myuw.views.rest_dispatch import RESTDispatch, data_not_found
@@ -141,7 +141,7 @@ def load_schedule(request, schedule, summer_term=""):
 
 class InstScheCurQuar(InstSche):
     """
-    Performs actions on resource at /api/v1/instructor/schedule/current/.
+    Performs actions on resource at /api/v1/instructor_schedule/current/
     """
 
     def GET(self, request):
@@ -160,53 +160,26 @@ class InstScheCurQuar(InstSche):
             return handle_exception(logger, timer, traceback)
 
 
-class InstScheFutuQuar(InstSche):
+class InstScheQuar(InstSche):
     """
-    Performs actions on resource at /api/v1/instructor/schedule/next/.
+    Performs actions on resource at
+    /api/v1/instructor_schedule/<year>,<quarter>(,<summer_term>)?
     """
-
-    def GET(self, request):
+    def GET(self, request, year, quarter, summer_term=None):
         """
-        GET returns 200 with a future quarter course section schedule
-        Integer "offset" parameter sets how many quarters forward (default: 1)
-        @return class schedule data in json format
+        GET returns 200 with a specific term instructor schedule
+        @return course schedule data in json format
                 status 404: no schedule found (not registered)
                 status 543: data error
         """
         timer = Timer()
-        term = get_current_quarter(request)
-        offset = int(request.GET.get('offset', 1))
-        for index in range(offset):
-            term = get_term_after(term)
         try:
+            smr_term = ""
+            if summer_term and len(summer_term) > 1:
+                smr_term = summer_term.title()
+
             return self.make_http_resp(timer,
-                                       term,
-                                       request)
-        except Exception:
-            return handle_exception(logger, timer, traceback)
-
-
-class InstSchePastQuar(InstSche):
-    """
-    Performs actions on resource at /api/v1/instructor/schedule/previous/.
-    """
-
-    def GET(self, request):
-        """
-        GET returns 200 with a past quarter course section schedule
-        Integer "offset" parameter sets how many quarters past (default: 1)
-        @return class schedule data in json format
-                status 404: no schedule found (not registered)
-                status 543: data error
-        """
-        timer = Timer()
-        term = get_current_quarter(request)
-        offset = int(request.GET.get('offset', 1))
-        for index in range(offset):
-            term = get_term_before(term)
-        try:
-            return self.make_http_resp(timer,
-                                       term,
-                                       request)
+                                       get_specific_term(year, quarter),
+                                       request, smr_term)
         except Exception:
             return handle_exception(logger, timer, traceback)
