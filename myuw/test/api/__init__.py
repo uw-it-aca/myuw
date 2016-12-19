@@ -4,24 +4,23 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.test.utils import override_settings
 from django.test import TestCase
-from django.test.client import Client
-from django.core.urlresolvers import reverse
+from django.urls import NoReverseMatch
 
 
-def missing_url(name):
+def missing_url(name, kwargs=None):
     try:
-        url = reverse(name)
-    except Exception as ex:
-        print "Ex: ", ex
+        reverse(name, kwargs=kwargs)
+    except NoReverseMatch as ex:
+        print "NoReverseMatch: %s" % ex
         return True
 
     return False
 
 
-def require_url(url, message='myuw urls not configured'):
+def require_url(url, message='myuw urls not configured', kwargs=None):
     if "FORCE_VIEW_TESTS" in os.environ:
         return skipIf(False, message)
-    return skipIf(missing_url(url), message)
+    return skipIf(missing_url(url, kwargs), message)
 
 
 def get_user(username):
