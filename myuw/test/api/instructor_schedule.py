@@ -12,7 +12,6 @@ FDAO_PWS = 'restclients.dao_implementation.pws.File'
 FDAO_Canvas = 'restclients.dao_implementation.canvas.File'
 
 
-@require_url('myuw_instructor_schedule_api')
 class TestInstructorSchedule(MyuwApiTest):
 
     def get_schedule(self, **kwargs):
