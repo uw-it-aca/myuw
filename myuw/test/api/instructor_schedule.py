@@ -12,13 +12,8 @@ FDAO_PWS = 'restclients.dao_implementation.pws.File'
 FDAO_Canvas = 'restclients.dao_implementation.canvas.File'
 
 
-class TestInstructorSchedule(MyuwApiTest):
-
-    def get_schedule(self, **kwargs):
-        return self.get_response_by_reverse(
-            'myuw_instructor_schedule_api',
-            kwargs=kwargs,)
-
+@require_url('myuw_instructor_current_schedule_api')
+class TestInstructorCurrentSchedule(MyuwApiTest):
     def test_bill_current_term(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
                            RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
@@ -45,6 +40,17 @@ class TestInstructorSchedule(MyuwApiTest):
             self.assertEqual(
                 len(data['sections'][1]['grade_submission_delegates']),
                 1)
+
+
+@require_url('myuw_instructor_schedule_api',
+             kwargs={'year': 2013, 'quarter': 'summer'},
+             message="Specific term instructor URLs not configured")
+class TestInstructorTermSchedule(MyuwApiTest):
+
+    def get_schedule(self, **kwargs):
+        return self.get_response_by_reverse(
+            'myuw_instructor_schedule_api',
+            kwargs=kwargs,)
 
     def test_bill_future_term(self):
         with self.settings(RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
