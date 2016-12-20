@@ -4,14 +4,13 @@ var InstructorCourseCards = {
     term: 'current',
 
     render_init: function() {
-        if (myuwFeatureDisabled('instructor_schedule')) {
+        if (myuwFeatureEnabled('instructor_schedule')) {
+            WSData.fetch_instructed_course_data_for_term(InstructorCourseCards.term,
+                                                         InstructorCourseCards.render_upon_data,
+                                                         InstructorCourseCards.render_error);
+        } else {
             $("#InstructorCourseCards").hide();
-            return;
         }
-
-        WSData.fetch_instructed_course_data_for_term(InstructorCourseCards.term,
-                                                     InstructorCourseCards.render_upon_data,
-                                                     InstructorCourseCards.render_error);
     },
 
     render_upon_data: function() {
