@@ -107,8 +107,8 @@ def index(request,
     else:
         pass
 
-    context['disabled_features'] = getattr(
-        settings, "MYUW_DISABLED_FEATURES", [])
+    context['enabled_features'] = getattr(
+        settings, "MYUW_ENABLED_FEATURES", [])
 
     log_success_response_with_affiliation(logger, timer, request)
     return render(request, "index.html", context)

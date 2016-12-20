@@ -340,7 +340,7 @@ var toggle_card_disclosure = function(card, div_toggled, a_expose, a_hide, label
     }
 };
 
-var myuwFeatureDisabled = function(feature) {
-    return (window.disabled_features.hasOwnProperty(feature) &&
-            window.disabled_features[feature]);
+var myuwFeatureEnabled = function(feature) {
+    return (window.enabled_features.hasOwnProperty(feature) &&
+            window.enabled_features[feature]);
 };
