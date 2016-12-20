@@ -1,5 +1,4 @@
 from myuw.test.api import MyuwApiTest, require_url
-from django.test.utils import override_settings
 import json
 
 

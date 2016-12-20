@@ -1,5 +1,4 @@
-from myuw.test.api import MyuwApiTest, standard_test_override,\
-    require_url
+from myuw.test.api import MyuwApiTest, require_url
 import json
 
 
