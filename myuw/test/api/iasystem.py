@@ -4,7 +4,7 @@ import json
 from myuw.test.api import MyuwApiTest, require_url
 
 
-@require_url('myuw_iasystem_api', 'IAS urls not configured')
+@require_url('myuw_iasystem_api', message='IAS urls not configured')
 class TestIasystemApi(MyuwApiTest):
 
     def get_ias_response(self):

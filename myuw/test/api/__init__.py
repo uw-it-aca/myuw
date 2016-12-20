@@ -4,24 +4,23 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.test.utils import override_settings
 from django.test import TestCase
-from django.test.client import Client
-from django.core.urlresolvers import reverse
+from django.urls import NoReverseMatch
 
 
-def missing_url(name):
+def missing_url(name, kwargs=None):
     try:
-        url = reverse(name)
-    except Exception as ex:
-        print "Ex: ", ex
+        reverse(name, kwargs=kwargs)
+    except NoReverseMatch as ex:
+        print "NoReverseMatch: %s" % ex
         return True
 
     return False
 
 
-def require_url(url, message='myuw urls not configured'):
+def require_url(url, message='myuw urls not configured', kwargs=None):
     if "FORCE_VIEW_TESTS" in os.environ:
         return skipIf(False, message)
-    return skipIf(missing_url(url), message)
+    return skipIf(missing_url(url, kwargs), message)
 
 
 def get_user(username):
@@ -38,6 +37,8 @@ def get_user_pass(username):
 
 
 FDAO_SWS = 'restclients.dao_implementation.sws.File'
+FDAO_PWS = 'restclients.dao_implementation.pws.File'
+FDAO_Canvas = 'restclients.dao_implementation.canvas.File'
 Session = 'django.contrib.sessions.middleware.SessionMiddleware'
 Common = 'django.middleware.common.CommonMiddleware'
 CsrfView = 'django.middleware.csrf.CsrfViewMiddleware'
@@ -51,6 +52,8 @@ AUTH_BACKEND = 'django.contrib.auth.backends.ModelBackend'
 
 standard_test_override = override_settings(
     RESTCLIENTS_SWS_DAO_CLASS=FDAO_SWS,
+    RESTCLIENTS_PWS_DAO_CLASS=FDAO_PWS,
+    RESTCLIENTS_CANVAS_DAO_CLASS=FDAO_Canvas,
     MIDDLEWARE_CLASSES=(Session,
                         Common,
                         CsrfView,

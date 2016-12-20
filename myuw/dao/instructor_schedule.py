@@ -11,8 +11,8 @@ from restclients.exceptions import DataFailureException
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time
 from myuw.dao.pws import get_person_of_current_user
-from myuw.dao.term import get_current_quarter, get_next_quarter,\
-    get_next_autumn_quarter
+from myuw.dao.term import get_current_quarter
+
 
 logger = logging.getLogger(__name__)
 
