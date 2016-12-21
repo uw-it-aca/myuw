@@ -1,9 +1,10 @@
 import datetime
 import pytz
 import json
-from myuw.test.api import MyuwApiTest, require_url
+from myuw.test.api import MyuwApiTest, require_url, fdao_ias_override
 
 
+@fdao_ias_override
 @require_url('myuw_iasystem_api', 'IAS urls not configured')
 class TestIasystemApi(MyuwApiTest):
 
