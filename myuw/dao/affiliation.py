@@ -148,6 +148,7 @@ def get_base_campus(request):
             pass
     return campus
 
+
 def _build_cache_method(name, method):
     name = "myuw_cache_%s" % name
 
