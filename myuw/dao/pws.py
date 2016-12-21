@@ -6,15 +6,12 @@ provides information of the current user
 import logging
 from django.conf import settings
 from restclients.pws import PWS
-from userservice.user import UserService
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time, log_exception, log_info
+from myuw.dao import get_netid_of_current_user
+
 
 logger = logging.getLogger(__name__)
-
-
-def get_netid_of_current_user():
-    return UserService().get_user()
 
 
 def _get_person_of_current_user():
