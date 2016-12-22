@@ -175,6 +175,8 @@ def get_reg_data(now, request):
     """
     now is the second after mid-night
     """
+    if hasattr(request, "myuw_reg_data"):
+        return request.myuw_reg_data
     term_reg_data = {
         "after_start": False,
         "after_summer1_start": False,
@@ -190,6 +192,7 @@ def get_reg_data(now, request):
     # We also need to be able to show the term after next, in spring quarter
     term_after_next = get_term_after(next_term)
     get_term_reg_data(now, term_after_next, term_reg_data)
+    request.myuw_reg_data = term_reg_data
     return term_reg_data
 
 

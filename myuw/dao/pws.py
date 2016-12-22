@@ -52,3 +52,9 @@ def is_student():
     """
     res = _get_person_of_current_user()
     return res.is_student
+
+
+def person_prefetch():
+    def _method(request):
+        return _get_person_of_current_user()
+    return [_method]
