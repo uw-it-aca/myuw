@@ -29,8 +29,8 @@ urlpatterns = []
 if settings.DEBUG:
     from django.views.defaults import server_error, page_not_found
     urlpatterns += [
-        url(r'^500/$', server_error),
-        url(r'^404/$', page_not_found,
+        url(r'^500/?$', server_error),
+        url(r'^404/?$', login_required(page_not_found),
             kwargs={'exception': Exception("Page not Found")}),
     ]
 
