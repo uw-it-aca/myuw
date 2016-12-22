@@ -15,11 +15,13 @@ from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
     get_limit_estimate_enrollment_for_section
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
 from myuw.dao.term import get_current_quarter, get_next_quarter
-from myuw.dao.term import get_specific_term, is_past
+from myuw.dao.term import get_specific_term, is_past, is_future
 from myuw.logger.logresp import log_data_not_found_response,\
     log_success_response, log_msg
 from myuw.views.rest_dispatch import RESTDispatch, data_not_found
+
 from restclients.sws.term import get_term_before, get_term_after
+from restclients.exceptions import DataFailureException
 
 
 logger = logging.getLogger(__name__)
@@ -44,6 +46,10 @@ def load_schedule(request, schedule, summer_term=""):
     json_data = schedule.json_data()
 
     json_data["summer_term"] = summer_term
+
+    json_data["related_terms"] = _load_related_terms(request)
+    json_data["past_term"] = is_past(schedule.term, request)
+    json_data["future_term"] = is_future(schedule.term, request)
 
     colors = get_colors_by_schedule(schedule)
 
@@ -137,6 +143,32 @@ def load_schedule(request, schedule, summer_term=""):
 
     json_data["is_grad_student"] = is_grad_student()
     return json_data
+
+
+def _load_related_terms(request):
+    current_term = get_current_quarter(request)
+    json_data = current_term.json_data()
+    terms = [json_data]
+    term = current_term
+    for i in range(8):
+        try:
+            term = get_term_before(term)
+            json_data = term.json_data()
+            terms.insert(0, json_data)
+        except DataFailureException as ex:
+            if ex.status == 404:
+                pass
+
+    term = current_term
+    for i in range(2):
+        try:
+            term = get_term_after(term)
+            json_data = term.json_data()
+            terms.append(json_data)
+        except DataFailureException as ex:
+            if ex.status == 404:
+                pass
+    return terms
 
 
 class InstScheCurQuar(InstSche):

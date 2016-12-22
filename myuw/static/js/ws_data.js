@@ -138,6 +138,12 @@ WSData = {
         }
         if (course_data) {
             WSData._normalize_instructors(course_data);
+            $.each(course_data.related_terms, function () {
+                this.is_current = (window.term.year == this.year &&
+                                   window.term.quarter.toLowerCase() == this.quarter.toLowerCase());
+                this.matching_term = (course_data.year == this.year &&
+                                      course_data.quarter.toLowerCase() == this.quarter.toLowerCase());
+            });
         }
         return course_data;
     },
@@ -445,7 +451,7 @@ WSData = {
                             }
                         }
                     }
-                    WSData._instructed_course_data_error_status = null;
+                    WSData._instructed_course_data_error_status[term] = null;
                     WSData._instructed_course_data[term] = results;
                     WSData._run_success_callbacks_for_url(url);
                 },
