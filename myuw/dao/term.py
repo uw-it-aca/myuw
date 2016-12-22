@@ -152,6 +152,13 @@ def is_past(term, request):
     return term.get_eod_last_final_exam() < get_comparison_datetime(request)
 
 
+def is_future(term, request):
+    """
+    return true if the given term is in the future
+    """
+    return term.get_bod_first_day() > get_comparison_datetime(request)
+
+
 def is_in_summer_quarter(request):
     """
     Return True if the user session is currently in a summer quarter

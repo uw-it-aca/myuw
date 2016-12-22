@@ -30,7 +30,14 @@ var InstructorCourseCards = {
 
         if (error_code === 404) {
             // no instructed courses found
-            $("#InstructorCourseCards").hide();
+            if ($('.instructed-terms').length) {
+                var source = $("#instructor_course_card_no_courses").html();
+                var courses_template = Handlebars.compile(source);
+                $(".instructor_cards .card").remove();
+                $(".instructor_cards").append(courses_template());
+            } else {
+                $("#InstructorCourseCards").hide();
+            }
         } else {
             raw = CardWithError.render("Teaching Schedule");
             InstructorCourseCards.dom_target.html(raw);
@@ -54,15 +61,18 @@ var InstructorCourseCards = {
         InstructorCourseCards.dom_target.html(raw);
 
         var course_sections = course_data.sections;
-        var index;
-        for (index = 0; index < course_sections.length; index++) {
-            section = course_sections[index];
-            section.year = course_data.year;
-            section.quarter = course_data.quarter;
-            section.summer_term = course_data.summer_term;
-
-            InstructorCourseCardContent.render(section, null);
-        }
+        $.each(course_sections, function () {
+            this.year = course_data.year;
+            this.quarter = course_data.quarter;
+            this.summer_term = course_data.summer_term;
+            if (course_data.future_term) {
+                InstructorFutureCourseCardContent.render(this, null);
+            } else if (course_data.past_term) {
+                InstructorPastCourseCardContent.render(this, null);
+            } else {
+                InstructorCourseCardContent.render(this, null);
+            }
+        });
 
         InstructorCourseCards.add_events(term);
     },
@@ -86,6 +96,13 @@ var InstructorCourseCards = {
             var course_id = ev.currentTarget.getAttribute("rel");
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');
             WSData.log_interaction("open_course_canvas_website_"+course_id, term);
+        });
+
+        $(".instructed-terms").change(function(ev) {
+            var term = $(".instructed-terms option:selected").val();
+            InstructorCourseCards.term = term;
+            InstructorCourseCards.render_init()
+            WSData.log_interaction("show_instructed_courses_for_"+term);
         });
     }
 };
