@@ -101,7 +101,7 @@ var InstructorCourseCards = {
         $(".instructed-terms").change(function(ev) {
             var term = $(".instructed-terms option:selected").val();
             InstructorCourseCards.term = term;
-            InstructorCourseCards.render_init()
+            InstructorCourseCards.render_init();
             WSData.log_interaction("show_instructed_courses_for_"+term);
         });
     }
