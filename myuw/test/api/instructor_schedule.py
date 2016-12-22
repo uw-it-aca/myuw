@@ -32,6 +32,10 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
         self.assertEqual(
             len(data['sections'][1]['grade_submission_delegates']),
             1)
+        self.assertGreater(len(data['related_terms']), 3)
+        self.assertEqual(data['related_terms'][
+            len(data['related_terms']) - 3]['quarter'], 'Spring')
+        self.assertEqual(data['related_terms'][5]['year'], 2013)
 
 
 @require_url('myuw_instructor_schedule_api',
