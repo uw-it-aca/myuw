@@ -1,9 +1,10 @@
 from datetime import datetime
 from django.test import TestCase
-from myuw.dao.password import get_password_info,\
-    get_pw_json, get_days_after_last_change, get_days_before_expires
-from myuw.test import get_request_with_date, get_request_with_user,\
-    get_request, fdao_uwnetid_override
+from myuw.dao.password import (get_password_info, get_pw_json,
+                               get_days_after_last_change,
+                               get_days_before_expires)
+from myuw.test import (get_request_with_date, get_request_with_user,
+                       get_request, fdao_uwnetid_override)
 
 
 @fdao_uwnetid_override
