@@ -21,71 +21,90 @@
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 
+        <!-- favicon -->
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+        <!-- ios icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="180x180" href="{% static 'images/apple-touch-icon-180x180-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{% static 'images/apple-touch-icon-152x152-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/apple-touch-icon-144x144-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{% static 'images/apple-touch-icon-120x120-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/apple-touch-icon-114x114-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{% static 'images/apple-touch-icon-76x76-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/apple-touch-icon-72x72-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'images/apple-touch-icon-57x57-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" href="{% static 'images/apple-touch-icon-precomposed.png' %}">
+
+        <!-- android icons -->
+        <link rel="shortcut icon" sizes="196x196" href="{% static 'images/android-196x196.png' %}">
+
         <!-- copy the base styling from mobile.less -->
         <style type="text/less">
-            /*** global ***/
-            html, body { height: 100%; font-family: 'Open Sans', sans-serif; }
-            #app_header { background: #4b2e84;
 
-                .header-bar { position: relative; height: 30px;
+        /*** global ***/
+        html, body { height: 100%; font-family: 'Open Sans', sans-serif; }
+        #app_header { background: #4b2e84;
 
-                    .header-myuw h1 {
-                        font-family: 'Roboto', sans-serif;
-                        font-weight: 300;
-                        display: inline-block;
-                        margin: 0;
-                        padding: 0;
-                        font-size: 16px;
-                        color: #efe2cd;
-                        line-height: 30px;
-                    }
-                }
+            .header-bar { position: relative; height: 30px;
 
-                .header-cover { background: #4f318c; height: 52px;
-                    .header-w { position: absolute; right: 15px; bottom: -1px; z-index: 9999; }
+                .header-myuw h1 {
+                    font-family: 'Roboto', sans-serif;
+                    font-weight: 300;
+                    display: inline-block;
+                    margin: 0;
+                    padding: 0;
+                    font-size: 16px;
+                    color: #efe2cd;
+                    line-height: 30px;
                 }
             }
 
-
-            #app_content {
-                h1 { font-size: 18px; font-weight: bold; text-transform: uppercase; }
-                .card {
-                    border: 1px solid;
-                    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
-                    position: relative;
-                    background-color: #fff;
-                    margin-top: 20px;
-                    padding: 10px;
-
-                    .unstyled-list {
-                        padding-left: 0px;
-                        list-style-type: none;
-                        line-height: 20px;
-
-                        li { margin-bottom: 10px; }
-                    }
-                }
-            }
-            #app_footer { background: #fff; margin-top: 20px;
-                .navigation-bar { margin-bottom: 10px;
-                    .navigation-list {  list-style:none; padding-left:0; margin:0;
-                        li {  width: 49.5%; margin-right: 1%; margin-bottom: 1%; height: 100px; background:#e8e3d3; }
-                        li:nth-child(even) { margin-right: 0; }
-                        .navigation-item { display: inline-block; position: relative; padding: 5px;
-                            &:hover { text-decoration: none; }
-                            .navigation-item-text { color: #777; font-weight: bold; font-size: 14px; text-transform: uppercase; }
-                        }
-                    }
-                }
-                .footer-bar { background:#333; padding: 10px 0;
-                .footer-links { color: #aaa; font-size: 11px;
-                a {color: #fff; }
-                ul { padding: 0; margin-bottom: .5em; line-height: 11px; list-style: none;
-                li { display: inline-block; padding-right: 5px; margin-right: 3px; border-right: solid 1px #aaa; color: #222; }
+            .header-cover { background: #4f318c; height: 52px;
+                .header-w { position: absolute; right: 15px; bottom: -1px; z-index: 9999; }
             }
         }
-    }
-}
+
+
+        #app_content {
+            h1 { font-size: 18px; font-weight: bold; text-transform: uppercase; }
+            .card {
+                border: 1px solid;
+                border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+                position: relative;
+                background-color: #fff;
+                margin-top: 20px;
+                padding: 10px;
+
+                .unstyled-list {
+                    padding-left: 0px;
+                    list-style-type: none;
+                    line-height: 20px;
+
+                    li { margin-bottom: 10px; }
+                }
+            }
+        }
+
+        #app_footer { background: #fff; margin-top: 20px;
+            .navigation-bar { margin-bottom: 10px;
+                .navigation-list {  list-style:none; padding-left:0; margin:0;
+                    li {  width: 49.5%; margin-right: 1%; margin-bottom: 1%; height: 100px; background:#e8e3d3; }
+                    li:nth-child(even) { margin-right: 0; }
+                    .navigation-item { display: inline-block; position: relative; padding: 5px;
+                        &:hover { text-decoration: none; }
+                        .navigation-item-text { color: #777; font-weight: bold; font-size: 14px; text-transform: uppercase; }
+                    }
+                }
+            }
+            .footer-bar { background:#333; padding: 10px 0;
+                .footer-links { color: #aaa; font-size: 11px;
+                    a {color: #fff; }
+                    ul { padding: 0; margin-bottom: .5em; line-height: 11px; list-style: none;
+                        li { display: inline-block; padding-right: 5px; margin-right: 3px; border-right: solid 1px #aaa; color: #222; }
+                    }
+                }
+            }
+        }
         </style>
 
         <!-- jquery -->
@@ -128,7 +147,7 @@
             </div>
             <div class="header-cover">
                 <div class="container" style="position:relative;height:52px;">
-                    <div class="header-w" role="presentation"><img src="/static/images/w-logo-white.png"></div>
+                    <div class="header-w" role="presentation"><img src="{% static 'images/w-logo-white.png' %}"></div>
                 </div>
             </div>
         </div>
