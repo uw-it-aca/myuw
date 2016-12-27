@@ -11,8 +11,6 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
         <meta http-equiv="cleartype" content="on">
 
-        {% load static %}
-
         <!-- add web fonts if needed -->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
         <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
@@ -21,28 +19,11 @@
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 
-        <!-- favicon -->
-        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-
-        <!-- ios icons -->
-        <link rel="apple-touch-icon-precomposed" sizes="180x180" href="{% static 'images/apple-touch-icon-180x180-precomposed.png' %}">
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{% static 'images/apple-touch-icon-152x152-precomposed.png' %}">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/apple-touch-icon-144x144-precomposed.png' %}">
-        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{% static 'images/apple-touch-icon-120x120-precomposed.png' %}">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/apple-touch-icon-114x114-precomposed.png' %}">
-        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{% static 'images/apple-touch-icon-76x76-precomposed.png' %}">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/apple-touch-icon-72x72-precomposed.png' %}">
-        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'images/apple-touch-icon-57x57-precomposed.png' %}">
-        <link rel="apple-touch-icon-precomposed" href="{% static 'images/apple-touch-icon-precomposed.png' %}">
-
-        <!-- android icons -->
-        <link rel="shortcut icon" sizes="196x196" href="{% static 'images/android-196x196.png' %}">
-
         <!-- copy the base styling from mobile.less -->
         <style type="text/less">
 
         /*** global ***/
-        html, body { height: 100%; font-family: 'Open Sans', sans-serif; }
+        html, body { height: 100%; font-family: 'Open Sans', sans-serif; overflow-x: hidden; }
         #app_header { background: #4b2e84;
 
             .header-bar { position: relative; height: 30px;
@@ -60,7 +41,19 @@
             }
 
             .header-cover { background: #4f318c; height: 52px;
-                .header-w { position: absolute; right: 15px; bottom: -1px; z-index: 9999; }
+                .uw-patch {
+                    display: block;
+                    text-indent: -9999px;
+                    width: 73px;
+                    height: 52px;
+                    background: url('http://www.washington.edu/static/home/wp-content/themes/uw-2014/assets/svg/uw-sprite.svg') no-repeat 0 0 transparent;
+                    position: absolute;
+                    background-size: 370px;
+                    top: 15px;
+                    right: -5px;
+                    z-index: 1;
+                }
+
             }
         }
 
@@ -146,8 +139,8 @@
                 </div>
             </div>
             <div class="header-cover">
-                <div class="container" style="position:relative;height:52px;">
-                    <div class="header-w" role="presentation"><img src="{% static 'images/w-logo-white.png' %}"></div>
+                <div class="container" role="presentation" style="position:relative;height:52px;">
+                    <div class="uw-patch">&nbsp;</div>
                 </div>
             </div>
         </div>
@@ -164,10 +157,10 @@
 
                     <ul class="unstyled-list" style="margin-top:2em;">
                         <li>Email Services
-                            <ul>
-                                <li>UW Gmail</li>
-                                <li>UW Outlook 356</li>
-                                <li>UW Web Alpine</li>
+                            <ul style="margin-top: 10px;">
+                                <li><a href="http://gmail.uw.edu/" target="_blank">UW Gmail</a></li>
+                                <li><a href="https://outlook.office365.com/uw.edu" target="_blank">UW Outlook 356</a></li>
+                                <li><a href="http://alpine.washington.edu/" target="_blank">UW Web Alpine</a></li>
                             </ul>
                         </li>
                         <li><a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp" target="_blank">Student Registration</a></li>
