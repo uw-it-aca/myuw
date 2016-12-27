@@ -1,7 +1,8 @@
 import json
-from myuw.test.api import MyuwApiTest, require_url
+from myuw.test.api import MyuwApiTest, require_url, fdao_sws_override
 
 
+@fdao_sws_override
 @require_url('myuw_current_schedule')
 class TestSchedule(MyuwApiTest):
 

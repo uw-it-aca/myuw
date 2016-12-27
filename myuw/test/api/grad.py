@@ -1,8 +1,9 @@
 from datetime import datetime
-from myuw.test.api import MyuwApiTest, require_url
+from myuw.test.api import MyuwApiTest, require_url, fdao_grad_override
 import json
 
 
+@fdao_grad_override
 @require_url('myuw_grad_api')
 class TestApiGrad(MyuwApiTest):
 
