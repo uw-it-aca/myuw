@@ -6,7 +6,8 @@ from django.test.utils import override_settings
 from django.test import TestCase
 from django.test.client import Client
 from django.core.urlresolvers import reverse
-from myuw.test import fdao_sws_override, get_user, get_user_pass
+from myuw.test import get_user, get_user_pass
+from restclients.test import fdao_sws_override, fdao_ias_override
 
 
 def missing_url(name):
@@ -46,6 +47,7 @@ standard_test_override = override_settings(
     AUTHENTICATION_BACKENDS=(AUTH_BACKEND,))
 
 
+@fdao_ias_override
 @fdao_sws_override
 @standard_test_override
 class MyuwApiTest(TestCase):

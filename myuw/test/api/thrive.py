@@ -17,10 +17,6 @@ class TestApiThrive(MyuwApiTest):
         self.assertEquals(data["week_label"], "Week 1")
         self.assertEquals(data["title"], "All the Time in the World?")
 
-        self.set_date('2015-02-12')
-        response = self.get_thrive_response()
-        self.assertEquals(response.status_code, 404)
-
-        self.set_date('2015-02-21')
+        self.set_date('2015-07-21')
         response = self.get_thrive_response()
         self.assertEquals(response.status_code, 404)
