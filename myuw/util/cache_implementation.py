@@ -50,3 +50,24 @@ class MyUWCache(TimedCache):
 
     def processResponse(self, service, url, response):
         return self._process_response(service, url, response)
+
+
+class TestingMemoryCache(object):
+    cache = {}
+
+    def getCache(self, service, url, headers):
+        key = self._get_key(service, url)
+        if key in TestingMemoryCache.cache:
+            return {"response": TestingMemoryCache.cache[key]}
+        return None
+
+    def processResponse(self, service, url, response):
+        key = self._get_key(service, url)
+        TestingMemoryCache.cache[key] = response
+
+    def _get_key(self, service, url):
+        return "%s__%s" % (service, url)
+
+    @classmethod
+    def clear_cache(cls):
+        TestingMemoryCache.cache = {}

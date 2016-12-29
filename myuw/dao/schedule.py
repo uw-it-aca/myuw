@@ -5,6 +5,8 @@ This module provides access to registered class schedule and sections
 import logging
 from restclients.models.sws import ClassSchedule
 from restclients.sws.registration import get_schedule_by_regid_and_term
+from restclients.thread import generic_prefetch
+from restclients.library.currics import get_subject_guide_for_section_params
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time, log_exception
 from myuw.dao.pws import get_regid_of_current_user
@@ -30,11 +32,28 @@ def _get_schedule(regid, term):
              str(regid) + ',' + str(term.year) + ',' + term.quarter)
     timer = Timer()
     try:
-        return get_schedule_by_regid_and_term(regid, term, False)
+        return get_schedule_by_regid_and_term(regid, term, False,
+                                              myuw_section_prefetch)
     finally:
         log_resp_time(logger,
                       logid,
                       timer)
+
+
+def myuw_section_prefetch(data):
+    primary = data["PrimarySection"]
+    params = [primary["Year"],
+              primary["Quarter"],
+              primary["CurriculumAbbreviation"],
+              primary["CourseNumber"],
+              data["SectionID"]
+              ]
+
+    key = "library-%s-%s-%s-%s-%s" % (tuple(params))
+    method = generic_prefetch(get_subject_guide_for_section_params,
+                              params)
+
+    return [[key, method]]
 
 
 def get_schedule_by_term(request, term):
