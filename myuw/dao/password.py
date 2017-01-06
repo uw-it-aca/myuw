@@ -30,8 +30,8 @@ def get_pw_json(uwnetid, request):
     "uwnetid":
     "netid_status": list of strings
     "has_active_med_pw": boolean
-    "last_change_med":
-    "days_after_last_med_pw_change":
+    "last_change_med": date
+    "days_after_last_med_pw_change": interger
     "expires_med": date
     "interval_med": seconds
     "med_pw_expired": boolean
