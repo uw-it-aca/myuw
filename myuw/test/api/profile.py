@@ -30,10 +30,9 @@ class TestProfile(MyuwApiTest):
         self.assertIsNotNone(data["password"])
         pw_data = data["password"]
         self.assertEquals(pw_data["last_change"], '2013-01-27 10:49:42-08:00')
+        self.assertFalse(pw_data["has_active_med_pw"])
         self.assertIsNone(pw_data["last_change_med"])
         self.assertIsNone(pw_data["expires_med"])
-        self.assertFalse(pw_data["kerb_status_expired"])
-        self.assertFalse(pw_data["kerb_status_disabled"])
 
         self.set_user('staff')
         self.set_date('2014-01-10')
@@ -43,15 +42,12 @@ class TestProfile(MyuwApiTest):
 
         self.assertIsNotNone(data["password"])
         pw_data = data["password"]
-        self.assertEquals(pw_data["last_change_med"],
-                          '2013-10-13 10:57:06-07:00')
-        self.assertEquals(pw_data["expires_med"],
-                          '2014-02-10 10:57:06-08:00')
-        self.assertEquals(pw_data["days_after_last_med_pw_change"], 88)
-        self.assertEquals(pw_data["days_before_med_pw_expires"], 31)
         self.assertTrue(pw_data["has_active_med_pw"])
-        self.assertFalse(pw_data["kerb_status_expired"])
-        self.assertFalse(pw_data["kerb_status_disabled"])
+        self.assertEquals(pw_data["last_change_med"],
+                          '2013-02-03 10:57:06-07:00')
+        self.assertEquals(pw_data["expires_med"],
+                          '2013-06-03 10:57:06-08:00')
+        self.assertTrue(pw_data["med_pw_expired"])
 
     def test_jerror(self):
         self.set_user('jerror')
