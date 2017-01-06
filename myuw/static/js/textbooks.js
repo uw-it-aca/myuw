@@ -9,12 +9,13 @@ var TextBooks = {
         showLoading();
         CommonLoading.render_init();
         WSData.fetch_book_data(term, TextBooks.render_books, TextBooks.render_error);
-        WSData.fetch_course_data_for_term(TextBooks.term, TextBooks.render_books);
+        WSData.fetch_course_data_for_term(TextBooks.term, TextBooks.render_books, TextBooks.render_error);
     },
 
     render_error: function() {
-        var err_status = WSData.book_data_error_code(TextBooks.term);
-        if (err_status === 543) {
+        var book_err_status = WSData.book_data_error_code(TextBooks.term);
+        var course_err_status = WSData.course_data_error_code(TextBooks.term);
+        if (book_err_status === 543 || course_err_status === 543) {
             var raw = CardWithError.render("Textbooks");
             $("#main-content").html(raw);
         }
@@ -51,7 +52,17 @@ var TextBooks = {
         return template_data;
     },
 
+    _has_all_data: function () {
+        if (WSData.book_data(TextBooks.term) && WSData.course_data_for_term(TextBooks.term)) {
+            return true;
+        }
+        return false;
+    },
+
     render_books: function() {
+        if(!TextBooks._has_all_data()){
+            return;
+        }
         var term = TextBooks.term;
         $('html,body').animate({scrollTop: 0}, 'fast');
         var source   = $("#textbooks").html();
