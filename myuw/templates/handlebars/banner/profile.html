@@ -40,22 +40,22 @@
                 <h3 class="sr-only">Password Information</h3>
                 <ul>
                     {{#if has_active_med_pw}}
-                        <li>
-                            <h4>UW Medicine [logo?]</h4>:
-                            {{#if kerb_status_expired}}
-                            Change your password to log in.
-                            {{/if}}
-                            {{#if kerb_status_disabled}}
-                            Password disabled and access blocked. Contact UW Medicine IT Services Help Desk at 206-543-7012 if you feel this is an error.
-                            {{/if}}
-                            <span {{#if expires_in_30_days_or_less}}class="red"{{/if}}>Password expires in {{days_before_med_pw_expires}} days ({{formatDateAsDate expires_med}})</span></br>
-                            <a href="https://services.uwmedicine.org/passwordportal/login.htm">Reset UW Medicine password</a>
+                    <li>
+                        <h4>UW Medicine:</h4>
+                        {{#if med_pw_expired }}
+                           *EXPIRED* <span class="alert"><a href="https://services.uwmedicine.org/passwordportal/login.htm">Change your password</a> to log in.</span></br>
+                            Password expired on {{formatDateAsDate expires_med}}.
+                        {{ else }}
+                            <span {{#if expires_in_30_days_or_less}}class="alert"{{/if}}>Password expires in {{days_before_med_pw_expires}} days ({{formatDateAsDate expires_med}})</span></br>
+                            <a href="https://services.uwmedicine.org/passwordportal/login.htm">Change UW Medicine password</a>
+                        {{/if}}
                             <p>This password is for UW Medicine applications like Epic, ORCA, MINDscape, AMC network, etc.</p>
-                        </li>
+                    </li>
                     {{/if}}
 
                     <li>
-                        <h4>UW NetID [logo?]</h4>: <span>Password last updated {{days_after_last_pw_change}} days ago</span></br>
+                        <h4>UW NetID:</h4>
+                        <span>Password last updated {{days_after_last_pw_change}} days ago</span></br>
                         <a href="https://uwnetid.washington.edu/manage/?password">Change UW NetID password</a>
                         <p>This password is for applications like UW email, MyUW Web Publishing, etc.</p>
                     </li>
@@ -63,7 +63,7 @@
             </div>
            {{/with}}
 
-                <div class="profile-addresses row">
+            <div class="profile-addresses row">
                 {{#if local_address}}
                 <div class="profile-mailing col-md-4" title="Mailing address information">
                     <h3 class="sr-only">Mailing addresses and UW mail</h3>

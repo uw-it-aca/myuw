@@ -1,5 +1,5 @@
 {
-  "uwNetID" : "jinternational",
+  "uwNetID" : "jinter",
   "subscriptionList" : [
     {
       "subscriptionCode" : 105,
@@ -11,7 +11,7 @@
         "Show"
       ],
       "dataField" : "FWD",
-      "dataValue" : "jinternational@gmail.com",
+      "dataValue" : "jinter@gmail.com",
       "permits" : [
         {
           "type" : "permit",
