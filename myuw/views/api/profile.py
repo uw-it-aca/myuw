@@ -32,8 +32,8 @@ class MyProfile(RESTDispatch):
         of the current user
         """
         timer = Timer()
-        prefetch_profile_resources(request)
         try:
+            prefetch_profile_resources(request)
             profile = get_profile_of_current_user()
             response = profile.json_data()
             response['display_name'] = get_display_name_of_current_user()
