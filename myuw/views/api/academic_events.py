@@ -56,7 +56,6 @@ class AcademicEvents(RESTDispatch):
         except Exception:
             return handle_exception(logger, timer, traceback)
 
-
     def json_for_event(self, event):
         year, quarter = self.parse_year_quarter(event)
         start, end = self.parse_dates(event)

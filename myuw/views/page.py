@@ -88,7 +88,7 @@ def index(request,
     else:
         if is_oldmyuw_user():
             return redirect_to_legacy_site()
-    context["card_display_dates"]  = get_card_visibilty_date_values(request)
+    context["card_display_dates"] = get_card_visibilty_date_values(request)
     context["user"]["affiliations"] = get_all_affiliations(request)
     try:
         my_uwemail_forwarding = get_email_forwarding_for_current_user()
