@@ -27,6 +27,7 @@ from myuw.dao.enrollment import enrollment_prefetch
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.views import prefetch
 from myuw.util.performance import log_response_time
+from restclients.exceptions import DataFailureException
 
 
 logger = logging.getLogger(__name__)
@@ -47,7 +48,28 @@ def index(request,
         log_invalid_netid_response(logger, timer)
         return invalid_session()
 
-    prefetch_index_resources(request)
+    context = {
+        "year": year,
+        "quarter": quarter,
+        "summer_term": summer_term,
+        "home_url": "/",
+        "err": None,
+        "user": {
+            "netid": netid,
+            "session_key": request.session.session_key
+
+        },
+    }
+    log_session(netid, request.session.session_key, request)
+
+    try:
+        prefetch_index_resources(request)
+    except DataFailureException:
+        log_exception(logger,
+                      "prefetch_index_resources",
+                      traceback.format_exc())
+        context["webservice_outage"] = True
+        return render(request, "index.html", context)
 
     if _is_mobile(request):
         # On mobile devices, all students get the current myuw.  Non-students
@@ -66,22 +88,8 @@ def index(request,
     else:
         if is_oldmyuw_user():
             return redirect_to_legacy_site()
-
-    context = {
-        "year": year,
-        "quarter": quarter,
-        "summer_term": summer_term,
-        "home_url": "/",
-        "err": None,
-        "user": {
-            "netid": None,
-            "affiliations": get_all_affiliations(request)
-        },
-        "card_display_dates": get_card_visibilty_date_values(request),
-    }
-
-    context["user"]["session_key"] = request.session.session_key
-    log_session(netid, request.session.session_key, request)
+    context["card_display_dates"]  = get_card_visibilty_date_values(request)
+    context["user"]["affiliations"] = get_all_affiliations(request)
     try:
         my_uwemail_forwarding = get_email_forwarding_for_current_user()
         if my_uwemail_forwarding.is_active():
@@ -104,7 +112,6 @@ def index(request,
                       traceback.format_exc())
         pass
 
-    context["user"]["netid"] = netid
     if year is None or quarter is None:
         cur_term = get_current_quarter(request)
         if cur_term is None:
