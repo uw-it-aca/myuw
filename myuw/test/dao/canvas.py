@@ -1,5 +1,6 @@
 from django.test import TestCase
-from myuw.dao.canvas import _get_canvas_enrollment_dict_for_regid
+from myuw.dao.canvas import (_get_canvas_enrollment_dict_for_regid,
+                             canvas_course_is_available)
 from myuw.dao.schedule import _get_schedule
 from myuw.dao.term import get_current_quarter
 from myuw.test import fdao_sws_override, get_request_with_user, get_request
@@ -18,6 +19,8 @@ class TestCanvas(TestCase):
         self.assertEquals(physics.course_url,
                           'https://canvas.uw.edu/courses/249652')
 
+        self.assertTrue(canvas_course_is_available(physics.course_id))
+
         has_section_b = '2013,spring,TRAIN,100/B' in data
         self.assertTrue(has_section_b)
 
@@ -27,4 +30,3 @@ class TestCanvas(TestCase):
         train = data['2013,spring,TRAIN,100/A']
         self.assertEquals(train.course_url,
                           'https://canvas.uw.edu/courses/249650')
-        self.assertFalse(physics.is_unpublished())

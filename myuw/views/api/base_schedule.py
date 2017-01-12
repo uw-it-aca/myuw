@@ -3,7 +3,9 @@ import logging
 from django.http import HttpResponse
 from operator import itemgetter
 from myuw.dao.building import get_buildings_by_schedule
-from myuw.dao.canvas import get_canvas_active_enrollments, canvas_prefetch
+from myuw.dao.canvas import (get_canvas_active_enrollments,
+                             canvas_course_is_available,
+                             canvas_prefetch)
 from myuw.dao.affiliation import affiliation_prefetch
 from myuw.dao.course_color import get_colors_by_schedule
 from myuw.dao.gws import is_grad_student
@@ -14,8 +16,8 @@ from myuw.dao.schedule import get_schedule_by_term,\
     filter_schedule_sections_by_summer_term
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
 from myuw.dao.term import get_comparison_date, current_terms_prefetch
-from myuw.logger.logresp import log_data_not_found_response,\
-    log_success_response, log_msg
+from myuw.logger.logresp import (log_data_not_found_response,
+                                 log_success_response, log_msg)
 from myuw.views.rest_dispatch import RESTDispatch, data_not_found
 from myuw.views import prefetch
 
@@ -88,8 +90,9 @@ def load_schedule(request, schedule, summer_term=""):
             pass
 
         try:
-            section_data["canvas_url"] = canvas_enrollments[
-                section.section_label()].course_url
+            enrollment = canvas_enrollments[section.section_label()]
+            if canvas_course_is_available(enrollment.course_id):
+                section_data["canvas_url"] = enrollment.course_url
         except KeyError:
             pass
 

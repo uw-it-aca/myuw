@@ -1,5 +1,7 @@
 import logging
 from restclients.canvas.enrollments import Enrollments
+from restclients.canvas.courses import Courses
+from restclients.exceptions import DataFailureException
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.exceptions import CanvasNonSWSException
 from myuw.logger.timer import Timer
@@ -29,7 +31,6 @@ def _get_canvas_active_enrollments_for_regid(regid):
              'state': ['active']},
             include_courses=False)
     finally:
-        pass
         log_resp_time(logger,
                       'get_canvas_active_enrollments',
                       timer)
@@ -63,7 +64,16 @@ def _sws_label_from_sis_id(sis_id):
     if not (sis_id and re_sis_id.match(sis_id)):
         raise CanvasNonSWSException("Non-academic SIS Id: %s" % sis_id)
 
-    return "%s,%s,%s,%s/%s" % tuple(sis_id.strip('-').split('-'))
+    return "%s,%s,%s,%s/%s" % tuple(sis_id.strip('-').split('-')[:5])
+
+
+def canvas_course_is_available(canvas_id):
+    try:
+        course = Courses().get_course(canvas_id)
+        return course.workflow_state.lower() in ['available', 'concluded']
+    except DataFailureException as ex:
+        if ex.status == 404:
+            return False
 
 
 def canvas_prefetch():
