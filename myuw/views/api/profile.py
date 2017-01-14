@@ -2,20 +2,16 @@ import json
 import logging
 import traceback
 from django.http import HttpResponse
-from myuw.dao.affiliation import affiliation_prefetch
 from myuw.dao.enrollment import (get_current_quarter_enrollment,
-                                 get_main_campus,
-                                 enrollment_prefetch)
+                                 get_main_campus)
 from myuw.dao.gws import is_grad_student, is_student
-from myuw.dao.password import get_pw_json, password_prefetch
+from myuw.dao.password import get_pw_json
 from myuw.dao.pws import get_display_name_of_current_user
 from myuw.dao.student_profile import get_profile_of_current_user
-from myuw.dao.term import current_terms_prefetch
 from myuw.dao.user import get_netid_of_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response, log_msg
-from myuw.util.thread import PrefetchThread
-from myuw.views import prefetch
+from myuw.views import prefetch_resources
 from myuw.views.rest_dispatch import RESTDispatch, data_not_found,\
     handle_exception
 
@@ -34,7 +30,7 @@ class MyProfile(RESTDispatch):
         of the current user
         """
         timer = Timer()
-        prefetch_profile_resources(request)
+        prefetch_resources(request)
         netid = get_netid_of_current_user()
         try:
             if is_student():
@@ -81,12 +77,3 @@ class MyProfile(RESTDispatch):
             return HttpResponse(json.dumps(response, default=str))
         except Exception:
             return handle_exception(logger, timer, traceback)
-
-
-def prefetch_profile_resources(request):
-    prefetch_methods = []
-    prefetch_methods.extend(affiliation_prefetch())
-    prefetch_methods.extend(current_terms_prefetch(request))
-    prefetch_methods.extend(enrollment_prefetch())
-    prefetch_methods.extend(password_prefetch())
-    prefetch(request, prefetch_methods)

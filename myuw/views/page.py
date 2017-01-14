@@ -9,9 +9,9 @@ from django.template import RequestContext
 from django.conf import settings
 from django.views.decorators.cache import cache_control
 from userservice.user import UserService
-from myuw.dao.term import get_current_quarter, current_terms_prefetch
+from myuw.dao.term import get_current_quarter
 from myuw.dao.pws import is_student
-from myuw.dao.affiliation import get_all_affiliations, affiliation_prefetch
+from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.user import is_oldmyuw_user, get_netid_of_current_user
 from myuw.dao.emaillink import get_service_url_for_address
 from myuw.dao.exceptions import EmailServiceUrlException
@@ -22,10 +22,8 @@ from myuw.logger.logresp import log_success_response_with_affiliation
 from myuw.logger.session_log import log_session
 from myuw.views.rest_dispatch import invalid_session
 from myuw.dao.uwemail import get_email_forwarding_for_current_user
-from myuw.dao.uwemail import index_forwarding_prefetch
-from myuw.dao.enrollment import enrollment_prefetch
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
-from myuw.views import prefetch
+from myuw.views import prefetch_resources
 from myuw.util.performance import log_response_time
 
 
@@ -47,7 +45,7 @@ def index(request,
         log_invalid_netid_response(logger, timer)
         return invalid_session()
 
-    prefetch_index_resources(request)
+    prefetch_resources(request)
 
     if _is_mobile(request):
         # On mobile devices, all students get the current myuw.  Non-students
@@ -146,13 +144,3 @@ def logout(request):
 
     # Redirects to weblogin logout page
     return HttpResponseRedirect(LOGOUT_URL)
-
-
-def prefetch_index_resources(request):
-    prefetch_methods = []
-    prefetch_methods.extend(affiliation_prefetch())
-    prefetch_methods.extend(current_terms_prefetch(request))
-    prefetch_methods.extend(index_forwarding_prefetch())
-    prefetch_methods.extend(enrollment_prefetch())
-
-    prefetch(request, prefetch_methods)
