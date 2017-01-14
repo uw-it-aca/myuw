@@ -64,7 +64,7 @@ class MyProfile(RESTDispatch):
                     logger.error(
                         "%s get_current_quarter_enrollment: %s" %
                         (netid, ex))
-                    pass
+
             else:
                 response = {}
                 response['is_grad_student'] = False
@@ -76,7 +76,6 @@ class MyProfile(RESTDispatch):
                 response['password'] = get_pw_json(netid, request)
             except Exception as ex:
                 logger.error("%s get_pw_json: %s" % (netid, ex))
-                pass
 
             log_success_response(logger, timer)
             return HttpResponse(json.dumps(response, default=str))
