@@ -46,7 +46,6 @@ def get_all_affiliations(request):
     if hasattr(request, 'myuw_user_affiliations'):
         return request.myuw_user_affiliations
 
-    enrolled_campuses = get_current_quarter_course_campuses(request)
     is_fyp = False
     try:
         is_fyp = is_thrive_viewer()
@@ -62,9 +61,9 @@ def get_all_affiliations(request):
             "employee": is_employee(),
             "fyp": is_fyp,
             "faculty": is_faculty(),
-            "seattle": enrolled_campuses["seattle"] or is_seattle_student(),
-            "bothell": enrolled_campuses["bothell"] or is_bothell_student(),
-            "tacoma": enrolled_campuses["tacoma"] or is_tacoma_student(),
+            "seattle": is_seattle_student(),
+            "bothell": is_bothell_student(),
+            "tacoma": is_tacoma_student(),
             }
     # add 'official' campus info
     official_campuses = _get_official_campuses(get_main_campus(request))
@@ -122,21 +121,6 @@ def _get_official_campuses(campuses):
     return official_campuses
 
 
-def get_current_quarter_course_campuses(request):
-    """
-    Returns a dictionary indicating the campuses that the student
-    has enrolled in the current quarter.
-    """
-    try:
-        current_quarter_sche = get_current_quarter_schedule(request)
-    except Exception as ex:
-        log_exception(logger,
-                      'get_current_quarter_course_campuses',
-                      traceback.format_exc())
-        current_quarter_sche = None
-    return _get_campuses_by_schedule(current_quarter_sche)
-
-
 def get_base_campus(request):
     """
     Return one currently enrolled campus.
@@ -163,3 +147,68 @@ def get_base_campus(request):
             campus = ""
             pass
     return campus
+
+
+def _build_cache_method(name, method):
+    name = "myuw_cache_%s" % name
+
+    def generated(request):
+        if hasattr(request, name):
+            return getattr(request, name)
+        value = method()
+        setattr(request, name, value)
+        return value
+    return generated
+
+
+request_cached_is_grad_student = _build_cache_method("grad_student",
+                                                     is_grad_student)
+
+
+request_cached_is_undergrad = _build_cache_method("undergrad",
+                                                  is_undergrad_student)
+
+
+request_cached_is_student = _build_cache_method("student",
+                                                is_student)
+
+
+request_cached_is_pce_student = _build_cache_method("pce_student",
+                                                    is_pce_student)
+
+request_cached_is_student_employee = _build_cache_method("student_employee",
+                                                         is_student_employee)
+
+
+request_cached_is_employee = _build_cache_method("student_employee",
+                                                 is_employee)
+
+
+request_cached_is_faculty = _build_cache_method("faculty",
+                                                is_faculty)
+
+
+def wrapped_is_seattle(request):
+    return is_seattle_student()
+
+
+def wrapped_is_tacoma(request):
+    return is_tacoma_student()
+
+
+def wrapped_is_bothell(request):
+    return is_bothell_student()
+
+
+def affiliation_prefetch():
+    return [request_cached_is_grad_student,
+            request_cached_is_undergrad,
+            request_cached_is_student,
+            request_cached_is_pce_student,
+            request_cached_is_student_employee,
+            request_cached_is_employee,
+            request_cached_is_faculty,
+            wrapped_is_seattle,
+            wrapped_is_tacoma,
+            wrapped_is_bothell,
+            ]

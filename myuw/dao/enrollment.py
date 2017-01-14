@@ -37,3 +37,10 @@ def get_main_campus(request):
     for major in enrollment.majors:
         campuses.append(major.campus)
     return campuses
+
+
+def enrollment_prefetch():
+    def _method(request):
+        return get_current_quarter_enrollment(request)
+
+    return [_method]

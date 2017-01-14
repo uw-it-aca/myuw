@@ -8,6 +8,7 @@ from datetime import date, datetime, timedelta
 from restclients.uwnetid.password import get_uwnetid_password
 from restclients.exceptions import DataFailureException
 from myuw.dao.term import get_comparison_datetime_with_tz
+from myuw.dao import get_netid_of_current_user
 
 
 logger = logging.getLogger(__name__)
@@ -21,6 +22,14 @@ def get_password_info(uwnetid):
     if uwnetid is None:
         return None
     return get_uwnetid_password(uwnetid)
+
+
+def password_prefetch():
+
+    def _method(request):
+        get_password_info(get_netid_of_current_user())
+
+    return [_method]
 
 
 def get_pw_json(uwnetid, request):

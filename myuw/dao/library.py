@@ -64,3 +64,15 @@ def get_subject_guide_by_section(section):
 
     log_time(logger, logid, timer)
     return subject_guide.guide_url
+
+
+def library_resource_prefetch():
+    def build_method(campus):
+        def _method(request):
+            get_default_subject_guide(campus)
+        return _method
+
+    methods = []
+    for campus in ['seattle', 'tacoma', 'bothell']:
+        methods.append(build_method(campus))
+    return methods
