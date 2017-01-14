@@ -6,7 +6,7 @@ from myuw.views.page import _is_mobile
 from myuw.test.api import missing_url, MyuwApiTest
 
 
-legacy_url="http://some-test-server/myuw"
+legacy_url = "http://some-test-server/myuw"
 
 
 @override_settings(MYUW_USER_SERVLET_URL=legacy_url)
