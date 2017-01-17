@@ -5,20 +5,17 @@ from operator import itemgetter
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_enrolled_courses,\
     get_indexed_by_decrosslisted
-from myuw.dao.affiliation import affiliation_prefetch
 from myuw.dao.course_color import get_colors_by_schedule
 from myuw.dao.gws import is_grad_student
-from myuw.dao.pws import person_prefetch
-from myuw.dao.library import (get_subject_guide_by_section,
-                              library_resource_prefetch)
+from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.schedule import get_schedule_by_term,\
     filter_schedule_sections_by_summer_term
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
-from myuw.dao.term import get_comparison_date, current_terms_prefetch
+from myuw.dao.term import get_comparison_date
 from myuw.logger.logresp import log_data_not_found_response,\
     log_success_response, log_msg
 from myuw.views.rest_dispatch import RESTDispatch, data_not_found
-from myuw.views import prefetch
+from myuw.views import prefetch_resources
 
 
 logger = logging.getLogger(__name__)
@@ -27,7 +24,9 @@ EARLY_FALL_START = "EARLY FALL START"
 
 class StudClasSche(RESTDispatch):
     def run(self, request, *args, **kwargs):
-        prefetch_schedule_resources(request)
+        prefetch_resources(request,
+                           prefetch_library=True,
+                           prefetch_person=True)
         return super(StudClasSche, self).run(request, *args, **kwargs)
 
     def make_http_resp(self, timer, term, request, summer_term=None):
@@ -148,13 +147,3 @@ def load_schedule(request, schedule, summer_term=""):
 
     json_data["is_grad_student"] = is_grad_student()
     return json_data
-
-
-def prefetch_schedule_resources(request):
-    prefetch_methods = []
-    prefetch_methods.extend(current_terms_prefetch(request))
-    prefetch_methods.extend(library_resource_prefetch())
-    prefetch_methods.extend(affiliation_prefetch())
-    prefetch_methods.extend(person_prefetch())
-
-    prefetch(request, prefetch_methods)

@@ -1,11 +1,12 @@
-from myuw.test.api import missing_url, MyuwApiTest, require_url
 import json
+from myuw.test.api import MyuwApiTest, require_url, fdao_bookstore_override
 
 
 VERBACOMPARE_URL_PREFIX = 'http://uw-seattle.verbacompare.com'
 IMAGE_URL_PREFIX = 'www7.bookstore.washington.edu/MyUWImage.taf'
 
 
+@fdao_bookstore_override
 class TestApiBooks(MyuwApiTest):
     '''Tests textbooks api'''
 
