@@ -36,6 +36,7 @@ class MyProfile(RESTDispatch):
             if is_student():
                 profile = get_profile_of_current_user()
                 response = profile.json_data()
+                response['is_student'] = True
                 response['is_grad_student'] = is_grad_student()
 
                 campuses = get_main_campus(request)

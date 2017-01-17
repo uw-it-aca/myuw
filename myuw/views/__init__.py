@@ -24,12 +24,12 @@ def prefetch(request, prefetch_methods):
 
 def prefetch_resources(request):
     prefetch_methods = []
-    prefetch_methods.extend(current_terms_prefetch(request))
-    prefetch_methods.extend(affiliation_prefetch())
-    prefetch_methods.extend(index_forwarding_prefetch())
-    prefetch_methods.extend(enrollment_prefetch())
-    prefetch_methods.extend(password_prefetch())
     prefetch_methods.extend(person_prefetch())
+    prefetch_methods.extend(index_forwarding_prefetch())
+    prefetch_methods.extend(current_terms_prefetch(request))
+    prefetch_methods.extend(enrollment_prefetch())
+    prefetch_methods.extend(affiliation_prefetch())
+    prefetch_methods.extend(password_prefetch())
     prefetch_methods.extend(library_resource_prefetch())
 
     prefetch(request, prefetch_methods)
