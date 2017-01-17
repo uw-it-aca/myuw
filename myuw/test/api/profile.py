@@ -12,7 +12,7 @@ class TestProfile(MyuwApiTest):
     def get_profile_response(self):
         return self.get_response_by_reverse('myuw_profile_api')
 
-    def test_javerage(self):
+    def test_seattle_student(self):
         self.set_user('javerage')
         response = self.get_profile_response()
         self.assertEquals(response.status_code, 200)
@@ -38,14 +38,14 @@ class TestProfile(MyuwApiTest):
         self.assertIsNone(pw_data["last_change_med"])
         self.assertIsNone(pw_data["expires_med"])
 
-    def test_bothell_campus(self):
+    def test_bothell_student(self):
         self.set_user("jbothell")
         response = self.get_profile_response()
         self.assertEquals(response.status_code, 200)
         data = json.loads(response.content)
         self.assertEquals(data["campus"], "Bothell")
 
-    def test_tacoma_campus(self):
+    def test_tacoma_student(self):
         self.set_user("eight")
         response = self.get_profile_response()
         data = json.loads(response.content)
@@ -68,7 +68,7 @@ class TestProfile(MyuwApiTest):
                           "2013-06-03 10:57:06-08:00")
         self.assertTrue(pw_data["med_pw_expired"])
 
-    def test_jerror(self):
+    def test_error_cases(self):
         self.set_user("jerror")
         response = self.get_profile_response()
         self.assertEquals(response.status_code, 543)
