@@ -59,6 +59,7 @@
             </div>
            {{/with}}
 
+        {{#if is_student}}
             <div class="profile-addresses row">
                 {{#if local_address}}
                 <div class="profile-mailing col-md-4" title="Mailing address information">
@@ -133,6 +134,7 @@
                     {{/if}}
                 </div>
             </div>
+        {{/if}}
         </div>
     </div>
 {% endtplhandlebars %}
