@@ -76,3 +76,7 @@ class TestProfile(MyuwApiTest):
         self.set_user("nouser")
         response = self.get_profile_response()
         self.assertEquals(response.status_code, 404)
+
+        self.set_user('none')
+        response = self.get_profile_response()
+        self.assertEquals(response.status_code, 200)
