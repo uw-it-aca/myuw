@@ -30,7 +30,9 @@ class MyProfile(RESTDispatch):
         of the current user
         """
         timer = Timer()
-        prefetch_resources(request)
+        prefetch_resources(request,
+                           prefetch_enrollment=True,
+                           prefetch_password=True)
         netid = get_netid_of_current_user()
         try:
             if is_student():

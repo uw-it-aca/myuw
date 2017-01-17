@@ -45,7 +45,9 @@ def index(request,
         log_invalid_netid_response(logger, timer)
         return invalid_session()
 
-    prefetch_resources(request)
+    prefetch_resources(request,
+                       prefetch_email=True,
+                       prefetch_enrollment=True)
 
     if _is_mobile(request):
         # On mobile devices, all students get the current myuw.  Non-students

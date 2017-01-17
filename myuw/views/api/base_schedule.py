@@ -24,7 +24,9 @@ EARLY_FALL_START = "EARLY FALL START"
 
 class StudClasSche(RESTDispatch):
     def run(self, request, *args, **kwargs):
-        prefetch_resources(request)
+        prefetch_resources(request,
+                           prefetch_library=True,
+                           prefetch_person=True)
         return super(StudClasSche, self).run(request, *args, **kwargs)
 
     def make_http_resp(self, timer, term, request, summer_term=None):

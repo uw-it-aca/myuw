@@ -7,6 +7,7 @@ from myuw.views import prefetch_resources
 
 class DepartmentalCalendar(RESTDispatch):
     def GET(self, request):
-        prefetch_resources(request)
+        prefetch_resources(request,
+                           prefetch_person=True)
         response = api_request(request)
         return HttpResponse(json.dumps(response))
