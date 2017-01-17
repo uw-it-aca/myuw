@@ -12,7 +12,8 @@ from userservice.user import UserService
 from myuw.dao.term import get_current_quarter
 from myuw.dao.pws import is_student
 from myuw.dao.affiliation import get_all_affiliations
-from myuw.dao.user import is_oldmyuw_user, get_netid_of_current_user
+from myuw.dao.user import is_oldmyuw_user, get_netid_of_current_user,\
+    is_oldmyuw_mobile_user
 from myuw.dao.emaillink import get_service_url_for_address
 from myuw.dao.exceptions import EmailServiceUrlException
 from myuw.logger.timer import Timer
@@ -53,12 +54,12 @@ def index(request,
         # On mobile devices, all students get the current myuw.  Non-students
         # are sent to the legacy site.
         try:
-            if not is_student():
-                logger.info("%s not a student, redirect to legacy!" % netid)
+            if is_oldmyuw_mobile_user():
+                logger.info("mobile user %s, redirect to legacy!" % netid)
                 return redirect_to_legacy_site()
         except Exception:
             log_exception(logger,
-                          '%s is_student' % netid,
+                          '%s is_oldmyuw_mobile_user' % netid,
                           traceback.format_exc())
             logger.info("%s, redirected to legacy!" % netid)
             return redirect_to_legacy_site()
