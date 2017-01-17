@@ -1,5 +1,5 @@
 {
-  "uwNetID" : "jnewstudent",
+  "uwNetID" : "jnew",
   "subscriptionList" : [
     {
       "subscriptionCode" : 105,
@@ -11,7 +11,7 @@
         "Show"
       ],
       "dataField" : "FWD",
-      "dataValue" : "jnewstudent@gamail.uw.edu",
+      "dataValue" : "jnew@gamail.uw.edu",
       "permits" : [
         {
           "type" : "permit",
