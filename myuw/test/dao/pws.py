@@ -2,7 +2,8 @@ from django.test import TestCase
 from restclients.exceptions import DataFailureException
 from restclients.exceptions import InvalidNetID
 from restclients.pws import PWS
-from myuw.dao.pws import get_display_name_of_current_user
+from myuw.dao.pws import get_display_name_of_current_user,\
+    is_student
 from myuw.test import fdao_pws_override, get_request_with_user
 
 
@@ -23,3 +24,7 @@ class TestPwsDao(TestCase):
         get_request_with_user('javerage')
         name = get_display_name_of_current_user()
         self.assertEqual(name, 'J. Average Student')
+
+    def test_is_student(self):
+        get_request_with_user('javerage')
+        self.assertTrue(is_student())
