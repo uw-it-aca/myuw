@@ -5,11 +5,13 @@ from myuw.models import UserMigrationPreference
 from django.test.utils import override_settings
 
 
-override_servlet_url = override_settings(
-    MYUW_USER_SERVLET_URL='http://some-test-server/myuw')
+redirect_to_legacy_url = "https://myuw.washington.edu/servlet/user"
+old_valid_url = "http://some-test-server/myuw"
+override_servlet_url = override_settings(MYUW_USER_SERVLET_URL=old_valid_url)
 
 
 @require_url('myuw_home')
+@override_servlet_url
 class TestLoginRedirects(MyuwApiTest):
 
     _mobile_args = {
@@ -28,7 +30,6 @@ class TestLoginRedirects(MyuwApiTest):
     def get_home_mobile(self):
         return self.client.get(reverse('myuw_home'), **self._mobile_args)
 
-    @override_servlet_url
     def test_student_mobile(self):
         self.set_user('jnew')
         response = self.get_home_mobile()
@@ -36,54 +37,30 @@ class TestLoginRedirects(MyuwApiTest):
         valid_url = reverse("myuw_home")
         self.assertEquals(response.status_code, 200)
 
-    # Putting this here to remove it, to make sure we're testing the default
-    @override_servlet_url
-    def test_random_non_student_mobile(self):
+    def test_non_student_mobile(self):
         del settings.MYUW_USER_SERVLET_URL
         self.set_user('staff')
         response = self.get_home_mobile()
-
-        # This is the default...
-        valid_url = "https://myuw.washington.edu/servlet/user"
         self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.get("Location"), valid_url)
+        self.assertEquals(response.get("Location"), redirect_to_legacy_url)
 
-    @override_servlet_url
-    def test_random_non_student_mobile_override_url(self):
-        self.set_user('staff')
+    def test_non_student_non_optin_mobile(self):
+        self.set_user('curgrad')
         response = self.get_home_mobile()
-
-        valid_url = "http://some-test-server/myuw"
         self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.get("Location"), valid_url)
+        self.assertEquals(response.get("Location"), redirect_to_legacy_url)
 
-    @override_servlet_url
     def test_random_desktop_user(self):
         url = reverse("myuw_home")
         self.set_user('staff1')
         response = self.get_home_desktop()
-
-        valid_url = "http://some-test-server/myuw"
         self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.get("Location"), valid_url)
+        self.assertEquals(response.get("Location"), redirect_to_legacy_url)
 
-    @override_servlet_url
-    # Putting this here to remove it, to make sure we're testing the default
-    @override_settings(MYUW_MANDATORY_SWITCH_PATH="/tmp/xx")
-    def test_required_migration_desktop_user_1(self):
-        del settings.MYUW_MANDATORY_SWITCH_PATH
         self.set_user('jnew')
         response = self.get_home_desktop()
         self.assertEquals(response.status_code, 200)
 
-    @override_servlet_url
-    # Putting this here to remove it, to make sure we're testing the default
-    @override_settings(MYUW_OPTIN_SWITCH_PATH="/tmp/xx")
-    def test_required_migration_desktop_user_2(self):
-        del settings.MYUW_OPTIN_SWITCH_PATH
-
-        # Delete any preference that might have been set, to test the
-        # default state.
         UserMigrationPreference.objects.all().delete()
         username = "jbothell"
         self.set_user(username)
@@ -98,10 +75,8 @@ class TestLoginRedirects(MyuwApiTest):
                                                      use_legacy_site=True)
 
         response = self.get_home_desktop()
-
-        valid_url = "http://some-test-server/myuw"
         self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.get("Location"), valid_url)
+        self.assertEquals(response.get("Location"), redirect_to_legacy_url)
 
         # Test with a saved preference for the new site
         obj.use_legacy_site = False
@@ -110,7 +85,6 @@ class TestLoginRedirects(MyuwApiTest):
         self.assertEquals(response.status_code, 200)
         UserMigrationPreference.objects.all().delete()
 
-    @override_servlet_url
     def test_set_legacy_preferences(self):
         # Clear any existing data...
         UserMigrationPreference.objects.all().delete()
@@ -124,7 +98,6 @@ class TestLoginRedirects(MyuwApiTest):
         response = self.client.get(new_url)
 
         new_valid_url = "/"
-        old_valid_url = "http://some-test-server/myuw"
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.get("Location"), new_valid_url)
 
@@ -144,16 +117,15 @@ class TestLoginRedirects(MyuwApiTest):
         response = self.client.get(old_url)
 
         self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.get("Location"), old_valid_url)
+        self.assertEquals(response.get("Location"), redirect_to_legacy_url)
 
         obj = UserMigrationPreference.objects.get(username=username)
         self.assertTrue(obj.use_legacy_site)
 
-        # POST
         response = self.client.post(old_url)
 
         self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.get("Location"), old_valid_url)
+        self.assertEquals(response.get("Location"), redirect_to_legacy_url)
 
         obj = UserMigrationPreference.objects.get(username=username)
         self.assertTrue(obj.use_legacy_site)

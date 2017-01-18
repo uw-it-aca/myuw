@@ -1,12 +1,13 @@
-from myuw.test.api import MyuwApiTest, require_url
-from django.test.utils import override_settings
 import json
+from django.test.utils import override_settings
+from myuw.test.api import MyuwApiTest, require_url, fdao_bookstore_override
 
 
 VERBACOMPARE_URL_PREFIX = 'http://uw-seattle.verbacompare.com'
 IMAGE_URL_PREFIX = 'www7.bookstore.washington.edu/MyUWImage.taf'
 
 
+@fdao_bookstore_override
 @require_url('myuw_current_book')
 class TestApiCurBooks(MyuwApiTest):
 

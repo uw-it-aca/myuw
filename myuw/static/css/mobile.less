@@ -409,13 +409,23 @@ body {
 						.student-major-list {list-style: none;padding-left:20px;margin-top:0;}
 					}
 				}
+				.profile-passwords {background: lighten(@uwpurple, 10%); padding:10px; margin-top: 20px;
+				    @media @under992 {
+                    .uwmedicine-password {border-bottom: 1px solid #bbb; padding-bottom:10px;}
+				    }
+				    .password-alert {display: inline-block; font-size: 14px; margin-bottom: 3px; font-weight: bold; color:#f5d300;
+                        a {font-weight: bold; color:#f5d300;}
+                        }
+                        .password-status {display: inline-block; font-size: 14px; margin-bottom: 3px; font-weight: bold;}
+                    p {margin-top: 5px;}
+                }
+
 				.profile-addresses {background: lighten(@uwpurple, 10%); padding:10px; margin-top: 20px;
 					.profile-mailing {
 						ul {padding-right: 10px;}
 					}
 					.profile-local-address { padding-left:12px;}
 					.profile-perm-address { padding-left:12px;}
-
 				}
 	            //.profile-section {margin-top: 15px; padding-top: 15px;}
 				.profile-release {background: lighten(@uwpurple, 10%); padding:10px; margin-top: 20px;
@@ -453,6 +463,9 @@ body {
 						.profile-local-address {border-left: 1px solid #bbb; margin-left:0;}
 						.profile-perm-address {border-left: 1px solid #bbb; margin-left:0;}
 					}
+                    .profile-passwords {
+                        .uwmedicine-password {width: 45%; margin-right: 12px; border-right: 1px solid #bbb; padding-right:10px;}
+                    }
 				}
 
 				.header-w {

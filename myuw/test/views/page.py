@@ -6,8 +6,10 @@ from myuw.views.page import _is_mobile
 from myuw.test.api import missing_url, MyuwApiTest
 
 
-@override_settings(MYUW_USER_SERVLET_URL="http://some-test-server/myuw",
-                   )
+legacy_url = "http://some-test-server/myuw"
+
+
+@override_settings(MYUW_USER_SERVLET_URL=legacy_url)
 class TestPageMethods(MyuwApiTest):
 
     def test_mobile_check(self):
@@ -70,3 +72,12 @@ class TestPageMethods(MyuwApiTest):
         self.set_user('jbothell')
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
+
+    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
+    def test_non_student_mobile(self):
+        url = reverse("myuw_home")
+        self.set_user('faculty')
+        response = self.client.get(
+            url,
+            HTTP_USER_AGENT='Fake iPhone Agent')
+        self.assertEquals(response.status_code, 302)
