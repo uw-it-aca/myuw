@@ -1,5 +1,6 @@
 import json
 import logging
+from threading import Thread
 from django.http import HttpResponse
 from operator import itemgetter
 from myuw.dao.building import get_buildings_by_schedule
@@ -52,6 +53,11 @@ class StudClasSche(RESTDispatch):
         return HttpResponse(json.dumps(resp_data))
 
 
+def set_course_url(section_data, enrollment):
+    if canvas_course_is_available(enrollment.course_id):
+        section_data["canvas_url"] = enrollment.course_url
+
+
 def load_schedule(request, schedule, summer_term=""):
 
     json_data = schedule.json_data()
@@ -72,6 +78,7 @@ def load_schedule(request, schedule, summer_term=""):
     # Since the schedule is restclients, and doesn't know
     # about color ids, backfill that data
     section_index = 0
+    course_url_threads = []
     for section in schedule.sections:
         section_data = json_data["sections"][section_index]
         color = colors[section.section_label()]
@@ -91,8 +98,9 @@ def load_schedule(request, schedule, summer_term=""):
 
         try:
             enrollment = canvas_enrollments[section.section_label()]
-            if canvas_course_is_available(enrollment.course_id):
-                section_data["canvas_url"] = enrollment.course_url
+            t = Thread(target=set_course_url, args=(section_data, enrollment))
+            course_url_threads.append(t)
+            t.start()
         except KeyError:
             pass
 
@@ -132,6 +140,9 @@ def load_schedule(request, schedule, summer_term=""):
                 meeting_index += 1
             except IndexError as ex:
                 pass
+
+    for t in course_url_threads:
+        t.join()
 
     # MUWM-443
     json_data["sections"] = sorted(json_data["sections"],
