@@ -32,7 +32,8 @@ def get_main_campus(request):
     campuses = []
     try:
         enrollment = get_current_quarter_enrollment(request)
-    except Exception:
+    except Exception as ex:
+        logger.error("get_current_quarter_enrollment: %s" % ex)
         return campuses
     for major in enrollment.majors:
         campuses.append(major.campus)

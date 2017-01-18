@@ -26,7 +26,7 @@ def get_email_forwarding_for_current_user():
     return _get_email_forwarding_by_uwnetid(get_netid_of_current_user())
 
 
-def index_forwarding_prefetch():
+def email_forwarding_prefetch():
     def _method(request):
         get_email_forwarding_for_current_user()
 
