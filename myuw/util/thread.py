@@ -1,9 +1,9 @@
-import threading
+import restclients.thread
 from django.conf import settings
 from userservice.user import UserServiceMiddleware
 
 
-class Thread(threading.Thread):
+class Thread(restclients.thread.Thread):
     def __init__(self, *args, **kwargs):
         # Only enable threading if forced.  Using some cache backends
         # with sqlite doesn't work with threading.

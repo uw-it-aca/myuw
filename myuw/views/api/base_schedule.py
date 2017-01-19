@@ -1,6 +1,6 @@
 import json
 import logging
-from threading import Thread
+from myuw.util.thread import Thread
 from django.http import HttpResponse
 from operator import itemgetter
 from myuw.dao.building import get_buildings_by_schedule
