@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div id="main-content" role="main" aria-labelledby="main"></div>
+    <div id="static-links"></div>
+
+    <!-- component content templates -->
+    {% include "handlebars/banner/profile.html" %}
+    {% include "handlebars/banner/notice.html" %}
+    {% include "handlebars/banner/calendar.html" %}
+    {% include "handlebars/card/loading.html" %}
+    {% include "handlebars/card/no_course.html" %}
+    {% include "handlebars/card/events.html" %}
+    {% include "handlebars/card/schedule/instructor_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/course_cards.html" %}
+    {% include "handlebars/card/instructor_schedule/course_card_content.html" %}
+    {% include "handlebars/card/instructor_schedule/course_sche_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/course_resource_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/no_courses_card.html" %}
+    {% include "handlebars/card/instructor_schedule/future/course_card_content.html" %}
+    {% include "handlebars/card/instructor_schedule/future/course_sche_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/future/course_resource_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/past/course_card_content.html" %}
+    {% include "handlebars/card/instructor_schedule/past/course_sche_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/past/course_resource_panel.html" %}
+
+    <!-- page content templates -->
+    {% include "handlebars/teaching.html" %}
+    {% include "handlebars/loading.html" %}
+    {% include "handlebars/notices.html" %}
+    {% include "handlebars/academic_calendar.html" %}
+
+    <script>
+    window.page_titles = {
+        "teaching": "MyUW Teaching",
+        "instructor_schedule": "Teaching Schedule",
+    };
+    </script>
+
+    {% include "user_state.html" %}
+
+{% endblock %}

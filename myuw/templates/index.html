@@ -102,57 +102,8 @@
         "thrive": "What is Thrive",
         "thrive_messages": "Thrive Messages"
     };
-    window.user = {
-        "student": {{ user.affiliations.student|yesno:"true, false" }},
-        "grad": {{ user.affiliations.grad|yesno:"true, false" }},
-        "undergrad": {{ user.affiliations.undergrad|yesno:"true, false" }},
-        "pce": {{ user.affiliations.pce|yesno:"true, false" }},
-        "stud_employee": {{ user.affiliations.stud_employee|yesno:"true, false" }},
-        "employee": {{ user.affiliations.employee|yesno:"true, false" }},
-        "fyp": {{ user.affiliations.fyp|yesno:"true, false" }},
-        "faculty": {{ user.affiliations.faculty|yesno:"true, false" }},
-        "seattle": {{ user.affiliations.official_seattle|yesno:"true, false" }},
-        "bothell": {{ user.affiliations.official_bothell|yesno:"true, false" }},
-        "tacoma": {{ user.affiliations.official_tacoma|yesno:"true, false" }},
-        "seattle_affil": {{ user.affiliations.seattle|yesno:"true, false" }},
-        "bothell_affil": {{ user.affiliations.bothell|yesno:"true, false" }},
-        "tacoma_affil": {{ user.affiliations.tacoma|yesno:"true, false" }},
-        "email_forward_url": "{{ user.email_forward_url }}",
-        "email_forward_title": "{{ user.email_forward_title }}",
-        "email_forward_icon": "{{ user.email_forward_icon }}",
-        "netid": "{{ user.netid }}"
-    };
-    window.enabled_features = {
-        {% for feature in enabled_features %}
-        "{{feature}}": true{% if not forloop.last %},{% endif %}
-        {% endfor %}
-    }
-    window.term = {
-        "year": "{{year}}",
-        "quarter": "{{quarter}}",
-        "summer_term": "{{summer_term}}"
-    };
-    window.card_display_dates = {
-        "is_after_grade_submission_deadline": {{ card_display_dates.is_after_grade_submission_deadline|yesno:"true, false" }},
-        "is_after_last_day_of_classes": {{ card_display_dates.is_after_last_day_of_classes|yesno:"true, false" }},
-        "is_after_start_of_registration_display_period": {{ card_display_dates.is_after_start_of_registration_display_period|yesno:"true, false" }},
-        "is_after_start_of_summer_reg_display_periodA": {{ card_display_dates.is_after_start_of_summer_reg_display_periodA|yesno:"true, false" }},
-        "is_after_start_of_summer_reg_display_period1": {{ card_display_dates.is_after_start_of_summer_reg_display_period1|yesno:"true, false" }},
-        "is_before_end_of_finals_week": {{ card_display_dates.is_before_end_of_finals_week|yesno:"true, false" }},
-        "is_before_last_day_of_classes": {{ card_display_dates.is_before_last_day_of_classes|yesno:"true, false" }},
-        "is_before_end_of_registration_display_period": {{ card_display_dates.is_before_end_of_registration_display_period|yesno:"true, false" }},
-        "is_before_end_of_summer_reg_display_periodA": {{ card_display_dates.is_before_end_of_summer_reg_display_periodA|yesno:"true, false" }},
-        "is_before_end_of_summer_reg_display_period1": {{ card_display_dates.is_before_end_of_summer_reg_display_period1|yesno:"true, false" }},
-        "is_before_first_day_of_term": {{ card_display_dates.is_before_first_day_of_term|yesno:"true, false" }},
-        "is_before_eof_7days_of_term": {{ card_display_dates.is_before_eof_7days_of_term|yesno:"true, false" }},
-        "is_after_7d_before_last_instruction": {{ card_display_dates.is_after_7d_before_last_instruction|yesno:"true, false"}},
-        "myplan_peak_load": {{card_display_dates.myplan_peak_load|yesno:"true, false"}},
-        "is_summer": {{ card_display_dates.is_summer|yesno:"true, false"}},
-        "current_summer_term": "{{ card_display_dates.current_summer_term}}",
-        "is_after_summer_b_start": {{ card_display_dates.is_after_summer_b|yesno:"true, false"}},
-        "last_term": "{{ card_display_dates.last_term }}",
-        "in_coursevel_fetch_window": {{ card_display_dates.in_coursevel_fetch_window|yesno:"true, false"}}
-    };
     </script>
+
+    {% include "user_state.html" %}
 
 {% endblock %}
