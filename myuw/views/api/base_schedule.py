@@ -1,24 +1,22 @@
 import json
 import logging
+from myuw.util.thread import Thread
 from django.http import HttpResponse
 from operator import itemgetter
 from myuw.dao.building import get_buildings_by_schedule
-from myuw.dao.canvas import get_canvas_enrolled_courses,\
-    get_indexed_by_decrosslisted
-from myuw.dao.affiliation import affiliation_prefetch
+from myuw.dao.canvas import (get_canvas_active_enrollments,
+                             canvas_course_is_available)
 from myuw.dao.course_color import get_colors_by_schedule
 from myuw.dao.gws import is_grad_student
-from myuw.dao.pws import person_prefetch
-from myuw.dao.library import (get_subject_guide_by_section,
-                              library_resource_prefetch)
+from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.schedule import get_schedule_by_term,\
     filter_schedule_sections_by_summer_term
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
-from myuw.dao.term import get_comparison_date, current_terms_prefetch
-from myuw.logger.logresp import log_data_not_found_response,\
-    log_success_response, log_msg
+from myuw.dao.term import get_comparison_date
+from myuw.logger.logresp import (log_data_not_found_response,
+                                 log_success_response, log_msg)
 from myuw.views.rest_dispatch import RESTDispatch, data_not_found
-from myuw.views import prefetch
+from myuw.views import prefetch_resources
 
 
 logger = logging.getLogger(__name__)
@@ -27,7 +25,10 @@ EARLY_FALL_START = "EARLY FALL START"
 
 class StudClasSche(RESTDispatch):
     def run(self, request, *args, **kwargs):
-        prefetch_schedule_resources(request)
+        prefetch_resources(request,
+                           prefetch_library=True,
+                           prefetch_person=True,
+                           prefetch_canvas=True)
         return super(StudClasSche, self).run(request, *args, **kwargs)
 
     def make_http_resp(self, timer, term, request, summer_term=None):
@@ -51,6 +52,11 @@ class StudClasSche(RESTDispatch):
         return HttpResponse(json.dumps(resp_data))
 
 
+def set_course_url(section_data, enrollment):
+    if canvas_course_is_available(enrollment.course_id):
+        section_data["canvas_url"] = enrollment.course_url
+
+
 def load_schedule(request, schedule, summer_term=""):
 
     json_data = schedule.json_data()
@@ -61,16 +67,17 @@ def load_schedule(request, schedule, summer_term=""):
 
     buildings = get_buildings_by_schedule(schedule)
 
-    canvas_data_by_course_id = []
+    canvas_enrollments = {}
     try:
-        canvas_data_by_course_id = get_indexed_by_decrosslisted(
-            get_canvas_enrolled_courses(), schedule.sections)
+        canvas_enrollments = get_canvas_active_enrollments()
     except Exception as ex:
         logger.error(ex)
         pass
+
     # Since the schedule is restclients, and doesn't know
     # about color ids, backfill that data
     section_index = 0
+    course_url_threads = []
     for section in schedule.sections:
         section_data = json_data["sections"][section_index]
         color = colors[section.section_label()]
@@ -88,14 +95,13 @@ def load_schedule(request, schedule, summer_term=""):
             logger.error(ex)
             pass
 
-        if section.section_label() in canvas_data_by_course_id:
-            enrollment = canvas_data_by_course_id[section.section_label()]
-            # canvas_grade = enrollment.final_grade
-            # section_data["canvas_grade"] = canvas_grade
-            canvas_course = enrollment.course
-            if not canvas_course.is_unpublished():
-                section_data["canvas_url"] = canvas_course.course_url
-                section_data["canvas_name"] = canvas_course.name
+        try:
+            enrollment = canvas_enrollments[section.section_label()]
+            t = Thread(target=set_course_url, args=(section_data, enrollment))
+            course_url_threads.append(t)
+            t.start()
+        except KeyError:
+            pass
 
         # MUWM-596
         if section.final_exam and section.final_exam.building:
@@ -134,6 +140,9 @@ def load_schedule(request, schedule, summer_term=""):
             except IndexError as ex:
                 pass
 
+    for t in course_url_threads:
+        t.join()
+
     # MUWM-443
     json_data["sections"] = sorted(json_data["sections"],
                                    key=itemgetter('curriculum_abbr',
@@ -148,13 +157,3 @@ def load_schedule(request, schedule, summer_term=""):
 
     json_data["is_grad_student"] = is_grad_student()
     return json_data
-
-
-def prefetch_schedule_resources(request):
-    prefetch_methods = []
-    prefetch_methods.extend(current_terms_prefetch(request))
-    prefetch_methods.extend(library_resource_prefetch())
-    prefetch_methods.extend(affiliation_prefetch())
-    prefetch_methods.extend(person_prefetch())
-
-    prefetch(request, prefetch_methods)
