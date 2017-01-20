@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
-from myuw.views.page import index, logout
+from myuw.views.page import index, teaching, logout
 from myuw.views.display_dates import override
 from myuw.views.choose import new_site, old_site
 from myuw.views.logger import log_interaction
@@ -105,6 +105,8 @@ urlpatterns = [
     url(r'^choose/new', new_site, name="myuw_pref_new_site"
         ),
     url(r'^choose/legacy', old_site, name="myuw_pref_old_site"
+        ),
+    url(r'^teaching', teaching, name="myuw_teaching"
         ),
     url(r'^logout', logout, name="myuw_logout"
         ),

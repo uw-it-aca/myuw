@@ -39,6 +39,24 @@ def index(request,
           year=None,
           quarter=None,
           summer_term=None):
+    return _page(request, year, quarter, summer_term)
+
+
+@login_required
+@cache_control(max_age=0, no_cache=True, no_store=True, must_revalidate=True)
+@log_response_time
+def teaching(request,
+             year=None,
+             quarter=None,
+             summer_term=None):
+    return _page(request, year, quarter, summer_term, template='teaching.html')
+
+
+def _page(request,
+          year=None,
+          quarter=None,
+          summer_term=None,
+          template='index.html'):
 
     timer = Timer()
     netid = get_netid_of_current_user()
@@ -120,7 +138,7 @@ def index(request,
         settings, "MYUW_ENABLED_FEATURES", [])
 
     log_success_response_with_affiliation(logger, timer, request)
-    return render(request, "index.html", context)
+    return render(request, template, context)
 
 
 def _is_mobile(request):
