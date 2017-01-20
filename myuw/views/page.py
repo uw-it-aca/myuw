@@ -115,6 +115,10 @@ def index(request,
             context["quarter"] = cur_term.quarter
     else:
         pass
+
+    context['enabled_features'] = getattr(
+        settings, "MYUW_ENABLED_FEATURES", [])
+
     log_success_response_with_affiliation(logger, timer, request)
     return render(request, "index.html", context)
 

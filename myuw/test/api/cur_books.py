@@ -1,5 +1,4 @@
 import json
-from django.test.utils import override_settings
 from myuw.test.api import MyuwApiTest, require_url, fdao_bookstore_override
 
 
