@@ -6,6 +6,7 @@ from myuw.dao.password import password_prefetch
 from myuw.dao.pws import person_prefetch
 from myuw.dao.term import current_terms_prefetch
 from myuw.dao.uwemail import email_forwarding_prefetch
+from myuw.dao.canvas import canvas_prefetch
 
 
 def prefetch(request, prefetch_methods):
@@ -27,7 +28,8 @@ def prefetch_resources(request,
                        prefetch_enrollment=False,
                        prefetch_library=False,
                        prefetch_password=False,
-                       prefetch_person=False):
+                       prefetch_person=False,
+                       prefetch_canvas=False):
     """
     Common resource prefetched: affiliation, term
     """
@@ -49,5 +51,8 @@ def prefetch_resources(request,
 
     if prefetch_person:
         prefetch_methods.extend(person_prefetch())
+
+    if prefetch_canvas:
+        prefetch_methods.extend(canvas_prefetch())
 
     prefetch(request, prefetch_methods)

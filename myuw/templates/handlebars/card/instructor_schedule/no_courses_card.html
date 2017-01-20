@@ -1,0 +1,13 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "instructor_course_card_no_courses" %}
+  <div class="card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
+    <div class="fade-in">
+      <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
+        <h4><span class="courseIDtitle">No Courses Tought This Term</span></h4>
+        <div>
+          Shucks.  It don't appear you're teaching no courses this term.
+        </div>
+      </div>
+    </div>
+  </div>
+{% endtplhandlebars %}

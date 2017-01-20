@@ -93,6 +93,21 @@
 
     <div id="page-modal"></div>
     {% if not request.is_mobile and not request.is_tablet %}
+
+    <!-- App navigation -->
+    <div id="app_navigation" role="navigation">
+        <div class="container">
+            <div class="row navigation">
+                <ul class="nav-list">
+                    <li class="nav-list-item"><a href="/">Home</a></li>
+                    <li class="nav-list-item"><a href="/teaching">Teaching</a></li>
+                    <li class="nav-list-item"><a href="/academic_calendar">Calendar</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- App navigation end -->
+
     <div id="app_messages" role="complementary">
         <div class="message-banner">
             {% if user.affiliations.grad %}
@@ -268,6 +283,7 @@
     <script src="{% static 'js/libraries.js' %}"></script>
     <script src="{% static 'js/notices.js' %}"></script>
     <script src="{% static 'js/landing.js' %}"></script>
+    <script src="{% static 'js/teaching.js' %}"></script>
     <script src="{% static 'js/category.js' %}"></script>
     <script src="{% static 'js/cards.js' %}"></script>
     <script src="{% static 'js/future.js' %}"></script>
@@ -308,6 +324,16 @@
     <script src="{% static 'js/card/schedule/visual.js' %}"></script>
     <script src="{% static 'js/card/schedule/final_panel.js' %}"></script>
     <script src="{% static 'js/card/schedule/sp_final.js' %}"></script>
+    <script src="{% static 'js/card/instructor_schedule/load_course_cards.js' %}"></script>
+    <script src="{% static 'js/card/instructor_schedule/course_card_content.js' %}"></script>
+    <script src="{% static 'js/card/instructor_schedule/course_sche_panel.js' %}"></script>
+    <script src="{% static 'js/card/instructor_schedule/course_resource_panel.js' %}"></script>
+    <script src="{% static 'js/card/instructor_schedule/future/course_card_content.js' %}"></script>
+    <script src="{% static 'js/card/instructor_schedule/future/course_sche_panel.js' %}"></script>
+    <script src="{% static 'js/card/instructor_schedule/future/course_resource_panel.js' %}"></script>
+    <script src="{% static 'js/card/instructor_schedule/past/course_card_content.js' %}"></script>
+    <script src="{% static 'js/card/instructor_schedule/past/course_sche_panel.js' %}"></script>
+    <script src="{% static 'js/card/instructor_schedule/past/course_resource_panel.js' %}"></script>
     <script src="{% static 'js/card/new_student/ns_critical_info.js' %}"></script>
     <script src="{% static 'js/card/new_student/ns_summer_efs.js' %}"></script>
     <script src="{% static 'js/card/new_student/ns_thank_you.js' %}"></script>
