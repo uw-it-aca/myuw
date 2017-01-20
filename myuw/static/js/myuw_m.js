@@ -46,7 +46,7 @@ $(document).ready(function() {
             document.title = window.page_titles.landing;
         }
         else if (state === "teaching") {
-            $("#app_navigation").show()
+            $("#app_navigation").show();
             Teaching.render(data.term, data.course_index);
             $("#teaching").addClass("active");
             document.title = window.page_titles.teaching;
