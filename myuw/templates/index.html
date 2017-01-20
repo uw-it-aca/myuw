@@ -45,6 +45,17 @@
     {% include "handlebars/card/schedule/final_day.html" %}
     {% include "handlebars/card/schedule/visual.html" %}
     {% include "handlebars/card/schedule/visual_day.html" %}
+    {% include "handlebars/card/instructor_schedule/course_cards.html" %}
+    {% include "handlebars/card/instructor_schedule/course_card_content.html" %}
+    {% include "handlebars/card/instructor_schedule/course_sche_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/course_resource_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/no_courses_card.html" %}
+    {% include "handlebars/card/instructor_schedule/future/course_card_content.html" %}
+    {% include "handlebars/card/instructor_schedule/future/course_sche_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/future/course_resource_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/past/course_card_content.html" %}
+    {% include "handlebars/card/instructor_schedule/past/course_sche_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/past/course_resource_panel.html" %}
     {% include "handlebars/card/new_student/ns_critical_info.html" %}
     {% include "handlebars/card/new_student/ns_international_stu.html" %}
     {% include "handlebars/card/new_student/ns_summer_efs.html" %}
@@ -78,6 +89,7 @@
         "landing": "MyUW Home",
         "course_list": "MyUW",
         "visual": "MyUW: Visual Schedule",
+        "instructor_schedule": "Teaching Schedule",
         "finabala": "Financial Balances",
         "future_quarters": "MyUW: View Future Quarters",
         "textbooks": "MyUW: Textbooks",
@@ -110,6 +122,11 @@
         "email_forward_icon": "{{ user.email_forward_icon }}",
         "netid": "{{ user.netid }}"
     };
+    window.enabled_features = {
+        {% for feature in enabled_features %}
+        "{{feature}}": true{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    }
     window.term = {
         "year": "{{year}}",
         "quarter": "{{quarter}}",
