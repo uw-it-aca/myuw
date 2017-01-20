@@ -71,7 +71,6 @@ def index(request,
 
     log_session(netid, request.session.session_key, request)
 
-
     if _is_mobile(request):
         # On mobile devices, all students get the current myuw.  Non-students
         # are sent to the legacy site.

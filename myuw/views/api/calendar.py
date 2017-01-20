@@ -11,6 +11,7 @@ from myuw.logger.logresp import log_success_response
 
 logger = logging.getLogger(__name__)
 
+
 class DepartmentalCalendar(RESTDispatch):
     def GET(self, request):
         timer = Timer()
