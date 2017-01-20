@@ -1,67 +1,80 @@
 import logging
-from restclients.canvas.enrollments import Enrollments as CanvasEnrollments
-from restclients.canvas.sections import Sections
+from restclients.canvas.enrollments import Enrollments
 from restclients.canvas.courses import Courses
+from restclients.exceptions import DataFailureException
 from myuw.dao.pws import get_regid_of_current_user
+from myuw.dao.exceptions import CanvasNonSWSException
 from myuw.logger.timer import Timer
-from myuw.logger.logback import log_resp_time, log_exception
+from myuw.logger.logback import log_resp_time
+import re
 
 
 logger = logging.getLogger(__name__)
 
 
-def get_canvas_enrolled_courses():
-    """
-    Returns calendar information for the current term.
-    Raises: DataFailureException
-    """
+def get_canvas_active_enrollments():
+    return _get_canvas_enrollment_dict_for_regid(
+        get_regid_of_current_user())
+
+
+def _get_canvas_enrollment_dict_for_regid(regid):
+    return _enrollments_dict_by_sws_label(
+        _get_canvas_active_enrollments_for_regid(regid))
+
+
+def _get_canvas_active_enrollments_for_regid(regid):
     timer = Timer()
     try:
-        regid = get_regid_of_current_user()
-        return get_indexed_data_for_regid(regid)
-    except AttributeError:
-        # If course is not in canvas, skip
-        return []
+        return Enrollments().get_enrollments_for_regid(
+            regid,
+            {'type': ['StudentEnrollment'],
+             'state': ['active']},
+            include_courses=False)
     finally:
         log_resp_time(logger,
-                      'get_canvas_enrolled_courses',
+                      'get_canvas_active_enrollments',
                       timer)
 
 
-def get_indexed_data_for_regid(regid):
-    return _indexed_by_course_id(
-        CanvasEnrollments().get_enrollments_for_regid(
-            regid,
-            {'state': "active",
-             'as_user': CanvasEnrollments().sis_user_id(regid)})
-        )
-
-
-def get_indexed_by_decrosslisted(by_primary, sws_sections):
-    for section in sws_sections:
-        base_id = section.section_label()
-        alternate_id = None
+def _enrollments_dict_by_sws_label(enrollments):
+    """
+    Returns active canvas enrollments for the current user.
+    Raises: DataFailureException
+    """
+    enrollments_dict = {}
+    for enrollment in enrollments:
         try:
-            sis_id = section.canvas_section_sis_id()
-            canvas_section = Sections().get_section_by_sis_id(sis_id)
-            primary_course = Courses().get_course(canvas_section.course_id)
-            alternate_id = primary_course.sws_course_id()
-        except Exception as ex:
-            # primary section doesn't have canvas_section_sis_id
-            alternate_id = base_id
+            label = _sws_label_from_sis_id(enrollment.sis_section_id)
+            enrollments_dict[label] = enrollment
+        except CanvasNonSWSException:
+            pass
 
-        if base_id not in by_primary:
-            if alternate_id in by_primary:
-                by_primary[base_id] = by_primary[alternate_id]
-    return by_primary
+    return enrollments_dict
 
 
-def _indexed_by_course_id(enrollments):
-    """
-    return a dictionary of SWS course id to enrollment.
-    """
-    canvas_data_by_course_id = {}
-    if enrollments and len(enrollments) > 1:
-        for enrollment in enrollments:
-            canvas_data_by_course_id[enrollment.sws_course_id()] = enrollment
-    return canvas_data_by_course_id
+def _sws_label_from_sis_id(sis_id):
+    re_sis_id = re.compile(
+        "^\d{4}-"                                  # year
+        "(?:winter|spring|summer|autumn)-"         # quarter
+        "[\w& ]+-"                                 # curriculum
+        "\d{3}-"                                   # course number
+        "[A-Z](?:[A-Z0-9]|--|-[A-F0-9]{32}--)?$",  # section id|regid
+        re.VERBOSE)
+
+    if not (sis_id and re_sis_id.match(sis_id)):
+        raise CanvasNonSWSException("Non-academic SIS Id: %s" % sis_id)
+
+    return "%s,%s,%s,%s/%s" % tuple(sis_id.strip('-').split('-')[:5])
+
+
+def canvas_course_is_available(canvas_id):
+    try:
+        course = Courses().get_course(canvas_id)
+        return course.workflow_state.lower() in ['available', 'concluded']
+    except DataFailureException as ex:
+        if ex.status == 404:
+            return False
+
+
+def canvas_prefetch():
+    return [get_canvas_active_enrollments]
