@@ -55,7 +55,7 @@ var Teaching = {
         ];
         var desktop_sidebar_cards = [
             EventsCard
-        ]
+        ];
         Cards.load_cards_in_order(desktop_body_cards, $("#teaching_content_cards"));
         Cards.load_cards_in_order(desktop_sidebar_cards, $("#teaching_accounts_cards"));
         CalendarBanner.render_init($("#calendar_banner_location_desktop"));
