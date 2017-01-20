@@ -30,6 +30,7 @@ $(document).ready(function() {
         }
 
         $("#landing").removeClass("active");
+        $("#teaching").removeClass("active");
         $("#nav_course_list").removeClass("active");
         $("#nav_visual_schedule").removeClass("active");
         $("#nav_finabala").removeClass("active");
@@ -43,6 +44,12 @@ $(document).ready(function() {
             Landing.render(data.term, data.course_index);
             $("#landing").addClass("active");
             document.title = window.page_titles.landing;
+        }
+        else if (state === "teaching") {
+            $("#app_navigation").show()
+            Teaching.render(data.term, data.course_index);
+            $("#teaching").addClass("active");
+            document.title = window.page_titles.teaching;
         }
         else if (state === "future_quarters") {
             FutureQuarter.render(data.term);
@@ -155,6 +162,11 @@ $(document).ready(function() {
             hist.replaceState({
                 state: "thrive",
             },  "", "/thrive/");
+        }
+        else if (path.match(/^\/teaching/)) {
+            hist.replaceState({
+                state: "teaching",
+            },  "", "/teaching");
         }
 
         else {

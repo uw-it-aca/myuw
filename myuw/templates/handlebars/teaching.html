@@ -1,0 +1,18 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "teaching" %}
+    
+<h2 id="main" class="sr-only">Teaching Summary</h2>
+<div class="container teaching-wrapper">
+    <div class="row">
+        <div id="teaching_content" class="col-md-8">
+            <div id="notice_banner_location"></div>
+            <div id="calendar_banner_location_mobile"></div>
+            <div id="pce_banner_location"></div>
+            <div id="teaching_content_cards"></div>
+        </div>
+        <div id="teaching_accounts" class="col-md-4">
+            <div id="calendar_banner_location_desktop"></div>
+        </div>
+    </div>
+</div>
+    {% endtplhandlebars %}
