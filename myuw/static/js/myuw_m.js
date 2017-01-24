@@ -14,7 +14,141 @@ $(document).ready(function() {
     var loaded_url = null;
     var render_called = {};
 
-    History.Adapter.bind(window,'statechange',function(){
+    var test_status = window.location.hash.indexOf('alert') === -1 ? 'false' : 'true';
+    var test_alert_color;
+    if (test_status) {
+        test_alert_color = window.location.hash;
+    }
+
+    var show_page_from_url = function () {
+        var show_landing_page = function () {
+            // The old "home" url was at /landing/ - just send that to "/"
+            Landing.render(null, null);
+            $("#landing").addClass("active");
+            document.title = window.page_titles.landing;
+        };
+
+        var show_textbooks = function (term, textbook) {
+            //TextBooks.show_books(matches[1], matches[2]);
+            TextBooks.show_books(term, textbook);
+            document.title = window.page_titles.textbooks;
+        };
+
+        var dispatch_url = [
+            {
+                path: /^\/landing/,
+                handler: show_landing_page
+            },
+            {
+                path: /^\/teaching/,
+                handler: function () {
+                    $("#app_navigation").show();
+                    Teaching.render(null, null);
+                    $("#teaching").addClass("active");
+                    document.title = window.page_titles.teaching;
+                }
+            },
+            {
+                path: /^\/textbooks\/[0-9]{4}[-,a-z]+\/[%A-Z0-9]+$/,
+                handler: show_textbooks,
+                path_args: [1, 2]
+            },
+            { 
+                path: /^\/textbooks\/([0-9]{4}[-,a-z]+)\/?$/i,
+                handler: show_textbooks,
+                path_args: [1]
+            },
+            {
+                path: /^\/textbooks\/?/,
+                handler: show_textbooks
+            },
+            {
+                path: /^\/future_quarters\/([0-9]{4},[-,a-z]+)/,
+                handler: function (term) {
+                    FutureQuarter.render(term);
+                    document.title = window.page_titles.future_quarters;
+                },
+                path_args: [1]
+            },
+            {
+                path: /^\/notices/,
+                handler: function () {
+                    Notices.show_notices();
+                    document.title = window.page_titles.notices;
+                }
+            },
+            {
+                path: /^\/resource\/([a-z]+)\/?([a-z]+)?/,
+                handler: function (category, topic) {
+                    //var category = (matches ? matches[1] : ""),
+                    //    topic = (matches ? matches[2] : undefined),
+                    //    slug = category;
+                    //if (topic !== undefined) {
+                    //    slug += "/" + topic;
+                    //}
+
+                    Category.show_category_page(category, topic);
+                    // Document title is set in the category.js file - custom per category
+                    //document.title = window.page_titles["category_page"];
+                    //        hist.replaceState({
+                    //            state: "category_page",
+                    //            category: category,
+                    //            topic: topic
+                    //        },  "", "/resource/" + slug );
+                },
+                path_args: [1, 2]
+            },
+            {
+                path: /^\/academic_calendar/,
+                handler: function () {
+                    AcademicCalendar.show_events();
+                    document.title = window.page_titles.academic_calendar;
+                }
+            },
+            {
+                path: /^\/thrive_messages/,
+                handler: function () {
+                    ThriveMessages.show_messages();
+                    document.title = window.page_titles.thrive_messages;
+                }
+            },
+            {
+                path: /^\/thrive/,
+                handler: function () {
+                    Thrive.show_content();
+                    document.title = window.page_titles.thrive;
+                }
+            },
+            {
+                path: /^.*/,
+                handler: show_landing_page
+            }
+        ];
+
+        //Dispatch on url path
+        var path = window.location.pathname;
+        var hist = window.History,
+            matches;
+
+        // All version are at the same place
+        path = path.replace(/^\/mobile/, "");
+        var me = this;
+
+        $.each(dispatch_url, function () {
+            match = path.match(this.path);
+            if (match) {
+                var args = [];
+                if (this.hasOwnProperty('path_args')) {
+                    $.each(this.path_args, function () {
+                        args.push(match[this] ? match[this] : undefined)
+                    });
+                }
+
+                this.handler.apply(me, args);
+                return false;
+            }
+        });
+
         var history_state = History.getState();
         var data = history_state.data;
         var state = data.state;
@@ -37,153 +171,13 @@ $(document).ready(function() {
 
         // Page titles are defined in templates/index.html
         if (state === undefined) {
-            show_page_from_url();
+            console.log('state undefined');
+            show_landing_page();
+            //show_page_from_url();
             return;
-        }
-        else if (state === "landing") {
-            Landing.render(data.term, data.course_index);
-            $("#landing").addClass("active");
-            document.title = window.page_titles.landing;
-        }
-        else if (state === "teaching") {
-            $("#app_navigation").show();
-            Teaching.render(data.term, data.course_index);
-            $("#teaching").addClass("active");
-            document.title = window.page_titles.teaching;
-        }
-        else if (state === "future_quarters") {
-            FutureQuarter.render(data.term);
-            document.title = window.page_titles.future_quarters;
-        }
-        else if (state === "textbooks") {
-            TextBooks.show_books(data.term, data.textbook);
-            document.title = window.page_titles.textbooks;
-        }
-        else if (state === "notices") {
-            Notices.show_notices();
-            document.title = window.page_titles.notices;
-        }
-        else if (state === "category_page") {
-            Category.show_category_page(data.category, data.topic);
-            // Document title is set in the category.js file - custom per category
-            //document.title = window.page_titles["category_page"];
-        }
-        else if (state === "academic_calendar") {
-            AcademicCalendar.show_events();
-            document.title = window.page_titles.academic_calendar;
-        }
-        else if (state === "thrive_messages") {
-            ThriveMessages.show_messages();
-            document.title = window.page_titles.thrive_messages;
-        }
-        else if (state === "thrive") {
-            Thrive.show_content();
-            document.title = window.page_titles.thrive;
         }
 
         loaded_url = state_url;
-    });
-    
-    function show_page_from_url() {
-        var path = window.location.pathname;
-
-        var hist = window.History,
-            matches;
-
-        // All version are at the same place
-        path = path.replace(/^\/mobile/, "");
-
-        if (path.match(/^\/landing/)) {
-            // The old "home" url was at /landing/ - just send that to "/"
-            hist.replaceState({
-                state: "landing",
-            },  "", "/");
-        }
-        else if (path.match(/^\/textbooks\/[0-9]{4}[-,a-z]+\/[%A-Z0-9]+$/)) {
-            matches = path.match(/^\/textbooks\/([0-9]{4}[-,a-z]+)\/([%A-Z0-9]+)$/);
-            hist.replaceState({
-                state: "textbooks",
-                term: matches[1],
-                textbook: matches[2]
-            },  "", path);
-        }
-        else if (path.match(/^\/textbooks\/[0-9]{4}[-,a-z]+\/?$/i)) {
-            matches = path.match(/^\/textbooks\/([0-9]{4}[-,a-z]+)\/?$/i);
-            hist.replaceState({
-                state: "textbooks",
-                term: matches[1]
-            },  "", path);
-        }
-        else if (path.match(/^\/textbooks\/?/)) {
-            hist.replaceState({
-                state: "textbooks",
-                term: "current"
-            },  "", path);
-        }
-        else if (path.match(/^\/future_quarters\/[0-9]{4},[-,a-z]+/)) {
-            matches = path.match(/^\/future_quarters\/([0-9]{4},[-,a-z]+)/);
-            hist.replaceState({
-                state: "future_quarters",
-                term: matches[1],
-            },  "", path);
-        }
-        else if (path.match(/^\/notices/)) {
-            hist.replaceState({
-                state: "notices",
-            },  "", "/notices/");
-        }
-        else if (path.match(/^\/resource\/([a-z]+)/)) {
-            matches = path.match(/^\/resource\/([a-z]+)\/?([a-z]+)?/);
-
-            var category = (matches ? matches[1] : ""),
-                topic = (matches ? matches[2] : undefined),
-                slug = category;
-            if (topic !== undefined) {
-                slug += "/" + topic;
-            }
-
-            hist.replaceState({
-                state: "category_page",
-                category: category,
-                topic: topic
-            },  "", "/resource/" + slug );
-        }
-        else if (path.match(/^\/academic_calendar/)) {
-            hist.replaceState({
-                state: "academic_calendar",
-            },  "", "/academic_calendar/");
-        }
-        else if (path.match(/^\/thrive_messages/)) {
-            hist.replaceState({
-                state: "thrive_messages",
-            },  "", "/thrive_messages/");
-        }
-        else if (path.match(/^\/thrive/)) {
-            hist.replaceState({
-                state: "thrive",
-            },  "", "/thrive/");
-        }
-        else if (path.match(/^\/teaching/)) {
-            hist.replaceState({
-                state: "teaching",
-            },  "", "/teaching");
-        }
-
-        else {
-            // Now we fall back to the landing page
-            hist.replaceState({
-                state: "landing",
-            },  "", "/");
-        }
-
-
-        History.Adapter.trigger(window, 'statechange');
-    }
-
-    var test_status = window.location.hash.indexOf('alert') === -1 ? 'false' : 'true';
-    var test_alert_color;
-    if (test_status) {
-        test_alert_color = window.location.hash;
     }
 
     show_page_from_url();
@@ -228,7 +222,6 @@ $(document).ready(function() {
     $('body').bind('touchstart', function() {});
         
 });
-
 
 var showLoading = function() {
     var source = $("#loading_header").html();
