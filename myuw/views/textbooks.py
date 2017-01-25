@@ -9,7 +9,6 @@ from myuw.views.page import page
 @log_response_time
 def textbooks(request, term=None, textbook=None):
     context = {
-        'page_title': 'MyUW: Textbooks',
         'term': term,
         'textbook': textbook
     }

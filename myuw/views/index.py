@@ -11,7 +11,4 @@ def index(request,
           year=None,
           quarter=None,
           summer_term=None):
-    context = {
-        'page_title': 'MyUW'
-    }
-    return page(request, year, quarter, summer_term, context)
+    return page(request, year, quarter, summer_term)

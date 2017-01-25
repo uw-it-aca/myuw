@@ -9,7 +9,6 @@ from myuw.views.page import page
 @log_response_time
 def category(request, category=None, topic=None):
     context = {
-        'page_title': 'MyUW: Category',
         'category': category,
         'topic': topic
     }

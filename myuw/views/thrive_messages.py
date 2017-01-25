@@ -8,7 +8,4 @@ from myuw.views.page import page
 @cache_control(max_age=0, no_cache=True, no_store=True, must_revalidate=True)
 @log_response_time
 def thrive_messages(request):
-    context = {
-        'page_title': 'Thrive Messages'
-    }
-    return page(request, context=context, template='thrive_messages.html')
+    return page(request, template='thrive_messages.html')

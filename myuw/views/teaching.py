@@ -11,8 +11,5 @@ def teaching(request,
              year=None,
              quarter=None,
              summer_term=None):
-    context = {
-        'page_title': 'MyUW Teaching'
-    }
     return page(request, year, quarter,
-                summer_term, context, template='teaching.html')
+                summer_term, template='teaching.html')

@@ -8,7 +8,4 @@ from myuw.views.page import page
 @cache_control(max_age=0, no_cache=True, no_store=True, must_revalidate=True)
 @log_response_time
 def academic_calendar(request):
-    context = {
-        'page_title': 'Academic Calendar'
-    }
-    return page(request, context=context, template='academic_calendar.html')
+    return page(request, template='academic_calendar.html')

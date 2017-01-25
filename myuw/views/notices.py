@@ -8,7 +8,4 @@ from myuw.views.page import page
 @cache_control(max_age=0, no_cache=True, no_store=True, must_revalidate=True)
 @log_response_time
 def notices(request):
-    context = {
-        'page_title': 'MyUW: Notices'
-    }
-    return page(request, context=context, template='notices.html')
+    return page(request, template='notices.html')

@@ -9,7 +9,6 @@ from myuw.views.page import page
 @log_response_time
 def future_quarters(request, quarter):
     context = {
-        'page_title': 'MyUW: View Future Quarters',
         'future_term': quarter
     }
     return page(request, context=context, template='future_quarters.html')
