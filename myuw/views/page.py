@@ -3,11 +3,9 @@ import logging
 import traceback
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as django_logout
 from django.template import RequestContext
 from django.conf import settings
-from django.views.decorators.cache import cache_control
 from userservice.user import UserService
 from myuw.dao.term import get_current_quarter
 from myuw.dao.pws import is_student
@@ -25,39 +23,18 @@ from myuw.views.rest_dispatch import invalid_session
 from myuw.dao.uwemail import get_email_forwarding_for_current_user
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.views import prefetch_resources
-from myuw.util.performance import log_response_time
 
 
 logger = logging.getLogger(__name__)
 LOGOUT_URL = "/user_logout"
 
 
-@login_required
-@cache_control(max_age=0, no_cache=True, no_store=True, must_revalidate=True)
-@log_response_time
-def index(request,
-          year=None,
-          quarter=None,
-          summer_term=None):
-    return _page(request, year, quarter, summer_term)
-
-
-@login_required
-@cache_control(max_age=0, no_cache=True, no_store=True, must_revalidate=True)
-@log_response_time
-def teaching(request,
-             year=None,
-             quarter=None,
-             summer_term=None):
-    return _page(request, year, quarter, summer_term, template='teaching.html')
-
-
-def _page(request,
-          year=None,
-          quarter=None,
-          summer_term=None,
-          template='index.html'):
-
+def page(request,
+         year=None,
+         quarter=None,
+         summer_term=None,
+         context={},
+         template='index.html'):
     timer = Timer()
     netid = get_netid_of_current_user()
     if not netid:
@@ -86,19 +63,16 @@ def _page(request,
         if is_oldmyuw_user():
             return redirect_to_legacy_site()
 
-    context = {
-        "year": year,
-        "quarter": quarter,
-        "summer_term": summer_term,
-        "home_url": "/",
-        "err": None,
-        "user": {
-            "netid": None,
-            "affiliations": get_all_affiliations(request)
-        },
-        "card_display_dates": get_card_visibilty_date_values(request),
+    context["year"] = year
+    context["quarter"] = quarter
+    context["summer_term"] = summer_term
+    context["home_url"] = "/"
+    context["err"] = None
+    context["user"] = {
+        "netid": None,
+        "affiliations": get_all_affiliations(request)
     }
-
+    context["card_display_dates"] = get_card_visibilty_date_values(request)
     context["user"]["session_key"] = request.session.session_key
     log_session(netid, request.session.session_key, request)
     try:

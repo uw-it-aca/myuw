@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>MyUW</title>
+    <title>{{ page_title|default:"MyUW" }}</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -340,6 +340,8 @@
     <script src="{% static 'js/card/new_student/ns_to_register.js' %}"></script>
     <script src="{% static 'js/card/new_student/ns_international_stu.js' %}"></script>
     {% endcompress %}
+
+    {% block extra_js %}{% endblock %}
 
     {% if not has_less_compiled %}
     <!-- less js -->

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+   {% load static %}
+
+    <div id="main-content" role="main" aria-labelledby="main"></div>
+    <div id="static-links"></div>
+
+    <!-- component content templates -->
+    {% include "handlebars/thrive.html" %}
+
+    <!-- page content templates -->
+    {% include "handlebars/loading.html" %}
+    {% include "handlebars/error.html" %}
+    {% include "user_state.html" %}
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/page/thrive.js' %}"></script>
+{% endblock %}

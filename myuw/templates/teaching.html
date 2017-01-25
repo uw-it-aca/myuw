@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+   {% load static %}
 
     <div id="main-content" role="main" aria-labelledby="main"></div>
     <div id="static-links"></div>
@@ -30,13 +31,10 @@
     {% include "handlebars/notices.html" %}
     {% include "handlebars/academic_calendar.html" %}
 
-    <script>
-    window.page_titles = {
-        "teaching": "MyUW Teaching",
-        "instructor_schedule": "Teaching Schedule",
-    };
-    </script>
-
     {% include "user_state.html" %}
 
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/page/teaching.js' %}"></script>
 {% endblock %}

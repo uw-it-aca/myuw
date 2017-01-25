@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+   {% load static %}
+
+    <div id="main-content" role="main" aria-labelledby="main"></div>
+    <div id="static-links"></div>
+
+    <!-- component content templates -->
+    {% include "handlebars/banner/profile.html" %}
+
+    <!-- page content templates -->
+    {% include "handlebars/loading.html" %}
+    {% include "handlebars/error.html" %}
+    {% include "handlebars/category_page.html" %}
+
+
+    {% include "user_state.html" %}
+
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+    window.category_data = {
+        "category": "{{ category|default:"" }}",
+        "topic": "{{ topic|default:"" }}"
+    };
+    </script>
+    <script src="{% static 'js/page/category.js' %}"></script>
+{% endblock %}

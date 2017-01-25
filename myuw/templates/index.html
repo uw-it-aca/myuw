@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+   {% load static %}
 
     <div id="main-content" role="main" aria-labelledby="main"></div>
     <div id="static-links"></div>
@@ -67,9 +68,7 @@
 
     <!-- page content templates -->
     {% include "handlebars/landing.html" %}
-    {% include "handlebars/future.html" %}
     {% include "handlebars/future_410_error.html" %}
-    {% include "handlebars/textbooks.html" %}
     {% include "handlebars/error.html" %}
     {% include "handlebars/hfs.html" %}
     {% include "handlebars/grades.html" %}
@@ -78,11 +77,8 @@
     {% include "handlebars/other_quarters.html" %}
     {% include "handlebars/quarter_books.html" %}
     {% include "handlebars/visual_schedule.html" %}
-    {% include "handlebars/academic_calendar.html" %}
-    {% include "handlebars/thrive.html" %}
     {% include "handlebars/thrive_messages.html" %}
     {% include "handlebars/thrive_message.html" %}
-    {% include "handlebars/category_page.html" %}
 
     <script>
     window.page_titles = {
@@ -91,19 +87,17 @@
         "visual": "MyUW: Visual Schedule",
         "instructor_schedule": "Teaching Schedule",
         "finabala": "Financial Balances",
-        "future_quarters": "MyUW: View Future Quarters",
-        "textbooks": "MyUW: Textbooks",
         "instructor": "Faculty Directory",
         "finals": "Final Exams",
-        "grades": "Grades",
-        "notices": "MyUW: Notices",
-        "category_page": "MyUW: Category",
-        "academic_calendar": "Academic Calendar",
-        "thrive": "What is Thrive",
-        "thrive_messages": "Thrive Messages"
+        "grades": "Grades"
     };
     </script>
 
     {% include "user_state.html" %}
 
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/page/landing.js' %}"></script>
 {% endblock %}
