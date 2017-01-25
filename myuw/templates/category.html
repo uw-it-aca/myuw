@@ -25,10 +25,10 @@ MyUW: Category
 
 {% block extra_js %}
     <script>
-    window.category_data = {
-        "category": "{{ category|default:"" }}",
-        "topic": "{{ topic|default:"" }}"
-    };
+      window.category_data = {
+          "category": "{{ category|default:"" }}",
+          "topic": "{{ topic|default:"" }}"
+      };
+      window.RenderPage = RenderCategoryPage;
     </script>
-    <script src="{% static 'js/page/category.js' %}"></script>
 {% endblock %}

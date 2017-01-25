@@ -41,6 +41,6 @@ MyUW: View Future Quarters
 {% block extra_js %}
     <script>
       window.future_term = "{{ future_term }}"
+      window.RenderPage = RenderFutureQuarterPage;
     </script>
-    <script src="{% static 'js/page/future.js' %}"></script>
 {% endblock %}

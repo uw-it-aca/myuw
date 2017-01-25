@@ -24,5 +24,7 @@ MyUW: Notices
 {% endblock %}
 
 {% block extra_js %}
-    <script src="{% static 'js/page/notices.js' %}"></script>
+    <script>
+      window.RenderPage = RenderNoticesPage;
+    </script>
 {% endblock %}

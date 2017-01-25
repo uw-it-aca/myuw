@@ -1,3 +1,3 @@
-var RenderPage = function () {
+var RenderThrivePage = function () {
     Thrive.show_content();
 };

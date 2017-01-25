@@ -21,5 +21,7 @@ What is Thrive
 {% endblock %}
 
 {% block extra_js %}
-    <script src="{% static 'js/page/thrive.js' %}"></script>
+    <script>
+      window.RenderPage = RenderThrivePage;
+    </script>
 {% endblock %}

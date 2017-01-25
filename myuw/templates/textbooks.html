@@ -25,10 +25,10 @@ MyUW: Textbooks
 
 {% block extra_js %}
     <script>
-    window.textbook_data = {
-        "term": "{{ term|default:"current" }}",
-        "textbook": "{{ textbook|default:"" }}"
-    };
+      window.textbook_data = {
+          "term": "{{ term|default:"current" }}",
+          "textbook": "{{ textbook|default:"" }}"
+      };
+      window.RenderPage = RenderTextbooksPage;
     </script>
-    <script src="{% static 'js/page/textbooks.js' %}"></script>
 {% endblock %}

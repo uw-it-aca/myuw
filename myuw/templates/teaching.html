@@ -41,5 +41,7 @@ MyUW Teaching
 {% endblock %}
 
 {% block extra_js %}
-    <script src="{% static 'js/page/teaching.js' %}"></script>
+    <script>
+      window.RenderPage = RenderTeachingPage;
+    </script>
 {% endblock %}

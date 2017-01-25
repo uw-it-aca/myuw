@@ -1,4 +1,4 @@
-var RenderPage = function () {
+var RenderTeachingPage = function () {
     $("#teaching").removeClass("active");
     $("#app_navigation").show();
     Teaching.render(null, null);

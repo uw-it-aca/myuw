@@ -27,5 +27,7 @@ Thrive Messages
 {% endblock %}
 
 {% block extra_js %}
-    <script src="{% static 'js/page/thrive_messages.js' %}"></script>
+    <script>
+      window.RenderPage = RenderThriveMessagesPage;
+    </script>
 {% endblock %}

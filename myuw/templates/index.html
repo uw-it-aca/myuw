@@ -100,9 +100,10 @@ MyUW
 
     {% include "user_state.html" %}
 
-
 {% endblock %}
 
 {% block extra_js %}
-    <script src="{% static 'js/page/landing.js' %}"></script>
+    <script>
+      window.RenderPage = RenderLandingPage;
+    </script>
 {% endblock %}

@@ -23,5 +23,7 @@ Academic Calendar
 {% endblock %}
 
 {% block extra_js %}
-    <script src="{% static 'js/page/academic_calendar.js' %}"></script>
+    <script>
+      window.RenderPage = RenderAcademicCalendarPage;
+   </script>
 {% endblock %}
