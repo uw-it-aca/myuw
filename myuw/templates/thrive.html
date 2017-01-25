@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load compress %}
 
 {% block page_title %}
 What is Thrive
@@ -21,7 +22,7 @@ What is Thrive
 {% endblock %}
 
 {% block extra_js %}
-    <script>
-      window.RenderPage = RenderThrivePage;
-    </script>
+    {% compress js inline %}
+    <script src="{% static 'js/page/thrive.js' %}"></script>
+    {% endcompress %}
 {% endblock %}

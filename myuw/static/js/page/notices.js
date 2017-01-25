@@ -1,3 +1,3 @@
-var RenderNoticesPage = function () {
+var RenderPage = function () {
     Notices.show_notices();
 };

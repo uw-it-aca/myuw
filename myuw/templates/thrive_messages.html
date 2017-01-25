@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load compress %}
 
 {% block page_title %}
 Thrive Messages
@@ -27,7 +28,7 @@ Thrive Messages
 {% endblock %}
 
 {% block extra_js %}
-    <script>
-      window.RenderPage = RenderThriveMessagesPage;
-    </script>
+    {% compress js inline %}
+    <script src="{% static 'js/page/thrive_messages.js' %}"></script>
+    {% endcompress %}
 {% endblock %}

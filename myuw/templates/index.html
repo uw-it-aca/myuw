@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load compress %}
 
 {% block page_title %}
 MyUW
@@ -103,7 +104,7 @@ MyUW
 {% endblock %}
 
 {% block extra_js %}
-    <script>
-      window.RenderPage = RenderLandingPage;
-    </script>
+    {% compress js inline %}
+    <script src="{% static 'js/page/landing.js' %}"></script>
+    {% endcompress %}
 {% endblock %}

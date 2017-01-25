@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load compress %}
 
 {% block page_title %}
 MyUW: View Future Quarters
@@ -41,6 +42,8 @@ MyUW: View Future Quarters
 {% block extra_js %}
     <script>
       window.future_term = "{{ future_term }}"
-      window.RenderPage = RenderFutureQuarterPage;
     </script>
+    {% compress js inline %}
+    <script src="{% static 'js/page/future.js' %}"></script>
+    {% endcompress %}
 {% endblock %}

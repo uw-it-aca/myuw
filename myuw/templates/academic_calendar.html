@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load compress %}
 
 {% block page_title %}
 Academic Calendar
@@ -23,7 +24,7 @@ Academic Calendar
 {% endblock %}
 
 {% block extra_js %}
-    <script>
-      window.RenderPage = RenderAcademicCalendarPage;
-   </script>
+    {% compress js inline %}
+    <script src="{% static 'js/page/academic_calendar.js' %}"></script>
+    {% endcompress %}
 {% endblock %}

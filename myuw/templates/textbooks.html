@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load compress %}
 
 {% block page_title %}
 MyUW: Textbooks
@@ -29,6 +30,8 @@ MyUW: Textbooks
           "term": "{{ term|default:"current" }}",
           "textbook": "{{ textbook|default:"" }}"
       };
-      window.RenderPage = RenderTextbooksPage;
     </script>
+    {% compress js inline %}
+    <script src="{% static 'js/page/textbooks.js' %}"></script>
+    {% endcompress %}
 {% endblock %}

@@ -1,3 +1,3 @@
-var RenderThriveMessagesPage = function () {
+var RenderPage = function () {
     ThriveMessages.show_messages();
 };

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load compress %}
 
 {% block page_title %}
 MyUW Teaching
@@ -41,7 +42,7 @@ MyUW Teaching
 {% endblock %}
 
 {% block extra_js %}
-    <script>
-      window.RenderPage = RenderTeachingPage;
-    </script>
+    {% compress js inline %}
+    <script src="{% static 'js/page/teaching.js' %}"></script>
+    {% endcompress %}
 {% endblock %}

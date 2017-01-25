@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load compress %}
 
 {% block page_title %}
 MyUW: Category
@@ -29,6 +30,8 @@ MyUW: Category
           "category": "{{ category|default:"" }}",
           "topic": "{{ topic|default:"" }}"
       };
-      window.RenderPage = RenderCategoryPage;
     </script>
+    {% compress js inline %}
+    <script src="{% static 'js/page/category.js' %}"></script>
+    {% endcompress %}
 {% endblock %}

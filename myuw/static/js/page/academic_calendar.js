@@ -1,3 +1,3 @@
-var RenderAcademicCalendarPage = function () {
+var RenderPage = function () {
     AcademicCalendar.show_events();
 };
