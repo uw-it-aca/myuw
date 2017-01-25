@@ -1,7 +1,12 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "view_email_lists_tmpl" %}
 
-<div class="">
+<div class="card">
+    <h3>Mailing Lists</h3>
+    <button>Create</button>
 
+    <ul>
+        {{ #each course_email_list }}<li><div>{{ list_address }}</div><div><a href="">Manage</a></div></li>{{ /each }}
+    </ul>
 </div>
 {% endtplhandlebars %}
