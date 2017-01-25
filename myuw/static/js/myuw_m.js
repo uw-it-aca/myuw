@@ -23,11 +23,11 @@ $(document).ready(function() {
         window.RenderPage.call(this);
     } catch (err) {
         // log and redirect to landing
-        WSData.log_interaction("Missing RenderPage: "
-                               + window.location.href
-                               + ": " + err.toString());
-        match = window.location.href.match(/(http[s]?:\/\/[^/]+).*/)
-        window.location.replace(match[1])
+        WSData.log_interaction("Missing RenderPage: " +
+                               window.location.href + ": " +
+                               err.toString());
+        match = window.location.href.match(/(http[s]?:\/\/[^\/]+).*/);
+        window.location.replace(match[1]);
     }
 
     if (test_alert_color) {
