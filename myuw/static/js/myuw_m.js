@@ -39,6 +39,10 @@ $(document).ready(function() {
             show_page_from_url();
             return;
         }
+        else if (state === "404") {
+            showLoading();
+            CommonLoading.render_init();
+        }
         else if (state === "landing") {
             Landing.render(data.term, data.course_index);
             $("#landing").addClass("active");
@@ -155,6 +159,11 @@ $(document).ready(function() {
             hist.replaceState({
                 state: "thrive",
             },  "", "/thrive/");
+        }
+        else if (path.match(/^\/404/)) {
+            hist.replaceState({
+                state: "404",
+            },  "", "/404/");
         }
 
         else {
