@@ -1,5 +1,6 @@
 import json
 import traceback
+from myuw.util.thread import Thread
 from myuw.logger.timer import Timer
 from myuw.views.rest_dispatch import handle_exception
 
@@ -7,17 +8,16 @@ import logging
 from django.http import HttpResponse
 from operator import itemgetter
 from myuw.dao.building import get_buildings_by_schedule
+from myuw.dao.canvas import get_canvas_course_from_section
 from myuw.dao.course_color import get_colors_by_schedule
 from myuw.dao.gws import is_grad_student
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
     get_limit_estimate_enrollment_for_section
-from myuw.dao.registered_term import get_current_summer_term_in_schedule
-from myuw.dao.term import get_current_quarter, get_next_quarter
+from myuw.dao.term import get_current_quarter
 from myuw.dao.term import get_specific_term, is_past, is_future
-from myuw.logger.logresp import log_data_not_found_response,\
-    log_success_response, log_msg
-from myuw.views.rest_dispatch import RESTDispatch, data_not_found
+from myuw.logger.logresp import log_success_response
+from myuw.views.rest_dispatch import RESTDispatch
 
 from restclients.sws.term import get_term_before, get_term_after
 from restclients.exceptions import DataFailureException
@@ -40,9 +40,10 @@ class InstSche(RESTDispatch):
         return HttpResponse(json.dumps(resp_data))
 
 
-def set_course_url(section_data, enrollment):
-    if canvas_course_is_available(enrollment.course_id):
-        section_data["canvas_url"] = enrollment.course_url
+def set_course_url(section_data, section):
+    canvas_course = get_canvas_course_from_section(section)
+    if canvas_course:
+        section_data["canvas_url"] = canvas_course.course_url
 
 
 def load_schedule(request, schedule, summer_term=""):
@@ -58,13 +59,6 @@ def load_schedule(request, schedule, summer_term=""):
     colors = get_colors_by_schedule(schedule)
 
     buildings = get_buildings_by_schedule(schedule)
-
-    canvas_enrollments = {}
-    try:
-        canvas_enrollments = get_canvas_active_enrollments()
-    except Exception as ex:
-        logger.error(ex)
-        pass
 
     # Since the schedule is restclients, and doesn't know
     # about color ids, backfill that data
@@ -100,8 +94,7 @@ def load_schedule(request, schedule, summer_term=""):
                 })
 
         try:
-            enrollment = canvas_enrollments[section.section_label()]
-            t = Thread(target=set_course_url, args=(section_data, enrollment))
+            t = Thread(target=set_course_url, args=(section_data, section))
             course_url_threads.append(t)
             t.start()
         except KeyError:
