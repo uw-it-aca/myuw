@@ -30,9 +30,6 @@ LOGOUT_URL = "/user_logout"
 
 
 def page(request,
-         year=None,
-         quarter=None,
-         summer_term=None,
          context={},
          template='index.html'):
     timer = Timer()
@@ -63,9 +60,6 @@ def page(request,
         if is_oldmyuw_user():
             return redirect_to_legacy_site()
 
-    context["year"] = year
-    context["quarter"] = quarter
-    context["summer_term"] = summer_term
     context["home_url"] = "/"
     context["err"] = None
     context["user"] = {
@@ -98,7 +92,9 @@ def page(request,
         pass
 
     context["user"]["netid"] = netid
-    if year is None or quarter is None:
+
+    if ('year' not in context or context['year'] is None or
+            'quarter' not in context and context['quarter'] is None):
         cur_term = get_current_quarter(request)
         if cur_term is None:
             context["err"] = "No current quarter data!"

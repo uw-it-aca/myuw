@@ -11,4 +11,9 @@ def index(request,
           year=None,
           quarter=None,
           summer_term=None):
-    return page(request, year, quarter, summer_term)
+    context = {
+        "year": year,
+        "quarter": quarter,
+        "summer_term": summer_term
+    }
+    return page(request, context, template='index.html')
