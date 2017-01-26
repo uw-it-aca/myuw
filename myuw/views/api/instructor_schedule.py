@@ -7,7 +7,6 @@ import logging
 from django.http import HttpResponse
 from operator import itemgetter
 from myuw.dao.building import get_buildings_by_schedule
-from myuw.dao.canvas import get_canvas_course_from_section
 from myuw.dao.course_color import get_colors_by_schedule
 from myuw.dao.gws import is_grad_student
 from myuw.dao.library import get_subject_guide_by_section
@@ -41,6 +40,11 @@ class InstSche(RESTDispatch):
         return HttpResponse(json.dumps(resp_data))
 
 
+def set_course_url(section_data, enrollment):
+    if canvas_course_is_available(enrollment.course_id):
+        section_data["canvas_url"] = enrollment.course_url
+
+
 def load_schedule(request, schedule, summer_term=""):
 
     json_data = schedule.json_data()
@@ -55,9 +59,17 @@ def load_schedule(request, schedule, summer_term=""):
 
     buildings = get_buildings_by_schedule(schedule)
 
+    canvas_enrollments = {}
+    try:
+        canvas_enrollments = get_canvas_active_enrollments()
+    except Exception as ex:
+        logger.error(ex)
+        pass
+
     # Since the schedule is restclients, and doesn't know
     # about color ids, backfill that data
     section_index = 0
+    course_url_threads = []
     for section in schedule.sections:
         section_data = json_data["sections"][section_index]
         color = colors[section.section_label()]
@@ -87,10 +99,13 @@ def load_schedule(request, schedule, summer_term=""):
                     'level': delegate.delegate_level
                 })
 
-        canvas_course = get_canvas_course_from_section(section)
-        if canvas_course:
-            section_data["canvas_url"] = canvas_course.course_url
-            section_data["canvas_name"] = canvas_course.name
+        try:
+            enrollment = canvas_enrollments[section.section_label()]
+            t = Thread(target=set_course_url, args=(section_data, enrollment))
+            course_url_threads.append(t)
+            t.start()
+        except KeyError:
+            pass
 
         # MUWM-596
         if section.final_exam and section.final_exam.building:
@@ -128,6 +143,9 @@ def load_schedule(request, schedule, summer_term=""):
                 meeting_index += 1
             except IndexError as ex:
                 pass
+
+    for t in course_url_threads:
+        t.join()
 
     # MUWM-443
     json_data["sections"] = sorted(json_data["sections"],

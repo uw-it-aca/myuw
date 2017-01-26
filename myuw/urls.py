@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from myuw.views.page import logout
@@ -31,8 +32,18 @@ from myuw.views.api.academic_events import AcademicEvents
 from myuw.views.api.thrive import ThriveMessages
 from myuw.views.api.calendar import DepartmentalCalendar
 
+urlpatterns = []
 
-urlpatterns = [
+# debug routes error pages
+if settings.DEBUG:
+    from django.views.defaults import server_error, page_not_found
+    urlpatterns += [
+        url(r'^500/?$', server_error),
+        url(r'^404/?$', login_required(page_not_found),
+            kwargs={'exception': Exception("Page not Found")}),
+    ]
+
+urlpatterns += [
     url(r'admin/dates', override, name="myuw_date_override"
         ),
     url(r'^logger/(?P<interaction_type>\w+)$', log_interaction
