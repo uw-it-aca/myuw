@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load static %}
+{% load compress %}
 
 {% block title %}404 Error{% endblock title %}
 
@@ -15,3 +17,9 @@
     </div>
 
 {% endblock content %}
+
+{% block extra_js %}
+    {% compress js inline %}
+    <script src="{% static 'js/page/page_not_found.js' %}"></script>
+    {% endcompress %}
+{% endblock %}
