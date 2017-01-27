@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% load compress %}
+
+{% block page_title %}
+Thrive Messages
+{% endblock %}
+
+{% block content %}
+
+    <div id="main-content" role="main" aria-labelledby="main"></div>
+    <div id="static-links"></div>
+
+    <!-- component content templates -->
+    {% include "handlebars/banner/profile.html" %}
+    {% include "handlebars/card/thrive.html" %}
+    {% include "handlebars/card/thrive_highlight.html" %}
+    {% include "handlebars/card/thrive_learnmore.html" %}
+
+    <!-- page content templates -->
+    {% include "handlebars/loading.html" %}
+    {% include "handlebars/error.html" %}
+    {% include "handlebars/thrive_messages.html" %}
+    {% include "handlebars/thrive_message.html" %}
+
+    {% include "user_state.html" %}
+
+{% endblock %}
+
+{% block extra_js %}
+    {% compress js inline %}
+    <script src="{% static 'js/page/thrive_messages.js' %}"></script>
+    {% endcompress %}
+{% endblock %}

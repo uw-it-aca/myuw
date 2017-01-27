@@ -76,7 +76,7 @@ def index_by_sln(book_data):
 
 class TextbookCur(Textbook):
     """
-    Performs actions on resource at /api/v1/schedule/current/.
+    Performs actions on resource at /api/v1/book/current/.
     """
 
     def GET(self, request):
