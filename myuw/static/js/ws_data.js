@@ -25,6 +25,7 @@ WSData = {
     _current_academic_calendar_data: null,
     _myplan_data: {},
     _thrive_data: null,
+    _upass_data: null,
 
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
@@ -178,6 +179,9 @@ WSData = {
     },
     thrive_data: function() {
         return WSData._thrive_data;
+    },
+    upass_data: function() {
+        return WSData._upass_data;
     },
 
     fetch_event_data: function(callback, err_callback, args) {
@@ -797,6 +801,38 @@ WSData = {
                         WSData._myplan_data[year] = {};
                     }
                     WSData._myplan_data[year][quarter] = results;
+                    WSData._run_success_callbacks_for_url(url);
+                },
+                error: function(xhr, status, error) {
+                    WSData._run_error_callbacks_for_url(url);
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
+    fetch_upass_data: function(callback, err_callback, args) {
+        if (WSData.upass_data() === null) {
+            var url = "/api/v1/upass/";
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+            $.ajax({
+                url: url,
+                dataType: "JSON",
+
+                type: "GET",
+                accepts: {html: "application/json"},
+                success: function(results) {
+                    WSData._upass_data = results;
                     WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {

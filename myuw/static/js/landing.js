@@ -53,6 +53,7 @@ var Landing = {
     _load_desktop_cards: function() {
         Landing._reset_content_divs();
         var desktop_body_cards = [
+            UPassCard,
             ThriveCard,
             FinalExamCard,
             GradeCard,
@@ -87,6 +88,7 @@ var Landing = {
     _load_mobile_cards: function() {
         Landing._reset_content_divs();
         var mobile_cards = [
+            UPassCard,
             ThriveCard,
             FinalExamCard,
             GradeCard,

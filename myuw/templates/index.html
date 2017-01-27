@@ -34,6 +34,7 @@
     {% include "handlebars/card/thrive.html" %}
     {% include "handlebars/card/thrive_highlight.html" %}
     {% include "handlebars/card/thrive_learnmore.html" %}
+    {% include "handlebars/card/upass.html" %}
     {% include "handlebars/card/schedule/course_cards.html" %}
     {% include "handlebars/card/schedule/course_card_content.html" %}
     {% include "handlebars/card/schedule/course_sche_panel.html" %}
@@ -136,6 +137,7 @@
         "last_term": "{{ card_display_dates.last_term }}",
         "in_coursevel_fetch_window": {{ card_display_dates.in_coursevel_fetch_window|yesno:"true, false"}}
     };
+    window.webservice_outage = {{ webservice_outage|yesno:"true, false" }};
     </script>
 
 {% endblock %}
