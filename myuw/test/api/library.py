@@ -1,8 +1,9 @@
-from myuw.test.api import MyuwApiTest, require_url
 from django.test.utils import override_settings
 import json
+from myuw.test.api import MyuwApiTest, require_url, fdao_libacc_override
 
 
+@fdao_libacc_override
 @require_url('myuw_library_api')
 class TestLibrary(MyuwApiTest):
 

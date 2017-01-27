@@ -3,7 +3,7 @@ from django.conf import settings
 from myuw.models import UserMigrationPreference
 from myuw.dao.user import set_preference_to_new_myuw,\
     set_preference_to_old_myuw, has_legacy_preference, has_newmyuw_preference,\
-    is_optin_user, is_oldmyuw_user
+    is_optin_user, is_oldmyuw_user, is_oldmyuw_mobile_user
 from myuw.test import get_request_with_user
 
 
@@ -58,3 +58,25 @@ class TestUserDao(TransactionTestCase):
 
         get_request_with_user('faculty')
         self.assertTrue(is_oldmyuw_user())
+
+    def test_is_oldmyuw_mobile_user(self):
+        get_request_with_user('javerage')
+        self.assertFalse(is_oldmyuw_mobile_user())
+
+        get_request_with_user('jinter')
+        self.assertFalse(is_oldmyuw_mobile_user())
+
+        get_request_with_user('seagrad')
+        self.assertFalse(is_oldmyuw_mobile_user())
+
+        get_request_with_user('none')
+        self.assertFalse(is_oldmyuw_mobile_user())
+
+        get_request_with_user('currgrad')
+        self.assertTrue(is_oldmyuw_mobile_user())
+
+        get_request_with_user('faculty')
+        self.assertTrue(is_oldmyuw_mobile_user())
+
+        get_request_with_user('staff')
+        self.assertTrue(is_oldmyuw_mobile_user())
