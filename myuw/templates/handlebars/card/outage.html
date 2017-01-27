@@ -2,9 +2,10 @@
     {% tplhandlebars "outage_card_content" %}
 
     <div class="card clearfix"  data-name="OutageCard" data-type="card">
-
-        <h3>Outage Alert</h3>
-        <p>It's broken but not our fault, complain somewhere else!</p>
-
+		<div class="swsoutage-error"> <!-- this is new class for stying -->
+	        <h3>Limited data due to technical difficulties</h3>
+	        <p>We are aware of the issue and working on it. Please try again later.
+			</p>
+		</div>
     </div>
     {% endtplhandlebars %}
