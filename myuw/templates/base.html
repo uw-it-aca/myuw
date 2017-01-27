@@ -61,8 +61,8 @@
                     <ul id="top_navigation_link_list" class="top_navigation_list">
                         {% if user.email_forward_url %}
                         <li>
-                            <div class="header-email" id="uwemail">                             
-                              <a href="{{ user.email_forward_url }}" target="_blank" title="Open {{ user.email_forward_title }} in new tab"><i class="fa {{ user.email_forward_icon }}" aria-hidden="true">&nbsp;</i>{{ user.email_forward_title }}</a>                            
+                            <div class="header-email" id="uwemail">
+                              <a href="{{ user.email_forward_url }}" target="_blank" title="Open {{ user.email_forward_title }} in new tab"><i class="fa {{ user.email_forward_icon }}" aria-hidden="true">&nbsp;</i>{{ user.email_forward_title }}</a>
                             </div>
                         </li>
                         {% endif %}
@@ -334,6 +334,8 @@
     <script src="{% static 'js/card/instructor_schedule/past/course_card_content.js' %}"></script>
     <script src="{% static 'js/card/instructor_schedule/past/course_sche_panel.js' %}"></script>
     <script src="{% static 'js/card/instructor_schedule/past/course_resource_panel.js' %}"></script>
+    <script src="{% static 'js/card/instructor_schedule/request_email_lists.js' %}"></script>
+    <script src="{% static 'js/card/instructor_schedule/view_email_lists.js' %}"></script>
     <script src="{% static 'js/card/new_student/ns_critical_info.js' %}"></script>
     <script src="{% static 'js/card/new_student/ns_summer_efs.js' %}"></script>
     <script src="{% static 'js/card/new_student/ns_thank_you.js' %}"></script>
