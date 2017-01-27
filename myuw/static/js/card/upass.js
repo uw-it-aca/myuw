@@ -34,7 +34,7 @@ var UPassCard = {
         UPassCard.dom_target.html(template(template_data));
         LogUtils.cardLoaded(UPassCard.name, UPassCard.dom_target);
     },
-}
+};
 
 /* node.js exports */
 if (typeof exports == "undefined") {
