@@ -33,7 +33,7 @@
             <div class="pull-left">
                 <span class="inst-course-label">Online Tools</span>
             </div>
-            
+
             <div class="pull-right">
                 <span class="card-badge-value">{{#if canvas_url}}<a href="{{canvas_url}}" class="course_canvas_site" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Canvas</a>{{else}}No Canvas site{{/if}}, <a href="#">Catalyst</a></span>
             </div>
@@ -43,9 +43,17 @@
                 <span class="inst-course-label">Email List</span>
             </div>
             <div class="pull-right">
-                <span class="card-badge-value"><a href="#" class="course_class_list" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Create mailing list</a></span>
+                <span class="card-badge-value"><a href="#" class="course_email_list" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Create mailing list</a></span>
             </div>
-            
+        </li>
+        <li class="clearfix">
+            <div class="pull-left">
+                <span class="inst-course-label">Textbooks</span>
+            </div>
+            <div class="pull-right">
+                <span class="card-badge-value"><a href="#" class="course_textbooks" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">View textbooks</a></span>
+            </div>
+        </li>
     </ul>
 
 
