@@ -137,7 +137,7 @@
         "last_term": "{{ card_display_dates.last_term }}",
         "in_coursevel_fetch_window": {{ card_display_dates.in_coursevel_fetch_window|yesno:"true, false"}}
     };
-    window.webservice_outage = {{ webservice_outage|yesno:"true, false" }};
+    window.webservice_outage = true;
     </script>
 
 {% endblock %}
