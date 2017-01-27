@@ -101,8 +101,8 @@ def get_all_secondary_section_lists(primary_section):
     return secondaries
 
 
-def email_list_prefetch(term):
-
+def email_list_prefetch():
+    # to-do: determine the right term
     def _method(request):
         get_email_lists_by_term(term)
 
