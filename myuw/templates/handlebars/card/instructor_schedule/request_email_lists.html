@@ -1,7 +1,15 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "request_email_lists_tmpl" %}
 
+
+{{#if show_simple }}
 <div class="">
+
+    <div>
+        <button>Create Mailing List</button>
+    </div>
+
+
     <h3>Create Mailing List</h3>
 
     <div>{{ course_name }}</div>
@@ -12,5 +20,31 @@
         <li>Stays synced with the official class list</li>
     </ul>
 
+    {{#if allow_advanced }}
+    <div><a href="">Advanced options</a></div>
+    {{/if}}
 </div>
+{{/if}}
+
+{{#if show_advanced }}
+<div class="">
+    <div>
+        <button>Create Mailing Lists</button>
+    </div>
+
+    <h3>Create Mailing List</h3>
+    <p>Creates multiple email lists, one for each section selected.</p>
+
+    <div>
+        <label>Select all</label>
+        <input type="checkbox"/>
+    </div>
+    <ul>
+        {{ #each section }}<li class="{{#if secondary_section }}secondary"><div>{{ section_name }}</div><div><input type="checkbox" /></div></li>{{ /each }}
+    </ul>
+
+    <div></div>
+</div>
+{{/if}}
+
 {% endtplhandlebars %}
