@@ -11,5 +11,9 @@ def teaching(request,
              year=None,
              quarter=None,
              summer_term=None):
-    return page(request, year, quarter,
-                summer_term, template='teaching.html')
+    context = {
+        "year": year,
+        "quarter": quarter,
+        "summer_term": summer_term
+    }
+    return page(request, context, template='teaching.html')
