@@ -29,9 +29,6 @@ def require_url(url, message='myuw urls not configured', kwargs=None):
     return skipIf(missing_url(url, kwargs), message)
 
 
-FDAO_SWS = 'restclients.dao_implementation.sws.File'
-FDAO_PWS = 'restclients.dao_implementation.pws.File'
-FDAO_Canvas = 'restclients.dao_implementation.canvas.File'
 Session = 'django.contrib.sessions.middleware.SessionMiddleware'
 Common = 'django.middleware.common.CommonMiddleware'
 CsrfView = 'django.middleware.csrf.CsrfViewMiddleware'
