@@ -1,14 +1,11 @@
 import re
 import logging
 import traceback
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.contrib.auth import logout as django_logout
-from django.template import RequestContext
 from django.conf import settings
-from userservice.user import UserService
 from myuw.dao.term import get_current_quarter
-from myuw.dao.pws import is_student
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.user import is_oldmyuw_user, get_netid_of_current_user,\
     is_oldmyuw_mobile_user
