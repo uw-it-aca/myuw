@@ -55,7 +55,7 @@ MEETING TIME
 </table>
 
 <h5 class="scheduleHeading">
-FINAL EXAM
+  FINAL EXAM {{#if final_exam.no_exam_or_nontraditional}}{{else}}{{#if final_exam.is_confirmed}}{{else}}(<a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/{{netid}}/finalexam.asp?{{capitalizeString quarter}}+{{year}}&sln={{sln}}" target="_blank">Confirm</a>){{/if}}{{/if}}
 </h5>
 {{#if final_exam }}
   {{#if final_exam.no_exam_or_nontraditional}}
