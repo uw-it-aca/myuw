@@ -7,8 +7,6 @@ import logging
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
 from restclients.sws.notice import get_notices_by_regid
-from myuw.logger.timer import Timer
-from myuw.logger.logback import log_resp_time, log_exception, log_info
 from myuw.models import TuitionDate, UserNotices
 from myuw.dao import get_user_model
 from myuw.dao.pws import get_regid_of_current_user
@@ -27,17 +25,10 @@ def _get_notices_by_regid(user_regid):
     if user_regid is None:
         return None
 
-    timer = Timer()
-
-    try:
-        notices = get_notices_by_regid(user_regid)
-        if notices is None:
-            return None
-        return categorize_notices(notices)
-    finally:
-        log_resp_time(logger,
-                      'Notice.get_notices',
-                      timer)
+    notices = get_notices_by_regid(user_regid)
+    if notices is None:
+        return None
+    return categorize_notices(notices)
 
 
 def mark_notices_read_for_current_user(notice_hashes):
