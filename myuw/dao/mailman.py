@@ -5,57 +5,60 @@ the uwnetid subscription resource.
 
 import logging
 import re
-from restclients.models.sws import Section, Term
-from myuw.dao.pws import get_person_of_current_user
-from restclients.mailman.list_checker import exists_section_list,\
-    exists_secondary_section_combined_list, get_section_list_name,\
-    exists_instructor_term_combined_list, get_instructor_term_list_name,\
-    get_secondary_section_combined_list_name
-from myuw.dao.instructor_schedule import _get_instructor_schedule
+from restclients.mailman.list_checker import (get_course_list_name,
+                                              exists_course_list)
+from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 
 
 logger = logging.getLogger(__name__)
+MAILMAN_ADMIN_URL = "https://mailman.u.washington.edu/mailman/admin/%s"
 
 
-def _get_section(term, curriculum_abbr, course_number, section_id):
-    return Section(term=term,
-                   curriculum_abbr=curriculum_abbr,
-                   course_number=course_number,
-                   section_id=section_id)
+def get_single_email_list(curriculum_abbr, course_number, section_id,
+                          quarter, year):
+    exists = exists_course_list(curriculum_abbr, course_number,
+                                section_id, quarter, year)
+    list_name = get_course_list_name(curriculum_abbr, course_number,
+                                     section_id, quarter, year)
+    list_admin_url = None
+    if exists:
+        list_admin_url = MAILMAN_ADMIN_URL % list_name
+
+    return {
+        "list_exists": exists,
+        "list_address": list_name,
+        "list_admin_url": list_admin_url
+        }
+
+
+section_id_ext_pattern = r'.*/course/\d{4},[^/]+/([A-Z][A-Z0-9]?).json$'
+
+
+def get_all_secondary_section_lists(primary_section):
+    secondaries = []
+    if primary_section.linked_section_urls and\
+            len(primary_section.linked_section_urls):
+        for url in primary_section.linked_section_urls:
+            section_id = re.sub(section_id_ext_pattern, r'\1',
+                                url, flags=re.IGNORECASE)
+            secondaries.append(
+                get_single_email_list(primary_section.curriculum_abbr,
+                                      primary_section.course_number,
+                                      section_id,
+                                      primary_section.term.quarter,
+                                      primary_section.term.year))
+    return secondaries
 
 
 def get_single_email_list_by_section(section):
     """
     @return json of the section specfic email list info
     """
-    return {
-        "section_id": section.section_id,
-        "list_address": get_section_list_name(section),
-        "list_exists": exists_section_list(section)
-        }
-
-
-def get_email_list(term, curriculum_abbr, course_number, section_id):
-    return get_single_email_list_by_section(
-        _get_section(term, curriculum_abbr, course_number, section_id))
-
-
-def get_email_lists_by_term(term):
-    """
-    @return json of the corresponding email lists
-    associated with the current instructor in the given term
-    """
-    person = get_person_of_current_user()
-    schedule = _get_instructor_schedule(person, term)
-    json_data = {
-        "year": term.year,
-        "quarter": term.quarter,
-        }
-    json_data["email_lists"] = []
-    for section in schedule.sections:
-        json_data["email_lists"].append(
-            get_section_email_lists(section))
-    return json_data
+    return get_single_email_list(section.curriculum_abbr,
+                                 section.course_number,
+                                 section.section_id,
+                                 section.term.quarter,
+                                 section.term.year)
 
 
 def get_section_email_lists(section):
@@ -83,27 +86,18 @@ def get_section_email_lists(section):
     return json_data
 
 
-section_id_ext_pattern = r'.*/course/\d{4},[^/]+/([A-Z][A-Z0-9]?).json$'
-
-
-def get_all_secondary_section_lists(primary_section):
-    secondaries = []
-    if primary_section.linked_section_urls and\
-            len(primary_section.linked_section_urls):
-        for url in primary_section.linked_section_urls:
-            section_id = re.sub(section_id_ext_pattern, r'\1',
-                                url, flags=re.IGNORECASE)
-            section = _get_section(primary_section.term,
-                                   primary_section.curriculum_abbr,
-                                   primary_section.course_number,
-                                   section_id)
-            secondaries.append(get_single_email_list_by_section(section))
-    return secondaries
-
-
-def email_list_prefetch():
-    # to-do: determine the right term
-    def _method(request):
-        get_email_lists_by_term(term)
-
-    return [_method]
+def get_email_lists_by_term(term):
+    """
+    @return json of the corresponding email lists
+    associated with the current instructor in the given term
+    """
+    schedule = get_instructor_schedule_by_term(term)
+    json_data = {
+        "year": term.year,
+        "quarter": term.quarter,
+        }
+    json_data["email_lists"] = []
+    for section in schedule.sections:
+        json_data["email_lists"].append(
+            get_section_email_lists(section))
+    return json_data
