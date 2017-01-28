@@ -63,14 +63,14 @@ def get_threaded_secondary_section_lists(primary_section):
     for url in primary_section.linked_section_urls:
         section_id = get_section_id(url)
         secondaries_section_ids.append(section_id)
-        thread = MyMailmanThread(primary_section.curriculum_abbr,
-                                 primary_section.course_number,
-                                 section_id,
-                                 primary_section.term.quarter,
-                                 primary_section.term.year)
+        thread = SingleListThread(primary_section.curriculum_abbr,
+                                  primary_section.course_number,
+                                  section_id,
+                                  primary_section.term.quarter,
+                                  primary_section.term.year)
         thread.start()
         list_threads[section_id] = thread
-                
+
     for section_id in secondaries_section_ids:
         thread = list_threads[section_id]
         thread.join()
@@ -134,13 +134,33 @@ def get_email_lists_by_term(term):
         "quarter": term.quarter,
         }
     json_data["email_lists"] = []
-    for section in schedule.sections:
+    if len(schedule.sections) == 1:
         json_data["email_lists"].append(
-            get_section_email_lists(section))
+            get_section_email_lists(schedule.sections[0]))
+
+    if len(schedule.sections) > 1:
+        section_list = []
+        list_threads = {}
+        for section in schedule.sections:
+            section_label = section.section_label()
+            section_list.append(section_label)
+            thread = CourseListsThread(section)
+            thread.start()
+            list_threads[section_label] = thread
+
+        for section_label in section_list:
+            thread = list_threads[section_label]
+            thread.join()
+            if thread.exception is None:
+                json_data["email_lists"].append(thread.response)
+            else:
+                logger.error("get_section_email_lists(%s)==>%s " %
+                             (section_label, thread.exception))
+
     return json_data
 
 
-class MyMailmanThread(Thread):
+class SingleListThread(Thread):
 
     def __init__(self,
                  curriculum_abbr, course_number, section_id, quarter, year):
@@ -160,5 +180,20 @@ class MyMailmanThread(Thread):
                                                   self.section_id,
                                                   self.quarter,
                                                   self.year)
+        except Exception as ex:
+            self.exception = ex
+
+
+class CourseListsThread(Thread):
+
+    def __init__(self, section):
+        Thread.__init__(self)
+        self.section = section
+        self.response = None
+        self.exception = None
+
+    def run(self):
+        try:
+            self.response = get_section_email_lists(self.section)
         except Exception as ex:
             self.exception = ex

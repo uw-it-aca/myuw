@@ -73,7 +73,8 @@ class TestMailmanDao(TestCase):
         ret_json = get_email_lists_by_term(Term(year=2013, quarter='spring'))
         self.assertEqual(ret_json['year'], 2013)
         self.assertEqual(ret_json['quarter'], "spring")
-        self.assertEqual(len(ret_json['email_lists']), 2)
+        self.assertEqual(len(ret_json['email_lists']), 3)
+
         list1 = ret_json['email_lists'][0]
         self.assertEqual(list1["course_abbr"], "TRAIN")
         self.assertEqual(list1["course_number"], "101")
@@ -81,14 +82,14 @@ class TestMailmanDao(TestCase):
         self.assertEqual(list1["primary_list"]['list_address'],
                          'train101a_sp13')
         self.assertTrue(list1["primary_list"]['list_exists'])
-        self.assertEqual(list1["is_primary"], True)
+        self.assertTrue(list1["is_primary"])
         self.assertEqual(len(list1["secondary_lists"]), 0)
-        self.assertEqual(list1["has_multi_secondaries"], False)
+        self.assertFalse(list1["has_multi_secondaries"])
 
         list2 = ret_json['email_lists'][1]
         self.assertEqual(list2["course_abbr"], "ESS")
-        self.assertEqual(list2["has_multi_secondaries"], False)
-        self.assertEqual(list2["is_primary"], True)
+        self.assertFalse(list2["has_multi_secondaries"])
+        self.assertTrue(list2["is_primary"])
         self.assertEqual(list2["primary_list"]['list_address'],
                          'ess102a_sp13')
         self.assertFalse(list2["primary_list"]['list_exists'])
@@ -96,3 +97,15 @@ class TestMailmanDao(TestCase):
         self.assertTrue(list2["secondary_lists"][0]["list_exists"])
         self.assertEqual(list2["secondary_lists"][0]["list_address"],
                          'ess102ab_sp13')
+
+        list3 = ret_json['email_lists'][2]
+        self.assertEqual(list3["course_abbr"], "PHYS")
+        self.assertTrue(list3["has_multi_secondaries"])
+        self.assertTrue(list3["is_primary"])
+        self.assertEqual(len(list3["secondary_lists"]), 21)
+        self.assertEqual(list3["primary_list"]['list_address'],
+                         'phys121a_sp13')
+        self.assertEqual(list3["secondary_lists"][0]["list_address"],
+                         'phys121aa_sp13')
+        self.assertEqual(list3["secondary_lists"][20]["list_address"],
+                         'phys121av_sp13')
