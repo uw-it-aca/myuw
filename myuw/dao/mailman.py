@@ -7,11 +7,13 @@ import logging
 import re
 from restclients.mailman.list_checker import (get_course_list_name,
                                               exists_course_list)
+from myuw.util.thread import Thread
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 
 
 logger = logging.getLogger(__name__)
 MAILMAN_ADMIN_URL = "https://mailman.u.washington.edu/mailman/admin/%s"
+section_id_ext_pattern = r'.*/course/\d{4},[^/]+/([A-Z][A-Z0-9]?).json$'
 
 
 def get_single_email_list(curriculum_abbr, course_number, section_id,
@@ -31,22 +33,57 @@ def get_single_email_list(curriculum_abbr, course_number, section_id,
         }
 
 
-section_id_ext_pattern = r'.*/course/\d{4},[^/]+/([A-Z][A-Z0-9]?).json$'
+def get_section_id(url):
+    return re.sub(section_id_ext_pattern, r'\1',
+                  url, flags=re.IGNORECASE)
 
 
 def get_all_secondary_section_lists(primary_section):
     secondaries = []
-    if primary_section.linked_section_urls and\
-            len(primary_section.linked_section_urls):
-        for url in primary_section.linked_section_urls:
-            section_id = re.sub(section_id_ext_pattern, r'\1',
-                                url, flags=re.IGNORECASE)
+    if primary_section.linked_section_urls:
+
+        if len(primary_section.linked_section_urls) > 1:
+            return get_threaded_secondary_section_lists(primary_section)
+
+        if len(primary_section.linked_section_urls) == 1:
+            url = primary_section.linked_section_urls[0]
             secondaries.append(
                 get_single_email_list(primary_section.curriculum_abbr,
                                       primary_section.course_number,
-                                      section_id,
+                                      get_section_id(url),
                                       primary_section.term.quarter,
                                       primary_section.term.year))
+    return secondaries
+
+
+def get_threaded_secondary_section_lists(primary_section):
+    secondaries = []
+    secondaries_section_ids = []
+    list_threads = {}
+    for url in primary_section.linked_section_urls:
+        section_id = get_section_id(url)
+        secondaries_section_ids.append(section_id)
+        thread = MyMailmanThread(primary_section.curriculum_abbr,
+                                 primary_section.course_number,
+                                 section_id,
+                                 primary_section.term.quarter,
+                                 primary_section.term.year)
+        thread.start()
+        list_threads[section_id] = thread
+                
+    for section_id in secondaries_section_ids:
+        thread = list_threads[section_id]
+        thread.join()
+        if thread.exception is None:
+            secondaries.append(thread.response)
+        else:
+            logger.error("get_single_email_list(%s,%s,%s,%s,%s)==>%s " %
+                         (primary_section.curriculum_abbr,
+                          primary_section.course_number,
+                          section_id,
+                          primary_section.term.quarter,
+                          primary_section.term.year,
+                          thread.exception))
     return secondaries
 
 
@@ -101,3 +138,27 @@ def get_email_lists_by_term(term):
         json_data["email_lists"].append(
             get_section_email_lists(section))
     return json_data
+
+
+class MyMailmanThread(Thread):
+
+    def __init__(self,
+                 curriculum_abbr, course_number, section_id, quarter, year):
+        Thread.__init__(self)
+        self.curriculum_abbr = curriculum_abbr
+        self.course_number = course_number
+        self.section_id = section_id
+        self.quarter = quarter
+        self.year = year
+        self.response = None
+        self.exception = None
+
+    def run(self):
+        try:
+            self.response = get_single_email_list(self.curriculum_abbr,
+                                                  self.course_number,
+                                                  self.section_id,
+                                                  self.quarter,
+                                                  self.year)
+        except Exception as ex:
+            self.exception = ex

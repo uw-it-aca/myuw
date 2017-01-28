@@ -5,7 +5,7 @@ from restclients.sws.section import get_section_by_label
 from restclients.models.sws import Term
 from myuw.dao.mailman import get_single_email_list_by_section,\
     get_single_email_list, get_email_lists_by_term, get_section_email_lists,\
-    get_all_secondary_section_lists
+    get_all_secondary_section_lists, get_section_id
 from myuw.test import fdao_sws_override, fdao_mailman_override, get_request,\
     get_request_with_user
 
@@ -15,6 +15,11 @@ from myuw.test import fdao_sws_override, fdao_mailman_override, get_request,\
 class TestMailmanDao(TestCase):
     def setUp(self):
         get_request()
+
+    def test_get_section_id(self):
+        self.assertEqual(
+            get_section_id("/student/v5/course/2013,spring,PHYS,121/AA.json"),
+            "AA")
 
     def test_get_single_email_list(self):
         list_data = get_single_email_list('B BIO', 180, 'A', 'summer', 2013)
