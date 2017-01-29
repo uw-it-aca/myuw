@@ -129,9 +129,9 @@ def get_section_email_lists(section, include_secondaries_in_primary):
         "section_id": section.section_id,
         "is_primary": is_primary_section,
         }
-    if is_primary_section:
-        json_data["primary_list"] = get_single_section_list(section)
+    json_data["section_list"] = get_single_section_list(section)
 
+    if is_primary_section:
         if include_secondaries_in_primary and\
                 len(section.linked_section_urls) > 0:
             json_data["secondary_lists"] =\
@@ -143,8 +143,6 @@ def get_section_email_lists(section, include_secondaries_in_primary):
         if json_data["has_multi_secondaries"]:
             json_data["secondary_combined_list"] =\
                 get_section_secondary_combined_list(section)
-    else:
-        json_data["section_list"] = get_single_section_list(section)
     return json_data
 
 

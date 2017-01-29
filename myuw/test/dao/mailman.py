@@ -101,14 +101,38 @@ class TestMailmanDao(TestCase):
         self.assertEqual(ret_json["course_abbr"], "PHYS")
         self.assertEqual(ret_json["course_number"], "121")
         self.assertEqual(ret_json["section_id"], "A")
-        self.assertEqual(ret_json["is_primary"], True)
-        self.assertEqual(ret_json["primary_list"]["list_address"],
+        self.assertTrue(ret_json["is_primary"])
+        self.assertEqual(ret_json["section_list"]["list_address"],
                          'phys121a_sp13')
-        self.assertTrue(ret_json["primary_list"]["list_exists"])
+        self.assertTrue(ret_json["section_list"]["list_exists"])
+
+        self.assertTrue(ret_json["has_multi_secondaries"])
+        self.assertEqual(len(ret_json['secondary_lists']), 21)
+        self.assertEqual(ret_json["secondary_lists"][0]["list_address"],
+                         'phys121aa_sp13')
+        self.assertEqual(ret_json["secondary_lists"][20]["list_address"],
+                         'phys121av_sp13')
+
         self.assertEqual(ret_json["secondary_combined_list"]["list_address"],
                          'multi_phys121a_sp13')
         self.assertTrue(ret_json["secondary_combined_list"]["list_exists"])
-        self.assertEqual(len(ret_json['secondary_lists']), 21)
+
+        ret_json = get_section_email_lists(
+            get_section_by_label('2013,spring,ESS,102/A'),
+            include_secondaries_in_primary=True)
+        self.assertFalse(ret_json["section_list"]["list_exists"])
+        self.assertEqual(len(ret_json["secondary_lists"]), 1)
+        self.assertFalse(ret_json["has_multi_secondaries"])
+
+        ret_json = get_section_email_lists(
+            get_section_by_label('2013,spring,TRAIN,101/A'),
+            include_secondaries_in_primary=True)
+        self.assertTrue(ret_json["section_list"]["list_exists"])
+        self.assertFalse(ret_json["has_multi_secondaries"])
+        try:
+            self.assertEqual(len(ret_json["secondary_lists"]), 0)
+        except KeyError:
+            pass
 
     def test_get_email_lists_by_term(self):
         now_request = get_request()
@@ -116,7 +140,7 @@ class TestMailmanDao(TestCase):
         ret_json = get_email_lists_by_term(Term(year=2013, quarter='spring'))
         self.assertEqual(ret_json['year'], 2013)
         self.assertEqual(ret_json['quarter'], "spring")
-        self.assertEqual(len(ret_json['email_lists']), 3)
+        self.assertEqual(len(ret_json['email_lists']), 2)
 
         self.assertEqual(ret_json["instructor_term_list"]['list_address'],
                          'bill_sp13')
@@ -126,9 +150,9 @@ class TestMailmanDao(TestCase):
         self.assertEqual(list1["course_abbr"], "TRAIN")
         self.assertEqual(list1["course_number"], "101")
         self.assertEqual(list1["section_id"], "A")
-        self.assertEqual(list1["primary_list"]['list_address'],
+        self.assertEqual(list1["section_list"]['list_address'],
                          'train101a_sp13')
-        self.assertTrue(list1["primary_list"]['list_exists'])
+        self.assertTrue(list1["section_list"]['list_exists'])
         self.assertTrue(list1["is_primary"])
         self.assertFalse(list1["has_multi_secondaries"])
 
@@ -136,22 +160,68 @@ class TestMailmanDao(TestCase):
         self.assertEqual(list2["course_abbr"], "ESS")
         self.assertFalse(list2["has_multi_secondaries"])
         self.assertTrue(list2["is_primary"])
-        self.assertEqual(list2["primary_list"]['list_address'],
+        self.assertEqual(list2["section_list"]['list_address'],
                          'ess102a_sp13')
-        self.assertFalse(list2["primary_list"]['list_exists'])
+        self.assertFalse(list2["section_list"]['list_exists'])
         self.assertEqual(len(list2["secondary_lists"]), 1)
         self.assertTrue(list2["secondary_lists"][0]["list_exists"])
         self.assertEqual(list2["secondary_lists"][0]["list_address"],
                          'ess102ab_sp13')
 
-        list3 = ret_json['email_lists'][2]
-        self.assertEqual(list3["course_abbr"], "PHYS")
-        self.assertTrue(list3["has_multi_secondaries"])
-        self.assertTrue(list3["is_primary"])
-        self.assertEqual(len(list3["secondary_lists"]), 21)
-        self.assertEqual(list3["primary_list"]['list_address'],
+    def test_instructor_has_multi_secondaries(self):
+        now_request = get_request()
+        get_request_with_user('faculty', now_request)
+        ret_json = get_email_lists_by_term(Term(year=2013, quarter='spring'))
+
+        self.assertEqual(ret_json['year'], 2013)
+        self.assertEqual(ret_json['quarter'], "spring")
+        self.assertEqual(len(ret_json['email_lists']), 2)
+
+        self.assertEqual(ret_json["instructor_term_list"]['list_address'],
+                         'faculty_sp13')
+        self.assertFalse(ret_json["instructor_term_list"]['list_exists'])
+
+        list1 = ret_json['email_lists'][0]
+        self.assertEqual(list1["course_abbr"], "PHYS")
+        self.assertEqual(list1["course_number"], "121")
+        self.assertEqual(list1["section_id"], "A")
+        self.assertTrue(list1["is_primary"])
+        self.assertEqual(list1["section_list"]["list_address"],
                          'phys121a_sp13')
-        self.assertEqual(list3["secondary_lists"][0]["list_address"],
+        self.assertTrue(list1["section_list"]["list_exists"])
+
+        self.assertTrue(list1["has_multi_secondaries"])
+        self.assertEqual(len(list1['secondary_lists']), 21)
+        self.assertEqual(list1["secondary_lists"][0]["list_address"],
                          'phys121aa_sp13')
-        self.assertEqual(list3["secondary_lists"][20]["list_address"],
+        self.assertTrue(list1["secondary_lists"][0]["list_exists"])
+        self.assertEqual(list1["secondary_lists"][20]["list_address"],
                          'phys121av_sp13')
+        self.assertTrue(list1["secondary_lists"][20]["list_exists"])
+
+        self.assertEqual(list1["secondary_combined_list"]["list_address"],
+                         'multi_phys121a_sp13')
+        self.assertTrue(list1["secondary_combined_list"]["list_exists"])
+
+        list2 = ret_json['email_lists'][1]
+        self.assertEqual(list2["course_abbr"], "PHYS")
+        self.assertEqual(list2["course_number"], "121")
+        self.assertEqual(list2["section_id"], "B")
+        self.assertTrue(list2["is_primary"])
+        self.assertEqual(list2["section_list"]["list_address"],
+                         'phys121b_sp13')
+        self.assertFalse(list2["section_list"]["list_exists"])
+
+        self.assertTrue(list2["has_multi_secondaries"])
+        self.assertEqual(len(list2['secondary_lists']), 2)
+        self.assertEqual(list2["secondary_lists"][0]["list_address"],
+                         'phys121ba_sp13')
+        self.assertFalse(list2["secondary_lists"][0]["list_exists"])
+
+        self.assertEqual(list2["secondary_lists"][1]["list_address"],
+                         'phys121bb_sp13')
+        self.assertFalse(list2["secondary_lists"][1]["list_exists"])
+
+        self.assertEqual(list2["secondary_combined_list"]["list_address"],
+                         'multi_phys121b_sp13')
+        self.assertFalse(list2["secondary_combined_list"]["list_exists"])

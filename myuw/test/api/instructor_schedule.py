@@ -14,7 +14,7 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
         schedule = get_current_quarter_instructor_schedule(now_request)
 
         data = load_schedule(now_request, schedule)
-        self.assertEqual(len(data['sections']), 3)
+        self.assertEqual(len(data['sections']), 2)
         self.assertEqual(
             data['sections'][0]['limit_estimate_enrollment'], 15)
         self.assertEqual(
@@ -24,8 +24,8 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
                          'https://canvas.uw.edu/courses/149651')
         self.assertEqual(
             len(data['sections'][1]['grade_submission_delegates']),
-            2)
-        self.assertGreater(len(data['related_terms']), 3)
+            1)
+        self.assertGreater(len(data['related_terms']), 2)
         self.assertEqual(data['related_terms'][
             len(data['related_terms']) - 3]['quarter'], 'Spring')
         self.assertEqual(data['related_terms'][5]['year'], 2013)
