@@ -5,9 +5,10 @@ the uwnetid subscription resource.
 
 import logging
 import re
+from restclients.mailman.basic_list import get_admin_url
 from restclients.mailman.course_list import get_course_list_name,\
     exists_course_list, get_section_secondary_combined_list_name,\
-    exists_section_secondary_combined_list
+    exists_section_secondary_combined_list, get_admin_url
 from restclients.mailman.instructor_term_list import\
     get_instructor_term_list_name, exists_instructor_term_list
 from myuw.util.thread import Thread
@@ -16,12 +17,7 @@ from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 
 
 logger = logging.getLogger(__name__)
-MAILMAN_ADMIN_URL = "https://mailman.u.washington.edu/mailman/admin/%s"
 section_id_ext_pattern = r'.*/course/\d{4},[^/]+/([A-Z][A-Z0-9]?).json$'
-
-
-def get_admin_url(list_name):
-    return MAILMAN_ADMIN_URL % list_name
 
 
 def get_list_json(exists, list_name):
@@ -71,50 +67,34 @@ def get_section_id(url):
 
 def get_all_secondary_section_lists(primary_section):
     secondaries = []
-    if primary_section.linked_section_urls:
+    if primary_section.linked_section_urls and\
+            len(primary_section.linked_section_urls):
+        secondaries_section_ids = []
+        list_threads = {}
+        for url in primary_section.linked_section_urls:
+            section_id = get_section_id(url)
+            secondaries_section_ids.append(section_id)
+            thread = SingleListThread(primary_section.curriculum_abbr,
+                                      primary_section.course_number,
+                                      section_id,
+                                      primary_section.term.quarter,
+                                      primary_section.term.year)
+            thread.start()
+            list_threads[section_id] = thread
 
-        if len(primary_section.linked_section_urls) > 1:
-            return get_threaded_secondary_section_lists(primary_section)
-
-        if len(primary_section.linked_section_urls) == 1:
-            url = primary_section.linked_section_urls[0]
-            secondaries.append(
-                get_single_course_list(primary_section.curriculum_abbr,
-                                       primary_section.course_number,
-                                       get_section_id(url),
-                                       primary_section.term.quarter,
-                                       primary_section.term.year))
-    return secondaries
-
-
-def get_threaded_secondary_section_lists(primary_section):
-    secondaries = []
-    secondaries_section_ids = []
-    list_threads = {}
-    for url in primary_section.linked_section_urls:
-        section_id = get_section_id(url)
-        secondaries_section_ids.append(section_id)
-        thread = SingleListThread(primary_section.curriculum_abbr,
-                                  primary_section.course_number,
-                                  section_id,
-                                  primary_section.term.quarter,
-                                  primary_section.term.year)
-        thread.start()
-        list_threads[section_id] = thread
-
-    for section_id in secondaries_section_ids:
-        thread = list_threads[section_id]
-        thread.join()
-        if thread.exception is None:
-            secondaries.append(thread.response)
-        else:
-            logger.error("get_single_course_list(%s,%s,%s,%s,%s)==>%s " %
-                         (primary_section.curriculum_abbr,
-                          primary_section.course_number,
-                          section_id,
-                          primary_section.term.quarter,
-                          primary_section.term.year,
-                          thread.exception))
+        for section_id in secondaries_section_ids:
+            thread = list_threads[section_id]
+            thread.join()
+            if thread.exception is None:
+                secondaries.append(thread.response)
+            else:
+                logger.error("get_single_course_list(%s,%s,%s,%s,%s)==>%s " %
+                             (primary_section.curriculum_abbr,
+                              primary_section.course_number,
+                              section_id,
+                              primary_section.term.quarter,
+                              primary_section.term.year,
+                              thread.exception))
     return secondaries
 
 
@@ -157,20 +137,12 @@ def get_email_lists_by_term(term, include_secondaries_in_primary=True):
         }
 
     schedule = get_instructor_schedule_by_term(term)
-
-    if len(schedule.sections) >= 0:
+    if len(schedule.sections) > 0:
         json_data["instructor_term_list"] =\
             get_instructor_term_list(get_netid_of_current_user(),
                                      term.quarter,
                                      term.year)
-
-    json_data["email_lists"] = []
-    if len(schedule.sections) == 1:
-        json_data["email_lists"].append(
-            get_section_email_lists(schedule.sections[0],
-                                    include_secondaries_in_primary))
-
-    if len(schedule.sections) > 1:
+        json_data["email_lists"] = []
         section_list = []
         list_threads = {}
         for section in schedule.sections:
@@ -188,7 +160,6 @@ def get_email_lists_by_term(term, include_secondaries_in_primary=True):
             else:
                 logger.error("get_section_email_lists(%s)==>%s " %
                              (section_label, thread.exception))
-
     return json_data
 
 

@@ -3,11 +3,10 @@ from django.conf import settings
 from restclients.exceptions import DataFailureException
 from restclients.sws.section import get_section_by_label
 from restclients.models.sws import Term
-from myuw.dao.mailman import get_admin_url, get_list_json,\
+from myuw.dao.mailman import get_email_lists_by_term, get_list_json,\
     get_instructor_term_list, get_section_secondary_combined_list,\
     get_single_course_list, get_single_section_list, get_section_id,\
-    get_all_secondary_section_lists, get_section_email_lists,\
-    get_email_lists_by_term
+    get_all_secondary_section_lists, get_section_email_lists
 from myuw.test import fdao_sws_override, fdao_mailman_override, get_request,\
     get_request_with_user
 
@@ -17,11 +16,6 @@ from myuw.test import fdao_sws_override, fdao_mailman_override, get_request,\
 class TestMailmanDao(TestCase):
     def setUp(self):
         get_request()
-
-    def test_get_admin_url(self):
-        self.assertEqual(
-            get_admin_url("bbio180a_su13"),
-            "https://mailman.u.washington.edu/mailman/admin/bbio180a_su13")
 
     def test_get_list_json(self):
         url = "https://mailman.u.washington.edu/mailman/admin/bbio180a_su13"
