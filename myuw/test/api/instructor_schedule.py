@@ -1,7 +1,5 @@
 from myuw.test.api import require_url, MyuwApiTest
-from django.test.client import RequestFactory
-from django.contrib.auth.models import User
-from userservice.user import UserServiceMiddleware
+from myuw.test import get_request, get_request_with_user
 from myuw.views.api.instructor_schedule import load_schedule
 from myuw.dao.instructor_schedule import\
     get_current_quarter_instructor_schedule
@@ -9,15 +7,10 @@ from myuw.dao.instructor_schedule import\
 
 @require_url('myuw_instructor_current_schedule_api')
 class TestInstructorCurrentSchedule(MyuwApiTest):
-    def test_bill_current_term(self):
-        now_request = RequestFactory().get("/")
-        now_request.session = {}
-        user = User.objects.create_user(username='bill',
-                                        email='bill@example.com',
-                                        password='')
 
-        now_request.user = user
-        UserServiceMiddleware().process_request(now_request)
+    def test_bill_current_term(self):
+        now_request = get_request()
+        get_request_with_user('bill', now_request)
         schedule = get_current_quarter_instructor_schedule(now_request)
 
         data = load_schedule(now_request, schedule)
@@ -32,7 +25,7 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
         self.assertEqual(
             len(data['sections'][1]['grade_submission_delegates']),
             1)
-        self.assertGreater(len(data['related_terms']), 3)
+        self.assertGreater(len(data['related_terms']), 2)
         self.assertEqual(data['related_terms'][
             len(data['related_terms']) - 3]['quarter'], 'Spring')
         self.assertEqual(data['related_terms'][5]['year'], 2013)

@@ -4,10 +4,7 @@ with the UW Affiliation Group API resource
 """
 
 import logging
-from django.conf import settings
 from restclients.gws import GWS
-from myuw.logger.timer import Timer
-from myuw.logger.logback import log_resp_time, log_exception
 from myuw.dao import get_netid_of_current_user
 
 
@@ -19,14 +16,8 @@ def _is_member(groupid):
     Return True if the current user netid is
     an effective member of the given group
     """
-    timer = Timer()
-    try:
-        return GWS().is_effective_member(groupid,
-                                         get_netid_of_current_user())
-    finally:
-        log_resp_time(logger,
-                      'gws.is_effective_member of ' + groupid,
-                      timer)
+    return GWS().is_effective_member(groupid,
+                                     get_netid_of_current_user())
 
 
 def is_seattle_student():
