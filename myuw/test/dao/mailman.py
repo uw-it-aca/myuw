@@ -47,7 +47,7 @@ class TestMailmanDao(TestCase):
 
         self.assertRaises(DataFailureException,
                           get_single_course_list,
-                          'T ARTS', '110', 'A','spring', 2016)
+                          'T ARTS', '110', 'A', 'spring', 2016)
 
     def test_get_single_section_list(self):
         section = get_section_by_label('2013,spring,PHYS,121/A')
