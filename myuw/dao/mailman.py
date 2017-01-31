@@ -8,7 +8,7 @@ import re
 from restclients.mailman.basic_list import get_admin_url
 from restclients.mailman.course_list import get_course_list_name,\
     exists_course_list, get_section_secondary_combined_list_name,\
-    exists_section_secondary_combined_list, get_admin_url
+    exists_section_secondary_combined_list
 from restclients.mailman.instructor_term_list import\
     get_instructor_term_list_name, exists_instructor_term_list
 from myuw.util.thread import Thread
