@@ -1,8 +1,8 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "instructor_course_resource_panel" %}
 
-    <h5 class="scheduleHeading">RESOURCES</h5>
-    <ul class="unstyled-list">
+    <h4 class="scheduleHeading">Course Materials</h4>
+    <!--<ul class="unstyled-list">
       {{#if class_website_url}}
       <li><a href="{{class_website_url}}" class="course_website" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Website</a></li>
       {{else}}
@@ -12,6 +12,49 @@
       <li><a href="{{canvas_url}}" class="course_canvas_site" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Canvas</a></li>
       {{/if}}
       <li><a href="#" class="course_class_list" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Class List</a></li>
+    </ul> -->
+
+    <ul class="unstyled-list">
+        <li class="clearfix">
+            <div class="pull-left">
+                <span class="inst-course-label">Website</span>
+            </div>
+            {{#if class_website_url}}
+            <div class="pull-right">
+                <span class="card-badge-value"><a href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course website</a></span>
+            </div>
+            {{else}}
+            <div class="pull-right">
+                <span class="card-badge-value">No course website</span>
+            </div>
+            {{/if}}
+        </li>
+        <li class="clearfix">
+            <div class="pull-left">
+                <span class="inst-course-label">Online Tools</span>
+            </div>
+
+            <div class="pull-right">
+                <span class="card-badge-value">{{#if canvas_url}}<a href="{{canvas_url}}" class="course_canvas_site" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Canvas</a>{{else}}No Canvas site{{/if}}, <a href="#">Catalyst</a></span>
+            </div>
+        </li>
+        <li class="clearfix">
+            <div class="pull-left">
+                <span class="inst-course-label">Email List</span>
+            </div>
+            <div class="pull-right">
+                <span class="card-badge-value"><a href="#" class="course_email_list" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Create mailing list</a></span>
+            </div>
+        </li>
+        <li class="clearfix">
+            <div class="pull-left">
+                <span class="inst-course-label">Textbooks</span>
+            </div>
+            <div class="pull-right">
+                <span class="card-badge-value"><a href="#" class="course_textbooks" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">View textbooks</a></span>
+            </div>
+        </li>
     </ul>
+
 
 {% endtplhandlebars %}
