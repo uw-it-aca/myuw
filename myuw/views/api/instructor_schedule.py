@@ -164,7 +164,6 @@ def load_schedule(request, schedule, summer_term=""):
 
         json_data['section_references'] = section_references
 
-
     json_data["is_grad_student"] = is_grad_student()
     return json_data
 
