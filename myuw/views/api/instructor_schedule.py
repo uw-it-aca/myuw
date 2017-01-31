@@ -152,6 +152,18 @@ def load_schedule(request, schedule, summer_term=""):
         section["index"] = index
         index = index + 1
 
+    if hasattr(schedule, 'section_references'):
+        section_references = []
+        for section_ref in schedule.section_references:
+            section_references.append({
+                'term': section_ref.term.json_data(),
+                'curriculum_abbr': section_ref.curriculum_abbr,
+                'course_number': section_ref.course_number,
+                'section_id': section_ref.section_id,
+                'url': section_ref.url})
+
+        json_data['section_references'] = section_references
+
     json_data["is_grad_student"] = is_grad_student()
     return json_data
 
