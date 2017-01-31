@@ -12,8 +12,6 @@ from restclients.mailman.course_list import get_course_list_name,\
 from restclients.mailman.instructor_term_list import\
     get_instructor_term_list_name, exists_instructor_term_list
 from myuw.util.thread import Thread
-from myuw.dao import get_netid_of_current_user
-from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 
 
 logger = logging.getLogger(__name__)
@@ -98,12 +96,15 @@ def get_all_secondary_section_lists(primary_section):
     return secondaries
 
 
-def get_section_email_lists(section, include_secondaries_in_primary):
+def get_section_email_lists(section,
+                            include_secondaries_in_primary=False):
     """
     @param section: a valid sws.Section object
     """
     is_primary_section = section.is_primary_section
     json_data = {
+        "year": section.term.year,
+        "quarter": section.term.quarter,
         "course_abbr": section.curriculum_abbr,
         "course_number": section.course_number,
         "section_id": section.section_id,
@@ -111,55 +112,20 @@ def get_section_email_lists(section, include_secondaries_in_primary):
         }
     json_data["section_list"] = get_single_section_list(section)
 
-    if is_primary_section:
-        if include_secondaries_in_primary and\
-                len(section.linked_section_urls) > 0:
+    if is_primary_section and include_secondaries_in_primary:
+        total_secondaries = len(section.linked_section_urls)
+        if total_secondaries > 0:
+
             json_data["secondary_lists"] =\
                 get_all_secondary_section_lists(section)
 
-        json_data["has_multi_secondaries"] =\
-            (len(section.linked_section_urls) > 1)
+            json_data["has_multi_secondaries"] = (total_secondaries > 1)
 
-        if json_data["has_multi_secondaries"]:
-            json_data["secondary_combined_list"] =\
-                get_section_secondary_combined_list(section)
-    return json_data
-
-
-def get_email_lists_by_term(term, include_secondaries_in_primary=True):
-    """
-    @return json of the corresponding email lists
-    associated with the current instructor in the given term
-    """
-    json_data = {
-        "year": term.year,
-        "quarter": term.quarter,
-        }
-
-    schedule = get_instructor_schedule_by_term(term)
-    if len(schedule.sections) > 0:
-        json_data["instructor_term_list"] =\
-            get_instructor_term_list(get_netid_of_current_user(),
-                                     term.quarter,
-                                     term.year)
-        json_data["email_lists"] = []
-        section_list = []
-        list_threads = {}
-        for section in schedule.sections:
-            section_label = section.section_label()
-            section_list.append(section_label)
-            thread = CourseListsThread(section, include_secondaries_in_primary)
-            thread.start()
-            list_threads[section_label] = thread
-
-        for section_label in section_list:
-            thread = list_threads[section_label]
-            thread.join()
-            if thread.exception is None:
-                json_data["email_lists"].append(thread.response)
-            else:
-                logger.error("get_section_email_lists(%s)==>%s " %
-                             (section_label, thread.exception))
+            if json_data["has_multi_secondaries"]:
+                json_data["secondary_combined_list"] =\
+                    get_section_secondary_combined_list(section)
+        else:
+            json_data["secondary_lists"] = None
     return json_data
 
 
@@ -183,22 +149,5 @@ class SingleListThread(Thread):
                                                    self.section_id,
                                                    self.quarter,
                                                    self.year)
-        except Exception as ex:
-            self.exception = ex
-
-
-class CourseListsThread(Thread):
-
-    def __init__(self, section, include_secondaries_in_primary):
-        Thread.__init__(self)
-        self.section = section
-        self.include_secondaries_in_primary = include_secondaries_in_primary
-        self.response = None
-        self.exception = None
-
-    def run(self):
-        try:
-            self.response = get_section_email_lists(
-                self.section, self.include_secondaries_in_primary)
         except Exception as ex:
             self.exception = ex
