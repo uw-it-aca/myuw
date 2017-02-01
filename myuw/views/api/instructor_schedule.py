@@ -14,8 +14,9 @@ from myuw.dao.gws import is_grad_student
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
     get_limit_estimate_enrollment_for_section
-from myuw.dao.term import get_current_quarter
-from myuw.dao.term import get_specific_term, is_past, is_future
+from myuw.dao.mailman import get_section_email_lists
+from myuw.dao.term import get_current_quarter, get_specific_term,\
+    is_past, is_future
 from myuw.logger.logresp import log_success_response
 from myuw.views.rest_dispatch import RESTDispatch
 
@@ -78,7 +79,14 @@ def load_schedule(request, schedule, summer_term=""):
             section_data["lib_subj_guide"] =\
                 get_subject_guide_by_section(section)
         except Exception as ex:
-            logger.error(ex)
+            logger.error("get lib_subj_guide: %s" % ex)
+            pass
+
+        try:
+            section_data["email_list"] = get_section_email_lists(
+                section, include_secondaries_in_primary=False)
+        except Exception as ex:
+            logger.error("get email list: %s" % ex)
             pass
 
         if not hasattr(section, 'limit_estimate_enrollment'):

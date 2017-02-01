@@ -20,11 +20,14 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
         self.assertEqual(
             data['sections'][0]['final_exam']['latitude'],
             47.656645546715)
+
+        self.assertIsNotNone(data['sections'][0]["email_list"])
         self.assertEqual(data['sections'][1]['canvas_url'],
                          'https://canvas.uw.edu/courses/149651')
         self.assertEqual(
             len(data['sections'][1]['grade_submission_delegates']),
             1)
+        self.assertIsNotNone(data['sections'][1]["email_list"])
         self.assertGreater(len(data['related_terms']), 2)
         self.assertEqual(data['related_terms'][
             len(data['related_terms']) - 3]['quarter'], 'Spring')
