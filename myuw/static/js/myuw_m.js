@@ -91,6 +91,13 @@ var showError = function() {
     $("#main-content").html(template());
 };
 
+// common method to set display style
+var get_is_desktop = function() {
+    var mobile_cutoff_width = 992;
+    var viewport_width = $(window).width();
+    return (viewport_width >= mobile_cutoff_width);
+};
+
 // The strings from our web service only work w/ the native Date parsing on chrome :(
 var date_from_string = function(date_string) {
     if (!date_string) {

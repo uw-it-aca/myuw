@@ -19,30 +19,19 @@ var TeachingSection = {
 
         TeachingSection.load_cards_for_viewport();
         // Set initial display state
-        TeachingSection.is_desktop = TeachingSection.get_is_desktop();
+        TeachingSection.is_desktop = get_is_desktop();
 
         // Monitor for viewport changes and reorder cards if needed
         $(window).resize(function(){
-            if (TeachingSection.is_desktop !== TeachingSection.get_is_desktop()){
+            if (TeachingSection.is_desktop !== get_is_desktop()){
                 TeachingSection.load_cards_for_viewport();
-                TeachingSection.is_desktop = TeachingSection.get_is_desktop();
+                TeachingSection.is_desktop = get_is_desktop();
             }
         });
     },
 
-    get_is_desktop: function() {
-        var mobile_cutoff_width = 992;
-        var viewport_width = $(window).width();
-        if (viewport_width >= mobile_cutoff_width) {
-            return true;
-        } else {
-            return false;
-        }
-
-    },
-
     load_cards_for_viewport: function() {
-        if (TeachingSection.get_is_desktop()) {
+        if (get_is_desktop()) {
             TeachingSection._load_desktop_cards();
         } else {
             TeachingSection._load_mobile_cards();
