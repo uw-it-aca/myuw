@@ -42,7 +42,6 @@ def page(request,
         "netid": netid,
         "session_key": request.session.session_key,
      }
-    log_session(netid, request.session.session_key, request)
 
     try:
         prefetch_resources(request,
@@ -54,6 +53,7 @@ def page(request,
                       traceback.format_exc())
         context["webservice_outage"] = True
         return render(request, "index.html", context)
+    log_session(netid, request.session.session_key, request)
 
     if _is_mobile(request):
         # On mobile devices, all students get the current myuw.  Non-students
