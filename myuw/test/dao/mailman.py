@@ -92,8 +92,7 @@ class TestMailmanDao(TestCase):
 
     def test_get_section_email_lists(self):
         ret_json = get_section_email_lists(
-            get_section_by_label('2013,spring,PHYS,121/A'),
-            include_secondaries_in_primary=True)
+            get_section_by_label('2013,spring,PHYS,121/A'), True)
         self.assertEqual(ret_json["course_abbr"], "PHYS")
         self.assertEqual(ret_json["course_number"], "121")
         self.assertEqual(ret_json["section_id"], "A")
@@ -114,14 +113,12 @@ class TestMailmanDao(TestCase):
         self.assertTrue(ret_json["secondary_combined_list"]["list_exists"])
 
         ret_json = get_section_email_lists(
-            get_section_by_label('2013,spring,ESS,102/A'),
-            include_secondaries_in_primary=True)
+            get_section_by_label('2013,spring,ESS,102/A'), True)
         self.assertFalse(ret_json["section_list"]["list_exists"])
         self.assertEqual(len(ret_json["secondary_lists"]), 1)
         self.assertFalse(ret_json["has_multi_secondaries"])
 
         ret_json = get_section_email_lists(
-            get_section_by_label('2013,spring,TRAIN,101/A'),
-            include_secondaries_in_primary=True)
+            get_section_by_label('2013,spring,TRAIN,101/A'), True)
         self.assertTrue(ret_json["section_list"]["list_exists"])
         self.assertIsNone(ret_json["secondary_lists"])

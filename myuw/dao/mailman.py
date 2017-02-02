@@ -11,7 +11,7 @@ from restclients.mailman.course_list import get_course_list_name,\
     exists_section_secondary_combined_list
 from restclients.mailman.instructor_term_list import\
     get_instructor_term_list_name, exists_instructor_term_list
-from myuw.util.thread import Thread
+from myuw.util.thread import ThreadWithResponse
 
 
 logger = logging.getLogger(__name__)
@@ -67,21 +67,22 @@ def get_all_secondary_section_lists(primary_section):
     secondaries = []
     if primary_section.linked_section_urls and\
             len(primary_section.linked_section_urls):
-        secondaries_section_ids = []
-        list_threads = {}
+        threads_dict = {}
         for url in primary_section.linked_section_urls:
             section_id = get_section_id(url)
-            secondaries_section_ids.append(section_id)
-            thread = SingleListThread(primary_section.curriculum_abbr,
-                                      primary_section.course_number,
-                                      section_id,
-                                      primary_section.term.quarter,
-                                      primary_section.term.year)
+            thread = ThreadWithResponse(target=get_single_course_list,
+                                        args=(primary_section.curriculum_abbr,
+                                              primary_section.course_number,
+                                              section_id,
+                                              primary_section.term.quarter,
+                                              primary_section.term.year))
             thread.start()
-            list_threads[section_id] = thread
+            threads_dict[section_id] = thread
+        if len(threads_dict) == 0:
+            secondaries
 
-        for section_id in secondaries_section_ids:
-            thread = list_threads[section_id]
+        for section_id in sorted(threads_dict.keys()):
+            thread = threads_dict[section_id]
             thread.join()
             if thread.exception is None:
                 secondaries.append(thread.response)
@@ -97,7 +98,7 @@ def get_all_secondary_section_lists(primary_section):
 
 
 def get_section_email_lists(section,
-                            include_secondaries_in_primary=False):
+                            include_secondaries_in_primary):
     """
     @param section: a valid sws.Section object
     """
@@ -127,27 +128,3 @@ def get_section_email_lists(section,
         else:
             json_data["secondary_lists"] = None
     return json_data
-
-
-class SingleListThread(Thread):
-
-    def __init__(self,
-                 curriculum_abbr, course_number, section_id, quarter, year):
-        Thread.__init__(self)
-        self.curriculum_abbr = curriculum_abbr
-        self.course_number = course_number
-        self.section_id = section_id
-        self.quarter = quarter
-        self.year = year
-        self.response = None
-        self.exception = None
-
-    def run(self):
-        try:
-            self.response = get_single_course_list(self.curriculum_abbr,
-                                                   self.course_number,
-                                                   self.section_id,
-                                                   self.quarter,
-                                                   self.year)
-        except Exception as ex:
-            self.exception = ex
