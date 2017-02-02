@@ -4,30 +4,29 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.test.utils import override_settings
 from django.test import TestCase
-from django.test.client import Client
-from django.core.urlresolvers import reverse
 from myuw.test import (get_user, get_user_pass, fdao_uwnetid_override,
                        fdao_sws_override, fdao_libcurr_override,
                        fdao_libacc_override, fdao_ias_override,
                        fdao_hfs_override, fdao_gws_override,
                        fdao_pws_override, fdao_grad_override,
                        fdao_bookstore_override, fdao_canvas_override)
+from django.urls import NoReverseMatch
 
 
-def missing_url(name):
+def missing_url(name, kwargs=None):
     try:
-        url = reverse(name)
-    except Exception as ex:
-        print "Ex: ", ex
+        reverse(name, kwargs=kwargs)
+    except NoReverseMatch as ex:
+        print "NoReverseMatch: %s" % ex
         return True
 
     return False
 
 
-def require_url(url, message='myuw urls not configured'):
+def require_url(url, message='myuw urls not configured', kwargs=None):
     if "FORCE_VIEW_TESTS" in os.environ:
         return skipIf(False, message)
-    return skipIf(missing_url(url), message)
+    return skipIf(missing_url(url, kwargs), message)
 
 
 Session = 'django.contrib.sessions.middleware.SessionMiddleware'

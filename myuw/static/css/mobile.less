@@ -32,7 +32,7 @@ border-color: @border;}
 
 /*** font size ***/
 @font-base: 14px;
-@font-meta: 12px; 
+@font-meta: 12px;
 
 @font-header-large: 22px;
 @font-header-medium: 20px;
@@ -89,21 +89,21 @@ border-color: @border;}
 /*** global ***/
 
 body {
-        
+
     // body fonts
     font-family: 'Open Sans', sans-serif;
-    
-    a { text-decoration: none; color: #4d66ca; 
+
+    a { text-decoration: none; color: #4d66ca;
         &:hover { text-decoration: none; color: #334baa; }
         &:active { text-decoration: none; }
     }
-    
-	// positioning 
-	
+
+	// positioning
+
 	.relative {
 		position: relative;
 	}
-    
+
     // course color-coding
 
     .c1 {
@@ -329,7 +329,7 @@ body {
     border: none;
     border-radius: 0;
     color: #8a6d3b;
-    
+
     i { display:block; float:left; padding-right:8px;}
 }
 
@@ -338,7 +338,7 @@ body {
     border: none;
     border-radius: 0;
     color: #a94442;
-    
+
     i { display:block; float:left; padding-right:8px;}
 }
 
@@ -347,65 +347,65 @@ body {
     border: none;
     border-radius: 0;
     color: darken(#3a87ad, 15%);
-    
+
     i { display:none; }
     h1, p { margin-left: 0; }
 }
 
 .date {
-	font-weight: bold; 
+	font-weight: bold;
 }
 
 
 /*** header ***/
 
 #app_header { background: @uwpurple; overflow: hidden; position: relative;
-    
-    // header bar (thin dark purple)    
+
+    // header bar (thin dark purple)
     .header-bar { position: relative; height: 30px;
-        .top_navigation_list { list-style-type: none; 
+        .top_navigation_list { list-style-type: none;
 	        li { display: inline-block; }
         }
-        .header-myuw { 
+        .header-myuw {
 	        h1 {
-		        font-family: 'Roboto'; font-weight: 300; display: inline-block; margin: 0; padding: 0;  font-size:16px; color: @myuw;  line-height: 30px; 
+		        font-family: 'Roboto'; font-weight: 300; display: inline-block; margin: 0; padding: 0;  font-size:16px; color: @myuw;  line-height: 30px;
 				a { color: @lighttan; }
 				span { color: darken(@lighttan, 20%); }
             }
 		}
-		
-       
+
+
         .header-resources { display: inline-block; font-size: 12px; line-height: 30px; margin-left: 10px;
             i { color: @lighttan; opacity:0.7; filter: Alpha(opacity=60); /* IE8 and earlier */}
             a { color: @lighttan; display: inline-block; line-height: 30px; }
         }
 
-        .header-email { display: inline-block; font-size: 12px; line-height: 30px; 
+        .header-email { display: inline-block; font-size: 12px; line-height: 30px;
             i { color: @lighttan; opacity:0.7; filter: Alpha(opacity=60); /* IE8 and earlier */}
             a { color: @lighttan; display: inline-block; line-height: 30px; }
-        }    
+        }
     }
-    
-    
-    
+
+
+
     // header cover (uw purple)
     .header-cover { background: lighten(@uwpurple, 2%);
-        
-        .container { min-height: 50px; position: relative; 
-            
+
+        .container { min-height: 50px; position: relative;
+
             .header-netid { font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 26px; line-height: 50px; white-space: nowrap;
                 .icon-user {color: #F3EACC; opacity: 0.7;font-size: 20px;}
                 a { color: lighten(@darktan, 30%); white-space:nowrap;}
                 i.fa { font-size: 14px; margin-left: 6px;}
             }
-            
-            .header-profile { color: #fff; font-size: 12px; 
+
+            .header-profile { color: #fff; font-size: 12px;
 				a { color: #c9bea2; text-decoration: underline; }
 				.profile-bio {padding: 0 0;
 					.profile-student-info {
 	            		.profile-name { /*font-weight: bold;*/ font-size: 18.4px;}
 					}
-					.profile-student-major {/*text-align: left;*/ // 
+					.profile-student-major {/*text-align: left;*/ //
 						.student-major-list {list-style: none;padding-left:20px;margin-top:0;}
 					}
 				}
@@ -415,31 +415,31 @@ body {
 					}
 					.profile-local-address { padding-left:12px;}
 					.profile-perm-address { padding-left:12px;}
-				
+
 				}
-	            //.profile-section {margin-top: 15px; padding-top: 15px;}	           
+	            //.profile-section {margin-top: 15px; padding-top: 15px;}
 				.profile-release {background: lighten(@uwpurple, 10%); padding:10px; margin-top: 20px;
-					.profile-publish {padding:0 5px;}	
+					.profile-publish {padding:0 5px;}
 				}
 				h5 {text-transform: uppercase;font-size: 12px; margin-bottom: 5px; margin-top: 15px; font-weight: bold;}
             }
-            
-             
-            .header-w { position:absolute; right:15px; bottom: -1px; 
+
+
+            .header-w { position:absolute; right:15px; bottom: -1px;
                 img { width: 35px; }
             }
 
 			ul {margin-top: 5px; margin-bottom: 10px;}
 			li {margin-left: -20px;}
-        }  
+        }
     }
 }
 @media @desktop {
-    #app_header { 
+    #app_header {
 		.header-cover {
-		
+
 			.container {
-				
+
 				.header-profile {
 					.profile-bio {
 						.profile-student-info {
@@ -454,13 +454,25 @@ body {
 						.profile-perm-address {border-left: 1px solid #bbb; margin-left:0;}
 					}
 				}
-				
+
 				.header-w {
 					img {width:50px; }
 				}
 			}
 		}
 	}
+}
+
+/*** app navigation ***/
+
+#app_navigation {
+    display: none;
+    .navigation {padding: 15px 0;
+        .nav-list {
+            list-style-type: none; margin:0; padding:0;
+            .nav-list-item {display: inline;padding-left: 10px;font-weight:bold;}
+        }
+    }
 }
 
 /*** message banner ***/
@@ -474,7 +486,7 @@ body {
 		.message-text {padding:10px 15px;font-size: 15px;text-align: center;
 			a {text-decoration: underline; color:#fff;
 				&.btn-link {padding: 0;margin: 0;vertical-align: 0;font-size: inherit;}
-			} 
+			}
 			.message-not-ready {font-size: 12px;font-style: italic;display: inline-block;
 				form {display: inline;
 					button {padding: 0;margin: 0;vertical-align: 0;font-size: inherit;text-decoration: underline; color:#fff;}
@@ -502,7 +514,7 @@ body {
 }
 
 #app_notices { margin: 0; position: relative; padding-bottom: 15px;
-    
+
     .notice-header { font-size: @font-header-smaller; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600;
         a {font-family: 'encode_sans_normalbold'; color: #444;}
         .no-critical { color: #85754d; }
@@ -515,7 +527,7 @@ body {
 					.fa-usd {padding-left: 3px;}
 			        .notice-title /*not h3*/ {font-size:15px; line-height:20px;color:#4d66ca;padding-left:18px;display:block;background-color:#fff;padding-bottom:5px;cursor: pointer;
 						&:hover {text-decoration: underline;}
-				        &:active, a:focus {text-decoration: none;}    
+				        &:active, a:focus {text-decoration: none;}
 			        }
 					.new-status {padding: 0 3px; background: #f5d300; float: right; border-radius: 4px;margin-right: 20px; font-size: 12px;}
 			        .notice-body-with-title {padding: 10px 18px;display:inline-block;}
@@ -523,9 +535,9 @@ body {
 			        .notice-list {padding-top:5px;}
 				}
 			}
-	    }   
+	    }
     }
-    
+
     .other-notices-link {}
     .notice-unread { /*background-color: white; color:#444;*/ font-weight:normal; /*border:1px solid #444;*/ position: absolute; right: 15px; top: 50%; margin-top: -5px; }
     .notice-information { font-size: 11px; font-weight:normal; display: block; white-space: nowrap; margin-top: -15px; line-height: normal; }
@@ -538,8 +550,8 @@ body {
  #app_acal { border-bottom: 1px solid #ddd; margin-bottom: 10px;}
 }
 
-#app_acal { margin: 0; position: relative; padding-bottom: 15px;    
-    .acal-header { 
+#app_acal { margin: 0; position: relative; padding-bottom: 15px;
+    .acal-header {
         h2 {font-size: @font-header-smaller; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600;/*font-family: 'encode_sans_normalbold';*/color: #85754d;}
         .view-all {border:none;font-size: 14px;color: #4d66ca;margin-top: 17px;}
         .acal-banner-events {margin-top:0;clear:both;
@@ -556,7 +568,7 @@ body {
 	        }
         }
     }
-    
+
     .acal-information { font-size: 11px; font-weight:normal; display: block; white-space: nowrap; margin-top: -15px; line-height: normal; }
 }
 
@@ -565,11 +577,11 @@ body {
 #app_content { min-height: 250px;
 
     // cards
-    .card {  
+    .card {
 
         border: 1px solid;
         border-color: #e5e6e9 #dfe0e4 #d0d1d5;
-        position: relative; 	
+        position: relative;
         background-color: #fff;
    	    box-shadow: rgba(0, 0, 0, 0.25) 1px 1px 2px -1px;
     	margin-top: 20px;
@@ -627,9 +639,9 @@ body {
 	    i { font-size: 1.5em; vertical-align: middle; margin-right: .2em;}
 	    a {  text-decoration: underline; }
         }
-        
+
         .card-badge-container {
-            .card_list { list-style: none; padding-left: 0; }                
+            .card_list { list-style: none; padding-left: 0; }
             .card-badge {
                 padding: 8px 10px 10px 0px;
                 position: relative;
@@ -662,22 +674,22 @@ body {
                 }
             }
         }
-        
+
         .card-related-messages {
             margin: 1em 0;
             font-size: 12px;
-            
+
             // override pce message
             .pce-message { color: #888; margin-top: 1em; }
         }
-        
+
         /*.nav-card-arrow { height: @line-height-base; position: absolute; right: 0; display: inline-block; top: 50%; margin-top: -@line-height-base / 2; }*/
-        
+
         ul.fina-notice-list {
             padding-left: 0px;
             li { padding-bottom: 8px; }
         }
-        
+
         ul.unstyled-list, ol.unstyled-list {
             padding-left: 0px;
             list-style-type: none;
@@ -686,7 +698,7 @@ body {
             padding-left: 0px;
             list-style-type: none;
             line-height: 23px; }
-        
+
         .card-disclosure {
             margin-left: -10px;
             margin-right: -10px;
@@ -698,7 +710,7 @@ body {
             12px;background-color: #efefef;
             a { color: #444; display:block; line-height:40px; }
         }
-        
+
         // override bootstrap table styles
         .table {
             tr {
@@ -706,8 +718,8 @@ body {
             }
             td { border: none; }
         }
-        
-        
+
+
         .card-resources-list { list-style: none; padding-left: 0; }
         .bold_text { font-weight: bold; }
         .course_not_ready_details {
@@ -721,21 +733,21 @@ body {
             //padding-bottom:8px;
             //width: 100%;
         }
-        .efs-switcher {margin-bottom:15px;margin-top: -10px; 
+        .efs-switcher {margin-bottom:15px;margin-top: -10px;
             .shortTitle {display:inline;
             }
             a:hover {text-decoration: none;}
             .efs-switcher-link-text {font-size:smaller;}
         }
     }
-    
+
     // PCE card & PCE notice on Visual Schedule
     .PCE-notice {
         background-color: #fcf9e3;
         i { position: absolute; top: 50%; font-size: 2em; color: #85754d; margin-top: -14px;}
         h3 { position: relative; left: 42px;}
     }
-    
+
     .PCE-vs-notice {
         background-color: #fcf9e3;
         margin: -10px -10px 2em;
@@ -751,7 +763,7 @@ body {
 
 
     // Grades card
-	#GradeCard {	
+	#GradeCard {
 		.card {
 			.official-note {display: block; font-style: italic; color: #595959;}
 			.card-badge-container {
@@ -769,9 +781,9 @@ body {
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	.simplesquare {display: inline-block; height: .9em; width: .9em; margin-right: 0.3em;}
 
 
@@ -805,7 +817,7 @@ body {
 				// .post .notice-body-with-title {margin-left: 2.2em;  margin-top: -1.5em; display:inline-block;}
 				// .post .notice-body-without-title {margin-left: 2.2em;  margin-top: -1.5em; display:inline-block;}
 				// .post .non-notice-body-without-title {margin-left: 2.2em;  margin-top: -1.5em; display:inline-block;}
-	
+
 				i.fa-check-circle { font-size: 1.5em;  vertical-align: middle;  margin-right: .5em; float:left; color:green; }
 				i.fa-circle-o { font-size: 1.5em;  vertical-align: middle;  margin-right: .5em; float:left; color:#999; font-weight:400;}
 				// strong {font-weight:400;}
@@ -846,7 +858,7 @@ body {
 		}
 
 
-	    // Checklist items on SU registration card   (New Student Checklist) 
+	    // Checklist items on SU registration card   (New Student Checklist)
 		/*
 	    #SummerRegStatusCardA, #SummerRegStatusCard1 {
 			.notice-title {display:none;}
@@ -1036,11 +1048,11 @@ body {
     		    }
                 .reg-resources-list { list-style: none; padding: 1em 0;
                     .focus-link {font-weight: bold;}
-                    .last-focus-link {padding-bottom: 20px;} 
+                    .last-focus-link {padding-bottom: 20px;}
 			   	}
 			   	.no-header-space {padding-top:10px;}
     	    }
-    
+
             .reg-notice-list { list-style: none; padding: 5px 0;
                     li { margin-bottom: 1em; }
             }
@@ -1088,30 +1100,70 @@ body {
             				span.notice-title {display:none;}
             			    }
             			}
-    		        }   
+    		        }
     		    }
     	    }
 	    }
     }
-    
-    // course cards
-    
-    #CourseCards {
-    
+
+    // instructor course cards
+
+    #InstructorCourseCards {
+
         .card {
 
-            h4 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; margin-bottom: 1em; 
+            .scheduleHeading {
+                opacity: .5;
+                margin-bottom: 2px;
+            }
+            .meeting_type {
+                text-transform: capitalize;
+            }
+            table.course_schedule, table.table-course-schedule { width: 100%;
+               th {
+                   font-weight: 100;
+                   text-transform: uppercase;
+                   opacity: .5;
+               }
+               td {
+                   width: 25%;
+               }
+            }
+            ul { line-height: 56px;
+                li:first-child {
+                    left: 0%;
+                }
+                li {
+                    display: inline-block;
+                    text-decoration: none;
+                    background-color: #eee;
+                    color: #333;
+                    margin: 10px 0;
+                    padding: 0 12px;
+                    border: 1px solid gray;
+                }
+            }
+        }
+    }
+
+    // course cards
+
+    #CourseCards {
+
+        .card {
+
+            h4 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; margin-bottom: 1em;
 				.meeting-type {float: right; font-size: 12px; font-family: 'Open Sans', sans-serif; text-transform: uppercase; padding:2px 4px 2px 4px;border: 1px solid #eee;}
                 .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; }
             }
 
             h5 { font-family: 'Roboto', sans-serif; font-weight: 500; color: @darktan; margin-top: 1.5em; margin-bottom: .5em; font-size: 16px;  }
-            
+
             .myuw-course-eval {
 	            h5 {margin-bottom: .2em;}
 	            .eval-related-messages {margin-top:0; margin-bottom: 1em; font-size: 12px;}
 	            .myuw-eval-list {list-style: none; padding-left:0px;
-		            .myuw-eval-list-item {line-height: normal; margin-bottom:8px; padding: 3px 0; 
+		            .myuw-eval-list-item {line-height: normal; margin-bottom:8px; padding: 3px 0;
 			            .myuw-eval-link {font-size:110%;
 				            .myuw-eval-name {font-weight: normal;}
 			            }
@@ -1119,7 +1171,7 @@ body {
 		            }
 	            }
 	            .myuw-eval-multi-list {list-style: none; font-size:90%;padding-left:10px;padding-top:5px;
-		            .myuw-eval-multi-list-item {padding: 0 0 8px 0;line-height:normal;			            
+		            .myuw-eval-multi-list-item {padding: 0 0 8px 0;line-height:normal;
     		            .myuw-eval-name {}
 			            .myuw-eval-title {font-style:italic;}
 		            }
@@ -1131,8 +1183,8 @@ body {
 			            }
 	            .myuw-eval-close-date {font-weight: bold;}
             }
-            
-        
+
+
 			.instructor-container {list-style-type: none; padding: 0; margin-bottom: 1em;
 
 				.contact-info-container { line-height: 23px; }
@@ -1153,19 +1205,19 @@ body {
 					}
 				}
 			}
-			
+
 			.card-faux-disclosure {  margin-left: -10px; margin-right: -10px; margin-bottom: -10px; margin-top: 1em; border-top: solid 1px #eee; text-align: center; font-size: 12px;font-style:italic;background-color: #fefefe;color:#777; line-height: 40px;}
 			.no-instructors {  margin-bottom: -10px; margin-top: 1em; font-size: 12px;font-style:italic;background-color: #fefefe;color:#777; line-height: 40px;}
         }
     }
-    
+
     #TuitionCard {
-	    
+
 	    .card {
 		    .finaid-notices-container h4 {font-family: 'Roboto', sans-serif; font-weight: 500; color: @darktan; margin-top: 1.5em; margin-bottom: .5em; font-size: 16px;  }
-		    
+
 		    .finaid-notices-container {
-			    .finaid-notices-panel-group {padding-left:0;line-height: 24px;				    
+			    .finaid-notices-panel-group {padding-left:0;line-height: 24px;
 				    .finaid-panel-default {border:none; box-shadow: none;-webkit-box-shadow: none; margin-left: -10px; margin-right: -10px;
 					    .finaid-panel-heading {padding: 0px 0px;background-color: transparent;
 						    .finaid-panel-title {font-size:14px;padding: 0 10px;
@@ -1175,7 +1227,7 @@ body {
 										    &.caret {filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);-webkit-transform:rotate(270deg);-ms-transform:rotate(270deg);transform:rotate(270deg)}
 										    }
 								    }
-								 
+
 							    }
 						    }
 					    }
@@ -1184,46 +1236,46 @@ body {
 								span.notice-title {display:none;}
 							}
 					    }
-				    }					
+				    }
 			    }
 		    }
 	    }
     }
-    
+
     // future quarter cards
-    
+
     #FutureQuarterCardA, #FutureQuarterCard1 {
         .card {
-            
+
             h4 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; }
-            
+
             // make h5 look like h4
             h5 { font-size: 20px; color: #555; }
-            
-			.destination-arrow { position:absolute; top: 50%; right: 0; margin-top:-25px; 
+
+			.destination-arrow { position:absolute; top: 50%; right: 0; margin-top:-25px;
                 .future-quarter-card { display:inline-block; width:50px; line-height: 50px; text-align:center; color:#4d66ca; }
             }
-            
+
             p {
 	            span{ display: block; }
             }
-            
+
             // handle :hover for mobile touch devices
             .hover:hover { background: lighten(#4d66ca, 42%); }
         }
 
     }
-    
+
     // future quarter card overrides
-    #FutureQuarterCardA { 
+    #FutureQuarterCardA {
         .card {
             h4 { }
         }
     }
-    
-    #FutureQuarterCard1 { 
+
+    #FutureQuarterCard1 {
         .card {
-            
+
         }
     }
 
@@ -1266,13 +1318,13 @@ body {
 
     // textbook card
     #TextbookCard {
-        
+
         .card {
-            
-            h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; 
+
+            h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan;
                 .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
             }
-            
+
             .textbooks-list {
 	            .textbooks-list-item { //font-size:13px;
 		            .simplesquare {display: inline-block; height: .9em; width: .9em; margin-right: 0.3em;}
@@ -1281,34 +1333,34 @@ body {
 		            .textbooks-course-required {font-size:12px;font-style: italic;}
 	            }
             }
-            
-            .destination-arrow { position:absolute; top: 50%; right: 0; margin-top:-14px; 
+
+            .destination-arrow { position:absolute; top: 50%; right: 0; margin-top:-14px;
                 .show_textbooks { display:inline-block; width:40px; line-height: 40px; text-align:center; color:#777; }
             }
-            
+
         }
      }
-     
+
      // HFS card
-     
+
      #HFSCard {
-         
+
          .card-badge { margin-bottom: 15px; }
      }
-     
-     
+
+
      // Library Card
      #LibraryCard {
-         
+
          .card-noncritical-alert {
-             
+
              a { padding-left: 0; color: #4d66ca; }
          }
      }
-     
+
     // Events Card
     #EventsCard {
-	    
+
 	    .card {
 		    .myuw-events {
 			    .myuw-events-info {font-style: italic;font-size: 80%;margin-top:-5px; padding-bottom:5px}
@@ -1321,7 +1373,7 @@ body {
 					    .myuw-events-location {font-size:12px; color:#777;padding-top:5px;}
 				    }
 				}
-				#events_card_more {					
+				#events_card_more {
 			    }
 			    .myuw-events-calendar-link {
 				    .myuw-events-cal-list {padding-top: 5px; line-height: 1.6em; list-style-type: circle;
@@ -1334,32 +1386,32 @@ body {
 				    }
 			    }
 		    }
-		    
+
 	    }
-	    
+
     }
-     
-     
+
+
     // Academic Card
     #AcademicCard {
-        
+
         h3 { margin-bottom: 25px; }
-        h4 { color: #85754d; }        
+        h4 { color: #85754d; }
 
         .class-standing {
             h4 { text-transform: uppercase; font-weight: normal; color: gray; margin-bottom: 3px; }
             p, li { font-weight: bold; }
         }
-        
+
         ul { list-style: none; padding-left: 0; }
     }
-          
+
     // visual schedule
-    
+
     .hour-marker {border-top:1px solid #707070; width:100%;}
     .halfhour-marker {border-top:1px dashed #707070; width:100%;}
-    
-    
+
+
     .visual-schedule {
       width: 100% ;
       position: relative;
@@ -1386,7 +1438,7 @@ body {
     .six-hour .exam-time-bar {
       top: 14%;
     }
-    
+
     .twelve-hour .exam-time-bar {
       //top: 9.5%;
     }
@@ -1428,7 +1480,7 @@ body {
       height: 93%;
       top: 8%;
     }
-    
+
     .five-day {
       width: 18.4%;
       height: 100%;
@@ -1472,7 +1524,7 @@ body {
     /*
     .six-day:last-child, .five-day:last-child {
     	border-right: none;
-    
+
     }*/
     .six-day:first-child,
     seven-day:first-child,
@@ -1568,9 +1620,9 @@ body {
       color: #3c3c3c;
       top: 0px;
     }
-    
+
     #final_exam_schedule_card .six-hour .day-label { height: 14%; }
-    
+
     .visual-course {
       width: 100%;
       display: table;
@@ -1598,31 +1650,31 @@ body {
     	color: #555;
     	text-align: center;
     	white-space: nowrap;
-    	a { 
+    	a {
     			color: #4d66ca;
     	}
     }
-    
+
     .show_section_details {
       font-size: 12px;
       color: #f8f7f0;
     }
 
-    // course TBD 
-    
+    // course TBD
+
     .courseTBD { width: 100%; overflow: auto; margin: 15px 0;
-        
+
         h6 { font-size: 14px; }
-        .course-box { background: #e8e3d3; width: 50px; height: 40px; font-size:11px; margin-right:5px; line-height:.9em; } 
+        .course-box { background: #e8e3d3; width: 50px; height: 40px; font-size:11px; margin-right:5px; line-height:.9em; }
         .course-info { text-align:center; color:#fff; padding:2px; }
     }
-    
-    // error container 
+
+    // error container
     .error-container {
         h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small;  }
     }
 
- 
+
     //ROLL-UP ERROR MESSAGE
 	#OutageCard{
 	.card{
@@ -1632,66 +1684,66 @@ body {
 	        h3 { position: relative; left: 42px; color: #a94442;}
 			}
 		}
-	}	
+	}
 
     // textbooks page
-    
+
     .textbooks-container {
-		color: #555;        
+		color: #555;
 		background-color: #fff;
 		margin-bottom: -3em;
 		padding-bottom: 3em;
-		
+
 		h2 { font-family: 'encode_sans_normalbold'; color: #444; font-size: @font-header-small;  }
 		h3 { font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 16px; line-height: 30px; margin: 0; color: #222; }
-		h4 { font-family: 'Open Sans', sans-serif; font-size: 14px; 
+		h4 { font-family: 'Open Sans', sans-serif; font-size: 14px;
     		span { text-transform: uppercase; font-size: 11px; }
 		}
-		
+
 		.book-cover, .no-book-cover { margin-right: 10px; }
-		
+
 		.no-book-cover { width:80px; height: 127px; border:solid 1px #ddd; padding: 20px 10px; color: #777; text-align: center; }
-		
-		.dl-books { font-size: 13px; 
-    		
+
+		.dl-books { font-size: 13px;
+
     		dt { color: #444; text-transform: uppercase; font-size: 12px; }
     		dd { color: #222; margin-bottom: 7px; }
 		}
-		
+
     }
-    
-    
+
+
     // categories (resources) page
-    
+
     .category-container {
-		color: #444;    
+		color: #444;
 		margin-bottom: -1em;
 		padding-bottom: 3em;
 		background-color: #fff;
-		        
+
         // category content
-        .category-content { 
+        .category-content {
             .category-links { padding-left: 0; list-style: none; }
         }
-        
+
         h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; }
-        h3 { font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 16px; } 
+        h3 { font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 16px; }
     }
     // future quarters page
-    
+
     .future-quarter-container {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
-        
+
         h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444;}
-        
+
         .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
     }
-	    
-	//notices page 
-	
-	.notices-container { 
-		color: #555;    
+
+	//notices page
+
+	.notices-container {
+		color: #555;
 		background-color: #fff;
 		margin-bottom: -3em;
 		padding-bottom: 3em;
@@ -1699,116 +1751,116 @@ body {
 		h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444; }
 		h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; margin-top: 10px; color: #444;}
         h3 { color: #333; margin-top: 0; margin-bottom:0; font-family: 'Roboto', sans-serif; font-weight: 400; }
-        
+
 		.notice-count { }
 
 		.notice-header-metadata { font-size: 12px; margin-top: -8px; color: #666; }
 		.notice-accordion { margin: 20px 0; }
-		
+
 		.disclosure:last-of-type { border-bottom: 1px solid #ddd; }
 		.disclosure { border-top: 1px solid #ddd;
-			
-			.disclosure-heading { 
-	            background: none;  
+
+			.disclosure-heading {
+	            background: none;
     	       	color: #555;
                 position: relative;
-    	       	
+
     	       	a { display: block; position: relative; z-index: 900; height: 80px;
         	       	.disclosure-title { position: absolute; top: 0; width: 100%; line-height: 80px; }
     	       	}
-    	       	
+
     	       	.disclosure-meta {  position: absolute; top: 50%; left: 0; right: 0; z-index: 1; line-height: 30px; margin-top: -13px;
-        	       	
+
         	       	.disclosure-unread { background-color: #555555; font-weight: 300; font-size:1em; position: absolute; right: 25px; top: 4px; z-index: 9999; }
         	       	.badge { background-color: white; color:#444; font-weight:normal; border:1px solid #444;}
         	       	.disclosure-critical { position: absolute; bottom: -23px; color: #777; font-size: 12px; }
     	       	}
     	    }
-    	    
+
     	    .disclosure-heading-critical {
-    			
+
     			h3 { color: #af4b1a; }
-    			
+
     			a {
-        		    .disclosure-title { }	
+        		    .disclosure-title { }
     			}
-    			
-    			.disclosure-meta { 
+
+    			.disclosure-meta {
         			.disclosure-unread { background-color: #af4b1a; }
         			.badge {background-color: white; color: #af4b1a; border: 1px solid #af4b1a;}
         			i {color: #af4b1a;}
                 }
     	    }
-    	    
+
     	    .disclosure-content {
         	    padding: 0 15px 15px 15px;
-        	    margin: 0px;  
+        	    margin: 0px;
         	    .notices_list {
 	        	    list-style: none;
 	        	    padding-left: 0;
-        	    } 
+        	    }
     	    }
 
 		}
-		
+
 	    .notice-container {
 
 	        .critical-icon {
 		        display: inline;
 				float:right;
-				color: #af4b1a; 
+				color: #af4b1a;
 				margin-left:-15px;
 			}
 	    }
-	    
+
 	    .inner-notice-container {
 			margin: 15px -4px;
 			padding: 9px 9px;
-			//border-top: 1px dotted #bbb; 
+			//border-top: 1px dotted #bbb;
 			background-color: @notice-bg;
 			.notice-new {padding:0 3px; background:#fcf9e3; float:right; border-radius: 4px; margin-right:20px;}
 	    }
-	
+
         // - class for read notices
         .unread-notice { }
 
-	    .notice-category { font-size: 12px; color: #555; display: block; margin-bottom: 5px; } 
-	    
-	    .notice-content { font-weight: normal; 
-	        
+	    .notice-category { font-size: 12px; color: #555; display: block; margin-bottom: 5px; }
+
+	    .notice-content { font-weight: normal;
+
 	        .notice-title {  color: #222; font-weight: bold; display: block; margin-bottom: 2px; }
 	        .notice-body-with-title { color: #444; }
 	        .notice-body-without-title { }
 	        .notice-list { margin-top: 5px; }
 	    }
-	        
-	    .hold-container { 
+
+	    .hold-container {
 	        padding: 5px 0 5px 30px;
 	    }
-		
+
 		.toggle {
 			float: right;
-			display:inline-block; 
+			display:inline-block;
 		}
-		
+
 		// handle quarter begins in notices
 		.quarter_begins { color: #222 !important; text-align: center; padding: 0px;
-		
+
 		    .inner-notice-container { padding: 20px 0; }
     		.notice-category { color: inherit; display: none; }
     		.notice-title { color: inherit; }
     		.notice-body-with-title { color: inherit;  }
 	        .notice-body-without-title { color: inherit;  }
-	
+
 		}
 	}
-	
+
 	// academic calendar page
-	
+
 	.academic_cal-container {
 		.acal-main {
 			h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444; }
-			.acal-page-filters { padding:10px 0;margin-bottom:15px;margin-top:15px; 
+			.acal-page-filters { padding:10px 0;margin-bottom:15px;margin-top:15px;
 				#myuw-event-filter-breaks, #myuw-event-filter-all, #myuw-event-filter-classes {font-size:15px;}
 				.myuw-selected-button {color: #fff; background-color:#4f318c;border-color: #4f318c;}
 			}
@@ -1818,7 +1870,7 @@ body {
 				.acal-page-event-list { list-style-type: none;padding-left: 0;
 					.acal-page-event-list-item { margin-bottom:10px;
 						.acal-page-event-date {}
-						.acal-page-event-title {margin: 0; width: 99%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}						
+						.acal-page-event-title {margin: 0; width: 99%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
 					}
 				}
 			}
@@ -1830,34 +1882,34 @@ body {
 /*** footer ***/
 
 #app_footer { background: darken(@lighttan, 5%); margin-top: 10px; padding-top: 15px;
-    
+
     // navigation bar
     .navigation-bar { margin-bottom: 10px;
-        
+
         .navigation-list {  list-style:none; padding-left:0; margin:0;
-            
+
             li {  width: 49%; margin-right: 2%; margin-bottom: 2%; height: 100px; background:@lighttan; }
-            
+
             li:nth-child(even) { margin-right: 0; }
-    
+
             .navigation-item { display: inline-block; position: relative; padding: 5px; height: 100px; width: 100%;
 				.subcategories {font-size: 85%;color:#777;}
-                .navigation-item-text { font-family: 'Roboto', sans-serif; font-weight: 400; font-family: 'encode_sans_normalsemibold'; color: #555; font-size: @font-base;  }                
+                .navigation-item-text { font-family: 'Roboto', sans-serif; font-weight: 400; font-family: 'encode_sans_normalsemibold'; color: #555; font-size: @font-base;  }
             }
-            
+
             // handle :hover state as mobile touch
             .hover:hover { background: darken(@lighttan, 20%); }
         }
-        
+
     }
-    
+
     // footer bar
-    .footer-bar { background:#333; padding: 10px 0; 
-        
-        .footer-links { color: #aaa; font-size: 11px; 
+    .footer-bar { background:#333; padding: 10px 0;
+
+        .footer-links { color: #aaa; font-size: 11px;
         	a, button {color: #fff}
             .footer-links-list { padding: 0; margin-bottom: .5em; line-height: 11px; list-style: none;
-                .footer-links-list-item { display: inline-block; padding-right: 5px; margin-right: 3px; border-right: solid 1px #aaa; color: #222; 
+                .footer-links-list-item { display: inline-block; padding-right: 5px; margin-right: 3px; border-right: solid 1px #aaa; color: #222;
 					#myuw-footer-modal {
 						.modal-content {font-size: 14px; line-height: 1.42857143;
 							h3 {margin-bottom: 10px;font-family: 'encode_sans_normalbold';font-size: 16px;color: #85754d;}
@@ -1892,7 +1944,7 @@ body {
 // animated hide div
 .slide-hide {
    max-height: 0;
-   overflow: hidden; 
+   overflow: hidden;
    -webkit-transition: max-height 0.8s;
    -moz-transition: max-height 0.8s;
    transition: max-height 0.8s;
@@ -1905,8 +1957,8 @@ body {
 
 /*** development helpers ***/
 
-.todo { color: red !important; 
-    
+.todo { color: red !important;
+
     a { color: red !important; text-decoration: underline;}
 }
 
@@ -1915,7 +1967,7 @@ body {
 /*** bootstrap overrides ***/
 
 .container {
-    
+
     // make margins auto at 768px
      @media @phablet {
         margin-left: auto; margin-right: auto;
@@ -1925,20 +1977,20 @@ body {
 
 // grid gutters (10px)
 
-.row { margin-left: -5px; margin-right: -5px; 
-    [class*="col-"] { padding-left: 5px; padding-right: 5px; }    
+.row { margin-left: -5px; margin-right: -5px;
+    [class*="col-"] { padding-left: 5px; padding-right: 5px; }
 }
 
 
 // fade in effect
 
 .fade-in {
-    
+
     animation: fadein 2s;
     -moz-animation: fadein 2s; /* Firefox */
     -webkit-animation: fadein 2s; /* Safari and Chrome */
     -o-animation: fadein 2s; /* Opera */
-    
+
 }
 
 @keyframes fadein {
