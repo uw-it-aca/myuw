@@ -1,9 +1,8 @@
 {% load templatetag_handlebars %}
-    {% tplhandlebars "instructor_course_card_list" %}
+    {% tplhandlebars "instructor_section_card_panel" %}
 
-<h3 id="your_courses" class="sr-only">Courses you are instructing {{ucfirst quarter}} {{year}}</h3>
+<h3 id="your_courses" class="sr-only">Course you are instructing {{ucfirst quarter}} {{year}}</h3>
 <div class="instructor_cards" aria-labelledby="your_courses">
-  <h4>TEACHING <select class="instructed-terms">{{#each related_terms}}<option {{#if matching_term}}selected{{/if}} value="{{year}},{{toLowerCase quarter}}">{{#if is_current}}Current Term{{else}}{{quarter}} {{year}}{{/if}}</option>{{/each}}</select></h4>
   {{#each sections}}
   <div class="card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
     <div class="fade-in">

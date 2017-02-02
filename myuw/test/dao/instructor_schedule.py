@@ -5,7 +5,8 @@ from restclients.models.sws import Term, Section
 from myuw.test import fdao_sws_override, fdao_pws_override
 from myuw.dao.instructor_schedule import is_instructor,\
     get_current_quarter_instructor_schedule,\
-    get_limit_estimate_enrollment_for_section
+    get_limit_estimate_enrollment_for_section,\
+    get_instructor_section
 from userservice.user import UserServiceMiddleware
 
 
@@ -34,6 +35,18 @@ class TestInstructorSchedule(TestCase):
         UserServiceMiddleware().process_request(now_request)
         schedule = get_current_quarter_instructor_schedule(now_request)
         self.assertEqual(len(schedule.sections), 2)
+
+    def test_get_instructor_section(self):
+        now_request = RequestFactory().get("/")
+        now_request.session = {}
+
+        user = User.objects.create_user(username='bill',
+                                        email='bill@example.com',
+                                        password='')
+        now_request.user = user
+        UserServiceMiddleware().process_request(now_request)
+        schedule = get_instructor_section('2013', 'spring', 'ESS', '102', 'A')
+        self.assertEqual(len(schedule.sections), 1)
 
     def test_get_limit_estimate_enrollment_for_section(self):
         term = Term()

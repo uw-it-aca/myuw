@@ -7,12 +7,15 @@ import logging
 from restclients.sws.section import get_sections_by_instructor_and_term,\
     get_section_by_url
 from restclients.sws.section_status import get_section_status_by_label
+from restclients.sws.section import get_section_by_label
 from restclients.models.sws import ClassSchedule
 from restclients.exceptions import DataFailureException
+from restclients.sws.term import get_specific_term
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.term import get_current_quarter
+from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.util.thread import Thread
 
 
@@ -98,6 +101,26 @@ def get_current_quarter_instructor_schedule(request):
     schedule = get_instructor_schedule_by_term(get_current_quarter(request))
     request.myuw_current_quarter_instructor_schedule = schedule
 
+    return schedule
+
+
+def get_instructor_section(year, quarter, curriculum,
+                           course_number, course_section):
+    """
+    Return requested section instructor is teaching
+    """
+    schedule = ClassSchedule()
+    schedule.person = get_person_of_current_user()
+    schedule.term = get_specific_term(year, quarter)
+    schedule.sections = []
+    section = get_section_by_label("%s,%s,%s,%s/%s" % (
+        year, quarter.lower(), curriculum.upper(),
+        course_number, course_section))
+
+    if not section.is_instructor(schedule.person):
+        raise NotSectionInstructorException()
+
+    schedule.sections.append(section)
     return schedule
 
 
