@@ -1,8 +1,8 @@
-from myuw.test.api import require_url, MyuwApiTest
-from myuw.test import get_request, get_request_with_user
-from myuw.views.api.instructor_schedule import load_schedule
 from myuw.dao.instructor_schedule import\
     get_current_quarter_instructor_schedule
+from myuw.views.api.instructor_schedule import load_schedule
+from myuw.test import get_request, get_request_with_user
+from myuw.test.api import require_url, MyuwApiTest
 
 
 @require_url('myuw_instructor_current_schedule_api')
@@ -15,19 +15,25 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
 
         data = load_schedule(now_request, schedule)
         self.assertEqual(len(data['sections']), 2)
-        self.assertEqual(
-            data['sections'][0]['limit_estimate_enrollment'], 15)
-        self.assertEqual(
-            data['sections'][0]['final_exam']['latitude'],
-            47.656645546715)
-
-        self.assertIsNotNone(data['sections'][0]["email_list"])
-        self.assertEqual(data['sections'][1]['canvas_url'],
+        section1 = data['sections'][0]
+        self.assertEqual(section1['lib_subj_guide'],
+                         'http://guides.lib.uw.edu/research')
+        self.assertEqual(section1['curriculum_abbr'], "ESS")
+        self.assertEqual(section1['canvas_url'],
                          'https://canvas.uw.edu/courses/149651')
+        self.assertEqual(section1['limit_estimate_enrollment'], 15)
+        self.assertEqual(section1['final_exam']['latitude'], 47.656645546715)
         self.assertEqual(
-            len(data['sections'][1]['grade_submission_delegates']),
-            1)
-        self.assertIsNotNone(data['sections'][1]["email_list"])
+            section1["email_list"]['section_list']['list_address'],
+            'ess102a_sp13')
+
+        section2 = data['sections'][1]
+        self.assertEqual(section2['canvas_url'],
+                         'https://canvas.uw.edu/courses/149651')
+        self.assertEqual(len(section2['grade_submission_delegates']), 1)
+        self.assertEqual(
+            section2["email_list"]['section_list']['list_address'],
+            'train101a_sp13')
         self.assertGreater(len(data['related_terms']), 2)
         self.assertEqual(data['related_terms'][
             len(data['related_terms']) - 3]['quarter'], 'Spring')
