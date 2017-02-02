@@ -23,6 +23,7 @@ from myuw.views.rest_dispatch import invalid_session
 from myuw.dao.uwemail import get_email_forwarding_for_current_user
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.views import prefetch_resources
+from restclients.exceptions import DataFailureException
 
 
 logger = logging.getLogger(__name__)
@@ -37,10 +38,22 @@ def page(request,
     if not netid:
         log_invalid_netid_response(logger, timer)
         return invalid_session()
+    context["user"] = {
+        "netid": netid,
+        "session_key": request.session.session_key,
+     }
+    log_session(netid, request.session.session_key, request)
 
-    prefetch_resources(request,
-                       prefetch_email=True,
-                       prefetch_enrollment=True)
+    try:
+        prefetch_resources(request,
+                           prefetch_email=True,
+                           prefetch_enrollment=True)
+    except DataFailureException:
+        log_exception(logger,
+                      "prefetch_resources",
+                      traceback.format_exc())
+        context["webservice_outage"] = True
+        return render(request, "index.html", context)
 
     if _is_mobile(request):
         # On mobile devices, all students get the current myuw.  Non-students
@@ -62,13 +75,9 @@ def page(request,
 
     context["home_url"] = "/"
     context["err"] = None
-    context["user"] = {
-        "netid": None,
-        "affiliations": get_all_affiliations(request)
-    }
+    context["user"]["affiliations"] = get_all_affiliations(request)
+
     context["card_display_dates"] = get_card_visibilty_date_values(request)
-    context["user"]["session_key"] = request.session.session_key
-    log_session(netid, request.session.session_key, request)
     try:
         my_uwemail_forwarding = get_email_forwarding_for_current_user()
         if my_uwemail_forwarding.is_active():
@@ -90,8 +99,6 @@ def page(request,
                       'get_email_forwarding_for_current_user',
                       traceback.format_exc())
         pass
-
-    context["user"]["netid"] = netid
 
     if ('year' not in context or context['year'] is None or
             'quarter' not in context and context['quarter'] is None):

@@ -98,7 +98,7 @@ MyUW
         "finals": "Final Exams",
         "grades": "Grades"
     };
-    window.webservice_outage = true;
+    window.webservice_outage = {{ webservice_outage|yesno:"true, false" }};
     </script>
 
     {% include "user_state.html" %}
