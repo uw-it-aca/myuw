@@ -66,7 +66,7 @@ def index(request,
         log_exception(logger,
                       "prefetch_resources",
                       traceback.format_exc())
-        # context["webservice_outage"] = True
+        context["webservice_outage"] = True
         return render(request, "index.html", context)
 
     log_session(netid, request.session.session_key, request)
