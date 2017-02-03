@@ -15,18 +15,26 @@
     </ul> -->
 
     <ul class="unstyled-list">
-        <li class="clearfix">
+        <li class="clearfix" style="line-height:3;">
             <div class="pull-left">
-                <span class="inst-course-label">Website</span>
+                <span class="inst-course-label">Class Website</span>
             </div>
             {{#if class_website_url}}
             <div class="pull-right">
-                <span class="card-badge-value"><a href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course website</a></span>
+                <span class="card-badge-value" style="text-align: right;"><a href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">View class website</a>
+                <div class="course-website-update"><a href="#">Update</a></div>
+                </span>
             </div>
             {{else}}
-            <div class="pull-right">
-                <span class="card-badge-value">No course website</span>
+            <div class="pull-right" style="text-align: right;">
+                <span class="card-badge-value" ><a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11" target="_blank" onclick="javascript:openWin('https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11','_blank',700,400);return false;">Add</a>
+                <div class="add-delay-message">Up to one hour delay to show on MyUW</div>
+                </span>
             </div>
+            
+
+
+
             {{/if}}
         </li>
         <li class="clearfix">
