@@ -70,6 +70,12 @@ def get_canvas_course_from_section(sws_section):
         raise
 
 
+def get_canvas_course_url(sws_section):
+    canvas_course = get_canvas_course_from_section(sws_section)
+    if canvas_course:
+        return canvas_course.course_url
+
+
 def canvas_course_is_available(canvas_id):
     try:
         course = Courses().get_course(canvas_id)
