@@ -9,8 +9,6 @@ from restclients.sws.section import get_sections_by_instructor_and_term,\
 from restclients.sws.section_status import get_section_status_by_label
 from restclients.models.sws import ClassSchedule
 from restclients.exceptions import DataFailureException
-from myuw.logger.timer import Timer
-from myuw.logger.logback import log_resp_time
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.term import get_current_quarter
 from myuw.util.thread import Thread
@@ -27,15 +25,7 @@ def _get_instructor_sections(person, term):
     """
     if person is None or term is None:
         return None
-    logid = ('get_instructor_schedule_by_person_and_term ' +
-             str(person.uwnetid) + ',' + str(term.year) + ',' + term.quarter)
-    timer = Timer()
-    try:
-        return get_sections_by_instructor_and_term(person, term)
-    finally:
-        log_resp_time(logger,
-                      logid,
-                      timer)
+    return get_sections_by_instructor_and_term(person, term)
 
 
 def _get_instructor_schedule(person, term):

@@ -6,8 +6,7 @@ and section modules in restclients
 import logging
 from myuw.models import CourseColor
 from myuw.dao.pws import get_regid_of_current_user
-from myuw.logger.timer import Timer
-from myuw.logger.logback import log_resp_time, log_exception
+
 
 logger = logging.getLogger(__name__)
 TOTAL_COURSE_COLORS = 8

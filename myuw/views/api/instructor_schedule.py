@@ -1,26 +1,24 @@
 import json
 import traceback
-from myuw.util.thread import Thread
-from myuw.logger.timer import Timer
-from myuw.views.rest_dispatch import handle_exception
-
 import logging
 from django.http import HttpResponse
 from operator import itemgetter
+from myuw.logger.timer import Timer
+from restclients.sws.term import get_term_before, get_term_after
+from restclients.exceptions import DataFailureException
 from myuw.dao.building import get_buildings_by_schedule
-from myuw.dao.canvas import get_canvas_course_from_section
+from myuw.dao.canvas import get_canvas_course_url
 from myuw.dao.course_color import get_colors_by_schedule
 from myuw.dao.gws import is_grad_student
 from myuw.dao.library import get_subject_guide_by_section
+from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
     get_limit_estimate_enrollment_for_section
-from myuw.dao.term import get_current_quarter
-from myuw.dao.term import get_specific_term, is_past, is_future
+from myuw.dao.term import get_current_quarter, get_specific_term,\
+    is_past, is_future
 from myuw.logger.logresp import log_success_response
-from myuw.views.rest_dispatch import RESTDispatch
-
-from restclients.sws.term import get_term_before, get_term_after
-from restclients.exceptions import DataFailureException
+from myuw.util.thread import Thread, ThreadWithResponse
+from myuw.views.rest_dispatch import RESTDispatch, handle_exception
 
 
 logger = logging.getLogger(__name__)
@@ -40,10 +38,37 @@ class InstSche(RESTDispatch):
         return HttpResponse(json.dumps(resp_data))
 
 
-def set_course_url(section_data, section):
-    canvas_course = get_canvas_course_from_section(section)
-    if canvas_course:
-        section_data["canvas_url"] = canvas_course.course_url
+def set_course_resources(section_data, section):
+    threads_dict = {}
+    t = ThreadWithResponse(target=get_canvas_course_url,
+                           args=(section,))
+    t.start()
+    threads_dict["canvas_url"] = t
+
+    t = ThreadWithResponse(target=get_subject_guide_by_section,
+                           args=(section,))
+    t.start()
+    threads_dict["lib_subj_guide"] = t
+
+    t = ThreadWithResponse(target=get_section_email_lists,
+                           args=(section, False))
+    t.start()
+    threads_dict["email_list"] = t
+
+    if not hasattr(section, 'limit_estimate_enrollment'):
+        t = ThreadWithResponse(
+            target=get_limit_estimate_enrollment_for_section,
+            args=(section,))
+        t.start()
+        threads_dict['limit_estimate_enrollment'] = t
+
+    for key in threads_dict.keys():
+        t = threads_dict[key]
+        t.join()
+        if t.exception is None:
+            section_data[key] = t.response
+        else:
+            logger.error("%s: %s" % (key, t.exception))
 
 
 def load_schedule(request, schedule, summer_term=""):
@@ -74,17 +99,6 @@ def load_schedule(request, schedule, summer_term=""):
             section_data["early_fall_start"] = True
             json_data["has_early_fall_start"] = True
         # if section.is_primary_section:
-        try:
-            section_data["lib_subj_guide"] =\
-                get_subject_guide_by_section(section)
-        except Exception as ex:
-            logger.error(ex)
-            pass
-
-        if not hasattr(section, 'limit_estimate_enrollment'):
-            section_data['limit_estimate_enrollment'] =\
-                get_limit_estimate_enrollment_for_section(section)
-
         section_data['grade_submission_delegates'] = []
         for delegate in section.grade_submission_delegates:
             section_data['grade_submission_delegates'].append(
@@ -93,12 +107,9 @@ def load_schedule(request, schedule, summer_term=""):
                     'level': delegate.delegate_level
                 })
 
-        try:
-            t = Thread(target=set_course_url, args=(section_data, section))
-            course_url_threads.append(t)
-            t.start()
-        except KeyError:
-            pass
+        t = Thread(target=set_course_resources, args=(section_data, section))
+        course_url_threads.append(t)
+        t.start()
 
         # MUWM-596
         if section.final_exam and section.final_exam.building:
