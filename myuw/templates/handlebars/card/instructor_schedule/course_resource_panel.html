@@ -59,7 +59,7 @@
                 <span class="inst-course-label">Textbooks</span>
             </div>
             <div class="pull-right">
-                <span class="card-badge-value"><a href="#" class="course_textbooks" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">View textbooks</a></span>
+                <span class="card-badge-value"><a class="show_course_textbook" href="/textbooks/{{year}},{{quarter}}{{#if summer_term}},{{toLowerCase summer_term}}{{/if}}/{{curriculum_abbr}}{{course_number}}{{section_id}}" class="course_textbooks">View textbooks</a></span>
             </div>
         </li>
     </ul>
