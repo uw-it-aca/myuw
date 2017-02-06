@@ -4,8 +4,6 @@ from restclients.canvas.courses import Courses
 from restclients.exceptions import DataFailureException
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.exceptions import CanvasNonSWSException
-from myuw.logger.timer import Timer
-from myuw.logger.logback import log_resp_time
 import re
 
 
@@ -23,17 +21,11 @@ def _get_canvas_enrollment_dict_for_regid(regid):
 
 
 def _get_canvas_active_enrollments_for_regid(regid):
-    timer = Timer()
-    try:
-        return Enrollments().get_enrollments_for_regid(
-            regid,
-            {'type': ['StudentEnrollment'],
-             'state': ['active']},
-            include_courses=False)
-    finally:
-        log_resp_time(logger,
-                      'get_canvas_active_enrollments',
-                      timer)
+    return Enrollments().get_enrollments_for_regid(
+        regid,
+        {'type': ['StudentEnrollment'],
+         'state': ['active']},
+        include_courses=False)
 
 
 def _enrollments_dict_by_sws_label(enrollments):
