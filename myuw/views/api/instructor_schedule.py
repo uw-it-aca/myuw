@@ -185,7 +185,7 @@ def _load_related_terms(request):
     json_data = current_term.json_data()
     terms = [json_data]
     term = current_term
-    previous_term_count = 8
+    previous_term_count = 24
     future_term_count = 2
     for i in range(previous_term_count):
         try:
