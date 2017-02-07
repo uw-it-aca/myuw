@@ -25,6 +25,8 @@ from myuw.dao.exceptions import NotSectionInstructorException
 
 logger = logging.getLogger(__name__)
 EARLY_FALL_START = "EARLY FALL START"
+MYUW_PRIOR_INSTRUCTED_TERM_COUNT = 24
+MYUW_FUTURE_INSTRUCTED_TERM_COUNT = 2
 
 
 class InstSche(RESTDispatch):
@@ -186,11 +188,7 @@ def _load_related_terms(request):
     json_data = current_term.json_data()
     terms = [json_data]
     term = current_term
-    previous_term_count = getattr(
-        settings, "MYUW_PRIOR_INSTRUCTED_TERM_COUNT", 24)
-    future_term_count = getattr(
-        settings, "MYUW_FUTURE_INSTRUCTED_TERM_COUNT", 2)
-    for i in range(previous_term_count):
+    for i in range(MYUW_PRIOR_INSTRUCTED_TERM_COUNT):
         try:
             term = get_term_before(term)
             json_data = term.json_data()
@@ -200,7 +198,7 @@ def _load_related_terms(request):
                 pass
 
     term = current_term
-    for i in range(future_term_count):
+    for i in range(MYUW_FUTURE_INSTRUCTED_TERM_COUNT):
         try:
             term = get_term_after(term)
             json_data = term.json_data()
