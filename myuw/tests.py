@@ -19,6 +19,7 @@ from myuw.test.dao.grad import TestDaoGrad
 from myuw.test.dao.hfs import TestHFS as TestDaoHFS
 from myuw.test.dao.iasystem import IASystemDaoTest
 from myuw.test.dao.library import TestLibrary
+from myuw.test.dao.mailman import TestMailmanDao
 from myuw.test.dao.pws import TestPwsDao
 from myuw.test.dao.password import TestDaoPassword
 from myuw.test.dao.textbook import TestTextbooks
@@ -34,6 +35,7 @@ from myuw.test.api.grad import TestApiGrad
 from myuw.test.api.hfs import TestHFS as TestHFSAPI
 from myuw.test.api.profile import TestProfile
 from myuw.test.api.iasystem import TestIasystemApi
+from myuw.test.api.mailman import TestMailmanApi
 from myuw.test.api.myplan import TestMyPlanApi
 from myuw.test.api.library import TestLibrary as TestLibraryAPI
 from myuw.test.api.category_links import TestLinks

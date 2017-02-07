@@ -15,18 +15,26 @@
     </ul> -->
 
     <ul class="unstyled-list">
-        <li class="clearfix">
+        <li class="clearfix" style="line-height:3;">
             <div class="pull-left">
-                <span class="inst-course-label">Website</span>
+                <span class="inst-course-label">Class Website</span>
             </div>
             {{#if class_website_url}}
             <div class="pull-right">
-                <span class="card-badge-value"><a href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course website</a></span>
+                <span class="card-badge-value" style="text-align: right;"><a href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">View class website</a>
+                <div class="course-website-update"><a href="#">Update</a></div>
+                </span>
             </div>
             {{else}}
-            <div class="pull-right">
-                <span class="card-badge-value">No course website</span>
+            <div class="pull-right" style="text-align: right;">
+                <span class="card-badge-value" ><a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11" target="_blank" onclick="javascript:openWin('https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11','_blank',700,400);return false;">Add</a>
+                <div class="add-delay-message">Up to one hour delay to show on MyUW</div>
+                </span>
             </div>
+            
+
+
+
             {{/if}}
         </li>
         <li class="clearfix">
@@ -38,20 +46,30 @@
                 <span class="card-badge-value">{{#if canvas_url}}<a href="{{canvas_url}}" class="course_canvas_site" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Canvas</a>{{else}}No Canvas site{{/if}}, <a href="#">Catalyst</a></span>
             </div>
         </li>
+        {{#if email_list }}
         <li class="clearfix">
             <div class="pull-left">
                 <span class="inst-course-label">Email List</span>
             </div>
             <div class="pull-right">
+
+              {{#if email_list.section_list.list_exists}}
+                <a href="{{email_list.section_list.list_admin_url}}"
+                    class="course_class_list">{{email_list.section_list.list_address}}@uw.edu</a>
+                <a href="#" class="course_class_list">Manage list</a>
+              {{else}}
                 <span class="card-badge-value"><a href="#" class="course_email_list" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Create mailing list</a></span>
+              {{/if}}
+
             </div>
         </li>
+        {{/if}}
         <li class="clearfix">
             <div class="pull-left">
                 <span class="inst-course-label">Textbooks</span>
             </div>
             <div class="pull-right">
-                <span class="card-badge-value"><a href="#" class="course_textbooks" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">View textbooks</a></span>
+                <span class="card-badge-value"><a class="show_course_textbook" href="/textbooks/{{year}},{{quarter}}{{#if summer_term}},{{toLowerCase summer_term}}{{/if}}/{{curriculum_abbr}}{{course_number}}{{section_id}}" class="course_textbooks">View textbooks</a></span>
             </div>
         </li>
     </ul>
