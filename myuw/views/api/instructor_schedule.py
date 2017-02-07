@@ -2,7 +2,6 @@ import json
 import traceback
 import logging
 from django.http import HttpResponse
-from django.conf import settings
 from operator import itemgetter
 from myuw.logger.timer import Timer
 from restclients.sws.term import get_term_before, get_term_after
