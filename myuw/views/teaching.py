@@ -13,3 +13,18 @@ def teaching(request,
         "summer_term": summer_term
     }
     return page(request, context, template='teaching.html')
+
+
+@page_view
+def teaching_section(request,
+                     section,
+                     year=None,
+                     quarter=None,
+                     summer_term=None):
+    context = {
+        "section": section,
+        "year": year,
+        "quarter": quarter,
+        "summer_term": summer_term
+    }
+    return page(request, context, template='teaching_section.html')

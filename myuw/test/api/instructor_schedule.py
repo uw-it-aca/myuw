@@ -1,8 +1,9 @@
+from myuw.test.api import require_url, MyuwApiTest
+from myuw.views.api.instructor_schedule import InstScheCurQuar, InstSect
+import json
 from myuw.dao.instructor_schedule import\
     get_current_quarter_instructor_schedule
-from myuw.views.api.instructor_schedule import load_schedule
 from myuw.test import get_request, get_request_with_user
-from myuw.test.api import require_url, MyuwApiTest
 
 
 @require_url('myuw_instructor_current_schedule_api')
@@ -13,7 +14,9 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
         get_request_with_user('bill', now_request)
         schedule = get_current_quarter_instructor_schedule(now_request)
 
-        data = load_schedule(now_request, schedule)
+        resp = InstScheCurQuar().GET(now_request)
+        data = json.loads(resp.content)
+
         self.assertEqual(len(data['sections']), 2)
         section1 = data['sections'][0]
         self.assertEqual(section1['lib_subj_guide'],
@@ -31,6 +34,9 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
         self.assertEqual(section2['canvas_url'],
                          'https://canvas.uw.edu/courses/149651')
         self.assertEqual(len(section2['grade_submission_delegates']), 1)
+        self.assertEqual(
+            len(data['sections'][1]['grade_submission_delegates']), 1)
+        self.assertGreater(len(data['related_terms']), 3)
         self.assertEqual(
             section2["email_list"]['section_list']['list_address'],
             'train101a_sp13')
@@ -59,3 +65,62 @@ class TestInstructorTermSchedule(MyuwApiTest):
         self.set_user('bill')
         response = self.get_schedule(year=2013, quarter='winter')
         self.assertEquals(response.status_code, 200)
+
+
+class TestInstructorSection(MyuwApiTest):
+    def test_bill_section(self):
+        now_request = get_request()
+        get_request_with_user('bill', now_request)
+
+        year = '2013'
+        quarter = 'spring'
+        curriculum = 'ESS'
+        course_number = '102'
+        course_section = 'A'
+        resp = InstSect().GET(now_request, year, quarter, curriculum,
+                              course_number, course_section)
+        data = json.loads(resp.content)
+
+        self.assertEqual(len(data['sections']), 1)
+        self.assertEqual(
+            data['sections'][0]['limit_estimate_enrollment'], 15)
+        self.assertEqual(
+            data['sections'][0]['final_exam']['latitude'],
+            47.656645546715)
+        self.assertEqual(data['sections'][0]['canvas_url'],
+                         'https://canvas.uw.edu/courses/149651')
+        self.assertEqual(
+            len(data['sections'][0]['grade_submission_delegates']), 1)
+
+        self.assertGreater(len(data['related_terms']), 3)
+        self.assertEqual(data['related_terms'][
+            len(data['related_terms']) - 3]['quarter'], 'Spring')
+        self.assertEqual(data['related_terms'][5]['year'], 2013)
+
+    def test_non_section(self):
+        now_request = get_request()
+        get_request_with_user('bill', now_request)
+
+        year = '2013'
+        quarter = 'spring'
+        curriculum = 'ESS'
+        course_number = '102'
+        course_section = 'Z'
+        resp = InstSect().GET(now_request, year, quarter, curriculum,
+                              course_number, course_section)
+
+        self.assertEqual(resp.status_code, 404)
+
+    def test_bill100_section(self):
+        now_request = get_request()
+        get_request_with_user('bill100', now_request)
+
+        year = '2013'
+        quarter = 'spring'
+        curriculum = 'ESS'
+        course_number = '102'
+        course_section = 'A'
+        resp = InstSect().GET(now_request, year, quarter, curriculum,
+                              course_number, course_section)
+
+        self.assertEqual(resp.status_code, 403)

@@ -47,12 +47,14 @@ from myuw.test.api.thrive import TestApiThrive
 from myuw.test.api.academic_calendar import TestCalendarAPI
 from myuw.test.api.dept_calendar import TestDeptCalAPI
 from myuw.test.api.instructor_schedule import (
-    TestInstructorCurrentSchedule, TestInstructorTermSchedule)
+    TestInstructorCurrentSchedule, TestInstructorTermSchedule,
+    TestInstructorSection)
 from myuw.test.cache import TestCustomCachePolicy
 from myuw.test.context_processors import TestContextProcessors
 from myuw.test.loggers import TestSessionLog
 from myuw.test.views.choose import TestChoose
 from myuw.test.views.page import TestPageMethods
+from myuw.test.views.teaching import TestTeachingMethods
 from myuw.test.views.logout import TestLogoutLink
 from myuw.test.views.mobile_login import TestLoginRedirects
 from myuw.test.views.rest_dispatch import TestDispatchErrorCases

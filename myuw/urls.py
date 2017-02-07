@@ -3,7 +3,7 @@ from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from myuw.views.page import logout
 from myuw.views.index import index
-from myuw.views.teaching import teaching
+from myuw.views.teaching import teaching, teaching_section
 from myuw.views.notices import notices
 from myuw.views.thrive import thrive
 from myuw.views.thrive_messages import thrive_messages
@@ -15,7 +15,8 @@ from myuw.views.display_dates import override
 from myuw.views.choose import new_site, old_site
 from myuw.views.logger import log_interaction
 from myuw.views.api.current_schedule import StudClasScheCurQuar
-from myuw.views.api.instructor_schedule import InstScheCurQuar, InstScheQuar
+from myuw.views.api.instructor_schedule import (InstScheCurQuar, InstScheQuar,
+                                                InstSect)
 from myuw.views.api.finance import Finance
 from myuw.views.api.hfs import HfsBalances
 from myuw.views.api.future_schedule import StudClasScheFutureQuar
@@ -126,6 +127,12 @@ urlpatterns += [
         login_required(InstScheQuar().run),
         name="myuw_instructor_schedule_api"
         ),
+    url(r'^api/v1/instructor_section/(?P<year>\d{4}),(?P<quarter>[a-zA-Z]+),'
+        r'(?P<curriculum>[\w& ]+),(?P<course_number>\d{3})\/'
+        r'(?P<course_section>[A-Z][A-Z0-9]?)$',
+        login_required(InstSect().run),
+        name="myuw_instructor_section_api"
+        ),
     url(r'^api/v1/thrive/$', login_required(ThriveMessages().run),
         name="myuw_thrive_api"
         ),
@@ -133,7 +140,11 @@ urlpatterns += [
         ),
     url(r'^choose/legacy', old_site, name="myuw_pref_old_site"
         ),
-    url(r'^teaching/?', teaching, name="myuw_teaching_page"
+    url(r'^teaching/?$', teaching, name="myuw_teaching_page"
+        ),
+    url(r'^teaching/'
+        r'(?P<section>\d{4},[a-zA-Z]+,[\w& ]+,\d{3}\/[A-Z][A-Z0-9]?)$',
+        teaching_section, name="myuw_section_page"
         ),
     url(r'^notices/?', notices, name="myuw_notices_page"
         ),

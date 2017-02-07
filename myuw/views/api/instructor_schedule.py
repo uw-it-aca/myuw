@@ -13,12 +13,13 @@ from myuw.dao.gws import is_grad_student
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
-    get_limit_estimate_enrollment_for_section
+    get_limit_estimate_enrollment_for_section, get_instructor_section
 from myuw.dao.term import get_current_quarter, get_specific_term,\
     is_past, is_future
 from myuw.logger.logresp import log_success_response
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.rest_dispatch import RESTDispatch, handle_exception
+from myuw.dao.exceptions import NotSectionInstructorException
 
 
 logger = logging.getLogger(__name__)
@@ -184,7 +185,9 @@ def _load_related_terms(request):
     json_data = current_term.json_data()
     terms = [json_data]
     term = current_term
-    for i in range(8):
+    previous_term_count = 8
+    future_term_count = 2
+    for i in range(previous_term_count):
         try:
             term = get_term_before(term)
             json_data = term.json_data()
@@ -194,7 +197,7 @@ def _load_related_terms(request):
                 pass
 
     term = current_term
-    for i in range(2):
+    for i in range(future_term_count):
         try:
             term = get_term_after(term)
             json_data = term.json_data()
@@ -247,5 +250,48 @@ class InstScheQuar(InstSche):
             return self.make_http_resp(timer,
                                        get_specific_term(year, quarter),
                                        request, smr_term)
+        except Exception:
+            return handle_exception(logger, timer, traceback)
+
+
+class InstSect(RESTDispatch):
+    """
+    Performs actions on resource at
+    /api/v1/instructor_section/<year>,<quarter>,<curriculum>,
+        <course_number>,<course_section>?
+    """
+    def make_http_resp(self, timer, year, quarter, curriculum, course_number,
+                       course_section, request):
+        """
+        @return instructor schedule data in json format
+                status 404: no schedule found (teaching no courses)
+        """
+        try:
+            schedule = get_instructor_section(year, quarter, curriculum,
+                                              course_number, course_section)
+        except NotSectionInstructorException:
+            reason = "Read Access Forbidden to Non Instructor"
+            response = HttpResponse(reason)
+            response.status_code = 403
+            response.reason_phrase = reason
+            return response
+
+        resp_data = load_schedule(request, schedule)
+        log_success_response(logger, timer)
+        return HttpResponse(json.dumps(resp_data))
+
+    def GET(self, request, year, quarter, curriculum,
+            course_number, course_section):
+        """
+        GET returns 200 with a specific term instructor schedule
+        @return course schedule data in json format
+                status 404: no schedule found (not registered)
+                status 543: data error
+        """
+        timer = Timer()
+        try:
+            return self.make_http_resp(timer, year, quarter, curriculum,
+                                       course_number, course_section,
+                                       request)
         except Exception:
             return handle_exception(logger, timer, traceback)
