@@ -21,7 +21,7 @@
             </div>
             {{#if class_website_url}}
             <div class="pull-right">
-                <span class="card-badge-value" style="text-align: right;"><a href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">View class website</a>
+                <span class="card-badge-value" style="text-align: right;"><a href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">{{#if class_website_title}}{{ class_website_title }}{{else}}View class website{{/if}}</a>
                 <div class="course-website-update"><a href="#">Update</a></div>
                 </span>
             </div>
