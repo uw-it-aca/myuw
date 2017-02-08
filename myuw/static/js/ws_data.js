@@ -517,7 +517,7 @@ WSData = {
                             }
                             var matches = canvas_url.match(/\/([0-9]+)$/);
                             var canvas_id = matches[1];
-                            var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
+                            var alternate_url = "https://canvas.uw.edu/courses/"+canvas_id;
 
                             if (section.class_website_url == alternate_url) {
                                 section.class_website_url = null;

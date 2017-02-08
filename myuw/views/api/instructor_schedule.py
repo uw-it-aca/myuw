@@ -14,6 +14,7 @@ from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
     get_limit_estimate_enrollment_for_section, get_instructor_section
+from myuw.dao.class_website import get_page_title_from_url
 from myuw.dao.term import get_current_quarter, get_specific_term,\
     is_past, is_future
 from myuw.logger.logresp import log_success_response
@@ -65,6 +66,13 @@ def set_course_resources(section_data, section):
         t.start()
         threads_dict['limit_estimate_enrollment'] = t
 
+    if section.class_website_url:
+        t = ThreadWithResponse(
+            target=get_page_title_from_url,
+            args=(section.class_website_url,))
+        t.start()
+        threads_dict['class_website_title'] = t
+
     for key in threads_dict.keys():
         t = threads_dict[key]
         t.join()
@@ -91,7 +99,7 @@ def load_schedule(request, schedule, summer_term=""):
     # Since the schedule is restclients, and doesn't know
     # about color ids, backfill that data
     section_index = 0
-    course_url_threads = []
+    course_resource_threads = []
     for section in schedule.sections:
         section_data = json_data["sections"][section_index]
         color = colors[section.section_label()]
@@ -111,7 +119,7 @@ def load_schedule(request, schedule, summer_term=""):
                 })
 
         t = Thread(target=set_course_resources, args=(section_data, section))
-        course_url_threads.append(t)
+        course_resource_threads.append(t)
         t.start()
 
         # MUWM-596
@@ -151,7 +159,7 @@ def load_schedule(request, schedule, summer_term=""):
             except IndexError as ex:
                 pass
 
-    for t in course_url_threads:
+    for t in course_resource_threads:
         t.join()
 
     # MUWM-443
