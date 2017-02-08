@@ -41,5 +41,8 @@ def get_page_title_from_url(url):
 def is_live_url(url):
     try:
         _fetch_url('HEAD', url)
+        return True
     except DataFailureException:
-        return False
+        pass
+
+    return False
