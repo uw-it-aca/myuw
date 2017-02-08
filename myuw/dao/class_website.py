@@ -19,7 +19,7 @@ def _fetch_url(method, url):
         logger.error("_get_html_from_url(%s)==>%s" % (url, ex))
         return None
 
-    pool = get_con_pool("%s://%s" % (p.scheme, p.netloc))
+    pool = get_con_pool("%s://%s" % (p.scheme, p.netloc), socket_timeout=2)
     response = get_live_url(
         pool, method, p.hostname, url, {'ACCEPT': 'text/html'})
 
