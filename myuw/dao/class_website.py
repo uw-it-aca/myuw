@@ -33,7 +33,8 @@ def get_page_title_from_url(url):
     try:
         html = _fetch_url('GET', url)
         soup = BeautifulSoup(html)
-        return soup.title.string
+        if hasattr(soup, 'title'):
+            return soup.title.string
     except DataFailureException as ex:
         raise
     except Exception as ex:
