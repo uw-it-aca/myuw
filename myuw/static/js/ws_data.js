@@ -146,6 +146,12 @@ WSData = {
                 this.matching_term = (course_data.year == this.year &&
                                       course_data.quarter.toLowerCase() == this.quarter.toLowerCase());
             });
+            $.each(course_data.sections, function () {
+                var course_campus = this.course_campus.toLowerCase();
+                this.is_seattle = (course_campus === 'seattle');
+                this.is_bothell = (course_campus === 'bothell');
+                this.is_tacoma =  (course_campus === 'tacoma');
+            });
         }
         return course_data;
     },

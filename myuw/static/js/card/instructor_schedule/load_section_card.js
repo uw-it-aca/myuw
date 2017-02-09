@@ -77,30 +77,5 @@ var InstructorSectionCard = {
                 InstructorCourseCardContent.render(this, null);
             }
         });
-
-        InstructorCourseCards.add_events(term);
-    },
-
-    add_events: function(term) {
-        $(".course_website").on("click", function(ev) {
-            var course_id = ev.currentTarget.getAttribute("rel");
-            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("open_course_website_"+course_id, term);
-        });
-
-        $(".show_map").on("click", function(ev) {
-            var course_id = ev.currentTarget.getAttribute("rel");
-            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
-            var building = ev.currentTarget.getAttribute("rel");
-            building = building.replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("show_map_from_course_list_"+building, term);
-        });
-        
-        $(".course_canvas_site").on("click", function(ev) {
-            var course_id = ev.currentTarget.getAttribute("rel");
-            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("open_course_canvas_website_"+course_id, term);
-        });
-
     }
 };

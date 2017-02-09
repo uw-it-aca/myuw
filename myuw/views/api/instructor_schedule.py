@@ -42,6 +42,27 @@ class InstSche(RESTDispatch):
         return HttpResponse(json.dumps(resp_data))
 
 
+def set_class_website_data(url):
+    website_data = {
+        'title': None,
+        'unauthorized': False,
+        'not_found': False
+    }
+    try:
+        if url:
+            website_data['title'] = get_page_title_from_url(url)
+    except DataFailureException as ex:
+        if ex.status == 401:
+            website_data['authorized'] = True
+        elif ex.status == 404:
+            website_data['not_found'] = True
+        else:
+            logger.error("class_website_url: %s: %s: %s" % (
+                url, ex.status, ex.message))
+
+    return website_data
+
+
 def set_course_resources(section_data, section):
     threads_dict = {}
     t = ThreadWithResponse(target=get_canvas_course_url,
@@ -59,19 +80,17 @@ def set_course_resources(section_data, section):
     t.start()
     threads_dict["email_list"] = t
 
+    t = ThreadWithResponse(target=set_class_website_data,
+                           args=(section.class_website_url,))
+    t.start()
+    threads_dict['class_website_data'] = t
+
     if not hasattr(section, 'limit_estimate_enrollment'):
         t = ThreadWithResponse(
             target=get_limit_estimate_enrollment_for_section,
             args=(section,))
         t.start()
         threads_dict['limit_estimate_enrollment'] = t
-
-    if section.class_website_url:
-        t = ThreadWithResponse(
-            target=get_page_title_from_url,
-            args=(section.class_website_url,))
-        t.start()
-        threads_dict['class_website_title'] = t
 
     for key in threads_dict.keys():
         t = threads_dict[key]

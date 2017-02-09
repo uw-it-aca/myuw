@@ -8,7 +8,8 @@ var Teaching = {
     },
 
     make_html: function () {
-        Handlebars.registerPartial('teaching_resources', $('#teaching_resources_partial').html());
+        Handlebars.registerPartial('teaching_resources',
+                                   $('#teaching_resources_partial').html());
         $('html,body').animate({scrollTop: 0}, 'fast');
         var teaching_source = $("#teaching").html();
         var template = Handlebars.compile(teaching_source);
