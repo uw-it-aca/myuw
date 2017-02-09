@@ -42,6 +42,21 @@ class InstSche(RESTDispatch):
         return HttpResponse(json.dumps(resp_data))
 
 
+def set_class_website_title(section_data, url):
+    try:
+        return get_page_title_from_url(url)
+    except DataFailureException as ex:
+        if ex.status == 401:
+            section_data['class_website_unauthorized'] = True
+        elif ex.status == 404:
+            section_data['class_website_not_found'] = True
+        else:
+            logger.error("class_website_url: %s: %s: %s" % (
+                url, ex.status, ex.message))
+
+    return None
+
+
 def set_course_resources(section_data, section):
     threads_dict = {}
     t = ThreadWithResponse(target=get_canvas_course_url,
@@ -68,8 +83,8 @@ def set_course_resources(section_data, section):
 
     if section.class_website_url:
         t = ThreadWithResponse(
-            target=get_page_title_from_url,
-            args=(section.class_website_url,))
+            target=set_class_website_title,
+            args=(section_data, section.class_website_url,))
         t.start()
         threads_dict['class_website_title'] = t
 

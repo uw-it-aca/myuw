@@ -4,6 +4,17 @@ var InstructorCourseCards = {
     term: 'current',
 
     render_init: function() {
+        Handlebars.registerPartial('class_website',
+                                   $('#class_website_partial').html());
+        Handlebars.registerPartial('email_list',
+                                   $('#email_list_partial').html());
+        Handlebars.registerPartial('online_tools',
+                                   $('#online_tools_partial').html());
+        Handlebars.registerPartial('textbooks',
+                                   $('#textbooks_partial').html());
+        Handlebars.registerPartial('course_class_list',
+                                   $('#course_class_list_partial').html());
+
         if (myuwFeatureEnabled('instructor_schedule')) {
             WSData.fetch_instructed_course_data_for_term(InstructorCourseCards.term,
                                                          InstructorCourseCards.render_upon_data,
@@ -78,31 +89,11 @@ var InstructorCourseCards = {
     },
 
     add_events: function(term) {
-        $(".course_website").on("click", function(ev) {
-            var course_id = ev.currentTarget.getAttribute("rel");
-            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("open_course_website_"+course_id, term);
-        });
-
-        $(".show_map").on("click", function(ev) {
-            var course_id = ev.currentTarget.getAttribute("rel");
-            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
-            var building = ev.currentTarget.getAttribute("rel");
-            building = building.replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("show_map_from_course_list_"+building, term);
-        });
-        
-        $(".course_canvas_site").on("click", function(ev) {
-            var course_id = ev.currentTarget.getAttribute("rel");
-            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("open_course_canvas_website_"+course_id, term);
-        });
-
         $(".instructed-terms").change(function(ev) {
             var term = $(".instructed-terms option:selected").val();
             InstructorCourseCards.term = term;
             InstructorCourseCards.render_init();
-            WSData.log_interaction("show_instructed_courses_for_"+term);
+            WSData.log_interaction("show_instructed_courses_for_" + term);
         });
     }
 };

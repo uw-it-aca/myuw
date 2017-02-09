@@ -1,17 +1,23 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "instructor_past_course_resource_panel" %}
 
-    <h5 class="scheduleHeading">RESOURCES WERE</h5>
+    <h4 class="scheduleHeading">RESOURCES WERE</h4>
     <ul class="unstyled-list">
       {{#if class_website_url}}
-      <li><a href="{{class_website_url}}" class="course_website" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Website</a></li>
+      <li>
+        <a href="{{class_website_url}}" class="course_website" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">{{#if class_website_title}}{{ class_website_title }}{{else}}View class website{{/if}}</a>
+      </li>
       {{else}}
-      <li>No course website</li>
+      <li>
+        No course website
+      </li>
       {{/if}}
       {{#if canvas_url}}
       <li><a href="{{canvas_url}}" class="course_canvas_site" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Canvas</a></li>
       {{/if}}
-      <li><a href="#" class="course_class_list" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Class List</a></li>
+      <li>
+        {{> course_class_list }}
+      </li>
     </ul>
 
 {% endtplhandlebars %}

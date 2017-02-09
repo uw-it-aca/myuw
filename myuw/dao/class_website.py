@@ -35,14 +35,8 @@ def get_page_title_from_url(url):
         soup = BeautifulSoup(html)
         return soup.title.string
     except DataFailureException as ex:
+        raise
+    except Exception as ex:
         logger.error("get_page_title_from_url(%s)==>%s" % (url, ex))
 
-
-def is_live_url(url):
-    try:
-        _fetch_url('HEAD', url)
-        return True
-    except DataFailureException:
-        pass
-
-    return False
+    return None
