@@ -7,17 +7,6 @@ var InstructorSectionCard = {
         if (window.hasOwnProperty('section_data') && 
             window.section_data.hasOwnProperty('section') && 
             myuwFeatureEnabled('instructor_schedule')) {
-            Handlebars.registerPartial('class_website',
-                                       $('#class_website_partial').html());
-            Handlebars.registerPartial('email_list',
-                                       $('#email_list_partial').html());
-            Handlebars.registerPartial('online_tools',
-                                       $('#online_tools_partial').html());
-            Handlebars.registerPartial('textbooks',
-                                       $('#textbooks_partial').html());
-            Handlebars.registerPartial('course_class_list',
-                                       $('#course_class_list_partial').html());
-
             InstructorSectionCard.section = window.section_data.section;
             WSData.fetch_instructed_section_data(InstructorSectionCard.section,
                                                  InstructorSectionCard.render_upon_data,

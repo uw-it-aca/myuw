@@ -4,17 +4,6 @@ var InstructorCourseCards = {
     term: 'current',
 
     render_init: function() {
-        Handlebars.registerPartial('class_website',
-                                   $('#class_website_partial').html());
-        Handlebars.registerPartial('email_list',
-                                   $('#email_list_partial').html());
-        Handlebars.registerPartial('online_tools',
-                                   $('#online_tools_partial').html());
-        Handlebars.registerPartial('textbooks',
-                                   $('#textbooks_partial').html());
-        Handlebars.registerPartial('course_class_list',
-                                   $('#course_class_list_partial').html());
-
         if (myuwFeatureEnabled('instructor_schedule')) {
             WSData.fetch_instructed_course_data_for_term(InstructorCourseCards.term,
                                                          InstructorCourseCards.render_upon_data,

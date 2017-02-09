@@ -4,13 +4,13 @@
     <h4 class="scheduleHeading">RESOURCES WILL BE</h4>
     <ul class="unstyled-list">
       <li class="clearfix" style="line-height:3;">
-        {{> class_website }}
+        {% include "handlebars/card/instructor_schedule/course_resource/class_website.html" %}
       </li>
       <li class="clearfix">
-        {{> online_tools }}
+        {% include "handlebars/card/instructor_schedule/course_resource/online_tools.html" %}
       </li>
       <li class="clearfix">
-        {{> course_class_list }}
+        {% include "handlebars/card/instructor_schedule/course_resource/course_class_list.html" %}
       </li>
     </ul>
 
