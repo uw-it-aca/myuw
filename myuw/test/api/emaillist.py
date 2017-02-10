@@ -6,12 +6,12 @@ from myuw.test.api import MyuwApiTest, require_url,\
 @fdao_mailman_override
 @fdao_sws_override
 @require_url('myuw_home')
-class TestMailmanApi(MyuwApiTest):
+class TestEmaillistApi(MyuwApiTest):
 
     def test_get(self):
         self.set_user('bill')
         response = self.get_response_by_reverse(
-            'myuw_mailman_api',
+            'myuw_emaillist_api',
             kwargs={'year': 2013,
                     'quarter': 'spring',
                     'curriculum_abbr': 'PHYS',

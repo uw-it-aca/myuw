@@ -11,7 +11,7 @@ from myuw.views.rest_dispatch import handle_exception
 logger = logging.getLogger(__name__)
 
 
-class Mailman(RESTDispatch):
+class Emaillist(RESTDispatch):
 
     def GET(self, request, year, quarter,
             curriculum_abbr, course_number, section_id):
