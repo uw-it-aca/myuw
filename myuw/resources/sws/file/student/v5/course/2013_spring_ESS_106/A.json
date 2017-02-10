@@ -1,0 +1,172 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "ClassWebsiteUrl": "",
+    "Course": {
+        "CourseNumber": "107",
+        "CurriculumAbbreviation": "ESS",
+        "Href": "/student/v5/course/2013,spring,ESS,107.json",
+        "Quarter": "spring",
+        "Year": 2013
+    },
+    "CourseCampus": "PCE",
+    "CourseDescription": null,
+    "CourseHasVariableContent": false,
+    "CourseTitle": "C++ Programming: Intermediate",
+    "CourseTitleLong": "C++ Programming: Intermediate",
+    "CreditControl": null,
+    "CurrentEnrollment": 2,
+    "Curriculum": {
+        "CollegeName": null,
+        "DepartmentAbbreviation": null,
+        "TimeScheduleLinkAbbreviation": ""
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": true,
+    "DuplicateEnrollmentAllowed": false,
+    "EndDate": "2017-06-30",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": null,
+    "FeeBudget": null,
+    "FeeType": null,
+    "FinalExam": null,
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": null,
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [],
+    "GradingSystem": "",
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": null,
+    "IsIndependentStart": false,
+    "JointSections": [],
+    "LMSOwnership": "PCE_OL",
+    "LimitEstimateEnrollment": 35,
+    "LimitEstimateEnrollmentIndicator": "L",
+    "LinkedSectionTypes": [],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Tuesday"
+                    }
+                ],
+                "Text": ".T....."
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "20:30:00",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "1",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2017,spring,CPROGRM,712,A,3EA64467FF3E4A3E97AEC99866AC6138"
+                    },
+                    "PercentInvolve": "",
+                    "Person": {
+                        "Href": "/student/v5/person/3EA64467FF3E4A3E97AEC99866AC6138.json",
+                        "Name": null,
+                        "RegID": "3EA64467FF3E4A3E97AEC99866AC6138"
+                    },
+                    "TSPrint": false
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "OTH",
+            "RoomNumber": "",
+            "RoomToBeArranged": false,
+            "StartTime": "19:00:00"
+        }
+    ],
+    "Metadata": "SectionSourceKey=EOS;",
+    "MinimumTermCredit": "",
+    "OnlineLearningType": {
+        "Code": null,
+        "Description": null
+    },
+    "PrimaryLMS": "CANVAS",
+    "PrimarySection": {
+        "CourseNumber": "712",
+        "CurriculumAbbreviation": "CPROGRM",
+        "Href": "/student/v5/course/2017,spring,CPROGRM,712/A.json",
+        "Quarter": "spring",
+        "SectionID": "A",
+        "Year": 2017
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "712",
+        "CurriculumAbbreviation": "CPROGRM",
+        "Href": "/student/v5/registration.json?year=2017&quarter=spring&curriculum_abbreviation=CPROGRM&course_number=712&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "spring",
+        "RegID": null,
+        "SectionID": "A",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2017
+    },
+    "RepositoryTimeStamp": "2/2/2017 1:14:10 PM",
+    "ResearchCredit": false,
+    "RoomCapacity": 0,
+    "SLN": "00000",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "A",
+    "SectionType": null,
+    "SelfRegistrationAllowed": false,
+    "ServiceLearning": false,
+    "StartDate": "2017-04-24",
+    "StudentCreditHours": null,
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2017,spring.json",
+        "Quarter": "spring",
+        "Year": 2017
+    },
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": []
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": [
+                {
+                    "Text": "Online office hours are Tuesdays from 7:00\u20138:30 pm PST. Recommended, not required."
+                }
+            ]
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": []
+        }
+    }
+}
