@@ -8,6 +8,8 @@ WSData = {
     _instructed_course_data_error_status: {},
     _instructed_section_data: {},
     _instructed_section_data_error_status: {},
+    _instructed_emaillist_data_error_status: {},
+    _instructed_emaillist_data: {},
     _department_events: null,
     _grade_data: {},
     _hfs_data: null,
@@ -1088,6 +1090,41 @@ WSData = {
                     }
                  });
               }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
+    fetch_instructed_section_emaillist_data: function(section_label, callback, err_callback, args) {
+        if (!WSData._instructed_emaillist_data[section_label]) {
+            var url = "/api/v1/emaillist/" + section_label;
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+
+            $.ajax({
+                url: url,
+                dataType: "JSON",
+                async: true,
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    WSData._instructed_emaillist_data_error_status[section_label] = null;
+                    WSData._instructed_emaillist_data[section_label] = results;
+                    WSData._run_success_callbacks_for_url(url);
+                },
+                error: function(xhr, status, error) {
+                    WSData._instructed_emaillist_data_error_status[section_label] = xhr.status;
+                    WSData._run_error_callbacks_for_url(url);
+                }
+            });
+        }
         else {
             window.setTimeout(function() {
                 callback.apply(null, args);

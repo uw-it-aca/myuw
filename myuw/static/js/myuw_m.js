@@ -112,6 +112,10 @@ var date_from_string = function(date_string) {
     return date_object;
 };
 
+var safe_label = function(section_label) {
+    return section_label.replace(/[^A-Za-z0-9]/gi, '_');
+};
+
 var titilizeTerm = function(term) {
     //Takes a term string (Eg 2032,summer,b-term) and 
     //returns a title (Eg Summer 2032 B-term)

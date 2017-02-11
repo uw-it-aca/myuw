@@ -1,12 +1,23 @@
 {% load templatetag_handlebars %}
-{% tplhandlebars "view_email_lists_tmpl" %}
+{% tplhandlebars "manage_email_lists_tmpl" %}
 
 <div class="card">
     <h3>Mailing Lists</h3>
     <button>Create</button>
 
-    <ul>
-        {{ #each course_email_list }}<li><div>{{ list_address }}</div><div><a href="">Manage</a></div></li>{{ /each }}
-    </ul>
+    <div>{{section_list.list_address}}@uw.edu</div><a href="{{section_list.list_admin_url}}" class="course_class_list">Manage</a>
+
+    {{#if is_primary}}
+        {{#if has_multi_secondaries }}
+        <ul>
+           {{#each secondary_lists}}
+           <li>
+               <div>{{list_address}}@uw.edu</div><div><a href="{{section_list.list_admin_url}}">Manage</a></div>
+           </li>
+           {{/each}}
+        </ul>
+        {{/if}}
+    {{/if}}
+
 </div>
 {% endtplhandlebars %}

@@ -72,5 +72,20 @@ var InstructorCourseCardContent = {
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');
             WSData.log_interaction("open_course_website_"+course_id, term);
         });
+
+        $(".create_email_list", card).on("click", function(ev) {
+            var course_label = ev.currentTarget.getAttribute("rel");
+            label = safe_label(course_label)
+            WSData.log_interaction("open_create_email_list_"+label, term);
+            RequestEmailLists.render_init(course_label);
+        });
+
+        $(".manage_email_list", card).on("click", function(ev) {
+            var course_label = ev.currentTarget.getAttribute("rel");
+            label = safe_label(course_label)
+            WSData.log_interaction("open_manage_email_list_"+label, term);
+            ManageEmailLists.render_init(course_label);
+        });
+
     }
 };

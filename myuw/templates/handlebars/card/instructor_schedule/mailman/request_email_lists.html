@@ -1,50 +1,46 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "request_email_lists_tmpl" %}
 
-
-{{#if show_simple }}
-<div class="">
+<div class="card">
+    <h3>Create Mailing List</h3>
 
     <div>
         <button>Create Mailing List</button>
     </div>
 
-
-    <h3>Create Mailing List</h3>
-
-    <div>{{ course_name }}</div>
-    <div>{{ quarter }} {{ year }}</div>
+    <div>{{ course_abbr }} {{course_number}} {{section_id}}</div>
+    <div>{{ capitalizeString quarter }} {{ year }}</div>
 
     <ul class="">
-        <li>Creates a single list for this section</li>
+        <li>Creates a single list for this section: {{section_list.list_address}}@uw.edu</li>
         <li>Stays synced with the official class list</li>
     </ul>
 
-    {{#if allow_advanced }}
-    <div><a href="">Advanced options</a></div>
+</div>
+{{#if is_primary}}
+    {{#if has_multi_secondaries }}
+    <div class="">
+        <div>
+            <button>Create Mailing Lists</button>
+        </div>
+        <p>Creates multiple email lists, one for each section selected.</p>
+
+        <div>
+            <label>Select all</label><input type="checkbox"/>
+        </div>
+        <ul>
+        {{#each secondary_lists}}
+            <li class="secondary">
+               <div>{{ list_address }}@uw.edu</div><div>{{#unless list_exists}}<input type="checkbox" />{{/unless}}</div>
+            </li>
+            
+        {{/each}}
+        </ul>
+
+        <div></div>
+    </div>
     {{/if}}
-</div>
 {{/if}}
 
-{{#if show_advanced }}
-<div class="">
-    <div>
-        <button>Create Mailing Lists</button>
-    </div>
-
-    <h3>Create Mailing List</h3>
-    <p>Creates multiple email lists, one for each section selected.</p>
-
-    <div>
-        <label>Select all</label>
-        <input type="checkbox"/>
-    </div>
-    <ul>
-        {{ #each section }}<li class="{{#if secondary_section }}secondary"><div>{{ section_name }}</div><div><input type="checkbox" /></div></li>{{ /each }}
-    </ul>
-
-    <div></div>
-</div>
-{{/if}}
 
 {% endtplhandlebars %}
