@@ -17,7 +17,7 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
         resp = InstScheCurQuar().GET(now_request)
         data = json.loads(resp.content)
 
-        self.assertEqual(len(data['sections']), 2)
+        self.assertEqual(len(data['sections']), 3)
         section1 = data['sections'][0]
         self.assertEqual(section1['lib_subj_guide'],
                          'http://guides.lib.uw.edu/research')
@@ -30,7 +30,7 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
             section1["email_list"]['section_list']['list_address'],
             'ess102a_sp13')
 
-        section2 = data['sections'][1]
+        section2 = data['sections'][2]
         self.assertEqual(section2['canvas_url'],
                          'https://canvas.uw.edu/courses/149651')
         self.assertEqual(len(section2['grade_submission_delegates']), 1)
