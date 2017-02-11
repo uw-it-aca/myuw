@@ -1,7 +1,6 @@
 Handlebars = require("../../vendor/js/handlebars-v2.0.0.js");
 moment = require("../../vendor/js/moment.2.8.3.min.js");
 require("datejs");
-require("../myuw_m.js");
 require("../handlebars-helpers.js");
 
 var assert = require("assert");
@@ -41,20 +40,6 @@ describe('Handlebar-helpers', function(){
             assert.equal(output, "in a day");
         });
 
-    });
-
-    describe("safeLabel", function() {
-        it ("should replace spaces", function() {
-            var template = Handlebars.compile("{{safeLabel 'TRAIN,101/A'}}");
-            var output = template();
-            assert.equal(output, "TRAIN_101_A");
-            template = Handlebars.compile("{{safeLabel 'B BIO,201/A'}}");
-            output = template();
-            assert.equal(output, "B_BIO_201_A");
-            template = Handlebars.compile("{{safeLabel 'M&ESS,501/A'}}");
-            output = template();
-            assert.equal(output, "M_ESS_501_A");
-        });
     });
 
     describe("toUrlSafe", function() {
