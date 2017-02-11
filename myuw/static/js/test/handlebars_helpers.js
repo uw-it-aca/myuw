@@ -43,6 +43,20 @@ describe('Handlebar-helpers', function(){
 
     });
 
+    describe("safeLabel", function() {
+        it ("should replace spaces", function() {
+            var template = Handlebars.compile("{{safeLabel 'TRAIN,101/A'}}");
+            var output = template();
+            assert.equal(output, "TRAIN_101_A");
+            template = Handlebars.compile("{{safeLabel 'B BIO,201/A'}}");
+            output = template();
+            assert.equal(output, "B_BIO_201_A");
+            template = Handlebars.compile("{{safeLabel 'M&ESS,501/A'}}");
+            output = template();
+            assert.equal(output, "M_ESS_501_A");
+        });
+    });
+
     describe("toUrlSafe", function() {
         it ("should replace spaces", function() {
             var template = Handlebars.compile("{{toUrlSafe ' '}}");
@@ -51,6 +65,9 @@ describe('Handlebar-helpers', function(){
             template = Handlebars.compile("{{toUrlSafe '_   _'}}");
             output = template();
             assert.equal(output, "_%20%20%20_");
+            template = Handlebars.compile("{{toUrlSafe '_&_'}}");
+            output = template();
+            assert.equal(output, "_%26_");
         });
     });
 
