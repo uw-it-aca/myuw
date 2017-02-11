@@ -28,7 +28,7 @@ var ManageEmailLists = {
 
 
     render: function() {
-        var data = WSData._instructed_emaillist_data[ManageEmailLists.label]
+        var data = WSData._instructed_emaillist_data[ManageEmailLists.label];
         var source   = $("#manage_email_lists_tmpl").html();
         var template = Handlebars.compile(source);
         var raw = template(data);

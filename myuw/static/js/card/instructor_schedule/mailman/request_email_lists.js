@@ -28,7 +28,7 @@ var RequestEmailLists = {
 
 
     render: function() {
-        var data = WSData._instructed_emaillist_data[RequestEmailLists.label]
+        var data = WSData._instructed_emaillist_data[RequestEmailLists.label];
         var source   = $("#request_email_lists_tmpl").html();
         var template = Handlebars.compile(source);
         var raw = template(data);
