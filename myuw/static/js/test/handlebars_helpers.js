@@ -1,7 +1,7 @@
 Handlebars = require("../../vendor/js/handlebars-v2.0.0.js");
 moment = require("../../vendor/js/moment.2.8.3.min.js");
 require("datejs");
-
+require("../myuw_m.js");
 require("../handlebars-helpers.js");
 
 var assert = require("assert");
