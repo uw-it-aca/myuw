@@ -32,8 +32,18 @@ def _get_schedule(regid, term):
              str(regid) + ',' + str(term.year) + ',' + term.quarter)
     timer = Timer()
     try:
-        return get_schedule_by_regid_and_term(regid, term, False,
-                                              myuw_section_prefetch)
+        courses = get_schedule_by_regid_and_term(regid, term, False,
+                                                 myuw_section_prefetch)
+        # retrieve non-transcriptable courses
+        nts_courses = get_schedule_by_regid_and_term(regid, term, False,
+                                                     myuw_section_prefetch,
+                                                     "no")
+
+        # combine non-transcriptable courses and transcriptable courses
+        for section in nts_courses.sections:
+            courses.sections.append(section)
+
+        return courses
     finally:
         log_resp_time(logger,
                       logid,
