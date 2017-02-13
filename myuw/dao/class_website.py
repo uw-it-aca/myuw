@@ -8,7 +8,8 @@ from BeautifulSoup import BeautifulSoup
 from restclients.dao_implementation.live import get_con_pool, get_live_url
 from restclients.dao_implementation.mock import get_mockdata_url
 from restclients.exceptions import DataFailureException
-
+from myuw.dao import is_using_file_dao
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -21,10 +22,9 @@ def _fetch_url(method, url):
         return None
 
     headers = {'ACCEPT': 'text/html'}
-    if p.netloc == 'localhost':
-        response = get_mockdata_url('www', 'file',
-                                    p.path.replace('..', ''),
-                                    headers)
+    if is_using_file_dao():
+        response = get_mockdata_url(
+            'www', 'file', "/%s%s" % (p.netloc, p.path), headers)
     else:
         pool = get_con_pool("%s://%s" % (p.scheme, p.netloc), socket_timeout=2)
         response = get_live_url(
