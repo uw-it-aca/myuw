@@ -4,7 +4,8 @@ from restclients.sws.section import get_section_by_label
 from myuw.dao.mailman import get_list_json,\
     get_instructor_term_list, get_section_secondary_combined_list,\
     get_single_course_list, get_single_section_list, get_section_id,\
-    get_all_secondary_section_lists, get_section_email_lists
+    get_all_secondary_section_lists, get_section_email_lists,\
+    get_section_label
 from myuw.test import fdao_sws_override, fdao_mailman_override, get_request,\
     get_request_with_user
 
@@ -115,6 +116,8 @@ class TestMailmanDao(TestCase):
         ret_json = get_section_email_lists(
             get_section_by_label('2013,spring,ESS,102/A'), True)
         self.assertFalse(ret_json["section_list"]["list_exists"])
+        self.assertEqual(ret_json["section_list"]["section_label"],
+                         '2013,spring,ESS,102/A')
         self.assertEqual(len(ret_json["secondary_lists"]), 1)
         self.assertFalse(ret_json["has_multi_secondaries"])
 
@@ -122,3 +125,11 @@ class TestMailmanDao(TestCase):
             get_section_by_label('2013,spring,TRAIN,101/A'), True)
         self.assertTrue(ret_json["section_list"]["list_exists"])
         self.assertIsNone(ret_json["secondary_lists"])
+
+    def test_get_section_label(self):
+        self.assertEqual(get_section_label('T ARTS', '110', 'A',
+                                           'spring', 2016),
+                         '2016,spring,T ARTS,110/A')
+        self.assertEqual(get_section_label('ESS', '102', 'A',
+                                           'spring', 2013),
+                         '2013,spring,ESS,102/A')
