@@ -178,6 +178,24 @@ def load_schedule(request, schedule, summer_term=""):
             except IndexError as ex:
                 pass
 
+        if hasattr(section, "registrations"):
+            registrations = []
+            for registration in section.registrations:
+                person = registration.person
+                registrations.append({
+                    'full_name': person.display_name,
+                    'netid': person.uwnetid,
+                    'regid': person.uwregid,
+                    'student_number': person.student_number,
+                    'credits': registration.credits,
+                    'class': person.student_class,
+                    'email': person.email1
+
+                })
+
+            section_data["registrations"] = registrations
+
+
     for t in course_resource_threads:
         t.join()
 
@@ -296,6 +314,51 @@ class InstSect(RESTDispatch):
         try:
             schedule = get_instructor_section(year, quarter, curriculum,
                                               course_number, course_section)
+        except NotSectionInstructorException:
+            reason = "Read Access Forbidden to Non Instructor"
+            response = HttpResponse(reason)
+            response.status_code = 403
+            response.reason_phrase = reason
+            return response
+
+        resp_data = load_schedule(request, schedule)
+        log_success_response(logger, timer)
+        return HttpResponse(json.dumps(resp_data))
+
+    def GET(self, request, year, quarter, curriculum,
+            course_number, course_section):
+        """
+        GET returns 200 with a specific term instructor schedule
+        @return course schedule data in json format
+                status 404: no schedule found (not registered)
+                status 543: data error
+        """
+        timer = Timer()
+        try:
+            return self.make_http_resp(timer, year, quarter, curriculum,
+                                       course_number, course_section,
+                                       request)
+        except Exception:
+            return handle_exception(logger, timer, traceback)
+
+
+class InstSectionDetails(RESTDispatch):
+    """
+    Performs actions on resource at
+    /api/v1/instructor_section/<year>,<quarter>,<curriculum>,
+        <course_number>,<course_section>?
+    """
+    def make_http_resp(self, timer, year, quarter, curriculum, course_number,
+                       course_section, request):
+        """
+        @return instructor schedule data in json format
+                status 404: no schedule found (teaching no courses)
+        """
+        try:
+            schedule = get_instructor_section(year, quarter, curriculum,
+                                              course_number, course_section,
+                                              include_registrations=True)
+
         except NotSectionInstructorException:
             reason = "Read Access Forbidden to Non Instructor"
             response = HttpResponse(reason)

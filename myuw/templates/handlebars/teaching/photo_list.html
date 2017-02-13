@@ -1,0 +1,12 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "photo_class_list" %}
+
+<h1>Photo list</h1>
+
+<a href="#" id="download_class_list">Download class list</a>
+<br />
+
+    {{ #each sections.0.registrations }}
+        <img src="#"> {{ full_name }} <br />
+    {{ /each }}
+    {% endtplhandlebars %}

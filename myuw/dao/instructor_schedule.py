@@ -6,6 +6,7 @@ from django.conf import settings
 import logging
 from restclients.sws.section import get_sections_by_instructor_and_term,\
     get_section_by_url
+from restclients.sws.v5.registration import get_active_registrations_by_section
 from restclients.sws.section_status import get_section_status_by_label
 from restclients.sws.section import get_section_by_label
 from restclients.models.sws import ClassSchedule
@@ -36,6 +37,7 @@ def _get_instructor_schedule(person, term):
     schedule.person = person
     schedule.term = term
     section_references = _get_instructor_sections(person, term)
+
     if len(section_references) <= getattr(
             settings, "MYUW_MAX_INSTRUCTOR_SECTIONS", 10):
         schedule.sections = _get_sections_by_section_reference(
@@ -95,7 +97,8 @@ def get_current_quarter_instructor_schedule(request):
 
 
 def get_instructor_section(year, quarter, curriculum,
-                           course_number, course_section):
+                           course_number, course_section,
+                           include_registrations=False):
     """
     Return requested section instructor is teaching
     """
@@ -106,6 +109,9 @@ def get_instructor_section(year, quarter, curriculum,
     section = get_section_by_label("%s,%s,%s,%s/%s" % (
         year, quarter.lower(), curriculum.upper(),
         course_number, course_section))
+
+    if include_registrations:
+        section.registrations = get_active_registrations_by_section(section)
 
     if not section.is_instructor(schedule.person):
         raise NotSectionInstructorException()
