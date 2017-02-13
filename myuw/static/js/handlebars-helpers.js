@@ -93,7 +93,7 @@ Handlebars.registerHelper("safeLabel", function(str) {
 });
 
 Handlebars.registerHelper("toUrlSafe", function(str) {
-    return str.replace(/ /g, "%20").replace(/&/g, "%26");
+    return str.replace(/ /g, "%20");
 });
 
 Handlebars.registerHelper("toLowerCase", function(str) {
