@@ -38,10 +38,17 @@ var PhotoClassList = {
         }
     },
 
+    combine_majors: function(list) {
+        if (list) {
+            return list.join(", ");
+        }
+        return "";
+    },
+
     build_download: function(data) {
         var registrations = data.registrations;
         var lines = [];
-        lines.push(["Student Number", "UW NetID", "Name", "Quiz Section", "Credits", "Class", "Major", "Email"].join(","));
+        lines.push(["Student Number", "UW NetID", "Name", "Quiz Section", "Credits", "Class", "Majors", "Email"].join(","));
         for (var i = 0; i < registrations.length; i++) {
             reg = registrations[i];
             var fields = [reg.student_number,
@@ -50,7 +57,7 @@ var PhotoClassList = {
                           reg.quiz_section,
                           reg.credits,
                           reg.class,
-                          reg.major,
+                          PhotoClassList.combine_majors(reg.majors),
                           reg.email];
 
             lines.push(fields.map(PhotoClassList.quote_field).join(","));

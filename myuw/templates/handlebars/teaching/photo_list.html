@@ -8,5 +8,12 @@
 
     {{ #each sections.0.registrations }}
         <img src="/photo/{{ url_key }}"> {{ full_name }} <br />
+        {{ surname }}, {{ name }}<br />
+        Student Number: {{ student_number }} <br />
+        UW NetID: {{ netid }} <br />
+        Credits: {{ credits }} <Br />
+        Major: {{ #each majors }} {{ full_name }} {{ /each }}<br />
+        Class: {{ class }} <br />
+        Email: {{ email }} <br />
     {{ /each }}
     {% endtplhandlebars %}

@@ -5,6 +5,9 @@ from django.http import HttpResponse
 from operator import itemgetter
 from myuw.logger.timer import Timer
 from restclients.sws.term import get_term_before, get_term_after
+from restclients.sws.person import get_person_by_regid
+from restclients.sws.enrollment import get_enrollment_by_regid_and_term
+from restclients.sws.term import get_specific_term
 from restclients.exceptions import DataFailureException
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_course_url
@@ -102,7 +105,7 @@ def set_course_resources(section_data, section):
             logger.error("%s: %s" % (key, t.exception))
 
 
-def load_schedule(request, schedule, summer_term=""):
+def load_schedule(request, schedule, summer_term="", section_callback=None):
 
     json_data = schedule.json_data()
 
@@ -179,22 +182,8 @@ def load_schedule(request, schedule, summer_term=""):
             except IndexError as ex:
                 pass
 
-        if hasattr(section, "registrations"):
-            registrations = []
-            for registration in section.registrations:
-                person = registration.person
-                registrations.append({
-                    'full_name': person.display_name,
-                    'netid': person.uwnetid,
-                    'regid': person.uwregid,
-                    'student_number': person.student_number,
-                    'credits': registration.credits,
-                    'class': person.student_class,
-                    'email': person.email1,
-                    'url_key': get_url_key_for_regid(person.uwregid),
-                })
-
-            section_data["registrations"] = registrations
+        if section_callback:
+            section_callback(section, section_data)
 
     for t in course_resource_threads:
         t.join()
@@ -366,9 +355,74 @@ class InstSectionDetails(RESTDispatch):
             response.reason_phrase = reason
             return response
 
-        resp_data = load_schedule(request, schedule)
+        self.term = get_specific_term(year, quarter)
+        resp_data = load_schedule(request, schedule,
+                                  section_callback=self.per_section_data)
         log_success_response(logger, timer)
         return HttpResponse(json.dumps(resp_data))
+
+    def per_section_data(self, section, section_data):
+        registrations = {}
+        name_threads = {}
+        enrollment_threads = {}
+        for registration in section.registrations:
+            person = registration.person
+            regid = person.uwregid
+
+            name_email_thread = ThreadWithResponse(target=self.get_person_info,
+                                                   args=(person,))
+            enrollment_thread = ThreadWithResponse(target=self.get_enrollments,
+                                                   args=(person,))
+
+            name_threads[regid] = name_email_thread
+            enrollment_threads[regid] = enrollment_thread
+            name_email_thread.start()
+            enrollment_thread.start()
+
+            registrations[regid] = {
+                'full_name': person.display_name,
+                'netid': person.uwnetid,
+                'regid': person.uwregid,
+                'student_number': person.student_number,
+                'credits': registration.credits,
+                'class': person.student_class,
+                'email': person.email1,
+                'url_key': get_url_key_for_regid(person.uwregid),
+            }
+
+        registration_list = []
+        for regid in name_threads:
+            thread = name_threads[regid]
+            thread.join()
+
+            registrations[regid]["name"] = thread.response["name"]
+            registrations[regid]["surname"] = thread.response["surname"]
+            registrations[regid]["email"] = thread.response["email"]
+
+            thread = enrollment_threads[regid]
+            thread.join()
+            registrations[regid]["majors"] = thread.response["majors"]
+            registrations[regid]["class"] = thread.response["class"]
+
+            registration_list.append(registrations[regid])
+        section_data["registrations"] = registration_list
+
+    def get_person_info(self, person):
+        sws_person = get_person_by_regid(person.uwregid)
+        return {"name": sws_person.first_name,
+                "surname": sws_person.last_name,
+                "email": sws_person.email
+                }
+
+    def get_enrollments(self, person):
+        regid = person.uwregid
+
+        enrollments = get_enrollment_by_regid_and_term(regid, self.term)
+        majors = []
+        for major in enrollments.majors:
+            majors.append(major.json_data())
+
+        return {"majors": majors, "class": enrollments.class_level}
 
     def GET(self, request, year, quarter, curriculum,
             course_number, course_section):
