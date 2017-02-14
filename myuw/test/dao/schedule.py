@@ -5,7 +5,7 @@ from restclients.models.sws import ClassSchedule, Term, Section, Person
 from myuw.dao.term import get_current_quarter, get_next_quarter
 from myuw.dao.schedule import _get_schedule,\
     has_summer_quarter_section, filter_schedule_sections_by_summer_term
-from myuw.dao.schedule import get_schedule_by_term
+from myuw.dao.schedule import get_schedule_by_term, _get_schedule
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request, get_request_with_user
 
@@ -107,3 +107,16 @@ class TestSchedule(TestCase):
         fall_efs_schedule = get_schedule_by_term(now_request, cur_term)
         self.assertIsNotNone(fall_efs_schedule)
         self.assertEqual(len(fall_efs_schedule.sections), 1)
+
+    def test_non_transcriptable(self):
+        regid = "FE36CCB8F66711D5BE060004AC494FCE"
+
+        now_request = get_request_with_date("2013-04-20")
+        cur_term = get_current_quarter(now_request)
+        self.assertEqual(cur_term.year, 2013)
+        self.assertEqual(cur_term.quarter, "spring")
+        get_request_with_user('javerage', now_request)
+        cur_term = get_current_quarter(now_request)
+        spring_schedule = _get_schedule(regid, cur_term)
+        self.assertIsNotNone(spring_schedule)
+        self.assertEqual(len(spring_schedule.sections), 2)

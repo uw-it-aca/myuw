@@ -14,6 +14,7 @@ from myuw.dao.term import get_current_quarter, get_next_quarter,\
     get_next_autumn_quarter, get_current_summer_term,\
     is_a_term, is_b_term
 from myuw.dao.term import get_comparison_date
+from restclients.exceptions import DataFailureException
 
 
 logger = logging.getLogger(__name__)
@@ -35,15 +36,20 @@ def _get_schedule(regid, term):
         courses = get_schedule_by_regid_and_term(regid, term, False,
                                                  myuw_section_prefetch)
         # retrieve non-transcriptable courses
-        nts_courses = get_schedule_by_regid_and_term(regid, term, False,
-                                                     myuw_section_prefetch,
-                                                     "no")
+        try:
+            nts_courses = get_schedule_by_regid_and_term(regid, term, False,
+                                                         myuw_section_prefetch,
+                                                         "no")
+            # combine non-transcriptable courses and transcriptable courses
+            for section in nts_courses.sections:
+                courses.sections.append(section)
 
-        # combine non-transcriptable courses and transcriptable courses
-        for section in nts_courses.sections:
-            courses.sections.append(section)
+        except DataFailureException as ex:
+            # This will be thrown when mock data does not exist
+            pass
 
         return courses
+
     finally:
         log_resp_time(logger,
                       logid,
