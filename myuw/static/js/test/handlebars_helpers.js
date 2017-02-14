@@ -50,9 +50,6 @@ describe('Handlebar-helpers', function(){
             template = Handlebars.compile("{{toUrlSafe '_   _'}}");
             output = template();
             assert.equal(output, "_%20%20%20_");
-            template = Handlebars.compile("{{toUrlSafe '_&_'}}");
-            output = template();
-            assert.equal(output, "_%26_");
         });
     });
 

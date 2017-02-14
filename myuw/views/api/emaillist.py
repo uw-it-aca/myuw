@@ -2,6 +2,7 @@ import json
 import traceback
 import logging
 from django.http import HttpResponse
+from myuw.logger.timer import Timer
 from myuw.views.rest_dispatch import RESTDispatch
 from restclients.sws.section import get_section_by_label
 from myuw.dao.mailman import get_section_email_lists
@@ -18,6 +19,7 @@ class Emaillist(RESTDispatch):
         """
         GET returns 200 with email lists for the course
         """
+        timer = Timer()
         try:
             email_list_json = get_section_email_lists(
                 get_section(year, quarter,

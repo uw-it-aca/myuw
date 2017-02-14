@@ -93,6 +93,10 @@ urlpatterns += [
         login_required(Emaillist().run),
         name="myuw_emaillist_api"
         ),
+    url(r'^api/v1/emaillist/?',
+        login_required(Emaillist().run),
+        name="myuw_emaillist_api"
+        ),
     url(r'^api/v1/myplan/(?P<year>\d{4})/(?P<quarter>[a-zA-Z]+)',
         login_required(MyPlan().run),
         name="myuw_myplan_api"

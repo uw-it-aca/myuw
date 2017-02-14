@@ -42,9 +42,13 @@ def get_single_course_list(curriculum_abbr, course_number, section_id,
                            quarter, year):
     exists = exists_course_list(curriculum_abbr, course_number,
                                 section_id, quarter, year)
-    return get_list_json(
+    data = get_list_json(
         exists, get_course_list_name(curriculum_abbr, course_number,
                                      section_id, quarter, year))
+    if not exists:
+        data["section_label"] = get_section_label(
+            curriculum_abbr, course_number, section_id, quarter, year)
+    return data
 
 
 def get_single_section_list(section):
@@ -128,3 +132,9 @@ def get_section_email_lists(section,
         else:
             json_data["secondary_lists"] = None
     return json_data
+
+
+def get_section_label(curriculum_abbr, course_number,
+                      section_id, quarter, year):
+    return "%s,%s,%s,%s/%s" % (
+        year, quarter.lower(), curriculum_abbr, course_number, section_id)

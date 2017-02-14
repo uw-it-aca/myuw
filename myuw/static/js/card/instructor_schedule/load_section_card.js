@@ -2,12 +2,18 @@ var InstructorSectionCard = {
     name: 'InstructorSectionCard',
     dom_target: undefined,
     section: null,
+    term: null,
 
     render_init: function() {
         if (window.hasOwnProperty('section_data') && 
             window.section_data.hasOwnProperty('section') && 
             myuwFeatureEnabled('instructor_schedule')) {
             InstructorSectionCard.section = window.section_data.section;
+            match = window.section_data.section.match(/(\d{4},[a-zA-Z]+),.*/);
+            if (match && match[1]) {
+                InstructorSectionCard.term = match[1].toLowerCase();
+            }
+
             WSData.fetch_instructed_section_data(InstructorSectionCard.section,
                                                  InstructorSectionCard.render_upon_data,
                                                  InstructorSectionCard.render_error);

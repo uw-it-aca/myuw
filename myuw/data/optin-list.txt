@@ -16,3 +16,6 @@ b3306c
 b3306d
 bill
 bill100
+billsea
+billbot
+billtac
