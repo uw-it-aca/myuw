@@ -54,6 +54,14 @@
             "Quarter": "spring",
             "SectionID": "B",
             "Year": 2013
+        },
+        {
+            "CourseNumber": "123",
+            "CurriculumAbbreviation": "PHYS",
+            "Href": "/student/v5/course/2013,spring,PHYS,123/C.json",
+            "Quarter": "spring",
+            "SectionID": "C",
+            "Year": 2013
         }
     ],
     "TotalCount": 7
