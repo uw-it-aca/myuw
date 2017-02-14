@@ -2,28 +2,36 @@
 {% tplhandlebars "request_email_lists_tmpl" %}
 
 <div class="card">
+    <div>
+        <button>Back</button>
+    </div>
+
     <h3>Create Mailing List</h3>
+
+    <div>{{ course_abbr }} {{course_number}} {{section_id}}</div>
+    <div>{{ capitalizeString quarter }} {{ year }}</div>
+
+    <ul class="">
+        <li>Creates a single list for this section: {{section_list.list_address}}@uw.edu</li>
+        <li>Stays synced with the official class list</li>
+    </ul>
 
     <form id="emaillist{{course_abbr}}{{course_number}}{{section_id}}" method="POST" action="{% url 'myuw_emaillist_api' %}">{% csrf_token %}
     <div>
         <button type="submit" form="emaillist{{course_abbr}}{{course_number}}{{section_id}}" value="Create Mailing Lists">Create Mailing Lists</button>
     </div>
 
-    <div>{{ course_abbr }} {{course_number}} {{section_id}}</div>
-    <div>{{ capitalizeString quarter }} {{ year }}</div>
-
-    <ul class="">
-        <li class="section_single">
-            <label for="section_single_label">Creates a single list for this section: {{section_list.list_address}}@uw.edu</label>
-            <input type="hidden" id="section_single_label" name="section_single_label" value="{{section_list.section_label}}"/>
-            Stays synced with the official class list
-        </li>
+    {{#unless section_list.list_exists}}
+    <div class="section_single">
+        <input type="hidden" id="section_single_label" name="section_single_label" value="{{section_list.section_label}}"/>
+   </div>
+    {{/unless}}
 
     {{#if is_primary}}
         {{#if has_multi_secondaries }}
-        <li>
-            <p>Creates multiple email lists, one for each section selected</p>
-            <fieldset>
+    <div>
+        <p>Creates multiple email lists, one for each section selected</p>
+        <fieldset>
             <div>
                 <label>Select all</label> <input type="checkbox"/>
             </div>
@@ -43,12 +51,27 @@
                 {{/each}}
             </ul>
             </fieldset>
-        </li>
+    </div>
+        {{/if}}
     {{/if}}
-{{/if}}
-    </ul>
 
     </form>
 </div>
+
+{{#if success }}
+<div class="">
+    <h3>Request submitted</h3>
+
+    <ul class="">
+        <li>An email confirmation will be sent to {{ user.netid }}@uw.edu</li>
+        <li>Mailing lists may take up to 24 hours to activate</li>
+    </ul>
+
+    <p><a href="https://itconnect.uw.edu/connect/email/resources/mailman/" target="_blank">Learn more about Mailman email list manager</a></p>
+
+    <button>Done</button>
+
+</div>
+{{/if}}
 
 {% endtplhandlebars %}
