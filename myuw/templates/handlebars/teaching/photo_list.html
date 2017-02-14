@@ -5,20 +5,32 @@
 
 <a href="#" id="download_class_list">Download class list</a>
 <br />
+<select id="sort_list">
+    <option value="name" selected="selected">First Name</option>
+    <option value="surname">Last Name</option>
+    <option value="netid">UW NetID</option>
+    <option value="majors">Major</option>
+    <option value="class_code">Class</option>
+    <option value="credits">Credits</option>
+</select>
 
+<div id="student_list">
     {{ #each sections.0.registrations }}
-        <div style="float: left;">
-        <img src="/photo/{{ url_key }}">
+        <div id="student_{{ regid }}">
+            <div style="float: left;">
+            <img src="/photo/{{ url_key }}">
+            </div>
+            <div style="float: left; padding-left: 10px; padding-bottom: 10px;">
+            <strong>{{ surname }}, {{ name }}</strong><br />
+            Student Number: {{ student_number }} <br />
+            UW NetID: {{ netid }} <br />
+            Credits: {{ credits }} <Br />
+            Major: {{ #each majors }} {{ full_name }} {{ /each }}<br />
+            Class: {{ class }} <br />
+            Email: {{ email }} <br />
+            </div>
+            <br style="clear: both;">
         </div>
-        <div style="float: left; padding-left: 10px; padding-bottom: 10px;">
-        <strong>{{ surname }}, {{ name }}</strong><br />
-        Student Number: {{ student_number }} <br />
-        UW NetID: {{ netid }} <br />
-        Credits: {{ credits }} <Br />
-        Major: {{ #each majors }} {{ full_name }} {{ /each }}<br />
-        Class: {{ class }} <br />
-        Email: {{ email }} <br />
-        </div>
-        <br style="clear: both;">
     {{ /each }}
+</div>
     {% endtplhandlebars %}

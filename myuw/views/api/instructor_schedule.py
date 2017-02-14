@@ -25,6 +25,7 @@ from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.rest_dispatch import RESTDispatch, handle_exception
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.pws import get_url_key_for_regid
+from myuw.dao.enrollment import get_code_for_class_level
 
 
 logger = logging.getLogger(__name__)
@@ -403,6 +404,9 @@ class InstSectionDetails(RESTDispatch):
             thread.join()
             registrations[regid]["majors"] = thread.response["majors"]
             registrations[regid]["class"] = thread.response["class"]
+
+            code = get_code_for_class_level(thread.response["class"])
+            registrations[regid]['class_code'] = code
 
             registration_list.append(registrations[regid])
         section_data["registrations"] = registration_list

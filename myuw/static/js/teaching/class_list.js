@@ -17,9 +17,53 @@ var PhotoClassList = {
     render_upon_data: function() {
         var source = $("#photo_class_list").html();
         var template = Handlebars.compile(source);
-        $("#app_content").html(template(WSData.instructed_section_details()));
+
+        var data = WSData.instructed_section_details();
+        data.sections[0].registrations = PhotoClassList.sort_students('name');
+        $("#app_content").html(template(data));
 
         $("#download_class_list").on("click", PhotoClassList.download_list);
+
+        $("#sort_list").on("change", function() {
+            var sorted = PhotoClassList.sort_students(this.value);
+
+            var new_div = $("<div>");
+            for (var i = 0; i < sorted.length; i++) {
+                var regid = sorted[i].regid;
+                var student_div = $("#student_"+regid);
+                new_div.append(student_div);
+            }
+
+            $("#student_list").html(new_div.html());
+        });
+    },
+
+    sort_students: function(key) {
+        var data = WSData.instructed_section_details();
+        var registrations = data.sections[0].registrations;
+
+        var sorted = registrations.sort(function(a, b) {
+            var av = a[key];
+            var bv = b[key];
+
+            // A guess at what sorting majors looks like
+            try {
+                av = av.map(function(x) { return x.full_name; }).join(",");
+                bv = bv.map(function(x) { return x.full_name; }).join(",");
+            }
+            catch(exception) {
+            }
+
+            if (av > bv) {
+                return 1;
+            }
+            if (av < bv) {
+                return -1;
+            }
+            return 0;
+        });
+
+        return sorted;
     },
 
     download_name: function(section) {
@@ -45,8 +89,8 @@ var PhotoClassList = {
         return "";
     },
 
-    build_download: function(data) {
-        var registrations = data.registrations;
+    build_download: function() {
+        var registrations = PhotoClassList.sort_students('name');
         var lines = [];
         lines.push(["Student Number", "UW NetID", "Name", "Quiz Section", "Credits", "Class", "Majors", "Email"].join(","));
         for (var i = 0; i < registrations.length; i++) {
@@ -68,7 +112,7 @@ var PhotoClassList = {
     download_list: function() {
         var data = WSData.instructed_section_details();
 
-        var download = PhotoClassList.build_download(data.sections[0]);
+        var download = PhotoClassList.build_download();
         var blob = new Blob([download], {type: "text/csv" });
 
         var section = data.sections[0];
