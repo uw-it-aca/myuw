@@ -23,7 +23,7 @@ class TestInstructorSchedule(TestCase):
         now_request = get_request()
         get_request_with_user('bill', now_request)
         schedule = get_current_quarter_instructor_schedule(now_request)
-        self.assertEqual(len(schedule.sections), 2)
+        self.assertEqual(len(schedule.sections), 3)
 
     def test_get_instructor_section(self):
         now_request = RequestFactory().get("/")

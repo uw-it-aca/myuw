@@ -6,8 +6,9 @@ var InstructorCourseCardContent = {
         var source = $("#instructor_course_card_content_panel").html();
         var template = Handlebars.compile(source);
         var card = $('#instructor_course_card_content' + index);
-
+        var term = c_section.year + ',' + c_section.quarter.toLowerCase();
         var raw = template(c_section);
+
         card.html(raw);
 
         InstructorCourseSchePanel.render(c_section);
@@ -17,60 +18,16 @@ var InstructorCourseCardContent = {
             CourseInstructorPanel.render(c_section);
         }
 
-        InstructorCourseCardContent.add_events(card);
+        InstructorCourseCardContent.add_events(card, term);
     },
 
-    add_events: function(card) {
-        var term = $('.instructed-terms option:selected').val();
-        if (!term) {
-            term = window.term.year + ',' + window.term.quarter;
-        }
-
-        $(".course_website", card).on("click", function(ev) {
-            var target = ev.currentTarget;
-            var course_id = target.getAttribute("rel").replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("open_course_website_"+course_id, term);
-        });
-
-        $(".course_website_update", card).on("click", function(ev) {
-            var target = ev.currentTarget;
-            var course_id = target.getAttribute("rel").replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("update_course_website_"+course_id, term);
-            window.open(target.getAttribute('data-href'),
-                        'class_website_update',
-                        'width=700,height=400');
-        });
-
-        $(".copy_course_website", card).on("click", function () {
-            $("#class_website_url", card).
-                focus().
-                select();
-            try {
-                document.execCommand('copy');
-            }
-            catch (err) {
-                // ignore failed copy
-            }
-        });
-
+    add_events: function(card, term) {
         $(".show_map", card).on("click", function(ev) {
             var course_id = ev.currentTarget.getAttribute("rel");
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');
             var building = ev.currentTarget.getAttribute("rel");
             building = building.replace(/[^a-z0-9]/gi, '_');
             WSData.log_interaction("show_map_from_course_list_"+building, term);
-        });
-
-        $(".course_canvas_site", card).on("click", function(ev) {
-            var course_id = ev.currentTarget.getAttribute("rel");
-            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("open_course_canvas_website_"+course_id, term);
-        });
-
-        $(".course_website", card).on("click", function(ev) {
-            var course_id = ev.currentTarget.getAttribute("rel");
-            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("open_course_website_"+course_id, term);
         });
     }
 };

@@ -4,11 +4,10 @@
                 <span class="inst-course-label">Class Website</span>
             </div>
             {{#if class_website_data.not_found}}
-                <div class="pull-right">
-                    <span class="card-badge-value" style="text-align: right;">URL defined but cannot be found <a class="copy_course_website" href="javascript:void(0);" title="Copy url to clipboard"><i class="fa fa-clipboard"></i></a>
-                    <div class="course-website-update"><a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Update</a></div>
+                <div class="pull-right" style="text-align: right;">
+                    <span class="card-badge-value" style="text-align: right;"><a class="course_website" href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" target="_blank"><i class="fa fa-exclamation"></i> View class website</a>
+                    <div class="course-website-error-message">There is an error reaching website. <a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Please check URL</a></div>
                     </span>
-                    <textarea id="class_website_url" style="position: absolute; left: -10000px;">{{ class_website_url }}</textarea>
                 </div>
             {{else}}
                 {{#if class_website_url}}

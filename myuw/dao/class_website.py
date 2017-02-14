@@ -6,8 +6,10 @@ import logging
 from urlparse import urlparse
 from BeautifulSoup import BeautifulSoup
 from restclients.dao_implementation.live import get_con_pool, get_live_url
+from restclients.dao_implementation.mock import get_mockdata_url
 from restclients.exceptions import DataFailureException
-
+from myuw.dao import is_using_file_dao
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -19,9 +21,14 @@ def _fetch_url(method, url):
         logger.error("_get_html_from_url(%s)==>%s" % (url, ex))
         return None
 
-    pool = get_con_pool("%s://%s" % (p.scheme, p.netloc), socket_timeout=2)
-    response = get_live_url(
-        pool, method, p.hostname, url, {'ACCEPT': 'text/html'})
+    headers = {'ACCEPT': 'text/html'}
+    if is_using_file_dao():
+        response = get_mockdata_url(
+            'www', 'file', "/%s%s" % (p.netloc, p.path), headers)
+    else:
+        pool = get_con_pool("%s://%s" % (p.scheme, p.netloc), socket_timeout=2)
+        response = get_live_url(
+            pool, method, p.hostname, url, headers)
 
     if response.status != 200:
         raise DataFailureException(url, response.status, response.data)
@@ -32,8 +39,9 @@ def _fetch_url(method, url):
 def get_page_title_from_url(url):
     try:
         html = _fetch_url('GET', url)
-        soup = BeautifulSoup(html)
-        return soup.title.string
+        if html:
+            soup = BeautifulSoup(html)
+            return soup.title.string
     except AttributeError:
         pass
     except DataFailureException as ex:
