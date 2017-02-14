@@ -40,7 +40,7 @@ var PhotoClassList = {
 
     combine_majors: function(list) {
         if (list) {
-            return list.map(function(x) { return x.full_name }).join(", ");
+            return list.map(function(x) { return x.full_name; }).join(", ");
         }
         return "";
     },
