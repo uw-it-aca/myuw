@@ -8,9 +8,9 @@
 
               {{#if email_list.section_list.list_exists}}
                 <a href="{{email_list.section_list.list_admin_url}}" class="course_class_list">{{email_list.section_list.list_address}}@uw.edu</a>
-                <a href="#" class="manage_email_list" rel="{{section_label}}">Manage mailing list</a>
+                <a href="#" class="manage_email_list" rel="{{ curriculum_abbr }}_{{course_number}}_{{section_id}}">Manage mailing list</a>
               {{else}}
-                <span class="card-badge-value"><a href="#" class="create_email_list" rel="{{section_label}}">Create mailing list</a></span>
+                <span class="card-badge-value"><a href="#" class="create_email_list" rel="{{ curriculum_abbr }}_{{course_number}}_{{section_id}}">Create mailing list</a></span>
               {{/if}}
             </div>
             {{#if email_list.section_list.list_exists}}
