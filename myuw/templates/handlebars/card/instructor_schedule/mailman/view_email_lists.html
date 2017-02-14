@@ -1,23 +1,34 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "manage_email_lists_tmpl" %}
 
-<div class="card">
-    <h3>Mailing Lists</h3>
-    <button>Create</button>
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-    <div>{{section_list.list_address}}@uw.edu</div><a href="{{section_list.list_admin_url}}" class="course_class_list">Manage</a>
+            <h4>Mailing Lists</h4>
 
-    {{#if is_primary}}
-        {{#if has_multi_secondaries }}
-        <ul>
-           {{#each secondary_lists}}
-           <li>
-               <div>{{list_address}}@uw.edu</div><div><a href="{{section_list.list_admin_url}}">Manage</a></div>
-           </li>
-           {{/each}}
-        </ul>
-        {{/if}}
-    {{/if}}
+        </div>
 
+        <div class="modal-body">
+            <div>{{section_list.list_address}}@uw.edu</div><a href="{{section_list.list_admin_url}}" class="course_class_list">Manage</a>
+
+            {{#if is_primary}}
+                {{#if has_multi_secondaries }}
+            <ul>
+                {{#each secondary_lists}}
+                <li>
+                    <div>{{list_address}}@uw.edu</div><div><a href="{{section_list.list_admin_url}}">Manage</a></div>
+                </li>
+                {{/each}}
+            </ul>
+                {{/if}}
+            {{/if}}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
 </div>
+
 {% endtplhandlebars %}
