@@ -10,12 +10,41 @@
                 <a href="{{email_list.section_list.list_admin_url}}" class="course_class_list">{{email_list.section_list.list_address}}@uw.edu</a>
                 <a href="#" class="manage_email_list" rel="{{section_label}}">Manage mailing list</a>
               {{else}}
-                <span class="card-badge-value"><a href="#" class="create_email_list" rel="{{section_label}}">Create mailing list</a></span>
+                <span class="card-badge-value"><a href="#" class="create_email_list" data-toggle="modal" data-target="#request_emaillist_{{safeLabel section_label}}" rel="{{safeLabel section_label}}">Create mailing list</a></span>
               {{/if}}
             </div>
             {{#if email_list.section_list.list_exists}}
             <div id="manage_emaillist_{{safeLabel section_label}}"></div>
             {{else}}
-            <div id="request_emaillist_{{safeLabel section_label}}"></div>
+
+
+                <div id="request_emaillist_{{safeLabel section_label}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="request_emaillist_{{safeLabel section_label}}">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Create a Mailing List</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <div>BIO 101 A</div>
+                            <div>Winter 2017</div>
+
+                            <ul class="">
+                                <li>Creates a single list for this section: bio101a_wi17a@uw.edu</li>
+                                <li>Stays synced with the official class list</li>
+                            </ul>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Create Mailing List</button>
+                        </div>
+
+                      </div>
+                  </div>
+                </div>
+
+            </div>
             {{/if}}
     {% endverbatim %}
