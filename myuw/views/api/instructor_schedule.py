@@ -21,6 +21,7 @@ from myuw.logger.logresp import log_success_response
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.rest_dispatch import RESTDispatch, handle_exception
 from myuw.dao.exceptions import NotSectionInstructorException
+from myuw.dao.pws import get_url_key_for_regid
 
 
 logger = logging.getLogger(__name__)
@@ -189,8 +190,8 @@ def load_schedule(request, schedule, summer_term=""):
                     'student_number': person.student_number,
                     'credits': registration.credits,
                     'class': person.student_class,
-                    'email': person.email1
-
+                    'email': person.email1,
+                    'url_key': get_url_key_for_regid(person.uwregid),
                 })
 
             section_data["registrations"] = registrations

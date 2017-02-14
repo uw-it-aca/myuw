@@ -14,6 +14,7 @@ from myuw.views.category import category
 from myuw.views.display_dates import override
 from myuw.views.choose import new_site, old_site
 from myuw.views.logger import log_interaction
+from myuw.views.photo import show_photo
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.instructor_schedule import (InstScheCurQuar, InstScheQuar,
                                                 InstSect, InstSectionDetails)
@@ -178,5 +179,7 @@ urlpatterns += [
         category, name="myuw_resource_page"),
     url(r'^logout', logout, name="myuw_logout"
         ),
+
+    url(r'photo/(?P<url_key>.*)', show_photo),
     url(r'.*', index, name="myuw_home"),
 ]
