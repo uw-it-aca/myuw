@@ -1,4 +1,48 @@
 {% load templatetag_handlebars %}
-    {% verbatim %}
-          <a href="#" class="course_class_list" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Class List</a>
-    {% endverbatim %}
+    <!-- {% verbatim %} -->
+   <h4 class="scheduleHeading">Enrollment</h4>
+    <div>
+        <ul class="unstyled-list">
+            <li class="clearfix">
+                <div class="pull-left">
+                    <span class="inst-course-label">Registration Status</span>
+                </div>
+                <div class="pull-right">
+                    <span class="card-badge-value">Open</span>
+                </div>
+            </li>
+            <li class="clearfix">
+                <div class="pull-left">
+                    <span class="inst-course-label">Classlist</span>
+                </div>
+                <div class="pull-right">
+                    
+                    <div id="" class="card-badge-value">
+                      <span><a id="modal_toggle2" href="#" class="course_class_list btn btn-link" data-toggle="modal" data-target="#classlist_modal" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">{{ current_enrollment }}{{#if limit_estimate_enrollment }}/{{ limit_estimate_enrollment }}{{/if}}</a></span>
+                    </div>
+                </div>
+            </li>
+        </ul>  
+
+
+<!-- App messages modal -->
+        <div class="modal fade" id="classlist_modal" tabindex="-1" role="dialog" aria-labelledby="MyUWClasslistModal" aria-hidden="true">
+            <div class="modal-dialog classlist-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button id="modal_close" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title" id="myModalLabel">{{quarter}} {{year}} {{ curriculum_abbr }} {{course_number}} {{section_id}} Classlist</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>This is the modal body</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- {% endverbatim %} -->
