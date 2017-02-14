@@ -5,6 +5,10 @@ var InstructorCourseCards = {
 
     render_init: function() {
         if (myuwFeatureEnabled('instructor_schedule')) {
+            if (InstructorCourseCards.term === 'current') {
+                InstructorCourseCards.term = window.term.year + ',' + window.term.quarter;
+            }
+
             WSData.fetch_instructed_course_data_for_term(InstructorCourseCards.term,
                                                          InstructorCourseCards.render_upon_data,
                                                          InstructorCourseCards.render_error);
@@ -74,15 +78,15 @@ var InstructorCourseCards = {
             }
         });
 
-        InstructorCourseCards.add_events(term);
+        InstructorCourseCards.add_events();
     },
 
-    add_events: function(term) {
+    add_events: function() {
         $(".instructed-terms").change(function(ev) {
-            var term = $(".instructed-terms option:selected").val();
-            InstructorCourseCards.term = term;
+            InstructorCourseCards.term = $('.instructed-terms option:selected').val();
             InstructorCourseCards.render_init();
-            WSData.log_interaction("show_instructed_courses_for_" + term);
+            WSData.log_interaction("show_instructed_courses_for_" + 
+                                   InstructorCourseCards.term);
         });
     }
 };
