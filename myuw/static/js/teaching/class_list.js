@@ -22,6 +22,12 @@ var PhotoClassList = {
         $("#download_class_list").on("click", PhotoClassList.download_list);
     },
 
+    download_name: function(section) {
+        var base_name = section.curriculum_abbr+"_"+section.section_id+"_students.csv";
+
+        return base_name.replace(/[^a-z0-9\._]/ig, '_');
+    },
+
     download_list: function() {
         var data = WSData.instructed_section_details();
         var registrations = data.sections[0].registrations;
@@ -52,14 +58,17 @@ var PhotoClassList = {
 
         var blob = new Blob([lines.join("\n")], {type: "text/csv" });
 
+        var section = data.sections[0];
+        var filename = PhotoClassList.download_name(section);
         // from http://stackoverflow.com/questions/3665115/create-a-file-in-memory-for-user-to-download-not-through-server
         if(window.navigator.msSaveOrOpenBlob) {
             window.navigator.msSaveBlob(blob, filename);
         }
-        else{
+        else {
             var elem = window.document.createElement('a');
             elem.href = window.URL.createObjectURL(blob);
-            elem.download = 'classlist.csv';
+
+            elem.download = filename;
             document.body.appendChild(elem);
             elem.click();
             document.body.removeChild(elem);
@@ -94,3 +103,9 @@ var PhotoClassList = {
     }
 
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.PhotoClassList = PhotoClassList;
