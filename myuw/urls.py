@@ -154,8 +154,8 @@ urlpatterns += [
         r'(?P<section>\d{4},[a-zA-Z]+,[\w& ]+,\d{3}\/[A-Z][A-Z0-9]?)$',
         teaching_section, name="myuw_section_page"
         ),
-    url(r'^teaching/'
-        r'(?P<section>\d{4},[a-zA-Z]+,[\w& ]+,\d{3}\/[A-Z][A-Z0-9]?)/students$',
+    url(r'^teaching/(?P<section>\d{4},[a-zA-Z]+,[\w& ]+,\d{3}\/[A-Z][A-Z0-9]?)'
+        r'/students$',
         student_photo_list, name="myuw_photo_list"
         ),
 

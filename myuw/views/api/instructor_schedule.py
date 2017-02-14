@@ -196,7 +196,6 @@ def load_schedule(request, schedule, summer_term=""):
 
             section_data["registrations"] = registrations
 
-
     for t in course_resource_threads:
         t.join()
 

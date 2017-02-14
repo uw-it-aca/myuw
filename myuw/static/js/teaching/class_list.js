@@ -9,7 +9,7 @@ var PhotoClassList = {
 
                 WSData.fetch_instructed_section_details(window.section_data.section,
                                                         PhotoClassList.render_upon_data,
-                                                        PhotoClassList.render_error)
+                                                        PhotoClassList.render_error);
         }
         //PhotoClassList.make_html();
     },
@@ -17,7 +17,6 @@ var PhotoClassList = {
     render_upon_data: function() {
         var source = $("#photo_class_list").html();
         var template = Handlebars.compile(source);
-        console.log("Data: ", WSData.instructed_section_details());
         $("#app_content").html(template(WSData.instructed_section_details()));
 
         $("#download_class_list").on("click", PhotoClassList.download_list);
@@ -30,14 +29,14 @@ var PhotoClassList = {
         lines.push(["Student Number", "UW NetID", "Name", "Quiz Section", "Credits", "Class", "Major", "Email"].join(","));
         for (var i = 0; i < registrations.length; i++) {
             reg = registrations[i];
-            var fields = [reg['student_number'],
-                          reg['netid'],
-                          reg['full_name'],
-                          reg['quiz_section'],
-                          reg['credits'],
-                          reg['class'],
-                          reg['major'],
-                          reg['email']]
+            var fields = [reg.student_number,
+                          reg.netid,
+                          reg.full_name,
+                          reg.quiz_section,
+                          reg.credits,
+                          reg.class,
+                          reg.major,
+                          reg.email];
 
             var quote = function(x) {
                 if (x) {
@@ -46,7 +45,8 @@ var PhotoClassList = {
                 else {
                     return '""';
                 }
-            }
+            };
+
             lines.push(fields.map(quote).join(","));
         }
 
