@@ -28,7 +28,7 @@ describe("PhotoClassList", function() {
                                      full_name: 'preferred name',
                                      credits: '2.0',
                                      class: 'JUNIOR',
-                                     majors: ['my major'],
+                                     majors: [{full_name: 'my major' }],
                                      email: 'testing@uw.edu'
                                      });
 
@@ -51,8 +51,8 @@ describe("PhotoClassList", function() {
 
     describe('multiple majors', function() {
         it('should just comma separate them', function() {
-            assert.equal(PhotoClassList.combine_majors(['major1', 'another major', 'a major, but with commas']), "major1, another major, a major, but with commas");
-            assert.equal(PhotoClassList.combine_majors(['major1']), "major1");
+            assert.equal(PhotoClassList.combine_majors([{ full_name: 'major1' }, { full_name: 'another major'}, { full_name: 'a major, but with commas' }]), "major1, another major, a major, but with commas");
+            assert.equal(PhotoClassList.combine_majors([{ full_name: 'major1' }]), "major1");
             assert.equal(PhotoClassList.combine_majors([]), "");
             assert.equal(PhotoClassList.combine_majors(), "");
         });

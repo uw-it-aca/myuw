@@ -1,4 +1,4 @@
 {% load templatetag_handlebars %}
     {% verbatim %}
-          <a href="/teaching/{{year}},{{quarter}},{{ curriculum_abbr }},{{course_number}}/{{section_id}}/students" class="course_class_list" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Class List</a>
+          <a target="_blank" href="/teaching/{{year}},{{quarter}},{{ curriculum_abbr }},{{course_number}}/{{section_id}}/students" class="course_class_list" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Class List</a> {{ current_enrollment }} of {{ limit_estimate_enrollment }}
     {% endverbatim %}
