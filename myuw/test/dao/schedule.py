@@ -120,3 +120,9 @@ class TestSchedule(TestCase):
         spring_schedule = _get_schedule(regid, cur_term)
         self.assertIsNotNone(spring_schedule)
         self.assertEqual(len(spring_schedule.sections), 2)
+        has_transcriptable = False
+        for section in spring_schedule.sections:
+            if (section.course_number == "107" and
+                    section.curriculum_abbr == "ESS"):
+                has_transcriptable = True
+        self.assertTrue(has_transcriptable)
