@@ -3,25 +3,23 @@
 
 <div class="modal-dialog" role="document">
     <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <form id="emaillist{{course_abbr}}{{course_number}}{{section_id}}" method="POST" action="{% url 'myuw_emaillist_api' %}">{% csrf_token %}
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-            <h4>Create Mailing List</h4>
-        </div>
+                <h4>Create Mailing List</h4>
+            </div>
 
-        <div class="modal-body">
-            <div>{{ course_abbr }} {{course_number}} {{section_id}}</div>
-            <div>{{ capitalizeString quarter }} {{ year }}</div>
+            <div class="modal-body">
+                <div>{{ course_abbr }} {{course_number}} {{section_id}}</div>
+                <div>{{ capitalizeString quarter }} {{ year }}</div>
 
-            <ul class="">
-                <li>Creates a single list for this section: {{section_list.list_address}}@uw.edu</li>
-                <li>Stays synced with the official class list</li>
-            </ul>
+                <ul class="">
+                    <li>Creates a single list for this section: {{section_list.list_address}}@uw.edu</li>
+                    <li>Stays synced with the official class list</li>
+                </ul>
 
-            <form id="emaillist{{course_abbr}}{{course_number}}{{section_id}}" method="POST" action="{% url 'myuw_emaillist_api' %}">{% csrf_token %}
-                <div>
-                    <button type="submit" form="emaillist{{course_abbr}}{{course_number}}{{section_id}}" value="Create Mailing Lists">Create Mailing Lists</button>
-                </div>
+
 
                 {{#unless section_list.list_exists}}
                 <div class="section_single">
@@ -55,26 +53,28 @@
                 </div>
                     {{/if}}
                 {{/if}}
-            </form>
-        </div>
 
-        {{#if success }}
-        <div class="">
-            <h3>Request submitted</h3>
+            </div>
 
-            <ul class="">
-                <li>An email confirmation will be sent to {{ user.netid }}@uw.edu</li>
-                <li>Mailing lists may take up to 24 hours to activate</li>
-            </ul>
+            {{#if success }}
+            <div class="">
+                <h3>Request submitted</h3>
 
-            <p><a href="https://itconnect.uw.edu/connect/email/resources/mailman/" target="_blank">Learn more about Mailman email list manager</a></p>
+                <ul class="">
+                    <li>An email confirmation will be sent to {{ user.netid }}@uw.edu</li>
+                    <li>Mailing lists may take up to 24 hours to activate</li>
+                </ul>
 
-        </div>
-        {{/if}}
+                <p><a href="https://itconnect.uw.edu/connect/email/resources/mailman/" target="_blank">Learn more about Mailman email list manager</a></p>
 
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+            </div>
+            {{/if}}
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" form="emaillist{{course_abbr}}{{course_number}}{{section_id}}" value="Create Mailing Lists" class="btn btn-primary">Create Mailing Lists</button>
+            </div>
+        </form>
     </div>
 </div>
 
