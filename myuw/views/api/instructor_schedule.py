@@ -80,58 +80,52 @@ def _get_index(s):
 
 
 def set_course_resources(section_data, section):
-    threads_dict = {}
+    threads = []
     t = ThreadWithResponse(target=get_canvas_course_url,
                            args=(section,))
     t.start()
-    threads_dict["canvas_url"] = t
+    threads.append((t, 'canvas_url', section_data))
 
     t = ThreadWithResponse(target=get_subject_guide_by_section,
                            args=(section,))
     t.start()
-    threads_dict["lib_subj_guide"] = t
+    threads.append((t, 'lib_subj_guide', section_data))
 
     t = ThreadWithResponse(target=get_section_email_lists,
                            args=(section, False))
     t.start()
-    threads_dict["email_list"] = t
+    threads.append((t, 'email_list', section_data))
 
     t = ThreadWithResponse(target=set_class_website_data,
                            args=(section.class_website_url,))
     t.start()
-    threads_dict['class_website_data'] = t
+    threads.append((t, 'class_website_data', section_data))
 
     for i, meeting in enumerate(section.meetings):
         t = ThreadWithResponse(target=set_classroom_info_url,
                                args=(meeting,))
         t.start()
-        threads_dict['meetings.%s.classroom_info_url' % i] = t
+        threads.append((t, 'classroom_info_url', section_data['meetings'][i]))
 
     if section.final_exam and section.final_exam.building:
         t = ThreadWithResponse(target=set_classroom_info_url,
                                args=(section.final_exam,))
         t.start()
-        threads_dict['final_exam.classroom_info_url'] = t
+        threads.append((t, 'classroom_info_url', section_data['final_exam']))
 
     if not hasattr(section, 'limit_estimate_enrollment'):
         t = ThreadWithResponse(
             target=get_limit_estimate_enrollment_for_section,
             args=(section,))
         t.start()
-        threads_dict['limit_estimate_enrollment'] = t
+        threads.append((t, 'limit_estimate_enrollment', section_data))
 
-    for key in threads_dict.keys():
-        t = threads_dict[key]
+    for t, k, d in threads:
         t.join()
         if t.exception is None:
-            data = section_data
-            parts = key.split('.')
-            for part in parts[:-1]:
-                data = data[_get_index(part)]
-
-            data[parts[-1]] = t.response
+            d[k] = t.response
         else:
-            logger.error("%s: %s" % (key, t.exception))
+            logger.error("%s: %s" % (k, t.exception))
 
 
 def load_schedule(request, schedule, summer_term=""):
