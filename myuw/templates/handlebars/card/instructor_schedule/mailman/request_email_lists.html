@@ -32,19 +32,31 @@
                 <div>
                     <p>Creates multiple email lists, one for each section selected</p>
                     <fieldset>
-                        <div>
-                            <label>Select all</label> <input type="checkbox"/>
+                        <div class="clearfix">
+                            <div class="pull-right">
+                                <label for="select-all-sections">Select all</label> <input id="select-all-sections" type="checkbox"/>
+                            </div>
                         </div>
-                        <ul>
+                        <ul class="clearfix unstyled-list">
                             {{#each secondary_lists}}
-                            <li class="secondary_single">
+                            <li class="secondary_single clearfix">
                                 {{#unless list_exists}}
-                                <label for="secondary_single_{{ list_address }}">
-                                    {{ list_address }}@uw.edu
-                                </label>
-                                <input type="checkbox" id="secondary_single_{{list_address}}" name="secondary_single_{{list_address}}" value="{{section_label}}" />
+                                <div class="pull-left">
+                                    <label for="secondary_single_{{ list_address }}">
+                                        {{ list_address }}@uw.edu
+                                    </label>
+                                </div>
+                                <div class="pull-right">
+                                    <input type="checkbox" id="secondary_single_{{list_address}}" name="secondary_single_{{list_address}}" value="{{section_label}}" />
                                 {{else}}
-                                <span>{{list_address}}@uw.edu</span>
+                                <div class="pull-left">
+                                    <label for="secondary_single_{{ list_address }}">
+                                        {{ list_address }}@uw.edu
+                                    </label>
+                                </div>
+                                <div class="pull-right">
+                                    <span>{{list_address}}@uw.edu</span>
+                                </div>
                                 {{/unless}}
                             </li>
                             {{/each}}
