@@ -14,7 +14,7 @@ from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
     get_limit_estimate_enrollment_for_section, get_instructor_section
-from myuw.dao.class_website import get_page_title_from_url
+from myuw.dao.class_website import get_page_title_from_url, is_valid_page_url
 from myuw.dao.term import get_current_quarter, get_specific_term,\
     is_past, is_future
 from myuw.logger.logresp import log_success_response
@@ -63,6 +63,22 @@ def set_class_website_data(url):
     return website_data
 
 
+def set_classroom_info_url(meeting):
+    url = 'http://www.washington.edu/classroom/%s+%s' % (
+        meeting.building, meeting.room_number)
+    if is_valid_page_url(url):
+        return url
+
+    return None
+
+
+def _get_index(s):
+    try:
+        return int(s)
+    except ValueError:
+        return s
+
+
 def set_course_resources(section_data, section):
     threads_dict = {}
     t = ThreadWithResponse(target=get_canvas_course_url,
@@ -85,6 +101,18 @@ def set_course_resources(section_data, section):
     t.start()
     threads_dict['class_website_data'] = t
 
+    for i, meeting in enumerate(section.meetings):
+        t = ThreadWithResponse(target=set_classroom_info_url,
+                               args=(meeting,))
+        t.start()
+        threads_dict['meetings.%s.classroom_info_url' % i] = t
+
+    if section.final_exam and section.final_exam.building:
+        t = ThreadWithResponse(target=set_classroom_info_url,
+                               args=(section.final_exam,))
+        t.start()
+        threads_dict['final_exam.classroom_info_url'] = t
+
     if not hasattr(section, 'limit_estimate_enrollment'):
         t = ThreadWithResponse(
             target=get_limit_estimate_enrollment_for_section,
@@ -96,7 +124,12 @@ def set_course_resources(section_data, section):
         t = threads_dict[key]
         t.join()
         if t.exception is None:
-            section_data[key] = t.response
+            data = section_data
+            parts = key.split('.')
+            for part in parts[:-1]:
+                data = data[_get_index(part)]
+
+            data[parts[-1]] = t.response
         else:
             logger.error("%s: %s" % (key, t.exception))
 
