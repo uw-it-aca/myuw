@@ -72,13 +72,6 @@ def set_classroom_info_url(meeting):
     return None
 
 
-def _get_index(s):
-    try:
-        return int(s)
-    except ValueError:
-        return s
-
-
 def set_course_resources(section_data, section):
     threads = []
     t = ThreadWithResponse(target=get_canvas_course_url,
