@@ -7,9 +7,10 @@ describe("PhotoClassList", function() {
             var section = {};
             section.curriculum_abbr = 'TEST IT';
             section.section_id = 'A1';
+            section.course_number = '101';
 
-            var name = PhotoClassList.download_name(section);
-            assert.equal(name, 'TEST_IT_A1_students.csv');
+            var name = PhotoClassList.download_name(section, 2012, 'winter');
+            assert.equal(name, 'TEST_IT_101_A1_winter_2012_students.csv');
         });
     });
     describe('quoting fields', function() {
