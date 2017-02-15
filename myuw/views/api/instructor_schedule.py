@@ -305,11 +305,7 @@ class InstSect(RESTDispatch):
             schedule = get_instructor_section(year, quarter, curriculum,
                                               course_number, course_section)
         except NotSectionInstructorException:
-            reason = "Read Access Forbidden to Non Instructor"
-            response = HttpResponse(reason)
-            response.status_code = 403
-            response.reason_phrase = reason
-            return response
+            return not_instructor_error()
 
         resp_data = load_schedule(request, schedule)
         log_success_response(logger, timer)
@@ -350,11 +346,7 @@ class InstSectionDetails(RESTDispatch):
                                               include_registrations=True)
 
         except NotSectionInstructorException:
-            reason = "Read Access Forbidden to Non Instructor"
-            response = HttpResponse(reason)
-            response.status_code = 403
-            response.reason_phrase = reason
-            return response
+            return not_instructor_error()
 
         self.term = get_specific_term(year, quarter)
         resp_data = load_schedule(request, schedule,
@@ -443,3 +435,11 @@ class InstSectionDetails(RESTDispatch):
                                        request)
         except Exception:
             return handle_exception(logger, timer, traceback)
+
+
+def not_instructor_error():
+    reason = "Read Access Forbidden to Non Instructor"
+    response = HttpResponse(reason)
+    response.status_code = 403
+    response.reason_phrase = reason
+    return response
