@@ -26,6 +26,8 @@ describe("PhotoClassList", function() {
             data.registrations.push({student_number: '1234',
                                      netid: 'testing',
                                      full_name: 'preferred name',
+                                     name: 'preferred',
+                                     surname: 'name',
                                      credits: '2.0',
                                      class: 'JUNIOR',
                                      majors: [{full_name: 'my major' }],
@@ -36,16 +38,17 @@ describe("PhotoClassList", function() {
 
             var lines = result.split("\n");
             // Header...
-            assert.equal(lines[0], 'Student Number,UW NetID,Name,Quiz Section,Credits,Class,Majors,Email');
+            assert.equal(lines[0], 'Student Number,UW NetID,Name,Last Name,Quiz Section,Credits,Class,Majors,Email');
 
             var row1 = lines[1].split(",");
             assert.equal(row1[0], '"1234"');
             assert.equal(row1[1], '"testing"');
-            assert.equal(row1[2], '"preferred name"');
-            assert.equal(row1[4], '"2.0"');
-            assert.equal(row1[5], '"JUNIOR"');
-            assert.equal(row1[6], '"my major"');
-            assert.equal(row1[7], '"testing@uw.edu"');
+            assert.equal(row1[2], '"preferred"');
+            assert.equal(row1[3], '"name"');
+            assert.equal(row1[5], '"2.0"');
+            assert.equal(row1[6], '"JUNIOR"');
+            assert.equal(row1[7], '"my major"');
+            assert.equal(row1[8], '"testing@uw.edu"');
         });
     });
 

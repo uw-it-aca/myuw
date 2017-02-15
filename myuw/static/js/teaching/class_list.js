@@ -42,6 +42,11 @@ var PhotoClassList = {
         var data = WSData.instructed_section_details();
         var registrations = data.sections[0].registrations;
 
+        return PhotoClassList.sort_registrations(registrations, key);
+    },
+
+    sort_registrations: function(registrations, key) {
+
         var sorted = registrations.sort(function(a, b) {
             var av = a[key];
             var bv = b[key];
@@ -89,8 +94,8 @@ var PhotoClassList = {
         return "";
     },
 
-    build_download: function() {
-        var registrations = PhotoClassList.sort_students('name');
+    build_download: function(data) {
+        var registrations = PhotoClassList.sort_registrations(data.registrations, 'name');
         var lines = [];
         lines.push(["Student Number", "UW NetID", "Name", "Quiz Section", "Credits", "Class", "Majors", "Email"].join(","));
         for (var i = 0; i < registrations.length; i++) {
@@ -112,7 +117,7 @@ var PhotoClassList = {
     download_list: function() {
         var data = WSData.instructed_section_details();
 
-        var download = PhotoClassList.build_download();
+        var download = PhotoClassList.build_download(data.sections[0]);
         var blob = new Blob([download], {type: "text/csv" });
 
         var section = data.sections[0];
