@@ -2,6 +2,9 @@
 {% load static %}
 {% load compress %}
 
+{% block header %}{% endblock %}
+{% block app_navigation %}{% endblock %}
+
 {% block page_title %}
 MyUW Photo Class List
 {% endblock %}
@@ -20,3 +23,6 @@ MyUW Photo Class List
     <script src="{% static 'js/page/teaching_class_list.js' %}"></script>
     {% endcompress %}
 {% endblock %}
+
+
+{% block footer %}{% endblock %}
