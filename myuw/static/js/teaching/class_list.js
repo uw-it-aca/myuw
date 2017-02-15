@@ -71,8 +71,8 @@ var PhotoClassList = {
         return sorted;
     },
 
-    download_name: function(section) {
-        var base_name = section.curriculum_abbr+"_"+section.section_id+"_students.csv";
+    download_name: function(section, year, quarter) {
+        var base_name = section.curriculum_abbr+"_"+section.course_number+"_"+section.section_id+"_"+quarter+"_"+year+"_students.csv";
 
         return base_name.replace(/[^a-z0-9\._]/ig, '_');
     },
@@ -122,7 +122,7 @@ var PhotoClassList = {
         var blob = new Blob([download], {type: "text/csv" });
 
         var section = data.sections[0];
-        var filename = PhotoClassList.download_name(section);
+        var filename = PhotoClassList.download_name(section, data.year, data.quarter);
         // from http://stackoverflow.com/questions/3665115/create-a-file-in-memory-for-user-to-download-not-through-server
         if(window.navigator.msSaveOrOpenBlob) {
             window.navigator.msSaveBlob(blob, filename);
