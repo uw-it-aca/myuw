@@ -97,12 +97,13 @@ var PhotoClassList = {
     build_download: function(data) {
         var registrations = PhotoClassList.sort_registrations(data.registrations, 'name');
         var lines = [];
-        lines.push(["Student Number", "UW NetID", "Name", "Quiz Section", "Credits", "Class", "Majors", "Email"].join(","));
+        lines.push(["Student Number", "UW NetID", "Name", "Last Name", "Quiz Section", "Credits", "Class", "Majors", "Email"].join(","));
         for (var i = 0; i < registrations.length; i++) {
             reg = registrations[i];
             var fields = [reg.student_number,
                           reg.netid,
-                          reg.full_name,
+                          reg.name,
+                          reg.surname,
                           reg.quiz_section,
                           reg.credits,
                           reg.class,
