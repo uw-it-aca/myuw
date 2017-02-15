@@ -19,7 +19,7 @@ from myuw.logger.logback import log_exception
 from myuw.logger.logresp import log_invalid_netid_response
 from myuw.logger.logresp import log_success_response_with_affiliation
 from myuw.logger.session_log import log_session
-from myuw.views.rest_dispatch import invalid_session
+from myuw.views.error import invalid_session
 from myuw.dao.uwemail import get_email_forwarding_for_current_user
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.views import prefetch_resources

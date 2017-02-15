@@ -8,8 +8,8 @@ from myuw.dao.notice import get_tuition_due_date
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_data_not_found_response, log_msg,\
     log_success_response
-from myuw.views.rest_dispatch import RESTDispatch, data_not_found,\
-    handle_exception
+from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.error import data_not_found, handle_exception
 
 
 logger = logging.getLogger(__name__)

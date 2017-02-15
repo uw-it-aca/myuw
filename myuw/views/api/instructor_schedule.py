@@ -2,7 +2,7 @@ import json
 import traceback
 from myuw.util.thread import Thread
 from myuw.logger.timer import Timer
-from myuw.views.rest_dispatch import handle_exception
+from myuw.views.error import handle_exception
 
 import logging
 from django.http import HttpResponse
