@@ -15,7 +15,7 @@ from restclients.sws.term import get_specific_term
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.term import get_current_quarter
 from myuw.dao.exceptions import NotSectionInstructorException
-from myuw.util.thread import Thread
+from myuw.util.thread import Thread, ThreadWithResponse
 
 
 logger = logging.getLogger(__name__)
@@ -119,17 +119,30 @@ def get_instructor_section(year, quarter, curriculum,
 
     schedule.sections.append(section)
     if include_linked_sections:
+        threads = []
         for url in section.linked_section_urls:
-            try:
-                linked = get_section_by_url(url)
-                registrations = get_active_registrations_by_section(linked)
-                linked.registrations = registrations
+            t = ThreadWithResponse(target=get_linked_section, args=(url,))
+            t.start()
+            threads.append(t)
 
+        for thread in threads:
+            thread.join()
+            linked = thread.response
+            if linked:
                 schedule.sections.append(linked)
-            except Exception as ex:
-                pass
 
     return schedule
+
+
+def get_linked_section(url):
+    try:
+        linked = get_section_by_url(url)
+        registrations = get_active_registrations_by_section(linked)
+        linked.registrations = registrations
+
+        return linked
+    except:
+        return
 
 
 def get_limit_estimate_enrollment_for_section(section):
