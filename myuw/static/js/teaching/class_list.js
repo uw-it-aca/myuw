@@ -105,20 +105,52 @@ var PhotoClassList = {
     },
 
     build_download: function(data) {
-        var registrations = PhotoClassList.sort_registrations(data.registrations, 'name');
-        var lines = [];
-        lines.push(["Student Number", "UW NetID", "Name", "Last Name", "Quiz Section", "Credits", "Class", "Majors", "Email"].join(","));
-        for (var i = 0; i < registrations.length; i++) {
-            reg = registrations[i];
+        var registrations = PhotoClassList.sort_registrations(data.registrations, 'name'),
+            lines = [],
+            header = ["Student Number", "UW NetID", "Name", "Last Name"],
+            type;
+
+        for (var i = 0; i < data.linked_types.length; i++) {
+            type = data.linked_types[i];
+            var upper = type.replace(/^([a-z])/, function(match) { return match.toUpperCase(); });
+            header.push(upper+" Section");
+        }
+
+        header.push("Credits", "Class", "Majors", "Email");
+
+        lines.push(header.join(","));
+
+        for (i = 0; i < registrations.length; i++) {
+            var reg = registrations[i];
+
+            var linked = reg.linked_sections;
+
+            var by_type = {};
+            for (var j = 0; j < linked.length; j++) {
+                type = linked[j].type;
+                var section_string = linked[j].sections.join(",");
+                by_type[type] = section_string;
+            }
+
             var fields = [reg.student_number,
                           reg.netid,
                           reg.name,
-                          reg.surname,
-                          reg.quiz_section,
-                          reg.credits,
-                          reg.class,
-                          PhotoClassList.combine_majors(reg.majors),
-                          reg.email];
+                          reg.surname];
+
+            for (j = 0; j < data.linked_types.length; j++) {
+                type = data.linked_types[j];
+                if (by_type[type]) {
+                    fields.push(by_type[type]);
+                }
+                else {
+                    fields.push("");
+                }
+            }
+
+            fields.push(reg.credits,
+                        reg.class,
+                        PhotoClassList.combine_majors(reg.majors),
+                        reg.email);
 
             lines.push(fields.map(PhotoClassList.quote_field).join(","));
         }
