@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from myuw.views.rest_dispatch import RESTDispatch
 from restclients.sws.section import get_section_by_label
 from myuw.dao.mailman import get_section_email_lists
-from myuw.views.rest_dispatch import handle_exception
+from myuw.views.error import handle_exception
 
 
 logger = logging.getLogger(__name__)

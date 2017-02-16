@@ -1,5 +1,6 @@
 import json
 import traceback
+from myuw.views.error import handle_exception
 import logging
 from django.http import HttpResponse
 from operator import itemgetter
@@ -19,7 +20,7 @@ from myuw.dao.term import get_current_quarter, get_specific_term,\
     is_past, is_future
 from myuw.logger.logresp import log_success_response
 from myuw.util.thread import Thread, ThreadWithResponse
-from myuw.views.rest_dispatch import RESTDispatch, handle_exception
+from myuw.views.rest_dispatch import RESTDispatch
 from myuw.dao.exceptions import NotSectionInstructorException
 
 
