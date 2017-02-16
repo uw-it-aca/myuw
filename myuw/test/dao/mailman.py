@@ -45,10 +45,15 @@ class TestMailmanDao(TestCase):
         self.assertEqual(
             list_data["list_address"], 'bbio180a_su13')
         self.assertTrue(list_data["list_exists"])
+        self.assertEqual(list_data["section_id"], "A")
 
         self.assertRaises(DataFailureException,
                           get_single_course_list,
                           'T ARTS', '110', 'A', 'spring', 2016)
+        list_data = get_single_course_list('ESS', '102', 'A', 'spring', 2013)
+        self.assertFalse(list_data["list_exists"])
+        self.assertEqual(list_data["section_label"], "2013,spring,ESS,102/A")
+        self.assertEqual(list_data["section_id"], "A")
 
     def test_get_single_section_list(self):
         section = get_section_by_label('2013,spring,PHYS,121/A')
@@ -57,6 +62,7 @@ class TestMailmanDao(TestCase):
             get_single_section_list(section),
             {"list_exists": True,
              "list_address": "phys121a_sp13",
+             "section_id": 'A',
              "list_admin_url": url})
 
         list_data = get_single_section_list(

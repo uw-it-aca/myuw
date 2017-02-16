@@ -45,6 +45,7 @@ def get_single_course_list(curriculum_abbr, course_number, section_id,
     data = get_list_json(
         exists, get_course_list_name(curriculum_abbr, course_number,
                                      section_id, quarter, year))
+    data["section_id"] = section_id
     if not exists:
         data["section_label"] = get_section_label(
             curriculum_abbr, course_number, section_id, quarter, year)
