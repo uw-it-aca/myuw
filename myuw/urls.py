@@ -93,7 +93,7 @@ urlpatterns += [
         login_required(Emaillist().run),
         name="myuw_emaillist_api"
         ),
-    url(r'^api/v1/emaillist/?',
+    url(r'^api/v1/emaillist',
         login_required(Emaillist().run),
         name="myuw_emaillist_api"
         ),

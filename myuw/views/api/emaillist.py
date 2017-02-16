@@ -30,6 +30,11 @@ class Emaillist(RESTDispatch):
         except Exception:
             return handle_exception(logger, timer, traceback)
 
+    def POST(self, request):
+        if request.POST:
+            data = {"request_sent": True}
+            return HttpResponse(json.dumps(data))
+
 
 def get_section(year, quarter, curriculum_abbr, course_number, section_id):
     return get_section_by_label("%s,%s,%s,%s/%s" % (
