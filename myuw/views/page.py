@@ -52,7 +52,7 @@ def page(request,
                       "prefetch_resources",
                       traceback.format_exc())
         context["webservice_outage"] = True
-        return render(request, "index.html", context)
+        return render(request, template, context)
     log_session(netid, request.session.session_key, request)
 
     if _is_mobile(request):
