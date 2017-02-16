@@ -5,20 +5,24 @@
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
             <h4>Mailing Lists</h4>
-
         </div>
 
         <div class="modal-body">
-            <div>{{section_list.list_address}}@uw.edu</div><a href="{{section_list.list_admin_url}}" class="course_class_list">Manage</a>
-
+            <div class="clearfix">
+                <div class="pull-left">{{section_list.list_address}}@uw.edu</div>
+                <div class="pull-right">
+                    <a href="{{section_list.list_admin_url}}" class="course_class_list" target="_blank">Manage</a>
+                </div>
+            </div>
             {{#if is_primary}}
                 {{#if has_multi_secondaries }}
-            <ul>
+            <ul class="unstyled-list">
                 {{#each secondary_section_lists}}
-                <li>
-                    <div>{{list_address}}@uw.edu</div><div><a href="{{section_list.list_admin_url}}">Manage</a></div>
+                <li class="clearfix">
+                    <div class="pull-left">{{list_address}}@uw.edu</div>
+                    <div class="pull-right"><a href="{{section_list.list_admin_url}}" target="_blank">Manage</a></div>
+
                 </li>
                 {{/each}}
             </ul>
