@@ -6,10 +6,12 @@ WSData = {
     _course_data_error_status: {},
     _instructed_course_data: {},
     _instructed_course_data_error_status: {},
-    _instructed_section_data: {},
-    _instructed_section_data_error_status: {},
     _instructed_emaillist_data_error_status: {},
     _instructed_emaillist_data: {},
+    _instructed_section_data: {},
+    _instructed_section_data_error_status: {},
+    _instructed_section_details: null,
+    _instructed_section_details_error_status: null,
     _department_events: null,
     _grade_data: {},
     _hfs_data: null,
@@ -179,6 +181,10 @@ WSData = {
 
     instructed_section_data: function(section_label) {
         return WSData._instructed_section_data[section_label];
+    },
+
+    instructed_section_details: function() {
+        return WSData._instructed_section_details;
     },
 
     grade_data_for_term: function(term) {
@@ -547,6 +553,35 @@ WSData = {
                 callback.apply(null, args);
             }, 0);
         }
+
+    },
+
+    fetch_instructed_section_details: function(section_label, callback, err_callback, args) {
+        var url = "/api/v1/instructor_section_details/" + section_label;
+
+        if (WSData._is_running_url(url)) {
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+            return;
+        }
+
+        WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+
+        $.ajax({
+            url: url,
+            dataType: "JSON",
+            async: true,
+            type: "GET",
+            accepts: {html: "text/html"},
+            success: function(results) {
+                WSData._instructed_section_details_error_status = null;
+                WSData._instructed_section_details = results;
+                WSData._run_success_callbacks_for_url(url);
+            },
+            error: function(xhr, status, error) {
+                WSData._instructed_section_details_error_status = xhr.status;
+                WSData._run_error_callbacks_for_url(url);
+            }
+        });
 
     },
 

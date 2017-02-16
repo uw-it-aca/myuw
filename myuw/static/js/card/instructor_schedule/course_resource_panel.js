@@ -38,6 +38,7 @@ var InstructorCourseResourcePanel = {
             WSData.log_interaction("open_course_canvas_website_"+course_id, term);
         });
 
+
         $(".create_email_list", panel).on("click", function(ev) {
             var course_label = InstructorCourseResourcePanel.get_course_label(term, ev.currentTarget);
             label = safe_label(course_label);
@@ -52,6 +53,20 @@ var InstructorCourseResourcePanel = {
             ManageEmailLists.render_init(course_label);
         });
 
+        $(".course_class_list", panel).on("click", function(ev) {
+            var width = 800;
+            var height = 400;
+
+            var left = window.screenX + 200;
+            var top = window.screenY + 200;
+
+            window.open(ev.target.href, '_blank', 'width='+width+',height='+height+',left='+left+',top='+top);
+
+            var course_id = ev.currentTarget.getAttribute("rel");
+            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
+            WSData.log_interaction("open_course_classlist_"+course_id, term);
+            return false;
+        });
     },
 
     get_course_label: function(term, target) {
