@@ -54,3 +54,11 @@ def handle_exception(logger, timer, stack_trace):
             exc_value.status == 404:
         return data_not_found()
     return data_error()
+
+
+def not_instructor_error():
+    reason = "Read Access Forbidden to Non Instructor"
+    response = HttpResponse(reason)
+    response.status_code = 403
+    response.reason_phrase = reason
+    return response

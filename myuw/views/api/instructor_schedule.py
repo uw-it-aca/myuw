@@ -1,6 +1,6 @@
 import json
 import traceback
-from myuw.views.error import handle_exception
+from myuw.views.error import handle_exception, not_instructor_error
 import logging
 from django.http import HttpResponse
 from operator import itemgetter
@@ -457,11 +457,3 @@ class InstSectionDetails(RESTDispatch):
                                        request)
         except Exception as ex:
             return handle_exception(logger, timer, traceback)
-
-
-def not_instructor_error():
-    reason = "Read Access Forbidden to Non Instructor"
-    response = HttpResponse(reason)
-    response.status_code = 403
-    response.reason_phrase = reason
-    return response
