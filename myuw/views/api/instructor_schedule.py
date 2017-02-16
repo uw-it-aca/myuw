@@ -1,5 +1,6 @@
 import json
 import traceback
+from myuw.views.error import handle_exception
 import logging
 from django.http import HttpResponse
 from operator import itemgetter
@@ -17,12 +18,12 @@ from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
     get_limit_estimate_enrollment_for_section, get_instructor_section
-from myuw.dao.class_website import get_page_title_from_url
+from myuw.dao.class_website import get_page_title_from_url, is_valid_page_url
 from myuw.dao.term import get_current_quarter, get_specific_term,\
     is_past, is_future
 from myuw.logger.logresp import log_success_response
 from myuw.util.thread import Thread, ThreadWithResponse
-from myuw.views.rest_dispatch import RESTDispatch, handle_exception
+from myuw.views.rest_dispatch import RESTDispatch
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.pws import get_url_key_for_regid
 from myuw.dao.enrollment import get_code_for_class_level
@@ -68,42 +69,62 @@ def set_class_website_data(url):
     return website_data
 
 
+def set_classroom_info_url(meeting):
+    url = 'http://www.washington.edu/classroom/%s+%s' % (
+        meeting.building, meeting.room_number)
+    if is_valid_page_url(url):
+        return url
+
+    return None
+
+
 def set_course_resources(section_data, section):
-    threads_dict = {}
+    threads = []
     t = ThreadWithResponse(target=get_canvas_course_url,
                            args=(section,))
     t.start()
-    threads_dict["canvas_url"] = t
+    threads.append((t, 'canvas_url', section_data))
 
     t = ThreadWithResponse(target=get_subject_guide_by_section,
                            args=(section,))
     t.start()
-    threads_dict["lib_subj_guide"] = t
+    threads.append((t, 'lib_subj_guide', section_data))
 
     t = ThreadWithResponse(target=get_section_email_lists,
                            args=(section, False))
     t.start()
-    threads_dict["email_list"] = t
+    threads.append((t, 'email_list', section_data))
 
     t = ThreadWithResponse(target=set_class_website_data,
                            args=(section.class_website_url,))
     t.start()
-    threads_dict['class_website_data'] = t
+    threads.append((t, 'class_website_data', section_data))
+
+    for i, meeting in enumerate(section.meetings):
+        t = ThreadWithResponse(target=set_classroom_info_url,
+                               args=(meeting,))
+        t.start()
+        threads.append((t, 'classroom_info_url', section_data['meetings'][i]))
+
+    if section.final_exam and section.final_exam.building:
+        t = ThreadWithResponse(target=set_classroom_info_url,
+                               args=(section.final_exam,))
+        t.start()
+        threads.append((t, 'classroom_info_url', section_data['final_exam']))
 
     if not hasattr(section, 'limit_estimate_enrollment'):
         t = ThreadWithResponse(
             target=get_limit_estimate_enrollment_for_section,
             args=(section,))
         t.start()
-        threads_dict['limit_estimate_enrollment'] = t
+        threads.append((t, 'limit_estimate_enrollment', section_data))
 
-    for key in threads_dict.keys():
-        t = threads_dict[key]
+    for t, k, d in threads:
         t.join()
         if t.exception is None:
-            section_data[key] = t.response
+            d[k] = t.response
         else:
-            logger.error("%s: %s" % (key, t.exception))
+            logger.error("%s: %s" % (k, t.exception))
 
 
 def load_schedule(request, schedule, summer_term="", section_callback=None):

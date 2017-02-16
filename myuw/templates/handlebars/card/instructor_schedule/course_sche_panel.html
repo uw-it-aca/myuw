@@ -46,7 +46,9 @@ MEETING TIME
                     {{room}}
                 </td>
                 <td class="course-location-info">
-                  <a href="#">Room info</a>
+                  {{#if classroom_info_url}}
+                  <a href="{{classroom_info_url}}">Room info</a>
+                  {{/if}}
                 </td>
             {{/if}}
         </tr>
@@ -83,7 +85,11 @@ MEETING TIME
           {{/if}}
           {{final_exam.room_number}}
         </td>
-        <td><a href="#">Room info</a></td>
+        <td>
+          {{#if final_exam.classroom_info_url}}
+          <a href="{{final_exam.classroom_info_url}}">Room info</a>
+          {{/if}}
+        </td>
       </tbody>
     </table>
   {{/if}}

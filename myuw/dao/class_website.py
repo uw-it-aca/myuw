@@ -50,3 +50,13 @@ def get_page_title_from_url(url):
         logger.error("get_page_title_from_url(%s)==>%s" % (url, ex))
 
     return None
+
+
+def is_valid_page_url(url):
+    try:
+        _fetch_url('HEAD', url)
+        return True
+    except Exception as ex:
+        pass
+
+    return False
