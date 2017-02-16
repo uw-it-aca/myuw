@@ -126,8 +126,9 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
     course_resource_threads = []
     for section in schedule.sections:
         section_data = json_data["sections"][section_index]
-        color = colors[section.section_label()]
-        section_data["color_id"] = color
+        if section.section_label() in colors:
+            color = colors[section.section_label()]
+            section_data["color_id"] = color
         section_index += 1
 
         if EARLY_FALL_START == section.institute_name:
@@ -433,7 +434,7 @@ class InstSectionDetails(RESTDispatch):
             return self.make_http_resp(timer, year, quarter, curriculum,
                                        course_number, course_section,
                                        request)
-        except Exception:
+        except Exception as ex:
             return handle_exception(logger, timer, traceback)
 
 
