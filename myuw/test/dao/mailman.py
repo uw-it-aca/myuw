@@ -109,11 +109,13 @@ class TestMailmanDao(TestCase):
         self.assertTrue(ret_json["section_list"]["list_exists"])
 
         self.assertTrue(ret_json["has_multi_secondaries"])
-        self.assertEqual(len(ret_json['secondary_lists']), 21)
-        self.assertEqual(ret_json["secondary_lists"][0]["list_address"],
-                         'phys121aa_sp13')
-        self.assertEqual(ret_json["secondary_lists"][20]["list_address"],
-                         'phys121av_sp13')
+        self.assertEqual(len(ret_json['secondary_section_lists']), 21)
+        self.assertEqual(
+            ret_json["secondary_section_lists"][0]["list_address"],
+            'phys121aa_sp13')
+        self.assertEqual(
+            ret_json["secondary_section_lists"][20]["list_address"],
+            'phys121av_sp13')
 
         self.assertEqual(ret_json["secondary_combined_list"]["list_address"],
                          'multi_phys121a_sp13')
@@ -124,13 +126,13 @@ class TestMailmanDao(TestCase):
         self.assertFalse(ret_json["section_list"]["list_exists"])
         self.assertEqual(ret_json["section_list"]["section_label"],
                          '2013,spring,ESS,102/A')
-        self.assertEqual(len(ret_json["secondary_lists"]), 1)
+        self.assertEqual(len(ret_json["secondary_section_lists"]), 1)
         self.assertFalse(ret_json["has_multi_secondaries"])
 
         ret_json = get_section_email_lists(
             get_section_by_label('2013,spring,TRAIN,101/A'), True)
         self.assertTrue(ret_json["section_list"]["list_exists"])
-        self.assertIsNone(ret_json["secondary_lists"])
+        self.assertIsNone(ret_json["secondary_section_lists"])
 
     def test_get_section_label(self):
         self.assertEqual(get_section_label('T ARTS', '110', 'A',
