@@ -21,7 +21,7 @@ var RequestEmailLists = {
     render_error: function() {
         var error_code = WSData._instructed_emaillist_data_error_status[RequestEmailLists.label];
         if (error_code == 543) {
-            raw = CardWithError.render("Request Email List Popup");
+            raw = CardWithError.render("Request Email List");
             $(RequestEmailLists.dom_target).html(raw);
         }
     },
@@ -34,5 +34,33 @@ var RequestEmailLists = {
         var raw = template(data);
         $(RequestEmailLists.dom_target).html(raw);
         LogUtils.cardLoaded(RequestEmailLists.name, RequestEmailLists.dom_target);
+        RequestEmailLists.add_events($(RequestEmailLists.dom_target));
+    },
+
+    add_events: function(panel) {
+        $("#request_emaillist_form", panel).on("submit", function(ev) {
+            ev.preventDefault();
+            var target = ev.currentTarget;
+            $.ajax({
+                url: "/api/v1/emaillist/",
+                dataType: "JSON",
+                async: true,
+                type: 'POST',
+                accepts: {html: "text/html"},
+                data: $(target).serialize(),
+                success: function(results) {
+                    var data = results;
+                    var source = $("#request_email_lists_tmpl").html();
+                    var template = Handlebars.compile(source);
+                    var raw = template(data);
+                    $(RequestEmailLists.dom_target).html(raw);
+                    LogUtils.cardLoaded('RequestEmailLists-submitted', RequestEmailLists.dom_target);
+                },
+                error: function(xhr, status, error) {
+                    raw = CardWithError.render("Request Email List Submit");
+                    $(RequestEmailLists.dom_target).html(raw);
+                }
+            });
+        });
     }
 };

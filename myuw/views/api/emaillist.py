@@ -6,7 +6,7 @@ from myuw.logger.timer import Timer
 from myuw.views.rest_dispatch import RESTDispatch
 from restclients.sws.section import get_section_by_label
 from myuw.dao.mailman import get_section_email_lists
-from myuw.views.rest_dispatch import handle_exception
+from myuw.views.error import handle_exception
 
 
 logger = logging.getLogger(__name__)
@@ -29,6 +29,11 @@ class Emaillist(RESTDispatch):
             return HttpResponse(json.dumps(email_list_json))
         except Exception:
             return handle_exception(logger, timer, traceback)
+
+    def POST(self, request):
+        if request.POST:
+            data = {"request_sent": True}
+            return HttpResponse(json.dumps(data))
 
 
 def get_section(year, quarter, curriculum_abbr, course_number, section_id):

@@ -1,10 +1,14 @@
 import json
 import traceback
+from myuw.views.error import handle_exception, not_instructor_error
 import logging
 from django.http import HttpResponse
 from operator import itemgetter
 from myuw.logger.timer import Timer
 from restclients.sws.term import get_term_before, get_term_after
+from restclients.sws.person import get_person_by_regid
+from restclients.sws.enrollment import get_enrollment_by_regid_and_term
+from restclients.sws.term import get_specific_term
 from restclients.exceptions import DataFailureException
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_course_url
@@ -14,13 +18,15 @@ from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
     get_limit_estimate_enrollment_for_section, get_instructor_section
-from myuw.dao.class_website import get_page_title_from_url
+from myuw.dao.class_website import get_page_title_from_url, is_valid_page_url
 from myuw.dao.term import get_current_quarter, get_specific_term,\
     is_past, is_future
 from myuw.logger.logresp import log_success_response
 from myuw.util.thread import Thread, ThreadWithResponse
-from myuw.views.rest_dispatch import RESTDispatch, handle_exception
+from myuw.views.rest_dispatch import RESTDispatch
 from myuw.dao.exceptions import NotSectionInstructorException
+from myuw.dao.pws import get_url_key_for_regid
+from myuw.dao.enrollment import get_code_for_class_level
 
 
 logger = logging.getLogger(__name__)
@@ -63,45 +69,65 @@ def set_class_website_data(url):
     return website_data
 
 
+def set_classroom_info_url(meeting):
+    url = 'http://www.washington.edu/classroom/%s+%s' % (
+        meeting.building, meeting.room_number)
+    if is_valid_page_url(url):
+        return url
+
+    return None
+
+
 def set_course_resources(section_data, section):
-    threads_dict = {}
+    threads = []
     t = ThreadWithResponse(target=get_canvas_course_url,
                            args=(section,))
     t.start()
-    threads_dict["canvas_url"] = t
+    threads.append((t, 'canvas_url', section_data))
 
     t = ThreadWithResponse(target=get_subject_guide_by_section,
                            args=(section,))
     t.start()
-    threads_dict["lib_subj_guide"] = t
+    threads.append((t, 'lib_subj_guide', section_data))
 
     t = ThreadWithResponse(target=get_section_email_lists,
                            args=(section, False))
     t.start()
-    threads_dict["email_list"] = t
+    threads.append((t, 'email_list', section_data))
 
     t = ThreadWithResponse(target=set_class_website_data,
                            args=(section.class_website_url,))
     t.start()
-    threads_dict['class_website_data'] = t
+    threads.append((t, 'class_website_data', section_data))
+
+    for i, meeting in enumerate(section.meetings):
+        t = ThreadWithResponse(target=set_classroom_info_url,
+                               args=(meeting,))
+        t.start()
+        threads.append((t, 'classroom_info_url', section_data['meetings'][i]))
+
+    if section.final_exam and section.final_exam.building:
+        t = ThreadWithResponse(target=set_classroom_info_url,
+                               args=(section.final_exam,))
+        t.start()
+        threads.append((t, 'classroom_info_url', section_data['final_exam']))
 
     if not hasattr(section, 'limit_estimate_enrollment'):
         t = ThreadWithResponse(
             target=get_limit_estimate_enrollment_for_section,
             args=(section,))
         t.start()
-        threads_dict['limit_estimate_enrollment'] = t
+        threads.append((t, 'limit_estimate_enrollment', section_data))
 
-    for key in threads_dict.keys():
-        t = threads_dict[key]
+    for t, k, d in threads:
         t.join()
         if t.exception is None:
-            section_data[key] = t.response
+            d[k] = t.response
         else:
-            logger.error("%s: %s" % (key, t.exception))
+            logger.error("%s: %s" % (k, t.exception))
 
 
-def load_schedule(request, schedule, summer_term=""):
+def load_schedule(request, schedule, summer_term="", section_callback=None):
 
     json_data = schedule.json_data()
 
@@ -121,8 +147,9 @@ def load_schedule(request, schedule, summer_term=""):
     course_resource_threads = []
     for section in schedule.sections:
         section_data = json_data["sections"][section_index]
-        color = colors[section.section_label()]
-        section_data["color_id"] = color
+        if section.section_label() in colors:
+            color = colors[section.section_label()]
+            section_data["color_id"] = color
         section_index += 1
 
         if EARLY_FALL_START == section.institute_name:
@@ -177,6 +204,9 @@ def load_schedule(request, schedule, summer_term=""):
                 meeting_index += 1
             except IndexError as ex:
                 pass
+
+        if section_callback:
+            section_callback(section, section_data)
 
     for t in course_resource_threads:
         t.join()
@@ -297,11 +327,7 @@ class InstSect(RESTDispatch):
             schedule = get_instructor_section(year, quarter, curriculum,
                                               course_number, course_section)
         except NotSectionInstructorException:
-            reason = "Read Access Forbidden to Non Instructor"
-            response = HttpResponse(reason)
-            response.status_code = 403
-            response.reason_phrase = reason
-            return response
+            return not_instructor_error()
 
         resp_data = load_schedule(request, schedule)
         log_success_response(logger, timer)
@@ -321,4 +347,113 @@ class InstSect(RESTDispatch):
                                        course_number, course_section,
                                        request)
         except Exception:
+            return handle_exception(logger, timer, traceback)
+
+
+class InstSectionDetails(RESTDispatch):
+    """
+    Performs actions on resource at
+    /api/v1/instructor_section/<year>,<quarter>,<curriculum>,
+        <course_number>,<course_section>?
+    """
+    def make_http_resp(self, timer, year, quarter, curriculum, course_number,
+                       course_section, request):
+        """
+        @return instructor schedule data in json format
+                status 404: no schedule found (teaching no courses)
+        """
+        try:
+            schedule = get_instructor_section(year, quarter, curriculum,
+                                              course_number, course_section,
+                                              include_registrations=True)
+
+        except NotSectionInstructorException:
+            return not_instructor_error()
+
+        self.term = get_specific_term(year, quarter)
+        resp_data = load_schedule(request, schedule,
+                                  section_callback=self.per_section_data)
+        log_success_response(logger, timer)
+        return HttpResponse(json.dumps(resp_data))
+
+    def per_section_data(self, section, section_data):
+        registrations = {}
+        name_threads = {}
+        enrollment_threads = {}
+        for registration in section.registrations:
+            person = registration.person
+            regid = person.uwregid
+
+            name_email_thread = ThreadWithResponse(target=self.get_person_info,
+                                                   args=(person,))
+            enrollment_thread = ThreadWithResponse(target=self.get_enrollments,
+                                                   args=(person,))
+
+            name_threads[regid] = name_email_thread
+            enrollment_threads[regid] = enrollment_thread
+            name_email_thread.start()
+            enrollment_thread.start()
+
+            registrations[regid] = {
+                'full_name': person.display_name,
+                'netid': person.uwnetid,
+                'regid': person.uwregid,
+                'student_number': person.student_number,
+                'credits': registration.credits,
+                'class': person.student_class,
+                'email': person.email1,
+                'url_key': get_url_key_for_regid(person.uwregid),
+            }
+
+        registration_list = []
+        for regid in name_threads:
+            thread = name_threads[regid]
+            thread.join()
+
+            registrations[regid]["name"] = thread.response["name"]
+            registrations[regid]["surname"] = thread.response["surname"]
+            registrations[regid]["email"] = thread.response["email"]
+
+            thread = enrollment_threads[regid]
+            thread.join()
+            registrations[regid]["majors"] = thread.response["majors"]
+            registrations[regid]["class"] = thread.response["class"]
+
+            code = get_code_for_class_level(thread.response["class"])
+            registrations[regid]['class_code'] = code
+
+            registration_list.append(registrations[regid])
+        section_data["registrations"] = registration_list
+
+    def get_person_info(self, person):
+        sws_person = get_person_by_regid(person.uwregid)
+        return {"name": sws_person.first_name,
+                "surname": sws_person.last_name,
+                "email": sws_person.email
+                }
+
+    def get_enrollments(self, person):
+        regid = person.uwregid
+
+        enrollments = get_enrollment_by_regid_and_term(regid, self.term)
+        majors = []
+        for major in enrollments.majors:
+            majors.append(major.json_data())
+
+        return {"majors": majors, "class": enrollments.class_level}
+
+    def GET(self, request, year, quarter, curriculum,
+            course_number, course_section):
+        """
+        GET returns 200 with a specific term instructor schedule
+        @return course schedule data in json format
+                status 404: no schedule found (not registered)
+                status 543: data error
+        """
+        timer = Timer()
+        try:
+            return self.make_http_resp(timer, year, quarter, curriculum,
+                                       course_number, course_section,
+                                       request)
+        except Exception as ex:
             return handle_exception(logger, timer, traceback)

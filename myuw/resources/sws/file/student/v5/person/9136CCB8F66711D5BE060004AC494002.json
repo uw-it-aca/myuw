@@ -3,7 +3,7 @@
 "DirectoryRelease":true,
 "Email":"javg002@u.washington.edu",
 "EmployeeID":"123456789",
-"FirstName":"Jade Average",
+"FirstName":"Jade",
 "Gender":"M",
 "LastEnrolled":{"Href":"\/student\/v5\/term\/2013,autumn.json",
 "Quarter":"autumn",

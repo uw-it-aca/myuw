@@ -6,7 +6,8 @@ from myuw.dao.affiliation import is_thrive_viewer
 from myuw.dao.thrive import get_current_message, get_previous_messages
 from myuw.logger.logresp import log_data_not_found_response,\
     log_success_response
-from myuw.views.rest_dispatch import RESTDispatch, data_not_found
+from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.error import data_not_found
 
 
 class ThriveMessages(RESTDispatch):

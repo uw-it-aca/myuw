@@ -38,6 +38,7 @@ def _indexed_colors_by_section_label(query, regid, schedule):
         if color.is_active:
             color_lookup[color.section_label()] = color
             active_colors[color.color_id] = True
+
             colors_to_deactivate[color.section_label()] = color
 
     primary_sections = []
@@ -69,9 +70,11 @@ def _indexed_colors_by_section_label(query, regid, schedule):
         label = section.section_label()
         primary_label = section.primary_section_label()
 
-        if colors[primary_label] is None:
-            # ... uh oh
-            pass
+        if primary_label not in colors:
+            # This happens when we have a 'schedule' of one secondary course
+            # for direct viewing.  we want to make sure colors aren't
+            # deactivated, so return here.
+            return {}
 
         colors[label] = "%sa" % colors[primary_label]
 
