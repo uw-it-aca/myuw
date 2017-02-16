@@ -53,6 +53,7 @@
   <body>
     {% csrf_token %}
 
+    {% block header %}
     <div id="app_header">
         <div class="header-bar" role="navigation" title="Home, email, and categorized resources">
             <div class="container clearfix">
@@ -90,11 +91,13 @@
             </div>
         </div>
     </div>
+    {% endblock %}
 
     <div id="page-modal"></div>
     {% if not request.is_mobile and not request.is_tablet %}
 
     <!-- App navigation -->
+    {% block app_navigation %}
     <div id="app_navigation" role="navigation">
         <div class="container">
             <div class="row navigation">
@@ -106,6 +109,7 @@
             </div>
         </div>
     </div>
+    {% endblock %}
     <!-- App navigation end -->
 
     <div id="app_messages" role="complementary">
@@ -172,6 +176,7 @@
     <!-- /content -->
 
     <!-- footer -->
+    {% block footer %}
     <div id="app_footer">
         <div class="container navigation-bar" role="navigation" aria-labelledby="categories">
             <h2 id="categories" class="sr-only">Categorized Resources</h2>
@@ -248,6 +253,7 @@
             </div>
         </div>
     </div>
+    {% endblock %}
     <!-- /footer -->
 
     <!-- dev bar -->
@@ -341,6 +347,7 @@
     <script src="{% static 'js/card/new_student/ns_thank_you.js' %}"></script>
     <script src="{% static 'js/card/new_student/ns_to_register.js' %}"></script>
     <script src="{% static 'js/card/new_student/ns_international_stu.js' %}"></script>
+    <script src="{% static 'js/teaching/class_list.js' %}"></script>
     {% endcompress %}
 
     {% block extra_js %}{% endblock %}
