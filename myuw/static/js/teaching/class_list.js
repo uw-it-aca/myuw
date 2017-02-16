@@ -19,7 +19,7 @@ var PhotoClassList = {
         var template = Handlebars.compile(source);
 
         var data = WSData.instructed_section_details();
-        data.sections[0].registrations = PhotoClassList.sort_students('surname,name'),
+        data.sections[0].registrations = PhotoClassList.sort_students('surname,name');
         $("#app_content").html(template(data));
 
         $("#download_class_list").on("click", PhotoClassList.download_list);
