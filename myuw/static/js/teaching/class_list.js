@@ -55,6 +55,12 @@ var PhotoClassList = {
             var av = a[key];
             var bv = b[key];
 
+            if (av === undefined && bv !== undefined) {
+                return 1;
+            }
+            if (av !== undefined && bv === undefined) {
+                return -1;
+            }
             // A guess at what sorting majors looks like
             try {
                 av = av.map(function(x) { return x.full_name; }).join(",");
@@ -164,7 +170,7 @@ var PhotoClassList = {
             $("#app_content").html(courses_template());
         } else {
             source = CardWithError.render("Teaching Section");
-            $("#app_content").dom_target.html(source);
+            $("#app_content").html(source);
         }
 
     }

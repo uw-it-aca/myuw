@@ -147,6 +147,8 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
     course_resource_threads = []
     for section in schedule.sections:
         section_data = json_data["sections"][section_index]
+
+        section_data["section_type"] = section.section_type
         if section.section_label() in colors:
             color = colors[section.section_label()]
             section_data["color_id"] = color
@@ -363,9 +365,11 @@ class InstSectionDetails(RESTDispatch):
                 status 404: no schedule found (teaching no courses)
         """
         try:
+            self.processed_primary = False
             schedule = get_instructor_section(year, quarter, curriculum,
                                               course_number, course_section,
-                                              include_registrations=True)
+                                              include_registrations=True,
+                                              include_linked_sections=True)
 
         except NotSectionInstructorException:
             return not_instructor_error()
@@ -373,13 +377,64 @@ class InstSectionDetails(RESTDispatch):
         self.term = get_specific_term(year, quarter)
         resp_data = load_schedule(request, schedule,
                                   section_callback=self.per_section_data)
+
+        self.add_linked_section_data(resp_data)
         log_success_response(logger, timer)
+
         return HttpResponse(json.dumps(resp_data))
 
+    def add_linked_section_data(self, resp_data):
+        section_types = {}
+        sections_for_user = {}
+        for section in resp_data["sections"][1:]:
+            section_id = section["section_id"]
+            section_types[section_id] = section["section_type"]
+            for registration in section["registrations"]:
+                if registration not in sections_for_user:
+                    sections_for_user[registration] = []
+                sections_for_user[registration].append(section_id)
+
+        for registration in resp_data["sections"][0]["registrations"]:
+            regid = registration["regid"]
+            if regid in sections_for_user:
+                user_types = {}
+                for section in sections_for_user[regid]:
+                    section_type = section_types[section]
+
+                    if section_type not in user_types:
+                        user_types[section_type] = []
+
+                    user_types[section_type].append(section)
+
+                linked = []
+                for section_type in sorted(user_types.keys()):
+                    # These are for sorting
+                    sort_string = ",".join(user_types[section_type])
+                    registration["linked_type_"+section_type] = sort_string
+
+                    # This is for display
+                    linked.append({'type': section_type,
+                                   'sections': user_types[section_type]})
+                registration["linked_sections"] = linked
+
+        resp_data["sections"][0]["linked_types"] = section_types.values()
+
     def per_section_data(self, section, section_data):
+        # We don't want to fetch all this data a second time in for
+        # secondary sections
+        if self.processed_primary:
+            registrations = []
+            for registration in section.registrations:
+                registrations.append(registration.person.uwregid)
+
+            section_data["registrations"] = registrations
+            return
+
+        self.processed_primary = True
         registrations = {}
         name_threads = {}
         enrollment_threads = {}
+
         for registration in section.registrations:
             person = registration.person
             regid = person.uwregid

@@ -98,7 +98,8 @@ def get_current_quarter_instructor_schedule(request):
 
 def get_instructor_section(year, quarter, curriculum,
                            course_number, course_section,
-                           include_registrations=False):
+                           include_registrations=False,
+                           include_linked_sections=False):
     """
     Return requested section instructor is teaching
     """
@@ -117,6 +118,17 @@ def get_instructor_section(year, quarter, curriculum,
         raise NotSectionInstructorException()
 
     schedule.sections.append(section)
+    if include_linked_sections:
+        for url in section.linked_section_urls:
+            try:
+                linked = get_section_by_url(url)
+                registrations = get_active_registrations_by_section(linked)
+                linked.registrations = registrations
+
+                schedule.sections.append(linked)
+            except Exception as ex:
+                pass
+
     return schedule
 
 
