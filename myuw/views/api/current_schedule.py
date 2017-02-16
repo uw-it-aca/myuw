@@ -3,7 +3,7 @@ import traceback
 from django.http import HttpResponse
 from myuw.dao.term import get_current_quarter
 from myuw.logger.timer import Timer
-from myuw.views.rest_dispatch import handle_exception
+from myuw.views.error import handle_exception
 from myuw.views.api.base_schedule import StudClasSche
 
 
