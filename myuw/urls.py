@@ -3,7 +3,7 @@ from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from myuw.views.page import logout
 from myuw.views.index import index
-from myuw.views.teaching import teaching, teaching_section
+from myuw.views.teaching import teaching, teaching_section, student_photo_list
 from myuw.views.notices import notices
 from myuw.views.thrive import thrive
 from myuw.views.thrive_messages import thrive_messages
@@ -14,9 +14,10 @@ from myuw.views.category import category
 from myuw.views.display_dates import override
 from myuw.views.choose import new_site, old_site
 from myuw.views.logger import log_interaction
+from myuw.views.photo import show_photo
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.instructor_schedule import (InstScheCurQuar, InstScheQuar,
-                                                InstSect)
+                                                InstSect, InstSectionDetails)
 from myuw.views.api.finance import Finance
 from myuw.views.api.hfs import HfsBalances
 from myuw.views.api.future_schedule import StudClasScheFutureQuar
@@ -133,6 +134,13 @@ urlpatterns += [
         login_required(InstSect().run),
         name="myuw_instructor_section_api"
         ),
+    url(r'^api/v1/instructor_section_details/(?P<year>\d{4}),'
+        r'(?P<quarter>[a-zA-Z]+),'
+        r'(?P<curriculum>[\w& ]+),(?P<course_number>\d{3})\/'
+        r'(?P<course_section>[A-Z][A-Z0-9]?)$',
+        login_required(InstSectionDetails().run),
+        name="myuw_instructor_section_details_api"
+        ),
     url(r'^api/v1/thrive/$', login_required(ThriveMessages().run),
         name="myuw_thrive_api"
         ),
@@ -146,6 +154,11 @@ urlpatterns += [
         r'(?P<section>\d{4},[a-zA-Z]+,[\w& ]+,\d{3}\/[A-Z][A-Z0-9]?)$',
         teaching_section, name="myuw_section_page"
         ),
+    url(r'^teaching/(?P<section>\d{4},[a-zA-Z]+,[\w& ]+,\d{3}\/[A-Z][A-Z0-9]?)'
+        r'/students$',
+        student_photo_list, name="myuw_photo_list"
+        ),
+
     url(r'^notices/?', notices, name="myuw_notices_page"
         ),
     url(r'^thrive_messages/?', thrive_messages,
@@ -166,5 +179,7 @@ urlpatterns += [
         category, name="myuw_resource_page"),
     url(r'^logout', logout, name="myuw_logout"
         ),
+
+    url(r'photo/(?P<url_key>.*)', show_photo),
     url(r'.*', index, name="myuw_home"),
 ]
