@@ -418,7 +418,7 @@ class InstSectionDetails(RESTDispatch):
                 registration["linked_sections"] = linked
 
         types_list = list(set(section_types.values()))
-        resp_data["sections"][0]["linked_types"] =  types_list
+        resp_data["sections"][0]["linked_types"] = types_list
 
     def per_section_data(self, section, section_data):
         # We don't want to fetch all this data a second time in for
