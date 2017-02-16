@@ -46,7 +46,7 @@
                 {{#if is_primary}}
                 {{#if has_multi_secondaries }}
                 <div>
-                    <p>Creates multiple email lists, one for each section selected</p>
+                    <p>Creates multiple email lists, one for each secondary section selected</p>
                     <fieldset>
                         <div class="clearfix">
                             <div class="pull-right">
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <ul class="clearfix unstyled-list">
-                            {{#each secondary_lists}}
+                            {{#each secondary_section_lists}}
                             <li class="secondary_single clearfix">
                                 {{#unless list_exists}}
                                 <div class="pull-left">
