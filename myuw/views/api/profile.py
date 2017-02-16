@@ -12,8 +12,8 @@ from myuw.dao.user import get_netid_of_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response, log_msg
 from myuw.views import prefetch_resources
-from myuw.views.rest_dispatch import RESTDispatch, data_not_found,\
-    handle_exception
+from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.error import data_not_found, handle_exception
 
 
 logger = logging.getLogger(__name__)
