@@ -19,7 +19,7 @@ var PhotoClassList = {
         var template = Handlebars.compile(source);
 
         var data = WSData.instructed_section_details();
-        data.sections[0].registrations = PhotoClassList.sort_students('surname');
+        data.sections[0].registrations = PhotoClassList.sort_students('surname,name'),
         $("#app_content").html(template(data));
 
         $("#download_class_list").on("click", PhotoClassList.download_list);
@@ -42,7 +42,11 @@ var PhotoClassList = {
         var data = WSData.instructed_section_details();
         var registrations = data.sections[0].registrations;
 
-        return PhotoClassList.sort_registrations(registrations, key);
+        var fields = key.split(',');
+        for (var i = fields.length-1; i >= 0; i--) {
+            registrations = PhotoClassList.sort_registrations(registrations, fields[i]);
+        }
+        return registrations;
     },
 
     sort_registrations: function(registrations, key) {
