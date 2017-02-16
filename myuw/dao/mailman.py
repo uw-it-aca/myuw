@@ -122,7 +122,7 @@ def get_section_email_lists(section,
         total_secondaries = len(section.linked_section_urls)
         if total_secondaries > 0:
 
-            json_data["secondary_lists"] =\
+            json_data["secondary_section_lists"] =\
                 get_all_secondary_section_lists(section)
 
             json_data["has_multi_secondaries"] = (total_secondaries > 1)
@@ -131,7 +131,7 @@ def get_section_email_lists(section,
                 json_data["secondary_combined_list"] =\
                     get_section_secondary_combined_list(section)
         else:
-            json_data["secondary_lists"] = None
+            json_data["secondary_section_lists"] = None
     return json_data
 
 

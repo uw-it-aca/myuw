@@ -28,7 +28,7 @@ class TestEmaillistApi(MyuwApiTest):
                           "phys121a_sp13")
         self.assertEquals(data["secondary_combined_list"]["list_address"],
                           "multi_phys121a_sp13")
-        self.assertEquals(len(data["secondary_lists"]), 21)
+        self.assertEquals(len(data["secondary_section_lists"]), 21)
         self.assertEquals(data["course_number"], "121")
         self.assertEquals(data["course_abbr"], "PHYS")
         self.assertEquals(data["section_id"], "A")
