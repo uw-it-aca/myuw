@@ -115,6 +115,8 @@ def _get_links_by_category_and_campus(search_category_id,
                                       affiliations):
     selected_links = []
     all_links = Res_Links.get_all_links()
+    if len(campus) == 0:
+        campus = "seattle"
 
     for link in all_links:
         if not link.category_id_matched(search_category_id):
