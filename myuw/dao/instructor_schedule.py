@@ -77,7 +77,6 @@ def get_instructor_schedule_by_term(term):
     Return the sections the current user is instructing
     in the given term/quarter
     """
-
     person = get_person_of_current_user()
     schedule = _get_instructor_schedule(person, term)
     return schedule

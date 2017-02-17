@@ -428,7 +428,7 @@ WSData = {
                             }
                         }
                     }
-                    WSData._course_data_error_status = null;
+                    WSData._course_data_error_status[term] = null;
                     WSData._course_data[term] = results;
                     WSData._run_success_callbacks_for_url(url);
                 },
