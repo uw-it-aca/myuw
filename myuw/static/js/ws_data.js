@@ -185,6 +185,10 @@ WSData = {
         return WSData._instructed_section_details;
     },
 
+    instructed_section_details_error_code: function() {
+        return WSData._instructed_section_details_error_status;
+    },
+
     grade_data_for_term: function(term) {
         if (!term) { term = ''; }
         return WSData._grade_data[term];

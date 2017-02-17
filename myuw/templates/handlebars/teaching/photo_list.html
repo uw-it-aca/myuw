@@ -11,13 +11,16 @@
     <option value="netid">UW NetID</option>
     <option value="class_code,surname,name">Class</option>
     <option value="credits,surname,name">Credits</option>
+    {{ #each sections.0.linked_types }}
+    <option value="linked_type_{{ this }},surname,name">{{ ucfirst this }} Section</option>
+    {{ /each }}
 </select>
 
 <div id="student_list">
     {{ #each sections.0.registrations }}
         <div id="student_{{ regid }}">
             <div style="float: left;">
-            <img src="/photo/{{ url_key }}">
+            <img src="/photo/{{ url_key }}" width="120" height="150">
             </div>
             <div style="float: left; padding-left: 10px; padding-bottom: 10px;">
             <strong>{{ surname }}, {{ name }}</strong><br />
@@ -27,6 +30,15 @@
             Major: {{ #each majors }} {{ full_name }} {{ /each }}<br />
             Class: {{ class }} <br />
             Email: {{ email }} <br />
+            {{ #if linked_sections }}
+            {{ #each linked_sections }}
+                {{ ucfirst type }} Section: 
+                {{ #each sections }}
+                    {{ this }}
+                {{ /each }}
+                <br />
+            {{ /each }}
+            {{ /if }}
             </div>
             <br style="clear: both;">
         </div>
