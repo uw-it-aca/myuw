@@ -131,13 +131,12 @@ def get_section_email_lists(section,
         if total_secondaries > 0:
             json_data["has_multiple_sections"] = True
             if include_secondaries_in_primary:
-                json_data["secondary_section_lists"] =\
-                    get_all_secondary_section_lists(section)
+                secondary_lists = get_all_secondary_section_lists(section)
 
-                json_data["total_course_wo_list"] =\
-                    (json_data["total_course_wo_list"] +
-                     get_total_course_wo_list(
-                            json_data["secondary_section_lists"]))
+                json_data["secondary_section_lists"] = secondary_lists
+
+                json_data["total_course_wo_list"] +=\
+                    get_total_course_wo_list(secondary_lists)
 
                 if total_secondaries > 1:
                     json_data["secondary_combined_list"] =\
