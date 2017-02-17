@@ -17,6 +17,7 @@ from myuw.logger.logresp import (log_data_not_found_response,
                                  log_success_response, log_msg)
 from myuw.views.rest_dispatch import RESTDispatch, data_not_found
 from myuw.views import prefetch_resources
+from restclients.exceptions import DataFailureException
 
 
 logger = logging.getLogger(__name__)
@@ -37,7 +38,6 @@ class StudClasSche(RESTDispatch):
                 status 404: no schedule found (not registered)
         """
         schedule = get_schedule_by_term(request, term)
-
         if summer_term is None:
             summer_term = get_current_summer_term_in_schedule(schedule,
                                                               request)

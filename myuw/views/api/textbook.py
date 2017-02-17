@@ -6,6 +6,7 @@ from myuw.dao.gws import is_student
 from restclients.exceptions import DataFailureException
 from myuw.dao.schedule import get_schedule_by_term,\
     filter_schedule_sections_by_summer_term
+from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.term import get_specific_term, get_current_quarter,\
     get_current_summer_term
 from myuw.dao.textbook import get_textbook_by_schedule
@@ -34,27 +35,46 @@ class Textbook(RESTDispatch):
     def respond(self, request, year, quarter, summer_term):
         timer = Timer()
         try:
-            if not is_student():
-                log_msg(logger, timer, "Not a student, abort!")
-                return data_not_found()
-
             term = get_specific_term(year=year, quarter=quarter)
-            schedule = get_schedule_by_term(request, term)
-
-            if summer_term is not None and len(summer_term) > 0:
-                summer_term = summer_term.replace(",", "")
-                filter_schedule_sections_by_summer_term(schedule, summer_term)
-
-            if len(schedule.sections) == 0:
-                log_data_not_found_response(logger, timer)
-                return data_not_found()
-
-            book_data = get_textbook_by_schedule(schedule)
-            by_sln = index_by_sln(book_data)
-
             try:
-                verba_link = get_verba_link_by_schedule(schedule)
-                by_sln["verba_link"] = verba_link
+                schedule = get_schedule_by_term(request, term)
+            except DataFailureException as ex:
+                if ex.status == 404:
+                    schedule = None
+                    by_sln = {}
+                else:
+                    raise
+
+            if schedule:
+                if summer_term is not None and len(summer_term) > 0:
+                    summer_term = summer_term.replace(",", "")
+                    filter_schedule_sections_by_summer_term(
+                        schedule, summer_term)
+
+                if len(schedule.sections) == 0:
+                    log_data_not_found_response(logger, timer)
+                    return data_not_found()
+
+                book_data = get_textbook_by_schedule(schedule)
+                by_sln = index_by_sln(book_data)
+
+                try:
+                    verba_link = get_verba_link_by_schedule(schedule)
+                    by_sln["verba_link"] = verba_link
+                except DataFailureException as ex:
+                    if ex.status != 404:
+                        raise
+
+            # look for instructed sections
+            try:
+                schedule = get_instructor_schedule_by_term(term)
+                if schedule:
+                    if len(schedule.sections) == 0:
+                        log_data_not_found_response(logger, timer)
+                        return data_not_found()
+
+                    book_data = get_textbook_by_schedule(schedule)
+                    by_sln.update(index_by_sln(book_data))
             except DataFailureException as ex:
                 if ex.status != 404:
                     raise
