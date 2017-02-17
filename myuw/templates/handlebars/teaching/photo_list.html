@@ -1,35 +1,44 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "photo_class_list" %}
 
-<h1>Classlist | {{ toTitleCase quarter }} | {{ year }} | {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }} | SLN {{ sections.0.sln }}</h1>
-
-<a href="#" id="download_class_list">Download class list</a>
-<br />
-<select id="sort_list">
-    <option value="name,surname">First Name</option>
-    <option value="surname,name" selected="selected">Last Name</option>
-    <option value="netid">UW NetID</option>
-    <option value="class_code,surname,name">Class</option>
-    <option value="credits,surname,name">Credits</option>
-</select>
-
-<div id="student_list">
-    {{ #each sections.0.registrations }}
-        <div id="student_{{ regid }}">
-            <div style="float: left;">
-            <img src="/photo/{{ url_key }}">
-            </div>
-            <div style="float: left; padding-left: 10px; padding-bottom: 10px;">
-            <strong>{{ surname }}, {{ name }}</strong><br />
-            Student Number: {{ student_number }} <br />
-            UW NetID: {{ netid }} <br />
-            Credits: {{ credits }} <Br />
-            Major: {{ #each majors }} {{ full_name }} {{ /each }}<br />
-            Class: {{ class }} <br />
-            Email: {{ email }} <br />
-            </div>
-            <br style="clear: both;">
+<div class="container">
+<div class="row">
+<div id="photoclasslist_popup">
+    <div class="card"  data-name="PhotoClasslistPopupCard" data-type="card">
+        <h3 class="scheduleHeading">{{ toTitleCase quarter }} {{ year }} | {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }} | SLN {{ sections.0.sln }}</h3>
+        
+        <a href="#" id="download_class_list">Download class list</a>
+        <br />
+        <select id="sort_list">
+            <option value="name,surname">First Name</option>
+            <option value="surname,name" selected="selected">Last Name</option>
+            <option value="netid">UW NetID</option>
+            <option value="class_code,surname,name">Class</option>
+            <option value="credits,surname,name">Credits</option>
+        </select>
+        
+        <div id="student_list">
+            {{ #each sections.0.registrations }}
+                <div id="student_{{ regid }}">
+                    <div style="float: left;">
+                    <img src="/photo/{{ url_key }}">
+                    </div>
+                    <div style="float: left; padding-left: 10px; padding-bottom: 10px;">
+                    <strong>{{ surname }}, {{ name }}</strong><br />
+                    Student Number: {{ student_number }} <br />
+                    UW NetID: {{ netid }} <br />
+                    Credits: {{ credits }} <Br />
+                    Major: {{ #each majors }} {{ full_name }} {{ /each }}<br />
+                    Class: {{ class }} <br />
+                    Email: <a href="mailto:{{ email }}">{{ email }}</a> <br />
+                    </div>
+                    <br style="clear: both;">
+                </div>
+            {{ /each }}
         </div>
-    {{ /each }}
+
+    </div>
+</div>
+</div>
 </div>
     {% endtplhandlebars %}
