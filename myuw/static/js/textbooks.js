@@ -33,7 +33,7 @@ var TextBooks = {
             "sections": [],
             "quarter": course_data ? course_data.quarter : instructed_course_data.quarter,
             "year": course_data ? course_data.year: instructed_course_data.year,
-            "summer_term": course_data ? course_data.summer_term : ''
+            "summer_term": course_data ? course_data.summer_term : instructed_course_data.summer_term
         };
 
         var section_data = function (i, section, instructor) {
@@ -69,22 +69,17 @@ var TextBooks = {
     },
 
     _has_all_data: function () {
-        var course_err_status = WSData.course_data_error_code(TextBooks.term);
-        var instructed_course_err_status = WSData.instructed_course_data_error_code(TextBooks.term);
         var book_data = WSData.book_data(TextBooks.term);
         var course_data = WSData.course_data_for_term(TextBooks.term);
         var instructed_course_data = WSData.instructed_course_data_for_term(TextBooks.term);
+        var course_err_status = WSData.course_data_error_code(TextBooks.term);
+        var instructed_course_err_status = WSData.instructed_course_data_error_code(TextBooks.term);
 
-        if (book_data &&
-            (course_data ||
-             (course_data === undefined &&
-              course_err_status === 404)) &&
-            (instructed_course_data || 
-             (instructed_course_data === undefined &&
-              instructed_course_err_status === 404))) {
-            return true;
-        }
-        return false;
+        return (book_data &&
+                (course_data ||
+                 (course_data === undefined && course_err_status === 404)) &&
+                (instructed_course_data || 
+                 (instructed_course_data === undefined && instructed_course_err_status === 404)));
     },
 
     render_books: function() {
