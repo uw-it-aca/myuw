@@ -3,7 +3,8 @@ import logging
 import traceback
 from django.http import HttpResponse
 from myuw.dao.calendar import api_request
-from myuw.views.rest_dispatch import RESTDispatch, handle_exception
+from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.error import handle_exception
 from myuw.views import prefetch_resources
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response

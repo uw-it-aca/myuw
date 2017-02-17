@@ -1,4 +1,5 @@
-from myuw.views.rest_dispatch import RESTDispatch, handle_exception
+from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.error import handle_exception
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
 from myuw.dao.term import get_comparison_date, get_current_quarter
