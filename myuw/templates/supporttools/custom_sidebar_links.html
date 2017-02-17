@@ -15,6 +15,7 @@
     {% url 'restclients_proxy' 'pws' 'identity/v1' as pws_url %}
     {% if pws_url %}
     <li><a href="{{ pws_url }}">{{ restclients_pws_link|default:"Browse Person Web Service" }}</a></li>
+    <li><a href="{% url 'restclients_proxy' 'pws' 'identity/v1/photo' %}">{{ restclients_pws_link|default:"ID Photo Search" }}</a></li>
     {% endif %}
     {% url 'restclients_proxy' 'gws' '' as url %}
     {% if url %}
