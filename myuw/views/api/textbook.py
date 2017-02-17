@@ -45,6 +45,7 @@ class Textbook(RESTDispatch):
                 else:
                     raise
 
+            # enrolled sections
             if schedule:
                 if summer_term is not None and len(summer_term) > 0:
                     summer_term = summer_term.replace(",", "")
@@ -65,10 +66,15 @@ class Textbook(RESTDispatch):
                     if ex.status != 404:
                         raise
 
-            # look for instructed sections
+            # instructed sections
             try:
                 schedule = get_instructor_schedule_by_term(term)
                 if schedule:
+                    if summer_term is not None and len(summer_term) > 0:
+                        summer_term = summer_term.replace(",", "")
+                        filter_schedule_sections_by_summer_term(
+                            schedule, summer_term)
+
                     if len(schedule.sections) == 0:
                         log_data_not_found_response(logger, timer)
                         return data_not_found()
