@@ -1,24 +1,30 @@
 {% load templatetag_handlebars %}
     {% verbatim %}
-            <div class="pull-left">
-                <span class="inst-course-label">Email List</span>
-            </div>
 
-            <div class="pull-right">
+{{#with email_list}}
+    <div class="pull-left">
+        <span class="inst-course-label">Email List</span>
+    </div>
 
-              {{#if email_list.section_list.list_exists}}
-                <a href="{{email_list.section_list.list_admin_url}}" class="course_class_list">{{email_list.section_list.list_address}}@uw.edu</a>
-                <a href="#" class="manage_email_list" data-toggle="modal" data-target="#manage_emaillist_{{safeLabel section_label}}" rel="{{ curriculum_abbr }}_{{course_number}}_{{section_id}}">Manage mailing list</a>
-              {{else}}
+    <div class="pull-right">
 
-                <span class="card-badge-value"><a href="#" class="create_email_list" data-toggle="modal" data-target="#request_emaillist_{{safeLabel section_label}}" rel="{{ curriculum_abbr }}_{{course_number}}_{{section_id}}">Create mailing list</a></span>
+        {{#if section_list.list_exists}}
+            <a href="{{section_list.list_admin_url}}" target="_blank">{{section_list.list_address}}@uw.edu</a>
 
-              {{/if}}
-            </div>
-            {{#if email_list.section_list.list_exists}}
-            <div id="manage_emaillist_{{safeLabel section_label}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="manage_emaillist_{{safeLabel section_label}}"></div>
-            {{else}}
-            <div id="request_emaillist_{{safeLabel section_label}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="request_emaillist_{{safeLabel section_label}}"></div>
-            {{/if}}
+            {{#unless no_secondary_section}}
+                <a href="#" class="manage_email_list" data-toggle="modal" data-target="#manage_emaillist_{{safeLabel section_list.section_label}}" rel="{{ course_abbr }}_{{course_number}}_{{section_id}}">Manage mailing list</a>
+
+                <div id="manage_emaillist_{{safeLabel section_list.section_label}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="manage_emaillist_{{safeLabel section_list.section_label}}"></div>
+            {{/unless}}
+
+        {{ else }}
+                <span class="card-badge-value"><a href="#" class="create_email_list" data-toggle="modal" data-target="#request_emaillist_{{safeLabel section_list.section_label}}" rel="{{ course_abbr }}_{{course_number}}_{{section_id}}">Create mailing list</a></span>
+
+        {{/if}}
+    </div>
+
+    <div id="request_emaillist_{{safeLabel section_list.section_label}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="request_emaillist_{{safeLabel section_list.section_label}}"></div>
+
+{{/with}}
 
     {% endverbatim %}

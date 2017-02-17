@@ -46,9 +46,8 @@ def get_single_course_list(curriculum_abbr, course_number, section_id,
         exists, get_course_list_name(curriculum_abbr, course_number,
                                      section_id, quarter, year))
     data["section_id"] = section_id
-    if not exists:
-        data["section_label"] = get_section_label(
-            curriculum_abbr, course_number, section_id, quarter, year)
+    data["section_label"] = get_section_label(
+        curriculum_abbr, course_number, section_id, quarter, year)
     return data
 
 
@@ -118,20 +117,22 @@ def get_section_email_lists(section,
         }
     json_data["section_list"] = get_single_section_list(section)
 
-    if is_primary_section and include_secondaries_in_primary:
+    if not is_primary_section:
+        json_data["no_secondary_section"] = True
+    else:
         total_secondaries = len(section.linked_section_urls)
+        json_data["no_secondary_section"] = (total_secondaries == 0)
+
         if total_secondaries > 0:
+            if include_secondaries_in_primary:
+                json_data["secondary_section_lists"] =\
+                    get_all_secondary_section_lists(section)
 
-            json_data["secondary_section_lists"] =\
-                get_all_secondary_section_lists(section)
+                json_data["has_multi_secondaries"] = (total_secondaries > 1)
 
-            json_data["has_multi_secondaries"] = (total_secondaries > 1)
-
-            if json_data["has_multi_secondaries"]:
-                json_data["secondary_combined_list"] =\
-                    get_section_secondary_combined_list(section)
-        else:
-            json_data["secondary_section_lists"] = None
+                if json_data["has_multi_secondaries"]:
+                    json_data["secondary_combined_list"] =\
+                        get_section_secondary_combined_list(section)
     return json_data
 
 

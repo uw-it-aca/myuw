@@ -63,6 +63,7 @@ class TestMailmanDao(TestCase):
             {"list_exists": True,
              "list_address": "phys121a_sp13",
              "section_id": 'A',
+             'section_label': u'2013,spring,PHYS,121/A',
              "list_admin_url": url})
 
         list_data = get_single_section_list(
@@ -132,7 +133,7 @@ class TestMailmanDao(TestCase):
         ret_json = get_section_email_lists(
             get_section_by_label('2013,spring,TRAIN,101/A'), True)
         self.assertTrue(ret_json["section_list"]["list_exists"])
-        self.assertIsNone(ret_json["secondary_section_lists"])
+        self.assertTrue(ret_json["no_secondary_section"])
 
     def test_get_section_label(self):
         self.assertEqual(get_section_label('T ARTS', '110', 'A',
