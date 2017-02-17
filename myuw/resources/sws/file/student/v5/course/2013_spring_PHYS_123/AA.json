@@ -99,13 +99,13 @@
                 {
                     "FacultySequenceNumber": "",
                     "GradeRoster": {
-                        "Href": "/student/v5/graderoster/2013,spring,PHYS,123,AA,1F964D80E435433A9904EE827A2B568B"
+                        "Href": "/student/v5/graderoster/2013,spring,PHYS,123,AA,10000000000000000000000000000009"
                     },
                     "PercentInvolve": "50",
                     "Person": {
-                        "Href": "/student/v5/person/1F964D80E435433A9904EE827A2B568B.json",
+                        "Href": "/student/v5/person/10000000000000000000000000000009.json",
                         "Name": "Sifang Chen",
-                        "RegID": "1F964D80E435433A9904EE827A2B568B"
+                        "RegID": "10000000000000000000000000000009"
                     },
                     "TSPrint": true
                 },

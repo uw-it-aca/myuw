@@ -125,13 +125,13 @@
                 {
                     "FacultySequenceNumber": "",
                     "GradeRoster": {
-                        "Href": "/student/v5/graderoster/2013,spring,PHYS,123,CU,CA4544E4765F470E9F1654AC10B9D391"
+                        "Href": "/student/v5/graderoster/2013,spring,PHYS,123,CU,10000000000000000000000000000009"
                     },
                     "PercentInvolve": "78",
                     "Person": {
-                        "Href": "/student/v5/person/CA4544E4765F470E9F1654AC10B9D391.json",
+                        "Href": "/student/v5/person/10000000000000000000000000000009.json",
                         "Name": "Nichole A Barry",
-                        "RegID": "CA4544E4765F470E9F1654AC10B9D391"
+                        "RegID": "10000000000000000000000000000009"
                     },
                     "TSPrint": true
                 }
