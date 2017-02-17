@@ -58,7 +58,7 @@ var TextBooks = {
             });
         }
 
-        if (instructed_course_data) {
+        if (myuwFeatureEnabled('instructor_textbooks') && instructed_course_data) {
             $.each(instructed_course_data.sections, function (index) {
                 template_data.sections.push(section_data(index, this, true));
             });
