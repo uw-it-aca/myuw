@@ -9,6 +9,18 @@ from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import get_current_quarter
 
 
+CLASS_CODES = {
+    "FRESHMAN": 1,
+    "SOPHMORE": 2,
+    "JUNIOR": 3,
+    "SENIOR": 4,
+    "GRADUATE": 5,
+}
+
+
+DEFAULT_CLASS_CODE = 6
+
+
 logger = logging.getLogger(__name__)
 
 
@@ -35,3 +47,10 @@ def enrollment_prefetch():
         return get_current_quarter_enrollment(request)
 
     return [_method]
+
+
+def get_code_for_class_level(class_name):
+    if class_name in CLASS_CODES:
+        return CLASS_CODES[class_name]
+
+    return DEFAULT_CLASS_CODE

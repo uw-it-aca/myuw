@@ -50,3 +50,17 @@ def person_prefetch():
         return get_person_of_current_user()
 
     return [_method]
+
+
+def get_url_key_for_regid(regid):
+    # XXX - I want a hook to obscure/encrypt this down the road
+    return regid
+
+
+def get_regid_for_url_key(key):
+    return key
+
+
+def get_idcard_photo(regid):
+    return PWS().get_idcard_photo(regid)
+    pass
