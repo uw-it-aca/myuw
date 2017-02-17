@@ -29,10 +29,21 @@ var ManageEmailLists = {
 
     render: function() {
         var data = WSData._instructed_emaillist_data[ManageEmailLists.label];
+        var term = data.year + ',' + data.quarter;
         var source   = $("#manage_email_lists_tmpl").html();
         var template = Handlebars.compile(source);
         var raw = template(data);
         $(ManageEmailLists.dom_target).html(raw);
         LogUtils.cardLoaded(ManageEmailLists.name, ManageEmailLists.dom_target);
+        ManageEmailLists.add_events($(RequestEmailLists.dom_target), data.section_list.section_label, term);
+    },
+
+    add_events: function(panel, section_label, term) {
+        var label = safe_label(section_label);
+
+        $("#create_email_list", panel).on("click", function(ev) {
+            WSData.log_interaction("manage_to_create_email_list_" + label, term);
+            RequestEmailLists.render_init(section_label);
+        });
     }
 };

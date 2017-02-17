@@ -17,6 +17,7 @@ var InstructorCourseResourcePanel = {
     },
 
     add_events: function(panel, term) {
+
         $(".course_website", panel).on("click", function(ev) {
             var target = ev.currentTarget;
             var course_id = safe_label(target.getAttribute("rel"));
@@ -40,17 +41,17 @@ var InstructorCourseResourcePanel = {
 
 
         $(".create_email_list", panel).on("click", function(ev) {
-            var course_label = InstructorCourseResourcePanel.get_course_label(term, ev.currentTarget);
-            label = safe_label(course_label);
+            var section_label = InstructorCourseResourcePanel.get_section_label(term, ev.currentTarget);
+            label = safe_label(section_label);
             WSData.log_interaction("open_create_email_list_"+label, term);
-            RequestEmailLists.render_init(course_label);
+            RequestEmailLists.render_init(section_label);
         });
 
         $(".manage_email_list", panel).on("click", function(ev) {
-            var course_label = InstructorCourseResourcePanel.get_course_label(term, ev.currentTarget);
-            label = safe_label(course_label);
+            var section_label = InstructorCourseResourcePanel.get_section_label(term, ev.currentTarget);
+            label = safe_label(section_label);
             WSData.log_interaction("open_manage_email_list_"+label, term);
-            ManageEmailLists.render_init(course_label);
+            ManageEmailLists.render_init(section_label);
         });
 
         $(".course_class_list", panel).on("click", function(ev) {
@@ -69,9 +70,9 @@ var InstructorCourseResourcePanel = {
         });
     },
 
-    get_course_label: function(term, target) {
-        var course_label_parts = target.getAttribute("rel").split("_");
-        var course_label = term + "," + course_label_parts[0] + "," + course_label_parts[1] + "/" + course_label_parts[2];
-        return course_label;
+    get_section_label: function(term, target) {
+        var section_label_parts = target.getAttribute("rel").split("_");
+        var section_label = term + "," + section_label_parts[0] + "," + section_label_parts[1] + "/" + section_label_parts[2];
+        return section_label;
     }
 };

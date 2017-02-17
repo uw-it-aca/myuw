@@ -22,7 +22,7 @@ class TestEmaillistApi(MyuwApiTest):
 
         self.assertEquals(data['year'], 2013)
         self.assertEquals(data['quarter'], 'spring')
-        self.assertTrue(data["has_multi_secondaries"])
+        self.assertTrue(data["has_multiple_sections"])
         self.assertTrue(data["is_primary"])
         self.assertEquals(data["section_list"]["list_address"],
                           "phys121a_sp13")
