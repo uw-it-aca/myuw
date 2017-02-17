@@ -1,4 +1,6 @@
 import json
+from myuw.views.api.emaillist import Emaillist
+from myuw.test import get_request, get_request_with_user
 from myuw.test.api import MyuwApiTest, require_url,\
     fdao_sws_override, fdao_mailman_override
 
@@ -32,3 +34,14 @@ class TestEmaillistApi(MyuwApiTest):
         self.assertEquals(data["course_number"], "121")
         self.assertEquals(data["course_abbr"], "PHYS")
         self.assertEquals(data["section_id"], "A")
+
+    def test_post(self):
+        now_request = get_request()
+        get_request_with_user('billsea', now_request)
+        now_request.POST = {
+            u'section_single_A': [u'2013,spring,PHYS,122/A'],
+            u'csrfmiddlewaretoken': [u'UHYAf4Kct0T']
+            }
+        resp = Emaillist().POST(now_request)
+        self.assertEquals(resp.status_code, 200)
+        self.assertEquals(resp.content, '{"request_sent": true}')

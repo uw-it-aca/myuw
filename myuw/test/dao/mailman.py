@@ -92,6 +92,10 @@ class TestMailmanDao(TestCase):
         self.assertEqual(list21["list_address"], 'phys121av_sp13')
         self.assertTrue(list21["list_exists"])
 
+        primary_section = get_section_by_label('2013,spring,TCSS,305/A')
+        sec_lists = get_all_secondary_section_lists(primary_section)
+        self.assertEqual(len(sec_lists), 0)
+
     def test_secondary_combined_list(self):
         primary_section = get_section_by_label('2013,spring,PHYS,121/A')
         blist = get_section_secondary_combined_list(primary_section)
