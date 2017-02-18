@@ -5,7 +5,7 @@ var ManageEmailLists = {
 
     render_init: function(section_label) {
         ManageEmailLists.label = section_label;
-        ManageEmailLists.dom_target = '#manage_emaillist_' + safe_label(ManageEmailLists.label);
+        ManageEmailLists.dom_target = '#popup_emaillist_' + safe_label(ManageEmailLists.label);
         WSData.fetch_instructed_section_emaillist_data(section_label,
                                                        ManageEmailLists.render_upon_data,
                                                        ManageEmailLists.render_error);
@@ -35,15 +35,16 @@ var ManageEmailLists = {
         var raw = template(data);
         $(ManageEmailLists.dom_target).html(raw);
         LogUtils.cardLoaded(ManageEmailLists.name, ManageEmailLists.dom_target);
-        ManageEmailLists.add_events($(RequestEmailLists.dom_target), data.section_list.section_label, term);
+        ManageEmailLists.add_events();
     },
 
-    add_events: function(panel, section_label, term) {
-        var label = safe_label(section_label);
+    add_events: function() {
+        var label = safe_label(ManageEmailLists.label);
 
-        $("#create_email_list", panel).on("click", function(ev) {
-            WSData.log_interaction("manage_to_create_email_list_" + label, term);
-            RequestEmailLists.render_init(section_label);
+        $("#switch_to_create_email_list").on("click", function(ev) {
+            RequestEmailLists.render_init(ManageEmailLists.label);
+            WSData.log_interaction("switch_to_create_email_list", label);
+            return false;
         });
     }
 };
