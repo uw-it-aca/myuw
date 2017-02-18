@@ -1,5 +1,7 @@
 TextBooks = require("../textbooks.js");
-myuwFeatureEnabled = require("../myuw_m.js").myuwFeatureEnabled;
+var myuwFeatureEnabled = function () {
+    return true;
+};
 
 var assert = require("assert");
 describe('TextBooks', function(){
