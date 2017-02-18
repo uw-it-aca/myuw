@@ -84,6 +84,34 @@ WSData = {
         delete WSData._success_callbacks[url];
         delete WSData._error_callbacks[url];
         delete WSData._callback_args[url];
+        WSData._display_outage_message(url);
+    },
+
+    _display_outage_message: function(url) {
+        // Displays the outage card if specific webservices are down
+        if (WSData._is_outage_api_url(url)){
+            var card = OutageCard;
+            card.dom_target =  $("#" + card.name);
+            card.render_init();
+            window.webservice_outage = true;
+        }
+
+    },
+
+    _is_outage_api_url: function(url) {
+        var endpoints = [
+            "profile",
+            "notices",
+            "schedule"
+        ];
+        var is_outage = false;
+        $(endpoints).each(function(idx, endpoint){
+            if (url.indexOf(endpoint) !== -1){
+                is_outage = true;
+            }
+        });
+        return is_outage;
+
     },
 
 

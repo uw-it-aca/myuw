@@ -30,11 +30,11 @@ class MyProfile(RESTDispatch):
         of the current user
         """
         timer = Timer()
-        prefetch_resources(request,
-                           prefetch_enrollment=True,
-                           prefetch_password=True)
-        netid = get_netid_of_current_user()
         try:
+            prefetch_resources(request,
+                               prefetch_enrollment=True,
+                               prefetch_password=True)
+            netid = get_netid_of_current_user()
             if is_student():
                 profile = get_profile_of_current_user()
                 response = profile.json_data()
