@@ -12,7 +12,7 @@
             <a href="{{section_list.list_admin_url}}" target="_blank">{{section_list.list_address}}@uw.edu</a>
 
             {{#if has_multiple_sections}}
-                <a href="#" class="manage_email_list" data-toggle="modal" data-target="#popup_emaillist_{{safeLabel section_list.section_label}}" rel="{{ course_abbr }}_{{course_number}}_{{section_id}}">Manage mailing list</a>
+                <span class="card-badge-value"><a href="#" class="manage_email_list" data-toggle="modal" data-target="#popup_emaillist_{{safeLabel section_list.section_label}}" rel="{{ course_abbr }}_{{course_number}}_{{section_id}}">Manage mailing list</a></span>
 
                 <div id="popup_emaillist_{{safeLabel section_list.section_label}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="manage_emaillist_{{safeLabel section_list.section_label}}"></div>
             {{/if}}
