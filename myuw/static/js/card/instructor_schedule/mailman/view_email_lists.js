@@ -43,7 +43,7 @@ var ManageEmailLists = {
 
         $("#switch_to_create_email_list").on("click", function(ev) {
             RequestEmailLists.render_init(ManageEmailLists.label);
-            WSData.log_interaction("switch_to_create_email_list", label);
+            WSData.log_interaction("switch_to_create_email_list_"+label);
             return false;
         });
     }
