@@ -70,15 +70,20 @@ var RequestEmailLists = {
                 accepts: {html: "text/html"},
                 data: $(target).serialize(),
                 success: function(results) {
-                    var data = results;
+                    if (results.none_selected) {
+                        RequestEmailLists.render();
+                        return false;
+                    }
                     var source = $("#request_email_lists_tmpl").html();
                     var template = Handlebars.compile(source);
-                    var raw = template(data);
+                    results.netid = window.user.netid;
+                    var raw = template(results);
                     $(RequestEmailLists.dom_target).html(raw);
                 },
                 error: function(xhr, status, error) {
-                    raw = CardWithError.render("Request Email List Submit");
+                    raw = CardWithError.render("Submit email list: " + error);
                     $(RequestEmailLists.dom_target).html(raw);
+                    return false;
                 }
             });
         });

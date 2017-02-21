@@ -16,8 +16,9 @@
             {{#if request_sent }}
                 <div class="">
                     <h3>Request submitted</h3>
+                    <p> Total email list requested: {{ total_lists_requested }}.</p>
                     <ul class="">
-                        <li>An email confirmation will be sent to {{ user.netid }}@uw.edu</li>
+                        <li>An email confirmation will be sent to {{ netid }}@uw.edu</li>
                         <li>Mailing lists may take up to 24 hours to activate</li>
                     </ul>
                     <p><a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
@@ -55,7 +56,8 @@
                             <div class="clearfix">
                                 <div class="pull-right">
                                     <label for="select-all">Select all </label>
-                                    <input type="checkbox" title="select-all-checkboxes" id="select_all" name="select-all"/>
+                                    <input type="checkbox" title="select/unselect all checkboxes"
+                                           id="select_all" name="select-all"/>
                                 </div>
                             </div>
                         {{/if}}
@@ -71,14 +73,17 @@
                                         </div>
                                     {{ else }}
                                         <div class="pull-left">
-                                            <label for="section_single_{{ list_address }}" title="click to select this section">
+                                            <label for="section_single_{{section_list.section_id}}"
+                                                   title="primary section">
                                                 {{../course_abbr}} {{../course_number}} {{section_list.section_id}}
                                             </label>
                                         </div>
                                         <div class="pull-right">
-                                            <input type="checkbox" id="section_single_{{section_list.section_id}}"
+                                            <input type="checkbox"
+                                                   id="section_single_{{section_list.section_id}}"
                                                    name="section_single_{{section_list.section_id}}"
-                                                   value="{{section_list.section_label}}"/>
+                                                   value="{{section_list.section_label}}"
+                                                   title="select section {{section_list.section_id}}" />
                                         </div>
                                     {{/if}}
                                 </li>
@@ -94,12 +99,15 @@
                                             </div>
                                         {{else}}
                                             <div class="pull-left">
-                                                <label for="secondary_single_{{ list_address }}">
+                                                <label for="secondary_single_{{section_id}}">
                                                     {{../../course_abbr}} {{../../course_number}} {{section_id}}
                                                 </label>
                                             </div>
                                             <div class="pull-right">
-                                                <input type="checkbox" id="secondary_single_{{section_id}}" name="secondary_single_{{section_id}}" value="{{section_label}}" />
+                                                <input type="checkbox" id="secondary_single_{{section_id}}"
+                                                       name="secondary_single_{{section_id}}"
+                                                       value="{{section_label}}"
+                                                       title="select section {{section_id}}" />
                                             </div>
                                         {{/if}}
                                     </li>

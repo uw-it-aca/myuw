@@ -10,6 +10,7 @@ HTTP_NOT_FOUND = 404
 HTTP_METHOD_NOT_ALLOWED = 405
 HTTP_GONE = 410
 MYUW_DATA_ERROR = 543
+NOT_INSTRUCTOR_ERROR = 403
 
 
 def _make_response(status_code, reason_phrase):
@@ -17,6 +18,11 @@ def _make_response(status_code, reason_phrase):
     response.status_code = status_code
     response.reason_phrase = reason_phrase
     return response
+
+
+def not_instructor_error():
+    return _make_response(NOT_INSTRUCTOR_ERROR,
+                          "Access Forbidden to Non Instructor")
 
 
 def invalid_session():
@@ -50,15 +56,8 @@ def handle_exception(logger, timer, stack_trace):
     if isinstance(exc_value, InvalidNetID) or\
             isinstance(exc_value, InvalidRegID):
         return invalid_session()
+
     if isinstance(exc_value, DataFailureException) and\
             exc_value.status == 404:
         return data_not_found()
     return data_error()
-
-
-def not_instructor_error():
-    reason = "Read Access Forbidden to Non Instructor"
-    response = HttpResponse(reason)
-    response.status_code = 403
-    response.reason_phrase = reason
-    return response

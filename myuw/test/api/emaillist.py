@@ -1,6 +1,8 @@
 import json
+from django.test import Client
+from django.core.urlresolvers import reverse
 from myuw.views.api.emaillist import Emaillist
-from myuw.test import get_request, get_request_with_user
+from myuw.test import get_request, get_request_with_user, get_user
 from myuw.test.api import MyuwApiTest, require_url,\
     fdao_sws_override, fdao_mailman_override
 
@@ -9,6 +11,17 @@ from myuw.test.api import MyuwApiTest, require_url,\
 @fdao_sws_override
 @require_url('myuw_home')
 class TestEmaillistApi(MyuwApiTest):
+
+    def test_get_err(self):
+        self.set_user('none')
+        response = self.get_response_by_reverse(
+            'myuw_emaillist_api',
+            kwargs={'year': 2013,
+                    'quarter': 'spring',
+                    'curriculum_abbr': 'PHYS',
+                    'course_number': '121',
+                    'section_id': 'A'})
+        self.assertEquals(response.status_code, 403)
 
     def test_get(self):
         self.set_user('bill')
@@ -35,13 +48,52 @@ class TestEmaillistApi(MyuwApiTest):
         self.assertEquals(data["course_abbr"], "PHYS")
         self.assertEquals(data["section_id"], "A")
 
-    def test_post(self):
-        now_request = get_request()
-        get_request_with_user('billsea', now_request)
-        now_request.POST = {
-            u'section_single_A': [u'2013,spring,PHYS,122/A'],
-            u'csrfmiddlewaretoken': [u'UHYAf4Kct0T']
-            }
-        resp = Emaillist().POST(now_request)
+    def test_post_with_csrf_checks(self):
+        client = Client(enforce_csrf_checks=True)
+        get_user('billsea')
+        client.login(username='billsea', password='pass')
+        url = reverse("myuw_emaillist_api")
+        resp = client.post(
+            url,
+            {u'section_single_A': u'2013,spring,PHYS,122/A',
+             u'secondary_single_AA': u'2013,spring,PHYS,122/AA',
+             })
+        self.assertEqual(resp.status_code, 403)
+
+    def test_post_wo_csrf_check(self):
+        client = Client()
+        get_user('billsea')
+        client.login(username='billsea', password='pass')
+        url = reverse("myuw_emaillist_api")
+        resp = client.post(
+            url,
+            {u'section_single_A': u'2013,spring,PHYS,122/A',
+             u'secondary_single_AA': u'2013,spring,PHYS,122/AA',
+             u'secondary_single_AB': u'2013,spring,PHYS,122/AB',
+             u'secondary_single_AC': u'2013,spring,PHYS,122/AC',
+             u'secondary_single_AD': u'2013,spring,PHYS,122/AD',
+             u'secondary_single_AS': u'2013,spring,PHYS,122/AS',
+             })
         self.assertEquals(resp.status_code, 200)
-        self.assertEquals(resp.content, '{"request_sent": true}')
+        self.assertEquals(json.loads(resp.content),
+                          {'request_sent': True,
+                           'total_lists_requested': 6})
+
+        resp = client.post(
+            url, {u'csrfmiddlewaretoken': [u'54qLUQ5ER737oHxECBuMGP']})
+        self.assertEquals(resp.status_code, 200)
+        self.assertEquals(json.loads(resp.content),
+                          {'none_selected': True})
+
+    def test_not_instructor_post(self):
+        client = Client()
+        get_user('none')
+        client.login(username='none', password='pass')
+        url = reverse("myuw_emaillist_api")
+        resp = client.post(
+            url,
+            {u'section_single_A': u'2013,spring,PHYS,122/A',
+             u'secondary_single_AA': u'2013,spring,PHYS,122/AA'})
+        self.assertEquals(resp.status_code, 403)
+        self.assertEquals(resp.content,
+                          'Access Forbidden to Non Instructor')

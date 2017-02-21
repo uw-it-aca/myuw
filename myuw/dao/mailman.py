@@ -5,13 +5,17 @@ the uwnetid subscription resource.
 
 import logging
 import re
+from django.core.mail import send_mail
+from django.conf import settings
+from restclients.sws.section import get_section_by_label
 from restclients.mailman.basic_list import get_admin_url
 from restclients.mailman.course_list import get_course_list_name,\
     exists_course_list, get_section_secondary_combined_list_name,\
-    exists_section_secondary_combined_list
+    exists_section_secondary_combined_list, get_section_list_name
 from restclients.mailman.instructor_term_list import\
     get_instructor_term_list_name, exists_instructor_term_list
 from myuw.util.thread import ThreadWithResponse
+from myuw.dao.exceptions import CourseRequestEmailRecipientNotFound
 
 
 logger = logging.getLogger(__name__)
@@ -36,6 +40,12 @@ def get_section_secondary_combined_list(primary_section):
     exists = exists_section_secondary_combined_list(primary_section)
     return get_list_json(
         exists, get_section_secondary_combined_list_name(primary_section))
+
+
+def get_section_label(curriculum_abbr, course_number,
+                      section_id, quarter, year):
+    return "%s,%s,%s,%s/%s" % (
+        year, quarter.lower(), curriculum_abbr, course_number, section_id)
 
 
 def get_single_course_list(curriculum_abbr, course_number, section_id,
@@ -91,14 +101,23 @@ def get_all_secondary_section_lists(primary_section):
             if thread.exception is None:
                 secondaries.append(thread.response)
             else:
-                logger.error("get_single_course_list(%s,%s,%s,%s,%s)==>%s " %
-                             (primary_section.curriculum_abbr,
-                              primary_section.course_number,
-                              section_id,
-                              primary_section.term.quarter,
-                              primary_section.term.year,
-                              thread.exception))
+                logger.error("get_single_course_list(%s,%s,%s,%s,%s)==>%s ",
+                             primary_section.curriculum_abbr,
+                             primary_section.course_number,
+                             section_id,
+                             primary_section.term.quarter,
+                             primary_section.term.year,
+                             thread.exception)
     return secondaries
+
+
+def get_course_email_lists(year, quarter, curriculum_abbr, course_number,
+                           section_id, include_secondaries_in_primary):
+    return get_section_email_lists(
+        get_section_by_label(
+            get_section_label(curriculum_abbr, course_number,
+                              section_id, quarter, year)),
+        include_secondaries_in_primary)
 
 
 def get_section_email_lists(section,
@@ -144,15 +163,100 @@ def get_section_email_lists(section,
     return json_data
 
 
-def get_section_label(curriculum_abbr, course_number,
-                      section_id, quarter, year):
-    return "%s,%s,%s,%s/%s" % (
-        year, quarter.lower(), curriculum_abbr, course_number, section_id)
-
-
 def get_total_course_wo_list(secondary_section_lists):
     total = 0
     for section in secondary_section_lists:
         if not section["list_exists"]:
             total = total + 1
     return total
+
+
+EMAIL_SUBJECT = 'instructor Mailman request'
+
+
+def request_mailman_lists(requestor_uwnetid,
+                          single_section_labels):
+    """
+    Required settings:
+      EMAIL_HOST
+      EMAIL_PORT
+      MAILMAN_COURSEREQUEST_RECIPIENT
+    """
+    message_body, num_sections_found = get_message_body(
+        requestor_uwnetid, single_section_labels)
+
+    ret_data = {"total_lists_requested": num_sections_found}
+
+    if num_sections_found == 0:
+        ret_data["request_sent"] = False
+    else:
+        recipient = getattr(settings,
+                            'MAILMAN_COURSEREQUEST_RECIPIENT',
+                            None)
+        if recipient is None:
+            raise CourseRequestEmailRecipientNotFound
+        sender = "%s@uw.edu" % requestor_uwnetid
+        send_mail(EMAIL_SUBJECT,
+                  message_body,
+                  sender,
+                  [recipient],
+                  fail_silently=False)
+        ret_data["request_sent"] = True
+        logger.info("Request_mailman_lists: %s, message body: %s",
+                    ret_data, message_body)
+
+    return ret_data
+
+
+def get_message_body(requestor_uwnetid,
+                     single_section_labels):
+    """
+    subject: "instructor Mailman request"
+    message body:
+    <requestor_netid>
+    <list_address> <quarter_code> YYYY <sln>
+    <list_address> <quarter_code> YYYY <sln>
+    """
+    message_body = "%s\n" % requestor_uwnetid
+    num_sections_found = 0
+
+    threads = []
+    for section_label in single_section_labels:
+        thread = ThreadWithResponse(target=get_section_by_label,
+                                    args=(section_label,))
+        thread.start()
+        threads.append(thread)
+
+    for thrd in threads:
+        thrd.join()
+        if thrd.exception is None:
+            section = thrd.response
+            num_sections_found += 1
+            message_body += _get_single_line(section)
+        else:
+            logger.error("%s", thread.exception)
+
+    return message_body, num_sections_found
+
+
+def _get_single_line(section):
+    """
+    <list_address> <quarter_code> YYYY <sln>
+    """
+    return "%s %s %s %s\n" % (
+            get_section_list_name(section),
+            _get_quarter_code(section.term.quarter),
+            section.term.year,
+            section.sln)
+
+
+QUARTER_CODES = {
+    "winter": 1,
+    "spring": 2,
+    "summer": 3,
+    "autumn": 4,
+}
+
+
+def _get_quarter_code(quarter):
+    return QUARTER_CODES[quarter.lower()]
