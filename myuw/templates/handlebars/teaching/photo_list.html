@@ -6,7 +6,7 @@
         <div id="photoclasslist_popup">
             <div class="card"  data-name="PhotoClasslistPopupCard" data-type="card">
                 <h3 class="scheduleHeading">{{ toTitleCase quarter }} {{ year }} | {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }} | SLN {{ sections.0.sln }}</h3>
-                <div class"classlist-controls clearfix" style="padding-bottom: 40px;">
+                <div id="classlist_controls" class="clearfix" style="padding-bottom: 40px;">
                     <div class="classlist-styled-select pull-left">Sort by:
                         <select id="sort_list">
                             <option value="name,surname">First Name</option>
@@ -21,7 +21,7 @@
 
                     </div>
                     <div class="pull-right">
-                        <a href="#" id="download_class_list"><i class="fa fa-download"></i>&nbsp;Download class list (Excel)</a> | <a href="#"><i class="fa fa-print"></i>&nbsp;print</a>
+                        <a href="#" id="download_class_list"><i class="fa fa-download"></i>&nbsp;Download class list (Excel)</a> | <a href="javascript:window.print()" class="classlist-print"><i class="fa fa-print"></i>&nbsp;print</a>
                     </div>
                 </div>
                 
