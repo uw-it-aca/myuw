@@ -14,6 +14,9 @@
                             <option value="netid">UW NetID</option>
                             <option value="class_code,surname,name">Class</option>
                             <option value="credits,surname,name">Credits</option>
+                            {{ #each sections.0.linked_types }}
+                            <option value="linked_type_{{ this }},surname,name">{{ ucfirst this }} Section</option>
+                            {{ /each }}
                         </select>
 
                     </div>
@@ -37,12 +40,22 @@
                             Major: {{ #each majors }} {{ full_name }} {{ /each }}<br />
                             Class: {{ class }} <br />
                             Email: <a href="mailto:{{ email }}">{{ email }}</a> <br />
+                            {{ #if linked_sections }}
+                            {{ #each linked_sections }}
+                                {{ ucfirst type }} Section: 
+                                {{ #each sections }}
+                                    {{ this }}
+                                {{ /each }}
+                                <br />
+                            {{ /each }}
+                            {{ /if }}
                             </div>
                             <br style="clear: both;">
                         </div>
                     {{ /each }}
                 </div>
         
+
             </div>
         </div>
     </div>

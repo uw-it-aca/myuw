@@ -34,16 +34,16 @@
             "GradeDocumentID": "",
             "GradingSystem": null,
             "HonorsCourse": false,
-            "Href": "/student/v5/registration/2013,spring,PHYS,121,AC,9136CCB8F66711D5BE060004AC494001,.json",
+            "Href": "/student/v5/registration/2013,spring,PHYS,121,AC,9136CCB8F66711D5BE060004AC494002,.json",
             "Instructor": null,
             "IsActive": true,
             "IsCredit": true,
             "IsIndependentStart": false,
             "Metadata": "RegistrationSourceLocation=SDB;",
             "Person": {
-                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494001.json",
+                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494002.json",
                 "Name": "Average Student",
-                "RegID": "9136CCB8F66711D5BE060004AC494001"
+                "RegID": "9136CCB8F66711D5BE060004AC494002"
             },
             "RepeatCourse": false,
             "RepositoryTimeStamp": "12/21/2012 7:53:10 AM",
