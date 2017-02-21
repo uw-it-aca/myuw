@@ -11,7 +11,7 @@ from myuw.dao.term import get_current_quarter
 
 CLASS_CODES = {
     "FRESHMAN": 1,
-    "SOPHMORE": 2,
+    "SOPHOMORE": 2,
     "JUNIOR": 3,
     "SENIOR": 4,
     "GRADUATE": 5,
