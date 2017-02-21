@@ -8,7 +8,7 @@
     <div class="books-list">
         <a name="{{toUrlSafe curriculum}}{{course_number}}{{section_id}}" />
         <h3>
-            <div class="c{{color_id}} simplesquare" aria-hidden="true"></div> {{curriculum}} {{course_number}}{{section_id}}
+            <div class="c{{color_id}} simplesquare" aria-hidden="true"></div> {{curriculum}} {{course_number}}{{section_id}}  {{#if is_instructor}}- Instructor{{/if}}
         </h3>
     </div>
 
@@ -62,9 +62,17 @@
         </div>
         {{/eachWithIndex}}
 
+        {{#if is_instructor}}
+        <a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school={{#if bothell_campus}}uwbothell{{else}}{{#if tacoma_campus}}uwtacoma{{else}}uwmain{{/if}}{{/if}}">Modify textbooks.</a>
+        {{/if}}
     {{else}}
-    <div style="margin-bottom:25px;">No textbook requirement has been received for this course. <!-- if student -->Please check with your instructor.<!-- /student --> <!-- if IOR <a href="{{ textbook ordering link for affiliated campus }}">Order textbooks now.</a> --> </div>
-	        
+    <div style="margin-bottom:25px;">No textbook requirement has been received for this course.
+      {{#if is_instructor}}
+      <a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school={{#if bothell_campus}}uwbothell{{else}}{{#if tacoma_campus}}uwtacoma{{else}}uwmain{{/if}}{{/if}}">Order textbooks now.</a>
+      {{else}}
+      Please check with your instructor.
+      {{/if}}
+      <!-- if IOR  --> </div>
     {{/if}}
 
     <hr />

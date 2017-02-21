@@ -15,7 +15,7 @@ from restclients.sws.term import get_specific_term
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.term import get_current_quarter
 from myuw.dao.exceptions import NotSectionInstructorException
-from myuw.util.thread import Thread
+from myuw.util.thread import Thread, ThreadWithResponse
 
 
 logger = logging.getLogger(__name__)
@@ -77,7 +77,6 @@ def get_instructor_schedule_by_term(term):
     Return the sections the current user is instructing
     in the given term/quarter
     """
-
     person = get_person_of_current_user()
     schedule = _get_instructor_schedule(person, term)
     return schedule
@@ -98,7 +97,8 @@ def get_current_quarter_instructor_schedule(request):
 
 def get_instructor_section(year, quarter, curriculum,
                            course_number, course_section,
-                           include_registrations=False):
+                           include_registrations=False,
+                           include_linked_sections=False):
     """
     Return requested section instructor is teaching
     """
@@ -117,7 +117,31 @@ def get_instructor_section(year, quarter, curriculum,
         raise NotSectionInstructorException()
 
     schedule.sections.append(section)
+    if include_linked_sections:
+        threads = []
+        for url in section.linked_section_urls:
+            t = ThreadWithResponse(target=get_linked_section, args=(url,))
+            t.start()
+            threads.append(t)
+
+        for thread in threads:
+            thread.join()
+            linked = thread.response
+            if linked:
+                schedule.sections.append(linked)
+
     return schedule
+
+
+def get_linked_section(url):
+    try:
+        linked = get_section_by_url(url)
+        registrations = get_active_registrations_by_section(linked)
+        linked.registrations = registrations
+
+        return linked
+    except:
+        return
 
 
 def get_limit_estimate_enrollment_for_section(section):

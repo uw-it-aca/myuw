@@ -185,6 +185,10 @@ WSData = {
         return WSData._instructed_section_details;
     },
 
+    instructed_section_details_error_code: function() {
+        return WSData._instructed_section_details_error_status;
+    },
+
     grade_data_for_term: function(term) {
         if (!term) { term = ''; }
         return WSData._grade_data[term];
@@ -424,7 +428,7 @@ WSData = {
                             }
                         }
                     }
-                    WSData._course_data_error_status = null;
+                    WSData._course_data_error_status[term] = null;
                     WSData._course_data[term] = results;
                     WSData._run_success_callbacks_for_url(url);
                 },
