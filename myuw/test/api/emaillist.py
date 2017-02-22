@@ -1,12 +1,18 @@
 import json
-from django.test import Client
 from django.core.urlresolvers import reverse
+from django.test import Client
+from django.test.utils import override_settings
 from myuw.views.api.emaillist import Emaillist
 from myuw.test import get_request, get_request_with_user, get_user
 from myuw.test.api import MyuwApiTest, require_url,\
     fdao_sws_override, fdao_mailman_override
 
 
+EMAILBACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+email_backend_override = override_settings(EMAIL_BACKEND=EMAILBACKEND)
+
+
+@email_backend_override
 @fdao_mailman_override
 @fdao_sws_override
 @require_url('myuw_home')
@@ -61,29 +67,37 @@ class TestEmaillistApi(MyuwApiTest):
         self.assertEqual(resp.status_code, 403)
 
     def test_post_wo_csrf_check(self):
-        client = Client()
-        get_user('billsea')
-        client.login(username='billsea', password='pass')
-        url = reverse("myuw_emaillist_api")
-        resp = client.post(
-            url,
-            {u'section_single_A': u'2013,spring,PHYS,122/A',
-             u'secondary_single_AA': u'2013,spring,PHYS,122/AA',
-             u'secondary_single_AB': u'2013,spring,PHYS,122/AB',
-             u'secondary_single_AC': u'2013,spring,PHYS,122/AC',
-             u'secondary_single_AD': u'2013,spring,PHYS,122/AD',
-             u'secondary_single_AS': u'2013,spring,PHYS,122/AS',
-             })
-        self.assertEquals(resp.status_code, 200)
-        self.assertEquals(json.loads(resp.content),
-                          {'request_sent': True,
-                           'total_lists_requested': 6})
+        with self.settings(EMAIL_HOST='app.some.edu',
+                           EMAIL_PORT=21,
+                           EMAIL_USE_TLS=False,
+                           MAILMAN_COURSEREQUEST_RECIPIENT='dummy@uw.edu'):
+            client = Client()
+            get_user('billsea')
+            client.login(username='billsea', password='pass')
+            url = reverse("myuw_emaillist_api")
+            resp = client.post(
+                url,
+                {u'section_single_A': u'2013,spring,PHYS,122/A',
+                 u'secondary_single_AA': u'2013,spring,PHYS,122/AA',
+                 u'secondary_single_AB': u'2013,spring,PHYS,122/AB',
+                 u'secondary_single_AC': u'2013,spring,PHYS,122/AC',
+                 u'secondary_single_AD': u'2013,spring,PHYS,122/AD',
+                 u'secondary_single_AS': u'2013,spring,PHYS,122/AS',
+                 })
+            self.assertEquals(resp.status_code, 200)
+            self.assertEquals(json.loads(resp.content),
+                              {'request_sent': True,
+                               'total_lists_requested': 6})
 
-        resp = client.post(
-            url, {u'csrfmiddlewaretoken': [u'54qLUQ5ER737oHxECBuMGP']})
-        self.assertEquals(resp.status_code, 200)
-        self.assertEquals(json.loads(resp.content),
-                          {'none_selected': True})
+            resp = client.post(
+                url, {u'csrfmiddlewaretoken': [u'54qLUQ5ER737oHxECBuMGP']})
+            self.assertEquals(resp.status_code, 200)
+            self.assertEquals(json.loads(resp.content),
+                              {'none_selected': True})
+            resp = client.post(url,
+                               {u'section_single_A': u'2013,spring,PHYS,122,A',
+                                u'section_single': u'2013,spring,PHYS,122/A'})
+            self.assertEquals(resp.status_code, 400)
 
     def test_not_instructor_post(self):
         client = Client()

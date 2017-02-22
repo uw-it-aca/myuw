@@ -10,8 +10,10 @@ from myuw.logger.logresp import log_success_response
 from myuw.views.rest_dispatch import RESTDispatch
 from myuw.dao.instructor_schedule import is_instructor
 from myuw.dao.user import get_netid_of_current_user
-from myuw.dao.mailman import get_course_email_lists, request_mailman_lists
-from myuw.views.error import handle_exception, not_instructor_error
+from myuw.dao.mailman import get_course_email_lists, request_mailman_lists,\
+    is_valid_section_label
+from myuw.views.error import handle_exception, not_instructor_error,\
+    InvalidInputFormData
 
 
 logger = logging.getLogger(__name__)
@@ -63,7 +65,13 @@ class Emaillist(RESTDispatch):
 def get_input(request):
     single_section_labels = []
     for key in request.POST:
-        if re.match(r'^section_single_', key) or\
-                re.match(r'^secondary_single_', key):
-            single_section_labels.append(request.POST[key])
+        if re.match(r'^section_single_[A-Z][A-Z0-9]?$', key) or\
+                re.match(r'^secondary_single_[A-Z][A-Z0-9]?$', key):
+            section_label = request.POST[key]
+            if is_valid_section_label(section_label):
+                single_section_labels.append(request.POST[key])
+            else:
+                logger.error("Invalid section label (%s) in the form input",
+                             section_label)
+                raise InvalidInputFormData
     return single_section_labels

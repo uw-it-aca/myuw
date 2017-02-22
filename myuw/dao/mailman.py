@@ -7,7 +7,8 @@ import logging
 import re
 from django.core.mail import send_mail
 from django.conf import settings
-from restclients.sws.section import get_section_by_label
+from restclients.sws.section import get_section_by_label,\
+    is_valid_section_label
 from restclients.mailman.basic_list import get_admin_url
 from restclients.mailman.course_list import get_course_list_name,\
     exists_course_list, get_section_secondary_combined_list_name,\
