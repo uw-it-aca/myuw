@@ -120,3 +120,4 @@ COMPRESS_ROOT = "compress_root"
 RESTCLIENTS_TEST_MEMCACHED = True
 RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
 USERSERVICE_ADMIN_GROUP = "x"
+AUTHZ_GROUP_BACKEND = 'authz_group.authz_implementation.all_ok.AllOK'
