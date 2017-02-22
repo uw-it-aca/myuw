@@ -1,11 +1,9 @@
 var TextBooks = {
     term: undefined,
-    anchor_textbook: undefined,
 
     show_books: function(term, textbook) {
         //Navbar.render_navbar("nav-sub");
         TextBooks.term = term;
-        TextBooks.anchor_textbook = textbook;
         showLoading();
         CommonLoading.render_init();
         WSData.fetch_book_data(term, TextBooks.render_books, TextBooks.render_error);
@@ -58,7 +56,7 @@ var TextBooks = {
             });
         }
 
-        if (instructed_course_data) {
+        if (myuwFeatureEnabled('instructor_textbooks') && instructed_course_data) {
             $.each(instructed_course_data.sections, function (index) {
                 template_data.sections.push(section_data(index, this, true));
             });
@@ -97,9 +95,8 @@ var TextBooks = {
             $("#main-content").html(template(template_data));
         }
 
-
         // Scroll to correct section
-        element = $("a[name='" + TextBooks.anchor_textbook + "']");
+        element = $("a[name='" + location.hash.substring(1) + "']");
         if (element.length > 0) {
                 $('html, body').animate({
                 scrollTop: element.offset().top
