@@ -1,3 +1,4 @@
+from django.conf import settings
 from myuw.util.thread import PrefetchThread
 from myuw.dao.affiliation import affiliation_prefetch
 from myuw.dao.enrollment import enrollment_prefetch
@@ -56,3 +57,11 @@ def prefetch_resources(request,
         prefetch_methods.extend(canvas_prefetch())
 
     prefetch(request, prefetch_methods)
+
+
+def get_enabled_features():
+    return getattr(settings, "MYUW_ENABLED_FEATURES", [])
+
+
+def is_password_enabled():
+    return 'password' in get_enabled_features()

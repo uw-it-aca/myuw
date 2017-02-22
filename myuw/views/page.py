@@ -22,7 +22,7 @@ from myuw.logger.session_log import log_session
 from myuw.views.error import invalid_session
 from myuw.dao.uwemail import get_email_forwarding_for_current_user
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
-from myuw.views import prefetch_resources
+from myuw.views import prefetch_resources, get_enabled_features
 from restclients.exceptions import DataFailureException
 
 
@@ -111,8 +111,7 @@ def page(request,
     else:
         pass
 
-    context['enabled_features'] = getattr(
-        settings, "MYUW_ENABLED_FEATURES", [])
+    context['enabled_features'] = get_enabled_features()
 
     log_success_response_with_affiliation(logger, timer, request)
     return render(request, template, context)
