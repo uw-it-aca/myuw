@@ -3,13 +3,10 @@ from django.core.urlresolvers import reverse
 from django.test import Client
 from django.test.utils import override_settings
 from myuw.views.api.emaillist import Emaillist
-from myuw.test import get_request, get_request_with_user, get_user
+from myuw.test import get_request, get_request_with_user, get_user,\
+    email_backend_override
 from myuw.test.api import MyuwApiTest, require_url,\
     fdao_sws_override, fdao_mailman_override
-
-
-EMAILBACKEND = 'django.core.mail.backends.locmem.EmailBackend'
-email_backend_override = override_settings(EMAIL_BACKEND=EMAILBACKEND)
 
 
 @email_backend_override

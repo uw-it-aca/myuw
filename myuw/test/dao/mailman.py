@@ -9,11 +9,12 @@ from myuw.dao.mailman import get_list_json,\
     get_section_label, get_course_email_lists, request_mailman_lists,\
     get_message_body, _get_single_line, _get_quarter_code
 from myuw.test import fdao_sws_override, fdao_mailman_override, get_request,\
-    get_request_with_user
+    get_request_with_user, email_backend_override
 
 
 @fdao_mailman_override
 @fdao_sws_override
+@email_backend_override
 class TestMailmanDao(TestCase):
     def setUp(self):
         get_request()
@@ -188,15 +189,20 @@ class TestMailmanDao(TestCase):
                           u'phys122ab_sp13 2 2013 17985\n'))
 
     def test_request_mailman_lists(self):
-        self.assertEquals(len(mail.outbox), 0)
-        resp = request_mailman_lists('billsea',
-                                     ['2013,spring,PHYS,122/A',
-                                      '2013,spring,PHYS,122/AA',
-                                      '2013,spring,PHYS,122/AB'])
-        self.assertEqual(resp, {"request_sent": True,
-                                'total_lists_requested': 3})
-        self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].subject, 'instructor Mailman request')
-        self.assertEqual(mail.outbox[0].from_email, "billsea@uw.edu")
-        self.assertEqual(mail.outbox[0].to, ['dummy@uw.edu'])
-        self.assertTrue(len(mail.outbox[0].body) > 0)
+        with self.settings(EMAIL_HOST='app.some.edu',
+                           EMAIL_PORT=21,
+                           EMAIL_USE_TLS=False,
+                           MAILMAN_COURSEREQUEST_RECIPIENT='dummy@uw.edu'):
+            self.assertEquals(len(mail.outbox), 0)
+            resp = request_mailman_lists('billsea',
+                                         ['2013,spring,PHYS,122/A',
+                                          '2013,spring,PHYS,122/AA',
+                                          '2013,spring,PHYS,122/AB'])
+            self.assertEqual(resp, {"request_sent": True,
+                                    'total_lists_requested': 3})
+            self.assertEqual(len(mail.outbox), 1)
+            self.assertEqual(mail.outbox[0].subject,
+                             'instructor Mailman request')
+            self.assertEqual(mail.outbox[0].from_email, "billsea@uw.edu")
+            self.assertEqual(mail.outbox[0].to, ['dummy@uw.edu'])
+            self.assertTrue(len(mail.outbox[0].body) > 0)
