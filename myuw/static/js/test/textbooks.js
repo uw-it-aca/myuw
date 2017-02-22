@@ -1,5 +1,5 @@
 TextBooks = require("../textbooks.js");
-var myuwFeatureEnabled = function () {
+myuwFeatureEnabled = function () {
     return true;
 };
 
