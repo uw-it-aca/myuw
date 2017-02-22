@@ -189,10 +189,7 @@ class TestMailmanDao(TestCase):
                           u'phys122ab_sp13 2 2013 17985\n'))
 
     def test_request_mailman_lists(self):
-        with self.settings(EMAIL_HOST='app.some.edu',
-                           EMAIL_PORT=21,
-                           EMAIL_USE_TLS=False,
-                           MAILMAN_COURSEREQUEST_RECIPIENT='dummy@uw.edu'):
+        with self.settings(MAILMAN_COURSEREQUEST_RECIPIENT='dummy@uw.edu'):
             self.assertEquals(len(mail.outbox), 0)
             resp = request_mailman_lists('billsea',
                                          ['2013,spring,PHYS,122/A',

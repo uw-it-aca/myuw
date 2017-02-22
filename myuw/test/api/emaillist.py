@@ -64,10 +64,7 @@ class TestEmaillistApi(MyuwApiTest):
         self.assertEqual(resp.status_code, 403)
 
     def test_post_wo_csrf_check(self):
-        with self.settings(EMAIL_HOST='app.some.edu',
-                           EMAIL_PORT=21,
-                           EMAIL_USE_TLS=False,
-                           MAILMAN_COURSEREQUEST_RECIPIENT='dummy@uw.edu'):
+        with self.settings(MAILMAN_COURSEREQUEST_RECIPIENT='dummy@uw.edu'):
             client = Client()
             get_user('billsea')
             client.login(username='billsea', password='pass')
