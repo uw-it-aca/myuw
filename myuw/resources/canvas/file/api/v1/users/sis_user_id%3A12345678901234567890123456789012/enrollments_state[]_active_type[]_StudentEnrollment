@@ -1,0 +1,97 @@
+[
+    {
+        "root_account_id": 83919,
+        "associated_user_id": null,
+        "user_id": 496168,
+        "enrollment_state": "active",
+        "type": "TeacherEnrollment",
+        "course_section_id": 225705,
+        "course_id": 149650,
+        "sis_course_id": "2013-spring-TRAIN-100-B",
+        "sis_section_id": "2013-spring-TRAIN-100-B--",
+        "html_url": "https://canvas.uw.edu/courses/149650/users/496168",
+        "user": {
+            "login_id": "eight",
+            "sis_user_id": "12345678901234567890123456789012",
+            "sortable_name": "STUDENT, EIGHT AVERAGE",
+            "short_name": "EIGHT AVERAGE STUDENT",
+            "id": 496168,
+            "name": "EIGHT AVERAGE STUDENT",
+            "sis_login_id": "eight"
+        },
+        "id": 1667135,
+        "updated_at": "2012-09-25T12:09:46-06:00",
+        "limit_privileges_to_course_section": false,
+        "total_activity_time": 250,
+        "last_activity_at": null
+    },
+    {
+        "associated_user_id": null,
+        "sis_course_id": "2013-spring-TRAIN-100-A",
+        "sis_section_id": "2013-spring-TRAIN-100-A--",
+        "course_id": 249650,
+        "course_section_id": 225705,
+        "id": 15741787,
+        "limit_privileges_to_course_section": false,
+        "root_account_id": 83919,
+        "type": "StudentEnrollment",
+        "updated_at": "2013-12-18T21:41:03Z",
+        "user_id": 496168,
+        "enrollment_state": "active",
+        "role": "StudentEnrollment",
+        "last_activity_at": null,
+        "total_activity_time": 250,
+        "grades": {
+            "html_url": "https://canvas.uw.edu/courses/249650/grades/496164",
+            "current_score": 23.0,
+            "final_score": 66.15,
+            "current_grade": 88.2,
+            "final_grade": 56.14
+        },
+        "html_url": "https://canvas.uw.edu/courses/249650/users/496164",
+        "user": {
+            "login_id": "eight",
+            "sis_user_id": "12345678901234567890123456789012",
+            "sortable_name": "STUDENT, EIGHT AVERAGE",
+            "short_name": "EIGHT AVERAGE STUDENT",
+            "id": 496168,
+            "name": "EIGHT AVERAGE STUDENT",
+            "sis_login_id": "eight"
+        }
+    },
+    {
+        "associated_user_id": null,
+        "course_id": 249652,
+        "course_section_id": 425705,
+        "sis_course_id": "2013-spring-PHYS-121-A",
+        "sis_section_id": "2013-spring-PHYS-121-A--",
+        "id": 15741787,
+        "limit_privileges_to_course_section": false,
+        "root_account_id": 83919,
+        "type": "StudentEnrollment",
+        "updated_at": "2013-12-18T21:41:03Z",
+        "user_id": 496168,
+        "enrollment_state": "active",
+        "role": "StudentEnrollment",
+        "last_activity_at": null,
+        "total_activity_time": 250,
+        "grades": {
+            "html_url": "https://canvas.uw.edu/courses/249652/grades/496164",
+            "current_score": 23.0,
+            "final_score": 66.15,
+            "current_grade": 88.2,
+            "final_grade": 56.14
+        },
+        "html_url": "https://canvas.uw.edu/courses/249652/users/496164",
+        "user": {
+            "login_id": "eight",
+            "sis_user_id": "12345678901234567890123456789012",
+            "sortable_name": "STUDENT, EIGHT AVERAGE",
+            "short_name": "EIGHT AVERAGE STUDENT",
+            "id": 496168,
+            "name": "EIGHT AVERAGE STUDENT",
+            "sis_login_id": "eight"
+        }
+    }
+
+]

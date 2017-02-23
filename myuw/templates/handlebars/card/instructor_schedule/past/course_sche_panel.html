@@ -1,0 +1,93 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "instructor_past_course_sche_panel" %}
+
+<h5 class="scheduleHeading">
+MEETING TIME
+</h5>
+<table class="table table-condensed table-course-schedule">
+    <thead class="sr-only">
+        <tr>
+            <th>Day(s)</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Location Information</th>
+        </tr>
+    </thead>
+    <tbody class="tbody-course-schedule">
+        {{#each meetings}}
+        <tr class="course-schedule-row">
+            {{#if days_tbd }}
+                <td colspan="2" class="text-muted course-tbd">Days and times to<br/> be arranged</td>
+            {{else}}
+                <td class="course-days">
+                    {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
+                    meeting_days.tuesday}}<abbr title="Tuesday">T</abbr>{{/if}}{{#if
+                    meeting_days.wednesday}}<abbr title="Wednesday">W</abbr>{{/if}}{{#if
+                    meeting_days.thursday}}<abbr title="Thursday">Th</abbr>{{/if}}{{#if
+                    meeting_days.friday}}<abbr title="Friday">F</abbr>{{/if}}{{#if
+                    meeting_days.saturday}}<abbr title="Saturday">Sa</abbr>{{/if}}{{#if
+                    meeting_days.sunday}}<abbr title="Sunday">Su</abbr>{{/if}}
+                </td>
+                <td class="course-time">{{formatTime start_time}} - {{formatTimeAMPM end_time}}</td>
+            {{/if}}
+
+            {{#if building_tbd}}
+            <td class="text-muted course-loc-tbd" colspan="2">Room to be arranged</td>
+            <td></td>
+            {{else}}
+                <td class="course-location">
+                    {{#if latitude}}
+                        <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" class="show_map" rel="{{building_name}}">
+                    {{/if}}
+                    {{building}}
+                    {{#if latitude}}
+                        </a>
+                    {{/if}}
+                    {{room}}
+                </td>
+                <td class="course-location-info">
+                  <a href="#">Room info</a>
+                </td>
+            {{/if}}
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<h5 class="scheduleHeading">
+FINAL EXAM WAS
+</h5>
+{{#if final_exam }}
+  {{#if final_exam.no_exam_or_nontraditional}}
+    No Exam or Non-Traditional
+  {{else}}
+    <table class="table table-condensed table-course-schedule">
+      <thead class="sr-only">
+        <tr>
+          <th>Day</th>
+          <th>Time</th>
+          <th>Location</th>
+          <th>Location Information</th>
+        </tr>
+      </thead>
+      <tbody class="tbody-course-schedule">
+        <td>{{ formatDateAsDate final_exam.start_date }}</td>
+        <td class="course-time">{{ formatDateAsTime final_exam.start_date }} - {{ formatDateAsTimeAMPM final_exam.end_date }}</td>
+        <td class="course-location">
+          {{#if final_exam.latitude}}
+          <a href="http://maps.google.com/maps?q={{ final_exam.latitude }},{{ final_exam.longitude }}+({{encodeForMaps final_exam.building_name }})&z=18" class="show_map" rel="{{building_name}}">
+            {{/if}}
+            {{final_exam.building}}
+            {{#if final_exam.latitude}}
+          </a>
+          {{/if}}
+          {{final_exam.room_number}}
+        </td>
+        <td><a href="#">Room info</a></td>
+      </tbody>
+    </table>
+  {{/if}}
+{{else}}
+  No Final Exam Scheduled
+{{/if}}
+{% endtplhandlebars %}

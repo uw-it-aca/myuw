@@ -11,7 +11,8 @@ from myuw.dao.term import get_current_quarter, get_comparison_datetime
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response, log_msg,\
     log_data_not_found_response, log_err
-from myuw.views.rest_dispatch import RESTDispatch, handle_exception
+from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.error import handle_exception
 
 
 logger = logging.getLogger(__name__)

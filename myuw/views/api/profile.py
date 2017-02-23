@@ -11,9 +11,9 @@ from myuw.dao.student_profile import get_profile_of_current_user
 from myuw.dao.user import get_netid_of_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response, log_msg
-from myuw.views import prefetch_resources
-from myuw.views.rest_dispatch import RESTDispatch, data_not_found,\
-    handle_exception
+from myuw.views import prefetch_resources, is_password_enabled
+from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.error import data_not_found, handle_exception
 
 
 logger = logging.getLogger(__name__)
@@ -30,11 +30,16 @@ class MyProfile(RESTDispatch):
         of the current user
         """
         timer = Timer()
-        prefetch_resources(request,
-                           prefetch_enrollment=True,
-                           prefetch_password=True)
-        netid = get_netid_of_current_user()
         try:
+            if is_password_enabled():
+                prefetch_resources(request,
+                                   prefetch_enrollment=True,
+                                   prefetch_password=True)
+            else:
+                prefetch_resources(request,
+                                   prefetch_enrollment=True)
+
+            netid = get_netid_of_current_user()
             if is_student():
                 profile = get_profile_of_current_user()
                 response = profile.json_data()
@@ -71,10 +76,11 @@ class MyProfile(RESTDispatch):
 
             response['display_name'] = get_display_name_of_current_user()
 
-            try:
-                response['password'] = get_pw_json(netid, request)
-            except Exception as ex:
-                logger.error("%s get_pw_json: %s" % (netid, ex))
+            if is_password_enabled():
+                try:
+                    response['password'] = get_pw_json(netid, request)
+                except Exception as ex:
+                    logger.error("%s get_pw_json: %s" % (netid, ex))
 
             log_success_response(logger, timer)
             return HttpResponse(json.dumps(response, default=str))
