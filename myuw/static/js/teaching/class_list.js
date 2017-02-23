@@ -27,14 +27,14 @@ var PhotoClassList = {
         $("#sort_list").on("change", function() {
             var sorted = PhotoClassList.sort_students(this.value);
 
-            var new_div = $("<div>");
+            var new_body = $("<tbody>");
             for (var i = 0; i < sorted.length; i++) {
                 var regid = sorted[i].regid;
-                var student_div = $("#student_"+regid);
-                new_div.append(student_div);
+                var student_row = $("#student_"+regid);
+                new_body.append(student_row);
             }
 
-            $("#student_list").html(new_div.html());
+            $("#student_list tbody").html(new_body.html());
         });
     },
 

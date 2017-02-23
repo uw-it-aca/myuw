@@ -27,6 +27,7 @@
 
                 <!-- desktop table view -->
                 <table id="student_list" border="1">
+                    <thead>
                 	<tr>
                 		<th>Photo</th>
                 		<th>Name</th>
@@ -40,6 +41,8 @@
                         {{ /each }}
                         <th>Email</th>
                 	</tr>
+                    </thead>
+                    <tbody>
                     {{ #each sections.0.registrations }}
                 	<tr id="student_{{ regid }}">
                 		<td><img width="75" class="classlist-photo" src="/photo/{{ url_key }}"></td>
@@ -59,6 +62,7 @@
                         <td>{{ email }}</td>
                 	</tr>
                     {{ /each }}
+                    </tbody>
                 </table>
 
 
