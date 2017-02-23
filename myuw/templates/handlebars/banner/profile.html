@@ -37,24 +37,33 @@
 
             {{#with password}}
             <div class="profile-passwords row">
-                <h3 class="sr-only">Password Information</h3>
-                {{#if has_active_med_pw}}
-                <div class="col-md-6 uwmedicine-password">
-                    <h4>UW Medicine Account</h4>
-                    {{#if med_pw_expired }}
-                        <span class="password-alert">Password expired on {{formatDateAsDate expires_med}}. <a href="https://services.uwmedicine.org/passwordportal/login.htm">Change your password to regain access.</a></span>
-                    {{ else }}
-                        <span class="password-status {{#if expires_in_30_days_or_less}}password-alert{{/if}}">Password expires in {{days_before_med_pw_expires}} days ({{formatDateAsDate expires_med}})</span><br>
-                        <a href="https://services.uwmedicine.org/passwordportal/login.htm">Change UW Medicine password</a>
+                <div style="margin: 0 5px;">
+                    <h3 class="sr-only">Password Information</h3>
+                    {{#if has_active_med_pw}}
+                    <div class="col-md-6 uwmedicine-password">
+                        <h4>UW Medicine Account</h4>
+                        {{#if med_pw_expired }}
+                            <span class="password-alert">Password expired on {{formatDateAsDate expires_med}}. <a href="https://services.uwmedicine.org/passwordportal/login.htm">Change your password to regain access.</a></span>
+                        {{ else }}
+                            <span class="password-status {{#if expires_in_30_days_or_less}}password-alert{{/if}}">Password expires in {{days_before_med_pw_expires}} days ({{formatDateAsDate expires_med}})</span><br>
+                            <a href="https://services.uwmedicine.org/passwordportal/login.htm">Change UW Medicine password</a>
+                        {{/if}}
+                            <p>This password is for UW Medicine applications like Epic, ORCA, MINDscape, AMC network, etc.</p>
+                    </div>
+                    <div class="uwnetid-password col-md-6">
+                        <h4>UW NetID Account</h4>
+                        <span class="password-status">Password last updated {{days_after_last_pw_change}} days ago</span></br>
+                        <a href="https://uwnetid.washington.edu/manage/?password">Change UW NetID password</a>
+                        <p>This password is for applications like UW email, MyUW, Web Publishing, etc.</p>
+                    </div>
+                    {{else}}
+                    <div class="uwnetid-password">
+                        <h4>UW NetID Account</h4>
+                        <span class="password-status">Password last updated {{days_after_last_pw_change}} days ago</span></br>
+                        <a href="https://uwnetid.washington.edu/manage/?password">Change UW NetID password</a>
+                        <p>This password is for applications like UW email, MyUW, Web Publishing, etc.</p>
+                    </div>
                     {{/if}}
-                        <p>This password is for UW Medicine applications like Epic, ORCA, MINDscape, AMC network, etc.</p>
-                </div>
-                {{/if}}
-                <div class="col-md-6">
-                    <h4>UW NetID Account</h4>
-                    <span class="password-status">Password last updated {{days_after_last_pw_change}} days ago</span></br>
-                    <a href="https://uwnetid.washington.edu/manage/?password">Change UW NetID password</a>
-                    <p>This password is for applications like UW email, MyUW, Web Publishing, etc.</p>
                 </div>
             </div>
            {{/with}}
