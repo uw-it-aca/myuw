@@ -18,6 +18,7 @@ class TestProfile(MyuwApiTest):
         response = self.get_profile_response()
         self.assertEquals(response.status_code, 200)
         data = json.loads(response.content)
+        self.assertEqual(data["uwnetid"], 'javerage')
         self.assertEquals(data["display_name"], "J. Average Student")
         self.assertEquals(data["first_name"], "John Joseph")
         self.assertEquals(data["last_name"], "Average")
@@ -43,6 +44,7 @@ class TestProfile(MyuwApiTest):
         self.assertEquals(response.status_code, 200)
         data = json.loads(response.content)
         self.assertEquals(data["campus"], "Bothell")
+        self.assertEqual(data["uwnetid"], "jbothell")
         try:
             self.assertIsNotNone(data["password"])
             self.assertFail()
@@ -53,6 +55,7 @@ class TestProfile(MyuwApiTest):
         self.set_user("eight")
         response = self.get_profile_response()
         data = json.loads(response.content)
+        self.assertEqual(data["uwnetid"], "eight")
         self.assertEquals(data["campus"], "Tacoma")
         try:
             self.assertIsNotNone(data["password"])
@@ -66,6 +69,7 @@ class TestProfile(MyuwApiTest):
         response = self.get_profile_response()
         self.assertEquals(response.status_code, 200)
         data = json.loads(response.content)
+        self.assertEqual(data["uwnetid"], "staff")
         self.assertFalse(data["is_student"])
         self.assertFalse(data["is_grad_student"])
         try:
