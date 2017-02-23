@@ -20,11 +20,13 @@ from myuw.test.dao.hfs import TestHFS as TestDaoHFS
 from myuw.test.dao.iasystem import IASystemDaoTest
 from myuw.test.dao.library import TestLibrary
 from myuw.test.dao.pws import TestPwsDao
+from myuw.test.dao.password import TestDaoPassword
 from myuw.test.dao.textbook import TestTextbooks
 from myuw.test.dao.thrive import TestThrive
 from myuw.test.dao.uwemail import TestUwEmail
 from myuw.test.dao.emaillink import TestEmailServiceUrl
 from myuw.test.dao.user import TestUserDao
+from myuw.test.dao.instructor_schedule import TestInstructorSchedule
 from myuw.test.api.current_schedule import TestSchedule as APISchedule
 from myuw.test.api.books import TestApiBooks
 from myuw.test.api.cur_books import TestApiCurBooks
@@ -42,6 +44,8 @@ from myuw.test.api.notices import TestNotices as TestNoticesAPI
 from myuw.test.api.thrive import TestApiThrive
 from myuw.test.api.academic_calendar import TestCalendarAPI
 from myuw.test.api.dept_calendar import TestDeptCalAPI
+from myuw.test.api.instructor_schedule import (
+    TestInstructorCurrentSchedule, TestInstructorTermSchedule)
 from myuw.test.cache import TestCustomCachePolicy
 from myuw.test.context_processors import TestContextProcessors
 from myuw.test.loggers import TestSessionLog

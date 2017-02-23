@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% load compress %}
+
+{% block page_title %}
+MyUW: View Future Quarters
+{% endblock %}
+
+{% block content %}
+
+    <div id="main-content" role="main" aria-labelledby="main"></div>
+    <div id="static-links"></div>
+
+    <!-- component content templates -->
+    {% include "handlebars/banner/profile.html" %}
+    {% include "handlebars/banner/notice.html" %}
+    {% include "handlebars/card/loading.html" %}
+    {% include "handlebars/card/schedule/visual.html" %}
+    {% include "handlebars/card/schedule/visual_day.html" %}
+    {% include "handlebars/card/schedule/final_day.html" %}
+    {% include "handlebars/card/schedule/final_panel.html" %}
+    {% include "handlebars/card/schedule/course_cards.html" %}
+    {% include "handlebars/card/schedule/course_card_content.html" %}
+    {% include "handlebars/card/schedule/course_sche_panel.html" %}
+    {% include "handlebars/card/schedule/eval_panel.html" %}
+    {% include "handlebars/card/schedule/course_resource_panel.html" %}
+    {% include "handlebars/card/schedule/instructor_panel.html" %}
+    {% include "handlebars/card/schedule/final_panel.html" %}
+    {% include "handlebars/card/schedule/sp_final.html" %}
+    {% include "handlebars/card/textbook.html" %}
+
+    <!-- page content templates -->
+    {% include "handlebars/loading.html" %}
+    {% include "handlebars/error.html" %}
+    {% include "handlebars/future.html" %}
+    {% include "handlebars/future_410_error.html" %}
+
+    {% include "user_state.html" %}
+
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+      window.future_term = "{{ future_term }}"
+    </script>
+    {% compress js inline %}
+    <script src="{% static 'js/page/future.js' %}"></script>
+    {% endcompress %}
+{% endblock %}
