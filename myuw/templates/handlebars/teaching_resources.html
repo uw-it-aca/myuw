@@ -5,7 +5,7 @@
         <h3 class="scheduleHeading">Teaching Resources</h3>
         <h4>Course Materials</h4>
         <ul class="unstyled-list">
-            <li><a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwmain" rel="">Order Textbooks</a></li>
+            <li><a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school={{#if bothell_affil}}uwbothell{{else}}{{#if tacoma_affil}}uwtacoma{{else}}uwmain{{/if}}{{/if}}" rel="">Order Textbooks</a></li>
             <li><a href="http://www.lib.washington.edu/types/course/instructors/request" rel="">Request Course Reserves</a></li>
             <li><a href="#" rel="">Request Course Packs</a></li>
         </ul>
