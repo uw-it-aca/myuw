@@ -166,6 +166,11 @@ WSData = {
                 this.aterm_grading_period_relative_open = moment(course_data.term.aterm_grading_period_open).fromNow();
                 this.grading_period_relative_close = moment(course_data.term.grading_period_close).fromNow();
                 this.grade_submission_relative_deadline = moment(course_data.term.grade_submission_deadline).fromNow();
+
+                this.grading_period_relative_open = moment(course_data.term.grading_period_open).calendar();
+                this.aterm_grading_period_relative_open = moment(course_data.term.aterm_grading_period_open).calendar();
+                this.grading_period_relative_close = moment(course_data.term.grading_period_close).calendar();
+                this.grade_submission_relative_deadline = moment(course_data.term.grade_submission_deadline).calendar();
             });
         }
         return course_data;
