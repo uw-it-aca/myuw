@@ -1,0 +1,192 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "ClassWebsiteUrl": "https://canvas.uw.edu/courses/814329/",
+    "Course": {
+        "CourseNumber": "310",
+        "CurriculumAbbreviation": "BISIA",
+        "Href": "/student/v5/course/2013,spring,BISIA,310.json",
+        "Quarter": "spring",
+        "Year": 2013
+    },
+    "CourseCampus": "Bothell",
+    "CourseDescription": "Intensive study of the theories and practices of writing poetry.",
+    "CourseHasVariableContent": false,
+    "CourseTitle": "CREATIVE WRIT-POET",
+    "CourseTitleLong": "CREATIVE WRITING: POETRY",
+    "CreditControl": "fixed credit",
+    "CurrentEnrollment": 23,
+    "Curriculum": {
+        "CollegeName": "BOTHELL",
+        "DepartmentAbbreviation": "B IAS",
+        "TimeScheduleLinkAbbreviation": "bisia"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": false,
+    "DuplicateEnrollmentAllowed": false,
+    "EndDate": "",
+    "EnrollmentRestrictions": true,
+    "FeeAmount": "",
+    "FeeBudget": "",
+    "FeeType": "",
+    "FinalExam": {
+        "Building": "UW2",
+        "Date": "2013-06-11",
+        "EndTime": "17:30",
+        "FinalExamBuilding": {
+            "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=UW2&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+        },
+        "MeetingStatus": "3",
+        "RoomNumber": "031",
+        "StartTime": "15:30"
+    },
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": "",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": true,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [],
+    "GradingSystem": "standard",
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": "",
+    "IsIndependentStart": false,
+    "JointSections": [],
+    "LMSOwnership": null,
+    "LimitEstimateEnrollment": 24,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "UW2",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Tuesday"
+                    },
+                    {
+                        "Name": "Thursday"
+                    }
+                ],
+                "Text": " T T"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "17:30",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2013,spring,BISIA,310,A,10000000000000000000000000000007"
+                    },
+                    "PercentInvolve": "100",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000007.json",
+                        "Name": "Amaranth Borsuk",
+                        "RegID": "10000000000000000000000000000007"
+                    },
+                    "TSPrint": true
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=UW2&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "lecture",
+            "RoomNumber": "031",
+            "RoomToBeArranged": false,
+            "StartTime": "15:30"
+        }
+    ],
+    "Metadata": "SectionSourceKey=SDB;",
+    "MinimumTermCredit": "5.0",
+    "OnlineLearningType": {
+        "Code": "00",
+        "Description": "No online learning component"
+    },
+    "PrimaryLMS": null,
+    "PrimarySection": {
+        "CourseNumber": "310",
+        "CurriculumAbbreviation": "BISIA",
+        "Href": "/student/v5/course/2013,spring,BISIA,310/A.json",
+        "Quarter": "spring",
+        "SectionID": "A",
+        "Year": 2013
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "310",
+        "CurriculumAbbreviation": "BISIA",
+        "Href": "/student/v5/registration.json?year=2013&quarter=spring&curriculum_abbreviation=BISIA&course_number=310&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "spring",
+        "RegID": null,
+        "SectionID": "A",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2013
+    },
+    "RepositoryTimeStamp": "1/25/2017 12:25:30 PM",
+    "ResearchCredit": false,
+    "RoomCapacity": 48,
+    "SLN": "11571",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "A",
+    "SectionType": "lecture",
+    "SelfRegistrationAllowed": true,
+    "ServiceLearning": false,
+    "StartDate": "",
+    "StudentCreditHours": " 115.0",
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2013,spring.json",
+        "Quarter": "spring",
+        "Year": 2013
+    },
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": []
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": [
+                {
+                    "Text": "(CLA/IA/MCS:T2)"
+                },
+                {
+                    "Text": "(IA STUDIO/WORKSHOP)"
+                }
+            ]
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": [
+                {
+                    "Text": "No NonMtrcs"
+                }
+            ]
+        }
+    }
+}

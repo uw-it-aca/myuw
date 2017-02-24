@@ -1,0 +1,41 @@
+{
+    "CourseCampus": "Tacoma",
+    "CourseCollege": "UW Tacoma",
+    "CourseComment": "CHG DESC",
+    "CourseDescription": "Explores algorithmic design options for motion control, navigation, and obstacle avoidance in mobile autonomous robots. Introduces pertinent principles from artificial intelligence and embedded real-time systems. Students construct robots from kits and program them to demonstrate sophisticated behaviors. Prerequisite: a minimum grade of 2.0 in TCSS 360; a minimum grade of 2.0 in TCSS 422.",
+    "CourseNumber": "437",
+    "CourseTitle": "MOBILE ROBOTICS",
+    "CourseTitleLong": "MOBILE ROBOTICS",
+    "CreditControl": "fixed credit",
+    "Curriculum": {
+        "CurriculumAbbreviation": "TCSS",
+        "Href": "/student/v5/curriculum/2013,spring,TCSS.json",
+        "Quarter": "spring",
+        "Year": 2013
+    },
+    "FirstEffectiveTerm": {
+        "Href": "/student/v5/term/2013,winter.json",
+        "Quarter": "winter",
+        "Year": 2013
+    },
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradingSystem": "credit/no credit or standard",
+    "LastEffectiveTerm": {
+        "Href": "/student/v5/term/9999,autumn.json",
+        "Quarter": "autumn",
+        "Year": 9999
+    },
+    "MaximumCredit": 0.0,
+    "MaximumTermCredit": 0.0,
+    "Metadata": "CourseSourceKey=SDB;",
+    "MinimumTermCredit": 5.0,
+    "RepositoryTimeStamp": "8/9/2016 12:46:12 PM"
+}
