@@ -73,6 +73,7 @@ class MyProfile(RESTDispatch):
                 response = {}
                 response['is_grad_student'] = False
                 response['is_student'] = False
+                response['uwnetid'] = netid
 
             response['display_name'] = get_display_name_of_current_user()
 
