@@ -1,0 +1,247 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "ClassWebsiteUrl": null,
+    "Course": {
+        "CourseNumber": "122",
+        "CurriculumAbbreviation": "PHYS",
+        "Href": "/student/v5/course/2013,spring,PHYS,122.json",
+        "Quarter": "spring",
+        "Year": 2013
+    },
+    "CourseCampus": "Seattle",
+    "CourseDescription": "Covers the basic principles of electromagnetism and experiments in these topics for physical science and engineering majors. Lecture tutorial and lab components must all be taken to receive credit. Credit is not given for both PHYS 115 and PHYS 122. Prerequisite: either MATH 125 or MATH 134, which may be taken concurrently; PHYS 121. Offered: AWSpS.",
+    "CourseHasVariableContent": false,
+    "CourseTitle": "ELECTROMAGNETISM",
+    "CourseTitleLong": "ELECTROMAGNETISM",
+    "CreditControl": "zero credits",
+    "CurrentEnrollment": 22,
+    "Curriculum": {
+        "CollegeName": "ARTS & SCI",
+        "DepartmentAbbreviation": "PHYS",
+        "TimeScheduleLinkAbbreviation": "phys"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": false,
+    "DuplicateEnrollmentAllowed": true,
+    "EndDate": "",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": "",
+    "FeeBudget": "",
+    "FeeType": "",
+    "FinalExam": {
+        "Building": null,
+        "Date": "",
+        "EndTime": "",
+        "FinalExamBuilding": {
+            "Href": ""
+        },
+        "MeetingStatus": null,
+        "RoomNumber": null,
+        "StartTime": ""
+    },
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": "",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [
+        {
+            "DelegateLevel": "department",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000006.json",
+                "Name": "Susan H. Miller",
+                "RegID": "10000000000000000000000000000006"
+            }
+        },
+        {
+            "DelegateLevel": "curriculum",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000006.json",
+                "Name": "Susan H. Miller",
+                "RegID": "10000000000000000000000000000006"
+            }
+        }
+    ],
+    "GradingSystem": null,
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": "",
+    "IsIndependentStart": false,
+    "JointSections": [],
+    "LMSOwnership": null,
+    "LimitEstimateEnrollment": 22,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "PAB",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Wednesday"
+                    }
+                ],
+                "Text": "  W"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "17:20",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2013,spring,PHYS,122,AQ,9871D6734B5F4D6A9206B6E29E753F47"
+                    },
+                    "PercentInvolve": "12",
+                    "Person": {
+                        "Href": "/student/v5/person/9871D6734B5F4D6A9206B6E29E753F47.json",
+                        "Name": "ANNA GOUSSIOU",
+                        "RegID": "9871D6734B5F4D6A9206B6E29E753F47"
+                    },
+                    "TSPrint": true
+                },
+                {
+                    "FacultySequenceNumber": "",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2013,spring,PHYS,122,AQ,0984DD719CC84A6C9939A850C42D3749"
+                    },
+                    "PercentInvolve": "88",
+                    "Person": {
+                        "Href": "/student/v5/person/0984DD719CC84A6C9939A850C42D3749.json",
+                        "Name": "Jason McDonald",
+                        "RegID": "0984DD719CC84A6C9939A850C42D3749"
+                    },
+                    "TSPrint": true
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=PAB&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "laboratory",
+            "RoomNumber": "B176",
+            "RoomToBeArranged": false,
+            "StartTime": "15:30"
+        }
+    ],
+    "Metadata": "SectionSourceKey=SDB;",
+    "MinimumTermCredit": "",
+    "OnlineLearningType": {
+        "Code": "00",
+        "Description": "No online learning component"
+    },
+    "PrimaryLMS": null,
+    "PrimarySection": {
+        "CourseNumber": "122",
+        "CurriculumAbbreviation": "PHYS",
+        "Href": "/student/v5/course/2013,spring,PHYS,122/A.json",
+        "Quarter": "spring",
+        "SectionID": "A",
+        "Year": 2013
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "122",
+        "CurriculumAbbreviation": "PHYS",
+        "Href": "/student/v5/registration.json?year=2013&quarter=spring&curriculum_abbreviation=PHYS&course_number=122&section_id=AQ&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "spring",
+        "RegID": null,
+        "SectionID": "AQ",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2013
+    },
+    "RepositoryTimeStamp": "1/25/2017 12:25:38 PM",
+    "ResearchCredit": false,
+    "RoomCapacity": 22,
+    "SLN": "17995",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "AQ",
+    "SectionType": "laboratory",
+    "SelfRegistrationAllowed": true,
+    "ServiceLearning": false,
+    "StartDate": "",
+    "StudentCreditHours": "   0.0",
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2013,spring.json",
+        "Quarter": "spring",
+        "Year": 2013
+    },
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": [
+                {
+                    "Text": "PHYS 121, 122, 123 MUST BE TAKEN IN CONSECUTIVE"
+                },
+                {
+                    "Text": "QUARTERS TO MAINTAIN PRIORITY REGISTRATION."
+                },
+                {
+                    "Text": "GRADUATING SENIORS SHOULD CONTACT SUSAN MILLER"
+                },
+                {
+                    "Text": "(susanh82@phys.washington.edu)."
+                },
+                {
+                    "Text": "****************************************"
+                },
+                {
+                    "Text": "ANY SECTION OF PHYS 122 LECTURE"
+                },
+                {
+                    "Text": "**MUST BE TAKEN WITH A PHYS 122 LAB**"
+                },
+                {
+                    "Text": "**IF NOT REGISTERED IN REQUIRED LAB, STUDENT WILL"
+                },
+                {
+                    "Text": "RECEIVE 0.0 GRADE IN LECTURE COURSE**"
+                }
+            ]
+        },
+        "CurriculumComments": {
+            "Lines": []
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": [
+                {
+                    "Text": "*NO LAB FIRST WEEK OF QUARTER*"
+                }
+            ]
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": [
+                {
+                    "Text": "Lab Section"
+                },
+                {
+                    "Text": "Must be enrolled in PHYS 121 Period 1 (2/15/2013-3/3/2013)"
+                }
+            ]
+        }
+    }
+}
