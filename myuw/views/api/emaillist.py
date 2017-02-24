@@ -65,13 +65,35 @@ class Emaillist(RESTDispatch):
 def get_input(request):
     single_section_labels = []
     for key in request.POST:
-        if re.match(r'^section_single_[A-Z][A-Z0-9]?$', key) or\
-                re.match(r'^secondary_single_[A-Z][A-Z0-9]?$', key):
+        if re.match(r'^[a-z]+_single_[A-Z][A-Z0-9]?$', key):
             section_label = request.POST[key]
-            if is_valid_section_label(section_label):
+
+            if section_id_matched(key, section_label) and\
+                    is_valid_section_label(section_label):
                 single_section_labels.append(request.POST[key])
-            else:
-                logger.error("Invalid section label (%s) in the form input",
-                             section_label)
-                raise InvalidInputFormData
+                continue
+
+            logger.error("Invalid section label (%s) in the form input",
+                         section_label)
+            raise InvalidInputFormData
     return single_section_labels
+
+
+SINGLE_SECTION_SELECTION_KEY_PATTERN = r'^[a-z]+_single_([A-Z][A-Z0-9]?)$'
+
+
+def section_id_matched(key, value):
+    """
+    key and value Strings
+    """
+    try:
+        section_id = re.sub(SINGLE_SECTION_SELECTION_KEY_PATTERN,
+                            r'\1',
+                            key,
+                            flags=re.IGNORECASE)
+        section_label_pattern = (r"^\d{4},[a-z]+,[ &A-Z]+,\d+/" +
+                                 section_id + "$")
+        return re.match(section_label_pattern, value,
+                        flags=re.IGNORECASE) is not None
+    except TypeError:
+        return False

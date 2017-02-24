@@ -2,7 +2,7 @@ import json
 from django.core.urlresolvers import reverse
 from django.test import Client
 from django.test.utils import override_settings
-from myuw.views.api.emaillist import Emaillist
+from myuw.views.api.emaillist import Emaillist, section_id_matched
 from myuw.test import get_request, get_request_with_user, get_user,\
     email_backend_override
 from myuw.test.api import MyuwApiTest, require_url,\
@@ -62,6 +62,20 @@ class TestEmaillistApi(MyuwApiTest):
              u'secondary_single_AA': u'2013,spring,PHYS,122/AA',
              })
         self.assertEqual(resp.status_code, 403)
+
+    def test_section_id_matched(self):
+        self.assertTrue(section_id_matched(u'section_single_A',
+                                           u'2013,spring,PHYS,122/A'))
+        self.assertTrue(section_id_matched(u'section_single_AA',
+                                           u'2013,spring,PHYS,122/AA'))
+        self.assertFalse(section_id_matched(u'section_single_A', None))
+        self.assertFalse(section_id_matched(u'section_single_B',
+                                           u'2013,spring,PHYS,122/A'))
+        self.assertFalse(section_id_matched(u'section_single_B',
+                                           u'2013,spring,PHYS,122,A'))
+        self.assertFalse(section_id_matched(u'single_A',
+                                           u'2013,spring,PHYS,122/A'))
+
 
     def test_post_wo_csrf_check(self):
         with self.settings(MAILMAN_COURSEREQUEST_RECIPIENT='dummy@uw.edu'):
