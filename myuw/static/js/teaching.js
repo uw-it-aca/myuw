@@ -42,6 +42,7 @@ var Teaching = {
     _load_desktop_cards: function() {
         Teaching._reset_content_divs();
         var desktop_body_cards = [
+            VisualScheduleCard,
             InstructorCourseCards
         ];
         var desktop_sidebar_cards = [
@@ -55,6 +56,7 @@ var Teaching = {
     _load_mobile_cards: function() {
         Teaching._reset_content_divs();
         var mobile_cards = [
+            VisualScheduleCard,
             InstructorCourseCards,
             EventsCard
         ];
