@@ -106,6 +106,7 @@ def get_instructor_section(year, quarter, curriculum,
     schedule.person = get_person_of_current_user()
     schedule.term = get_specific_term(year, quarter)
     schedule.sections = []
+
     section = get_section_by_label("%s,%s,%s,%s/%s" % (
         year, quarter.lower(), curriculum.upper(),
         course_number, course_section))

@@ -137,6 +137,11 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
     json_data["past_term"] = is_past(schedule.term, request)
     json_data["future_term"] = is_future(schedule.term, request)
 
+    json_data["grading_period_is_open"] =\
+        schedule.term.is_grading_period_open()
+    json_data["grading_period_is_past"] =\
+        schedule.term.is_grading_period_past()
+
     colors = get_colors_by_schedule(schedule)
 
     buildings = get_buildings_by_schedule(schedule)

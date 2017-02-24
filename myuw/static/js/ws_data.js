@@ -153,6 +153,19 @@ WSData = {
                 this.is_seattle = (course_campus === 'seattle');
                 this.is_bothell = (course_campus === 'bothell');
                 this.is_tacoma =  (course_campus === 'tacoma');
+
+                this.section_label = course_data.term.year + '-' +
+                    course_data.term.quarter.toLowerCase() + '-' +
+                    this.curriculum_abbr + '-' +
+                    this.course_number + '-' +
+                    this.section_id;
+
+                this.grading_period_is_open = course_data.grading_period_is_open;
+                this.grading_period_is_past = course_data.grading_period_is_past;
+                this.grading_period_relative_open = moment(course_data.term.grading_period_open).fromNow();
+                this.aterm_grading_period_relative_open = moment(course_data.term.aterm_grading_period_open).fromNow();
+                this.grading_period_relative_close = moment(course_data.term.grading_period_close).fromNow();
+                this.grade_submission_relative_deadline = moment(course_data.term.grade_submission_deadline).fromNow();
             });
         }
         return course_data;
