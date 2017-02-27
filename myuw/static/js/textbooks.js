@@ -19,6 +19,8 @@ var TextBooks = {
         if (book_err_status === 543 || course_err_status === 543 || instructed_course_err_status === 543) {
             var raw = CardWithError.render("Textbooks");
             $("#main-content").html(raw);
+        } else {
+            TextBooks.render_books();
         }
     },
 
