@@ -1,0 +1,35 @@
+{
+    "Current":
+    {
+        "Href":"\/student\/v5\/registration.json?year=2013&quarter=spring&curriculum_abbreviation=&course_number=&section_id=&reg_id=FE36CCB8F66711D5BE060004AC494FCE&is_active=&instructor_reg_id=",
+        "CourseNumber":null,
+        "CurriculumAbbreviation":null,
+        "InstructorRegID":null,
+        "IsActive":null,
+        "PageSize":null,
+        "PageStart":null,
+        "Quarter":"spring",
+        "RegID":"FE36CCB8F66711D5BE060004AC494FCE",
+        "SectionID":null,
+        "Year":"2013"
+    },
+    "Next":null,
+    "PageSize":"10",
+    "PageStart":"1",
+    "Previous":null,
+    "Registrations":
+    [
+        {
+            "Href":"\/student\/v5\/registration\/2013,spring,ESS,107,A,FE36CCB8F66711D5BE060004AC494FCE,.json",
+            "CourseNumber":"107",
+            "CurriculumAbbreviation":"ESS",
+            "DuplicateCode":"1",
+            "Instructor":null,
+            "Quarter":"spring",
+            "RegID":"FE36CCB8F66711D5BE060004AC494FCE",
+            "SectionID":"A",
+            "Year":"2013"
+        }
+    ],
+    "TotalCount":"4"
+}
