@@ -35,7 +35,7 @@ class TestProfile(MyuwApiTest):
             self.assertFalse(data["is_grad_student"])
             try:
                 self.assertIsNotNone(data["password"])
-                self.assertFail()
+                self.fail("should not have password")
             except KeyError:
                 pass
 
@@ -49,7 +49,7 @@ class TestProfile(MyuwApiTest):
             self.assertEqual(data["uwnetid"], "jbothell")
             try:
                 self.assertIsNotNone(data["password"])
-                self.fail()
+                self.fail("should not have password")
             except KeyError:
                 pass
 
@@ -62,7 +62,7 @@ class TestProfile(MyuwApiTest):
             self.assertEquals(data["campus"], "Tacoma")
             try:
                 self.assertIsNotNone(data["password"])
-                self.fail()
+                self.fail("should not have password")
             except KeyError:
                 pass
 
@@ -78,7 +78,7 @@ class TestProfile(MyuwApiTest):
             self.assertFalse(data["is_grad_student"])
             try:
                 self.assertIsNotNone(data["password"])
-                self.fail()
+                self.fail("should not have password")
             except KeyError:
                 pass
 
