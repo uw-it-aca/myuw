@@ -14,69 +14,73 @@ class TestProfile(MyuwApiTest):
         return self.get_response_by_reverse('myuw_profile_api')
 
     def test_seattle_student(self):
-        self.set_user('javerage')
-        response = self.get_profile_response()
-        self.assertEquals(response.status_code, 200)
-        data = json.loads(response.content)
-        self.assertEqual(data["uwnetid"], 'javerage')
-        self.assertEquals(data["display_name"], "J. Average Student")
-        self.assertEquals(data["first_name"], "John Joseph")
-        self.assertEquals(data["last_name"], "Average")
-        self.assertEquals(data["local_address"]["street_line1"],
-                          "4634 26th Ave NE")
-        self.assertEquals(data["local_address"]["zip_code"], "98105-4566")
-        self.assertEquals(data["student_number"], "1033334")
+        with self.settings(MYUW_ENABLED_FEATURES=[]):
+            self.set_user('javerage')
+            response = self.get_profile_response()
+            self.assertEquals(response.status_code, 200)
+            data = json.loads(response.content)
+            self.assertEqual(data["uwnetid"], 'javerage')
+            self.assertEquals(data["display_name"], "J. Average Student")
+            self.assertEquals(data["first_name"], "John Joseph")
+            self.assertEquals(data["last_name"], "Average")
+            self.assertEquals(data["local_address"]["street_line1"],
+                              "4634 26th Ave NE")
+            self.assertEquals(data["local_address"]["zip_code"], "98105-4566")
+            self.assertEquals(data["student_number"], "1033334")
 
-        self.assertEquals(data["campus"], "Seattle")
-        self.assertEquals(data["class_level"], "SENIOR")
-        self.assertEquals(len(data["majors"]), 1)
-        self.assertEquals(len(data["minors"]), 1)
-        self.assertFalse(data["is_grad_student"])
-        try:
-            self.assertIsNotNone(data["password"])
-            self.assertFail()
-        except KeyError:
-            pass
+            self.assertEquals(data["campus"], "Seattle")
+            self.assertEquals(data["class_level"], "SENIOR")
+            self.assertEquals(len(data["majors"]), 1)
+            self.assertEquals(len(data["minors"]), 1)
+            self.assertFalse(data["is_grad_student"])
+            try:
+                self.assertIsNotNone(data["password"])
+                self.assertFail()
+            except KeyError:
+                pass
 
     def test_bothell_student(self):
-        self.set_user("jbothell")
-        response = self.get_profile_response()
-        self.assertEquals(response.status_code, 200)
-        data = json.loads(response.content)
-        self.assertEquals(data["campus"], "Bothell")
-        self.assertEqual(data["uwnetid"], "jbothell")
-        try:
-            self.assertIsNotNone(data["password"])
-            self.assertFail()
-        except KeyError:
-            pass
+        with self.settings(MYUW_ENABLED_FEATURES=[]):
+            self.set_user("jbothell")
+            response = self.get_profile_response()
+            self.assertEquals(response.status_code, 200)
+            data = json.loads(response.content)
+            self.assertEquals(data["campus"], "Bothell")
+            self.assertEqual(data["uwnetid"], "jbothell")
+            try:
+                self.assertIsNotNone(data["password"])
+                self.fail()
+            except KeyError:
+                pass
 
     def test_tacoma_student(self):
-        self.set_user("eight")
-        response = self.get_profile_response()
-        data = json.loads(response.content)
-        self.assertEqual(data["uwnetid"], "eight")
-        self.assertEquals(data["campus"], "Tacoma")
-        try:
-            self.assertIsNotNone(data["password"])
-            self.assertFail()
-        except KeyError:
-            pass
+        with self.settings(MYUW_ENABLED_FEATURES=[]):
+            self.set_user("eight")
+            response = self.get_profile_response()
+            data = json.loads(response.content)
+            self.assertEqual(data["uwnetid"], "eight")
+            self.assertEquals(data["campus"], "Tacoma")
+            try:
+                self.assertIsNotNone(data["password"])
+                self.fail()
+            except KeyError:
+                pass
 
     def test_staff(self):
-        self.set_user("staff")
-        self.set_date("2014-01-10")
-        response = self.get_profile_response()
-        self.assertEquals(response.status_code, 200)
-        data = json.loads(response.content)
-        self.assertEqual(data["uwnetid"], "staff")
-        self.assertFalse(data["is_student"])
-        self.assertFalse(data["is_grad_student"])
-        try:
-            self.assertIsNotNone(data["password"])
-            self.assertFail()
-        except KeyError:
-            pass
+        with self.settings(MYUW_ENABLED_FEATURES=[]):
+            self.set_user("staff")
+            self.set_date("2014-01-10")
+            response = self.get_profile_response()
+            self.assertEquals(response.status_code, 200)
+            data = json.loads(response.content)
+            self.assertEqual(data["uwnetid"], "staff")
+            self.assertFalse(data["is_student"])
+            self.assertFalse(data["is_grad_student"])
+            try:
+                self.assertIsNotNone(data["password"])
+                self.fail()
+            except KeyError:
+                pass
 
     def test_error_cases(self):
         self.set_user("jerror")
