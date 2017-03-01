@@ -7,8 +7,7 @@ from myuw.dao.mailman import get_list_json,\
     get_single_course_list, get_single_section_list, get_section_id,\
     get_all_secondary_section_lists, get_section_email_lists,\
     get_section_label, get_course_email_lists, request_mailman_lists,\
-    get_message_body, _get_single_line, _get_quarter_code,\
-    get_sections_wo_email_lists
+    get_message_body, _get_single_line, _get_quarter_code
 from myuw.test import fdao_sws_override, fdao_mailman_override, get_request,\
     get_request_with_user, email_backend_override
 
@@ -105,24 +104,6 @@ class TestMailmanDao(TestCase):
         blist = get_section_secondary_combined_list(primary_section)
         self.assertEqual(blist["list_address"], 'multi_phys121a_sp13')
         self.assertTrue(blist["list_exists"])
-
-    def test_get_sections_wo_email_lists(self):
-        ret_list = get_sections_wo_email_lists('2013,spring,PHYS,122/A')
-        self.assertEqual(len(ret_list), 10)
-        self.assertTrue('2013,spring,PHYS,122/A' in ret_list)
-        self.assertTrue('2013,spring,PHYS,122/AA' in ret_list)
-        self.assertTrue('2013,spring,PHYS,122/AB' in ret_list)
-        self.assertTrue('2013,spring,PHYS,122/AC' in ret_list)
-        self.assertTrue('2013,spring,PHYS,122/AD' in ret_list)
-        self.assertTrue('2013,spring,PHYS,122/AE' in ret_list)
-        self.assertTrue('2013,spring,PHYS,122/AF' in ret_list)
-        self.assertFalse('2013,spring,PHYS,122/AG' in ret_list)
-        self.assertTrue('2013,spring,PHYS,122/AR' in ret_list)
-        self.assertFalse('2013,spring,PHYS,122/AT' in ret_list)
-        ret_list = get_sections_wo_email_lists('2013,spring,PHYS,121/A')
-        self.assertEqual(len(ret_list), 0)
-        ret_list = get_sections_wo_email_lists('2013,spring,PHYS,122/AA')
-        self.assertEqual(len(ret_list), 1)
 
     def test_get_course_email_lists(self):
         ret_json = get_course_email_lists(

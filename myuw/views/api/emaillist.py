@@ -10,8 +10,7 @@ from myuw.logger.logresp import log_success_response
 from myuw.views.rest_dispatch import RESTDispatch
 from myuw.dao.instructor_schedule import is_instructor
 from myuw.dao.user import get_netid_of_current_user
-from myuw.dao.mailman import get_course_email_lists,\
-    request_mailman_lists, get_sections_wo_email_lists,\
+from myuw.dao.mailman import get_course_email_lists, request_mailman_lists,\
     is_valid_section_label
 from myuw.views.error import handle_exception, not_instructor_error,\
     InvalidInputFormData
