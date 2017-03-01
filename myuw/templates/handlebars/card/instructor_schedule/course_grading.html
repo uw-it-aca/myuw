@@ -21,7 +21,7 @@
 <br />Closes {{grade_submission_deadline_date}} ({{grade_submission_relative_deadline}})</span>
                       {{else}}
                         {{#if grading_period_is_past}}
-                        <span class="card-badge-value">Closed {{grade_submission_relative_deadline}}</span>
+                        <span class="card-badge-value">Closed {{grade_submission_relative_deadline}} (<a href="https://gradepage.uw.edu/section/{{section_label}}{{#if independent_study}}-{{independent_study_instructor_regid}}{{/if}}" target="_blank">view receipt</a>)</span>
                         {{else}}
                         <span class="card-badge-value">Opens {{grading_period_open_date}} ({{grading_period_relative_open}})</span>
                         {{/if}}
