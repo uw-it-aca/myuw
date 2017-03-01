@@ -94,8 +94,6 @@ def get_all_secondary_section_lists(primary_section):
                                               primary_section.term.year))
             thread.start()
             threads_dict[section_id] = thread
-        if len(threads_dict) == 0:
-            secondaries
 
         for section_id in sorted(threads_dict.keys()):
             thread = threads_dict[section_id]
