@@ -29,5 +29,33 @@ var InstructorCourseCardContent = {
             building = building.replace(/[^a-z0-9]/gi, '_');
             WSData.log_interaction("show_map_from_course_list_"+building, term);
         });
+        $(".course_delegate_link", card).on("click", function(ev) {
+            var width = 800;
+            var height = 400;
+
+            var left = window.screenX + 200;
+            var top = window.screenY + 200;
+
+            window.open(ev.target.href, '_blank', 'width='+width+',height='+height+',left='+left+',top='+top);
+
+            var course_id = ev.currentTarget.getAttribute("rel");
+            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
+            WSData.log_interaction("open_course_delegate__"+course_id, term);
+            return false;
+        });
+        $(".gradepage_help_link", card).on("click", function(ev) {
+            var width = 800;
+            var height = 400;
+
+            var left = window.screenX + 200;
+            var top = window.screenY + 200;
+
+            window.open(ev.target.parentElement.href, '_blank', 'width='+width+',height='+height+',left='+left+',top='+top);
+
+            var course_id = ev.currentTarget.getAttribute("rel");
+            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
+            WSData.log_interaction("open_gradepage_help_"+course_id, term);
+            return false;
+        });
     }
 };

@@ -17,19 +17,20 @@
                     </div>
                     <div class="pull-right">
                       {{#if grading_period_is_open}}
-                        <span class="card-badge-value"><a href="https://gradepage.uw.edu/section/{{section_label}}" target="_blank">Record Grades</a> (closes {{grade_submission_relative_deadline}})</span>
+                        <span class="card-badge-value"><span class="pull-right"><a href="https://gradepage.uw.edu/section/{{section_label}}{{#if independent_study}}-{{independent_study_instructor_regid}}{{/if}}" target="_blank">Record Grades</a>{{#if grade_date}}(submitted {{ grade_date }}){{/if}} <a href="https://itconnect.uw.edu/learn/tools/gradepage/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="gradepage_help_link" target="_blank"><i class="fa fa-question-circle"></i></a></span>
+<br />Closes {{grade_submission_deadline_date}} ({{grade_submission_relative_deadline}})</span>
                       {{else}}
                         {{#if grading_period_is_past}}
                         <span class="card-badge-value">Closed {{grade_submission_relative_deadline}}</span>
                         {{else}}
-                        <span class="card-badge-value">Opens in {{grading_period_relative_open}}</span>
+                        <span class="card-badge-value">Opens {{grading_period_open_date}} ({{grading_period_relative_open}})</span>
                         {{/if}}
                       {{/if}}
                     </div>
                 </li>
                 <li class="clearfix">
                     <div class="pull-left">
-                        <span class="inst-course-label">Delegate {{pluralize grade_submission_delegates.length '' 'S'}}</span>
+                        <span class="inst-course-label">Delegate{{pluralize grade_submission_delegates.length '' 'S'}}</span>
                     </div>
                     <div class="pull-right">
                         {{#each grade_submission_delegates}}
@@ -37,6 +38,9 @@
                           <span>{{level}}</span>: {{this.person.surname}}, {{person.first_name}}
                         </div>
                       {{/each}}
+                        <div class="pull-right">
+                          <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter={{capitalizeString quarter}}+{{year}}&sln={{sln}}&chanid=11" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="course_delegate_link">Change Delegate List</a>
+                        </div>
                     </div>
                 </li>
             </ul>

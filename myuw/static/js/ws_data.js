@@ -148,6 +148,29 @@ WSData = {
                 this.matching_term = (course_data.year == this.year &&
                                       course_data.quarter.toLowerCase() == this.quarter.toLowerCase());
             });
+
+            var grading_is_open = course_data.grading_period_is_open;
+            var grading_is_closed = course_data.grading_period_is_past;
+            var grading_open = moment(course_data.term.grading_period_open);
+            var grading_aterm_open = moment(course_data.term.aterm_grading_period_open);
+            var grading_deadline = moment(course_data.term.grade_submission_deadline);
+            var ref = moment();
+            // search param supports testing
+            if (window.location.search.length) {
+                match = window.location.search.match(/\?grading_date=(.+)$/);
+                if (match) {
+                    ref = moment(decodeURI(match[1]));
+                    grading_is_closed = grading_deadline.isBefore(ref);
+                    grading_is_open = (!grading_is_closed && grading_open.isBefore(ref));
+                }
+            }
+
+            var grading_open_relative = grading_open.from(ref);
+            var grading_open_date = grading_open.calendar(ref);
+            var grading_aterm_open_relative = grading_aterm_open.from(ref);
+            var grading_deadline_date = grading_deadline.calendar(ref);
+            var grading_deadline_relative = grading_deadline.from(ref);
+
             $.each(course_data.sections, function () {
                 var course_campus = this.course_campus.toLowerCase();
                 this.is_seattle = (course_campus === 'seattle');
@@ -160,15 +183,13 @@ WSData = {
                     this.course_number + '-' +
                     this.section_id;
 
-                this.grading_period_is_open = course_data.grading_period_is_open;
-                this.grading_period_is_past = course_data.grading_period_is_past;
-                this.grading_period_relative_open = moment(course_data.term.grading_period_open).fromNow();
-                this.aterm_grading_period_relative_open = moment(course_data.term.aterm_grading_period_open).fromNow();
-                this.grade_submission_relative_deadline = moment(course_data.term.grade_submission_deadline).fromNow();
-
-                this.grading_period_relative_open = moment(course_data.term.grading_period_open).calendar();
-                this.aterm_grading_period_relative_open = moment(course_data.term.aterm_grading_period_open).calendar();
-                this.grade_submission_relative_deadline = moment(course_data.term.grade_submission_deadline).calendar();
+                this.grading_period_is_open = grading_is_open;
+                this.grading_period_is_past = grading_is_closed;
+                this.grading_period_open_date = grading_open_date;
+                this.grading_period_relative_open = grading_open_relative;
+                this.aterm_grading_period_relative_open = grading_aterm_open_relative;
+                this.grade_submission_deadline_date = grading_deadline_date;
+                this.grade_submission_relative_deadline = grading_deadline_relative;
             });
         }
         return course_data;

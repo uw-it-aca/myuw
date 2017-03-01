@@ -159,6 +159,13 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
             section_data["color_id"] = color
         section_index += 1
 
+        if section.is_independent_study:
+            section_data['is_independent_study'] = True
+            section_data['independent_study_instructor_regid'] =\
+                section.independent_study_instructor_regid
+        else:
+            section_data['is_independent_study'] = False
+
         if EARLY_FALL_START == section.institute_name:
             section_data["early_fall_start"] = True
             json_data["has_early_fall_start"] = True
