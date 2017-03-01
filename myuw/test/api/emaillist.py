@@ -85,16 +85,11 @@ class TestEmaillistApi(MyuwApiTest):
             resp = client.post(
                 url,
                 {u'section_single_A': u'2013,spring,PHYS,122/A',
-                 u'secondary_single_AA': u'2013,spring,PHYS,122/AA',
-                 u'secondary_single_AB': u'2013,spring,PHYS,122/AB',
-                 u'secondary_single_AC': u'2013,spring,PHYS,122/AC',
-                 u'secondary_single_AD': u'2013,spring,PHYS,122/AD',
-                 u'secondary_single_AS': u'2013,spring,PHYS,122/AS',
                  })
             self.assertEquals(resp.status_code, 200)
             self.assertEquals(json.loads(resp.content),
                               {'request_sent': True,
-                               'total_lists_requested': 6})
+                               'total_lists_requested': 1})
 
             resp = client.post(
                 url, {u'csrfmiddlewaretoken': [u'54qLUQ5ER737oHxECBuMGP']})
@@ -108,13 +103,15 @@ class TestEmaillistApi(MyuwApiTest):
 
     def test_not_instructor_post(self):
         client = Client()
-        get_user('none')
-        client.login(username='none', password='pass')
+        get_user('billsea')
+        client.login(username='billsea', password='pass')
         url = reverse("myuw_emaillist_api")
+        print "START"
         resp = client.post(
             url,
-            {u'section_single_A': u'2013,spring,PHYS,122/A',
-             u'secondary_single_AA': u'2013,spring,PHYS,122/AA'})
+            {u'section_single': u'2013,spring,PHYS,122/ZC'})
+        print "END"
         self.assertEquals(resp.status_code, 403)
+
         self.assertEquals(resp.content,
                           'Access Forbidden to Non Instructor')

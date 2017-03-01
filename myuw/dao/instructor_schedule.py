@@ -151,7 +151,7 @@ def get_limit_estimate_enrollment_for_section(section):
 
 def is_instructor(request):
     """
-    Return sections instructor is teaching in the next autumn quarter
+    Determines if user is an instructor of the request's term
     """
     try:
         person = get_person_of_current_user()
@@ -159,6 +159,26 @@ def is_instructor(request):
         sections = _get_instructor_sections(person, term)
         return (len(sections) > 0)
     except DataFailureException as err:
+        if err.status == 404:
+            return False
+
+        raise
+
+
+def is_section_instructor(section_label):
+    """
+    Determines if user is an instructor of the given section label
+    """
+    try:
+        person = get_person_of_current_user()
+        print "per"
+        section = get_section_by_label(section_label)
+        print section_label
+        print section.is_instructor(person)
+        return section.is_instructor(person)
+
+    except Exception as err:
+        print err
         if err.status == 404:
             return False
 
