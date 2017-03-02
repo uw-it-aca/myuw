@@ -14,7 +14,10 @@ var Teaching = {
         var teaching_source = $("#teaching").html();
         var template = Handlebars.compile(teaching_source);
 
-        $("#main-content").html(template());
+        $("#main-content").html(template({
+            'bothell_affil': window.user.bothell_affil,
+            'tacoma_affil': window.user.tacoma_affil
+        }));
 
         NoticeBanner.render_init($("#notice_banner_location"));
 

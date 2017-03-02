@@ -19,14 +19,12 @@ var TextBooks = {
         if (book_err_status === 543 || course_err_status === 543 || instructed_course_err_status === 543) {
             var raw = CardWithError.render("Textbooks");
             $("#main-content").html(raw);
+        } else {
+            TextBooks.render_books();
         }
     },
 
     process_book_data: function(book_data, course_data, instructed_course_data) {
-        if (!book_data) {
-            // If we had an error loading bookstore content
-            return;
-        }
         var template_data = {
             "sections": [],
             "quarter": course_data ? course_data.quarter : instructed_course_data.quarter,
@@ -43,7 +41,7 @@ var TextBooks = {
                 section_id: section.section_id,
                 color_id: section.color_id,
                 sln: section.sln,
-                books: book_data[section.sln],
+                books: book_data ? book_data[section.sln] : [],
                 is_instructor: instructor,
                 bothell_campus: section.course_campus.toLowerCase() === 'bothell',
                 tacoma_campus: section.course_campus.toLowerCase() === 'tacoma'
@@ -62,7 +60,7 @@ var TextBooks = {
             });
         }
 
-        template_data.verba_link = book_data.verba_link;
+        template_data.verba_link = book_data ? book_data.verba_link : null;
         return template_data;
     },
 
@@ -70,10 +68,12 @@ var TextBooks = {
         var book_data = WSData.book_data(TextBooks.term);
         var course_data = WSData.course_data_for_term(TextBooks.term);
         var instructed_course_data = WSData.instructed_course_data_for_term(TextBooks.term);
+        var book_data_err_status = WSData.course_data_error_code(TextBooks.term);
         var course_err_status = WSData.course_data_error_code(TextBooks.term);
         var instructed_course_err_status = WSData.instructed_course_data_error_code(TextBooks.term);
 
-        return (book_data &&
+        return ((book_data ||
+                 (book_data === undefined && book_data_err_status === 404)) &&
                 (course_data ||
                  (course_data === undefined && course_err_status === 404)) &&
                 (instructed_course_data || 

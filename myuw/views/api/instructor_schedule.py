@@ -398,9 +398,12 @@ class InstSectionDetails(RESTDispatch):
     def add_linked_section_data(self, resp_data):
         section_types = {}
         sections_for_user = {}
+        all_types = set()
         for section in resp_data["sections"][1:]:
             section_id = section["section_id"]
-            section_types[section_id] = section["section_type"]
+            section_type = section["section_type"]
+            section_types[section_id] = section_type
+            all_types.add(section_type)
             for registration in section["registrations"]:
                 if registration not in sections_for_user:
                     sections_for_user[registration] = []
@@ -419,14 +422,19 @@ class InstSectionDetails(RESTDispatch):
                     user_types[section_type].append(section)
 
                 linked = []
-                for section_type in sorted(user_types.keys()):
+                for section_type in sorted(all_types):
                     # These are for sorting
-                    sort_string = ",".join(user_types[section_type])
+                    if section_type in user_types:
+                        sort_string = ",".join(user_types[section_type])
+                        linked.append({'type': section_type,
+                                       'sections': user_types[section_type]})
+                    else:
+                        sort_string = "ZZ"
+                        linked.append({'type': section_type,
+                                       'sections': [""]})
                     registration["linked_type_"+section_type] = sort_string
 
                     # This is for display
-                    linked.append({'type': section_type,
-                                   'sections': user_types[section_type]})
                 registration["linked_sections"] = linked
 
         types_list = list(set(section_types.values()))

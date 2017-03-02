@@ -12,8 +12,7 @@
             {{else}}
                 {{#if class_website_url}}
                   <div class="pull-right">
-                      <span class="card-badge-value" style="text-align: right;"><a class="course_website" href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" target="_blank">{{#if class_website_data.title}}{{ class_website_data.title }}{{else}}View class website{{/if}}</a>
-                      <div class="course-website-update"><a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Update</a></div>
+                      <span class="card-badge-value" style="text-align: right;"><a class="course_website" href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" target="_blank">{{#if class_website_data.title}}{{ class_website_data.title }}{{else}}View class website{{/if}}</a><div class="course-website-update"><a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Update</a></div>
                       </span>
                   </div>
                 {{else}}
