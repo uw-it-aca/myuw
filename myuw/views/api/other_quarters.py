@@ -8,7 +8,8 @@ from myuw.dao.registered_term import get_registered_future_quarters,\
 from myuw.dao.term import get_next_non_summer_quarter
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
-from myuw.views.rest_dispatch import RESTDispatch, handle_exception
+from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.error import handle_exception
 
 
 logger = logging.getLogger(__name__)

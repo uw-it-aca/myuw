@@ -6,7 +6,8 @@ from myuw.dao.category_links import get_links_for_category
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_data_not_found_response
 from myuw.logger.logresp import log_success_response
-from myuw.views.rest_dispatch import RESTDispatch, data_not_found
+from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.error import data_not_found
 
 
 class CategoryLinks(RESTDispatch):

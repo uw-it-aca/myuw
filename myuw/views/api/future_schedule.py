@@ -6,7 +6,7 @@ from myuw.dao.card_display_dates import in_show_grades_period
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_msg
 from myuw.views.api.base_schedule import StudClasSche
-from myuw.views.rest_dispatch import invalid_future_term, handle_exception
+from myuw.views.error import invalid_future_term, handle_exception
 
 
 logger = logging.getLogger(__name__)

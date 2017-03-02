@@ -13,8 +13,8 @@ from myuw.dao.textbook import get_verba_link_by_schedule
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response, log_msg,\
     log_data_not_found_response
-from myuw.views.rest_dispatch import RESTDispatch, handle_exception,\
-    data_not_found
+from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.error import handle_exception, data_not_found
 
 
 logger = logging.getLogger(__name__)
@@ -76,7 +76,7 @@ def index_by_sln(book_data):
 
 class TextbookCur(Textbook):
     """
-    Performs actions on resource at /api/v1/schedule/current/.
+    Performs actions on resource at /api/v1/book/current/.
     """
 
     def GET(self, request):

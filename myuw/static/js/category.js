@@ -8,7 +8,7 @@ var Category = {
     render_category_page: function(category, topic) {
         var data = WSData.category_link_data(category);
 
-        var title = window.page_titles.category_page.replace("Category", data.category_name);
+        var title = document.title.replace("Category", data.category_name);
 
         document.title = title;
         source = $("#category_page").html();

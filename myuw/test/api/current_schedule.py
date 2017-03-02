@@ -1,7 +1,8 @@
 import json
-from myuw.test.api import MyuwApiTest, require_url
+from myuw.test.api import MyuwApiTest, require_url, fdao_sws_override
 
 
+@fdao_sws_override
 @require_url('myuw_current_schedule')
 class TestSchedule(MyuwApiTest):
 
@@ -19,7 +20,6 @@ class TestSchedule(MyuwApiTest):
 
         self.assertEquals(phys['canvas_url'],
                           'https://canvas.uw.edu/courses/249652')
-        self.assertEquals(phys['canvas_name'], 'MECHANICS')
         self.assertEquals(
             phys['lib_subj_guide'],
             'http://guides.lib.uw.edu/friendly.php' +
@@ -51,7 +51,6 @@ class TestSchedule(MyuwApiTest):
                           'http://guides.lib.uw.edu/tacoma/art')
 
     def test_jbothell_current_term(self):
-
         response = self.get_current_schedule_res('jbothell')
         self.assertEquals(response.status_code, 200)
 

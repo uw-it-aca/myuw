@@ -23,7 +23,7 @@ setup(
     author_email="aca-it@uw.edu",
     include_package_data=True,
     install_requires=[
-        'Django==1.10.4',
+        'Django==1.10.5',
         'ordereddict',
         'simplejson',
         'django-compressor',
@@ -34,7 +34,7 @@ setup(
         'unittest2',
         'AuthZ-Group',
         'python-binary-memcached',
-        'UW-RestClients==1.4.5',
+        'UW-RestClients==1.6.2',
         'Django-SupportTools',
         'django_mobileesp',
         'django_client_logger',
