@@ -62,6 +62,10 @@ var RequestEmailLists = {
             ev.preventDefault();
             WSData.log_interaction("submit_request_emaillist_form_"+label);
             var target = ev.currentTarget;
+            // Don't POST if no boxes are checked
+            if(!RequestEmailLists.form_has_checked(target)){
+                return
+            }
             $.ajax({
                 url: "/api/v1/emaillist/",
                 dataType: "JSON",
@@ -87,5 +91,10 @@ var RequestEmailLists = {
                 }
             });
         });
+    },
+
+    form_has_checked: function(target){
+        var checked = $(target).find(":checked");
+        return checked.length > 0
     }
 };
