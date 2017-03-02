@@ -58,7 +58,6 @@ class Emaillist(RESTDispatch):
             if len(single_section_labels) == 0:
                 resp = {"none_selected": True}
             else:
-                print 4
                 resp = request_mailman_lists(get_netid_of_current_user(),
                                              single_section_labels)
                 log_success_response(logger, timer)
