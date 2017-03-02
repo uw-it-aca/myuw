@@ -91,6 +91,7 @@ var VisualScheduleCard = {
         };
 
         var set_meeting = function(course_data, meeting, index, is_instructor) {
+            var section = course_data.sections[index];
             if (!meeting.days_tbd) {
 
                 var start_parts = meeting.start_time.split(":");
