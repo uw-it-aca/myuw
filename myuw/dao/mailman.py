@@ -12,8 +12,7 @@ from restclients.sws.section import get_section_by_label,\
 from restclients.mailman.basic_list import get_admin_url
 from restclients.mailman.course_list import get_course_list_name,\
     exists_course_list, get_section_secondary_combined_list_name,\
-    exists_section_secondary_combined_list, get_section_list_name,\
-    exists_section_list
+    exists_section_secondary_combined_list, get_section_list_name
 from restclients.mailman.instructor_term_list import\
     get_instructor_term_list_name, exists_instructor_term_list
 from myuw.util.thread import ThreadWithResponse
@@ -109,47 +108,6 @@ def get_all_secondary_section_lists(primary_section):
                              primary_section.term.year,
                              thread.exception)
     return secondaries
-
-
-def get_sections_wo_email_lists(section_label):
-    """
-    @param section: a valid Section label
-    @return: a list of section labels
-    """
-    return_list = []
-    section = get_section_by_label(section_label)
-    if not exists_section_list(section):
-        return_list.append(section.section_label())
-
-    if section.is_primary_section and\
-            len(section.linked_section_urls):
-        threads_dict = {}
-        for url in section.linked_section_urls:
-            section_id = get_section_id(url)
-            thread = ThreadWithResponse(target=exists_course_list,
-                                        args=(section.curriculum_abbr,
-                                              section.course_number,
-                                              section_id,
-                                              section.term.quarter,
-                                              section.term.year))
-            thread.start()
-            section_label = get_section_label(section.curriculum_abbr,
-                                              section.course_number,
-                                              section_id,
-                                              section.term.quarter,
-                                              section.term.year)
-            threads_dict[section_label] = thread
-
-        for section_label in threads_dict.keys():
-            thread = threads_dict[section_label]
-            thread.join()
-            if thread.exception is None:
-                if not thread.response:
-                    return_list.append(section_label)
-            else:
-                logger.error("exists_course_list(%s)==>%s ",
-                             section_label, thread.exception)
-    return return_list
 
 
 def get_course_email_lists(year, quarter, curriculum_abbr, course_number,
