@@ -171,14 +171,10 @@ def is_section_instructor(section_label):
     """
     try:
         person = get_person_of_current_user()
-        print "per"
         section = get_section_by_label(section_label)
-        print section_label
-        print section.is_instructor(person)
         return section.is_instructor(person)
 
     except Exception as err:
-        print err
         if err.status == 404:
             return False
 

@@ -106,11 +106,9 @@ class TestEmaillistApi(MyuwApiTest):
         get_user('billsea')
         client.login(username='billsea', password='pass')
         url = reverse("myuw_emaillist_api")
-        print "START"
         resp = client.post(
             url,
-            {u'section_single': u'2013,spring,PHYS,122/ZC'})
-        print "END"
+            {u'section_single_ZC': u'2013,spring,PHYS,122/ZC'})
         self.assertEquals(resp.status_code, 403)
 
         self.assertEquals(resp.content,

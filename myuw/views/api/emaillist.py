@@ -23,7 +23,6 @@ class Emaillist(RESTDispatch):
 
     def GET(self, request, year, quarter,
             curriculum_abbr, course_number, section_id):
-        print "GET"
         """
         GET returns 200 with email lists for the course
         """
@@ -49,11 +48,8 @@ class Emaillist(RESTDispatch):
     @method_decorator(csrf_protect)
     def POST(self, request):
         timer = Timer()
-        print "POST"
         try:
-            print 2
             single_section_labels = get_input(request)
-            print 3
             if not validate_is_instructor(single_section_labels):
                 logger.error("%s is not an instructor",
                              get_netid_of_current_user())
@@ -62,17 +58,17 @@ class Emaillist(RESTDispatch):
             if len(single_section_labels) == 0:
                 resp = {"none_selected": True}
             else:
+                print 4
                 resp = request_mailman_lists(get_netid_of_current_user(),
                                              single_section_labels)
                 log_success_response(logger, timer)
 
             return HttpResponse(json.dumps(resp))
-        except Exception:
+        except Exception as ex:
             return handle_exception(logger, timer, traceback)
 
 
 def get_input(request):
-    print "2.5"
     single_section_labels = []
     for key in request.POST:
         if re.match(r'^[a-z]+_single_[A-Z][A-Z0-9]?$', key):
@@ -85,7 +81,6 @@ def get_input(request):
 
             logger.error("Invalid section label (%s) in the form input",
                          section_label)
-            print "2.52"
             raise InvalidInputFormData
     return single_section_labels
 
@@ -114,7 +109,6 @@ def validate_is_instructor(section_labels):
     """
     returns true if user is instructor of **all** labels
     """
-    print 'v'
     for section_label in section_labels:
         if is_section_instructor(section_label) is False:
             return False
