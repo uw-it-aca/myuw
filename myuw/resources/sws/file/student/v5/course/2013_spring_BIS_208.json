@@ -1,0 +1,41 @@
+{
+    "CourseCampus": "Bothell",
+    "CourseCollege": "UW Bothell",
+    "CourseComment": "",
+    "CourseDescription": "Explores the relationship between creative arts and research. May focus on performance, visual, or literary arts as well as diverse media. Research may include study of artistic forms as well as specific topics.",
+    "CourseNumber": "208",
+    "CourseTitle": "EXPERIMENT THRU ARTS",
+    "CourseTitleLong": "EXPERIMENTING THROUGH THE ARTS",
+    "CreditControl": "fixed credit",
+    "Curriculum": {
+        "CurriculumAbbreviation": "BIS",
+        "Href": "/student/v5/curriculum/2013,spring,BIS.json",
+        "Quarter": "spring",
+        "Year": 2013
+    },
+    "FirstEffectiveTerm": {
+        "Href": "/student/v5/term/2007,autumn.json",
+        "Quarter": "autumn",
+        "Year": 2007
+    },
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": true,
+        "Writing": false
+    },
+    "GradingSystem": "credit/no credit or standard",
+    "LastEffectiveTerm": {
+        "Href": "/student/v5/term/9999,autumn.json",
+        "Quarter": "autumn",
+        "Year": 9999
+    },
+    "MaximumCredit": 15.0,
+    "MaximumTermCredit": 0.0,
+    "Metadata": "CourseSourceKey=SDB;",
+    "MinimumTermCredit": 5.0,
+    "RepositoryTimeStamp": "8/9/2016 12:46:05 PM"
+}
