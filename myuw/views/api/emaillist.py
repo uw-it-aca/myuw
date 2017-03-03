@@ -5,16 +5,16 @@ import re
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponse
+from myuw.dao.pws import get_person_of_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
 from myuw.views.rest_dispatch import RESTDispatch
-from myuw.dao.instructor_schedule import is_instructor, is_section_instructor
 from myuw.dao.user import get_netid_of_current_user
 from myuw.dao.mailman import get_course_email_lists, request_mailman_lists,\
     is_valid_section_label
 from myuw.views.error import handle_exception, not_instructor_error,\
     InvalidInputFormData
-
+from restclients.sws.v5.section import get_section_by_label
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +33,7 @@ class Emaillist(RESTDispatch):
                                                 curriculum_abbr.upper(),
                                                 course_number,
                                                 section_id)
-            if not is_section_instructor(section_label):
+            if not is_emaillist_authorized(section_label):
                 return not_instructor_error()
 
             email_list_json = get_course_email_lists(
@@ -106,9 +106,31 @@ def section_id_matched(key, value):
 
 def validate_is_instructor(section_labels):
     """
-    returns true if user is instructor of **all** labels
+    returns true if user is instructor/authorized submitter of **all** labels
     """
     for section_label in section_labels:
-        if is_section_instructor(section_label) is False:
+        if is_emaillist_authorized(section_label) is False:
             return False
     return True
+
+
+def is_emaillist_authorized(section_label):
+    """
+    Determines if user is authorized to create mailing lists for that section:
+    Instructor of section OR instructor of primary section
+    """
+    try:
+        user_is_authorized = False
+        person = get_person_of_current_user()
+        section = get_section_by_label(section_label)
+        user_is_authorized = section.is_instructor(person)
+
+        if not section.is_primary_section and not user_is_authorized:
+            secondary = get_section_by_label(section.primary_section_label())
+            user_is_authorized = secondary.is_instructor(person)
+        return user_is_authorized
+
+    except Exception as err:
+        if err.status == 404:
+            return False
+        raise

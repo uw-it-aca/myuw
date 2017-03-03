@@ -101,7 +101,7 @@ class TestEmaillistApi(MyuwApiTest):
                                 u'section_single': u'2013,spring,PHYS,122/A'})
             self.assertEquals(resp.status_code, 400)
 
-    def test_not_instructor_post(self):
+    def test_missing_section_post(self):
         client = Client()
         get_user('billsea')
         client.login(username='billsea', password='pass')
@@ -113,3 +113,39 @@ class TestEmaillistApi(MyuwApiTest):
 
         self.assertEquals(resp.content,
                           'Access Forbidden to Non Instructor')
+
+    def test_not_instructor_post(self):
+        client = Client()
+        get_user('billsea')
+        client.login(username='billsea', password='pass')
+        url = reverse("myuw_emaillist_api")
+        resp = client.post(
+            url,
+            {u'section_single_A': u'2013,spring,ESS,102/A'})
+        self.assertEquals(resp.status_code, 403)
+
+        self.assertEquals(resp.content,
+                          'Access Forbidden to Non Instructor')
+
+    def test_not_instructor_secondary_post(self):
+        client = Client()
+        get_user('billsea')
+        client.login(username='billsea', password='pass')
+        url = reverse("myuw_emaillist_api")
+        resp = client.post(
+            url,
+            {u'section_single_AB': u'2013,spring,ESS,102/AB'})
+        self.assertEquals(resp.status_code, 403)
+
+        self.assertEquals(resp.content,
+                          'Access Forbidden to Non Instructor')
+
+    def test_primary_instructor_secondary_post(self):
+        client = Client()
+        get_user('bill')
+        client.login(username='bill', password='pass')
+        url = reverse("myuw_emaillist_api")
+        resp = client.post(
+            url,
+            {u'section_single_AB': u'2013,spring,ESS,102/AB'})
+        self.assertEquals(resp.status_code, 200)
