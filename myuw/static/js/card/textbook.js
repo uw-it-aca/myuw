@@ -96,6 +96,7 @@ var TextbookCard = {
         var template = Handlebars.compile(source);
         var raw = template(template_data);
         TextbookCard.dom_target.html(raw);
+        LogUtils.cardLoaded(TextbookCard.name, TextbookCard.dom_target);
 
         $(".show_textbooks").on("click", function(ev) {
             WSData.log_interaction("card_view_future_textbooks", term);
@@ -104,9 +105,8 @@ var TextbookCard = {
                 state: "textbooks",
                 term: term
             },  "", "/textbooks/"+term);
-            return false;
+            return;
         });
-        LogUtils.cardLoaded(TextbookCard.name, TextbookCard.dom_target);
 
     }
 
