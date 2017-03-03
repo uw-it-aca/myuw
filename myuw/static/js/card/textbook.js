@@ -97,17 +97,18 @@ var TextbookCard = {
         var raw = template(template_data);
         TextbookCard.dom_target.html(raw);
         LogUtils.cardLoaded(TextbookCard.name, TextbookCard.dom_target);
+        TextbookCard.add_events(term);
+    },
 
-        $(".show_textbooks").on("click", function(ev) {
+    add_events: function(term) {
+        $("#show_term_textbooks").on("click", function(ev) {
             WSData.log_interaction("card_view_future_textbooks", term);
             var hist = window.History;
             hist.pushState({
                 state: "textbooks",
                 term: term
             },  "", "/textbooks/"+term);
-            return;
         });
-
     }
 
 };
