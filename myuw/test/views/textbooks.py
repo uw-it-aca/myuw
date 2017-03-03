@@ -43,7 +43,7 @@ class TestTextbook(MyuwApiTest):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context['term'], u'2013,summer,b-term')
         self.assertIsNone(response.context['textbook'])
-        
+
         response = self.client.get(url + "/2013,summer,b-term/TRAIN101A")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context['term'], u'2013,summer,b-term')
