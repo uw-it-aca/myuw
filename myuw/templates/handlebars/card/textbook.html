@@ -25,7 +25,7 @@
 
         {{#unless no_book_assigned}}
             <div class="destination-arrow">
-                <a class="show_textbooks" href="/textbooks/{{year}},{{quarter}}{{#if summer_term}},{{toLowerCase summer_term}}{{/if}}" title="View textbooks" aria-label="View textbook details for this quarter" ><i role="presentation" class="fa fa-chevron-right"></i></a>
+                <a class="show_textbooks" id="show_term_textbooks" href="/textbooks/{{year}},{{quarter}}{{#if summer_term}},{{toLowerCase summer_term}}{{/if}}" title="View textbooks" aria-label="View textbook details for this quarter" ><i role="presentation" class="fa fa-chevron-right"></i></a>
             </div>
         {{/unless}}
     </div>
