@@ -64,7 +64,7 @@ var RequestEmailLists = {
             var target = ev.currentTarget;
             // Don't POST if no boxes are checked
             if(!RequestEmailLists.form_has_checked(target)){
-                return
+                return;
             }
             $.ajax({
                 url: "/api/v1/emaillist/",
@@ -95,6 +95,6 @@ var RequestEmailLists = {
 
     form_has_checked: function(target){
         var checked = $(target).find(":checked");
-        return checked.length > 0
+        return checked.length > 0;
     }
 };
