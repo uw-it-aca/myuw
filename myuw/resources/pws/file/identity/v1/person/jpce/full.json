@@ -1,0 +1,29 @@
+{
+  "DisplayName":"Jane Nonmatric",
+  "EduPersonAffiliations":["member",
+                           "student"],
+  "IsTestEntity":false,
+  "PriorUWNetIDs":[],
+  "PriorUWRegIDs":[],
+  "RegisteredFirstMiddleName":"JANE",
+  "RegisteredName":"JANE NONMATRIC",
+  "RegisteredSurname":"NONMATRIC",
+  "UIDNumber":"831511",
+  "UWNetID":"jpce",
+  "UWRegID":"10000000000000000000000000000010",
+  "WhitepagesPublish":true,
+  "PersonAffiliations":{
+     "StudentPersonAffiliation":
+       {"StudentNumber":"1000010",
+        "StudentSystemKey":"001000010",
+        "StudentWhitePages":{
+         "Class":"Non-Matric",
+         "Department1":"Non Matriculated",
+         "Department2":null,
+         "Department3":null,
+         "Email":"jpce@uw.edu",
+         "Name":"Nonmatric, Jane",
+         "Phone":"+1 224 800-9010",
+         "PublishInDirectory":true}
+        }
+ }}
