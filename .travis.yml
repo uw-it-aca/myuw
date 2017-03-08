@@ -7,7 +7,7 @@ python:
 install:
   - pip install -r requirements.txt
   # Temporary, until the new-core branch is released to pypi
-  - pip uninstall uw-restclients
+  - yes | pip uninstall uw-restclients
   - pip install -e git+https://github.com/uw-it-aca/uw-restclients.git@feature/new-core-split-out-hfs#egg=UW-Restclients
 before_script:
   - pip install coverage
