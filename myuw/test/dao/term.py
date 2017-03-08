@@ -1,7 +1,7 @@
 from datetime import datetime
 from django.test import TestCase
 from django.conf import settings
-from restclients.models.sws import ClassSchedule, Term, Section, Person
+from uw_sws.models import ClassSchedule, Term, Section, Person
 from myuw.dao.term import get_specific_term, is_past, is_future,\
     get_default_date, get_comparison_date,\
     get_current_quarter, get_next_quarter,\

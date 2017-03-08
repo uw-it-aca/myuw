@@ -6,7 +6,7 @@ the SWS notice resource.
 import logging
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
-from restclients.sws.notice import get_notices_by_regid
+from uw_sws.notice import get_notices_by_regid
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time, log_exception, log_info
 from myuw.models import TuitionDate, UserNotices

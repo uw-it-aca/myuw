@@ -3,8 +3,8 @@ This module provides access to registered class schedule and sections
 """
 
 import logging
-from restclients.models.sws import ClassSchedule
-from restclients.sws.registration import get_schedule_by_regid_and_term
+from uw_sws.models import ClassSchedule
+from uw_sws.registration import get_schedule_by_regid_and_term
 from restclients.thread import generic_prefetch
 from restclients.library.currics import get_subject_guide_for_section_params
 from myuw.logger.timer import Timer
@@ -22,7 +22,7 @@ EARLY_FALL_START = "EARLY FALL START"
 
 def _get_schedule(regid, term):
     """
-    @return a restclients.models.sws.ClassSchedule object
+    @return a uw_sws.models.ClassSchedule object
     Return the actively enrolled sections for the current user
     in the given term/quarter
     """

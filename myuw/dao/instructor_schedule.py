@@ -3,11 +3,11 @@ This module provides access to instructed class schedule and sections
 """
 
 import logging
-from restclients.sws.section import get_sections_by_instructor_and_term,\
+from uw_sws.section import get_sections_by_instructor_and_term,\
     get_section_by_url
-from restclients.sws.section_status import get_section_status_by_label
-from restclients.models.sws import ClassSchedule
-from restclients.exceptions import DataFailureException
+from uw_sws.section_status import get_section_status_by_label
+from uw_sws.models import ClassSchedule
+from restclients_core.exceptions import DataFailureException
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time
 from myuw.dao.pws import get_person_of_current_user
@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 def _get_instructor_sections(person, term):
     """
-    @return a restclients.models.sws.ClassSchedule object
+    @return a uw_sws.models.ClassSchedule object
     Return the actively enrolled sections for the current user
     in the given term/quarter
     """
