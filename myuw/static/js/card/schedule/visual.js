@@ -4,7 +4,7 @@ var VisualScheduleCard = {
     term: 'current',
 
     should_display_card: function() {
-        if (!(window.user.student || window.user.is_instructor) || 
+        if (!(window.user.student || window.user.is_instructor) ||
             !window.card_display_dates.is_before_last_day_of_classes) {
                 if (!window.force_visual_schedule_display) {
                     return false;
@@ -22,39 +22,41 @@ var VisualScheduleCard = {
             $("#VisualScheduleCard").hide();
             return;
         }
-        WSData.fetch_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_upon_data, VisualScheduleCard.render_error);
-        WSData.fetch_instructed_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_upon_data, VisualScheduleCard.render_error);
+        WSData.fetch_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_handler, VisualScheduleCard.render_handler);
+        WSData.fetch_instructed_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_handler, VisualScheduleCard.render_handler);
     },
 
-    _has_all_data: function () {
+    render_handler: function() {
+        if(VisualScheduleCard._has_all_responses()){
+            var course_data = WSData.normalized_course_data(VisualScheduleCard.term);
+            var instructed_course_data = WSData.normalized_instructed_course_data(VisualScheduleCard.term);
+            if (course_data || instructed_course_data){
+                VisualScheduleCard._render();
+            } else {
+                VisualScheduleCard.render_error();
+            }
+        }
+
+    },
+
+    _has_all_responses: function () {
+        // returns true when both schedule API calls have returned, successful or otherwise
         var course_data = WSData.normalized_course_data(VisualScheduleCard.term);
-        var instructed_course_data = WSData.normalized_instructed_course_data(VisualScheduleCard.term)
+        var instructed_course_data = WSData.normalized_instructed_course_data(VisualScheduleCard.term);
         var course_err_status = WSData.course_data_error_code(VisualScheduleCard.term);
         var instructed_course_err_status = WSData.instructed_course_data_error_code(VisualScheduleCard.term);
-
-        return ((course_data ||
-                 (course_data === undefined && course_err_status === 404)) &&
-                (instructed_course_data || 
-                 (instructed_course_data === undefined && instructed_course_err_status === 404)));
+        return ((course_data || course_err_status ) && (instructed_course_data || instructed_course_err_status ));
     },
 
     render_error: function() {
-        // CourseCards displays the message
         $("#VisualScheduleCard").hide();
-    },
-
-    render_upon_data: function(course_index) {
-        if (!VisualScheduleCard._has_all_data()) {
-            return;
-        }
-        VisualScheduleCard._render();
     },
 
     // The course_index will be given when a modal is shown.
     _render: function() {
         var term = VisualScheduleCard.term;
         var course_data = WSData.normalized_course_data(term);
-        var instructed_course_data = WSData.normalized_instructed_course_data(term)
+        var instructed_course_data = WSData.normalized_instructed_course_data(term);
 
         $("#VisualScheduleCard").show();
         VisualScheduleCard.render_schedule(course_data, instructed_course_data, term);
@@ -91,6 +93,7 @@ var VisualScheduleCard = {
         };
 
         var set_meeting = function(course_data, meeting, index, is_instructor) {
+            var section = course_data.sections[index];
             if (!meeting.days_tbd) {
 
                 var start_parts = meeting.start_time.split(":");
