@@ -45,7 +45,7 @@ var VisualScheduleCard = {
         var instructed_course_data = WSData.normalized_instructed_course_data(VisualScheduleCard.term);
         var course_err_status = WSData.course_data_error_code(VisualScheduleCard.term);
         var instructed_course_err_status = WSData.instructed_course_data_error_code(VisualScheduleCard.term);
-        return ((course_data || course_err_status ) && (instructed_course_data || instructed_course_err_status ))
+        return ((course_data || course_err_status ) && (instructed_course_data || instructed_course_err_status ));
     },
 
     render_error: function() {
