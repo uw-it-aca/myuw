@@ -1,5 +1,4 @@
     {% verbatim %}
-    {{#if grade_submission_delegates}}
         <h4 class="scheduleHeading">Grading</h4>
         <div rel="{{curriculum_abbr}} {{course_number}} {{section_id}}">
             <ul class="unstyled-list">
@@ -15,19 +14,26 @@
                     <div class="pull-left">
                         <span class="inst-course-label">Grading Period</span>
                     </div>
-                    <div class="pull-right">
+                    <div class="pull-right text-right">
                       {{#if grading_period_is_open}}
-                        <span class="card-badge-value"><span class="pull-right"><a href="https://gradepage.uw.edu/section/{{section_label}}{{#if independent_study}}-{{independent_study_instructor_regid}}{{/if}}" target="_blank">Record Grades</a>{{#if grade_date}}(submitted {{ grade_date }}){{/if}} <a href="https://itconnect.uw.edu/learn/tools/gradepage/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="gradepage_help_link" target="_blank"><i class="fa fa-question-circle"></i></a></span>
-<br />Closes {{grade_submission_deadline_date}} ({{grade_submission_relative_deadline}})</span>
+                        <span class="card-badge-value"><a href="{{grading_status.section_url}}" target="_blank">{{#if grading_status.all_grades_submitted}}View Grading Receipt{{else}}{{#if grading_status.unsubmitted_count}}Finish Recording {{grading_status.unsubmitted_count}} Grade{{pluralize grading_status.unsubmitted_count '' 's'}}{{else}}Record Grades{{/if}}{{/if}}</a> <a href="https://itconnect.uw.edu/learn/tools/gradepage/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="gradepage_help_link" target="_blank"><i class="fa fa-question-circle"></i></a>
+{{#if grading_status.submitted_date}}
+                          {{#if grading_status.submitted_count}}<br /><span>{{grading_status.submitted_count}}{{#if grading_status.unsubmitted_count}} of {{grading_status.unsubmitted_count}}{{/if}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted {{ grading_status.submitted_relative_date }} by {{grading_status.submitted_by}}</span>{{/if}}{{/if}}
+                          {{#if grading_status.grading_status}}<br /><span>{{grading_status.grading_status}}</span>{{/if}}
+                          <br /><span>Closes {{grade_submission_deadline_date}} ({{grade_submission_relative_deadline}})</span>
+                        </span>
                       {{else}}
                         {{#if grading_period_is_past}}
-                        <span class="card-badge-value">Closed {{grade_submission_relative_deadline}} (<a href="https://gradepage.uw.edu/section/{{section_label}}{{#if independent_study}}-{{independent_study_instructor_regid}}{{/if}}" target="_blank">view receipt</a>)</span>
+                        <span class="card-badge-value">Closed {{grade_submission_relative_deadline}}</span>
+                        <br /><span>{{#if grading_status.all_grades_submitted}}<a href="{{grading_status.section_url}}" target="_blank">View Grading Receipt</a>{{else}}<a href="https://apps.registrar.washington.edu/grade-change/pages/change.php" target="_blank">Change {{grading_status.unsubmitted_count}} Unsubmitted Grade{{pluralize grading_status.unsubmitted_count '' 's'}}</a>{{/if}}</span>
+                        {{#if grading_status.grading_status}}<br /><span>{{grading_status.grading_status}}</span>{{/if}}
                         {{else}}
                         <span class="card-badge-value">Opens {{grading_period_open_date}} ({{grading_period_relative_open}})</span>
                         {{/if}}
                       {{/if}}
                     </div>
                 </li>
+    {{#if grade_submission_delegates}}
                 <li class="clearfix">
                     <div class="pull-left">
                         <span class="inst-course-label">Delegate{{pluralize grade_submission_delegates.length '' 'S'}}</span>
@@ -43,7 +49,7 @@
                         </div>
                     </div>
                 </li>
+    {{/if}}
             </ul>
         </div>
-    {{/if}}
     {% endverbatim %}
