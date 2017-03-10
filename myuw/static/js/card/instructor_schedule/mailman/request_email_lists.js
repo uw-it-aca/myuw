@@ -60,12 +60,12 @@ var RequestEmailLists = {
 
         $("#request_emaillist_form", panel).on("submit", function(ev) {
             ev.preventDefault();
-            WSData.log_interaction("submit_request_emaillist_form_"+label);
             var target = ev.currentTarget;
             // Don't POST if no boxes are checked
             if(!RequestEmailLists.form_has_checked(target)){
                 return;
             }
+            WSData.log_interaction("submit_request_emaillist_form_"+label);
             $.ajax({
                 url: "/api/v1/emaillist/",
                 dataType: "JSON",
