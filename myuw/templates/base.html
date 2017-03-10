@@ -54,6 +54,21 @@
     {% csrf_token %}
 
     {% block header %}
+        <div>
+            <h1>Search the UW:</h1>
+            <script>
+              (function() {
+                var cx = '014753298007287259127:xdk0jwqqs_y';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
+              })();
+            </script>
+            <gcse:search></gcse:search>
+        </div>
     <div id="app_header">
         <div class="header-bar" role="navigation" title="Home, email, and categorized resources">
             <div class="container clearfix">
