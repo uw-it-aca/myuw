@@ -16,3 +16,8 @@ class CanvasNonSWSException(Exception):
 class NotSectionInstructorException(Exception):
     """Request for section data from non-instructor"""
     pass
+
+
+class CourseRequestEmailRecipientNotFound(Exception):
+    """MAILMAN_COURSEREQUEST_RECIPIENT not in Settings"""
+    pass

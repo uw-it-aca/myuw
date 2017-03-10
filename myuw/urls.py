@@ -24,7 +24,7 @@ from myuw.views.api.future_schedule import StudClasScheFutureQuar
 from myuw.views.api.grad import MyGrad
 from myuw.views.api.iasystem import IASystem
 from myuw.views.api.library import MyLibInfo
-from myuw.views.api.mailman import Mailman
+from myuw.views.api.emaillist import Emaillist
 from myuw.views.api.profile import MyProfile
 from myuw.views.api.category_links import CategoryLinks
 from myuw.views.api.other_quarters import RegisteredFutureQuarters
@@ -86,12 +86,17 @@ urlpatterns += [
     url(r'^api/v1/library/$', login_required(MyLibInfo().run),
         name="myuw_library_api"
         ),
-    url(r'^api/v1/mailman/(?P<year>\d{4}),'
+    url(r'^api/v1/emaillist/(?P<year>\d{4}),'
         r'(?P<quarter>[A-Za-z]+),'
         r'(?P<curriculum_abbr>[&%0-9A-Za-z]+),'
-        r'(?P<course_number>\d{3}),'
+        r'(?P<course_number>\d{3})/'
         r'(?P<section_id>[A-Za-z][A-Z0-9a-z]?)$',
-        login_required(Mailman().run), name="myuw_mailman_api"
+        login_required(Emaillist().run),
+        name="myuw_emaillist_api"
+        ),
+    url(r'^api/v1/emaillist',
+        login_required(Emaillist().run),
+        name="myuw_emaillist_api"
         ),
     url(r'^api/v1/myplan/(?P<year>\d{4})/(?P<quarter>[a-zA-Z]+)',
         login_required(MyPlan().run),

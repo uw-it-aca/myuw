@@ -88,6 +88,10 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
     });
 })();
 
+Handlebars.registerHelper("safeLabel", function(str) {
+    return safe_label(str);
+});
+
 Handlebars.registerHelper("toUrlSafe", function(str) {
     return str.replace(/ /g, "%20");
 });
