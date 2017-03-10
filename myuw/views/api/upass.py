@@ -4,7 +4,8 @@ import traceback
 from django.http import HttpResponse
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
-from myuw.views.rest_dispatch import RESTDispatch, handle_exception
+from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.error import handle_exception
 from myuw.dao.upass import get_upass_by_current_user
 
 
