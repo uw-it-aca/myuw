@@ -94,6 +94,17 @@ var RequestEmailLists = {
     },
 
     form_has_checked: function(target){
+        // test if single section modal
+        var single_section = false;
+        $(target).find(":hidden").each(function(idx, val){
+            if($(val).attr("id") !== undefined && $(val).attr("id").indexOf("section_single") > -1){
+                single_section =  true;
+            }
+        });
+        if(single_section){
+            return single_section
+        }
+
         var checked = $(target).find(":checked");
         return checked.length > 0;
     }
