@@ -14,7 +14,7 @@
             <li><a href="http://canvas.uw.edu" rel="">Canvas</a></li>
             <li><a href="https://panopto.uw.edu" rel="">Panopto Lecture Capture</a></li>
             <li><a href="https://gradepage.uw.edu" rel="">GradePage</a></li>
-            <li>{{#if bothell_affil}}<a href="https://uwb.iasystem.org/faculty" rel="">Course Evaluations</a>{{else}}{{#if tacoma_affil}}<a href="https://uwt.iasystem.org/faculty" rel="">Course Evaluations</a>{{else}}{{#if seattle_affil}}<a href="https://uw.iasystem.org/faculty" rel="">Course Evaluations</a>{{else}}<a href="https://www.washington.edu/assessment/course-evaluations/" rel="">Course Evaluations</a>{{/if}}{{/if}}{{/if}}</li>
+            <li><a href="{{#if bothell_affil}}https://uwb.iasystem.org/faculty{{else}}{{#if tacoma_affil}}https://uwt.iasystem.org/faculty{{else}}{{#if seattle_affil}}https://uw.iasystem.org/faculty{{else}} https://www.washington.edu/assessment/course-evaluations/{{/if}}{{/if}}{{/if}}" rel="">Course Evaluations</a></li>
         </ul>
         <h4>Help Guides</h4>
         <ul class="unstyled-list">
