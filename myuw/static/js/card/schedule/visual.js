@@ -23,7 +23,9 @@ var VisualScheduleCard = {
             return;
         }
         WSData.fetch_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_handler, VisualScheduleCard.render_handler);
-        WSData.fetch_instructed_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_handler, VisualScheduleCard.render_handler);
+        if(myuwFeatureEnabled('instructor_schedule')) {
+            WSData.fetch_instructed_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_handler, VisualScheduleCard.render_handler);
+        }
     },
 
     render_handler: function() {
@@ -45,7 +47,13 @@ var VisualScheduleCard = {
         var instructed_course_data = WSData.normalized_instructed_course_data(VisualScheduleCard.term);
         var course_err_status = WSData.course_data_error_code(VisualScheduleCard.term);
         var instructed_course_err_status = WSData.instructed_course_data_error_code(VisualScheduleCard.term);
-        return ((course_data || course_err_status ) && (instructed_course_data || instructed_course_err_status ));
+
+        var has_all_data = (course_data || course_err_status );
+        if(myuwFeatureEnabled('instructor_schedule')){
+            has_all_data = (has_all_data &&
+            (instructed_course_data || instructed_course_err_status ));
+        }
+        return has_all_data;
     },
 
     render_error: function() {
