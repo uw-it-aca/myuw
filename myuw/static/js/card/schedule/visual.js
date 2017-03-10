@@ -51,7 +51,7 @@ var VisualScheduleCard = {
         var has_all_data = (course_data || course_err_status );
         if(myuwFeatureEnabled('instructor_schedule')){
             has_all_data = (has_all_data &&
-            (instructed_course_data || instructed_course_err_status ))
+            (instructed_course_data || instructed_course_err_status ));
         }
         return has_all_data;
     },
