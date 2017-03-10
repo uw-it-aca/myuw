@@ -1,7 +1,6 @@
 from django.test import TestCase
-from restclients.exceptions import DataFailureException
-from restclients.exceptions import InvalidNetID
-from restclients.pws import PWS
+from restclients_core.exceptions import DataFailureException, InvalidNetID
+from uw_pws import PWS
 from myuw.dao.pws import get_display_name_of_current_user,\
     is_student
 from myuw.test import fdao_pws_override, get_request_with_user

@@ -1,7 +1,7 @@
 import sys
 from django.http import HttpResponse
-from restclients.exceptions import (DataFailureException, InvalidNetID,
-                                    InvalidRegID)
+from restclients_core.exceptions import (DataFailureException, InvalidNetID,
+                                         InvalidRegID)
 from myuw.logger.logresp import log_err
 
 
