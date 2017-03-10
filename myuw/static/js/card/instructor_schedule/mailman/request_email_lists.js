@@ -102,7 +102,7 @@ var RequestEmailLists = {
             }
         });
         if(single_section){
-            return single_section
+            return single_section;
         }
 
         var checked = $(target).find(":checked");
