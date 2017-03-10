@@ -48,23 +48,18 @@ class Emaillist(RESTDispatch):
     @method_decorator(csrf_protect)
     def POST(self, request):
         timer = Timer()
-        try:
-            single_section_labels = get_input(request)
-            if not validate_is_instructor(single_section_labels):
-                logger.error("%s is not an instructor",
-                             get_netid_of_current_user())
-                return not_instructor_error()
-
-            if len(single_section_labels) == 0:
-                resp = {"none_selected": True}
-            else:
-                resp = request_mailman_lists(get_netid_of_current_user(),
-                                             single_section_labels)
-                log_success_response(logger, timer)
-
-            return HttpResponse(json.dumps(resp))
-        except Exception as ex:
-            return handle_exception(logger, timer, traceback)
+        single_section_labels = get_input(request)
+        if not validate_is_instructor(single_section_labels):
+            logger.error("%s is not an instructor",
+                         get_netid_of_current_user())
+            return not_instructor_error()
+        if len(single_section_labels) == 0:
+            resp = {"none_selected": True}
+        else:
+            resp = request_mailman_lists(get_netid_of_current_user(),
+                                         single_section_labels)
+            log_success_response(logger, timer)
+        return HttpResponse(json.dumps(resp))
 
 
 def get_input(request):
