@@ -33,8 +33,9 @@
                       {{/if}}
                     </div>
                 </li>
+
     {{#if grade_submission_delegates}}
-                <li class="clearfix">
+                <li class="clearfix grading-delegates">
                     <div class="pull-left">
                         <span class="inst-course-label">Delegate{{pluralize grade_submission_delegates.length '' 'S'}}</span>
                     </div>
@@ -45,7 +46,7 @@
                         </div>
                       {{/each}}
                         <div class="pull-right">
-                          <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter={{capitalizeString quarter}}+{{year}}&sln={{sln}}&chanid=11" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="course_delegate_link">Change Delegate List</a>
+                          <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter={{capitalizeString quarter}}+{{year}}&sln={{sln}}&chanid=11" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="course_delegate_link">Update grading delegates</a>
                         </div>
                     </div>
                 </li>
