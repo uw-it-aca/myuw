@@ -58,9 +58,9 @@ var RequestEmailLists = {
             }
         });
 
-        $("#request_emaillist_form", panel).on("submit", function(ev) {
+        $(panel).find("button:submit").on("click", function(ev) {
             ev.preventDefault();
-            var target = ev.currentTarget;
+            var target = $(ev.currentTarget).closest('form');
             // Don't POST if no boxes are checked
             if(!RequestEmailLists.form_has_checked(target)){
                 return;
