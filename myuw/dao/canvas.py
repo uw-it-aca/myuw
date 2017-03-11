@@ -67,6 +67,17 @@ def _sws_label_from_sis_id(sis_id):
     return "%s,%s,%s,%s/%s" % tuple(sis_id.strip('-').split('-')[:5])
 
 
+def get_canvas_course_from_section(sws_section):
+    try:
+        return Courses().get_course_by_sis_id(
+            sws_section.canvas_course_sis_id())
+    except DataFailureException as err:
+        if err.status == 404:
+            return None
+
+        raise
+
+
 def canvas_course_is_available(canvas_id):
     try:
         course = Courses().get_course(canvas_id)

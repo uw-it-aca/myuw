@@ -33,7 +33,7 @@
     "Href":"/student/v5/term/2013,spring.json",
     "Year":"2013"
   },
-  "LimitEstimateEnrollment":"0",
+  "LimitEstimateEnrollment":"15",
   "CourseTitleLong":"SPACE & SPACE TRAVEL",
   "DuplicateEnrollmentAllowed":false,
   "CourseCampus":"Seattle",
@@ -86,16 +86,16 @@
       [
         {
           "Person":
-          {
-            "RegID":"260A0DEC95CB11D78BAA000629C31437",
-            "Href":"/student/v5/person/260A0DEC95CB11D78BAA000629C31437.json",
-            "Name":"STUDENT, JAMES AVERAGE"
-          },
+			{
+				"RegID":"FBB38FE46A7C11D5A4AE0004AC494FFE",
+				"Href":"/student/v5/person/FBB38FE46A7C11D5A4AE0004AC494FFE.json",
+				"Name":"TEACHER, BILL AVERAGE"
+			},
           "TSPrint":false,
           "FacultySequenceNumber":"",
           "GradeRoster":
           {
-            "Href":"/student/v5/graderoster/2013,spring,ESS,102,A,260A0DEC95CB11D78BAA000629C31437"
+            "Href":"/student/v5/graderoster/2013,spring,ESS,102,A,FBB38FE46A7C11D5A4AE0004AC494FFE"
           }
         }
       ],
@@ -143,9 +143,9 @@
       "DelegateLevel":"curriculum",
       "Person":
       {
-        "RegID":"6DF0A9206A7D11D5A4AE0004AC494FFE",
-        "Href":"/student/v5/person/6DF0A9206A7D11D5A4AE0004AC494FFE.json",
-        "Name":"STUDENT, FRED AVERAGE"
+        "RegID":"10000000000000000000000000000002",
+        "Href":"/student/v5/person/10000000000000000000000000000002.json",
+        "Name":"STUDENT, SEATTLE GRADUATE"
       }
     }
   ],
