@@ -10,10 +10,20 @@
         </div>
 
         <div class="modal-body">
+
+            {{#if total_course_wo_list}}
             <div class="clearfix">
-                <div class="pull-left">{{course_abbr}} {{course_number}} {{section_list.section_id}}</div>
+                <div class="pull-right"><span class="card-badge-value"><a href="#" id="switch_to_create_email_list" class="btn btn-default">Create mailing list</a></span></div>
+            </div>
+            <br />
+            {{/if}}
+
+            <div class="clearfix">
+                <div class="pull-left">
+                    <span>{{course_abbr}} {{course_number}} {{section_list.section_id}}</span>
+                    <a href="mailto:{{section_list.list_address}}@uw.edu" class="list-address">{{section_list.list_address}}@uw.edu</a>
+                </div>
                 <div class="pull-right">
-                    {{section_list.list_address}}@uw.edu
                     <a href="{{section_list.list_admin_url}}" class="course_class_list" target="_blank">Manage</a>
                 </div>
             </div>
@@ -23,19 +33,18 @@
                 {{#each secondary_section_lists}}
                 <li class="clearfix">
                     {{#if list_exists}}
-                        <div class="pull-left">{{../../course_abbr}} {{../../course_number}} {{section_id}}</div>
-                        <div class="pull-right">{{list_address}}@uw.edu <a href="{{list_admin_url}}" target="_blank">Manage</a></div>
+                        <div class="pull-left">
+                            <span>{{../../course_abbr}} {{../../course_number}} {{section_id}}</span>
+                            <a href="mailto:{{section_list.list_address}}@uw.edu" class="list-address">{{list_address}}@uw.edu</a>
+                        </div>
+                        <div class="pull-right"><a href="{{list_admin_url}}" target="_blank">Manage</a></div>
                     {{else}}
                         <div class="pull-left">{{../../course_abbr}} {{../../course_number}} {{section_id}}</div>
-                        <div class="pull-right">Email list not exist</div>
+                        <div class="pull-right">-</div>
                     {{/if}}
                 </li>
                 {{/each}}
             </ul>
-            {{/if}}
-
-            {{#if total_course_wo_list}}
-                <span class="card-badge-value"><a href="#" id="switch_to_create_email_list">Create mailing list</a></span>
             {{/if}}
 
         </div>
