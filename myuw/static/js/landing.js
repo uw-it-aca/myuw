@@ -53,7 +53,6 @@ var Landing = {
     _load_desktop_cards: function() {
         Landing._reset_content_divs();
         var desktop_body_cards = [
-            UPassCard,
             ThriveCard,
             FinalExamCard,
             GradeCard,
@@ -78,6 +77,7 @@ var Landing = {
             HfsCard,
             TuitionCard,
             LibraryCard,
+            UPassCard,
             EventsCard
         ];
         // Add in outage card if we can't get the SWS/term resource

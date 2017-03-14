@@ -3,6 +3,7 @@ var UPassCard = {
     dom_target: undefined,
 
     render_init: function () {
+        TextbookCard.dom_target = $('#UPassCard');
         WSData.fetch_upass_data(UPassCard.render_upon_data,
                                 UPassCard.render_error);
     },
@@ -28,10 +29,13 @@ var UPassCard = {
 
     _render: function () {
         var template_data = WSData.upass_data();
-
+        template_data.is_tacoma = window.user.tacoma || window.user.tacoma_affil;
+        template_data.is_bothell = window.user.bothell || window.user.bothell_affil;
+        template_data.is_seattle = window.user.seattle || window.user.seattle_affil;        
         var source = $("#upass_card").html();
         var template = Handlebars.compile(source);
-        UPassCard.dom_target.html(template(template_data));
+        var raw = template(template_data);
+        UPassCard.dom_target.html(raw);
         LogUtils.cardLoaded(UPassCard.name, UPassCard.dom_target);
     },
 };

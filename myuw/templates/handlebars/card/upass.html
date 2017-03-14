@@ -1,9 +1,42 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "upass_card" %}
 
-    <div class="card"  data-name="UPassCard" data-type="card">
-    <h3>UPass Status</h3>
-    <div>{{{ message }}}</div>
+<div class="card"  data-name="UPassCard" data-type="card">
+    <h3>U-Pass Membership</h3>
+
+    <div>
+        <span>Status</span> <span class="pull-right">{{#if is_current }}Current{{else}}Not current{{/if}}</span>
     </div>
 
+    <div>
+    {{#if is_current }}
+        {{#if display_activation}}
+            <p>Finalize activation by tapping your card on a reader.</p>
+        {{/if}}
+
+        {{#if is_student }}
+           {{#if in_summer }}
+                <h4>Summer U-PASS Use</h4>
+                <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="">temporary employee</a>.</p>
+           {{/if}}
+        {{/if}}
+
+        <p><a href="">U-PASS not working?</a></p>
+
+    {{else}}
+        {{#if is_student }}
+            <p>If you {{#if is_seattle }}are registered{{else}}<a href="">purchase a U-PASS</a>{{/if}} for a quarter, your U-PASS will work one week before the quarter starts.</p>
+
+            {{#if in_summer }}
+                 <h4>Summer U-PASS Use</h4>
+                 <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="">temporary employee</a>.</p>
+            {{/if}}
+
+            <p><a href="">What is the U-PASS</a></p>
+        {{else}}
+            <p><a href="">Learn more about purchasing a U-PASS</a></p>
+        {{/if}}
+    {{/if}}
+    </div>
+</div>
     {% endtplhandlebars %}
