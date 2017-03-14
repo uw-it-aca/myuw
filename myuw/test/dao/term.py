@@ -1,10 +1,10 @@
 from datetime import datetime
 from django.test import TestCase
 from django.conf import settings
-from restclients.models.sws import ClassSchedule, Term, Section, Person
-from myuw.dao.term import get_specific_term, is_past,\
+from uw_sws.models import ClassSchedule, Term, Section, Person
+from myuw.dao.term import get_specific_term, is_past, is_future,\
     get_default_date, get_comparison_date,\
-    get_current_quarter, get_next_quarter, is_past,\
+    get_current_quarter, get_next_quarter,\
     get_next_non_summer_quarter, get_next_autumn_quarter,\
     is_in_summer_a_term, is_in_summer_b_term,\
     get_bod_current_term_class_start, get_eod_7d_after_class_start,\
@@ -41,6 +41,14 @@ class TestTerm(TestCase):
         self.assertEqual(term.year, 2013)
         self.assertEqual(term.quarter, "winter")
         self.assertTrue(is_past(term, now_request))
+
+    def test_is_future(self):
+        term = get_specific_term(2013, "summer")
+        self.assertEqual(term.year, 2013)
+        self.assertEqual(term.quarter, "summer")
+        now_request = get_request()
+        now_request.session = {}
+        self.assertTrue(is_future(term, now_request))
 
     def test_default_date(self):
         date = get_default_date()

@@ -15,7 +15,8 @@ from myuw.dao.registered_term import get_current_summer_term_in_schedule
 from myuw.dao.term import get_comparison_date
 from myuw.logger.logresp import (log_data_not_found_response,
                                  log_success_response, log_msg)
-from myuw.views.rest_dispatch import RESTDispatch, data_not_found
+from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.error import data_not_found
 from myuw.views import prefetch_resources
 
 

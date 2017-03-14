@@ -1,4 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
+{% load compress %}
+
+{% block page_title %}
+MyUW
+{% endblock %}
+
 {% block content %}
 
     <div id="main-content" role="main" aria-labelledby="main"></div>
@@ -34,6 +41,7 @@
     {% include "handlebars/card/thrive.html" %}
     {% include "handlebars/card/thrive_highlight.html" %}
     {% include "handlebars/card/thrive_learnmore.html" %}
+    {% include "handlebars/card/outage.html" %}
     {% include "handlebars/card/schedule/course_cards.html" %}
     {% include "handlebars/card/schedule/course_card_content.html" %}
     {% include "handlebars/card/schedule/course_sche_panel.html" %}
@@ -45,6 +53,17 @@
     {% include "handlebars/card/schedule/final_day.html" %}
     {% include "handlebars/card/schedule/visual.html" %}
     {% include "handlebars/card/schedule/visual_day.html" %}
+    {% include "handlebars/card/instructor_schedule/course_cards.html" %}
+    {% include "handlebars/card/instructor_schedule/course_card_content.html" %}
+    {% include "handlebars/card/instructor_schedule/course_sche_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/course_resource_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/no_courses_card.html" %}
+    {% include "handlebars/card/instructor_schedule/future/course_card_content.html" %}
+    {% include "handlebars/card/instructor_schedule/future/course_sche_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/future/course_resource_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/past/course_card_content.html" %}
+    {% include "handlebars/card/instructor_schedule/past/course_sche_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/past/course_resource_panel.html" %}
     {% include "handlebars/card/new_student/ns_critical_info.html" %}
     {% include "handlebars/card/new_student/ns_international_stu.html" %}
     {% include "handlebars/card/new_student/ns_summer_efs.html" %}
@@ -56,9 +75,7 @@
 
     <!-- page content templates -->
     {% include "handlebars/landing.html" %}
-    {% include "handlebars/future.html" %}
     {% include "handlebars/future_410_error.html" %}
-    {% include "handlebars/textbooks.html" %}
     {% include "handlebars/error.html" %}
     {% include "handlebars/hfs.html" %}
     {% include "handlebars/grades.html" %}
@@ -67,75 +84,29 @@
     {% include "handlebars/other_quarters.html" %}
     {% include "handlebars/quarter_books.html" %}
     {% include "handlebars/visual_schedule.html" %}
-    {% include "handlebars/academic_calendar.html" %}
-    {% include "handlebars/thrive.html" %}
     {% include "handlebars/thrive_messages.html" %}
     {% include "handlebars/thrive_message.html" %}
-    {% include "handlebars/category_page.html" %}
 
     <script>
     window.page_titles = {
         "landing": "MyUW Home",
         "course_list": "MyUW",
         "visual": "MyUW: Visual Schedule",
+        "instructor_schedule": "Teaching Schedule",
         "finabala": "Financial Balances",
-        "future_quarters": "MyUW: View Future Quarters",
-        "textbooks": "MyUW: Textbooks",
         "instructor": "Faculty Directory",
         "finals": "Final Exams",
-        "grades": "Grades",
-        "notices": "MyUW: Notices",
-        "category_page": "MyUW: Category",
-        "academic_calendar": "Academic Calendar",
-        "thrive": "What is Thrive",
-        "thrive_messages": "Thrive Messages"
+        "grades": "Grades"
     };
-    window.user = {
-        "student": {{ user.affiliations.student|yesno:"true, false" }},
-        "grad": {{ user.affiliations.grad|yesno:"true, false" }},
-        "undergrad": {{ user.affiliations.undergrad|yesno:"true, false" }},
-        "pce": {{ user.affiliations.pce|yesno:"true, false" }},
-        "stud_employee": {{ user.affiliations.stud_employee|yesno:"true, false" }},
-        "employee": {{ user.affiliations.employee|yesno:"true, false" }},
-        "fyp": {{ user.affiliations.fyp|yesno:"true, false" }},
-        "faculty": {{ user.affiliations.faculty|yesno:"true, false" }},
-        "seattle": {{ user.affiliations.official_seattle|yesno:"true, false" }},
-        "bothell": {{ user.affiliations.official_bothell|yesno:"true, false" }},
-        "tacoma": {{ user.affiliations.official_tacoma|yesno:"true, false" }},
-        "seattle_affil": {{ user.affiliations.seattle|yesno:"true, false" }},
-        "bothell_affil": {{ user.affiliations.bothell|yesno:"true, false" }},
-        "tacoma_affil": {{ user.affiliations.tacoma|yesno:"true, false" }},
-        "email_forward_url": "{{ user.email_forward_url }}",
-        "email_forward_title": "{{ user.email_forward_title }}",
-        "email_forward_icon": "{{ user.email_forward_icon }}",
-        "netid": "{{ user.netid }}"
-    };
-    window.term = {
-        "year": "{{year}}",
-        "quarter": "{{quarter}}",
-        "summer_term": "{{summer_term}}"
-    };
-    window.card_display_dates = {
-        "is_after_grade_submission_deadline": {{ card_display_dates.is_after_grade_submission_deadline|yesno:"true, false" }},
-        "is_after_last_day_of_classes": {{ card_display_dates.is_after_last_day_of_classes|yesno:"true, false" }},
-        "is_after_start_of_registration_display_period": {{ card_display_dates.is_after_start_of_registration_display_period|yesno:"true, false" }},
-        "is_after_start_of_summer_reg_display_periodA": {{ card_display_dates.is_after_start_of_summer_reg_display_periodA|yesno:"true, false" }},
-        "is_after_start_of_summer_reg_display_period1": {{ card_display_dates.is_after_start_of_summer_reg_display_period1|yesno:"true, false" }},
-        "is_before_end_of_finals_week": {{ card_display_dates.is_before_end_of_finals_week|yesno:"true, false" }},
-        "is_before_last_day_of_classes": {{ card_display_dates.is_before_last_day_of_classes|yesno:"true, false" }},
-        "is_before_end_of_registration_display_period": {{ card_display_dates.is_before_end_of_registration_display_period|yesno:"true, false" }},
-        "is_before_end_of_summer_reg_display_periodA": {{ card_display_dates.is_before_end_of_summer_reg_display_periodA|yesno:"true, false" }},
-        "is_before_end_of_summer_reg_display_period1": {{ card_display_dates.is_before_end_of_summer_reg_display_period1|yesno:"true, false" }},
-        "is_before_first_day_of_term": {{ card_display_dates.is_before_first_day_of_term|yesno:"true, false" }},
-        "is_before_eof_7days_of_term": {{ card_display_dates.is_before_eof_7days_of_term|yesno:"true, false" }},
-        "is_after_7d_before_last_instruction": {{ card_display_dates.is_after_7d_before_last_instruction|yesno:"true, false"}},
-        "myplan_peak_load": {{card_display_dates.myplan_peak_load|yesno:"true, false"}},
-        "is_summer": {{ card_display_dates.is_summer|yesno:"true, false"}},
-        "current_summer_term": "{{ card_display_dates.current_summer_term}}",
-        "is_after_summer_b_start": {{ card_display_dates.is_after_summer_b|yesno:"true, false"}},
-        "last_term": "{{ card_display_dates.last_term }}",
-        "in_coursevel_fetch_window": {{ card_display_dates.in_coursevel_fetch_window|yesno:"true, false"}}
-    };
+    window.webservice_outage = {{ webservice_outage|yesno:"true, false" }};
     </script>
 
+    {% include "user_state.html" %}
+
+{% endblock %}
+
+{% block extra_js %}
+    {% compress js inline %}
+    <script src="{% static 'js/page/landing.js' %}"></script>
+    {% endcompress %}
 {% endblock %}

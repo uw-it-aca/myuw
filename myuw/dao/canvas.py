@@ -1,7 +1,7 @@
 import logging
 from restclients.canvas.enrollments import Enrollments
 from restclients.canvas.courses import Courses
-from restclients.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.exceptions import CanvasNonSWSException
 from myuw.logger.timer import Timer
@@ -65,6 +65,17 @@ def _sws_label_from_sis_id(sis_id):
         raise CanvasNonSWSException("Non-academic SIS Id: %s" % sis_id)
 
     return "%s,%s,%s,%s/%s" % tuple(sis_id.strip('-').split('-')[:5])
+
+
+def get_canvas_course_from_section(sws_section):
+    try:
+        return Courses().get_course_by_sis_id(
+            sws_section.canvas_course_sis_id())
+    except DataFailureException as err:
+        if err.status == 404:
+            return None
+
+        raise
 
 
 def canvas_course_is_available(canvas_id):

@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% load static %}
+{% load compress %}
 
 {% block title %}404 Error{% endblock title %}
 
 {% block content %}
-    <script type="application/javascript">
-        Navbar.render_navbar();
-    </script>
+    {% include "handlebars/banner/profile.html" %}
+    {% include "handlebars/loading.html" %}
 
     <div class="container error-container" role="main" aria-labelledby="myuw-404-error">
         <div class="card">
@@ -16,3 +17,9 @@
     </div>
 
 {% endblock content %}
+
+{% block extra_js %}
+    {% compress js inline %}
+    <script src="{% static 'js/page/page_not_found.js' %}"></script>
+    {% endcompress %}
+{% endblock %}

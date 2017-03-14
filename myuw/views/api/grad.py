@@ -2,7 +2,7 @@ import json
 import logging
 import traceback
 from django.http import HttpResponse
-from restclients.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 from myuw.dao.gws import is_grad_student
 from myuw.dao.grad import get_grad_degree_for_current_user,\
     get_grad_committee_for_current_user, get_grad_leave_for_current_user,\
@@ -10,8 +10,8 @@ from myuw.dao.grad import get_grad_degree_for_current_user,\
     leave_to_json, petition_to_json
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_msg, log_success_response
-from myuw.views.rest_dispatch import RESTDispatch, data_not_found,\
-    handle_exception
+from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.error import data_not_found, handle_exception
 
 
 logger = logging.getLogger(__name__)

@@ -2,16 +2,17 @@ import json
 import logging
 import traceback
 from django.http import HttpResponse
-from restclients.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 from restclients.myplan import get_plan
 from myuw.dao.pws import get_regid_of_current_user
-from restclients.sws.section import get_section_by_label
+from uw_sws.section import get_section_by_label
 from myuw.dao.card_display_dates import during_myplan_peak_load
 from myuw.dao.term import get_current_quarter, get_comparison_datetime
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response, log_msg,\
     log_data_not_found_response, log_err
-from myuw.views.rest_dispatch import RESTDispatch, handle_exception
+from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.error import handle_exception
 
 
 logger = logging.getLogger(__name__)

@@ -7,11 +7,11 @@ import logging
 import pytz
 from django.conf import settings
 from django.utils import timezone
-from restclients.models.sws import Term
+from uw_sws.models import Term
 from restclients.util.datetime_convertor import convert_to_begin_of_day, \
     convert_to_end_of_day
-from restclients.sws.section import is_a_term, is_b_term, is_full_summer_term
-from restclients.sws.term import get_term_by_date, get_specific_term, \
+from uw_sws.section import is_a_term, is_b_term, is_full_summer_term
+from uw_sws.term import get_term_by_date, get_specific_term, \
     get_current_term, get_next_term, get_previous_term, \
     get_term_before, get_term_after, get_next_autumn_term, \
     get_next_non_summer_term
@@ -98,7 +98,7 @@ def get_comparison_datetime_with_tz(request):
 
 def get_current_quarter(request):
     """
-    Return a restclients.models.sws.Term object
+    Return a uw_sws.models.Term object
     for the current quarter refered in the user session.
     """
     timer = Timer()
@@ -124,7 +124,7 @@ def get_current_quarter(request):
 
 def get_next_quarter(request):
     """
-    Returna restclients.models.sws.Term object
+    Returna uw_sws.models.Term object
     for the current quarter refered in the user session.
     """
     if hasattr(request, 'myuw_next_quarter'):
@@ -150,6 +150,13 @@ def is_past(term, request):
     return true if the given term is in the past
     """
     return term.get_eod_last_final_exam() < get_comparison_datetime(request)
+
+
+def is_future(term, request):
+    """
+    return true if the given term is in the future
+    """
+    return term.get_bod_first_day() > get_comparison_datetime(request)
 
 
 def is_in_summer_quarter(request):
