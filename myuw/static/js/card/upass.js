@@ -29,9 +29,9 @@ var UPassCard = {
 
     _render: function () {
         var template_data = WSData.upass_data();
-        template_data.is_tacoma = window.user.tacoma || window.user.tacoma_affil;
-        template_data.is_bothell = window.user.bothell || window.user.bothell_affil;
-        template_data.is_seattle = window.user.seattle || window.user.seattle_affil;        
+        template_data.is_tacoma_student = window.user.tacoma_affil;
+        template_data.is_bothell_student = window.user.bothell_affil;
+        template_data.is_seattle_student = window.user.seattle_affil;
         var source = $("#upass_card").html();
         var template = Handlebars.compile(source);
         var raw = template(template_data);

@@ -14,27 +14,33 @@
             <p>Finalize activation by tapping your card on a reader.</p>
         {{/if}}
 
-        {{#if is_student }}
+        {{#if is_seattle_student }}
            {{#if in_summer }}
                 <h4>Summer U-PASS Use</h4>
                 <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="">temporary employee</a>.</p>
            {{/if}}
         {{/if}}
 
-        <p><a href="">U-PASS not working?</a></p>
+        <p><a href="{{#if is_employee}}http://www.washington.edu/u-pass{{else}}{{#if is_bothell_student }}bothell-link{{else}}{{#if is_tacoma_student}}tacoma-link{{else}}seattle-link{{/if}}{{/if}}{{/if}}">U-PASS not working?</a></p>
 
     {{else}}
         {{#if is_student }}
-            <p>If you {{#if is_seattle }}are registered{{else}}<a href="">purchase a U-PASS</a>{{/if}} for a quarter, your U-PASS will work one week before the quarter starts.</p>
+            <p>If you
+              {{#if is_seattle_student }}are registered{{else}}<a href="{{#if is_bothell_student}}bothell-link{{else}}tacoma-link{{/if}}">purchase a U-PASS</a>{{/if}}
+ for a quarter, your U-PASS will work one week before the quarter starts.</p>
 
-            {{#if in_summer }}
-                 <h4>Summer U-PASS Use</h4>
-                 <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="">temporary employee</a>.</p>
+            {{#if is_seattle_student }}
+                 {{#if in_summer }}
+                     <h4>Summer U-PASS Use</h4>
+                     <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="">temporary employee</a>.</p>
+                 {{/if}}
             {{/if}}
 
-            <p><a href="">What is the U-PASS</a></p>
+            {{#unless is_bothell_student }}
+                <p><a href="{{#if is_seattle_student}}seattle-link{{else}}tacoma-link{{/if}}">What is the U-PASS</a></p>
+            {{/unless}}
         {{else}}
-            <p><a href="">Learn more about purchasing a U-PASS</a></p>
+            <p><a href="http://www.washington.edu/u-pass">Learn more about purchasing a U-PASS</a></p>
         {{/if}}
     {{/if}}
     </div>
