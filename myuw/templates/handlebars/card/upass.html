@@ -21,12 +21,12 @@
            {{/if}}
         {{/if}}
 
-        <p><a href="{{#if is_employee}}http://www.washington.edu/u-pass{{else}}{{#if is_bothell_student }}bothell-link{{else}}{{#if is_tacoma_student}}tacoma-link{{else}}seattle-link{{/if}}{{/if}}{{/if}}">U-PASS not working?</a></p>
+        <p><a href="{{#if is_bothell_student }}bothell-student-link{{else}}{{#if is_tacoma_student}}tacoma-student-link{{else}}{{#if is_seattle_student}}seattle-student-link{{else}}http://www.washington.edu/u-pass{{/if}}{{/if}}{{/if}}">U-PASS not working?</a></p>
 
     {{else}}
         {{#if is_student }}
             <p>If you
-              {{#if is_seattle_student }}are registered{{else}}<a href="{{#if is_bothell_student}}bothell-link{{else}}tacoma-link{{/if}}">purchase a U-PASS</a>{{/if}}
+              {{#if is_seattle_student }}are registered{{else}}<a href="{{#if is_bothell_student}}bothell-student-link{{else}}{{#if is_tacoma_student}}tacoma-student-link{{else}}http://www.washington.edu/u-pass/{{/if}}{{/if}}">purchase a U-PASS</a>{{/if}}
  for a quarter, your U-PASS will work one week before the quarter starts.</p>
 
             {{#if is_seattle_student }}
@@ -37,7 +37,7 @@
             {{/if}}
 
             {{#unless is_bothell_student }}
-                <p><a href="{{#if is_seattle_student}}seattle-link{{else}}tacoma-link{{/if}}">What is the U-PASS</a></p>
+                <p><a href="{{#if is_seattle_student}}seattle-student-link{{else}}{{#if is_tacoma_student}}tacoma-link{{else}}http://www.washington.edu/u-pass/{{/if}}{{/if}}">What is the U-PASS</a></p>
             {{/unless}}
         {{else}}
             <p><a href="http://www.washington.edu/u-pass">Learn more about purchasing a U-PASS</a></p>
