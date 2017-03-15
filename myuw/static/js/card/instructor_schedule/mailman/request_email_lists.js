@@ -48,11 +48,11 @@ var RequestEmailLists = {
         $('#select_all', panel).click(function(ev) {
             WSData.log_interaction("select_all_on_request_emaillist_"+label);
             if(this.checked) {
-                $(':checkbox').each(function() {
+                $(':checkbox:enabled').each(function() {
                     this.checked = true;
                 });
             } else {
-                $(':checkbox').each(function() {
+                $(':checkbox:enabled').each(function() {
                     this.checked = false;
                 });
             }
