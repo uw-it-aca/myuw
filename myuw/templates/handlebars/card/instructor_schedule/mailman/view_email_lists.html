@@ -1,12 +1,12 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "manage_email_lists_tmpl" %}
 
-<div class="modal-dialog" role="document">
+<div class="modal-dialog view-email-lists" role="document">
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-            <h4>Mailing Lists</h4>
+            <h4>{{course_abbr}} {{course_number}} Mailing Lists</h4>
         </div>
 
         <div class="modal-body">
@@ -21,9 +21,9 @@
             <div class="clearfix">
                 <div class="pull-left">
                     <span>{{course_abbr}} {{course_number}} {{section_list.section_id}}</span>
-                    <a href="mailto:{{section_list.list_address}}@uw.edu" class="list-address">{{section_list.list_address}}@uw.edu</a>
                 </div>
                 <div class="pull-right">
+                    <a href="mailto:{{section_list.list_address}}@uw.edu" class="list-address">{{section_list.list_address}}@uw.edu</a>
                     <a href="{{section_list.list_admin_url}}" class="course_class_list" target="_blank">Manage</a>
                 </div>
             </div>
@@ -35,9 +35,11 @@
                     {{#if list_exists}}
                         <div class="pull-left">
                             <span>{{../../course_abbr}} {{../../course_number}} {{section_id}}</span>
-                            <a href="mailto:{{section_list.list_address}}@uw.edu" class="list-address">{{list_address}}@uw.edu</a>
                         </div>
-                        <div class="pull-right"><a href="{{list_admin_url}}" target="_blank">Manage</a></div>
+                        <div class="pull-right">
+                            <a href="mailto:{{list_address}}@uw.edu" class="list-address">{{list_address}}@uw.edu</a>
+                            <a href="{{list_admin_url}}" target="_blank">Manage</a>
+                        </div>
                     {{else}}
                         <div class="pull-left">{{../../course_abbr}} {{../../course_number}} {{section_id}}</div>
                         <div class="pull-right">-</div>
