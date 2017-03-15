@@ -7,7 +7,7 @@ import logging
 from restclients.library.mylibinfo import get_account
 from restclients.library.currics import get_subject_guide_for_section,\
     get_default_subject_guide
-from restclients.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 from myuw.logger.logback import log_time
 from myuw.logger.timer import Timer
 from myuw.dao.pws import get_netid_of_current_user

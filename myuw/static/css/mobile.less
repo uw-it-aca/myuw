@@ -428,13 +428,13 @@ body {
                         .password-status {display: inline-block; font-size: 14px; margin-bottom: 3px; font-weight: bold;}
                     p {margin-top: 5px;}
                 }
-
 				.profile-addresses {background: lighten(@uwpurple, 10%); padding:10px; margin-top: 20px;
 					.profile-mailing {
 						ul {padding-right: 10px;}
 					}
 					.profile-local-address { padding-left:12px;}
 					.profile-perm-address { padding-left:12px;}
+
 				}
 	            //.profile-section {margin-top: 15px; padding-top: 15px;}
 				.profile-release {background: lighten(@uwpurple, 10%); padding:10px; margin-top: 20px;
@@ -482,6 +482,18 @@ body {
 			}
 		}
 	}
+}
+
+/*** app navigation ***/
+
+#app_navigation {
+    display: none;
+    .navigation {padding: 15px 0;
+        .nav-list {
+            list-style-type: none; margin:0; padding:0;
+            .nav-list-item {display: inline;padding-left: 10px;font-weight:bold;}
+        }
+    }
 }
 
 /*** message banner ***/
@@ -1115,6 +1127,46 @@ body {
 	    }
     }
 
+    // instructor course cards
+
+    #InstructorCourseCards {
+
+        .card {
+
+            .scheduleHeading {
+                opacity: .5;
+                margin-bottom: 2px;
+            }
+            .meeting_type {
+                text-transform: capitalize;
+            }
+            table.course_schedule, table.table-course-schedule { width: 100%;
+               th {
+                   font-weight: 100;
+                   text-transform: uppercase;
+                   opacity: .5;
+               }
+               td {
+                   width: 25%;
+               }
+            }
+            ul { line-height: 56px;
+                li:first-child {
+                    left: 0%;
+                }
+                li {
+                    display: inline-block;
+                    text-decoration: none;
+                    background-color: #eee;
+                    color: #333;
+                    margin: 10px 0;
+                    padding: 0 12px;
+                    border: 1px solid gray;
+                }
+            }
+        }
+    }
+
     // course cards
 
     #CourseCards {
@@ -1290,7 +1342,7 @@ body {
 
         .card {
 
-            h3 {
+            h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan;
                 .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
             }
 
@@ -1643,6 +1695,17 @@ body {
         h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small;  }
     }
 
+
+    //ROLL-UP ERROR MESSAGE
+	#OutageCard{
+	.card{
+	    background-color: #fcf9e3;
+	    .error-rollup {
+	        i { position: absolute; top: 33px; font-size: 2em; color: #a94442; margin-top: -14px;}
+	        h3 { position: relative; left: 42px; color: #a94442; width:92%;}
+			}
+		}
+	}
 
     // textbooks page
 

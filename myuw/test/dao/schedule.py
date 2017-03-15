@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.conf import settings
-from restclients.exceptions import DataFailureException
-from restclients.models.sws import ClassSchedule, Term, Section, Person
+from restclients_core.exceptions import DataFailureException
+from uw_sws.models import ClassSchedule, Term, Section, Person
 from myuw.dao.term import get_current_quarter, get_next_quarter
 from myuw.dao.schedule import _get_schedule,\
     has_summer_quarter_section, filter_schedule_sections_by_summer_term
