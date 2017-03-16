@@ -22,10 +22,14 @@
                 <div class="pull-left">
                     <span>{{course_abbr}} {{course_number}} {{section_list.section_id}}</span>
                 </div>
+                {{ #if section_list.list_admin_url }}
                 <div class="pull-right">
                     <a href="mailto:{{section_list.list_address}}@uw.edu" class="list-address">{{section_list.list_address}}@uw.edu</a>
                     <a href="{{section_list.list_admin_url}}" class="course_class_list" target="_blank">Manage</a>
                 </div>
+                {{ else }}
+                <div class="pull-right">-</div>
+                {{ /if }}
             </div>
 
             {{#if is_primary}}
