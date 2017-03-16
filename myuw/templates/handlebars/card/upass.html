@@ -15,41 +15,49 @@
         </div>
     </div>
 
-    <div>
     {{#if is_current }}
-        {{#if display_activation}}
-            <p>Finalize activation by tapping your card on a reader.</p>
-        {{/if}}
+        <div id="upass-notices">
+            {{#if display_activation}}
+                <p>Finalize activation by tapping your card on a reader.</p>
+            {{/if}}
 
-        {{#if is_seattle_student }}
-           {{#if in_summer }}
-                <h4>Summer U-PASS Use</h4>
-                <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="">temporary employee</a>.</p>
-           {{/if}}
-        {{/if}}
+            {{#if is_seattle_student }}
+               {{#if in_summer }}
+                    <h4>Summer U-PASS Use</h4>
+                    <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="">temporary employee</a>.</p>
+               {{/if}}
+            {{/if}}
+        </div>
 
-        <p><a href="{{#if is_bothell_student }}bothell-student-link{{else}}{{#if is_tacoma_student}}tacoma-student-link{{else}}{{#if is_seattle_student}}seattle-student-link{{else}}http://www.washington.edu/u-pass{{/if}}{{/if}}{{/if}}">U-PASS not working?</a></p>
+        <ul>
+            <li><a href="{{#if is_bothell_student }}bothell-student-link{{else}}{{#if is_tacoma_student}}tacoma-student-link{{else}}{{#if is_seattle_student}}seattle-student-link{{else}}http://www.washington.edu/u-pass{{/if}}{{/if}}{{/if}}">U-PASS not working?</a></li>
+        </ul>
 
     {{else}}
         {{#if is_student }}
-            <p>If you
-              {{#if is_seattle_student }}are registered{{else}}<a href="{{#if is_bothell_student}}bothell-student-link{{else}}{{#if is_tacoma_student}}tacoma-student-link{{else}}http://www.washington.edu/u-pass/{{/if}}{{/if}}">purchase a U-PASS</a>{{/if}}
- for a quarter, your U-PASS will work one week before the quarter starts.</p>
+            <div id="upass-notices">
+                <p>If you
+                  {{#if is_seattle_student }}are registered{{else}}<a href="{{#if is_bothell_student}}bothell-student-link{{else}}{{#if is_tacoma_student}}tacoma-student-link{{else}}http://www.washington.edu/u-pass/{{/if}}{{/if}}">purchase a U-PASS</a>{{/if}}
+                  for a quarter, your U-PASS will work one week before the quarter starts.</p>
 
-            {{#if is_seattle_student }}
-                 {{#if in_summer }}
-                     <h4>Summer U-PASS Use</h4>
-                     <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="">temporary employee</a>.</p>
-                 {{/if}}
-            {{/if}}
+                {{#if is_seattle_student }}
+                     {{#if in_summer }}
+                         <h4>Summer U-PASS Use</h4>
+                         <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="">temporary employee</a>.</p>
+                     {{/if}}
+                {{/if}}
+            </div>
 
             {{#unless is_bothell_student }}
-                <p><a href="{{#if is_seattle_student}}seattle-student-link{{else}}{{#if is_tacoma_student}}tacoma-link{{else}}http://www.washington.edu/u-pass/{{/if}}{{/if}}">What is the U-PASS</a></p>
+                <ul>
+                    <li><a href="{{#if is_seattle_student}}seattle-student-link{{else}}{{#if is_tacoma_student}}tacoma-link{{else}}http://www.washington.edu/u-pass/{{/if}}{{/if}}">What is the U-PASS?</a></li>
+                </ul>
             {{/unless}}
         {{else}}
-            <p><a href="http://www.washington.edu/u-pass">Learn more about purchasing a U-PASS</a></p>
+            <ul>
+                <li><a href="http://www.washington.edu/u-pass">Learn more about purchasing a U-PASS</a></li>
+            </ul>
         {{/if}}
     {{/if}}
-    </div>
 </div>
     {% endtplhandlebars %}
