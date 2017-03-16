@@ -1,5 +1,5 @@
 from django.test import TestCase
-from restclients.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 from myuw.dao.uwemail import _get_email_forwarding_by_uwnetid
 
 

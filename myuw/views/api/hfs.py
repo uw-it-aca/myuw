@@ -30,5 +30,5 @@ class HfsBalances(RESTDispatch):
             resp_json = balances.json_data(use_custom_date_format=True)
             log_success_response(logger, timer)
             return HttpResponse(json.dumps(resp_json))
-        except Exception:
+        except Exception as ex:
             return handle_exception(logger, timer, traceback)
