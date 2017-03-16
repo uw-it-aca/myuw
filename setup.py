@@ -34,7 +34,11 @@ setup(
         'unittest2',
         'AuthZ-Group',
         'python-binary-memcached',
-        'UW-RestClients==1.5b2',
+        'UW-RestClients>=2.0,<3.0',
+        'UW-RestClients-SWS>=0.5,<1.0',
+        'UW-RestClients-PWS>=0.5,<1.0',
+        'UW-RestClients-HFS>=0.5,<1.0',
+        'UW-RestClients-GradePage>=0.1,<1.0',
         'Django-SupportTools',
         'django_mobileesp',
         'django_client_logger',
@@ -52,4 +56,3 @@ setup(
         'Programming Language :: Python :: 2.7',
     ],
 )
-

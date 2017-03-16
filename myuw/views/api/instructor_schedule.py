@@ -5,13 +5,10 @@ import logging
 from django.http import HttpResponse
 from operator import itemgetter
 from myuw.logger.timer import Timer
-from restclients.sws.term import get_term_before, get_term_after
 from restclients.sws.person import get_person_by_regid
 from restclients.sws.enrollment import get_enrollment_by_regid_and_term
 from restclients.sws.term import get_specific_term
 from uw_gradepage.grading_status import get_grading_status
-from restclients.exceptions import DataFailureException
-from restclients_core.exceptions import DataFailureException as CoreDataFailureException
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_course_url
 from myuw.dao.course_color import get_colors_by_schedule
@@ -21,16 +18,16 @@ from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
     get_limit_estimate_enrollment_for_section, get_instructor_section
 from myuw.dao.class_website import get_page_title_from_url, is_valid_page_url
-from myuw.dao.term import get_current_quarter, get_specific_term,\
-    is_past, is_future
+from myuw.dao.term import get_current_quarter, is_past, is_future
 from myuw.logger.logresp import log_success_response
 from myuw.logger.logback import log_exception
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.rest_dispatch import RESTDispatch
 from myuw.dao.exceptions import NotSectionInstructorException
-from myuw.dao.pws import (get_url_key_for_regid,
-                          get_person_of_current_user)
+from myuw.dao.pws import get_url_key_for_regid
 from myuw.dao.enrollment import get_code_for_class_level
+from uw_sws.term import get_term_before, get_term_after
+from restclients_core.exceptions import DataFailureException
 
 
 logger = logging.getLogger(__name__)
@@ -93,7 +90,7 @@ def set_section_grading_status(section, person):
         ])
         return get_grading_status(
             section_id, act_as=person.uwnetid).json_data()
-    except CoreDataFailureException as ex:
+    except DataFailureException as ex:
         if ex.status == 404:
             return {
                 'grading_status': 'no grading status for section'
