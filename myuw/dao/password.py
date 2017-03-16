@@ -6,7 +6,7 @@ the uwnetid subscription resource.
 import logging
 from datetime import date, datetime, timedelta
 from restclients.uwnetid.password import get_uwnetid_password
-from restclients.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 from myuw.dao.term import get_comparison_datetime_with_tz
 from myuw.dao import get_netid_of_current_user
 

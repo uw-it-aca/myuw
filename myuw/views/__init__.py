@@ -61,7 +61,3 @@ def prefetch_resources(request,
 
 def get_enabled_features():
     return getattr(settings, "MYUW_ENABLED_FEATURES", [])
-
-
-def is_password_enabled():
-    return 'password' in get_enabled_features()

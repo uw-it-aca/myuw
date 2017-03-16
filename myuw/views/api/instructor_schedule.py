@@ -19,8 +19,8 @@ from myuw.dao.term import get_specific_term, is_past, is_future
 from myuw.logger.logresp import log_success_response
 from myuw.views.rest_dispatch import RESTDispatch
 
-from restclients.sws.term import get_term_before, get_term_after
-from restclients.exceptions import DataFailureException
+from uw_sws.term import get_term_before, get_term_after
+from restclients_core.exceptions import DataFailureException
 
 
 logger = logging.getLogger(__name__)
