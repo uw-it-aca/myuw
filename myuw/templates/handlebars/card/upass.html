@@ -24,18 +24,18 @@
             {{#if is_seattle_student }}
                {{#if in_summer }}
                     <h4>Summer U-PASS Use</h4>
-                    <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="">temporary employee</a>.</p>
+                    <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="https://www.washington.edu/facilities/transportation/employee-u-pass#8">temporary employee</a>.</p>
                {{/if}}
             {{/if}}
         </div>
 
         <ul>
-            <li><a href="{{#if is_bothell_student }}bothell-student-link{{else}}{{#if is_tacoma_student}}tacoma-student-link{{else}}{{#if is_seattle_student}}seattle-student-link{{else}}http://www.washington.edu/u-pass{{/if}}{{/if}}{{/if}}">U-PASS not working?</a></li>
+            <li><a href="{{#if is_bothell_student }}https://www.uwb.edu/admin/facilities/transportation/upass#Initial activation for new U-PASS members{{else}}{{#if is_tacoma_student}}https://www.tacoma.uw.edu/getting-campus/u-pass-orca{{else}}{{#if is_seattle_student}}https://www.washington.edu/facilities/transportation/student-u-pass#3{{else}}http://www.washington.edu/u-pass{{/if}}{{/if}}{{/if}}">U-PASS not working?</a></li>
         </ul>
     {{else}}
         {{#if is_student }}
             <div id="upass-notices">
-                <p>If you {{#if is_seattle_student }}are registered{{else}}<a href="{{#if is_bothell_student}}bothell-student-link{{else}}{{#if is_tacoma_student}}tacoma-student-link{{else}}http://www.washington.edu/u-pass/{{/if}}{{/if}}">purchase a U-PASS</a>{{/if}} for a quarter, your U-PASS will work one week before the quarter starts.</p>
+                <p>If you {{#if is_seattle_student }}are registered{{else}}<a href="{{#if is_bothell_student}}https://www.uwb.edu/admin/facilities/transportation/upass{{else}}{{#if is_tacoma_student}}https://www.tacoma.uw.edu/getting-campus/students-purchasing-u-pass{{else}}http://www.washington.edu/u-pass/{{/if}}{{/if}}">purchase a U-PASS</a>{{/if}} for a quarter, your U-PASS will work one week before the quarter starts.</p>
 
                 {{#if is_seattle_student }}
                      {{#if in_summer }}
@@ -47,12 +47,12 @@
 
             {{#unless is_bothell_student }}
                 <ul>
-                    <li><a href="{{#if is_seattle_student}}seattle-student-link{{else}}{{#if is_tacoma_student}}tacoma-link{{else}}http://www.washington.edu/u-pass/{{/if}}{{/if}}">What is the U-PASS?</a></li>
+                    <li><a href="{{#if is_seattle_student}}https://www.washington.edu/facilities/transportation/student-u-pass{{else}}{{#if is_tacoma_student}}https://www.tacoma.uw.edu/getting-campus/what-u-pass{{else}}http://www.washington.edu/u-pass/{{/if}}{{/if}}">What is the U-PASS?</a></li>
                 </ul>
             {{/unless}}
         {{else}}
             <ul>
-                <li><a href="http://www.washington.edu/u-pass">Learn more about purchasing a U-PASS</a></li>
+                <li><a href="http://www.washington.edu/u-pass">What is the U-PASS?</a></li>
             </ul>
         {{/if}}
     {{/if}}
