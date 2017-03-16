@@ -4,8 +4,15 @@
 <div class="card"  data-name="UPassCard" data-type="card">
     <h3>U-Pass Membership</h3>
 
-    <div>
-        <span>Status</span> <span class="pull-right">{{#if is_current }}Current{{else}}Not current{{/if}}</span>
+    <div class="card-badge-container">
+        <div class="card-badge clearfix">
+            <div class="pull-left">
+                <h4 class="card-badge-label">Status</h4>
+            </div>
+            <div class="pull-right">
+                <span class="card-badge-value">{{#if is_current }}Current{{else}}Not current{{/if}}</span>
+            </div>
+        </div>
     </div>
 
     <div>
