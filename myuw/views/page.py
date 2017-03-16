@@ -19,7 +19,8 @@ from myuw.logger.session_log import log_session
 from myuw.views.error import invalid_session
 from myuw.dao.uwemail import get_email_forwarding_for_current_user
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
-from myuw.views import prefetch_resources
+from myuw.views import prefetch_resources, get_enabled_features
+from restclients_core.exceptions import DataFailureException
 
 
 logger = logging.getLogger(__name__)
@@ -34,10 +35,22 @@ def page(request,
     if not netid:
         log_invalid_netid_response(logger, timer)
         return invalid_session()
+    context["user"] = {
+        "netid": netid,
+        "session_key": request.session.session_key,
+     }
 
-    prefetch_resources(request,
-                       prefetch_email=True,
-                       prefetch_enrollment=True)
+    try:
+        prefetch_resources(request,
+                           prefetch_email=True,
+                           prefetch_enrollment=True)
+    except DataFailureException:
+        log_exception(logger,
+                      "prefetch_resources",
+                      traceback.format_exc())
+        context["webservice_outage"] = True
+        return render(request, template, context)
+    log_session(netid, request.session.session_key, request)
 
     if _is_mobile(request):
         # On mobile devices, all students get the current myuw.  Non-students
@@ -59,13 +72,9 @@ def page(request,
 
     context["home_url"] = "/"
     context["err"] = None
-    context["user"] = {
-        "netid": None,
-        "affiliations": get_all_affiliations(request)
-    }
+    context["user"]["affiliations"] = get_all_affiliations(request)
+
     context["card_display_dates"] = get_card_visibilty_date_values(request)
-    context["user"]["session_key"] = request.session.session_key
-    log_session(netid, request.session.session_key, request)
     try:
         my_uwemail_forwarding = get_email_forwarding_for_current_user()
         if my_uwemail_forwarding.is_active():
@@ -88,8 +97,6 @@ def page(request,
                       traceback.format_exc())
         pass
 
-    context["user"]["netid"] = netid
-
     if ('year' not in context or context['year'] is None or
             'quarter' not in context and context['quarter'] is None):
         cur_term = get_current_quarter(request)
@@ -101,8 +108,7 @@ def page(request,
     else:
         pass
 
-    context['enabled_features'] = getattr(
-        settings, "MYUW_ENABLED_FEATURES", [])
+    context['enabled_features'] = get_enabled_features()
 
     log_success_response_with_affiliation(logger, timer, request)
     return render(request, template, context)

@@ -1,13 +1,19 @@
 from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.error import handle_exception
+from myuw.logger.timer import Timer
+from myuw.logger.logresp import log_success_response
 from myuw.dao.term import get_comparison_date, get_current_quarter
 from restclients.trumba import get_calendar_by_name
-from restclients.sws.term import get_term_after
+from uw_sws.term import get_term_after
 from django.http import HttpResponse
 from datetime import timedelta
 import json
 import re
+import logging
+import traceback
 
 CURRENT_LIST_MAX_DAYS = 3
+logger = logging.getLogger(__name__)
 
 
 class AcademicEvents(RESTDispatch):
@@ -15,37 +21,41 @@ class AcademicEvents(RESTDispatch):
     Performs actions on /api/v1/academic_events
     """
     def GET(self, request, current=False):
-        events = []
+        timer = Timer()
+        try:
+            events = []
 
-        cal_names = ['sea_acad-inst', 'sea_acad-holidays']
+            cal_names = ['sea_acad-inst', 'sea_acad-holidays']
 
-        calendars = []
-        for cal in cal_names:
-            calendars.append(get_calendar_by_name(cal))
+            calendars = []
+            for cal in cal_names:
+                calendars.append(get_calendar_by_name(cal))
 
-        raw_events = []
-        index = 0
-        for calendar in calendars:
-            for event in calendar.walk('vevent'):
-                event.add("calendar_name", cal_names[index])
-                raw_events.append(event)
-            index = index + 1
+            raw_events = []
+            index = 0
+            for calendar in calendars:
+                for event in calendar.walk('vevent'):
+                    event.add("calendar_name", cal_names[index])
+                    raw_events.append(event)
+                index = index + 1
 
-        raw_events = self.sort_events(raw_events)
+            raw_events = self.sort_events(raw_events)
 
-        raw_events = self.categorize_events(raw_events)
+            raw_events = self.categorize_events(raw_events)
 
-        raw_events = self.filter_past_events(request, raw_events)
+            raw_events = self.filter_past_events(request, raw_events)
 
-        if current:
-            raw_events = self.filter_non_current(request, raw_events)
-        else:
-            raw_events = self.filter_too_future_events(request, raw_events)
+            if current:
+                raw_events = self.filter_non_current(request, raw_events)
+            else:
+                raw_events = self.filter_too_future_events(request, raw_events)
 
-        for event in raw_events:
-            events.append(self.json_for_event(event))
-
-        return HttpResponse(json.dumps(events))
+            for event in raw_events:
+                events.append(self.json_for_event(event))
+            log_success_response(logger, timer)
+            return HttpResponse(json.dumps(events))
+        except Exception:
+            return handle_exception(logger, timer, traceback)
 
     def json_for_event(self, event):
         year, quarter = self.parse_year_quarter(event)

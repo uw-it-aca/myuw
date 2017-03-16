@@ -4,7 +4,7 @@ import csv
 import StringIO
 from myuw.dao.thrive import _get_offset, _make_urls, _is_displayed, \
     _make_thrive_payload
-from restclients.models.sws import Term
+from uw_sws.models import Term
 from myuw.test import fdao_sws_override, fdao_pws_override
 
 

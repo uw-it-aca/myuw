@@ -4,14 +4,14 @@ This module provides access to instructed class schedule and sections
 
 from django.conf import settings
 import logging
-from restclients.sws.section import get_sections_by_instructor_and_term,\
+from uw_sws.section import get_sections_by_instructor_and_term,\
     get_section_by_url
-from restclients.sws.v5.registration import get_active_registrations_by_section
-from restclients.sws.section_status import get_section_status_by_label
-from restclients.sws.section import get_section_by_label
-from restclients.models.sws import ClassSchedule
-from restclients.exceptions import DataFailureException
-from restclients.sws.term import get_specific_term
+from uw_sws.registration import get_active_registrations_by_section
+from uw_sws.section import get_section_by_label
+from uw_sws.term import get_specific_term
+from uw_sws.section_status import get_section_status_by_label
+from uw_sws.models import ClassSchedule
+from restclients_core.exceptions import DataFailureException
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.term import get_current_quarter
 from myuw.dao.exceptions import NotSectionInstructorException
@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 def _get_instructor_sections(person, term):
     """
-    @return a restclients.models.sws.ClassSchedule object
+    @return a uw_sws.models.ClassSchedule object
     Return the actively enrolled sections for the current user
     in the given term/quarter
     """

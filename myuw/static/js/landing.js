@@ -68,6 +68,10 @@ var Landing = {
             LibraryCard,
             EventsCard
         ];
+        // Add in outage card if we can't get the SWS/term resource
+        if(window.webservice_outage){
+            desktop_body_cards.unshift(OutageCard);
+        }
         Cards.load_cards_in_order(desktop_body_cards, $("#landing_content_cards"));
         Cards.load_cards_in_order(desktop_sidebar_cards, $("#landing_accounts_cards"));
         CalendarBanner.render_init($("#calendar_banner_location_desktop"));
@@ -100,6 +104,10 @@ var Landing = {
             FutureQuarterCard1,
             SummerRegStatusCard1
         ];
+        // Add in outage card if we can't get the SWS/term resource
+        if(window.webservice_outage){
+            mobile_cards.unshift(OutageCard);
+        }
         Cards.load_cards_in_order(mobile_cards, $("#landing_content_cards"));
         CalendarBanner.render_init($("#calendar_banner_location_mobile"));
     },

@@ -4,9 +4,8 @@ the SWS notice resource.
 """
 
 import logging
-from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
-from restclients.sws.notice import get_notices_by_regid
+from uw_sws.notice import get_notices_by_regid
 from myuw.models import TuitionDate, UserNotices
 from myuw.dao import get_user_model
 from myuw.dao.pws import get_regid_of_current_user
