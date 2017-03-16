@@ -32,13 +32,10 @@
         <ul>
             <li><a href="{{#if is_bothell_student }}bothell-student-link{{else}}{{#if is_tacoma_student}}tacoma-student-link{{else}}{{#if is_seattle_student}}seattle-student-link{{else}}http://www.washington.edu/u-pass{{/if}}{{/if}}{{/if}}">U-PASS not working?</a></li>
         </ul>
-
     {{else}}
         {{#if is_student }}
             <div id="upass-notices">
-                <p>If you
-                  {{#if is_seattle_student }}are registered{{else}}<a href="{{#if is_bothell_student}}bothell-student-link{{else}}{{#if is_tacoma_student}}tacoma-student-link{{else}}http://www.washington.edu/u-pass/{{/if}}{{/if}}">purchase a U-PASS</a>{{/if}}
-                  for a quarter, your U-PASS will work one week before the quarter starts.</p>
+                <p>If you {{#if is_seattle_student }}are registered{{else}}<a href="{{#if is_bothell_student}}bothell-student-link{{else}}{{#if is_tacoma_student}}tacoma-student-link{{else}}http://www.washington.edu/u-pass/{{/if}}{{/if}}">purchase a U-PASS</a>{{/if}} for a quarter, your U-PASS will work one week before the quarter starts.</p>
 
                 {{#if is_seattle_student }}
                      {{#if in_summer }}
@@ -60,4 +57,5 @@
         {{/if}}
     {{/if}}
 </div>
+
     {% endtplhandlebars %}
