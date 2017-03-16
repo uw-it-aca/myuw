@@ -222,7 +222,7 @@ WSData = {
                 this.grading_status.all_grades_submitted =
                     (this.grading_status.hasOwnProperty('submitted_count') &&
                      this.grading_status.hasOwnProperty('unsubmitted_count') &&
-                     this.grading_status.unsubmitted_count == 0);
+                     this.grading_status.unsubmitted_count === 0);
                 if (this.grading_status.submitted_date) {
                     this.grading_status.submitted_relative_date = moment(this.grading_status.submitted_date).from();
                 }
