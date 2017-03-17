@@ -23,14 +23,9 @@
 
             {{#unless is_employee}}
                 {{#if in_summer}}
-                    {{#if is_seattle_student}}
+                    {{#if is_pce_or_seattle_student}}
                         <h4>Summer U-PASS Use</h4>
                         <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="https://www.washington.edu/facilities/transportation/employee-u-pass#8">temporary employee</a>.</p>
-                    {{else}}
-                        {{#if is_pce_student}}
-                            <h4>Summer U-PASS Use</h4>
-                            <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="https://www.washington.edu/facilities/transportation/employee-u-pass#8">temporary employee</a>.</p>
-                        {{/if}}
                     {{/if}}
                 {{/if}}
             {{/unless}}
