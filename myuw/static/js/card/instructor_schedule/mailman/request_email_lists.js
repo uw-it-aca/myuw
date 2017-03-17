@@ -85,8 +85,9 @@ var RequestEmailLists = {
                     $(RequestEmailLists.dom_target).html(raw);
                 },
                 error: function(xhr, status, error) {
-                    raw = CardWithError.render("Submit email list: " + error);
-                    $(RequestEmailLists.dom_target).html(raw);
+                    $("#request_emaillist_form").find(".modal-body").hide();
+                    $("#request_emaillist_form").find("button:submit").hide();
+                    $("#request_emaillist_form").find(".modal-error").show();
                     return false;
                 }
             });
