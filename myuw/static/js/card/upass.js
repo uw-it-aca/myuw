@@ -15,7 +15,7 @@ var UPassCard = {
             UPassCard.dom_target.hide();
             return;
         }
-        var raw = CardWithError.render("Tuition & Fees");
+        var raw = CardWithError.render("U-Pass Membership");
         UPassCard.dom_target.html(raw);
     },
 
