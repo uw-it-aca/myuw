@@ -21,11 +21,16 @@
                 <p>Finalize activation by tapping your card on a reader.</p>
             {{/if}}
 
-            {{#if is_seattle_student }}
-               {{#if in_summer }}
+            {{#if in_summer }}
+                {{#if is_seattle_student }}
                     <h4>Summer U-PASS Use</h4>
                     <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="https://www.washington.edu/facilities/transportation/employee-u-pass#8">temporary employee</a>.</p>
-               {{/if}}
+                {{else}}
+                    {{#if is_pce_student }}
+                        <h4>Summer U-PASS Use</h4>
+                        <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="https://www.washington.edu/facilities/transportation/employee-u-pass#8">temporary employee</a>.</p>
+                    {{/if}}
+                {{/if}}
             {{/if}}
         </div>
 
@@ -48,7 +53,11 @@
             </li>
         </ul>
     {{else}}
-        {{#if is_student }}
+        {{#if is_employee }}
+            <ul>
+                <li><a href="http://www.washington.edu/u-pass">What is the U-PASS?</a></li>
+            </ul>
+        {{else}}
             {{#if is_seattle_student }}
                 <div id="upass-notices">
                     <p>
@@ -77,7 +86,7 @@
 
             {{#unless is_bothell_student }}
                 <ul>
-                    {{#if is_pce_student}}
+                    {{#if is_pce_student }}
                         <li><a href="https://www.washington.edu/facilities/transportation/student-u-pass#9">What is the U-PASS?</a></li>
                         <li><a href="https://www.washington.edu/facilities/transportation/student-purchased-u-pass">Purchasing a U-PASS</a></li>
                     {{else}}
@@ -93,10 +102,6 @@
                     {{/if}}
                 </ul>
             {{/unless}}
-        {{else}}
-            <ul>
-                <li><a href="http://www.washington.edu/u-pass">What is the U-PASS?</a></li>
-            </ul>
         {{/if}}
     {{/if}}
 </div>
