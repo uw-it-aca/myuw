@@ -86,6 +86,7 @@ var RequestEmailLists = {
                 },
                 error: function(xhr, status, error) {
                     $("#request_emaillist_form").find(".modal-body").hide();
+                    $("#request_emaillist_form").find("button:submit").hide();
                     $("#request_emaillist_form").find(".modal-error").show();
                     return false;
                 }
