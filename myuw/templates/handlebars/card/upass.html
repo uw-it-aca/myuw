@@ -87,24 +87,31 @@
                 {{/if}}
             {{/if}}
 
-            {{#unless is_bothell_student}}
+            {{#if is_pce_student}}
                 <ul id="upass-links">
-                    {{#if is_pce_student}}
-                        <li><a href="https://www.washington.edu/facilities/transportation/student-u-pass#9">What is the U-PASS?</a></li>
-                        <li><a href="https://www.washington.edu/facilities/transportation/student-purchased-u-pass">Purchasing a U-PASS</a></li>
-                    {{else}}
-                        {{#if is_seattle_student}}
-                            <li><a href="https://www.washington.edu/facilities/transportation/student-u-pass">What is the U-PASS?</a></li>
-                        {{else}}
-                            {{#if is_tacoma_student}}
-                                <li><a href="https://www.tacoma.uw.edu/getting-campus/what-u-pass">What is the U-PASS?</a></li>
-                            {{else}} <!-- Students without a campus -->
-                                <li><a href="http://www.washington.edu/u-pass/">What is the U-PASS?</a></li>
-                            {{/if}}
-                        {{/if}}
-                    {{/if}}
+                    <li><a href="https://www.washington.edu/facilities/transportation/student-u-pass#9">What is the U-PASS?</a></li>
+                    <li><a href="https://www.washington.edu/facilities/transportation/student-purchased-u-pass">Purchasing a U-PASS</a></li>
                 </ul>
-            {{/unless}}
+            {{else}}
+                {{#if is_seattle_student}}
+                    <ul id="upass-links">
+                        <li><a href="https://www.washington.edu/facilities/transportation/student-u-pass">What is the U-PASS?</a></li>
+                    </ul>
+                {{else}}
+                    {{#if is_tacoma_student}}
+                        <ul id="upass-links">
+                            <li><a href="https://www.tacoma.uw.edu/getting-campus/what-u-pass">What is the U-PASS?</a></li>
+                        </ul>
+                    {{else}}
+                        {{#unless is_bothell_student}}
+                            <!-- Students without a campus -->
+                            <ul id="upass-links">
+                                <li><a href="http://www.washington.edu/u-pass/">What is the U-PASS?</a></li>
+                            </ul>
+                        {{/unless}}
+                    {{/if}}
+                {{/if}}
+            {{/if}}
         {{/if}}
     {{/if}}
 </div>
