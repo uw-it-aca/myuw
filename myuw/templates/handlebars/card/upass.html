@@ -34,9 +34,9 @@
             {{/if}}
         </div>
 
-        <ul>
+        <ul id="upass-links">
             <li>
-                {{#if is_employee }}
+                {{#if is_employee}}
                     <a href="https://www.washington.edu/facilities/transportation/employee-u-pass#10">U-PASS not working?</a>
                 {{else}}
                     {{#if is_bothell_student }}
@@ -53,8 +53,8 @@
             </li>
         </ul>
     {{else}}
-        {{#if is_employee }}
-            <ul>
+        {{#if is_employee}}
+            <ul id="upass-links">
                 <li><a href="http://www.washington.edu/u-pass">What is the U-PASS?</a></li>
             </ul>
         {{else}}
@@ -85,7 +85,7 @@
             {{/if}}
 
             {{#unless is_bothell_student }}
-                <ul>
+                <ul id="upass-links">
                     {{#if is_pce_student }}
                         <li><a href="https://www.washington.edu/facilities/transportation/student-u-pass#9">What is the U-PASS?</a></li>
                         <li><a href="https://www.washington.edu/facilities/transportation/student-purchased-u-pass">Purchasing a U-PASS</a></li>
