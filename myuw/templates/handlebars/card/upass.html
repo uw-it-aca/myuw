@@ -10,25 +10,27 @@
                 <h4 class="card-badge-label">Status</h4>
             </div>
             <div class="pull-right">
-                <span class="card-badge-value">{{#if is_current }}Current{{else}}Not current{{/if}}</span>
+                <span class="card-badge-value">{{#if is_current}}Current{{else}}Not current{{/if}}</span>
             </div>
         </div>
     </div>
 
-    {{#if is_current }}
+    {{#if is_current}}
         <div id="upass-notices">
             {{#if display_activation}}
                 <p>Finalize activation by tapping your card on a reader.</p>
             {{/if}}
 
-            {{#if in_summer }}
-                {{#if is_seattle_student }}
-                    <h4>Summer U-PASS Use</h4>
-                    <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="https://www.washington.edu/facilities/transportation/employee-u-pass#8">temporary employee</a>.</p>
-                {{else}}
-                    {{#if is_pce_student }}
+            {{#unless is_employee}}
+                {{#if in_summer}}
+                    {{#if is_seattle_student}}
                         <h4>Summer U-PASS Use</h4>
                         <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="https://www.washington.edu/facilities/transportation/employee-u-pass#8">temporary employee</a>.</p>
+                    {{else}}
+                        {{#if is_pce_student}}
+                            <h4>Summer U-PASS Use</h4>
+                            <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="https://www.washington.edu/facilities/transportation/employee-u-pass#8">temporary employee</a>.</p>
+                        {{/if}}
                     {{/if}}
                 {{/if}}
             {{/if}}
@@ -39,7 +41,7 @@
                 {{#if is_employee}}
                     <a href="https://www.washington.edu/facilities/transportation/employee-u-pass#10">U-PASS not working?</a>
                 {{else}}
-                    {{#if is_bothell_student }}
+                    {{#if is_bothell_student}}
                         <a href="https://www.uwb.edu/admin/facilities/transportation/upass#Initial activation for new U-PASS members">U-PASS not working?</a>
                     {{else}}
                         {{#if is_tacoma_student}}
@@ -58,12 +60,12 @@
                 <li><a href="http://www.washington.edu/u-pass">What is the U-PASS?</a></li>
             </ul>
         {{else}}
-            {{#if is_seattle_student }}
+            {{#if is_seattle_student}}
                 <div id="upass-notices">
                     <p>
                         If you are registered for a quarter, your U-PASS will work one week before the quarter starts.
                     </p>
-                    {{#if in_summer }}
+                    {{#if in_summer}}
                         <h4>Summer U-PASS Use</h4>
                         <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="https://www.washington.edu/facilities/transportation/employee-u-pass#8">temporary employee</a>.</p>
                     {{/if}}
@@ -84,9 +86,9 @@
                 </div>
             {{/if}}
 
-            {{#unless is_bothell_student }}
+            {{#unless is_bothell_student}}
                 <ul id="upass-links">
-                    {{#if is_pce_student }}
+                    {{#if is_pce_student}}
                         <li><a href="https://www.washington.edu/facilities/transportation/student-u-pass#9">What is the U-PASS?</a></li>
                         <li><a href="https://www.washington.edu/facilities/transportation/student-purchased-u-pass">Purchasing a U-PASS</a></li>
                     {{else}}
