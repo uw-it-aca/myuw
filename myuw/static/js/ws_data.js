@@ -934,13 +934,6 @@ WSData = {
     fetch_upass_data: function(callback, err_callback, args) {
         if (WSData.upass_data() === null) {
             var url = "/api/v1/upass/";
-
-            if (WSData._is_running_url(url)) {
-                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
-                return;
-            }
-
-            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
             $.ajax({
                 url: url,
                 dataType: "JSON",
@@ -949,10 +942,12 @@ WSData = {
                 accepts: {html: "application/json"},
                 success: function(results) {
                     WSData._upass_data = results;
-                    WSData._run_success_callbacks_for_url(url);
+                    if (callback !== null) {
+                        callback.apply(null, args);
+                    }
                 },
                 error: function(xhr, status, error) {
-                    WSData._run_error_callbacks_for_url(url);
+                    err_callback.call(null, xhr.status, error);
                 }
             });
         }
