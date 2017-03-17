@@ -33,7 +33,7 @@ var UPassCard = {
         template_data.is_bothell_student = window.user.bothell_affil;
         template_data.is_seattle_student = window.user.seattle_affil;
         template_data.is_pce_student = window.user.pce;
-
+        template_data.is_pce_or_seattle_student = template_data.is_seattle_student || template_data.is_pce_student;
         var source = $("#upass_card").html();
         var template = Handlebars.compile(source);
         var raw = template(template_data);
