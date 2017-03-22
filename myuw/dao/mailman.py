@@ -162,6 +162,8 @@ def get_section_email_lists(section,
                 if total_secondaries > 1:
                     json_data["secondary_combined_list"] =\
                         get_section_secondary_combined_list(section)
+    json_data["has_lists"] = (json_data["has_secondary_lists"] or
+                              json_data["section_list"]["list_exists"])
     return json_data
 
 
