@@ -2,12 +2,12 @@
         <h4 class="scheduleHeading">Grading</h4>
         <div rel="{{curriculum_abbr}} {{course_number}} {{section_id}}">
             <ul class="unstyled-list">
-                <li class="clearfix">
+                <li class="clearfix grading-system">
                     <div class="pull-left">
                         <span class="inst-course-label">Grade System</span>
                     </div>
                     <div class="pull-right">
-                        <span class="card-badge-value">Standard</span>
+                        <span class="card-badge-value">{{#if grading_system}}{{grading_system}}{{else}}Unspecified{{/if}}</span>
                     </div>
                 </li>
                 <li class="clearfix">
