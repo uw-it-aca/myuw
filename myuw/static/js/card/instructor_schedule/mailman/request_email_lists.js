@@ -58,7 +58,6 @@ var RequestEmailLists = {
             }
         });
         $(".mailman_advanced_toggle").click(function(ev){
-            console.log('uh')
             $(".mailman_simple_create").hide();
             $(".mailman_advanced_toggle").hide();
             //Disable the single section input
