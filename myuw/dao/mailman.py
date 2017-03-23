@@ -153,12 +153,17 @@ def get_section_email_lists(section,
 
                 json_data["secondary_section_lists"] = secondary_lists
 
-                json_data["total_course_wo_list"] +=\
-                    get_total_course_wo_list(secondary_lists)
+                total_wo_list = get_total_course_wo_list(secondary_lists)
+                json_data["total_course_wo_list"] += total_wo_list
+
+                json_data["has_secondary_lists"] = \
+                    (total_secondaries > total_wo_list)
 
                 if total_secondaries > 1:
                     json_data["secondary_combined_list"] =\
                         get_section_secondary_combined_list(section)
+    json_data["has_lists"] = (json_data.get("has_secondary_lists") or
+                              json_data["section_list"]["list_exists"])
     return json_data
 
 

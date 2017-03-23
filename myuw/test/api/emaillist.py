@@ -50,6 +50,7 @@ class TestEmaillistApi(MyuwApiTest):
         self.assertEquals(data["course_number"], "121")
         self.assertEquals(data["course_abbr"], "PHYS")
         self.assertEquals(data["section_id"], "A")
+        self.assertTrue(data["has_lists"])
 
     def test_post_with_csrf_checks(self):
         client = Client(enforce_csrf_checks=True)

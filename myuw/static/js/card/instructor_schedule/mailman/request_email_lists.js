@@ -48,14 +48,22 @@ var RequestEmailLists = {
         $('#select_all', panel).click(function(ev) {
             WSData.log_interaction("select_all_on_request_emaillist_"+label);
             if(this.checked) {
-                $(':checkbox').each(function() {
+                $(':checkbox:enabled').each(function() {
                     this.checked = true;
                 });
             } else {
-                $(':checkbox').each(function() {
+                $(':checkbox:enabled').each(function() {
                     this.checked = false;
                 });
             }
+        });
+        $(".mailman_advanced_toggle").click(function(ev){
+            $(".mailman_simple_create").hide();
+            $(".mailman_advanced_toggle").hide();
+            //Disable the single section input
+            $(".mailman_simple_create").find("input").prop('disabled', true);
+            $(".mailman_advanced_create").show();
+            return false;
         });
 
         $(panel).find("button:submit").on("click", function(ev) {
