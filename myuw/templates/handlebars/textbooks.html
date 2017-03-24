@@ -3,7 +3,7 @@
 
 <div class="container textbooks-container">
     <h2 id="future_cards_header"><span style="text-transform:uppercase;">{{quarter}} {{year}}</span> {{summer_term}} Textbooks</h2>
-	 
+
     {{#each sections}}
     <div class="books-list">
         <a name="{{toUrlSafe curriculum}}{{course_number}}{{section_id}}" />
@@ -63,13 +63,15 @@
         {{/eachWithIndex}}
 
         {{#if is_instructor}}
-        <a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school={{#if bothell_campus}}uwbothell{{else}}{{#if tacoma_campus}}uwtacoma{{else}}uwmain{{/if}}{{/if}}">Modify textbooks.</a>
+        <a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school={{#if bothell_campus}}uwbothell{{else}}{{#if tacoma_campus}}uwtacoma{{else}}uwmain{{/if}}{{/if}}">Modify textbooks</a>.
         {{/if}}
     {{else}}
-    <div style="margin-bottom:25px;">No textbook requirement has been received for this course.
+    <div style="margin-bottom:25px;">
       {{#if is_instructor}}
-      <a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school={{#if bothell_campus}}uwbothell{{else}}{{#if tacoma_campus}}uwtacoma{{else}}uwmain{{/if}}{{/if}}">Order textbooks now.</a>
+      No textbooks have been ordered for this course.
+      <a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school={{#if bothell_campus}}uwbothell{{else}}{{#if tacoma_campus}}uwtacoma{{else}}uwmain{{/if}}{{/if}}">Order textbooks</a>.
       {{else}}
+      No textbook requirement has been received for this course.
       Please check with your instructor.
       {{/if}}
       <!-- if IOR  --> </div>
