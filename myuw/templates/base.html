@@ -54,7 +54,7 @@
     {% csrf_token %}
 
     {% block header %}
-    <div id="app_search">
+    <div id="app_search" class="collapse">
         <div class="container">
             <script>
               (function() {
@@ -86,8 +86,7 @@
                         {% endif %}
                         <li><div class="header-resources"><a href="#" id="categories_link"><i class="fa fa-th" role="presentation">&nbsp;</i>Resources</a></div></li>
                         <li>
-                            <button class="search-button">
-                            </button>
+                            <button class="search-button" type="button" data-toggle="collapse" data-target="#app_search" id="toggle_app_search" aria-expanded="false" aria-controls="app_search">
                         </li>
                     </ul>
                 </div>
