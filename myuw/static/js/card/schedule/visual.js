@@ -69,7 +69,12 @@ var VisualScheduleCard = {
         $("#VisualScheduleCard").show();
         VisualScheduleCard.render_schedule(course_data, instructed_course_data, term);
 
-//        FinalExamSchedule.render(course_data, term, true);
+        if (course_data) {
+            FinalExamSchedule.render(course_data, term, true);
+        } else {
+            $("#toggle_finalexams").hide();
+        }
+
 
         LogUtils.cardLoaded(VisualScheduleCard.name, VisualScheduleCard.dom_target);
     },
