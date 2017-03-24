@@ -3,7 +3,7 @@ import logging
 import traceback
 from django.http import HttpResponse
 from myuw.dao.gws import is_student
-from restclients.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 from myuw.dao.schedule import get_schedule_by_term,\
     filter_schedule_sections_by_summer_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term

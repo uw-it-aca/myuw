@@ -1,10 +1,10 @@
 """
-This module encapsulates the interactions with the restclients.pws,
+This module encapsulates the interactions with the uw_pws,
 provides information of the current user
 """
 
 import logging
-from restclients.pws import PWS
+from uw_pws import PWS
 from myuw.dao import get_netid_of_current_user
 
 

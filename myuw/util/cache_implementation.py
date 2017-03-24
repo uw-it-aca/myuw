@@ -1,7 +1,7 @@
 import re
 from django.conf import settings
 from restclients.cache_implementation import MemcachedCache, TimedCache
-from restclients.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 
 
 FIVE_SECONDS = 5

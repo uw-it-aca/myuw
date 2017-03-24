@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.conf import settings
 from restclients.mock_http import MockHTTP
 from restclients.models import CacheEntryTimed
-from restclients.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 from restclients.dao import SWS_DAO
 from myuw.util.cache_implementation import MyUWCache, get_cache_time,\
     MyUWMemcachedCache

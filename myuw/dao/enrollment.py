@@ -4,7 +4,7 @@ the SWS Enrollment resource.
 """
 
 import logging
-from restclients.sws.enrollment import get_enrollment_by_regid_and_term
+from uw_sws.enrollment import get_enrollment_by_regid_and_term
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import get_current_quarter
 
