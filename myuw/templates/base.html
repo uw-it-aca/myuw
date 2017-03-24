@@ -54,11 +54,11 @@
     {% csrf_token %}
 
     {% block header %}
-        <div>
-            <h1>Search the UW:</h1>
+    <div id="app_search" class="collapse">
+        <div class="container">
             <script>
               (function() {
-                var cx = '014753298007287259127:xdk0jwqqs_y';
+                var cx = '011623198968356464378:osxgvivxwtm';
                 var gcse = document.createElement('script');
                 gcse.type = 'text/javascript';
                 gcse.async = true;
@@ -69,6 +69,8 @@
             </script>
             <gcse:search></gcse:search>
         </div>
+    </div>
+
     <div id="app_header">
         <div class="header-bar" role="navigation" title="Home, email, and categorized resources">
             <div class="container clearfix">
@@ -77,12 +79,15 @@
                     <ul id="top_navigation_link_list" class="top_navigation_list">
                         {% if user.email_forward_url %}
                         <li>
-                            <div class="header-email" id="uwemail">                             
-                              <a href="{{ user.email_forward_url }}" target="_blank" title="Open {{ user.email_forward_title }} in new tab"><i class="fa {{ user.email_forward_icon }}" aria-hidden="true">&nbsp;</i>{{ user.email_forward_title }}</a>                            
+                            <div class="header-email" id="uwemail">
+                              <a href="{{ user.email_forward_url }}" target="_blank" title="Open {{ user.email_forward_title }} in new tab"><i class="fa {{ user.email_forward_icon }}" aria-hidden="true">&nbsp;</i>{{ user.email_forward_title }}</a>
                             </div>
                         </li>
                         {% endif %}
                         <li><div class="header-resources"><a href="#" id="categories_link"><i class="fa fa-th" role="presentation">&nbsp;</i>Resources</a></div></li>
+                        <li>
+                            <button class="search-button" type="button" data-toggle="collapse" data-target="#app_search" id="toggle_app_search" aria-expanded="false" aria-controls="app_search">
+                        </li>
                     </ul>
                 </div>
             </div>
