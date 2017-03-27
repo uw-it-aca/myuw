@@ -3,7 +3,7 @@ var UPassCard = {
     dom_target: undefined,
 
     render_init: function () {
-        TextbookCard.dom_target = $('#UPassCard');
+        UPassCard.dom_target = $('#UPassCard');
         WSData.fetch_upass_data(UPassCard.render_upon_data,
                                 UPassCard.render_error);
     },
