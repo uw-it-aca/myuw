@@ -34,7 +34,7 @@ setup(
         'unittest2',
         'AuthZ-Group',
         'python-binary-memcached',
-        'UW-RestClients==1.7.a2',
+        'UW-RestClients==2.1',
         'Django-SupportTools',
         'django_mobileesp',
         'django_client_logger',
