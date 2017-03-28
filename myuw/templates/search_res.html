@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% load compress %}
+
+{% block page_title %}
+MyUW: Category
+{% endblock %}
+
+{% block content %}
+
+    <div id="main-content" role="main" aria-labelledby="main">
+{#    Leavign off G:CSE initialization as that's happening on the included search banner in base.html#}
+    <gcse:searchresults-only></gcse:searchresults-only>
+    </div>
+    <div id="static-links"></div>
+
+    <!-- component content templates -->
+    {% include "handlebars/banner/profile.html" %}
+
+    <!-- page content templates -->
+    {% include "handlebars/loading.html" %}
+    {% include "handlebars/error.html" %}
+
+
+    {% include "user_state.html" %}
+
+{% endblock %}
+
+{% block extra_js %}
+    {% compress js inline %}
+    <script src="{% static 'js/page/search_res.js' %}"></script>
+    {% endcompress %}
+{% endblock %}

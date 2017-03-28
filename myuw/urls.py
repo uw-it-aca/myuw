@@ -34,6 +34,7 @@ from myuw.views.api.myplan import MyPlan
 from myuw.views.api.academic_events import AcademicEvents
 from myuw.views.api.thrive import ThriveMessages
 from myuw.views.api.calendar import DepartmentalCalendar
+from myuw.views.search import search_res
 
 urlpatterns = []
 
@@ -147,6 +148,8 @@ urlpatterns += [
     url(r'^choose/new', new_site, name="myuw_pref_new_site"
         ),
     url(r'^choose/legacy', old_site, name="myuw_pref_old_site"
+        ),
+    url(r'^search/?$', search_res, name="myuw_search_res_page"
         ),
     url(r'^teaching/?$', teaching, name="myuw_teaching_page"
         ),
