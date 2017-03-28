@@ -53,9 +53,9 @@ var RegStatusCard = {
         }
 
         // _render should be called only once.
-        if (renderedCardOnce(RegStatusCard.name)) {
-            return;
-        }
+        // if (renderedCardOnce(RegStatusCard.name)) {
+        //    return;
+        //}
         RegStatusCard._render();
     },
 

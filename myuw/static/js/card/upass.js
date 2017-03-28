@@ -4,14 +4,11 @@ var UPassCard = {
 
     render_init: function () {
         UPassCard.dom_target = $('#UPassCard');
-        WSData.fetch_upass_data(UPassCard.render_upon_data,
-                                UPassCard.render_error);
+        WSData.fetch_upass_data(UPassCard.render_upon_data, UPassCard.render_error);
     },
 
     render_error: function (status) {
-        // notice never returns 404.
         if (status === 404) {
-            // not student or SDB can't find the regid
             UPassCard.dom_target.hide();
             return;
         }
@@ -21,9 +18,9 @@ var UPassCard = {
 
     render_upon_data: function () {
         // _render should be called only once.
-        if (renderedCardOnce(UPassCard.name)) {
-            return;
-        }
+        // if (renderedCardOnce(UPassCard.name)) {
+        //     return;
+        // }
         UPassCard._render();
     },
 
@@ -39,11 +36,5 @@ var UPassCard = {
         var raw = template(template_data);
         UPassCard.dom_target.html(raw);
         LogUtils.cardLoaded(UPassCard.name, UPassCard.dom_target);
-    },
+    }
 };
-
-/* node.js exports */
-if (typeof exports == "undefined") {
-    var exports = {};
-}
-exports.UPassCard = UPassCard;

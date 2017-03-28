@@ -6,7 +6,7 @@ var TextbookCard = {
     render_init: function() {
         TextbookCard.dom_target = $('#TextbookCard');
         if (!window.user.student) {
-            $("#TextbookCard").hide();
+            TextbookCard.dom_target.hide();
         }
         if (TextbookCard.term === 'current') {
             if (!window.card_display_dates.is_before_eof_7days_of_term) {
@@ -30,15 +30,13 @@ var TextbookCard = {
     },
 
     render_upon_data: function(args) {
-        // Having multiple callbacks come to this function,
-        // delay rendering until all requests are complete.
         if (!TextbookCard._has_all_data()) {
             return;
         }
         // _render should be called only once.
-        if (renderedCardOnce(TextbookCard.name)) {
-            return;
-        }
+        // if (renderedCardOnce(TextbookCard.name)) {
+        //     return;
+        // }
         TextbookCard._render();
     },
 

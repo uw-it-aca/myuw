@@ -27,8 +27,6 @@ var SummerRegStatusCard = {
     },
 
     render_upon_data: function() {
-        // Having multiple callbacks come to this function,
-        // delay rendering until all requests are complete.
         if (!RegStatusCard._has_all_data()) {
             return;
         }
@@ -43,9 +41,9 @@ var SummerRegStatusCard = {
         }
 
         // _render should be called only once.
-        if (renderedCardOnce(SummerRegStatusCard.name)) {
-            return;
-        }
+        // if (renderedCardOnce(SummerRegStatusCard.name)) {
+        //    return;
+        // }
         SummerRegStatusCard._render();
     },
 
