@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User
-from restclients.models.sws import Term, Section
+from uw_sws.models import Term, Section
 from myuw.test import fdao_sws_override, fdao_pws_override
 from myuw.dao.instructor_schedule import is_instructor,\
     get_current_quarter_instructor_schedule,\

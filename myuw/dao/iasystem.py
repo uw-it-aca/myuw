@@ -6,8 +6,8 @@ to iasystem web service.
 import logging
 from datetime import datetime
 from django.utils import timezone
-from restclients.pws import PWS
-from restclients.exceptions import DataFailureException
+from uw_pws import PWS
+from restclients_core.exceptions import DataFailureException
 from restclients.iasystem import evaluation
 from myuw.logger.logback import log_exception
 from myuw.dao.student_profile import get_profile_of_current_user
