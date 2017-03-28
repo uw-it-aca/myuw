@@ -22,7 +22,9 @@ var TuitionCard = {
     },
 
     render_error: function (status) {
+        // notice never returns 404.
         if (status === 404) {
+            // not student or SDB can't find the regid
             TuitionCard.dom_target.hide();
             return;
         }
@@ -31,9 +33,12 @@ var TuitionCard = {
     },
 
     render_upon_data: function() {
+        // Having multiple callbacks come to this function,
+        // delay rendering until all requests are complete.
         if (!TuitionCard._has_all_data()) {
             return;
         }
+
         // _render should be called only once.
         if (renderedCardOnce(TuitionCard.name)) {
             return;
@@ -134,3 +139,9 @@ var TuitionCard = {
         });
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.TuitionCard = TuitionCard;

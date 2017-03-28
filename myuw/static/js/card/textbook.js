@@ -30,12 +30,15 @@ var TextbookCard = {
     },
 
     render_upon_data: function(args) {
+        // Having multiple callbacks come to this function,
+        // delay rendering until all requests are complete.
         if (!TextbookCard._has_all_data()) {
             return;
         }
+
         // _render should be called only once.
         if (renderedCardOnce(TextbookCard.name)) {
-             return;
+            return;
         }
         TextbookCard._render();
     },

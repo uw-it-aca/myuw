@@ -27,6 +27,8 @@ var SummerRegStatusCard = {
     },
 
     render_upon_data: function() {
+        // Having multiple callbacks come to this function,
+        // delay rendering until all requests are complete.
         if (!RegStatusCard._has_all_data()) {
             return;
         }
