@@ -17,10 +17,6 @@ var UPassCard = {
     },
 
     render_upon_data: function () {
-        // _render should be called only once.
-        // if (renderedCardOnce(UPassCard.name)) {
-        //     return;
-        // }
         UPassCard._render();
     },
 

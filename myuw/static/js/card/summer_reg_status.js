@@ -41,9 +41,9 @@ var SummerRegStatusCard = {
         }
 
         // _render should be called only once.
-        // if (renderedCardOnce(SummerRegStatusCard.name)) {
-        //    return;
-        // }
+        if (renderedCardOnce(SummerRegStatusCard.name)) {
+            return;
+        }
         SummerRegStatusCard._render();
     },
 

@@ -126,6 +126,10 @@ var Landing = {
     },
 
     _reset_content_divs: function() {
+        // Reset all the multiple resourse card render records
+        // needed on every page refresh MUWM-3803
+        resetCardRenderCalled();
+
         $("#landing_content_cards").html('');
         $("#landing_accounts_cards").html('');
         $("#calendar_banner_location_desktop").html('');

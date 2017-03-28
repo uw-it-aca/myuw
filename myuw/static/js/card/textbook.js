@@ -34,9 +34,9 @@ var TextbookCard = {
             return;
         }
         // _render should be called only once.
-        // if (renderedCardOnce(TextbookCard.name)) {
-        //     return;
-        // }
+        if (renderedCardOnce(TextbookCard.name)) {
+             return;
+        }
         TextbookCard._render();
     },
 
