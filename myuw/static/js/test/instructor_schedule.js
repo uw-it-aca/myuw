@@ -4,6 +4,7 @@ describe('InstructorScheduleCards', function(){
     describe("Shows the instructed course cards", function() {
         before(function (done) {
             var render_id = 'instructor_course_cards';
+
             Global.Environment.init({
                 render_id: render_id,
                 scripts: [
@@ -23,13 +24,13 @@ describe('InstructorScheduleCards', function(){
                 ]
             });
 
+            Global.Environment.ajax_stub('api/v1/instructor_schedule/2013-spring');
+
+            window.enabled_features = { 'instructor_schedule': true };
+            window.location.search = '?grading_date=2017-03-28 16:17';
             $(window).on("myuw:card_load", function () {
                 done();
             });
-
-            Global.Environment.ajax_stub('api/v1/instructor_schedule/2013-spring');
-            window.enabled_features = { 'instructor_schedule': true };
-            window.location.search = '?grading_date=2017-03-28 16:17';
 
             InstructorCourseCards.term = '2013-spring'
             InstructorCourseCards.dom_target = $('#' + render_id);

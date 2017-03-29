@@ -14,19 +14,13 @@ var Environment = {
         var window = require('jsdom').jsdom().defaultView;
 
         // pull in supporting tools
-        var assert = require("assert");
-
-        // pull in common tools
         var $ = require('jquery')(window);
-        var Handlebars = require("../../vendor/js/handlebars-v2.0.0.js");
-        var Moment = require("../../vendor/js/moment.2.8.3.min.js");
-
-        // setup common client tools
         global.$ = $;
         global.window = window;
-        global.assert = assert;
-        global.Handlebars = Handlebars;
-        global.moment = Moment;
+        global.assert = require("assert");
+        global.moment = require("moment");
+        global.Handlebars = require("../../vendor/js/handlebars-v2.0.0.js");
+        var MomentTZ = require("moment-timezone");
         var HandlebarsHelpers = require("../handlebars-helpers.js")
 
         // set up client environment
