@@ -4,6 +4,8 @@
 @under992: ~"screen and (max-width: 991px)";
 @desktop: ~"screen and (min-width: 992px)";
 
+@media print { #classlist_controls { display: none !important; } }
+
 /*** less variables ***/
 @myuw: #efe2cd;
 @uwpurple: #4b2e84;
@@ -405,10 +407,29 @@ body {
 					.profile-student-info {
 	            		.profile-name { /*font-weight: bold;*/ font-size: 18.4px;}
 					}
-					.profile-student-major {/*text-align: left;*/ //
+					.profile-student-major {text-align: left; padding-top:5px;
 						.student-major-list {list-style: none;padding-left:20px;margin-top:0;}
 					}
 				}
+				.profile-passwords {padding-top:10px; margin-top: 20px; color:#000;
+                    a {color: #4d66ca;}
+                    .uwnetid-password {background-color:#eee; padding:7px 15px;
+                        h4 {background-color: #ccc; color:black;}
+                    }
+                    .uwmedicine-password {background-color:#eee; padding:7px 15px; border-right: 15px solid #4f318c;
+                        h4 {background-color: #382262; color:white;}
+                    }
+                    h4 {font-size:19px; padding: 8px 0 8px 5px;}
+                    @media @under992 {
+                    .uwmedicine-password {border-bottom: 15px solid #4f318c; border-right: none;}
+                    .uwmedicine-password, .uwnetid-password {padding:7px 15px;}
+                    }
+                    .password-alert {display: inline-block; font-size: 14px; margin-bottom: 3px; font-weight: bold; color:#c83432;
+                        a {font-weight: bold; color:#c83432;}
+                        }
+                        .password-status {display: inline-block; font-size: 14px; margin-bottom: 3px; font-weight: bold;}
+                    p {margin-top: 5px;}
+                }
 				.profile-addresses {background: lighten(@uwpurple, 10%); padding:10px; margin-top: 20px;
 					.profile-mailing {
 						ul {padding-right: 10px;}
@@ -453,8 +474,10 @@ body {
 						.profile-local-address {border-left: 1px solid #bbb; margin-left:0;}
 						.profile-perm-address {border-left: 1px solid #bbb; margin-left:0;}
 					}
+                    .profile-passwords {
+                        .uwmedicine-password, .uwnetid-password {height: 13em;}
+                    }
 				}
-
 				.header-w {
 					img {width:50px; }
 				}
@@ -1106,41 +1129,81 @@ body {
 	    }
     }
 
-    // instructor course cards
-
-    #InstructorCourseCards {
-
+    #photoclasslist_popup {
         .card {
+            .classlist-styled-select {
+               select {
+            	   text-overflow: "";
+            	   z-index: 1000;
+            	   line-height:2;
+            	   color: #334baa;
 
-            .scheduleHeading {
-                opacity: .5;
-                margin-bottom: 2px;
-            }
-            .meeting_type {
-                text-transform: capitalize;
-            }
-            table.course_schedule, table.table-course-schedule { width: 100%;
-               th {
-                   font-weight: 100;
-                   text-transform: uppercase;
-                   opacity: .5;
-               }
-               td {
-                   width: 25%;
                }
             }
-            ul { line-height: 56px;
-                li:first-child {
-                    left: 0%;
+
+        }
+
+    }
+
+    #teaching_content {
+
+
+
+        .unstyled-list {line-height: 30px;}
+
+        // instructor course cards
+
+        #InstructorCourseCards, #InstructorSectionCard {
+
+            .card {
+
+                h4 {
+                    font-weight:bold;
                 }
-                li {
-                    display: inline-block;
-                    text-decoration: none;
-                    background-color: #eee;
-                    color: #333;
-                    margin: 10px 0;
-                    padding: 0 12px;
-                    border: 1px solid gray;
+
+                .meeting_type {
+                    text-transform: capitalize;
+                }
+                table.course_schedule, table.table-course-schedule { width: 100%;
+                   th {
+                       font-weight: 100;
+                       text-transform: uppercase;
+                       opacity: .5;
+                   }
+                   td {
+                       width: 25%;
+                   }
+                }
+                ul {
+                    li:first-child {
+                        left: 0%;
+                    }
+                    li {
+                        .inst-course-label {text-transform: uppercase;}
+                        .inst-course-note { font-size: small; font-style: italic; }
+                        //display: inline-block;
+                        //text-decoration: none;
+                        //background-color: #eee;
+                        //color: #333;
+                        //margin: 10px 0;
+                        //padding: 0 12px;
+                        //border: 1px solid gray;
+                        .pull-right {
+                            .course_website { display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px; }
+                            .course-website-update {margin-top: -23px;}
+                            .add-delay-message {margin-top: -18px; font-size: 75%; font-style:italic;}
+                            .course-website-error-message {margin-top: -18px; font-size: 75%; font-style:italic;}
+                        }
+                    }
+                }
+            }
+        }
+        #teaching_resources {
+
+            .card {
+
+                h4 {
+                    font-weight:bold;
                 }
             }
         }

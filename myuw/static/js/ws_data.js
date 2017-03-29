@@ -6,6 +6,10 @@ WSData = {
     _course_data_error_status: {},
     _instructed_course_data: {},
     _instructed_course_data_error_status: {},
+    _instructed_section_data: {},
+    _instructed_section_data_error_status: {},
+    _instructed_section_details: null,
+    _instructed_section_details_error_status: null,
     _department_events: null,
     _grade_data: {},
     _hfs_data: null,
@@ -172,6 +176,12 @@ WSData = {
                 this.matching_term = (course_data.year == this.year &&
                                       course_data.quarter.toLowerCase() == this.quarter.toLowerCase());
             });
+            $.each(course_data.sections, function () {
+                var course_campus = this.course_campus.toLowerCase();
+                this.is_seattle = (course_campus === 'seattle');
+                this.is_bothell = (course_campus === 'bothell');
+                this.is_tacoma =  (course_campus === 'tacoma');
+            });
         }
         return course_data;
     },
@@ -182,6 +192,29 @@ WSData = {
 
     instructed_course_data_for_term: function(term) {
         return WSData._instructed_course_data[term];
+    },
+
+    instructed_section_data_error_code: function(section_label) {
+        return WSData._instructed_section_data_error_status[section_label];
+    },
+    normalized_instructed_section_data: function(section_label) {
+        var section_data = WSData.instructed_section_data(section_label);
+        if (section_data) {
+            WSData._normalize_instructors(section_data);
+        }
+        return section_data;
+    },
+
+    instructed_section_data: function(section_label) {
+        return WSData._instructed_section_data[section_label];
+    },
+
+    instructed_section_details: function() {
+        return WSData._instructed_section_details;
+    },
+
+    instructed_section_details_error_code: function() {
+        return WSData._instructed_section_details_error_status;
     },
 
     grade_data_for_term: function(term) {
@@ -423,7 +456,7 @@ WSData = {
                             }
                         }
                     }
-                    WSData._course_data_error_status = null;
+                    WSData._course_data_error_status[term] = null;
                     WSData._course_data[term] = results;
                     WSData._run_success_callbacks_for_url(url);
                 },
@@ -494,6 +527,91 @@ WSData = {
                 callback.apply(null, args);
             }, 0);
         }
+
+    },
+
+    fetch_instructed_section_data: function(section_label, callback, err_callback, args) {
+        if (!WSData._instructed_section_data[section_label]) {
+            var url = "/api/v1/instructor_section/" + section_label;
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+
+            $.ajax({
+                url: url,
+                dataType: "JSON",
+                async: true,
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    // MUWM-549 and MUWM-552
+                    var sections = results.sections;
+                    var section_count = sections.length;
+                    for (var index = 0; index < section_count; index++) {
+                        section = sections[index];
+
+                        var canvas_url = section.canvas_url;
+                        if (canvas_url) {
+                            if (section.class_website_url == canvas_url) {
+                                section.class_website_url = null;
+                            }
+                            var matches = canvas_url.match(/\/([0-9]+)$/);
+                            var canvas_id = matches[1];
+                            var alternate_url = "https://canvas.uw.edu/courses/"+canvas_id;
+
+                            if (section.class_website_url == alternate_url) {
+                                section.class_website_url = null;
+                            }
+                        }
+                    }
+                    WSData._instructed_section_data_error_status[section_label] = null;
+                    WSData._instructed_section_data[section_label] = results;
+                    WSData._run_success_callbacks_for_url(url);
+                },
+                error: function(xhr, status, error) {
+                    WSData._instructed_section_data_error_status[section_label] = xhr.status;
+                    WSData._run_error_callbacks_for_url(url);
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+
+    },
+
+    fetch_instructed_section_details: function(section_label, callback, err_callback, args) {
+        var url = "/api/v1/instructor_section_details/" + section_label;
+
+        if (WSData._is_running_url(url)) {
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+            return;
+        }
+
+        WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+
+        $.ajax({
+            url: url,
+            dataType: "JSON",
+            async: true,
+            type: "GET",
+            accepts: {html: "text/html"},
+            success: function(results) {
+                WSData._instructed_section_details_error_status = null;
+                WSData._instructed_section_details = results;
+                WSData._run_success_callbacks_for_url(url);
+            },
+            error: function(xhr, status, error) {
+                WSData._instructed_section_details_error_status = xhr.status;
+                WSData._run_error_callbacks_for_url(url);
+            }
+        });
 
     },
 

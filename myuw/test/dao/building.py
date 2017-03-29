@@ -3,7 +3,7 @@ from django.test import TestCase
 from myuw.dao.building import get_building_by_code, \
     get_buildings_by_schedule
 from myuw.dao.schedule import _get_schedule
-from restclients.models.sws import Term
+from uw_sws.models import Term
 from myuw.test import get_request
 
 

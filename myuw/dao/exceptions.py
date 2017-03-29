@@ -11,3 +11,8 @@ class EmailServiceUrlException(Exception):
 class CanvasNonSWSException(Exception):
     """Non-academic (adhoc) Canvas course"""
     pass
+
+
+class NotSectionInstructorException(Exception):
+    """Request for section data from non-instructor"""
+    pass

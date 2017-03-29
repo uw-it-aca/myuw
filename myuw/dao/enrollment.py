@@ -4,11 +4,21 @@ the SWS Enrollment resource.
 """
 
 import logging
-from restclients.sws.enrollment import get_enrollment_by_regid_and_term
-from myuw.logger.timer import Timer
-from myuw.logger.logback import log_resp_time, log_exception, log_info
+from uw_sws.enrollment import get_enrollment_by_regid_and_term
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import get_current_quarter
+
+
+CLASS_CODES = {
+    "FRESHMAN": 1,
+    "SOPHOMORE": 2,
+    "JUNIOR": 3,
+    "SENIOR": 4,
+    "GRADUATE": 5,
+}
+
+
+DEFAULT_CLASS_CODE = 6
 
 
 logger = logging.getLogger(__name__)
@@ -16,16 +26,8 @@ logger = logging.getLogger(__name__)
 
 def get_current_quarter_enrollment(request):
     regid = get_regid_of_current_user()
-
-    timer = Timer()
-    id = "%s %s" % ('get enrollment by regid', regid)
-    try:
-        return get_enrollment_by_regid_and_term(regid,
-                                                get_current_quarter(request))
-    finally:
-        log_resp_time(logger,
-                      id,
-                      timer)
+    return get_enrollment_by_regid_and_term(regid,
+                                            get_current_quarter(request))
 
 
 def get_main_campus(request):
@@ -45,3 +47,10 @@ def enrollment_prefetch():
         return get_current_quarter_enrollment(request)
 
     return [_method]
+
+
+def get_code_for_class_level(class_name):
+    if class_name in CLASS_CODES:
+        return CLASS_CODES[class_name]
+
+    return DEFAULT_CLASS_CODE

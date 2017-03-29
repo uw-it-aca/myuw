@@ -1,0 +1,25 @@
+{% extends "teaching_base.html" %}
+{% load static %}
+{% load compress %}
+
+{% block page_title %}
+MyUW Teaching Section
+{% endblock %}
+
+{% block teaching_content %}
+    {% include "handlebars/card/instructor_schedule/course_section.html" %}
+    {% include "handlebars/card/instructor_schedule/no_section_card.html" %}
+    {% include "handlebars/card/instructor_schedule/not_instructor_card.html" %}
+    {% include "handlebars/teaching_section.html" %}
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+      window.section_data = {
+          "section": "{{ section }}"
+      };
+    </script>
+    {% compress js inline %}
+    <script src="{% static 'js/page/teaching_section.js' %}"></script>
+    {% endcompress %}
+{% endblock %}

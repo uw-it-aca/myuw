@@ -8,9 +8,9 @@
     <div class="books-list" data-toggle="collapse" data-target="#books{{sln}}">
         <a name="{{toUrlSafe curriculum}}{{course_number}}{{section_id}}" />
         <h3>
-            <div class="c{{color_id}} simplesquare" aria-hidden="true"></div> {{curriculum}} {{course_number}}{{section_id}}
+            <div class="c{{color_id}} simplesquare" aria-hidden="true"></div> {{curriculum}} {{course_number}}{{section_id}}  {{#if is_instructor}}- Instructor{{/if}}
         </h3>
-        
+
         {{#if @root.collapse_sections}}
             <div>
                 {{books.length}} {{pluralize books.length "textbook" "textbooks"}}
@@ -69,9 +69,19 @@
         </div>
         {{/eachWithIndex}}
 
+        {{#if is_instructor}}
+        <a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school={{#if bothell_campus}}uwbothell{{else}}{{#if tacoma_campus}}uwtacoma{{else}}uwmain{{/if}}{{/if}}">Modify textbooks</a>.
+        {{/if}}
     {{else}}
-    <div id="books{{sln}}" class="{{#if @root.collapse_sections}}collapse{{/if}}"style="margin-bottom:25px;">No textbook requirement has been received for this course. Please check with your instructor.</div>
-
+    <div id="books{{sln}}" class="{{#if @root.collapse_sections}}collapse{{/if}}" style="margin-bottom:25px;">
+      {{#if is_instructor}}
+      No textbooks have been ordered for this course.
+      <a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school={{#if bothell_campus}}uwbothell{{else}}{{#if tacoma_campus}}uwtacoma{{else}}uwmain{{/if}}{{/if}}">Order textbooks</a>.
+      {{else}}
+      No textbook requirement has been received for this course.
+      Please check with your instructor.
+      {{/if}}
+      <!-- if IOR  --> </div>
     {{/if}}
 
     <hr />

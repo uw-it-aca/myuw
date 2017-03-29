@@ -1,13 +1,11 @@
 """
-This module encapsulates the interactions with the restclients.pws,
+This module encapsulates the interactions with the uw_pws,
 provides information of the current user
 """
 
 import logging
-from restclients.pws import PWS
-from myuw.logger.timer import Timer
+from uw_pws import PWS
 from myuw.dao import get_netid_of_current_user
-from myuw.logger.logback import log_resp_time
 
 
 logger = logging.getLogger(__name__)
@@ -17,13 +15,7 @@ def get_person_of_current_user():
     """
     Retrieve the person data using the netid of the current user
     """
-    timer = Timer()
-    try:
-        return PWS().get_person_by_netid(get_netid_of_current_user())
-    finally:
-        log_resp_time(logger,
-                      'pws.get_person_by_netid',
-                      timer)
+    return PWS().get_person_by_netid(get_netid_of_current_user())
 
 
 def get_regid_of_current_user():
@@ -58,3 +50,17 @@ def person_prefetch():
         return get_person_of_current_user()
 
     return [_method]
+
+
+def get_url_key_for_regid(regid):
+    # XXX - I want a hook to obscure/encrypt this down the road
+    return regid
+
+
+def get_regid_for_url_key(key):
+    return key
+
+
+def get_idcard_photo(regid):
+    return PWS().get_idcard_photo(regid)
+    pass

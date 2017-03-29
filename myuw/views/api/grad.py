@@ -2,7 +2,7 @@ import json
 import logging
 import traceback
 from django.http import HttpResponse
-from restclients.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 from myuw.dao.gws import is_grad_student
 from myuw.dao.grad import get_grad_degree_for_current_user,\
     get_grad_committee_for_current_user, get_grad_leave_for_current_user,\
