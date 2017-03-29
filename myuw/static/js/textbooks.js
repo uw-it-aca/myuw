@@ -69,6 +69,7 @@ var TextBooks = {
         var template = Handlebars.compile(source);
         var template_data = TextBooks.process_book_data(WSData.book_data(term), WSData.course_data_for_term(term));
         if (template_data !== undefined){
+            template_data['collapse_sections'] = template_data['sections'].length > 10;
             $("#main-content").html(template(template_data));
         }
 
