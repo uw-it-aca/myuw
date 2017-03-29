@@ -24,6 +24,8 @@ before_script:
   - cp travis-ci/manage.py manage.py
   - python manage.py migrate
 script:
+  - which node
+  - node --version
   - which mocha
   - which _mocha
   - which istanbul
