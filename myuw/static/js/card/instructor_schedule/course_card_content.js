@@ -45,3 +45,9 @@ var InstructorCourseCardContent = {
         });
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.InstructorCourseCardContent = InstructorCourseCardContent;

@@ -179,15 +179,15 @@ WSData = {
 
             var grading_is_open = course_data.grading_period_is_open;
             var grading_is_closed = course_data.grading_period_is_past;
-            var grading_open = moment(course_data.term.grading_period_open);
-            var grading_aterm_open = moment(course_data.term.aterm_grading_period_open);
-            var grading_deadline = moment(course_data.term.grade_submission_deadline);
+            var grading_open = moment(new Date(course_data.term.grading_period_open));
+            var grading_aterm_open = moment(new Date(course_data.term.aterm_grading_period_open));
+            var grading_deadline = moment(new Date(course_data.term.grade_submission_deadline));
             var ref = moment();
             // search param supports testing
             if (window.location.search.length) {
                 match = window.location.search.match(/\?grading_date=(.+)$/);
                 if (match) {
-                    ref = moment(decodeURI(match[1]));
+                    ref = moment(new Date(decodeURI(match[1])));
                     grading_is_closed = grading_deadline.isBefore(ref);
                     grading_is_open = (!grading_is_closed && grading_open.isBefore(ref));
                 }
@@ -224,7 +224,7 @@ WSData = {
                      this.grading_status.hasOwnProperty('unsubmitted_count') &&
                      this.grading_status.unsubmitted_count === 0);
                 if (this.grading_status.submitted_date) {
-                    this.grading_status.submitted_relative_date = moment(this.grading_status.submitted_date).from();
+                    this.grading_status.submitted_relative_date = moment(new Date(this.grading_status.submitted_date)).from();
                 }
             });
         }
@@ -529,7 +529,6 @@ WSData = {
             }
 
             WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
-
             $.ajax({
                 url: url,
                 dataType: "JSON",
@@ -1205,6 +1204,11 @@ WSData = {
                 callback.apply(null, args);
             }, 0);
         }
-    },
-
+    }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.WSData = WSData;

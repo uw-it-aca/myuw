@@ -1,17 +1,13 @@
-
-var log = require("../myuw_log.js");
-var LogUtils = log.LogUtils;
-var MyuwLog = log.MyuwLog;
-var jsdom = require('jsdom');
-
-var doc = jsdom.jsdom("<html></html>"),
-    window = doc.parentWindow;
-
-var $ = require('jquery')(window);
-
-var assert = require("assert");
+var Global = require("./global.js");
 
 describe("Logging", function() {
+    before(function () {
+        Global.Environment.init({
+            scripts: [
+                "../myuw_log.js"
+            ]
+        });
+    });
     describe("Viewport Test", function() {
         // Newly on-screen tests
         it('should say an element fully on-screen is in the viewport', function() {
@@ -95,7 +91,6 @@ describe("Logging", function() {
     });
 
     describe("Visible Cards", function() {
-        global.$ = $;
         it('should return the name of the card', function() {
             var el = $("<div data-name='test-card-name'></div>");
             var card = { element: el, pos: 1 };
@@ -421,21 +416,27 @@ describe("Logging", function() {
 });
 
 
-    describe("Visible Links", function() {
-        global.$ = $;
-        it('should return tue right disclosed state for a links parent', function() {
-            var undisclosed = $("<div aria-hidden='true'>")[0];
-            var link1 = $("<a href='http://www.google.com'>Google</a>")[0];
-
-            undisclosed = $(undisclosed).append(link1)[0];
-            var undis_link = $(undisclosed).children('a')[0];
-            assert.equal(LogUtils.is_link_disclosed(undis_link), false);
-
-            var disclosed = $("<div aria-hidden='false'>")[0];
-            disclosed = $(disclosed).append(link1)[0];
-            var dis_link = $(disclosed).children('a')[0];
-            assert.equal(LogUtils.is_link_disclosed(dis_link), true);
-
+describe("Visible Links", function() {
+    before(function () {
+        Global.Environment.init({
+            scripts: [
+                "../myuw_log.js"
+            ]
         });
     });
+    it('should return tue right disclosed state for a links parent', function() {
+        var undisclosed = $("<div aria-hidden='true'>")[0];
+        var link1 = $("<a href='http://www.google.com'>Google</a>")[0];
+
+        undisclosed = $(undisclosed).append(link1)[0];
+        var undis_link = $(undisclosed).children('a')[0];
+        assert.equal(LogUtils.is_link_disclosed(undis_link), false);
+
+        var disclosed = $("<div aria-hidden='false'>")[0];
+        disclosed = $(disclosed).append(link1)[0];
+        var dis_link = $(disclosed).children('a')[0];
+        assert.equal(LogUtils.is_link_disclosed(dis_link), true);
+
+    });
+});
 

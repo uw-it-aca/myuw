@@ -16,6 +16,7 @@ before_script:
   - npm install datejs
   - npm install jsdom@3
   - npm install istanbul
+  - npm install sinon
   - npm install coveralls
   - gem install coveralls-lcov
   - cp travis-ci/manage.py manage.py
