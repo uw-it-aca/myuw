@@ -8,12 +8,12 @@ var UPassCard = {
     },
 
     render_error: function (status) {
-        if (status === 404) {
-            UPassCard.dom_target.hide();
+        if (status === 543) {
+            var raw = CardWithError.render("U-Pass Membership");
+            UPassCard.dom_target.html(raw);
             return;
         }
-        var raw = CardWithError.render("U-Pass Membership");
-        UPassCard.dom_target.html(raw);
+        UPassCard.dom_target.hide();
     },
 
     render_upon_data: function () {
