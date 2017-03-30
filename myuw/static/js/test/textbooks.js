@@ -5,7 +5,7 @@ describe('TextBooks', function(){
         before(function () {
             Global.Environment.init({
                 scripts: [
-                    "../textbooks.js"
+                    "myuw/static/js/textbooks.js"
                 ]
             });
 

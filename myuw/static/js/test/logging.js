@@ -4,7 +4,7 @@ describe("Logging", function() {
     before(function () {
         Global.Environment.init({
             scripts: [
-                "../myuw_log.js"
+                "myuw/static/js/myuw_log.js"
             ]
         });
     });
@@ -420,7 +420,7 @@ describe("Visible Links", function() {
     before(function () {
         Global.Environment.init({
             scripts: [
-                "../myuw_log.js"
+                "myuw/static/js/myuw_log.js"
             ]
         });
     });

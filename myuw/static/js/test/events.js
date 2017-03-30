@@ -8,7 +8,7 @@ describe('EventsCard', function(){
             Global.Environment.init({
                 render_id: render_id,
                 scripts: [
-                    "../card/events.js"
+                    "myuw/static/js/card/events.js"
                 ],
                 templates: [
                     "myuw/templates/handlebars/card/events.html"

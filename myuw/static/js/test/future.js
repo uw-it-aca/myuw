@@ -5,8 +5,8 @@ describe("Always shows the visual schedule", function() {
     before(function () {
         Global.Environment.init({
             scripts: [
-                "../future.js",
-                "../card/schedule/visual.js"
+                "myuw/static/js/future.js",
+                "myuw/static/js/card/schedule/visual.js"
             ]
         });
 

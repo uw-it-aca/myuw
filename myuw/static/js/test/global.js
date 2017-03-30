@@ -1,5 +1,6 @@
 var path = require("path");
 var fs = require("fs");
+var assert = require("assert");
 var sinon = require("sinon");
 
 var Environment = {
@@ -48,8 +49,8 @@ var Environment = {
         };
 
         // pull in scripts
-        Environment._load_script('../myuw_m.js');
-        Environment._load_script('../ws_data.js');
+        Environment._load_script('myuw/static/js/myuw_m.js');
+        Environment._load_script('myuw/static/js/ws_data.js');
         if (config.hasOwnProperty('scripts')) {
             $.each(config.scripts, function () {
                 Environment._load_script(this.toString());
@@ -63,8 +64,12 @@ var Environment = {
             });
         }
     },
+    _abs_path: function (relative_path) {
+        return path.join(__dirname, '../../../../', relative_path);
+    },
     ajax_stub: function (json_data_file) {
-        var json_file = path.join(__dirname, 'ajax', json_data_file);
+        var json_dir = path.join('myuw/static/js/test/ajax', json_data_file);
+        var json_file = Environment._abs_path(json_dir);
         var json_data = JSON.parse(fs.readFileSync(json_file));
         Environment._stub = sinon.stub($, 'ajax');
         Environment._stub.yieldsTo('success', json_data);
@@ -74,36 +79,48 @@ var Environment = {
             Environment._stub.restore();
         }
     },
-    _load_script: function(script) {
-        $.each(require(script), function(k, v) { global[k] = v; });
+    _load_script: function (script) {
+        var r = require(Environment._abs_path(script));
+        $.each(r, function(k, v) { global[k] = v; });
     },
-    _read_template: function(template_file) {
-        var raw = fs.readFileSync(template_file).toString();
-        template = raw.replace(/{\%[ ]+load[ ]+templatetag_handlebars[ ]+\%}/, '')
+    _read_template: function (template_file) {
+        var template_path = Environment._abs_path(template_file);
+        var raw = fs.readFileSync(template_path).toString();
+        var template = raw.replace(/{\%[ ]+load[ ]+templatetag_handlebars[ ]+\%}/, '')
             .replace(/{\%[ ]*tplhandlebars[ ]+["]?([^ \%]+)["]?[ ]*\%}/,
                      '<script id="$1" type="text/x-handlebars-template">')
             .replace(/{\%[ ]*endtplhandlebars[ ]*\%}/, 
                      '</script>')
             .replace(/{\%[ ]*(end)?verbatim[ ]*\%}/g, '');
-        return template;
-    },
-    _load_template: function(template_file) {
-        var template = Environment._read_template(template_file);
 
         while (true) {
             // pull in server-side includes
             var m = template.match(/{\%[ ]*include[ ]+["]?([^ \%"]+)["]?[ ]*\%}/);
             if (m) {
-                var text = Environment._load_template('myuw/templates/' + m[1]);
+                var text = Environment._read_template('myuw/templates/' + m[1]);
                 template = template.replace(m[0], text);
             } else {
                 break;
             }
         }
 
+        return template;
+    },
+    _load_template: function(template_file) {
+        var template = Environment._read_template(template_file);
         $('body').append(template);
     }
 };
+
+describe("Global Test Environment", function () {
+    it("loads nested server-side templates", function (){
+        var t = Environment._read_template('myuw/static/js/test/ajax/template1.html');
+        assert(t.indexOf('test_panel_includes') > 0);
+        assert(t.indexOf('show_course_textbook') > 0);
+        assert(t.indexOf('list_admin_url') > 0);
+        assert.equal(true, true);
+    });
+});
 
 
 /* node.js exports */
