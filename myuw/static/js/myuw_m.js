@@ -2,7 +2,7 @@
 var data;
 var multi_res_card_render_called = {};
 
-$(document).ready(function() {
+$(window.document).ready(function() {
     LogUtils.init_logging();
     init_profile_events();
     init_modal_events();
@@ -204,3 +204,12 @@ var myuwFeatureEnabled = function(feature) {
     return (window.enabled_features.hasOwnProperty(feature) &&
             window.enabled_features[feature]);
 };
+
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.capitalizeString = capitalizeString;
+exports.date_from_string = date_from_string;
+exports.myuwFeatureEnabled = myuwFeatureEnabled;

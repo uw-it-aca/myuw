@@ -8,6 +8,7 @@ from myuw.logger.timer import Timer
 from restclients.sws.person import get_person_by_regid
 from restclients.sws.enrollment import get_enrollment_by_regid_and_term
 from restclients.sws.term import get_specific_term
+from uw_gradepage.grading_status import get_grading_status
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_course_url
 from myuw.dao.course_color import get_colors_by_schedule
@@ -19,6 +20,7 @@ from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
 from myuw.dao.class_website import get_page_title_from_url, is_valid_page_url
 from myuw.dao.term import get_current_quarter, is_past, is_future
 from myuw.logger.logresp import log_success_response
+from myuw.logger.logback import log_exception
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.rest_dispatch import RESTDispatch
 from myuw.dao.exceptions import NotSectionInstructorException
@@ -77,7 +79,30 @@ def set_classroom_info_url(meeting):
     return None
 
 
-def set_course_resources(section_data, section):
+def set_section_grading_status(section, person):
+    try:
+        section_id = '-'.join([
+            section.term.canvas_sis_id(),
+            section.curriculum_abbr.upper(),
+            section.course_number,
+            section.section_id.upper(),
+            person.uwregid
+        ])
+        return get_grading_status(
+            section_id, act_as=person.uwnetid).json_data()
+    except DataFailureException as ex:
+        if ex.status == 404:
+            return {
+                'grading_status': 'no grading status for section'
+            }
+        else:
+            raise
+    except Exception:
+        log_exception(
+            logger, 'get_section_grading_status', traceback.format_exc())
+
+
+def set_course_resources(section_data, section, person):
     threads = []
     t = ThreadWithResponse(target=get_canvas_course_url,
                            args=(section,))
@@ -98,6 +123,11 @@ def set_course_resources(section_data, section):
                            args=(section.class_website_url,))
     t.start()
     threads.append((t, 'class_website_data', section_data))
+
+    t = ThreadWithResponse(target=set_section_grading_status,
+                           args=(section, person,))
+    t.start()
+    threads.append((t, 'grading_status', section_data))
 
     for i, meeting in enumerate(section.meetings):
         t = ThreadWithResponse(target=set_classroom_info_url,
@@ -136,6 +166,11 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
     json_data["past_term"] = is_past(schedule.term, request)
     json_data["future_term"] = is_future(schedule.term, request)
 
+    json_data["grading_period_is_open"] =\
+        schedule.term.is_grading_period_open()
+    json_data["grading_period_is_past"] =\
+        schedule.term.is_grading_period_past()
+
     colors = get_colors_by_schedule(schedule)
 
     buildings = get_buildings_by_schedule(schedule)
@@ -153,6 +188,13 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
             section_data["color_id"] = color
         section_index += 1
 
+        if section.is_independent_study:
+            section_data['is_independent_study'] = True
+            section_data['independent_study_instructor_regid'] =\
+                section.independent_study_instructor_regid
+        else:
+            section_data['is_independent_study'] = False
+
         if EARLY_FALL_START == section.institute_name:
             section_data["early_fall_start"] = True
             json_data["has_early_fall_start"] = True
@@ -165,7 +207,8 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
                     'level': delegate.delegate_level
                 })
 
-        t = Thread(target=set_course_resources, args=(section_data, section))
+        t = Thread(target=set_course_resources, args=(
+            section_data, section, schedule.person))
         course_resource_threads.append(t)
         t.start()
 
