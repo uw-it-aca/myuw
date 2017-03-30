@@ -4,8 +4,8 @@ services:
   - memcached
 python:
   - "2.7"
-node_js:
-  - "4.2.6"
+env:
+  - TRAVIS_NODE_VERSION="4"
 install:
   - pip install -r requirements.txt
 before_script:
@@ -26,8 +26,6 @@ before_script:
   - cp travis-ci/manage.py manage.py
   - python manage.py migrate
 script:
-  - which node
-  - node --version
   - which mocha
   - which _mocha
   - which istanbul
