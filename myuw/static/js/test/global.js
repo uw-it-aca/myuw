@@ -83,7 +83,8 @@ var Environment = {
             .replace(/{\%[ ]*tplhandlebars[ ]+["]?([^ \%]+)["]?[ ]*\%}/,
                      '<script id="$1" type="text/x-handlebars-template">')
             .replace(/{\%[ ]*endtplhandlebars[ ]*\%}/, 
-                     '</script>');
+                     '</script>')
+            .replace(/{\%[ ]*(end)?verbatim[ ]*\%}/g, '');
         return template;
     },
     _load_template: function(template_file) {
@@ -93,8 +94,7 @@ var Environment = {
             // pull in server-side includes
             var m = template.match(/{\%[ ]*include[ ]+["]?([^ \%"]+)["]?[ ]*\%}/);
             if (m) {
-                var text = Environment._read_template('myuw/templates/' + m[1]);
-                text = text.replace(/{\%[ ]*(end)?verbatim[ ]*\%}/g, '');
+                var text = Environment._load_template('myuw/templates/' + m[1]);
                 template = template.replace(m[0], text);
             } else {
                 break;
