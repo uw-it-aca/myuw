@@ -91,7 +91,7 @@ var InstructorCourseCards = {
             building = building.replace(/[^a-z0-9]/gi, '_');
             WSData.log_interaction("show_map_from_course_list_"+building, term);
         });
-        
+
         $(".course_canvas_site").on("click", function(ev) {
             var course_id = ev.currentTarget.getAttribute("rel");
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');
