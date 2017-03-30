@@ -117,9 +117,12 @@ describe("Global Test Environment", function () {
         var f = 'myuw/templates/handlebars/card/instructor_schedule/course_resource_panel.html';
         var t = Environment._read_template(f);
 
-        assert(t.indexOf('instructor_course_resource_panel') > 0);
-        assert(t.indexOf('show_course_textbook') > 0);
-        assert(t.indexOf('list_admin_url') > 0);
+        assert(t.indexOf('instructor_course_resource_panel') > 0, 'template id');
+        assert(t.indexOf('endtplhandlebars') < 0, 'end handlebars block stripped');
+        assert(t.indexOf('verbatim') < 0, 'verbatim stripped');
+        assert(t.indexOf('endverbatim') < 0, 'endverbatim stripped');
+        assert(t.indexOf('show_course_textbook') > 0, 'first inclusion');
+        assert(t.indexOf('list_admin_url') > 0, 'second inclusion');
         assert.equal(true, true);
     });
 });
