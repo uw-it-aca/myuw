@@ -114,8 +114,10 @@ var Environment = {
 
 describe("Global Test Environment", function () {
     it("loads nested server-side templates", function (){
-        var t = Environment._read_template('myuw/static/js/test/ajax/template1.html');
-        assert(t.indexOf('test_panel_includes') > 0);
+        var f = 'myuw/templates/handlebars/card/instructor_schedule/course_resource_panel.html';
+        var t = Environment._read_template(f);
+
+        assert(t.indexOf('instructor_course_resource_panel') > 0);
         assert(t.indexOf('show_course_textbook') > 0);
         assert(t.indexOf('list_admin_url') > 0);
         assert.equal(true, true);
