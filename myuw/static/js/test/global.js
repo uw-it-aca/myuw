@@ -74,7 +74,7 @@ var Environment = {
             Environment._stub.restore();
         }
     },
-    _load_script(script) {
+    _load_script: function(script) {
         $.each(require(script), function(k, v) { global[k] = v; });
     },
     _read_template(template_file) {
@@ -86,7 +86,7 @@ var Environment = {
                      '</script>');
         return template;
     },
-    _load_template(template_file) {
+    _load_template: function(template_file) {
         var template = Environment._read_template(template_file);
 
         while (true) {
