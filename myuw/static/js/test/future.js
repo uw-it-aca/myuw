@@ -1,7 +1,7 @@
 var Future = require("../future.js");
 var Card = require("../card/schedule/visual.js");
 var jsdom = require('jsdom');
-var Handlebars = require("../../vendor/js/handlebars-v2.0.0.js");
+var Handlebars = require("../../vendor/js/handlebars-v4.0.5.js");
 
 var doc = jsdom.jsdom('<html></html>'),
     window = doc.parentWindow;
