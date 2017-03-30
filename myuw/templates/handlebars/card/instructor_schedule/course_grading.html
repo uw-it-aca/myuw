@@ -15,7 +15,7 @@
 
                 <li class="clearfix final-grades">
                     <div class="pull-left">
-                        <span class="inst-course-label">Final Grades</span>
+                        <span class="inst-course-label">Grade Submission</span>
                     </div>
 
                     <div class="pull-right text-right">
@@ -38,22 +38,23 @@
                         <!--{{#if grading_status.grading_status}}<br />
                             <span>{{grading_status.grading_status}}</span>
                         {{/if}} -->
-                            <div style="font-size:75%;font-style:italic;margin-top: -10px;">Grade submission closes <strong>{{grade_submission_deadline_date}}</strong> ({{grade_submission_relative_deadline}})</div>
+                            <div style="font-size:80%;font-style:italic;margin-top: -10px;">Grade submission closes <strong>{{grade_submission_deadline_date}}</strong> ({{grade_submission_relative_deadline}})</div>
                         </div>
                     {{else}}
                         {{#if grading_period_is_past}}
                             <div class="card-badge-value">
                                 {{#if grading_status.all_grades_submitted}}<a href="{{grading_status.section_url}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by <strong>{{grading_status.submitted_by}}</strong> on {{ grading_status.submitted_date }}<br>
-                                <div style="font-size:75%;font-style:italic;margin-top: -10px;">Grade submission for <strong>{{capitalizeString quarter}} {{year}}</strong> closed {{grade_submission_deadline_date}}</div>
+                                <div style="font-size:80%;font-style:italic;margin-top: -10px;">Grade submission for <strong>{{capitalizeString quarter}} {{year}}</strong> closed {{grade_submission_deadline_date}}</div>
 
                                 {{else}}
                                     {{#if grading_status.grading_status}} {{grading_status.grading_status}}{{else}} {{grading_status.unsubmitted_count}} grade{{pluralize grading_status.unsubmitted_count '' 's'}} not submitted through GradePage{{/if}}
                                 <!--<br /> -->
-                                    <div style="font-size:75%;font-style:italic;margin-top: -10px;">Grade submission for <strong>{{capitalizeString quarter}} {{year}}</strong> closed {{grade_submission_deadline_date}} <a href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/" target="_blank">What can I do now?</a></div>
+                                    <div style="font-size:80%;font-style:italic;margin-top: -10px;">Grade submission for <strong>{{capitalizeString quarter}} {{year}}</strong> closed {{grade_submission_deadline_date}} <a href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/" target="_blank">What can I do now?</a></div>
                                 {{/if}}
                             </div>
                         {{else}}
                             <div class="card-badge-value">Grade submission opens on <strong>{{grading_period_open_date}}</strong> ({{grading_period_relative_open}})</div>
+                            <div style="font-size:80%;font-style:italic;margin-top: -10px;">Grade submission closes <strong>{{grade_submission_deadline_date}}</strong></div>
                         {{/if}}
                     {{/if}}
                     </div>
