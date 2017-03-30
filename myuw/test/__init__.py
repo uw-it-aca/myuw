@@ -7,7 +7,7 @@ from restclients.test import (fdao_uwnetid_override, fdao_pws_override,
                               fdao_libacc_override, fdao_ias_override,
                               fdao_hfs_override, fdao_gws_override,
                               fdao_grad_override, fdao_bookstore_override,
-                              fdao_canvas_override)
+                              fdao_canvas_override, fdao_upass_override)
 
 
 def get_request():
