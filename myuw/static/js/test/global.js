@@ -77,7 +77,7 @@ var Environment = {
     _load_script: function(script) {
         $.each(require(script), function(k, v) { global[k] = v; });
     },
-    _read_template(template_file) {
+    _read_template: function(template_file) {
         var raw = fs.readFileSync(template_file).toString();
         template = raw.replace(/{\%[ ]+load[ ]+templatetag_handlebars[ ]+\%}/, '')
             .replace(/{\%[ ]*tplhandlebars[ ]+["]?([^ \%]+)["]?[ ]*\%}/,
