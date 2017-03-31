@@ -200,7 +200,7 @@ WSData = {
             var grading_deadline_date;
 
             var fmt = 'MMM D [at] h:mm A';
-            var month_to_day_shift = 5
+            var month_to_day_shift = 5;
             if (grading_open.diff(ref, 'days') > month_to_day_shift) {
                 grading_open_date = grading_open.format(fmt) + ' PST';
             } else {
