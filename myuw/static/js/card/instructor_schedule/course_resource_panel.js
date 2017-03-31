@@ -76,3 +76,9 @@ var InstructorCourseResourcePanel = {
         return section_label;
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.InstructorCourseResourcePanel = InstructorCourseResourcePanel;

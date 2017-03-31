@@ -90,3 +90,9 @@ var InstructorCourseCards = {
         });
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.InstructorCourseCards = InstructorCourseCards;

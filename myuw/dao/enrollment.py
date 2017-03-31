@@ -7,6 +7,8 @@ import logging
 from uw_sws.enrollment import get_enrollment_by_regid_and_term
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import get_current_quarter
+from restclients_core.exceptions import DataFailureException
+from myuw.dao.exceptions import IndeterminateCampusException
 
 
 CLASS_CODES = {
@@ -34,11 +36,15 @@ def get_main_campus(request):
     campuses = []
     try:
         enrollment = get_current_quarter_enrollment(request)
+        for major in enrollment.majors:
+            campuses.append(major.campus)
+    except DataFailureException as ex:
+        logger.error("get_current_quarter_enrollment: %s" % ex)
+        raise IndeterminateCampusException()
     except Exception as ex:
         logger.error("get_current_quarter_enrollment: %s" % ex)
-        return campuses
-    for major in enrollment.majors:
-        campuses.append(major.campus)
+        pass
+
     return campuses
 
 
