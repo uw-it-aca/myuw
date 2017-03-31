@@ -12,7 +12,8 @@ describe('InstructorScheduleCards', function(){
                     "myuw/static/js/card/instructor_schedule/course_card_content.js",
                     "myuw/static/js/card/instructor_schedule/course_sche_panel.js",
                     "myuw/static/js/card/instructor_schedule/course_resource_panel.js",
-                    "myuw/static/js/card/schedule/instructor_panel.js"
+                    "myuw/static/js/card/schedule/instructor_panel.js",
+                    "myuw/static/js/myuw_m.js"
                 ],
                 templates: [
                     'myuw/templates/handlebars/card/instructor_schedule/course_cards.html',
