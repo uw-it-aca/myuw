@@ -115,7 +115,7 @@ def set_course_resources(section_data, section, person):
     threads.append((t, 'lib_subj_guide', section_data))
 
     t = ThreadWithResponse(target=get_section_email_lists,
-                           args=(section, False))
+                           args=(section, True))
     t.start()
     threads.append((t, 'email_list', section_data))
 

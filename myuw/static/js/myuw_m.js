@@ -112,6 +112,13 @@ var date_from_string = function(date_string) {
     return date_object;
 };
 
+var safe_label = function(section_label) {
+    if(section_label){
+        return section_label.replace(/[^a-z0-9]/gi, '_');
+    }
+    return section_label;
+};
+
 var titilizeTerm = function(term) {
     //Takes a term string (Eg 2032,summer,b-term) and 
     //returns a title (Eg Summer 2032 B-term)
@@ -213,3 +220,4 @@ if (typeof exports == "undefined") {
 exports.capitalizeString = capitalizeString;
 exports.date_from_string = date_from_string;
 exports.myuwFeatureEnabled = myuwFeatureEnabled;
+exports.safe_label = safe_label;

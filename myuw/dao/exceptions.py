@@ -18,6 +18,11 @@ class NotSectionInstructorException(Exception):
     pass
 
 
+class CourseRequestEmailRecipientNotFound(Exception):
+    """MAILMAN_COURSEREQUEST_RECIPIENT not in Settings"""
+    pass
+
+
 class IndeterminateCampusException(Exception):
     """Cannot determine campus from registrations or PWS"""
     pass
