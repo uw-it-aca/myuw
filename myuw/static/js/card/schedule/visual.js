@@ -69,8 +69,8 @@ var VisualScheduleCard = {
         $("#VisualScheduleCard").show();
         VisualScheduleCard.render_schedule(course_data, instructed_course_data, term);
 
-        if (course_data) {
-            FinalExamSchedule.render(course_data, term, true);
+        if (course_data || instructed_course_data) {
+            FinalExamSchedule.render(course_data, instructed_course_data, term, true);
         } else {
             $("#toggle_finalexams").hide();
         }

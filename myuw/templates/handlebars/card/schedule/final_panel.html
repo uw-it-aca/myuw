@@ -121,6 +121,14 @@
             {{/each}}
         </div>
         {{/if}}
+        {{#if tbd_taught}}
+        <div class="courseTBDTaught" aria-hidden="true">
+            <h5>Courses you teach with no final exam scheduled:</h5>
+            {{#each tbd_taught}}
+                <p>{{curriculum_abbr}} {{course_number}}&nbsp;{{section_id}}</p>
+            {{/each}}
+        </div>
+        {{/if}}
         <!-- end - if there are meetings with times to be arranged -->
     {{/if}}
 
