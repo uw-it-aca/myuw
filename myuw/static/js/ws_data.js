@@ -194,10 +194,24 @@ WSData = {
             }
 
             var grading_open_relative = grading_open.from(ref);
-            var grading_open_date = grading_open.calendar(ref);
             var grading_aterm_open_relative = grading_aterm_open.from(ref);
-            var grading_deadline_date = grading_deadline.calendar(ref);
             var grading_deadline_relative = grading_deadline.from(ref);
+            var grading_open_date;
+            var grading_deadline_date;
+
+            var fmt = 'MMM D [at] h:mm A';
+            var month_to_day_shift = 5;
+            if (grading_open.diff(ref, 'days') > month_to_day_shift) {
+                grading_open_date = grading_open.format(fmt) + ' PST';
+            } else {
+                grading_open_date = grading_open.calendar(ref);
+            }
+
+            if (grading_deadline.diff(ref, 'days') > month_to_day_shift) {
+                grading_deadline_date = grading_deadline.format(fmt) + 'PST';
+            } else {
+                grading_deadline_date = grading_deadline.calendar(ref);
+            }
 
             $.each(course_data.sections, function () {
                 var course_campus = this.course_campus.toLowerCase();
