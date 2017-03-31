@@ -9,6 +9,15 @@ from myuw.dao import get_netid_of_current_user
 from myuw.dao.exceptions import IndeterminateCampusException
 
 
+#
+# mailstop campus range limits as set by UW Mailing Services
+#
+MAILSTOP_MIN_TACOMA = 358400
+MAILSTOP_MAX_TACOMA = 358499
+MAILSTOP_MIN_BOTHELL = 358500
+MAILSTOP_MAX_BOTHELL = 358599
+
+
 logger = logging.getLogger(__name__)
 
 
@@ -74,9 +83,9 @@ def get_campus_of_current_user():
     person = get_person_of_current_user()
     if person.mailstop:
         mailstop = int(person.mailstop)
-        if 358400 <= mailstop <= 358499:
+        if MAILSTOP_MIN_TACOMA <= mailstop <= MAILSTOP_MAX_TACOMA:
             return 'Tacoma'
-        elif 358500 <= mailstop <= 358599:
+        elif MAILSTOP_MIN_BOTHELL <= mailstop <= MAILSTOP_MAX_BOTHELL:
             return 'Bothell'
         else:
             return 'Seattle'
