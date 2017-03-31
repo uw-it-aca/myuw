@@ -81,7 +81,7 @@ var Environment = {
     },
     _load_script: function (script) {
         var r = require(Environment._abs_path(script));
-        $.each(r, function(k, v) { global[k] = v; console.log(k);});
+        $.each(r, function(k, v) { global[k] = v;});
     },
     _read_template: function (template_file) {
         var template_path = Environment._abs_path(template_file);

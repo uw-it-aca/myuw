@@ -217,3 +217,4 @@ if (typeof exports == "undefined") {
 exports.capitalizeString = capitalizeString;
 exports.date_from_string = date_from_string;
 exports.myuwFeatureEnabled = myuwFeatureEnabled;
+exports.safe_label = safe_label;
