@@ -607,6 +607,61 @@ body {
 
 /*** content ***/
 
+/* Search results */
+#search_content {
+
+    /* Google Custom Search Overrides */
+    .gsc-control-cse {
+        font-family: inherit;
+    }
+
+    .gsc-control-cse .gsc-table-result {
+        font-family: inherit;
+    }
+
+    .gsc-control-cse .gs-spelling, .gsc-control-cse .gs-result .gs-title, .gsc-control-cse .gs-result .gs-title * {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .gs-result .gs-title, .gs-result .gs-title * {
+        text-decoration: none;
+    }
+
+    .gs-result .gs-title:hover, .gs-result .gs-title:hover * {
+        text-decoration: underline;
+    }
+
+    .gsc-table-result, .gsc-thumbnail-inside, .gsc-url-top { padding-left: 0; padding-right: 0; }
+
+    .gsc-url-top {
+        margin: 3px 0 5px 0;
+    }
+
+    .gsc-webResult .gsc-result {
+        border-bottom: 1px solid #ebebeb;
+        padding: .5em 0;
+    }
+
+    .gs-webResult.gs-result {
+        margin: 15px 0;
+    }
+
+    /* Pagination */
+    .gsc-cursor-box.gs-bidi-start-align {
+        text-align: center;
+        padding: 10px;
+    }
+    .gsc-cursor-box.gs-bidi-start-align .gsc-cursor-page {
+        margin: 10px;
+        font-size: 14px;
+    }
+
+    .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+        color: #A90A08;
+    }
+}
+
 #app_content { min-height: 250px;
 
     // cards
