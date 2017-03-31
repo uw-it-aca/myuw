@@ -472,10 +472,10 @@ var LogUtils = {
     }
 };
 
+
 /* node.js exports */
 if (typeof exports == "undefined") {
     var exports = {};
 }
 exports.LogUtils = LogUtils;
 exports.MyuwLog = MyuwLog;
-

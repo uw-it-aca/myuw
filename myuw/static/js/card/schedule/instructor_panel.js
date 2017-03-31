@@ -8,3 +8,9 @@ var CourseInstructorPanel = {
         $('#course_instructor' + c_section.index).html(raw);
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.CourseInstructorPanel = CourseInstructorPanel;
