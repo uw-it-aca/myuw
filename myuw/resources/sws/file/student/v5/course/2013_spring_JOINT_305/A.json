@@ -4,8 +4,8 @@
     "ClassWebsiteUrl": null,
     "Course": {
         "CourseNumber": "305",
-        "CurriculumAbbreviation": "TCSS",
-        "Href": "/student/v5/course/2013,spring,TCSS,305.json",
+        "CurriculumAbbreviation": "JOINT",
+        "Href": "/student/v5/course/2013,spring,JOINT,305.json",
         "Quarter": "spring",
         "Year": 2013
     },
@@ -19,7 +19,7 @@
     "Curriculum": {
         "CollegeName": "TACOMA",
         "DepartmentAbbreviation": "ISTECH",
-        "TimeScheduleLinkAbbreviation": "tcss"
+        "TimeScheduleLinkAbbreviation": "JOINT"
     },
     "DeleteFlag": "active",
     "DistanceLearning": false,
@@ -69,8 +69,8 @@
     "JointSections": [
         {
             "CourseNumber": "305",
-            "CurriculumAbbreviation": "JOINT",
-            "Href": "/student/v5/course/2013,spring,JOINT,305/A.json",
+            "CurriculumAbbreviation": "TCSS",
+            "Href": "/student/v5/course/2013,spring,TCSS,305/A.json",
             "Quarter": "spring",
             "SectionID": "A",
             "Year": 2013
@@ -103,7 +103,7 @@
                 {
                     "FacultySequenceNumber": "",
                     "GradeRoster": {
-                        "Href": "/student/v5/graderoster/2013,spring,TCSS,305,A,10000000000000000000000000000008"
+                        "Href": "/student/v5/graderoster/2013,spring,JOINT,305,A,10000000000000000000000000000008"
                     },
                     "PercentInvolve": "100",
                     "Person": {
@@ -133,8 +133,8 @@
     "PrimaryLMS": null,
     "PrimarySection": {
         "CourseNumber": "305",
-        "CurriculumAbbreviation": "TCSS",
-        "Href": "/student/v5/course/2013,spring,TCSS,305/A.json",
+        "CurriculumAbbreviation": "JOINT",
+        "Href": "/student/v5/course/2013,spring,JOINT,305/A.json",
         "Quarter": "spring",
         "SectionID": "A",
         "Year": 2013
@@ -142,8 +142,8 @@
     "Registrations": {
         "ChangedSinceDate": "",
         "CourseNumber": "305",
-        "CurriculumAbbreviation": "TCSS",
-        "Href": "/student/v5/registration.json?year=2013&quarter=spring&curriculum_abbreviation=TCSS&course_number=305&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "CurriculumAbbreviation": "JOINT",
+        "Href": "/student/v5/registration.json?year=2013&quarter=spring&curriculum_abbreviation=JOINT&course_number=305&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
         "InstructorRegID": null,
         "IsActive": true,
         "PageSize": "",
@@ -195,7 +195,7 @@
                     "Text": "PREREQUISITE: A MINIMUM GRADE OF"
                 },
                 {
-                    "Text": "2.0 IN EITHER TCSS 143 OR CSE"
+                    "Text": "2.0 IN EITHER JOINT 143 OR CSE"
                 },
                 {
                     "Text": "143"
