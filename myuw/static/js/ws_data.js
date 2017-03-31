@@ -201,14 +201,14 @@ WSData = {
 
             var fmt = 'MMM D [at] h:mm A';
             var month_to_day_shift = 5;
-            if (grading_open.diff(ref, 'days') > month_to_day_shift) {
+            if (Math.abs(grading_open.diff(ref, 'days')) > month_to_day_shift) {
                 grading_open_date = grading_open.format(fmt) + ' PST';
             } else {
                 grading_open_date = grading_open.calendar(ref);
             }
 
-            if (grading_deadline.diff(ref, 'days') > month_to_day_shift) {
-                grading_deadline_date = grading_deadline.format(fmt) + 'PST';
+            if (Math.abs(grading_deadline.diff(ref, 'days')) > month_to_day_shift) {
+                grading_deadline_date = grading_deadline.format(fmt) + ' PST';
             } else {
                 grading_deadline_date = grading_deadline.calendar(ref);
             }
@@ -238,7 +238,12 @@ WSData = {
                      this.grading_status.hasOwnProperty('unsubmitted_count') &&
                      this.grading_status.unsubmitted_count === 0);
                 if (this.grading_status.submitted_date) {
-                    this.grading_status.submitted_relative_date = moment(new Date(this.grading_status.submitted_date)).from();
+                    var submitted = moment(new Date(this.grading_status.submitted_date));
+                    if (Math.abs(submitted.diff(ref, 'days')) > month_to_day_shift) {
+                        this.grading_status.submitted_relative_date = submitted.format(fmt) + ' PST';
+                    } else {
+                        this.grading_status.submitted_relative_date = submitted.calendar(ref);
+                    }
                 }
             });
         }

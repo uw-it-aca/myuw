@@ -24,7 +24,7 @@
                         <div class="card-badge-value">
 
                         {{#if grading_status.all_grades_submitted}}
-                            <a href="{{grading_status.section_url}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by <strong>{{grading_status.submitted_by}}</strong> on {{ grading_status.submitted_date }}
+                            <a href="{{grading_status.section_url}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by <strong>{{grading_status.submitted_by}}</strong> on {{ grading_status.submitted_relative_date }}
                         {{else}}
                             {{#if grading_status.unsubmitted_count}}<a href="{{grading_status.section_url}}" target="_blank">{{grading_status.unsubmitted_count}} grade{{pluralize grading_status.unsubmitted_count '' 's'}} to submit </a>
                                 {{else}}{{grading_status.grading_status}}
@@ -44,7 +44,7 @@
                     {{else}}
                         {{#if grading_period_is_past}}
                             <div class="card-badge-value">
-                                {{#if grading_status.all_grades_submitted}}<a href="{{grading_status.section_url}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by <strong>{{grading_status.submitted_by}}</strong> on {{ grading_status.submitted_date }}<br>
+                                {{#if grading_status.all_grades_submitted}}<a href="{{grading_status.section_url}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by <strong>{{grading_status.submitted_by}}</strong> on {{ grading_status.submitted_relative_date }}<br>
                                 <div style="font-size:80%;font-style:italic;margin-top: -10px;">Grade submission for <strong>{{capitalizeString quarter}} {{year}}</strong> closed {{grade_submission_deadline_date}}</div>
 
                                 {{else}}
