@@ -213,6 +213,14 @@ WSData = {
                 grading_deadline_date = grading_deadline.calendar(ref);
             }
 
+            var minutes_till_open = grading_open.diff(ref, 'minutes');
+            var opens_in_24_hours = (minutes_till_open >= 0 &&
+                                     minutes_till_open <= (24 * 60));
+
+            var minutes_till_deadline = grading_deadline.diff(ref, 'minutes');
+            var deadline_in_24_hours = (minutes_till_deadline >= 0 &&
+                                        minutes_till_deadline <= (24 * 60));
+
             $.each(course_data.sections, function () {
                 var course_campus = this.course_campus.toLowerCase();
                 this.is_seattle = (course_campus === 'seattle');
@@ -227,11 +235,14 @@ WSData = {
 
                 this.grading_period_is_open = grading_is_open;
                 this.grading_period_is_past = grading_is_closed;
+                this.opens_in_24_hours = opens_in_24_hours;
+                this.deadline_in_24_hours = deadline_in_24_hours;
                 this.grading_period_open_date = grading_open_date;
                 this.grading_period_relative_open = grading_open_relative;
                 this.aterm_grading_period_relative_open = grading_aterm_open_relative;
                 this.grade_submission_deadline_date = grading_deadline_date;
                 this.grade_submission_relative_deadline = grading_deadline_relative;
+
 
                 this.grading_status.all_grades_submitted =
                     (this.grading_status.hasOwnProperty('submitted_count') &&
