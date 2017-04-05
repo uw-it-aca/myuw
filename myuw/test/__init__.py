@@ -11,6 +11,10 @@ from restclients.test import (fdao_uwnetid_override, fdao_pws_override,
                               fdao_upass_override)
 
 
+EMAILBACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+email_backend_override = override_settings(EMAIL_BACKEND=EMAILBACKEND)
+
+
 def get_request():
     """
     mock request with UserServiceMiddleware initialization
