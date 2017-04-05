@@ -52,18 +52,7 @@ var TextBooks = {
         if (course_data) {
             $.each(course_data.sections, function (index) {
                 var section = section_data(index, this, false);
-                if(section.is_instructor){
-                    template_data.teaching_sections.push(section);
-                } else {
-                    template_data.enrolled_sections.push(section);
-                }
-            });
-        }
-
-        if (myuwFeatureEnabled('instructor_textbooks') && instructed_course_data) {
-            $.each(instructed_course_data.sections, function (index) {
-                var section = section_data(index, this, false);
-                if(section.is_instructor){
+                if(Math.random() > 0.5){//section.is_instructor){
                     template_data.teaching_sections.push(section);
                 } else {
                     template_data.enrolled_sections.push(section);
@@ -72,6 +61,17 @@ var TextBooks = {
         }
 
         // Split the data into classes that the user is instructing vs. not
+
+        if (myuwFeatureEnabled('instructor_textbooks') && instructed_course_data) {
+            $.each(instructed_course_data.sections, function (index) {
+                var section = section_data(index, this, false);
+                if(Math.random() > 0.5){//section.is_instructor){
+                    template_data.teaching_sections.push(section);
+                } else {
+                    template_data.enrolled_sections.push(section);
+                }
+            });
+        }
 
         template_data.verba_link = book_data ? book_data.verba_link : null;
         return template_data;
@@ -104,8 +104,9 @@ var TextBooks = {
         var template_data = TextBooks.process_book_data(WSData.book_data(term),
                                                         WSData.course_data_for_term(term),
                                                         WSData.instructed_course_data_for_term(term));
+
         if (template_data !== undefined){
-            template_data['collapse_sections'] = template_data['enrolled_sections'].length > 4;
+            template_data['collapse_sections'] = template_data['enrolled_sections'].length + template_data['teaching_sections'].length > 10;
             template_data['is_teaching'] = template_data['teaching_sections'].length > 0;
             console.log(template_data)
             $("#main-content").html(template(template_data));
