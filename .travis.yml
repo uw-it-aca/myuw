@@ -32,6 +32,8 @@ script:
   - ls -l ./node_modules/.bin/_mocha
   - ls -l ./node_modules/mocha/bin/_mocha
   - pep8 myuw/ --exclude=migrations,myuw/south_migrations,myuw/static
+  # Find </br> tags
+  - grep -re '<\s*/\s*br\s*>' myuw/templates/ ; test $? -eq 1
   - jshint myuw/static/js/  --verbose
   - mocha myuw/static/js/test/ --recursive
   - istanbul cover --include-all-sources -x "**/vendor/**" -x "**/site-packages/**" ./node_modules/mocha/bin/_mocha -- -R spec myuw/static/js/test/

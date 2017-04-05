@@ -34,6 +34,7 @@ from myuw.views.api.myplan import MyPlan
 from myuw.views.api.academic_events import AcademicEvents
 from myuw.views.api.thrive import ThriveMessages
 from myuw.views.api.calendar import DepartmentalCalendar
+from myuw.views.api.upass import UPass
 
 urlpatterns = []
 
@@ -111,6 +112,9 @@ urlpatterns += [
         ),
     url(r'^api/v1/profile/$', login_required(MyProfile().run),
         name="myuw_profile_api"
+        ),
+    url(r'^api/v1/upass/$', login_required(UPass().run),
+        name="myuw_upass_api"
         ),
     url(r'^api/v1/schedule/current/?$',
         login_required(StudClasScheCurQuar().run),
