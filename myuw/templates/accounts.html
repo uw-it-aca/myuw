@@ -11,10 +11,13 @@ MyUW: Accounts
     <div id="main-content" role="main" aria-labelledby="main">
     <h1>Accounts Page</h1>
     </div>
+    <div id="account_card_content"></div>
     <div id="static-links"></div>
 
     <!-- component content templates -->
     {% include "handlebars/banner/profile.html" %}
+    {% include "handlebars/card/accounts/account_card.html" %}
+    {% include "handlebars/card/loading.html" %}
 
     <!-- page content templates -->
     {% include "handlebars/loading.html" %}
@@ -28,5 +31,6 @@ MyUW: Accounts
 {% block extra_js %}
     {% compress js inline %}
         <script src="{% static 'js/page/accounts.js' %}"></script>
+        <script src="{% static 'js/card/accounts/account_card.js' %}"></script>
     {% endcompress %}
 {% endblock %}
