@@ -7,6 +7,13 @@ var Environment = {
     _stub: null,
 
     init: function (config) {
+        /*
+         * config object supports:
+         *      user: myuw user object, template in user_state.html
+         *      render_id: rendered object container id
+         *      scripts: required javascript modules to include
+         *      templates: template files used for rendering
+         */
         if (!config) {
             config = {};
         }
@@ -25,8 +32,7 @@ var Environment = {
         var HandlebarsHelpers = require("../handlebars-helpers.js")
 
         // set up client environment
-        window.user = {};
-        window.user.student = true;
+        window.user = Environment._get_user(config);
 
         // default test term
         window.term = {};
@@ -63,6 +69,35 @@ var Environment = {
                 Environment._load_template(this.toString());
             });
         }
+    },
+    _get_user: function (config) {
+        var user;
+        if (config.hasOwnProperty('user')) {
+            user = config.user;
+        } else {
+            user = {
+                bothell: false,
+                bothell_affil: false,
+                email_forward_icon: "",
+                email_forward_title: "",
+                email_forward_url: "",
+                employee: false,
+                faculty: false,
+                fyp: false,
+                grad: false,
+                netid: "bill",
+                pce: false,
+                seattle: true,
+                seattle_affil: false,
+                stud_employee: false,
+                student: true,
+                tacoma: false,
+                tacoma_affil: false,
+                undergrad: false
+            };
+        }
+
+        return user;
     },
     _abs_path: function (relative_path) {
         return path.join(__dirname, '../../../../', relative_path);
