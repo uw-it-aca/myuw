@@ -52,11 +52,7 @@ var TextBooks = {
         if (course_data) {
             $.each(course_data.sections, function (index) {
                 var section = section_data(index, this, false);
-                if(Math.random() > 0.5){//section.is_instructor){
-                    template_data.teaching_sections.push(section);
-                } else {
-                    template_data.enrolled_sections.push(section);
-                }
+                template_data.enrolled_sections.push(section);
             });
         }
 
@@ -64,12 +60,8 @@ var TextBooks = {
 
         if (myuwFeatureEnabled('instructor_textbooks') && instructed_course_data) {
             $.each(instructed_course_data.sections, function (index) {
-                var section = section_data(index, this, false);
-                if(Math.random() > 0.5){//section.is_instructor){
-                    template_data.teaching_sections.push(section);
-                } else {
-                    template_data.enrolled_sections.push(section);
-                }
+                var section = section_data(index, this, true);
+                template_data.teaching_sections.push(section);
             });
         }
 
