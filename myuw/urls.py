@@ -50,7 +50,7 @@ if settings.DEBUG:
 urlpatterns += [
     url(r'admin/dates', override, name="myuw_date_override"
         ),
-    url(r'^logger/(?P<interaction_type>\w+)$', log_interaction
+    url(r'^logger/(?P<interaction_type>.*)$', log_interaction
         ),
     url(r'^api/v1/academic_events$', login_required(AcademicEvents().run),
         name="myuw_academic_calendar"
