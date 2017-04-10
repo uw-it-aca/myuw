@@ -43,6 +43,7 @@ var TextBooks = {
                 color_id: section.color_id,
                 sln: section.sln,
                 books: book_data ? book_data[section.sln] : [],
+                has_books: book_data ? (book_data[section.sln].length > 0) : false,
                 is_instructor: instructor,
                 bothell_campus: section.course_campus.toLowerCase() === 'bothell',
                 tacoma_campus: section.course_campus.toLowerCase() === 'tacoma'
@@ -52,7 +53,6 @@ var TextBooks = {
         if (course_data) {
             $.each(course_data.sections, function (index) {
                 var section = section_data(index, this, false);
-                // Split the data into classes that the user is instructing vs. not
                 template_data.enrolled_sections.push(section);
             });
         }
@@ -60,9 +60,7 @@ var TextBooks = {
         if (myuwFeatureEnabled('instructor_textbooks') && instructed_course_data) {
             $.each(instructed_course_data.sections, function (index) {
                 var section = section_data(index, this, true);
-                // Split the data into classes that the user is instructing vs. not
                 template_data.teaching_sections.push(section);
-
             });
         }
 
@@ -115,8 +113,6 @@ var TextBooks = {
         }
     }
 };
-
-Handlebars.registerPartial("book", $("#book").html());
 
 /* node.js exports */
 if (typeof exports == "undefined") {

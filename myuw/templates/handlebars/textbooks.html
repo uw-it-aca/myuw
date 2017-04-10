@@ -8,22 +8,120 @@
         <h3>
             Teaching
         </h3>
+        <hr />
         {{#each teaching_sections}}
-        <div class="books-list" data-toggle="collapse" data-target="#books{{sln}}">
-            <a name="{{toUrlSafe curriculum}}{{course_number}}{{section_id}}" />
-            <h3 style="display:inline;">
-                <div class="c{{color_id}} simplesquare" aria-hidden="true"></div> {{curriculum}} {{course_number}}{{section_id}}  {{#if is_instructor}}- Instructor{{/if}}
-            </h3>
+            <div class="books-list" {{#if @root.collapse_sections}} style="margin-bottom:10px;" data-toggle="collapse" data-target="#books{{sln}}"{{/if}}>
+                <a name="{{toUrlSafe curriculum}}{{course_number}}{{section_id}}" />
+                {{#if @root.collapse_sections}}
+                    <h4 style="display:inline;">
+                        <div class="c{{color_id}} simplesquare" aria-hidden="true"></div> {{curriculum}} {{course_number}}{{section_id}}  {{#if is_instructor}}- Instructor{{/if}}
+                    </h4>
+
+                    <div style="display:inline; margin-left:15px;" >
+                        {{books.length}} {{pluralize books.length "textbook" "textbooks"}}
+                    </div>
+                {{else}}
+                    <h3 style="display:inline;">
+                        <div class="c{{color_id}} simplesquare" aria-hidden="true"></div> {{curriculum}} {{course_number}}{{section_id}}  {{#if is_instructor}}- Instructor{{/if}}
+                    </h3>
+                {{/if}}
+                <br>
+            </div>
+
+            {{#if has_books}}
+                {{#eachWithIndex books}}
+                    <div id="books{{../sln}}" class="clearfix book-image {{#if @root.collapse_sections}}collapse{{/if}}" >
+                        <h4>{{title}}</h4>
+                        {{#if cover_image_url}}
+                        <div class="book-cover pull-left"><img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{cover_image_url}}" alt="{{title}} book cover" width="80px" /></div>
+                        {{else}}
+                        <div class="no-book-cover pull-left" title="No cover image available">No Image Available</div>
+                        {{/if}}
+
+                        <dl class="dl-books">
+                            <dt>Author</dt>
+                            {{#each authors}}
+                            <dd>{{name}}</dd>
+                            {{/each}}
+
+                            <dt>New </dt>
+                            <dd>
+                                {{#if price}}
+                            ${{formatPrice price}}
+                                {{else}}
+                                *
+                                {{/if}}
+                            </dd>
+
+                            <dt>Used</dt>
+                            <dd>
+                                {{#if used_price}}
+                                ${{formatPrice used_price}}
+                                {{else}}
+                                *
+                                {{/if}}
+                            </dd>
+
+                            {{#if notes}}
+                            <dt>Notes</dt>
+                            {{#if is_required}}
+                                    <dd>Required</dd>
+                            {{else}}
+                                <dd>{{notes}}</dd>
+                                {{/if}}
+                            {{/if}}
+                        {{#if isbn}}
+                                <dt>ISBN</dt>
+                            <dd>{{isbn}}</dd>
+                        {{/if}}
+                        </dl>
+                    </div>
+                {{/eachWithIndex}}
+            {{else}}
+                <div id="books{{sln}}" class="{{#if @root.collapse_sections}}collapse{{/if}}" style="margin-bottom:25px;">
+                    No textbooks have been ordered for this course.
+                    <a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school={{#if bothell_campus}}uwbothell{{else}}{{#if tacoma_campus}}uwtacoma{{else}}uwmain{{/if}}{{/if}}">Order textbooks</a>.
+
+                  <!-- if IOR  --> </div>
+            {{/if}}
 
             {{#if @root.collapse_sections}}
+            {{else}}
+                <hr />
+            {{/if}}
+
+        {{/each}}
+
+        {{#if @root.collapse_sections}}
+        <hr />
+        {{/if}}
+        <h3>
+            Enrolled
+        </h3>
+        <hr />
+
+    {{/if}}
+
+    {{#each enrolled_sections}}
+        <div class="books-list" {{#if @root.collapse_sections}} style="margin-bottom:10px;" data-toggle="collapse" data-target="#books{{sln}}"{{/if}}>
+            <a name="{{toUrlSafe curriculum}}{{course_number}}{{section_id}}" />
+            {{#if @root.collapse_sections}}
+                <h4 style="display:inline;">
+                    <div class="c{{color_id}} simplesquare" aria-hidden="true"></div> {{curriculum}} {{course_number}}{{section_id}}  {{#if is_instructor}}- Instructor{{/if}}
+                </h4>
+
                 <div style="display:inline; margin-left:15px;" >
                     {{books.length}} {{pluralize books.length "textbook" "textbooks"}}
                 </div>
+            {{else}}
+                <h3 style="display:inline;">
+                    <div class="c{{color_id}} simplesquare" aria-hidden="true"></div> {{curriculum}} {{course_number}}{{section_id}}  {{#if is_instructor}}- Instructor{{/if}}
+                </h3>
             {{/if}}
             <br>
         </div>
 
-        {{#if books}}
+        {{#if has_books}}
             {{#eachWithIndex books}}
                 <div id="books{{../sln}}" class="clearfix book-image {{#if @root.collapse_sections}}collapse{{/if}}" >
                     <h4>{{title}}</h4>
@@ -73,101 +171,19 @@
                 </div>
             {{/eachWithIndex}}
 
-            {{#if is_instructor}}
-                <a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school={{#if bothell_campus}}uwbothell{{else}}{{#if tacoma_campus}}uwtacoma{{else}}uwmain{{/if}}{{/if}}">Modify textbooks</a>.
-            {{/if}}
-            {{else}}
-                <div id="books{{sln}}" class="{{#if @root.collapse_sections}}collapse{{/if}}" style="margin-bottom:25px;">
-                  {{#if is_instructor}}
-                      No textbooks have been ordered for this course.
-                      <a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school={{#if bothell_campus}}uwbothell{{else}}{{#if tacoma_campus}}uwtacoma{{else}}uwmain{{/if}}{{/if}}">Order textbooks</a>.
-                  {{else}}
-                      No textbook requirement has been received for this course.
-                      Please check with your instructor.
-                  {{/if}}
-                  <!-- if IOR  --> </div>
-            {{/if}}
+        {{else}}
+            <div id="books{{sln}}" class="{{#if @root.collapse_sections}}collapse{{/if}}" style="margin-bottom:25px;">
+              No textbook requirement has been received for this course.
+              Please check with your instructor.
+            <!-- if IOR  --> </div>
 
-            <hr />
-        {{/each}}
-        <h3>
-            Enrolled
-        </h3>
-
-    {{/if}}
-    {{#each enrolled_sections}}
-    <div class="books-list" data-toggle="collapse" data-target="#books{{sln}}">
-        <a name="{{toUrlSafe curriculum}}{{course_number}}{{section_id}}" />
-        <h3 style="display:inline;">
-            <div class="c{{color_id}} simplesquare" aria-hidden="true"></div> {{curriculum}} {{course_number}}{{section_id}}  {{#if is_instructor}}- Instructor{{/if}}
-        </h3>
+        {{/if}}
 
         {{#if @root.collapse_sections}}
-            <div style="display:inline; margin-left:15px;" >
-                {{books.length}} {{pluralize books.length "textbook" "textbooks"}}
-            </div>
+        {{else}}
+            <hr />
         {{/if}}
-        <br>
-    </div>
-
-    {{#if books}}
-        {{#eachWithIndex books}}
-            <div id="books{{../sln}}" class="clearfix book-image {{#if @root.collapse_sections}}collapse{{/if}}" >
-                <h4>{{title}}</h4>
-                {{#if cover_image_url}}
-                <div class="book-cover pull-left"><img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{cover_image_url}}" alt="{{title}} book cover" width="80px" /></div>
-                {{else}}
-                <div class="no-book-cover pull-left" title="No cover image available">No Image Available</div>
-                {{/if}}
-
-                <dl class="dl-books">
-                    <dt>Author</dt>
-                    {{#each authors}}
-                    <dd>{{name}}</dd>
-                    {{/each}}
-
-                    <dt>New </dt>
-                    <dd>
-                        {{#if price}}
-                    ${{formatPrice price}}
-                        {{else}}
-                        *
-                        {{/if}}
-                    </dd>
-
-                    <dt>Used</dt>
-                    <dd>
-                        {{#if used_price}}
-                        ${{formatPrice used_price}}
-                        {{else}}
-                        *
-                        {{/if}}
-                    </dd>
-
-                    {{#if notes}}
-                    <dt>Notes</dt>
-                    {{#if is_required}}
-                            <dd>Required</dd>
-                    {{else}}
-                        <dd>{{notes}}</dd>
-                        {{/if}}
-                    {{/if}}
-                {{#if isbn}}
-                        <dt>ISBN</dt>
-                    <dd>{{isbn}}</dd>
-                {{/if}}
-                </dl>
-            </div>
-        {{/eachWithIndex}}
-
-        <div style="margin-bottom:25px;">
-          No textbooks have been ordered for this course.
-          <a href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school={{#if bothell_campus}}uwbothell{{else}}{{#if tacoma_campus}}uwtacoma{{else}}uwmain{{/if}}{{/if}}">Order textbooks</a>.
-
-          <!-- if IOR  --> </div>
-
-      {{/each}}
-    {{/if}}
+    {{/each}}
 
 
     {{#if verba_link }}
