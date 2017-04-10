@@ -28,6 +28,11 @@ def get_current_quarter_enrollment(request):
                       timer)
 
 
+def get_quarter_enrollment(term):
+    regid = get_regid_of_current_user()
+    return get_enrollment_by_regid_and_term(regid, term)
+
+
 def get_main_campus(request):
     campuses = []
     try:

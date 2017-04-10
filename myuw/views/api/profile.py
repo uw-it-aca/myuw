@@ -3,12 +3,16 @@ import logging
 import traceback
 from django.http import HttpResponse
 from myuw.dao.enrollment import (get_current_quarter_enrollment,
-                                 get_main_campus)
+                                 get_main_campus,
+                                 get_quarter_enrollment)
 from myuw.dao.gws import is_grad_student, is_student
 from myuw.dao.password import get_pw_json
 from myuw.dao.pws import get_display_name_of_current_user
 from myuw.dao.student_profile import get_profile_of_current_user
 from myuw.dao.user import get_netid_of_current_user
+from myuw.dao.term import (get_current_quarter,
+                           get_next_quarter,
+                           get_next_quarters)
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response, log_msg
 from myuw.views import prefetch_resources
@@ -36,6 +40,13 @@ class MyProfile(RESTDispatch):
                                prefetch_password=True)
 
             netid = get_netid_of_current_user()
+
+            try:
+                term = get_current_quarter(request)
+                print term.json_data()
+            except Exception as ex:
+                print ex
+
             if is_student():
                 profile = get_profile_of_current_user()
                 response = profile.json_data()
@@ -51,15 +62,39 @@ class MyProfile(RESTDispatch):
                     response['campus'] = 'Bothell'
                 try:
                     enrollment = get_current_quarter_enrollment(request)
+                    future_enrollments = get_next_quarters(request, 3)
+
                     response['class_level'] = enrollment.class_level
                     if len(enrollment.majors) > 0:
                         response['majors'] = []
                         for major in enrollment.majors:
                             response['majors'].append(major.json_data())
+
                     if len(enrollment.minors) > 0:
                         response['minors'] = []
                         for minor in enrollment.minors:
                             response['minors'].append(minor.json_data())
+                        if len(future_enrollments.minors) > 0:
+                            response['minors'] = []
+                            for minor in future_enrollments.minors:
+                                response['minors'].append(minor.json_data())
+
+                    if len(future_enrollments) > 0:
+                        response['future_majors'] = []
+
+                        for quarter in future_enrollments:
+                            enrollment = get_quarter_enrollment(quarter)
+                            entry = {}
+                            entry['quarter'] = quarter['quarter']
+
+                            for major in enrollment.majors:
+                                entry['majors'].append(major.json_data())
+
+                            for minor in enrollment.minors:
+                                entry['minors'].append(minors.json_data())
+
+                            future_majors.append(entry)
+
                 except Exception as ex:
                     logger.error(
                         "%s get_current_quarter_enrollment: %s" %
