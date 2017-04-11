@@ -21,6 +21,7 @@ def is_using_file_dao():
 
 THRIVE = "thrive"
 OPTIN = "optin"
+SERU = "seru"
 
 
 def _is_optin_user(uwnetid):
@@ -30,6 +31,9 @@ def _is_optin_user(uwnetid):
 def is_fyp_thrive_viewer(uwnetid):
     return _is_netid_in_list(uwnetid, THRIVE)
 
+
+def is_seru_viewer(uwnetid):
+    return _is_netid_in_list(uwnetid, SERU)
 
 def _is_netid_in_list(username, user_type):
     if THRIVE == user_type:
@@ -41,7 +45,7 @@ def _is_netid_in_list(username, user_type):
                                                      "..", "data",
                                                      "thrive-viewer-list.txt"))
 
-    else:
+    if OPTIN == user_type:
         file_path = getattr(settings, "MYUW_OPTIN_SWITCH_PATH", None)
         if not file_path:
             current_dir = os.path.dirname(os.path.realpath(__file__))
@@ -49,6 +53,14 @@ def _is_netid_in_list(username, user_type):
             file_path = os.path.abspath(os.path.join(current_dir,
                                                      "..", "data",
                                                      "optin-list.txt"))
+    if SERU == user_type:
+        file_path = getattr(settings, "MYUW_SERU_PATH", None)
+        if not file_path:
+            current_dir = os.path.dirname(os.path.realpath(__file__))
+
+            file_path = os.path.abspath(os.path.join(current_dir,
+                                                     "..", "data",
+                                                     "seru_users.txt"))
 
     with open(file_path) as data_source:
         for line in data_source:
