@@ -20,30 +20,19 @@ var Landing = {
 
         Landing.load_cards_for_viewport();
         // Set initial display state
-        Landing.is_desktop = Landing.get_is_desktop();
+        Landing.is_desktop = get_is_desktop();
 
         // Monitor for viewport changes and reorder cards if needed
         $(window).resize(function(){
-            if (Landing.is_desktop !== Landing.get_is_desktop()){
+            if (Landing.is_desktop !== get_is_desktop()){
                 Landing.load_cards_for_viewport();
-                Landing.is_desktop = Landing.get_is_desktop();
+                Landing.is_desktop = get_is_desktop();
             }
         });
     },
 
-    get_is_desktop: function() {
-        var mobile_cutoff_width = 992;
-        var viewport_width = $(window).width();
-        if (viewport_width >= mobile_cutoff_width) {
-            return true;
-        } else {
-            return false;
-        }
-
-    },
-
     load_cards_for_viewport: function() {
-        if (Landing.get_is_desktop()) {
+        if (get_is_desktop()) {
             Landing._load_desktop_cards();
         } else {
             Landing._load_mobile_cards();

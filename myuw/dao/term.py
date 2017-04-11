@@ -16,8 +16,6 @@ from uw_sws.term import get_term_by_date, get_specific_term, \
     get_term_before, get_term_after, get_next_autumn_term, \
     get_next_non_summer_term
 from myuw.dao import is_using_file_dao
-from myuw.logger.timer import Timer
-from myuw.logger.logback import log_resp_time, log_exception
 
 
 logger = logging.getLogger(__name__)
@@ -101,25 +99,19 @@ def get_current_quarter(request):
     Return a uw_sws.models.Term object
     for the current quarter refered in the user session.
     """
-    timer = Timer()
     if hasattr(request, 'myuw_current_quarter'):
         return request.myuw_current_quarter
 
-    try:
-        comparison_date = get_comparison_date(request)
-        term = get_term_by_date(comparison_date)
-        after = get_term_after(term)
+    comparison_date = get_comparison_date(request)
+    term = get_term_by_date(comparison_date)
+    after = get_term_after(term)
 
-        if comparison_date > term.grade_submission_deadline.date():
-            request.myuw_current_quarter = after
-            return after
+    if comparison_date > term.grade_submission_deadline.date():
+        request.myuw_current_quarter = after
+        return after
 
-        request.myuw_current_quarter = term
-        return term
-    finally:
-        log_resp_time(logger,
-                      'get_current_term',
-                      timer)
+    request.myuw_current_quarter = term
+    return term
 
 
 def get_next_quarter(request):

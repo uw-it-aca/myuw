@@ -1,0 +1,108 @@
+{
+    "Current": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "121",
+        "CurriculumAbbreviation": "PHYS",
+        "Href": "/student/v5/registration.json?year=2013&quarter=spring&curriculum_abbreviation=PHYS&course_number=121&section_id=AC&reg_id=&is_active=true&instructor_reg_id=&verbose=&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": "",
+        "IsActive": true,
+        "PageSize": null,
+        "PageStart": null,
+        "Quarter": "spring",
+        "RegID": null,
+        "SectionID": "AC",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2013
+    },
+    "Next": null,
+    "PageSize": null,
+    "PageStart": null,
+    "Previous": null,
+    "Registrations": [
+            {
+            "AccessDateRangeEnd": "",
+            "AccessDateRangeStart": "",
+            "Auditor": false,
+            "Credits": "2.0",
+            "DuplicateCode": "",
+            "EducationUnitType": null,
+            "EndDate": "",
+            "FeeBaseType": "Fee based course",
+            "Grade": "X",
+            "GradeDate": "",
+            "GradeDocumentID": "",
+            "GradingSystem": null,
+            "HonorsCourse": false,
+            "Href": "/student/v5/registration/2013,spring,PHYS,121,AC,9136CCB8F66711D5BE060004AC494002,.json",
+            "Instructor": null,
+            "IsActive": true,
+            "IsCredit": true,
+            "IsIndependentStart": false,
+            "Metadata": "RegistrationSourceLocation=SDB;",
+            "Person": {
+                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494002.json",
+                "Name": "Average Student",
+                "RegID": "9136CCB8F66711D5BE060004AC494002"
+            },
+            "RepeatCourse": false,
+            "RepositoryTimeStamp": "12/21/2012 7:53:10 AM",
+            "RequestDate": "2012-12-14",
+            "RequestStatus": "ADDED TO CLASS",
+            "Section": {
+                "CourseNumber": "121",
+                "CurriculumAbbreviation": "PHYS",
+                "Href": "/student/v5/course/2013,spring,PHYS,121/AC.json",
+                "Quarter": "spring",
+                "SectionID": "AC",
+                "Year": 2013
+            },
+            "StartDate": "",
+            "VariableCredit": false,
+            "WritingCourse": false
+        },
+
+            {
+            "AccessDateRangeEnd": "",
+            "AccessDateRangeStart": "",
+            "Auditor": false,
+            "Credits": "2.0",
+            "DuplicateCode": "",
+            "EducationUnitType": null,
+            "EndDate": "",
+            "FeeBaseType": "Fee based course",
+            "Grade": "X",
+            "GradeDate": "",
+            "GradeDocumentID": "",
+            "GradingSystem": null,
+            "HonorsCourse": false,
+            "Href": "/student/v5/registration/2013,spring,PHYS,121,AC,9136CCB8F66711D5BE060004AC494003,.json",
+            "Instructor": null,
+            "IsActive": true,
+            "IsCredit": true,
+            "IsIndependentStart": false,
+            "Metadata": "RegistrationSourceLocation=SDB;",
+            "Person": {
+                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494003.json",
+                "Name": "Average S3dent",
+                "RegID": "9136CCB8F66711D5BE060004AC494003"
+            },
+            "RepeatCourse": false,
+            "RepositoryTimeStamp": "12/21/2012 7:53:10 AM",
+            "RequestDate": "2012-12-14",
+            "RequestStatus": "ADDED TO CLASS",
+            "Section": {
+                "CourseNumber": "121",
+                "CurriculumAbbreviation": "PHYS",
+                "Href": "/student/v5/course/2013,spring,PHYS,121/AC.json",
+                "Quarter": "spring",
+                "SectionID": "AC",
+                "Year": 2013
+            },
+            "StartDate": "",
+            "VariableCredit": false,
+            "WritingCourse": false
+        }
+
+    ]
+}
