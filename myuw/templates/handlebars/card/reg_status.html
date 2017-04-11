@@ -18,6 +18,21 @@
                 {{> reg_holds }}
             {{/if}}
 
+            <!-- IF HAS PENDING MAJOR -->
+            <div class="card-badge-container">
+                <div class="card-badge clearfix">
+                    <div>
+                        <div class="pull-left" style="display:inline-block;">
+                            <h4 class="card-badge-label">Major<!--IF MORE THAN ONE PENDING MAJOR-->s<!--END IF--> Beginning [Quarter]</h4>
+                        </div>
+                        <div class="pull-right">
+                            <div class="card-badge-value">[MAJOR ABBREV]<!--IF MORE THAN ONE PENDING MAJOR--><br>[ADDITIONAL MAJOR ABBREV]<!--END IF--></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             {{#if plan_data}}
                 {{> in_myplan }}
             {{/if}}

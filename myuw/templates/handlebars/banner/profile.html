@@ -22,12 +22,17 @@
                             <ul class="student-major-list">
                                 {{#if majors}}
                                 {{#each majors}}
-                                <li>{{full_name}}</li>
+                                    <!-- IF NO PENDING MAJOR -->
+                                    <li>{{full_name}}</li>
+                                    <!-- ELSE IF PENDING MAJOR -->
+                                    <li>Current Major<!--IF MORE THAN ONE CURRENT MAJOR-->s<!--END IF-->: &nbsp;{{full_name}}<!--IF MORE THAN ONE CURRENT MAJOR-->, [ADDITIONAL MAJOR]<!--END IF--></li>
+                                    <li>Major<!--IF MORE THAN ONE PENDING MAJOR-->s<!--END IF-->Beginning [Quarter]: &nbsp;{{full_name}}<!--IF MORE THAN ONE PENDING MAJOR-->, [ADDITIONAL MAJOR]<!--END IF--></li>
+                                    <!-- END -->
                                 {{/each}}
                                 {{/if}}
                                 {{#if minors}}
                                 {{#each minors}}
-                                <li>{{full_name}} (minor)</li>
+                                <li>Minor: &nbsp;{{full_name}}</li>
                                 {{/each}}
                                 {{/if}}
                             </ul>
