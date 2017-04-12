@@ -145,7 +145,7 @@ def get_next_quarters(request, num):
     quarters = []
 
     for x in range(0, num):
-        term = get_quarter_after(term)
+        term = get_term_after(term)
         quarters.append(term)
 
     return quarters

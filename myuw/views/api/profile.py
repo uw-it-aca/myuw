@@ -17,6 +17,7 @@ from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response, log_msg
 from myuw.views import prefetch_resources
 from myuw.views.rest_dispatch import RESTDispatch
+from restclients_core.exceptions import DataFailureException
 from myuw.views.error import data_not_found, handle_exception
 
 
@@ -28,7 +29,7 @@ class MyProfile(RESTDispatch):
     Performs actions on resource at /api/v1/profile/.
     """
 
-    def is_pending_major(pending, current, added):
+    def is_pending(self, pending, current, added):
         """
         Sorts through the current and added pending Major/Minors and
         returns True if the Major/Minor is not either current or already
@@ -36,7 +37,7 @@ class MyProfile(RESTDispatch):
         """
         # Obj can be either a SWS Major or Minor object
         for obj in current:
-            if pending.full_name == obj.full_name:
+            if pending.full_name == obj['full_name']:
                 return False
 
         for obj in added:
@@ -60,7 +61,6 @@ class MyProfile(RESTDispatch):
 
             try:
                 term = get_current_quarter(request)
-                print term.json_data()
             except Exception as ex:
                 print ex
 
@@ -98,29 +98,43 @@ class MyProfile(RESTDispatch):
                     pending_minors = []
 
                     for quarter in future_enrollments:
-                        enrollment = get_quarter_enrollment(quarter)
+                        try:
+                            enrollment = get_quarter_enrollment(quarter)
+                        except DataFailureException:
+                            continue
+
                         major_entry = {}
-                        major_entry['quarter'] = quarter['quarter']
+                        major_entry['majors'] = []
+                        major_entry['quarter'] = quarter.quarter
 
                         for major in enrollment.majors:
-                            if is_pending(major, response['majors'],
-                                          pending_majors):
+                            print major.full_name
+                            if self.is_pending(major, response['majors'],
+                                               pending_majors):
                                 major_entry['majors'].append(major.json_data())
-                                pending_majors.append()
+                                pending_majors.append(major)
 
-                        response['future_majors'].append(major_entry)
+                        if len(major_entry['majors']) > 0:
+                            response['future_majors'].append(major_entry)
 
                         minor_entry = {}
-                        minor_entry['quarter'] = quarter['quarter']
+                        minor_entry['minors'] = []
+                        minor_entry['quarter'] = quarter.quarter
                         for minor in enrollment.minors:
-                            if is_pending(minor, response['minors'],
-                                          pending_minors):
+                            if self.is_pending(minor, response['minors'],
+                                               pending_minors):
                                 minor_entry['minors'].append(minor.json_data())
                                 pending_minors.append(minor)
 
-                        response['future_minors'].append(minor_entry)
+                        if len(minor_entry['minors']) > 0:
+                            response['future_minors'].append(minor_entry)
+
+                    response['has_pending'] = (len(pending_minors) > 0 and
+                                               len(pending_majors) > 0)
 
                 except Exception as ex:
+                    import traceback; traceback.print_exc()
+                    print ex
                     logger.error(
                         "%s get_current_quarter_enrollment: %s" %
                         (netid, ex))
