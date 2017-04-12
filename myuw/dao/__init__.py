@@ -19,49 +19,39 @@ def is_using_file_dao():
     return SWS_DAO().get_implementation().is_mock()
 
 
-THRIVE = "thrive"
-OPTIN = "optin"
-SERU = "seru"
-
-
 def _is_optin_user(uwnetid):
-    return _is_netid_in_list(uwnetid, OPTIN)
+    file_path = _get_file_path("MYUW_OPTIN_SWITCH_PATH",
+                               "optin-list.txt")
+
+    return _is_netid_in_list(uwnetid, file_path)
 
 
 def is_fyp_thrive_viewer(uwnetid):
-    return _is_netid_in_list(uwnetid, THRIVE)
+    file_path = _get_file_path("MYUW_MANDATORY_SWITCH_PATH",
+                               "thrive-viewer-list.txt")
+
+    return _is_netid_in_list(uwnetid, file_path)
 
 
 def is_seru_viewer(uwnetid):
-    return _is_netid_in_list(uwnetid, SERU)
+    file_path = _get_file_path("MYUW_SERU_PATH",
+                               "seru_users.txt")
 
-def _is_netid_in_list(username, user_type):
-    if THRIVE == user_type:
-        file_path = getattr(settings, "MYUW_MANDATORY_SWITCH_PATH", None)
-        if not file_path:
-            current_dir = os.path.dirname(os.path.realpath(__file__))
+    return _is_netid_in_list(uwnetid, file_path)
 
-            file_path = os.path.abspath(os.path.join(current_dir,
-                                                     "..", "data",
-                                                     "thrive-viewer-list.txt"))
 
-    if OPTIN == user_type:
-        file_path = getattr(settings, "MYUW_OPTIN_SWITCH_PATH", None)
-        if not file_path:
-            current_dir = os.path.dirname(os.path.realpath(__file__))
+def _get_file_path(settings_key, default_filename):
+    file_path = getattr(settings, settings_key, None)
+    if not file_path:
+        current_dir = os.path.dirname(os.path.realpath(__file__))
 
-            file_path = os.path.abspath(os.path.join(current_dir,
-                                                     "..", "data",
-                                                     "optin-list.txt"))
-    if SERU == user_type:
-        file_path = getattr(settings, "MYUW_SERU_PATH", None)
-        if not file_path:
-            current_dir = os.path.dirname(os.path.realpath(__file__))
+        file_path = os.path.abspath(os.path.join(current_dir,
+                                                 "..", "data",
+                                                 default_filename))
+    return file_path
 
-            file_path = os.path.abspath(os.path.join(current_dir,
-                                                     "..", "data",
-                                                     "seru_users.txt"))
 
+def _is_netid_in_list(username, file_path):
     with open(file_path) as data_source:
         for line in data_source:
             if line.rstrip() == username:
