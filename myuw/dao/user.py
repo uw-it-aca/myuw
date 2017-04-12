@@ -65,9 +65,7 @@ def is_oldmyuw_user():
 
 def is_oldmyuw_mobile_user():
     uwnetid = get_netid_of_current_user()
-    if is_applicant() or\
-            not is_student() and\
-            not is_optin_user(uwnetid) and\
-            not has_newmyuw_preference(uwnetid):
+    if is_applicant() or (not is_student() and not is_optin_user(uwnetid) and
+                              not has_newmyuw_preference(uwnetid)):
         return True
     return False
