@@ -65,9 +65,9 @@ var TextBooks = {
         }
 
         // Determine if we need to collapse the textbook sections and whether the user is teaching
-        var num_sections = template_data['enrolled_sections'].length + template_data['teaching_sections'].length;
-        template_data['collapse_sections'] = num_sections > 10;
-        template_data['is_teaching'] = template_data['teaching_sections'].length > 0;
+        var num_sections = template_data.enrolled_sections.length + template_data.teaching_sections.length;
+        template_data.collapse_sections = num_sections > 10;
+        template_data.is_teaching = template_data.teaching_sections.length > 0;
 
         template_data.verba_link = book_data ? book_data.verba_link : null;
         return template_data;
