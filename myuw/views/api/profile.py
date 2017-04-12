@@ -28,6 +28,23 @@ class MyProfile(RESTDispatch):
     Performs actions on resource at /api/v1/profile/.
     """
 
+    def is_pending_major(pending, current, added):
+        """
+        Sorts through the current and added pending Major/Minors and
+        returns True if the Major/Minor is not either current or already
+        added.
+        """
+        # Obj can be either a SWS Major or Minor object
+        for obj in current:
+            if pending.full_name == obj.full_name:
+                return False
+
+        for obj in added:
+            if pending.full_name == obj.full_name:
+                return False
+
+        return True
+
     def GET(self, request):
         """
         GET returns 200 with the student account balances
@@ -74,26 +91,34 @@ class MyProfile(RESTDispatch):
                         response['minors'] = []
                         for minor in enrollment.minors:
                             response['minors'].append(minor.json_data())
-                        if len(future_enrollments.minors) > 0:
-                            response['minors'] = []
-                            for minor in future_enrollments.minors:
-                                response['minors'].append(minor.json_data())
 
-                    if len(future_enrollments) > 0:
-                        response['future_majors'] = []
+                    response['future_majors'] = []
+                    response['future_minors'] = []
+                    pending_majors = []
+                    pending_minors = []
 
-                        for quarter in future_enrollments:
-                            enrollment = get_quarter_enrollment(quarter)
-                            entry = {}
-                            entry['quarter'] = quarter['quarter']
+                    for quarter in future_enrollments:
+                        enrollment = get_quarter_enrollment(quarter)
+                        major_entry = {}
+                        major_entry['quarter'] = quarter['quarter']
 
-                            for major in enrollment.majors:
-                                entry['majors'].append(major.json_data())
+                        for major in enrollment.majors:
+                            if is_pending(major, response['majors'],
+                                          pending_majors):
+                                major_entry['majors'].append(major.json_data())
+                                pending_majors.append()
 
-                            for minor in enrollment.minors:
-                                entry['minors'].append(minors.json_data())
+                        response['future_majors'].append(major_entry)
 
-                            future_majors.append(entry)
+                        minor_entry = {}
+                        minor_entry['quarter'] = quarter['quarter']
+                        for minor in enrollment.minors:
+                            if is_pending(minor, response['minors'],
+                                          pending_minors):
+                                minor_entry['minors'].append(minor.json_data())
+                                pending_minors.append(minor)
+
+                        response['future_minors'].append(minor_entry)
 
                 except Exception as ex:
                     logger.error(
