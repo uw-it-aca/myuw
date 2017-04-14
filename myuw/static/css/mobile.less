@@ -607,10 +607,41 @@ body {
 
 /*** content ***/
 
+/* Search Input */
+
+/* Search input and button */
+#app_search, #search_content {
+    .cse .gsc-search-button input.gsc-search-button-v2, input.gsc-search-button-v2 {
+        width: auto;
+        height: 53px;
+        padding: 20px;
+        border: 0;
+    }
+
+    .gsc-input-box {
+        height: auto;
+        background-color: #f5f5f5;
+    }
+
+    .gsc-search-box .gsc-input-box input.gsc-input {
+        padding: 14px 0 13px 25px !important;
+        height: auto !important;
+        background-color: #f5f5f5 !important;
+    }
+
+    .gsc-search-box-tools .gsc-search-box .gsc-input {
+        padding-right: 0;
+    }
+}
+
 /* Search results */
 #search_content {
 
     /* Google Custom Search Overrides */
+
+    .cse .gsc-control-cse, .gsc-control-cse {
+        padding: 0;
+    }
     .gsc-control-cse {
         font-family: inherit;
     }
