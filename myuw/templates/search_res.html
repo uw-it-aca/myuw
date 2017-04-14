@@ -9,13 +9,11 @@ MyUW: Search the UW
 {% block content %}
 
     <div id="main-content" role="main" aria-labelledby="main">
-        <div class="container search-wrapper">
-            <div class="row">
-                <div id="search_content">
-                    <h2>Search the UW</h2>
-                    {#    Leavign off G:CSE initialization as that's happening on the included search banner in base.html#}
-                    <gcse:search></gcse:search>
-                </div>
+        <div class="container search-container">
+            <div id="search_content">
+                <h2>Search the UW</h2>
+                {#    Leaving off G:CSE initialization as that's happening on the included search banner in base.html#}
+                <gcse:search></gcse:search>
             </div>
         </div>
     </div>
