@@ -1,0 +1,41 @@
+{
+    "AccessDateRangeEnd": "07/25/2013",
+    "AccessDateRangeStart": "12/19/2016",
+    "Auditor": false,
+    "Credits": "4.0",
+    "DuplicateCode": "",
+    "EducationUnitType": null,
+    "EndDate": "04/30/2013",
+    "FeeBaseType": "Fee based course",
+    "Grade": "X",
+    "GradeDate": "",
+    "GradeDocumentID": "",
+    "GradingSystem": null,
+    "HonorsCourse": false,
+    "Href": "/student/v5/registration/2013,winter,PSYCH,203,A,10000000000000000000000000000010,.json",
+    "Instructor": null,
+    "IsActive": true,
+    "IsCredit": true,
+    "IsIndependentStart": true,
+    "Metadata": "RegistrationSourceLocation=SDB_EOS;",
+    "Person": {
+        "Href": "/student/v5/person/10000000000000000000000000000010.json",
+        "Name": "Anne Bell",
+        "RegID": "10000000000000000000000000000010"
+    },
+    "RepeatCourse": false,
+    "RepositoryTimeStamp": "1/29/2013 2:06:34 AM",
+    "RequestDate": "2013-01-27",
+    "RequestStatus": "ADDED TO CLASS",
+    "Section": {
+        "CourseNumber": "203",
+        "CurriculumAbbreviation": "PSYCH",
+        "Href": "/student/v5/course/2013,winter,PSYCH,203/A.json",
+        "Quarter": "winter",
+        "SectionID": "A",
+        "Year": 2013
+    },
+    "StartDate": "01/29/2013",
+    "VariableCredit": false,
+    "WritingCourse": false
+}
