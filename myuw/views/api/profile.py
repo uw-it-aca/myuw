@@ -92,8 +92,8 @@ class MyProfile(RESTDispatch):
                         for minor in enrollment.minors:
                             response['minors'].append(minor.json_data())
 
-                    response['future_majors'] = []
-                    response['future_minors'] = []
+                    response['pending_majors'] = []
+                    response['pending_minors'] = []
                     pending_majors = []
                     pending_minors = []
 
@@ -108,13 +108,14 @@ class MyProfile(RESTDispatch):
                         major_entry['quarter'] = quarter.quarter
 
                         for major in enrollment.majors:
+                            print major
                             if self.is_pending(major, response['majors'],
                                                pending_majors):
                                 major_entry['majors'].append(major.json_data())
                                 pending_majors.append(major)
 
                         if len(major_entry['majors']) > 0:
-                            response['future_majors'].append(major_entry)
+                            response['pending_majors'].append(major_entry)
 
                         minor_entry = {}
                         minor_entry['minors'] = []
@@ -126,7 +127,7 @@ class MyProfile(RESTDispatch):
                                 pending_minors.append(minor)
 
                         if len(minor_entry['minors']) > 0:
-                            response['future_minors'].append(minor_entry)
+                            response['pending_minors'].append(minor_entry)
 
                     response['has_pending'] = (len(pending_minors) > 0 and
                                                len(pending_majors) > 0)

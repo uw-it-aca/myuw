@@ -36,8 +36,8 @@
 
                                 {{/if}}
 
-                                {{#if future_majors}}
-                                    {{#each future_majors}}
+                                {{#if pending_majors}}
+                                    {{#each pending_majors}}
                                         <li>{{ pluralize_by_size majors "Major" "Majors"}}
                                             Beginning {{ toTitleCase quarter}}:
                                             {{#each majors}}
@@ -54,8 +54,8 @@
                                     {{/each}}
                                 {{/if}}
 
-                                {{#if future_minors}}
-                                    {{#each future_minors}}
+                                {{#if pending_minors}}
+                                    {{#each pending_minors}}
                                         <li>{{ pluralize_by_size minors "Minor" "Minors"}}
                                             Beginning {{ toTitleCase quarter}}:
                                             {{#each minors}}

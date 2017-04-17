@@ -19,18 +19,46 @@
             {{/if}}
 
             <!-- IF HAS PENDING MAJOR -->
-            <div class="card-badge-container">
-                <div class="card-badge clearfix">
-                    <div>
-                        <div class="pull-left" style="display:inline-block;">
-                            <h4 class="card-badge-label">Major<!--IF MORE THAN ONE PENDING MAJOR-->s<!--END IF--> Beginning [Quarter]</h4>
-                        </div>
-                        <div class="pull-right">
-                            <div class="card-badge-value">[MAJOR ABBREV]<!--IF MORE THAN ONE PENDING MAJOR--><br>[ADDITIONAL MAJOR ABBREV]<!--END IF--></div>
+            {{#each pending_majors}}
+                {{#if @first}}
+                    <div class="card-badge-container">
+                        <div class="card-badge clearfix">
+                            <div>
+                                <div class="pull-left" style="display:inline-block;">
+                                    <h4 class="card-badge-label">{{ pluralize_by_size ../pending_majors "Major" "Majors"}} Beginning {{@root.reg_next_quarter}}</h4>
+                                </div>
+                                <div class="pull-right">
+                                    <div class="card-badge-value">
+                {{/if}} {{degree_abbr}} {{#unless @last}} <br> {{/unless}}
+                {{#if @last}}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                {{/if}}
+            {{/each}}
+
+            <!-- IF HAS PENDING MAJOR -->
+            {{#each pending_minors}}
+                {{#if @first}}
+                    <div class="card-badge-container">
+                        <div class="card-badge clearfix">
+                            <div>
+                                <div class="pull-left" style="display:inline-block;">
+                                    <h4 class="card-badge-label">{{ pluralize_by_size ../pending_minors "Minor" "Minors"}} Beginning {{@root.reg_next_quarter}}</h4>
+                                </div>
+                                <div class="pull-right">
+                                    <div class="card-badge-value">
+                {{/if}} {{abbr}} {{#unless @last}} <br> {{/unless}}
+                {{#if @last}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/if}}
+            {{/each}}
 
 
             {{#if plan_data}}
