@@ -6,7 +6,7 @@ the SWS Enrollment resource.
 import logging
 from uw_sws.enrollment import get_enrollment_by_regid_and_term
 from myuw.dao.pws import get_regid_of_current_user
-from myuw.dao.term import get_current_quarter
+from myuw.dao.term import get_current_quarter, get_comparison_datetime
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.exceptions import IndeterminateCampusException
 
@@ -30,6 +30,16 @@ def get_current_quarter_enrollment(request):
     regid = get_regid_of_current_user()
     return get_enrollment_by_regid_and_term(regid,
                                             get_current_quarter(request))
+
+
+def find_enrolled_independent_start_section(request, section_label):
+    if not section_label:
+        raise Exception('Invalid param: section_label')
+    enrollment = get_current_quarter_enrollment(request)
+    for i_sect in enrollment.independent_start_sections:
+        if i_sect.section_ref.section_label() == section_label:
+            ended = get_comparison_datetime(request) > i_sect.end_date
+            return i_sect, ended
 
 
 def get_main_campus(request):
