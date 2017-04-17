@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.conf import settings
-from restclients_core.exceptions import DataFailureException
+from uw_sws.exceptions import InvalidSectionID
 from uw_sws.models import Section, Person
 from myuw.dao.term import get_current_quarter, get_next_quarter
 from myuw.dao.enrollment import find_enrolled_independent_start_section
@@ -26,3 +26,8 @@ class TestEnrollment(TestCase):
             req, '2013,winter,PSYCH,203/A')
         self.assertEqual(str(isection.end_date), '2013-06-22 00:00:00')
         self.assertFalse(ended)
+
+        self.assertRaises(InvalidSectionID,
+                          find_enrolled_independent_start_section,
+                          req,
+                          '3,winter,COM,201/A')
