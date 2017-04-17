@@ -59,10 +59,7 @@ class MyProfile(RESTDispatch):
 
             netid = get_netid_of_current_user()
 
-            try:
-                term = get_current_quarter(request)
-            except Exception as ex:
-                print ex
+            term = get_current_quarter(request)
 
             if is_student():
                 profile = get_profile_of_current_user()
@@ -108,7 +105,6 @@ class MyProfile(RESTDispatch):
                         major_entry['quarter'] = quarter.quarter
 
                         for major in enrollment.majors:
-                            print major
                             if self.is_pending(major, response['majors'],
                                                pending_majors):
                                 major_entry['majors'].append(major.json_data())
