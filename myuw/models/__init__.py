@@ -1,5 +1,6 @@
 import hashlib
 from datetime import datetime
+from dateutil.parser import parse
 from django.utils import timezone
 from django.db import models
 from myuw.models.building import Building
@@ -136,3 +137,28 @@ class SeenRegistration(models.Model):
 class UserMigrationPreference(models.Model):
     username = models.CharField(max_length=20, db_index=True, unique=True)
     use_legacy_site = models.BooleanField(default=False)
+
+
+class BannerMessage(models.Model):
+    VALID_ELIGIBILITY_TYPES = [
+        'netid'
+    ]
+    start = models.DateField()
+    end = models.DateField()
+    eligibility_type = models.CharField(max_length=32)
+    eligibility_data = models.CharField(max_length=255)
+    message_title = models.TextField()
+    message_body = models.TextField()
+
+    @classmethod
+    def from_csv(cls, csv):
+        message = cls()
+        message.start = parse(csv[0]).date()
+        message.end = parse(csv[1]).date()
+        message.eligibility_type = csv[2]
+        if message.eligibility_type not in cls.VALID_ELIGIBILITY_TYPES:
+            raise ValueError
+        message.eligibility_data = csv[3]
+        message.message_title = csv[4]
+        message.message_body = csv[5]
+        return message

@@ -7,70 +7,20 @@ import sys
 import urllib3
 
 from django.core.management.base import BaseCommand, CommandError
-from myuw.dao.category_links import Res_Links
+from myuw.dao.messages import get_current_messages
 
 # Disable SSL warnings
 urllib3.disable_warnings()
 # Need limit of 1, otherwise sdb gives us a 403
 http = urllib3.PoolManager(1, timeout=8)
 # Need to override UA for some links, e.g. LinkedIn
-ua = 'Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
 
 
 class Command(BaseCommand):
 
-    help = ('Test all resource links for non-200 status codes after'
-            ' following redirects')
 
     def handle(self, *args, **kwargs):
-        try:
-            check_all_links()
-        except Exception as e:
-            raise CommandError(e)
+        from myuw.test import fdao_sws_override, fdao_pws_override,\
+        get_request, get_request_with_user
 
-
-def check_all_links():
-
-    links = Res_Links.get_all_links()
-    for link in links:
-        out = check_and_format_link(link)
-        if out is not None:
-            print out
-
-
-def check_and_format_link(link, ignore=[200]):
-    result = get_http_status(link.url)
-
-    if result in ignore:
-        return None
-
-    else:
-        campus = make_campus_human_readable(link.campus)
-        fmt = (link.title, campus, link.url, result)
-        return 'Link Title: %s, %s, URL: %s returned %s' % fmt
-
-
-def get_http_status(url):
-    """
-    Given a url, get the HTTP status code or a human-readable exception.
-    """
-    try:
-        result = http.request(
-            'GET',
-            url,
-            headers={'User-Agent': ua},
-            retries=urllib3.Retry(redirect=10, connect=2, read=2)
-        )
-        return result.status
-
-    except Exception:
-        return repr(sys.exc_info()[1])
-
-
-def make_campus_human_readable(campus):
-
-    if campus is None:
-        return 'All Campuses'
-    else:
-        # Capitalize first letter
-        return campus[0:1].upper() + campus[1:]
+        get_current_messages(get_request_with_user('javerage'))

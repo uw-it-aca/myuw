@@ -1,104 +1,59 @@
 import csv
 import os
 import datetime
-from myuw.dao.term import get_comparison_date, get_current_quarter,\
-    get_bod_current_term_class_start
+from dateutil.parser import parse
+from myuw.dao.term import get_comparison_date
+from myuw.dao import is_netid_in_list, get_netid_of_current_user
+from myuw.models import BannerMessage
 
 
 """
 Gets the banner message for the current day/quarter
+Currently will fetch messages stored in data CSV but could be enhanced to
+include an admin interface for storing messages and eligibility.
 """
 
 
-def get_current_message(request):
+def get_current_messages(request):
     current_date = get_comparison_date(request)
-    messages = _get_messages_for_date(current_date)
-    return messages[0] if len(messages) else None
+    messages = get_filtered_messages(current_date, get_netid_of_current_user())
+    return messages
 
 
-def _get_messages_for_date(date, term):
+def get_filtered_messages(current_date, user):
+    messages = _get_messages()
+    filtered_messages = []
+    for message in messages:
+
+        if message.start <= current_date <= message.end:
+            # add support for additional eligibility types here
+            if message.eligibility_type == "netid":
+                path = _get_netid_file_path(message.eligibility_data)
+                if is_netid_in_list(user, path):
+                    filtered_messages.append(message)
+            else:
+                raise NotImplemented("eligibility type filter missing")
+    return filtered_messages
+
+
+def _get_messages():
     path = os.path.join(
         os.path.dirname(__file__),
-        '..', 'data', 'thrive_content.csv')
-    rows = {}
+        '..', 'data', 'banner_message.csv')
+    messages = []
     with open(path, 'rbU') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
         # skip headers
         next(reader)
         for row in reader:
-            try:
-                if len(row[3]) > 0:
-                    for date in dates:
-                        offset = _get_offset(date, term)
-                        if _is_displayed(row, term.quarter, offset):
-                            rows[reader.line_num] = row
-                            break
-            except IndexError:
-                pass
+            message = BannerMessage.from_csv(row)
+            messages.append(message)
+    return messages
 
-    return [_make_thrive_payload(rows[row]) for row in sorted(rows.keys())]
 
-#
-# """
-# Return true if message is for current quarter and current date falls within the
-# display range for a given message.  Message will display for 7 days.
-# """
-#
-#
-# def _is_displayed(row, current_quarter, current_offset):
-#     display_quarter = row[2]
-#     display_offset = int(row[3])
-#
-#     return current_quarter == display_quarter and \
-#         (display_offset + 7) > current_offset >= display_offset
-#
-#
-# """
-# Builds a message payload from a given thrive message row
-# """
-#
-#
-# def _make_thrive_payload(row):
-#     try_this = None
-#     try:
-#         if len(row[8]) > 0:
-#             try_this = row[8]
-#     except IndexError:
-#         pass
-#
-#     payload = {'title': row[6],
-#                'message': row[7],
-#                'week_label': row[4],
-#                'category_label': row[5],
-#                'try_this': try_this,
-#                'urls': _make_urls(row)}
-#
-#     return payload
-#
-#
-# """
-# Supports up to 5 URLS per row as defined in the spec
-# """
-#
-#
-# def _make_urls(row):
-#     urls = []
-#     for i in range(9, 17, 2):
-#         try:
-#             if len(row[i]) > 0 and len(row[i+1]) > 0:
-#                 urls.append({'title': row[i],
-#                              'href': row[i + 1]})
-#         except IndexError:
-#             return urls
-#
-#     return urls
-#
-#
-# """
-# Calculates the offset from the current date and start of quarter date
-# """
-#
-#
-# def _get_offset(current_date, term):
-#     start_date = term.first_day_quarter
-#     return (current_date - start_date).days
+def _get_netid_file_path(filename):
+    current_dir = os.path.dirname(os.path.realpath(__file__))
+    file_path = os.path.abspath(os.path.join(current_dir,
+                                             "..", "data",
+                                             filename))
+    return file_path

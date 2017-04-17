@@ -23,21 +23,15 @@ def _is_optin_user(uwnetid):
     file_path = _get_file_path("MYUW_OPTIN_SWITCH_PATH",
                                "optin-list.txt")
 
-    return _is_netid_in_list(uwnetid, file_path)
+    return is_netid_in_list(uwnetid, file_path)
 
 
 def is_fyp_thrive_viewer(uwnetid):
     file_path = _get_file_path("MYUW_MANDATORY_SWITCH_PATH",
                                "thrive-viewer-list.txt")
 
-    return _is_netid_in_list(uwnetid, file_path)
+    return is_netid_in_list(uwnetid, file_path)
 
-
-def is_seru_viewer(uwnetid):
-    file_path = _get_file_path("MYUW_SERU_PATH",
-                               "seru_users.txt")
-
-    return _is_netid_in_list(uwnetid, file_path)
 
 
 def _get_file_path(settings_key, default_filename):
@@ -51,7 +45,7 @@ def _get_file_path(settings_key, default_filename):
     return file_path
 
 
-def _is_netid_in_list(username, file_path):
+def is_netid_in_list(username, file_path):
     with open(file_path) as data_source:
         for line in data_source:
             if line.rstrip() == username:

@@ -1,0 +1,2 @@
+start_date,end_date,eligibility_type,eligibility_data,message_title,message_body
+2013-04-11,2013-04-25,netid,seru_users.txt,"Test SERU Alert","Hey, this is a test alert for our unit tests, will never display for end users unless they can time travel"
