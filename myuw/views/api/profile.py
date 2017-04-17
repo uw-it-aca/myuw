@@ -97,7 +97,7 @@ class MyProfile(RESTDispatch):
                     for quarter in future_enrollments:
                         try:
                             enrollment = get_quarter_enrollment(quarter)
-                        except DataFailureException:
+                        except Exception:
                             continue
 
                         major_entry = {}
