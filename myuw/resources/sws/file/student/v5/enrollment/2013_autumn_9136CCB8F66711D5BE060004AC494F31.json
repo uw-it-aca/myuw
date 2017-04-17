@@ -26,7 +26,30 @@
                 "Pathway": 80,
                 "ShortName": "PHIL"
             }],
-    "Minors":[],
+    "Minors":[
+        {"Abbreviation":"ASL",
+        "CampusName":"Seattle",
+        "FullName":"American Sign Language",
+        "Name":"AMERICAN SIGN LANGUAGE",
+        "Pathway":0,
+        "ShortName":"ASL"},
+        {
+            "Abbreviation":"POL SCI",
+            "CampusName":"Seattle",
+            "FullName":"Political Science",
+            "Name":"POLITICAL SCIENCE",
+            "Pathway":0,
+            "ShortName":"POL SCI"
+        },
+        {
+            "Abbreviation":"MATH",
+            "CampusName":"Seattle",
+            "FullName":"Mathematics",
+            "Name":"MATHEMATICS",
+            "Pathway":0,
+            "ShortName":"MATH"
+        }
+    ],
     "PendingClassChange": false,
     "PendingHonorsChange": false,
     "PendingMajorChange": false,

@@ -79,15 +79,13 @@ class MyProfile(RESTDispatch):
                     future_enrollments = get_next_quarters(request, 3)
 
                     response['class_level'] = enrollment.class_level
-                    if len(enrollment.majors) > 0:
-                        response['majors'] = []
-                        for major in enrollment.majors:
-                            response['majors'].append(major.json_data())
+                    response['majors'] = []
+                    for major in enrollment.majors:
+                        response['majors'].append(major.json_data())
 
-                    if len(enrollment.minors) > 0:
-                        response['minors'] = []
-                        for minor in enrollment.minors:
-                            response['minors'].append(minor.json_data())
+                    response['minors'] = []
+                    for minor in enrollment.minors:
+                        response['minors'].append(minor.json_data())
 
                     response['pending_majors'] = []
                     response['pending_minors'] = []
