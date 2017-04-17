@@ -140,7 +140,7 @@ var RegStatusCard = {
         }
 
         if (has_registration) {
-            //return;
+            return;
         }
 
         var plan_data = null;
@@ -168,8 +168,6 @@ var RegStatusCard = {
 
         // Retrieve pending majors and minors for this quarter, if they exist
         var profile = WSData.profile_data();
-        console.log(next_term_data);
-        console.log(profile);
         var pending_minors = [];
         var pending_majors = [];
 
@@ -211,7 +209,6 @@ var RegStatusCard = {
             "pending_majors": pending_majors
         };
 
-        console.log(template_data);
         var raw = template(template_data);
         return raw;
     },
