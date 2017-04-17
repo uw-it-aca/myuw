@@ -15,7 +15,6 @@ from myuw.dao.term import get_comparison_date
 
 
 logger = logging.getLogger(__name__)
-EARLY_FALL_START = "EARLY FALL START"
 
 
 def _get_schedule(regid, term):
@@ -61,12 +60,7 @@ def get_schedule_by_term(request, term):
 
     included_sections = []
     for section in schedule.sections:
-        if EARLY_FALL_START != section.institute_name:
-            included_sections.append(section)
-        else:
-            end_date = section.end_date
-            if end_date >= comparison_date:
-                included_sections.append(section)
+        included_sections.append(section)
 
     schedule.sections = included_sections
 
