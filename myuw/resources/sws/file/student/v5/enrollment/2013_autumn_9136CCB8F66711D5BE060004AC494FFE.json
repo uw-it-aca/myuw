@@ -39,6 +39,14 @@
             "Name":"POLITICAL SCIENCE",
             "Pathway":0,
             "ShortName":"POL SCI"
+        },
+        {
+            "Abbreviation":"MATH",
+            "CampusName":"Seattle",
+            "FullName":"Mathematics",
+            "Name":"MATHEMATICS",
+            "Pathway":0,
+            "ShortName":"MATH"
         }],
     "PendingClassChange": false,
     "PendingHonorsChange": false,
