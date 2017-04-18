@@ -13,8 +13,9 @@ MyUW: Search the UW
             <div id="search_content">
                 <h2 class="heading-page">Search the UW</h2>
 
-                <form action="/search" method="get">
-                    <input name="q" type="text">
+                <form action="/search" method="get" class="uw-search">
+                    <label class="sr-only" for="search-results-page">Search for:</label>
+                    <input id="search-results-page" name="q" type="text" placeholder="Search for:">
                     <button type="submit" value="Search">Search</button>
                 </form>
 
