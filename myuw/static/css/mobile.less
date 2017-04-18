@@ -36,6 +36,7 @@ border-color: @border;}
 @font-base: 14px;
 @font-meta: 12px;
 
+@font-header-larger: 26px;
 @font-header-large: 22px;
 @font-header-medium: 20px;
 @font-header-small: 18px;
@@ -306,6 +307,16 @@ body {
 }
 
 .my-text-muted {font: #666;}
+
+
+/*** Headings ***/
+.heading-page {
+    font-family: 'encode_sans_normalbold';
+    color: #444;
+    font-size: @font-header-larger;
+    margin-top: 1.5em;
+}
+
 
 /*** uw alert ***/
 
@@ -585,7 +596,7 @@ body {
 
 #app_acal { margin: 0; position: relative; padding-bottom: 15px;
     .acal-header {
-        h2 {font-size: @font-header-smaller; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600;/*font-family: 'encode_sans_normalbold';*/color: #85754d;}
+        h2 {font-size: @font-header-smaller; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600; color: #85754d;}
         .view-all {border:none;font-size: 14px;color: #4d66ca;margin-top: 17px;}
         .acal-banner-events {margin-top:0;clear:both;
 	        .acal-banner-list { list-style-type: none;padding-left: 0;
@@ -613,9 +624,11 @@ body {
 #app_search, #search_content {
     .cse .gsc-search-button input.gsc-search-button-v2, input.gsc-search-button-v2 {
         width: auto;
-        height: 53px;
+        height: 54px;
         padding: 20px;
         border: 0;
+        margin-top: 3px;
+        margin-left: 1px;
     }
 
     .gsc-input-box {
@@ -632,12 +645,17 @@ body {
     .gsc-search-box-tools .gsc-search-box .gsc-input {
         padding-right: 0;
     }
+
 }
 
 /* Search results */
 #search_content {
 
     /* Google Custom Search Overrides */
+
+    table.gsc-search-box {
+        max-width: 650px;
+    }
 
     .cse .gsc-control-cse, .gsc-control-cse {
         padding: 0;
@@ -1463,10 +1481,11 @@ body {
     }
 
     // Thrive pages
-    .thrive-messages, .what-is-thrive {padding-bottom: 3em;
-        h2 { font-family: 'encode_sans_normalbold'; color: #444; font-size: 26px; margin-top: 1.5em;
-            span {font-size: 16px;}
-        }
+    .thrive-messages, .what-is-thrive {
+        padding-bottom: 3em;
+
+        h2 span {font-size: 16px;}
+
         .thrive-archive-instructions {font-style: italic;}
         .card {box-shadow: none; border:0; padding: 0 20px 0 0;}
         .thrive-description {padding:15px 0;}
@@ -1842,7 +1861,6 @@ body {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
 
-		h2 { font-family: 'encode_sans_normalbold'; color: #444; font-size: @font-header-small;  }
 		h3 { font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 16px; line-height: 30px; margin: 0; color: #222; }
 		h4 { font-family: 'Open Sans', sans-serif; font-size: 14px;
     		span { text-transform: uppercase; font-size: 11px; }
@@ -1874,7 +1892,6 @@ body {
             .category-links { padding-left: 0; list-style: none; }
         }
 
-        h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; }
         h3 { font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 16px; }
     }
     // future quarters page
@@ -1882,8 +1899,6 @@ body {
     .future-quarter-container {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
-
-        h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444;}
 
         .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
     }
@@ -1897,7 +1912,6 @@ body {
 		padding-bottom: 3em;
 
 		h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444; }
-		h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; margin-top: 10px; color: #444;}
         h3 { color: #333; margin-top: 0; margin-bottom:0; font-family: 'Roboto', sans-serif; font-weight: 400; }
 
 		.notice-count { }
@@ -2007,13 +2021,12 @@ body {
 
 	.academic_cal-container {
 		.acal-main {
-			h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444; }
 			.acal-page-filters { padding:10px 0;margin-bottom:15px;margin-top:15px;
 				#myuw-event-filter-breaks, #myuw-event-filter-all, #myuw-event-filter-classes {font-size:15px;}
 				.myuw-selected-button {color: #fff; background-color:#4f318c;border-color: #4f318c;}
 			}
 			.acal-page-events {
-				h2 {color: #333;margin-top: 0;margin-bottom: 0;font-family: 'Roboto', sans-serif;font-weight: 400;padding:20px 0;}
+				h3 {color: #333;margin-top: 0;margin-bottom: 0;font-family: 'Roboto', sans-serif;font-weight: 400; font-size: 20px; padding:20px 0;}
 				.acal-page-term-break {border-top:1px; border-bottom:1px; border-left:0; border-right:0; border-color: #bbb; border-style: dotted; padding: 20px 0;text-align:center;}
 				.acal-page-event-list { list-style-type: none;padding-left: 0;
 					.acal-page-event-list-item { margin-bottom:10px;
