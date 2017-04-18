@@ -12,6 +12,13 @@ MyUW: Search the UW
         <div class="container search-container">
             <div id="search_content">
                 <h2 class="heading-page">Search the UW</h2>
+
+                <form action="/search" method="get">
+                    <input name="q" type="text">
+                    <button type="submit" value="Search">Search</button>
+
+                </form>
+                
                 <script>
                   (function() {
                     var cx = '{{ google_search_key }}';
