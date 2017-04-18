@@ -624,9 +624,11 @@ body {
 #app_search, #search_content {
     .cse .gsc-search-button input.gsc-search-button-v2, input.gsc-search-button-v2 {
         width: auto;
-        height: 53px;
+        height: 54px;
         padding: 20px;
         border: 0;
+        margin-top: 3px;
+        margin-left: 1px;
     }
 
     .gsc-input-box {
@@ -643,12 +645,17 @@ body {
     .gsc-search-box-tools .gsc-search-box .gsc-input {
         padding-right: 0;
     }
+
 }
 
 /* Search results */
 #search_content {
 
     /* Google Custom Search Overrides */
+
+    table.gsc-search-box {
+        max-width: 650px;
+    }
 
     .cse .gsc-control-cse, .gsc-control-cse {
         padding: 0;
