@@ -19,16 +19,20 @@ var CourseCardContentPanel = {
         var raw = template(c_section);
         $('#course_card_content' + index).html(raw);
 
-        if (has_valid_eval) {
+        if (c_section.is_ended) {
+            CourseCardHiddenPanel.render(c_section);
+        } else if (has_valid_eval) {
             CourseEvalPanel.render(c_section);
-        }
 
-        CourseSchePanel.render(c_section);
+            CourseCardHiddenPanel.render(c_section);
+        } else {
+            CourseSchePanel.render(c_section);
 
-        CourseResourcePanel.render(c_section);
+            CourseResourcePanel.render(c_section);
 
-        if (c_section.instructors) {
-            CourseInstructorPanel.render(c_section);
+            if (c_section.instructors) {
+                CourseInstructorPanel.render(c_section);
+            }
         }
     }
 };

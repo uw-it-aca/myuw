@@ -1,0 +1,22 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "course_card_hidden_panel" %}
+
+        {{#with off_term_beg_end}}
+        <div class="off_term_beg_end">
+            Date: {{toMonthDay start_date}} - {{toMonthDay end_date}}
+        </div>
+        {{/with}}
+
+        <div id="sche_on_course_card{{index}}">
+        </div>
+
+        <div id="course_resource{{index}}">
+        </div>
+        {{#if instructors}}
+            <div id="course_instructor{{index}}">
+            </div>
+        {{else}}
+            <div class="no-instructors"><strong>No instructor information available</strong></div>
+         {{/if}}
+
+{% endtplhandlebars %}
