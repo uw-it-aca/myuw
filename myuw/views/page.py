@@ -104,6 +104,9 @@ def page(request,
     context['enabled_features'] = getattr(
         settings, "MYUW_ENABLED_FEATURES", [])
 
+    context['google_search_key'] = getattr(
+        settings, "GOOGLE_SEARCH_KEY", None)
+
     log_success_response_with_affiliation(logger, timer, request)
     return render(request, template, context)
 
