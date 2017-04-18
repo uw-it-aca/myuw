@@ -89,9 +89,6 @@ def load_schedule(request, schedule, summer_term=""):
         if section.is_early_fall_start():
             section_data["early_fall_start"] = True
             json_data["has_early_fall_start"] = True
-            section_data["off_term_beg_end"] = {
-                "start_date": str(section.start_date),
-                "end_date": str(section.end_date)}
             section_data["is_ended"] =\
                 get_comparison_date(request) > section.end_date
 
@@ -99,8 +96,8 @@ def load_schedule(request, schedule, summer_term=""):
             try:
                 enrolled_sect, ended = find_enrolled_independent_start_section(
                     request, section.section_label())
-                section_data["off_term_beg_end"] =\
-                    enrolled_sect.json_data()
+                section_data["start_date"] = str(enrolled_sect.start_date)
+                section_data["end_date"] = str(enrolled_sect.end_date)
                 section_data["is_ended"] = ended
             except Exception as ex:
                 logger.error("find enrolled independent start section: %s", ex)

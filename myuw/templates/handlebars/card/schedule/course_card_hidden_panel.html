@@ -1,11 +1,11 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "course_card_hidden_panel" %}
 
-        {{#with off_term_beg_end}}
+        {{#if start_date}}
         <div class="off_term_beg_end">
             Date: {{toMonthDay start_date}} - {{toMonthDay end_date}}
         </div>
-        {{/with}}
+        {{/if}}
 
         <div id="sche_on_course_card{{index}}">
         </div>

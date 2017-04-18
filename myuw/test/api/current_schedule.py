@@ -117,9 +117,9 @@ class TestSchedule(MyuwApiTest):
         self.assertEquals(len(data["sections"]), 2)
 
         com = self.get_section(data, 'COM', '201', 'A')
-        self.assertEquals(com["off_term_beg_end"]['start_date'],
+        self.assertEquals(com['start_date'],
                           '2013-01-28 00:00:00')
-        self.assertEquals(com["off_term_beg_end"]['end_date'],
+        self.assertEquals(com['end_date'],
                           '2013-04-29 00:00:00')
         self.assertFalse(com["is_ended"])
 
@@ -130,9 +130,9 @@ class TestSchedule(MyuwApiTest):
         data = json.loads(response.content)
 
         efs_ok = self.get_section(data, 'EFS_OK', '101', 'AQ')
-        self.assertEquals(efs_ok["off_term_beg_end"]['start_date'],
+        self.assertEquals(efs_ok['start_date'],
                           '2013-08-24')
-        self.assertEquals(efs_ok["off_term_beg_end"]['end_date'],
+        self.assertEquals(efs_ok['end_date'],
                           '2013-09-18')
         self.assertFalse(efs_ok["is_ended"])
 
@@ -142,8 +142,8 @@ class TestSchedule(MyuwApiTest):
         self.assertEquals(response.status_code, 200)
         data = json.loads(response.content)
         efs_ok = self.get_section(data, 'EFS_OK', '101', 'AQ')
-        self.assertEquals(efs_ok["off_term_beg_end"]['start_date'],
+        self.assertEquals(efs_ok['start_date'],
                           '2013-08-24')
-        self.assertEquals(efs_ok["off_term_beg_end"]['end_date'],
+        self.assertEquals(efs_ok['end_date'],
                           '2013-09-18')
         self.assertTrue(efs_ok["is_ended"])

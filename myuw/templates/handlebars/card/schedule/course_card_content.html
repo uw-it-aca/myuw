@@ -1,36 +1,41 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "course_card_content_panel" %}
 
-{{ #unless has_eval}}
-    {{ #if is_ended}}
-        <div id="course_details{{index}}" class="slide-hide"
-             aria-label="Additional course resources"
-             rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
-             aria-hidden="true" hidden aria-expanded="false"
-             style="display: none;" tabindex = "-1">
-            <div id="hidden_content_on_course_card{{index}}">
-            </div>
+{{#if hide_course_details}}
+    {{#if has_eval}}
+    <div class="myuw-course-eval" id="course_eval{{index}}" >
+    </div>
+    {{/if}}
+
+    <div id="course_details{{index}}" class="slide-hide"
+         aria-label="Additional course resources"
+         rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
+         aria-hidden="true" hidden aria-expanded="false"
+         style="display: none;" tabindex = "-1">
+
+        <div id="hidden_content_on_course_card{{index}}">
         </div>
-        <div class="card-disclosure">
-            <span id="show_course_details{{index}}_wrapper">
-                <a class="toggle_course_card_disclosure"
-                   id="show_course_details{{index}}"
-                   href="#" aria-controls="course_details{{index}}"
-                   title="Expand to show course details">Course ended {{toMonthDay off_term_beg_end.end_date}}. Show course details</a>
-            </span>
-            <span id="hide_course_details{{index}}_wrapper" hidden aria-hidden="true">
-                <a class="toggle_course_card_disclosure"
-                   id="hide_course_details{{index}}"
-                   href="#" aria-controls="course_details{{index}}"
-                   title="Collapse to hide course details">Hide course details</a>
-            </span>
-        </div>
-    {{else}}
-       {{#with off_term_beg_end}}
+    </div>
+    <div class="card-disclosure">
+        <span id="show_course_details{{index}}_wrapper">
+            <a class="toggle_course_card_disclosure"
+               id="show_course_details{{index}}"
+               href="#" aria-controls="course_details{{index}}"
+               title="Expand to show course details">{{#if is_ended}}Course ended {{toMonthDay end_date}}. {{/if}}Show course details</a>
+        </span>
+        <span id="hide_course_details{{index}}_wrapper" hidden aria-hidden="true">
+            <a class="toggle_course_card_disclosure"
+               id="hide_course_details{{index}}"
+               href="#" aria-controls="course_details{{index}}"
+               title="Collapse to hide course details">Hide course details</a>
+        </span>
+    </div>
+{{else}}
+    {{#if start_date}}
         <div class="off_term_beg_end">
             Date: {{toMonthDay start_date}} - {{toMonthDay end_date}}
         </div>
-        {{/with}}
+    {{/if}}
         <div id="sche_on_course_card{{index}}">
         </div>
         <div id="sche_on_course_card{{index}}">
@@ -38,7 +43,7 @@
         <div id="course_resource{{index}}">
         </div>
 
-        {{#if instructors}}
+    {{#if instructors}}
         <div id="course_details{{index}}" class="slide-hide"
              aria-label="Course instructor information"
              rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
@@ -64,40 +69,9 @@
                    title="Collapse to hide instructor contact information">Hide instructors</a>
             </span>
         </div>
-        {{else}}
+    {{else}}
         <div class="card-faux-disclosure"><strong>No instructor information available</strong></div>
-        {{/if}}
     {{/if}}
-{{ /unless }}
-
-{{ #if has_eval}}
-    <div class="myuw-course-eval" id="course_eval{{index}}" >
-    </div>
-
-    <div id="course_details{{index}}" class="slide-hide"
-         aria-label="Additional course resources"
-         rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
-         aria-hidden="true" hidden aria-expanded="false"
-         style="display: none;" tabindex = "-1">
-
-        <div id="hidden_content_on_course_card{{index}}">
-        </div>
-    </div>
-    <div class="card-disclosure">
-        <span id="show_course_details{{index}}_wrapper">
-            <a class="toggle_course_card_disclosure"
-               id="show_course_details{{index}}"
-               href="#" aria-controls="course_details{{index}}"
-               title="Expand to show course details">Show course details</a>
-        </span>
-        <span id="hide_course_details{{index}}_wrapper" hidden aria-hidden="true">
-            <a class="toggle_course_card_disclosure"
-               id="hide_course_details{{index}}"
-               href="#" aria-controls="course_details{{index}}"
-               title="Collapse to hide course details">Hide course details</a>
-        </span>
-    </div>
-
-{{ /if }}
+{{/if}}
 
 {% endtplhandlebars %}
