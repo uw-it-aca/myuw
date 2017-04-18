@@ -56,18 +56,11 @@
     {% block header %}
     <div id="app_search" class="collapse">
         <div class="container">
-            <script>
-              (function() {
-                var cx = '011623198968356464378:osxgvivxwtm';
-                var gcse = document.createElement('script');
-                gcse.type = 'text/javascript';
-                gcse.async = true;
-                gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(gcse, s);
-              })();
-            </script>
-            <gcse:searchbox-only></gcse:searchbox-only>
+            <form action="/search" method="get">
+                <input name="q" type="text">
+                <button type="submit" value="Search">Search</button>
+
+            </form>
         </div>
     </div>
 
