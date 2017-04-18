@@ -12,8 +12,18 @@ MyUW: Search the UW
         <div class="container search-container">
             <div id="search_content">
                 <h2>Search the UW</h2>
-                {#    Leaving off G:CSE initialization as that's happening on the included search banner in base.html#}
-                <gcse:search></gcse:search>
+                <script>
+                  (function() {
+                    var cx = '{{ google_search_key }}';
+                    var gcse = document.createElement('script');
+                    gcse.type = 'text/javascript';
+                    gcse.async = true;
+                    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(gcse, s);
+                  })();
+                </script>
+                <gcse:searchresults-only></gcse:searchresults-only>
             </div>
         </div>
     </div>
