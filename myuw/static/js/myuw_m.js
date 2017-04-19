@@ -6,6 +6,7 @@ $(document).ready(function() {
     LogUtils.init_logging();
     init_profile_events();
     init_modal_events();
+    init_search_events();
     var course_data = null;
     var book_data = null;
     // This is to prevent multiple events on load from making
@@ -218,4 +219,10 @@ var getUrlParameter = function (url_param) {
             return param_name[1] === undefined ? true : param_name[1];
         }
     }
+};
+
+var init_search_events = function() {
+    $("#app_search").on('shown.bs.collapse', function(){
+        $("#search-nav").focus();
+    });
 };
