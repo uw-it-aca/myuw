@@ -27,7 +27,7 @@
    {% endif %}
 
    <!-- google fonts -->
-   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i' rel='stylesheet' type='text/css'>
    <link href='//fonts.googleapis.com/css?family=Roboto:400,500,300,100' rel='stylesheet' type='text/css'>
 
    <!-- favicon -->
@@ -56,10 +56,10 @@
     {% block header %}
     <div id="app_search" class="collapse">
         <div class="container">
-            <form action="/search" method="get">
-                <input name="q" type="text">
+            <form action="/search" method="get" class="uw-search">
+                <label class="sr-only" for="search-nav">Search for:</label>
+                <input id="search-nav" name="q" type="text" placeholder="Search for:">
                 <button type="submit" value="Search">Search</button>
-
             </form>
         </div>
     </div>
