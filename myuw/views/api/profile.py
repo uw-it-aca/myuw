@@ -36,13 +36,15 @@ class MyProfile(RESTDispatch):
         added.
         """
         # Obj can be either a SWS Major or Minor object
-        for obj in current:
-            if pending.full_name == obj['full_name']:
-                return False
+        if current is not None:
+            for obj in current:
+                if pending.full_name == obj['full_name']:
+                    return False
 
-        for obj in added:
-            if pending.full_name == obj.full_name:
-                return False
+        if pending is not None:
+            for obj in added:
+                if pending.full_name == obj.full_name:
+                    return False
 
         return True
 
@@ -79,13 +81,15 @@ class MyProfile(RESTDispatch):
                     future_enrollments = get_next_quarters(request, 3)
 
                     response['class_level'] = enrollment.class_level
-                    response['majors'] = []
-                    for major in enrollment.majors:
-                        response['majors'].append(major.json_data())
+                    if len(enrollment.majors) > 0:
+                        response['majors'] = []
+                        for major in enrollment.majors:
+                            response['majors'].append(major.json_data())
 
-                    response['minors'] = []
-                    for minor in enrollment.minors:
-                        response['minors'].append(minor.json_data())
+                    if len(enrollment.minors) > 0:
+                        response['minors'] = []
+                        for minor in enrollment.minors:
+                            response['minors'].append(minor.json_data())
 
                     response['pending_majors'] = []
                     response['pending_minors'] = []
