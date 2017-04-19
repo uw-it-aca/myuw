@@ -6,6 +6,7 @@ $(document).ready(function() {
     LogUtils.init_logging();
     init_profile_events();
     init_modal_events();
+    init_search_events();
     var course_data = null;
     var book_data = null;
     // This is to prevent multiple events on load from making
@@ -203,4 +204,25 @@ var toggle_card_disclosure = function(card, div_toggled, a_expose, a_hide, label
 var myuwFeatureEnabled = function(feature) {
     return (window.enabled_features.hasOwnProperty(feature) &&
             window.enabled_features[feature]);
+};
+
+var getUrlParameter = function (url_param) {
+    var page_url = decodeURIComponent(window.location.search.substring(1)),
+        url_vars = page_url.split('&'),
+        param_name,
+        i;
+
+    for (i = 0; i < url_vars.length; i++) {
+        param_name = url_vars[i].split('=');
+
+        if (param_name[0] === url_param) {
+            return param_name[1] === undefined ? true : param_name[1];
+        }
+    }
+};
+
+var init_search_events = function() {
+    $("#app_search").on('shown.bs.collapse', function(){
+        $("#search-nav").focus();
+    });
 };
