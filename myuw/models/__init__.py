@@ -162,3 +162,8 @@ class BannerMessage(models.Model):
         message.message_title = csv[4]
         message.message_body = csv[5]
         return message
+
+    def json_data(self):
+        data = {"title": self.message_title,
+                "body": self.message_body}
+        return data
