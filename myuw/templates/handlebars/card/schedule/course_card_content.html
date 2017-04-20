@@ -32,7 +32,7 @@
             <a class="toggle_course_card_disclosure"
                id="show_course_details{{index}}"
                href="#" aria-controls="course_details{{index}}"
-               title="Expand to show course details">{{#if is_ended}}Course ended {{toMonthDay end_date}}. {{/if}}Show course details</a>
+               title="Expand to show course details"><span class="closed-course-disclosure">{{#if is_ended}}Course ended {{toMonthDay end_date}}</span> {{/if}}Show course details</a>
         </span>
         <span id="hide_course_details{{index}}_wrapper" hidden aria-hidden="true">
             <a class="toggle_course_card_disclosure"
