@@ -50,6 +50,7 @@ from myuw.test.api.academic_calendar import TestCalendarAPI
 from myuw.test.api.dept_calendar import TestDeptCalAPI
 from myuw.test.api.instructor_schedule import (
     TestInstructorCurrentSchedule, TestInstructorTermSchedule)
+from myuw.test.api.messages import TestMessages
 from myuw.test.cache import TestCustomCachePolicy
 from myuw.test.context_processors import TestContextProcessors
 from myuw.test.loggers import TestSessionLog

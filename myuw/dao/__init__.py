@@ -33,7 +33,6 @@ def is_fyp_thrive_viewer(uwnetid):
     return is_netid_in_list(uwnetid, file_path)
 
 
-
 def _get_file_path(settings_key, default_filename):
     file_path = getattr(settings, settings_key, None)
     if not file_path:

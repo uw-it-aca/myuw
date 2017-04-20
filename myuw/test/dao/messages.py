@@ -31,4 +31,3 @@ class TestMessages(TestCase):
         current_date = datetime.date(2011, 4, 12)
         messages = get_filtered_messages(current_date, "javerage")
         self.assertEquals(len(messages), 0)
-
