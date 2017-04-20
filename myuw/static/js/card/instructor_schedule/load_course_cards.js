@@ -9,27 +9,19 @@ var InstructorCourseCards = {
                 InstructorCourseCards.term = window.term.year + ',' + window.term.quarter;
             }
 
-            WSData.fetch_instructed_course_data_for_term(InstructorCourseCards.term,
-                                                         InstructorCourseCards.render_upon_data,
-                                                         InstructorCourseCards.render_error);
+            WebServiceData.require([new InstructedCourseData(InstructorCourseCards.term)],
+                                   InstructorCourseCards.render);
         } else {
             $("#InstructorCourseCards").hide();
         }
     },
 
-    render_upon_data: function() {
-        if (!InstructorCourseCards._has_all_data()) {
-            return;
-        }
-        InstructorCourseCards._render();
-        LogUtils.cardLoaded(InstructorCourseCards.name, InstructorCourseCards.dom_target);
-    },
+    render_error: function(instructed_course_resource) {
+        var error_code = instructed_course_resource.error ? instructed_course_resource.error.status : null;
 
-    render_error: function() {
-        var error_code = WSData.instructed_course_data_error_code(InstructorCourseCards.term);
         if (error_code == 410) {
             Error410.render();
-            return;
+            return true;
         }
 
         if (error_code === 404) {
@@ -42,22 +34,23 @@ var InstructorCourseCards = {
             } else {
                 $("#InstructorCourseCards").hide();
             }
-        } else {
+
+            return true;
+        } else if (error_code) {
             raw = CardWithError.render("Teaching Schedule");
             InstructorCourseCards.dom_target.html(raw);
-        }
-    },
-
-    _has_all_data: function () {
-        if (WSData.normalized_instructed_course_data(InstructorCourseCards.term)) {
             return true;
         }
+
         return false;
     },
 
-    _render: function () {
-        var term = InstructorCourseCards.term;
-        var course_data = WSData.normalized_instructed_course_data(term);
+    render: function (instructed_course_resource) {
+        if (InstructorCourseCards.render_error(instructed_course_resource)) {
+            return;
+        }
+
+        var course_data = instructed_course_resource.normalized();
         var source = $("#instructor_course_card_list").html();
         var courses_template = Handlebars.compile(source);
         var raw = courses_template(course_data);
@@ -79,6 +72,7 @@ var InstructorCourseCards = {
         });
 
         InstructorCourseCards.add_events();
+        LogUtils.cardLoaded(InstructorCourseCards.name, InstructorCourseCards.dom_target);
     },
 
     add_events: function(term) {

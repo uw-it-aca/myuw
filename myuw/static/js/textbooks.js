@@ -6,22 +6,30 @@ var TextBooks = {
         TextBooks.term = term;
         showLoading();
         CommonLoading.render_init();
-        WSData.fetch_book_data(term, TextBooks.render_books, TextBooks.render_error);
-        WSData.fetch_course_data_for_term(TextBooks.term, TextBooks.render_books, TextBooks.render_error);
-        WSData.fetch_instructed_course_data_for_term(TextBooks.term, TextBooks.render_books, TextBooks.render_error);
+        var requirements = [
+            new BookData(term),
+            new CourseData(term)
+        ];
+
+        if (myuwFeatureEnabled('instructor_schedule')) {
+            requirements.push(new InstructedCourseData(term));
+        }
+
+        WebServiceData.require(requirements, TextBooks.render_books);
     },
 
-    render_error: function() {
-        var book_err_status = WSData.book_data_error_code(TextBooks.term);
-        var course_err_status = WSData.course_data_error_code(TextBooks.term);
-        var instructed_course_err_status = WSData.instructed_course_data_error_code(TextBooks.term);
+    render_error: function(book_resource, course_resource, instructed_course_resource) {
+        var book_err_status = book_resource.error ? book_resource.error.status : null;
+        var course_err_status = course_resource.error ? course_resource.error.status : null;
+        var instructed_course_err_status = instructed_course_resource.error ? instructed_course_resource.error.status : null;
 
         if (book_err_status === 543 || course_err_status === 543 || instructed_course_err_status === 543) {
             var raw = CardWithError.render("Textbooks");
             $("#main-content").html(raw);
-        } else {
-            TextBooks.render_books();
+            return true;
         }
+
+        return false;
     },
 
     process_book_data: function(book_data, course_data, instructed_course_data) {
@@ -43,7 +51,9 @@ var TextBooks = {
                 color_id: section.color_id,
                 sln: section.sln,
                 books: book_data ? book_data[section.sln] : [],
-                has_books: book_data ? (book_data[section.sln].length > 0) : false,
+                has_books: (book_data &&
+                            (section.sln in book_data) &&
+                            book_data[section.sln].length > 0),
                 is_instructor: instructor,
                 bothell_campus: section.course_campus.toLowerCase() === 'bothell',
                 tacoma_campus: section.course_campus.toLowerCase() === 'tacoma'
@@ -89,17 +99,19 @@ var TextBooks = {
                  (instructed_course_data === undefined && instructed_course_err_status === 404)));
     },
 
-    render_books: function() {
-        if(!TextBooks._has_all_data()){
+    render_books: function(book_resource, course_resource, instructed_course_resource) {
+
+        if (TextBooks.render_error(book_resource, course_resource, instructed_course_resource)) {
             return;
         }
+
         var term = TextBooks.term;
         $('html,body').animate({scrollTop: 0}, 'fast');
         var source   = $("#textbooks").html();
         var template = Handlebars.compile(source);
-        var template_data = TextBooks.process_book_data(WSData.book_data(term),
-                                                        WSData.course_data_for_term(term),
-                                                        WSData.instructed_course_data_for_term(term));
+        var template_data = TextBooks.process_book_data(book_resource.data,
+                                                        course_resource.data,
+                                                        instructed_course_resource.data);
         if (template_data !== undefined){
             $("#main-content").html(template(template_data));
         }

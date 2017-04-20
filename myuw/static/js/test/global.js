@@ -57,6 +57,7 @@ var Environment = {
         // pull in scripts
         Environment._load_script('myuw/static/js/myuw_m.js');
         Environment._load_script('myuw/static/js/ws_data.js');
+        Environment._load_script('myuw/static/js/web_service_data.js');
         if (config.hasOwnProperty('scripts')) {
             $.each(config.scripts, function () {
                 Environment._load_script(this.toString());
@@ -106,8 +107,11 @@ var Environment = {
         var json_dir = path.join('myuw/static/js/test/ajax', json_data_file);
         var json_file = Environment._abs_path(json_dir);
         var json_data = JSON.parse(fs.readFileSync(json_file));
-        Environment._stub = sinon.stub($, 'ajax');
-        Environment._stub.yieldsTo('success', json_data);
+        Environment._stub = sinon.stub($, 'ajax', function (params) {
+            params.success(json_data);
+            params.complete();
+        });
+//        Environment._stub.yieldsTo('success', json_data);
     },
     ajax_stub_restore: function () {
         if (Environment._stub) {
