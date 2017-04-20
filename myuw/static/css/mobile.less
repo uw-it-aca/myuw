@@ -764,6 +764,19 @@ label { font-weight: normal; }
             a:hover {text-decoration: none;}
             .efs-switcher-link-text {font-size:smaller;}
         }
+        // Quicklinks 
+        .myuw-qlinks {
+            .myuw-qlinks-recent, .myuw-qlinks-active {
+                a.control-link {
+                    display: none;
+                }
+                    
+                li.list:hover a.control-link {
+                    display: block; 
+                    font-size:12px;
+                }
+            }
+        }
     }
 
     // PCE card & PCE notice on Visual Schedule
