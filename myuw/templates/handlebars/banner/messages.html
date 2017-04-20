@@ -1,0 +1,12 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "message_banner" %}
+
+    <div id="messages">
+        {{ #each messages }}
+        <p>{{ title }}</p>
+
+        <p>{{ body }}</p>
+
+        {{ /each }}
+    </div>
+{% endtplhandlebars %}
