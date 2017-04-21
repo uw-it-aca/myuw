@@ -2,7 +2,7 @@ import json
 import logging
 import traceback
 from django.http import HttpResponse
-from restclients.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 from myuw.dao.registered_term import get_registered_future_quarters,\
     should_highlight_future_quarters
 from myuw.dao.term import get_next_non_summer_quarter
@@ -61,5 +61,5 @@ class RegisteredFutureQuarters(RESTDispatch):
             resp_data["highlight_future_quarters"] = highlight
             log_success_response(logger, timer)
             return HttpResponse(json.dumps(resp_data))
-        except Exception:
+        except Exception as ex:
             return handle_exception(logger, timer, traceback)

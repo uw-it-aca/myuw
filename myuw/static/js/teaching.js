@@ -15,8 +15,9 @@ var Teaching = {
         var template = Handlebars.compile(teaching_source);
 
         $("#main-content").html(template({
-            'bothell_affil': window.user.bothell_affil,
-            'tacoma_affil': window.user.tacoma_affil
+            'seattle_affil': (window.user.seattle_affil || window.user.seattle),
+            'bothell_affil': (window.user.bothell_affil || window.user.bothell),
+            'tacoma_affil': (window.user.tacoma_affil || window.user.tacoma)
         }));
 
         NoticeBanner.render_init($("#notice_banner_location"));

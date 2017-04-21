@@ -1,7 +1,7 @@
 from django.test import TestCase
 from myuw.dao.schedule import _get_schedule
 from restclients.models import Term
-from restclients.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 from myuw.dao.textbook import get_textbook_by_schedule,\
     get_verba_link_by_schedule
 from myuw.test import get_request

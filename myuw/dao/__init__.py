@@ -16,9 +16,7 @@ def get_user_model():
 
 
 def is_using_file_dao():
-    dao = SWS_DAO()._getDAO()
-    class_name = dao.__class__.__name__
-    return class_name == "File" or class_name == "ByWeek"
+    return SWS_DAO().get_implementation().is_mock()
 
 
 THRIVE = "thrive"

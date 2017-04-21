@@ -8,12 +8,14 @@ from django.conf import settings
 from myuw.logger.logback import log_info, log_exception
 from myuw.dao import is_fyp_thrive_viewer, get_netid_of_current_user
 from myuw.dao.schedule import get_current_quarter_schedule
+from myuw.dao.pws import get_campus_of_current_user
 from myuw.dao.gws import is_grad_student, is_student,\
     is_current_graduate_student, is_undergrad_student,\
     is_pce_student, is_student_employee, is_employee, is_faculty,\
     is_seattle_student, is_bothell_student, is_tacoma_student,\
     is_staff_employee
 from myuw.dao.enrollment import get_main_campus
+from myuw.dao.exceptions import IndeterminateCampusException
 
 
 logger = logging.getLogger(__name__)
@@ -66,7 +68,16 @@ def get_all_affiliations(request):
             "tacoma": is_tacoma_student(),
             }
     # add 'official' campus info
-    official_campuses = _get_official_campuses(get_main_campus(request))
+    campuses = []
+    try:
+        campuses = get_main_campus(request)
+    except IndeterminateCampusException:
+        try:
+            campuses = [get_campus_of_current_user()]
+        except IndeterminateCampusException:
+            pass
+
+    official_campuses = _get_official_campuses(campuses)
     data = dict(data.items() + official_campuses.items())
     # Note:
     #    As the UW Affiliation group (gws) only knows about one campus,
@@ -112,11 +123,11 @@ def _get_official_campuses(campuses):
                          'official_bothell': False,
                          'official_tacoma': False}
     for campus in campuses:
-        if campus == "Seattle":
+        if campus.lower() == "seattle":
             official_campuses['official_seattle'] = True
-        if campus == "Tacoma":
+        if campus.lower() == "tacoma":
             official_campuses['official_tacoma'] = True
-        if campus == "Bothell":
+        if campus.lower() == "bothell":
             official_campuses['official_bothell'] = True
     return official_campuses
 

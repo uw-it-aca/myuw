@@ -6,7 +6,7 @@ var TextbookCard = {
     render_init: function() {
         TextbookCard.dom_target = $('#TextbookCard');
         if (!window.user.student) {
-            $("#TextbookCard").hide();
+            TextbookCard.dom_target.hide();
         }
         if (TextbookCard.term === 'current') {
             if (!window.card_display_dates.is_before_eof_7days_of_term) {
@@ -35,6 +35,7 @@ var TextbookCard = {
         if (!TextbookCard._has_all_data()) {
             return;
         }
+
         // _render should be called only once.
         if (renderedCardOnce(TextbookCard.name)) {
             return;
@@ -96,18 +97,19 @@ var TextbookCard = {
         var template = Handlebars.compile(source);
         var raw = template(template_data);
         TextbookCard.dom_target.html(raw);
+        LogUtils.cardLoaded(TextbookCard.name, TextbookCard.dom_target);
+        TextbookCard.add_events(term);
+    },
 
-        $(".show_textbooks").on("click", function(ev) {
+    add_events: function(term) {
+        $("#show_term_textbooks").on("click", function(ev) {
             WSData.log_interaction("card_view_future_textbooks", term);
             var hist = window.History;
             hist.pushState({
                 state: "textbooks",
                 term: term
             },  "", "/textbooks/"+term);
-            return false;
         });
-        LogUtils.cardLoaded(TextbookCard.name, TextbookCard.dom_target);
-
     }
 
 };

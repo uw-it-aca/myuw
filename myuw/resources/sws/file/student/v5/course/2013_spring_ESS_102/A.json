@@ -33,7 +33,7 @@
     "Href":"/student/v5/term/2013,spring.json",
     "Year":"2013"
   },
-  "LimitEstimateEnrollment":"50",
+  "LimitEstimateEnrollment":"15",
   "CourseTitleLong":"SPACE & SPACE TRAVEL",
   "DuplicateEnrollmentAllowed":false,
   "CourseCampus":"Seattle",
@@ -151,5 +151,5 @@
   ],
   "SecondaryGradingOption":false,
   "ClassWebsiteUrl":"http://earthweb.ess.washington.edu/ess-102/",
-  "CurrentEnrollment":"3"
+  "CurrentEnrollment":"305"
 }

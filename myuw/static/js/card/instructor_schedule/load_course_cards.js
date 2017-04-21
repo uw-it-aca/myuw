@@ -81,12 +81,38 @@ var InstructorCourseCards = {
         InstructorCourseCards.add_events();
     },
 
-    add_events: function() {
+    add_events: function(term) {
+        $(".course_website").on("click", function(ev) {
+            var course_id = ev.currentTarget.getAttribute("rel");
+            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
+            WSData.log_interaction("open_course_website_"+course_id, term);
+        });
+
+        $(".show_map").on("click", function(ev) {
+            var course_id = ev.currentTarget.getAttribute("rel");
+            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
+            var building = ev.currentTarget.getAttribute("rel");
+            building = building.replace(/[^a-z0-9]/gi, '_');
+            WSData.log_interaction("show_map_from_course_list_"+building, term);
+        });
+
+        $(".course_canvas_site").on("click", function(ev) {
+            var course_id = ev.currentTarget.getAttribute("rel");
+            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
+            WSData.log_interaction("open_course_canvas_website_"+course_id, term);
+        });
+
         $(".instructed-terms").change(function(ev) {
             InstructorCourseCards.term = $('.instructed-terms option:selected').val();
             InstructorCourseCards.render_init();
-            WSData.log_interaction("show_instructed_courses_for_" + 
+            WSData.log_interaction("show_instructed_courses_for_" +
                                    InstructorCourseCards.term);
         });
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.InstructorCourseCards = InstructorCourseCards;

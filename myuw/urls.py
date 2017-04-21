@@ -24,7 +24,7 @@ from myuw.views.api.future_schedule import StudClasScheFutureQuar
 from myuw.views.api.grad import MyGrad
 from myuw.views.api.iasystem import IASystem
 from myuw.views.api.library import MyLibInfo
-from myuw.views.api.mailman import Mailman
+from myuw.views.api.emaillist import Emaillist
 from myuw.views.api.profile import MyProfile
 from myuw.views.api.category_links import CategoryLinks
 from myuw.views.api.other_quarters import RegisteredFutureQuarters
@@ -35,6 +35,7 @@ from myuw.views.api.academic_events import AcademicEvents
 from myuw.views.api.thrive import ThriveMessages
 from myuw.views.api.calendar import DepartmentalCalendar
 from myuw.views.search import search_res
+from myuw.views.api.upass import UPass
 
 urlpatterns = []
 
@@ -50,7 +51,7 @@ if settings.DEBUG:
 urlpatterns += [
     url(r'admin/dates', override, name="myuw_date_override"
         ),
-    url(r'^logger/(?P<interaction_type>\w+)$', log_interaction
+    url(r'^logger/(?P<interaction_type>.*)$', log_interaction
         ),
     url(r'^api/v1/academic_events$', login_required(AcademicEvents().run),
         name="myuw_academic_calendar"
@@ -87,12 +88,17 @@ urlpatterns += [
     url(r'^api/v1/library/$', login_required(MyLibInfo().run),
         name="myuw_library_api"
         ),
-    url(r'^api/v1/mailman/(?P<year>\d{4}),'
+    url(r'^api/v1/emaillist/(?P<year>\d{4}),'
         r'(?P<quarter>[A-Za-z]+),'
         r'(?P<curriculum_abbr>[&%0-9A-Za-z]+),'
-        r'(?P<course_number>\d{3}),'
+        r'(?P<course_number>\d{3})/'
         r'(?P<section_id>[A-Za-z][A-Z0-9a-z]?)$',
-        login_required(Mailman().run), name="myuw_mailman_api"
+        login_required(Emaillist().run),
+        name="myuw_emaillist_api"
+        ),
+    url(r'^api/v1/emaillist',
+        login_required(Emaillist().run),
+        name="myuw_emaillist_api"
         ),
     url(r'^api/v1/myplan/(?P<year>\d{4})/(?P<quarter>[a-zA-Z]+)',
         login_required(MyPlan().run),
@@ -107,6 +113,9 @@ urlpatterns += [
         ),
     url(r'^api/v1/profile/$', login_required(MyProfile().run),
         name="myuw_profile_api"
+        ),
+    url(r'^api/v1/upass/$', login_required(UPass().run),
+        name="myuw_upass_api"
         ),
     url(r'^api/v1/schedule/current/?$',
         login_required(StudClasScheCurQuar().run),
@@ -172,11 +181,11 @@ urlpatterns += [
         name="myuw_academic_calendar_page"),
     url(r'^future_quarters/(?P<quarter>2[0-9]{3},[-,a-z]+)',
         future_quarters, name="myuw_future_quarters_page"),
+    url(r'^textbooks/(?P<term>2[0-9]{3},[-,a-z]+)/(?P<textbook>[%A-Z0-9]+)',
+        textbooks, name="myuw_textbooks_page"),
+    url(r'^textbooks/(?P<term>2[0-9]{3},[-,a-z]+)',
+        textbooks, name="myuw_textbooks_page"),
     url(r'^textbooks/?',
-        textbooks, name="myuw_textbooks_page"),
-    url(r'^textbooks/(?P<term>2[0-9]{3}-[a-z]+)',
-        textbooks, name="myuw_textbooks_page"),
-    url(r'^textbooks/(?P<term>2[0-9]{3}-[a-z]+)/(?P<textbook>[%A-Z0-9]+)',
         textbooks, name="myuw_textbooks_page"),
     url(r'^resource(/((?P<category>[a-z]+)?(/(?P<topic>[a-z]+))?)?)?',
         category, name="myuw_resource_page"),

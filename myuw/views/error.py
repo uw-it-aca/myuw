@@ -1,7 +1,7 @@
 import sys
 from django.http import HttpResponse
-from restclients.exceptions import (DataFailureException, InvalidNetID,
-                                    InvalidRegID)
+from restclients_core.exceptions import (DataFailureException, InvalidNetID,
+                                         InvalidRegID)
 from myuw.logger.logresp import log_err
 
 
@@ -10,6 +10,7 @@ HTTP_NOT_FOUND = 404
 HTTP_METHOD_NOT_ALLOWED = 405
 HTTP_GONE = 410
 MYUW_DATA_ERROR = 543
+NOT_INSTRUCTOR_ERROR = 403
 
 
 def _make_response(status_code, reason_phrase):
@@ -19,12 +20,17 @@ def _make_response(status_code, reason_phrase):
     return response
 
 
+def not_instructor_error():
+    return _make_response(NOT_INSTRUCTOR_ERROR,
+                          "Access Forbidden to Non Instructor")
+
+
 def invalid_session():
     return _make_response(HTTP_BAD_REQUEST, "No valid userid in session")
 
 
-def invalid_term():
-    return _make_response(HTTP_BAD_REQUEST, "Invalid requested term")
+def invalid_input_data():
+    return _make_response(HTTP_BAD_REQUEST, "Invalid post data content")
 
 
 def data_not_found():
@@ -50,15 +56,16 @@ def handle_exception(logger, timer, stack_trace):
     if isinstance(exc_value, InvalidNetID) or\
             isinstance(exc_value, InvalidRegID):
         return invalid_session()
+
+    if isinstance(exc_value, InvalidInputFormData):
+        return invalid_input_data()
+
     if isinstance(exc_value, DataFailureException) and\
             exc_value.status == 404:
         return data_not_found()
     return data_error()
 
 
-def not_instructor_error():
-    reason = "Read Access Forbidden to Non Instructor"
-    response = HttpResponse(reason)
-    response.status_code = 403
-    response.reason_phrase = reason
-    return response
+class InvalidInputFormData(Exception):
+    """malformed syntax in the form input data"""
+    pass

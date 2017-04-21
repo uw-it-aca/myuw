@@ -66,8 +66,13 @@ var Landing = {
             HfsCard,
             TuitionCard,
             LibraryCard,
+            UPassCard,
             EventsCard
         ];
+        // Add in outage card if we can't get the SWS/term resource
+        if(window.webservice_outage){
+            desktop_body_cards.unshift(OutageCard);
+        }
         Cards.load_cards_in_order(desktop_body_cards, $("#landing_content_cards"));
         Cards.load_cards_in_order(desktop_sidebar_cards, $("#landing_accounts_cards"));
         CalendarBanner.render_init($("#calendar_banner_location_desktop"));
@@ -95,16 +100,25 @@ var Landing = {
             HfsCard,
             TuitionCard,
             LibraryCard,
+            UPassCard,
             EventsCard,
             GradCommitteeCard,
             FutureQuarterCard1,
             SummerRegStatusCard1
         ];
+        // Add in outage card if we can't get the SWS/term resource
+        if(window.webservice_outage){
+            mobile_cards.unshift(OutageCard);
+        }
         Cards.load_cards_in_order(mobile_cards, $("#landing_content_cards"));
         CalendarBanner.render_init($("#calendar_banner_location_mobile"));
     },
 
     _reset_content_divs: function() {
+        // Reset all the multiple resourse card render records
+        // needed on every page refresh MUWM-3803
+        resetCardRenderCalled();
+
         $("#landing_content_cards").html('');
         $("#landing_accounts_cards").html('');
         $("#calendar_banner_location_desktop").html('');

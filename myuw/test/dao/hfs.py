@@ -1,6 +1,6 @@
 from django.test import TestCase
 from decimal import *
-from restclients.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 from myuw.dao.hfs import get_account_balances_by_uwnetid
 
 

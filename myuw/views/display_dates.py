@@ -16,7 +16,7 @@ from myuw.dao.term import get_default_date, get_comparison_datetime, \
     get_default_datetime
 from myuw.models import SeenRegistration
 from django.test.client import RequestFactory
-from restclients.sws.term import get_term_by_date
+from uw_sws.term import get_term_by_date
 from dateutil import tz
 import pytz
 

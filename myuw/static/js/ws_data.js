@@ -6,6 +6,8 @@ WSData = {
     _course_data_error_status: {},
     _instructed_course_data: {},
     _instructed_course_data_error_status: {},
+    _instructed_emaillist_data_error_status: {},
+    _instructed_emaillist_data: {},
     _instructed_section_data: {},
     _instructed_section_data_error_status: {},
     _instructed_section_details: null,
@@ -31,6 +33,7 @@ WSData = {
     _current_academic_calendar_data: null,
     _myplan_data: {},
     _thrive_data: null,
+    _upass_data: null,
 
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
@@ -88,6 +91,34 @@ WSData = {
         delete WSData._success_callbacks[url];
         delete WSData._error_callbacks[url];
         delete WSData._callback_args[url];
+        WSData._display_outage_message(url);
+    },
+
+    _display_outage_message: function(url) {
+        // Displays the outage card if specific webservices are down
+        if (WSData._is_outage_api_url(url)){
+            var card = OutageCard;
+            card.dom_target =  $("#" + card.name);
+            card.render_init();
+            window.webservice_outage = true;
+        }
+
+    },
+
+    _is_outage_api_url: function(url) {
+        var endpoints = [
+            "profile",
+            "notices",
+            "schedule"
+        ];
+        var is_outage = false;
+        $(endpoints).each(function(idx, endpoint){
+            if (url.indexOf(endpoint) !== -1){
+                is_outage = true;
+            }
+        });
+        return is_outage;
+
     },
 
 
@@ -148,11 +179,70 @@ WSData = {
                 this.matching_term = (course_data.year == this.year &&
                                       course_data.quarter.toLowerCase() == this.quarter.toLowerCase());
             });
+
+            var grading_is_open = course_data.grading_period_is_open;
+            var grading_is_closed = course_data.grading_period_is_past;
+            var grading_open = moment(new Date(course_data.term.grading_period_open));
+            var grading_aterm_open = moment(new Date(course_data.term.aterm_grading_period_open));
+            var grading_deadline = moment(new Date(course_data.term.grade_submission_deadline));
+            var ref = moment();
+            // search param supports testing
+            if (window.location.search.length) {
+                match = window.location.search.match(/\?grading_date=(.+)$/);
+                if (match) {
+                    ref = moment(new Date(decodeURI(match[1])));
+                    grading_is_closed = grading_deadline.isBefore(ref);
+                    grading_is_open = (!grading_is_closed && grading_open.isBefore(ref));
+                }
+            }
+
+            var grading_open_relative = grading_open.from(ref);
+            var grading_aterm_open_relative = grading_aterm_open.from(ref);
+            var grading_deadline_relative = grading_deadline.from(ref);
+            var grading_open_date;
+            var grading_deadline_date;
+
+            var fmt = 'MMM D [at] h:mm A';
+            var month_to_day_shift = 5;
+            if (grading_open.diff(ref, 'days') > month_to_day_shift) {
+                grading_open_date = grading_open.format(fmt) + ' PST';
+            } else {
+                grading_open_date = grading_open.calendar(ref);
+            }
+
+            if (grading_deadline.diff(ref, 'days') > month_to_day_shift) {
+                grading_deadline_date = grading_deadline.format(fmt) + 'PST';
+            } else {
+                grading_deadline_date = grading_deadline.calendar(ref);
+            }
+
             $.each(course_data.sections, function () {
                 var course_campus = this.course_campus.toLowerCase();
                 this.is_seattle = (course_campus === 'seattle');
                 this.is_bothell = (course_campus === 'bothell');
                 this.is_tacoma =  (course_campus === 'tacoma');
+
+                this.section_label = course_data.term.year + '-' +
+                    course_data.term.quarter.toLowerCase() + '-' +
+                    this.curriculum_abbr + '-' +
+                    this.course_number + '-' +
+                    this.section_id;
+
+                this.grading_period_is_open = grading_is_open;
+                this.grading_period_is_past = grading_is_closed;
+                this.grading_period_open_date = grading_open_date;
+                this.grading_period_relative_open = grading_open_relative;
+                this.aterm_grading_period_relative_open = grading_aterm_open_relative;
+                this.grade_submission_deadline_date = grading_deadline_date;
+                this.grade_submission_relative_deadline = grading_deadline_relative;
+
+                this.grading_status.all_grades_submitted =
+                    (this.grading_status.hasOwnProperty('submitted_count') &&
+                     this.grading_status.hasOwnProperty('unsubmitted_count') &&
+                     this.grading_status.unsubmitted_count === 0);
+                if (this.grading_status.submitted_date) {
+                    this.grading_status.submitted_relative_date = moment(new Date(this.grading_status.submitted_date)).from();
+                }
             });
         }
         return course_data;
@@ -243,6 +333,9 @@ WSData = {
     },
     thrive_data: function() {
         return WSData._thrive_data;
+    },
+    upass_data: function() {
+        return WSData._upass_data;
     },
 
     fetch_event_data: function(callback, err_callback, args) {
@@ -456,7 +549,6 @@ WSData = {
             }
 
             WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
-
             $.ajax({
                 url: url,
                 dataType: "JSON",
@@ -1017,6 +1109,33 @@ WSData = {
         }
     },
 
+    fetch_upass_data: function(callback, err_callback, args) {
+        if (WSData.upass_data() === null) {
+            var url = "/api/v1/upass/";
+            $.ajax({
+                url: url,
+                dataType: "JSON",
+
+                type: "GET",
+                accepts: {html: "application/json"},
+                success: function(results) {
+                    WSData._upass_data = results;
+                    if (callback !== null) {
+                        callback.apply(null, args);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    err_callback.call(null, xhr.status, error);
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
     save_links: function(links) {
         var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;
         $.ajax({
@@ -1134,4 +1253,44 @@ WSData = {
         }
     },
 
+    fetch_instructed_section_emaillist_data: function(section_label, callback, err_callback, args) {
+        if (!WSData._instructed_emaillist_data[section_label]) {
+            var url = "/api/v1/emaillist/" + section_label;
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+
+            $.ajax({
+                url: url,
+                dataType: "JSON",
+                async: true,
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    WSData._instructed_emaillist_data_error_status[section_label] = null;
+                    WSData._instructed_emaillist_data[section_label] = results;
+                    WSData._run_success_callbacks_for_url(url);
+                },
+                error: function(xhr, status, error) {
+                    WSData._instructed_emaillist_data_error_status[section_label] = xhr.status;
+                    WSData._run_error_callbacks_for_url(url);
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.WSData = WSData;
