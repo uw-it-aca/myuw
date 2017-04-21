@@ -48,8 +48,6 @@ class Emaillist(RESTDispatch):
     @method_decorator(csrf_protect)
     def POST(self, request):
         timer = Timer()
-        import pdb
-        pdb.set_trace()
         try:
             single_section_labels = get_input(request)
             if not validate_is_instructor(single_section_labels):
