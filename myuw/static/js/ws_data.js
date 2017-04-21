@@ -3,9 +3,6 @@ WSData = {
     _book_data_error_status: {},
     _category_link_data: {},
     _course_data: {},
-    _course_data_error_status: {},
-    _instructed_course_data: {},
-    _instructed_course_data_error_status: {},
     _instructed_emaillist_data_error_status: {},
     _instructed_emaillist_data: {},
     _instructed_section_data: {},
@@ -14,9 +11,7 @@ WSData = {
     _instructed_section_details_error_status: null,
     _department_events: null,
     _grade_data: {},
-    _hfs_data: null,
     _mygrad_data: null,
-    _iasystem_data: null,
     _library_data: null,
     _oquarter_data: null,
     _notice_data: null,
@@ -24,7 +19,6 @@ WSData = {
     _profile_data: null,
     _profile_data_error_status: null,
     _tuition_data: null,
-    _instructor_data: {},
     _link_data: null,
     _success_callbacks: {},
     _error_callbacks: {},
@@ -121,164 +115,12 @@ WSData = {
 
     },
 
-
     book_data: function(term) {
         return WSData._book_data[term];
     },
 
     book_data_error_code: function(term) {
         return WSData._book_data_error_status[term];
-    },
-
-    course_data_error_code: function(term) {
-        return WSData._course_data_error_status[term];
-    },
-    normalized_course_data: function(term) {
-        var course_data;
-        if (term) {
-            course_data = WSData.course_data_for_term(term);
-        } else {
-            course_data = WSData.current_course_data();
-        }
-        if (course_data) {
-            WSData._normalize_instructors(course_data);
-        }
-        return course_data;
-    },
-
-    current_course_data: function() {
-        return WSData._course_data.current;
-    },
-
-    course_data: function() {
-        if (window.console) {
-            console.warn("Use WSData.current_course_data");
-        }
-        return WSData.current_course_data();
-    },
-
-    course_data_for_term: function(term) {
-        return WSData._course_data[term];
-    },
-
-    instructed_course_data_error_code: function(term) {
-        return WSData._instructed_course_data_error_status[term];
-    },
-    normalized_instructed_course_data: function(term) {
-        var course_data;
-        if (term) {
-            course_data = WSData.instructed_course_data_for_term(term);
-        } else {
-            course_data = WSData.current_instructed_course_data();
-        }
-        if (course_data) {
-            WSData._normalize_instructors(course_data);
-            $.each(course_data.related_terms, function () {
-                this.is_current = (window.term.year == this.year &&
-                                   window.term.quarter.toLowerCase() == this.quarter.toLowerCase());
-                this.matching_term = (course_data.year == this.year &&
-                                      course_data.quarter.toLowerCase() == this.quarter.toLowerCase());
-            });
-
-            var grading_is_open = course_data.grading_period_is_open;
-            var grading_is_closed = course_data.grading_period_is_past;
-            var grading_open = moment(new Date(course_data.term.grading_period_open));
-            var grading_aterm_open = moment(new Date(course_data.term.aterm_grading_period_open));
-            var grading_deadline = moment(new Date(course_data.term.grade_submission_deadline));
-            var ref = moment();
-            // search param supports testing
-            if (window.location.search.length) {
-                match = window.location.search.match(/\?grading_date=(.+)$/);
-                if (match) {
-                    ref = moment(new Date(decodeURI(match[1])));
-                    grading_is_closed = grading_deadline.isBefore(ref);
-                    grading_is_open = (!grading_is_closed && grading_open.isBefore(ref));
-                }
-            }
-
-            var grading_open_relative = grading_open.from(ref);
-            var grading_aterm_open_relative = grading_aterm_open.from(ref);
-            var grading_deadline_relative = grading_deadline.from(ref);
-            var grading_open_date;
-            var grading_deadline_date;
-
-            var fmt = 'MMM D [at] h:mm A';
-            var month_to_day_shift = 5;
-            if (Math.abs(grading_open.diff(ref, 'days')) > month_to_day_shift) {
-                grading_open_date = grading_open.format(fmt) + ' PST';
-            } else {
-                grading_open_date = grading_open.calendar(ref);
-            }
-
-            if (Math.abs(grading_deadline.diff(ref, 'days')) > month_to_day_shift) {
-                grading_deadline_date = grading_deadline.format(fmt) + ' PST';
-            } else {
-                grading_deadline_date = grading_deadline.calendar(ref);
-            }
-
-            var minutes_till_open = grading_open.diff(ref, 'minutes');
-            var opens_in_24_hours = (minutes_till_open >= 0 &&
-                                     minutes_till_open <= (24 * 60));
-
-            var minutes_till_deadline = grading_deadline.diff(ref, 'minutes');
-            var deadline_in_24_hours = (minutes_till_deadline >= 0 &&
-                                        minutes_till_deadline <= (24 * 60));
-
-            $.each(course_data.sections, function (iii) {
-                var section = this;
-                var course_campus = section.course_campus.toLowerCase();
-                section.is_seattle = (course_campus === 'seattle');
-                section.is_bothell = (course_campus === 'bothell');
-                section.is_tacoma =  (course_campus === 'tacoma');
-
-                section.section_label = course_data.term.year + '-' +
-                    course_data.term.quarter.toLowerCase() + '-' +
-                    section.curriculum_abbr + '-' +
-                    section.course_number + '-' +
-                    section.section_id;
-
-                section.grading_period_is_open = grading_is_open;
-                section.grading_period_is_past = grading_is_closed;
-                section.opens_in_24_hours = opens_in_24_hours;
-                section.deadline_in_24_hours = deadline_in_24_hours;
-                section.grading_period_open_date = grading_open_date;
-                section.grading_period_relative_open = grading_open_relative;
-                section.aterm_grading_period_relative_open = grading_aterm_open_relative;
-                section.grade_submission_deadline_date = grading_deadline_date;
-                section.grade_submission_relative_deadline = grading_deadline_relative;
-
-
-                section.grading_status.all_grades_submitted =
-                    (section.grading_status.hasOwnProperty('submitted_count') &&
-                     section.grading_status.hasOwnProperty('unsubmitted_count') &&
-                     section.grading_status.unsubmitted_count === 0);
-                if (section.grading_status.submitted_date) {
-                    var submitted = moment(new Date(section.grading_status.submitted_date));
-                    if (Math.abs(submitted.diff(ref, 'days')) > month_to_day_shift) {
-                        section.grading_status.submitted_relative_date = submitted.format(fmt) + ' PST';
-                    } else {
-                        section.grading_status.submitted_relative_date = submitted.calendar(ref);
-                    }
-                }
-
-                section.grade_submission_section_delegate = false;
-                $.each(section.grade_submission_delegates, function () {
-                    if (this.level.toLowerCase() === 'section') {
-                        section.grade_submission_section_delegate = true;
-                        return false;
-                    }
-                });
-            });
-        }
-        return course_data;
-    },
-
-    current_instructed_course_data: function() {
-        return WSData._instructed_course_data.current;
-    },
-
-    instructed_course_data_for_term: function(term) {
-        return WSData._instructed_course_data[term];
     },
 
     instructed_section_data_error_code: function(section_label) {
@@ -307,18 +149,6 @@ WSData = {
     grade_data_for_term: function(term) {
         if (!term) { term = ''; }
         return WSData._grade_data[term];
-    },
-
-    iasystem_data: function() {
-        return WSData._iasystem_data;
-    },
-
-    hfs_data: function() {
-        return WSData._hfs_data;
-    },
-
-    instructor_data: function(regid) {
-        return WSData._instructor_data[regid];
     },
 
     library_data: function() {
@@ -361,32 +191,6 @@ WSData = {
     },
     upass_data: function() {
         return WSData._upass_data;
-    },
-
-    fetch_event_data: function(callback, err_callback, args) {
-        if (WSData._department_events === null) {
-            $.ajax({
-                    url: "/api/v1/deptcal/",
-                    dataType: "JSON",
-
-                    type: "GET",
-                    accepts: {html: "text/html"},
-                    success: function(results) {
-                        WSData._department_events = results;
-                        if (callback !== null) {
-                            callback.apply(null, args);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        err_callback.call(null, xhr.status, error);
-                        }
-                    });
-              }
-        else {
-            window.setTimeout(function() {
-                callback.apply(null, args);
-            }, 0);
-        }
     },
 
     academic_calendar_data: function() {
@@ -468,155 +272,6 @@ WSData = {
                 callback.apply(null, args);
             }, 0);
         }
-    },
-
-    fetch_book_data: function(term, callback, err_callback, args) {
-        if (!WSData._book_data[term]) {
-            var url = "/api/v1/book/" + term;
-
-            if (WSData._is_running_url(url)) {
-                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
-                return;
-            }
-
-            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
-            $.ajax({
-                url: url,
-                dataType: "JSON",
-
-                type: "GET",
-                accepts: {html: "text/html"},
-                success: function(results) {
-                    WSData._book_data[term] = results;
-                    WSData._run_success_callbacks_for_url(url);
-                },
-                error: function(xhr, status, error) {
-                    WSData._book_data_error_status[term] = xhr.status;
-                    WSData._run_error_callbacks_for_url(url);
-                }
-                });
-            }
-            else {
-                window.setTimeout(function() {
-                    callback.apply(null, args);
-                }, 0);
-            }
-        },
-
-
-    fetch_current_course_data: function(callback, err_callback, args) {
-        return WSData.fetch_course_data_for_term("current", callback, err_callback, args);
-    },
-
-    fetch_course_data_for_term: function(term, callback, err_callback, args) {
-        if (!WSData._course_data[term]) {
-            var url = "/api/v1/schedule/"+term;
-
-            if (WSData._is_running_url(url)) {
-                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
-                return;
-            }
-
-            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
-
-            $.ajax({
-                url: url,
-                dataType: "JSON",
-
-                type: "GET",
-                accepts: {html: "text/html"},
-                success: function(results) {
-                    // MUWM-549 and MUWM-552
-                    var sections = results.sections;
-                    var section_count = sections.length;
-                    for (var index = 0; index < section_count; index++) {
-                        section = sections[index];
-
-                        var canvas_url = section.canvas_url;
-                        if (canvas_url) {
-                            if (section.class_website_url == canvas_url) {
-                                section.class_website_url = null;
-                            }
-                            var matches = canvas_url.match(/\/([0-9]+)$/);
-                            var canvas_id = matches[1];
-                            var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
-
-                            if (section.class_website_url == alternate_url) {
-                                section.class_website_url = null;
-                            }
-                        }
-                    }
-                    WSData._course_data_error_status[term] = null;
-                    WSData._course_data[term] = results;
-                    WSData._run_success_callbacks_for_url(url);
-                },
-                error: function(xhr, status, error) {
-                    WSData._course_data_error_status[term] = xhr.status;
-                    WSData._run_error_callbacks_for_url(url);
-                }
-            });
-        }
-        else {
-            window.setTimeout(function() {
-                callback.apply(null, args);
-            }, 0);
-        }
-
-    },
-
-    fetch_instructed_course_data_for_term: function(term, callback, err_callback, args) {
-        if (!WSData._instructed_course_data[term]) {
-            var url = "/api/v1/instructor_schedule/"+term;
-
-            if (WSData._is_running_url(url)) {
-                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
-                return;
-            }
-
-            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
-            $.ajax({
-                url: url,
-                dataType: "JSON",
-                async: true,
-                type: "GET",
-                accepts: {html: "text/html"},
-                success: function(results) {
-                    // MUWM-549 and MUWM-552
-                    var sections = results.sections;
-                    var section_count = sections.length;
-                    for (var index = 0; index < section_count; index++) {
-                        section = sections[index];
-
-                        var canvas_url = section.canvas_url;
-                        if (canvas_url) {
-                            if (section.class_website_url == canvas_url) {
-                                section.class_website_url = null;
-                            }
-                            var matches = canvas_url.match(/\/([0-9]+)$/);
-                            var canvas_id = matches[1];
-                            var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
-
-                            if (section.class_website_url == alternate_url) {
-                                section.class_website_url = null;
-                            }
-                        }
-                    }
-                    WSData._instructed_course_data_error_status[term] = null;
-                    WSData._instructed_course_data[term] = results;
-                    WSData._run_success_callbacks_for_url(url);
-                },
-                error: function(xhr, status, error) {
-                    WSData._instructed_course_data_error_status[term] = xhr.status;
-                    WSData._run_error_callbacks_for_url(url);
-                }
-            });
-        }
-        else {
-            window.setTimeout(function() {
-                callback.apply(null, args);
-            }, 0);
-        }
-
     },
 
     fetch_instructed_section_data: function(section_label, callback, err_callback, args) {
@@ -740,10 +395,6 @@ WSData = {
         });
     },
 
-    fetch_course_data: function(callback, args) {
-        console.warn("Use WSData.fetch_current_course_data instead");
-    },
-
     fetch_link_data: function(callback, err_callback, args) {
             if (WSData._link_data === null) {
                 $.ajax({
@@ -767,146 +418,6 @@ WSData = {
                 }, 0);
             }
         },
-
-    fetch_instructor_data: function(callback, err_callback, args) {
-        var instructor_regid = args[1];
-        if (WSData._instructor_data[instructor_regid] === undefined) {
-            $.ajax({
-                    url: "/api/v1/person/"+instructor_regid,
-                    dataType: "JSON",
-
-                    type: "GET",
-                    accepts: {html: "text/html"},
-                    success: function(results) {
-                        WSData._instructor_data[instructor_regid] = results;
-                        callback.apply(null, args);
-                    },
-                    error: function(xhr, status, error) {
-                        err_callback.call(null, status, error);
-                    }
-                });
-            }
-            else {
-                window.setTimeout(function() {
-                    callback.apply(null, args);
-                }, 0);
-            }
-        },
-
-
-    normalize_instructors_for_term: function(term) {
-        WSData._normalize_instructors(WSData.course_data_for_term(term));
-    },
-
-    normalize_instructors_for_current_term: function() {
-        WSData._normalize_instructors(WSData.current_course_data());
-    },
-
-    _sort_instructors_by_last_name: function(a, b) {
-        if (a.surname < b.surname) return -1;
-        if (a.surname > b.surname) return 1;
-        return 0;
-    },
-
-    _normalize_instructors: function(data) {
-        if (!data.sections.length) {
-            return;
-        }
-        if (data.sections[0].instructors !== undefined) {
-            return;
-        }
-
-        var section_index = 0;
-        for (section_index = 0; section_index < data.sections.length; section_index++) {
-            var section = data.sections[section_index];
-            section.instructors = [];
-
-            var instructors = {};
-            var meeting_index = 0;
-            for (meeting_index = 0; meeting_index < section.meetings.length; meeting_index++) {
-                var meeting = section.meetings[meeting_index];
-                var instructor_index = 0;
-                for (instructor_index = 0; instructor_index < meeting.instructors.length; instructor_index++) {
-                    var instructor = meeting.instructors[instructor_index];
-
-                    if (instructors[instructor.uwregid] === undefined) {
-                        section.instructors.push(instructor);
-                    }
-                    instructors[instructor.uwregid] = true;
-                }
-            }
-            section.instructors = section.instructors.sort(WSData._sort_instructors_by_last_name);
-        }
-    },
-
-    normalize_instructors: function() {
-        if (window.console) {
-            console.warn("Use WSData.normalize_instructors_for_current_term");
-        }
-        WSData.normalize_instructors_for_current_term();
-    },
-
-    fetch_hfs_data: function(callback, err_callback, args) {
-        if (WSData._hfs_data === null) {
-            $.ajax({
-                    url: "/api/v1/hfs/",
-                    dataType: "JSON",
-
-                    type: "GET",
-                    accepts: {html: "text/html"},
-                    success: function(results) {
-                        WSData._hfs_data = results;
-                        if (callback !== null) {
-                            callback.apply(null, args);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        err_callback.call(null, xhr.status, error);
-                        }
-                    });
-              }
-        else {
-            window.setTimeout(function() {
-                callback.apply(null, args);
-            }, 0);
-        }
-    },
-
-    fetch_iasystem_data: function(callback, err_callback, args) {
-        if (WSData._iasystem_data === null) {
-            var url = "/api/v1/ias/";
-
-            if (WSData._is_running_url(url)) {
-                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
-                return;
-            }
-
-            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
-            $.ajax({
-                url: url,
-                dataType: "JSON",
-
-                type: 'GET',
-                accepts: {html: "application/json"},
-                success: function(results) {
-                    WSData._iasystem_data = results;
-                    if (callback !== null) {
-                        callback.apply(null, args);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    if (err_callback !== null) {
-                        err_callback.call(null, xhr.status, error);
-                    }
-                }
-            });
-        }
-        else {
-            window.setTimeout(function() {
-                callback.apply(null, args);
-            }, 0);
-        }
-    },
 
     fetch_library_data: function(callback, err_callback, args) {
         if (WSData._library_data === null) {

@@ -8,7 +8,8 @@ describe('EventsCard', function(){
             Global.Environment.init({
                 render_id: render_id,
                 scripts: [
-                    "myuw/static/js/card/events.js"
+                    "myuw/static/js/card/events.js",
+                    "myuw/static/js/ws_event_data.js"
                 ],
                 templates: [
                     "myuw/templates/handlebars/card/events.html"
@@ -28,13 +29,16 @@ describe('EventsCard', function(){
             assert.equal($('.myuw-events').length, 1);
             assert.equal($('.myuw-events-list').length, 10);
         });
-        it('should sort events', function(){
-            var event_data = WSData.dept_event_data();
-            var data = EventsCard.group_by_date(event_data.events);
-            var shown = data[0];
-            var hidden = data[1];
-            assert.equal(hidden.length, 4);
-            assert.equal(shown.length, 6);
+        it('should sort events', function(done){
+            WebServiceData.require({event_data: new EventData()}, function (resources) {
+                var event_data = resources['event_data'].data;
+                var data = EventsCard.group_by_date(event_data.events);
+                var shown = data[0];
+                var hidden = data[1];
+                assert.equal(hidden.length, 4);
+                assert.equal(shown.length, 6);
+                done();
+            });
         });
         after(function () {
             Global.Environment.ajax_stub_restore();

@@ -6,22 +6,22 @@ var TextBooks = {
         TextBooks.term = term;
         showLoading();
         CommonLoading.render_init();
-        var requirements = [
-            new BookData(term),
-            new CourseData(term)
-        ];
+        var requirements = {
+            books: new BookData(term),
+            course_data: new CourseData(term)
+        };
 
         if (myuwFeatureEnabled('instructor_schedule')) {
-            requirements.push(new InstructedCourseData(term));
+            requirements.instructed_course_data = new InstructedCourseData(term);
         }
 
         WebServiceData.require(requirements, TextBooks.render_books);
     },
 
-    render_error: function(book_resource, course_resource, instructed_course_resource) {
-        var book_err_status = book_resource.error ? book_resource.error.status : null;
-        var course_err_status = course_resource.error ? course_resource.error.status : null;
-        var instructed_course_err_status = instructed_course_resource.error ? instructed_course_resource.error.status : null;
+    render_error: function(book_error, course_error, instructed_course_error) {
+        var book_err_status = book_error ? book_error.status : null;
+        var course_err_status = course_error ? course_error.status : null;
+        var instructed_course_err_status = instructed_course_error ? instructed_course_error.status : null;
 
         if (book_err_status === 543 || course_err_status === 543 || instructed_course_err_status === 543) {
             var raw = CardWithError.render("Textbooks");
@@ -83,25 +83,14 @@ var TextBooks = {
         return template_data;
     },
 
-    _has_all_data: function () {
-        var book_data = WSData.book_data(TextBooks.term);
-        var course_data = WSData.course_data_for_term(TextBooks.term);
-        var instructed_course_data = WSData.instructed_course_data_for_term(TextBooks.term);
-        var book_data_err_status = WSData.course_data_error_code(TextBooks.term);
-        var course_err_status = WSData.course_data_error_code(TextBooks.term);
-        var instructed_course_err_status = WSData.instructed_course_data_error_code(TextBooks.term);
+    render_books: function(resources) {
+        var book_resource = resources.books;
+        var course_resource = resources.course_data;
+        var instructed_course_resource = resources.instructed_course_data;
 
-        return ((book_data ||
-                 (book_data === undefined && book_data_err_status === 404)) &&
-                (course_data ||
-                 (course_data === undefined && course_err_status === 404)) &&
-                (instructed_course_data ||
-                 (instructed_course_data === undefined && instructed_course_err_status === 404)));
-    },
-
-    render_books: function(book_resource, course_resource, instructed_course_resource) {
-
-        if (TextBooks.render_error(book_resource, course_resource, instructed_course_resource)) {
+        if (TextBooks.render_error(book_resource.error,
+                                   course_resource.error,
+                                   instructed_course_resource.error)) {
             return;
         }
 

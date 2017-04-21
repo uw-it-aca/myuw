@@ -9,15 +9,15 @@ var InstructorCourseCards = {
                 InstructorCourseCards.term = window.term.year + ',' + window.term.quarter;
             }
 
-            WebServiceData.require([new InstructedCourseData(InstructorCourseCards.term)],
+            WebServiceData.require({course_data: new InstructedCourseData(InstructorCourseCards.term)},
                                    InstructorCourseCards.render);
         } else {
             $("#InstructorCourseCards").hide();
         }
     },
 
-    render_error: function(instructed_course_resource) {
-        var error_code = instructed_course_resource.error ? instructed_course_resource.error.status : null;
+    render_error: function(instructed_course_error) {
+        var error_code = instructed_course_error ? instructed_course_error.status : null;
 
         if (error_code == 410) {
             Error410.render();
@@ -45,8 +45,10 @@ var InstructorCourseCards = {
         return false;
     },
 
-    render: function (instructed_course_resource) {
-        if (InstructorCourseCards.render_error(instructed_course_resource)) {
+    render: function (resources) {
+        var instructed_course_resource = resources.course_data;
+
+        if (InstructorCourseCards.render_error(instructed_course_resource.error)) {
             return;
         }
 

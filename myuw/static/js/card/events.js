@@ -3,22 +3,21 @@ var EventsCard = {
     dom_target: undefined,
 
     render_init: function() {
-        WSData.fetch_event_data(EventsCard.render_upon_data, EventsCard.show_error);
+        WebServiceData.require({event_data: new EventData()}, EventsCard.render);
     },
 
-    render_upon_data: function() {
-        if (!EventsCard._has_all_data()) {
-            return;
-        }
-        EventsCard._render(WSData.dept_event_data());
-    },
-
-    _render: function () {
+    render: function (resources) {
         var source = $("#events_card_content").html();
         var template = Handlebars.compile(source);
-        var event_data = WSData.dept_event_data();
         var active_events = 0;
         var active_name_url = [];
+        var event_data_resource = resources.event_data;
+
+        if (EventsCard.show_error(event_data_resource.error)) {
+            return;
+        }
+
+        var event_data = event_data_resource.data;
         for (var key in event_data.future_active_cals){
             if (event_data.future_active_cals.hasOwnProperty(key)){
                 active_events += event_data.future_active_cals[key].count;
@@ -69,14 +68,6 @@ var EventsCard = {
         LogUtils.cardLoaded(EventsCard.name, EventsCard.dom_target);
     },
 
-    _has_all_data: function () {
-        if (WSData.dept_event_data()) {
-            return true;
-        }
-        return false;
-    },
-
-
     group_by_date: function (event_data) {
         // assumes events are sorted server side
         var hide_events = [],
@@ -107,8 +98,13 @@ var EventsCard = {
         });
     },
 
-    show_error: function() {
-        EventsCard.dom_target.hide();
+    show_error: function(event_data_error) {
+        if (event_data_error) {
+            EventsCard.dom_target.hide();
+            return true;
+        }
+
+        return false;
     }
 };
 

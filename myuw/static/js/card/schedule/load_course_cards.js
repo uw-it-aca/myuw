@@ -9,7 +9,8 @@ var CourseCards = {
             return;
         }
 
-        WSData.fetch_course_data_for_term(CourseCards.term, CourseCards.render_upon_data, CourseCards.render_error);
+        WebServiceData.require({course_data: new CourseData(CourseCards.term)},
+                               CourseCards.render);
     },
 
     render_upon_data: function() {
@@ -17,36 +18,44 @@ var CourseCards = {
             return;
         }
         CourseCards._render();
-        LogUtils.cardLoaded(CourseCards.name, CourseCards.dom_target);
     },
 
-    render_error: function() {
-        var error_code = WSData.course_data_error_code(CourseCards.term);
+    render_error: function(course_resource_error) {
+        var error_code = course_resource_error ? course_resource_error.status : null;
+
         if (error_code == 410) {
             Error410.render();
-            return;
-        }
-        var raw = (error_code === 404 ? CardWithNoCourse.render(CourseCards.term) : CardWithError.render("Schedule & Course Info"));
-        if (CourseCards.term === "current") {
-            CourseCards.dom_target.html(raw);
-        } else {
-            $("#future_content").html(raw);
-        }
-    },
-
-    _has_all_data: function () {
-        if (WSData.normalized_course_data(CourseCards.term)) {
             return true;
         }
+
+        if (course_resource_error) {
+            var raw = (error_code === 404 ? CardWithNoCourse.render(CourseCards.term) : CardWithError.render("Schedule & Course Info"));
+            if (CourseCards.term === "current") {
+                CourseCards.dom_target.html(raw);
+            } else {
+                $("#future_content").html(raw);
+            }
+
+            return true;
+        }
+
         return false;
     },
 
-    _render: function () {
+    render: function (resources) {
         var term = CourseCards.term;
-        var course_data = WSData.normalized_course_data(term);
+        var course_data_resource = resources.course_data;
+
+        if (CourseCards.render_error(course_data_resource.error)) {
+            return;
+        }
+
+        var course_data = course_data_resource.data;
 
         if (term === 'current' && window.card_display_dates.in_coursevel_fetch_window) {
-            WSData.fetch_iasystem_data(LoadCourseEval.render_upon_data, null);
+            WebServiceData.require({'iasystem_data': new IASystemData()},
+                                   LoadCourseEval.render,
+                                   [course_data_resource]);
         }
 
         var source = $("#course_card_list").html();
@@ -54,9 +63,10 @@ var CourseCards = {
         var raw = courses_template(course_data);
         CourseCards.dom_target.html(raw);
 
-        LoadCourseEval.render(term, false);
+        LoadCourseEval.render(course_data_resource, null);
 
         CourseCards.add_events(term);
+        LogUtils.cardLoaded(CourseCards.name, CourseCards.dom_target);
     },
 
     add_events: function(term) {
@@ -79,7 +89,7 @@ var CourseCards = {
             building = building.replace(/[^a-z0-9]/gi, '_');
             WSData.log_interaction("show_map_from_course_list_"+building, term);
         });
-        
+
         $(".course_canvas_site").on("click", function(ev) {
             var course_id = ev.currentTarget.getAttribute("rel");
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');

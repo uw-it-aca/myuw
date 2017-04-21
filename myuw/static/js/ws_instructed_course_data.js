@@ -1,5 +1,4 @@
 function InstructedCourseData(term) {
-    this.name = 'instructed_course_data';
     this.url = "/api/v1/instructor_schedule/"+term;
     this.data = null;
     this.error = null;

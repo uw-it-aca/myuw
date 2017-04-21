@@ -1,31 +1,22 @@
 var LoadCourseEval = {
 
-    render_upon_data: function() {
-        LoadCourseEval.render('current', LoadCourseEval._has_all_data());
-    },
-
-    _has_all_data: function () {
-        if (WSData.iasystem_data()) {
-            return true;
-        }
-        return false;
-    },
-
-    render: function (term, fetched_eval_data) {
-        var course_data = WSData.normalized_course_data(term);
+    render: function (course_data_resource, iasystem_data_resource) {
+        var course_data = course_data_resource.data;
+        var fetched_eval_data = iasystem_data_resource ? iasystem_data_resource.data : null;
         var course_sections = course_data.sections;
-        var index;
-        for (index = 0; index < course_sections.length; index++) {
-            section = course_sections[index];
+
+        $.each(course_sections, function () {
+            section = this;
             section.year = course_data.year;
             section.quarter = course_data.quarter;
             section.summer_term = course_data.summer_term;
 
             CourseCardContentPanel.render(section, fetched_eval_data);
-        }
+        });
+
         LoadCourseEval.add_events();
     },
-    
+
     add_events: function() {
         $(".toggle_course_card_disclosure").on("click", function(ev) {
             ev.preventDefault();

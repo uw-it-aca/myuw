@@ -128,7 +128,7 @@ var Environment = {
         var template = raw.replace(/{\%[ ]+load[ ]+templatetag_handlebars[ ]+\%}/, '')
             .replace(/{\%[ ]*tplhandlebars[ ]+["]?([^ \%]+)["]?[ ]*\%}/,
                      '<script id="$1" type="text/x-handlebars-template">')
-            .replace(/{\%[ ]*endtplhandlebars[ ]*\%}/, 
+            .replace(/{\%[ ]*endtplhandlebars[ ]*\%}/,
                      '</script>')
             .replace(/{\%[ ]*(end)?verbatim[ ]*\%}/g, '');
 

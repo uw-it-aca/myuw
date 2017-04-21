@@ -14,49 +14,44 @@ var TextbookCard = {
                 return;
             }
         }
-        WSData.fetch_book_data(TextbookCard.term,
-                               TextbookCard.render_upon_data,
-                               TextbookCard.render_error);
-        WSData.fetch_course_data_for_term(TextbookCard.term,
-                                          TextbookCard.render_upon_data,
-                                          TextbookCard.render_error);
+
+        var resources = {
+            book_data: new BookData(TextbookCard.term),
+            course_data: new CourseData(TextbookCard.term)
+        };
+
+        WebServiceData(resources, TextBookCard.render);
     },
 
-    _has_all_data: function () {
-        if (WSData.book_data(TextbookCard.term) && WSData.course_data_for_term(TextbookCard.term)) {
+    render_error: function(book_data_error, course_data_error) {
+        var book_error_code = book_error_code ? book_data_error.status : null;
+        var course_error_code = course_data_error ? course_data_error.status: null;
+        if (course_error_code === 404 || book_error_code === 404) {
+            $("#TextbookCard").hide();
+            return true;
+        } else if (book_error_code || course_data_error) {
+            TextbookCard.dom_target.html(CardWithError.render("Textbooks"));
             return true;
         }
+
         return false;
     },
 
-    render_upon_data: function(args) {
-        // Having multiple callbacks come to this function,
-        // delay rendering until all requests are complete.
-        if (!TextbookCard._has_all_data()) {
-            return;
-        }
-
+    render: function (resources) {
         // _render should be called only once.
         if (renderedCardOnce(TextbookCard.name)) {
             return;
         }
-        TextbookCard._render();
-    },
+        var textbook_data_resource = resources.book_data;
+        var course_data_resource = resources.course_data;
 
-    render_error: function() {
-        var book_error_code = WSData.book_data_error_code(TextbookCard.term);
-        var course_error_code = WSData.course_data_error_code(TextbookCard.term);
-        if (course_error_code === 404 || book_error_code === 404) {
-            $("#TextbookCard").hide();
+        if (TextbookCard.render_error(textbook_data_resource.error, course_data_resource.error)) {
             return;
         }
-        TextbookCard.dom_target.html(CardWithError.render("Textbooks"));
-    },
 
-    _render: function () {
         var term = TextbookCard.term;
-        var course_data = WSData.course_data_for_term(term);
-        var textbook_data  = TextBooks.process_book_data(WSData.book_data(term), course_data);
+        var course_data = course_data_resource.data;
+        var textbook_data  = TextBooks.process_book_data(textbook_data_resource.data, course_data);
         var no_book_assigned = true;
         var section_book_data = [];
 

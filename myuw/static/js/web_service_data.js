@@ -1,6 +1,6 @@
 /* Simpler WSData - generic errors and data by url.
    each requirement has url, data, error properties, setData method
-*/ 
+*/
 
 WebServiceData = {
 	requirement_cache: {},     // resources indexed by url
@@ -44,15 +44,13 @@ WebServiceData = {
                 }
             });
         }
-        // else fetch in flight, fetch event will catch it
+        // else fetch in flight, fetch event trigger will load it
     },
 	requirement_loaded: function(callback, args, resources) {
         if ($.isArray(args)) {
-            $.each(resources, function () {
-                args.push(this);
-            });
+            args.push(resources);
         } else {
-            args = resources;
+            args = [resources];
         }
 
         window.setTimeout(function() {
@@ -61,65 +59,61 @@ WebServiceData = {
     },
     require: function(requirements, callback, args) {
         var requirement_event_id = WebServiceData.requirement_events_id();
-        var loaded = [];
+        var requirement_count = Object.keys(requirements).length;
+        var loaded = 0;
+        var name_url_map = {};
+        var fetch_handler = function (e, req) {
+            $(window).trigger(requirement_event_id, req);
+        };
 
         $(window).on(requirement_event_id, function (e, req) {
-            loaded.push(req);
-            if (loaded.length === requirements.length) {
+            requirements[name_url_map[req.url]] = req;
+            if (++loaded === requirement_count) {
                 $(window).off(requirement_event_id);
-                WebServiceData.requirement_loaded(callback, args, loaded);
+                WebServiceData.requirement_loaded(callback, args, requirements);
             }
         });
 
-  	    $.each(requirements, function () {
-            var requirement = this;
+        var name;
+        for (name in requirements) {
+            var requirement = requirements[name];
             var fetch_event_id = WebServiceData.fetch_event_id(requirement);
+            requirement.name = name_url_map[requirement.url] = name;
 
             // fetch events separate from requirement events so
             // one fetch can satisfy multiple requests
-            $(window).one(fetch_event_id, function (e, req) {
-                $(window).trigger(requirement_event_id, req);
-            });
-
+            $(window).one(fetch_event_id, fetch_handler);
             WebServiceData.fetch_requirement(requirement, fetch_event_id);
-        });
+        }
     },
     normalize_instructors: function(data) {
-        if (!data.sections.length) {
-            return;
-        }
-        if (data.sections[0].instructors !== undefined) {
+        if (!data.sections.length || data.sections[0].instructors !== undefined) {
             return;
         }
 
-        var section_index = 0;
-        for (section_index = 0; section_index < data.sections.length; section_index++) {
-            var section = data.sections[section_index];
+        $.each(data.sections, function () {
+            var section = this;
             section.instructors = [];
-
             var instructors = {};
-            var meeting_index = 0;
-            for (meeting_index = 0; meeting_index < section.meetings.length; meeting_index++) {
-                var meeting = section.meetings[meeting_index];
-                var instructor_index = 0;
-                for (instructor_index = 0; instructor_index < meeting.instructors.length; instructor_index++) {
-                    var instructor = meeting.instructors[instructor_index];
-
+            $.each(section.meetings, function () {
+                var meeting = this;
+                $.each(meeting.instructors, function () {
+                    var instructor = this;
                     if (instructors[instructor.uwregid] === undefined) {
                         section.instructors.push(instructor);
                     }
                     instructors[instructor.uwregid] = true;
-                }
-            }
-            section.instructors = section.instructors.sort(WebServiceData._sort_instructors_by_last_name);
-        }
+                });
+            });
+
+            section.instructors = section.instructors.sort(WebServiceData.sort_instructors_by_last_name);
+        });
     },
-    _sort_instructors_by_last_name: function(a, b) {
+    sort_instructors_by_last_name: function(a, b) {
         if (a.surname < b.surname) return -1;
         if (a.surname > b.surname) return 1;
         return 0;
-    },
-
+    }
 };
 
 /* node.js exports */

@@ -1,5 +1,4 @@
 function CourseData(term) {
-    this.name = 'course_data';
     this.url = "/api/v1/schedule/" + term;
     this.data = null;
     this.error = null;
@@ -29,3 +28,42 @@ CourseData.prototype.setData = function(data) {
 
     this.data = data;
 };
+
+CourseData.prototype.normalize_instructors = function() {
+    var data = this.data;
+
+    if (!data.sections.length) {
+        return;
+    }
+    if (data.sections[0].instructors !== undefined) {
+        return;
+    }
+
+    var section_index = 0;
+    for (section_index = 0; section_index < data.sections.length; section_index++) {
+        var section = data.sections[section_index];
+        section.instructors = [];
+
+        var instructors = {};
+        var meeting_index = 0;
+        for (meeting_index = 0; meeting_index < section.meetings.length; meeting_index++) {
+            var meeting = section.meetings[meeting_index];
+            var instructor_index = 0;
+            for (instructor_index = 0; instructor_index < meeting.instructors.length; instructor_index++) {
+                var instructor = meeting.instructors[instructor_index];
+
+                if (instructors[instructor.uwregid] === undefined) {
+                    section.instructors.push(instructor);
+                }
+                instructors[instructor.uwregid] = true;
+            }
+        }
+        section.instructors = section.instructors.sort(WebServiceData.sort_instructors_by_last_name);
+    }
+};
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.CourseData = CourseData;
