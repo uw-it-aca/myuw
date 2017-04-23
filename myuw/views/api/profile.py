@@ -29,25 +29,6 @@ class MyProfile(RESTDispatch):
     Performs actions on resource at /api/v1/profile/.
     """
 
-    def is_pending(self, pending, current, added):
-        """
-        Sorts through the current and added pending Major/Minors and
-        returns True if the Major/Minor is not either current or already
-        added.
-        """
-        # Obj can be either a SWS Major or Minor object
-        if current is not None:
-            for obj in current:
-                if pending.full_name == obj['full_name']:
-                    return False
-
-        if pending is not None:
-            for obj in added:
-                if pending.full_name == obj.full_name:
-                    return False
-
-        return True
-
     def GET(self, request):
         """
         GET returns 200 with the student account balances
@@ -77,58 +58,29 @@ class MyProfile(RESTDispatch):
                 elif 'Bothell' in campuses:
                     response['campus'] = 'Bothell'
                 try:
-                    enrollment = get_current_quarter_enrollment(request)
-                    future_enrollments = get_next_quarters(request, 3)
+                    future_quarters = get_next_quarters(request, 3)
+                    enrollments = get_all_enrollments()
 
                     response['class_level'] = enrollment.class_level
-                    if len(enrollment.majors) > 0:
-                        response['majors'] = []
+
+                    response['majors'] = []
+                    response['minors'] = []
+                    for enrollment in enrollments:
+                        current_major = {}
+                        current_major['quarter'] = (term.quarter + "-" +
+                                                    str(term.year))
                         for major in enrollment.majors:
-                            response['majors'].append(major.json_data())
+                            current_major['majors'].append(major.json_data())
 
-                    if len(enrollment.minors) > 0:
-                        response['minors'] = []
+                        response['majors'].append(current_major)
+
+                        current_minor = {}
+                        current_minor['quarter'] = (term.quarter + "-" +
+                                                    str(term.year))
                         for minor in enrollment.minors:
-                            response['minors'].append(minor.json_data())
+                            current_minor['minors'].append(minor.json_data())
 
-                    response['pending_majors'] = []
-                    response['pending_minors'] = []
-                    pending_majors = []
-                    pending_minors = []
-
-                    for quarter in future_enrollments:
-                        try:
-                            enrollment = get_quarter_enrollment(quarter)
-                        except Exception:
-                            continue
-
-                        major_entry = {}
-                        major_entry['majors'] = []
-                        major_entry['quarter'] = quarter.quarter
-
-                        for major in enrollment.majors:
-                            if self.is_pending(major, response['majors'],
-                                               pending_majors):
-                                major_entry['majors'].append(major.json_data())
-                                pending_majors.append(major)
-
-                        if len(major_entry['majors']) > 0:
-                            response['pending_majors'].append(major_entry)
-
-                        minor_entry = {}
-                        minor_entry['minors'] = []
-                        minor_entry['quarter'] = quarter.quarter
-                        for minor in enrollment.minors:
-                            if self.is_pending(minor, response['minors'],
-                                               pending_minors):
-                                minor_entry['minors'].append(minor.json_data())
-                                pending_minors.append(minor)
-
-                        if len(minor_entry['minors']) > 0:
-                            response['pending_minors'].append(minor_entry)
-
-                    response['has_pending'] = (len(pending_minors) > 0 and
-                                               len(pending_majors) > 0)
+                        response['minors'].append(current_minor)
 
                 except Exception as ex:
                     logger.error(
