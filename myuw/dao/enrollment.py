@@ -4,7 +4,8 @@ the SWS Enrollment resource.
 """
 
 import logging
-from uw_sws.enrollment import get_enrollment_by_regid_and_term
+from uw_sws.enrollment import (get_enrollment_by_regid_and_term,
+                               enrollment_search_by_regid)
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_resp_time, log_exception, log_info
 from myuw.dao.pws import get_regid_of_current_user
@@ -28,9 +29,17 @@ def get_current_quarter_enrollment(request):
                       timer)
 
 
-def get_quarter_enrollment(term):
+def get_all_enrollments(request):
     regid = get_regid_of_current_user()
-    return get_enrollment_by_regid_and_term(regid, term)
+
+    timer = Timer()
+    id = "%s %s" % ('get all enrollment by regid', regid)
+    try:
+        return enrollment_search_by_regid(regid)
+    finally:
+        log_resp_time(logger,
+                      id,
+                      timer)
 
 
 def get_main_campus(request):
