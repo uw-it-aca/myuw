@@ -4,7 +4,7 @@ var VisualScheduleCard = {
     term: 'current',
 
     should_display_card: function() {
-        if (!window.user.student ||
+        if (!(window.user.student || window.user.is_instructor) ||
             !window.card_display_dates.is_before_last_day_of_classes) {
                 if (!window.force_visual_schedule_display) {
                     return false;
@@ -22,51 +22,75 @@ var VisualScheduleCard = {
             $("#VisualScheduleCard").hide();
             return;
         }
-        WSData.fetch_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_upon_data, VisualScheduleCard.render_error);
+        WSData.fetch_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_handler, VisualScheduleCard.render_handler);
+        if(myuwFeatureEnabled('instructor_schedule')) {
+            WSData.fetch_instructed_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_handler, VisualScheduleCard.render_handler);
+        }
     },
 
-    _has_all_data: function () {
-        if (WSData.normalized_course_data(VisualScheduleCard.term)) {
-            return true;
+    render_handler: function() {
+        if(VisualScheduleCard._has_all_responses()){
+            var course_data = WSData.normalized_course_data(VisualScheduleCard.term);
+            var instructed_course_data = WSData.normalized_instructed_course_data(VisualScheduleCard.term);
+            if (course_data || instructed_course_data){
+                VisualScheduleCard._render();
+            } else {
+                VisualScheduleCard.render_error();
+            }
         }
-        return false;
+
+    },
+
+    _has_all_responses: function () {
+        // returns true when both schedule API calls have returned, successful or otherwise
+        var course_data = WSData.normalized_course_data(VisualScheduleCard.term);
+        var instructed_course_data = WSData.normalized_instructed_course_data(VisualScheduleCard.term);
+        var course_err_status = WSData.course_data_error_code(VisualScheduleCard.term);
+        var instructed_course_err_status = WSData.instructed_course_data_error_code(VisualScheduleCard.term);
+
+        var has_all_data = (course_data || course_err_status );
+        if(myuwFeatureEnabled('instructor_schedule')){
+            has_all_data = (has_all_data &&
+            (instructed_course_data || instructed_course_err_status ));
+        }
+        return has_all_data;
     },
 
     render_error: function() {
-        // CourseCards displays the message
         $("#VisualScheduleCard").hide();
-    },
-
-    render_upon_data: function(course_index) {
-        if (!VisualScheduleCard._has_all_data()) {
-            return;
-        }
-        VisualScheduleCard._render();
     },
 
     // The course_index will be given when a modal is shown.
     _render: function() {
         var term = VisualScheduleCard.term;
         var course_data = WSData.normalized_course_data(term);
+        var instructed_course_data = WSData.normalized_instructed_course_data(term);
 
-        VisualScheduleCard.render_schedule(course_data, term);
+        $("#VisualScheduleCard").show();
+        VisualScheduleCard.render_schedule(course_data, instructed_course_data, term);
 
-        FinalExamSchedule.render(course_data, term, true);
+        if (course_data) {
+            FinalExamSchedule.render(course_data, term, true);
+        } else {
+            $("#toggle_finalexams").hide();
+        }
+
 
         LogUtils.cardLoaded(VisualScheduleCard.name, VisualScheduleCard.dom_target);
     },
         
-    render_schedule: function(course_data, term) {
+    render_schedule: function(course_data, instructed_course_data, term) {
         VisualScheduleCard.shown_am_marker = false;
         var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
         var visual_data = {
-            has_early_fall_start: course_data.has_early_fall_start,
+            has_early_fall_start: (course_data && course_data.has_early_fall_start),
             is_pce: user.pce,
-            total_sections: course_data.sections.length,
-            year: course_data.year, 
-            quarter: course_data.quarter,
+            total_sections: ((course_data) ? course_data.sections.length : 0) + 
+                ((instructed_course_data) ? instructed_course_data.sections.length : 0) ,
+            year: (course_data) ? course_data.year : instructed_course_data.year,
+            quarter: (course_data) ? course_data.quarter : instructed_course_data.quarter,
             term: term,
-            summer_term: course_data.summer_term,
+            summer_term: (course_data) ? course_data.summer_term : instructed_course_data.summer_term,
             latest_ending: 0,
             earliest_start: 24*60,
             monday: [],
@@ -77,76 +101,87 @@ var VisualScheduleCard = {
             saturday: [],
             display_hours: [],
             has_6_days: false,
-            courses_meeting_tbd: []
+            courses_meeting_tbd: [],
+            is_instructor: false
+        };
+
+        var set_meeting = function(course_data, meeting, index, is_instructor) {
+            var section = course_data.sections[index];
+            if (!meeting.days_tbd) {
+
+                var start_parts = meeting.start_time.split(":");
+                var start_minutes = parseInt(start_parts[0], 10) * 60 + parseInt(start_parts[1], 10);
+
+
+                var end_parts = meeting.end_time.split(":");
+                var end_minutes = parseInt(end_parts[0], 10) * 60 + parseInt(end_parts[1], 10);
+
+                if (start_minutes < visual_data.earliest_start) {
+                    visual_data.earliest_start = start_minutes;
+                }
+                if (end_minutes > visual_data.latest_ending) {
+                    visual_data.latest_ending = end_minutes;
+                }
+
+                var meeting_info = {
+                    is_meeting: true,
+                    is_instructor: is_instructor,
+                    start: start_minutes,
+                    end: end_minutes,
+                    color_id: section.color_id,
+                    curriculum: section.curriculum_abbr,
+                    course_number: section.course_number,
+                    term: term,
+                    section_id: section.section_id,
+                    section_index: index,
+                    building_tbd: meeting.building_tbd,
+                    building: meeting.building,
+                    building_name: meeting.building_name,
+                    room_tbd: meeting.room_tbd,
+                    room: meeting.room,
+                    latitude: meeting.latitude,
+                    longitude: meeting.longitude,
+                    early_fall_start: section.early_fall_start,
+                    has_early_fall_start: course_data.has_early_fall_start
+                };
+
+                $.each(days, function (day_index) {
+                    day = this;
+                    if (meeting.meeting_days[day]) {
+                        if (day === "saturday") {
+                            visual_data.has_6_days = true;
+                        }
+                        visual_data[day].push(meeting_info);
+                    }
+                });
+            }
+            else {
+                visual_data.courses_meeting_tbd.push({
+                    color_id: section.color_id,
+                    curriculum: section.curriculum_abbr,
+                    course_number: section.course_number,
+                    section_id: section.section_id,
+                    section_index: index
+                });
+            }
         };
         var day, day_index, i, height, top;
 
-        var index = 0;
-        for (index = 0; index < course_data.sections.length; index++) {
-            var section = course_data.sections[index];
+        if (course_data) {
+            $.each(course_data.sections, function (index) {
+                $.each(this.meetings, function (meeting_index) {
+                    set_meeting(course_data, this, index, false);
+                });
+            });
+        }
 
-            var meeting_index = 0;
-            for (meeting_index = 0; meeting_index < section.meetings.length; meeting_index++) {
-                var meeting = section.meetings[meeting_index];
-                if (!meeting.days_tbd) {
-
-                    var start_parts = meeting.start_time.split(":");
-                    var start_minutes = parseInt(start_parts[0], 10) * 60 + parseInt(start_parts[1], 10);
-
-
-                    var end_parts = meeting.end_time.split(":");
-                    var end_minutes = parseInt(end_parts[0], 10) * 60 + parseInt(end_parts[1], 10);
-
-                    if (start_minutes < visual_data.earliest_start) {
-                        visual_data.earliest_start = start_minutes;
-                    }
-                    if (end_minutes > visual_data.latest_ending) {
-                        visual_data.latest_ending = end_minutes;
-                    }
-
-                    var meeting_info = {
-                        is_meeting: true,
-                        start: start_minutes,
-                        end: end_minutes,
-                        color_id: section.color_id,
-                        curriculum: section.curriculum_abbr,
-                        course_number: section.course_number,
-                        term: term,
-                        section_id: section.section_id,
-                        section_index: index,
-                        building_tbd: meeting.building_tbd,
-                        building: meeting.building,
-                        building_name: meeting.building_name,
-                        room_tbd: meeting.room_tbd,
-                        room: meeting.room,
-                        latitude: meeting.latitude,
-                        longitude: meeting.longitude,
-                        early_fall_start: section.early_fall_start,
-                        has_early_fall_start: course_data.has_early_fall_start
-                    };
-
-                    day_index = 0;
-                    for (day_index = 0; day_index < days.length; day_index++) {
-                        day = days[day_index];
-
-                        if (meeting.meeting_days[day]) {
-                            if (day === "saturday") {
-                                visual_data.has_6_days = true;
-                            }
-                            visual_data[day].push(meeting_info);
-                        }
-                    }
-                }
-                else {
-                    visual_data.courses_meeting_tbd.push({
-                        color_id: section.color_id,
-                        curriculum: section.curriculum_abbr,
-                        course_number: section.course_number,
-                        section_id: section.section_id,
-                        section_index: index
-                    });
-                }
-            }
+        if (instructed_course_data) {
+            visual_data.is_instructor = true;
+            $.each(instructed_course_data.sections, function (index) {
+                $.each(this.meetings, function (meeting_index) {
+                    set_meeting(instructed_course_data, this, index, true);
+                });
+            });
         }
 
         // Make it so the start and end times are always on the hour:
@@ -226,7 +261,8 @@ var VisualScheduleCard = {
 
         source   = $("#visual_schedule_card_content").html();
         template = Handlebars.compile(source);
-        VisualScheduleCard.dom_target.html(template(visual_data));
+        t = template(visual_data);
+        VisualScheduleCard.dom_target.html(t);
 
         VisualScheduleCard.add_events(term);
     },

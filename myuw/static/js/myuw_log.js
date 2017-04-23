@@ -141,6 +141,11 @@ var LogUtils = {
         var docViewTop = $(window).scrollTop();
         var docViewBottom = docViewTop + $(window).height();
 
+        if($(elem).length === 0) {
+            // return false when card isn't attached to the page
+            return false;
+        }
+
         var elmHeight = $(elem).height();
         var offset = $(elem).offset();
         var elemTop = $(elem).offset().top;
