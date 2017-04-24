@@ -4,37 +4,33 @@ var ThriveCard = {
 
     render_init: function() {
         if (window.user.fyp) {
-            WSData.fetch_thrive_data(ThriveCard.render_upon_data, ThriveCard.render_error);
+            WebServiceData.require({thrive_data: new ThriveData()}, ThriveCard.render);
             return;
         }
         $("#ThriveCard").hide();
     },
 
-    render_upon_data: function () {
-        if (!ThriveCard._has_all_data()) {
+    render: function (resources) {
+        var thrive_resource = resources.thrive_data;
+        if (ThriveCard.render_error(thrive_resource.error)) {
             return;
         }
-        ThriveCard._render();
-    },
 
-    _render: function () {
         Handlebars.registerPartial('thrive_highlight', $("#thrive_highlight").html());
         Handlebars.registerPartial('thrive_learnmore', $("#thrive_learnmore").html());
-        var thrive = WSData.thrive_data();
+        var thrive = thrive_resource.data;
         var source = $("#thrive_card").html();
         var template = Handlebars.compile(source);
         ThriveCard.dom_target.html(template(thrive));
         LogUtils.cardLoaded(ThriveCard.name, ThriveCard.dom_target);
     },
 
-    _has_all_data: function () {
-        if (WSData.thrive_data()) {
+    render_error: function (thrive_resource_error) {
+        if (thrive_resource_error) {
+            $("#ThriveCard").hide();
             return true;
         }
-        return false;
-    },
 
-    render_error: function () {
-        $("#ThriveCard").hide();
+        return false;
     }
 };

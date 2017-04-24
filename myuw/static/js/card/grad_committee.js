@@ -8,17 +8,17 @@ var GradCommitteeCard = {
             return;
         }
 
-        WSData.fetch_mygrad_data(GradCommitteeCard.render_upon_data, GradCommitteeCard.render_error);
+        WebServiceData.require({mygrad_data: new MyGradData()}, GradCommitteeCard.render);
     },
 
-    render_upon_data: function() {
-        if (!GradCommitteeCard._has_all_data()) {
+    render: function (resources) {
+        var mygrad_resource = resources.mygrad_data;
+
+        if (GradCommitteeCard.render_error(mygrad_resource.error)) {
             return;
         }
-        GradCommitteeCard._render(WSData.mygrad_data());
-    },
 
-    _render: function (mygrad_data) {
+        var mygrad_data = mygrad_resource.data;
         var source = $("#gradcommittee_card_content").html();
         var template = Handlebars.compile(source);
         if (!mygrad_data.committees) {
@@ -26,23 +26,21 @@ var GradCommitteeCard = {
             return;
         }
         if (mygrad_data.comm_err) {
-            GradCommitteeCard.render_error();
+            GradCommitteeCard.render_error(true);
             return;
         }
 
         GradCommitteeCard.dom_target.html(template(mygrad_data));
     },
 
-    _has_all_data: function () {
-        if (WSData.mygrad_data()) {
+    render_error: function(mygrad_resource_error) {
+        if (mygrad_resource_error) {
+            var raw = CardWithError.render("Your Committees");
+            GradCommitteeCard.dom_target.html(raw);
             return true;
         }
-        return false;
-    },
 
-    render_error: function(status) {
-        var raw = CardWithError.render("Your Committees");
-        GradCommitteeCard.dom_target.html(raw);
+        return false;
     }
 
 };

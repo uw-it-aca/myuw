@@ -22,6 +22,7 @@ var VisualScheduleCard = {
             $("#VisualScheduleCard").hide();
             return;
         }
+
         WebServiceData.require({course_data: new CourseData(VisualScheduleCard.term)},
                                VisualScheduleCard.render);
     },

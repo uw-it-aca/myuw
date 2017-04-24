@@ -6,29 +6,29 @@ var RequestEmailLists = {
     render_init: function(section_label) {
         RequestEmailLists.label = section_label;
         RequestEmailLists.dom_target = '#popup_emaillist_' + safe_label(RequestEmailLists.label);
-        WSData.fetch_instructed_section_emaillist_data(section_label,
-                                                       RequestEmailLists.render_upon_data,
-                                                       RequestEmailLists.render_error);
+
+        WebServiceData.require({section_emaillist_data: new InstructedSectionEmailListData()},
+                               RequestEmailLists.render);
     },
 
-    render_upon_data: function() {
-        if (WSData._instructed_emaillist_data[RequestEmailLists.label] === undefined) {
-            return;
-        }
-        RequestEmailLists.render();
-    },
-
-    render_error: function() {
-        var error_code = WSData._instructed_emaillist_data_error_status[RequestEmailLists.label];
-        if (error_code == 543) {
+    render_error: function(section_emaillist_resource_error) {
+        if (section_emaillist_resource_error && section_emaillist_resource_error.status === 543) {
             raw = CardWithError.render("Request Email List");
             $(RequestEmailLists.dom_target).html(raw);
+            return true;
         }
+
+        return false;
     },
 
+    render: function(resources) {
+        var section_emaillist_resource = resources.section_emaillist_data;
 
-    render: function() {
-        var data = WSData._instructed_emaillist_data[RequestEmailLists.label];
+        if (RequestEmailLists.render_error(section_emaillist_resource.error)) {
+            return;
+        }
+
+        var data = section_emaillist_resource.data;
         if (data.total_course_wo_list > 1) {
             data.multi_sections_wo_list = true;
         }

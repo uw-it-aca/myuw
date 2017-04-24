@@ -1,8 +1,8 @@
 var Profile = {
-    render_upon_data: function() {
+    render_upon_data: function(resources) {
         var source = $("#profile-content").html();
         var template = Handlebars.compile(source);
-        $("#profile").html(template(WSData.profile_data()));
+        $("#profile").html(template(resources.profile_data.data));
         $("#toggle_my_profile").attr("title", $("#profile_toggle_hidden").text());
         $("#toggle_my_profile").attr("aria-label", $("#profile_toggle_hidden").text());
         Profile.add_events();

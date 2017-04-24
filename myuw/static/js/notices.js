@@ -1,10 +1,17 @@
-/*global $, Handlebars, WSData*/
+/*global $, Handlebars, WSData, WebServiceData*/
 
 var Notices = {
+    notice_data: undefined,
+
+    set_data: function(notice_data) {
+        Notices.notice_data = notice_data;
+    },
+
     show_notices: function () {
         "use strict";
         CommonLoading.render_init();
-        WSData.fetch_notice_data(Notices.render_notices);
+        WebServiceData.require({notice_data: new NoticeData()},
+                               Notices.render_notices);
     },
 
     _show_section: function(hidden_block, slide_link) {
@@ -33,7 +40,7 @@ var Notices = {
         }, 700);
     },
 
-    render_notices: function () {
+    render_notices: function (resources) {
         "use strict";
         var notices, source, template,
             expanded = false;
@@ -177,7 +184,7 @@ var Notices = {
         "use strict";
         var i,
             notice,
-            notices = WSData.notice_data(),
+            notices = Notices.notice_data,
             filtered_notices = [];
         for (i = 0; i < notices.length; i += 1) {
             notice = notices[i];
@@ -196,7 +203,7 @@ var Notices = {
         var i,
             j,
             notice_tags,
-            notices = WSData.notice_data(),
+            notices = Notices.notice_data,
             filtered_notices = [];
         for (i = 0; i < notices.length; i += 1) {
             notice_tags = notices[i].location_tags;
@@ -307,7 +314,7 @@ var Notices = {
     get_unread_count_by_category: function () {
         var i,
             category_counts = {},
-            notices = WSData.notice_data();
+            notices = Notices.notice_data;
         for (i = 0; i < notices.length; i += 1) {
             if (!notices[i].is_read && notices[i].category !== null) {
                 if (notices[i].category in category_counts) {
@@ -346,7 +353,7 @@ var Notices = {
     },
 
     _get_all_critical: function() {
-        var critical = Notices._get_critical(WSData.notice_data(), "StudentFinAid");
+        var critical = Notices._get_critical(Notices.notice_data, "StudentFinAid");
         var finaid_critical_tags = ["tuition_aidhold",
                                     "tuition_missingdocs",
                                     "tuition_loanpromissory",
@@ -369,7 +376,7 @@ var Notices = {
     },
 
     get_total_critical_count: function () {
-        return Notices._get_critical_count(WSData.notice_data());
+        return Notices._get_critical_count(Notices.notice_data);
     },
 
     _get_utc_date: function (date) {

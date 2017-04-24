@@ -27,52 +27,23 @@ var RegStatusCard = {
             return;
         }
 
-        WSData.fetch_notice_data(RegStatusCard.render_upon_data,
-                                 RegStatusCard.render_error);
-        WSData.fetch_oquarter_data(RegStatusCard.render_upon_data,
-                                   RegStatusCard.render_error);
+        WebServiceData.require({notice_data: new NoticeData(),
+                                oquarter_data: new OQuarterData()},
+                               RegStatusCard.render);
     },
 
-    render_upon_data: function() {
-        // Having multiple callbacks point to this function
-        // delay rendering until all requests are complete.
-        if (!RegStatusCard._has_all_data()) {
-            return;
-        }
-
-        var next_term_data = WSData.oquarter_data().next_term_data;
-        var reg_next_quarter = next_term_data.quarter;
-
-        if (! window.card_display_dates.myplan_peak_load &&
-            ! WSData.myplan_data(next_term_data.year, next_term_data.quarter)) {
-            WSData.fetch_myplan_data(next_term_data.year,
-                                     next_term_data.quarter,
-                                     RegStatusCard.render_upon_data,
-                                     RegStatusCard.render_error);
-            return;
-        }
-
-        // _render should be called only once.
-        if (renderedCardOnce(RegStatusCard.name)) {
-            return;
-        }
-        RegStatusCard._render();
-    },
-
-    _has_all_data: function () {
-        if (WSData.notice_data() && WSData.oquarter_data()) {
+    render_error: function(notice_resource_error, oquarter_resource_error) {
+        if (notice_resource_error || oquarter_resource_error) {
+            // none of the api data returns 404.
+            // if any data failure, display error
+            RegStatusCard.dom_target.html(CardWithError.render("Registration"));
             return true;
         }
+
         return false;
     },
 
-    render_error: function (status) {
-        // none of the api data returns 404.
-        // if any data failure, display error
-        RegStatusCard.dom_target.html(CardWithError.render("Registration"));
-    },
-
-    _render_for_term: function(myplan_data, quarter, summer_card_label) {
+    _render_for_term: function(myplan_data, quarter, oquarter_data, summer_card_label) {
         var est_reg_date_notices = Notices.get_notices_for_tag("est_reg_date");
         var display_est_reg_date;
         var is_summer_reg = (quarter === "Summer");
@@ -120,10 +91,10 @@ var RegStatusCard = {
         if (is_summer_reg) {
             var finaid_tags = ["reg_summeraid_avail_title"];
             financial_aid_notices = Notices.get_ordered_finaid_notices(finaid_tags);
-            next_term_data = WSData.oquarter_data().next_term_data;
+            next_term_data = oquarter_data.next_term_data;
             year = next_term_data.year;
 
-            var terms = WSData.oquarter_data().terms;
+            var terms = oquarter_data.terms;
             for (i = 0; i < terms.length; i++) {
                 var term = terms[i];
                 if ((term.quarter == quarter) && term.section_count) {
@@ -132,7 +103,7 @@ var RegStatusCard = {
             }
         }
         else {
-            next_term_data = WSData.oquarter_data().next_term_data;
+            next_term_data = oquarter_data.next_term_data;
             quarter = next_term_data.quarter;
             year = next_term_data.year;
             has_registration = next_term_data.has_registration;
@@ -266,19 +237,49 @@ var RegStatusCard = {
         })(summer_label);
     },
 
-    _render: function () {
-        var next_term_data = WSData.oquarter_data().next_term_data;
+    pre_render: function (resources) {
+        var notice_resource = resources.notice_data;
+        var oquarter_resource = resources.oquarter_data;
+        if (SummerRegStatusCard.render_error(otice_resource.error,
+                                             oquarter_resource.error)) {
+            return;
+        }
+
+        // _render should be called only once.
+        if (renderedCardOnce(RegStatusCard.name)) {
+            return;
+        }
+
+        var oquarter_data = oquarter_resource.data;
+        var next_term_data = oquarter_data.next_term_data;
         var reg_next_quarter = next_term_data.quarter;
-        var myplan_data;
         if (! window.card_display_dates.myplan_peak_load) {
-            myplan_data = WSData.myplan_data(next_term_data.year,
-                                             next_term_data.quarter);
+            WebServiceData.require({myplan_data: new MyPlanData(next_term_data.year,
+                                                                next_term_data.quarter)},
+                                   RegStatusCard.render,
+                                   [oquarter_resource]);
+            return;
+        }
+
+        RegStatusCard.render(resources);
+    },
+
+    render: function (oquarter_resource, myplan_resources) {
+        var oquarter_data = oquarter_resource.data;
+        var next_term_data = oquarter_data.next_term_data;
+        var reg_next_quarter = next_term_data.quarter;
+
+        var myplan_data;
+        if (! window.card_display_dates.myplan_peak_load && myplan_resources.myplan_data) {
+            if (myplan_resources) {
+                myplan_data = myplan_resources.myplan_data.data;
+            }
         }
 
         if (window.card_display_dates.myplan_peak_load || myplan_data) {
-
             var content = RegStatusCard._render_for_term(myplan_data,
-                                                         reg_next_quarter);
+                                                         reg_next_quarter,
+                                                         oquarter_data);
             if (!content) {
                 RegStatusCard.dom_target.hide();
                 return;

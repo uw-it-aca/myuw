@@ -2,23 +2,16 @@ var SummerEFSCard = {
     name: 'SummerEFSCard',
     dom_target: undefined,
     render_init: function () {
-        WSData.fetch_notice_data(SummerEFSCard.render_upon_data, SummerEFSCard.render_error);
+        WebServiceData.require({notice_data: new NoticeData()},
+                               SummerEFSCard.render);
     },
-    render_upon_data: function () {
-        if (!SummerEFSCard._has_all_data()) {
+
+    render: function (resources) {
+        var notice_resource = resources.notice_data;
+        if (SummerEFSCard.render_error(notice_resource.error)) {
             return;
         }
-        SummerEFSCard._render();
-    },
 
-    _has_all_data: function () {
-        if (WSData.notice_data()) {
-            return true;
-        }
-        return false;
-    },
-
-    _render: function () {
         var source = $("#ns_summer_efs").html();
         var template = Handlebars.compile(source);
         var notices = Notices.get_notices_for_tag("checklist_summerreg");
@@ -29,7 +22,13 @@ var SummerEFSCard = {
             SummerEFSCard.dom_target.hide();
         }
     },
-    render_error: function () {
-        SummerEFSCard.dom_target.html(CardWithError.render("Summer & Early Fall Start"));
+
+    render_error: function (notice_resource_error) {
+        if (notice_resource_error) {
+            SummerEFSCard.dom_target.html(CardWithError.render("Summer & Early Fall Start"));
+            return true;
+        }
+
+        return false;
     },
 };

@@ -8,26 +8,27 @@ var FutureQuarterCard = {
             $("#FutureQuarterCard1").hide();
             return;
         }
-        WSData.fetch_oquarter_data(FutureQuarterCard.render_upon_data, FutureQuarterCard.render_error);
 
         FutureQuarterCard.dom_target = $("#FutureQuarterCardA");
+        WebServiceData.require({oquarter_data: new OQuarterData()},
+                               FutureQuarterCard.render);
     },
 
-    render_upon_data: function() {
-        if (!FutureQuarterCard._has_all_data()) {
+    render: function (resources) {
+        if (FutureQuarterCard.render_error(resources.oquarter_data.error)) {
             return;
         }
-        if (WSData.oquarter_data().highlight_future_quarters) {
+
+        var oquarter_data = resources.oquarter_data.data;
+
+        if (oquarter_data.highlight_future_quarters) {
             $("#FutureQuarterCard1").hide();
         }
         else {
             FutureQuarterCard.dom_target = $('#FutureQuarterCard1');
             $("#FutureQuarterCardA").hide();
         }
-        FutureQuarterCard._render(WSData.oquarter_data());
-    },
 
-    _render: function (oquarter_data) {
         var source = $("#future_quarter_card").html();
         var template = Handlebars.compile(source);
 
@@ -40,19 +41,18 @@ var FutureQuarterCard = {
         }
     },
 
-    render_error: function(status) {
-        $("#FutureQuarterCard1").hide();
-        if (status === 404) {
-            FutureQuarterCard.dom_target.hide();
-            return;
-        }
-        FutureQuarterCard.dom_target.html(CardWithError.render("Future Quarter Courses"));
-    },
+    render_error: function(oquarter_resource_error) {
+        if (oquarter_resource_error) {
+            $("#FutureQuarterCard1").hide();
+            if (oquarter_resource_error.status === 404) {
+                FutureQuarterCard.dom_target.hide();
+            } else {
+                FutureQuarterCard.dom_target.html(CardWithError.render("Future Quarter Courses"));
+            }
 
-    _has_all_data: function () {
-        if (WSData.oquarter_data()) {
             return true;
         }
+
         return false;
     }
 

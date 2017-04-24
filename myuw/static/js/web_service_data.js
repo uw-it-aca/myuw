@@ -6,10 +6,10 @@ WebServiceData = {
 	requirement_cache: {},     // resources indexed by url
 
     requirement_events_id: function () {
-        return 'myuw.require.' + moment().valueOf().toString();
+        return 'myuw.require.' + Math.random().toString(16).substring(2);
     },
     fetch_event_id: function (requirement) {
-        return 'myuw.resource.' + requirement.url;
+        return 'myuw.resource.' + requirement.url.replace(/[\?=&%]/g, '_');
     },
     requirement_is_loading: function (requirement) {
         var cached = WebServiceData.requirement_cache[requirement.url];
@@ -31,6 +31,7 @@ WebServiceData = {
                 accepts: requirement.accepts || {html: "text/html"},
                 success: function(data) {
                     requirement.setData(data);
+                    $(window).trigger(event_id, requirement);
                 },
                 error: function(xhr, status, error) {
                     requirement.error = {
@@ -38,13 +39,13 @@ WebServiceData = {
                         status: xhr.status,
                         error: error
                     };
-                },
-                complete: function() {
+                    WebServiceData._display_outage_message(requirement.url);
                     $(window).trigger(event_id, requirement);
                 }
+                // do not trigger on "complete", data needs to be processed first
             });
         }
-        // else fetch in flight, fetch event trigger will load it
+        // else fetch is in flight, event trigger serves as the callback queue
     },
 	requirement_loaded: function(callback, args, resources) {
         if ($.isArray(args)) {
@@ -60,31 +61,56 @@ WebServiceData = {
     require: function(requirements, callback, args) {
         var requirement_event_id = WebServiceData.requirement_events_id();
         var requirement_count = Object.keys(requirements).length;
+        var name;
         var loaded = 0;
         var name_url_map = {};
         var fetch_handler = function (e, req) {
             $(window).trigger(requirement_event_id, req);
         };
-
-        $(window).on(requirement_event_id, function (e, req) {
+        var requirement_handler = function (e, req) {
             requirements[name_url_map[req.url]] = req;
             if (++loaded === requirement_count) {
                 $(window).off(requirement_event_id);
                 WebServiceData.requirement_loaded(callback, args, requirements);
             }
-        });
+        };
 
-        var name;
+        $(window).on(requirement_event_id, requirement_handler);
+
         for (name in requirements) {
             var requirement = requirements[name];
             var fetch_event_id = WebServiceData.fetch_event_id(requirement);
-            requirement.name = name_url_map[requirement.url] = name;
+            name_url_map[requirement.url] = name;
+            requirement.name = name;
 
             // fetch events separate from requirement events so
             // one fetch can satisfy multiple requests
             $(window).one(fetch_event_id, fetch_handler);
-            WebServiceData.fetch_requirement(requirement, fetch_event_id);
+            WebServiceData.fetch_requirement(requirement, fetch_event_id, requirement_event_id);
         }
+    },
+    _display_outage_message: function(url) {
+        // Displays the outage card if specific webservices are down
+        if (WebServiceData._is_outage_api_url(url)){
+            var card = OutageCard;
+            card.dom_target =  $("#" + card.name);
+            card.render_init();
+            window.webservice_outage = true;
+        }
+    },
+    _is_outage_api_url: function(url) {
+        var endpoints = [
+            "profile",
+            "notices",
+            "schedule"
+        ];
+        var is_outage = false;
+        $(endpoints).each(function(idx, endpoint){
+            if (url.indexOf(endpoint) !== -1){
+                is_outage = true;
+            }
+        });
+        return is_outage;
     },
     normalize_instructors: function(data) {
         if (!data.sections.length || data.sections[0].instructors !== undefined) {

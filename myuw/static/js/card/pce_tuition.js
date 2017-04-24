@@ -3,28 +3,33 @@ var PCETuitionCard = {
     dom_target: undefined,
 
     render_init: function() {
-        WSData.fetch_tuition_data(PCETuitionCard.render_upon_data, PCETuitionCard.render_error);
-        WSData.fetch_notice_data(PCETuitionCard.render_upon_data, PCETuitionCard.render_error);
+        WebServiceData.require({notice_data: new NoticeData(),
+                                tuition_data: new TuitionData()},
+                               PCETuitionCard.render);
     },
 
-
-    render_error: function () {
-        PCETuitionCard.dom_target.html(CardWithError.render("PCE Tuition Card"));
-    },
-
-    render_upon_data: function() {
-        if(!PCETuitionCard._has_all_data()){
-            return;
+    render_error: function (notice_resource_error, tuition_resource_error) {
+        if (notice_resource_error, tuition_resource_error) {
+            PCETuitionCard.dom_target.html(CardWithError.render("PCE Tuition Card"));
+            return true;
         }
+
+        return false;
+    },
+
+    render: function (resources) {
         // _render should be called only once.
         if (renderedCardOnce(PCETuitionCard.name)) {
             return;
         }
-        PCETuitionCard._render();
-    },
 
-    _render: function () {
-        var template_data = WSData.tuition_data(),
+        var notice_resource = resources.notice_data;
+        var tuition_resource = resources.tuition_data;
+        if (PCETuitionCard.render_error(notice_resource.error, tuition_resource.error)) {
+            return;
+        }
+
+        var template_data = tuition_resource.data,
             tuition_due_notice,
             display_date,
             due_date;
@@ -64,13 +69,6 @@ var PCETuitionCard = {
     _days_from_today: function (date) {
         var today = new Date();
         return Math.ceil((date - today) / (1000*60*60*24));
-    },
-
-    _has_all_data: function () {
-        if (WSData.tuition_data() && WSData.notice_data()) {
-            return true;
-        }
-        return false;
     }
 
 };

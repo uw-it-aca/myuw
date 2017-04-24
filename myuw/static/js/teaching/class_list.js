@@ -6,26 +6,24 @@ var PhotoClassList = {
 
         if (window.hasOwnProperty('section_data') &&
             window.section_data.hasOwnProperty('section')) {
-
-                WSData.fetch_instructed_section_details(window.section_data.section,
-                                                        PhotoClassList.render_upon_data,
-                                                        PhotoClassList.render_error);
+            InstructorSectionCard.section = window.section_data.section;
+            WebServiceData.require({section_detail: new InstructedSectionDetailData(InstructorSectionCard.section)},
+                                   PhotoClassList.render_upon_data);
         }
-        //PhotoClassList.make_html();
     },
 
-    render_upon_data: function() {
+    render_upon_data: function(resources) {
         var source = $("#photo_class_list").html();
         var template = Handlebars.compile(source);
+        var data = resources.section_detail.data;
 
-        var data = WSData.instructed_section_details();
-        data.sections[0].registrations = PhotoClassList.sort_students('surname,name');
+        data.sections[0].registrations = PhotoClassList.sort_students('surname,name', data);
         $("#app_content").html(template(data));
 
         $("#download_class_list").on("click", PhotoClassList.download_list);
 
         $("#sort_list").on("change", function() {
-            var sorted = PhotoClassList.sort_students(this.value);
+            var sorted = PhotoClassList.sort_students(this.value, data);
 
             var new_body = $("<tbody>");
             for (var i = 0; i < sorted.length; i++) {
@@ -38,8 +36,7 @@ var PhotoClassList = {
         });
     },
 
-    sort_students: function(key) {
-        var data = WSData.instructed_section_details();
+    sort_students: function(key, data) {
         var registrations = data.sections[0].registrations;
 
         var fields = key.split(',');

@@ -9,7 +9,7 @@ describe('EventsCard', function(){
                 render_id: render_id,
                 scripts: [
                     "myuw/static/js/card/events.js",
-                    "myuw/static/js/ws_event_data.js"
+                    "myuw/static/js/web_services/ws_event_data.js"
                 ],
                 templates: [
                     "myuw/templates/handlebars/card/events.html"

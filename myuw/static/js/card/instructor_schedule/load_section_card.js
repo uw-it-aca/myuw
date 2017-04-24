@@ -14,56 +14,49 @@ var InstructorSectionCard = {
                 InstructorSectionCard.term = match[1].toLowerCase();
             }
 
-            WSData.fetch_instructed_section_data(InstructorSectionCard.section,
-                                                 InstructorSectionCard.render_upon_data,
-                                                 InstructorSectionCard.render_error);
+            WebServiceData.require({section_data: new InstructedSectionData(InstructorSectionCard.section)},
+                                   InstructorSectionCard.render);
         } else {
             $("#InstructorSectionCard").hide();
         }
     },
 
-    render_upon_data: function() {
-        if (!InstructorSectionCard._has_all_data()) {
-            return;
-        }
-        InstructorSectionCard._render();
-        LogUtils.cardLoaded(InstructorSectionCard.name, InstructorSectionCard.dom_target);
-    },
+    render_error: function(instructor_section_error) {
+        if (instructor_section_error) {
+            var error_code = instructor_section_error.status,
+                source,
+                course_template;
 
-    render_error: function() {
-        var error_code = WSData.instructed_section_data_error_code(InstructorSectionCard.section),
-            source,
-            course_template;
+            if (error_code == 410) {
+                Error410.render();
+            } else if (error_code === 403) {
+                source = $("#instructor_section_card_not_instructor").html();
+                courses_template = Handlebars.compile(source);
+                InstructorSectionCard.dom_target.html(courses_template());
+            } else if (error_code === 404) {
+                source = $("#instructor_section_card_no_course").html();
+                courses_template = Handlebars.compile(source);
+                InstructorSectionCard.dom_target.html(courses_template());
+            } else {
+                source = CardWithError.render("Teaching Section");
+                InstructorSectionCard.dom_target.html(source);
+            }
 
-        if (error_code == 410) {
-            Error410.render();
-            return;
-        }
-
-        if (error_code === 403) {
-            source = $("#instructor_section_card_not_instructor").html();
-            courses_template = Handlebars.compile(source);
-            InstructorSectionCard.dom_target.html(courses_template());
-        } else if (error_code === 404) {
-            source = $("#instructor_section_card_no_course").html();
-            courses_template = Handlebars.compile(source);
-            InstructorSectionCard.dom_target.html(courses_template());
-        } else {
-            source = CardWithError.render("Teaching Section");
-            InstructorSectionCard.dom_target.html(source);
-        }
-    },
-
-    _has_all_data: function () {
-        if (WSData.normalized_instructed_section_data(InstructorSectionCard.section)) {
             return true;
         }
+
         return false;
     },
 
-    _render: function () {
+    render: function (resources) {
         var section = InstructorSectionCard.section;
-        var course_data = WSData.normalized_instructed_section_data(InstructorSectionCard.section);
+        var course_data_resource = resources.section_data;
+
+        if (InstructorSectionCard.render_error(course_data_resource.error)) {
+            return;
+        }
+
+        var course_data = course_data_resource.data;
         var source = $("#instructor_section_card_panel").html();
         var courses_template = Handlebars.compile(source);
         var raw = courses_template(course_data);
@@ -83,5 +76,7 @@ var InstructorSectionCard = {
                 InstructorCourseCardContent.render(this, null);
             }
         });
+
+        LogUtils.cardLoaded(InstructorSectionCard.name, InstructorSectionCard.dom_target);
     }
 };

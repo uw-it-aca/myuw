@@ -1,17 +1,18 @@
 var Quarters = {
     show_future_quarters: function() {
         showLoading();
-        WSData.fetch_oquarter_data(Quarters.render_registered_future_quarters);
+        WebServiceData.require({oquarter_data: new OQuarterData()},
+                               Quarters.render_registered_future_quarters);
     },
 
-    render_registered_future_quarters: function() {
+    render_registered_future_quarters: function(resources) {
         $('html,body').animate({scrollTop: 0}, 'fast');
         
         var source = $("#oquarter-header").html();
         var template = Handlebars.compile(source);
         $("#page-header").html(template());
 
-        var data = WSData.oquarter_data();
+        var data = resource.oquarter_data.data;
 
         if (data.terms.length === 0) {
             $("#main-content").no_courses({
