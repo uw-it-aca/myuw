@@ -15,6 +15,7 @@ from myuw.views.display_dates import override
 from myuw.views.choose import new_site, old_site
 from myuw.views.logger import log_interaction
 from myuw.views.photo import show_photo
+from myuw.views.link import outbound_link
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.instructor_schedule import (InstScheCurQuar, InstScheQuar,
                                                 InstSect, InstSectionDetails)
@@ -190,5 +191,6 @@ urlpatterns += [
         ),
 
     url(r'photo/(?P<url_key>.*)', show_photo),
+    url(r'out/?', outbound_link, name='myuw_outbound_link'),
     url(r'.*', index, name="myuw_home"),
 ]
