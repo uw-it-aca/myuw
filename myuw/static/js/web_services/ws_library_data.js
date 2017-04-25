@@ -4,11 +4,7 @@ function LibraryData() {
     this.error = null;
 }
 
-LibraryData.prototype.setData = function(data) {
-    // normlized data
-
-    this.data = data;
-};
+LibraryData.prototype.setData = WebServiceData.setData;
 
 /* node.js exports */
 if (typeof exports == "undefined") {

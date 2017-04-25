@@ -4,7 +4,10 @@ function BookData(term) {
     this.error = null;
 }
 
-BookData.prototype.setData = function(data) {
-    // no normlized data
-    this.data = data;
-};
+BookData.prototype.setData = WebServiceData.setData;
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.BookData = BookData;

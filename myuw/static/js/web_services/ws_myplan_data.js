@@ -4,11 +4,7 @@ function MyPlanData(year, quarter) {
     this.error = null;
 }
 
-MyPlanData.prototype.setData = function(data) {
-    // normlized data
-
-    this.data = data;
-};
+MyPlanData.prototype.setData = WebServiceData.setData;
 
 /* node.js exports */
 if (typeof exports == "undefined") {

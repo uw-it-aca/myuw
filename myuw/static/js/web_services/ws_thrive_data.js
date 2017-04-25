@@ -4,11 +4,7 @@ function ThriveData() {
     this.error = null;
 }
 
-ThriveData.prototype.setData = function(data) {
-    // normlized data
-
-    this.data = data;
-};
+ThriveData.prototype.setData = WebServiceData.setData;
 
 /* node.js exports */
 if (typeof exports == "undefined") {

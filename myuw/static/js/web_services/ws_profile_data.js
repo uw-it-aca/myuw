@@ -4,11 +4,7 @@ function ProfileData() {
     this.error = null;
 }
 
-ProfileData.prototype.setData = function(data) {
-    // normlized data
-
-    this.data = data;
-};
+ProfileData.prototype.setData = WebServiceData.setData;
 
 /* node.js exports */
 if (typeof exports == "undefined") {

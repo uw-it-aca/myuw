@@ -4,11 +4,7 @@ function OQuarterData() {
     this.error = null;
 }
 
-OQuarterData.prototype.setData = function(data) {
-    // normlized data
-
-    this.data = data;
-};
+OQuarterData.prototype.setData = WebServiceData.setData;
 
 /* node.js exports */
 if (typeof exports == "undefined") {

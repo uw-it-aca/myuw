@@ -4,11 +4,7 @@ function HFSData() {
     this.error = null;
 }
 
-HFSData.prototype.setData = function(data) {
-    // normlized data
-
-    this.data = data;
-};
+HFSData.prototype.setData = WebServiceData.setData;
 
 /* node.js exports */
 if (typeof exports == "undefined") {

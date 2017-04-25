@@ -4,11 +4,7 @@ function InstructorData(instructor_regid) {
     this.error = null;
 }
 
-InstructorData.prototype.setData = function(data) {
-    // normlized data
-
-    this.data = data;
-};
+InstructorData.prototype.setData = WebServiceData.setData;
 
 /* node.js exports */
 if (typeof exports == "undefined") {

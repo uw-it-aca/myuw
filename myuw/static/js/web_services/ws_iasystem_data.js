@@ -5,10 +5,7 @@ function IASystemData(term) {
     this.accepts = {html: "application/json"};
 }
 
-IASystemData.prototype.setData = function(data) {
-    // normalize
-    this.data = data;
-};
+IASystemData.prototype.setData = WebServiceData.setData;
 
 /* node.js exports */
 if (typeof exports == "undefined") {

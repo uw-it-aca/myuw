@@ -4,11 +4,7 @@ function MyGradData() {
     this.error = null;
 }
 
-MyGradData.prototype.setData = function(data) {
-    // normlized data
-
-    this.data = data;
-};
+MyGradData.prototype.setData = WebServiceData.setData;
 
 /* node.js exports */
 if (typeof exports == "undefined") {

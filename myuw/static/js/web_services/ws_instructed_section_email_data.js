@@ -4,11 +4,7 @@ function InstructedSectionEmailListData(section_label) {
     this.error = null;
 }
 
-InstructedSectionEmailListData.prototype.setData = function(data) {
-    // normlized data
-
-    this.data = data;
-};
+InstructedSectionEmailListData.prototype.setData = WebServiceData.setData;
 
 /* node.js exports */
 if (typeof exports == "undefined") {

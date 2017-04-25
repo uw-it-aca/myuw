@@ -4,11 +4,7 @@ function AcademicCalendarEventData() {
     this.error = null;
 }
 
-AcademicCalendarEventData.prototype.setData = function(data) {
-    // normlized data
-
-    this.data = data;
-};
+AcademicCalendarEventData.prototype.setData = WebServiceData.setData;
 
 function CurrentAcademicCalendarEventData() {
     this.url = "/api/v1/academic_events/current/";
@@ -16,11 +12,7 @@ function CurrentAcademicCalendarEventData() {
     this.error = null;
 }
 
-CurrentAcademicCalendarEventData.prototype.setData = function(data) {
-    // normlized data
-
-    this.data = data;
-};
+CurrentAcademicCalendarEventData.prototype.setData = WebServiceData.setData;
 
 /* node.js exports */
 if (typeof exports == "undefined") {

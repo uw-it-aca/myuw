@@ -4,11 +4,7 @@ function ThriveHistoryData() {
     this.error = null;
 }
 
-ThriveHistoryData.prototype.setData = function(data) {
-    // normlized data
-
-    this.data = data;
-};
+ThriveHistoryData.prototype.setData = WebServiceData.setData;
 
 /* node.js exports */
 if (typeof exports == "undefined") {

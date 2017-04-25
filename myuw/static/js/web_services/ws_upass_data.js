@@ -4,11 +4,7 @@ function UPassData() {
     this.error = null;
 }
 
-UPassData.prototype.setData = function(data) {
-    // normlized data
-
-    this.data = data;
-};
+UPassData.prototype.setData = WebServiceData.setData;
 
 /* node.js exports */
 if (typeof exports == "undefined") {

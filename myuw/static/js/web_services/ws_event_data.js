@@ -4,11 +4,7 @@ function EventData() {
     this.error = null;
 }
 
-EventData.prototype.setData = function(data) {
-    // normlized data
-
-    this.data = data;
-};
+EventData.prototype.setData = WebServiceData.setData;
 
 /* node.js exports */
 if (typeof exports == "undefined") {

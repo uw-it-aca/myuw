@@ -5,11 +5,7 @@ function CategoryLinkData(category) {
     this.accepts = {html: "application/json"};
 }
 
-CategoryLinkData.prototype.setData = function(data) {
-    // normlized data
-
-    this.data = data;
-};
+CategoryLinkData.prototype.setData = WebServiceData.setData;
 
 /* node.js exports */
 if (typeof exports == "undefined") {
