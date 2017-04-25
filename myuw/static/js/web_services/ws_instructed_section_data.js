@@ -12,11 +12,7 @@ function InstructedSectionDetailData(section_label) {
     this.error = null;
 }
 
-InstructedSectionDetailData.prototype.setData = function(data) {
-    // normlized data
-
-    this.data = data;
-};
+InstructedSectionDetailData.prototype.setData = WebServiceData.setData;
 
 /* node.js exports */
 if (typeof exports == "undefined") {
