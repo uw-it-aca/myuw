@@ -111,34 +111,6 @@ WebServiceData = {
             }
         });
         return is_outage;
-    },
-    normalize_instructors: function(data) {
-        if (!data.sections.length || data.sections[0].instructors !== undefined) {
-            return;
-        }
-
-        $.each(data.sections, function () {
-            var section = this;
-            section.instructors = [];
-            var instructors = {};
-            $.each(section.meetings, function () {
-                var meeting = this;
-                $.each(meeting.instructors, function () {
-                    var instructor = this;
-                    if (instructors[instructor.uwregid] === undefined) {
-                        section.instructors.push(instructor);
-                    }
-                    instructors[instructor.uwregid] = true;
-                });
-            });
-
-            section.instructors = section.instructors.sort(WebServiceData.sort_instructors_by_last_name);
-        });
-    },
-    sort_instructors_by_last_name: function(a, b) {
-        if (a.surname < b.surname) return -1;
-        if (a.surname > b.surname) return 1;
-        return 0;
     }
 };
 

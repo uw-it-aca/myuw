@@ -8,9 +8,8 @@ CourseData.prototype.setData = function(data) {
     // MUWM-549 and MUWM-552
     var sections = data.sections;
     var section_count = sections.length;
-    for (var index = 0; index < section_count; index++) {
-        section = sections[index];
-
+    $.each(sections, function () {
+        section = this;
         var canvas_url = section.canvas_url;
         if (canvas_url) {
             if (section.class_website_url == canvas_url) {
@@ -24,43 +23,43 @@ CourseData.prototype.setData = function(data) {
                 section.class_website_url = null;
             }
         }
-    }
+    });
 
     this.data = data;
 };
 
 CourseData.prototype.normalize_instructors = function() {
-    var data = this.data;
-
-    if (!data.sections.length) {
-        return;
-    }
-    if (data.sections[0].instructors !== undefined) {
+    if (!this.data.sections.length ||
+        this.data.sections[0].instructors !== undefined) {
         return;
     }
 
-    var section_index = 0;
-    for (section_index = 0; section_index < data.sections.length; section_index++) {
-        var section = data.sections[section_index];
+    $.each(this.data.sections, function () {
+        var section = this;
         section.instructors = [];
-
         var instructors = {};
-        var meeting_index = 0;
-        for (meeting_index = 0; meeting_index < section.meetings.length; meeting_index++) {
-            var meeting = section.meetings[meeting_index];
-            var instructor_index = 0;
-            for (instructor_index = 0; instructor_index < meeting.instructors.length; instructor_index++) {
-                var instructor = meeting.instructors[instructor_index];
-
+        $.each(section.meetings, function () {
+            var meeting = this;
+            $.each(meeting.instructors, function () {
+                var instructor = this;
                 if (instructors[instructor.uwregid] === undefined) {
                     section.instructors.push(instructor);
                 }
                 instructors[instructor.uwregid] = true;
-            }
-        }
-        section.instructors = section.instructors.sort(WebServiceData.sort_instructors_by_last_name);
-    }
+            });
+        });
+
+        section.instructors = section.instructors
+            .sort(this.sort_instructors_by_last_name);
+    });
 };
+
+CourseData.prototype.sort_instructors_by_last_name = function(a, b) {
+    if (a.surname < b.surname) return -1;
+    if (a.surname > b.surname) return 1;
+    return 0;
+};
+
 
 /* node.js exports */
 if (typeof exports == "undefined") {

@@ -8,6 +8,7 @@ describe('InstructorScheduleCards', function(){
             Global.Environment.init({
                 render_id: render_id,
                 scripts: [
+                    "myuw/static/js/web_services/ws_course_data.js",
                     "myuw/static/js/web_services/ws_instructed_course_data.js",
                     "myuw/static/js/card/instructor_schedule/load_course_cards.js",
                     "myuw/static/js/card/instructor_schedule/course_card_content.js",

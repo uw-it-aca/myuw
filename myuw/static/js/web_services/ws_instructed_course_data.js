@@ -4,35 +4,16 @@ function InstructedCourseData(term) {
     this.error = null;
 }
 
-InstructedCourseData.prototype.setData = function(data) {
-    // MUWM-549 and MUWM-552
-    var sections = data.sections;
-    var section_count = sections.length;
-    for (var index = 0; index < section_count; index++) {
-        section = sections[index];
+InstructedCourseData.prototype.setData = CourseData.prototype.setData;
 
-        var canvas_url = section.canvas_url;
-        if (canvas_url) {
-            if (section.class_website_url == canvas_url) {
-                section.class_website_url = null;
-            }
-            var matches = canvas_url.match(/\/([0-9]+)$/);
-            var canvas_id = matches[1];
-            var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
+InstructedCourseData.prototype.normalize_instructors = CourseData.prototype.normalize_instructors;
 
-            if (section.class_website_url == alternate_url) {
-                section.class_website_url = null;
-            }
-        }
-    }
-
-    this.data = data;
-};
+InstructedCourseData.prototype.sort_instructors_by_last_name = CourseData.prototype.sort_instructors_by_last_name;
 
 InstructedCourseData.prototype.normalized = function(term) {
     var course_data = this.data;
 
-    WebServiceData.normalize_instructors(course_data);
+    this.normalize_instructors();
     $.each(course_data.related_terms, function () {
         this.is_current = (window.term.year == this.year &&
                            window.term.quarter.toLowerCase() == this.quarter.toLowerCase());
@@ -131,6 +112,7 @@ InstructedCourseData.prototype.normalized = function(term) {
 
     return course_data;
 };
+
 
 /* node.js exports */
 if (typeof exports == "undefined") {
