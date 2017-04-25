@@ -109,7 +109,6 @@ var Environment = {
         var json_data = JSON.parse(fs.readFileSync(json_file));
         Environment._stub = sinon.stub($, 'ajax', function (params) {
             params.success(json_data);
-            params.complete();
         });
 //        Environment._stub.yieldsTo('success', json_data);
     },
