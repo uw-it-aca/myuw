@@ -86,7 +86,7 @@ WebServiceData = {
             // fetch events separate from requirement events so
             // one fetch can satisfy multiple requests
             $(window).one(fetch_event_id, fetch_handler);
-            WebServiceData.fetch_requirement(requirement, fetch_event_id, requirement_event_id);
+            WebServiceData.fetch_requirement(requirement, fetch_event_id);
         }
     },
     _display_outage_message: function(url) {
