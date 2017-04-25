@@ -81,7 +81,6 @@ WebServiceData = {
             var requirement = requirements[name];
             var fetch_event_id = WebServiceData.fetch_event_id(requirement);
             name_url_map[requirement.url] = name;
-            requirement.name = name;
 
             // fetch events separate from requirement events so
             // one fetch can satisfy multiple requests
