@@ -1,10 +1,8 @@
 function BookData(term) {
-    this.url = "/api/v1/book/" + term;
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/book/" + term);
 }
 
-BookData.prototype.setData = WebServiceData.setData;
+BookData.prototype = Object.create(BaseData.prototype);
 
 /* node.js exports */
 if (typeof exports == "undefined") {

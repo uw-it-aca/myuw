@@ -1,10 +1,8 @@
 function ThriveHistoryData() {
-    this.url = "/api/v1/thrive/?history=1";
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/thrive/?history=1");
 }
 
-ThriveHistoryData.prototype.setData = WebServiceData.setData;
+ThriveHistoryData.prototype = Object.create(BaseData.prototype);
 
 /* node.js exports */
 if (typeof exports == "undefined") {

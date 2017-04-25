@@ -1,10 +1,8 @@
 function LibraryData() {
-    this.url = "/api/v1/library/";
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/library/");
 }
 
-LibraryData.prototype.setData = WebServiceData.setData;
+LibraryData.prototype = Object.create(BaseData.prototype);
 
 /* node.js exports */
 if (typeof exports == "undefined") {

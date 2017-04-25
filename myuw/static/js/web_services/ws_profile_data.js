@@ -1,10 +1,8 @@
 function ProfileData() {
-    this.url = "/api/v1/profile/";
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/profile/");
 }
 
-ProfileData.prototype.setData = WebServiceData.setData;
+ProfileData.prototype = Object.create(BaseData.prototype);
 
 /* node.js exports */
 if (typeof exports == "undefined") {

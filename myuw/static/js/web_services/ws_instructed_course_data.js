@@ -1,14 +1,8 @@
 function InstructedCourseData(term) {
-    this.url = "/api/v1/instructor_schedule/"+term;
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/instructor_schedule/" + term);
 }
 
-InstructedCourseData.prototype.setData = CourseData.prototype.setData;
-
-InstructedCourseData.prototype.normalize_instructors = CourseData.prototype.normalize_instructors;
-
-InstructedCourseData.prototype.sort_instructors_by_last_name = CourseData.prototype.sort_instructors_by_last_name;
+InstructedCourseData.prototype = Object.create(CourseData.prototype);
 
 InstructedCourseData.prototype.normalized = function(term) {
     var course_data = this.data;

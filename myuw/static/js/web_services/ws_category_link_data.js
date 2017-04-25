@@ -1,11 +1,9 @@
 function CategoryLinkData(category) {
-    this.url = "/api/v1/categorylinks/" + category;
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/categorylinks/" + category);
     this.accepts = {html: "application/json"};
 }
 
-CategoryLinkData.prototype.setData = WebServiceData.setData;
+CategoryLinkData.prototype = Object.create(BaseData.prototype);
 
 /* node.js exports */
 if (typeof exports == "undefined") {

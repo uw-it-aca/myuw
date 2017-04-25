@@ -1,10 +1,8 @@
 function TuitionData() {
-    this.url = "/api/v1/finance/";
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/finance/");
 }
 
-TuitionData.prototype.setData = WebServiceData.setData;
+TuitionData.prototype = Object.create(BaseData.prototype);
 
 /* node.js exports */
 if (typeof exports == "undefined") {

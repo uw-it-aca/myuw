@@ -1,10 +1,8 @@
 function MyPlanData(year, quarter) {
-    this.url = "/api/v1/myplan/" + year + "/" + quarter;
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/myplan/" + year + "/" + quarter);
 }
 
-MyPlanData.prototype.setData = WebServiceData.setData;
+MyPlanData.prototype = Object.create(BaseData.prototype);
 
 /* node.js exports */
 if (typeof exports == "undefined") {

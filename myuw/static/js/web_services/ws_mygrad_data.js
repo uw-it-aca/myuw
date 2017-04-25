@@ -1,10 +1,8 @@
 function MyGradData() {
-    this.url = "/api/v1/grad/";
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/grad/");
 }
 
-MyGradData.prototype.setData = WebServiceData.setData;
+MyGradData.prototype = Object.create(BaseData.prototype);
 
 /* node.js exports */
 if (typeof exports == "undefined") {

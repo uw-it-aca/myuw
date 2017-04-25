@@ -1,8 +1,8 @@
 function CourseData(term) {
-    this.url = "/api/v1/schedule/" + term;
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/schedule/" + term);
 }
+
+CourseData.prototype = Object.create(BaseData.prototype);
 
 CourseData.prototype.setData = function(data) {
     // MUWM-549 and MUWM-552

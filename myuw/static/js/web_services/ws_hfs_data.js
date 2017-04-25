@@ -1,10 +1,8 @@
 function HFSData() {
-    this.url = "/api/v1/hfs/";
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/hfs/");
 }
 
-HFSData.prototype.setData = WebServiceData.setData;
+HFSData.prototype = Object.create(BaseData.prototype);
 
 /* node.js exports */
 if (typeof exports == "undefined") {

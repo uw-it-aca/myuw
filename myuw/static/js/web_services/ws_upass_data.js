@@ -1,10 +1,8 @@
 function UPassData() {
-    this.url = "/api/v1/upass/";
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/upass/");
 }
 
-UPassData.prototype.setData = WebServiceData.setData;
+UPassData.prototype = Object.create(BaseData.prototype);
 
 /* node.js exports */
 if (typeof exports == "undefined") {

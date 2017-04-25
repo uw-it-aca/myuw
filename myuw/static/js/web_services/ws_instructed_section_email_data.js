@@ -1,10 +1,8 @@
 function InstructedSectionEmailListData(section_label) {
-    this.url = "/api/v1/emaillist/" + section_label;
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/emaillist/" + section_label);
 }
 
-InstructedSectionEmailListData.prototype.setData = WebServiceData.setData;
+InstructedSectionEmailListData.prototype = Object.create(BaseData.prototype);
 
 /* node.js exports */
 if (typeof exports == "undefined") {

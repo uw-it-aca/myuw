@@ -1,11 +1,9 @@
-function IASystemData(term) {
-    this.url = "/api/v1/ias/";
-    this.data = null;
-    this.error = null;
+function IASystemData() {
+    BaseData.call(this, "/api/v1/ias/");
     this.accepts = {html: "application/json"};
 }
 
-IASystemData.prototype.setData = WebServiceData.setData;
+IASystemData.prototype = Object.create(BaseData.prototype);
 
 /* node.js exports */
 if (typeof exports == "undefined") {

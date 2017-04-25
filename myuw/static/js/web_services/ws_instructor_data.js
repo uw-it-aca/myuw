@@ -1,10 +1,8 @@
 function InstructorData(instructor_regid) {
-    this.url = "/api/v1/person/" + instructor_regid;
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/person/" + instructor_regid);
 }
 
-InstructorData.prototype.setData = WebServiceData.setData;
+InstructorData.prototype = Object.create(BaseData.prototype);
 
 /* node.js exports */
 if (typeof exports == "undefined") {

@@ -1,18 +1,15 @@
 function AcademicCalendarEventData() {
-    this.url = "/api/v1/academic_events/";
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/academic_events/");
 }
 
-AcademicCalendarEventData.prototype.setData = WebServiceData.setData;
+AcademicCalendarEventData.prototype = Object.create(BaseData.prototype);
+
 
 function CurrentAcademicCalendarEventData() {
-    this.url = "/api/v1/academic_events/current/";
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/academic_events/current/");
 }
 
-CurrentAcademicCalendarEventData.prototype.setData = WebServiceData.setData;
+CurrentAcademicCalendarEventData.prototype = Object.create(BaseData.prototype);
 
 /* node.js exports */
 if (typeof exports == "undefined") {

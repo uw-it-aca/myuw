@@ -110,10 +110,6 @@ WebServiceData = {
             }
         });
         return is_outage;
-    },
-    setData: function (data) {
-        // non-normalizing data setter shared among data objects
-        this.data = data;
     }
 };
 

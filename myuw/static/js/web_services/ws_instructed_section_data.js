@@ -1,18 +1,14 @@
 function InstructedSectionData(section_label) {
-    this.url = "/api/v1/instructor_section/" + section_label;
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/instructor_section/" + section_label);
 }
 
-InstructedSectionData.prototype.setData = CourseData.prototype.setData;
+InstructedSectionData.prototype = Object.create(BaseData.prototype);
 
 function InstructedSectionDetailData(section_label) {
-    this.url = "/api/v1/instructor_section_details/" + section_label;
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/instructor_section_details/" + section_label);
 }
 
-InstructedSectionDetailData.prototype.setData = WebServiceData.setData;
+InstructedSectionDetailData.prototype = Object.create(BaseData.prototype);
 
 /* node.js exports */
 if (typeof exports == "undefined") {

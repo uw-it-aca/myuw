@@ -1,10 +1,8 @@
 function EventData() {
-    this.url = '/api/v1/deptcal/';
-    this.data = null;
-    this.error = null;
+    BaseData.call(this, "/api/v1/deptcal/");
 }
 
-EventData.prototype.setData = WebServiceData.setData;
+EventData.prototype = Object.create(BaseData.prototype);
 
 /* node.js exports */
 if (typeof exports == "undefined") {
