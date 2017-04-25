@@ -7,7 +7,7 @@ function BaseData(url) {
 BaseData.prototype.setData = function (data) {
     // non-normalizing data setter shared among data objects
     this.data = data;
-}
+};
 
 /* node.js exports */
 if (typeof exports == "undefined") {
