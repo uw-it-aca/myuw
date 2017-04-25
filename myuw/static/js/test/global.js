@@ -107,10 +107,9 @@ var Environment = {
         var json_dir = path.join('myuw/static/js/test/ajax', json_data_file);
         var json_file = Environment._abs_path(json_dir);
         var json_data = JSON.parse(fs.readFileSync(json_file));
-        Environment._stub = sinon.stub($, 'ajax', function (params) {
+        Environment._stub = sinon.stub($, 'ajax').callsFake(function (params) {
             params.success(json_data);
         });
-//        Environment._stub.yieldsTo('success', json_data);
     },
     ajax_stub_restore: function () {
         if (Environment._stub) {
