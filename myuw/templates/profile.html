@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% load compress %}
+
+{% block page_title %}
+MyUW: Profile
+{% endblock %}
+
+{% block content %}
+
+    <div id="main-content" role="main" aria-labelledby="main">
+    <h1>Profile Page</h1>
+    </div>
+    <div id="account_card_content"></div>
+    <div id="static-links"></div>
+
+    <!-- component content templates -->
+    {% include "handlebars/banner/profile.html" %}
+    {% include "handlebars/card/loading.html" %}
+
+    <!-- page content templates -->
+    {% include "handlebars/loading.html" %}
+    {% include "handlebars/error.html" %}
+
+
+    {% include "user_state.html" %}
+
+{% endblock %}
+
+{% block extra_js %}
+    {% compress js inline %}
+        <script src="{% static 'js/page/profile.js' %}"></script>
+    {% endcompress %}
+{% endblock %}
