@@ -75,7 +75,7 @@
                  "DegreeLevel": 1,
                  "DegreeName": "BACHELOR OF SCIENCE (UNDERWATER BASKET WEAVING)",
                  "DegreeType": 5,
-                 "FullName": "Underwater Basked Weaving)",
+                 "FullName": "Underwater Basket Weaving",
                  "MajorName": "BSKT WVE",
                  "Pathway": 80,
                  "ShortName": "BSKT WVE"
@@ -123,7 +123,7 @@
                  "DegreeLevel": 1,
                  "DegreeName": "BACHELOR OF SCIENCE (UNDERWATER BASKET WEAVING)",
                  "DegreeType": 5,
-                 "FullName": "Underwater Basked Weaving)",
+                 "FullName": "Underwater Basket Weaving",
                  "MajorName": "BSKT WVE",
                  "Pathway": 80,
                  "ShortName": "BSKT WVE"
@@ -179,7 +179,7 @@
                  "DegreeLevel": 1,
                  "DegreeName": "BACHELOR OF SCIENCE (UNDERWATER BASKET WEAVING)",
                  "DegreeType": 5,
-                 "FullName": "Underwater Basked Weaving)",
+                 "FullName": "Underwater Basket Weaving",
                  "MajorName": "BSKT WVE",
                  "Pathway": 80,
                  "ShortName": "BSKT WVE"
@@ -196,7 +196,7 @@
             ],
             "Metadata": "EnrollmentSourceLocation=SDB;",
             "Minors": [
-                
+
             ],
             "PendingClassChange": false,
             "PendingHonorsChange": false,

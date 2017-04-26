@@ -181,7 +181,7 @@ var RegStatusCard = {
         }
 
         for(i = 0; i < profile.term_minors.length; i++){
-            if(profile.term_minors[i].toUpperCase() === quarter.toUpperCase() && profile.term_minors[i].year === year){
+            if(profile.term_minors[i].quarter.toUpperCase() === quarter.toUpperCase() && profile.term_minors[i].year === year){
 
                 if(!profile.term_minors[i].same_as_previous){
                     pending_minors = profile.term_minors[i].minors;

@@ -73,7 +73,10 @@ def get_main_campus(request):
 
 def _get_degrees_for_terms(terms, enrollments, accessor):
     """
-
+    Takes in a list of terms and a dictionary of terms to enrollments (returned
+    by get_all_enrollments), and returns a list of either majors or minors
+    and their terms, depending upon which accessor is used, 'majors' or
+    'minors'
     """
     degrees = []
     previous = None
