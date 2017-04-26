@@ -27,7 +27,7 @@
    {% endif %}
 
    <!-- google fonts -->
-   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i' rel='stylesheet' type='text/css'>
    <link href='//fonts.googleapis.com/css?family=Roboto:400,500,300,100' rel='stylesheet' type='text/css'>
 
    <!-- favicon -->
@@ -54,6 +54,16 @@
     {% csrf_token %}
 
     {% block header %}
+    <div id="app_search" class="collapse">
+        <div class="container">
+            <form action="/search" method="get" class="uw-search">
+                <label class="sr-only" for="search-nav">Search for:</label>
+                <input id="search-nav" name="q" type="text" placeholder="Search for:">
+                <button type="submit" value="Search">Search</button>
+            </form>
+        </div>
+    </div>
+
     <div id="app_header">
         <div class="header-bar" role="navigation" title="Home, email, and categorized resources">
             <div class="container clearfix">
@@ -62,12 +72,15 @@
                     <ul id="top_navigation_link_list" class="top_navigation_list">
                         {% if user.email_forward_url %}
                         <li>
-                            <div class="header-email" id="uwemail">                             
-                              <a href="{{ user.email_forward_url }}" target="_blank" title="Open {{ user.email_forward_title }} in new tab"><i class="fa {{ user.email_forward_icon }}" aria-hidden="true">&nbsp;</i>{{ user.email_forward_title }}</a>                            
+                            <div class="header-email" id="uwemail">
+                              <a href="{{ user.email_forward_url }}" target="_blank" title="Open {{ user.email_forward_title }} in new tab"><i class="fa {{ user.email_forward_icon }}" aria-hidden="true">&nbsp;</i>{{ user.email_forward_title }}</a>
                             </div>
                         </li>
                         {% endif %}
                         <li><div class="header-resources"><a href="#" id="categories_link"><i class="fa fa-th" role="presentation">&nbsp;</i>Resources</a></div></li>
+                        <li>
+                            <button class="search-button" type="button" data-toggle="collapse" data-target="#app_search" id="toggle_app_search" aria-expanded="false" aria-controls="app_search">
+                        </li>
                     </ul>
                 </div>
             </div>
