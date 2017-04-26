@@ -1,0 +1,104 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "photo_class_list" %}
+
+<div class="container">
+    <div class="row">
+        <div id="photoclasslist_popup">
+            <div class="card"  data-name="PhotoClasslistPopupCard" data-type="card">
+                <h3 class="scheduleHeading">{{ toTitleCase quarter }} {{ year }} | {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }} | SLN {{ sections.0.sln }}</h3>
+                <div id="classlist_controls" class="clearfix" style="padding-bottom: 40px;">
+                    <div class="classlist-styled-select pull-left">Sort by:
+                        <select id="sort_list">
+                            <option value="name,surname">First Name</option>
+                            <option value="surname,name" selected="selected">Last Name</option>
+                            <option value="netid">UW NetID</option>
+                            <option value="class_code,surname,name">Class</option>
+                            <option value="credits,surname,name">Credits</option>
+                            {{ #each sections.0.linked_types }}
+                            <option value="linked_type_{{ this }},surname,name">{{ ucfirst this }} Section</option>
+                            {{ /each }}
+                        </select>
+
+                    </div>
+                    <div class="pull-right">
+                        <a href="#" id="download_class_list"><i class="fa fa-download"></i>&nbsp;Download class list (Excel)</a> | <a href="javascript:window.print()" class="classlist-print"><i class="fa fa-print"></i>&nbsp;print</a>
+                    </div>
+                </div>
+
+                <!-- desktop table view -->
+                <table id="student_list" border="1">
+                    <thead>
+                	<tr>
+                		<th>Photo</th>
+                		<th>Name</th>
+                        <th>Student #</th>
+                		<th>UW NetID</th>
+                		<th>Credits</th>
+                        <th>Major</th>
+                		<th>Class</th>
+                        {{ #each sections.0.linked_types }}
+                		<th>{{ ucfirst this }} Section</th>
+                        {{ /each }}
+                        <th>Email</th>
+                	</tr>
+                    </thead>
+                    <tbody>
+                    {{ #each sections.0.registrations }}
+                	<tr id="student_{{ regid }}">
+                		<td><img width="75" class="classlist-photo" src="/photo/{{ url_key }}"></td>
+                		<td>{{ surname }}, {{ name }}</td>
+                        <td>{{ student_number }}</td>
+                		<td>{{ netid }}</td>
+                		<td>{{ credits }}</td>
+                        <td>{{ #each majors }} {{ full_name }} {{ /each }}</td>
+                		<td>{{ class }}</td>
+                        {{ #if linked_sections }}                        
+                        {{ #each linked_sections }}                            
+                            {{ #each sections }}
+                		    <td>{{ this }}</td>
+                            {{ /each }}                           
+                        {{ /each }}                        
+                        {{ /if }}
+                        <td>{{ email }}</td>
+                	</tr>
+                    {{ /each }}
+                    </tbody>
+                </table>
+
+
+                <!-- mobile view 
+                <div id="student_list">
+                    {{ #each sections.0.registrations }}
+                        <div id="student_{{ regid }}">
+                            <div style="float: left;">
+                                <img class="classlist-photo" src="/photo/{{ url_key }}">
+                            </div>
+                            <div style="float: left; padding-left: 10px; padding-bottom: 10px;">
+                                <strong>{{ surname }}, {{ name }}</strong><br />
+                                Student Number: {{ student_number }} <br />
+                                UW NetID: {{ netid }} <br />
+                                Credits: {{ credits }} <Br />
+                                Major: {{ #each majors }} {{ full_name }} {{ /each }}<br />
+                                Class: {{ class }} <br />
+                                Email: <a href="mailto:{{ email }}">{{ email }}</a> <br />
+                                {{ #if linked_sections }}
+                                {{ #each linked_sections }}
+                                    {{ ucfirst type }} Section: 
+                                    {{ #each sections }}
+                                        {{ this }}
+                                    {{ /each }}
+                                    <br />
+                                {{ /each }}
+                                {{ /if }}
+                            </div>
+                            <br style="clear: both;">
+                        </div>
+                    {{ /each }}
+                </div> -->
+        
+
+            </div>
+        </div>
+    </div>
+</div>
+    {% endtplhandlebars %}

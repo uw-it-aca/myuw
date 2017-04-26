@@ -1,11 +1,7 @@
-from django.contrib.auth.decorators import login_required
-from django.views.decorators.cache import cache_control
-from myuw.util.performance import log_response_time
 from myuw.views.page import page
+from myuw.util.page_view import page_view
 
 
-@login_required
-@cache_control(max_age=0, no_cache=True, no_store=True, must_revalidate=True)
-@log_response_time
+@page_view
 def thrive_messages(request):
     return page(request, template='thrive_messages.html')

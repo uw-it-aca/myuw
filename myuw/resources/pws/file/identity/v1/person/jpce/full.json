@@ -1,0 +1,30 @@
+{
+"DisplayName":"JANE NONMATRIC",
+"EduPersonAffiliations":
+   ["member",
+    "student",
+    "alum",
+    "staff",
+    "employee"],
+"IsTestEntity":true,
+"PriorUWNetIDs":[],
+"PriorUWRegIDs":[],
+"RegisteredFirstMiddleName":"Jane",
+"RegisteredName":"JANE NONMATRIC",
+"RegisteredSurname":"NONMATRIC",
+"UIDNumber":"35443",
+"UWNetID":"jpce",
+"UWRegID":"9136CCB8F66711D5BE060004AC49AAAA",
+"WhitepagesPublish":false,
+"PersonAffiliations":
+   {    "StudentPersonAffiliation":{"StudentNumber":"1000010",
+                                "StudentSystemKey":"000083856",
+                                "StudentWhitePages":
+                                 {"Class":null,
+                                  "Department1":null,
+                                  "Department2":null,
+                                  "Department3":null,
+                                  "Email":null,
+                                  "Name":null,
+                                  "Phone":null,
+                                  "PublishInDirectory":false}}}}

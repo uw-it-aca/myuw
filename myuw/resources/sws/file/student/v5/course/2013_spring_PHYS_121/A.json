@@ -368,7 +368,21 @@
 					{
 						"Href":"/student/v5/graderoster/2013,spring,PHYS,121,A,260A0DEC95CB11D78BAA000629C31437"
 					}
-				}
+				},
+        {
+          "Person":
+            {
+                "RegID":"FBB38FE46A7C11D5A4AE0004AC494FFE",
+                "Href":"/student/v5/person/FBB38FE46A7C11D5A4AE0004AC494FFE.json",
+                "Name":"TEACHER, BILL AVERAGE"
+            },
+          "TSPrint":false,
+          "FacultySequenceNumber":"",
+          "GradeRoster":
+          {
+          }
+        }
+
 			],
 			"DaysOfWeek":
 			{

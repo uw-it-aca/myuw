@@ -7,8 +7,6 @@ from uw_sws.models import ClassSchedule
 from uw_sws.registration import get_schedule_by_regid_and_term
 from restclients.thread import generic_prefetch
 from restclients.library.currics import get_subject_guide_for_section_params
-from myuw.logger.timer import Timer
-from myuw.logger.logback import log_resp_time, log_exception
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import get_current_quarter, get_next_quarter,\
     get_next_autumn_quarter, get_current_summer_term,\
@@ -30,14 +28,8 @@ def _get_schedule(regid, term):
         return None
     logid = ('get_schedule_by_regid_and_term ' +
              str(regid) + ',' + str(term.year) + ',' + term.quarter)
-    timer = Timer()
-    try:
-        return get_schedule_by_regid_and_term(regid, term, False,
-                                              myuw_section_prefetch)
-    finally:
-        log_resp_time(logger,
-                      logid,
-                      timer)
+    return get_schedule_by_regid_and_term(regid, term, False,
+                                          myuw_section_prefetch)
 
 
 def myuw_section_prefetch(data):

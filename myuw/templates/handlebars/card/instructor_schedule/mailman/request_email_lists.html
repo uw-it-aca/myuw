@@ -1,0 +1,145 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "request_email_lists_tmpl" %}
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <form role="form" id="request_emaillist_form" method="POST">{% csrf_token %}
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                <h4>Create Mailing List</h4>
+            </div>
+
+
+            <div class="modal-error" style="display:none">An error has occurred. Please try again in a few minutes.</div>
+            <div class="modal-body">
+
+            {{#if request_sent }}
+                <div class="">
+                    <h3>Request submitted</h3>
+                    {#} <p>Total email list requested: {{ total_lists_requested }}.</p> {#}
+                    <ul class="">
+                        <li>An email confirmation will be sent to {{ netid }}@uw.edu</li>
+                        <li>Mailing lists may take up to 24 hours to activate</li>
+                    </ul>
+                    <p><a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
+                          rel="help" target="_blank">Learn more about Mailman email list manager</a></p>
+                </div>
+
+            {{else}}
+                {{#unless has_lists}}
+                    <div class="mailman_simple_create">
+                        {{#unless section_list.list_exists}}
+                            <div>{{ course_abbr }} {{course_number}} {{section_id}}</div>
+                            <div>{{ capitalizeString quarter }} {{ year }}</div>
+                            <ul class="">
+                                <li>Creates a single email list for this section: {{section_list.list_address}}@uw.edu</li>
+                                <li>Stays synced with the official class list</li>
+                            </ul>
+                            <p><a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
+                                  rel="help" target="_blank">Learn more about Mailman email list manager</a></p>
+                            <input type="hidden" id="section_single_{{section_list.section_id}}"
+                                   name="section_single_{{section_list.section_id}}" value="{{section_list.section_label}}"/>
+                        {{/unless}}
+                    </div>
+                {{/unless}}
+                {{#unless no_secondary_section }}
+                    {#Hide advanced view if no lists exist#}
+                    {{#if has_lists}}
+                        <div class="mailman_advanced_create">
+                    {{else}}
+                        <a class="mailman_advanced_toggle" href="#">Advanced Edit</a>
+                        <div class="mailman_advanced_create" style="display:none">
+                    {{/if}}
+                        <div>
+                            <p>Create multiple email lists, one for each section selected.</p>
+                            <p><a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
+                              rel="help" target="_blank">Learn more about Mailman email list manager</a></p>
+                       </div>
+
+                        <fieldset>
+
+                            {{#if multi_sections_wo_list}}
+                                <div class="clearfix">
+                                    <div class="pull-left">
+                                        <h5 style="font-weight: bold;">Course Sections</h5>
+                                    </div>
+                                    <div class="pull-right">
+                                        <label for="select-all">Select all </label>
+                                        <input type="checkbox" title="select/unselect all checkboxes"
+                                               id="select_all" name="select-all"/>
+                                    </div>
+                                </div>
+                            {{/if}}
+
+                                <ul id="multi_section_checkboxes" class="clearfix unstyled-list">
+                                    <li class="section_single clearfix">
+                                        {{#if section_list.list_exists}}
+                                            <div class="pull-left">
+                                                <label for="section_single_{{section_list.section_id}}">{{../course_abbr}} {{../course_number}} {{section_list.section_id}} <span>(List already exists)</span></label>
+                                            </div>
+                                            <div class="pull-right">
+                                                <input type="checkbox" disabled="true" id="section_single_{{section_list.section_id}}">
+                                            </div>
+                                        {{ else }}
+                                            <div class="pull-left">
+                                                <label for="section_single_{{section_list.section_id}}"
+                                                       title="primary section">
+                                                    {{../course_abbr}} {{../course_number}} {{section_list.section_id}}
+                                                </label>
+                                            </div>
+                                            <div class="pull-right">
+                                                <input type="checkbox"
+                                                       id="section_single_{{section_list.section_id}}"
+                                                       name="section_single_{{section_list.section_id}}"
+                                                       value="{{section_list.section_label}}"
+                                                       title="select section {{section_list.section_id}}" />
+                                            </div>
+                                        {{/if}}
+                                    </li>
+
+                                    {{#each secondary_section_lists}}
+                                        <li class="secondary_single clearfix">
+                                            {{#if list_exists}}
+                                                <div class="pull-left">
+                                                    <label for="secondary_single_{{section_id}}">{{../../course_abbr}} {{../../course_number}} {{section_id}} <span>(List already exists)</label>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <input type="checkbox" disabled="true" id="secondary_single_{{section_id}}">
+                                                </div>
+                                            {{else}}
+                                                <div class="pull-left">
+                                                    <label for="secondary_single_{{section_id}}">
+                                                        {{../../course_abbr}} {{../../course_number}} {{section_id}}
+                                                    </label>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <input type="checkbox" id="secondary_single_{{section_id}}"
+                                                           name="secondary_single_{{section_id}}"
+                                                           value="{{section_label}}"
+                                                           title="select section {{section_id}}" />
+                                                </div>
+                                            {{/if}}
+                                        </li>
+                                    {{/each}}
+                                </ul>
+                        </fieldset>
+                    </div>
+
+
+                {{/unless}}
+            {{/if}}
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                {{#unless request_sent }}
+                <button type="submit" class="btn btn-primary" form="request_emaillist_form" value="Create Mailing Lists">Create Mailing Lists</button>
+                {{/unless}}
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endtplhandlebars %}
