@@ -2,6 +2,7 @@ import csv
 import os
 import datetime
 from dateutil.parser import parse
+from django.conf import settings
 from myuw.dao.term import get_comparison_date
 from myuw.dao import is_netid_in_list, get_netid_of_current_user
 from myuw.models import BannerMessage
@@ -12,6 +13,8 @@ Gets the banner message for the current day/quarter
 Currently will fetch messages stored in data CSV but could be enhanced to
 include an admin interface for storing messages and eligibility.
 """
+SAMPLE_LIST = "SAMPLE_LIST"
+SAMPLE_PATH = "data/seru_users.txt"
 
 
 def get_current_messages(request):
@@ -29,8 +32,11 @@ def get_filtered_messages(current_date, user):
             # add support for additional eligibility types here
             if message.eligibility_type == "netid":
                 path = _get_netid_file_path(message.eligibility_data)
-                if is_netid_in_list(user, path):
-                    filtered_messages.append(message)
+                try:
+                    if is_netid_in_list(user, path):
+                        filtered_messages.append(message)
+                except (IOError, TypeError) as ex:
+                    pass
             else:
                 raise NotImplemented("eligibility type filter missing")
     return filtered_messages
@@ -53,7 +59,10 @@ def _get_messages():
 
 def _get_netid_file_path(filename):
     current_dir = os.path.dirname(os.path.realpath(__file__))
-    file_path = os.path.abspath(os.path.join(current_dir,
-                                             "..", "data",
-                                             filename))
+    if filename == SAMPLE_LIST:
+        file_path = os.path.abspath(os.path.join(current_dir,
+                                                 "..",
+                                                 SAMPLE_PATH))
+    else:
+        file_path = getattr(settings, filename, None)
     return file_path

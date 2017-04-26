@@ -17,17 +17,18 @@ class TestMessages(TestCase):
         get_request()
 
     def test_get_filtered_messages(self):
-        current_date = datetime.date(2013, 4, 12)
-        messages = get_filtered_messages(current_date, "javerage")
-        self.assertEquals(len(messages), 1)
+        with self.settings(SERU_LIST=None):
+            current_date = datetime.date(2013, 4, 12)
+            messages = get_filtered_messages(current_date, "javerage")
+            self.assertEquals(len(messages), 1)
 
-        messages = get_filtered_messages(current_date, "jnotosoaverage")
-        self.assertEquals(len(messages), 0)
+            messages = get_filtered_messages(current_date, "jnotosoaverage")
+            self.assertEquals(len(messages), 0)
 
-        current_date = datetime.date(2015, 4, 12)
-        messages = get_filtered_messages(current_date, "javerage")
-        self.assertEquals(len(messages), 0)
+            current_date = datetime.date(2015, 4, 12)
+            messages = get_filtered_messages(current_date, "javerage")
+            self.assertEquals(len(messages), 0)
 
-        current_date = datetime.date(2011, 4, 12)
-        messages = get_filtered_messages(current_date, "javerage")
-        self.assertEquals(len(messages), 0)
+            current_date = datetime.date(2011, 4, 12)
+            messages = get_filtered_messages(current_date, "javerage")
+            self.assertEquals(len(messages), 0)
