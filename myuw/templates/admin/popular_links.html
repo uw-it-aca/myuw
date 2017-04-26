@@ -31,6 +31,26 @@ Campus:<br/>
 
 {% for link in  popular %}
 
-{{ link.url }} ({{ link.popularity }}) <br />
+{{ link.url }} ({{ link.popularity }})
+{% if link.exists %} (Already saved as a popular link) {% else %}
+<form action='{% url "myuw_popular_links" %}' method="POST">
+{% csrf_token %}
+<input type="hidden" name="url" value="{{ link.url }}"/>
+Label: <input type="text" name="label"> <input type="submit" value="add"/>
+</form>
+{% endif %}
+<br />
 {% endfor %}
+
+
+<h3>Saved popular links</h3>
+<p>Removing a link here will not removed them for users who have added them.</p>
+<form action='{% url "myuw_popular_links" %}' method="POST">
+{% csrf_token %}
+{% for link in curated_popular_links %}
+<label><input type="checkbox" name="remove_popular" value="{{ link.id }}">{{ link.label }} ({{ link.url }})</label> <br />
+{% endfor %}
+<input type="submit" value="Remove selected"/>
+</form>
+
 {% endblock %}
