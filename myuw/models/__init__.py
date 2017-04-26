@@ -142,7 +142,9 @@ class UserMigrationPreference(models.Model):
 class VisitedLink(models.Model):
     username = models.CharField(max_length=20)
     url = models.TextField()
+    label = models.CharField(max_length=50, null=True)
     visit_date = models.DateTimeField(db_index=True, auto_now_add=True)
+    is_anonymous = models.BooleanField(default=True)
     is_student = models.BooleanField(default=False)
     is_undegrad = models.BooleanField(default=False)
     is_grad_student = models.BooleanField(default=False)
