@@ -31,13 +31,20 @@ logger = logging.getLogger(__name__)
 
 def get_current_quarter_enrollment(request):
     regid = get_regid_of_current_user()
+    return _get_current_quarter_enrollment(request, regid)
+
+
+def _get_current_quarter_enrollment(request, regid):
     return get_enrollment_by_regid_and_term(regid,
                                             get_current_quarter(request))
 
 
 def get_all_enrollments():
     regid = get_regid_of_current_user()
+    return _get_all_enrollments(regid)
 
+
+def _get_all_enrollments(regid):
     timer = Timer()
     id = "%s %s" % ('get all enrollment by regid', regid)
     try:
@@ -64,35 +71,45 @@ def get_main_campus(request):
     return campuses
 
 
+def _get_degrees_for_terms(terms, enrollments, accessor):
+    """
+
+    """
+    degrees = []
+    previous = None
+
+    for term in terms:
+        if (term in enrollments and
+                len(getattr(enrollments[term], accessor)) > 0):
+            enrollment = enrollments[term]
+            entry = {}
+            entry['quarter'] = term.quarter
+            entry['year'] = term.year
+
+            term_degrees = getattr(enrollments[term], accessor)
+            entry[accessor] = []
+
+            if previous is not None:
+                entry['same_as_previous'] = _compare_degrees(previous,
+                                                             term_degrees)
+            else:
+                entry['same_as_previous'] = True
+
+            for degree in term_degrees:
+                entry[accessor].append(degree.json_data())
+
+            degrees.append(entry)
+            previous = term_degrees
+
+    return degrees
+
+
 def get_majors_for_terms(terms, enrollments):
     """
     Takes in a list of terms and a dictionary of terms to enrollments (returned
     by get_all_enrollments), and returns a list of majors and their terms
     """
-
-    majors = []
-    previous = None
-
-    for term in terms:
-        if (term in enrollments and len(enrollments[term].majors) > 0):
-            enrollment = enrollments[term]
-            major_entry = {}
-            major_entry['quarter'] = term.quarter
-            major_entry['year'] = term.year
-
-            major_entry['majors'] = []
-
-            for major in enrollments[term].majors:
-                major_entry['majors'].append(major.json_data())
-                if previous is not None:
-                    major_entry['same_as_previous'] = _compare_degrees(previous, enrollments[term].majors)
-                else:
-                    major_entry['same_as_previous'] = True
-
-            majors.append(major_entry)
-            previous = enrollments[term].majors
-
-    return majors
+    return _get_degrees_for_terms(terms, enrollments, 'majors')
 
 
 def get_minors_for_terms(terms, enrollments):
@@ -100,31 +117,7 @@ def get_minors_for_terms(terms, enrollments):
     Takes in a list of terms and a dictionary of terms to enrollments (returned
     by get_all_enrollments), and returns a list of minors and their terms
     """
-
-    minors = []
-    previous = None
-
-    for term in terms:
-        previous = enrollments[term].minors
-        if term in enrollments and len(enrollments[term].minors) > 0:
-            enrollment = enrollments[term]
-            minor_entry = {}
-            minor_entry['quarter'] = term.quarter
-            minor_entry['year'] = term.year
-
-            minor_entry['minors'] = []
-
-            for minor in enrollments[term].minors:
-                minor_entry['minors'].append(minor.json_data())
-                if previous is not None:
-                    minor_entry['same_as_previous'] = _compare_degrees(previous, enrollments[term].minors)
-                else:
-                    minor_entry['same_as_previous'] = True
-
-            minors.append(minor_entry)
-            previous = enrollments[term].minors
-
-    return minors
+    return _get_degrees_for_terms(terms, enrollments, 'minors')
 
 
 def _compare_degrees(first, second):
