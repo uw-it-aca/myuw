@@ -159,6 +159,7 @@ class VisitedLink(models.Model):
 
     MAX_RECENT_HISTORY = 100
     OLDEST_RECENT_TIME_DELTA = timedelta(days=-60)
+    OLDEST_POPULAR_TIME_DELTA = timedelta(days=-30)
 
     @classmethod
     def recent_for_user(cls, username):
@@ -179,7 +180,10 @@ class VisitedLink(models.Model):
 
     @classmethod
     def get_popular(cls, **kwargs):
-        objs = VisitedLink.objects.filter(**kwargs).values('url')
+        min_visit = timezone.now() + VisitedLink.OLDEST_POPULAR_TIME_DELTA
+        objs = VisitedLink.objects.filter(visit_date__gte=min_visit,
+                                          **kwargs)
+        objs = objs.values('url')
         objs = objs.annotate(num_users=Count('username', distinct=True),
                              all=Count('*'))
 

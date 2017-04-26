@@ -12,6 +12,7 @@ from myuw.views.future_quarters import future_quarters
 from myuw.views.textbooks import textbooks
 from myuw.views.category import category
 from myuw.views.display_dates import override
+from myuw.views.link_admin import popular_links
 from myuw.views.choose import new_site, old_site
 from myuw.views.logger import log_interaction
 from myuw.views.photo import show_photo
@@ -51,6 +52,7 @@ if settings.DEBUG:
 urlpatterns += [
     url(r'admin/dates', override, name="myuw_date_override"
         ),
+    url(r'admin/links', popular_links, name="myuw_popular_links"),
     url(r'^logger/(?P<interaction_type>.*)$', log_interaction
         ),
     url(r'^api/v1/academic_events$', login_required(AcademicEvents().run),

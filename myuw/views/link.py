@@ -27,6 +27,7 @@ def outbound_link(request):
 
     is_student_employee = affiliations.get('stud_employee', False)
     is_undergrad = affiliations.get('undergrad', False)
+
     VisitedLink.objects.create(username=request.user.username,
                                url=url,
                                label=label,

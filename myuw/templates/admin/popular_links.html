@@ -1,0 +1,36 @@
+{% extends wrapper_template %}
+{% block content %}
+<h2>Popular links in the last 30 days</h2>
+
+<p>The popularity metric is calculated as # of requests times the number of users.  The goal is to show broadly popular links.</p>
+
+<p>Filter (requires all that are checked):
+<form action='{% url "myuw_popular_links" %}' method='GET'>
+
+<label><input type='checkbox' name='is_anonymous' {% if checked.is_anonymous %}checked="checked"{% endif %}>anonymous users (shared/bookmarked links)</label>
+<br />
+Campus:<br/>
+<label><input type='checkbox' name='is_seattle' {% if checked.is_seattle %}checked="checked"{% endif %}>Seattle</label>
+<label><input type='checkbox' name='is_tacoma' {% if checked.is_tacoma %}checked="checked"{% endif %}>tacoma</label>
+<label><input type='checkbox' name='is_bothell' {% if checked.is_bothell %}checked="checked"{% endif %}>bothell</label>
+
+<br/>Affilliation:<br/>
+<label><input type='checkbox' name='is_student' {% if checked.is_student %}checked="checked"{% endif %}>student</label>
+<label><input type='checkbox' name='is_undergrad' {% if checked.is_undergrad %}checked="checked"{% endif %}>undergrad</label>
+<label><input type='checkbox' name='is_grad_student' {% if checked.is_grad_student %}checked="checked"{% endif %}>grad_student</label>
+<label><input type='checkbox' name='is_employee' {% if checked.is_employee %}checked="checked"{% endif %}>employee</label>
+<label><input type='checkbox' name='is_staff' {% if checked.is_staff %}checked="checked"{% endif %}>staff</label>
+<label><input type='checkbox' name='is_faculty' {% if checked.is_faculty %}checked="checked"{% endif %}>faculty</label>
+<label><input type='checkbox' name='is_pce' {% if checked.is_pce %}checked="checked"{% endif %}>pce</label>
+<label><input type='checkbox' name='is_student_employee' {% if checked.is_student_employee %}checked="checked"{% endif %}>student_employee</label>
+
+<br />
+<input type=submit>
+</form>
+</p>
+
+{% for link in  popular %}
+
+{{ link.url }} ({{ link.popularity }}) <br />
+{% endfor %}
+{% endblock %}
