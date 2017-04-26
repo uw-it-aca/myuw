@@ -20,49 +20,58 @@
 			<div>{{ class_level }}</div>
 			<div>
                             <ul class="student-major-list">
-                                {{#if majors}}
-                                    {{#if has_pending}}
-                                        <li>Current {{ pluralize_by_size majors "Major" "Majors"}}:
-                                            {{#each majors}}
-                                                {{full_name}} {{#unless @last}},{{/unless}}
-                                            {{/each}}
-                                        </li>
-                                        <!-- END -->
-                                    {{else}}
-                                    {{#each majors}}
-                                        <li>{{full_name}}</li>
-                                    {{/each}}
-                                    {{/if}}
-
-                                {{/if}}
-
-                                {{#if pending_majors}}
-                                    {{#each pending_majors}}
-                                        <li>{{ pluralize_by_size majors "Major" "Majors"}}
-                                            Beginning {{ toTitleCase quarter}}:
-                                            {{#each majors}}
-                                                {{full_name}} {{#unless @last}},{{/unless}}
-                                            {{/each}}
-                                        </li>
-                                        <!-- END -->
-                                    {{/each}}
-                                {{/if}}
-
-                                {{#if minors}}
-                                    {{#each minors}}
-                                        <li>Minor: {{full_name}}</li>
+                                {{#if term_majors}}
+                                    {{#each term_majors}}
+                                        {{#if @first}}
+                                            {{#if @root.has_pending_major}}
+                                                <li>Current {{ pluralize_by_size majors "Major" "Majors"}}:
+                                                    {{#each majors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{/each}}
+                                                </li>
+                                            {{else}}
+                                                {{#each majors}}
+                                                    <li>{{full_name}}</li>
+                                                {{/each}}
+                                            {{/if}}
+                                        {{else}}
+                                            {{#unless same_as_previous}}
+                                                <li>{{ pluralize_by_size majors "Major" "Majors"}}
+                                                    Beginning {{ toTitleCase quarter}}:
+                                                    {{#each majors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{/each}}
+                                                </li>
+                                            {{/unless}}
+                                        {{/if}}
                                     {{/each}}
                                 {{/if}}
 
-                                {{#if pending_minors}}
-                                    {{#each pending_minors}}
-                                        <li>{{ pluralize_by_size minors "Minor" "Minors"}}
-                                            Beginning {{ toTitleCase quarter}}:
-                                            {{#each minors}}
-                                                {{full_name}} {{#unless @last}},{{/unless}}
-                                            {{/each}}
-                                        </li>
-                                        <!-- END -->
+                                {{#if term_minors}}
+                                    {{#each term_minors}}
+                                        {{#if @first}}
+                                            {{#if @root.has_pending_minor}}
+                                                <li>Current {{ pluralize_by_size minors "Major" "Minors"}}:
+                                                    {{#each minors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{/each}}
+                                                </li>
+                                            {{else}}
+                                                {{#each minors}}
+                                                    <li>{{full_name}}</li>
+                                                {{/each}}
+                                            {{/if}}
+
+                                        {{else}}
+                                            {{#unless same_as_previous}}
+                                                <li>{{ pluralize_by_size minors "Major" "Minors"}}
+                                                    Beginning {{ toTitleCase quarter}}:
+                                                    {{#each minors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{/each}}
+                                                </li>
+                                            {{/unless}}
+                                        {{/if}}
                                     {{/each}}
                                 {{/if}}
                             </ul>
