@@ -15,4 +15,13 @@ MyUW Teaching
     {% compress js inline %}
     <script src="{% static 'js/page/teaching.js' %}"></script>
     {% endcompress %}
+    <script>
+    var quicklink_data = {
+        recent_links: [
+            {% for link in recent_links %}
+            {url: '{{ link.url }}', label: '{{ link.label }}' }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]
+    };
+    </script>
 {% endblock %}

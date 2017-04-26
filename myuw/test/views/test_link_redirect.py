@@ -2,7 +2,6 @@ from myuw.test.api import missing_url, require_url, MyuwApiTest
 from myuw.models import VisitedLink
 from django.core.urlresolvers import reverse
 from django.test import Client
-from urllib import quote
 
 
 @require_url('myuw_home')
@@ -14,21 +13,20 @@ class TestRedirect(MyuwApiTest):
         self.client.logout()
         url = reverse('myuw_outbound_link')
 
-        response = self.client.get(url, {'u': quote('example.com')})
+        response = self.client.get(url, {'u': 'example.com'})
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response["Location"], "/")
 
         response = self.client.get(url,
-                                   {'u': quote('javascript:alert("OK");')})
+                                   {'u': 'javascript:alert("OK");'})
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response["Location"], "/")
 
-        response = self.client.get(url, {'u':
-                                         quote('data:,Hello%2C%20World!')})
+        response = self.client.get(url, {'u': 'data:,Hello%2C%20World!'})
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response["Location"], "/")
 
-        w_http = quote('javascript:alert("http://example.com")')
+        w_http = 'javascript:alert("http://example.com")'
         response = self.client.get(url, {'u': w_http})
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response["Location"], "/")
@@ -41,7 +39,7 @@ class TestRedirect(MyuwApiTest):
 
         self.set_user('javerage')
         url = reverse('myuw_outbound_link')
-        response = self.client.get(url, {'u': quote('https://example.com'),
+        response = self.client.get(url, {'u': 'https://example.com',
                                          'l': 'example'})
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response["Location"], "https://example.com")
@@ -49,7 +47,7 @@ class TestRedirect(MyuwApiTest):
         all = VisitedLink.objects.all()
         self.assertEquals(all[0].label, 'example')
 
-        response = self.client.get(url, {'u': quote('http://example.com')})
+        response = self.client.get(url, {'u': 'http://example.com'})
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response["Location"], "http://example.com")
 
@@ -57,7 +55,7 @@ class TestRedirect(MyuwApiTest):
         self.assertEquals(len(all), 2)
 
         self.set_user('jbothell')
-        response = self.client.get(url, {'u': quote('http://example.com')})
+        response = self.client.get(url, {'u': 'http://example.com'})
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response["Location"], "http://example.com")
         all = VisitedLink.objects.all()
@@ -70,7 +68,7 @@ class TestRedirect(MyuwApiTest):
         VisitedLink.objects.all().delete()
         self.client.logout()
         url = reverse('myuw_outbound_link')
-        response = self.client.get(url, {'u': quote('https://example.com'),
+        response = self.client.get(url, {'u': 'https://example.com',
                                          'l': 'example'})
 
         all = VisitedLink.objects.all()

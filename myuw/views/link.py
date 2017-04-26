@@ -8,7 +8,7 @@ import re
 
 
 def outbound_link(request):
-    url = unquote(request.GET.get('u', ''))
+    url = request.GET.get('u', '')
 
     if not re.match('^https?://', url):
         return HttpResponseRedirect("/")

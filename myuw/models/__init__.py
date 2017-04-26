@@ -174,7 +174,7 @@ class VisitedLink(models.Model):
         for visited in objs:
             if visited.url not in lookup:
                 lookup.add(visited.url)
-                ordered.append(visited.url)
+                ordered.append(visited)
 
         return ordered
 

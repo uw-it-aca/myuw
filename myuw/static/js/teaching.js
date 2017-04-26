@@ -17,7 +17,8 @@ var Teaching = {
         $("#main-content").html(template({
             'seattle_affil': (window.user.seattle_affil || window.user.seattle),
             'bothell_affil': (window.user.bothell_affil || window.user.bothell),
-            'tacoma_affil': (window.user.tacoma_affil || window.user.tacoma)
+            'tacoma_affil': (window.user.tacoma_affil || window.user.tacoma),
+            'links': window.quicklink_data
         }));
 
         NoticeBanner.render_init($("#notice_banner_location"));

@@ -16,9 +16,9 @@ class TestLink(TestCase):
 
         recent = VisitedLink.recent_for_user(user)
         self.assertEquals(len(recent), 3)
-        self.assertEquals(recent[0], TEST_URLS[2])
-        self.assertEquals(recent[1], TEST_URLS[1])
-        self.assertEquals(recent[2], TEST_URLS[0])
+        self.assertEquals(recent[0].url, TEST_URLS[2])
+        self.assertEquals(recent[1].url, TEST_URLS[1])
+        self.assertEquals(recent[2].url, TEST_URLS[0])
 
     def test_user_recent_multi_visit(self):
         VisitedLink.objects.all().delete()
@@ -30,9 +30,9 @@ class TestLink(TestCase):
 
         recent = VisitedLink.recent_for_user(user)
         self.assertEquals(len(recent), 3)
-        self.assertEquals(recent[0], TEST_URLS[2])
-        self.assertEquals(recent[1], TEST_URLS[1])
-        self.assertEquals(recent[2], TEST_URLS[0])
+        self.assertEquals(recent[0].url, TEST_URLS[2])
+        self.assertEquals(recent[1].url, TEST_URLS[1])
+        self.assertEquals(recent[2].url, TEST_URLS[0])
 
     def test_max_old_links(self):
         VisitedLink.objects.all().delete()
@@ -44,8 +44,8 @@ class TestLink(TestCase):
 
         recent = VisitedLink.recent_for_user(user)
         self.assertEquals(len(recent), 2)
-        self.assertEquals(recent[0], TEST_URLS[2])
-        self.assertEquals(recent[1], TEST_URLS[1])
+        self.assertEquals(recent[0].url, TEST_URLS[2])
+        self.assertEquals(recent[1].url, TEST_URLS[1])
 
     def test_max_by_date(self):
         VisitedLink.objects.all().delete()
@@ -61,7 +61,7 @@ class TestLink(TestCase):
         VisitedLink.objects.create(username=user, url=TEST_URLS[1])
         recent = VisitedLink.recent_for_user(user)
         self.assertEquals(len(recent), 1)
-        self.assertEquals(recent[0], TEST_URLS[1])
+        self.assertEquals(recent[0].url, TEST_URLS[1])
 
     def test_none(self):
         VisitedLink.objects.all().delete()
