@@ -1,0 +1,209 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "ClassWebsiteUrl": null,
+    "Course": {
+        "CourseNumber": "203",
+        "CurriculumAbbreviation": "PSYCH",
+        "Href": "/student/v5/course/2013,winter,PSYCH,203.json",
+        "Quarter": "winter",
+        "Year": 2013
+    },
+    "CourseCampus": "Seattle",
+    "CourseDescription": "Overview of the major theories, research findings, and applications in the scientific study of personality. Covers research methods and approaches to measuring personality variables. Not open for credit to students who have taken PSYCH 303. Prerequisite: PSYCH 101. Instructors: Smith",
+    "CourseHasVariableContent": false,
+    "CourseTitle": "PERS & INDIV DIFFS",
+    "CourseTitleLong": "INTRODUCTION TO PERSONALITY AND INDIVIDUAL DIFFERENCES",
+    "CreditControl": "fixed credit",
+    "CurrentEnrollment": 10,
+    "Curriculum": {
+        "CollegeName": "ARTS & SCI",
+        "DepartmentAbbreviation": "PSYCH",
+        "TimeScheduleLinkAbbreviation": "95psych"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": true,
+    "DuplicateEnrollmentAllowed": false,
+    "EndDate": "",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": "",
+    "FeeBudget": "",
+    "FeeType": "",
+    "FinalExam": {
+        "Building": null,
+        "Date": "",
+        "EndTime": "",
+        "FinalExamBuilding": {
+            "Href": ""
+        },
+        "MeetingStatus": null,
+        "RoomNumber": null,
+        "StartTime": ""
+    },
+    "FinancialAidEligible": false,
+    "FinancialAidEligibleDisplay": "MAY NOT BE ELIGIBLE FOR FINANCIAL AID",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": true,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [
+        {
+            "DelegateLevel": "curriculum",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                "Name": "Kim Arbios",
+                "RegID": "10000000000000000000000000000011"
+            }
+        }
+    ],
+    "GradingSystem": "standard",
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": "UW PROFESSIONAL AND CONTINUING EDUCATION",
+    "IsIndependentStart": true,
+    "JointSections": [],
+    "LMSOwnership": "PCE_OL",
+    "LimitEstimateEnrollment": 13,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "*",
+            "BuildingToBeArranged": true,
+            "DaysOfWeek": {
+                "Days": [],
+                "Text": "to be arranged"
+            },
+            "DaysOfWeekToBeArranged": true,
+            "EndTime": "",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2013,winter,PSYCH,203,A,10000000000000000000000000000011"
+                    },
+                    "PercentInvolve": "100",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                        "Name": "Jonathon BROWN",
+                        "RegID": "10000000000000000000000000000011"
+                    },
+                    "TSPrint": true
+                }
+            ],
+            "Meeting": {
+                "Href": ""
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "lecture",
+            "RoomNumber": "*",
+            "RoomToBeArranged": true,
+            "StartTime": ""
+        }
+    ],
+    "Metadata": "SectionSourceKey=SDB_EOS;",
+    "MinimumTermCredit": "4.0",
+    "OnlineLearningType": {
+        "Code": "00",
+        "Description": "No online learning component"
+    },
+    "PrimaryLMS": "CANVAS",
+    "PrimarySection": {
+        "CourseNumber": "203",
+        "CurriculumAbbreviation": "PSYCH",
+        "Href": "/student/v5/course/2013,winter,PSYCH,203/A.json",
+        "Quarter": "winter",
+        "SectionID": "A",
+        "Year": 2013
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "203",
+        "CurriculumAbbreviation": "PSYCH",
+        "Href": "/student/v5/registration.json?year=2013&quarter=winter&curriculum_abbreviation=PSYCH&course_number=203&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "winter",
+        "RegID": null,
+        "SectionID": "A",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2013
+    },
+    "RepositoryTimeStamp": "2/13/2013 8:33:27 AM",
+    "ResearchCredit": false,
+    "RoomCapacity": 0,
+    "SLN": "019417",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "A",
+    "SectionType": "lecture",
+    "SelfRegistrationAllowed": false,
+    "ServiceLearning": false,
+    "StartDate": "",
+    "StudentCreditHours": "  40.0",
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2013,winter.json",
+        "Quarter": "winter",
+        "Year": 2013
+    },
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": []
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": [
+                {
+                    "Text": "TO REGISTER PLEASE CALL"
+                },
+                {
+                    "Text": "206-543-2310 OR 800-506-1325."
+                },
+                {
+                    "Text": "ADDITIONAL COURSE FEES APPLY. NOT"
+                },
+                {
+                    "Text": "INCLUDED IN TUITION CAP."
+                },
+                {
+                    "Text": "REGISTRATION SCHEDULED TO OPEN"
+                },
+                {
+                    "Text": "12/19/16"
+                }
+            ]
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": [
+                {
+                    "Text": "Distance Learning - Internet"
+                },
+                {
+                    "Text": "MAY NOT BE ELIGIBLE FOR FINANCIAL AID"
+                }
+            ]
+        }
+    }
+}
