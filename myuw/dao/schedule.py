@@ -27,8 +27,12 @@ def _get_schedule(regid, term):
         return None
     logid = ('get_schedule_by_regid_and_term ' +
              str(regid) + ',' + str(term.year) + ',' + term.quarter)
-    return get_schedule_by_regid_and_term(regid, term, False,
-                                          myuw_section_prefetch)
+    return get_schedule_by_regid_and_term(
+        regid,
+        term,
+        non_time_schedule_instructors=False,
+        per_section_prefetch_callback=myuw_section_prefetch,
+        transcriptable_course="all")
 
 
 def myuw_section_prefetch(data):

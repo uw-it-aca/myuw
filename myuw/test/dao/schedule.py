@@ -19,13 +19,13 @@ class TestSchedule(TestCase):
     def test_has_summer_quarter_section(self):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = Term()
-        term.year = 2012
+        term.year = 2013
         term.quarter = "summer"
         schedule = _get_schedule(regid, term)
         self.assertTrue(has_summer_quarter_section(schedule))
 
         term = Term()
-        term.year = 2012
+        term.year = 2014
         term.quarter = "autumn"
         self.assertRaises(DataFailureException,
                           _get_schedule,
