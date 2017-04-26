@@ -171,17 +171,20 @@ var RegStatusCard = {
         var pending_minors = [];
         var pending_majors = [];
 
-
-        for(i = 0; i < profile.pending_majors.length; i++){
-            var major = profile.pending_majors[i];
-            if(major.quarter === next_term_data.quarter.toLowerCase())
-                pending_majors = major.majors;
+        for(i = 0; i < profile.term_majors.length; i++){
+            if(profile.term_majors[i].quarter === quarter && profile.term_majors[i].year === year){
+                if(!profile.term_majors[i].same_as_previous){
+                    pending_majors = profile.term_majors[i].majors;
+                }
+            }
         }
 
-        for(i = 0; i < profile.pending_minors.length; i++){
-            var minor = profile.pending_minors[i];
-            if(minor.quarter === next_term_data.quarter.toLowerCase())
-                pending_minors = minor.minors;
+        for(i = 0; i < profile.term_minors.length; i++){
+            if(profile.term_minors[i].quarter === quarter && profile.term_minors[i].year === year){
+                if(!profile.term_minors[i].same_as_previous){
+                    pending_minors = profile.term_minors[i].minors;
+                }
+            }
         }
 
 
