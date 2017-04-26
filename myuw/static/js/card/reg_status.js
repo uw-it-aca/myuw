@@ -168,11 +168,12 @@ var RegStatusCard = {
 
         // Retrieve pending majors and minors for this quarter, if they exist
         var profile = WSData.profile_data();
+
         var pending_minors = [];
         var pending_majors = [];
 
         for(i = 0; i < profile.term_majors.length; i++){
-            if(profile.term_majors[i].quarter === quarter && profile.term_majors[i].year === year){
+            if(profile.term_majors[i].quarter.toUpperCase() === quarter.toUpperCase() && profile.term_majors[i].year === year){
                 if(!profile.term_majors[i].same_as_previous){
                     pending_majors = profile.term_majors[i].majors;
                 }
@@ -180,7 +181,8 @@ var RegStatusCard = {
         }
 
         for(i = 0; i < profile.term_minors.length; i++){
-            if(profile.term_minors[i].quarter === quarter && profile.term_minors[i].year === year){
+            if(profile.term_minors[i].toUpperCase() === quarter.toUpperCase() && profile.term_minors[i].year === year){
+
                 if(!profile.term_minors[i].same_as_previous){
                     pending_minors = profile.term_minors[i].minors;
                 }
