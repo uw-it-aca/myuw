@@ -4,7 +4,9 @@ import traceback
 from django.http import HttpResponse
 from myuw.dao.enrollment import (get_current_quarter_enrollment,
                                  get_main_campus,
-                                 get_quarter_enrollment)
+                                 get_all_enrollments,
+                                 get_majors_for_terms,
+                                 get_minors_for_terms)
 from myuw.dao.gws import is_grad_student, is_student
 from myuw.dao.password import get_pw_json
 from myuw.dao.pws import get_display_name_of_current_user
@@ -12,7 +14,7 @@ from myuw.dao.student_profile import get_profile_of_current_user
 from myuw.dao.user import get_netid_of_current_user
 from myuw.dao.term import (get_current_quarter,
                            get_next_quarter,
-                           get_next_quarters)
+                           get_current_and_next_quarters)
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response, log_msg
 from myuw.views import prefetch_resources
@@ -42,7 +44,7 @@ class MyProfile(RESTDispatch):
 
             netid = get_netid_of_current_user()
 
-            term = get_current_quarter(request)
+            terms = get_current_and_next_quarters(request, 4)
 
             if is_student():
                 profile = get_profile_of_current_user()
@@ -58,31 +60,21 @@ class MyProfile(RESTDispatch):
                 elif 'Bothell' in campuses:
                     response['campus'] = 'Bothell'
                 try:
-                    future_quarters = get_next_quarters(request, 3)
+
                     enrollments = get_all_enrollments()
 
-                    response['class_level'] = enrollment.class_level
+                    if terms[0] in enrollments:
+                        enrollment = enrollments[terms[0]]
+                        response['class_level'] = enrollment.class_level
 
-                    response['majors'] = []
-                    response['minors'] = []
-                    for enrollment in enrollments:
-                        current_major = {}
-                        current_major['quarter'] = (term.quarter + "-" +
-                                                    str(term.year))
-                        for major in enrollment.majors:
-                            current_major['majors'].append(major.json_data())
-
-                        response['majors'].append(current_major)
-
-                        current_minor = {}
-                        current_minor['quarter'] = (term.quarter + "-" +
-                                                    str(term.year))
-                        for minor in enrollment.minors:
-                            current_minor['minors'].append(minor.json_data())
-
-                        response['minors'].append(current_minor)
+                    response['term_majors'] = get_majors_for_terms(terms,
+                                                                   enrollments)
+                    response['term_minors'] = get_minors_for_terms(terms,
+                                                                   enrollments)
 
                 except Exception as ex:
+                    print ex
+                    traceback.print_exc()
                     logger.error(
                         "%s get_current_quarter_enrollment: %s" %
                         (netid, ex))
