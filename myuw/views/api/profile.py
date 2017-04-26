@@ -73,8 +73,6 @@ class MyProfile(RESTDispatch):
                                                                    enrollments)
 
                 except Exception as ex:
-                    print ex
-                    traceback.print_exc()
                     logger.error(
                         "%s get_current_quarter_enrollment: %s" %
                         (netid, ex))

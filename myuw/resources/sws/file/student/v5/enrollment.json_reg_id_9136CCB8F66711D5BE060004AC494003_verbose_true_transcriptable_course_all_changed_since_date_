@@ -95,16 +95,6 @@
                  "MajorName": "ACMS (SOC & BEH SCI)",
                  "Pathway": 80,
                  "ShortName": "ACMS (SBS)"
-                },
-                {"Abbreviation": "BSKT WVE",
-                 "Campus": "Seattle",
-                 "DegreeLevel": 1,
-                 "DegreeName": "BACHELOR OF SCIENCE (UNDERWATER BASKET WEAVING)",
-                 "DegreeType": 5,
-                 "FullName": "Underwater Basked Weaving)",
-                 "MajorName": "BSKT WVE",
-                 "Pathway": 80,
-                 "ShortName": "BSKT WVE"
                 }
             ],
             "Metadata": "EnrollmentSourceLocation=SDB;",
@@ -158,16 +148,6 @@
                  "MajorName": "ACMS (SOC & BEH SCI)",
                  "Pathway": 80,
                  "ShortName": "ACMS (SBS)"
-                },
-                {"Abbreviation": "BSKT WVE",
-                 "Campus": "Seattle",
-                 "DegreeLevel": 1,
-                 "DegreeName": "BACHELOR OF SCIENCE (UNDERWATER BASKET WEAVING)",
-                 "DegreeType": 5,
-                 "FullName": "Underwater Basked Weaving)",
-                 "MajorName": "BSKT WVE",
-                 "Pathway": 80,
-                 "ShortName": "BSKT WVE"
                 }
             ],
             "Metadata": "EnrollmentSourceLocation=SDB;",
@@ -220,16 +200,6 @@
                  "MajorName": "ACMS (SOC & BEH SCI)",
                  "Pathway": 80,
                  "ShortName": "ACMS (SBS)"
-                },
-                {"Abbreviation": "BSKT WVE",
-                 "Campus": "Seattle",
-                 "DegreeLevel": 1,
-                 "DegreeName": "BACHELOR OF SCIENCE (UNDERWATER BASKET WEAVING)",
-                 "DegreeType": 5,
-                 "FullName": "Underwater Basked Weaving)",
-                 "MajorName": "BSKT WVE",
-                 "Pathway": 80,
-                 "ShortName": "BSKT WVE"
                 }
             ],
             "Metadata": "EnrollmentSourceLocation=SDB;",
