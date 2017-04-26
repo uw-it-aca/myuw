@@ -1,0 +1,34 @@
+{
+    "ClassLevel": "BLANK",
+    "CurrentRegisteredCredits": null,
+    "EnrollmentStatus": null,
+    "EnrollmentStatusDate": "",
+    "FullName": "RICHA ARORA",
+    "HonorsProgram": false,
+    "LeaveEndQuarter": 0,
+    "LeaveEndYear": 0,
+    "Majors": [],
+    "Metadata": "EnrollmentSourceLocation=EOS;",
+    "Minors": [],
+    "PendingClassChange": false,
+    "PendingHonorsChange": false,
+    "PendingMajorChange": false,
+    "PendingResidentChange": false,
+    "PendingSpecialProgramChange": false,
+    "Person": {
+        "Href": "/student/v5/person/10000000000000000000000000000010.json",
+        "Name": "RICHA ARORA",
+        "RegID": "10000000000000000000000000000010"
+    },
+    "QtrGradePoints": null,
+    "QtrGradedAttmp": null,
+    "QtrNonGrdEarned": null,
+    "RegID": "10000000000000000000000000000010",
+    "Registrations": [],
+    "RepositoryTimeStamp": "3/28/2013 2:20:53 PM",
+    "Term": {
+        "Href": "/student/v5/term/2013,spring.json",
+        "Quarter": "spring",
+        "Year": 2013
+    }
+} 
