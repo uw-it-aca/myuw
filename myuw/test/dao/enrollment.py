@@ -1,26 +1,61 @@
 from django.test import TestCase
-
+from unittest import skip
+from myuw.dao.enrollment import (get_minors_for_terms, get_majors_for_terms,
+                                 _get_all_enrollments,
+                                 _get_current_quarter_enrollment)
+from myuw.dao.term import get_current_and_next_quarters, get_current_quarter
+from myuw.test import (get_user, get_user_pass, fdao_pws_override,
+                       get_request_with_user, get_request_with_date,
+                       fdao_sws_override, fdao_uwnetid_override)
 
 class TestEnrollment(TestCase):
 
-    @skip
-    def get_enrollment_response(self):
-        self.set_user(netid)
-        if adate is not None:
-            self.set_date(adate)
+    def set_user(self, user):
+        get_user(user)
+        self.client.login(username=user,
+                          password=get_user_pass(user))
 
-    @skip
     def test_get_enrollment_quarter(self):
-        self.assertEquals(1, 2)
+        request = get_request_with_date("2013-04-15")
+        # javerage's regid
+        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        enrollment = _get_current_quarter_enrollment(request, regid)
 
-    @skip
     def test_get_all_enrollment(self):
-        self.assertEquals(1, 2)
+        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        request = get_request_with_date("2013-04-15")
+        terms = get_current_and_next_quarters(request, 4)
+        enrollments = _get_all_enrollments(regid)
+        self.assertEquals(len(enrollments), 4)
 
-    @skip
+        for term in terms:
+            self.assertIn(term, enrollments)
+
+        spring_enrollment = enrollments[terms[0]]
+
+        self.assertEquals(len(spring_enrollment.majors), 1)
+        self.assertEquals(len(spring_enrollment.minors), 1)
+
     def test_get_majors_for_terms(self):
-        self.assertEquals(1, 2)
+        regid = "12345678901234567890123456789012"
+        request = get_request_with_date("2013-04-15")
+        terms = get_current_and_next_quarters(request, 4)
+        enrollments = _get_all_enrollments(regid)
 
-    @skip
+        majors = get_majors_for_terms(terms, enrollments)
+
+        self.assertEquals(len(majors[0]['majors']), 2)
+        self.assertEquals(len(majors[1]['majors']), 3)
+        self.assertEquals(len(majors[2]['majors']), 2)
+
     def test_get_minors_for_terms(self):
-        self.assertEquals(1, 2)
+        regid = "FE36CCB8F66711D5BE060004AC494FCD"
+        request = get_request_with_date("2013-04-15")
+        terms = get_current_and_next_quarters(request, 4)
+        enrollments = _get_all_enrollments(regid)
+
+        minors = get_minors_for_terms(terms, enrollments)
+
+        self.assertEquals(len(minors[0]['minors']), 1)
+        self.assertEquals(len(minors[1]['minors']), 2)
+        self.assertEquals(len(minors[2]['minors']), 1)
