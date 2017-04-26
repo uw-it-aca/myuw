@@ -1,13 +1,26 @@
 from django.test import TestCase
-from myuw.dao.exceptions import EmailServiceUrlException
-from myuw.dao.emaillink import get_service_url_for_address
-from restclients.uwnetid.subscription import get_email_forwarding
 
 
 class TestEnrollment(TestCase):
 
-    def test_get_enrollment_quarter(self):
-        pass
+    @skip
+    def get_enrollment_response(self):
+        self.set_user(netid)
+        if adate is not None:
+            self.set_date(adate)
 
+    @skip
+    def test_get_enrollment_quarter(self):
+        self.assertEquals(1, 2)
+
+    @skip
     def test_get_all_enrollment(self):
-        pass
+        self.assertEquals(1, 2)
+
+    @skip
+    def test_get_majors_for_terms(self):
+        self.assertEquals(1, 2)
+
+    @skip
+    def test_get_minors_for_terms(self):
+        self.assertEquals(1, 2)
