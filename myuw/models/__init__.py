@@ -139,11 +139,9 @@ class UserMigrationPreference(models.Model):
     use_legacy_site = models.BooleanField(default=False)
 
 
-class VisitedLink(models.Model):
-    username = models.CharField(max_length=20)
+class AffililationLink(models.Model):
     url = models.TextField()
     label = models.CharField(max_length=50, null=True)
-    visit_date = models.DateTimeField(db_index=True, auto_now_add=True)
     is_anonymous = models.BooleanField(default=True)
     is_student = models.BooleanField(default=False)
     is_undegrad = models.BooleanField(default=False)
@@ -156,6 +154,11 @@ class VisitedLink(models.Model):
     is_bothell = models.BooleanField(default=False)
     is_pce = models.BooleanField(default=False)
     is_student_employee = models.BooleanField(default=False)
+
+
+class VisitedLink(AffililationLink):
+    username = models.CharField(max_length=20)
+    visit_date = models.DateTimeField(db_index=True, auto_now_add=True)
 
     MAX_RECENT_HISTORY = 100
     OLDEST_RECENT_TIME_DELTA = timedelta(days=-60)
@@ -193,3 +196,7 @@ class VisitedLink(models.Model):
             values.append({'popularity': popularity, 'url': item['url']})
 
         return sorted(values, key=lambda x: x['popularity'], reverse=True)
+
+
+class PopularLink(AffililationLink):
+    pass

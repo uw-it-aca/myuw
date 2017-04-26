@@ -19,7 +19,12 @@ MyUW Teaching
     var quicklink_data = {
         recent_links: [
             {% for link in recent_links %}
-            {url: '{{ link.url }}', label: '{{ link.label }}' }{% if not forloop.last %},{% endif %}
+            {url: '{{ link.url | safe | escapejs}}', label: '{{ link.label | safe | escapejs }}' }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ],
+        popular_links: [
+            {% for link in popular_links %}
+            {url: '{{ link.url | safe | escapejs }}', label: '{{ link.label | safe | escapejs }}' }{% if not forloop.last %},{% endif %}
             {% endfor %}
         ]
     };
