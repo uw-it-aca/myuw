@@ -8,6 +8,7 @@ from myuw.test import (get_user, get_user_pass, fdao_pws_override,
                        get_request_with_user, get_request_with_date,
                        fdao_sws_override, fdao_uwnetid_override)
 
+
 class TestEnrollment(TestCase):
 
     def set_user(self, user):

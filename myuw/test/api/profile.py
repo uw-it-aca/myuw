@@ -30,8 +30,8 @@ class TestProfile(MyuwApiTest):
 
         self.assertEquals(data["campus"], "Seattle")
         self.assertEquals(data["class_level"], "SENIOR")
-        self.assertEquals(len(data["majors"]), 1)
-        self.assertEquals(len(data["minors"]), 1)
+        self.assertEquals(len(data["term_majors"]), 4)
+        self.assertEquals(len(data["term_minors"]), 4)
         self.assertFalse(data["is_grad_student"])
         pw_data = data["password"]
         self.assertEquals(pw_data["last_change"],
@@ -78,31 +78,98 @@ class TestProfile(MyuwApiTest):
         response = self.get_profile_response('none')
         self.assertEquals(response.status_code, 200)
 
-    @skip
-    def test_no_major(self):
-        response = self.get_profile_response("none")
-
-    @skip
-    def test_no_minor(self):
-        response = self.get_profile_response("none")
-
-    @skip
     def test_no_pending(self):
-        self.assertEquals(1, 2)
+        response = self.get_profile_response('javerage')
+        self.assertEquals(response.status_code, 200)
 
-    @skip
+        self.assertIn("term_majors", response)
+        for major_entry in response['term_majors']:
+            self.assertTrue(major_entry['same_as_previous'])
+
     def test_change_majors_once(self):
-        self.assertEquals(1, 2)
+        response = self.get_profile_response('javg001')
+        self.assertEquals(response.status_code, 200)
 
-    @skip
+        self.assertIn("term_majors", response)
+        self.assertTrue(response['term_majors'][0]['same_as_previous'])
+        self.assertFalse(response['term_majors'][1]['same_as_previous'])
+        self.assertTrue(response['term_majors'][2]['same_as_previous'])
+
+        self.assertEquals(len(response['term_majors'][0]['majors']), 1)
+        self.assertEquals(len(response['term_majors'][1]['majors']), 2)
+        self.assertEquals(len(response['term_majors'][2]['majors']), 2)
+
     def test_summer_major_only(self):
         # test to see if same_as_previous works
-        self.assertEquals(1, 2)
+        response = self.get_profile_response('jbothell')
+        self.assertEquals(response.status_code, 200)
 
-    @skip
+        self.assertIn("term_majors", response)
+        self.assertEquals(len(response['term_majors'][0]['majors']), 2)
+        self.assertEquals(len(response['term_majors'][1]['majors']), 3)
+        self.assertEquals(len(response['term_majors'][2]['majors']), 2)
+
+        self.assertTrue(response['term_majors'][0]['same_as_previous'])
+        self.assertFalse(response['term_majors'][1]['same_as_previous'])
+        self.assertFalse(response['term_majors'][2]['same_as_previous'])
+
     def test_change_once_and_add_another(self):
-        self.assertEquals(1, 2)
+        response = self.get_profile_response('javg002')
+        self.assertEquals(response.status_code, 200)
 
-    @skip
+        self.assertIn("term_majors", response)
+        self.assertTrue(response['term_majors'][0]['same_as_previous'])
+        self.assertFalse(response['term_majors'][1]['same_as_previous'])
+        self.assertFalse(response['term_majors'][2]['same_as_previous'])
+        self.assertTrue(response['term_majors'][3]['same_as_previous'])
+
+        self.assertEquals(len(response['term_majors'][0]['majors']), 1)
+        self.assertEquals(len(response['term_majors'][1]['majors']), 1)
+        self.assertEquals(len(response['term_majors'][2]['majors']), 2)
+        self.assertEquals(len(response['term_majors'][3]['majors']), 2)
+
     def test_drop_major(self):
-        self.assertEquals(1, 2)
+        response = self.get_profile_response('javg003')
+        self.assertEquals(response.status_code, 200)
+
+        self.assertIn("term_majors", response)
+        self.assertTrue(response['term_majors'][0]['same_as_previous'])
+        self.assertFalse(response['term_majors'][1]['same_as_previous'])
+        self.assertTrue(response['term_majors'][2]['same_as_previous'])
+        self.assertTrue(response['term_majors'][3]['same_as_previous'])
+
+        self.assertEquals(len(response['term_majors'][0]['majors']), 2)
+        self.assertEquals(len(response['term_majors'][1]['majors']), 1)
+        self.assertEquals(len(response['term_majors'][2]['majors']), 1)
+        self.assertEquals(len(response['term_majors'][3]['majors']), 1)
+
+    def test_no_major_or_minor(self):
+        response = self.get_profile_response('javg004')
+        self.assertEquals(response.status_code, 200)
+
+        self.assertIn("term_majors", response)
+        self.assertEquals(len(response['term_majors'][0]), 0)
+        self.assertEquals(len(response['term_majors'][1]), 0)
+        self.assertTrue(response['term_majors'][0]['same_as_previous'])
+        self.assertTrue(response['term_majors'][1]['same_as_previous'])
+
+        self.assertIn("term_minors", response)
+        self.assertEquals(len(response['term_minors'][0]), 0)
+        self.assertEquals(len(response['term_minors'][1]), 0)
+        self.assertTrue(response['term_minors'][0]['same_as_previous'])
+        self.assertTrue(response['term_minors'][1]['same_as_previous'])
+
+    def test_drop_minor(self):
+        response = self.get_profile_response('javg002')
+        self.assertEquals(response.status_code, 200)
+
+        self.assertIn("term_minors", response)
+        self.assertTrue(response['term_minors'][0]['same_as_previous'])
+        self.assertFalse(response['term_minors'][1]['same_as_previous'])
+        self.assertTrue(response['term_minors'][2]['same_as_previous'])
+        self.assertTrue(response['term_minors'][3]['same_as_previous'])
+
+        self.assertEquals(len(response['term_minors'][0]['majors']), 1)
+        self.assertEquals(len(response['term_minors'][1]['majors']), 0)
+        self.assertEquals(len(response['term_minors'][2]['majors']), 0)
+        self.assertEquals(len(response['term_minors'][3]['majors']), 0)
