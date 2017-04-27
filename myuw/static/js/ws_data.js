@@ -34,6 +34,7 @@ WSData = {
     _myplan_data: {},
     _thrive_data: null,
     _upass_data: null,
+    _message_data: null,
 
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
@@ -336,6 +337,10 @@ WSData = {
     },
     upass_data: function() {
         return WSData._upass_data;
+    },
+
+    message_data: function() {
+        return WSData._message_data;
     },
 
     fetch_event_data: function(callback, err_callback, args) {
@@ -1120,6 +1125,32 @@ WSData = {
                 accepts: {html: "application/json"},
                 success: function(results) {
                     WSData._upass_data = results;
+                    if (callback !== null) {
+                        callback.apply(null, args);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    err_callback.call(null, xhr.status, error);
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
+    fetch_message_data: function(callback, err_callback, args) {
+        if (WSData.upass_data() === null) {
+            var url = "/api/v1/messages/";
+            $.ajax({
+                url: url,
+                dataType: "JSON",
+                type: "GET",
+                accepts: {html: "application/json"},
+                success: function(results) {
+                    WSData._message_data = results;
                     if (callback !== null) {
                         callback.apply(null, args);
                     }
