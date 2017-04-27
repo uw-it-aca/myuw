@@ -1,0 +1,41 @@
+{
+    "CourseCampus": "Seattle",
+    "CourseCollege": "Arts & Sciences",
+    "CourseComment": "CHG TITLES, DESC",
+    "CourseDescription": "Covers the basic principles of electromagnetism and experiments in these topics for physical science and engineering majors. Lecture tutorial and lab components must all be taken to receive credit. Credit is not given for both PHYS 115 and PHYS 122. Prerequisite: either MATH 125 or MATH 134, which may be taken concurrently; PHYS 121. Offered: AWSpS.",
+    "CourseNumber": "122",
+    "CourseTitle": "ELECTROMAGNETISM",
+    "CourseTitleLong": "ELECTROMAGNETISM",
+    "CreditControl": "fixed credit",
+    "Curriculum": {
+        "CurriculumAbbreviation": "PHYS",
+        "Href": "/student/v5/curriculum/2013,spring,PHYS.json",
+        "Quarter": "spring",
+        "Year": 2013
+    },
+    "FirstEffectiveTerm": {
+        "Href": "/student/v5/term/2012,winter.json",
+        "Quarter": "winter",
+        "Year": 2012
+    },
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": true,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradingSystem": "credit/no credit or standard",
+    "LastEffectiveTerm": {
+        "Href": "/student/v5/term/9999,autumn.json",
+        "Quarter": "autumn",
+        "Year": 9999
+    },
+    "MaximumCredit": 0.0,
+    "MaximumTermCredit": 0.0,
+    "Metadata": "CourseSourceKey=SDB;",
+    "MinimumTermCredit": 5.0,
+    "RepositoryTimeStamp": "8/9/2016 12:46:10 PM"
+}

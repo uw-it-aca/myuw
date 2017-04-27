@@ -1,0 +1,247 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "ClassWebsiteUrl": null,
+    "Course": {
+        "CourseNumber": "123",
+        "CurriculumAbbreviation": "PHYS",
+        "Href": "/student/v5/course/2013,spring,PHYS,123.json",
+        "Quarter": "spring",
+        "Year": 2013
+    },
+    "CourseCampus": "Seattle",
+    "CourseDescription": "Explores electromagnetic waves, the mechanics of oscillatory motion, optics, waves in matter, and experiments in these topics for physical science and engineering majors. Lecture tutorial and lab components must all be taken to receive credit. Credit is not given for both PHYS 116 and PHYS 123. Prerequisite: either MATH 126 or MATH 134, which may be taken concurrently; PHYS 122. Offered: AWSpS.",
+    "CourseHasVariableContent": false,
+    "CourseTitle": "WAVES",
+    "CourseTitleLong": "WAVES",
+    "CreditControl": "zero credits",
+    "CurrentEnrollment": 22,
+    "Curriculum": {
+        "CollegeName": "ARTS & SCI",
+        "DepartmentAbbreviation": "PHYS",
+        "TimeScheduleLinkAbbreviation": "phys"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": false,
+    "DuplicateEnrollmentAllowed": true,
+    "EndDate": "",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": "",
+    "FeeBudget": "",
+    "FeeType": "",
+    "FinalExam": {
+        "Building": null,
+        "Date": "",
+        "EndTime": "",
+        "FinalExamBuilding": {
+            "Href": ""
+        },
+        "MeetingStatus": null,
+        "RoomNumber": null,
+        "StartTime": ""
+    },
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": "",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [
+        {
+            "DelegateLevel": "department",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000006.json",
+                "Name": "Susan H. Miller",
+                "RegID": "10000000000000000000000000000006"
+            }
+        },
+        {
+            "DelegateLevel": "curriculum",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000006.json",
+                "Name": "Susan H. Miller",
+                "RegID": "10000000000000000000000000000006"
+            }
+        }
+    ],
+    "GradingSystem": null,
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": "",
+    "IsIndependentStart": false,
+    "JointSections": [],
+    "LMSOwnership": null,
+    "LimitEstimateEnrollment": 22,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "PAB",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Wednesday"
+                    }
+                ],
+                "Text": "  W"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "18:20",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2013,spring,PHYS,123,AG,10000000000000000000000000000009"
+                    },
+                    "PercentInvolve": "50",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000009.json",
+                        "Name": "Sifang Chen",
+                        "RegID": "10000000000000000000000000000009"
+                    },
+                    "TSPrint": true
+                },
+                {
+                    "FacultySequenceNumber": "",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2013,spring,PHYS,123,AG,491F7F94A5A64BA9A94FFF1FDBBD63F8"
+                    },
+                    "PercentInvolve": "50",
+                    "Person": {
+                        "Href": "/student/v5/person/491F7F94A5A64BA9A94FFF1FDBBD63F8.json",
+                        "Name": "Colin H Lamont",
+                        "RegID": "491F7F94A5A64BA9A94FFF1FDBBD63F8"
+                    },
+                    "TSPrint": true
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=PAB&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "quiz",
+            "RoomNumber": "B156",
+            "RoomToBeArranged": false,
+            "StartTime": "17:30"
+        }
+    ],
+    "Metadata": "SectionSourceKey=SDB;",
+    "MinimumTermCredit": "",
+    "OnlineLearningType": {
+        "Code": "00",
+        "Description": "No online learning component"
+    },
+    "PrimaryLMS": null,
+    "PrimarySection": {
+        "CourseNumber": "123",
+        "CurriculumAbbreviation": "PHYS",
+        "Href": "/student/v5/course/2013,spring,PHYS,123/A.json",
+        "Quarter": "spring",
+        "SectionID": "A",
+        "Year": 2013
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "123",
+        "CurriculumAbbreviation": "PHYS",
+        "Href": "/student/v5/registration.json?year=2013&quarter=spring&curriculum_abbreviation=PHYS&course_number=123&section_id=AG&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "spring",
+        "RegID": null,
+        "SectionID": "AG",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2013
+    },
+    "RepositoryTimeStamp": "1/25/2017 12:25:38 PM",
+    "ResearchCredit": false,
+    "RoomCapacity": 22,
+    "SLN": "18020",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "AG",
+    "SectionType": "quiz",
+    "SelfRegistrationAllowed": true,
+    "ServiceLearning": false,
+    "StartDate": "",
+    "StudentCreditHours": "   0.0",
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2013,spring.json",
+        "Quarter": "spring",
+        "Year": 2013
+    },
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": [
+                {
+                    "Text": "PHYS 121, 122, 123 MUST BE TAKEN IN CONSECUTIVE"
+                },
+                {
+                    "Text": "QUARTERS TO MAINTAIN PRIORITY REGISTRATION."
+                },
+                {
+                    "Text": "GRADUATING SENIORS SHOULD CONTACT SUSAN MILLER"
+                },
+                {
+                    "Text": "(susanh82@phys.washington.edu)."
+                },
+                {
+                    "Text": "****************************************"
+                },
+                {
+                    "Text": "ANY SECTION OF PHYS 123 LECTURE"
+                },
+                {
+                    "Text": "**MUST BE TAKEN WITH A PHYS 123 LAB**"
+                },
+                {
+                    "Text": "**IF NOT REGISTERED IN REQUIRED LAB, STUDENT WILL"
+                },
+                {
+                    "Text": "RECEIVE 0.0 GRADE IN LECTURE COURSE**"
+                }
+            ]
+        },
+        "CurriculumComments": {
+            "Lines": []
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": [
+                {
+                    "Text": "TUTORIAL"
+                }
+            ]
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": [
+                {
+                    "Text": "Quiz Section"
+                },
+                {
+                    "Text": "Must be enrolled in PHYS 122 Period 1 (2/15/2013-3/3/2013)"
+                }
+            ]
+        }
+    }
+}

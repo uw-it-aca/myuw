@@ -1,0 +1,29 @@
+{% extends "teaching_base.html" %}
+{% load static %}
+{% load compress %}
+
+{% block header %}{% endblock %}
+{% block app_navigation %}{% endblock %}
+
+{% block page_title %}
+MyUW Photo Class List
+{% endblock %}
+
+{% block teaching_content %}
+    {% include "handlebars/teaching/photo_list.html" %}
+    {% include "handlebars/card/error.html" %}
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+      window.section_data = {
+          "section": "{{ section }}"
+      };
+    </script>
+    {% compress js inline %}
+    <script src="{% static 'js/page/photo_class_list.js' %}"></script>
+    {% endcompress %}
+{% endblock %}
+
+
+{% block footer %}{% endblock %}

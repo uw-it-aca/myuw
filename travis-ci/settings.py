@@ -72,6 +72,8 @@ AUTHENTICATION_BACKENDS = (
 #    'django.contrib.auth.backends.ModelBackend',
 )
 
+EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+
 ROOT_URLCONF = 'travis-ci.urls'
 
 WSGI_APPLICATION = 'travis-ci.wsgi.application'
@@ -115,8 +117,8 @@ STATICFILES_FINDERS = (
 
 COMPRESS_ENABLED = False
 COMPRESS_ROOT = "compress_root"
-
-# Test the memcached cache code
 RESTCLIENTS_TEST_MEMCACHED = True
 RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
 USERSERVICE_ADMIN_GROUP = "x"
+AUTHZ_GROUP_BACKEND = 'authz_group.authz_implementation.all_ok.AllOK'
+MAILMAN_COURSEREQUEST_RECIPIENT = ""
