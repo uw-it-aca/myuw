@@ -17,6 +17,8 @@ var MessageBanner = {
                 "messages": message_data
             });
             MessageBanner.dom_target.html(html);
+        } else {
+            MessageBanner.dom_target.hide();
         }
     }
 };
