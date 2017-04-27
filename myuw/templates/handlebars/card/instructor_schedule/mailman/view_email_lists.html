@@ -1,0 +1,63 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "manage_email_lists_tmpl" %}
+
+<div class="modal-dialog view-email-lists" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+            <h4>{{course_abbr}} {{course_number}} Mailing Lists</h4>
+        </div>
+
+        <div class="modal-body">
+
+            {{#if total_course_wo_list}}
+            <div class="clearfix">
+                <div class="pull-right"><span class="card-badge-value"><a href="#" id="switch_to_create_email_list" class="btn btn-default">Create mailing list</a></span></div>
+            </div>
+            <br />
+            {{/if}}
+
+            <div class="clearfix">
+                <div class="pull-left">
+                    <span>{{course_abbr}} {{course_number}} {{section_list.section_id}}</span>
+                </div>
+                {{ #if section_list.list_admin_url }}
+                <div class="pull-right">
+                    <a href="mailto:{{section_list.list_address}}@uw.edu" class="list-address">{{section_list.list_address}}@uw.edu</a>
+                    <a href="{{section_list.list_admin_url}}" class="course_class_list" target="_blank">Manage</a>
+                </div>
+                {{ else }}
+                <div class="pull-right">-</div>
+                {{ /if }}
+            </div>
+
+            {{#if is_primary}}
+            <ul class="unstyled-list">
+                {{#each secondary_section_lists}}
+                <li class="clearfix">
+                    {{#if list_exists}}
+                        <div class="pull-left">
+                            <span>{{../../course_abbr}} {{../../course_number}} {{section_id}}</span>
+                        </div>
+                        <div class="pull-right">
+                            <a href="mailto:{{list_address}}@uw.edu" class="list-address">{{list_address}}@uw.edu</a>
+                            <a href="{{list_admin_url}}" target="_blank">Manage</a>
+                        </div>
+                    {{else}}
+                        <div class="pull-left">{{../../course_abbr}} {{../../course_number}} {{section_id}}</div>
+                        <div class="pull-right">-</div>
+                    {{/if}}
+                </li>
+                {{/each}}
+            </ul>
+            {{/if}}
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+
+{% endtplhandlebars %}

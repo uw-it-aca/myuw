@@ -4,6 +4,8 @@ services:
   - memcached
 python:
   - "2.7"
+env:
+  - TRAVIS_NODE_VERSION="4"
 install:
   - pip install -r requirements.txt
 before_script:
@@ -13,9 +15,12 @@ before_script:
   - npm install jshint
   - npm install mocha
   - npm install jquery
+  - npm install moment
+  - npm install moment-timezone
   - npm install datejs
   - npm install jsdom@3
   - npm install istanbul
+  - npm install sinon
   - npm install coveralls
   - gem install coveralls-lcov
   - cp travis-ci/manage.py manage.py
@@ -27,6 +32,8 @@ script:
   - ls -l ./node_modules/.bin/_mocha
   - ls -l ./node_modules/mocha/bin/_mocha
   - pep8 myuw/ --exclude=migrations,myuw/south_migrations,myuw/static
+  # Find </br> tags
+  - grep -re '<\s*/\s*br\s*>' myuw/templates/ ; test $? -eq 1
   - jshint myuw/static/js/  --verbose
   - mocha myuw/static/js/test/ --recursive
   - istanbul cover --include-all-sources -x "**/vendor/**" -x "**/site-packages/**" ./node_modules/mocha/bin/_mocha -- -R spec myuw/static/js/test/
