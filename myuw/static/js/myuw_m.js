@@ -2,10 +2,11 @@
 var data;
 var multi_res_card_render_called = {};
 
-$(document).ready(function() {
+$(window.document).ready(function() {
     LogUtils.init_logging();
     init_profile_events();
     init_modal_events();
+    init_search_events();
     var course_data = null;
     var book_data = null;
     // This is to prevent multiple events on load from making
@@ -91,6 +92,13 @@ var showError = function() {
     $("#main-content").html(template());
 };
 
+// common method to set display style
+var get_is_desktop = function() {
+    var mobile_cutoff_width = 992;
+    var viewport_width = $(window).width();
+    return (viewport_width >= mobile_cutoff_width);
+};
+
 // The strings from our web service only work w/ the native Date parsing on chrome :(
 var date_from_string = function(date_string) {
     if (!date_string) {
@@ -103,6 +111,13 @@ var date_from_string = function(date_string) {
     var date_object = new Date(matches[1], (parseInt(matches[2], 10) - 1), parseInt(matches[3], 10), parseInt(matches[4], 10), parseInt(matches[5], 10));
     
     return date_object;
+};
+
+var safe_label = function(section_label) {
+    if(section_label){
+        return section_label.replace(/[^a-z0-9]/gi, '_');
+    }
+    return section_label;
 };
 
 var titilizeTerm = function(term) {
@@ -197,3 +212,28 @@ var myuwFeatureEnabled = function(feature) {
     return (window.enabled_features.hasOwnProperty(feature) &&
             window.enabled_features[feature]);
 };
+
+var getUrlParameter = function (name) {
+    var url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+};
+
+var init_search_events = function() {
+    $("#app_search").on('shown.bs.collapse', function(){
+        $("#search-nav").focus();
+    });
+};
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.capitalizeString = capitalizeString;
+exports.date_from_string = date_from_string;
+exports.myuwFeatureEnabled = myuwFeatureEnabled;
+exports.safe_label = safe_label;

@@ -4,6 +4,8 @@
 @under992: ~"screen and (max-width: 991px)";
 @desktop: ~"screen and (min-width: 992px)";
 
+@media print { #classlist_controls { display: none !important; } }
+
 /*** less variables ***/
 @myuw: #efe2cd;
 @uwpurple: #4b2e84;
@@ -34,6 +36,7 @@ border-color: @border;}
 @font-base: 14px;
 @font-meta: 12px;
 
+@font-header-larger: 26px;
 @font-header-large: 22px;
 @font-header-medium: 20px;
 @font-header-small: 18px;
@@ -305,6 +308,16 @@ body {
 
 .my-text-muted {font: #666;}
 
+
+/*** Headings ***/
+.heading-page {
+    font-family: 'encode_sans_normalbold';
+    color: #444;
+    font-size: @font-header-larger;
+    margin-top: 1.5em;
+}
+
+
 /*** uw alert ***/
 
 #uwalert-alert-message { margin: 0; position: relative; border-top: solid 2px @uwpurple; }
@@ -356,15 +369,35 @@ body {
 	font-weight: bold;
 }
 
+label { font-weight: normal; }
+
 
 /*** header ***/
+
+#app_search {
+
+    .container {
+        text-align: center;
+        padding: 40px 100px 50px 100px;
+    }
+}
+
+.search-button {
+    background-color: transparent;
+    background: url('/static/images/search.svg') no-repeat center center;
+    background-size: 10px;
+    border: 1px solid #fff;
+    border-radius: 100%;
+    height: 18px;
+    width: 18px;
+}
 
 #app_header { background: @uwpurple; overflow: hidden; position: relative;
 
     // header bar (thin dark purple)
     .header-bar { position: relative; height: 30px;
         .top_navigation_list { list-style-type: none;
-	        li { display: inline-block; }
+	        li { display: inline-block; padding-left: .5em; }
         }
         .header-myuw {
 	        h1 {
@@ -499,6 +532,7 @@ body {
 /*** message banner ***/
 #app_messages {
 	.message-banner {background-color: #558097;color:#fff; //#72adcb too light
+        p {margin:0;}
 	    h2 { font-size: 15px; display: inline; font-weight: bold; }
         .advert {
             background: #F5E200; color: blue;
@@ -573,7 +607,7 @@ body {
 
 #app_acal { margin: 0; position: relative; padding-bottom: 15px;
     .acal-header {
-        h2 {font-size: @font-header-smaller; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600;/*font-family: 'encode_sans_normalbold';*/color: #85754d;}
+        h2 {font-size: @font-header-smaller; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600; color: #85754d;}
         .view-all {border:none;font-size: 14px;color: #4d66ca;margin-top: 17px;}
         .acal-banner-events {margin-top:0;clear:both;
 	        .acal-banner-list { list-style-type: none;padding-left: 0;
@@ -594,6 +628,138 @@ body {
 }
 
 /*** content ***/
+
+/* Search Input */
+
+/* Search input and button */
+#app_search, #search_content {
+
+    /* Customizing Google's provided HTML for search
+    .cse .gsc-search-button input.gsc-search-button-v2, input.gsc-search-button-v2 {
+        width: auto;
+        height: 54px;
+        padding: 20px;
+        border: 0;
+        margin-top: 3px;
+        margin-left: 1px;
+    }
+
+    .gsc-input-box {
+        height: auto;
+        background-color: #f5f5f5;
+    }
+
+    .gsc-search-box .gsc-input-box input.gsc-input {
+        padding: 14px 0 13px 25px !important;
+        height: auto !important;
+        background-color: #f5f5f5 !important;
+    }
+
+    .gsc-search-box-tools .gsc-search-box .gsc-input {
+        padding-right: 0;
+    } */
+
+    /* Custom Search Input */
+    .uw-search {
+        outline: 1px solid #ADADAD;
+        font-size: 20px;
+        color: #7a7a7a;
+        position: relative;
+
+        #search-results-page, #search-nav {
+            width: 100%;
+            padding: 14px 0 13px 25px;
+            font-size: 16px;
+            outline: 0;
+            background-color: #f5f5f5;
+            border: none;
+            line-height: 27.5555px;
+        }
+
+        button {
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 0;
+            outline: 1px solid #4b2e83;
+            border: none;
+            background: url('/static/images/search.svg') no-repeat center center #4b2e83;
+            background-size: 22px;
+            height: 54px;
+            width: 55px;
+            text-indent: -99999px;
+        }
+    }
+
+
+}
+
+/* Search results */
+#search_content {
+
+    /* Google Custom Search Overrides */
+
+    .uw-search {
+        max-width: 650px;
+    }
+
+    .cse .gsc-control-cse, .gsc-control-cse {
+        padding: 0;
+    }
+    .gsc-control-cse {
+        font-family: inherit;
+    }
+
+    .gsc-control-cse .gsc-table-result {
+        font-family: inherit;
+    }
+
+    .gsc-result div.gs-title {
+        height: auto;
+    }
+
+    .gsc-control-cse .gs-spelling, .gsc-control-cse .gs-result .gs-title, .gsc-control-cse .gs-result .gs-title * {
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .gs-result .gs-title, .gs-result .gs-title * {
+        text-decoration: none;
+    }
+
+    .gs-result .gs-title:hover, .gs-result .gs-title:hover * {
+        text-decoration: underline;
+    }
+
+    .gsc-table-result, .gsc-thumbnail-inside, .gsc-url-top { padding-left: 0; padding-right: 0; }
+
+    .gsc-url-top {
+        margin: 0 0 5px 0;
+    }
+
+    .gsc-webResult .gsc-result {
+        border-bottom: 1px solid #ebebeb;
+        padding: .5em 0;
+    }
+
+    .gs-webResult.gs-result {
+        margin: 15px 0;
+    }
+
+    /* Pagination */
+    .gsc-cursor-box.gs-bidi-start-align {
+        text-align: center;
+        padding: 10px;
+    }
+    .gsc-cursor-box.gs-bidi-start-align .gsc-cursor-page {
+        margin: 10px;
+        font-size: 14px;
+    }
+
+    .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+        color: #A90A08;
+    }
+}
 
 #app_content { min-height: 250px;
 
@@ -1127,41 +1293,90 @@ body {
 	    }
     }
 
-    // instructor course cards
-
-    #InstructorCourseCards {
-
+    #photoclasslist_popup {
         .card {
+            .classlist-styled-select {
+               select {
+            	   text-overflow: "";
+            	   z-index: 1000;
+            	   line-height:2;
+            	   color: #334baa;
 
-            .scheduleHeading {
-                opacity: .5;
-                margin-bottom: 2px;
-            }
-            .meeting_type {
-                text-transform: capitalize;
-            }
-            table.course_schedule, table.table-course-schedule { width: 100%;
-               th {
-                   font-weight: 100;
-                   text-transform: uppercase;
-                   opacity: .5;
-               }
-               td {
-                   width: 25%;
                }
             }
-            ul { line-height: 56px;
-                li:first-child {
-                    left: 0%;
+
+        }
+
+    }
+
+    #teaching_content {
+
+
+
+        .unstyled-list {line-height: 30px;}
+
+        // instructor course cards
+
+        #InstructorCourseCards, #InstructorSectionCard {
+
+            .card {
+
+                h4 {
+                    font-weight:bold;
                 }
-                li {
-                    display: inline-block;
-                    text-decoration: none;
-                    background-color: #eee;
-                    color: #333;
-                    margin: 10px 0;
-                    padding: 0 12px;
-                    border: 1px solid gray;
+
+                .meeting_type {
+                    text-transform: capitalize;
+                }
+                table.course_schedule, table.table-course-schedule { width: 100%;
+                   th {
+                       font-weight: 100;
+                       text-transform: uppercase;
+                       opacity: .5;
+                   }
+                   td {
+                       width: 25%;
+                   }
+                }
+                ul {
+                    li:first-child {
+                        left: 0%;
+                    }
+                    li {
+                        .inst-course-label {text-transform: uppercase;}
+                        .inst-course-note { font-size: small; font-style: italic; }
+                        //display: inline-block;
+                        //text-decoration: none;
+                        //background-color: #eee;
+                        //color: #333;
+                        //margin: 10px 0;
+                        //padding: 0 12px;
+                        //border: 1px solid gray;
+                        .pull-right {
+                            .course_website { display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px; }
+                            .course-website-update {margin-top: -23px;}
+                            .add-delay-message {margin-top: -18px; font-size: 75%; font-style:italic;}
+                            .course-website-error-message {margin-top: -18px; font-size: 75%; font-style:italic;}
+                        }
+                    }
+                }
+            }
+        }
+
+        .grading-system .card-badge-value {
+            text-transform: capitalize
+        }
+
+        .grading-delegates .card-badge-value {
+            text-align: right;
+        }
+
+        #teaching_resources {
+
+            .card {
+
+                h4 {
+                    font-weight:bold;
                 }
             }
         }
@@ -1325,10 +1540,11 @@ body {
     }
 
     // Thrive pages
-    .thrive-messages, .what-is-thrive {padding-bottom: 3em;
-        h2 { font-family: 'encode_sans_normalbold'; color: #444; font-size: 26px; margin-top: 1.5em;
-            span {font-size: 16px;}
-        }
+    .thrive-messages, .what-is-thrive {
+        padding-bottom: 3em;
+
+        h2 span {font-size: 16px;}
+
         .thrive-archive-instructions {font-style: italic;}
         .card {box-shadow: none; border:0; padding: 0 20px 0 0;}
         .thrive-description {padding:15px 0;}
@@ -1724,7 +1940,6 @@ body {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
 
-		h2 { font-family: 'encode_sans_normalbold'; color: #444; font-size: @font-header-small;  }
 		h3 { font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 16px; line-height: 30px; margin: 0; color: #222; }
 		h4 { font-family: 'Open Sans', sans-serif; font-size: 14px;
     		span { text-transform: uppercase; font-size: 11px; }
@@ -1756,7 +1971,6 @@ body {
             .category-links { padding-left: 0; list-style: none; }
         }
 
-        h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; }
         h3 { font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 16px; }
     }
     // future quarters page
@@ -1764,8 +1978,6 @@ body {
     .future-quarter-container {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
-
-        h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444;}
 
         .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
     }
@@ -1779,7 +1991,6 @@ body {
 		padding-bottom: 3em;
 
 		h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444; }
-		h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; margin-top: 10px; color: #444;}
         h3 { color: #333; margin-top: 0; margin-bottom:0; font-family: 'Roboto', sans-serif; font-weight: 400; }
 
 		.notice-count { }
@@ -1889,13 +2100,12 @@ body {
 
 	.academic_cal-container {
 		.acal-main {
-			h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444; }
 			.acal-page-filters { padding:10px 0;margin-bottom:15px;margin-top:15px;
 				#myuw-event-filter-breaks, #myuw-event-filter-all, #myuw-event-filter-classes {font-size:15px;}
 				.myuw-selected-button {color: #fff; background-color:#4f318c;border-color: #4f318c;}
 			}
 			.acal-page-events {
-				h2 {color: #333;margin-top: 0;margin-bottom: 0;font-family: 'Roboto', sans-serif;font-weight: 400;padding:20px 0;}
+				h3 {color: #333;margin-top: 0;margin-bottom: 0;font-family: 'Roboto', sans-serif;font-weight: 400; font-size: 20px; padding:20px 0;}
 				.acal-page-term-break {border-top:1px; border-bottom:1px; border-left:0; border-right:0; border-color: #bbb; border-style: dotted; padding: 20px 0;text-align:center;}
 				.acal-page-event-list { list-style-type: none;padding-left: 0;
 					.acal-page-event-list-item { margin-bottom:10px;
@@ -1907,7 +2117,16 @@ body {
 		}
 	}
 
+
 }
+
+/** Mailman Dialogs **/
+
+.modal-dialog.view-email-lists .list-address {
+    margin-right: 1em;
+}
+
+
 
 /*** footer ***/
 

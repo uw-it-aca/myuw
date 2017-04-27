@@ -1,0 +1,13 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "instructor_section_card_no_course" %}
+  <div class="card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
+    <div class="fade-in">
+      <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
+        <h4><span class="courseIDtitle">No Course By This Label Exists</span></h4>
+        <div>
+          Shucks.  It don't appear any courses by this label are currently being offered.
+        </div>
+      </div>
+    </div>
+  </div>
+{% endtplhandlebars %}

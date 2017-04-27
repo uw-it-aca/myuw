@@ -8,40 +8,35 @@ var Teaching = {
     },
 
     make_html: function () {
+        Handlebars.registerPartial('teaching_resources',
+                                   $('#teaching_resources_partial').html());
         $('html,body').animate({scrollTop: 0}, 'fast');
         var teaching_source = $("#teaching").html();
         var template = Handlebars.compile(teaching_source);
 
-        $("#main-content").html(template());
+        $("#main-content").html(template({
+            'seattle_affil': (window.user.seattle_affil || window.user.seattle),
+            'bothell_affil': (window.user.bothell_affil || window.user.bothell),
+            'tacoma_affil': (window.user.tacoma_affil || window.user.tacoma)
+        }));
 
         NoticeBanner.render_init($("#notice_banner_location"));
 
         Teaching.load_cards_for_viewport();
         // Set initial display state
-        Teaching.is_desktop = Teaching.get_is_desktop();
+        Teaching.is_desktop = get_is_desktop();
 
         // Monitor for viewport changes and reorder cards if needed
         $(window).resize(function(){
-            if (Teaching.is_desktop !== Teaching.get_is_desktop()){
+            if (Teaching.is_desktop !== get_is_desktop()){
                 Teaching.load_cards_for_viewport();
-                Teaching.is_desktop = Teaching.get_is_desktop();
+                Teaching.is_desktop = get_is_desktop();
             }
         });
     },
 
-    get_is_desktop: function() {
-        var mobile_cutoff_width = 992;
-        var viewport_width = $(window).width();
-        if (viewport_width >= mobile_cutoff_width) {
-            return true;
-        } else {
-            return false;
-        }
-
-    },
-
     load_cards_for_viewport: function() {
-        if (Teaching.get_is_desktop()) {
+        if (get_is_desktop()) {
             Teaching._load_desktop_cards();
         } else {
             Teaching._load_mobile_cards();
