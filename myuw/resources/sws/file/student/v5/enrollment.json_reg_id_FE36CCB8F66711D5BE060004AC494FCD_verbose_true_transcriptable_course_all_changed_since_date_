@@ -17,7 +17,14 @@
        "MajorName":"PREMAJOR (BOTHELL)",
        "Pathway":0,
        "ShortName":"B PRE"}],
-    "Minors":[],
+    "Minors":[{
+        "Abbreviation":"ASL",
+        "CampusName":"Tacoma",
+        "FullName":"American Sign Language",
+        "Name":"AMERICAN SIGN LANGUAGE",
+        "Pathway":0,
+        "ShortName":"ASL"
+    }],
     "PendingClassChange": false,
     "PendingHonorsChange": false,
     "PendingMajorChange": false,

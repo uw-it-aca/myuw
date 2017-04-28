@@ -1,10 +1,11 @@
 from django.test import TestCase
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.term import get_current_quarter,\
-    get_next_quarter, get_term_before, get_term_after
+    get_next_quarter, get_term_before, get_term_after,\
+    get_current_and_next_quarters
 from myuw.dao.enrollment import get_enrollment_of_aterm,\
     get_enrollments_of_terms, get_current_quarter_enrollment,\
-    get_minors_for_terms, get_majors_for_terms
+    get_minors_for_terms, get_majors_for_terms, _get_all_enrollments
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user
 
@@ -72,10 +73,10 @@ class TestDaoEnrollment(TestCase):
         req = get_request_with_user('jbothell',
                                     get_request_with_date("2013-04-01"))
         enrollments = get_enrollments_of_terms(terms)
-        self.assertEqual(len(enrollments), 1)
+        self.assertEqual(len(enrollments), 3)
         self.assertTrue(t1 in enrollments)
-        self.assertFalse(t2 in enrollments)
-        self.assertFalse(t2 in enrollments)
+        self.assertTrue(t2 in enrollments)
+        self.assertTrue(t2 in enrollments)
         enrollment = get_enrollment_of_aterm(t1)
         self.assertEqual(len(enrollment.majors), 1)
         self.assertEqual(enrollment.majors[0].campus, "Bothell")
@@ -83,33 +84,19 @@ class TestDaoEnrollment(TestCase):
         req = get_request_with_user('eight',
                                     get_request_with_date("2013-04-01"))
         enrollments = get_enrollments_of_terms(terms)
-        self.assertEqual(len(enrollments), 1)
+        self.assertEqual(len(enrollments), 3)
         self.assertTrue(t1 in enrollments)
-        self.assertFalse(t2 in enrollments)
-        self.assertFalse(t2 in enrollments)
+        self.assertTrue(t2 in enrollments)
+        self.assertTrue(t2 in enrollments)
         enrollment = get_enrollment_of_aterm(t1)
         self.assertEqual(len(enrollment.majors), 2)
         self.assertEqual(enrollment.majors[0].campus, "Tacoma")
 
-    def test_get_all_enrollment(self):
-        req = get_request_with_user('javerage',
-                                    get_request_with_date("2013-10-10"))
-        terms = get_current_and_next_quarters(req, 4)
-        enrollments = _get_all_enrollments(regid)
-        self.assertEquals(len(enrollments), 4)
-
-        for term in terms:
-            self.assertIn(term, enrollments)
-
-        spring_enrollment = enrollments[terms[0]]
-
-        self.assertEquals(len(spring_enrollment.majors), 1)
-        self.assertEquals(len(spring_enrollment.minors), 1)
-
     def test_get_majors_for_terms(self):
+        regid = "12345678901234567890123456789012"
         req = get_request_with_user('eight',
                                     get_request_with_date("2013-04-01"))
-        terms = get_current_and_next_quarters(request, 4)
+        terms = get_current_and_next_quarters(req, 4)
         enrollments = _get_all_enrollments(regid)
 
         majors = get_majors_for_terms(terms, enrollments)
@@ -119,6 +106,7 @@ class TestDaoEnrollment(TestCase):
         self.assertEquals(len(majors[2]['majors']), 2)
 
     def test_get_minors_for_terms(self):
+        regid = "FE36CCB8F66711D5BE060004AC494FCD"
         req = get_request_with_user('jbothell',
                                     get_request_with_date("2013-04-01"))
         terms = get_current_and_next_quarters(req, 4)

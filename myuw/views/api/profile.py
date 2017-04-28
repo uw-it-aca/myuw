@@ -69,10 +69,21 @@ class MyProfile(RESTDispatch):
 
                     response['term_majors'] = get_majors_for_terms(terms,
                                                                    enrollments)
+
+                    for major in response['term_majors']:
+                        if not major['same_as_previous']:
+                            response['has_pending_major'] = True
+
                     response['term_minors'] = get_minors_for_terms(terms,
                                                                    enrollments)
 
+                    for minor in response['term_minors']:
+                        if not minor['same_as_previous']:
+                            response['has_pending_minor'] = True
+
                 except Exception as ex:
+                    print ex
+                    traceback.print_exc()
                     logger.error(
                         "%s get_current_quarter_enrollment: %s" %
                         (netid, ex))

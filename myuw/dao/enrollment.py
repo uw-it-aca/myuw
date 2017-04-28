@@ -30,10 +30,14 @@ def get_all_enrollments():
     :return: the dictionary of {Term: Enrollment}
     """
     regid = get_regid_of_current_user()
+    return _get_all_enrollments(regid)
+
+
+def _get_all_enrollments(regid):
     return enrollment_search_by_regid(regid)
 
 
-def get_current_quarter_enrollment(request):=
+def get_current_quarter_enrollment(request):
     """
     :return: an Enrollment object
     """
@@ -102,6 +106,10 @@ def _get_degrees_for_terms(terms, enrollments, accessor):
     previous = None
 
     for term in terms:
+        if(term in enrollment):
+            previous = getattr(enrollments[term], accessor)
+
+    for term in terms:
         if (term in enrollments and
                 len(getattr(enrollments[term], accessor)) > 0):
             enrollment = enrollments[term]
@@ -112,11 +120,8 @@ def _get_degrees_for_terms(terms, enrollments, accessor):
             term_degrees = getattr(enrollments[term], accessor)
             entry[accessor] = []
 
-            if previous is not None:
-                entry['same_as_previous'] = _compare_degrees(previous,
-                                                             term_degrees)
-            else:
-                entry['same_as_previous'] = True
+            entry['same_as_previous'] = _compare_degrees(previous,
+                                                         term_degrees)
 
             for degree in term_degrees:
                 entry[accessor].append(degree.json_data())
@@ -151,13 +156,15 @@ def _compare_degrees(first, second):
     if len(first) != len(second):
         return False
 
+    degrees = {}
     for entry in first:
-        entry_in_second = False
-        for obj in second:
-            if obj.full_name == entry.full_name:
-                entry_in_second = True
-        if not entry_in_second:
+        degrees[entry.full_name] = entry
+
+    for entry in second:
+        if entry.full_name not in degrees:
             return False
+        else:
+            del degrees[entry.full_name]
 
     return True
 
