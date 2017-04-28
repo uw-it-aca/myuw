@@ -132,8 +132,6 @@ def get_current_and_next_quarters(request, num):
     for the current quarter refered in the user session. Returns the next
     num -1 quarters along with the current one.
     """
-    if hasattr(request, 'myuw_next_quarter'):
-        return request.myuw_next_quarter
     term = get_current_quarter(request)
     quarters = [term]
 
