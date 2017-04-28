@@ -8,7 +8,7 @@
     "LeaveEndQuarter": 0,
     "LeaveEndYear": 0,
     "Majors": [
-    {"Abbreviation":"ECON",
+       {"Abbreviation":"ECON",
         "Campus":"Tacoma",
         "DegreeLevel":1,
         "DegreeName":"BACHELOR OF SCIENCE (ECONOMICS)",
@@ -17,7 +17,7 @@
         "MajorName":"ECONOMICS",
         "Pathway":0,
         "ShortName":"ECONOMICS"},
-        {"Abbreviation":"MATH",
+       {"Abbreviation":"MATH",
         "Campus":"Tacoma",
         "DegreeLevel":1,
         "DegreeName":"BACHELOR OF SCIENCE (MATHEMATICS)",
@@ -26,7 +26,6 @@
         "MajorName":"MATHEMATICS",
         "Pathway":0,
         "ShortName":"MATH"}
-
     ],
     "PendingClassChange": false,
     "PendingHonorsChange": false,
@@ -310,7 +309,7 @@
 ],
 "Next":null,
 "PageSize":"10",
-"PageStart":"1","
-Previous":null,
+"PageStart":"1",
+"Previous":null,
 "TotalCount": 1
 }

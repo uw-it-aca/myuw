@@ -63,7 +63,7 @@ ranscriptable_course=all", "RegID":"9136CCB8F66711D5BE060004AC494F31","Verbose":
 ],
 "Next":null,
 "PageSize":"10",
-"PageStart":"1","
-Previous":null,
+"PageStart":"1",
+"Previous":null,
 "TotalCount":1
 }
