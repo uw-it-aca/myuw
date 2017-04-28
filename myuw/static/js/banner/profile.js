@@ -2,6 +2,33 @@ var Profile = {
     render_upon_data: function() {
         var source = $("#profile-content").html();
         var template = Handlebars.compile(source);
+
+        // Process data to determine if there are any pending majors or minors
+        var profile_data = WSData.profile_data();
+
+        if(profile_data.term_majors && profile_data.term_majors.length > 0){
+            for(var i = 0; i < profile_data.term_majors.length; i++){
+                if(!profile_data.term_majors[i].same_as_previous){
+                    profile_data.has_pending_major = true;
+                }
+            }
+
+            if(!profile_data.hasOwnProperty('has_pending_major'))
+                profile_data.has_pending_major = false;
+        }
+
+
+        if(profile_data.term_minors && profile_data.term_minors.length > 0){
+            for(var e = 0; e < profile_data.term_minors.length; e++){
+                if(!profile_data.term_minors[e].same_as_previous){
+                    profile_data.has_pending_minor = true;
+                }
+            }
+
+            if(!profile_data.hasOwnProperty('has_pending_minor'))
+                profile_data.has_pending_minor = false;
+        }
+
         $("#profile").html(template(WSData.profile_data()));
         $("#toggle_my_profile").attr("title", $("#profile_toggle_hidden").text());
         $("#toggle_my_profile").attr("aria-label", $("#profile_toggle_hidden").text());

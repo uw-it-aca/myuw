@@ -77,3 +77,32 @@ class TestProfile(MyuwApiTest):
 
         response = self.get_profile_response('none')
         self.assertEquals(response.status_code, 200)
+
+    @skip
+    def test_no_major(self):
+        response = self.get_profile_response("none")
+
+    @skip
+    def test_no_minor(self):
+        response = self.get_profile_response("none")
+
+    @skip
+    def test_no_pending(self):
+        self.assertEquals(1, 2)
+
+    @skip
+    def test_change_majors_once(self):
+        self.assertEquals(1, 2)
+
+    @skip
+    def test_summer_major_only(self):
+        # test to see if same_as_previous works
+        self.assertEquals(1, 2)
+
+    @skip
+    def test_change_once_and_add_another(self):
+        self.assertEquals(1, 2)
+
+    @skip
+    def test_drop_major(self):
+        self.assertEquals(1, 2)

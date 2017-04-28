@@ -13,6 +13,7 @@ from myuw.test.dao.notice import TestNotices
 from myuw.test.dao.term import TestTerm
 from myuw.test.dao.building import TestBuildings
 from myuw.test.dao.category_links import TestCategoryLinks
+from myuw.test.dao.enrollment import TestEnrollment
 from myuw.test.dao.finance import TestFinance
 from myuw.test.dao.canvas import TestCanvas
 from myuw.test.dao.card_display_dates import TestDisplayValues
