@@ -17,6 +17,7 @@ var Landing = {
         NoticeBanner.render_init($("#notice_banner_location"));
 
         PceBanner.render_init($("#pce_banner_location"));
+        MessageBanner.render_init($("#message_banner_location"));
 
         Landing.load_cards_for_viewport();
         // Set initial display state
