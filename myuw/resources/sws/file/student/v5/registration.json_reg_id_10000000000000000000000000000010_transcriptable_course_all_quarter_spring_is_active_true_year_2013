@@ -1,0 +1,36 @@
+{
+    "Current": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "",
+        "CurriculumAbbreviation": null,
+        "Href": "/student/v5/registration.json?year=2013&quarter=spring&curriculum_abbreviation=&course_number=&section_id=&reg_id=10000000000000000000000000000010&is_active=&instructor_reg_id=&verbose=&changed_since_date=&transcriptable_course=all&page_start=&page_size=10",
+        "InstructorRegID": "",
+        "IsActive": false,
+        "PageSize": "10",
+        "PageStart": null,
+        "Quarter": "spring",
+        "RegID": "10000000000000000000000000000010",
+        "SectionID": "",
+        "TranscriptableCourse": "all",
+        "Verbose": false,
+        "Year": 2013
+    },
+    "Next": null,
+    "PageSize": "10",
+    "PageStart": null,
+    "Previous": null,
+    "Registrations": [
+        {
+            "CourseNumber": "712",
+            "CurriculumAbbreviation": "CPROGRM",
+            "DuplicateCode": "",
+            "Href": "/student/v5/registration/2013,spring,CPROGRM,712,A,10000000000000000000000000000010,.json",
+            "Instructor": null,
+            "Quarter": "spring",
+            "RegID": "10000000000000000000000000000010",
+            "SectionID": "A",
+            "Year": 2013
+        }
+    ],
+    "TotalCount": 1
+}

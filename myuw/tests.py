@@ -16,6 +16,7 @@ from myuw.test.dao.category_links import TestCategoryLinks
 from myuw.test.dao.finance import TestFinance
 from myuw.test.dao.canvas import TestCanvas
 from myuw.test.dao.card_display_dates import TestDisplayValues
+from myuw.test.dao.enrollment import TestEnrollment
 from myuw.test.dao.grad import TestDaoGrad
 from myuw.test.dao.hfs import TestHFS as TestDaoHFS
 from myuw.test.dao.iasystem import IASystemDaoTest

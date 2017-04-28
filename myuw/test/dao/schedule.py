@@ -106,4 +106,4 @@ class TestSchedule(TestCase):
         cur_term = get_current_quarter(now_request)
         fall_efs_schedule = get_schedule_by_term(now_request, cur_term)
         self.assertIsNotNone(fall_efs_schedule)
-        self.assertEqual(len(fall_efs_schedule.sections), 1)
+        self.assertEqual(len(fall_efs_schedule.sections), 2)
