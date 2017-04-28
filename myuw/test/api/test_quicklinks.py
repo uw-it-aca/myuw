@@ -147,4 +147,3 @@ class TestQuickLinksAPI(MyuwApiTest):
 
         all = CustomLink.objects.all()
         self.assertEqual(len(all), 2)
-
