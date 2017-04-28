@@ -1,0 +1,25 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "directory_info_card" %}
+    <div class="card" data-type="card" data-name="DirectoryInfoCard" data-identifier="{{ title }}">
+        <h3>
+            <span>Directory Information</span>
+        </h3>
+        <div class="directory_info">
+          <h5>Home Address</h5>
+          <div class="container directory-details">
+            <div class="directory-entry">Address<span>{{permanent_address.street_line1}}</span></div>
+            <div class="directory-entry"><span>{{permanent_address.street_line2}}</span></div>
+            <div class="directory-entry">City<span>{{permanent_address.city}}</span></div>
+            <div class="directory-entry">State</span><span>{{permanent_address.state}}</span></div>
+            <div class="directory-entry">Zip<span>{{permanent_address.zip_code}}</span></div>
+            <div class="directory-entry">Home Phone<span>{{permanent_phone}}</span></div>
+          </div>
+          <h5>Emergency Contact</h5>
+          <h5>Directory Information ({{#unless directory_release}}NOT {{/unless}}published) </h5>
+          <div class="container directory-details">
+            <div class="directory-entry">Name (official)<span>{{first_name}}</span> <span>{{last_name}}</span></div>
+            <div class="directory-entry">Name (preferred)<span>{{student_name}}</span></div>
+          </div>
+        </div>
+    </div>
+{% endtplhandlebars %}

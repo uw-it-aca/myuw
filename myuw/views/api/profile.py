@@ -36,19 +36,19 @@ class MyProfile(RESTDispatch):
                                prefetch_password=True)
 
             netid = get_netid_of_current_user()
-            if is_student():
-                profile = get_profile_of_current_user()
-                response = profile.json_data()
-                response['is_student'] = True
-                response['is_grad_student'] = is_grad_student()
+            profile = get_profile_of_current_user()
+            response = profile.json_data()
+            response['is_student'] = is_student()
+            response['is_grad_student'] = is_grad_student()
 
-                campuses = get_main_campus(request)
-                if 'Seattle' in campuses:
-                    response['campus'] = 'Seattle'
-                elif 'Tacoma' in campuses:
-                    response['campus'] = 'Tacoma'
-                elif 'Bothell' in campuses:
-                    response['campus'] = 'Bothell'
+            campuses = get_main_campus(request)
+            if 'Seattle' in campuses:
+                response['campus'] = 'Seattle'
+            elif 'Tacoma' in campuses:
+                response['campus'] = 'Tacoma'
+            elif 'Bothell' in campuses:
+                response['campus'] = 'Bothell'
+            if is_student():
                 try:
                     enrollment = get_current_quarter_enrollment(request)
                     response['class_level'] = enrollment.class_level
@@ -66,7 +66,6 @@ class MyProfile(RESTDispatch):
                         (netid, ex))
 
             else:
-                response = {}
                 response['is_grad_student'] = False
                 response['is_student'] = False
                 response['uwnetid'] = netid
