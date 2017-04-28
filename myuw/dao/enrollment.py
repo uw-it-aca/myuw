@@ -106,8 +106,9 @@ def _get_degrees_for_terms(terms, enrollments, accessor):
     previous = None
 
     for term in terms:
-        if(term in enrollments):
+        if term in enrollments:
             previous = getattr(enrollments[term], accessor)
+            break
 
     for term in terms:
         if (term in enrollments and
