@@ -106,23 +106,6 @@ class TestSchedule(MyuwApiTest):
 
         self.fail('Did not find course %s %s %s' % (abbr, number, section_id))
 
-    def test_jpce_2013_winter_term(self):
-        response = self.get_current_schedule_res('jpce',
-                                                 '2013-01-15')
-        self.assertEquals(response.status_code, 200)
-        data = json.loads(response.content)
-
-        self.assertEquals(data["term"]["year"], 2013)
-        self.assertEquals(data["term"]["quarter"], 'Winter')
-        self.assertEquals(len(data["sections"]), 2)
-
-        com = self.get_section(data, 'COM', '201', 'A')
-        self.assertEquals(com['start_date'],
-                          '2013-01-28 00:00:00')
-        self.assertEquals(com['end_date'],
-                          '2013-04-29 00:00:00')
-        self.assertFalse(com["is_ended"])
-
     def test_javerage_efs_section(self):
         response = self.get_current_schedule_res('javerage',
                                                  '2013-09-17 00:00:01')
@@ -147,3 +130,34 @@ class TestSchedule(MyuwApiTest):
         self.assertEquals(efs_ok['end_date'],
                           '2013-09-18')
         self.assertTrue(efs_ok["is_ended"])
+
+    def test_jpce_schedule(self):
+        response = self.get_current_schedule_res('jpce',
+                                                 '2013-01-17 00:00:01')
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        com = self.get_section(data, 'COM', '201', 'A')
+        self.assertEquals(com['start_date'], '2013-01-30 00:00:00')
+        self.assertEquals(com['end_date'], '2013-04-29 00:00:00')
+        self.assertFalse(com["is_ended"])
+        psych = self.get_section(data, 'PSYCH', '203', 'A')
+        self.assertEquals(psych['start_date'], '2013-01-29 00:00:00')
+        self.assertEquals(psych['end_date'], '2013-04-30 00:00:00')
+        self.assertFalse(psych["is_ended"])
+
+        response = self.get_current_schedule_res('jpce',
+                                                 '2013-06-08 00:00:01')
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        section = self.get_section(data, 'AAES', '150', 'A')
+        self.assertEquals(section['start_date'], '2013-04-03 00:00:00')
+        self.assertEquals(section['end_date'], '2013-06-07 00:00:00')
+        self.assertTrue(section["is_ended"])
+        section = self.get_section(data, 'ACCTG', '508', 'A')
+        self.assertEquals(section['start_date'], '2013-04-01 00:00:00')
+        self.assertEquals(section['end_date'], '2013-06-19 00:00:00')
+        self.assertFalse(section["is_ended"])
+        section = self.get_section(data, 'CPROGRM', '712', 'A')
+        self.assertEquals(section['start_date'], '2013-04-29 00:00:00')
+        self.assertEquals(section['end_date'], '2013-06-28 00:00:00')
+        self.assertFalse(section["is_ended"])

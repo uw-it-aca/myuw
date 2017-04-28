@@ -8,13 +8,13 @@ from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import (get_canvas_active_enrollments,
                              canvas_course_is_available)
 from myuw.dao.course_color import get_colors_by_schedule
-from myuw.dao.enrollment import find_enrolled_independent_start_section
+from myuw.dao.enrollment import (get_enrollment_of_aterm,
+                                 is_ended)
 from myuw.dao.gws import is_grad_student
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.schedule import get_schedule_by_term,\
     filter_schedule_sections_by_summer_term
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
-from myuw.dao.term import get_comparison_date
 from myuw.logger.logresp import (log_data_not_found_response,
                                  log_success_response, log_msg)
 from myuw.views.rest_dispatch import RESTDispatch
@@ -70,6 +70,14 @@ def load_schedule(request, schedule, summer_term=""):
 
     buildings = get_buildings_by_schedule(schedule)
 
+    try:
+        enrollment = get_enrollment_of_aterm(schedule.term)
+        enrolled_off_term_sections = enrollment.off_term_sections
+    except Exception as ex:
+        logger.error("find enrolled off term sections: %s", ex)
+        enrolled_off_term_sections = {}
+        pass
+
     canvas_enrollments = {}
     try:
         canvas_enrollments = get_canvas_active_enrollments()
@@ -91,20 +99,19 @@ def load_schedule(request, schedule, summer_term=""):
             section_data["cc_display_dates"] = True
             section_data["early_fall_start"] = True
             json_data["has_early_fall_start"] = True
-            section_data["is_ended"] =\
-                get_comparison_date(request) > section.end_date
-
-        if section.is_independent_start:
-            try:
-                enrolled_sect, ended = find_enrolled_independent_start_section(
-                    request, section.section_label())
+            section_data["is_ended"] = is_ended(request, section.end_date)
+        else:
+            if len(enrolled_off_term_sections) > 0 and\
+                    section.section_label() in enrolled_off_term_sections:
+                # print enrolled_off_term_sections.get(
+                #    section.section_label()).json_data()
+                enrolled_sect = enrolled_off_term_sections.get(
+                    section.section_label())
+                section_data["cc_display_dates"] = True
                 section_data["start_date"] = str(enrolled_sect.start_date)
                 section_data["end_date"] = str(enrolled_sect.end_date)
-                section_data["is_ended"] = ended
-                section_data["cc_display_dates"] = True
-            except Exception as ex:
-                logger.error("find enrolled independent start section: %s", ex)
-                pass
+                section_data["is_ended"] = is_ended(request,
+                                                    enrolled_sect.end_date)
 
         # if section.is_primary_section:
         if not is_valid_sln(section.sln):
