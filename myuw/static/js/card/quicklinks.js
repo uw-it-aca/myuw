@@ -62,7 +62,7 @@ var QuickLinksCard = {
             'links': window.quicklink_data
         }));
     }
-}
+};
 
 $("body").on('click', '.control-link', QuickLinksCard.run_control);
 $("body").on('keydown', '#myuw-custom-qlink', QuickLinksCard.custom_add);
