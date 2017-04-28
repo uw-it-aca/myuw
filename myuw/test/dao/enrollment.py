@@ -22,9 +22,11 @@ class TestDaoEnrollment(TestCase):
 
         req = get_request_with_user('none',
                                     get_request_with_date("2013-04-10"))
-        self.assertRaise(DataFailureException,
-                         get_current_quarter_enrollment,
-                         req)
+        try:
+            enrollment = get_current_quarter_enrollment(req)
+            self.fail("should raise DataFailureException")
+        except DataFailureException as ex:
+            self.assertEqual(ex.status, 404)
 
         req = get_request_with_user('jerror',
                                     get_request_with_date("2013-04-10"))
@@ -59,7 +61,7 @@ class TestDaoEnrollment(TestCase):
         terms.append(t3)
         enrollments = get_enrollments_of_terms(terms)
         self.assertEqual(len(enrollments), 3)
-        
+
         self.assertTrue(t1 in enrollments)
         self.assertTrue(t2 in enrollments)
         self.assertTrue(t3 in enrollments)
