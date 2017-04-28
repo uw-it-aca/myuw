@@ -172,22 +172,18 @@ var RegStatusCard = {
         var pending_minors = [];
         var pending_majors = [];
 
-        for(i = 0; i < profile.term_majors.length; i++){
-            if(profile.term_majors[i].quarter.toUpperCase() === quarter.toUpperCase() && profile.term_majors[i].year === year){
-                if(!profile.term_majors[i].same_as_previous){
-                    pending_majors = profile.term_majors[i].majors;
+        var retrieve_quarter_degrees = function(degrees, degree_type){
+            for(i = 0; i < degrees.length; i++){
+                if(degrees[i].quarter.toUpperCase() === quarter.toUpperCase() && degrees[i].year === year){
+                    if(!degrees[i].same_as_previous){
+                        return degrees[i][degree_type];
+                    }
                 }
             }
-        }
+        };
 
-        for(i = 0; i < profile.term_minors.length; i++){
-            if(profile.term_minors[i].quarter.toUpperCase() === quarter.toUpperCase() && profile.term_minors[i].year === year){
-
-                if(!profile.term_minors[i].same_as_previous){
-                    pending_minors = profile.term_minors[i].minors;
-                }
-            }
-        }
+        pending_minors = retrieve_quarter_degrees(profile.term_minors, "minors");
+        pending_majors = retrieve_quarter_degrees(profile.term_majors, "majors");
 
 
         //Get hold count from notice attrs
