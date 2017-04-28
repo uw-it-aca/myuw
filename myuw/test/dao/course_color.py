@@ -107,24 +107,21 @@ class TestCourseColors(TestCase):
         (colors[section2.section_label()], 2, "2nd section gets the 2nd color")
 
     def test_primary_secondary(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        regid = "00000000000000000000000000000003"
         term = Term()
-        term.year = 2013
-        term.quarter = "spring"
+        term.year = 2012
+        term.quarter = "summer"
         schedule = _get_schedule(regid, term)
         colors = get_colors_by_regid_and_schedule(regid, schedule)
 
-        msg = "Primary gets the 1st color"
         self.assertEquals
-        (colors["2013,spring,PHYS,121/A"], "3", msg)
-
+        (colors["2012,summer,PHYS,121/A"], 1, "Primary gets the 1st color")
         msg = "Secondary gets the 1st color, secondary version"
         self.assertEquals(
-            colors["2013,spring,PHYS,121/AC"], "3a", msg)
-
+            colors["2012,summer,PHYS,121/AC"], "1a", msg)
         msg = "Second secondary gets the 1st color, secondary version"
         self.assertEquals(
-            colors["2013,spring,PHYS,121/AQ"], "3a", msg)
+            colors["2012,summer,PHYS,121/AQ"], "1a", msg)
 
     def test_drop_then_new_add(self):
         term = Term()
