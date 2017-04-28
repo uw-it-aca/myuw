@@ -117,7 +117,7 @@ urlpatterns += [
     url(r'^api/v1/profile/$', login_required(MyProfile().run),
         name="myuw_profile_api"
         ),
-    url(r'api/v1/link/$', login_required(ManageLinks().run),
+    url(r'api/v1/link/?$', login_required(ManageLinks().run),
         name='myuw_manage_links'
         ),
     url(r'^api/v1/upass/$', login_required(UPass().run),

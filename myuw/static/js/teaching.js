@@ -17,8 +17,7 @@ var Teaching = {
         $("#main-content").html(template({
             'seattle_affil': (window.user.seattle_affil || window.user.seattle),
             'bothell_affil': (window.user.bothell_affil || window.user.bothell),
-            'tacoma_affil': (window.user.tacoma_affil || window.user.tacoma),
-            'links': window.quicklink_data
+            'tacoma_affil': (window.user.tacoma_affil || window.user.tacoma)
         }));
 
         NoticeBanner.render_init($("#notice_banner_location"));
@@ -50,6 +49,7 @@ var Teaching = {
             InstructorCourseCards
         ];
         var desktop_sidebar_cards = [
+            QuickLinksCard,
             EventsCard
         ];
         Cards.load_cards_in_order(desktop_body_cards, $("#teaching_content_cards"));
@@ -61,6 +61,7 @@ var Teaching = {
         Teaching._reset_content_divs();
         var mobile_cards = [
             InstructorCourseCards,
+            QuickLinksCard,
             EventsCard
         ];
         Cards.load_cards_in_order(mobile_cards, $("#teaching_content_cards"));

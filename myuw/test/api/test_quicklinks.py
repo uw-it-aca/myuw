@@ -105,3 +105,46 @@ class TestQuickLinksAPI(MyuwApiTest):
         data = "{"
         response = self.client.post(url, data, content_type='application_json')
         self.assertEquals(response.status_code, 404)
+
+    def test_add_pure_custom(self):
+        self.set_user('javerage')
+        url = reverse('myuw_manage_links')
+        CustomLink.objects.all()
+
+        data = json.dumps({'type': 'custom',
+                           'url': 'www.washington.edu/classroom/SMI+401'
+                           })
+
+        response = self.client.post(url, data, content_type='application_json')
+        self.assertEqual(response.status_code, 200)
+
+        all = CustomLink.objects.all()
+        self.assertEqual(len(all), 1)
+
+        self.assertEqual(all[0].url,
+                         'http://www.washington.edu/classroom/SMI+401')
+        self.assertEqual(all[0].label, 'Room Information')
+
+        # Same w/ protocol
+        data = json.dumps({'type': 'custom',
+                           'url': 'http://www.washington.edu/classroom/SMI+401'
+                           })
+
+        response = self.client.post(url, data, content_type='application_json')
+        self.assertEqual(response.status_code, 200)
+
+        all = CustomLink.objects.all()
+        self.assertEqual(len(all), 1)
+
+        # https is different though
+        http_url = 'https://www.washington.edu/classroom/SMI+401'
+        data = json.dumps({'type': 'custom',
+                           'url': http_url
+                           })
+
+        response = self.client.post(url, data, content_type='application_json')
+        self.assertEqual(response.status_code, 200)
+
+        all = CustomLink.objects.all()
+        self.assertEqual(len(all), 2)
+
