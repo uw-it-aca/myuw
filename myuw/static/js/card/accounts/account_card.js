@@ -9,7 +9,11 @@ var AccountsCard = {
     _render: function() {
         var source   = $("#accounts_card").html();
         var template = Handlebars.compile(source);
-        var compiled = template({"card_name": AccountsCard.name});
+        var compiled = template({
+            card_name: AccountsCard.name,
+            is_faculty: window.user.faculty,
+            is_clinician: window.user.clinician
+        });
         AccountsCard.dom_target.html(compiled);
     }
 };

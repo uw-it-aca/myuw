@@ -14,6 +14,7 @@ from myuw.dao.gws import is_grad_student, is_student,\
     is_pce_student, is_student_employee, is_employee, is_faculty,\
     is_seattle_student, is_bothell_student, is_tacoma_student,\
     is_staff_employee
+from myuw.dao.uwnetid import is_clinician
 from myuw.dao.enrollment import get_main_campus
 from myuw.dao.exceptions import IndeterminateCampusException
 
@@ -63,6 +64,7 @@ def get_all_affiliations(request):
             "employee": is_employee(),
             "fyp": is_fyp,
             "faculty": is_faculty(),
+            "clinician": is_clinician(),
             "seattle": is_seattle_student(),
             "bothell": is_bothell_student(),
             "tacoma": is_tacoma_student(),
