@@ -1,7 +1,7 @@
 from myuw.dao.class_website import get_page_title_from_url
 from myuw.views.rest_dispatch import RESTDispatch
 from myuw.views.error import data_not_found
-from myuw.models import PopularLink, VisitedLink, CustomLink
+from myuw.models import PopularLink, VisitedLink, CustomLink, HiddenLink
 from myuw.dao import get_user_model, get_netid_of_current_user
 from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.class_website import get_page_title_from_url
@@ -24,6 +24,7 @@ class ManageLinks(RESTDispatch):
         link = False
         url = None
         label = None
+        add_custom = False
         if "type" not in data:
             return data_not_found()
 
@@ -34,6 +35,7 @@ class ManageLinks(RESTDispatch):
                 url = link.url
                 label = link.label
                 link = True
+                add_custom = True
             except PopularLink.DoesNotExist:
                 return data_not_found()
 
@@ -45,6 +47,7 @@ class ManageLinks(RESTDispatch):
                 url = link.url
                 label = link.label
                 link = True
+                add_custom = True
             except VisitedLink.DoesNotExist:
                 return data_not_found()
 
@@ -54,6 +57,7 @@ class ManageLinks(RESTDispatch):
                 url = "http://%s" % url
             label = get_page_title_from_url(url)
             link = True
+            add_custom = True
 
         elif "remove" == data["type"]:
             link_id = data['id']
@@ -62,14 +66,24 @@ class ManageLinks(RESTDispatch):
                 link.delete()
             except CustomLink.DoesNotExist:
                 return data_not_found()
+
+        elif "hide" == data["type"]:
+            try:
+                with transaction.atomic():
+                    HiddenLink.objects.create(user=user, url=data["id"])
+            except IntegrityError as ex:
+                pass
+            link = True
+
         if not link:
             return data_not_found()
 
-        try:
-            with transaction.atomic():
-                CustomLink.objects.create(user=user,
-                                          url=url,
-                                          label=label)
-        except IntegrityError as ex:
-            pass
+        if add_custom:
+            try:
+                with transaction.atomic():
+                    CustomLink.objects.create(user=user,
+                                              url=url,
+                                              label=label)
+            except IntegrityError as ex:
+                pass
         return HttpResponse(json.dumps(get_quicklink_data()))

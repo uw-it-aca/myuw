@@ -17,7 +17,7 @@ var QuickLinksCard = {
             $("#quicklink_saving").show();
             QuickLinksCard._add_link({
                 type: "custom",
-                url: $("#myuw-custom-qlink").val()
+                url: $("#myuw-custom-qlink").val().trim()
             });
         }
     },

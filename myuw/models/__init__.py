@@ -209,3 +209,11 @@ class CustomLink(models.Model):
 
     class Meta:
         unique_together = (('user', 'url',),)
+
+
+class HiddenLink(models.Model):
+    user = models.ForeignKey('User', on_delete=models.PROTECT)
+    url = models.TextField()
+
+    class Meta:
+        unique_together = (('user', 'url',),)

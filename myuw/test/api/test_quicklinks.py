@@ -1,5 +1,5 @@
 from myuw.test.api import MyuwApiTest
-from myuw.models import PopularLink, CustomLink, VisitedLink
+from myuw.models import VisitedLink, PopularLink, CustomLink, HiddenLink
 from django.core.urlresolvers import reverse
 import json
 
@@ -186,3 +186,32 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEqual(response.status_code, 200)
         all = CustomLink.objects.all()
         self.assertEqual(len(all), 1)
+
+    def test_remove_default_by_url(self):
+        HiddenLink.objects.all().delete()
+        self.set_user('javerage')
+        url = reverse('myuw_manage_links')
+
+        data = json.dumps({'type': 'hide',
+                           'id': 'http://example.com'})
+
+        response = self.client.post(url, data, content_type='application_json')
+        self.assertEquals(response.status_code, 200)
+        all = HiddenLink.objects.all()
+
+        self.assertEqual(len(all), 1)
+        self.assertEqual(all[0].url, 'http://example.com')
+
+        response = self.client.post(url, data, content_type='application_json')
+        self.assertEquals(response.status_code, 200)
+        all = HiddenLink.objects.all()
+
+        self.assertEqual(len(all), 1)
+
+        data = json.dumps({'type': 'hide',
+                           'id': 'http://uw.edu'})
+
+        response = self.client.post(url, data, content_type='application_json')
+        self.assertEquals(response.status_code, 200)
+        all = HiddenLink.objects.all()
+        self.assertEqual(len(all), 2)

@@ -1,5 +1,7 @@
-from myuw.models import VisitedLink, PopularLink, CustomLink
+from myuw.models import VisitedLink, PopularLink, CustomLink, HiddenLink
 from myuw.dao import get_netid_of_current_user, get_user_model
+import csv
+import os
 
 
 def get_quicklink_data():
@@ -41,4 +43,36 @@ def get_quicklink_data():
 
     data['popular_links'] = popular
 
+    # TODO - same here!
+    hidden = HiddenLink.objects.filter(user=user)
+    hidden_lookup = set()
+    for link in hidden:
+        hidden_lookup.add(link.url)
+
+    default = _get_default_links()
+
+    shown_defaults = []
+    for link in default:
+        if link['url'] not in hidden_lookup:
+            shown_defaults.append({'url': link['url'],
+                                   'label': link['label']
+                                   })
+
+    data['default_links'] = shown_defaults
+
     return data
+
+
+def _get_default_links():
+    path = os.path.join(os.path.dirname(__file__),
+                        '..', 'data', 'quicklinks.csv')
+
+    defaults = []
+    with open(path, 'rbU') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+        # Skip header
+        next(reader)
+        for row in reader:
+            defaults.append({'url': row[0], 'label': row[1]})
+
+    return defaults

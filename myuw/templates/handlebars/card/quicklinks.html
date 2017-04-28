@@ -5,15 +5,9 @@
     <div class="myuw-qlinks">
         <div class="myuw-qlinks-active">
             <ul class="unstyled-list myuw-qlinks-active-list">
-                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="http://www.washington.edu/maps/"><span>Campus Maps</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
-                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="http://canvas.uw.edu/"><span>Canvas LMS</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
-                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="https://catalyst.uw.edu/"><span>Catalyst Web Tools</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
-                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp"><span>Change Student Address</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
-                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="https://www.washington.edu/ess/"><span>WorkDay</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
-                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="http://www.washington.edu/home/peopledir/"><span>Faculty/Staff/Student Directory</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
-                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="https://itconnect.uw.edu/"><span>IT Connect</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
-                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="https://panopto.uw.edu/"><span>Panopto</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
-                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"><span>Registration</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
+                {{#each links.default_links}}
+                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}"><span>{{label }}</span></a></div><div class="pull-right"><a href="#" class="control-link" data-linkid="{{ url }}" data-linktype="hide">remove</a></div></li>
+                {{/each}}
                 {{#each links.custom_links}}
                 <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}"><span>{{label }}</span></a></div><div class="pull-right"><a href="#" class="control-link" data-linkid="{{ id }}" data-linktype="remove">remove</a></div></li>
                 {{/each}}
