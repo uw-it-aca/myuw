@@ -109,7 +109,7 @@ class TestQuickLinksAPI(MyuwApiTest):
     def test_add_pure_custom(self):
         self.set_user('javerage')
         url = reverse('myuw_manage_links')
-        CustomLink.objects.all()
+        CustomLink.objects.all().delete()
 
         data = json.dumps({'type': 'custom',
                            'url': 'www.washington.edu/classroom/SMI+401'
@@ -147,3 +147,42 @@ class TestQuickLinksAPI(MyuwApiTest):
 
         all = CustomLink.objects.all()
         self.assertEqual(len(all), 2)
+
+    def test_remove_link(self):
+        # Add a link as 2 users, make sure we can remove ours, but not theirs
+        self.set_user('javerage')
+        url = reverse('myuw_manage_links')
+        CustomLink.objects.all().delete()
+
+        data = json.dumps({'type': 'custom',
+                           'url': 'www.washington.edu/classroom/SMI+401'
+                           })
+
+        response = self.client.post(url, data, content_type='application_json')
+        self.assertEqual(response.status_code, 200)
+
+        self.set_user('jpce')
+        response = self.client.post(url, data, content_type='application_json')
+        self.assertEqual(response.status_code, 200)
+
+        all = CustomLink.objects.all()
+
+        data = json.dumps({'type': 'remove',
+                           'id': all[0].pk
+                           })
+
+        response = self.client.post(url, data, content_type='application_json')
+        self.assertEqual(response.status_code, 404)
+
+        all = CustomLink.objects.all()
+
+        self.assertEqual(len(all), 2)
+
+        data = json.dumps({'type': 'remove',
+                           'id': all[1].pk
+                           })
+
+        response = self.client.post(url, data, content_type='application_json')
+        self.assertEqual(response.status_code, 200)
+        all = CustomLink.objects.all()
+        self.assertEqual(len(all), 1)

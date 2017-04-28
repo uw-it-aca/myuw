@@ -27,6 +27,7 @@ class ManageLinks(RESTDispatch):
         if "type" not in data:
             return data_not_found()
 
+        user = get_user_model()
         if "popular" == data["type"]:
             try:
                 link = PopularLink.objects.get(pk=data['id'])
@@ -54,10 +55,15 @@ class ManageLinks(RESTDispatch):
             label = get_page_title_from_url(url)
             link = True
 
+        elif "remove" == data["type"]:
+            link_id = data['id']
+            try:
+                link = CustomLink.objects.get(user=user, pk=link_id)
+                link.delete()
+            except CustomLink.DoesNotExist:
+                return data_not_found()
         if not link:
             return data_not_found()
-
-        user = get_user_model()
 
         try:
             with transaction.atomic():
