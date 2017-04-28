@@ -1,4 +1,5 @@
 from django.test import TestCase
+from restclients_core.exceptions import DataFailureException
 from myuw.dao.term import get_current_quarter,\
     get_next_quarter, get_term_before, get_term_after
 from myuw.dao.enrollment import get_enrollment_of_aterm,\
@@ -18,6 +19,24 @@ class TestDaoEnrollment(TestCase):
         self.assertIsNotNone(enrollment)
         self.assertEqual(len(enrollment.majors), 2)
         self.assertEqual(len(enrollment.off_term_sections), 0)
+
+        req = get_request_with_user('none',
+                                    get_request_with_date("2013-04-10"))
+        self.assertRaise(DataFailureException,
+                         get_current_quarter_enrollment,
+                         req)
+
+        req = get_request_with_user('jerror',
+                                    get_request_with_date("2013-04-10"))
+        self.assertRaise(DataFailureException,
+                         get_current_quarter_enrollment,
+                         req)
+
+        req = get_request_with_user('staff',
+                                    get_request_with_date("2013-04-10"))
+        enrollment = get_current_quarter_enrollment(req)
+        self.assertEqual(len(enrollment.majors), 0)
+        self.assertEqual(len(enrollment.minors), 0)
 
     def test_get_enrollment_of_aterm(self):
         req = get_request_with_user('javerage',
