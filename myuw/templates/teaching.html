@@ -12,6 +12,7 @@ MyUW Teaching
 {% endblock %}
 
 {% block extra_js %}
+    <script src="{% static 'js/quick_links.js' %}"></script>
     {% compress js inline %}
     <script src="{% static 'js/page/teaching.js' %}"></script>
     {% endcompress %}
@@ -19,12 +20,12 @@ MyUW Teaching
     var quicklink_data = {
         recent_links: [
             {% for link in recent_links %}
-            {url: '{{ link.url | safe | escapejs}}', label: '{{ link.label | safe | escapejs }}' }{% if not forloop.last %},{% endif %}
+            {id: '{{ link.id }}', url: '{{ link.url | safe | escapejs}}', label: '{{ link.label | safe | escapejs }}' }{% if not forloop.last %},{% endif %}
             {% endfor %}
         ],
         popular_links: [
             {% for link in popular_links %}
-            {url: '{{ link.url | safe | escapejs }}', label: '{{ link.label | safe | escapejs }}' }{% if not forloop.last %},{% endif %}
+            {id: '{{ link.id }}', url: '{{ link.url | safe | escapejs }}', label: '{{ link.label | safe | escapejs }}' }{% if not forloop.last %},{% endif %}
             {% endfor %}
         ]
     };

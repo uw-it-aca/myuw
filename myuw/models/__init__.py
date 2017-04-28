@@ -200,3 +200,12 @@ class VisitedLink(AffililationLink):
 
 class PopularLink(AffililationLink):
     pass
+
+
+class CustomLink(models.Model):
+    user = models.ForeignKey('User', on_delete=models.PROTECT)
+    url = models.TextField()
+    label = models.CharField(max_length=50, null=True)
+
+    class Meta:
+        unique_together = (('user', 'url',),)

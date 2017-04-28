@@ -60,7 +60,7 @@ def _add_quicklink_context(request, context):
     recents = []
     recent_links = VisitedLink.recent_for_user(username)
     for link in recent_links:
-        recents.append({'url': link.url, 'label': link.label})
+        recents.append({'url': link.url, 'label': link.label, 'id': link.pk})
 
     context['recent_links'] = recents
 
@@ -69,6 +69,6 @@ def _add_quicklink_context(request, context):
     # TODO - consider affiliation filtering here
     popular_links = PopularLink.objects.all()
     for link in popular_links:
-        popular.append({'url': link.url, 'label': link.label})
+        popular.append({'url': link.url, 'label': link.label, 'id': link.pk})
 
     context['popular_links'] = popular
