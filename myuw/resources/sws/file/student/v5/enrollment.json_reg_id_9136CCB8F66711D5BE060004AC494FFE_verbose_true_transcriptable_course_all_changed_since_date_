@@ -375,7 +375,7 @@
          "RepeatCourse" : false,
          "RequestDate" : "",
          "RequestStatus" : "",
-         "Section" : { 
+         "Section" : {
              "CourseNumber" : "180",
              "CurriculumAbbreviation" : "B BIO",
              "Href" : "/student/v5/course/2013,summer,B%20BIO,180/A.json",

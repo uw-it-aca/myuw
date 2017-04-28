@@ -2,6 +2,7 @@ var Profile = {
     render_upon_data: function() {
         var source = $("#profile-content").html();
         var template = Handlebars.compile(source);
+        var profile_data = WSData.profile_data();
         $("#profile").html(template(WSData.profile_data()));
         $("#toggle_my_profile").attr("title", $("#profile_toggle_hidden").text());
         $("#toggle_my_profile").attr("aria-label", $("#profile_toggle_hidden").text());

@@ -40,6 +40,7 @@ var RegStatusCard = {
             return;
         }
 
+
         var next_term_data = WSData.oquarter_data().next_term_data;
         var reg_next_quarter = next_term_data.quarter;
 
@@ -165,6 +166,26 @@ var RegStatusCard = {
             return;
         }
 
+        // Retrieve pending majors and minors for this quarter, if they exist
+        var profile = WSData.profile_data();
+
+        var pending_minors = [];
+        var pending_majors = [];
+
+        var retrieve_quarter_degrees = function(degrees, degree_type){
+            for(i = 0; i < degrees.length; i++){
+                if(degrees[i].quarter.toUpperCase() === quarter.toUpperCase() && degrees[i].year === year){
+                    if(!degrees[i].same_as_previous){
+                        return degrees[i][degree_type];
+                    }
+                }
+            }
+        };
+
+        pending_minors = retrieve_quarter_degrees(profile.term_minors, "minors");
+        pending_majors = retrieve_quarter_degrees(profile.term_majors, "majors");
+
+
         //Get hold count from notice attrs
         var hold_count = reg_holds.length;
         var source = $("#reg_status_card").html();
@@ -184,8 +205,11 @@ var RegStatusCard = {
             "reg_next_quarter" : quarter,
             "reg_next_year": year,
             "plan_data": plan_data,
-            "myplan_peak_load": window.card_display_dates.myplan_peak_load
+            "myplan_peak_load": window.card_display_dates.myplan_peak_load,
+            "pending_minors": pending_minors,
+            "pending_majors": pending_majors
         };
+
         var raw = template(template_data);
         return raw;
     },

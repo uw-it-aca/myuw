@@ -28,7 +28,7 @@ border-color: @border;}
 
 /*** font size ***/
 @font-base: 14px;
-@font-meta: 12px; 
+@font-meta: 12px;
 
 @font-header-large: 22px;
 @font-header-medium: 20px;
@@ -43,10 +43,10 @@ body {
 	color:#000;
 }
 
-@media @desktop { 
-	
+@media @desktop {
+
 	.container {max-width: 970px;}
-    #app_content { max-width: 970px; 
+    #app_content { max-width: 970px;
 	      min-height: 100%;
 		  height: auto;
 		  margin: 0 auto -60px;
@@ -63,16 +63,10 @@ body {
     font-size: 24px;
 }
 
-/* stand-alone page headers */
-
-#app_content .academic_cal-container .acal-main h2, #app_content .future-quarter-container h2, #app_content .textbooks-container h2, #app_content .notices-container h2, #app_content .category-container h2{
-    font-size: 26px;
-    margin-top: 1.5em;
-}
 
 /* stand-alone page subheaders */
 
-#app_content .academic_cal-container .acal-main .acal-page-events h2, #app_content .category-container .category-content h3, #app_content .textbooks-container h3 {
+#app_content .category-container .category-content h3, #app_content .textbooks-container h3 {
     font-size: 22px;
 }
 
@@ -90,22 +84,22 @@ body {
     margin-bottom: 1em;
 }
 
-/* category page headers */ 
-.category-content h3.category-sub-header { 
+/* category page headers */
+.category-content h3.category-sub-header {
     margin-top: 15px !important;
 }
-.category-content .col-lg-12 { 
+.category-content .col-lg-12 {
     margin-bottom: 20px; /* this goes here because it's actually for spacing on the h3s */
 }
 
 
 
 #app_header {
-	
+
 	.header-cover {
-		
+
 		.container {
-			
+
 			.header-profile {
 				.profile-bio {
 					.profile-student-info {
@@ -119,10 +113,10 @@ body {
 					.profile-mailing {}
 					.profile-local-address {margin-left:0;}
 					.profile-perm-address {margin-left:0;}
-				
+
 				}
 			}
-			
+
 			.header-w {
 				img {width:inherit; }
 			}
@@ -131,11 +125,11 @@ body {
 }
 
 body {
-	
+
 	a {
 		&:hover { text-decoration: underline; color: #334baa; }
 	}
-	
+
 }
 
 #calendar_banner_location_desktop {
@@ -145,7 +139,7 @@ body {
 }
 
 #app_content {
-	
+
 	.card {
 		.card-disclosure {
 			a {
@@ -161,7 +155,7 @@ body {
 	}
 
 	// Grades card
-	#GradeCard {	
+	#GradeCard {
 		.card {
 			.card-badge-container {
 				ul.unstyled-list {
@@ -178,19 +172,18 @@ body {
 	// Acal page
 	.academic_cal-container {
 		.acal-main {
-			h2 { }
+
 			center {border-bottom: 1px solid #eee;}
 			.acal-page-filters { width:60%;margin-top:0; margin-bottom:0;
 				#myuw-event-filter-breaks, #myuw-event-filter-all, #myuw-event-filter-classes {font-size:15px;}
 				.myuw-selected-button {}
 			}
 			.acal-page-events {
-				h2 {font-size: 20px;}
 				center {}
-				.acal-page-event-list { 
-					.acal-page-event-list-item { 
+				.acal-page-event-list {
+					.acal-page-event-list-item {
 						.acal-page-event-date {}
-						.acal-page-event-title {}						
+						.acal-page-event-title {}
 					}
 				}
 			}
@@ -198,7 +191,7 @@ body {
 	}
 
 	// Notices page
-	.notices-container { 
+	.notices-container {
 		.notice-header-metadata {font-size:14px;
 		}
 		.notice-accordion {
@@ -223,7 +216,7 @@ body {
 	}
 
 	// textbooks page
-    
+
     .textbooks-container {
 		h4 {font-size: @font-header-smaller;}
 		.dl-books {font-size: @font-base;margin-left: 10px;}
@@ -232,9 +225,9 @@ body {
 
 } //end #app_content
 
-#app_notices {    
+#app_notices {
     .critical-notices-container {
-	    .notice-content {	        
+	    .notice-content {
 	        .notice-panel-heading {background-color:transparent;padding: 0 0;
 		        .notice-panel-title /*h3*/ {
 			        a {color:#4d66ca;padding-left: 5px;}
@@ -247,25 +240,25 @@ body {
 		        .notice-panel-body {}
 	        }
 	    }
-	    
+
     }
-    
+
     .other-notices-link {
-	    
+
     }
     .notice-unread { /*background-color: white; color:#444;*/ font-weight:normal; /*border:1px solid #444;*/ position: absolute; right: 15px; top: 50%; margin-top: -5px; }
-    
+
     .notice-information { font-size: 11px; font-weight:normal; display: block; white-space: nowrap; margin-top: -15px; line-height: normal; }
 }
 
 #app_footer { background: darken(@lighttan, 5%); margin-top: 10px; padding-top: 15px;
-    
+
     // navigation bar
-    .navigation-bar { margin-bottom: 10px;        
+    .navigation-bar { margin-bottom: 10px;
         .navigation-list {
 			a:hover {text-decoration: none;color:#777;}
 			.navigation-item {
-			}	
+			}
 		}
 	}
 }
@@ -274,7 +267,7 @@ body {
 
 
 /*** week counter ***/
-	
+
 #week_counter_location {
 	.week-counter {
 		.counter-text {font-style: italic;font-size: 85%;margin-top:5px;margin-bottom: 2px;}
@@ -283,7 +276,7 @@ body {
 			.progress-bar-success {background-color: #ccc;}
 			.myuw-week-progress {width:8.989%;
 				&.break {width:1px;}
-			.finals-text {}	
+			.finals-text {}
 			}
 		}
 	}
