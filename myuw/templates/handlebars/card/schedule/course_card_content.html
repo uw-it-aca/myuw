@@ -1,7 +1,49 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "course_card_content_panel" %}
 
-{{ #unless has_eval}}
+{{#if hide_course_details}}
+    {{#if has_eval}}
+    <div class="myuw-course-eval" id="course_eval{{index}}" >
+    </div>
+    {{/if}}
+
+    <div id="course_details{{index}}" class="slide-hide"
+         aria-label="Additional course resources"
+         rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
+         aria-hidden="true" hidden aria-expanded="false"
+         style="display: none;" tabindex = "-1">
+
+        <div id="sche_on_course_card{{index}}">
+        </div>
+
+        <div id="course_resource{{index}}">
+        </div>
+
+        {{#if instructors}}
+            <div id="course_instructor{{index}}">
+            </div>
+        {{else}}
+            <div class="no-instructors"><strong>No instructor information available</strong></div>
+         {{/if}}
+
+    </div>
+    <div class="card-disclosure">
+        <span id="show_course_details{{index}}_wrapper">
+            <a class="toggle_course_card_disclosure"
+               id="show_course_details{{index}}"
+               href="#" aria-controls="course_details{{index}}"
+               title="Expand to show course details"><!-- {{#if is_ended}}<span class="closed-course-disclosure">Course ended {{toMonthDay end_date}}</span> {{/if}}-->Show course details</a>
+        </span>
+        <span id="hide_course_details{{index}}_wrapper" hidden aria-hidden="true">
+            <a class="toggle_course_card_disclosure"
+               id="hide_course_details{{index}}"
+               href="#" aria-controls="course_details{{index}}"
+               title="Collapse to hide course details">Hide course details</a>
+        </span>
+    </div>
+{{else}}
+    <div id="sche_on_course_card{{index}}">
+    </div>
     <div id="sche_on_course_card{{index}}">
     </div>
     <div id="course_resource{{index}}">
@@ -36,45 +78,6 @@
     {{else}}
         <div class="card-faux-disclosure"><strong>No instructor information available</strong></div>
     {{/if}}
-{{ /unless }}
-
-{{ #if has_eval}}
-    <div class="myuw-course-eval" id="course_eval{{index}}" >
-    </div>
-
-    <div id="course_details{{index}}" class="slide-hide"
-         aria-label="Additional course resources"
-         rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
-         aria-hidden="true" hidden aria-expanded="false"
-         style="display: none;" tabindex = "-1">
-
-        <div id="sche_on_course_card{{index}}">
-        </div>
-
-        <div id="course_resource{{index}}">
-        </div>
-        {{#if instructors}}
-            <div id="course_instructor{{index}}">
-            </div>
-        {{else}}
-            <div class="no-instructors"><strong>No instructor information available</strong></div>
-         {{/if}}
-    </div>
-    <div class="card-disclosure">
-        <span id="show_course_details{{index}}_wrapper">
-            <a class="toggle_course_card_disclosure"
-               id="show_course_details{{index}}"
-               href="#" aria-controls="course_details{{index}}"
-               title="Expand to show course details">Show course details</a>
-        </span>
-        <span id="hide_course_details{{index}}_wrapper" hidden aria-hidden="true">
-            <a class="toggle_course_card_disclosure"
-               id="hide_course_details{{index}}"
-               href="#" aria-controls="course_details{{index}}"
-               title="Collapse to hide course details">Hide course details</a>
-        </span>
-    </div>
-
-{{ /if }}
+{{/if}}
 
 {% endtplhandlebars %}

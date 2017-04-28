@@ -3,10 +3,12 @@ import logging
 from myuw.util.thread import Thread
 from django.http import HttpResponse
 from operator import itemgetter
+from uw_sws.section import is_valid_sln
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import (get_canvas_active_enrollments,
                              canvas_course_is_available)
 from myuw.dao.course_color import get_colors_by_schedule
+from myuw.dao.enrollment import find_enrolled_independent_start_section
 from myuw.dao.gws import is_grad_student
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.schedule import get_schedule_by_term,\
@@ -21,12 +23,12 @@ from myuw.views import prefetch_resources
 
 
 logger = logging.getLogger(__name__)
-EARLY_FALL_START = "EARLY FALL START"
 
 
 class StudClasSche(RESTDispatch):
     def run(self, request, *args, **kwargs):
         prefetch_resources(request,
+                           prefetch_enrollment=True,
                            prefetch_library=True,
                            prefetch_person=True,
                            prefetch_canvas=True)
@@ -85,16 +87,33 @@ def load_schedule(request, schedule, summer_term=""):
         section_data["color_id"] = color
         section_index += 1
 
-        if EARLY_FALL_START == section.institute_name:
+        if section.is_early_fall_start():
             section_data["early_fall_start"] = True
             json_data["has_early_fall_start"] = True
+            section_data["is_ended"] =\
+                get_comparison_date(request) > section.end_date
+
+        if section.is_independent_start:
+            try:
+                enrolled_sect, ended = find_enrolled_independent_start_section(
+                    request, section.section_label())
+                section_data["start_date"] = str(enrolled_sect.start_date)
+                section_data["end_date"] = str(enrolled_sect.end_date)
+                section_data["is_ended"] = ended
+            except Exception as ex:
+                logger.error("find enrolled independent start section: %s", ex)
+                pass
+
         # if section.is_primary_section:
-        try:
-            section_data["lib_subj_guide"] =\
-                get_subject_guide_by_section(section)
-        except Exception as ex:
-            logger.error(ex)
-            pass
+        if not is_valid_sln(section.sln):
+            section_data["sln"] = 0
+        else:
+            try:
+                section_data["lib_subj_guide"] =\
+                    get_subject_guide_by_section(section)
+            except Exception as ex:
+                logger.error(ex)
+                pass
 
         try:
             enrollment = canvas_enrollments[section.section_label()]
