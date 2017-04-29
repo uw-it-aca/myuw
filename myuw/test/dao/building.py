@@ -19,9 +19,9 @@ class TestBuildings(TestCase):
     def test_get_by_schedule(self):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = Term()
-        term.year = 2012
+        term.year = 2013
         term.quarter = "summer"
         schedule = _get_schedule(regid, term)
 
         buildings = get_buildings_by_schedule(schedule)
-        self.assertEquals(len(buildings), 3)
+        self.assertEquals(len(buildings), 2)

@@ -9,6 +9,9 @@ var CourseCardContentPanel = {
         var has_valid_eval = (eval_data && eval_data.sections && eval_data.sections.length > 0 && eval_data.sections[index] && eval_data.sections[index].evaluation_data && eval_data.sections[index].evaluation_data.length > 0 ? true : false);
         c_section.has_eval = has_valid_eval;
         c_section.evals = (has_valid_eval ? eval_data.sections[index].evaluation_data : null);
+        if (c_section.is_ended || has_valid_eval) {
+            c_section.hide_course_details = true;
+        }
 
         // Determine if there was an err when fetching the section eval data
         var eval_data_err = (fetched_eval && !has_valid_eval && eval_data && eval_data.sections[index].evaluation_data === null ? true :false);
@@ -22,7 +25,6 @@ var CourseCardContentPanel = {
         if (has_valid_eval) {
             CourseEvalPanel.render(c_section);
         }
-
         CourseSchePanel.render(c_section);
 
         CourseResourcePanel.render(c_section);

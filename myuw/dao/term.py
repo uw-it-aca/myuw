@@ -137,6 +137,18 @@ def get_previous_quarter(request):
     return term
 
 
+def get_prev_num_terms(request, num):
+    """
+    :return: a list of the previous number of quarters
+    """
+    quarters = []
+    term = get_current_quarter(request)
+    for i in range(num):
+        term = get_term_before(term)
+        quarters.append(term)
+    return quarters
+
+
 def is_past(term, request):
     """
     return true if the given term is in the past
