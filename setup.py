@@ -38,6 +38,7 @@ setup(
         'UW-RestClients-SWS>=0.5,<1.0',
         'UW-RestClients-PWS>=0.5,<1.0',
         'UW-RestClients-HFS>=0.5,<1.0',
+        'UW-RestClients-GWS>=0.2,<1.0',
         'UW-RestClients-GradePage>=0.1,<1.0',
         'Django-SupportTools',
         'django_mobileesp',

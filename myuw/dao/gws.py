@@ -118,3 +118,10 @@ def is_staff_employee():
     within 15 days
     """
     return _is_member('uw_affiliation_staff-employee')
+
+
+def is_applicant():
+    """
+    Return True if the user is identified a UW applicant
+    """
+    return _is_member('uw_affiliation_applicant')
