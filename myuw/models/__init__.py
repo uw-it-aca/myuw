@@ -140,7 +140,7 @@ class UserMigrationPreference(models.Model):
 
 
 class AffililationLink(models.Model):
-    url = models.TextField()
+    url = models.CharField(max_length=512)
     label = models.CharField(max_length=50, null=True)
     is_anonymous = models.BooleanField(default=True)
     is_student = models.BooleanField(default=False)
@@ -204,7 +204,7 @@ class PopularLink(AffililationLink):
 
 class CustomLink(models.Model):
     user = models.ForeignKey('User', on_delete=models.PROTECT)
-    url = models.TextField()
+    url = models.CharField(max_length=512)
     label = models.CharField(max_length=50, null=True)
 
     class Meta:
@@ -213,7 +213,7 @@ class CustomLink(models.Model):
 
 class HiddenLink(models.Model):
     user = models.ForeignKey('User', on_delete=models.PROTECT)
-    url = models.TextField()
+    url = models.CharField(max_length=512)
 
     class Meta:
         unique_together = (('user', 'url',),)
