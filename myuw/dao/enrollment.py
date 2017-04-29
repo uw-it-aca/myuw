@@ -35,10 +35,14 @@ def get_current_quarter_enrollment(request):
     """
     :return: an Enrollment object
     """
-    return get_enrollment_of_aterm(get_current_quarter(request))
+    if hasattr(request, 'my_curq_enrollment'):
+        return request.my_curq_enrollment
+    enrollment = get_enrollment_for_term(get_current_quarter(request))
+    request.my_curq_enrollment = enrollment
+    return enrollment
 
 
-def get_enrollment_of_aterm(aterm):
+def get_enrollment_for_term(aterm):
     """
     :return: an Enrollment object
     """
@@ -50,11 +54,11 @@ def get_enrollments_of_terms(term_list):
     :return: the dictionary of {Term: Enrollment} of the given terms
     """
     result_dict = get_all_enrollments()
-    terms = result_dict.keys()
-    for key in terms:
-        if key not in term_list:
-            del result_dict[key]
-    return result_dict
+    selected_dict = {}
+    for term in term_list:
+        if term in result_dict:
+            selected_dict[term] = result_dict[term]
+    return selected_dict
 
 
 def get_main_campus(request):
