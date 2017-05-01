@@ -29,6 +29,7 @@ Accounts - MyUW
     {% include "handlebars/banner/profile.html" %}
     {% include "handlebars/card/accounts/account_card.html" %}
     {% include "handlebars/card/accounts/account_medicine.html" %}
+    {% include "handlebars/card/accounts/profile_card.html" %}
     {% include "handlebars/card/loading.html" %}
 
     <!-- page content templates -->
@@ -44,5 +45,7 @@ Accounts - MyUW
     {% compress js inline %}
         <script src="{% static 'js/page/accounts.js' %}"></script>
         <script src="{% static 'js/card/accounts/account_card.js' %}"></script>
+        <script src="{% static 'js/card/accounts/account_medicine.js' %}"></script>
+        <script src="{% static 'js/card/accounts/profile.js' %}"></script>
     {% endcompress %}
 {% endblock %}
