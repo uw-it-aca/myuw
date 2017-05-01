@@ -11,12 +11,12 @@ MyUW: Profile -added more cards
     <div id="main-content" role="main" aria-labelledby="main">
     <h1>Profile Page</h1>
     </div>
-    <div id="account_card_content"></div>
+    <div id="profile_content"></div>
     <div id="static-links"></div>
 
     <!-- component content templates -->
     {% include "handlebars/banner/profile.html" %}
-    {% include "handlebars/card/accounts/profile_card.html" %}
+    {% include "handlebars/card/profile/profile_card.html" %}
     {% include "handlebars/card/loading.html" %}
 
     <!-- page content templates -->
@@ -31,6 +31,6 @@ MyUW: Profile -added more cards
 {% block extra_js %}
     {% compress js inline %}
         <script src="{% static 'js/page/profile.js' %}"></script>
-        <script src="{% static 'js/card/accounts/profile.js' %}"></script>
+        <script src="{% static 'js/card/profile/profile.js' %}"></script>
     {% endcompress %}
 {% endblock %}
