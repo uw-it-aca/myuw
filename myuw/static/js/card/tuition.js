@@ -3,8 +3,9 @@ var TuitionCard = {
     dom_target: undefined,
 
     render_init: function() {
+        TuitionCard.dom_target =$('#TuitionCard');
         if (!window.user.student) {
-            $("#TuitionCard").hide();
+            TuitionCard.dom_target.hide();
             return;
         }
         WSData.fetch_tuition_data(TuitionCard.render_upon_data,
