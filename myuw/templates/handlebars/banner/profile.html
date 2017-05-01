@@ -57,9 +57,11 @@
                                                     {{/each}}
                                                 </li>
                                             {{else}}
-                                                {{#each minors}}
-                                                    <li>{{full_name}}</li>
-                                                {{/each}}
+                                                <li>Current {{ pluralize_by_size minors "Minor" "Minors"}}:
+                                                    {{#each minors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{/each}}
+                                                </li>
                                             {{/if}}
 
                                         {{else}}

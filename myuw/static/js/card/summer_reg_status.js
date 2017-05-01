@@ -24,6 +24,8 @@ var SummerRegStatusCard = {
                                  SummerRegStatusCard.render_error);
         WSData.fetch_oquarter_data(SummerRegStatusCard.render_upon_data,
                                    SummerRegStatusCard.render_error);
+        WSData.fetch_profile_data(RegStatusCard.render_upon_data,
+                                  RegStatusCard.render_error);
     },
 
     render_upon_data: function() {
