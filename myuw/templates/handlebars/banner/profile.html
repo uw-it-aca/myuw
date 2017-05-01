@@ -36,7 +36,7 @@
                                             {{/if}}
                                         {{else}}
                                             {{#unless same_as_previous}}
-                                                <li>{{ pluralize_by_size majors "Minor" "Minors"}}
+                                                <li>{{ pluralize_by_size majors "Major" "Majors"}}
                                                     Beginning {{ toTitleCase quarter}}:
                                                     {{#each majors}}
                                                         {{full_name}} {{#unless @last}},{{/unless}}
@@ -51,7 +51,7 @@
                                     {{#each term_minors}}
                                         {{#if @first}}
                                             {{#if @root.has_pending_minor}}
-                                                <li>Current {{ pluralize_by_size minors "Major" "Minors"}}:
+                                                <li>Current {{ pluralize_by_size minors "Minor" "Minors"}}:
                                                     {{#each minors}}
                                                         {{full_name}} {{#unless @last}},{{/unless}}
                                                     {{/each}}
@@ -64,7 +64,7 @@
 
                                         {{else}}
                                             {{#unless same_as_previous}}
-                                                <li>{{ pluralize_by_size minors "Major" "Minors"}}
+                                                <li>{{ pluralize_by_size minors "Minor" "Minors"}}
                                                     Beginning {{ toTitleCase quarter}}:
                                                     {{#each minors}}
                                                         {{full_name}} {{#unless @last}},{{/unless}}

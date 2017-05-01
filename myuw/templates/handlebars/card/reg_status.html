@@ -21,11 +21,11 @@
 
             {{#each pending_majors}}
                 {{#if @first}}
-                    <div class="card-badge-container">
+                    <div class="card-badge-container pending-major">
                         <div class="card-badge clearfix">
                             <div>
                                 <div class="pull-left" style="display:inline-block;">
-                                    <h4 class="card-badge-label">{{ pluralize_by_size ../pending_majors "Major" "Majors"}} Beginning {{@root.reg_next_quarter}}</h4>
+                                    <h4 class="card-badge-label">{{ pluralize_by_size ../pending_majors "Major" "Majors"}} Beginning<br>{{@root.reg_next_quarter}}</h4>
                                 </div>
                                 <div class="pull-right">
                                     <div class="card-badge-value">
@@ -42,11 +42,11 @@
 
             {{#each pending_minors}}
                 {{#if @first}}
-                    <div class="card-badge-container">
+                    <div class="card-badge-container pending-major">
                         <div class="card-badge clearfix">
                             <div>
                                 <div class="pull-left" style="display:inline-block;">
-                                    <h4 class="card-badge-label">{{ pluralize_by_size ../pending_minors "Minor" "Minors"}} Beginning {{@root.reg_next_quarter}}</h4>
+                                    <h4 class="card-badge-label">{{ pluralize_by_size ../pending_minors "Minor" "Minors"}} Beginning<br>{{@root.reg_next_quarter}}</h4>
                                 </div>
                                 <div class="pull-right">
                                     <div class="card-badge-value">
