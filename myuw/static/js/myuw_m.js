@@ -223,17 +223,14 @@ var record_link_click = function(ev) {
     var target = $(this);
 
     var original_href = target.attr('myuw-data-href');
-    console.log("myuw-data-href: ", original_href);
     if (target.attr('myuw-data-href')) {
         return;
     }
 
     // Google search puts things here...
     var href = target.attr('data-ctorig');
-    console.log("data-href: ", href);
     if (!href) {
         href = target.attr('href');
-        console.log("href: ", href);
     }
 
     if (!href.match('^https?://')) {

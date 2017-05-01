@@ -24,12 +24,10 @@ describe('LinkToFormSubmit', function() {
             $("#l2").click();
             $("#l1").click();
 
-            console.log($("#l1").attr('data-href'));
-            assert.equal($("#l1").attr('data-href'), 'http://example.com');
+            assert.equal($("#l1").attr('myuw-data-href'), 'http://example.com');
             assert.equal($("#l1").attr('href'), '/out?u='+encodeURIComponent('http://example.com')+'&l='+encodeURIComponent('Link 1'));
 
-
-            assert.equal($("#l2").attr('data-href'), 'https://example.com');
+            assert.equal($("#l2").attr('myuw-data-href'), 'https://example.com');
             assert.equal($("#l2").attr('href'), '/out?u='+encodeURIComponent('https://example.com')+'&l='+encodeURIComponent('Link 2'));
 
         });
@@ -48,15 +46,28 @@ describe('LinkToFormSubmit', function() {
             $("#l3").click();
             $("#l4").click();
 
-            assert.equal($("#l1").attr('data-href'), undefined);
+            assert.equal($("#l1").attr('myuw-data-href'), undefined);
             assert.equal($("#l1").attr('href'), 'javascript:void');
-            assert.equal($("#l2").attr('data-href'), undefined);
+            assert.equal($("#l2").attr('myuw-data-href'), undefined);
             assert.equal($("#l2").attr('href'), '/some_url');
-            assert.equal($("#l3").attr('data-href'), undefined);
+            assert.equal($("#l3").attr('myuw-data-href'), undefined);
             assert.equal($("#l3").attr('href'), 'data:,Hello%2C%20World!');
-            assert.equal($("#l4").attr('data-href'), undefined);
+            assert.equal($("#l4").attr('myuw-data-href'), undefined);
             assert.equal($("#l4").attr('href'), '#');
 
+        });
+        it('should work with search results', function() {
+            var content = "<div><a id='s1' href='http://uw.edu?u=something' data-ctorig='http://example.com'>Link 1</a></div>";
+            $('body').append($(content));
+
+            $('body').off('click', "A");
+            register_link_recorder();
+
+            global.csrf_token = 'fake_token';
+
+            $("#s1").click();
+            assert.equal($("#s1").attr('myuw-data-href'), 'http://example.com');
+            assert.equal($("#s1").attr('href'), '/out?u='+encodeURIComponent('http://example.com')+'&l='+encodeURIComponent('Link 1'));
         });
         after(function () {
             Global.Environment.ajax_stub_restore();
