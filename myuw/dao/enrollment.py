@@ -143,13 +143,13 @@ def _compare_degrees(first, second):
 
     degrees = {}
     for entry in first:
-        degrees[entry.full_name] = entry
+        degrees[entry] = entry
 
     for entry in second:
-        if entry.full_name not in degrees:
+        if entry not in degrees:
             return False
         else:
-            del degrees[entry.full_name]
+            del degrees[entry]
 
     return True
 
