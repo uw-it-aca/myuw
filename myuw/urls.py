@@ -34,7 +34,9 @@ from myuw.views.api.myplan import MyPlan
 from myuw.views.api.academic_events import AcademicEvents
 from myuw.views.api.thrive import ThriveMessages
 from myuw.views.api.calendar import DepartmentalCalendar
+from myuw.views.search import search_res
 from myuw.views.api.upass import UPass
+from myuw.views.api.messages import Messages
 
 urlpatterns = []
 
@@ -153,9 +155,14 @@ urlpatterns += [
     url(r'^api/v1/thrive/$', login_required(ThriveMessages().run),
         name="myuw_thrive_api"
         ),
+    url(r'^api/v1/messages/$', login_required(Messages().run),
+        name="myuw_message_api"
+        ),
     url(r'^choose/new', new_site, name="myuw_pref_new_site"
         ),
     url(r'^choose/legacy', old_site, name="myuw_pref_old_site"
+        ),
+    url(r'^search/?$', search_res, name="myuw_search_res_page"
         ),
     url(r'^teaching/?$', teaching, name="myuw_teaching_page"
         ),
