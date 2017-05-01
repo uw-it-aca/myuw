@@ -82,8 +82,6 @@ class MyProfile(RESTDispatch):
                             response['has_pending_minor'] = True
 
                 except Exception as ex:
-                    print ex
-                    traceback.print_exc()
                     logger.error(
                         "%s get_current_quarter_enrollment: %s" %
                         (netid, ex))

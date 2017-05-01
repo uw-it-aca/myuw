@@ -30,10 +30,6 @@ def get_all_enrollments():
     :return: the dictionary of {Term: Enrollment}
     """
     regid = get_regid_of_current_user()
-    return _get_all_enrollments(regid)
-
-
-def _get_all_enrollments(regid):
     return enrollment_search_by_regid(regid)
 
 

@@ -79,7 +79,7 @@ class TestProfile(MyuwApiTest):
         self.assertEquals(response.status_code, 200)
 
     def test_no_pending(self):
-        response = self.get_profile_response('javerage')
+        response = self.get_profile_response('javg005')
         self.assertEquals(response.status_code, 200)
 
         data = json.loads(response.content)

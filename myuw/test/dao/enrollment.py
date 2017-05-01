@@ -3,7 +3,7 @@ from restclients_core.exceptions import DataFailureException
 from myuw.dao.term import get_current_quarter,\
     get_next_quarter, get_term_before, get_term_after,\
     get_current_and_next_quarters
-from myuw.dao.enrollment import get_enrollment_of_aterm,\
+from myuw.dao.enrollment import get_enrollment_for_term,\
     get_enrollments_of_terms, get_current_quarter_enrollment,\
     get_minors_for_terms, get_majors_for_terms, get_all_enrollments
 from myuw.test import fdao_sws_override, fdao_pws_override,\
@@ -14,7 +14,7 @@ from myuw.test import fdao_sws_override, fdao_pws_override,\
 @fdao_sws_override
 class TestDaoEnrollment(TestCase):
 
-    def test_get_enrollment_of_aterm(self):
+    def test_get_enrollment_for_term(self):
         req = get_request_with_user('javerage',
                                     get_request_with_date("2013-10-10"))
         enrollment = get_current_quarter_enrollment(req)
@@ -42,11 +42,11 @@ class TestDaoEnrollment(TestCase):
         self.assertEqual(len(enrollment.majors), 0)
         self.assertEqual(len(enrollment.minors), 0)
 
-    def test_get_enrollment_of_aterm(self):
+    def test_get_enrollment_for_term(self):
         req = get_request_with_user('javerage',
                                     get_request_with_date("2013-04-10"))
         term = get_next_quarter(req)
-        enrollment = get_enrollment_of_aterm(term)
+        enrollment = get_enrollment_for_term(term)
         self.assertIsNotNone(enrollment)
         self.assertEqual(len(enrollment.majors), 1)
         self.assertEqual(len(enrollment.minors), 1)
@@ -77,7 +77,7 @@ class TestDaoEnrollment(TestCase):
         self.assertTrue(t1 in enrollments)
         self.assertTrue(t2 in enrollments)
         self.assertTrue(t2 in enrollments)
-        enrollment = get_enrollment_of_aterm(t1)
+        enrollment = get_enrollment_for_term(t1)
         self.assertEqual(len(enrollment.majors), 1)
         self.assertEqual(enrollment.majors[0].campus, "Bothell")
 
@@ -88,7 +88,7 @@ class TestDaoEnrollment(TestCase):
         self.assertTrue(t1 in enrollments)
         self.assertTrue(t2 in enrollments)
         self.assertTrue(t2 in enrollments)
-        enrollment = get_enrollment_of_aterm(t1)
+        enrollment = get_enrollment_for_term(t1)
         self.assertEqual(len(enrollment.majors), 2)
         self.assertEqual(enrollment.majors[0].campus, "Tacoma")
 
