@@ -115,3 +115,18 @@ class TestDaoEnrollment(TestCase):
         self.assertEquals(len(minors[0]['minors']), 1)
         self.assertEquals(len(minors[1]['minors']), 2)
         self.assertEquals(len(minors[2]['minors']), 1)
+
+    def test_no_change(self):
+        req = get_request_with_user('javg005',
+                                    get_request_with_date("2013-04-01"))
+        terms = get_current_and_next_quarters(req, 4)
+        enrollments = get_all_enrollments()
+
+        majors = get_majors_for_terms(terms, enrollments)
+        minors = get_minors_for_terms(terms, enrollments)
+
+        for major in majors:
+            self.assertTrue(major['same_as_previous'])
+
+        for minor in minors:
+            self.assertTrue(minor['same_as_previous'])

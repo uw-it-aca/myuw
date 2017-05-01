@@ -69,6 +69,7 @@ class MyProfile(RESTDispatch):
 
                     response['term_majors'] = get_majors_for_terms(terms,
                                                                    enrollments)
+                    response['has_pending_major'] = False
 
                     for major in response['term_majors']:
                         if not major['same_as_previous']:
@@ -76,6 +77,7 @@ class MyProfile(RESTDispatch):
 
                     response['term_minors'] = get_minors_for_terms(terms,
                                                                    enrollments)
+                    response['has_pending_minor'] = False
 
                     for minor in response['term_minors']:
                         if not minor['same_as_previous']:

@@ -169,3 +169,19 @@ class TestProfile(MyuwApiTest):
 
         self.assertEquals(len(data['term_minors']), 1)
         self.assertEquals(len(data['term_minors'][0]['minors']), 1)
+
+    def test_no_pending(self):
+        response = self.get_profile_response('javg005')
+        self.assertEquals(response.status_code, 200)
+
+        data = json.loads(response.content)
+        self.assertFalse(data['has_pending_major'])
+        self.assertFalse(data['has_pending_minor'])
+        majors = data['term_majors']
+        minors = data['term_minors']
+
+        for major in majors:
+            self.assertTrue(major['same_as_previous'])
+
+        for minor in minors:
+            self.assertTrue(minor['same_as_previous'])
