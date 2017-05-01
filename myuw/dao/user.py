@@ -2,8 +2,9 @@ import logging
 from myuw.models import UserMigrationPreference
 from myuw.dao import _is_optin_user as is_optin_user
 from myuw.dao import get_netid_of_current_user
-from myuw.dao.gws import is_staff_employee, is_student_employee, is_student,\
-    is_undergrad_student, is_current_graduate_student, is_employee, is_faculty
+from myuw.dao.gws import (is_staff_employee, is_student_employee, is_student,
+                          is_undergrad_student, is_current_graduate_student,
+                          is_employee,  is_faculty, is_applicant)
 
 
 logger = logging.getLogger(__name__)
@@ -49,6 +50,8 @@ def is_oldmyuw_user():
         return True
     if is_optin_user(uwnetid) or has_newmyuw_preference(uwnetid):
         return False
+    if is_applicant():
+        return True
     if is_staff_employee():
         return True
     if is_faculty():
@@ -62,8 +65,7 @@ def is_oldmyuw_user():
 
 def is_oldmyuw_mobile_user():
     uwnetid = get_netid_of_current_user()
-    if not is_student() and\
-            not is_optin_user(uwnetid) and\
-            not has_newmyuw_preference(uwnetid):
+    if is_applicant() or (not is_student() and not is_optin_user(uwnetid) and
+                          not has_newmyuw_preference(uwnetid)):
         return True
     return False

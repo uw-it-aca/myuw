@@ -33,6 +33,8 @@ WSData = {
     _current_academic_calendar_data: null,
     _myplan_data: {},
     _thrive_data: null,
+    _upass_data: null,
+    _message_data: null,
 
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
@@ -203,45 +205,70 @@ WSData = {
 
             var fmt = 'MMM D [at] h:mm A';
             var month_to_day_shift = 5;
-            if (grading_open.diff(ref, 'days') > month_to_day_shift) {
+            if (Math.abs(grading_open.diff(ref, 'days')) > month_to_day_shift) {
                 grading_open_date = grading_open.format(fmt) + ' PST';
             } else {
                 grading_open_date = grading_open.calendar(ref);
             }
 
-            if (grading_deadline.diff(ref, 'days') > month_to_day_shift) {
-                grading_deadline_date = grading_deadline.format(fmt) + 'PST';
+            if (Math.abs(grading_deadline.diff(ref, 'days')) > month_to_day_shift) {
+                grading_deadline_date = grading_deadline.format(fmt) + ' PST';
             } else {
                 grading_deadline_date = grading_deadline.calendar(ref);
             }
 
-            $.each(course_data.sections, function () {
-                var course_campus = this.course_campus.toLowerCase();
-                this.is_seattle = (course_campus === 'seattle');
-                this.is_bothell = (course_campus === 'bothell');
-                this.is_tacoma =  (course_campus === 'tacoma');
+            var minutes_till_open = grading_open.diff(ref, 'minutes');
+            var opens_in_24_hours = (minutes_till_open >= 0 &&
+                                     minutes_till_open <= (24 * 60));
 
-                this.section_label = course_data.term.year + '-' +
+            var minutes_till_deadline = grading_deadline.diff(ref, 'minutes');
+            var deadline_in_24_hours = (minutes_till_deadline >= 0 &&
+                                        minutes_till_deadline <= (24 * 60));
+
+            $.each(course_data.sections, function (iii) {
+                var section = this;
+                var course_campus = section.course_campus.toLowerCase();
+                section.is_seattle = (course_campus === 'seattle');
+                section.is_bothell = (course_campus === 'bothell');
+                section.is_tacoma =  (course_campus === 'tacoma');
+
+                section.section_label = course_data.term.year + '-' +
                     course_data.term.quarter.toLowerCase() + '-' +
-                    this.curriculum_abbr + '-' +
-                    this.course_number + '-' +
-                    this.section_id;
+                    section.curriculum_abbr + '-' +
+                    section.course_number + '-' +
+                    section.section_id;
 
-                this.grading_period_is_open = grading_is_open;
-                this.grading_period_is_past = grading_is_closed;
-                this.grading_period_open_date = grading_open_date;
-                this.grading_period_relative_open = grading_open_relative;
-                this.aterm_grading_period_relative_open = grading_aterm_open_relative;
-                this.grade_submission_deadline_date = grading_deadline_date;
-                this.grade_submission_relative_deadline = grading_deadline_relative;
+                section.grading_period_is_open = grading_is_open;
+                section.grading_period_is_past = grading_is_closed;
+                section.opens_in_24_hours = opens_in_24_hours;
+                section.deadline_in_24_hours = deadline_in_24_hours;
+                section.grading_period_open_date = grading_open_date;
+                section.grading_period_relative_open = grading_open_relative;
+                section.aterm_grading_period_relative_open = grading_aterm_open_relative;
+                section.grade_submission_deadline_date = grading_deadline_date;
+                section.grade_submission_relative_deadline = grading_deadline_relative;
 
-                this.grading_status.all_grades_submitted =
-                    (this.grading_status.hasOwnProperty('submitted_count') &&
-                     this.grading_status.hasOwnProperty('unsubmitted_count') &&
-                     this.grading_status.unsubmitted_count === 0);
-                if (this.grading_status.submitted_date) {
-                    this.grading_status.submitted_relative_date = moment(new Date(this.grading_status.submitted_date)).from();
+
+                section.grading_status.all_grades_submitted =
+                    (section.grading_status.hasOwnProperty('submitted_count') &&
+                     section.grading_status.hasOwnProperty('unsubmitted_count') &&
+                     section.grading_status.unsubmitted_count === 0);
+                if (section.grading_status.submitted_date) {
+                    var submitted = moment(new Date(section.grading_status.submitted_date));
+                    if (Math.abs(submitted.diff(ref, 'days')) > month_to_day_shift) {
+                        section.grading_status.submitted_relative_date = submitted.format(fmt) + ' PST';
+                    } else {
+                        section.grading_status.submitted_relative_date = submitted.calendar(ref);
+                    }
                 }
+
+                section.grade_submission_section_delegate = false;
+                $.each(section.grade_submission_delegates, function () {
+                    if (this.level.toLowerCase() === 'section') {
+                        section.grade_submission_section_delegate = true;
+                        return false;
+                    }
+                });
             });
         }
         return course_data;
@@ -332,6 +359,13 @@ WSData = {
     },
     thrive_data: function() {
         return WSData._thrive_data;
+    },
+    upass_data: function() {
+        return WSData._upass_data;
+    },
+
+    message_data: function() {
+        return WSData._message_data;
     },
 
     fetch_event_data: function(callback, err_callback, args) {
@@ -1095,6 +1129,59 @@ WSData = {
                 },
                 error: function(xhr, status, error) {
                     WSData._run_error_callbacks_for_url(url);
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
+    fetch_upass_data: function(callback, err_callback, args) {
+        if (WSData.upass_data() === null) {
+            var url = "/api/v1/upass/";
+            $.ajax({
+                url: url,
+                dataType: "JSON",
+
+                type: "GET",
+                accepts: {html: "application/json"},
+                success: function(results) {
+                    WSData._upass_data = results;
+                    if (callback !== null) {
+                        callback.apply(null, args);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    err_callback.call(null, xhr.status, error);
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
+    fetch_message_data: function(callback, err_callback, args) {
+        if (WSData.upass_data() === null) {
+            var url = "/api/v1/messages/";
+            $.ajax({
+                url: url,
+                dataType: "JSON",
+                type: "GET",
+                accepts: {html: "application/json"},
+                success: function(results) {
+                    WSData._message_data = results;
+                    if (callback !== null) {
+                        callback.apply(null, args);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    err_callback.call(null, xhr.status, error);
                 }
             });
         }
