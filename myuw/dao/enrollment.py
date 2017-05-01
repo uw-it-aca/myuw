@@ -42,11 +42,11 @@ def get_current_quarter_enrollment(request):
     return enrollment
 
 
-def get_enrollment_for_term(aterm):
+def get_enrollment_for_term(term):
     """
     :return: an Enrollment object
     """
-    return get_all_enrollments().get(aterm)
+    return get_all_enrollments().get(term)
 
 
 def get_enrollments_of_terms(term_list):
