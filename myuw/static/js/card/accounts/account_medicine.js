@@ -9,7 +9,7 @@ var MedicineAccountsCard = {
     _render: function() {
         var source   = $("#accounts_medicine").html();
         var template = Handlebars.compile(source);
-        var compiled = template({"card_name": AccountsCard.name});
+        var compiled = template({"card_name": MedicineAccountsCard.name});
         MedicineAccountsCard.dom_target.html(compiled);
     }
 };
