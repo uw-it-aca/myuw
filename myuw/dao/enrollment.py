@@ -63,22 +63,6 @@ def get_enrollments_of_terms(term_list):
     return result_dict
 
 
-def get_all_enrollments():
-    regid = get_regid_of_current_user()
-    return _get_all_enrollments(regid)
-
-
-def _get_all_enrollments(regid):
-    timer = Timer()
-    id = "%s %s" % ('get all enrollment by regid', regid)
-    try:
-        return enrollment_search_by_regid(regid)
-    finally:
-        log_resp_time(logger,
-                      id,
-                      timer)
-
-
 def get_main_campus(request):
     campuses = []
     try:
