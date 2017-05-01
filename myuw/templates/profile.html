@@ -3,7 +3,7 @@
 {% load compress %}
 
 {% block page_title %}
-MyUW: Profile
+MyUW: Profile -added more cards
 {% endblock %}
 
 {% block content %}
@@ -16,6 +16,7 @@ MyUW: Profile
 
     <!-- component content templates -->
     {% include "handlebars/banner/profile.html" %}
+    {% include "handlebars/card/accounts/profile_card.html" %}
     {% include "handlebars/card/loading.html" %}
 
     <!-- page content templates -->
@@ -30,5 +31,6 @@ MyUW: Profile
 {% block extra_js %}
     {% compress js inline %}
         <script src="{% static 'js/page/profile.js' %}"></script>
+        <script src="{% static 'js/card/accounts/profile.js' %}"></script>
     {% endcompress %}
 {% endblock %}
