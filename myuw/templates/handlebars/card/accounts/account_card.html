@@ -1,13 +1,20 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "accounts_card" %}
 <div class="card" style="position:relative;">
-
     <h3>{{ card_name }}</h3>
-    <p>ESS or workday or whatever</p>
-    <p>ESS or workday or whatever</p>
-    <p>ESS or workday or whatever</p>
+		<div class="uwnetid-password col-md-12">
+	        <h4>UW NetID Account</h4>
+	        <span class="password-status">Password last updated {{days_after_last_pw_change}} days ago</span><br>
+	        <a href="https://uwnetid.washington.edu/manage/?password">Change UW NetID password</a>
+	        <p>This password is for applications like UW email, MyUW, Web Publishing, etc.</p>
+        </div>
 
-    <h3>HR and Payroll</h3>
+
+
+
+
+
+ <!-- DELETE THE CONTENT  <h3>HR and Payroll</h3>
 
     <h4>Workday</h4>
     <ul>
@@ -37,7 +44,7 @@
         <li><a href="http://www.washington.edu/safecampus/">SafeCampus</a></li>
         <li><a href="https://www.washington.edu/facilities/transportation/commute-options">Commute Options</a></li>
         <li><a href="http://www.washington.edu/ima/">Join the IMA (Intramural Activities)</a></li>
-    </ul>
+    </ul> -->
 
 </div>
 {% endtplhandlebars %}
