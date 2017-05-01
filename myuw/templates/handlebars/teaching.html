@@ -12,58 +12,9 @@
             {{> "teaching_resources" }}
             <!-- end -->
         </div>
-        <div id="teaching_accounts" class="col-md-4">
+        <div id="teaching_accounts_cards" class="col-md-4">
             <!-- temp quicklinks card -->
-            <div id="quicklinks_location_desktop">
-                <div class="card clearfix"  data-name="QuickLinks" data-type="card">
-                    <h3>Quick Links</h3>
-                    <div class="myuw-qlinks">
-                        <div class="myuw-qlinks-active">
-                            <ul class="unstyled-list myuw-qlinks-active-list">
-                                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="http://www.washington.edu/maps/"><span>Campus Maps</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
-                                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="http://canvas.uw.edu/"><span>Canvas LMS</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
-                                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="https://catalyst.uw.edu/"><span>Catalyst Web Tools</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
-                                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp"><span>Change Student Address</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
-                                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="https://www.washington.edu/ess/"><span>WorkDay</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
-                                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="http://www.washington.edu/home/peopledir/"><span>Faculty/Staff/Student Directory</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
-                                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="https://itconnect.uw.edu/"><span>IT Connect</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
-                                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="https://panopto.uw.edu/"><span>Panopto</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
-                                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"><span>Registration</span></a></div><div class="pull-right"><a href="#" class="control-link">remove</a></div></li>
-                            </ul>
-                        </div>
-                        <div class="myuw-qlinks-recent">
-                            <h4>Recently Visited</h4>
-                            <ul class="unstyled-list myuw-qlinks-recent-list">
-                                {{#each links.recent_links}}
-                                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}"><span>{{label }}</span></a></div><div class="pull-right"><a href="#" class="control-link">add</a></div></li>
-                                {{/each}}
-                            </ul>
-                        </div>
-                        <div>
-                            <span><strong>Not seeing what you're looking for?</strong> {{#if links.popular_links }}Select from <a data-toggle="collapse" href="#popular_qlinks" aria-expanded="false" aria-controls="popular_qlinks">popular links,</a> or {{/if}}<a data-toggle="collapse" href="#custom_qlinks" aria-expanded="false" aria-controls="custom_qlinks">add your own.</a></span>
-                        </div>
-
-                        <div class="collapse myuw-qlinks-popular" id="popular_qlinks">
-                            <h4>Popular Links</h4>
-                            <ul class="unstyled-list myuw-qlinks-popular-list">
-                                {{#each links.popular_links }}
-                                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}"><span>{{ label }}</span></a></div><div class="pull-right"><a href="#" class="control-link">add</a></div></li>
-                                {{/each}}
-                            </ul>
-                        </div>
-                        <div class="myuw-qlinks-custom collapse"  id="custom_qlinks">
-                            <div class="card card-block">
-                                <div class="form-group row">
-                                    <label for="myuw-custom-qlink" class="col-2 col-form-label">Add your link to Quick Links</label>
-                                    <div class="col-10">
-                                        <input class="form-control" type="url" placeholder="https://www.washington.edu" id="myuw-custom-qlink" value="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="quicklinks_location_desktop"></div>
             <!-- end temp quicklinks card -->
             <div id="calendar_banner_location_desktop"></div>
         </div>

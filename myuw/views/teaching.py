@@ -1,7 +1,6 @@
 from myuw.views.page import page, try_prefetch
 from myuw.util.page_view import page_view
-from myuw.models import VisitedLink, PopularLink
-from myuw.dao import get_netid_of_current_user
+from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.affiliation import get_all_affiliations
 
 
@@ -55,20 +54,7 @@ def student_photo_list(request,
 
 
 def _add_quicklink_context(request, context):
-    username = get_netid_of_current_user()
+    link_data = get_quicklink_data()
 
-    recents = []
-    recent_links = VisitedLink.recent_for_user(username)
-    for link in recent_links:
-        recents.append({'url': link.url, 'label': link.label})
-
-    context['recent_links'] = recents
-
-    popular = []
-
-    # TODO - consider affiliation filtering here
-    popular_links = PopularLink.objects.all()
-    for link in popular_links:
-        popular.append({'url': link.url, 'label': link.label})
-
-    context['popular_links'] = popular
+    for key in link_data:
+        context[key] = link_data[key]
