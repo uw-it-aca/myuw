@@ -213,6 +213,10 @@ def wrapped_is_bothell(request):
     return is_bothell_student()
 
 
+def wrapped_is_clinician(request):
+    return is_clinician()
+
+
 def affiliation_prefetch():
     return [request_cached_is_grad_student,
             request_cached_is_undergrad,
@@ -224,4 +228,5 @@ def affiliation_prefetch():
             wrapped_is_seattle,
             wrapped_is_tacoma,
             wrapped_is_bothell,
+            wrapped_is_clinician,
             ]
