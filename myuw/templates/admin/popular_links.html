@@ -6,51 +6,71 @@
 
 
 <div class="panel panel-default" style="max-width:800px;">
-    <div class="panel-heading">
-        <h4 class="panel-title">Filter (requires all that are checked):</h3>
-    </div>
+    <div class="panel-heading">Find popular links by affiliation and campus (filter requires all that are checked)</div>
     <div class="panel-body">
+        
         <fieldset>
-        <form action='{% url "myuw_popular_links" %}' method='GET'>
-        <div>
-            <label class="checkbox-inline"><input type='checkbox' name='is_anonymous' {% if checked.is_anonymous %}checked="checked"{% endif %}>Anonymous users (shared/bookmarked links)</label>
-        </div>
-        <div>
-        <strong>Campus</strong><br />
-        <label class="checkbox-inline"><input type='checkbox' name='is_seattle' {% if checked.is_seattle %}checked="checked"{% endif %}> Seattle</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_tacoma' {% if checked.is_tacoma %}checked="checked"{% endif %}> Tacoma</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_bothell' {% if checked.is_bothell %}checked="checked"{% endif %}> Bothell</label>
-        </div>        
-        <div>
-        <strong>Affilliation</strong><br />
-        <label class="checkbox-inline"><input type='checkbox' name='is_student' {% if checked.is_student %}checked="checked"{% endif %}> Student</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_undergrad' {% if checked.is_undergrad %}checked="checked"{% endif %}> Undergraduate</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_grad_student' {% if checked.is_grad_student %}checked="checked"{% endif %}> Grad Student</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_employee' {% if checked.is_employee %}checked="checked"{% endif %}> Employee</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_staff' {% if checked.is_staff %}checked="checked"{% endif %}> Staff</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_faculty' {% if checked.is_faculty %}checked="checked"{% endif %}> Faculty</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_pce' {% if checked.is_pce %}checked="checked"{% endif %}> PCE</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_student_employee' {% if checked.is_student_employee %}checked="checked"{% endif %}> Student Employee</label>
-        </div>
-        <br />
-        <button type="submit" class="btn btn-primary">Filter</button>
-        </form>
+            <form action='{% url "myuw_popular_links" %}' method='GET'>
+                <div>
+                    <label class="checkbox-inline"><input type='checkbox' name='is_anonymous' {% if checked.is_anonymous %}checked="checked"{% endif %}>Anonymous users (shared/bookmarked links)</label>
+                </div>
+                <div>
+                    <strong>Campus</strong><br />
+                    <label class="checkbox-inline"><input type='checkbox' name='is_seattle' {% if checked.is_seattle %}checked="checked"{% endif %}> Seattle</label>
+                    <label class="checkbox-inline"><input type='checkbox' name='is_tacoma' {% if checked.is_tacoma %}checked="checked"{% endif %}> Tacoma</label>
+                    <label class="checkbox-inline"><input type='checkbox' name='is_bothell' {% if checked.is_bothell %}checked="checked"{% endif %}> Bothell</label>
+                </div>        
+                <div>
+                    <strong>Affilliation</strong><br />
+                    <label class="checkbox-inline"><input type='checkbox' name='is_student' {% if checked.is_student %}checked="checked"{% endif %}> Student</label>
+                    <label class="checkbox-inline"><input type='checkbox' name='is_undergrad' {% if checked.is_undergrad %}checked="checked"{% endif %}> Undergraduate</label>
+                    <label class="checkbox-inline"><input type='checkbox' name='is_grad_student' {% if checked.is_grad_student %}checked="checked"{% endif %}> Grad Student</label>
+                    <label class="checkbox-inline"><input type='checkbox' name='is_employee' {% if checked.is_employee %}checked="checked"{% endif %}> Employee</label>
+                    <label class="checkbox-inline"><input type='checkbox' name='is_staff' {% if checked.is_staff %}checked="checked"{% endif %}> Staff</label>
+                    <label class="checkbox-inline"><input type='checkbox' name='is_faculty' {% if checked.is_faculty %}checked="checked"{% endif %}> Faculty</label>
+                    <label class="checkbox-inline"><input type='checkbox' name='is_pce' {% if checked.is_pce %}checked="checked"{% endif %}> PCE</label>
+                    <label class="checkbox-inline"><input type='checkbox' name='is_student_employee' {% if checked.is_student_employee %}checked="checked"{% endif %}> Student Employee</label>
+                </div>
+                <div style="text-align: right;padding-top:15px;">
+                <a href="#">Clear all</a> <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+            </form>
         </fieldset>
-
-<hr>
-<ul class="list-group">
-{% for link in  popular %}
-<li class="list-group-item"><span class="badge" title="Link popularity">{{ link.popularity }}</span> <a href="{{ link.url }}" target="_blank">{{ link.url }}</a> {% if link.exists %} <small><em>(Already saved as a popular link)</em></small> {% else %} 
-
-<form action='{% url "myuw_popular_links" %}' method="POST">
-{% csrf_token %}
-<input type="hidden" name="url" value="{{ link.url }}"/>
-Label: <input type="text" name="label"> <input type="submit" value="add"/>
-</form>
-{% endif %}</li>
-
-{% endfor %}
-</ul>
+        
+        <hr>
+        <p>Viewing popular links for: (<em>Campus:</em><em>Affiliation:</em>)</p>
+        <ul class="list-group">
+            {% for link in  popular %}
+            <li class="list-group-item"><span class="badge" title="Link popularity">{{ link.popularity }}</span> <a href="{{ link.url }}" target="_blank">{{ link.url }}</a> {% if link.exists %} <small><em>(Already saved as a popular link)</em></small> {% else %} 
+            
+            <form action='{% url "myuw_popular_links" %}' method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="url" value="{{ link.url }}"/>
+            Label: <input type="text" name="label"> <input type="submit" value="add"/>
+            </form>
+            {% endif %}</li>
+            
+            {% endfor %}
+        </ul>
+        <nav aria-label="Page navigation">
+            <ul class="pagination pagination-sm">
+                <li>
+                    <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>
 
