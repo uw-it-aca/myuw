@@ -1,25 +1,34 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "directory_info_card" %}
     <div class="card" data-type="card" data-name="DirectoryInfoCard" data-identifier="{{ title }}">
-        <h3>
-            <span>Directory Information</span>
-        </h3>
-        <div class="directory_info">
-          <h5>Home Address</h5>
-          <div class="container directory-details">
-            <div class="directory-entry">Address<span>{{permanent_address.street_line1}}</span></div>
-            <div class="directory-entry"><span>{{permanent_address.street_line2}}</span></div>
-            <div class="directory-entry">City<span>{{permanent_address.city}}</span></div>
-            <div class="directory-entry">State</span><span>{{permanent_address.state}}</span></div>
-            <div class="directory-entry">Zip<span>{{permanent_address.zip_code}}</span></div>
-            <div class="directory-entry">Home Phone<span>{{permanent_phone}}</span></div>
-          </div>
-          <h5>Emergency Contact</h5>
-          <h5>Directory Information ({{#unless directory_release}}NOT {{/unless}}published) </h5>
-          <div class="container directory-details">
-            <div class="directory-entry">Name (official)<span>{{first_name}}</span> <span>{{last_name}}</span></div>
-            <div class="directory-entry">Name (preferred)<span>{{student_name}}</span></div>
-          </div>
+        <h3>Directory Information</h3>
+
+        <div vocab="http://schema.org/" typeof="Person">
+            <div class="home-address">
+              <h4>Home Address</h4>
+              <div class="directory-details" property="address" typeof="PostalAddress">
+                <span property="streetAddress">{{permanent_address.street_line1}}</span>
+                <span property="streetAddress">{{permanent_address.street_line2}}</span><br />
+                <span property="addressLocality">{{permanent_address.city}}</span>, <span property="addressRegion">{{permanent_address.state}}</span> <span property="postalCode">{{permanent_address.zip_code}}</span>
+              </div>
+              <p class="directory-details">Home Phone: <span property="telephone">{{permanent_phone}}</span></p>
+            </div>
+
+            <div class="emergency-contact">
+              <h4>Emergency Contact</h4>
+
+            </div>
+
+            <div class="employee-information">
+              <h4>Employee Information ({{#unless directory_release}}Not {{/unless}}published) </h4>
+              <div class="directory-details">
+                <span>Name (official):</span> <span property="name">{{first_name}} {{last_name}}</span><br />
+                <span>Name (preferred):</span> <span property="additionalName">{{student_name}}</span><br />
+
+                <a href="https://identity.uw.edu/">Identity.UW</a>
+                <a href="https://www.washington.edu/home/peopledir/">UW Directory</a>
+              </div>
+            </div>
         </div>
     </div>
 {% endtplhandlebars %}
