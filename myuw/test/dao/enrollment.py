@@ -5,7 +5,7 @@ from myuw.dao.term import get_current_quarter,\
     get_current_and_next_quarters
 from myuw.dao.enrollment import get_enrollment_of_aterm,\
     get_enrollments_of_terms, get_current_quarter_enrollment,\
-    get_minors_for_terms, get_majors_for_terms, _get_all_enrollments
+    get_minors_for_terms, get_majors_for_terms, get_all_enrollments
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user
 
@@ -93,11 +93,10 @@ class TestDaoEnrollment(TestCase):
         self.assertEqual(enrollment.majors[0].campus, "Tacoma")
 
     def test_get_majors_for_terms(self):
-        regid = "12345678901234567890123456789012"
         req = get_request_with_user('eight',
                                     get_request_with_date("2013-04-01"))
         terms = get_current_and_next_quarters(req, 4)
-        enrollments = _get_all_enrollments(regid)
+        enrollments = get_all_enrollments()
 
         majors = get_majors_for_terms(terms, enrollments)
 
@@ -106,11 +105,10 @@ class TestDaoEnrollment(TestCase):
         self.assertEquals(len(majors[2]['majors']), 2)
 
     def test_get_minors_for_terms(self):
-        regid = "FE36CCB8F66711D5BE060004AC494FCD"
         req = get_request_with_user('jbothell',
                                     get_request_with_date("2013-04-01"))
         terms = get_current_and_next_quarters(req, 4)
-        enrollments = _get_all_enrollments(regid)
+        enrollments = get_all_enrollments()
 
         minors = get_minors_for_terms(terms, enrollments)
 
