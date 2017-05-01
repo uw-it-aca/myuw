@@ -31,6 +31,8 @@ var RegStatusCard = {
                                  RegStatusCard.render_error);
         WSData.fetch_oquarter_data(RegStatusCard.render_upon_data,
                                    RegStatusCard.render_error);
+        WSData.fetch_profile_data(RegStatusCard.render_upon_data,
+                                  RegStatusCard.render_error);
     },
 
     render_upon_data: function() {
@@ -61,7 +63,7 @@ var RegStatusCard = {
     },
 
     _has_all_data: function () {
-        if (WSData.notice_data() && WSData.oquarter_data()) {
+        if (WSData.notice_data() && WSData.oquarter_data() && WSData.profile_data()) {
             return true;
         }
         return false;
