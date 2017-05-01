@@ -6,6 +6,7 @@ $(window.document).ready(function() {
     LogUtils.init_logging();
     init_profile_events();
     init_modal_events();
+    init_search_events();
     var course_data = null;
     var book_data = null;
     // This is to prevent multiple events on load from making
@@ -221,17 +222,24 @@ var register_link_recorder = function() {
 var record_link_click = function(ev) {
     var target = $(this);
 
-    var original_href = target.attr('data-href');
-    if (target.attr('data-href')) {
+    var original_href = target.attr('myuw-data-href');
+    console.log("myuw-data-href: ", original_href);
+    if (target.attr('myuw-data-href')) {
         return;
     }
 
-    var href = target.attr('href');
+    // Google search puts things here...
+    var href = target.attr('data-ctorig');
+    console.log("data-href: ", href);
+    if (!href) {
+        href = target.attr('href');
+        console.log("href: ", href);
+    }
 
     if (!href.match('^https?://')) {
         return;
     }
-    target.attr('data-href', href);
+    target.attr('myuw-data-href', href);
 
     var new_href = '/out?u='+encodeURIComponent(href)+'&l='+encodeURIComponent(target.text());
     target.attr('href', new_href);
@@ -242,6 +250,21 @@ var myuwFeatureEnabled = function(feature) {
             window.enabled_features[feature]);
 };
 
+var getUrlParameter = function (name) {
+    var url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+};
+
+var init_search_events = function() {
+    $("#app_search").on('shown.bs.collapse', function(){
+        $("#search-nav").focus();
+    });
+};
 
 /* node.js exports */
 if (typeof exports == "undefined") {
