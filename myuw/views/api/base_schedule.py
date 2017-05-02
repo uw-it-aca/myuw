@@ -157,4 +157,5 @@ def load_schedule(request, schedule, summer_term=""):
         index = index + 1
 
     json_data["is_grad_student"] = is_grad_student()
+    print json_data
     return json_data

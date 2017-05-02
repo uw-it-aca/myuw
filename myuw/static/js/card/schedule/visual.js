@@ -48,12 +48,34 @@ var VisualScheduleCard = {
     _render: function() {
         var term = VisualScheduleCard.term;
         var course_data = WSData.normalized_course_data(term);
+        VisualScheduleCard._get_schedule_periods(course_data);
 
         VisualScheduleCard.render_schedule(course_data, term);
 
         FinalExamSchedule.render(course_data, term, true);
 
         LogUtils.cardLoaded(VisualScheduleCard.name, VisualScheduleCard.dom_target);
+    },
+
+    _get_schedule_periods: function(course_data) {
+        console.log(course_data);
+        $(course_data.sections).each(function(idx, section){
+            console.log(section.course_number)
+            if(section.final_exam !== undefined
+                && section.final_exam.start_date !== undefined){
+                var week_range = VisualScheduleCard._get_week_range_from_date(section.final_exam.start_date);
+            }
+            console.log(section)
+        });
+
+    },
+
+    _get_week_range_from_date: function(date){
+        var exam_date = moment(date);
+        var start = exam_date.startOf('week');
+        var end = exam_date.clone().endOf('week');
+
+        return [start, end];
     },
         
     render_schedule: function(course_data, term) {
