@@ -60,6 +60,16 @@ Label: <input type="text" name="label" value="{{ link.labels.0 }}"> <input type=
     </div>
 </div>
 
+<h3>Custom popular link</h3>
+<p>You can add a link to the popular links section, even if it hasn't been clicked on by a user:</p>
+<form action='{% url "myuw_popular_links" %}' method="POST">
+{% csrf_token %}
+URL: <input type="text" name="url" value=""/>
+<br />
+Label: <input type="text" name="label" value="{{ link.labels.0 }}"> <input type="submit" value="add"/>
+</form>
+
+
 <h3>Saved popular links</h3>
 <p>Removing a link here will not removed them for users who have added them.</p>
 <form action='{% url "myuw_popular_links" %}' method="POST">
