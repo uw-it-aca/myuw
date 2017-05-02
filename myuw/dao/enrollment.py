@@ -4,6 +4,8 @@ the SWS Enrollment resource.
 """
 
 import logging
+from myuw.logger.timer import Timer
+from myuw.logger.logback import log_resp_time, log_exception, log_info
 from datetime import date
 from uw_sws.enrollment import enrollment_search_by_regid
 from myuw.dao.pws import get_regid_of_current_user
@@ -75,6 +77,81 @@ def get_main_campus(request):
         pass
 
     return campuses
+
+
+def _get_degrees_for_terms(terms, enrollments, accessor):
+    """
+    Takes in a list of terms and a dictionary of terms to enrollments (returned
+    by get_all_enrollments), and returns a list of either majors or minors
+    and their terms, depending upon which accessor is used, 'majors' or
+    'minors'
+    """
+    degrees = []
+    previous = None
+
+    for term in terms:
+        if term in enrollments:
+            previous = getattr(enrollments[term], accessor)
+            break
+
+    for term in terms:
+        if (term in enrollments and
+                len(getattr(enrollments[term], accessor)) > 0):
+            enrollment = enrollments[term]
+            entry = {}
+            entry['quarter'] = term.quarter
+            entry['year'] = term.year
+
+            term_degrees = getattr(enrollments[term], accessor)
+            entry[accessor] = []
+
+            entry['same_as_previous'] = _compare_degrees(previous,
+                                                         term_degrees)
+
+            for degree in term_degrees:
+                entry[accessor].append(degree.json_data())
+
+            degrees.append(entry)
+            previous = term_degrees
+
+    return degrees
+
+
+def get_majors_for_terms(terms, enrollments):
+    """
+    Takes in a list of terms and a dictionary of terms to enrollments (returned
+    by get_all_enrollments), and returns a list of majors and their terms
+    """
+    return _get_degrees_for_terms(terms, enrollments, 'majors')
+
+
+def get_minors_for_terms(terms, enrollments):
+    """
+    Takes in a list of terms and a dictionary of terms to enrollments (returned
+    by get_all_enrollments), and returns a list of minors and their terms
+    """
+    return _get_degrees_for_terms(terms, enrollments, 'minors')
+
+
+def _compare_degrees(first, second):
+    """
+    Takes in two lists of degrees (either major or minors) and checks to see
+    if they are the same. Returns True if so, False if they are different
+    """
+    if len(first) != len(second):
+        return False
+
+    degrees = {}
+    for entry in first:
+        degrees[entry] = entry
+
+    for entry in second:
+        if entry not in degrees:
+            return False
+        else:
+            del degrees[entry]
+
+    return True
 
 
 def enrollment_prefetch():
