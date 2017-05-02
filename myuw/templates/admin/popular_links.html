@@ -11,7 +11,7 @@
     </div>
     <div class="panel-body">
         <fieldset>
-        <form action='{% url "myuw_popular_links" %}' method='GET'>
+        <form action='{{ request.path }}' method='GET'>
         <div>
             <label class="checkbox-inline"><input type='checkbox' name='is_anonymous' {% if checked.is_anonymous %}checked="checked"{% endif %}>Anonymous users (shared/bookmarked links)</label>
         </div>
@@ -38,11 +38,13 @@
         </fieldset>
 
 <hr>
+{% if previous_page %}<a href="{{ previous_page }}">Previous page</a> {% endif %}
+{% if next_page %}<a href="{{ next_page }}">Next page</a> {% endif %}
 <ul class="list-group">
 {% for link in  popular %}
 <li class="list-group-item"><span class="badge" title="Link popularity">{{ link.popularity }}</span> <a href="{{ link.url }}" target="_blank">{{ link.url }}</a> {% if link.exists %} <small><em>(Already saved as a popular link)</em></small> {% else %} 
 
-<form action='{% url "myuw_popular_links" %}' method="POST">
+<form action='{{ request.path }}' method="POST">
 {% csrf_token %}
 <input type="hidden" name="url" value="{{ link.url }}"/>
 {% if link.labels.1 %}
@@ -62,7 +64,7 @@ Label: <input type="text" name="label" value="{{ link.labels.0 }}"> <input type=
 
 <h3>Custom popular link</h3>
 <p>You can add a link to the popular links section, even if it hasn't been clicked on by a user:</p>
-<form action='{% url "myuw_popular_links" %}' method="POST">
+<form action='{{ request.path }}' method="POST">
 {% csrf_token %}
 URL: <input type="text" name="url" value=""/>
 <br />
@@ -72,7 +74,7 @@ Label: <input type="text" name="label" value="{{ link.labels.0 }}"> <input type=
 
 <h3>Saved popular links</h3>
 <p>Removing a link here will not removed them for users who have added them.</p>
-<form action='{% url "myuw_popular_links" %}' method="POST">
+<form action='{{ request.path }}' method="POST">
 {% csrf_token %}
 {% for link in curated_popular_links %}
 <label><input type="checkbox" name="remove_popular" value="{{ link.id }}"> {{ link.label }} ({{ link.url }})</label> <br />
