@@ -9,7 +9,7 @@
                 <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}"><span>{{label }}</span></a></div><div class="pull-right"><a href="#" class="control-link" data-linkid="{{ url }}" data-linktype="hide">remove</a></div></li>
                 {{/each}}
                 {{#each links.custom_links}}
-                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}"><span>{{label }}</span></a></div><div class="pull-right"><a href="#" class="control-link" data-linkid="{{ id }}" data-linktype="remove">remove</a></div></li>
+                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a id="custom-link-{{ id }}" href="{{ url }}"><span>{{label }}</span></a></div><div class="pull-right"><a href="#" class="control-link" data-linkid="{{ id }}" data-linktype="edit">edit</a> <a href="#" class="control-link" data-linkid="{{ id }}" data-linktype="remove">remove</a></div></li>
                 {{/each}}
 
             </ul>
@@ -21,6 +21,12 @@
                 <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}"><span>{{label }}</span></a></div><div class="pull-right">{{#if added }}in your list{{else}}<a href="#" class="control-link" data-linkid="{{ id }}" data-linktype="recent">add</a>{{/if}}</div></li>
                 {{/each}}
             </ul>
+        </div>
+        <div id="custom-link-edit" style="display: none; position: absolute; border: 1px solid blue; background: lightblue;">
+            <a href='#' id="close-custom-link-edit">X</a>
+            <input type="hidden" id="custom-link-edit-id"> <br/>
+            URL: <input type="text" id="custom-link-edit-url"> <br/>
+            Label: <input type="text" id="custom-link-edit-label"> <br/>
         </div>
         <div>
             <span><strong>Not seeing what you're looking for?</strong> {{#if links.popular_links }}Select from <a data-toggle="collapse" href="#popular_qlinks" aria-expanded="false" aria-controls="popular_qlinks">popular links,</a> or {{/if}}<a data-toggle="collapse" href="#custom_qlinks" aria-expanded="false" aria-controls="custom_qlinks">add your own.</a></span>

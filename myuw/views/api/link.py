@@ -59,6 +59,23 @@ class ManageLinks(RESTDispatch):
             link = True
             add_custom = True
 
+        elif "custom-edit" == data["type"]:
+            try:
+                link = CustomLink.objects.get(pk=data['id'],
+                                              user=user)
+            except CustomLink.DoesNotExist:
+                return data_not_found()
+
+            url = data["url"]
+            if not re.match('^https?://', url):
+                url = "http://%s" % url
+            label = data["label"]
+
+            link.url = url
+            link.label = label
+
+            link.save()
+
         elif "remove" == data["type"]:
             link_id = data['id']
             try:
