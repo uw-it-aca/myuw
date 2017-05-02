@@ -196,6 +196,22 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEquals(link.url, 'http://example.com')
         self.assertEquals(link.label, 'Just example')
 
+        # Make sure links actually have a label...
+        data = json.dumps({'type': 'custom-edit',
+                           'url': 'http://example.com',
+                           'label': '     ',
+                           'id': link_id,
+                           })
+
+        response = self.client.post(url, data, content_type='application_json')
+        self.assertEqual(response.status_code, 400)
+
+        all = CustomLink.objects.all()
+        self.assertEquals(len(all), 1)
+        link = all[0]
+        self.assertEquals(link.url, 'http://example.com')
+        self.assertEquals(link.label, 'Just example')
+
     def test_remove_link(self):
         # Add a link as 2 users, make sure we can remove ours, but not theirs
         self.set_user('javerage')

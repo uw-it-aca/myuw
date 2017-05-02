@@ -53,11 +53,19 @@ var QuickLinksCard = {
         }
     },
     _save_edit: function() {
+        var label = $("#custom-link-edit-label").val().trim();
+        if ("" == label) {
+            $("#edit-label-required").show();
+        }
+        else {
+            $("#edit-label-required").hide();
+        }
+
         var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;
         var values = {
             type: "custom-edit",
             url: $("#custom-link-edit-url").val(),
-            label: $("#custom-link-edit-label").val(),
+            label: label,
             id: $("#custom-link-edit-id").val()
         };
 

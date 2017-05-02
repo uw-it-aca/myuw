@@ -1,6 +1,6 @@
 from myuw.dao.class_website import get_page_title_from_url
 from myuw.views.rest_dispatch import RESTDispatch
-from myuw.views.error import data_not_found
+from myuw.views.error import data_not_found, invalid_input_data
 from myuw.models import PopularLink, VisitedLink, CustomLink, HiddenLink
 from myuw.dao import get_user_model, get_netid_of_current_user
 from myuw.dao.quicklinks import get_quicklink_data
@@ -22,6 +22,10 @@ class ManageLinks(RESTDispatch):
         except ValueError:
             return data_not_found()
 
+        if "label" in data:
+            data["label"] = data["label"].strip()
+            if "" == data["label"]:
+                return invalid_input_data()
         link = False
         url = None
         label = None
