@@ -4,31 +4,26 @@ import csv
 import os
 
 
+RECENT_LINKS_DISPLAY_LIMIT = 5
+
+
 def get_quicklink_data():
     data = {}
 
     username = get_netid_of_current_user()
 
+    # For excluding from the recent list
+    existing_list_urls = set()
     custom = []
     custom_lookup = set()
     user = get_user_model()
     custom_links = CustomLink.objects.filter(user=user).order_by('pk')
     for link in custom_links:
+        existing_list_urls.add(link.url)
         custom_lookup.add(link.url)
         custom.append({'url': link.url, 'label': link.label, 'id': link.pk})
 
     data['custom_links'] = custom
-
-    recents = []
-    recent_links = VisitedLink.recent_for_user(username)
-    for link in recent_links:
-        added = link.url in custom_lookup
-        recents.append({'added': added,
-                        'url': link.url,
-                        'label': link.label,
-                        'id': link.pk})
-
-    data['recent_links'] = recents
 
     popular = []
 
@@ -36,6 +31,7 @@ def get_quicklink_data():
     popular_links = PopularLink.objects.all()
     for link in popular_links:
         added = link.url in custom_lookup
+        existing_list_urls.add(link.url)
         popular.append({'added': added,
                         'url': link.url,
                         'label': link.label,
@@ -59,6 +55,19 @@ def get_quicklink_data():
                                    })
 
     data['default_links'] = shown_defaults
+
+    recents = []
+    recent_links = VisitedLink.recent_for_user(username)
+    for link in recent_links:
+        if link.url in existing_list_urls:
+            continue
+        added = link.url in custom_lookup
+        recents.append({'added': added,
+                        'url': link.url,
+                        'label': link.label,
+                        'id': link.pk})
+
+    data['recent_links'] = recents[:RECENT_LINKS_DISPLAY_LIMIT]
 
     return data
 
