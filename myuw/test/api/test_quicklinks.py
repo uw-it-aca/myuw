@@ -148,6 +148,14 @@ class TestQuickLinksAPI(MyuwApiTest):
         all = CustomLink.objects.all()
         self.assertEqual(len(all), 2)
 
+        # Make sure we do a reasonable job w/ urls we can't resolve
+        data = json.dumps({'type': 'custom',
+                           'url': 'http://www.washington.edu/classroom/404'
+                           })
+
+        response = self.client.post(url, data, content_type='application_json')
+        self.assertEqual(response.status_code, 404)
+
     def test_edit_custom_link(self):
         self.set_user('javerage')
         url = reverse('myuw_manage_links')
