@@ -1,5 +1,6 @@
 import hashlib
 from datetime import datetime, timedelta
+from dateutil.parser import parse
 from django.utils import timezone
 from django.db import models
 from django.db.models import Count
@@ -140,7 +141,7 @@ class UserMigrationPreference(models.Model):
 
 
 class AffililationLink(models.Model):
-    url = models.TextField()
+    url = models.CharField(max_length=512)
     label = models.CharField(max_length=50, null=True)
     is_anonymous = models.BooleanField(default=True)
     is_student = models.BooleanField(default=False)
@@ -204,7 +205,7 @@ class PopularLink(AffililationLink):
 
 class CustomLink(models.Model):
     user = models.ForeignKey('User', on_delete=models.PROTECT)
-    url = models.TextField()
+    url = models.CharField(max_length=512)
     label = models.CharField(max_length=50, null=True)
 
     class Meta:
@@ -213,7 +214,37 @@ class CustomLink(models.Model):
 
 class HiddenLink(models.Model):
     user = models.ForeignKey('User', on_delete=models.PROTECT)
-    url = models.TextField()
+    url = models.CharField(max_length=512)
 
     class Meta:
         unique_together = (('user', 'url',),)
+
+
+class BannerMessage(models.Model):
+    VALID_ELIGIBILITY_TYPES = [
+        'netid'
+    ]
+    start = models.DateField()
+    end = models.DateField()
+    eligibility_type = models.CharField(max_length=32)
+    eligibility_data = models.CharField(max_length=255)
+    message_title = models.TextField()
+    message_body = models.TextField()
+
+    @classmethod
+    def from_csv(cls, csv):
+        message = cls()
+        message.start = parse(csv[0]).date()
+        message.end = parse(csv[1]).date()
+        message.eligibility_type = csv[2]
+        if message.eligibility_type not in cls.VALID_ELIGIBILITY_TYPES:
+            raise ValueError
+        message.eligibility_data = csv[3]
+        message.message_title = csv[4]
+        message.message_body = csv[5]
+        return message
+
+    def json_data(self):
+        data = {"title": self.message_title,
+                "body": self.message_body}
+        return data
