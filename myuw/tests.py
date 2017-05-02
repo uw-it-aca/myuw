@@ -4,6 +4,7 @@ from myuw.test.dao import TestNetidInList
 from myuw.test.dao.calendar_mapping import TestCalendarMapping
 from myuw.test.dao.calendar import TestCalendar
 from myuw.test.dao.course_color import TestCourseColors
+from myuw.test.dao.enrollment import TestDaoEnrollment
 from myuw.test.dao.registered_term import TestRegisteredTerm
 from myuw.test.dao.schedule import TestSchedule
 from myuw.test.dao.notice_mapping import TestMapNotices
