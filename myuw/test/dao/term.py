@@ -11,7 +11,8 @@ from myuw.dao.term import get_specific_term, is_past, is_future,\
     get_eod_current_term, get_eod_current_term_last_instruction,\
     get_bod_7d_before_last_instruction, get_eod_current_term_last_final_exam,\
     get_bod_class_start_quarter_after, get_eod_specific_quarter,\
-    get_eod_specific_quarter_after, get_eod_specific_quarter_last_instruction
+    get_eod_specific_quarter_after, get_eod_specific_quarter_last_instruction,\
+    get_current_and_next_quarters
 from myuw.test import get_request_with_date, get_request_with_user,\
     get_request, fdao_sws_override
 
@@ -285,3 +286,29 @@ class TestTerm(TestCase):
                          datetime(2013, 12, 18, 0, 0, 0))
         self.assertEqual(get_eod_specific_quarter_after(2013, "spring"),
                          datetime(2013, 8, 28, 0, 0, 0))
+
+    def test_get_current_and_next_quarters(self):
+        date = get_default_date()
+        now_request = get_request_with_date(date)
+        self.assertEquals(date.year, 2013)
+        self.assertEquals(date.month, 4)
+        self.assertEquals(date.day, 15)
+
+        quarters = get_current_and_next_quarters(now_request, 4)
+
+        self.assertEqual(len(quarters), 4)
+
+        spring = quarters[0]
+        summer = quarters[1]
+        autumn = quarters[2]
+        winter = quarters[3]
+
+        self.assertEqual(spring.quarter, "spring")
+        self.assertEqual(summer.quarter, "summer")
+        self.assertEqual(autumn.quarter, "autumn")
+        self.assertEqual(winter.quarter, "winter")
+
+        self.assertEqual(spring.year, 2013)
+        self.assertEqual(summer.year, 2013)
+        self.assertEqual(autumn.year, 2013)
+        self.assertEqual(winter.year, 2014)

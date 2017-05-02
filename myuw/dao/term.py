@@ -116,7 +116,7 @@ def get_current_quarter(request):
 
 def get_next_quarter(request):
     """
-    Returna uw_sws.models.Term object
+    Returns a uw_sws.models.Term object
     for the current quarter refered in the user session.
     """
     if hasattr(request, 'myuw_next_quarter'):
@@ -124,6 +124,22 @@ def get_next_quarter(request):
     term = get_term_after(get_current_quarter(request))
     request.myuw_next_quarter = term
     return term
+
+
+def get_current_and_next_quarters(request, num):
+    """
+    Returns the current and next num uw_sws.models.Term objects in a list
+    for the current quarter refered in the user session. Returns the next
+    num -1 quarters along with the current one.
+    """
+    term = get_current_quarter(request)
+    quarters = [term]
+
+    for x in range(1, num):
+        term = get_term_after(term)
+        quarters.append(term)
+
+    return quarters
 
 
 def get_previous_quarter(request):
