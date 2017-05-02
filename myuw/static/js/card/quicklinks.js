@@ -37,17 +37,22 @@ var QuickLinksCard = {
     },
     custom_add: function(ev) {
         if (KEY_ENTER == ev.which) {
-            $("#quicklink_saving").show();
-            QuickLinksCard._add_link({
-                type: "custom",
-                url: $("#myuw-custom-qlink").val().trim()
-            });
+            QuickLinksCard._save_new();
         }
     },
+    _save_new: function() {
+        $("#quicklink_saving").show();
+        QuickLinksCard._add_link({
+            type: "custom",
+            url: $("#myuw-custom-qlink").val().trim()
+        });
+    },
     custom_edit: function(ev) {
-        if (KEY_ENTER != ev.which) {
-            return true;
+        if (KEY_ENTER == ev.which) {
+            QuickLinksCard._save_edit();
         }
+    },
+    _save_edit: function() {
         var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;
         var values = {
             type: "custom-edit",
@@ -123,6 +128,8 @@ var QuickLinksCard = {
 
 $("body").on('click', '.control-link', QuickLinksCard.run_control);
 $("body").on('click', '#close-custom-link-edit', QuickLinksCard.hide_edit_panel);
+$("body").on('click', '#quicklinks-save-edits', QuickLinksCard._save_edit);
+$("body").on('click', '#quicklinks-save-new', QuickLinksCard._save_new);
 $("body").on('keydown', '#myuw-custom-qlink', QuickLinksCard.custom_add);
 $("body").on('keydown', '#custom-link-edit', QuickLinksCard.custom_edit);
 $("body").on('keydown', QuickLinksCard.handle_escape);

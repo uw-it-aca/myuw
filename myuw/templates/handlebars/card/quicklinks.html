@@ -27,6 +27,7 @@
             <input type="hidden" id="custom-link-edit-id"> <br/>
             URL: <input type="text" id="custom-link-edit-url"> <br/>
             Label: <input type="text" id="custom-link-edit-label"> <br/>
+            <button id="quicklinks-save-edits">Save</button>
         </div>
         <div>
             <span><strong>Not seeing what you're looking for?</strong> {{#if links.popular_links }}Select from <a data-toggle="collapse" href="#popular_qlinks" aria-expanded="false" aria-controls="popular_qlinks">popular links,</a> or {{/if}}<a data-toggle="collapse" href="#custom_qlinks" aria-expanded="false" aria-controls="custom_qlinks">add your own.</a></span>
@@ -48,6 +49,8 @@
                     <label for="myuw-custom-qlink" class="col-2 col-form-label">Add your link to Quick Links</label>
                     <div class="col-10">
                         <input class="form-control" type="url" placeholder="https://www.washington.edu" id="myuw-custom-qlink" value="">
+                        <br />
+                        <button id="quicklinks-save-new">Save</button>
                     </div>
                 </div>
             </div>
