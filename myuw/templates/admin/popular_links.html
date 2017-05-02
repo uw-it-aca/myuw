@@ -45,7 +45,13 @@
 <form action='{% url "myuw_popular_links" %}' method="POST">
 {% csrf_token %}
 <input type="hidden" name="url" value="{{ link.url }}"/>
-Label: <input type="text" name="label"> <input type="submit" value="add"/>
+{% if link.labels.1 %}
+Multiple labels were used for this url:
+<ul>
+{% for label in link.labels %}<li>{{ label }}</li>{%endfor %}
+</ul>
+{% endif %}
+Label: <input type="text" name="label" value="{{ link.labels.0 }}"> <input type="submit" value="add"/>
 </form>
 {% endif %}</li>
 
