@@ -32,7 +32,7 @@
                     <label class="checkbox-inline"><input type='checkbox' name='is_student_employee' {% if checked.is_student_employee %}checked="checked"{% endif %}> Student Employee</label>
                 </div>
                 <div style="text-align: right;padding-top:15px;">
-                <a href="#">Clear all</a> <button type="submit" class="btn btn-primary">Filter</button>
+                <a href="/admin/links?">Clear all</a> <button type="submit" class="btn btn-primary">Filter</button>
                 </div>
             </form>
         </fieldset>
@@ -52,25 +52,27 @@
             
             {% endfor %}
         </ul>
-        <nav aria-label="Page navigation">
-            <ul class="pagination pagination-sm">
-                <li>
-                    <a href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                    <a href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <div class="text-center">
+            <nav aria-label="Page navigation">
+                <ul class="pagination pagination-sm">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </div>
 
