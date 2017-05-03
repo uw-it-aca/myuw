@@ -41,14 +41,14 @@ class MyProfile(RESTDispatch):
             response['is_student'] = is_student()
             response['is_grad_student'] = is_grad_student()
 
-            campuses = get_main_campus(request)
-            if 'Seattle' in campuses:
-                response['campus'] = 'Seattle'
-            elif 'Tacoma' in campuses:
-                response['campus'] = 'Tacoma'
-            elif 'Bothell' in campuses:
-                response['campus'] = 'Bothell'
             if is_student():
+                campuses = get_main_campus(request)
+                if 'Seattle' in campuses:
+                    response['campus'] = 'Seattle'
+                elif 'Tacoma' in campuses:
+                    response['campus'] = 'Tacoma'
+                elif 'Bothell' in campuses:
+                    response['campus'] = 'Bothell'
                 try:
                     enrollment = get_current_quarter_enrollment(request)
                     response['class_level'] = enrollment.class_level

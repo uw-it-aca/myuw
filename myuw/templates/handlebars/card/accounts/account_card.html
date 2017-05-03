@@ -19,7 +19,7 @@
                 <li>Set up direct deposit</li>
             </ul>
         </li>
-        <li>UW Human Resources | Academic HR | UW Medicine HR</li>
+        <li>{{#if is_clinician}}UW Medicine HR{{else}}{{#if is_faculty}}Academic HR{{else}}UW Human Resources{{/if}}{{/if}}</li>
     </ul>
 
     <h4>Services and Perks</h4>
