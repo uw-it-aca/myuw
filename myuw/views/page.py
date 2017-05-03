@@ -105,6 +105,10 @@ def page(request,
         else:
             context["year"] = cur_term.year
             context["quarter"] = cur_term.quarter
+            context["first_day_quarter"] = cur_term.first_day_quarter
+            context["last_day_instruction"] = cur_term.last_day_instruction
+            context["aterm_last_date"] = cur_term.aterm_last_date
+            context["bterm_first_date"] = cur_term.bterm_first_date
     else:
         pass
 
