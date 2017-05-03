@@ -26,7 +26,7 @@ def get_profile_of_current_user():
 
 def get_student_profile(request):
     """
-    If the user is a student, returns the JSON response for that user's profile
+    Returns the JSON response for a student's profile
     """
     regid = get_regid_of_current_user()
     profile = get_person_by_regid(regid)

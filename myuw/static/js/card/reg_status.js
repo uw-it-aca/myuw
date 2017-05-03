@@ -194,16 +194,11 @@ var RegStatusCard = {
                             comparison[card_degrees[e].full_name] = card_degrees[e];
                         }
 
-                        console.log(comparison)
-
                         for(e = 0; e < previous_degrees.length; e++){
                             if(previous_degrees[e].full_name in comparison)
                                 delete comparison[previous_degrees[e].full_name];
                         }
 
-                        console.log(comparison)
-
-                        console.log(Object.keys(comparison).length)
                         if(Object.keys(comparison).length > 0)
                             return degrees[i][degree_type];
 
