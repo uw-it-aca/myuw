@@ -138,20 +138,7 @@ def _compare_degrees(first, second):
     Takes in two lists of degrees (either major or minors) and checks to see
     if they are the same. Returns True if so, False if they are different
     """
-    if len(first) != len(second):
-        return False
-
-    degrees = {}
-    for entry in first:
-        degrees[entry] = entry
-
-    for entry in second:
-        if entry not in degrees:
-            return False
-        else:
-            del degrees[entry]
-
-    return True
+    return len(set(first) ^ set(second)) == 0
 
 
 def enrollment_prefetch():
