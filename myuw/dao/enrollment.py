@@ -113,6 +113,30 @@ def _get_degrees_for_terms(terms, enrollments, accessor):
 
             degrees.append(entry)
             previous = term_degrees
+        elif(len(getattr(enrollments[term], accessor)) == 0):
+            if(len(previous) > 0):
+                entry = {}
+                entry['quarter'] = term.quarter
+                entry['year'] = term.year
+
+                term_degrees = getattr(enrollments[term], accessor)
+                entry[accessor] = []
+
+                entry['same_as_previous'] = _compare_degrees(previous,
+                                                             term_degrees)
+                none_degree = {}
+                none_degree['college_abbr'] = ''
+                none_degree['college_full_name'] = ''
+                none_degree['full_name'] = 'None'
+                none_degree['degree_abbr'] = 'NONE'
+                none_degree['short_name'] = 'NONE'
+                none_degree['name'] = 'None'
+                none_degree['campus'] = previous[0].campus
+
+                entry[accessor].append(none_degree)
+
+                degrees.append(entry)
+                previous = term_degrees
 
     return degrees
 

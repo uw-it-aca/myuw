@@ -37,7 +37,7 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
         return moment(parse_date(str)).fromNow();
     });
 
-    // used on Grade, Library card 
+    // used on Grade, Library card
     Handlebars.registerHelper("toFriendlyDate", function(str) {
         return moment(parse_date(str)).format("ddd, MMM D");
     });
@@ -266,7 +266,7 @@ Handlebars.registerHelper('equal', function(value1, value2, options) {
         throw new Error("Handlebars Helper equal needs 2 parameters");
     if(value1 != value2) {
         return options.inverse(this);
-    } 
+    }
     else {
         return options.fn(this);
     }
@@ -278,9 +278,9 @@ Handlebars.registerHelper("eachWithIndex", function(array, fn) {
         var item = array[i];
         item.index = i;
         buffer += fn.fn(item);
-    }   
+    }
     return buffer;
-}); 
+});
 
 Handlebars.registerHelper('format_schedule_hour', function(hour, position) {
     if (parseInt(hour, 10) === 12) {
@@ -381,6 +381,18 @@ Handlebars.registerHelper('greater_than', function(value1, value2, options) {
         return options.fn(this);
     }
 });
+
+Handlebars.registerHelper('list_greater_than', function(list, length, options) {
+    if (arguments.length < 3)
+        throw new Error("Handlebars Helper greater_than needs 2 parameters");
+    if(list.length > length) {
+        return options.inverse(this);
+    }
+    else {
+        return options.fn(this);
+    }
+});
+
 
 Handlebars.registerHelper('not_first', function(index, block) {
     // display block if the index greater than 0
