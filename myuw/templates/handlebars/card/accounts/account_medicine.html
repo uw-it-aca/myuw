@@ -2,15 +2,14 @@
 {% tplhandlebars "accounts_medicine" %}
 <div class="card" style="position:relative;">
     <h3>UW Medicine <!--{{ card_name }}--></h3>
-    <p>fill some dummy text here</p>
-                      {{#if med_pw_expired }}
-                            <span class="password-alert">Password expired on {{formatDateAsDate expires_med}}. <a href="https://services.uwmedicine.org/passwordportal/login.htm">Change your password to regain access.</a></span>
-                        {{ else }}
-                            <span class="password-status {{#if expires_in_30_days_or_less}}password-alert{{/if}}">Password expires in {{days_before_med_pw_expires}} days ({{formatDateAsDate expires_med}})</span><br>
-                            <a href="https://services.uwmedicine.org/passwordportal/login.htm">Change UW Medicine password</a>
-                        {{/if}}
-                            <p>This password is for UW Medicine applications like Epic, ORCA, MINDscape, AMC network, etc.</p>
-                    </div> 
+      {{#if med_pw_expired }}
+            <span class="password-alert">Password expired on {{formatDateAsDate expires_med}}. <a href="https://services.uwmedicine.org/passwordportal/login.htm">Change your password to regain access.</a></span>
+        {{ else }}
+            <span class="password-status {{#if expires_in_30_days_or_less}}password-alert{{/if}}">Password expires in {{days_before_med_pw_expires}} days ({{formatDateAsDate expires_med}})</span><br>
+            <a href="https://services.uwmedicine.org/passwordportal/login.htm">Change UW Medicine password</a>
+        {{/if}}
+            <p>This password is for UW Medicine applications like Epic, ORCA, MINDscape, AMC network, etc.</p>
+    </div> 
     
-</div>
+
 {% endtplhandlebars %}
