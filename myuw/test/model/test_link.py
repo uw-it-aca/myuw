@@ -104,3 +104,32 @@ class TestLink(TestCase):
         self.assertEquals(popular_links[0]['popularity'], 4)
         self.assertEquals(popular_links[1]['url'], TEST_URLS[2])
         self.assertEquals(popular_links[1]['popularity'], 1)
+
+    def test_popular_multi_labels(self):
+        VisitedLink.objects.all().delete()
+
+        user1 = 'basic1'
+        user2 = 'basic2'
+        user3 = 'basic3'
+
+        VisitedLink.objects.create(username=user1, url=TEST_URLS[0], label="x",
+                                   is_student=True, is_seattle=True)
+        VisitedLink.objects.create(username=user2, url=TEST_URLS[0], label="x",
+                                   is_seattle=True)
+
+        VisitedLink.objects.create(username=user1, url=TEST_URLS[1], label="x",
+                                   is_student=True, is_seattle=True)
+        VisitedLink.objects.create(username=user2, url=TEST_URLS[1], label="x",
+                                   is_seattle=True)
+        VisitedLink.objects.create(username=user3, url=TEST_URLS[1], label="y",
+                                   is_seattle=True)
+
+        popular_links = VisitedLink.get_popular()
+        self.assertEquals(len(popular_links), 2)
+        self.assertEquals(popular_links[0]['url'], TEST_URLS[1])
+        self.assertEquals(popular_links[0]['popularity'], 9)
+        self.assertEquals(popular_links[0]['labels'], ['x', 'y'])
+
+        self.assertEquals(popular_links[1]['url'], TEST_URLS[0])
+        self.assertEquals(popular_links[1]['popularity'], 4)
+        self.assertEquals(popular_links[1]['labels'], ['x'])

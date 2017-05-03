@@ -8,9 +8,8 @@
 <div class="panel panel-default" style="max-width:800px;">
     <div class="panel-heading">Find popular links by affiliation and campus (filter requires all that are checked)</div>
     <div class="panel-body">
-        
         <fieldset>
-            <form action='{% url "myuw_popular_links" %}' method='GET'>
+            <form action='{{ request.path }}' method='GET'>
                 <div>
                     <label class="checkbox-inline"><input type='checkbox' name='is_anonymous' {% if checked.is_anonymous %}checked="checked"{% endif %}>Anonymous users (shared/bookmarked links)</label>
                 </div>
@@ -19,8 +18,8 @@
                     <label class="checkbox-inline"><input type='checkbox' name='is_seattle' {% if checked.is_seattle %}checked="checked"{% endif %}> Seattle</label>
                     <label class="checkbox-inline"><input type='checkbox' name='is_tacoma' {% if checked.is_tacoma %}checked="checked"{% endif %}> Tacoma</label>
                     <label class="checkbox-inline"><input type='checkbox' name='is_bothell' {% if checked.is_bothell %}checked="checked"{% endif %}> Bothell</label>
-                </div>        
-                <div>
+                    </div>        
+                    <div>
                     <strong>Affilliation</strong><br />
                     <label class="checkbox-inline"><input type='checkbox' name='is_student' {% if checked.is_student %}checked="checked"{% endif %}> Student</label>
                     <label class="checkbox-inline"><input type='checkbox' name='is_undergrad' {% if checked.is_undergrad %}checked="checked"{% endif %}> Undergraduate</label>
@@ -32,53 +31,49 @@
                     <label class="checkbox-inline"><input type='checkbox' name='is_student_employee' {% if checked.is_student_employee %}checked="checked"{% endif %}> Student Employee</label>
                 </div>
                 <div style="text-align: right;padding-top:15px;">
-                <a href="/admin/links?">Clear all</a> <button type="submit" class="btn btn-primary">Filter</button>
+                    <a href="/admin/links?">Clear all</a> <button type="submit" class="btn btn-primary">Filter</button>
                 </div>
             </form>
         </fieldset>
-        
-        <hr>
-        <p>Viewing popular links for: (<em>Campus:</em><em>Affiliation:</em>)</p>
-        <ul class="list-group">
-            {% for link in  popular %}
-            <li class="list-group-item"><span class="badge" title="Link popularity">{{ link.popularity }}</span> <a href="{{ link.url }}" target="_blank">{{ link.url }}</a> {% if link.exists %} <small><em>(Already saved as a popular link)</em></small> {% else %} 
-            
-            <form action='{% url "myuw_popular_links" %}' method="POST">
-            {% csrf_token %}
-            <input type="hidden" name="url" value="{{ link.url }}"/>
-            Label: <input type="text" name="label"> <input type="submit" value="add"/>
-            </form>
-            {% endif %}</li>
-            
-            {% endfor %}
-        </ul>
-        <div class="text-center">
-            <nav aria-label="Page navigation">
-                <ul class="pagination pagination-sm">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+
+<hr>
+{% if previous_page %}<a href="{{ previous_page }}">Previous page</a> {% endif %}
+{% if next_page %}<a href="{{ next_page }}">Next page</a> {% endif %}
+<ul class="list-group">
+{% for link in  popular %}
+<li class="list-group-item"><span class="badge" title="Link popularity">{{ link.popularity }}</span> <a href="{{ link.url }}" target="_blank">{{ link.url }}</a> {% if link.exists %} <small><em>(Already saved as a popular link)</em></small> {% else %} 
+
+<form action='{{ request.path }}' method="POST">
+{% csrf_token %}
+<input type="hidden" name="url" value="{{ link.url }}"/>
+{% if link.labels.1 %}
+Multiple labels were used for this url:
+<ul>
+{% for label in link.labels %}<li>{{ label }}</li>{%endfor %}
+</ul>
+{% endif %}
+Label: <input type="text" name="label" value="{{ link.labels.0 }}"> <input type="submit" value="add"/>
+</form>
+{% endif %}</li>
+
+{% endfor %}
+</ul>
     </div>
 </div>
 
+<h3>Custom popular link</h3>
+<p>You can add a link to the popular links section, even if it hasn't been clicked on by a user:</p>
+<form action='{{ request.path }}' method="POST">
+{% csrf_token %}
+URL: <input type="text" name="url" value=""/>
+<br />
+Label: <input type="text" name="label" value="{{ link.labels.0 }}"> <input type="submit" value="add"/>
+</form>
+
+
 <h3>Saved popular links</h3>
 <p>Removing a link here will not removed them for users who have added them.</p>
-<form action='{% url "myuw_popular_links" %}' method="POST">
+<form action='{{ request.path }}' method="POST">
 {% csrf_token %}
 {% for link in curated_popular_links %}
 <label><input type="checkbox" name="remove_popular" value="{{ link.id }}"> {{ link.label }} ({{ link.url }})</label> <br />

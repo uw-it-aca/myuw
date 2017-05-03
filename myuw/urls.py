@@ -55,7 +55,10 @@ if settings.DEBUG:
 urlpatterns += [
     url(r'admin/dates', override, name="myuw_date_override"
         ),
-    url(r'admin/links', popular_links, name="myuw_popular_links"),
+    url(r'admin/links/(?P<page>[0-9]+)', popular_links,
+        name="myuw_popular_links_paged"),
+    url(r'admin/links', popular_links, {'page': 1},
+        name="myuw_popular_links"),
     url(r'^logger/(?P<interaction_type>.*)$', log_interaction
         ),
     url(r'^api/v1/academic_events$', login_required(AcademicEvents().run),

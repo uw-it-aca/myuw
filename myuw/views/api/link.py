@@ -1,10 +1,11 @@
 from myuw.dao.class_website import get_page_title_from_url
 from myuw.views.rest_dispatch import RESTDispatch
-from myuw.views.error import data_not_found
+from myuw.views.error import data_not_found, invalid_input_data
 from myuw.models import PopularLink, VisitedLink, CustomLink, HiddenLink
 from myuw.dao import get_user_model, get_netid_of_current_user
 from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.class_website import get_page_title_from_url
+from restclients.exceptions import DataFailureException
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponse
@@ -21,6 +22,10 @@ class ManageLinks(RESTDispatch):
         except ValueError:
             return data_not_found()
 
+        if "label" in data:
+            data["label"] = data["label"].strip()
+            if "" == data["label"]:
+                return invalid_input_data()
         link = False
         url = None
         label = None
@@ -55,9 +60,29 @@ class ManageLinks(RESTDispatch):
             url = data["url"]
             if not re.match('^https?://', url):
                 url = "http://%s" % url
-            label = get_page_title_from_url(url)
+            try:
+                label = get_page_title_from_url(url)
+            except DataFailureException:
+                return data_not_found()
             link = True
             add_custom = True
+
+        elif "custom-edit" == data["type"]:
+            try:
+                link = CustomLink.objects.get(pk=data['id'],
+                                              user=user)
+            except CustomLink.DoesNotExist:
+                return data_not_found()
+
+            url = data["url"]
+            if not re.match('^https?://', url):
+                url = "http://%s" % url
+            label = data["label"]
+
+            link.url = url
+            link.label = label
+
+            link.save()
 
         elif "remove" == data["type"]:
             link_id = data['id']

@@ -187,14 +187,28 @@ class VisitedLink(AffililationLink):
         min_visit = timezone.now() + VisitedLink.OLDEST_POPULAR_TIME_DELTA
         objs = VisitedLink.objects.filter(visit_date__gte=min_visit,
                                           **kwargs)
-        objs = objs.values('url')
+        objs = objs.values('url', 'label')
         objs = objs.annotate(num_users=Count('username', distinct=True),
                              all=Count('*'))
 
-        values = []
+        by_url = {}
         for item in objs:
-            popularity = item['num_users'] * item['all']
-            values.append({'popularity': popularity, 'url': item['url']})
+            url = item['url']
+            if url not in by_url:
+                by_url[url] = {'labels': [],
+                               'users': 0,
+                               'all': 0}
+            by_url[url]['users'] += item['num_users']
+            by_url[url]['all'] += item['all']
+            by_url[url]['labels'].append(item['label'])
+
+        values = []
+        for url in by_url:
+            popularity = by_url[url]['users'] * by_url[url]['all']
+
+            values.append({'popularity': popularity,
+                           'url': url,
+                           'labels': sorted(by_url[url]['labels'])})
 
         return sorted(values, key=lambda x: x['popularity'], reverse=True)
 
