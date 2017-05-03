@@ -59,15 +59,65 @@ var VisualScheduleCard = {
 
     _get_schedule_periods: function(course_data) {
         console.log(course_data);
+        var schedule_periods = {};
         $(course_data.sections).each(function(idx, section){
-            console.log(section.course_number)
+            // get start and end dates for section
+            var section_dates = VisualScheduleCard._get_dates_for_section(section);
+            console.log(section_dates);
+            schedule_periods = VisualScheduleCard._add_to_periods(section_dates,
+                                                                  section,
+                                                                  schedule_periods);
+
+
+
             if(section.final_exam !== undefined
                 && section.final_exam.start_date !== undefined){
                 var week_range = VisualScheduleCard._get_week_range_from_date(section.final_exam.start_date);
             }
-            console.log(section)
-        });
 
+
+        });
+        console.log(JSON.stringify(schedule_periods));
+
+    },
+
+
+    _add_to_periods: function(dates, section, periods){
+        if(Object.keys(periods).length === 0){
+            periods["0"] =
+            {"start_date": dates[0],
+                "end_date" : dates[1],
+                "sections": ['section']
+            };
+        } else {
+            for (var period_key in periods){
+                var period = periods[period_key];
+                if(period.start_date.isSame(dates[0])
+                    && period.end_date.isSame(dates[1])){
+                    period.sections.push('section');
+                    return periods;
+                }
+            }
+            periods[Object.keys(periods).length] = {"start_date": dates[0],
+                "end_date" : dates[1],
+                "sections": ['section']
+            };
+        }
+    return periods;
+    },
+
+    _get_dates_for_section: function(section){
+        var start_date = section.start_date,
+            end_date = section.end_date;
+
+        if(start_date === "None"){
+            if (window.term.summer_term === "None"){
+                start_date = window.term.first_day_quarter;
+                end_date = window.term.last_day_instruction;
+            }
+        }
+
+        return [moment(start_date), moment(end_date)];
     },
 
     _get_week_range_from_date: function(date){

@@ -43,24 +43,24 @@ var Landing = {
     _load_desktop_cards: function() {
         Landing._reset_content_divs();
         var desktop_body_cards = [
-            ThriveCard,
-            FinalExamCard,
-            GradeCard,
-            FutureQuarterCardA,
-            ThankYouCard,
-            ToRegisterCard,
-            RegStatusCard,
-            SummerEFSCard,
-            SummerRegStatusCardA,
-            CriticalInfoCard,
-            InternationalStuCard,
+            //ThriveCard,
+            //FinalExamCard,
+            //GradeCard,
+            //FutureQuarterCardA,
+            //ThankYouCard,
+            //ToRegisterCard,
+            //RegStatusCard,
+            //SummerEFSCard,
+            //SummerRegStatusCardA,
+            //CriticalInfoCard,
+            //InternationalStuCard,
             VisualScheduleCard,
-            TextbookCard,
+            //TextbookCard,
             CourseCards,
-            GradStatusCard,
-            GradCommitteeCard,
-            FutureQuarterCard1,
-            SummerRegStatusCard1
+            //GradStatusCard,
+            //GradCommitteeCard,
+            //FutureQuarterCard1,
+            //SummerRegStatusCard1
         ];
         var desktop_sidebar_cards = [
             EmpFacStudentCard,
