@@ -36,28 +36,33 @@
             </form>
         </fieldset>
 
-<hr>
-{% if previous_page %}<a href="{{ previous_page }}">Previous page</a> {% endif %}
-{% if next_page %}<a href="{{ next_page }}">Next page</a> {% endif %}
-<ul class="list-group">
-{% for link in  popular %}
-<li class="list-group-item"><span class="badge" title="Link popularity">{{ link.popularity }}</span> <a href="{{ link.url }}" target="_blank">{{ link.url }}</a> {% if link.exists %} <small><em>(Already saved as a popular link)</em></small> {% else %} 
+        <hr>
 
-<form action='{{ request.path }}' method="POST">
-{% csrf_token %}
-<input type="hidden" name="url" value="{{ link.url }}"/>
-{% if link.labels.1 %}
-Multiple labels were used for this url:
-<ul>
-{% for label in link.labels %}<li>{{ label }}</li>{%endfor %}
-</ul>
-{% endif %}
-Label: <input type="text" name="label" value="{{ link.labels.0 }}"> <input type="submit" value="add"/>
-</form>
-{% endif %}</li>
-
-{% endfor %}
-</ul>
+        <ul class="list-group">
+        {% for link in  popular %}
+            <li class="list-group-item"><span class="badge" title="Link popularity">{{ link.popularity }}</span> <a href="{{ link.url }}" target="_blank">{{ link.url }}</a> {% if link.exists %} <small><em>(Already saved as a popular link)</em></small> {% else %} 
+            
+            <form action='{{ request.path }}' method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="url" value="{{ link.url }}"/>
+                {% if link.labels.1 %}
+                Multiple labels were used for this url:
+                <ul>
+                {% for label in link.labels %}<li>{{ label }}</li>{%endfor %}
+                </ul>
+                {% endif %}
+                Label: <input type="text" name="label" value="{{ link.labels.0 }}"> <input type="submit" value="add"/>
+            </form>
+            {% endif %}</li>
+        
+        {% endfor %}
+        </ul>
+        <nav aria-label="...">
+            <ul class="pager">
+                {% if previous_page %}<li><a href="{{ previous_page }}">Previous</a></li>{% endif %}
+                {% if next_page %}<li><a href="{{ next_page }}">Next</a></li> {% endif %}
+            </ul>
+        </nav>
     </div>
 </div>
 
