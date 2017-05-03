@@ -57,7 +57,6 @@ def get_academic_info(request, response):
     try:
         enrollments = get_all_enrollments()
     except Exception as ex:
-        print ex
         logger.error(
             "%s get_academic_info: %s" %
             (netid, ex))
@@ -78,6 +77,10 @@ def get_academic_info(request, response):
 
     response['term_minors'] = get_minors_for_terms(terms, enrollments)
     response['has_pending_minor'] = False
+
+    if (len(response['term_minors']) > 1 and
+            len(response['term_minors'][0]['minors']) > 0):
+        response['has_minors'] = True
 
     for minor in response['term_minors']:
         if not minor['same_as_previous']:

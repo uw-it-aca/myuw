@@ -171,6 +171,7 @@ var RegStatusCard = {
         // Retrieve pending majors and minors for this quarter, if they exist
         var profile = WSData.profile_data();
 
+
         var pending_minors = [];
         var pending_majors = [];
 
@@ -178,7 +179,35 @@ var RegStatusCard = {
             for(i = 0; i < degrees.length; i++){
                 if(degrees[i].quarter.toUpperCase() === quarter.toUpperCase() && degrees[i].year === year){
                     if(!degrees[i].same_as_previous){
-                        return degrees[i][degree_type];
+
+                        // Do not display if the degree is None
+                        if(degrees[i][degree_type].length == 1 && degrees[i][degree_type][0].full_name === "None")
+                            return [];
+
+                        // Do not display if we have only dropped degrees, not added any
+
+                        var card_degrees = degrees[i][degree_type];
+                        var previous_degrees = degrees[i - 1][degree_type];
+                        var comparison = {};
+
+                        for(var e = 0; e < card_degrees.length; e++){
+                            comparison[card_degrees[e].full_name] = card_degrees[e];
+                        }
+
+                        console.log(comparison)
+
+                        for(e = 0; e < previous_degrees.length; e++){
+                            if(previous_degrees[e].full_name in comparison)
+                                delete comparison[previous_degrees[e].full_name];
+                        }
+
+                        console.log(comparison)
+
+                        console.log(Object.keys(comparison).length)
+                        if(Object.keys(comparison).length > 0)
+                            return degrees[i][degree_type];
+
+                        return [];
                     }
                 }
             }

@@ -31,6 +31,9 @@
                                                 </li>
                                             {{else}}
                                                 <li>
+                                                    {{#if @root.has_minors}}
+                                                        Major:
+                                                    {{/if}}
                                                     {{#each majors}}
                                                         {{full_name}}
                                                     {{/each}}
