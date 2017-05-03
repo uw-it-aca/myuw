@@ -2,4 +2,9 @@
 "Current":{"Href":"\/student\/v5\/enrollment.json?reg_id=11111111111111111111111111111111&verbose=true&changed_since_date=&transcriptable_course=all",
 "RegID":"11111111111111111111111111111111","Verbose":true},
 "Enrollments":[],
-"Next":null,"PageSize":"10","PageStart":"1","Previous":null,"TotalCount":0}
+"Next":null,
+"PageSize":"10",
+"PageStart":"1",
+"Previous":null,
+"TotalCount":0
+}

@@ -15,7 +15,6 @@ from myuw.dao.term import get_comparison_date
 
 
 logger = logging.getLogger(__name__)
-EARLY_FALL_START = "EARLY FALL START"
 
 
 def _get_schedule(regid, term):
@@ -28,8 +27,12 @@ def _get_schedule(regid, term):
         return None
     logid = ('get_schedule_by_regid_and_term ' +
              str(regid) + ',' + str(term.year) + ',' + term.quarter)
-    return get_schedule_by_regid_and_term(regid, term, False,
-                                          myuw_section_prefetch)
+    return get_schedule_by_regid_and_term(
+        regid,
+        term,
+        non_time_schedule_instructors=False,
+        per_section_prefetch_callback=myuw_section_prefetch,
+        transcriptable_course="all")
 
 
 def myuw_section_prefetch(data):
@@ -61,12 +64,7 @@ def get_schedule_by_term(request, term):
 
     included_sections = []
     for section in schedule.sections:
-        if EARLY_FALL_START != section.institute_name:
-            included_sections.append(section)
-        else:
-            end_date = section.end_date
-            if end_date >= comparison_date:
-                included_sections.append(section)
+        included_sections.append(section)
 
     schedule.sections = included_sections
 
