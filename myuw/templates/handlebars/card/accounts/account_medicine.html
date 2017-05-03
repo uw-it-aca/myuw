@@ -1,7 +1,7 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "accounts_medicine" %}
 <div class="card" style="position:relative;">
-    <h3>UW Medicine <!--{{ card_name }}--></h3>
+    <h3>UW Medicine</h3>
     <p>fill some dummy text here</p>
                       {{#if med_pw_expired }}
                             <span class="password-alert">Password expired on {{formatDateAsDate expires_med}}. <a href="https://services.uwmedicine.org/passwordportal/login.htm">Change your password to regain access.</a></span>
