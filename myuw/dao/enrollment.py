@@ -115,7 +115,7 @@ def _get_degrees_for_terms(terms, enrollments, accessor):
             previous = term_degrees
         elif(term in enrollments and
                 len(getattr(enrollments[term], accessor)) == 0):
-            # If the user has dropped all degrees, add a one saying None
+            # If the user has dropped all degrees, add one saying None
             if(len(previous) > 0):
                 entry = {}
                 entry['quarter'] = term.quarter

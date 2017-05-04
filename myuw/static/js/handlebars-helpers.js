@@ -393,7 +393,6 @@ Handlebars.registerHelper('list_greater_than', function(list, length, options) {
     }
 });
 
-
 Handlebars.registerHelper('not_first', function(index, block) {
     // display block if the index greater than 0
     if (arguments.length < 2)
