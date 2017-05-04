@@ -167,8 +167,11 @@ class TestProfile(MyuwApiTest):
         self.assertIn("term_minors", data)
         self.assertTrue(data['term_minors'][0]['same_as_previous'])
 
-        self.assertEquals(len(data['term_minors']), 1)
+        self.assertEquals(len(data['term_minors']), 2)
         self.assertEquals(len(data['term_minors'][0]['minors']), 1)
+        self.assertEquals(len(data['term_minors'][1]['minors']), 1)
+        self.assertEquals(data['term_minors'][1]['minors'][0]['full_name'],
+                          "None")
 
     def test_no_pending(self):
         response = self.get_profile_response('javg005')
