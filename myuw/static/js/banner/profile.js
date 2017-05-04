@@ -3,7 +3,6 @@ var Profile = {
         var source = $("#profile-content").html();
         var template = Handlebars.compile(source);
         $("#profile").html(template(WSData.profile_data()));
-        console.log(WSData.profile_data())
         $("#toggle_my_profile").attr("title", $("#profile_toggle_hidden").text());
         $("#toggle_my_profile").attr("aria-label", $("#profile_toggle_hidden").text());
         Profile.add_events();
