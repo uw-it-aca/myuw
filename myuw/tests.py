@@ -47,6 +47,8 @@ from myuw.test.api.finance import TestFinance as TestFinanceAPI
 from myuw.test.api.future_schedule import TestFutureSchedule
 from myuw.test.api.other_quarters import TestOtherQuarters
 from myuw.test.api.notices import TestNotices as TestNoticesAPI
+from myuw.test.api.prev_unfinished_schedule import\
+    TestStudUnfinishedPrevQuarClasSche
 from myuw.test.api.upass import TestUpassApi
 from myuw.test.api.thrive import TestApiThrive
 from myuw.test.api.academic_calendar import TestCalendarAPI

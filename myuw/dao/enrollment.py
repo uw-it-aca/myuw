@@ -37,18 +37,20 @@ def get_current_quarter_enrollment(request):
     """
     :return: an Enrollment object
     """
-    if hasattr(request, 'my_curq_enrollment'):
-        return request.my_curq_enrollment
-    enrollment = get_enrollment_for_term(get_current_quarter(request))
-    request.my_curq_enrollment = enrollment
-    return enrollment
+    return get_enrollment_for_term(request,
+                                   get_current_quarter(request))
 
 
-def get_enrollment_for_term(term):
+def get_enrollment_for_term(request, term):
     """
     :return: an Enrollment object
     """
-    return get_all_enrollments().get(term)
+    id = "%d%s_%s" % (term.year, term.quarter, 'enrollment')
+    if hasattr(request, id):
+        return request.id
+    enrollment = get_all_enrollments().get(term)
+    request.id = enrollment
+    return enrollment
 
 
 def get_enrollments_of_terms(term_list):

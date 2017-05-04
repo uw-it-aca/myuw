@@ -21,6 +21,8 @@ from myuw.views.api.instructor_schedule import (InstScheCurQuar, InstScheQuar,
 from myuw.views.api.finance import Finance
 from myuw.views.api.hfs import HfsBalances
 from myuw.views.api.future_schedule import StudClasScheFutureQuar
+from myuw.views.api.prev_unfinished_schedule import\
+    StudUnfinishedPrevQuarClasSche
 from myuw.views.api.grad import MyGrad
 from myuw.views.api.iasystem import IASystem
 from myuw.views.api.library import MyLibInfo
@@ -121,6 +123,10 @@ urlpatterns += [
     url(r'^api/v1/schedule/current/?$',
         login_required(StudClasScheCurQuar().run),
         name="myuw_current_schedule"
+        ),
+    url(r'^api/v1/schedule/prev_unfinished/?$',
+        login_required(StudUnfinishedPrevQuarClasSche().run),
+        name="myuw_prev_unfinished_schedule"
         ),
     url(r'^api/v1/schedule/(?P<year>\d{4}),(?P<quarter>[a-z]+),'
         r'(?P<summer_term>[-,abterm]*)$',
