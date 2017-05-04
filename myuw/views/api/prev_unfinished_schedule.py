@@ -50,7 +50,7 @@ class StudUnfinishedPrevQuarClasSche(StudClasSche):
             return HttpResponse(json.dumps(resp_data))
         except Exception:
             return handle_exception(logger, timer, traceback)
-    
+
     def make_resp_json(self, request, enrollment_dict):
         ret_json = []
         terms = get_prev_num_terms(request, 2)
@@ -66,8 +66,7 @@ class StudUnfinishedPrevQuarClasSche(StudClasSche):
         return ret_json
 
     def get_term_schedule(self, request, term, unfinished_sections):
-        schedule = get_schedule_by_term(request, term,
-                                        included_sections=False)
+        schedule = get_schedule_by_term(request, term)
         include_sections = []
         for section in schedule.sections:
             if section.section_label() in unfinished_sections:
