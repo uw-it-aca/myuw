@@ -3,7 +3,7 @@ var MedicineAccountsCard = {
     dom_target: undefined,
 
     render_init: function() {
-        WSData.fetch_profile_data(MedicineAccountsCard.render_upon_data);
+        WSData.fetch_profile_data(MedicineAccountsCard.render_upon_data, MedicineAccountsCard.render_error);
     },
 
 
@@ -14,6 +14,10 @@ var MedicineAccountsCard = {
         } else {
             MedicineAccountsCard.dom_target.hide();
         }
+    },
+
+    render_error: function() {
+        MedicineAccountsCard.dom_target.html(CardWithError.render("UW Medicine"));
     },
 
 
