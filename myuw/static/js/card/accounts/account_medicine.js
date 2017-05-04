@@ -3,7 +3,7 @@ var MedicineAccountsCard = {
     dom_target: undefined,
 
     render_init: function() {
-        WSData.fetch_profile_data(MedicineAccountsCard.render_upon_data);
+        WSData.fetch_profile_data(MedicineAccountsCard.render_upon_data, MedicineAccountsCard.render_error);
     },
 
 
@@ -16,11 +16,15 @@ var MedicineAccountsCard = {
         }
     },
 
+    render_error: function() {
+        MedicineAccountsCard.dom_target.html(CardWithError.render("UW Medicine"));
+    },
+
 
     _render: function() {
         var source   = $("#accounts_medicine").html();
         var template = Handlebars.compile(source);
-        var compiled = template({"card_name": MedicineAccountsCard.name});
+        var compiled = template(WSData.profile_data().password);
         MedicineAccountsCard.dom_target.html(compiled);
     }
 };
