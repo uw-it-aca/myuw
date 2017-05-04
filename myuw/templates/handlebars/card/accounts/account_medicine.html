@@ -1,16 +1,29 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "accounts_medicine" %}
-<div class="card" style="position:relative;">
-
+<div class="card" style="position:relative;" id="medicine-pw"> 
+    <div class="c6Border" style="position:absolute; top:0; left:0; right:0;">&nbsp;</div> 
     <h3>UW Medicine Account <!--{{ card_name }}--></h3>
-      {{#if med_pw_expired }}
-            <span class="password-alert">Password expired on {{formatDateAsDate expires_med}}. <a href="https://services.uwmedicine.org/passwordportal/login.htm">Change your password to regain access.</a></span>
+		{{#if med_pw_expired }}
+	     <span class="pw-exp-date">Password expired on {{formatDateAsDate expires_med}}</span><br>
+		 <span><a href="https://services.uwmedicine.org/passwordportal/login.htm">Change your password to regain access.</a></span>
         {{ else }}
-            <span class="password-status {{#if expires_in_30_days_or_less}}password-alert{{/if}}">Password expires in {{days_before_med_pw_expires}} days ({{formatDateAsDate expires_med}})</span><br>
-            <a href="https://services.uwmedicine.org/passwordportal/login.htm">Change UW Medicine password</a>
+ 		<div class="card-badge clearfix">   
+	 		<div class="pull-left">    
+            <span class="pw-exp-date {{#if expires_in_30_days_or_less}}password-alert{{/if}}">Password expires in</span> 
+            </div><!-- .pull-left -->
+           
+            <div class="pull-right">
+            	<span class="card-badge-value">{{days_before_med_pw_expires}} days ({{formatDateAsDate expires_med}})</span>
+			</div><!-- .pull-right --> 
+            
+            <div class="pw-link"><a href="https://services.uwmedicine.org/passwordportal/login.htm">Change UW Medicine password</a></div>
+       </div><!-- .card-badge -->
         {{/if}}
             <p>This password is for UW Medicine applications like Epic, ORCA, MINDscape, AMC network, etc.</p>
-</div> 
+         
+
+
+</div> <!-- .card -->
 
     
 
