@@ -937,12 +937,33 @@ label { font-weight: normal; }
     // ACCOUNT PAGE CARDS
     div#medicine-pw {
 	    .pw-exp {font-size: 16px; margin-bottom: 10px;}	    
-	    .pw-exp-date {
-		color: fuchsia;
-		font-weight: bold;}
-		.pw-link{ clear:both;}
-		
+	    .pw-exp-date {color:#444;font-weight: bold;}
+		.password-alert {color:#a94442;
+			a {text-decoration: underline;}
+		}
+		.pw-link{ clear:both; margin-bottom: 10px;}
+	.card-badge {
+                padding: 8px 10px 10px 0px;
+                position: relative;
+                .card-badge-label {
+                    display: block;
+                    font-weight: bold;
+                /*line-height: 35px;*/ }
+                .card-badge-action {
+                    display: block;
+                    font-weight: normal;
+                    line-height: 35px;
+                    margin-top: -10px;
+                    a { display: block; }
+                }
 
+                .card-badge-value {
+                    display: block;
+                    font-size: 22px;
+                    font-weight: bold;
+                    text-align: right;
+                }
+	}
     } //end of Medicine card
 
 

@@ -5,17 +5,17 @@
     <h3>UW Medicine Account <!--{{ card_name }}--></h3>
 		{{#if med_pw_expired }}
 	     <div class="pw-exp">
-		 	<span class="pw-exp-date">Password expired on {{formatDateAsDate expires_med}}.</span>
-		 	<span><a href="https://services.uwmedicine.org/passwordportal/login.htm">Change your password to regain access.</a></span>
+		 	<span class="pw-exp-date password-alert">Password expired on {{formatDateAsDate expires_med}}.
+		 	<a href="https://services.uwmedicine.org/passwordportal/login.htm" class="password-alert">Change your password to regain access.</a></span>
 		 </div><!-- .pw-exp -->
         {{ else }}
  		<div class="card-badge clearfix">   
-	 		<div class="pull-left">    
-            <span class="pw-exp-date {{#if expires_in_30_days_or_less}}password-alert{{/if}}">Password expires in</span> 
+	 		<div class="pull-left pw-exp">    
+            <h4 class="pw-exp-date {{#if expires_in_30_days_or_less}}password-alert{{/if}}">Password expires</h4> 
             </div><!-- .pull-left -->
-           
             <div class="pull-right">
-            	<span class="card-badge-value">{{days_before_med_pw_expires}} days ({{formatDateAsDate expires_med}})</span>
+            	<span class="card-badge-value {{#if expires_in_30_days_or_less}}password-alert{{/if}}">{{formatDateAsDate expires_med}}</span>
+            	<span class="card-badge-action pull-right {{#if expires_in_30_days_or_less}}password-alert{{/if}}">{{days_before_med_pw_expires}} days </span>
 			</div><!-- .pull-right --> 
             
             <div class="pw-link"><a href="https://services.uwmedicine.org/passwordportal/login.htm">Change UW Medicine password</a></div>
