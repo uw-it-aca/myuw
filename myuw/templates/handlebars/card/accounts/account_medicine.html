@@ -4,8 +4,10 @@
     <div class="c6Border" style="position:absolute; top:0; left:0; right:0;">&nbsp;</div> 
     <h3>UW Medicine Account <!--{{ card_name }}--></h3>
 		{{#if med_pw_expired }}
-	     <span class="pw-exp-date">Password expired on {{formatDateAsDate expires_med}}</span><br>
-		 <span><a href="https://services.uwmedicine.org/passwordportal/login.htm">Change your password to regain access.</a></span>
+	     <div class="pw-exp">
+		 	<span class="pw-exp-date">Password expired on {{formatDateAsDate expires_med}}.</span>
+		 	<span><a href="https://services.uwmedicine.org/passwordportal/login.htm">Change your password to regain access.</a></span>
+		 </div><!-- .pw-exp -->
         {{ else }}
  		<div class="card-badge clearfix">   
 	 		<div class="pull-left">    
