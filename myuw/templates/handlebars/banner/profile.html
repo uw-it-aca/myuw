@@ -73,6 +73,9 @@
                                             {{#unless same_as_previous}}
                                                 <li>{{ pluralize_by_size minors "Minor" "Minors"}}
                                                     Beginning {{ toTitleCase quarter}}:
+                                                    {{#list_less_than minors 1}}
+                                                        None
+                                                    {{/list_less_than}}
                                                     {{#each minors}}
                                                         {{full_name}} {{#unless @last}},{{/unless}}
                                                     {{/each}}

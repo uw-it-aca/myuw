@@ -95,28 +95,7 @@ def _get_degrees_for_terms(terms, enrollments, accessor):
             break
 
     for term in terms:
-        if (term in enrollments and
-                len(getattr(enrollments[term], accessor)) > 0):
-            enrollment = enrollments[term]
-            entry = {}
-            entry['quarter'] = term.quarter
-            entry['year'] = term.year
-
-            term_degrees = getattr(enrollments[term], accessor)
-            entry[accessor] = []
-
-            entry['same_as_previous'] = _compare_degrees(previous,
-                                                         term_degrees)
-
-            for degree in term_degrees:
-                entry[accessor].append(degree.json_data())
-
-            degrees.append(entry)
-            previous = term_degrees
-        elif(term in enrollments and
-                len(getattr(enrollments[term], accessor)) == 0):
-            # If the user has dropped all degrees, add one saying None
-            if(len(previous) > 0):
+        if term in enrollments:
                 entry = {}
                 entry['quarter'] = term.quarter
                 entry['year'] = term.year
@@ -126,16 +105,11 @@ def _get_degrees_for_terms(terms, enrollments, accessor):
 
                 entry['same_as_previous'] = _compare_degrees(previous,
                                                              term_degrees)
-                none_degree = {}
-                none_degree['college_abbr'] = ''
-                none_degree['college_full_name'] = ''
-                none_degree['full_name'] = 'None'
-                none_degree['degree_abbr'] = 'NONE'
-                none_degree['short_name'] = 'NONE'
-                none_degree['name'] = 'None'
-                none_degree['campus'] = previous[0].campus
 
-                entry[accessor].append(none_degree)
+                entry['has_dropped'] = _has_only_dropped_degrees(previous,
+                                                                 term_degrees)
+                for degree in term_degrees:
+                    entry[accessor].append(degree.json_data())
 
                 degrees.append(entry)
                 previous = term_degrees
@@ -165,6 +139,15 @@ def _compare_degrees(first, second):
     if they are the same. Returns True if so, False if they are different
     """
     return len(set(first) ^ set(second)) == 0
+
+
+def _has_only_dropped_degrees(first, second):
+    """
+    Returns True if the user has only dropped degrees from first, and False
+    if there have been either no degrees dropped or one added.
+    """
+    has_dropped = set(first) - set(second)
+    has_added = set(second) - set(first)
 
 
 def enrollment_prefetch():

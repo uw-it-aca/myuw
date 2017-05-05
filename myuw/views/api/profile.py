@@ -38,9 +38,7 @@ class MyProfile(RESTDispatch):
             netid = get_netid_of_current_user()
 
             if is_student():
-
                 response = get_student_profile(request)
-
             else:
                 response = {}
                 response['is_grad_student'] = False
@@ -52,9 +50,11 @@ class MyProfile(RESTDispatch):
             try:
                 response['password'] = get_pw_json(netid, request)
             except Exception as ex:
+                traceback.print_exc()
                 logger.error("%s get_pw_json: %s" % (netid, ex))
 
             log_success_response(logger, timer)
             return HttpResponse(json.dumps(response, default=str))
         except Exception:
+            traceback.print_exc()
             return handle_exception(logger, timer, traceback)
