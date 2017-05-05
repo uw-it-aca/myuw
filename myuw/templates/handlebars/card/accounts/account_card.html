@@ -1,36 +1,43 @@
 {% load templatetag_handlebars %}
+{% load static %}
 {% tplhandlebars "accounts_card" %}
-<div class="card" style="position:relative;">
+<div class="card hr-payroll-card" style="position:relative;">
     <h3>HR and Payroll</h3>
 
-    <h4>Workday</h4>
-    <ul>
-        <li><a href="https://wd5.myworkday.com/uw/login.htmld" id="og_workday">Sign in to Workday</a>
-        <p>Workday is UW's human resources, benefits, payroll, and time tracking system.</p></li>
-    </ul>
+    <div style="padding-bottom: 10px;">
+        <h4>Workday</h4>
+        <a class="btn btn-default" href="https://wd5.myworkday.com/uw/login.htmld" id="og_workday" style="background-image: url({% static 'images/wday_logo.png' %})">Sign in to Workday</a>
+        <p>Workday is UW's human resources, benefits, payroll, and time tracking system.</p>
+    </div>
 
-    <h4>Get Help</h4>
-    <ul>
-        <li><a href="https://isc.uw.edu">Integrated Support Center (ISC)</a></li>
-        <li><a href="mailto:askisc@uw.edu">Contact ISC</a></li>
-        <li>Get help with:
-            <ul><li>How to look up sick and vacation time</li>
-                <li>How to enter your hours in Workday</li>
-                <li>Set up direct deposit</li>
-            </ul>
-        </li>
-        <li>{{#if is_clinician}}TO DO: Add link to "UW Medicine HR"{{else}}{{#if is_faculty}}<a href="http://ap.washington.edu/ahr/">Academic HR</a>{{else}}<a href="http://hr.uw.edu/">UW Human Resources</a>{{/if}}{{/if}}</li>
-    </ul>
+    <div style="padding-bottom: 10px;">
+        <h4>Get Help</h4>
+        <ul class="unstyled-list">
+            <li><a href="https://isc.uw.edu">Integrated Service Center (ISC)</a></li>
+            <li>{{#if is_clinician}}TO DO: Add link to "UW Medicine HR"{{else}}{{#if is_faculty}}<a href="http://ap.washington.edu/ahr/">Academic HR</a>{{else}}<a href="http://hr.uw.edu/">UW Human Resources</a>{{/if}}{{/if}}</li>
+        </ul>
+        <p class="card-related-messages">Learn how to <a href="https://isc.uw.edu/your-time-absence/time-off/">look up sick and vacation time</a>, <a href="https://isc.uw.edu/your-time-absence/time-reporting/">enter your hours in Workday</a>, <a href="https://isc.uw.edu/your-pay-taxes/paycheck-info/#direct-deposit">set up direct deposit</a>, and more.</p>
+    </div>
 
-    <h4>Services and Perks</h4>
-    <ul>
-        <li><a href="https://www.washington.edu/wholeu/">Whole U</a></li>
-        <li><a href="https://nb.fidelity.com/public/nb/uw/home">Fidelity NetBenefits</a></li>
-        <li><a href="http://hr.uw.edu/benefits/retirement-plans/seminars-and-consultations/meet-with-an-investment-professional/">Financial Planning Help</a></li>
-        <li><a href="https://www.washington.edu/facilities/transportation/employee-u-pass">Employee U-PASS</a></li>
-        <li><a href="http://www.washington.edu/safecampus/">SafeCampus</a></li>
-        <li><a href="https://www.washington.edu/facilities/transportation/commute-options">Commute Options</a></li>
-        <li><a href="http://www.washington.edu/ima/">Join the IMA (Intramural Activities)</a></li>
-    </ul>
+    <div style="">
+        <h4>Services and Perks</h4>
+        <div class="row">
+            <div class="col-xs-6">
+                <ul class="unstyled-list">
+                    <li><a href="https://www.washington.edu/wholeu/">Whole U</a></li>
+                    <li><a href="https://nb.fidelity.com/public/nb/uw/home">Fidelity NetBenefits</a></li>
+                    <li><a href="http://hr.uw.edu/benefits/retirement-plans/seminars-and-consultations/meet-with-an-investment-professional/">Financial Planning Help</a></li>
+                    <li><a href="https://www.washington.edu/facilities/transportation/employee-u-pass">Employee U-PASS</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-6">
+                <ul class="unstyled-list">
+                    <li><a href="http://www.washington.edu/safecampus/">SafeCampus</a></li>
+                    <li><a href="https://www.washington.edu/facilities/transportation/commute-options">Commute Options</a></li>
+                    <li><a href="http://www.washington.edu/ima/">Join the IMA (Intramural Activities)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 {% endtplhandlebars %}
