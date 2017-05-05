@@ -15,7 +15,7 @@
             </div><!-- .pull-left -->
             <div class="pull-right">
             	<span class="card-badge-value {{#if expires_in_30_days_or_less}}password-alert{{/if}}">{{formatDateAsDate expires_med}}</span>
-            	<span class="card-badge-action pull-right {{#if expires_in_30_days_or_less}}password-alert{{/if}}">{{days_before_med_pw_expires}} days </span>
+            	<span class="card-badge-action pull-right {{#if expires_in_30_days_or_less}}password-alert{{/if}}">in {{days_before_med_pw_expires}} days </span>
 			</div><!-- .pull-right --> 
             
             <div class="pw-link"><a href="https://services.uwmedicine.org/passwordportal/login.htm">Change UW Medicine password</a></div>
