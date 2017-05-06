@@ -6,7 +6,7 @@ var PrevTermCourseCards = {
     render_init: function() {
         PrevTermCourseCards.term = "prev_unfinished";
         PrevTermCourseCards.dom_target = $("#PrevTermCourseCards");
-        if (!window.user.student) {
+        if (!window.user.pce) {
             $("#PrevTermCourseCards").hide();
             return;
         }
