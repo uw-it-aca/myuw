@@ -2,7 +2,7 @@
     {% tplhandlebars "course_card_list" %}
 
 {{#if display_term}}
-    <h3 id="quarter-info">{{toTitleCase quarter}} {{year}} Courses</h3>
+    <h3 id="quarter-info">{{ucfirst quarter}} {{year}} Courses</h3>
 {{else}}
     <h3 id="your_courses" class="sr-only">Your {{ucfirst quarter}} {{year}} Courses</h3>
 {{/if}}
