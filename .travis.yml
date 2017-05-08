@@ -14,6 +14,10 @@ env:
 install:
   - pip install -r requirements.txt
 before_script:
+  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create database myuw'; fi
+  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create user "myuw" identified by "my_pass"'; fi
+  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'grant all on *.* to myuw'; fi
+
   - pip install coverage
   - pip install python-coveralls
   - pip install pep8
@@ -32,9 +36,6 @@ before_script:
   - cp travis-ci/manage.py manage.py
   - python manage.py migrate
 
-  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create database myuw'; fi
-  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create user "myuw" identified by "my_pass"'; fi
-  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'grant all on *.* to myuw'; fi
 script:
   - which mocha
   - which _mocha
