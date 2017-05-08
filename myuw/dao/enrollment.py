@@ -46,7 +46,7 @@ def get_current_quarter_enrollment(request):
 
 def get_enrollment_for_term(term):
     """
-    :return: an Enrollment object
+    :return: an Enrollment object or None if no object exists
     """
     return get_all_enrollments().get(term)
 
