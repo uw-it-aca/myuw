@@ -42,7 +42,7 @@ class TestDaoEnrollment(TestCase):
         self.assertEqual(len(enrollment.majors), 0)
         self.assertEqual(len(enrollment.minors), 0)
 
-    def test_get_enrollment_for_term(self):
+    def test_get_javerage_enrollment_for_term(self):
         req = get_request_with_user('javerage',
                                     get_request_with_date("2013-04-10"))
         term = get_next_quarter(req)
