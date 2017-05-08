@@ -1,33 +1,61 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "directory_info_card" %}
     <div class="card" data-type="card" data-name="DirectoryInfoCard" data-identifier="{{ title }}">
-        <h3>Directory Information</h3>
+        <h3>Employee Profile</h3>
 
         <div vocab="http://schema.org/" typeof="Person">
-            <div class="home-address">
-              <h4>Home Address</h4>
-              <div class="directory-details" property="address" typeof="PostalAddress">
-                <span property="streetAddress">{{permanent_address.street_line1}}</span>
-                <span property="streetAddress">{{permanent_address.street_line2}}</span><br />
-                <span property="addressLocality">{{permanent_address.city}}</span>, <span property="addressRegion">{{permanent_address.state}}</span> <span property="postalCode">{{permanent_address.zip_code}}</span>
-              </div>
-              <p class="directory-details">Home Phone: <span property="telephone">{{phone_number permanent_phone}}</span></p>
+            <div class="personal-contact-info">
+                <div class="home-address">
+                    <h4>Home Address</h4>
+                    <div property="address" typeof="PostalAddress">
+                        <span property="streetAddress">{{permanent_address.street_line1}}</span>
+                        <span property="streetAddress">{{permanent_address.street_line2}}</span><br />
+                        <span property="addressLocality">{{permanent_address.city}}</span>, <span property="addressRegion">{{permanent_address.state}}</span> <span property="postalCode">{{permanent_address.zip_code}}</span>
+                    </div>
+                    <p>Home Phone: <span property="telephone">{{phone_number permanent_phone}}</span></p>
+                </div>
+
+                <div class="emergency-contact">
+                    <h4>Emergency Contact</h4>
+                    <div>
+                        <span>NAME</span><br/>
+                        <span>(xxx) xxx-xxxx</span><br/>
+                        <span>Alt (xxx) xxx-xxxx</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="emergency-contact">
-              <h4>Emergency Contact</h4>
+            <div class="directory-information">
+                <div class="dir-position">
+                    <h4>Position</h4>
+                    <span>Fill: POSITION</span>
+                </div>
 
-            </div>
+                <div class="dir-contact-info">
+                    <h4>Work Contact Information</h4>
+                    <span>Name (official):</span> <span property="name">{{first_name}} {{last_name}}</span><br />
+                    <span>Name (preferred):</span> <span property="additionalName">{{student_name}}</span><br />
+                    <span>Office phone (xxx)xxx-xxxx</span><br />
+                    <span>Alt phone (xxx)xxx-xxxx</span><br />
+                    <span>Fax (xxx)xxx-xxxx</span><br />
+                    <span>Voicemail (xxx)xxx-xxxx</span><br />
+                    <span>Box Number: 354xxx</span><br />
+                    <span>Campus Address: xxxx NE 45th Seattle, WA xxxxx-xxxx</span><br />
+                </div>
 
-            <div class="employee-information">
-              <h4>Employee Information ({{#unless directory_release}}Not {{/unless}}published) </h4>
-              <div class="directory-details">
-                <span>Name (official):</span> <span property="name">{{first_name}} {{last_name}}</span><br />
-                <span>Name (preferred):</span> <span property="additionalName">{{student_name}}</span><br />
+                <div class="dir-release">
+                    <h4>UW Directory</h4>
+                    <div>
+                        {{#unless directory_release}}
+                        <p>Not published</p>
+                        {{/unless}}
+                        {{#if directory_release}}
+                        <p>Name, position, work contact information are visible in the <a href="https://www.washington.edu/home/peopledir/">UW Directory</a>.</p>
+                        {{/if }}
 
-                <a href="https://identity.uw.edu/">Identity.UW</a>
-                <a href="https://www.washington.edu/home/peopledir/">UW Directory</a>
-              </div>
+                        <a href="https://identity.uw.edu/">Manage UW Directory preferences on Identity.UW</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
