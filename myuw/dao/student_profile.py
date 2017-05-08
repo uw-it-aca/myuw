@@ -86,10 +86,9 @@ def get_academic_info(request, response):
 
 def _get_degrees_for_terms(terms, enrollments, accessor):
     """
-    Takes in a list of terms and a dictionary of terms to enrollments (returned
-    by get_all_enrollments), and returns a list of either majors or minors
-    and their terms, depending upon which accessor is used, 'majors' or
-    'minors'
+    Takes in a list of terms and a dictionary of terms to enrollments, and
+    returns a list of either majors or minors and their terms, depending upon
+    which accessor is used, 'majors' or 'minors'
     """
     degrees = []
     previous = None
@@ -125,16 +124,16 @@ def _get_degrees_for_terms(terms, enrollments, accessor):
 
 def _get_majors_for_terms(terms, enrollments):
     """
-    Takes in a list of terms and a dictionary of terms to enrollments (returned
-    by get_all_enrollments), and returns a list of majors and their terms
+    Takes in a list of terms and a dictionary of terms to enrollments,
+    and returns a list of majors and their terms
     """
     return _get_degrees_for_terms(terms, enrollments, 'majors')
 
 
 def _get_minors_for_terms(terms, enrollments):
     """
-    Takes in a list of terms and a dictionary of terms to enrollments (returned
-    by get_all_enrollments), and returns a list of minors and their terms
+    Takes in a list of terms and a dictionary of terms to enrollments, and
+    returns a list of minors and their terms
     """
     return _get_degrees_for_terms(terms, enrollments, 'minors')
 

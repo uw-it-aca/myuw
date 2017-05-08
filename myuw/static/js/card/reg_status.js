@@ -8,31 +8,25 @@ var RegStatusCard = {
             return;
         }
 
-        Handlebars.registerPartial("reg_holds",
-            $("#reg_holds_tmpl").html());
-        Handlebars.registerPartial("reg_finaid_notices",
-            $("#reg_finaid_notices_tmpl").html());
-        Handlebars.registerPartial("notice_est_reg_date",
-            $("#notice_est_reg_date_tmpl").html());
-        Handlebars.registerPartial("in_myplan",
-            $("#in_myplan_tmpl").html());
-        Handlebars.registerPartial("reg_resources",
-            $("#reg_resources_tmpl").html());
-        Handlebars.registerPartial("myplan_courses",
-            $("#myplan_courses_tmpl").html());
+        Handlebars.registerPartial("reg_holds", $("#reg_holds_tmpl").html());
+        Handlebars.registerPartial("reg_finaid_notices", $("#reg_finaid_notices_tmpl").html());
+        Handlebars.registerPartial("notice_est_reg_date", $("#notice_est_reg_date_tmpl").html());
+        Handlebars.registerPartial("in_myplan", $("#in_myplan_tmpl").html());
+        Handlebars.registerPartial("reg_resources", $("#reg_resources_tmpl").html());
+        Handlebars.registerPartial("myplan_courses", $("#myplan_courses_tmpl").html());
 
         if (!(window.card_display_dates.is_after_start_of_registration_display_period &&
-                window.card_display_dates.is_before_end_of_registration_display_period)) {
+              window.card_display_dates.is_before_end_of_registration_display_period)) {
             $("#RegStatusCard").hide();
             return;
         }
 
         WSData.fetch_notice_data(RegStatusCard.render_upon_data,
-            RegStatusCard.render_error);
+                                 RegStatusCard.render_error);
         WSData.fetch_oquarter_data(RegStatusCard.render_upon_data,
-            RegStatusCard.render_error);
+                                   RegStatusCard.render_error);
         WSData.fetch_profile_data(RegStatusCard.render_upon_data,
-            RegStatusCard.render_error);
+                                  RegStatusCard.render_error);
     },
 
     render_upon_data: function() {
@@ -49,9 +43,9 @@ var RegStatusCard = {
         if (!window.card_display_dates.myplan_peak_load &&
             !WSData.myplan_data(next_term_data.year, next_term_data.quarter)) {
             WSData.fetch_myplan_data(next_term_data.year,
-                next_term_data.quarter,
-                RegStatusCard.render_upon_data,
-                RegStatusCard.render_error);
+                                     next_term_data.quarter,
+                                     RegStatusCard.render_upon_data,
+                                     RegStatusCard.render_error);
             return;
         }
 
@@ -103,10 +97,10 @@ var RegStatusCard = {
             for (j = 0; j < notice.attributes.length; j++) {
                 attribute = notice.attributes[j];
                 if ((is_summer_reg &&
-                        attribute.name === "Quarter" &&
-                        attribute.value === "Summer") ||
+                     attribute.name === "Quarter" &&
+                     attribute.value === "Summer") ||
                     (attribute.name === "Quarter" &&
-                        attribute.value === quarter)) {
+                     attribute.value === quarter)) {
                     has_est_reg_date_notice = true;
                     reg_is_open = notice.my_reg_has_opened;
                     is_my_1st_reg_day = notice.is_my_1st_reg_day;
@@ -301,7 +295,7 @@ var RegStatusCard = {
         if (window.card_display_dates.myplan_peak_load || myplan_data) {
 
             var content = RegStatusCard._render_for_term(myplan_data,
-                reg_next_quarter);
+                                                         reg_next_quarter);
             if (!content) {
                 RegStatusCard.dom_target.hide();
                 return;
@@ -310,7 +304,7 @@ var RegStatusCard = {
             RegStatusCard.dom_target.html(content);
             RegStatusCard._add_events();
             LogUtils.cardLoaded(RegStatusCard.name,
-                RegStatusCard.dom_target);
+                                RegStatusCard.dom_target);
         }
     }
 };
