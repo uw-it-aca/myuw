@@ -154,10 +154,14 @@ class TestProfile(MyuwApiTest):
 
         data = json.loads(response.content)
         self.assertTrue("term_majors" in data)
-        self.assertEquals(len(data['term_majors']), 0)
+        self.assertEquals(len(data['term_majors']), 2)
+        self.assertEquals(len(data['term_majors'][0]['majors']), 0)
+        self.assertEquals(len(data['term_majors'][1]['majors']), 0)
 
         self.assertIn("term_minors", data)
-        self.assertEquals(len(data['term_minors']), 0)
+        self.assertEquals(len(data['term_minors']), 2)
+        self.assertEquals(len(data['term_minors'][0]['minors']), 0)
+        self.assertEquals(len(data['term_minors'][1]['minors']), 0)
 
     def test_drop_minor(self):
         response = self.get_profile_response('javg002')
@@ -167,11 +171,9 @@ class TestProfile(MyuwApiTest):
         self.assertIn("term_minors", data)
         self.assertTrue(data['term_minors'][0]['same_as_previous'])
 
-        self.assertEquals(len(data['term_minors']), 2)
+        self.assertEquals(len(data['term_minors']), 4)
         self.assertEquals(len(data['term_minors'][0]['minors']), 1)
-        self.assertEquals(len(data['term_minors'][1]['minors']), 1)
-        self.assertEquals(data['term_minors'][1]['minors'][0]['full_name'],
-                          "None")
+        self.assertEquals(len(data['term_minors'][1]['minors']), 0)
 
     def test_no_pending(self):
         response = self.get_profile_response('javg005')
