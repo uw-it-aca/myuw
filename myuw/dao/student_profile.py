@@ -26,8 +26,7 @@ def get_student_profile(request):
     """
     Returns the JSON response for a student's profile
     """
-    regid = get_regid_of_current_user()
-    profile = get_person_by_regid(regid)
+    profile = get_profile_of_current_user()
 
     response = profile.json_data()
     response['is_student'] = True
