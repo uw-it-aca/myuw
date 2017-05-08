@@ -56,6 +56,23 @@ describe('LinkToFormSubmit', function() {
             assert.equal($("#l4").attr('href'), '#');
 
         });
+        it('should read a data-linklabel attr if it exists', function() {
+            var content = "<div><a id='dl1' href='http://example.com' data-linklabel='Link for TRAIN 101'>Link 1</a></div>";
+
+            $('body').append($(content));
+
+            $('body').off('click', "A");
+            register_link_recorder();
+
+            global.csrf_token = 'fake_token';
+
+            $("#dl1").click();
+
+            assert.equal($("#dl1").attr('myuw-data-href'), 'http://example.com');
+            assert.equal($("#dl1").attr('href'), '/out?u='+encodeURIComponent('http://example.com')+'&l='+encodeURIComponent('Link for TRAIN 101'));
+
+
+        });
         it('should work with search results', function() {
             var content = "<div><a id='s1' href='http://uw.edu?u=something' data-ctorig='http://example.com'>Link 1</a></div>";
             $('body').append($(content));
