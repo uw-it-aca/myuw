@@ -65,14 +65,16 @@ def get_academic_info(request, response):
         enrollment = enrollments[terms[0]]
         response['class_level'] = enrollment.class_level
 
-    response['term_majors'] = _get_majors_for_terms(terms, enrollments)
+    response['term_majors'] = _get_degrees_for_terms(terms, enrollments,
+                                                     "majors")
     response['has_pending_major'] = False
 
     for major in response['term_majors']:
         if not major['same_as_previous']:
             response['has_pending_major'] = True
 
-    response['term_minors'] = _get_minors_for_terms(terms, enrollments)
+    response['term_minors'] = _get_degrees_for_terms(terms, enrollments,
+                                                     "minors")
     response['has_pending_minor'] = False
 
     if (len(response['term_minors']) > 1 and
@@ -120,22 +122,6 @@ def _get_degrees_for_terms(terms, enrollments, accessor):
                 previous = term_degrees
 
     return degrees
-
-
-def _get_majors_for_terms(terms, enrollments):
-    """
-    Takes in a list of terms and a dictionary of terms to enrollments,
-    and returns a list of majors and their terms
-    """
-    return _get_degrees_for_terms(terms, enrollments, 'majors')
-
-
-def _get_minors_for_terms(terms, enrollments):
-    """
-    Takes in a list of terms and a dictionary of terms to enrollments, and
-    returns a list of minors and their terms
-    """
-    return _get_degrees_for_terms(terms, enrollments, 'minors')
 
 
 def _compare_degrees(first, second):

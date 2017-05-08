@@ -8,12 +8,18 @@ var RegStatusCard = {
             return;
         }
 
-        Handlebars.registerPartial("reg_holds", $("#reg_holds_tmpl").html());
-        Handlebars.registerPartial("reg_finaid_notices", $("#reg_finaid_notices_tmpl").html());
-        Handlebars.registerPartial("notice_est_reg_date", $("#notice_est_reg_date_tmpl").html());
-        Handlebars.registerPartial("in_myplan", $("#in_myplan_tmpl").html());
-        Handlebars.registerPartial("reg_resources", $("#reg_resources_tmpl").html());
-        Handlebars.registerPartial("myplan_courses", $("#myplan_courses_tmpl").html());
+        Handlebars.registerPartial("reg_holds",
+                           $("#reg_holds_tmpl").html());
+        Handlebars.registerPartial("reg_finaid_notices",
+                                   $("#reg_finaid_notices_tmpl").html());
+        Handlebars.registerPartial("notice_est_reg_date",
+                                   $("#notice_est_reg_date_tmpl").html());
+        Handlebars.registerPartial("in_myplan",
+                                   $("#in_myplan_tmpl").html());
+        Handlebars.registerPartial("reg_resources",
+                                   $("#reg_resources_tmpl").html());
+        Handlebars.registerPartial("myplan_courses",
+                                   $("#myplan_courses_tmpl").html());
 
         if (!(window.card_display_dates.is_after_start_of_registration_display_period &&
               window.card_display_dates.is_before_end_of_registration_display_period)) {
