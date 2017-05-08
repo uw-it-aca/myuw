@@ -55,6 +55,12 @@
         <span class="shortTitle">{{summer_term}}</span>
         {{/if}}
     </h3>
+    <div id="schedule-tabs">
+        {{ #each schedule_periods }}
+        <span>{{ toMonthDay start_date }} - {{ toMonthDay end_date }}</span>
+        {{ /each }}
+
+    </div>
      {{# if has_early_fall_start }}
     <div class="efs-switcher">
         <a href="#" class="show_full_term_meetings"><span class="shortTitle">Early Fall Start</span> <span class="efs-switcher-link-text">show Full Term</span></a>

@@ -48,7 +48,7 @@ var VisualScheduleCard = {
     _render: function() {
         var term = VisualScheduleCard.term;
         var course_data = WSData.normalized_course_data(term);
-        VisualScheduleCard._get_schedule_periods(course_data);
+        course_data.schedule_periods = VisualScheduleCard._get_schedule_periods(course_data);
 
         VisualScheduleCard.render_schedule(course_data, term);
 
@@ -58,27 +58,42 @@ var VisualScheduleCard = {
     },
 
     _get_schedule_periods: function(course_data) {
-        console.log(course_data);
         var schedule_periods = {};
         $(course_data.sections).each(function(idx, section){
             // get start and end dates for section
             var section_dates = VisualScheduleCard._get_dates_for_section(section);
-            console.log(section_dates);
             schedule_periods = VisualScheduleCard._add_to_periods(section_dates,
                                                                   section,
                                                                   schedule_periods);
 
-
-
             if(section.final_exam !== undefined
                 && section.final_exam.start_date !== undefined){
-                var week_range = VisualScheduleCard._get_week_range_from_date(section.final_exam.start_date);
+                schedule_periods = VisualScheduleCard._add_to_finals(section, schedule_periods);
             }
-
-
         });
-        console.log(JSON.stringify(schedule_periods));
+        return VisualScheduleCard._format_dates(schedule_periods);
+    },
 
+    _format_dates: function(schedule_periods){
+        for (var period_id in schedule_periods){
+            schedule_periods[period_id]['start_date'] = schedule_periods[period_id]['start_date'].format("YYYY-MM-DD");
+            schedule_periods[period_id]['end_date'] = schedule_periods[period_id]['end_date'].format("YYYY-MM-DD");
+        }
+        return schedule_periods;
+    },
+
+    _add_to_finals: function(section, schedule_periods){
+        var week_range = VisualScheduleCard._get_week_range_from_date(section.final_exam.start_date);
+        if ("finals" in schedule_periods){
+            schedule_periods["finals"]["sections"].push(section)
+        } else {
+            schedule_periods["finals"] =
+            {"start_date": week_range[0],
+                "end_date" : week_range[1],
+                "sections": [section]
+            };
+        }
+        return schedule_periods;
     },
 
 
@@ -87,20 +102,20 @@ var VisualScheduleCard = {
             periods["0"] =
             {"start_date": dates[0],
                 "end_date" : dates[1],
-                "sections": ['section']
+                "sections": [section]
             };
         } else {
             for (var period_key in periods){
                 var period = periods[period_key];
                 if(period.start_date.isSame(dates[0])
                     && period.end_date.isSame(dates[1])){
-                    period.sections.push('section');
+                    period.sections.push(section);
                     return periods;
                 }
             }
             periods[Object.keys(periods).length] = {"start_date": dates[0],
                 "end_date" : dates[1],
-                "sections": ['section']
+                "sections": [section]
             };
         }
     return periods;
@@ -116,8 +131,7 @@ var VisualScheduleCard = {
                 end_date = window.term.last_day_instruction;
             }
         }
-
-        return [moment(start_date), moment(end_date)];
+        return [moment(new Date(start_date)), moment(new Date(end_date))];
     },
 
     _get_week_range_from_date: function(date){
@@ -149,7 +163,8 @@ var VisualScheduleCard = {
             saturday: [],
             display_hours: [],
             has_6_days: false,
-            courses_meeting_tbd: []
+            courses_meeting_tbd: [],
+            schedule_periods: course_data.schedule_periods
         };
         var day, day_index, i, height, top;
 
