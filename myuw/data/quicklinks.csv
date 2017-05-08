@@ -1,6 +1,7 @@
 URL,Label,campus,affiliation,pce
 http://www.washington.edu/maps/,Campus Maps,,,
-http://canvas.uw.edu/,Canvas LMS,,,
+http://canvas.uw.edu/,Canvas LMS,,employee,
+http://canvas.uw.edu/,Canvas LMS,,student,
 https://catalyst.uw.edu/,Catalyst Web Tools,,,
 https://sdb.admin.uw.edu/students/uwnetid/address.asp,Change Student Address,,,
 https://www.washington.edu/ess/,WorkDay,,,
