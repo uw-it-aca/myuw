@@ -42,15 +42,6 @@ class TestDaoEnrollment(TestCase):
         self.assertEqual(len(enrollment.majors), 0)
         self.assertEqual(len(enrollment.minors), 0)
 
-    def test_get_enrollment_for_term(self):
-        req = get_request_with_user('javerage',
-                                    get_request_with_date("2013-04-10"))
-        term = get_next_quarter(req)
-        enrollment = get_enrollment_for_term(term)
-        self.assertIsNotNone(enrollment)
-        self.assertEqual(len(enrollment.majors), 1)
-        self.assertEqual(len(enrollment.minors), 1)
-
     def test_get_enrollments_of_terms(self):
         req = get_request_with_user('javerage',
                                     get_request_with_date("2013-04-01"))
