@@ -9,30 +9,30 @@ var RegStatusCard = {
         }
 
         Handlebars.registerPartial("reg_holds",
-                                   $("#reg_holds_tmpl").html());
+            $("#reg_holds_tmpl").html());
         Handlebars.registerPartial("reg_finaid_notices",
-                                   $("#reg_finaid_notices_tmpl").html());
+            $("#reg_finaid_notices_tmpl").html());
         Handlebars.registerPartial("notice_est_reg_date",
-                                   $("#notice_est_reg_date_tmpl").html());
+            $("#notice_est_reg_date_tmpl").html());
         Handlebars.registerPartial("in_myplan",
-                                   $("#in_myplan_tmpl").html());
+            $("#in_myplan_tmpl").html());
         Handlebars.registerPartial("reg_resources",
-                                   $("#reg_resources_tmpl").html());
+            $("#reg_resources_tmpl").html());
         Handlebars.registerPartial("myplan_courses",
-                                   $("#myplan_courses_tmpl").html());
+            $("#myplan_courses_tmpl").html());
 
         if (!(window.card_display_dates.is_after_start_of_registration_display_period &&
-              window.card_display_dates.is_before_end_of_registration_display_period)) {
+                window.card_display_dates.is_before_end_of_registration_display_period)) {
             $("#RegStatusCard").hide();
             return;
         }
 
         WSData.fetch_notice_data(RegStatusCard.render_upon_data,
-                                 RegStatusCard.render_error);
+            RegStatusCard.render_error);
         WSData.fetch_oquarter_data(RegStatusCard.render_upon_data,
-                                   RegStatusCard.render_error);
+            RegStatusCard.render_error);
         WSData.fetch_profile_data(RegStatusCard.render_upon_data,
-                                  RegStatusCard.render_error);
+            RegStatusCard.render_error);
     },
 
     render_upon_data: function() {
@@ -46,12 +46,12 @@ var RegStatusCard = {
         var next_term_data = WSData.oquarter_data().next_term_data;
         var reg_next_quarter = next_term_data.quarter;
 
-        if (! window.card_display_dates.myplan_peak_load &&
-            ! WSData.myplan_data(next_term_data.year, next_term_data.quarter)) {
+        if (!window.card_display_dates.myplan_peak_load &&
+            !WSData.myplan_data(next_term_data.year, next_term_data.quarter)) {
             WSData.fetch_myplan_data(next_term_data.year,
-                                     next_term_data.quarter,
-                                     RegStatusCard.render_upon_data,
-                                     RegStatusCard.render_error);
+                next_term_data.quarter,
+                RegStatusCard.render_upon_data,
+                RegStatusCard.render_error);
             return;
         }
 
@@ -62,14 +62,14 @@ var RegStatusCard = {
         RegStatusCard._render();
     },
 
-    _has_all_data: function () {
+    _has_all_data: function() {
         if (WSData.notice_data() && WSData.oquarter_data() && WSData.profile_data()) {
             return true;
         }
         return false;
     },
 
-    render_error: function (status) {
+    render_error: function(status) {
         // none of the api data returns 404.
         // if any data failure, display error
         RegStatusCard.dom_target.html(CardWithError.render("Registration"));
@@ -103,15 +103,17 @@ var RegStatusCard = {
             for (j = 0; j < notice.attributes.length; j++) {
                 attribute = notice.attributes[j];
                 if ((is_summer_reg &&
-                     attribute.name === "Quarter" &&
-                     attribute.value === "Summer") ||
+                        attribute.name === "Quarter" &&
+                        attribute.value === "Summer") ||
                     (attribute.name === "Quarter" &&
-                     attribute.value === quarter)) {
+                        attribute.value === quarter)) {
                     has_est_reg_date_notice = true;
                     reg_is_open = notice.my_reg_has_opened;
                     is_my_1st_reg_day = notice.is_my_1st_reg_day;
-                    display_est_reg_date = {"notice": notice,
-                                            "date": registration_date };
+                    display_est_reg_date = {
+                        "notice": notice,
+                        "date": registration_date
+                    };
                     break;
                 }
             }
@@ -133,8 +135,7 @@ var RegStatusCard = {
                     has_registration = true;
                 }
             }
-        }
-        else {
+        } else {
             next_term_data = WSData.oquarter_data().next_term_data;
             quarter = next_term_data.quarter;
             year = next_term_data.year;
@@ -152,7 +153,7 @@ var RegStatusCard = {
 
         var hide_card = true;
         if (financial_aid_notices && financial_aid_notices.length) {
-             hide_card = false;
+            hide_card = false;
         }
         if (hide_card && display_est_reg_date) {
             hide_card = false;
@@ -174,8 +175,14 @@ var RegStatusCard = {
         var pending_minors = [];
         var pending_majors = [];
 
-        var retrieve_quarter_degrees = function(degrees, degree_type){
-
+        var retrieve_quarter_degrees = function(degrees, degree_type) {
+            for (i = 0; i < degrees.length; i++) {
+                if (degrees[i].quarter.toUpperCase() === quarter.toUpperCase() && degrees[i].year === year) {
+                    if (!degrees[i].same_as_previous && !degrees[i].has_only_dropped) {
+                        return degrees[i][degree_type];
+                    }
+                }
+            }
         };
 
         pending_minors = retrieve_quarter_degrees(profile.term_minors, "minors");
@@ -198,7 +205,7 @@ var RegStatusCard = {
             "is_seattle": window.user.seattle || window.user.seattle_affil,
             "hold_count": reg_holds.length,
             "est_reg_date": display_est_reg_date,
-            "reg_next_quarter" : quarter,
+            "reg_next_quarter": quarter,
             "reg_next_year": year,
             "plan_data": plan_data,
             "myplan_peak_load": window.card_display_dates.myplan_peak_load,
@@ -214,11 +221,10 @@ var RegStatusCard = {
 
         var card_disclosure_class, holds_class, unready_courses;
         if (summer_label) {
-            card_disclosure_class = ".show_myplan_courses_"+summer_label;
-            holds_class = ".reg_disclosure_"+summer_label;
-            unready_courses = ".myplan_unready_courses_disclosure_"+summer_label;
-        }
-        else {
+            card_disclosure_class = ".show_myplan_courses_" + summer_label;
+            holds_class = ".reg_disclosure_" + summer_label;
+            unready_courses = ".myplan_unready_courses_disclosure_" + summer_label;
+        } else {
             card_disclosure_class = ".show_myplan_courses";
             holds_class = ".reg_disclosure";
             unready_courses = ".myplan_unready_courses_disclosure";
@@ -226,18 +232,17 @@ var RegStatusCard = {
 
         // show myplan courses
         (function(summer_card_label) {
-            $('body').on('click', card_disclosure_class, function (ev) {
+            $('body').on('click', card_disclosure_class, function(ev) {
                 ev.preventDefault();
                 var card = $(ev.target).closest("[data-type='card']");
 
                 var div, expose, hide;
                 if (summer_card_label) {
                     // summer reg card
-                    div = $("#myplan_courses_"+summer_card_label);
-                    expose = $("#show_myplan_courses_wrapper_"+summer_card_label);
-                    hide = $("#hide_myplan_courses_wrapper_"+summer_card_label);
-                }
-                else {
+                    div = $("#myplan_courses_" + summer_card_label);
+                    expose = $("#show_myplan_courses_wrapper_" + summer_card_label);
+                    hide = $("#hide_myplan_courses_wrapper_" + summer_card_label);
+                } else {
                     div = $("#myplan_courses");
                     expose = $("#show_myplan_courses_wrapper");
                     hide = $("#hide_myplan_courses_wrapper");
@@ -246,17 +251,16 @@ var RegStatusCard = {
             });
 
             // show myplan unready course details
-            $('body').on('click', unready_courses, function (ev) {
+            $('body').on('click', unready_courses, function(ev) {
                 ev.preventDefault();
                 var card = $(ev.target).closest("[data-type='card']");
 
                 var div, expose, hide;
                 if (summer_card_label) {
-                    div = $("#myplan_unready_courses_"+summer_card_label);
-                    expose = $("#show_unready_courses_wrapper_"+summer_card_label);
-                    hide = $("#hide_unready_courses_wrapper_"+summer_card_label);
-                }
-                else {
+                    div = $("#myplan_unready_courses_" + summer_card_label);
+                    expose = $("#show_unready_courses_wrapper_" + summer_card_label);
+                    hide = $("#hide_unready_courses_wrapper_" + summer_card_label);
+                } else {
                     div = $("#myplan_unready_courses");
                     expose = $("#show_unready_courses_wrapper");
                     hide = $("#hide_unready_courses_wrapper");
@@ -265,17 +269,16 @@ var RegStatusCard = {
             });
 
             // show hold details
-            $('body').on('click', holds_class, function (ev) {
+            $('body').on('click', holds_class, function(ev) {
                 ev.preventDefault();
                 var card = $(ev.target).closest("[data-type='card']");
 
                 var div, expose, hide;
                 if (summer_card_label) {
-                    div = $("#reg_holds_"+summer_card_label);
-                    expose = $("#show_reg_holds_wrapper_"+summer_card_label);
-                    hide = $("#hide_reg_holds_wrapper_"+summer_card_label);
-                }
-                else {
+                    div = $("#reg_holds_" + summer_card_label);
+                    expose = $("#show_reg_holds_wrapper_" + summer_card_label);
+                    hide = $("#hide_reg_holds_wrapper_" + summer_card_label);
+                } else {
                     div = $("#reg_holds");
                     expose = $("#show_reg_holds_wrapper");
                     hide = $("#hide_reg_holds_wrapper");
@@ -286,19 +289,19 @@ var RegStatusCard = {
         })(summer_label);
     },
 
-    _render: function () {
+    _render: function() {
         var next_term_data = WSData.oquarter_data().next_term_data;
         var reg_next_quarter = next_term_data.quarter;
         var myplan_data;
-        if (! window.card_display_dates.myplan_peak_load) {
+        if (!window.card_display_dates.myplan_peak_load) {
             myplan_data = WSData.myplan_data(next_term_data.year,
-                                             next_term_data.quarter);
+                next_term_data.quarter);
         }
 
         if (window.card_display_dates.myplan_peak_load || myplan_data) {
 
             var content = RegStatusCard._render_for_term(myplan_data,
-                                                         reg_next_quarter);
+                reg_next_quarter);
             if (!content) {
                 RegStatusCard.dom_target.hide();
                 return;
@@ -307,7 +310,7 @@ var RegStatusCard = {
             RegStatusCard.dom_target.html(content);
             RegStatusCard._add_events();
             LogUtils.cardLoaded(RegStatusCard.name,
-                                RegStatusCard.dom_target);
+                RegStatusCard.dom_target);
         }
     }
 };

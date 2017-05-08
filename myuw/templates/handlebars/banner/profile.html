@@ -75,10 +75,11 @@
                                                     Beginning {{ toTitleCase quarter}}:
                                                     {{#list_less_than minors 1}}
                                                         None
+                                                    {{else}}
+                                                        {{#each minors}}
+                                                            {{full_name}} {{#unless @last}},{{/unless}}
+                                                        {{/each}}
                                                     {{/list_less_than}}
-                                                    {{#each minors}}
-                                                        {{full_name}} {{#unless @last}},{{/unless}}
-                                                    {{/each}}
                                                 </li>
                                             {{/unless}}
                                         {{/if}}
