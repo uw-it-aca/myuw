@@ -54,7 +54,8 @@ def student_photo_list(request,
 
 
 def _add_quicklink_context(request, context):
-    link_data = get_quicklink_data()
+    affiliations = get_all_affiliations(request)
+    link_data = get_quicklink_data(affiliations)
 
     for key in link_data:
         context[key] = link_data[key]
