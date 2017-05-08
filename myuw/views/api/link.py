@@ -5,6 +5,7 @@ from myuw.models import PopularLink, VisitedLink, CustomLink, HiddenLink
 from myuw.dao import get_user_model, get_netid_of_current_user
 from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.class_website import get_page_title_from_url
+from myuw.dao.affiliation import get_all_affiliations
 from restclients.exceptions import DataFailureException
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
@@ -111,4 +112,5 @@ class ManageLinks(RESTDispatch):
                                               label=label)
             except IntegrityError as ex:
                 pass
-        return HttpResponse(json.dumps(get_quicklink_data()))
+        affiliations = get_all_affiliations(request)
+        return HttpResponse(json.dumps(get_quicklink_data(affiliations)))

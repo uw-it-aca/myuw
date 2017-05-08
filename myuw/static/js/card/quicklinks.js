@@ -54,7 +54,7 @@ var QuickLinksCard = {
     },
     _save_edit: function() {
         var label = $("#custom-link-edit-label").val().trim();
-        if ("" == label) {
+        if ("" === label) {
             $("#edit-label-required").show();
         }
         else {

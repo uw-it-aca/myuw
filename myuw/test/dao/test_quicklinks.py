@@ -26,7 +26,7 @@ class TestQuickLinkDAO(TestCase):
 
         v2 = VisitedLink.objects.create(username=username, url=u2)
 
-        data = get_quicklink_data()
+        data = get_quicklink_data({})
         recent = _get_recent(data)
 
         self.assertEquals(len(recent), 2)
@@ -35,14 +35,14 @@ class TestQuickLinkDAO(TestCase):
 
         PopularLink.objects.create(url=u2)
 
-        data = get_quicklink_data()
+        data = get_quicklink_data({})
         recent = _get_recent(data)
 
         self.assertEquals(len(recent), 1)
         self.assertTrue(u1 in recent)
 
         CustomLink.objects.create(user=user, url=u1)
-        data = get_quicklink_data()
+        data = get_quicklink_data({})
         recent = _get_recent(data)
 
         self.assertEquals(len(recent), 0)
@@ -51,7 +51,7 @@ class TestQuickLinkDAO(TestCase):
             VisitedLink.objects.create(username=username,
                                        url="http://example.com?q=%s" % i)
 
-        data = get_quicklink_data()
+        data = get_quicklink_data({})
         recent = _get_recent(data)
 
         self.assertEquals(len(recent), 5)

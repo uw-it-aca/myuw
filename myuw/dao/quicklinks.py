@@ -1,5 +1,6 @@
 from myuw.models import VisitedLink, PopularLink, CustomLink, HiddenLink
 from myuw.dao import get_netid_of_current_user, get_user_model
+from myuw.dao.affiliation_data import get_data_for_affiliations
 import csv
 import os
 
@@ -7,7 +8,7 @@ import os
 RECENT_LINKS_DISPLAY_LIMIT = 5
 
 
-def get_quicklink_data():
+def get_quicklink_data(affiliations):
     data = {}
 
     username = get_netid_of_current_user()
@@ -27,8 +28,9 @@ def get_quicklink_data():
 
     popular = []
 
-    # TODO - consider affiliation filtering here
-    popular_links = PopularLink.objects.all()
+    popular_links = get_data_for_affiliations(model=PopularLink,
+                                              affiliations=affiliations,
+                                              unique=lambda x: x.url)
     for link in popular_links:
         added = link.url in custom_lookup
         existing_list_urls.add(link.url)
@@ -39,13 +41,12 @@ def get_quicklink_data():
 
     data['popular_links'] = popular
 
-    # TODO - same here!
     hidden = HiddenLink.objects.filter(user=user)
     hidden_lookup = set()
     for link in hidden:
         hidden_lookup.add(link.url)
 
-    default = _get_default_links()
+    default = _get_default_links(affiliations)
 
     shown_defaults = []
     for link in default:
@@ -72,16 +73,13 @@ def get_quicklink_data():
     return data
 
 
-def _get_default_links():
-    path = os.path.join(os.path.dirname(__file__),
-                        '..', 'data', 'quicklinks.csv')
+def _get_default_links(affiliations):
+    data = get_data_for_affiliations(file='quicklinks.csv',
+                                     affiliations=affiliations,
+                                     unique=lambda x: x['URL'])
 
     defaults = []
-    with open(path, 'rbU') as csvfile:
-        reader = csv.reader(csvfile, delimiter=',', quotechar='"')
-        # Skip header
-        next(reader)
-        for row in reader:
-            defaults.append({'url': row[0], 'label': row[1]})
+    for link in data:
+        defaults.append({'url': link['URL'], 'label': link['Label']})
 
     return defaults
