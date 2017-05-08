@@ -19,7 +19,8 @@ def get_data_for_affiliations(model=None, file=None, affiliations=None,
     unique_lookup = set()
     for entry in data:
         if entry['campus']:
-            if entry['campus'] not in affiliations:
+            required = entry['campus']
+            if required not in affiliations or not affiliations[required]:
                 continue
         if entry['pce'] is True:
             if 'pce' not in affiliations or not affiliations['pce']:
@@ -29,7 +30,8 @@ def get_data_for_affiliations(model=None, file=None, affiliations=None,
                 continue
 
         if entry['affiliation']:
-            if entry['affiliation'] not in affiliations:
+            required = entry['affiliation']
+            if required not in affiliations or not affiliations[required]:
                 continue
 
         if unique:
