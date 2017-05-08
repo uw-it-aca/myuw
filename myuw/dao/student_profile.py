@@ -110,8 +110,8 @@ def _get_degrees_for_terms(terms, enrollments, accessor):
                 term_degrees = getattr(enrollments[term], accessor)
                 entry[accessor] = []
 
-                entry['degrees_modified'] = _compare_degrees(previous,
-                                                             term_degrees)
+                entry['degrees_modified'] = _degree_has_changed(previous,
+                                                                term_degrees)
 
                 entry['has_only_dropped'] = _has_only_dropped_degrees(
                                                                  previous,
@@ -125,10 +125,10 @@ def _get_degrees_for_terms(terms, enrollments, accessor):
     return degrees
 
 
-def _compare_degrees(first, second):
+def _degree_has_changed(first, second):
     """
     Takes in two lists of degrees (either major or minors) and checks to see
-    if they are the same. Returns True if so, False if they are different
+    if they are the same. Returns False if so, True if they are different
     """
     return len(set(first) ^ set(second)) != 0
 
