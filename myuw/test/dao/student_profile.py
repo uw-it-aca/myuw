@@ -48,7 +48,7 @@ class TestStudentProfile(TestCase):
         minors = _get_degrees_for_terms(terms, enrollments, "minors")
 
         for major in majors:
-            self.assertTrue(major['same_as_previous'])
+            self.assertFalse(major['degrees_modified'])
 
         for minor in minors:
-            self.assertTrue(minor['same_as_previous'])
+            self.assertFalse(minor['degrees_modified'])

@@ -178,7 +178,7 @@ var RegStatusCard = {
         var retrieve_quarter_degrees = function(degrees, degree_type) {
             for (i = 0; i < degrees.length; i++) {
                 if (degrees[i].quarter.toUpperCase() === quarter.toUpperCase() && degrees[i].year === year) {
-                    if (!degrees[i].same_as_previous && !degrees[i].has_only_dropped) {
+                    if (degrees[i].degrees_modified && !degrees[i].has_only_dropped) {
                         return degrees[i][degree_type];
                     }
                 }

@@ -40,14 +40,14 @@
                                                 </li>
                                             {{/if}}
                                         {{else}}
-                                            {{#unless same_as_previous}}
+                                            {{#if degrees_modified}}
                                                 <li>{{ pluralize_by_size majors "Major" "Majors"}}
                                                     Beginning {{ toTitleCase quarter}}:
                                                     {{#each majors}}
                                                         {{full_name}} {{#unless @last}},{{/unless}}
                                                     {{/each}}
                                                 </li>
-                                            {{/unless}}
+                                            {{/if}}
                                         {{/if}}
                                     {{/each}}
                                 {{/if}}
@@ -70,7 +70,7 @@
                                             {{/if}}
 
                                         {{else}}
-                                            {{#unless same_as_previous}}
+                                            {{#if degrees_modified}}
                                                 <li>{{ pluralize_by_size minors "Minor" "Minors"}}
                                                     Beginning {{ toTitleCase quarter}}:
                                                     {{#list_less_than minors 1}}
@@ -81,7 +81,7 @@
                                                         {{/each}}
                                                     {{/list_less_than}}
                                                 </li>
-                                            {{/unless}}
+                                            {{/if}}
                                         {{/if}}
                                     {{/each}}
                                 {{/if}}

@@ -70,19 +70,20 @@ def get_academic_info(request, response):
     response['has_pending_major'] = False
 
     for major in response['term_majors']:
-        if not major['same_as_previous']:
+        if major['degrees_modified']:
             response['has_pending_major'] = True
 
     response['term_minors'] = _get_degrees_for_terms(terms, enrollments,
                                                      "minors")
-    response['has_pending_minor'] = False
 
     if (len(response['term_minors']) > 1 and
             len(response['term_minors'][0]['minors']) > 0):
         response['has_minors'] = True
 
+    response['has_pending_minor'] = False
+
     for minor in response['term_minors']:
-        if not minor['same_as_previous']:
+        if minor['degrees_modified']:
             response['has_pending_minor'] = True
 
 
@@ -109,7 +110,7 @@ def _get_degrees_for_terms(terms, enrollments, accessor):
                 term_degrees = getattr(enrollments[term], accessor)
                 entry[accessor] = []
 
-                entry['same_as_previous'] = _compare_degrees(previous,
+                entry['degrees_modified'] = _compare_degrees(previous,
                                                              term_degrees)
 
                 entry['has_only_dropped'] = _has_only_dropped_degrees(
@@ -129,7 +130,7 @@ def _compare_degrees(first, second):
     Takes in two lists of degrees (either major or minors) and checks to see
     if they are the same. Returns True if so, False if they are different
     """
-    return len(set(first) ^ set(second)) == 0
+    return len(set(first) ^ set(second)) != 0
 
 
 def _has_only_dropped_degrees(first, second):
