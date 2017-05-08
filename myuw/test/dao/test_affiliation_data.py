@@ -21,7 +21,7 @@ class TestLoadAffiliationData(TestCase):
 
     def test_load_valid_file(self):
         data = _load_data_from_file(_make_path('basic_valid'))
-        self.assertEquals(len(data), 5)
+        self.assertEquals(len(data), 6)
 
         self.assertEquals(data[0]['campus'], 'seattle')
         self.assertEquals(data[1]['campus'], 'seattle')

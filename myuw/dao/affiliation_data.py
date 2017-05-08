@@ -29,7 +29,8 @@ def get_data_for_affiliations(model=None, file=None, affiliations=None,
                 continue
 
         if entry['affiliation']:
-            if entry['affiliation'] not in affiliations:
+            required = entry['affiliation']
+            if required not in affiliations or not affiliations[required]:
                 continue
 
         if unique:
