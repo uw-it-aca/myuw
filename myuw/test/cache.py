@@ -194,7 +194,7 @@ class TestCustomCachePolicy(TestCase):
                 service="sws", url="/student/v5/registration/xx")
             orig_time_saved = cache_entry.time_saved
             cache_entry.time_saved = (orig_time_saved -
-                                      timedelta(minutes=15))
+                                      timedelta(minutes=16))
             cache_entry.save()
             response = cache.getCache('sws', '/student/v5/registration/xx', {})
             self.assertEquals(response, None)
