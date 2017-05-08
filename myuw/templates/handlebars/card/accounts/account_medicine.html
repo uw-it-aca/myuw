@@ -2,7 +2,8 @@
 {% tplhandlebars "accounts_medicine" %}
 <div class="card" style="position:relative;" id="medicine-pw"> 
     <div class="c6Border" style="position:absolute; top:0; left:0; right:0;">&nbsp;</div> 
-    <h3>UW Medicine Account <!--{{ card_name }}--></h3>
+    <div class="med-logo"><img src="static/images/UWMedicine_Logo_RGB@2x.png" width="100px" alt="UW medicine logo"></div>
+    <h3>UW Medicine  <!--{{ card_name }}--></h3>
 		{{#if med_pw_expired }}
 	     <div class="pw-exp">
 		 	<span class="pw-exp-date password-alert">Password expired on {{formatDateAsDate expires_med}}.
