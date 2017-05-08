@@ -5,6 +5,29 @@ require("../handlebars-helpers.js");
 
 var assert = require("assert");
 describe('Handlebar-helpers', function(){
+
+    describe("formatTime", function() {
+        it ("should return HH:MM{AM,PM}", function() {
+            var template = Handlebars.compile("{{formatTime '13:30:00'}}");
+            var output = template();
+            assert.equal(output, "1:30");
+            template = Handlebars.compile("{{formatTime '12:30:00'}}");
+            output = template();
+            assert.equal(output, "12:30");
+        });
+    });
+
+    describe("formatTimeAMPM", function() {
+        it ("should return HH:MM{AM,PM}", function() {
+            var template = Handlebars.compile("{{formatTimeAMPM '12:00:00'}}");
+            var output = template();
+            assert.equal(output, "12:00PM");
+            template = Handlebars.compile("{{formatTimeAMPM '11:30:00'}}");
+            output = template();
+            assert.equal(output, "11:30AM");
+        });
+    });
+
     describe('phonenumber', function(){
         it('should replace 10 digits with a formatted phone number', function(){
             var template = Handlebars.compile("{{formatPhoneNumber '5035551234'}}");

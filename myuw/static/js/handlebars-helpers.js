@@ -143,17 +143,17 @@ Handlebars.registerHelper("encodeForMaps", function(str) {
     return str;
 });
 
-//probably extraneous
+//convert to 12 hour and remove seconds
 Handlebars.registerHelper("formatTime", function(time) {
     formatted = time.toString().split(":");
     formatted[0] = parseInt(formatted[0], 10);
     if (formatted[0] > 12) {
         formatted[0] -= 12;
     }
-    return formatted.join(":");
+    return formatted[0] + ":" + formatted[1];
 });
 
-//converts 24 hour time to 12 hour
+//converts 24 hour time to 12 hour, remove seconds
 Handlebars.registerHelper("formatTimeAMPM", function(time) {
     formatted = time.toString().split(":");
     formatted[0] = parseInt(formatted[0], 10);
@@ -165,9 +165,9 @@ Handlebars.registerHelper("formatTimeAMPM", function(time) {
     }
 
     if (formatted[0] > 12) {
-        formatted[0] = formatted[0] - 12;
+        formatted[0] -= 12;
     }
-    return formatted.join(":");
+    return formatted[0] + ":" + formatted[1];
 });
 
 // converts date string into 12 hour display - no am/pm
