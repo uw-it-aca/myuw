@@ -6,10 +6,18 @@
         <div class="myuw-qlinks-active">
             <ul class="unstyled-list myuw-qlinks-active-list">
                 {{#each links.default_links}}
-                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}"><span>{{label }}</span></a></div><div class="pull-right"><a href="#" class="control-link" data-linkid="{{ url }}" data-linktype="hide">remove</a></div></li>
+                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}"><span>{{label }}</span></a></div><div class="pull-right link-controls"><a href="#" class="control-link" data-linkid="{{ url }}" data-linktype="hide">remove</a></div></li>
                 {{/each}}
                 {{#each links.custom_links}}
-                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a id="custom-link-{{ id }}" href="{{ url }}"><span>{{label }}</span></a></div><div class="pull-right"><a href="#" class="control-link" data-linkid="{{ id }}" data-linktype="edit">edit</a> <a href="#" class="control-link" data-linkid="{{ id }}" data-linktype="remove">remove</a></div></li>
+                <li class="list clearfix">
+                    <div class="myuw-qlinks-item pull-left">
+                        <a id="custom-link-{{ id }}" href="{{ url }}"><span>{{label }}</span></a>
+                    </div>
+                    <div class="pull-right link-controls">
+                        <a href="#" class="control-link edit-link" data-linkid="{{ id }}" data-linktype="edit">edit</a> | 
+                        <a href="#" class="control-link remove-link" data-linkid="{{ id }}" data-linktype="remove">remove<!--<i class="fa fa-times" aria-hidden="true"></i>--></a>
+                    </div>
+                </li>
                 {{/each}}
 
             </ul>
@@ -18,7 +26,7 @@
             <h4>Recently Visited</h4>
             <ul class="unstyled-list myuw-qlinks-recent-list">
                 {{#each links.recent_links}}
-                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}"><span>{{label }}</span></a></div><div class="pull-right">{{#if added }}in your list{{else}}<a href="#" class="control-link" data-linkid="{{ id }}" data-linktype="recent">add</a>{{/if}}</div></li>
+                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}"><span>{{label }}</span></a></div><div class="pull-right link-controls">{{#if added }}in your list{{else}}<a href="#" class="control-link" data-linkid="{{ id }}" data-linktype="recent">add</a>{{/if}}</div></li>
                 {{/each}}
             </ul>
         </div>
@@ -37,7 +45,7 @@
             <h4>Popular Links</h4>
             <ul class="unstyled-list myuw-qlinks-popular-list">
                 {{#each links.popular_links }}
-                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}"><span>{{ label }}</span></a></div><div class="pull-right">{{#if added }}in your list{{ else }}<a href="#" class="control-link" data-linkid="{{ id }}" data-linktype="popular">add</a>{{ /if }}</div></li>
+                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}"><span>{{ label }}</span></a></div><div class="pull-right link-controls">{{#if added }}in your list{{ else }}<a href="#" class="control-link" data-linkid="{{ id }}" data-linktype="popular">add</a>{{ /if }}</div></li>
                 {{/each}}
             </ul>
         </div>

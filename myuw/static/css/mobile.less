@@ -934,16 +934,18 @@ label { font-weight: normal; }
             }
             .myuw-qlinks-popular {
                 .myuw-qlinks-popular-list {
-                    font-size:12px;line-height: 20px;  
+                    font-size:12px;
+                    line-height: 20px;  
                     }
             }
             .myuw-qlinks-recent, .myuw-qlinks-active, .myuw-qlinks-popular {
-                a.control-link {
-                    display: none;
+                
+                li.list .link-controls {
+                        display: none;               
                 }
                     
-                li.list:hover a.control-link {
-                    display: block; 
+                li.list:hover .link-controls {
+                    display: inline-block; 
                     font-size:12px;
                 }
             }
