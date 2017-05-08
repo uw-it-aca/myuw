@@ -238,7 +238,16 @@ var record_link_click = function(ev) {
     }
     target.attr('myuw-data-href', href);
 
-    var new_href = '/out?u='+encodeURIComponent(href)+'&l='+encodeURIComponent(target.text());
+    var linklabel = target.attr('data-linklabel');
+    var label = "";
+    if (linklabel) {
+        label = linklabel;
+    }
+    else {
+        label = target.text();
+    }
+
+    var new_href = '/out?u='+encodeURIComponent(href)+'&l='+encodeURIComponent(label);
     target.attr('href', new_href);
 };
 
