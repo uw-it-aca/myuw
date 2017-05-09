@@ -7,7 +7,7 @@
 
         {{#if holds_ready }}
         <div class="card-noncritical-alert" role="status">
-            <i aria-hidden="true" class="fa fa-info-circle"></i><span class="sr-only">You have items ready!</span> <a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/myAccountMenu.do?activity=requests" target="_blank">{{ holds_ready }} requested {{ pluralize holds_ready "item" "items" }} ready</a>
+            <i aria-hidden="true" class="fa fa-info-circle"></i><span class="sr-only">You have items ready!</span> <a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/myAccountMenu.do?activity=requests" target="_blank" data-linklabel="Library Account Requests">{{ holds_ready }} requested {{ pluralize holds_ready "item" "items" }} ready</a>
         </div>
         {{/if}}
 
@@ -22,7 +22,7 @@
                         <div class="pull-right">
                             <span class="card-badge-value">{{ items_loaned }} {{ pluralize items_loaned "item" "items"}}</span>
 			    &nbsp;
-                            <span class="card-badge-action pull-right"><a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount" target="_blank">See account</a></span>
+                            <span class="card-badge-action pull-right"><a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount" target="_blank" data-linklabel="Your Library Account">See account</a></span>
                         </div>
                     </div>
                 </li>
@@ -63,7 +63,7 @@
 
         {{#unless items_loaned }}
         <div class="card-badge pull-right" style="margin:0; padding-bottom:0; margin-right: 10px;">
-            <div class="card-badge-action"><a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount" style="line-height: 35px; display:block;" target="_blank">See account</a></div>
+            <div class="card-badge-action"><a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlBasketGet.do?vid=UW&redirectTo=myAccount" style="line-height: 35px; display:block;" target="_blank" data-linklabel="Your Library Account">See account</a></div>
         </div>
         {{/unless}}
     </div>
