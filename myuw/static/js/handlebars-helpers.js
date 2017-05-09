@@ -14,17 +14,17 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
 
     function parse_date(str) {
         // After MUWM-3672, we're not using browser based parsing anymore.  Too many quirks.
-        return Date.parse(str);
+        return date_from_string(str);
     }
 
     // used on course card
     Handlebars.registerHelper("toMonthDay", function(str) {
-        return moment(parse_date(str)).format("MMM D");
+        return moment(date_from_string(str)).format("MMM D");
     });
 
     // used on course card
     Handlebars.registerHelper("toMoreDay", function(str) {
-        var d =  moment().from(moment(parse_date(str)), true);
+        var d =  moment().from(moment(date_from_string(str)), true);
         if (d.match(/^an? [a-z]+$/)) {
             return d.replace(/^an? /, '1 more ');
         } else {
@@ -34,16 +34,16 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
 
     // used on Library card
     Handlebars.registerHelper("toFromNowDate", function(str) {
-        return moment(parse_date(str)).fromNow();
+        return moment(date_from_string(str)).fromNow();
     });
 
     // used on Grade, Library card 
     Handlebars.registerHelper("toFriendlyDate", function(str) {
-        return moment(parse_date(str)).format("ddd, MMM D");
+        return moment(date_from_string(str)).format("ddd, MMM D");
     });
 
     Handlebars.registerHelper("toFriendlyDateVerbose", function(str) {
-        return moment(parse_date(str)).format("dddd, MMMM D");
+        return moment(date_from_string(str)).format("dddd, MMMM D");
     });
 })();
 
