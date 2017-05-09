@@ -12,7 +12,7 @@
         {{ else }}
  		<div class="card-badge clearfix">   
 	 		<div class="pull-left pw-exp">    
-            <h4 class="pw-exp-date {{#if expires_in_30_days_or_less}}password-alert{{/if}}">Password expires</h4> 
+            <h4 class="pw-exp-date {{#if expires_in_30_days_or_less}}{{/if}}">Password expires</h4> 
             </div><!-- .pull-left -->
             <div class="pull-right">
             	<span class="card-badge-value {{#if expires_in_30_days_or_less}}password-alert{{/if}}">{{formatDateAsDate expires_med}}</span>
