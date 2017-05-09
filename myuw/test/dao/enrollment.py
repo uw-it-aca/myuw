@@ -34,7 +34,7 @@ class TestDaoEnrollment(TestCase):
         req = get_request_with_user('javerage',
                                     get_request_with_date("2013-04-10"))
         term = get_next_quarter(req)
-        enrollment = get_enrollment_for_term(term)
+        enrollment = get_enrollment_for_term(req, term)
         self.assertIsNotNone(enrollment)
         self.assertEqual(len(enrollment.majors), 1)
         self.assertEqual(len(enrollment.minors), 1)
@@ -42,21 +42,21 @@ class TestDaoEnrollment(TestCase):
         req = get_request_with_user('staff',
                                     get_request_with_date("2013-04-10"))
         t1 = get_current_quarter(req)
-        enrollment = get_enrollment_for_term(t1)
+        enrollment = get_enrollment_for_term(req, t1)
         enrollment = get_current_quarter_enrollment(req)
         self.assertIsNone(enrollment)
 
         req = get_request_with_user('jbothell',
                                     get_request_with_date("2013-04-01"))
         t1 = get_current_quarter(req)
-        enrollment = get_enrollment_for_term(t1)
+        enrollment = get_enrollment_for_term(req, t1)
         self.assertEqual(len(enrollment.majors), 1)
         self.assertEqual(enrollment.majors[0].campus, "Bothell")
 
         req = get_request_with_user('eight',
                                     get_request_with_date("2013-04-01"))
         t1 = get_current_quarter(req)
-        enrollment = get_enrollment_for_term(t1)
+        enrollment = get_enrollment_for_term(req, t1)
         self.assertEqual(len(enrollment.majors), 2)
         self.assertEqual(enrollment.majors[0].campus, "Tacoma")
 

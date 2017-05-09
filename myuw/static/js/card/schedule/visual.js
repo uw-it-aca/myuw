@@ -148,7 +148,7 @@ var VisualScheduleCard = {
         var visual_data = {
             has_early_fall_start: course_data.has_early_fall_start,
             is_pce: user.pce,
-            total_sections: course_data.sections.length,
+            total_sections: course_data.schedule_periods[period].sections.length,
             year: course_data.year,
             quarter: course_data.quarter,
             term: term,
@@ -169,9 +169,8 @@ var VisualScheduleCard = {
         var day, day_index, i, height, top;
 
         var index = 0;
-        for (index = 0; index < course_data.sections.length; index++) {
-            var section = course_data.sections[index];
-
+        for (index = 0; index < course_data.schedule_periods[period].sections; index++) {
+            var section = course_data.schedule_periods[period].sections[index];
             var meeting_index = 0;
             for (meeting_index = 0; meeting_index < section.meetings.length; meeting_index++) {
                 var meeting = section.meetings[meeting_index];
@@ -314,7 +313,8 @@ var VisualScheduleCard = {
     },
         
     render_schedule: function(course_data, term) {
-        var visual_data = VisualScheduleCard._get_data_for_period(course_data, term, "0");
+        var visual_data = VisualScheduleCard._get_data_for_period(course_data, term, "1");
+        console.log(visual_data)
         VisualScheduleCard.shown_am_marker = false;
 
         source   = $("#visual_schedule_card_content").html();

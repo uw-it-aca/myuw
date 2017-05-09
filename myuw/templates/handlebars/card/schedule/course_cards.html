@@ -1,7 +1,11 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "course_card_list" %}
 
-<h3 id="your_courses" class="sr-only">Your {{ucfirst quarter}} {{year}} Courses</h3>
+{{#if display_term}}
+    <h3 id="quarter-info">{{ucfirst quarter}} {{year}} Courses</h3>
+{{else}}
+    <h3 id="your_courses" class="sr-only">Your {{ucfirst quarter}} {{year}} Courses</h3>
+{{/if}}
 <div aria-labelledby="your_courses">
 
     {{#each sections}}

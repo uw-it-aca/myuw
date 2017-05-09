@@ -56,19 +56,7 @@ def get_schedule_by_term(request, term):
     Return the actively enrolled sections for the current user
     in the given term/quarter
     """
-    # 2016 approach for MUWM-3390/3391
-    # If we're in the EFS period, include the sections.  Otherwise,
-    # exclude them.
-    schedule = _get_schedule(get_regid_of_current_user(), term)
-    comparison_date = get_comparison_date(request)
-
-    included_sections = []
-    for section in schedule.sections:
-        included_sections.append(section)
-
-    schedule.sections = included_sections
-
-    return schedule
+    return _get_schedule(get_regid_of_current_user(), term)
 
 
 def get_current_quarter_schedule(request):

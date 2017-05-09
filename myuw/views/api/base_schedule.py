@@ -61,7 +61,6 @@ def set_course_url(section_data, enrollment):
 
 
 def load_schedule(request, schedule, summer_term=""):
-
     json_data = schedule.json_data()
 
     json_data["summer_term"] = summer_term
@@ -71,7 +70,7 @@ def load_schedule(request, schedule, summer_term=""):
     buildings = get_buildings_by_schedule(schedule)
 
     try:
-        enrollment = get_enrollment_for_term(schedule.term)
+        enrollment = get_enrollment_for_term(request, schedule.term)
         enrolled_off_term_sections = enrollment.off_term_sections
     except Exception as ex:
         logger.error("find enrolled off term sections: %s", ex)
@@ -105,13 +104,13 @@ def load_schedule(request, schedule, summer_term=""):
                     section.section_label() in enrolled_off_term_sections:
                 # print enrolled_off_term_sections.get(
                 #    section.section_label()).json_data()
-                enrolled_sect = enrolled_off_term_sections.get(
+                enr_data = enrolled_off_term_sections.get(
                     section.section_label())
                 section_data["cc_display_dates"] = True
-                section_data["start_date"] = str(enrolled_sect.start_date)
-                section_data["end_date"] = str(enrolled_sect.end_date)
+                section_data["start_date"] = str(enr_data.start_date)
+                section_data["end_date"] = str(enr_data.end_date)
                 section_data["is_ended"] = is_ended(request,
-                                                    enrolled_sect.end_date)
+                                                    enr_data.end_date)
 
         # if section.is_primary_section:
         if not is_valid_sln(section.sln):
