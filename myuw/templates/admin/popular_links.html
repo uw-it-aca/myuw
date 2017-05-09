@@ -17,22 +17,27 @@
         </div>
         <div>
         <strong>Campus</strong><br />
-        <label class="checkbox-inline"><input type='checkbox' name='is_seattle' {% if checked.is_seattle %}checked="checked"{% endif %}> Seattle</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_tacoma' {% if checked.is_tacoma %}checked="checked"{% endif %}> Tacoma</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_bothell' {% if checked.is_bothell %}checked="checked"{% endif %}> Bothell</label>
+        <label class="checkbox-inline"><input type='radio' name='campus' value='any_campus' {% if checked.is_any_campus %}checked="checked"{% endif %}> Any</label>
+        <label class="checkbox-inline"><input type='radio' name='campus' value='seattle' {% if checked.is_seattle %}checked="checked"{% endif %}> Seattle</label>
+        <label class="checkbox-inline"><input type='radio' name='campus' value='tacoma' {% if checked.is_tacoma %}checked="checked"{% endif %}> Tacoma</label>
+        <label class="checkbox-inline"><input type='radio' name='campus' value='bothell' {% if checked.is_bothell %}checked="checked"{% endif %}> Bothell</label>
         </div>        
         <div>
         <strong>Affilliation</strong><br />
-        <label class="checkbox-inline"><input type='checkbox' name='is_student' {% if checked.is_student %}checked="checked"{% endif %}> Student</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_undergrad' {% if checked.is_undergrad %}checked="checked"{% endif %}> Undergraduate</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_grad_student' {% if checked.is_grad_student %}checked="checked"{% endif %}> Grad Student</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_employee' {% if checked.is_employee %}checked="checked"{% endif %}> Employee</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_staff' {% if checked.is_staff %}checked="checked"{% endif %}> Staff</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_faculty' {% if checked.is_faculty %}checked="checked"{% endif %}> Faculty</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_pce' {% if checked.is_pce %}checked="checked"{% endif %}> PCE</label>
-        <label class="checkbox-inline"><input type='checkbox' name='is_student_employee' {% if checked.is_student_employee %}checked="checked"{% endif %}> Student Employee</label>
+        <label class="checkbox-inline"><input type='radio' name='affiliation' value='any_affiliation' {% if checked.is_any_affiliation%}checked="checked"{% endif %}> Any</label>
+        <label class="checkbox-inline"><input type='radio' name='affiliation' value='student' {% if checked.is_student %}checked="checked"{% endif %}> Student</label>
+        <label class="checkbox-inline"><input type='radio' name='affiliation' value='undergrad' {% if checked.is_undergrad %}checked="checked"{% endif %}> Undergraduate</label>
+        <label class="checkbox-inline"><input type='radio' name='affiliation' value='grad_student' {% if checked.is_grad_student %}checked="checked"{% endif %}> Grad Student</label>
+        <label class="checkbox-inline"><input type='radio' name='affiliation' value='employee' {% if checked.is_employee %}checked="checked"{% endif %}> Employee</label>
+        <label class="checkbox-inline"><input type='radio' name='affiliation' value='staff' {% if checked.is_staff %}checked="checked"{% endif %}> Staff</label>
+        <label class="checkbox-inline"><input type='radio' name='affiliation' value='faculty' {% if checked.is_faculty %}checked="checked"{% endif %}> Faculty</label>
+        <label class="checkbox-inline"><input type='radio' name='affiliation' value='student_employee' {% if checked.is_student_employee %}checked="checked"{% endif %}> Student Employee</label>
         </div>
         <br />
+        <div>
+        <strong>PCE</strong><br/>
+        <label class="checkbox-inline"><input type='checkbox' name='pce' value='pce' {% if checked.is_pce %}checked="checked"{% endif %}> PCE</label>
+        </div>
         <button type="submit" class="btn btn-primary">Filter</button>
         </form>
         </fieldset>
@@ -53,6 +58,9 @@ Multiple labels were used for this url:
 {% for label in link.labels %}<li>{{ label }}</li>{%endfor %}
 </ul>
 {% endif %}
+<input type="text" name="affiliation" value="{{ checked.affiliation }}">
+<input type="text" name="campus" value="{{ checked.campus }}">
+<input type="text" name="pce" value="{{ checked.pce }}">
 Label: <input type="text" name="label" value="{{ link.labels.0 }}"> <input type="submit" value="add"/>
 </form>
 {% endif %}</li>

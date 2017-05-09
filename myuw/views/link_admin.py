@@ -17,8 +17,20 @@ def popular_links(request, page):
     logger = logging.getLogger(__name__)
     if request.POST:
         if 'url' in request.POST and 'label' in request.POST:
-            PopularLink.objects.create(url=request.POST['url'],
-                                       label=request.POST['label'])
+            create_args = {'url': request.POST['url'],
+                           'label': request.POST['label'],
+                           }
+
+            if request.POST['campus']:
+                create_args['campus'] = request.POST['campus']
+
+            if request.POST['affiliation']:
+                create_args['affiliation'] = request.POST['affiliation']
+
+            if request.POST['pce'] == "pce":
+                create_args['pce'] = True
+
+            PopularLink.objects.create(**create_args)
             logger.info("popular link added.  user: %s, link: %s" %
                         (get_netid_of_current_user(), request.POST['url']))
 
@@ -40,12 +52,18 @@ def popular_links(request, page):
         existing_lookup.add(link.url)
 
     kwargs = {}
-    for check in dir(VisitedLink):
-        if check.find('is_') == 0:
-            if check in request.GET:
-                kwargs[check] = True
+    filter_kwargs = {}
+    for field in ('campus', 'affiliation', 'pce'):
+        if field in request.GET:
+            value = request.GET[field]
+            kwargs['is_'+value] = True
+            if value != 'any_%s' % field:
+                filter_kwargs['is_'+value] = True
+                kwargs[field] = value
+        else:
+            kwargs['is_any_%s' % field] = True
 
-    all_popular = VisitedLink.get_popular(**kwargs)
+    all_popular = VisitedLink.get_popular(**filter_kwargs)
 
     # Display is 1-indexed, we're 0-indexed
     page = int(page)
