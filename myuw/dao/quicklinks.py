@@ -75,7 +75,7 @@ def get_quicklink_data(affiliations):
 
 
 def get_link_label(link):
-    if not 'data' in CACHED_LABEL_DATA:
+    if 'data' not in CACHED_LABEL_DATA:
         data = {}
         path = os.path.join(os.path.dirname(__file__), '..', 'data',
                             "custom_link_labels.csv")
