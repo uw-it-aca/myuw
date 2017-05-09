@@ -427,10 +427,14 @@ Handlebars.registerHelper('slugify', function(value) {
 });
 
 Handlebars.registerHelper('phone_number', function(value) {
-    var number = value.match(/^(\d{3})(\d{3})(\d{4})$/);
-    if (number) {
-        return '(' + number[1] + ') ' + number[2] + '-' + number[3];
+    var number;
+
+    if (value) {
+        number = value.match(/^(\d{3})[ -\.]?(\d{3})[ -\.]?(\d{4})$/);
+        if (number) {
+            return '(' + number[1] + ') ' + number[2] + '-' + number[3];
+        }
     }
 
-    return number;
+    return value;
 });
