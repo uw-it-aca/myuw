@@ -21,7 +21,7 @@ class TestLoadAffiliationData(TestCase):
 
     def test_load_valid_file(self):
         data = _load_data_from_file(_make_path('basic_valid'))
-        self.assertEquals(len(data), 5)
+        self.assertEquals(len(data), 7)
 
         self.assertEquals(data[0]['campus'], 'seattle')
         self.assertEquals(data[1]['campus'], 'seattle')
@@ -44,6 +44,7 @@ class TestLoadAffiliationData(TestCase):
     def test_data_from_file(self):
         links = get_data_for_affiliations(file=_make_path('basic_valid'),
                                           affiliations={'seattle': True,
+                                                        'tacoma': False,
                                                         'undergrad': True,
                                                         'grad': False,
                                                         'pce': False,
