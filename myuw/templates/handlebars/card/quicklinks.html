@@ -24,11 +24,13 @@
         </div>
         <div class="myuw-qlinks-recent">
             <h4>Recently Visited</h4>
+            {{#if links.recent_links}}
             <ul class="unstyled-list myuw-qlinks-recent-list">
                 {{#each links.recent_links}}
                 <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}"><span>{{label }}</span></a></div><div class="pull-right link-controls">{{#if added }}in your list{{else}}<a href="#" class="control-link" data-linkid="{{ id }}" data-linktype="recent">add</a>{{/if}}</div></li>
                 {{/each}}
             </ul>
+            {{else}}<div class="recent-message">Recent resources that you visit from MyUW will display here. Add them to your Quick Links list for future access.</div>{{/if}}
         </div>
         <div id="custom-link-edit" style="display: none; position: absolute; border: 1px solid #ccc; background: #fff; width:95%;padding:10px;">
             <div class="form-group">
