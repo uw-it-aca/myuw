@@ -3,7 +3,7 @@ var DirectoryInfoCard = {
     dom_target: undefined,
 
     render_init: function() {
-        WSData.fetch_profile_data(DirectoryInfoCard.render_upon_data, DirectoryInfoCard.render_error);
+        WSData.fetch_directory_data(DirectoryInfoCard.render_upon_data, DirectoryInfoCard.render_error);
     },
 
     render_upon_data: function () {
@@ -14,7 +14,7 @@ var DirectoryInfoCard = {
     },
 
     _render: function () {
-        var directory_info = WSData.profile_data();
+        var directory_info = WSData.directory_data();
         var source = $("#directory_info_card").html();
         var template = Handlebars.compile(source);
         DirectoryInfoCard.dom_target.html(template(directory_info));
@@ -22,7 +22,7 @@ var DirectoryInfoCard = {
     },
 
     _has_all_data: function () {
-        if (WSData.profile_data()) {
+        if (WSData.directory_data()) {
             return true;
         }
         return false;
