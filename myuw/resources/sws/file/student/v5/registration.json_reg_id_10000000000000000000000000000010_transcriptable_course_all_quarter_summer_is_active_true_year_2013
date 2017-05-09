@@ -1,0 +1,36 @@
+{
+    "Current": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "",
+        "CurriculumAbbreviation": null,
+        "Href": "/student/v5/registration.json?year=2013&quarter=summer&curriculum_abbreviation=&course_number=&section_id=&reg_id=10000000000000000000000000000010&is_active=&instructor_reg_id=&verbose=&changed_since_date=&transcriptable_course=all&page_start=&page_size=10",
+        "InstructorRegID": "",
+        "IsActive": false,
+        "PageSize": "10",
+        "PageStart": null,
+        "Quarter": "summer",
+        "RegID": "10000000000000000000000000000010",
+        "SectionID": "",
+        "TranscriptableCourse": "all",
+        "Verbose": false,
+        "Year": 2013
+    },
+    "Next": null,
+    "PageSize": "10",
+    "PageStart": null,
+    "Previous": null,
+    "Registrations": [
+        {
+            "Href": "\/student\/v5\/registration\/2013,summer,TRAIN,101,A,10000000000000000000000000000010,.json",
+            "CourseNumber":"101",
+            "CurriculumAbbreviation":"TRAIN",
+            "DuplicateCode":"1",
+            "Instructor":null,
+            "Quarter":"summer",
+            "RegID":"10000000000000000000000000000010",
+            "SectionID":"A",
+            "Year":"2013"
+        }
+    ],
+    "TotalCount": 1
+}

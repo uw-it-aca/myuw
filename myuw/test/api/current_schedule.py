@@ -142,7 +142,7 @@ class TestSchedule(MyuwApiTest):
         self.assertFalse(com["is_ended"])
         psych = self.get_section(data, 'PSYCH', '203', 'A')
         self.assertEquals(psych['start_date'], '2013-01-29 00:00:00')
-        self.assertEquals(psych['end_date'], '2013-04-30 00:00:00')
+        self.assertEquals(psych['end_date'], '2013-07-30 00:00:00')
         self.assertFalse(psych["is_ended"])
 
         response = self.get_current_schedule_res('jpce',

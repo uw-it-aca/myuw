@@ -94,7 +94,7 @@
                     "Credits": "4.0",
                     "DuplicateCode": "0",
                     "EducationUnitType": null,
-                    "EndDate": "04/30/2013",
+                    "EndDate": "07/30/2013",
                     "FeeBaseType": "",
                     "Grade": "X",
                     "GradeDate": "",
@@ -302,7 +302,87 @@
                 "Quarter": "spring",
                 "Year": 2013
             }
+        },
+        {
+            "ClassLevel": "NON_MATRIC",
+            "CurrentRegisteredCredits": null,
+            "EnrollmentStatus": null,
+            "EnrollmentStatusDate": "",
+            "FullName": "Jane Pce",
+            "HonorsProgram": false,
+            "LeaveEndQuarter": 0,
+            "LeaveEndYear": 0,
+            "Majors": [
+                {
+                    "Abbreviation": "N MATR",
+                    "Campus": "Seattle",
+                    "CollegeAbbreviation": "INDUG",
+                    "CollegeFullName": "INTERDISCIPLINARY UNDERGRADUATE PROGRAMS",
+                    "DegreeLevel": 0,
+                    "DegreeName": null,
+                    "DegreeType": 0,
+                    "FullName": "Non Matriculated",
+                    "MajorName": "NON MATRICULATED",
+                    "Pathway": 0,
+                    "ShortName": "N MATR"
+                }
+            ],
+            "Metadata": "EnrollmentSourceLocation=EOS;",
+            "Minors": [],
+            "PendingClassChange": false,
+            "PendingHonorsChange": false,
+            "PendingMajorChange": false,
+            "PendingResidentChange": false,
+            "PendingSpecialProgramChange": false,
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000010.json",
+                "Name": "Jane Pce",
+                "RegID": "10000000000000000000000000000010"
+            },
+            "QtrGradePoints": null,
+            "QtrGradedAttmp": null,
+            "QtrNonGrdEarned": null,
+            "RegID": "10000000000000000000000000000010",
+            "Registrations": [
+          {
+            "AddAccessCode": "",
+            "Auditor": false,
+            "Credits": " 2.0",
+            "DropAccessCode": "",
+            "DuplicateCode": "0",
+            "FacultySequenceNumber": "",
+            "FeeBaseType": "",
+            "Grade": "CR",
+            "GradeDate": "",
+            "GradeDocumentID": "",
+            "HonorsCourse": false,
+            "IsActive": true,
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000010.json",
+                "Name": "Jane Pce",
+                "RegID": "10000000000000000000000000000010"
+            },
+            "RepeatCourse": false,
+            "RequestDate": "",
+            "RequestStatus": "",
+            "Section": {
+                "Href": "/student/v5/course/2013,summer,TRAIN,101/A.json",
+                "CourseNumber": "101",
+                "CurriculumAbbreviation": "TRAIN",
+                "Quarter": "summer",
+                "SectionID": "A",
+                "Year": "2013"
+            },
+            "VariableCredit": false,
+            "WritingCourse": false
         }
+    ],
+    "Term": {
+        "Href": "/student/v5/term/2013,summer.json",
+        "Quarter": "summer",
+        "Year": "2013"
+          }
+    }
     ],
     "Next": null,
     "PageSize": "10",

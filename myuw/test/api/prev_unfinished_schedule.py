@@ -1,17 +1,19 @@
 import json
 from myuw.views.api.prev_unfinished_schedule import\
     StudUnfinishedPrevQuarClasSche
-from myuw.test.api import MyuwApiTest, require_url, fdao_sws_override
+from myuw.test.api import MyuwApiTest, require_url, fdao_sws_override,\
+    fdao_pws_override
 
 
 url_name = "myuw_prev_unfinished_schedule"
 
 
+@fdao_pws_override
 @fdao_sws_override
 @require_url(url_name)
 class TestStudUnfinishedPrevQuarClasSche(MyuwApiTest):
 
-    def get_current_schedule_res(self, user=None, date=None):
+    def get_prev_unfinished_schedule(self, user=None, date=None):
         if user:
             self.set_user(user)
         if date:
@@ -29,12 +31,12 @@ class TestStudUnfinishedPrevQuarClasSche(MyuwApiTest):
         self.fail('Did not find course %s %s %s' % (abbr, number, section_id))
 
     def test_404(self):
-        response = self.get_current_schedule_res('none')
-        self.assertEquals(response.status_code, 404)
+        response = self.get_prev_unfinished_schedule('javerage')
         self.assertEquals(response.content, 'Data not found')
+        self.assertEquals(response.status_code, 404)
 
     def test_jpce_prev_term(self):
-        response = self.get_current_schedule_res('jpce')
+        response = self.get_prev_unfinished_schedule('jpce')
         self.assertEquals(response.status_code, 200)
         ret_data = json.loads(response.content)
 
@@ -51,10 +53,10 @@ class TestStudUnfinishedPrevQuarClasSche(MyuwApiTest):
 
         psych = self.get_section(data, 'PSYCH', '203', 'A')
         self.assertEquals(psych['start_date'], '2013-01-29 00:00:00')
-        self.assertEquals(psych['end_date'], '2013-04-30 00:00:00')
+        self.assertEquals(psych['end_date'], '2013-07-30 00:00:00')
         self.assertFalse(psych["is_ended"])
 
-        response = self.get_current_schedule_res('jpce',
-                                                 '2013-07-08 00:00:01')
-        self.assertEquals(response.status_code, 404)
+        response = self.get_prev_unfinished_schedule('jpce',
+                                                     '2013-08-08 00:00:01')
         self.assertEquals(response.content, 'Data not found')
+        self.assertEquals(response.status_code, 404)

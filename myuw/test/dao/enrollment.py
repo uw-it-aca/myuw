@@ -131,7 +131,7 @@ class TestDaoEnrollment(TestCase):
         s1 = sections.get('2013,winter,COM,201/A')
         self.assertEqual(str(s1.end_date), '2013-04-29 00:00:00')
         s2 = sections.get('2013,winter,PSYCH,203/A')
-        self.assertEqual(str(s2.end_date), '2013-04-30 00:00:00')
+        self.assertEqual(str(s2.end_date), '2013-07-30 00:00:00')
 
         req = get_request_with_user('jpce',
                                     get_request_with_date("2013-06-28"))
