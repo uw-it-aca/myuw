@@ -15,7 +15,7 @@
             <h4 class="pw-exp-date {{#if expires_in_30_days_or_less}}{{/if}}">Password expires</h4> 
             </div><!-- .pull-left -->
             <div class="pull-right">
-            	<span aria-hidden="true" class="card-badge-value {{#if expires_in_30_days_or_less}}password-alert{{/if}}">{{formatDateAsDate expires_med}}</span><span class="sr-only">{{formatDateAsDate expires_med}}</span>
+            	<span aria-hidden="true" class="card-badge-value {{#if expires_in_30_days_or_less}}password-alert{{/if}}">{{formatDateAsDate expires_med}}</span><span class="sr-only">{{toFriendlyDateVerbose expires_med}}</span>
             	<span class="card-badge-action pull-right {{#if expires_in_30_days_or_less}}password-alert{{/if}}">in {{days_before_med_pw_expires}} days </span>
 			</div><!-- .pull-right --> 
             
