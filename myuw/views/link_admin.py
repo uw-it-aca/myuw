@@ -27,7 +27,7 @@ def popular_links(request, page):
             if request.POST['affiliation']:
                 create_args['affiliation'] = request.POST['affiliation']
 
-            if request.POST['pce'] == "pce":
+            if 'pce' in request.POST and request.POST['pce'] == "pce":
                 create_args['pce'] = True
 
             PopularLink.objects.create(**create_args)
@@ -46,11 +46,7 @@ def popular_links(request, page):
     existing_lookup = set()
     curated_links = []
     for link in curated_popular:
-        curated_links.append({'url': link.url,
-                              'label': link.label,
-                              'id': link.pk})
         existing_lookup.add(link.url)
-
     kwargs = {}
     filter_kwargs = {}
     for field in ('campus', 'affiliation', 'pce'):
@@ -82,7 +78,7 @@ def popular_links(request, page):
 
     context = {'popular': popular,
                'checked': kwargs,
-               'curated_popular_links': curated_links
+               'curated_popular_links': curated_popular,
                }
 
     if page > 0:
