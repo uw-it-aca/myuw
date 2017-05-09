@@ -51,6 +51,7 @@ var VisualScheduleCard = {
         course_data.schedule_periods = VisualScheduleCard._get_schedule_periods(course_data);
 
         VisualScheduleCard.render_schedule(course_data, term);
+        console.log(course_data)
 
         FinalExamSchedule.render(course_data, term, true);
 
@@ -141,15 +142,14 @@ var VisualScheduleCard = {
 
         return [start, end];
     },
-        
-    render_schedule: function(course_data, term) {
-        VisualScheduleCard.shown_am_marker = false;
-        var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+
+    _get_data_for_period: function(course_data, term, period){
+    var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
         var visual_data = {
             has_early_fall_start: course_data.has_early_fall_start,
             is_pce: user.pce,
             total_sections: course_data.sections.length,
-            year: course_data.year, 
+            year: course_data.year,
             quarter: course_data.quarter,
             term: term,
             summer_term: course_data.summer_term,
@@ -303,13 +303,19 @@ var VisualScheduleCard = {
                     is_meeting: false,
                     start_at_hr: start_at_hr,
                     top:top,
-                    height:height, 
+                    height:height,
                     start: position_start,
                     end: position_end});
                 position_start = position_end;
                 start_at_hr = !start_at_hr;
             }
         }
+        return visual_data;
+    },
+        
+    render_schedule: function(course_data, term) {
+        var visual_data = VisualScheduleCard._get_data_for_period(course_data, term, "0");
+        VisualScheduleCard.shown_am_marker = false;
 
         source   = $("#visual_schedule_card_content").html();
         template = Handlebars.compile(source);
