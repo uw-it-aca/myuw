@@ -6,6 +6,7 @@ import os
 
 
 RECENT_LINKS_DISPLAY_LIMIT = 5
+CACHED_LABEL_DATA = {}
 
 
 def get_quicklink_data(affiliations):
@@ -65,12 +66,26 @@ def get_quicklink_data(affiliations):
         added = link.url in custom_lookup
         recents.append({'added': added,
                         'url': link.url,
-                        'label': link.label,
+                        'label': get_link_label(link),
                         'id': link.pk})
 
     data['recent_links'] = recents[:RECENT_LINKS_DISPLAY_LIMIT]
 
     return data
+
+
+def get_link_label(link):
+    if not 'data' in CACHED_LABEL_DATA:
+        data = {}
+        path = os.path.join(os.path.dirname(__file__), '..', 'data',
+                            "custom_link_labels.csv")
+        with open(path, 'rbU') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                data[row['url']] = row['label']
+        CACHED_LABEL_DATA['data'] = data
+
+    return CACHED_LABEL_DATA['data'].get(link.url, link.label)
 
 
 def _get_default_links(affiliations):

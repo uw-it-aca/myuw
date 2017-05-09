@@ -3,7 +3,7 @@ from myuw.views.rest_dispatch import RESTDispatch
 from myuw.views.error import data_not_found, invalid_input_data
 from myuw.models import PopularLink, VisitedLink, CustomLink, HiddenLink
 from myuw.dao import get_user_model, get_netid_of_current_user
-from myuw.dao.quicklinks import get_quicklink_data
+from myuw.dao.quicklinks import get_quicklink_data, get_link_label
 from myuw.dao.class_website import get_page_title_from_url
 from myuw.dao.affiliation import get_all_affiliations
 from restclients.exceptions import DataFailureException
@@ -51,7 +51,7 @@ class ManageLinks(RESTDispatch):
                 link = VisitedLink.objects.get(pk=data['id'],
                                                username=username)
                 url = link.url
-                label = link.label
+                label = get_link_label(link)
                 link = True
                 add_custom = True
             except VisitedLink.DoesNotExist:
