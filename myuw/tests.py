@@ -61,6 +61,7 @@ from myuw.test.cache import TestCustomCachePolicy
 from myuw.test.context_processors import TestContextProcessors
 from myuw.test.loggers import TestSessionLog
 from myuw.test.views.choose import TestChoose
+from myuw.test.views.error import TestViewsError
 from myuw.test.views.page import TestPageMethods
 from myuw.test.views.teaching import TestTeachingMethods
 from myuw.test.views.logout import TestLogoutLink
