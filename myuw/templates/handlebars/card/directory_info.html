@@ -4,8 +4,8 @@
         <h3>Employee Profile</h3>
 
         <div vocab="http://schema.org/" typeof="Person">
-            <div class="personal-contact-info">
-                <div class="home-address">
+            <div class="personal-contact-info row">
+                <div class="home-address col-xs-6" property="homeLocation" typeof="Place">
                     <h4>Home Address</h4>
                     <div property="address" typeof="PostalAddress">
                         <span property="streetAddress">{{permanent_address.street_line1}}</span>
@@ -15,12 +15,12 @@
                     <p>Home Phone: <span property="telephone">{{phone_number permanent_phone}}</span></p>
                 </div>
 
-                <div class="emergency-contact">
+                <div class="emergency-contact col-xs-6">
                     <h4>Emergency Contact</h4>
-                    <div>
-                        <span>NAME</span><br/>
-                        <span>(xxx) xxx-xxxx</span><br/>
-                        <span>Alt (xxx) xxx-xxxx</span>
+                    <div property="knows" typeof="Person">
+                        <span property="name">NAME</span><br/>
+                        <span property="telephone">(xxx) xxx-xxxx</span><br/>
+                        <span property="telephone">Alt (xxx) xxx-xxxx</span>
                     </div>
                 </div>
             </div>
@@ -28,19 +28,25 @@
             <div class="directory-information">
                 <div class="dir-position">
                     <h4>Position</h4>
-                    <span>Fill: POSITION</span>
+                    <span property="jobTitle">Fill: POSITION</span>
                 </div>
 
                 <div class="dir-contact-info">
                     <h4>Work Contact Information</h4>
+                    (KP: show preferred name if one exists)<br/>
                     <span>Name (official):</span> <span property="name">{{first_name}} {{last_name}}</span><br />
                     <span>Name (preferred):</span> <span property="additionalName">{{student_name}}</span><br />
-                    <span>Office phone (xxx)xxx-xxxx</span><br />
-                    <span>Alt phone (xxx)xxx-xxxx</span><br />
-                    <span>Fax (xxx)xxx-xxxx</span><br />
-                    <span>Voicemail (xxx)xxx-xxxx</span><br />
-                    <span>Box Number: 354xxx</span><br />
-                    <span>Campus Address: xxxx NE 45th Seattle, WA xxxxx-xxxx</span><br />
+                    <span property="email">netid@uw.edu</span>
+                    <div property="workLocation" typeof="Place">
+                        <span property="telephone">Office phone (xxx)xxx-xxxx</span><br />
+                        <span property="telephone">Alt phone (xxx)xxx-xxxx</span><br />
+                        <span property="faxNumber">Fax (xxx)xxx-xxxx</span><br />
+                        <span property="telephone">Voicemail (xxx)xxx-xxxx</span><br />
+                        <div property="address">
+                            <span>Box Number: 354xxx</span><br />
+                            <span>Campus Address: xxxx NE 45th Seattle, WA xxxxx-xxxx</span><br />
+                        </div>
+                    </div>
                 </div>
 
                 <div class="dir-release">
@@ -53,7 +59,7 @@
                         <p>Name, position, work contact information are visible in the <a href="https://www.washington.edu/home/peopledir/">UW Directory</a>.</p>
                         {{/if }}
 
-                        <a href="https://identity.uw.edu/">Manage UW Directory preferences on Identity.UW</a>
+                        <a href="https://identity.uw.edu/">Manage UW Directory listing on Identity.UW</a>
                     </div>
                 </div>
             </div>
