@@ -169,11 +169,12 @@ var VisualScheduleCard = {
         var day, day_index, i, height, top;
 
         var index = 0;
-        for (index = 0; index < course_data.schedule_periods[period].sections; index++) {
+        for (index = 0; index < course_data.schedule_periods[period].sections.length; index++) {
             var section = course_data.schedule_periods[period].sections[index];
             var meeting_index = 0;
             for (meeting_index = 0; meeting_index < section.meetings.length; meeting_index++) {
                 var meeting = section.meetings[meeting_index];
+
                 if (!meeting.days_tbd) {
 
                     var start_parts = meeting.start_time.split(":");
@@ -313,7 +314,7 @@ var VisualScheduleCard = {
     },
         
     render_schedule: function(course_data, term) {
-        var visual_data = VisualScheduleCard._get_data_for_period(course_data, term, "1");
+        var visual_data = VisualScheduleCard._get_data_for_period(course_data, term, "0");
         console.log(visual_data)
         VisualScheduleCard.shown_am_marker = false;
 
