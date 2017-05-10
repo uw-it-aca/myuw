@@ -73,13 +73,11 @@
                                             {{#if degrees_modified}}
                                                 <li>{{ pluralize_by_size minors "Minor" "Minors"}}
                                                     Beginning {{ toTitleCase quarter}}:
-                                                    {{#list_less_than minors 1}}
-                                                        None
+                                                    {{#each minors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
                                                     {{else}}
-                                                        {{#each minors}}
-                                                            {{full_name}} {{#unless @last}},{{/unless}}
-                                                        {{/each}}
-                                                    {{/list_less_than}}
+                                                        None
+                                                    {{/each}}
                                                 </li>
                                             {{/if}}
                                         {{/if}}

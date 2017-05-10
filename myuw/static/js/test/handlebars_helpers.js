@@ -293,24 +293,4 @@ describe('Handlebar-helpers', function(){
 
         });
     });
-
-    describe("list_less_than", function() {
-        it ("should have the right date", function() {
-            var data = {
-                "list" : []
-            };
-            var template = Handlebars.compile("{{list_less_than list 1 }}Hi{{\list_less_than}}");
-            var output = template();
-
-            assert.equal(output, 'Hi');
-
-            data = {
-                "list" : ["hi", "hi"]
-            };
-            template = Handlebars.compile("{{list_less_than list 1 }}Hi{{\list_less_than}}");
-            output = template();
-
-            assert.equal(output, 'Hi');
-        });
-    });
 });

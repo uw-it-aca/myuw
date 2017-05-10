@@ -382,17 +382,6 @@ Handlebars.registerHelper('greater_than', function(value1, value2, options) {
     }
 });
 
-Handlebars.registerHelper('list_less_than', function(list, length, options) {
-    if (arguments.length < 3)
-        throw new Error("Handlebars Helper greater_than needs 2 parameters");
-    if(list.length < length) {
-        return options.fn(this);
-    }
-    else {
-        return options.inverse(this);
-    }
-});
-
 Handlebars.registerHelper('not_first', function(index, block) {
     // display block if the index greater than 0
     if (arguments.length < 2)
