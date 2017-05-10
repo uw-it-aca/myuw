@@ -4,8 +4,8 @@
         <h3>Employee Profile</h3>
 
         <div vocab="http://schema.org/" typeof="Person">
-            <div class="personal-contact-info">
-                <div class="home-address">
+            <div class="personal-contact-info row">
+                <div class="home-address col-xs-6" property="homeLocation" typeof="Place">
                     <h4>Home Address</h4>
                     <div property="address" typeof="PostalAddress">
                         <span property="streetAddress">{{address1}}</span>
@@ -15,12 +15,12 @@
                     <p>Home Phone: <span property="telephone">{{phone_number phone}}</span></p>
                 </div>
 <!-- not data we have at the moment
-                <div class="emergency-contact">
+                <div class="emergency-contact col-xs-6">
                     <h4>Emergency Contact</h4>
-                    <div>
-                        <span>NAME</span><br/>
-                        <span>(xxx) xxx-xxxx</span><br/>
-                        <span>Alt (xxx) xxx-xxxx</span>
+                    <div property="knows" typeof="Person">
+                        <span property="name">NAME</span><br/>
+                        <span property="telephone">(xxx) xxx-xxxx</span><br/>
+                        <span property="telephone">Alt (xxx) xxx-xxxx</span>
                     </div>
                 </div>
 -->
@@ -29,19 +29,25 @@
             <div class="directory-information">
                 <div class="dir-position">
                     <h4>Position</h4>
-                    <span property="name">{{title1}}</span><br />
+                    <span property="jobTitle">{{title1}}</span>
                 </div>
 
                 <div class="dir-contact-info">
                     <h4>Work Contact Information</h4>
+                    (KP: show preferred name if one exists)<br/>
                     <span>Name (official):</span> <span property="name">{{first_name}} {{surname}}</span><br />
                     <span>Name (preferred):</span> <span property="additionalName">{{display_name}}</span><br />
-                    <span>Office phone {{phone_number phone1}}</span><br />
-<!-- no data                    <span>Alt phone {{phone_number phone2}}</span><br /> -->
-                    <span>Fax {{phone_number fax}}</span><br />
-                    <span>Voicemail {{phone_number voicemail}}</span><br />
-                    <span>Box Number: {{mailstop}}</span><br />
-                    <span>{{address1}}</span><br />
+                    <span property="email">netid@uw.edu</span>
+                    <div property="workLocation" typeof="Place">
+                        <span property="telephone">Office phone {{phone_number phone1}}</span><br />
+<!-- no data                         <span property="telephone">Alt phone (xxx)xxx-xxxx</span><br /> -->
+                        <span property="faxNumber">Fax {{phone_number fax}}</span><br />
+                        <span property="telephone">Voicemail {{phone_number voicemail}}</span><br />
+                        <div property="address">
+                            <span>Box Number: {{mailstop}}</span><br />
+                            <span>Campus Address: {{address1}}</span><br />
+                        </div>
+                    </div>
                 </div>
 
                 <div class="dir-release">
@@ -53,7 +59,7 @@
                         {{#if directory_release}}
                         <p>Name, position, work contact information are visible in the <a href="https://www.washington.edu/home/peopledir/">UW Directory</a>.</p>
                         {{/if }}
-                        <a href="https://identity.uw.edu/">Manage UW Directory preferences on Identity.UW</a>
+                        <a href="https://identity.uw.edu/">Manage UW Directory listing on Identity.UW</a>
                     </div>
                 </div>
             </div>
