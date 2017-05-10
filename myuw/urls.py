@@ -164,13 +164,10 @@ urlpatterns += [
         ),
     url(r'^choose/legacy', old_site, name="myuw_pref_old_site"
         ),
-
     url(r'accounts/?$', accounts, name="myuw_accounts_page"),
     url(r'profile/?$', profile, name="myuw_profile_page"),
-
     url(r'^search/?$', search_res, name="myuw_search_res_page"
         ),
-
     url(r'^teaching/?$', teaching, name="myuw_teaching_page"
         ),
     url(r'^teaching/'
