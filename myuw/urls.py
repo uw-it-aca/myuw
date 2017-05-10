@@ -39,6 +39,7 @@ from myuw.views.api.calendar import DepartmentalCalendar
 from myuw.views.search import search_res
 from myuw.views.api.upass import UPass
 from myuw.views.api.messages import Messages
+from myuw.views.api.directory import MyDirectoryInfo
 
 urlpatterns = []
 
@@ -160,6 +161,9 @@ urlpatterns += [
     url(r'^api/v1/messages/$', login_required(Messages().run),
         name="myuw_message_api"
         ),
+    url(r'^api/v1/directory/$', login_required(MyDirectoryInfo().run),
+        name="myuw_directory_api"
+        ),
     url(r'^choose/new', new_site, name="myuw_pref_new_site"
         ),
     url(r'^choose/legacy', old_site, name="myuw_pref_old_site"
@@ -178,7 +182,6 @@ urlpatterns += [
         r'/students$',
         student_photo_list, name="myuw_photo_list"
         ),
-
     url(r'^notices/?', notices, name="myuw_notices_page"
         ),
     url(r'^thrive_messages/?', thrive_messages,

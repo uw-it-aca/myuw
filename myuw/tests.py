@@ -55,6 +55,7 @@ from myuw.test.api.instructor_schedule import (
     TestInstructorCurrentSchedule, TestInstructorTermSchedule,
     TestInstructorSection)
 from myuw.test.api.messages import TestMessages
+from myuw.test.api.directory import TestMyDirectoryInfo
 from myuw.test.cache import TestCustomCachePolicy
 from myuw.test.context_processors import TestContextProcessors
 from myuw.test.loggers import TestSessionLog

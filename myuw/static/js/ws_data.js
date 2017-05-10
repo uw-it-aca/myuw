@@ -24,6 +24,7 @@ WSData = {
     _profile_data: null,
     _profile_data_error_status: null,
     _tuition_data: null,
+    _directory_data: null,
     _instructor_data: {},
     _link_data: null,
     _success_callbacks: {},
@@ -348,6 +349,10 @@ WSData = {
 
     tuition_data: function() {
         return WSData._tuition_data;
+    },
+
+    directory_data: function() {
+        return WSData._directory_data;
     },
 
     profile_data: function() {
@@ -973,6 +978,32 @@ WSData = {
                     accepts: {html: "text/html"},
                     success: function(results) {
                         WSData._tuition_data = results;
+                        if (callback !== null) {
+                            callback.apply(null, args);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        err_callback.call(null, xhr.status, error);
+                        }
+                    });
+              }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
+    fetch_directory_data: function(callback, err_callback, args) {
+        if (WSData._directory_data === null) {
+            $.ajax({
+                    url: "/api/v1/directory/",
+                    dataType: "JSON",
+
+                    type: "GET",
+                    accepts: {html: "text/html"},
+                    success: function(results) {
+                        WSData._directory_data = results;
                         if (callback !== null) {
                             callback.apply(null, args);
                         }
