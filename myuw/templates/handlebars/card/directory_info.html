@@ -37,7 +37,10 @@
                     (KP: show preferred name if one exists)<br/>
                     <span>Name (official):</span> <span property="name">{{first_name}} {{surname}}</span><br />
                     <span>Name (preferred):</span> <span property="additionalName">{{display_name}}</span><br />
-                    <span property="email">netid@uw.edu</span>
+                    <span property="email">{{email1}}</span>
+                    {{#if email2}}
+                    <span property="email">{{email}}</span>
+                    {{/if}}
                     <div property="workLocation" typeof="Place">
                         <span property="telephone">Office phone {{phone_number phone1}}</span><br />
 <!-- no data                         <span property="telephone">Alt phone (xxx)xxx-xxxx</span><br /> -->
