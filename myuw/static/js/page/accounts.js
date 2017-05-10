@@ -12,7 +12,7 @@ var RenderAfterAjax = function () {
 };
 
 var RenderAfterAjaxError = function () {
-    _render_cards(false)
+    _render_cards(false);
 };
 
 var _render_cards = function(has_medicine) {
@@ -22,4 +22,4 @@ var _render_cards = function(has_medicine) {
         card_order = [MedicineAccountsCard, AccountsCard];
     }
     Cards.load_cards_in_order(card_order, $("#account_card_content"));
-}
+};
