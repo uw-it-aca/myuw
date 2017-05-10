@@ -27,7 +27,7 @@
    {% endif %}
 
    <!-- google fonts -->
-   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i' rel='stylesheet' type='text/css'>
    <link href='//fonts.googleapis.com/css?family=Roboto:400,500,300,100' rel='stylesheet' type='text/css'>
 
    <!-- favicon -->
@@ -54,6 +54,16 @@
     {% csrf_token %}
 
     {% block header %}
+    <div id="app_search" class="collapse">
+        <div class="container">
+            <form action="/search" method="get" class="uw-search">
+                <label class="sr-only" for="search-nav">Search for:</label>
+                <input id="search-nav" name="q" type="text" placeholder="Search for:">
+                <button type="submit" value="Search" style="background-image: url({% static 'images/search.svg' %});">Search</button>
+            </form>
+        </div>
+    </div>
+
     <div id="app_header">
         <div class="header-bar" role="navigation" title="Home, email, and categorized resources">
             <div class="container clearfix">
@@ -62,12 +72,15 @@
                     <ul id="top_navigation_link_list" class="top_navigation_list">
                         {% if user.email_forward_url %}
                         <li>
-                            <div class="header-email" id="uwemail">                             
-                              <a href="{{ user.email_forward_url }}" target="_blank" title="Open {{ user.email_forward_title }} in new tab"><i class="fa {{ user.email_forward_icon }}" aria-hidden="true">&nbsp;</i>{{ user.email_forward_title }}</a>                            
+                            <div class="header-email" id="uwemail">
+                              <a href="{{ user.email_forward_url }}" target="_blank" title="Open {{ user.email_forward_title }} in new tab"><i class="fa {{ user.email_forward_icon }}" aria-hidden="true">&nbsp;</i>{{ user.email_forward_title }}</a>
                             </div>
                         </li>
                         {% endif %}
                         <li><div class="header-resources"><a href="#" id="categories_link"><i class="fa fa-th" role="presentation">&nbsp;</i>Resources</a></div></li>
+                        <li>
+                            <button class="search-button" type="button" data-toggle="collapse" data-target="#app_search" id="toggle_app_search" aria-expanded="false" aria-controls="app_search" style="background-image: url({% static 'images/search.svg' %});">
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -121,6 +134,7 @@
                 <h2>Welcome to MyUW!</h2>&nbsp; MyUW shows you personal, critical, and timely information. <a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn how it works.</a>
             </div>
             {% endif %}
+            <div id="message_banner_location"></div>
             {# Keeping code here as scumby believes we'll likely reuse this in the next few weeks#}
                {% if false %}<div class="advert message-text"><h2>Earn $25 Husky Card Credit - <a id="survey" href="https://catalyst.uw.edu/webq/survey/fournier/290956" target="_blank">Volunteers Needed for 1-Hour UW-IT Interview</a></h2></div>{% endif %}
         </div>
@@ -265,7 +279,7 @@
     <script src="{% static 'vendor/js/bootstrap-3.1.1.min.js' %}"></script>
     <script src="{% static 'vendor/js/jquery.cookie-1.4.1.min.js' %}"></script>
     <script src="{% static 'vendor/js/ios-orientationchange-fix.min.js' %}"></script>
-    <script src="{% static 'vendor/js/handlebars-v2.0.0.js' %}"></script>
+    <script src="{% static 'vendor/js/handlebars-v4.0.5.js' %}"></script>
     <script src="{% static 'vendor/js/jquery.history-1.8.0.min.js' %}"></script>
     <script src="{% static 'vendor/js/jquery.ba-dotimeout-1.0.js' %}"></script>
     <script src="{% static 'vendor/js/moment.2.8.3.min.js' %}"></script>
@@ -305,6 +319,7 @@
     <script src="{% static 'js/banner/notice.js' %}"></script>
     <script src="{% static 'js/banner/pce.js' %}"></script>
     <script src="{% static 'js/banner/calendar.js' %}"></script>
+    <script src="{% static 'js/banner/messages.js' %}"></script>
     <script src="{% static 'js/card/error.js' %}"></script>
     <script src="{% static 'js/card/grade.js' %}"></script>
     <script src="{% static 'js/card/fin_aid.js' %}"></script>
@@ -323,6 +338,7 @@
     <script src="{% static 'js/card/events.js' %}"></script>
     <script src="{% static 'js/card/thrive.js' %}"></script>
     <script src="{% static 'js/card/emp_fac_student.js' %}"></script>
+    <script src="{% static 'js/card/upass.js' %}"></script>
     <script src="{% static 'js/card/outage.js' %}"></script>
     <script src="{% static 'js/card/schedule/course_sche_panel.js' %}"></script>
     <script src="{% static 'js/card/schedule/course_resource_panel.js' %}"></script>

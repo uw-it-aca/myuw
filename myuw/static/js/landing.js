@@ -17,6 +17,7 @@ var Landing = {
         NoticeBanner.render_init($("#notice_banner_location"));
 
         PceBanner.render_init($("#pce_banner_location"));
+        MessageBanner.render_init($("#message_banner_location"));
 
         Landing.load_cards_for_viewport();
         // Set initial display state
@@ -66,6 +67,7 @@ var Landing = {
             HfsCard,
             TuitionCard,
             LibraryCard,
+            UPassCard,
             EventsCard
         ];
         // Add in outage card if we can't get the SWS/term resource
@@ -99,6 +101,7 @@ var Landing = {
             HfsCard,
             TuitionCard,
             LibraryCard,
+            UPassCard,
             EventsCard,
             GradCommitteeCard,
             FutureQuarterCard1,
@@ -113,6 +116,10 @@ var Landing = {
     },
 
     _reset_content_divs: function() {
+        // Reset all the multiple resourse card render records
+        // needed on every page refresh MUWM-3803
+        resetCardRenderCalled();
+
         $("#landing_content_cards").html('');
         $("#landing_accounts_cards").html('');
         $("#calendar_banner_location_desktop").html('');

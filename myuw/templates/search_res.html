@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% load compress %}
+
+{% block page_title %}
+MyUW: Search the UW
+{% endblock %}
+
+{% block content %}
+
+    <div id="main-content" role="main" aria-labelledby="main">
+        <div class="container search-container">
+            <div id="search_content">
+                <h2 class="heading-page">Search Results</h2>
+
+                <form action="/search" method="get" class="uw-search">
+                    <label class="sr-only" for="search-results-page">Search for:</label>
+                    <input id="search-results-page" name="q" type="text" placeholder="Search for:">
+                    <button type="submit" value="Search" style="background-image: url({% static 'images/search.svg' %});">Search</button>
+                </form>
+
+                <script>
+                  (function() {
+                    var cx = '{{ google_search_key }}';
+                    var gcse = document.createElement('script');
+                    gcse.type = 'text/javascript';
+                    gcse.async = true;
+                    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(gcse, s);
+                  })();
+                </script>
+                <gcse:searchresults-only></gcse:searchresults-only>
+            </div>
+        </div>
+    </div>
+    <div id="static-links"></div>
+
+    <!-- component content templates -->
+    {% include "handlebars/banner/profile.html" %}
+
+    <!-- page content templates -->
+    {% include "handlebars/loading.html" %}
+    {% include "handlebars/error.html" %}
+
+
+    {% include "user_state.html" %}
+
+{% endblock %}
+
+{% block extra_js %}
+    {% compress js inline %}
+    <script src="{% static 'js/page/search_res.js' %}"></script>
+    {% endcompress %}
+{% endblock %}

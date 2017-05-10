@@ -2,16 +2,26 @@ sudo: false
 language: python
 services:
   - memcached
+  - mysql
 python:
   - "2.7"
 env:
-  - TRAVIS_NODE_VERSION="4"
+  matrix:
+    - DB=sqlite3
+    - DB=mysql
+  global:
+    - TRAVIS_NODE_VERSION="4"
 install:
   - pip install -r requirements.txt
 before_script:
+  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create database myuw'; fi
+  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create user "myuw" identified by "my_pass"'; fi
+  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'grant all on *.* to myuw'; fi
+
   - pip install coverage
   - pip install python-coveralls
   - pip install pep8
+  - pip install MySQL-python
   - npm install jshint
   - npm install mocha
   - npm install jquery
@@ -25,6 +35,7 @@ before_script:
   - gem install coveralls-lcov
   - cp travis-ci/manage.py manage.py
   - python manage.py migrate
+
 script:
   - which mocha
   - which _mocha
@@ -32,6 +43,8 @@ script:
   - ls -l ./node_modules/.bin/_mocha
   - ls -l ./node_modules/mocha/bin/_mocha
   - pep8 myuw/ --exclude=migrations,myuw/south_migrations,myuw/static
+  # Find </br> tags
+  - grep -re '<\s*/\s*br\s*>' myuw/templates/ ; test $? -eq 1
   - jshint myuw/static/js/  --verbose
   - mocha myuw/static/js/test/ --recursive
   - istanbul cover --include-all-sources -x "**/vendor/**" -x "**/site-packages/**" ./node_modules/mocha/bin/_mocha -- -R spec myuw/static/js/test/

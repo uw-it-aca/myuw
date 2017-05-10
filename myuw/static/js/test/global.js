@@ -20,7 +20,7 @@ var Environment = {
         global.window = window;
         global.assert = require("assert");
         global.moment = require("moment");
-        global.Handlebars = require("../../vendor/js/handlebars-v2.0.0.js");
+        global.Handlebars = require("../../vendor/js/handlebars-v4.0.5.js");
         var MomentTZ = require("moment-timezone");
         var HandlebarsHelpers = require("../handlebars-helpers.js")
 

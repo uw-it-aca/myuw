@@ -30,8 +30,8 @@ class TestProfile(MyuwApiTest):
 
         self.assertEquals(data["campus"], "Seattle")
         self.assertEquals(data["class_level"], "SENIOR")
-        self.assertEquals(len(data["majors"]), 1)
-        self.assertEquals(len(data["minors"]), 1)
+        self.assertEquals(len(data["term_majors"]), 4)
+        self.assertEquals(len(data["term_minors"]), 4)
         self.assertFalse(data["is_grad_student"])
         pw_data = data["password"]
         self.assertEquals(pw_data["last_change"],
@@ -77,3 +77,111 @@ class TestProfile(MyuwApiTest):
 
         response = self.get_profile_response('none')
         self.assertEquals(response.status_code, 200)
+
+    def test_no_pending(self):
+        response = self.get_profile_response('javg005')
+        self.assertEquals(response.status_code, 200)
+
+        data = json.loads(response.content)
+        self.assertIn("term_majors", data)
+        for major_entry in data['term_majors']:
+            self.assertTrue(major_entry['same_as_previous'])
+
+    def test_change_majors_once(self):
+        response = self.get_profile_response('javg001')
+        self.assertEquals(response.status_code, 200)
+
+        data = json.loads(response.content)
+        self.assertIn("term_majors", data)
+        self.assertTrue(data['term_majors'][0]['same_as_previous'])
+        self.assertFalse(data['term_majors'][1]['same_as_previous'])
+        self.assertTrue(data['term_majors'][2]['same_as_previous'])
+
+        self.assertEquals(len(data['term_majors'][0]['majors']), 1)
+        self.assertEquals(len(data['term_majors'][1]['majors']), 2)
+        self.assertEquals(len(data['term_majors'][2]['majors']), 2)
+
+    def test_summer_major_only(self):
+        # test to see if same_as_previous works
+        response = self.get_profile_response('eight')
+        self.assertEquals(response.status_code, 200)
+
+        data = json.loads(response.content)
+        self.assertIn("term_majors", data)
+        self.assertEquals(len(data['term_majors'][0]['majors']), 2)
+        self.assertEquals(len(data['term_majors'][1]['majors']), 3)
+        self.assertEquals(len(data['term_majors'][2]['majors']), 2)
+
+        self.assertTrue(data['term_majors'][0]['same_as_previous'])
+        self.assertFalse(data['term_majors'][1]['same_as_previous'])
+        self.assertFalse(data['term_majors'][2]['same_as_previous'])
+
+    def test_change_once_and_add_another(self):
+        response = self.get_profile_response('javg002')
+        self.assertEquals(response.status_code, 200)
+
+        data = json.loads(response.content)
+        self.assertIn("term_majors", data)
+        self.assertTrue(data['term_majors'][0]['same_as_previous'])
+        self.assertFalse(data['term_majors'][1]['same_as_previous'])
+        self.assertFalse(data['term_majors'][2]['same_as_previous'])
+        self.assertTrue(data['term_majors'][3]['same_as_previous'])
+
+        self.assertEquals(len(data['term_majors'][0]['majors']), 1)
+        self.assertEquals(len(data['term_majors'][1]['majors']), 1)
+        self.assertEquals(len(data['term_majors'][2]['majors']), 2)
+        self.assertEquals(len(data['term_majors'][3]['majors']), 2)
+
+    def test_drop_major(self):
+        response = self.get_profile_response('javg003')
+        self.assertEquals(response.status_code, 200)
+
+        data = json.loads(response.content)
+        self.assertIn("term_majors", data)
+        self.assertTrue(data['term_majors'][0]['same_as_previous'])
+        self.assertFalse(data['term_majors'][1]['same_as_previous'])
+        self.assertTrue(data['term_majors'][2]['same_as_previous'])
+        self.assertTrue(data['term_majors'][3]['same_as_previous'])
+
+        self.assertEquals(len(data['term_majors'][0]['majors']), 2)
+        self.assertEquals(len(data['term_majors'][1]['majors']), 1)
+        self.assertEquals(len(data['term_majors'][2]['majors']), 1)
+        self.assertEquals(len(data['term_majors'][3]['majors']), 1)
+
+    def test_no_major_or_minor(self):
+        response = self.get_profile_response('javg004')
+        self.assertEquals(response.status_code, 200)
+
+        data = json.loads(response.content)
+        self.assertTrue("term_majors" in data)
+        self.assertEquals(len(data['term_majors']), 0)
+
+        self.assertIn("term_minors", data)
+        self.assertEquals(len(data['term_minors']), 0)
+
+    def test_drop_minor(self):
+        response = self.get_profile_response('javg002')
+        self.assertEquals(response.status_code, 200)
+
+        data = json.loads(response.content)
+        self.assertIn("term_minors", data)
+        self.assertTrue(data['term_minors'][0]['same_as_previous'])
+
+        self.assertEquals(len(data['term_minors']), 1)
+        self.assertEquals(len(data['term_minors'][0]['minors']), 1)
+
+    def test_no_pending(self):
+        response = self.get_profile_response('javg005')
+        self.assertEquals(response.status_code, 200)
+
+        data = json.loads(response.content)
+        self.assertFalse(data['has_pending_major'])
+        self.assertFalse(data['has_pending_minor'])
+        majors = data['term_majors']
+        minors = data['term_minors']
+
+        for major in majors:
+            self.assertTrue(major['same_as_previous'])
+
+        for minor in minors:
+            self.assertTrue(minor['same_as_previous'])

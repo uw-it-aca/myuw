@@ -20,15 +20,61 @@
 			<div>{{ class_level }}</div>
 			<div>
                             <ul class="student-major-list">
-                                {{#if majors}}
-                                {{#each majors}}
-                                <li>{{full_name}}</li>
-                                {{/each}}
+                                {{#if term_majors}}
+                                    {{#each term_majors}}
+                                        {{#if @first}}
+                                            {{#if @root.has_pending_major}}
+                                                <li>Current {{ pluralize_by_size majors "Major" "Majors"}}:
+                                                    {{#each majors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{/each}}
+                                                </li>
+                                            {{else}}
+                                                {{#each majors}}
+                                                    <li>{{full_name}}</li>
+                                                {{/each}}
+                                            {{/if}}
+                                        {{else}}
+                                            {{#unless same_as_previous}}
+                                                <li>{{ pluralize_by_size majors "Major" "Majors"}}
+                                                    Beginning {{ toTitleCase quarter}}:
+                                                    {{#each majors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{/each}}
+                                                </li>
+                                            {{/unless}}
+                                        {{/if}}
+                                    {{/each}}
                                 {{/if}}
-                                {{#if minors}}
-                                {{#each minors}}
-                                <li>{{full_name}} (minor)</li>
-                                {{/each}}
+
+                                {{#if term_minors}}
+                                    {{#each term_minors}}
+                                        {{#if @first}}
+                                            {{#if @root.has_pending_minor}}
+                                                <li>Current {{ pluralize_by_size minors "Minor" "Minors"}}:
+                                                    {{#each minors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{/each}}
+                                                </li>
+                                            {{else}}
+                                                <li>Current {{ pluralize_by_size minors "Minor" "Minors"}}:
+                                                    {{#each minors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{/each}}
+                                                </li>
+                                            {{/if}}
+
+                                        {{else}}
+                                            {{#unless same_as_previous}}
+                                                <li>{{ pluralize_by_size minors "Minor" "Minors"}}
+                                                    Beginning {{ toTitleCase quarter}}:
+                                                    {{#each minors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{/each}}
+                                                </li>
+                                            {{/unless}}
+                                        {{/if}}
+                                    {{/each}}
                                 {{/if}}
                             </ul>
                         </div>

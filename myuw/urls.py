@@ -36,6 +36,9 @@ from myuw.views.api.myplan import MyPlan
 from myuw.views.api.academic_events import AcademicEvents
 from myuw.views.api.thrive import ThriveMessages
 from myuw.views.api.calendar import DepartmentalCalendar
+from myuw.views.search import search_res
+from myuw.views.api.upass import UPass
+from myuw.views.api.messages import Messages
 
 urlpatterns = []
 
@@ -51,7 +54,7 @@ if settings.DEBUG:
 urlpatterns += [
     url(r'admin/dates', override, name="myuw_date_override"
         ),
-    url(r'^logger/(?P<interaction_type>\w+)$', log_interaction
+    url(r'^logger/(?P<interaction_type>.*)$', log_interaction
         ),
     url(r'^api/v1/academic_events$', login_required(AcademicEvents().run),
         name="myuw_academic_calendar"
@@ -114,6 +117,9 @@ urlpatterns += [
     url(r'^api/v1/profile/$', login_required(MyProfile().run),
         name="myuw_profile_api"
         ),
+    url(r'^api/v1/upass/$', login_required(UPass().run),
+        name="myuw_upass_api"
+        ),
     url(r'^api/v1/schedule/current/?$',
         login_required(StudClasScheCurQuar().run),
         name="myuw_current_schedule"
@@ -151,12 +157,20 @@ urlpatterns += [
     url(r'^api/v1/thrive/$', login_required(ThriveMessages().run),
         name="myuw_thrive_api"
         ),
+    url(r'^api/v1/messages/$', login_required(Messages().run),
+        name="myuw_message_api"
+        ),
     url(r'^choose/new', new_site, name="myuw_pref_new_site"
         ),
     url(r'^choose/legacy', old_site, name="myuw_pref_old_site"
         ),
+
     url(r'accounts/?$', accounts, name="myuw_accounts_page"),
     url(r'profile/?$', profile, name="myuw_profile_page"),
+
+    url(r'^search/?$', search_res, name="myuw_search_res_page"
+        ),
+
     url(r'^teaching/?$', teaching, name="myuw_teaching_page"
         ),
     url(r'^teaching/'
