@@ -50,13 +50,13 @@ var PrevTermCourseCards = {
             WSData.process_term_course_data(term_course_data);
             WSData._normalize_instructors(term_course_data);
             var term_label = term_course_data.term.label.replace(/,/g, '_');
-
+            var quarter = term_course_data.quarter;
             var course_sections = term_course_data.sections;
             for (index = 0; index < course_sections.length; index++) {
                 section = course_sections[index];
-                section.index = term_label + '_' + section.index;
+                section.index += term_label;
                 section.year = term_course_data.year;
-                section.quarter = term_course_data.quarter;
+                section.quarter = quarter;
                 section.summer_term = term_course_data.summer_term;
             }
 
@@ -72,7 +72,7 @@ var PrevTermCourseCards = {
             for (index = 0; index < course_sections.length; index++) {
                 CourseCardContentPanel.render(course_sections[index], false);
             }
-
+            LoadCourseEval.add_events(quarter);
             CourseCards.add_events(term_label);
         }
     },

@@ -29,15 +29,17 @@
     </div>
     <div class="card-disclosure">
         <span id="show_course_details{{index}}_wrapper">
-            <a class="toggle_course_card_disclosure"
+            <a class="toggle_course_card_disclosure_{{quarter}}"
                id="show_course_details{{index}}"
-               href="#" aria-controls="course_details{{index}}"
+               aria-controls="course_details{{index}}"
+               href="#"
                title="Expand to show course details">Show course details</a>
         </span>
         <span id="hide_course_details{{index}}_wrapper" hidden aria-hidden="true">
-            <a class="toggle_course_card_disclosure"
+            <a class="toggle_course_card_disclosure_{{quarter}}"
                id="hide_course_details{{index}}"
-               href="#" aria-controls="course_details{{index}}"
+               aria-controls="course_details{{index}}"
+               href="#"
                title="Collapse to hide course details">Hide course details</a>
         </span>
     </div>
@@ -50,7 +52,7 @@
     </div>
 
     {{#if instructors}}
-        <div id="course_details{{index}}" class="slide-hide"
+        <div id="instructors{{index}}" class="slide-hide"
              aria-label="Course instructor information"
              rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
              aria-hidden="true" hidden aria-expanded="false"
@@ -60,18 +62,18 @@
         </div>
         <div class="card-disclosure">
             <span id="show_course_details{{index}}_wrapper">
-                <a class="toggle_course_card_disclosure"
+                <a class="toggle_course_card_disclosure_{{quarter}}"
                    id="show_instructors{{index}}"
                    href="#"
-                   aria-controls="course_details{{index}}"
+                   aria-controls="instructors{{index}}"
                    title="Expand to show instructor contact information">Show instructors</a>
             </span>
             <span id="hide_course_details{{index}}_wrapper"
                   hidden aria-hidden="true">
-                <a class="toggle_course_card_disclosure"
+                <a class="toggle_course_card_disclosure_{{quarter}}"
                    id="hide_instructors{{index}}"
                    href="#"
-                   aria-controls="course_details{{index}}"
+                   aria-controls="instructors{{index}}"
                    title="Collapse to hide instructor contact information">Hide instructors</a>
             </span>
         </div>
