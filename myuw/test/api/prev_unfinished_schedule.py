@@ -35,7 +35,13 @@ class TestStudUnfinishedPrevQuarClasSche(MyuwApiTest):
         self.assertEquals(response.content, 'Data not found')
         self.assertEquals(response.status_code, 404)
 
-    def test_jpce_prev_term(self):
+    def test_no_prev_terms(self):
+        response = self.get_prev_unfinished_schedule('jpce',
+                                                     '2013-08-08 00:00:01')
+        self.assertEquals(response.content, 'Data not found')
+        self.assertEquals(response.status_code, 404)
+
+    def test_one_prev_term(self):
         response = self.get_prev_unfinished_schedule('jpce')
         self.assertEquals(response.status_code, 200)
         ret_data = json.loads(response.content)
@@ -56,7 +62,19 @@ class TestStudUnfinishedPrevQuarClasSche(MyuwApiTest):
         self.assertEquals(psych['end_date'], '2013-07-30 00:00:00')
         self.assertFalse(psych["is_ended"])
 
+    def test_two_prev_terms(self):
         response = self.get_prev_unfinished_schedule('jpce',
-                                                     '2013-08-08 00:00:01')
-        self.assertEquals(response.content, 'Data not found')
-        self.assertEquals(response.status_code, 404)
+                                                     '2013-06-24 00:00:01')
+        self.assertEquals(response.status_code, 200)
+        ret_data = json.loads(response.content)
+        self.assertEquals(len(ret_data), 2)
+
+        data = ret_data[0]
+        self.assertEquals(data["term"]["year"], 2013)
+        self.assertEquals(data["term"]["quarter"], 'Spring')
+        self.assertEquals(len(data["sections"]), 1)
+
+        data = ret_data[1]
+        self.assertEquals(data["term"]["year"], 2013)
+        self.assertEquals(data["term"]["quarter"], 'Winter')
+        self.assertEquals(len(data["sections"]), 1)
