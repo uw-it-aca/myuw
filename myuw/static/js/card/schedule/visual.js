@@ -49,8 +49,9 @@ var VisualScheduleCard = {
         var term = VisualScheduleCard.term;
         var course_data = WSData.normalized_course_data(term);
         course_data.schedule_periods = VisualScheduleCard._get_schedule_periods(course_data);
-
-        VisualScheduleCard.render_schedule(course_data, term);
+        var default_period = Object.keys(course_data.schedule_periods)[0];
+        VisualScheduleCard.display_schedule_for_period(default_period);
+        //VisualScheduleCard.render_schedule(course_data, term);
 
         FinalExamSchedule.render(course_data, term, true);
 
@@ -140,6 +141,16 @@ var VisualScheduleCard = {
         var end = exam_date.clone().endOf('week');
 
         return [start, end];
+    },
+
+    display_schedule_for_period: function(period){
+        if (VisualScheduleCard._has_all_data()){
+            var term = VisualScheduleCard.term;
+            var course_data = WSData.normalized_course_data(term);
+            var data = VisualScheduleCard._get_data_for_period(course_data, term, period);
+            VisualScheduleCard.render_schedule(data, term);
+        }
+
     },
 
     _get_data_for_period: function(course_data, term, period){
@@ -312,8 +323,7 @@ var VisualScheduleCard = {
         return visual_data;
     },
         
-    render_schedule: function(course_data, term) {
-        var visual_data = VisualScheduleCard._get_data_for_period(course_data, term, "0");
+    render_schedule: function(visual_data, term) {
         VisualScheduleCard.shown_am_marker = false;
 
         source   = $("#visual_schedule_card_content").html();
@@ -374,6 +384,11 @@ var VisualScheduleCard = {
             $(".show_full_term_meetings").show();
             $(".show_efs_meetings").hide();
             return false;
+        });
+
+        $("span.schedule-period").on("click", function(ev){
+            var period_id = $(ev.target).attr('data-period_id');
+            VisualScheduleCard.display_schedule_for_period(period_id);
         });
     }
 };
