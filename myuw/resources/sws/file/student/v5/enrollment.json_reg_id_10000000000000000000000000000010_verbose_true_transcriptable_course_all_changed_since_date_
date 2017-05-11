@@ -294,7 +294,48 @@
               "StartDate": "04/03/2013",
               "VariableCredit": false,
               "WritingCourse": false
-              } 
+              },
+              {
+                    "AccessDateRangeEnd": "06/02/2014",
+                    "AccessDateRangeStart": "03/15/2013",
+                    "Auditor": false,
+                    "Credits": "3.0",
+                    "DuplicateCode": "",
+                    "EducationUnitType": null,
+                    "EndDate": "06/13/2013",
+                    "FeeBaseType": "Fee based course",
+                    "Grade": "X",
+                    "GradeDate": "",
+                    "GradeDocumentID": "",
+                    "GradingSystem": null,
+                    "HonorsCourse": false,
+                    "Href": "/student/v5/registration/2013,spring,CM,421,A,10000000000000000000000000000010,.json",
+                    "Instructor": null,
+                    "IsActive": true,
+                    "IsCredit": true,
+                    "IsIndependentStart": false,
+                    "Metadata": "RegistrationSourceLocation=SDB_EOS;",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000010.json",
+                        "Name": "Daniel Gedalia",
+                        "RegID": "10000000000000000000000000000010"
+                    },
+                    "RepeatCourse": false,
+                    "RepositoryTimeStamp": "3/28/2013 1:13:53 PM",
+                    "RequestDate": "2013-03-16",
+                    "RequestStatus": "ADDED TO CLASS",
+                    "Section": {
+                        "CourseNumber": "421",
+                        "CurriculumAbbreviation": "CM",
+                        "Href": "/student/v5/course/2013,spring,CM,421/A.json",
+                        "Quarter": "spring",
+                        "SectionID": "A",
+                        "Year": 2013
+                    },
+                    "StartDate": "04/04/2013",
+                    "VariableCredit": false,
+                    "WritingCourse": false
+                }
             ],
             "RepositoryTimeStamp": "3/28/2013 2:20:53 PM",
             "Term": {

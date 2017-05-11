@@ -31,6 +31,17 @@
             "Year": 2013,
             "Instructor": null
          },
+         {
+            "CourseNumber": "421",
+            "CurriculumAbbreviation": "CM",
+            "DuplicateCode": "",
+            "Href": "/student/v5/registration/2013,spring,CM,421,A,10000000000000000000000000000010,.json",
+            "Instructor": null,
+            "Quarter": "spring",
+            "RegID": "10000000000000000000000000000010",
+            "SectionID": "A",
+            "Year": 2013
+        },
         {
            "DuplicateCode": "",
            "Href": "/student/v5/registration/2013,spring,ACCTG,508,A,10000000000000000000000000000010,.json",
@@ -54,5 +65,5 @@
         "Year": 2013
         }
     ],
-    "TotalCount": 3
+    "TotalCount": 4
 }
