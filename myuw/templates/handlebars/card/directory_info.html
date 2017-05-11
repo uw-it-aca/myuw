@@ -1,18 +1,19 @@
 {% load templatetag_handlebars %}
+{% load static %}
     {% tplhandlebars "directory_info_card" %}
     <div class="card" data-type="card" data-name="DirectoryInfoCard" data-identifier="{{ title }}">
         <h3>Employee Profile</h3>
 
+        <a class="btn btn-default card-btn" href="https://wd5.myworkday.com/uw/login.htmld" id="og_workday" style="background-image: url({% static 'images/wday_logo.png' %})">Manage in Workday</a>
+
         <div vocab="http://schema.org/" typeof="Person">
-            <div class="personal-contact-info row">
-                <div class="home-address col-xs-6" property="homeLocation" typeof="Place">
-                    <h4>Home Address</h4>
-                    <div property="address" typeof="PostalAddress">
-                        <span property="streetAddress">{{address1}}</span>
+            <div class="personal-contact-info">
+                <div class="home-address" property="homeLocation" typeof="Place">
+                    <h4 style="margin-top: 25px;">Home Address</h4>
+                    <span property="address">{{address1}}</span>
 <!--                        <span property="addressLocality">{{permanent_address.city}}</span>, <span property="addressRegion">{{permanent_address.state}}</span> <span property="postalCode">{{permanent_address.zip_code}}</span>
--->
-                    </div>
-                    <p>Home Phone: <span property="telephone">{{phone_number phone}}</span></p>
+
+                    <span property="telephone">{{phone_number phone}}</span>-->
                 </div>
 <!-- not data we have at the moment
                 <div class="emergency-contact col-xs-6">
@@ -27,43 +28,54 @@
             </div>
 
             <div class="directory-information">
+
+<!--
                 <div class="dir-position">
                     <h4>Position</h4>
                     <span property="jobTitle">{{title1}}</span>
                 </div>
-
+-->
                 <div class="dir-contact-info">
-                    <h4>Work Contact Information</h4>
-                    (KP: show preferred name if one exists)<br/>
-                    <span>Name (official):</span> <span property="name">{{first_name}} {{surname}}</span><br />
-                    <span>Name (preferred):</span> <span property="additionalName">{{display_name}}</span><br />
+                    <h4 style="margin-top: 25px;">Work Contact Information</h4>
+
+                    {{#if display_name}}<span property="additionalName">{{display_name}}</span>{{/if}}
+                    {{#unless display_name}}<span property="name">{{first_name}} {{surname}}</span>{{/unless}}
+                    <br />
+                    <span property="jobTitle">{{title1}}</span><br/>
                     <span property="email">{{email1}}</span>
                     {{#if email2}}
-                    <span property="email">{{email}}</span>
+                    <br/><span property="email">{{email}}</span>
                     {{/if}}
-                    <div property="workLocation" typeof="Place">
-                        <span property="telephone">Office phone {{phone_number phone1}}</span><br />
-<!-- no data                         <span property="telephone">Alt phone (xxx)xxx-xxxx</span><br /> -->
-                        <span property="faxNumber">Fax {{phone_number fax}}</span><br />
-                        <span property="telephone">Voicemail {{phone_number voicemail}}</span><br />
-                        <div property="address">
-                            <span>Box Number: {{mailstop}}</span><br />
-                            <span>Campus Address: {{address1}}</span><br />
+
+                    <div property="workLocation" typeof="Place"  class="row" style="margin-top: 10px;">
+                        <span class="sr-only" property="name">UW Office</span>
+                        <div class="col-xs-6">
+                            <h5>Phone</h5>
+                            <span property="telephone">Office: {{phone_number phone1}}</span><br />
+<!-- no data   <span property="telephone">Alt phone (xxx)xxx-xxxx</span><br /> -->
+                            <span property="faxNumber">Fax: {{phone_number fax}}</span><br />
+                            <span property="telephone">Voicemail: {{phone_number voicemail}}</span><br />
+                        </div>
+
+                        <div class="col-xs-6">
+                            <h5>Address</h5>
+                            <div property="address">
+                                <span>Box {{mailstop}}</span><br />
+                                <span>{{address1}}</span><br />
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="dir-release">
-                    <h4>UW Directory</h4>
+                    <h4 style="margin-top: 25px;">UW Directory</h4>
                     <div>
-                        {{#unless whitepages_publish}}
-                        <p>Not published</p>
-                        {{/unless}}
-                        {{#if directory_release}}
-                        <p>Name, position, work contact information are visible in the <a href="https://www.washington.edu/home/peopledir/">UW Directory</a>.</p>
-                        {{/if }}
-                        <a href="https://identity.uw.edu/">Manage UW Directory listing on Identity.UW</a>
+                        <p>{{#unless directory_release}}Not published.{{/unless}}
+                        {{#if directory_release}}Name, position, work contact information are published.{{/if }} <a href="https://identity.uw.edu/">Change directory settings</a>
+                        </p>
+
                     </div>
+                    <div class="card-related-messages"><p>Search for faculty, staff, and students in the <a href="https://www.washington.edu/home/peopledir/">UW Directory</a>.</p></div>
                 </div>
             </div>
         </div>

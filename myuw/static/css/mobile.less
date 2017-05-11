@@ -1,5 +1,6 @@
 /*** breakpoints ***/
 
+@over550: ~"screen and (min-width: 550px)";
 @phablet: ~"screen and (min-width: 768px)";
 @under992: ~"screen and (max-width: 991px)";
 @desktop: ~"screen and (min-width: 992px)";
@@ -786,6 +787,10 @@ label { font-weight: normal; }
             font-size: 16px;
             color: #444; }
 
+        .card-btn {
+            @media @over550 { position: absolute; top: 12px; right: 10px;}
+        }
+
         .card-content {  }
 
         .card-critical-alert {
@@ -1516,7 +1521,7 @@ label { font-weight: normal; }
     }
 
     #DirectoryInfoCard {
-        
+
     }
 
 
