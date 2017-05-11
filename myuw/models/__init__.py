@@ -140,7 +140,7 @@ class UserMigrationPreference(models.Model):
     use_legacy_site = models.BooleanField(default=False)
 
 
-class AffililationLink(models.Model):
+class VisitedLink(models.Model):
     url = models.CharField(max_length=512)
     label = models.CharField(max_length=50, null=True)
     is_anonymous = models.BooleanField(default=True)
@@ -156,8 +156,6 @@ class AffililationLink(models.Model):
     is_pce = models.BooleanField(default=False)
     is_student_employee = models.BooleanField(default=False)
 
-
-class VisitedLink(AffililationLink):
     username = models.CharField(max_length=20)
     visit_date = models.DateTimeField(db_index=True, auto_now_add=True)
 
