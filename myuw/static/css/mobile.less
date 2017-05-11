@@ -931,6 +931,31 @@ label { font-weight: normal; }
             a:hover {text-decoration: none;}
             .efs-switcher-link-text {font-size:smaller;}
         }
+        // Quicklinks 
+        .myuw-qlinks {
+            .myuw-qlinks-active {}
+            .myuw-qlinks-recent {background-color:#eee;padding: 5px 10px;margin: 5px -10px;
+                .recent-message {padding:10px 10px; font-style: italic; font-size: small;}
+                .myuw-qlinks-recent-list {font-size:12px;line-height: 20px;}
+            }
+            .myuw-qlinks-popular {
+                .myuw-qlinks-popular-list {
+                    font-size:12px;
+                    line-height: 20px;  
+                    }
+            }
+            .myuw-qlinks-recent, .myuw-qlinks-active, .myuw-qlinks-popular {
+                
+                li.list .link-controls {
+                        display: none;               
+                }
+                    
+                li.list:hover .link-controls {
+                    display: inline-block; 
+                    font-size:12px;
+                }
+            }
+        }
     }
 
     // PCE card & PCE notice on Visual Schedule

@@ -9,10 +9,37 @@ MyUW Teaching
 {% block teaching_content %}
     {% include "handlebars/card/instructor_schedule/course_cards.html" %}
     {% include "handlebars/teaching.html" %}
+    {% include "handlebars/card/quicklinks.html" %}
 {% endblock %}
 
 {% block extra_js %}
+    <script src="{% static 'js/card/quicklinks.js' %}"></script>
     {% compress js inline %}
     <script src="{% static 'js/page/teaching.js' %}"></script>
     {% endcompress %}
+    <script>
+    var quicklink_data = {
+        recent_links: [
+            {% for link in recent_links %}
+            {added: {% if link.added %}true{% else %}false{% endif %}, id: '{{ link.id }}', url: '{{ link.url | safe | escapejs}}', label: '{{ link.label | safe | escapejs }}' }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ],
+        popular_links: [
+            {% for link in popular_links %}
+            {added: {% if link.added %}true{% else %}false{% endif %}, id: '{{ link.id }}', url: '{{ link.url | safe | escapejs }}', label: '{{ link.label | safe | escapejs }}' }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ],
+        custom_links: [
+            {% for link in custom_links %}
+            {id: '{{ link.id }}', url: '{{ link.url | safe | escapejs }}', label: '{{ link.label | safe | escapejs }}' }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ],
+        default_links: [
+            {% for link in default_links %}
+            {url: '{{ link.url | safe | escapejs }}', label: '{{ link.label | safe | escapejs }}' }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]
+
+    };
+    </script>
 {% endblock %}

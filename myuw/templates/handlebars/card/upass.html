@@ -25,7 +25,7 @@
                 {{#if in_summer}}
                     {{#if is_pce_or_seattle_student}}
                         <h4>Summer U-PASS Use</h4>
-                        <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="https://www.washington.edu/facilities/transportation/employee-u-pass#8">temporary employee</a>.</p>
+                        <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="https://www.washington.edu/facilities/transportation/employee-u-pass#8" data-linklabel="TEMP Pass">temporary employee</a>.</p>
                     {{/if}}
                 {{/if}}
             {{/unless}}
@@ -34,19 +34,19 @@
         <ul id="upass-links">
             <li>
                 {{#if is_employee}}
-                    <a href="https://www.washington.edu/facilities/transportation/employee-u-pass#10">U-PASS not working?</a>
+                    <a href="https://www.washington.edu/facilities/transportation/employee-u-pass#10" data-linklabel="Employee U-Pass">U-PASS not working?</a>
                 {{else}}
                     {{#if is_seattle_student}}
-                        <a href="https://www.washington.edu/facilities/transportation/student-u-pass#3">U-PASS not working?</a>
+                        <a href="https://www.washington.edu/facilities/transportation/student-u-pass#3" data-linklabel="Student U-Pass">U-PASS not working?</a>
                     {{else}}
                         {{#if is_bothell_student}}
-                            <a href="https://www.uwb.edu/admin/facilities/transportation/upass#Initial activation for new U-PASS members">U-PASS not working?</a>
+                            <a href="https://www.uwb.edu/admin/facilities/transportation/upass#Initial activation for new U-PASS members" data-linklabel="Activate Student U-Pass">U-PASS not working?</a>
                         {{else}}
                             {{#if is_tacoma_student}}
-                                <a href="https://www.tacoma.uw.edu/getting-campus/u-pass-orca">U-PASS not working?</a>
+                                <a href="https://www.tacoma.uw.edu/getting-campus/u-pass-orca" data-linklabel="Tacoma U-Pass and ORCA">U-PASS not working?</a>
                             {{else}}
                                 <!-- PCE students and students without a campus (same link as Seattle's) -->
-                                <a href="https://www.washington.edu/facilities/transportation/student-u-pass#3">U-PASS not working?</a>
+                                <a href="https://www.washington.edu/facilities/transportation/student-u-pass#3" data-linklabel="Student U-Pass">U-PASS not working?</a>
                             {{/if}}
                         {{/if}}
                     {{/if}}
@@ -66,21 +66,21 @@
                     </p>
                     {{#if in_summer}}
                         <h4>Summer U-PASS Use</h4>
-                        <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="https://www.washington.edu/facilities/transportation/employee-u-pass#8">temporary employee</a>.</p>
+                        <p>Your U-PASS does not work during summer quarter unless you are registered for a class or are a <a href="https://www.washington.edu/facilities/transportation/employee-u-pass#8" data-linklabel="Temporary Employee U-Pass">temporary employee</a>.</p>
                     {{/if}}
                 </div>
             {{else}}
                 {{#if is_bothell_student}}
                     <div id="upass-notices">
                         <p>
-                            If you <a href="https://www.uwb.edu/admin/facilities/transportation/upass">purchase</a> a U-PASS for a quarter, your U-PASS will work one week before the quarter starts.
+                            If you <a href="https://www.uwb.edu/admin/facilities/transportation/upass" data-linklabel="Purchase a U-Pass">purchase</a> a U-PASS for a quarter, your U-PASS will work one week before the quarter starts.
                         </p>
                     </div>
                 {{else}}
                     {{#if is_tacoma_student}}
                         <div id="upass-notices">
                             <p>
-                                If you <a href="https://www.tacoma.uw.edu/getting-campus/students-purchasing-u-pass">purchase</a> a U-PASS for a quarter, your U-PASS will work one week before the quarter starts.
+                                If you <a href="https://www.tacoma.uw.edu/getting-campus/students-purchasing-u-pass" data-linklabel="Purchase a U-Pass">purchase</a> a U-PASS for a quarter, your U-PASS will work one week before the quarter starts.
                             </p>
                         </div>
                     {{/if}}

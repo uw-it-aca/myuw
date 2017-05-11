@@ -5,7 +5,7 @@
     <ul class="unstyled-list">
         {{#if has_resources }}
             {{#if class_website_url}}
-                <li><a href="{{class_website_url}}" class="course_website" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Website</a></li>
+                <li><a href="{{class_website_url}}" class="course_website" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" data-linklabel="{{ curriculum_abbr }} {{ course_number }} Course Website">Course Website</a></li>
              {{/if}}
 
              {{#if lib_subj_guide}}
