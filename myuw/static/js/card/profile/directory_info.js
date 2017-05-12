@@ -7,7 +7,6 @@ var DirectoryInfoCard = {
             $("#DirectoryInfoCard").hide();
             return;
         }
-
         WSData.fetch_directory_data(DirectoryInfoCard.render_upon_data, DirectoryInfoCard.render_error);
     },
 
@@ -37,3 +36,9 @@ var DirectoryInfoCard = {
         $("#DirectoryInfoCard").hide();
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.DirectoryInfoCard = DirectoryInfoCard;
