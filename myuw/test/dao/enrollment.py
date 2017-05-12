@@ -141,6 +141,6 @@ class TestDaoEnrollment(TestCase):
         sections = enrollements[term].off_term_sections
         self.assertEqual(len(sections), 1)
         self.assertFalse('2013,spring,AAES,150/A' in sections)
-        self.assertFalse('2013,spring,ACCTG,508/A' in sections)
+        self.assertTrue('2013,spring,CPROGRM,712/A' in sections)
         s1 = sections.get('2013,spring,CPROGRM,712/A')
         self.assertEqual(str(s1.end_date), '2013-06-28 00:00:00')
