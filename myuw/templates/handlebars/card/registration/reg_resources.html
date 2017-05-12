@@ -65,11 +65,11 @@
                 </span>
                 <a aria-labelledby="bothell_time_schedule"
                    target="_blank"
-                   href="http://www.uwb.edu/registration/time">Time Schedule</a>
+                   href="http://www.uwb.edu/registration/time">{{ #if is_pce }}Bothell {{ /if }}Time Schedule</a>
             </li>
         {{ /if }}
 
-        {{ #if is_seattle }}
+	    {{ #if is_seattle }}
             <li>
                 <span id="seattle_time_schedule"
                       class="sr-only">
@@ -77,10 +77,22 @@
                 </span>
                 <a aria-labelledby="seattle_time_schedule"
                    target="_blank"
-                   href="http://www.washington.edu/students/timeschd/">Time Schedule</a>
+                   href="http://www.washington.edu/students/timeschd/">{{ #if is_pce }}Seattle {{ /if }}Time Schedule</a>
             </li>
-        {{ /if }}
-
+        {{ /if }}	
+	        
+	    {{ #if is_pce }}
+            <li>
+                <span id="pce_time_schedule"
+                      class="sr-only">
+                    Browse time schedule for Professional & Continuing Education programs
+                </span>
+                <a aria-labelledby="pce_time_schedule"
+                   target="_blank"
+                   href="https://www.washington.edu/students/timeschd/95index.html">PCE Time Schedule</a>
+            </li>
+        {{ /if }}        
+        
         <li>
             <span class="sr-only">Go to DARS</span>
             <a target="_blank"
