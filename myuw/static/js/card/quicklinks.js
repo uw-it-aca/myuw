@@ -138,12 +138,12 @@ var QuickLinksCard = {
         // Closing a collapse that hasn't been opened at least once results in
         // a regex error in jquery code...
         if ("popular" == caller) {
-            if (QuickLinksCard.opened_panels["custom"]) {
+            if (QuickLinksCard.opened_panels.custom) {
                 $("#custom_qlinks").collapse("hide");
             }
         }
         if ("custom" == caller) {
-            if (QuickLinksCard.opened_panels["popular"]) {
+            if (QuickLinksCard.opened_panels.popular) {
                 $("#popular_qlinks").collapse("hide");
             }
         }
