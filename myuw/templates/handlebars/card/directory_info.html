@@ -1,10 +1,11 @@
 {% load templatetag_handlebars %}
-{% load static %}
     {% tplhandlebars "directory_info_card" %}
     <div class="card" data-type="card" data-name="DirectoryInfoCard" data-identifier="{{ title }}">
         <h3>Employee Profile</h3>
 
-        <a class="btn btn-default card-btn" href="https://wd5.myworkday.com/uw/login.htmld" id="og_workday" style="background-image: url({% static 'images/wday_logo.png' %})">Manage in Workday</a>
+        {% with link_text="Manage in Workday" extra_class="card-btn" %}
+          {% include "workday_link.html" %}
+        {% endwith %}
 
         <div vocab="http://schema.org/" typeof="Person">
             <div class="personal-contact-info">
