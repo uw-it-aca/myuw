@@ -42,7 +42,8 @@
             </div>
         </div>
         <div>
-            <span><strong>Not seeing what you're looking for?</strong> {{#if links.popular_links }}Select from <a data-toggle="collapse" href="#popular_qlinks" aria-expanded="false" aria-controls="popular_qlinks">popular links,</a> or {{/if}}<a data-toggle="collapse" href="#custom_qlinks" aria-expanded="false" aria-controls="custom_qlinks">add your own.</a></span>
+            <h4>Not seeing what you're looking for?</h4> 
+                <span>{{#if links.popular_links }}Select from <a data-toggle="collapse" href="#popular_qlinks" aria-expanded="false" aria-controls="popular_qlinks">popular links,</a> or {{/if}}<a data-toggle="collapse" href="#custom_qlinks" aria-expanded="false" aria-controls="custom_qlinks">add your own.</a></span>
         </div>
 
         <div class="collapse myuw-qlinks-popular" id="popular_qlinks">
@@ -60,10 +61,13 @@
                     <label for="myuw-custom-qlink" class="col-2 col-form-label">Add your link to Quick Links</label>
                     <div class="col-10">
                         <input class="form-control" type="url" placeholder="https://www.washington.edu" id="myuw-custom-qlink" value="">
-                        <br />
-                        <button id="quicklinks-save-new">Save</button>
-                        <div style="display: none;" id="error_saving">Error saving</div>
-                        <div style="display: none;" id="quicklink_saving">Saving...</div>
+                        <div class="clearfix myuw-qlinks-custom-btn">
+                            <div class="pull-right">
+                                <button class="btn btn-primary" id="quicklinks-save-new">Save</button>
+                            </div>
+                            <div class="pull-left" style="display: none;" id="error_saving" id="helpBlock2" class="help-block"><span class="text-danger">Error saving</span></div>
+                            <div class="pull-left" style="display: none;" id="quicklink_saving">Saving...</div>
+                        </div>
                     </div>
                 </div>
             </div>
