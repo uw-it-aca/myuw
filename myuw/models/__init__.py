@@ -1,8 +1,9 @@
 import hashlib
-from datetime import datetime
+from datetime import datetime, timedelta
 from dateutil.parser import parse
 from django.utils import timezone
 from django.db import models
+from django.db.models import Count
 from myuw.models.building import Building
 from myuw.models.res_category_link import ResCategoryLink
 
@@ -137,6 +138,102 @@ class SeenRegistration(models.Model):
 class UserMigrationPreference(models.Model):
     username = models.CharField(max_length=20, db_index=True, unique=True)
     use_legacy_site = models.BooleanField(default=False)
+
+
+class VisitedLink(models.Model):
+    url = models.CharField(max_length=512)
+    label = models.CharField(max_length=50, null=True)
+    is_anonymous = models.BooleanField(default=True)
+    is_student = models.BooleanField(default=False)
+    is_undegrad = models.BooleanField(default=False)
+    is_grad_student = models.BooleanField(default=False)
+    is_employee = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+    is_faculty = models.BooleanField(default=False)
+    is_seattle = models.BooleanField(default=False)
+    is_tacoma = models.BooleanField(default=False)
+    is_bothell = models.BooleanField(default=False)
+    is_pce = models.BooleanField(default=False)
+    is_student_employee = models.BooleanField(default=False)
+
+    username = models.CharField(max_length=20)
+    visit_date = models.DateTimeField(db_index=True, auto_now_add=True)
+
+    MAX_RECENT_HISTORY = 100
+    OLDEST_RECENT_TIME_DELTA = timedelta(days=-60)
+    OLDEST_POPULAR_TIME_DELTA = timedelta(days=-30)
+
+    @classmethod
+    def recent_for_user(cls, username):
+        # This is more code than i want, because django doesn't support
+        # distinct on fields for sqlite
+        min_visit = timezone.now() + VisitedLink.OLDEST_RECENT_TIME_DELTA
+        objs = VisitedLink.objects.filter(username=username,
+                                          visit_date__gte=min_visit)
+        objs = objs.order_by('-visit_date')[:VisitedLink.MAX_RECENT_HISTORY]
+        lookup = set()
+        ordered = []
+        for visited in objs:
+            if visited.url not in lookup:
+                lookup.add(visited.url)
+                ordered.append(visited)
+
+        return ordered
+
+    @classmethod
+    def get_popular(cls, **kwargs):
+        min_visit = timezone.now() + VisitedLink.OLDEST_POPULAR_TIME_DELTA
+        objs = VisitedLink.objects.filter(visit_date__gte=min_visit,
+                                          **kwargs)
+        objs = objs.values('url', 'label')
+        objs = objs.annotate(num_users=Count('username', distinct=True),
+                             all=Count('*'))
+
+        by_url = {}
+        for item in objs:
+            url = item['url']
+            if url not in by_url:
+                by_url[url] = {'labels': [],
+                               'users': 0,
+                               'all': 0}
+            by_url[url]['users'] += item['num_users']
+            by_url[url]['all'] += item['all']
+            by_url[url]['labels'].append(item['label'])
+
+        values = []
+        for url in by_url:
+            popularity = by_url[url]['users'] * by_url[url]['all']
+
+            values.append({'popularity': popularity,
+                           'url': url,
+                           'labels': sorted(by_url[url]['labels'])})
+
+        return sorted(values, key=lambda x: x['popularity'], reverse=True)
+
+
+class PopularLink(models.Model):
+    affiliation = models.CharField(max_length=80, null=True)
+    pce = models.NullBooleanField()
+    campus = models.CharField(max_length=8, null=True)
+    url = models.CharField(max_length=512)
+    label = models.CharField(max_length=50)
+
+
+class CustomLink(models.Model):
+    user = models.ForeignKey('User', on_delete=models.PROTECT)
+    url = models.CharField(max_length=512)
+    label = models.CharField(max_length=50, null=True)
+
+    class Meta:
+        unique_together = (('user', 'url',),)
+
+
+class HiddenLink(models.Model):
+    user = models.ForeignKey('User', on_delete=models.PROTECT)
+    url = models.CharField(max_length=512)
+
+    class Meta:
+        unique_together = (('user', 'url',),)
 
 
 class BannerMessage(models.Model):

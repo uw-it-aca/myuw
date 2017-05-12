@@ -29,7 +29,8 @@ LOGOUT_URL = "/user_logout"
 
 def page(request,
          context={},
-         template='index.html'):
+         template='index.html',
+         prefetch=True):
     timer = Timer()
     netid = get_netid_of_current_user()
     if not netid:
@@ -40,16 +41,11 @@ def page(request,
         "session_key": request.session.session_key,
      }
 
-    try:
-        prefetch_resources(request,
-                           prefetch_email=True,
-                           prefetch_enrollment=True)
-    except DataFailureException:
-        log_exception(logger,
-                      "prefetch_resources",
-                      traceback.format_exc())
-        context["webservice_outage"] = True
-        return render(request, template, context)
+    if prefetch:
+        # Some pages need to prefetch before this point
+        failure = try_prefetch(request)
+        if failure:
+            return failure
     log_session(netid, request.session.session_key, request)
 
     if _is_mobile(request):
@@ -115,6 +111,20 @@ def page(request,
 
     log_success_response_with_affiliation(logger, timer, request)
     return render(request, template, context)
+
+
+def try_prefetch(request):
+    try:
+        prefetch_resources(request,
+                           prefetch_email=True,
+                           prefetch_enrollment=True)
+    except DataFailureException:
+        log_exception(logger,
+                      "prefetch_resources",
+                      traceback.format_exc())
+        context["webservice_outage"] = True
+        return render(request, template, context)
+    return
 
 
 def _is_mobile(request):

@@ -1,13 +1,11 @@
 from django.shortcuts import render
 from django.template import RequestContext
-from userservice.user import UserService
-from authz_group import Group
 from django.conf import settings
 from django.http import Http404
 from datetime import datetime
 import logging
-from django import template
 from django.contrib.auth.decorators import login_required
+from myuw.views import admin_required, set_admin_wrapper_template
 from myuw.dao import get_user_model
 from myuw.dao.card_display_dates import get_values_by_date
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
@@ -28,52 +26,15 @@ DATE_KEYS = ['myuw_after_submission', 'myuw_after_last_day', 'myuw_after_reg',
 
 
 @login_required
+@admin_required('USERSERVICE_ADMIN_GROUP')
 def override(request):
     logger = logging.getLogger(__name__)
-
-    user_service = UserService()
-    user_service.get_user()
-    override_error_username = None
-    override_error_msg = None
-    # Do the group auth here.
-
-    if not hasattr(settings, "USERSERVICE_ADMIN_GROUP"):
-        print "You must have a group defined as your admin group."
-        print 'Configure that using USERSERVICE_ADMIN_GROUP="foo_group"'
-        raise Exception("Missing USERSERVICE_ADMIN_GROUP in settings")
-
-    actual_user = user_service.get_original_user()
-    if not actual_user:
-        raise Exception("No user in session")
-
-    g = Group()
-    group_name = settings.USERSERVICE_ADMIN_GROUP
-    is_admin = g.is_member_of_group(actual_user, group_name)
-    if is_admin is False:
-        return render(request, 'no_access.html', {})
 
     context = {}
     if request.method == "POST":
         _handle_post(request, context)
 
-    try:
-        extra_template = "userservice/user_override_extra_info.html"
-        template.loader.get_template(extra_template)
-        context['has_extra_template'] = True
-        context['extra_template'] = 'userservice/user_override_extra_info.html'
-    except template.TemplateDoesNotExist:
-        # This is a fine exception - there doesn't need to be an extra info
-        # template
-        pass
-
-    try:
-        template.loader.get_template("userservice/user_override_wrapper.html")
-        context['wrapper_template'] = 'userservice/user_override_wrapper.html'
-    except template.TemplateDoesNotExist:
-        context['wrapper_template'] = 'support_wrapper.html'
-        # This is a fine exception - there doesn't need to be an extra info
-        # template
-        pass
+    set_admin_wrapper_template(context)
 
     add_session_context(request, context)
     add_date_term_info(request, context)

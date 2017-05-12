@@ -49,6 +49,7 @@ var Teaching = {
             InstructorCourseCards
         ];
         var desktop_sidebar_cards = [
+            QuickLinksCard,
             EventsCard
         ];
         Cards.load_cards_in_order(desktop_body_cards, $("#teaching_content_cards"));
@@ -60,6 +61,7 @@ var Teaching = {
         Teaching._reset_content_divs();
         var mobile_cards = [
             InstructorCourseCards,
+            QuickLinksCard,
             EventsCard
         ];
         Cards.load_cards_in_order(mobile_cards, $("#teaching_content_cards"));

@@ -385,12 +385,14 @@ label { font-weight: normal; }
 
 .search-button {
     background-color: transparent;
-    background: url('/static/images/search.svg') no-repeat center center;
+    background-repeat: no-repeat;
+    background-position: center center;
     background-size: 10px;
     border: 1px solid #fff;
     border-radius: 100%;
     height: 18px;
     width: 18px;
+    vertical-align: middle;
 }
 
 #app_header { background: @uwpurple; overflow: hidden; position: relative;
@@ -684,11 +686,14 @@ label { font-weight: normal; }
             top: 0;
             outline: 1px solid #4b2e83;
             border: none;
-            background: url('/static/images/search.svg') no-repeat center center #4b2e83;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-color: #4b2e83;
             background-size: 22px;
             height: 54px;
             width: 55px;
             text-indent: -99999px;
+            overflow: hidden;
         }
     }
 
@@ -931,6 +936,31 @@ label { font-weight: normal; }
             a:hover {text-decoration: none;}
             .efs-switcher-link-text {font-size:smaller;}
         }
+        // Quicklinks 
+        .myuw-qlinks {
+            .myuw-qlinks-active {}
+            .myuw-qlinks-recent {background-color:#eee;padding: 5px 10px;margin: 5px -10px;
+                .recent-message {padding:10px 10px; font-style: italic; font-size: small;}
+                .myuw-qlinks-recent-list {font-size:12px;line-height: 20px;}
+            }
+            .myuw-qlinks-popular {
+                .myuw-qlinks-popular-list {
+                    font-size:12px;
+                    line-height: 20px;  
+                    }
+            }
+            .myuw-qlinks-recent, .myuw-qlinks-active, .myuw-qlinks-popular {
+                
+                li.list .link-controls {
+                        display: none;               
+                }
+                    
+                li.list:hover .link-controls {
+                    display: inline-block; 
+                    font-size:12px;
+                }
+            }
+        }
     }
 
     // PCE card & PCE notice on Visual Schedule
@@ -1107,6 +1137,9 @@ label { font-weight: normal; }
         .reg-date {font-weight: bold;}
         .card {
             .card-critical-alert {margin-bottom: 0;}
+            .pending-major {
+                .card-badge-value {line-height: 22px; margin:7px 0;}
+            }
             .card-badge-container {
 // STUFF PATRICK ADDED //
                 .reg-holds-container {

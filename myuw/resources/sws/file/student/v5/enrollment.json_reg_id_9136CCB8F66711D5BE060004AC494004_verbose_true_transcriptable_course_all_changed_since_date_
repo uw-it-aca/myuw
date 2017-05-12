@@ -1,314 +1,95 @@
-{"Current":{
-  "Href":"\/student\/v5\/enrollment.json?reg_id=9136CCB8F66711D5BE060004AC494004&verbose=true&changed_since_date=&transcriptable_course=all", "RegID":"9136CCB8F66711D5BE060004AC494004","Verbose":true},
-"Enrollments":[
-
 {
-    "ClassLevel": "SOPHOMORE",
-    "FullName": "BOTHELL, JAMES",
-    "HonorsProgram": false,
-    "LeaveEndQuarter": 0,
-    "LeaveEndYear": 0,
-    "Majors": [
-       {"Abbreviation":"UPCOM",
-       "Campus":"Bothell",
-       "DegreeLevel":0,
-       "DegreeName":null,
-       "DegreeType":0,
-       "FullName":"Premajor (Bothell Campus)",
-       "MajorName":"UPCOM",
-       "Pathway":0,
-       "ShortName":"B PRE"}],
-    "Minors":[
-      {"Abbreviation":"UPCOM2",
-        "CampusName":"Seattle",
-        "FullName":"American Sign Language",
-        "Name":"AMERICAN SIGN LANGUAGE",
-        "Pathway":0,
-        "ShortName":"UPCOM2"}],
-    "PendingClassChange": false,
-    "PendingHonorsChange": false,
-    "PendingMajorChange": false,
-    "PendingResidentChange": false,
-    "PendingSpecialProgramChange": false,
-    "Person": {
-        "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494004.json",
-        "Name": "BOTHELL, JAMES",
-        "RegID": "9136CCB8F66711D5BE060004AC494004"
+    "Current":
+     {
+        "Href": "/student/v5/enrollment.json?reg_id=9136CCB8F66711D5BE060004AC494004&verbose=true&changed_since_date=&transcriptable_course=all",
+        "RegID": "9136CCB8F66711D5BE060004AC494004",
+        "Verbose": true
     },
+    "Enrollments": [
+        {
+            "ClassLevel": "SENIOR",
+            "CurrentRegisteredCredits": null,
+            "EnrollmentStatus": "Registered",
+            "EnrollmentStatusDate": "2013-06-08",
+            "FullName": "James McMiddle Average 4",
+            "HonorsProgram": false,
+            "LeaveEndQuarter": 0,
+            "LeaveEndYear": 0,
+            "Majors": [
+
+            ],
+            "Metadata": "EnrollmentSourceLocation=SDB;",
+            "Minors": [
+
+            ],
+            "PendingClassChange": false,
+            "PendingHonorsChange": false,
+            "PendingMajorChange": false,
+            "PendingResidentChange": false,
+            "PendingSpecialProgramChange": false,
+            "Person": {
+                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494004.json",
+                "Name": "James McMiddle Average 4",
+                "RegID": "9136CCB8F66711D5BE060004AC494004"
+            },
     "QtrGradePoints": 30,
     "QtrGradedAttmp": 10,
     "QtrNonGrdEarned": 2,
     "RegID": "9136CCB8F66711D5BE060004AC494004",
     "Registrations": [
-        {
-            "AddAccessCode": "",
-            "Auditor": false,
-            "Credits": " 2.0",
-            "DropAccessCode": "",
-            "DuplicateCode": "1",
-            "FacultySequenceNumber": "",
-            "FeeBaseType": "",
-            "Grade": "CR",
-            "GradeDate": "",
-            "GradeDocumentID": "061102100",
-            "HonorsCourse": false,
-            "IsActive": true,
-            "Person": {
-                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494004.json",
-                "Name": "BOTHELL, JAMES",
-                "RegID": "9136CCB8F66711D5BE060004AC494004"
-            },
-            "RepeatCourse": false,
-            "RequestDate": "",
-            "RequestStatus": "",
-            "Section": {
-                "Href": "/student/v5/course/2013,spring,TRAIN,101/A.json",
-                "CourseNumber": "101",
-                "CurriculumAbbreviation": "TRAIN",
-                "Quarter": "spring",
-                "SectionID": "A",
-                "Year": "2013"
-            },
-            "VariableCredit": false,
-            "WritingCourse": false
-        },
-        {
-            "AddAccessCode": "",
-            "Auditor": false,
-            "Credits": " 5.0",
-            "DropAccessCode": "",
-            "DuplicateCode": "1",
-            "FacultySequenceNumber": "",
-            "FeeBaseType": "",
-            "Grade": "2.9",
-            "GradeDate": "",
-            "GradeDocumentID": "061702503",
-            "HonorsCourse": false,
-            "IsActive": true,
-            "Person": {
-                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494004.json",
-                "Name": "BOTHELL,JAMES",
-                "RegID": "9136CCB8F66711D5BE060004AC494004"
-            },
-            "RepeatCourse": false,
-            "RequestDate": "",
-            "RequestStatus": "",
-            "Section": {
-                "Href": "/student/v5/course/2013,spring,TRAIN,100/A.json",
-                "CourseNumber": "100",
-                "CurriculumAbbreviation": "TRAIN",
-                "Quarter": "spring",
-                "SectionID": "A",
-                "Year": "2013"
-            },
-            "VariableCredit": false,
-            "WritingCourse": false
-        },
-        {
-            "AddAccessCode": "",
-            "Auditor": false,
-            "Credits": " 3.0",
-            "DropAccessCode": "",
-            "DuplicateCode": "1",
-            "FacultySequenceNumber": "",
-            "FeeBaseType": "",
-            "Grade": "3.1",
-            "GradeDate": "",
-            "GradeDocumentID": "061702510",
-            "HonorsCourse": false,
-            "IsActive": true,
-            "Person": {
-                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494004.json",
-                "Name": "BOTHELL,JAMES",
-                "RegID": "9136CCB8F66711D5BE060004AC494004"
-            },
-            "RepeatCourse": false,
-            "RequestDate": "",
-            "RequestStatus": "",
-            "Section": {
-                "Href": "/student/v5/course/2013,spring,PHYS,121/A.json",
-                "CourseNumber": "121",
-                "CurriculumAbbreviation": "PHYS",
-                "Quarter": "spring",
-                "SectionID": "A",
-                "Year": "2013"
-            },
-            "VariableCredit": false,
-            "WritingCourse": true
-        },
-        {
-            "AddAccessCode": "",
-            "Auditor": false,
-            "Credits": " 1.0",
-            "DropAccessCode": "",
-            "DuplicateCode": "1",
-            "FacultySequenceNumber": "",
-            "FeeBaseType": "",
-            "Grade": "3.1",
-            "GradeDate": "",
-            "GradeDocumentID": "061702510",
-            "HonorsCourse": false,
-            "IsActive": true,
-            "Person": {
-                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494004.json",
-                "Name": "BOTHELL,JAMES",
-                "RegID": "9136CCB8F66711D5BE060004AC494004"
-            },
-            "RepeatCourse": false,
-            "RequestDate": "",
-            "RequestStatus": "",
-            "Section": {
-                "Href": "/student/v5/course/2013,spring,PHYS,121/AC.json",
-                "CourseNumber": "121",
-                "CurriculumAbbreviation": "PHYS",
-                "Quarter": "spring",
-                "SectionID": "AC",
-                "Year": "2013"
-            },
-            "VariableCredit": false,
-            "WritingCourse": true
-        },
-        {
-            "AddAccessCode": "",
-            "Auditor": false,
-            "Credits": " 1.0",
-            "DropAccessCode": "",
-            "DuplicateCode": "1",
-            "FacultySequenceNumber": "",
-            "FeeBaseType": "",
-            "Grade": "3.1",
-            "GradeDate": "",
-            "GradeDocumentID": "061702510",
-            "HonorsCourse": false,
-            "IsActive": true,
-            "Person": {
-                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494004.json",
-                "Name": "BOTHELL,JAMES",
-                "RegID": "9136CCB8F66711D5BE060004AC494004"
-            },
-            "RepeatCourse": false,
-            "RequestDate": "",
-            "RequestStatus": "",
-            "Section": {
-                "Href": "/student/v5/course/2013,spring,PHYS,121/AQ.json",
-                "CourseNumber": "121",
-                "CurriculumAbbreviation": "PHYS",
-                "Quarter": "spring",
-                "SectionID": "AQ",
-                "Year": "2013"
-            },
-            "VariableCredit": false,
-            "WritingCourse": true
-        },
-        {
-            "AddAccessCode": "",
-            "Auditor": false,
-            "Credits": " 5.0",
-            "DropAccessCode": "",
-            "DuplicateCode": "1",
-            "FacultySequenceNumber": "",
-            "FeeBaseType": "",
-            "Grade": "3.1",
-            "GradeDate": "",
-            "GradeDocumentID": "061702510",
-            "HonorsCourse": false,
-            "IsActive": true,
-            "Person": {
-                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494004.json",
-                "Name": "BOTHELL,JAMES",
-                "RegID": "9136CCB8F66711D5BE060004AC494004"
-            },
-            "RepeatCourse": false,
-            "RequestDate": "",
-            "RequestStatus": "",
-            "Section": {
-                "Href": "/student/v5/course/2013,spring,ASL,101/A.json",
-                "CourseNumber": "101",
-                "CurriculumAbbreviation": "ASL",
-                "Quarter": "spring",
-                "SectionID": "A",
-                "Year": "2013"
-            },
-            "VariableCredit": false,
-            "WritingCourse": true
-        },
-        {
-            "AddAccessCode": "",
-            "Auditor": false,
-            "Credits": " 5.0",
-            "DropAccessCode": "",
-            "DuplicateCode": "1",
-            "FacultySequenceNumber": "",
-            "FeeBaseType": "",
-            "Grade": "3.0",
-            "GradeDate": "",
-            "GradeDocumentID": "061702510",
-            "HonorsCourse": false,
-            "IsActive": true,
-            "Person": {
-                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494004.json",
-                "Name": "BOTHELL,JAMES",
-                "RegID": "9136CCB8F66711D5BE060004AC494004"
-            },
-            "RepeatCourse": false,
-            "RequestDate": "",
-            "RequestStatus": "",
-            "Section": {
-                "Href": "/student/v5/course/2013,spring,ROLING,310/A.json",
-                "CourseNumber": "310",
-                "CurriculumAbbreviation": "ROLING",
-                "Quarter": "spring",
-                "SectionID": "A",
-                "Year": "2013"
-            },
-            "VariableCredit": false,
-            "WritingCourse": true
-        },
-        {
-            "AddAccessCode": "",
-            "Auditor": false,
-            "Credits": " 5.0",
-            "DropAccessCode": "",
-            "DuplicateCode": "1",
-            "FacultySequenceNumber": "",
-            "FeeBaseType": "",
-            "Grade": "3.9",
-            "GradeDate": "",
-            "GradeDocumentID": "061702510",
-            "HonorsCourse": false,
-            "IsActive": true,
-            "Person": {
-                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494004.json",
-                "Name": "BOTHELL,JAMES",
-                "RegID": "9136CCB8F66711D5BE060004AC494004"
-            },
-            "RepeatCourse": false,
-            "RequestDate": "",
-            "RequestStatus": "",
-            "Section": {
-                "Href": "/student/v5/course/2013,spring,ARCTIC,200/A.json",
-                "CourseNumber": "200",
-                "CurriculumAbbreviation": "ARCTIC",
-                "Quarter": "spring",
-                "SectionID": "A",
-                "Year": "2013"
-            },
-            "VariableCredit": false,
-            "WritingCourse": true
-        }
 
-    ],
-    "Term": {
-        "Href": "/student/v5/term/2013,spring.json",
-        "Quarter": "spring",
-        "Year": "2013"
+      ],
+      "RepositoryTimeStamp": "3/28/2017 2:21:36 PM",
+      "Term": {
+                "Href": "/student/v5/term/2013,spring.json",
+                "Quarter": "spring",
+                "Year": 2013
+            }
+   },
+          {
+           "ClassLevel": "SENIOR",
+           "CurrentRegisteredCredits": null,
+           "EnrollmentStatus": "Registered",
+           "EnrollmentStatusDate": "2013-06-08",
+           "FullName": "James McMiddle Average 4",
+           "HonorsProgram": false,
+           "LeaveEndQuarter": 0,
+           "LeaveEndYear": 0,
+           "Majors": [
+
+           ],
+           "Metadata": "EnrollmentSourceLocation=SDB;",
+           "Minors": [
+
+           ],
+           "PendingClassChange": false,
+           "PendingHonorsChange": false,
+           "PendingMajorChange": false,
+           "PendingResidentChange": false,
+           "PendingSpecialProgramChange": false,
+           "Person": {
+               "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494004.json",
+               "Name": "James McMiddle Average 4",
+               "RegID": "9136CCB8F66711D5BE060004AC494004"
+           },
+    "QtrGradePoints": 30,
+    "QtrGradedAttmp": 10,
+    "QtrNonGrdEarned": 2,
+    "RegID": "9136CCB8F66711D5BE060004AC494004",
+    "Registrations": [
+
+     ],
+     "RepositoryTimeStamp": "3/28/2017 2:21:36 PM",
+     "Term": {
+               "Href": "/student/v5/term/2013,summer.json",
+               "Quarter": "summer",
+               "Year": 2013
+           }
     }
+   ],
+    "Next": null,
+    "PageSize": "10",
+    "PageStart": "1",
+    "Previous": null,
+    "TotalCount": 1
 }
-],
-"Next":null,
-"PageSize":"10",
-"PageStart":"1",
-"Previous":null,
-"TotalCount":1
-}
-

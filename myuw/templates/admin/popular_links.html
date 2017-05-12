@@ -1,0 +1,122 @@
+{% extends wrapper_template %}
+{% block content %}
+<h2>Popular links in the last 30 days</h2>
+
+<p>The popularity metric is calculated as # of requests times the number of users.  The goal is to show broadly popular links.</p>
+
+
+<div class="panel panel-default" style="max-width:800px;">
+    <div class="panel-heading">Find popular links by affiliation and campus (filter requires all that are checked)</div>
+    <div class="panel-body">
+        <fieldset>
+            <form action='{{ request.path }}' method='GET'>
+                <div>
+                    <label class="checkbox-inline"><input type='checkbox' name='is_anonymous' {% if checked.is_anonymous %}checked="checked"{% endif %}>Anonymous users (shared/bookmarked links)</label>
+                </div>
+                <div>
+                    <strong>Campus</strong><br />
+                    <label class="checkbox-inline"><input type='radio' name='campus' value='any_campus' {% if checked.is_any_campus %}checked="checked"{% endif %}> Any</label>
+                    <label class="checkbox-inline"><input type='radio' name='campus' value='seattle' {% if checked.is_seattle %}checked="checked"{% endif %}> Seattle</label>
+                    <label class="checkbox-inline"><input type='radio' name='campus' value='tacoma' {% if checked.is_tacoma %}checked="checked"{% endif %}> Tacoma</label>
+                    <label class="checkbox-inline"><input type='radio' name='campus' value='bothell' {% if checked.is_bothell %}checked="checked"{% endif %}> Bothell</label>
+                </div>        
+                <div>
+                    <strong>Affilliation</strong><br />
+                    <label class="checkbox-inline"><input type='radio' name='affiliation' value='any_affiliation' {% if checked.is_any_affiliation%}checked="checked"{% endif %}> Any</label>
+                    <label class="checkbox-inline"><input type='radio' name='affiliation' value='student' {% if checked.is_student %}checked="checked"{% endif %}> Student</label>
+                    <label class="checkbox-inline"><input type='radio' name='affiliation' value='undergrad' {% if checked.is_undergrad %}checked="checked"{% endif %}> Undergraduate</label>
+                    <label class="checkbox-inline"><input type='radio' name='affiliation' value='grad_student' {% if checked.is_grad_student %}checked="checked"{% endif %}> Grad Student</label>
+                    <label class="checkbox-inline"><input type='radio' name='affiliation' value='employee' {% if checked.is_employee %}checked="checked"{% endif %}> Employee</label>
+                    <label class="checkbox-inline"><input type='radio' name='affiliation' value='staff' {% if checked.is_staff %}checked="checked"{% endif %}> Staff</label>
+                    <label class="checkbox-inline"><input type='radio' name='affiliation' value='faculty' {% if checked.is_faculty %}checked="checked"{% endif %}> Faculty</label>
+                    <label class="checkbox-inline"><input type='radio' name='affiliation' value='student_employee' {% if checked.is_student_employee %}checked="checked"{% endif %}> Student Employee</label>
+                </div>
+                <div>
+                    <strong>PCE</strong><br/>
+                    <label class="checkbox-inline"><input type='checkbox' name='pce' value='pce' {% if checked.is_pce %}checked="checked"{% endif %}> PCE</label>
+                </div>
+                <div style="text-align: right;padding-top:15px;">
+                    <a href="{% url 'myuw_popular_links' %}">Clear all</a> <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+            </form>
+        </fieldset>
+
+        <hr>
+
+        <ul class="list-group">
+        {% for link in  popular %}
+            <li class="list-group-item"><span class="badge" title="Link popularity">{{ link.popularity }}</span> <a href="{{ link.url }}" target="_blank">{{ link.url }}</a> {% if link.exists %} <small><em>(Already saved as a popular link)</em></small> {% else %} 
+
+            <form action='{{ request.path }}' method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="url" value="{{ link.url }}"/>
+                <input type="hidden" name="affiliation" value="{{ checked.affiliation }}">
+                <input type="hidden" name="campus" value="{{ checked.campus }}">
+                <input type="hidden" name="pce" value="{{ checked.pce }}">
+
+                {% if link.labels.1 %}
+                Multiple labels were used for this url:
+                <ul>
+                {% for label in link.labels %}<li>{{ label }}</li>{%endfor %}
+                </ul>
+                {% endif %}
+                Label: <input type="text" name="label" value="{{ link.labels.0 }}"> <input type="submit" value="add"/>
+            </form>
+            {% endif %}</li>
+
+        {% endfor %}
+        </ul>
+        <nav aria-label="...">
+            <ul class="pager">
+                {% if previous_page %}<li><a href="{{ previous_page }}">Previous</a></li>{% endif %}
+                {% if next_page %}<li><a href="{{ next_page }}">Next</a></li> {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<h3>Custom popular link</h3>
+<p>You can add a link to the popular links section, even if it hasn't been clicked on by a user:</p>
+<form action='{{ request.path }}' method="POST">
+{% csrf_token %}
+URL: <input type="text" name="url" value=""/>
+<br />
+Label: <input type="text" name="label" value="{{ link.labels.0 }}">
+        <div>
+        <strong>Campus</strong><br />
+        <label class="checkbox-inline"><input type='radio' name='campus' value='any_campus' checked="checked"> Any</label>
+        <label class="checkbox-inline"><input type='radio' name='campus' value='seattle'> Seattle</label>
+        <label class="checkbox-inline"><input type='radio' name='campus' value='tacoma'> Tacoma</label>
+        <label class="checkbox-inline"><input type='radio' name='campus' value='bothell'> Bothell</label>
+        </div>
+        <div>
+        <strong>Affilliation</strong><br />
+        <label class="checkbox-inline"><input type='radio' name='affiliation' value='any_affiliation' checked="checked"> Any</label>
+        <label class="checkbox-inline"><input type='radio' name='affiliation' value='student'> Student</label>
+        <label class="checkbox-inline"><input type='radio' name='affiliation' value='undergrad'> Undergraduate</label>
+        <label class="checkbox-inline"><input type='radio' name='affiliation' value='grad_student'> Grad Student</label>
+        <label class="checkbox-inline"><input type='radio' name='affiliation' value='employee'}> Employee</label>
+        <label class="checkbox-inline"><input type='radio' name='affiliation' value='staff'> Staff</label>
+        <label class="checkbox-inline"><input type='radio' name='affiliation' value='faculty'> Faculty</label>
+        <label class="checkbox-inline"><input type='radio' name='affiliation' value='student_employee'> Student Employee</label>
+        </div>
+        <br />
+        <div>
+        <strong>PCE</strong><br/>
+        <label class="checkbox-inline"><input type='checkbox' name='pce' value='pce'> PCE</label>
+        </div>
+ <input type="submit" value="add"/>
+</form>
+
+
+<h3>Saved popular links</h3>
+<p>Removing a link here will not removed them for users who have added them.</p>
+<form action='{{ request.path }}' method="POST">
+{% csrf_token %}
+{% for link in curated_popular_links %}
+<label><input type="checkbox" name="remove_popular" value="{{ link.id }}"> {{ link.label }} ({{ link.url }}){% if link.campus %} Campus: {{ link.campus }}{% endif %} {%if link.affiliation %}Affiliation: {{ link.affiliation }} {% endif %}{% if link.pce %} PCE: {{ link.pce }}{% endif %} </label> <br />
+{% endfor %}
+<button type="submit" class="btn btn-primary" value="Remove selected">Remove selected</button>
+</form>
+
+{% endblock %}
