@@ -51,9 +51,6 @@ var VisualScheduleCard = {
         course_data.schedule_periods = VisualScheduleCard._get_schedule_periods(course_data);
         var default_period = Object.keys(course_data.schedule_periods)[0];
         VisualScheduleCard.display_schedule_for_period(default_period);
-        //VisualScheduleCard.render_schedule(course_data, term);
-
-        FinalExamSchedule.render(course_data, term, true);
 
         LogUtils.cardLoaded(VisualScheduleCard.name, VisualScheduleCard.dom_target);
     },
@@ -332,7 +329,7 @@ var VisualScheduleCard = {
 
         VisualScheduleCard.add_events(term);
     },
-            
+
     // This is the height of the days bar... needed for positioning math below
     day_label_offset: 0,
 
