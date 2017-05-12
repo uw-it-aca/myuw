@@ -6,7 +6,9 @@
 
     <div style="padding-bottom: 10px;">
         <h4>Workday</h4>
-        <a class="btn btn-default" href="https://wd5.myworkday.com/uw/login.htmld" id="og_workday" style="background-image: url({% static 'images/wday_logo.png' %})">Sign in to Workday</a>
+        {% with link_text="Sign in to Workday" %}
+        {% include "workday_link.html" %}
+        {% endwith %}
         <p>Workday is UW's human resources, benefits, payroll, and time tracking system.</p>
     </div>
 
