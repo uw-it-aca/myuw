@@ -30,6 +30,17 @@
             "RegID":"10000000000000000000000000000010",
             "SectionID":"A",
             "Year":"2013"
+        },
+        {
+            "Href": "\/student\/v5\/registration\/2013,summer,CM,450,A,10000000000000000000000000000010,.json",
+            "CourseNumber":"540",
+            "CurriculumAbbreviation":"CM",
+            "DuplicateCode":"1",
+            "Instructor":null,
+            "Quarter":"summer",
+            "RegID":"10000000000000000000000000000010",
+            "SectionID":"A",
+            "Year":"2013"
         }
     ],
     "TotalCount": 1

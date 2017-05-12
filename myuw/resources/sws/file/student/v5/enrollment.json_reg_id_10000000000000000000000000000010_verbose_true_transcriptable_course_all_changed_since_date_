@@ -302,7 +302,7 @@
                     "Credits": "3.0",
                     "DuplicateCode": "",
                     "EducationUnitType": null,
-                    "EndDate": "06/13/2013",
+                    "EndDate": "06/27/2013",
                     "FeeBaseType": "Fee based course",
                     "Grade": "X",
                     "GradeDate": "",
@@ -332,7 +332,7 @@
                         "SectionID": "A",
                         "Year": 2013
                     },
-                    "StartDate": "04/04/2013",
+                    "StartDate": "04/18/2013",
                     "VariableCredit": false,
                     "WritingCourse": false
                 }
@@ -416,7 +416,48 @@
             },
             "VariableCredit": false,
             "WritingCourse": false
-        }
+        },
+          {
+                    "AccessDateRangeEnd": "",
+                    "AccessDateRangeStart": "",
+                    "Auditor": false,
+                    "Credits": "5.0",
+                    "DuplicateCode": "",
+                    "EducationUnitType": null,
+                    "EndDate": "",
+                    "FeeBaseType": "",
+                    "Grade": "X",
+                    "GradeDate": "",
+                    "GradeDocumentID": "",
+                    "GradingSystem": null,
+                    "HonorsCourse": false,
+                    "Href": "/student/v5/registration/2013,summer,CM,450,A,10000000000000000000000000000010,.json",
+                    "Instructor": null,
+                    "IsActive": true,
+                    "IsCredit": true,
+                    "IsIndependentStart": false,
+                    "Metadata": "RegistrationSourceLocation=SDB;",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000010.json",
+                        "Name": "Jane Pce",
+                        "RegID": "10000000000000000000000000000010"
+                    },
+                    "RepeatCourse": false,
+                    "RepositoryTimeStamp": "4/18/2013 1:08:42 PM",
+                    "RequestDate": "2013-04-18",
+                    "RequestStatus": "ADDED TO CLASS",
+                    "Section": {
+                        "CourseNumber": "450",
+                        "CurriculumAbbreviation": "CM",
+                        "Href": "/student/v5/course/2013,summer,CM,450/A.json",
+                        "Quarter": "summer",
+                        "SectionID": "A",
+                        "Year": 2013
+                    },
+                    "StartDate": "",
+                    "VariableCredit": false,
+                    "WritingCourse": false
+                }
     ],
     "Term": {
         "Href": "/student/v5/term/2013,summer.json",
