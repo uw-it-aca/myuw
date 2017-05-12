@@ -137,6 +137,30 @@
     </div>
     {{/if}}
     <!-- end - if there are meetings with times to be arranged -->
+
+        <!-- begin - if there are meetings with times to be arranged -->
+    {{#if courses_no_meeting }}
+    <div class="courseTBD" aria-hidden="true">
+        <p>Following courses have not specified a meeting time:</p>
+        {{#each courses_no_meeting }}
+	    <div class="pull-left course-box">
+	        <div class="c{{color_id}} course-info">{{curriculum}} {{course_number}}&nbsp;{{section_id}}</div>
+	        <div style="font-size:.8em; color:#555; text-align:center; margin-top:3px;">
+                {{#if building_tbd}}
+                    Room TBD
+                {{else}}
+                    {{#if latitude}}
+                        <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" class="show_visual_map" rel="{{building_name}}">
+                    {{/if}}
+                    {{building}} {{room}}
+                    {{#if latitude}}</a>{{/if}}
+                {{/if}}
+            </div>
+	    </div>
+        {{/each}}
+    </div>
+    {{/if}}
+    <!-- end - if there are meetings with times to be arranged -->
 {{/if}}
 </div>
 {% endtplhandlebars %}
