@@ -72,7 +72,7 @@ class TestStudUnfinishedPrevQuarClasSche(MyuwApiTest):
         data = ret_data[0]
         self.assertEquals(data["term"]["year"], 2013)
         self.assertEquals(data["term"]["quarter"], 'Spring')
-        self.assertEquals(len(data["sections"]), 1)
+        self.assertEquals(len(data["sections"]), 2)
 
         data = ret_data[1]
         self.assertEquals(data["term"]["year"], 2013)
