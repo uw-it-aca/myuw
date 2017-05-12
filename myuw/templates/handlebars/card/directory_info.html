@@ -30,23 +30,15 @@
 
             <div class="directory-information">
 
-<!--
-                <div class="dir-position">
-                    <h4>Position</h4>
-                    <span property="jobTitle">{{title1}}</span>
-                </div>
--->
                 <div class="dir-contact-info">
                     <h4 style="margin-top: 25px;">Work Contact Information</h4>
 
                     {{#if display_name}}<span property="additionalName">{{display_name}}</span>{{/if}}
                     {{#unless display_name}}<span property="name">{{first_name}} {{surname}}</span>{{/unless}}
                     <br />
-                    <span property="jobTitle">{{title1}}</span><br/>
-                    <span property="email">{{email1}}</span>
-                    {{#if email2}}
-                    <br/><span property="email">{{email}}</span>
-                    {{/if}}
+                    {{#if title}}<span property="jobTitle">{{title1}}</span><br/>{{/if}}
+                    {{#if email}}<span property="email">{{email1}}</span><br/>{{/if}}
+                    {{#if email2}}<span property="email">{{email}}</span><br/>{{/if}}
 
                     <div property="workLocation" typeof="Place"  class="row" style="margin-top: 10px;">
                         <span class="sr-only" property="name">UW Office</span>
