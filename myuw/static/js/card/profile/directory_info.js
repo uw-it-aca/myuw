@@ -3,6 +3,11 @@ var DirectoryInfoCard = {
     dom_target: undefined,
 
     render_init: function() {
+        if (!(window.user.employee || window.user.faculty || window.user.stud_employee)) {
+            $("#DirectoryInfoCard").hide();
+            return;
+        }
+
         WSData.fetch_directory_data(DirectoryInfoCard.render_upon_data, DirectoryInfoCard.render_error);
     },
 
