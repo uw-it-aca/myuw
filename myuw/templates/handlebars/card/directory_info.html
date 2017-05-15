@@ -9,13 +9,17 @@
 
         <div vocab="http://schema.org/" typeof="Person">
             <div class="personal-contact-info">
+<!-- not data we have at the moment
                 <div class="home-address" property="homeLocation" typeof="Place">
                     <h4 style="margin-top: 25px;">Home Address</h4>
                     {{#if address1}}<span property="address">{{address1}}</span>{{else}}<span class="my-text-muted">No address available</span>{{/if}}
+-->
 <!--                        <span property="addressLocality">{{permanent_address.city}}</span>, <span property="addressRegion">{{permanent_address.state}}</span> <span property="postalCode">{{permanent_address.zip_code}}</span>
 
                     <span property="telephone">{{phone_number phone}}</span>-->
+<!-- not data we have at the moment
                 </div>
+-->
 <!-- not data we have at the moment
                 <div class="emergency-contact col-xs-6">
                     <h4>Emergency Contact</h4>
@@ -35,8 +39,8 @@
 
                     {{#if display_name}}<span property="additionalName">{{display_name}}</span>{{else}}<span property="name">{{first_name}} {{surname}}</span>{{/if}}
                     <br />
-                    {{#if title}}<span property="jobTitle">{{title1}}</span><br/>{{/if}}
-                    {{#if email}}<span property="email">{{email1}}</span><br/>{{/if}}
+                    {{#if title1}}<span property="jobTitle">{{title1}}</span><br/>{{/if}}
+                    {{#if email1}}<span property="email">{{email1}}</span><br/>{{/if}}
                     {{#if email2}}<span property="email">{{email}}</span><br/>{{/if}}
 
                     <div property="workLocation" typeof="Place"  class="row" style="margin-top: 10px;">
