@@ -12,6 +12,7 @@ from myuw.views.future_quarters import future_quarters
 from myuw.views.textbooks import textbooks
 from myuw.views.category import category
 from myuw.views.display_dates import override
+from myuw.views.message_admin import manage_messages
 from myuw.views.choose import new_site, old_site
 from myuw.views.logger import log_interaction
 from myuw.views.photo import show_photo
@@ -36,7 +37,6 @@ from myuw.views.api.thrive import ThriveMessages
 from myuw.views.api.calendar import DepartmentalCalendar
 from myuw.views.search import search_res
 from myuw.views.api.upass import UPass
-from myuw.views.api.messages import Messages
 
 urlpatterns = []
 
@@ -52,6 +52,7 @@ if settings.DEBUG:
 urlpatterns += [
     url(r'admin/dates', override, name="myuw_date_override"
         ),
+    url(r'admin/messages', manage_messages, name="myuw_manage_messages"),
     url(r'^logger/(?P<interaction_type>.*)$', log_interaction
         ),
     url(r'^api/v1/academic_events$', login_required(AcademicEvents().run),
@@ -154,9 +155,6 @@ urlpatterns += [
         ),
     url(r'^api/v1/thrive/$', login_required(ThriveMessages().run),
         name="myuw_thrive_api"
-        ),
-    url(r'^api/v1/messages/$', login_required(Messages().run),
-        name="myuw_message_api"
         ),
     url(r'^choose/new', new_site, name="myuw_pref_new_site"
         ),

@@ -145,25 +145,14 @@ class BannerMessage(models.Model):
     ]
     start = models.DateField()
     end = models.DateField()
-    eligibility_type = models.CharField(max_length=32)
-    eligibility_data = models.CharField(max_length=255)
+    eligibility_type = models.CharField(max_length=32, null=True)
+    eligibility_data = models.CharField(max_length=255, null=True)
     message_title = models.TextField()
     message_body = models.TextField()
 
-    @classmethod
-    def from_csv(cls, csv):
-        message = cls()
-        message.start = parse(csv[0]).date()
-        message.end = parse(csv[1]).date()
-        message.eligibility_type = csv[2]
-        if message.eligibility_type not in cls.VALID_ELIGIBILITY_TYPES:
-            raise ValueError
-        message.eligibility_data = csv[3]
-        message.message_title = csv[4]
-        message.message_body = csv[5]
-        return message
+    affiliation = models.CharField(max_length=80, null=True)
+    pce = models.NullBooleanField()
+    campus = models.CharField(max_length=8, null=True)
 
-    def json_data(self):
-        data = {"title": self.message_title,
-                "body": self.message_body}
-        return data
+    added_by = models.CharField(max_length=50)
+    added_date = models.DateTimeField(auto_now_add=True)

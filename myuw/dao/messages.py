@@ -6,6 +6,8 @@ from django.conf import settings
 from myuw.dao.term import get_comparison_date
 from myuw.dao import is_netid_in_list, get_netid_of_current_user
 from myuw.models import BannerMessage
+from myuw.dao.affiliation import get_all_affiliations
+from myuw.dao.affiliation_data import get_data_for_affiliations
 
 
 """
@@ -19,7 +21,13 @@ SAMPLE_PATH = "data/seru_users.txt"
 
 def get_current_messages(request):
     current_date = get_comparison_date(request)
-    messages = get_filtered_messages(current_date, get_netid_of_current_user())
+    affiliations = get_all_affiliations(request)
+
+    messages = get_data_for_affiliations(model=BannerMessage,
+                                         affiliations=affiliations,
+                                         start__lte=current_date,
+                                         end__gte=current_date)
+
     return messages
 
 

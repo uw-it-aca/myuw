@@ -1,0 +1,56 @@
+<h2>Add a new message</h2>
+<form action="{% url 'myuw_manage_messages' %}" method="POST">
+<input type="hidden" name="action" value="save"/>
+{% if has_error %}
+<p>Error saving message</p>
+{% endif %}
+{% csrf_token %}
+Start: <input name="start" type="text" placeholder="YYYY-MM-DD" value="{{ input.start }}"> {% if start_error %} Bad start date {% endif %}<br />
+End: <input name="end" type="text" placeholder="YYYY-MM-DD" value="{{ input.end }}"> {% if end_error %} Bad end date {% endif %}<br/>
+Campus: 
+<input type="radio" name="campus" value="" checked="checked">All</input>
+<input type="radio" name="campus" value="seattle">Seattle</input>
+<input type="radio" name="campus" value="tacoma">Tacoma</input>
+<input type="radio" name="campus" value="bothell">Bothell</input>
+
+<br />
+Affiliation:
+
+<label class="checkbox-inline"><input type='radio' name='affiliation' value='' checked="checked"> Any</label>
+<label class="checkbox-inline"><input type='radio' name='affiliation' value='student' {% if checked.is_student %}checked="checked"{% endif %}> Student</label>
+<label class="checkbox-inline"><input type='radio' name='affiliation' value='undergrad' {% if checked.is_undergrad %}checked="checked"{% endif %}> Undergraduate</label>
+<label class="checkbox-inline"><input type='radio' name='affiliation' value='grad_student' {% if checked.is_grad_student %}checked="checked"{% endif %}> Grad Student</label>
+<label class="checkbox-inline"><input type='radio' name='affiliation' value='employee' {% if checked.is_employee %}checked="checked"{% endif %}> Employee</label>
+<label class="checkbox-inline"><input type='radio' name='affiliation' value='staff' {% if checked.is_staff %}checked="checked"{% endif %}> Staff</label>
+<label class="checkbox-inline"><input type='radio' name='affiliation' value='faculty' {% if checked.is_faculty %}checked="checked"{% endif %}> Faculty</label>
+ox-inline"><input type='radio' name='affiliation' value='student_employee' {% if checked.is_student_employee %}checked="checked"{% endif %}> Student Employee</label>
+
+<br />
+PCE:  <label class="checkbox-inline"><input type='checkbox' name='pce' value='pce'> PCE</label>
+
+<br />
+Title: <input type="text" name="title" value="{{ input.title }}"/> <br />
+
+Message: <input type="text" name="message" value="{{ input.message }}"/> <br />
+
+<input type="submit">
+</form>
+<h2>Existing messages:</h2>
+
+<p>Messages set to display from one week in the past on...</p>
+<ul>
+{% for message in messages %}
+<li>
+<h4>{{ message.message_title|safe }} <form action="{% url 'myuw_manage_messages'%}" method="POST">
+<input type="hidden" name="action" value="delete"/>
+<input type="hidden" name="pk" value="{{ message.pk }}">
+<input type="submit" value="Delete">
+{% csrf_token %}
+
+</form></h4>
+<em>Created by {{ message.added_by }} on {{ message.added_date }}</em>
+<p>{{ message.start }} to {{ message.end }}.  Campus: {{ message.campus }}.  Affiliation: {{ message.affiliation }}.  PCE: {{ message.pce }}</p>
+<p>{{ message.message_body|safe }}</p>
+
+{% endfor %}
+</ul>
