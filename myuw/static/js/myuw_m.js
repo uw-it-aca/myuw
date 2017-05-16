@@ -57,19 +57,24 @@ $(window.document).ready(function() {
     $("#nav_visual_schedule").bind("click", function(ev) {
         WSData.log_interaction("nav_menu_visual_schedule");
     });
-    
+
     // handle clicking on resources
     $("#categories_link").bind("click", function(ev) {
-        ev.preventDefault();                
+        ev.preventDefault();
         $('html, body').animate({
             scrollTop: $("#categories").offset().top
         }, "fast");
         return false;
     });
-    
+
+    // handle clicking on mobile menu
+    $("#menu_toggle").bind("click", function(ev) {
+		$("#menu_container").toggleClass("slide-down");
+	});
+
     // handle touchstart to mimic :hover event for mobile touch
     $('body').bind('touchstart', function() {});
-        
+
 });
 
 var showLoading = function() {
@@ -109,7 +114,7 @@ var date_from_string = function(date_string) {
         return;
     }
     var date_object = new Date(matches[1], (parseInt(matches[2], 10) - 1), parseInt(matches[3], 10), parseInt(matches[4], 10), parseInt(matches[5], 10));
-    
+
     return date_object;
 };
 
@@ -121,7 +126,7 @@ var safe_label = function(section_label) {
 };
 
 var titilizeTerm = function(term) {
-    //Takes a term string (Eg 2032,summer,b-term) and 
+    //Takes a term string (Eg 2032,summer,b-term) and
     //returns a title (Eg Summer 2032 B-term)
     var pieces = term.split(",");
     if (pieces.length === 1) {
@@ -224,9 +229,11 @@ var getUrlParameter = function (name) {
 };
 
 var init_search_events = function() {
-    $("#app_search").on('shown.bs.collapse', function(){
+    // handle clicking on search button
+    $("#search_toggle").bind("click", function(ev) {
+		$("#app_search").toggleClass("slide-down");
         $("#search-nav").focus();
-    });
+	});
 };
 
 /* node.js exports */

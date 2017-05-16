@@ -1,0 +1,355 @@
+/*** colors ***/
+@uw-purple: #4b2e83;
+
+//@uw-purple-dark: #1a0555;
+@uw-purple-dark: darken(@uw-purple, 3%);
+@uw-purple-light: #7b59b3;
+
+@uw-light-gray: #f5f5f5;
+@uw-dark-gray: #444444;
+
+@uw-gold: #e8e3d3;
+@uw-metalic-gold: #85754d;
+
+@status-green: #27ae60;
+@status-red: #e74c3c;
+
+/*** heights ***/
+@nav-height: 65px;
+@bar-height: 40px;
+
+/*** widths ***/
+@tablet-width: 768px;
+@tablet-max: 1023px;
+@desktop-width: 1024px;
+@large-desktop-width: 1280px;
+
+@retina: ~"only screen and (-webkit-min-device-pixel-ratio: 2)";
+@tablet: ~"(min-width: @{tablet-width} ) and (max-width: @{tablet-max} )";
+@desktop:  ~"(min-width: @{desktop-width} )";
+@large-desktop: ~"(min-width: @{large-desktop-width} )";
+
+/*** helper utilities ***/
+
+.visually-hidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px; width: 1px;
+    margin: -1px; padding: 0; border: 0;
+}
+
+/*** layout ***/
+
+body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,sans-serif; }
+
+.myuw-wrapper { margin: 0 auto; padding: 0 15px;
+    @media @desktop { position: relative; max-width: 1200px; };
+}
+
+
+.myuw-body { background: @uw-light-gray; padding-bottom: 15px;
+
+    @media @desktop  { padding: 15px 0; }
+
+    .myuw-wrapper {
+
+        @media @desktop  {
+
+            display: flex;
+            flex-wrap:wrap;
+            flex-direction:row;
+            justify-content:flex-start;
+            align-items:stretch;
+
+            .myuw-menu { order:1; flex-basis:200px; height:100%; }
+            .myuw-content { order:2; flex:1; height:100%; margin: 0 0 0 20px; }
+        }
+
+        .myuw-content {
+
+            .myuw-banner, .myuw-static, .myuw-cards { /*outline: dashed 2px rgba(255,0,0,0.1);*/ margin-bottom: 15px; }
+
+            // override bootstrap container class
+            .container { width: auto !important; padding: 0 !important; }
+        }
+    }
+}
+
+/*** override old boilerplate code ***/
+
+#app_content {
+    //outline: dashed 3px rgba(255,0,0,0.1);
+    min-height: 350px;
+    padding: 0;
+    margin: 0;
+
+    .heading-page { display: none;
+        @media @desktop { display: block; margin-top: 0; }
+    }
+}
+
+#app_footer { margin: 0 !important; padding:0!important;
+    .navigation-bar { padding: 15px !important; margin: 0 !important;
+        @media @desktop { margin: 0 auto !important; padding: 15px !important; }
+    }
+    .footer-bar { padding: 15px 0 !important;
+        .container { width: auto !important; padding: 0 !important; }
+    }
+}
+
+.card { margin-left: -16px; margin-right: -16px; margin-top: 10px !important; padding: 15px !important;
+    @media @desktop { margin-left: 0; margin-right: 0; padding: 10px !important; }
+}
+
+
+#app_notices {
+
+
+
+    @media @desktop { margin-left: 0; margin-right: 0; padding: 10px !important; }
+
+    .notice-header { margin-top: 0; }
+    .notice-content-list-item { background: transparent !important;
+        .notice-category-icon {  background: transparent !important; }
+        .notice-title { background: transparent !important; }
+    }
+}
+
+#app_acal {
+
+    margin-top: 10px;
+
+    @media @desktop { margin-top: 0; margin-left: 0; margin-right: 0; padding: 10px !important; }
+
+    h3 { text-transform: uppercase; font-weight: normal; font-size: 14px; color: #aaa;  }
+    h2 { margin-top: 0 !important; }
+}
+
+/**
+.myuw-thin-bar, .myuw-navigation, .myuw-body, .myuw-footer {
+
+    &:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+
+}
+**/
+
+
+/*** search ***/
+.myuw-search {
+
+    .myuw-wrapper { padding: 20px;
+        @media @desktop {  max-width: 700px; padding: 40px; }
+    }
+
+    background-color: #eee;
+    text-align: center;
+    max-height: 0;
+    overflow-y: hidden;
+
+    // css animation for slide-down transition
+    -webkit-transition: max-height 0.5s ease-in-out;
+    -moz-transition: max-height 0.5s ease-in-out;
+    -o-transition: max-height 0.5s ease-in-out;
+    transition: max-height 0.5s ease-in-out;
+
+    &.slide-down {
+        max-height: 1000px !important;
+    }
+
+    form {
+        input { background: none; border: none; }
+    }
+
+}
+
+/*** thin bar ***/
+.myuw-thin-bar {
+    background: @uw-purple-dark;
+    line-height: @bar-height;
+    height: @bar-height;
+    font-size: 14px;
+
+    a { color: @uw-gold; display: inline-block; min-width: 30px; text-align: center; font-size: 13px;
+
+        i { color: @uw-metalic-gold; }
+
+        &:hover {
+            span { color: @uw-gold; text-decoration: underline; }
+        }
+
+        @media @desktop { }
+
+    }
+
+    button { color: @uw-gold; padding: 0; min-width:30px; height: @bar-height; display: inline-block; margin-left: 8px;
+        background: none; border: none; font-size: 13px;
+
+        i { color: @uw-metalic-gold; }
+
+        &:hover {
+            span { color: @uw-gold; text-decoration: underline; }
+        }
+
+        @media @desktop { }
+    }
+
+    .myuw-netid { display: inline-block;
+        span { margin-left: 3px; }
+
+        a:last-child { display: none;
+            @media @desktop { display: inline-block; }
+        }
+    }
+
+    .myuw-search-links { display: inline-block; float: right; color: #fff; margin-right: -3px; font-size: 16px; }
+}
+
+.myuw-navigation { background: @uw-purple; height: @nav-height;
+
+    .myuw-wrapper {
+        //background-image: url("/assets/img/uw-logo-white-min.png");
+        background-repeat: no-repeat;
+        background-size: 45px;
+        background-position: right 20px bottom;
+        height: @nav-height;
+    }
+
+    .myuw-title { display: none;
+
+        @media @desktop {
+            display: inline-block;
+            color: #fff;
+            font-size: 26px;
+            font-weight: 400;
+            line-height: @nav-height;
+            height: @nav-height;
+        }
+    }
+
+    .myuw-title-button {
+
+        display: inline-block;
+        position: relative;
+        //box-shadow: 0 1px 3px rgba(34,25,25,.25);
+        //background-image: url("/assets/img/uw-logo-white.png");
+        background-repeat: no-repeat;
+        background-size: 60px;
+        background-position: 89% 100%;
+        height: @nav-height;
+        line-height: @nav-height;
+
+        @media @desktop { background-position: 98% 100%; box-shadow: none; padding: 0; display: none; };
+
+        button {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            //text-transform: uppercase;
+            font-weight: 400;
+            line-height: @nav-height;
+            height: @nav-height;
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            background: none;
+            border: none;
+            margin-left: -2px;
+
+            .fa-stack { font-size: 15px; margin-top: -3px; color: #ccc; }
+
+        }
+
+    }
+
+}
+
+/*** menu **/
+.myuw-menu {
+
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    font-size: 14px;
+
+    // css animation for slide-down transition
+    -webkit-transition: max-height 0.5s ease-in-out;
+    -moz-transition: max-height 0.5s ease-in-out;
+    -o-transition: max-height 0.5s ease-in-out;
+    transition: max-height 0.5s ease-in-out;
+
+    &.slide-down {
+        max-height: 1000px !important;
+    }
+
+    @media @desktop { max-height: 1000px; margin: 0; overflow: visible; }
+
+    ul { margin: 10px 0; padding: 0; list-style: none; border-radius: 3px; /*background: #fff;*/
+
+    @media @desktop { margin: 0; /*padding: 10px;*/ }
+    }
+
+    li { line-height: 30px; padding: 0; /*margin-left: 15px;*/ font-weight: bold; text-transform: uppercase;
+
+        @media @desktop { margin-left: 0; }
+
+        &:first-child { padding-top: 10px; }
+        &:last-child { padding-bottom: 10px; }
+
+        a { text-decoration: none; color: @uw-purple-dark; display: block;
+
+            &:hover { color: @uw-dark-gray; }
+            &.active { color: @uw-metalic-gold; text-decoration: underline; }
+
+            @media @desktop {  }
+
+            .fa { display: none;
+                @media @desktop { display: inline-block; width: 20px; color: #000; }
+            }
+        }
+
+
+    }
+}
+
+
+
+
+/*** modals and messages ***/
+.myuw-modals { }
+
+.myuw-banner { margin: 0 -15px 20px -15px;
+    @media @desktop { margin: 0; }
+}
+
+/*** static content ***/
+.myuw-static { font-size: 12px;
+
+        @include desktop { margin: 0 0 20px 0; padding: 0; }
+
+        a { text-decoration: none; color: @uw-dark-gray; display:block; line-height: 35px;  background: @uw-gold; /*border: solid 1px @uw-metalic-gold;;*/ border-radius: 3px;
+            span { font-weight: bold; font-size: 14px; color: @uw-metalic-gold; display: inline-block; margin-left: 3px; }
+        }
+
+        .myuw-accounts { display: flex;
+
+            a { flex: 1;  text-align: center;
+                &:first-child { margin-right: 4px; }
+                &:last-child { margin-left: 4px; }
+            }
+        }
+
+        .myuw-week-counter {
+            a { margin-top: 8px; }
+        }
+
+    }
+
+/*** footer ***/
+.myuw-footer { color: red; margin-top: 2em; }
