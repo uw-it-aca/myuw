@@ -28,12 +28,13 @@ var RegStatusCard = {
         }
 
         WebServiceData.require({notice_data: new NoticeData(),
-                                oquarter_data: new OQuarterData()},
-                               RegStatusCard.render);
+                                oquarter_data: new OQuarterData(),
+                                profile_data: new ProfileData()},
+                               RegStatusCard.pre_render);
     },
 
-    render_error: function(notice_resource_error, oquarter_resource_error) {
-        if (notice_resource_error || oquarter_resource_error) {
+    render_error: function(notice_resource_error, oquarter_resource_error, profile_resource_error) {
+        if (notice_resource_error || oquarter_resource_error || profile_resource_error) {
             // none of the api data returns 404.
             // if any data failure, display error
             RegStatusCard.dom_target.html(CardWithError.render("Registration"));
@@ -43,7 +44,7 @@ var RegStatusCard = {
         return false;
     },
 
-    _render_for_term: function(myplan_data, quarter, oquarter_data, summer_card_label) {
+    _render_for_term: function(myplan_data, quarter, oquarter_data, profile, summer_card_label) {
         var est_reg_date_notices = Notices.get_notices_for_tag("est_reg_date");
         var display_est_reg_date;
         var is_summer_reg = (quarter === "Summer");
@@ -136,6 +137,24 @@ var RegStatusCard = {
             return;
         }
 
+        // Retrieve pending majors and minors for this quarter, if they exist
+        var pending_minors = [];
+        var pending_majors = [];
+
+        var retrieve_quarter_degrees = function(degrees, degree_type){
+            for(i = 0; i < degrees.length; i++){
+                if(degrees[i].quarter.toUpperCase() === quarter.toUpperCase() && degrees[i].year === year){
+                    if(!degrees[i].same_as_previous){
+                        return degrees[i][degree_type];
+                    }
+                }
+            }
+        };
+
+        pending_minors = retrieve_quarter_degrees(profile.term_minors, "minors");
+        pending_majors = retrieve_quarter_degrees(profile.term_majors, "majors");
+
+
         //Get hold count from notice attrs
         var hold_count = reg_holds.length;
         var source = $("#reg_status_card").html();
@@ -155,8 +174,11 @@ var RegStatusCard = {
             "reg_next_quarter" : quarter,
             "reg_next_year": year,
             "plan_data": plan_data,
-            "myplan_peak_load": window.card_display_dates.myplan_peak_load
+            "myplan_peak_load": window.card_display_dates.myplan_peak_load,
+            "pending_minors": pending_minors,
+            "pending_majors": pending_majors
         };
+
         var raw = template(template_data);
         return raw;
     },
@@ -240,8 +262,10 @@ var RegStatusCard = {
     pre_render: function (resources) {
         var notice_resource = resources.notice_data;
         var oquarter_resource = resources.oquarter_data;
+        var profile_resource = resources.profile_data;
         if (SummerRegStatusCard.render_error(otice_resource.error,
-                                             oquarter_resource.error)) {
+                                             oquarter_resource.error,
+                                             profile_resource.error)) {
             return;
         }
 
@@ -257,16 +281,19 @@ var RegStatusCard = {
             WebServiceData.require({myplan_data: new MyPlanData(next_term_data.year,
                                                                 next_term_data.quarter)},
                                    RegStatusCard.render,
-                                   [oquarter_resource]);
+                                   resources);
             return;
         }
 
         RegStatusCard.render(resources);
     },
 
-    render: function (oquarter_resource, myplan_resources) {
+    render: function (resources, myplan_resources) {
+        var oquarter_resource = resources.oquarter_data;
+        var profile_resource = resources.profile_data;
         var oquarter_data = oquarter_resource.data;
         var next_term_data = oquarter_data.next_term_data;
+        var profile_data = profile_resource.data;
         var reg_next_quarter = next_term_data.quarter;
 
         var myplan_data;
@@ -279,6 +306,7 @@ var RegStatusCard = {
         if (window.card_display_dates.myplan_peak_load || myplan_data) {
             var content = RegStatusCard._render_for_term(myplan_data,
                                                          reg_next_quarter,
+                                                         profile_data,
                                                          oquarter_data);
             if (!content) {
                 RegStatusCard.dom_target.hide();

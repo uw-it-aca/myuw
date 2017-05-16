@@ -1,4 +1,5 @@
 WSData = {
+
     save_links: function(links) {
         var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;
         $.ajax({

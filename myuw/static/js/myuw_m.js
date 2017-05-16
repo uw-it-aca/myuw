@@ -6,6 +6,7 @@ $(window.document).ready(function() {
     LogUtils.init_logging();
     init_profile_events();
     init_modal_events();
+    init_search_events();
     var course_data = null;
     var book_data = null;
     // This is to prevent multiple events on load from making
@@ -68,7 +69,9 @@ $(window.document).ready(function() {
     
     // handle touchstart to mimic :hover event for mobile touch
     $('body').bind('touchstart', function() {});
-        
+
+    register_link_recorder();
+
 });
 
 var showLoading = function() {
@@ -207,11 +210,67 @@ var toggle_card_disclosure = function(card, div_toggled, a_expose, a_hide, label
     }
 };
 
+var register_link_recorder = function() {
+    $('body').on('mousedown', "A", record_link_click);
+    // For mocha testing
+    $('body').on('click', "A", record_link_click);
+    // For ios open in new window
+    $('body').on('touchstart', "A", record_link_click);
+
+};
+
+var record_link_click = function(ev) {
+    var target = $(this);
+
+    var original_href = target.attr('myuw-data-href');
+    if (target.attr('myuw-data-href')) {
+        return;
+    }
+
+    // Google search puts things here...
+    var href = target.attr('data-ctorig');
+    if (!href) {
+        href = target.attr('href');
+    }
+
+    if (!href.match('^https?://')) {
+        return;
+    }
+    target.attr('myuw-data-href', href);
+
+    var linklabel = target.attr('data-linklabel');
+    var label = "";
+    if (linklabel) {
+        label = linklabel;
+    }
+    else {
+        label = target.text();
+    }
+
+    var new_href = '/out?u='+encodeURIComponent(href)+'&l='+encodeURIComponent(label);
+    target.attr('href', new_href);
+};
+
 var myuwFeatureEnabled = function(feature) {
     return (window.enabled_features.hasOwnProperty(feature) &&
             window.enabled_features[feature]);
 };
 
+var getUrlParameter = function (name) {
+    var url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+};
+
+var init_search_events = function() {
+    $("#app_search").on('shown.bs.collapse', function(){
+        $("#search-nav").focus();
+    });
+};
 
 /* node.js exports */
 if (typeof exports == "undefined") {
@@ -220,4 +279,5 @@ if (typeof exports == "undefined") {
 exports.capitalizeString = capitalizeString;
 exports.date_from_string = date_from_string;
 exports.myuwFeatureEnabled = myuwFeatureEnabled;
+exports.register_link_recorder = register_link_recorder;
 exports.safe_label = safe_label;

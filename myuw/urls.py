@@ -12,9 +12,11 @@ from myuw.views.future_quarters import future_quarters
 from myuw.views.textbooks import textbooks
 from myuw.views.category import category
 from myuw.views.display_dates import override
+from myuw.views.link_admin import popular_links
 from myuw.views.choose import new_site, old_site
 from myuw.views.logger import log_interaction
 from myuw.views.photo import show_photo
+from myuw.views.link import outbound_link
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.instructor_schedule import (InstScheCurQuar, InstScheQuar,
                                                 InstSect, InstSectionDetails)
@@ -34,7 +36,10 @@ from myuw.views.api.myplan import MyPlan
 from myuw.views.api.academic_events import AcademicEvents
 from myuw.views.api.thrive import ThriveMessages
 from myuw.views.api.calendar import DepartmentalCalendar
+from myuw.views.search import search_res
 from myuw.views.api.upass import UPass
+from myuw.views.api.link import ManageLinks
+from myuw.views.api.messages import Messages
 
 urlpatterns = []
 
@@ -50,6 +55,10 @@ if settings.DEBUG:
 urlpatterns += [
     url(r'admin/dates', override, name="myuw_date_override"
         ),
+    url(r'admin/links/(?P<page>[0-9]+)', popular_links,
+        name="myuw_popular_links_paged"),
+    url(r'admin/links', popular_links, {'page': 1},
+        name="myuw_popular_links"),
     url(r'^logger/(?P<interaction_type>.*)$', log_interaction
         ),
     url(r'^api/v1/academic_events$', login_required(AcademicEvents().run),
@@ -113,6 +122,9 @@ urlpatterns += [
     url(r'^api/v1/profile/$', login_required(MyProfile().run),
         name="myuw_profile_api"
         ),
+    url(r'api/v1/link/?$', login_required(ManageLinks().run),
+        name='myuw_manage_links'
+        ),
     url(r'^api/v1/upass/$', login_required(UPass().run),
         name="myuw_upass_api"
         ),
@@ -153,9 +165,14 @@ urlpatterns += [
     url(r'^api/v1/thrive/$', login_required(ThriveMessages().run),
         name="myuw_thrive_api"
         ),
+    url(r'^api/v1/messages/$', login_required(Messages().run),
+        name="myuw_message_api"
+        ),
     url(r'^choose/new', new_site, name="myuw_pref_new_site"
         ),
     url(r'^choose/legacy', old_site, name="myuw_pref_old_site"
+        ),
+    url(r'^search/?$', search_res, name="myuw_search_res_page"
         ),
     url(r'^teaching/?$', teaching, name="myuw_teaching_page"
         ),
@@ -190,5 +207,6 @@ urlpatterns += [
         ),
 
     url(r'photo/(?P<url_key>.*)', show_photo),
+    url(r'out/?', outbound_link, name='myuw_outbound_link'),
     url(r'.*', index, name="myuw_home"),
 ]

@@ -20,15 +20,61 @@
 			<div>{{ class_level }}</div>
 			<div>
                             <ul class="student-major-list">
-                                {{#if majors}}
-                                {{#each majors}}
-                                <li>{{full_name}}</li>
-                                {{/each}}
+                                {{#if term_majors}}
+                                    {{#each term_majors}}
+                                        {{#if @first}}
+                                            {{#if @root.has_pending_major}}
+                                                <li>Current {{ pluralize_by_size majors "Major" "Majors"}}:
+                                                    {{#each majors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{/each}}
+                                                </li>
+                                            {{else}}
+                                                {{#each majors}}
+                                                    <li>{{full_name}}</li>
+                                                {{/each}}
+                                            {{/if}}
+                                        {{else}}
+                                            {{#unless same_as_previous}}
+                                                <li>{{ pluralize_by_size majors "Major" "Majors"}}
+                                                    Beginning {{ toTitleCase quarter}}:
+                                                    {{#each majors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{/each}}
+                                                </li>
+                                            {{/unless}}
+                                        {{/if}}
+                                    {{/each}}
                                 {{/if}}
-                                {{#if minors}}
-                                {{#each minors}}
-                                <li>{{full_name}} (minor)</li>
-                                {{/each}}
+
+                                {{#if term_minors}}
+                                    {{#each term_minors}}
+                                        {{#if @first}}
+                                            {{#if @root.has_pending_minor}}
+                                                <li>Current {{ pluralize_by_size minors "Minor" "Minors"}}:
+                                                    {{#each minors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{/each}}
+                                                </li>
+                                            {{else}}
+                                                <li>Current {{ pluralize_by_size minors "Minor" "Minors"}}:
+                                                    {{#each minors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{/each}}
+                                                </li>
+                                            {{/if}}
+
+                                        {{else}}
+                                            {{#unless same_as_previous}}
+                                                <li>{{ pluralize_by_size minors "Minor" "Minors"}}
+                                                    Beginning {{ toTitleCase quarter}}:
+                                                    {{#each minors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{/each}}
+                                                </li>
+                                            {{/unless}}
+                                        {{/if}}
+                                    {{/each}}
                                 {{/if}}
                             </ul>
                         </div>
@@ -75,7 +121,7 @@
                     <strong><h4>Receiving UW mail</h4></strong>
                     <ul>
                         <li>To receive important mailings from the UW, verify that your addresses are correct.</li>
-                        <li><a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Update addresses and usage settings</a></li>
+                        <li><a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp" data-linklabel="Update Student Address">Update addresses and usage settings</a></li>
                     </ul>
                 </div>
 
@@ -129,14 +175,14 @@
                     <ul>
                         <li><strong>Published in the UW Directory</strong> &ndash; <em>Name, phone number, email, major, and class standing</em></li>
                         <li><strong>Releasable by Office of the Registrar</strong> &ndash; Information such as <em>date of birth, street address, and dates of attendance</em></li>
-                        <li><a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Change your release settings</a></li>
+                        <li><a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp" data-linklabel="Update Student Address">Change your release settings</a></li>
                         <li><a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
                     </ul>
                     {{else}}
                     <strong>Your profile information is currently <em>private</em></strong> (not releasable)
                     <ul>
                         <li><strong>Information about you cannot be released or displayed publicly in the UW Directory without your consent.</strong></li>
-                        <li><a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Change your release settings</a></li>
+                        <li><a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp" data-linklabel="Update Student Address">Change your release settings</a></li>
                         <li><a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
                     </ul>
                     {{/if}}

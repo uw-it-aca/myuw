@@ -2,8 +2,8 @@
     {% tplhandlebars "calendar_events" %}
     <div class="container academic_cal-container">
        <div class="acal-main">
-            <h2 id="main">Academic Calendar</h2>
-            <a href="//www.washington.edu/students/reg/calendar.html">View detailed calendar</a> <!--| <a href="//www.washington.edu/calendar/academic/">Subscribe to detailed</a> -->
+            <h2 id="main" class="heading-page">Academic Calendar</h2>
+            <a href="//www.washington.edu/students/reg/calendar.html" data-linklabel="UW Academic Calendar">View detailed calendar</a> <!--| <a href="//www.washington.edu/calendar/academic/">Subscribe to detailed</a> -->
 			<center>
 	            <div class="btn-group btn-group-justified acal-page-filters" role="tablist">
 		            <div class="btn-group" role="group">
@@ -30,7 +30,7 @@
                 {{/each}}
 
                 {{else}}
-                <h2 id="acal-quarters">{{ quarter }} {{ year }}</h2>
+                <h3 id="acal-quarters">{{ quarter }} {{ year }}</h3>
                 <ul class="acal-page-event-list">
                     {{ #each events }}
                     <li class="acal-page-event-list-item acal-page-event {{#if myuw_categories.breaks }}acal-page-event-break{{/if}}{{#if myuw_categories.classes}}acal-page-event-class{{/if}}">

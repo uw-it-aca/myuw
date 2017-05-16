@@ -20,7 +20,8 @@ var SummerRegStatusCard = {
             return;
         }
         WebServiceData.require({notice_data: new NoticeData(),
-                                oquarter_data: new OQuarterData()},
+                                oquarter_data: new OQuarterData(),
+                                profile_data: new ProfileData()},
                                SummerRegStatusCard.pre_render);
     },
 

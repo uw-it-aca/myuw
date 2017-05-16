@@ -1,0 +1,8 @@
+campus,affiliation,pce,extra
+seattle,undergrad,no,ok
+seattle,grad,yes,ok2
+bothell,grad,,ok3
+,,,ok4
+all,all,all,ok5
+seattle,grad,no,skip this
+tacoma,undergrad,no,skip this 2
