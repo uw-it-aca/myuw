@@ -140,19 +140,15 @@ class UserMigrationPreference(models.Model):
 
 
 class BannerMessage(models.Model):
-    VALID_ELIGIBILITY_TYPES = [
-        'netid'
-    ]
     start = models.DateField()
     end = models.DateField()
-    eligibility_type = models.CharField(max_length=32, null=True)
-    eligibility_data = models.CharField(max_length=255, null=True)
     message_title = models.TextField()
     message_body = models.TextField()
 
     affiliation = models.CharField(max_length=80, null=True)
     pce = models.NullBooleanField()
     campus = models.CharField(max_length=8, null=True)
+    group_id = models.CharField(max_length=200, null=True)
 
     added_by = models.CharField(max_length=50)
     added_date = models.DateTimeField(auto_now_add=True)

@@ -29,6 +29,10 @@ ox-inline"><input type='radio' name='affiliation' value='student_employee' {% if
 PCE:  <label class="checkbox-inline"><input type='checkbox' name='pce' value='pce'> PCE</label>
 
 <br />
+Limit to Group: <input type="text" name="group_id" value="{{ input.group_id }}"/> <br/>
+<em>You can create a group using the <a href="https://groups.uw.edu/" target="_blank">UW Groups Service</a></em><br/>
+
+<br />
 Title: <input type="text" name="title" value="{{ input.title }}"/> <br />
 
 Message: <input type="text" name="message" value="{{ input.message }}"/> <br />
@@ -49,7 +53,7 @@ Message: <input type="text" name="message" value="{{ input.message }}"/> <br />
 
 </form></h4>
 <em>Created by {{ message.added_by }} on {{ message.added_date }}</em>
-<p>{{ message.start }} to {{ message.end }}.  Campus: {{ message.campus }}.  Affiliation: {{ message.affiliation }}.  PCE: {{ message.pce }}</p>
+<p>{{ message.start }} to {{ message.end }}.  Campus: {{ message.campus }}.  Affiliation: {{ message.affiliation }}.  PCE: {{ message.pce }}.  Group: {{ message.group_id }}</p>
 <p>{{ message.message_body|safe }}</p>
 
 {% endfor %}

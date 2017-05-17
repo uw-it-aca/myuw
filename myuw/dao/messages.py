@@ -8,6 +8,8 @@ from myuw.dao import is_netid_in_list, get_netid_of_current_user
 from myuw.models import BannerMessage
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.affiliation_data import get_data_for_affiliations
+from userservice.user import UserService
+from authz_group import Group
 
 
 """
@@ -28,4 +30,12 @@ def get_current_messages(request):
                                          start__lte=current_date,
                                          end__gte=current_date)
 
-    return messages
+    filtered = []
+    user = UserService().get_user()
+    g = Group()
+    for message in messages:
+        if message.group_id:
+            if not g.is_member_of_group(user, message.group_id):
+                continue
+        filtered.append(message)
+    return filtered

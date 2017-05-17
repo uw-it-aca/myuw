@@ -111,6 +111,7 @@ def _save_new_message(request, context):
         if 'pce' == request.POST.get('pce', ''):
             pce = True
 
+        group_id = request.POST.get('group_id', None)
         added_by = UserService().get_original_user()
         BannerMessage.objects.create(start=start,
                                      end=end,
@@ -119,6 +120,7 @@ def _save_new_message(request, context):
                                      campus=request.POST.get('campus', None),
                                      affiliation=affiliation,
                                      pce=pce,
+                                     group_id=group_id,
                                      message_body=body)
 
         log_info(logger, "Message saved.  Title: %s" % title)
