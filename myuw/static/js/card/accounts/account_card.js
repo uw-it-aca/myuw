@@ -3,11 +3,6 @@ var AccountsCard = {
     dom_target: undefined,
 
     render_init: function() {
-        if (!(window.user.employee || window.user.faculty || window.user.stud_employee)) {
-            $("#AccountsCard").hide();
-            return;
-        }
-
         AccountsCard._render();
     },
 
