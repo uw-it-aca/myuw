@@ -1,0 +1,168 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "ClassWebsiteUrl": "",
+    "Course": {
+        "CourseNumber": "220",
+        "CurriculumAbbreviation": "BIGDATA",
+        "Href": "/student/v5/course/2013,winter,BIGDATA,220/A.json",
+        "Quarter": "winter",
+        "Year": 2013
+    },
+    "CourseCampus": "PCE",
+    "CourseDescription": null,
+    "CourseHasVariableContent": false,
+    "CourseTitle": "Building the Data Pipeline",
+    "CourseTitleLong": "Building the Data Pipeline",
+    "CreditControl": null,
+    "CurrentEnrollment": 15,
+    "Curriculum": {
+        "CollegeName": null,
+        "DepartmentAbbreviation": null,
+        "TimeScheduleLinkAbbreviation": ""
+    },
+    "DeleteFlag": "suspended",
+    "DistanceLearning": false,
+    "DuplicateEnrollmentAllowed": false,
+    "EndDate": "2013-03-20",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": null,
+    "FeeBudget": null,
+    "FeeType": null,
+    "FinalExam": null,
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": null,
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [],
+    "GradingSystem": "",
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": null,
+    "IsIndependentStart": false,
+    "JointSections": [],
+    "LMSOwnership": "PCE_OL",
+    "LimitEstimateEnrollment": 19,
+    "LimitEstimateEnrollmentIndicator": "L",
+    "LinkedSectionTypes": [],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Wednesday"
+                    }
+                ],
+                "Text": "..W...."
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "21:00:00",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "1",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2013,winter,BIGDATA,220,A,10000000000000000000000000000011"
+                    },
+                    "PercentInvolve": "",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                        "Name": null,
+                        "RegID": "10000000000000000000000000000011"
+                    },
+                    "TSPrint": false
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "CLS",
+            "RoomNumber": "405",
+            "RoomToBeArranged": false,
+            "StartTime": "18:00:00"
+        }
+    ],
+    "Metadata": "SectionSourceKey=EOS;",
+    "MinimumTermCredit": "",
+    "OnlineLearningType": {
+        "Code": null,
+        "Description": null
+    },
+    "PrimaryLMS": "CANVAS",
+    "PrimarySection": {
+        "CourseNumber": "220",
+        "CurriculumAbbreviation": "BIGDATA",
+        "Href": "/student/v5/course/2013,winter,BIGDATA,220/A.json",
+        "Quarter": "winter",
+        "SectionID": "A",
+        "Year": 2013
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "220",
+        "CurriculumAbbreviation": "BIGDATA",
+        "Href": "/student/v5/registration.json?year=2013&quarter=winter&curriculum_abbreviation=BIGDATA&course_number=220&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "winter",
+        "RegID": null,
+        "SectionID": "A",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2013
+    },
+    "RepositoryTimeStamp": "3/23/2013 3:17:43 PM",
+    "ResearchCredit": false,
+    "RoomCapacity": 0,
+    "SLN": "00000",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "A",
+    "SectionType": null,
+    "SelfRegistrationAllowed": false,
+    "ServiceLearning": false,
+    "StartDate": "2013-01-16",
+    "StudentCreditHours": null,
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2013,winter.json",
+        "Quarter": "winter",
+        "Year": 2013
+    },
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": []
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": []
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": []
+        }
+    }
+}

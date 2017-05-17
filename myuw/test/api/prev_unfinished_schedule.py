@@ -28,7 +28,8 @@ class TestStudUnfinishedPrevQuarClasSche(MyuwApiTest):
 
                 return section
 
-        self.fail('Did not find course %s %s %s' % (abbr, number, section_id))
+        self.fail('Did not find course %s %s %s' %
+                  (abbr, number, section_id))
 
     def test_404(self):
         response = self.get_prev_unfinished_schedule('javerage')
@@ -53,13 +54,13 @@ class TestStudUnfinishedPrevQuarClasSche(MyuwApiTest):
         self.assertEquals(len(data["sections"]), 2)
 
         com = self.get_section(data, 'COM', '201', 'A')
-        self.assertEquals(com['start_date'], '2013-01-30 00:00:00')
-        self.assertEquals(com['end_date'], '2013-04-29 00:00:00')
+        self.assertEquals(com['start_date'], '2013-01-30')
+        self.assertEquals(com['end_date'], '2013-04-29')
         self.assertFalse(com["is_ended"])
 
         psych = self.get_section(data, 'PSYCH', '203', 'A')
-        self.assertEquals(psych['start_date'], '2013-01-29 00:00:00')
-        self.assertEquals(psych['end_date'], '2013-07-30 00:00:00')
+        self.assertEquals(psych['start_date'], '2013-01-29')
+        self.assertEquals(psych['end_date'], '2013-07-30')
         self.assertFalse(psych["is_ended"])
 
     def test_two_prev_terms(self):
