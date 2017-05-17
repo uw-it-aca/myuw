@@ -48,8 +48,7 @@ def manage_messages(request):
         if _delete_message(request):
             return redirect('myuw_manage_messages')
 
-    one_week_past = timezone.now() - timedelta(days=7)
-    messages = BannerMessage.objects.filter(end__gte=one_week_past)
+    messages = BannerMessage.objects.all().order_by('-end', '-start')
 
     context['messages'] = messages
 
