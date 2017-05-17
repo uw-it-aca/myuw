@@ -6,6 +6,7 @@ from django.db import models
 from django.db.models import Count
 from myuw.models.building import Building
 from myuw.models.res_category_link import ResCategoryLink
+from hashlib import sha1
 
 
 class CourseColor(models.Model):
@@ -223,11 +224,35 @@ class CustomLink(models.Model):
     user = models.ForeignKey('User', on_delete=models.PROTECT)
     url = models.CharField(max_length=512)
     label = models.CharField(max_length=50, null=True)
+    url_key = models.SlugField(max_length=40)
+
+    def save(self, *args, **kwargs):
+        self.url_key = self.get_url_key(self.url)
+        super(CustomLink, self).save(*args, **kwargs)
+
+    @staticmethod
+    def get_url_key(url):
+        return sha1(url.encode('utf-8')).hexdigest()
+
+    class Meta:
+        unique_together = (('url_key', 'user'),)
 
 
 class HiddenLink(models.Model):
     user = models.ForeignKey('User', on_delete=models.PROTECT)
     url = models.CharField(max_length=512)
+    url_key = models.SlugField(max_length=40)
+
+    def save(self, *args, **kwargs):
+        self.url_key = self.get_url_key(self.url)
+        super(HiddenLink, self).save(*args, **kwargs)
+
+    @staticmethod
+    def get_url_key(url):
+        return sha1(url.encode('utf-8')).hexdigest()
+
+    class Meta:
+        unique_together = (('url_key', 'user'),)
 
 
 class BannerMessage(models.Model):
