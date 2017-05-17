@@ -291,16 +291,18 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
         &:first-child { padding-top: 10px; }
         &:last-child { padding-bottom: 10px; }
 
-        a { text-decoration: none; color: @uw-purple-dark; display: block;
+        a { text-decoration: none; color: #666; display: block;
 
-            &:hover { color: @uw-dark-gray; }
-            &.active { color: @uw-metalic-gold; text-decoration: underline; }
+            i { color: #666 !important; width: 20px; text-align: center; margin-right: 5px; }
+
+            &:hover { color: @uw-purple-dark; text-decoration: underline; }
+            &.active { color: @uw-purple-light; text-decoration: underline;
+                i { color: @uw-purple-dark !important; }
+            }
 
             @media @desktop {  }
 
-            .fa { display: none;
-                @media @desktop { display: inline-block; width: 20px; color: #000; }
-            }
+
         }
 
 

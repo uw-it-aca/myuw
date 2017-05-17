@@ -121,21 +121,21 @@
                 <div id="menu_container" class="myuw-menu" role="navigation">
                     <ul>
 
-                        <li><a {% if page_title == "Home" %}class="active"{% endif %}  href="/">Home</a></li>
+                        <li><a {% if page_title == "Home" %}class="active"{% endif %}  href="/"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
 
                         {% if user.affiliations.student %}
-                        <li><a href="/academics/">Academics</a></li>
-                        <li><a href="/huskyexp/">Husky Experience</a></li>
+                        <li><a href="/academics/"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Academics</a></li>
+                        <li><a href="/huskyexp/"><i class="fa fa-paw" aria-hidden="true"></i>Husky Experience</a></li>
                         {% endif %}
 
                         {% if user.affiliations.faculty %}
-                        <li><a {% if page_title == "Teaching" %}class="active"{% endif %} href="/teaching/">Teaching</a></li>
+                        <li><a {% if page_title == "Teaching" %}class="active"{% endif %} href="/teaching/"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Teaching</a></li>
                         {% endif %}
 
-                        <li><a {% if page_title == "Academic Calendar" %}class="active"{% endif %} href="/academic_calendar/">Academic Calendar</a></li>
-                        <li><a {% if page_title == "Accounts" %}class="active"{% endif %} href="/accounts/">Accounts</a></li>
-                        <li><a {% if page_title == "Notices" %}class="active"{% endif %}  href="/nooootices/">Notices</a></li>
-                        <li><a {% if page_title == "Profile" %}class="active"{% endif %} href="/profile/">Profile</a></li>
+                        <li><a {% if page_title == "Academic Calendar" %}class="active"{% endif %} href="/academic_calendar/"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Academic Calendar</a></li>
+                        <li><a {% if page_title == "Accounts" %}class="active"{% endif %} href="/accounts/"><i class="fa fa-columns" aria-hidden="true"></i>Accounts</a></li>
+                        <li><a {% if page_title == "Notices" %}class="active"{% endif %}  href="/nooootices/"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Notices</a></li>
+                        <li><a {% if page_title == "Profile" %}class="active"{% endif %} href="/profile/"><i class="icon-user icon-user-female" aria-hidden="true"></i>Profile</a></li>
 
                     </ul>
                 </div>
