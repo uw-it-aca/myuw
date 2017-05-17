@@ -938,10 +938,22 @@ label { font-weight: normal; }
         }
         // Quicklinks 
         .myuw-qlinks {
-            .myuw-qlinks-active {}
+            .control-link {
+                color: #999;
+                font-weight: normal;
+                text-decoration: none;
+            }
+            .myuw-qlinks-active {
+                .edit-link {padding-right:4px;}
+            }
             .myuw-qlinks-recent {background-color:#eee;padding: 5px 10px;margin: 5px -10px;
-                .recent-message {padding:10px 10px; font-style: italic; font-size: small;}
+                .recent-message {padding:10px 0; font-style: italic; font-size: small;}
                 .myuw-qlinks-recent-list {font-size:12px;line-height: 20px;}
+                .control-link {
+                    color: #777;
+                    font-weight: normal;
+                    text-decoration: none;
+                }
             }
             .myuw-qlinks-popular {
                 .myuw-qlinks-popular-list {
@@ -949,15 +961,17 @@ label { font-weight: normal; }
                     line-height: 20px;  
                     }
             }
+            .myuw-qlinks-custom {
+                .myuw-qlinks-custom-btn {padding: 5px 0;}
+            }
             .myuw-qlinks-recent, .myuw-qlinks-active, .myuw-qlinks-popular {
                 
                 li.list .link-controls {
-                        display: none;               
+                        display: none; 
                 }
                     
                 li.list:hover .link-controls {
                     display: inline-block; 
-                    font-size:12px;
                 }
             }
         }

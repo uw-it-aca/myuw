@@ -4,6 +4,7 @@ var KEY_ESCAPE = 27;
 var QuickLinksCard = {
     name: 'QuickLinksCard',
     dom_target: undefined,
+    opened_panels: {},
 
     run_control: function(ev) {
         var target = $(this);
@@ -131,13 +132,34 @@ var QuickLinksCard = {
         QuickLinksCard.dom_target.html(template({
             'links': window.quicklink_data
         }));
+        QuickLinksCard.add_events();
+    },
+    collapse_event: function(caller) {
+        // Closing a collapse that hasn't been opened at least once results in
+        // a regex error in jquery code...
+        if ("popular" == caller) {
+            if (QuickLinksCard.opened_panels.custom) {
+                $("#custom_qlinks").collapse("hide");
+            }
+        }
+        if ("custom" == caller) {
+            if (QuickLinksCard.opened_panels.popular) {
+                $("#popular_qlinks").collapse("hide");
+            }
+        }
+        QuickLinksCard.opened_panels[caller] = true;
+    },
+    add_events: function() {
+        $("#popular_qlinks").on("show.bs.collapse", function() { QuickLinksCard.collapse_event('popular'); });
+        $("#custom_qlinks").on("show.bs.collapse", function() { QuickLinksCard.collapse_event('custom'); });
+        $("body").on('click', '.control-link', QuickLinksCard.run_control);
+        $("body").on('click', '#close-custom-link-edit', QuickLinksCard.hide_edit_panel);
+        $("body").on('click', '#quicklinks-save-edits', QuickLinksCard._save_edit);
+        $("body").on('click', '#quicklinks-save-new', QuickLinksCard._save_new);
+        $("body").on('keydown', '#myuw-custom-qlink', QuickLinksCard.custom_add);
+        $("body").on('keydown', '#custom-link-edit', QuickLinksCard.custom_edit);
+        $("body").on('keydown', QuickLinksCard.handle_escape);
     }
 };
 
-$("body").on('click', '.control-link', QuickLinksCard.run_control);
-$("body").on('click', '#close-custom-link-edit', QuickLinksCard.hide_edit_panel);
-$("body").on('click', '#quicklinks-save-edits', QuickLinksCard._save_edit);
-$("body").on('click', '#quicklinks-save-new', QuickLinksCard._save_new);
-$("body").on('keydown', '#myuw-custom-qlink', QuickLinksCard.custom_add);
-$("body").on('keydown', '#custom-link-edit', QuickLinksCard.custom_edit);
-$("body").on('keydown', QuickLinksCard.handle_escape);
+
