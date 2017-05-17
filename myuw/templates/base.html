@@ -119,6 +119,7 @@
                 <!-- app_navigation -->
                 {% block app_navigation %}
                 <div id="menu_container" class="myuw-menu" role="navigation">
+
                     <ul>
 
                         <li><a {% if page_title == "Home" %}class="active"{% endif %}  href="/"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
@@ -138,6 +139,11 @@
                         <li><a {% if page_title == "Profile" %}class="active"{% endif %} href="/profile/"><i class="icon-user icon-user-female" aria-hidden="true"></i>Profile</a></li>
 
                     </ul>
+
+
+                    <div class="myuw-menu-logout" style="color:#999; margin-top: 50px; font-size: 13px; border-top:solid 1px #ddd; padding-top: 10px;">Warning: To protect your privacy and prevent unauthorized use, completely exit your web browser or <a href="/logoout/">logout</a>.</div>
+
+
                 </div>
                 {% endblock %}
                 <!-- end app_navigation -->
