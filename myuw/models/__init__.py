@@ -171,7 +171,7 @@ class VisitedLink(models.Model):
         min_visit = timezone.now() + VisitedLink.OLDEST_RECENT_TIME_DELTA
         objs = VisitedLink.objects.filter(username=username,
                                           visit_date__gte=min_visit)
-        objs = objs.order_by('-visit_date')[:VisitedLink.MAX_RECENT_HISTORY]
+        objs = objs.order_by('-pk')[:VisitedLink.MAX_RECENT_HISTORY]
         lookup = set()
         ordered = []
         for visited in objs:
