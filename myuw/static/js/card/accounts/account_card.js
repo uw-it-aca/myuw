@@ -3,7 +3,12 @@ var AccountsCard = {
     dom_target: undefined,
 
     render_init: function() {
-        WSData.fetch_profile_data(AccountsCard._render, AccountsCard.render_error);
+        if (!(window.user.employee || window.user.faculty || window.user.stud_employee)) {
+            $("#AccountsCard").hide();
+            return;
+        }
+
+        AccountsCard._render();
     },
 
     render_error: function() {
@@ -13,7 +18,18 @@ var AccountsCard = {
     _render: function() {
         var source   = $("#accounts_card").html();
         var template = Handlebars.compile(source);
-        var compiled = template(WSData.profile_data().password);
+        var compiled = template({
+            card_name: AccountsCard.name,
+            is_faculty: window.user.faculty,
+            is_clinician: window.user.clinician
+        });
+
         AccountsCard.dom_target.html(compiled);
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.AccountsCard = AccountsCard;

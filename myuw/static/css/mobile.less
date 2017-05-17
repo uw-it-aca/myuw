@@ -1,5 +1,6 @@
 /*** breakpoints ***/
 
+@over550: ~"screen and (min-width: 550px)";
 @phablet: ~"screen and (min-width: 768px)";
 @under992: ~"screen and (max-width: 991px)";
 @desktop: ~"screen and (min-width: 992px)";
@@ -306,7 +307,7 @@ body {
 
 }
 
-.my-text-muted {font: #666;}
+.my-text-muted { color: #666; }
 
 
 /*** Headings ***/
@@ -791,6 +792,10 @@ label { font-weight: normal; }
             font-size: 16px;
             color: #444; }
 
+        .card-btn {
+            @media @over550 { position: absolute; top: 12px; right: 10px;}
+        }
+
         .card-content {  }
 
         .card-critical-alert {
@@ -930,6 +935,45 @@ label { font-weight: normal; }
             }
             a:hover {text-decoration: none;}
             .efs-switcher-link-text {font-size:smaller;}
+        }
+        // Quicklinks 
+        .myuw-qlinks {
+            .control-link {
+                color: #999;
+                font-weight: normal;
+                text-decoration: none;
+            }
+            .myuw-qlinks-active {
+                .edit-link {padding-right:4px;}
+            }
+            .myuw-qlinks-recent {background-color:#eee;padding: 5px 10px;margin: 5px -10px;
+                .recent-message {padding:10px 0; font-style: italic; font-size: small;}
+                .myuw-qlinks-recent-list {font-size:12px;line-height: 20px;}
+                .control-link {
+                    color: #777;
+                    font-weight: normal;
+                    text-decoration: none;
+                }
+            }
+            .myuw-qlinks-popular {
+                .myuw-qlinks-popular-list {
+                    font-size:12px;
+                    line-height: 20px;  
+                    }
+            }
+            .myuw-qlinks-custom {
+                .myuw-qlinks-custom-btn {padding: 5px 0;}
+            }
+            .myuw-qlinks-recent, .myuw-qlinks-active, .myuw-qlinks-popular {
+                
+                li.list .link-controls {
+                        display: none; 
+                }
+                    
+                li.list:hover .link-controls {
+                    display: inline-block; 
+                }
+            }
         }
     }
 
@@ -1565,6 +1609,10 @@ label { font-weight: normal; }
         }
     }
 
+    #DirectoryInfoCard {
+
+    }
+
 
 // ThriveUW
     // Thrive card
@@ -2178,12 +2226,16 @@ label { font-weight: normal; }
 
 
 /*** Accounts page ***/
+
 #og_workday {
-    background: url(/static/images/wday_logo.png) no-repeat 4px 50%;
+    background-repeat: no-repeat;
+    background-position: 10px 50%;
     background-size: 18px;
-    display: inline-block;
-    height: 22px;
-    padding-left: 30px;
+    padding-left: 38px;
+}
+
+.hr-payroll-card #og_workday {
+    margin-bottom: 10px;
 }
 
 /*** footer ***/

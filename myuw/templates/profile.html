@@ -3,26 +3,26 @@
 {% load compress %}
 
 {% block page_title %}
-MyUW: Profile -added more cards
+MyUW Profile
 {% endblock %}
 
 {% block content %}
 
-    <div id="main-content" role="main" aria-labelledby="main">
-    <h1>Profile Page</h1>
-    </div>
+    <div id="main-content" role="main" aria-labelledby="main"></div>
     <div id="profile_content"></div>
+
     <div id="static-links"></div>
 
     <!-- component content templates -->
     {% include "handlebars/banner/profile.html" %}
     {% include "handlebars/card/profile/profile_card.html" %}
     {% include "handlebars/card/loading.html" %}
+    {% include "handlebars/card/directory_info.html" %}
 
     <!-- page content templates -->
+    {% include "handlebars/profile.html" %}
     {% include "handlebars/loading.html" %}
     {% include "handlebars/error.html" %}
-
 
     {% include "user_state.html" %}
 
@@ -32,5 +32,6 @@ MyUW: Profile -added more cards
     {% compress js inline %}
         <script src="{% static 'js/page/profile.js' %}"></script>
         <script src="{% static 'js/card/profile/profile.js' %}"></script>
+        <script src="{% static 'js/card/profile/directory_info.js' %}"></script>
     {% endcompress %}
 {% endblock %}

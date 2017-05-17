@@ -41,7 +41,7 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
         return moment(parse_date(str)).fromNow();
     });
 
-    // used on Grade, Library card 
+    // used on Grade, Library card
     Handlebars.registerHelper("toFriendlyDate", function(str) {
         return moment(parse_date(str)).format("ddd, MMM D");
     });
@@ -270,7 +270,7 @@ Handlebars.registerHelper('equal', function(value1, value2, options) {
         throw new Error("Handlebars Helper equal needs 2 parameters");
     if(value1 != value2) {
         return options.inverse(this);
-    } 
+    }
     else {
         return options.fn(this);
     }
@@ -282,9 +282,9 @@ Handlebars.registerHelper("eachWithIndex", function(array, fn) {
         var item = array[i];
         item.index = i;
         buffer += fn.fn(item);
-    }   
+    }
     return buffer;
-}); 
+});
 
 Handlebars.registerHelper('format_schedule_hour', function(hour, position) {
     if (parseInt(hour, 10) === 12) {
@@ -428,4 +428,17 @@ Handlebars.registerHelper('get_quarter_code', function(quarter_str) {
 Handlebars.registerHelper('slugify', function(value) {
     var slug = value.replace(/[^\w\s]+/gi, '').replace(/ +/gi, '-');
     return slug.toLowerCase();
+});
+
+Handlebars.registerHelper('phone_number', function(value) {
+    var number;
+
+    if (value) {
+        number = value.match(/^(\d{3})[ -\.]?(\d{3})[ -\.]?(\d{4})$/);
+        if (number) {
+            return '(' + number[1] + ') ' + number[2] + '-' + number[3];
+        }
+    }
+
+    return value;
 });
