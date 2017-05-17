@@ -224,16 +224,10 @@ class CustomLink(models.Model):
     url = models.CharField(max_length=512)
     label = models.CharField(max_length=50, null=True)
 
-    class Meta:
-        unique_together = (('user', 'url',),)
-
 
 class HiddenLink(models.Model):
     user = models.ForeignKey('User', on_delete=models.PROTECT)
     url = models.CharField(max_length=512)
-
-    class Meta:
-        unique_together = (('user', 'url',),)
 
 
 class BannerMessage(models.Model):
