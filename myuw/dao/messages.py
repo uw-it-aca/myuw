@@ -1,6 +1,7 @@
 import csv
 import os
 import datetime
+import bleach
 from dateutil.parser import parse
 from django.conf import settings
 from myuw.dao.term import get_comparison_date
@@ -11,14 +12,7 @@ from myuw.dao.affiliation_data import get_data_for_affiliations
 from userservice.user import UserService
 from authz_group import Group
 
-
-"""
-Gets the banner message for the current day/quarter
-Currently will fetch messages stored in data CSV but could be enhanced to
-include an admin interface for storing messages and eligibility.
-"""
-SAMPLE_LIST = "SAMPLE_LIST"
-SAMPLE_PATH = "data/seru_users.txt"
+MESSAGE_ALLOWED_TAGS = bleach.sanitizer.ALLOWED_TAGS + ["h1", "h2", "h3", "h4"]
 
 
 def get_current_messages(request):
@@ -39,3 +33,7 @@ def get_current_messages(request):
                 continue
         filtered.append(message)
     return filtered
+
+
+def clean_html(input):
+    return bleach.clean(input, tags=MESSAGE_ALLOWED_TAGS)

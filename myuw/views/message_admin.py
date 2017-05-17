@@ -1,5 +1,6 @@
 from myuw.models import BannerMessage
 from myuw.logger.logback import log_info
+from myuw.dao.messages import clean_html
 from userservice.user import UserService
 from authz_group import Group
 from django.conf import settings
@@ -7,7 +8,6 @@ from django.utils import timezone
 from datetime import timedelta, datetime
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-import bleach
 import re
 import logging
 
@@ -68,10 +68,6 @@ def _delete_message(request):
     return True
 
 
-def _clean_html(input):
-    return bleach.clean(input)
-
-
 def _save_new_message(request, context):
     if 'save' != request.POST['action']:
         return False
@@ -90,8 +86,8 @@ def _save_new_message(request, context):
 
     start = _get_date(request.POST.get('start', ''))
     end = _get_date(request.POST.get('end', ''))
-    title = _clean_html(request.POST.get('title', ''))
-    body = _clean_html(request.POST.get('message', ''))
+    title = clean_html(request.POST.get('title', ''))
+    body = clean_html(request.POST.get('message', ''))
 
     if not start:
         has_error = True

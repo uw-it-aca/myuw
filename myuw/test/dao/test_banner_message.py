@@ -1,6 +1,6 @@
 from django.test import TestCase
 from myuw.models import BannerMessage
-from myuw.dao.messages import get_current_messages
+from myuw.dao.messages import get_current_messages, clean_html
 from myuw.test import get_request_with_user, get_request_with_date
 
 import datetime
@@ -57,3 +57,16 @@ class TestBannerMessageDAO(TestCase):
         with self.settings(AUTHZ_GROUP_BACKEND=by_settings,
                            AUTHZ_GROUP_MEMBERS=with_javerage):
                 self.assertEquals(len(get_current_messages(request)), 1)
+
+    def test_html_cleanup(self):
+        out = clean_html('<a href="http://uw.edu">UW</a>')
+        self.assertEquals(out, '<a href="http://uw.edu">UW</a>')
+
+        out = clean_html("<h2>h2</h2>")
+        self.assertEquals(out, "<h2>h2</h2>")
+
+        out = clean_html("<b><i>x")
+        self.assertEquals(out, "<b><i>x</i></b>")
+
+        out = clean_html("<script>alert('x');</script>")
+        self.assertEquals(out, "&lt;script&gt;alert('x');&lt;/script&gt;")
