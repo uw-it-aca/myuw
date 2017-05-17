@@ -176,39 +176,28 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
     height: @bar-height;
     font-size: 14px;
 
-    a { color: @uw-gold; display: inline-block; min-width: 30px; text-align: center; font-size: 13px;
+    a, button { color: @uw-gold; display: inline-block; min-width: 30px; font-size: 13px; height: @bar-height; background: none; border: none;
 
-        i { color: @uw-metalic-gold; }
-
-        &:hover {
-            span { color: @uw-gold; text-decoration: underline; }
-        }
-
-        @media @desktop { }
-
-    }
-
-    button { color: @uw-gold; padding: 0; min-width:30px; height: @bar-height; display: inline-block; margin-left: 8px;
-        background: none; border: none; font-size: 13px;
-
-        i { color: @uw-metalic-gold; }
-
-        &:hover {
-            span { color: @uw-gold; text-decoration: underline; }
+        &:hover { color: @uw-gold;
+            span {  text-decoration: underline; }
         }
 
         @media @desktop { }
     }
+
 
     .myuw-netid { display: inline-block;
         span { margin-left: 3px; }
+    }
 
-        a:last-child { display: none;
+    .myuw-search-links { display: inline-block; float: right; color: #fff; margin-right: -3px; font-size: 16px;
+
+        a, button { margin-left: 8px; }
+
+        a:last-child { display:none;
             @media @desktop { display: inline-block; }
         }
     }
-
-    .myuw-search-links { display: inline-block; float: right; color: #fff; margin-right: -3px; font-size: 16px; }
 }
 
 .myuw-navigation { background: @uw-purple; height: @nav-height;
