@@ -136,7 +136,7 @@
             <div id="message_banner_location">
                 <div id="messages" class="advert message-text">
                     {% for message in banner_messages %}
-                    <p>{{ message.message_title|safe  }}{{ message.message_body|safe }}</p>
+                    <p>{{ message.message_body|safe }}</p>
                     {% endfor %}
                 </div>
             </div>
