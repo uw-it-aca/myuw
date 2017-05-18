@@ -31,7 +31,6 @@ from myuw.test.dao.uwemail import TestUwEmail
 from myuw.test.dao.emaillink import TestEmailServiceUrl
 from myuw.test.dao.user import TestUserDao
 from myuw.test.dao.upass import TestUPassDao
-from myuw.test.dao.student_profile import TestStudentProfile
 from myuw.test.dao.instructor_schedule import TestInstructorSchedule
 from myuw.test.dao.messages import TestMessages
 from myuw.test.api.current_schedule import TestSchedule as APISchedule
