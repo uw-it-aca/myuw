@@ -148,7 +148,7 @@ class TestCustomCachePolicy(TestCase):
             self.assertNotEquals(response, None)
 
             # Cached response is not returned after 7 days
-            cache_entry.time_saved = orig_time_saved - timedelta(days=1)
+            cache_entry.time_saved = orig_time_saved - timedelta(days=2)
             cache_entry.save()
 
             response = cache.getCache(
@@ -171,7 +171,7 @@ class TestCustomCachePolicy(TestCase):
                 service="myplan", url="/api/plan/xx")
             orig_time_saved = cache_entry.time_saved
             cache_entry.time_saved = (orig_time_saved -
-                                      timedelta(seconds=5))
+                                      timedelta(seconds=6))
             cache_entry.save()
             response = cache.getCache('myplan', '/api/plan/xx', {})
             self.assertEquals(response, None)
@@ -194,7 +194,7 @@ class TestCustomCachePolicy(TestCase):
                 service="sws", url="/student/v5/registration/xx")
             orig_time_saved = cache_entry.time_saved
             cache_entry.time_saved = (orig_time_saved -
-                                      timedelta(minutes=15))
+                                      timedelta(minutes=16))
             cache_entry.save()
             response = cache.getCache('sws', '/student/v5/registration/xx', {})
             self.assertEquals(response, None)
@@ -217,7 +217,7 @@ class TestCustomCachePolicy(TestCase):
                 service="sws", url="/student/v5/course/xx")
             orig_time_saved = cache_entry.time_saved
             cache_entry.time_saved = (orig_time_saved -
-                                      timedelta(minutes=60))
+                                      timedelta(minutes=61))
             cache_entry.save()
             response = cache.getCache('sws', '/student/v5/course/xx', {})
             self.assertEquals(response, None)
@@ -240,7 +240,7 @@ class TestCustomCachePolicy(TestCase):
                 service="sws", url="/student/v5/enrollment/xx")
             orig_time_saved = cache_entry.time_saved
             cache_entry.time_saved = (orig_time_saved -
-                                      timedelta(minutes=60))
+                                      timedelta(minutes=61))
             cache_entry.save()
             response = cache.getCache('sws', '/student/v5/enrollment/xx', {})
             self.assertEquals(response, None)
@@ -263,7 +263,7 @@ class TestCustomCachePolicy(TestCase):
                 service="sws", url="/student/v5/notice/xx")
             orig_time_saved = cache_entry.time_saved
             cache_entry.time_saved = (orig_time_saved -
-                                      timedelta(minutes=60))
+                                      timedelta(minutes=61))
             cache_entry.save()
             response = cache.getCache('sws', '/student/v5/notice/xx', {})
             self.assertEquals(response, None)
