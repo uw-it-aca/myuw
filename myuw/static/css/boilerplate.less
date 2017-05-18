@@ -334,17 +334,35 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
             span { font-weight: bold; font-size: 14px; color: @uw-purple; display: inline-block; margin-left: 3px; }
         }
 
-        .myuw-accounts { display: flex;
-
-            a { flex: 1;  text-align: center;
+        .myuw-accounts { display: flex;  flex-flow: row wrap;
+            a { text-align: center; flex: 1;
                 &:first-child { margin-right: 4px; }
-                &:last-child { margin-left: 4px; }
+                &:nth-child(an+1) { margin-left: 4px; }
+                &:last-child { margin-top: 4px; }
+            }
+
+            break {
+              flex-basis: 100%;
+              width: 0px;
+              height: 0px;
+              overflow: hidden;
             }
         }
 
-        .myuw-week-counter {
-            a { margin-top: 8px; }
+        @media @desktop {
+            .myuw-accounts { display: flex;
+                a { flex: 1;  text-align: center;
+                    &:first-child { margin-right: 4px; }
+                    &:last-child { margin-left: 4px; margin-top: 0; }
+                }
+
+                break { display: none; }
+            }
+
         }
+
+
+
 
     }
 
