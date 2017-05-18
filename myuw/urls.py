@@ -16,6 +16,8 @@ from myuw.views.link_admin import popular_links
 from myuw.views.choose import new_site, old_site
 from myuw.views.logger import log_interaction
 from myuw.views.photo import show_photo
+from myuw.views.accounts import accounts
+from myuw.views.profile import profile
 from myuw.views.link import outbound_link
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.instructor_schedule import (InstScheCurQuar, InstScheQuar,
@@ -40,6 +42,7 @@ from myuw.views.search import search_res
 from myuw.views.api.upass import UPass
 from myuw.views.api.link import ManageLinks
 from myuw.views.api.messages import Messages
+from myuw.views.api.directory import MyDirectoryInfo
 
 urlpatterns = []
 
@@ -168,10 +171,15 @@ urlpatterns += [
     url(r'^api/v1/messages/$', login_required(Messages().run),
         name="myuw_message_api"
         ),
+    url(r'^api/v1/directory/$', login_required(MyDirectoryInfo().run),
+        name="myuw_directory_api"
+        ),
     url(r'^choose/new', new_site, name="myuw_pref_new_site"
         ),
     url(r'^choose/legacy', old_site, name="myuw_pref_old_site"
         ),
+    url(r'^accounts/?$', accounts, name="myuw_accounts_page"),
+    url(r'^profile/?$', profile, name="myuw_profile_page"),
     url(r'^search/?$', search_res, name="myuw_search_res_page"
         ),
     url(r'^teaching/?$', teaching, name="myuw_teaching_page"
@@ -184,7 +192,6 @@ urlpatterns += [
         r'/students$',
         student_photo_list, name="myuw_photo_list"
         ),
-
     url(r'^notices/?', notices, name="myuw_notices_page"
         ),
     url(r'^thrive_messages/?', thrive_messages,

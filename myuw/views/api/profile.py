@@ -44,14 +44,14 @@ class MyProfile(RESTDispatch):
 
             netid = get_netid_of_current_user()
 
+            profile = get_profile_of_current_user()
+            response = profile.json_data()
+            response['is_student'] = is_student()
+            response['is_grad_student'] = is_grad_student()
+
             terms = get_current_and_next_quarters(request, 4)
 
             if is_student():
-                profile = get_profile_of_current_user()
-                response = profile.json_data()
-                response['is_student'] = True
-                response['is_grad_student'] = is_grad_student()
-
                 campuses = get_main_campus(request)
                 if 'Seattle' in campuses:
                     response['campus'] = 'Seattle'
@@ -89,7 +89,6 @@ class MyProfile(RESTDispatch):
                         (netid, ex))
 
             else:
-                response = {}
                 response['is_grad_student'] = False
                 response['is_student'] = False
                 response['uwnetid'] = netid

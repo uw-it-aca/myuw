@@ -1,5 +1,6 @@
 /*** breakpoints ***/
 
+@over550: ~"screen and (min-width: 550px)";
 @phablet: ~"screen and (min-width: 768px)";
 @under992: ~"screen and (max-width: 991px)";
 @desktop: ~"screen and (min-width: 992px)";
@@ -306,7 +307,7 @@ body {
 
 }
 
-.my-text-muted {font: #666;}
+.my-text-muted { color: #666; }
 
 
 /*** Headings ***/
@@ -791,6 +792,10 @@ label { font-weight: normal; }
             font-size: 16px;
             color: #444; }
 
+        .card-btn {
+            @media @over550 { position: absolute; top: 12px; right: 10px;}
+        }
+
         .card-content {  }
 
         .card-critical-alert {
@@ -1139,9 +1144,51 @@ label { font-weight: normal; }
         .card-badge-action {padding-bottom: 10px; padding-right: 10px;}
     }
     // end graduate student content card
+    
+    //ACCOUNT PAGE
+    .accounts-container {
+		 h2 { font-family: 'encode_sans_normalbold'; font-size:26px; color: #444; }    
+    }
+   
+    // ACCOUNT PAGE CARDS
+    div#medicine-pw, div#netid-pw {
+	    .med-logo {margin:10px 0px 5px 0px; clear: both; float: right;} 
+	    h3 {clear:both;}
+	    .update-note {color: #777; font-size: 95%;margin-bottom: 0px;}
+	    .pw-exp {font-size: 16px; margin-bottom:10px;}	    
+	    .pw-exp-date {color:#444;font-weight: bold;}
+		.password-alert {color:#a94442;
+			a {text-decoration: underline;}
+		}
+		.pw-link{ clear:both; margin-bottom: 10px;}
+	.card-badge {
+                padding: 8px 10px 0px 0px;
+                padding-top: 0px;
+                position: relative;
+                .card-badge-label {
+                    display: block;
+                    font-weight: bold;
+                /*line-height: 35px;*/ }
+                .card-badge-action {
+                    display: block;
+                    font-weight: normal;
+                    line-height: 35px;
+                    margin-top: -5px;
+                    a { display: block; }
+                }
+
+                .card-badge-value {
+                    display: block;
+                    font-size: 22px;
+                    font-weight: bold;
+                    text-align: right;
+                }
+	}
+    } //end of Medicine card
 
 
-    // registration card
+	    
+       // registration card
     #RegStatusCard, #SummerRegStatusCardA, #SummerRegStatusCard1, #TuitionCard {
         .reg-date {font-weight: bold;}
         .card {
@@ -1560,6 +1607,10 @@ label { font-weight: normal; }
         .card {
 
         }
+    }
+
+    #DirectoryInfoCard {
+
     }
 
 
@@ -2174,6 +2225,18 @@ label { font-weight: normal; }
 }
 
 
+/*** Accounts page ***/
+
+#og_workday {
+    background-repeat: no-repeat;
+    background-position: 10px 50%;
+    background-size: 18px;
+    padding-left: 38px;
+}
+
+.hr-payroll-card #og_workday {
+    margin-bottom: 10px;
+}
 
 /*** footer ***/
 

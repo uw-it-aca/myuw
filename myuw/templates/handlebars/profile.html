@@ -1,0 +1,16 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "profile_page" %}
+
+<div class="container profile-container">
+  <h2 class="heading-page">Profile</h2>
+    <div class="row">
+      <div id="profile_content" class="col-md-8">
+        <div id="profile_content_cards"></div>
+        <div id="static-links"></div>
+      </div>
+      <div id="profile_sidebar_cards" class="profile-aside col-md-4">
+      </div>
+    </div>
+</div>
+
+    {% endtplhandlebars %}
