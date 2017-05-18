@@ -61,6 +61,7 @@ Published: <input type="checkbox" name="is_published" checked="checked" value="y
 </form></h4>
 <em>Created by {{ message.added_by }} on {{ message.added_date }}</em>
 <br/>Published: {{ message.is_published }} <br />
+<br /><a href="/?banner={{ message.preview_id }}">Preview</a>
 <p>{{ message.start }} to {{ message.end }}.  Campus: {{ message.campus }}.  Affiliation: {{ message.affiliation }}.  PCE: {{ message.pce }}.  Group: {{ message.group_id }}</p>
 <p>{{ message.message_body|safe }}</p>
 </div>

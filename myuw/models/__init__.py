@@ -1,4 +1,5 @@
 import hashlib
+import uuid
 from datetime import datetime
 from dateutil.parser import parse
 from django.utils import timezone
@@ -154,3 +155,11 @@ class BannerMessage(models.Model):
 
     added_by = models.CharField(max_length=50)
     added_date = models.DateTimeField(auto_now_add=True)
+
+    preview_id = models.SlugField(null=True, db_index=True, unique=True)
+
+    def save(self, *args, **kwargs):
+        if not self.preview_id:
+            self.preview_id = str(uuid.uuid4())
+
+        super(BannerMessage, self).save(*args, **kwargs)

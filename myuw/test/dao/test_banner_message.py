@@ -18,11 +18,11 @@ class TestBannerMessageDAO(TestCase):
                                      affiliation='student',
                                      is_published=True)
 
-        BannerMessage.objects.create(start=datetime(2011, 4, 5),
-                                     end=datetime(2019, 4, 7),
-                                     message_title='not current',
-                                     message_body='not published',
-                                     is_published=False)
+        b2 = BannerMessage.objects.create(start=datetime(2011, 4, 5),
+                                          end=datetime(2019, 4, 7),
+                                          message_title='not current',
+                                          message_body='not published',
+                                          is_published=False)
 
         request = get_request_with_date('2013-04-04 00:00:00')
         request = get_request_with_user('javerage', request)
@@ -42,6 +42,15 @@ class TestBannerMessageDAO(TestCase):
 
         request = get_request_with_date('2013-04-07')
         request = get_request_with_user('bill', request)
+        self.assertEquals(len(get_current_messages(request)), 0)
+
+        request.GET = {"banner": b2.preview_id}
+        self.assertEquals(len(get_current_messages(request)), 1)
+
+        request.GET = {"banner": None}
+        self.assertEquals(len(get_current_messages(request)), 0)
+
+        request.GET = {"banner": "AAbb"}
         self.assertEquals(len(get_current_messages(request)), 0)
 
     def test_group_filter(self):

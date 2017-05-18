@@ -33,6 +33,14 @@ def get_current_messages(request):
             if not g.is_member_of_group(user, message.group_id):
                 continue
         filtered.append(message)
+
+    preview_id = request.GET.get('banner', None)
+    if preview_id:
+        try:
+            banner = BannerMessage.objects.get(preview_id=preview_id)
+            filtered.append(banner)
+        except BannerMessage.DoesNotExist:
+            pass
     return filtered
 
 
