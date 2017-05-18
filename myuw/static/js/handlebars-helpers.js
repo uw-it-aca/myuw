@@ -14,7 +14,11 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
 
     function parse_date(str) {
         // After MUWM-3672, we're not using browser based parsing anymore.  Too many quirks.
-        return Date.parse(str);
+        var date = Date.parse(str);
+        if (!date){
+            date = date_from_string(date);
+        }
+        return date;
     }
 
     // used on course card

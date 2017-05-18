@@ -3,23 +3,19 @@ var AccountsCard = {
     dom_target: undefined,
 
     render_init: function() {
-        if (!(window.user.employee || window.user.faculty || window.user.stud_employee)) {
-            $("#AccountsCard").hide();
-            return;
-        }
-
-        AccountsCard._render();
+        WSData.fetch_profile_data(AccountsCard.render, AccountsCard.render_error);
     },
 
-    _render: function() {
+    render_error: function() {
+        AccountsCard.dom_target.html(CardWithError.render("UW NetID"));
+    },
+
+    render: function() {
         var source   = $("#accounts_card").html();
         var template = Handlebars.compile(source);
-        var compiled = template({
-            card_name: AccountsCard.name,
-            is_faculty: window.user.faculty,
-            is_clinician: window.user.clinician
-        });
+        var compiled = template(WSData.profile_data().password);
         AccountsCard.dom_target.html(compiled);
+        LogUtils.cardLoaded(AccountsCard.name, AccountsCard.dom_target);
     }
 };
 
