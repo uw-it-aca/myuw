@@ -284,19 +284,19 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
     @media @desktop { margin: 0; /*padding: 10px;*/ }
     }
 
-    li { line-height: 30px; padding: 0; /*margin-left: 15px;*/ font-weight: bold; text-transform: uppercase;
+    li { line-height: 30px; padding: 0; font-weight: bold; text-transform: uppercase;
 
-        @media @desktop { margin-left: 0; }
+        @media @desktop { margin-left: -10px; }
 
-        &:first-child { padding-top: 10px; }
+        //&:first-child { padding-top: 10px; }
         &:last-child { padding-bottom: 10px; }
 
-        a { text-decoration: none; color: #666; display: block;
+        a { text-decoration: none; color: #666; display: block; padding-left: 10px;
 
             i { color: #666 !important; width: 20px; text-align: center; margin-right: 5px; }
 
-            &:hover { color: @uw-purple-dark; text-decoration: underline; }
-            &.active { color: @uw-purple-light; text-decoration: underline;
+            &:hover { color: @uw-purple-dark; text-decoration: underline; background: #ddd; }
+            &.active { color: @uw-purple-light; background: #fff;
                 i { color: @uw-purple-dark !important; }
             }
 
@@ -306,6 +306,12 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
         }
 
 
+    }
+
+    .myuw-menu-logout { display: none;
+        @media @desktop {
+            display: block; color:#999; margin-top: 10px; font-size: 13px; border-top:solid 1px #ddd; padding-top: 10px;
+        }
     }
 }
 
