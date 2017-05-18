@@ -284,19 +284,19 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
     @media @desktop { margin: 0; /*padding: 10px;*/ }
     }
 
-    li { line-height: 30px; padding: 0; font-weight: bold; text-transform: uppercase;
+    li { line-height: 30px; padding: 0; font-weight: bold; text-transform: uppercase; margin-bottom: 2px;
 
-        @media @desktop { margin-left: -10px; }
+        @media @desktop { }
 
         //&:first-child { padding-top: 10px; }
         &:last-child { padding-bottom: 10px; }
 
-        a { text-decoration: none; color: #666; display: block; padding-left: 10px;
+        a { text-decoration: none; color: #666; display: block; padding-left: 10px; border: solid 1px #ddd;
 
             i { color: #666 !important; width: 20px; text-align: center; margin-right: 5px; }
 
-            &:hover { color: @uw-purple-dark; text-decoration: underline; background: #ddd; }
-            &.active { color: @uw-purple-light; background: #fff;
+            &:hover { background: #ddd; border-color: #ccc; }
+            &.active { color: @uw-purple-light; background: #fff; border-color: @uw-purple-light;
                 i { color: @uw-purple-dark !important; }
             }
 
@@ -310,7 +310,7 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
     .myuw-menu-logout { display: none;
         @media @desktop {
-            display: block; color:#999; margin-top: 10px; font-size: 13px; border-top:solid 1px #ddd; padding-top: 10px;
+            display: block; color:#999; font-size: 13px;
         }
     }
 }
@@ -330,8 +330,8 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
         @include desktop { margin: 0 0 20px 0; padding: 0; }
 
-        a { text-decoration: none; color: @uw-dark-gray; display:block; line-height: 35px;  background: @uw-gold; /*border: solid 1px @uw-metalic-gold;;*/ border-radius: 3px;
-            span { font-weight: bold; font-size: 14px; color: @uw-metalic-gold; display: inline-block; margin-left: 3px; }
+        a { text-decoration: none; color: @uw-dark-gray; display:block; line-height: 35px;  background: #ddd; border: solid 1px #ccc; border-radius: 3px;
+            span { font-weight: bold; font-size: 14px; color: @uw-purple; display: inline-block; margin-left: 3px; }
         }
 
         .myuw-accounts { display: flex;
