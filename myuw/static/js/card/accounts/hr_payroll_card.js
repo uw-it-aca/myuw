@@ -25,6 +25,7 @@ var HRPayrollCard = {
         });
 
         HRPayrollCard.dom_target.html(compiled);
+        LogUtils.cardLoaded(HRPayrollCard.name, HRPayrollCard.dom_target);
     }
 };
 

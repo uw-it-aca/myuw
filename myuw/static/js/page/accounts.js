@@ -17,9 +17,13 @@ var RenderAfterAjaxError = function () {
 
 var _render_cards = function(has_medicine) {
     // will ultimately have more than acct and med acct cards here
-    var card_order = [AccountsCard, HRPayrollCard];
+    var card_order = [
+        AccountsCard,
+        HRPayrollCard];
+
     if(has_medicine){
-        card_order.splice(0, 0, MedicineAccountsCard);
+        card_order.unshift(MedicineAccountsCard);
     }
+
     Cards.load_cards_in_order(card_order, $("#account_card_content"));
 };

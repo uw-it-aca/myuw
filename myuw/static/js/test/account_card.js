@@ -1,9 +1,9 @@
 var Global = require("./global.js");
 
 describe('AccountsCard', function(){
-    describe("Shows HR/Payroll card", function() {
-        before(function () {
-            var render_id = 'hr_payroll_card';
+    describe("UW NetID card", function() {
+        before(function (done) {
+            var render_id = 'render_acount_card';
 
             Global.Environment.init({
                 render_id: render_id,
@@ -15,38 +15,20 @@ describe('AccountsCard', function(){
                 ]
             });
 
+            Global.Environment.ajax_stub('/api/v1/profile/index.json');
+
+            $(window).on("myuw:card_load", function () {
+                done();
+            });
+
             AccountsCard.dom_target = $('#' + render_id);
-        });
-        beforeEach(function () {
-            window.user.student = false;
-            window.user.faculty = false;
-            window.user.employee = false;
-            window.user.stud_employee = false;
-            AccountsCard.dom_target.html('');
-        });
-        it("Should render instructor card", function() {
-            window.user.faculty = true;
             AccountsCard.render_init();
-            assert.equal(AccountsCard.dom_target.find('a[href="http://hr.uw.edu/"]').length, 0);
-            assert.equal(AccountsCard.dom_target.find('a[href="http://ap.washington.edu/ahr/"]').length, 1);
         });
-        it("Should render staff card", function() {
-            window.user.employee = true;
-            AccountsCard.render_init();
-            assert.equal(AccountsCard.dom_target.find('a[href="http://hr.uw.edu/"]').length, 1);
-            assert.equal(AccountsCard.dom_target.find('a[href="http://ap.washington.edu/ahr/"]').length, 0);
+        it("Should render card", function() {
+            assert.equal(AccountsCard.dom_target.find('span.pw-exp-date').length, 1);
         });
-        it("Should render student/staff card", function() {
-            window.user.stud_employee = true;
-            AccountsCard.render_init();
-            assert.equal(AccountsCard.dom_target.find('a[href="http://hr.uw.edu/"]').length, 1);
-            assert.equal(AccountsCard.dom_target.find('a[href="http://ap.washington.edu/ahr/"]').length, 0);
-        });
-        it("Should not render student card", function() {
-            window.user.student = true;
-            AccountsCard.render_init();
-            assert.equal(AccountsCard.dom_target.find('a[href="http://hr.uw.edu/"]').length, 0);
-            assert.equal(AccountsCard.dom_target.find('a[href="http://ap.washington.edu/ahr/"]').length, 0);
+        after(function () {
+            Global.Environment.ajax_stub_restore();
         });
     });
 });
