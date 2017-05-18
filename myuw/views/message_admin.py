@@ -48,6 +48,8 @@ def manage_messages(request):
             return redirect('myuw_manage_messages')
         if _delete_message(request):
             return redirect('myuw_manage_messages')
+        if _handle_publish(request):
+            return redirect('myuw_manage_messages')
 
     messages = BannerMessage.objects.all().order_by('-end', '-start')
 
@@ -60,6 +62,19 @@ def manage_messages(request):
     context['messages'] = messages
 
     return render(request, "message_admin/messages.html", context)
+
+
+def _handle_publish(request):
+    message = BannerMessage.objects.get(pk=request.POST['pk'])
+    if 'publish' == request.POST['action']:
+        message.is_published = True
+    elif 'unpublish' == request.POST['action']:
+        message.is_published = False
+    else:
+        return False
+
+    message.save()
+    return True
 
 
 def _delete_message(request):

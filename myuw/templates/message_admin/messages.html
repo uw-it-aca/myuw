@@ -53,9 +53,14 @@ Published: <input type="checkbox" name="is_published" checked="checked" value="y
 <li>
 <div {% if message.is_current %}class="current_message"{% endif %}>
 <h4>{{ message.message_title|safe }} <form action="{% url 'myuw_manage_messages'%}" method="POST">
-<input type="hidden" name="action" value="delete"/>
 <input type="hidden" name="pk" value="{{ message.pk }}">
-<input type="submit" value="Delete">
+<button type="submit" name="action" value="delete">Delete</button>
+{% if message.is_published %}
+<button type="submit" name="action" value="unpublish">Unpublish</button>
+{% else %}
+<button type="submit" name="action" value="publish">Publish</button>
+{% endif %}
+
 {% csrf_token %}
 
 </form></h4>
