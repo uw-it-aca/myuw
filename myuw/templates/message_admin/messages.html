@@ -1,3 +1,6 @@
+<style>
+.current_message { border: 1px solid red; }
+</style>
 <h2>Add a new message</h2>
 <form action="{% url 'myuw_manage_messages' %}" method="POST">
 <input type="hidden" name="action" value="save"/>
@@ -43,7 +46,7 @@ Published: <input type="checkbox" name="is_published" checked="checked" value="y
 <input type="submit">
 </form>
 <h2>Existing messages:</h2>
-
+<p>Highlighted messages are current, and will be shown to users if they are published.  We are using <em>{{ now }}</em> as the date for determining what's current</p>
 <p>Messages set to display from one week in the past on...</p>
 <ul>
 {% for message in messages %}

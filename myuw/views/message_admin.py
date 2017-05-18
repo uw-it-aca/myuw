@@ -1,5 +1,6 @@
 from myuw.models import BannerMessage
 from myuw.logger.logback import log_info
+from myuw.dao.term import get_comparison_datetime
 from myuw.dao.messages import clean_html
 from userservice.user import UserService
 from authz_group import Group
@@ -50,6 +51,12 @@ def manage_messages(request):
 
     messages = BannerMessage.objects.all().order_by('-end', '-start')
 
+    used_now = timezone.make_aware(get_comparison_datetime(request))
+    for message in messages:
+        if message.start <= used_now <= message.end:
+            message.is_current = True
+
+    context['now'] = used_now
     context['messages'] = messages
 
     return render(request, "message_admin/messages.html", context)
