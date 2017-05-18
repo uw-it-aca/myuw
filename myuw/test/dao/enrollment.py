@@ -30,35 +30,32 @@ class TestDaoEnrollment(TestCase):
         enrollment = get_current_quarter_enrollment(req)
         self.assertIsNone(enrollment)
 
+    def get_enrollment(self, netid, req_date):
+        req = get_request_with_user(netid,
+                                    get_request_with_date(req_date))
+        term = get_current_quarter(req)
+        return get_enrollment_for_term(req, term)
+
     def test_get_enrollment_for_term(self):
-        req = get_request_with_user('javerage',
-                                    get_request_with_date("2013-04-10"))
-        term = get_next_quarter(req)
-        enrollment = get_enrollment_for_term(req, term)
+        enrollment = self.get_enrollment('staff', "2013-04-10")
+        self.assertIsNone(enrollment)
+
+        enrollment = self.get_enrollment('javerage', "2013-04-10")
         self.assertIsNotNone(enrollment)
         self.assertEqual(len(enrollment.majors), 1)
         self.assertEqual(len(enrollment.minors), 1)
 
-        req = get_request_with_user('staff',
-                                    get_request_with_date("2013-04-10"))
-        t1 = get_current_quarter(req)
-        enrollment = get_enrollment_for_term(req, t1)
-        enrollment = get_current_quarter_enrollment(req)
-        self.assertIsNone(enrollment)
-
-        req = get_request_with_user('jbothell',
-                                    get_request_with_date("2013-04-01"))
-        t1 = get_current_quarter(req)
-        enrollment = get_enrollment_for_term(req, t1)
+        enrollment = self.get_enrollment('jbothell', "2013-04-01")
         self.assertEqual(len(enrollment.majors), 1)
         self.assertEqual(enrollment.majors[0].campus, "Bothell")
 
-        req = get_request_with_user('eight',
-                                    get_request_with_date("2013-04-01"))
-        t1 = get_current_quarter(req)
-        enrollment = get_enrollment_for_term(req, t1)
+        enrollment = self.get_enrollment('eight', "2013-04-01")
         self.assertEqual(len(enrollment.majors), 2)
         self.assertEqual(enrollment.majors[0].campus, "Tacoma")
+
+        enrollment = self.get_enrollment('jeos', "2013-01-10")
+        self.assertEqual(len(enrollment.majors), 0)
+        self.assertEqual(len(enrollment.minors), 0)
 
     def test_get_enrollments_of_terms(self):
         req = get_request_with_user('javerage',
@@ -129,9 +126,9 @@ class TestDaoEnrollment(TestCase):
         self.assertEqual(len(sections), 2)
         self.assertIsNone(sections.get('3,winter,COM,201/A'))
         s1 = sections.get('2013,winter,COM,201/A')
-        self.assertEqual(str(s1.end_date), '2013-04-29 00:00:00')
+        self.assertEqual(str(s1.end_date), '2013-04-29')
         s2 = sections.get('2013,winter,PSYCH,203/A')
-        self.assertEqual(str(s2.end_date), '2013-04-30 00:00:00')
+        self.assertEqual(str(s2.end_date), '2013-07-30')
 
         req = get_request_with_user('jpce',
                                     get_request_with_date("2013-06-28"))
@@ -141,6 +138,6 @@ class TestDaoEnrollment(TestCase):
         sections = enrollements[term].off_term_sections
         self.assertEqual(len(sections), 1)
         self.assertFalse('2013,spring,AAES,150/A' in sections)
-        self.assertFalse('2013,spring,ACCTG,508/A' in sections)
+        self.assertTrue('2013,spring,CPROGRM,712/A' in sections)
         s1 = sections.get('2013,spring,CPROGRM,712/A')
-        self.assertEqual(str(s1.end_date), '2013-06-28 00:00:00')
+        self.assertEqual(str(s1.end_date), '2013-06-28')

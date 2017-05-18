@@ -179,6 +179,7 @@ var RegStatusCard = {
             "is_tacoma": window.user.tacoma || window.user.tacoma_affil,
             "is_bothell": window.user.bothell || window.user.bothell_affil,
             "is_seattle": window.user.seattle || window.user.seattle_affil,
+            "is_pce": user.pce,
             "hold_count": reg_holds.length,
             "est_reg_date": display_est_reg_date,
             "reg_next_quarter" : quarter,

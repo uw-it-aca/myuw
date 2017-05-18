@@ -118,7 +118,4 @@ def is_ended(request, end_date):
     if len(str(end_date)) == 0:
         return False
     now = get_comparison_date(request)
-    end_date = date(end_date.year,
-                    end_date.month,
-                    end_date.day)
     return now > end_date

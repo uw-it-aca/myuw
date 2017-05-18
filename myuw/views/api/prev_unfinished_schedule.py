@@ -55,7 +55,7 @@ class StudUnfinishedPrevQuarClasSche(StudClasSche):
         ret_json = []
         terms = get_prev_num_terms(request, 2)
 
-        for term in reversed(terms):
+        for term in terms:
             if term in enrollment_dict:
                 term_enrollments = enrollment_dict[term]
 

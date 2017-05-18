@@ -1,0 +1,206 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "ClassWebsiteUrl": null,
+    "Course": {
+        "CourseNumber": "450",
+        "CurriculumAbbreviation": "CM",
+        "Href": "/student/v5/course/2013,summer,CM,450/A.json",
+        "Quarter": "summer",
+        "Year": 2013
+    },
+    "CourseCampus": "Seattle",
+    "CourseDescription": "Examines management of construction projects focusing on construction contracting, cost estimating, project scheduling, and resource management. Offered: S.",
+    "CourseHasVariableContent": false,
+    "CourseTitle": "CONST PROJECT MGMT",
+    "CourseTitleLong": "CONSTRUCTION PROJECT MANAGEMENT",
+    "CreditControl": "fixed credit",
+    "CurrentEnrollment": 14,
+    "Curriculum": {
+        "CollegeName": "BUILT ENVIR",
+        "DepartmentAbbreviation": "CM",
+        "TimeScheduleLinkAbbreviation": "constmgmt"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": false,
+    "DuplicateEnrollmentAllowed": true,
+    "EndDate": "",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": "",
+    "FeeBudget": "",
+    "FeeType": "",
+    "FinalExam": {
+        "Building": null,
+        "Date": "",
+        "EndTime": "",
+        "FinalExamBuilding": {
+            "Href": ""
+        },
+        "MeetingStatus": null,
+        "RoomNumber": null,
+        "StartTime": ""
+    },
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": "",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [
+        {
+            "DelegateLevel": "college",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000001.json",
+                "Name": "Meegan M Amen",
+                "RegID": "10000000000000000000000000000001"
+            }
+        },
+        {
+            "DelegateLevel": "department",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000005.json",
+                "Name": "Bill Bender",
+                "RegID": "10000000000000000000000000000005"
+            }
+        },
+        {
+            "DelegateLevel": "curriculum",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                "Name": "Katherine E McDermott",
+                "RegID": "10000000000000000000000000000011"
+            }
+        }
+    ],
+    "GradingSystem": "standard",
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": "",
+    "IsIndependentStart": false,
+    "JointSections": [],
+    "LMSOwnership": null,
+    "LimitEstimateEnrollment": 30,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "ARC",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Tuesday"
+                    },
+                    {
+                        "Name": "Thursday"
+                    }
+                ],
+                "Text": " T T"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "17:40",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2013,summer,CM,450,A,10000000000000000000000000000011"
+                    },
+                    "PercentInvolve": "100",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                        "Name": "Ahmed Abdel Aziz",
+                        "RegID": "10000000000000000000000000000011"
+                    },
+                    "TSPrint": true
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=ARC&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "lecture",
+            "RoomNumber": "160",
+            "RoomToBeArranged": false,
+            "StartTime": "15:00"
+        }
+    ],
+    "Metadata": "SectionSourceKey=SDB;",
+    "MinimumTermCredit": "5.0",
+    "OnlineLearningType": {
+        "Code": "00",
+        "Description": "No online learning component"
+    },
+    "PrimaryLMS": null,
+    "PrimarySection": {
+        "CourseNumber": "450",
+        "CurriculumAbbreviation": "CM",
+        "Href": "/student/v5/course/2013,summer,CM,450/A.json",
+        "Quarter": "summer",
+        "SectionID": "A",
+        "Year": 2013
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "450",
+        "CurriculumAbbreviation": "CM",
+        "Href": "/student/v5/registration.json?year=2013&quarter=summer&curriculum_abbreviation=CM&course_number=450&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "summer",
+        "RegID": null,
+        "SectionID": "A",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2013
+    },
+    "RepositoryTimeStamp": "5/8/2013 9:10:29 PM",
+    "ResearchCredit": false,
+    "RoomCapacity": 55,
+    "SLN": "10823",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "A",
+    "SectionType": "lecture",
+    "SelfRegistrationAllowed": true,
+    "ServiceLearning": false,
+    "StartDate": "",
+    "StudentCreditHours": "  70.0",
+    "SummerTerm": "Full-term",
+    "Term": {
+        "Href": "/student/v5/term/2013,summer.json",
+        "Quarter": "summer",
+        "Year": 2013
+    },
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": []
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": []
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": []
+        }
+    }
+}
