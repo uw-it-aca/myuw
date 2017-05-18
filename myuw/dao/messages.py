@@ -22,7 +22,8 @@ def get_current_messages(request):
     messages = get_data_for_affiliations(model=BannerMessage,
                                          affiliations=affiliations,
                                          start__lte=current_date,
-                                         end__gte=current_date)
+                                         end__gte=current_date,
+                                         is_published=True)
 
     filtered = []
     user = UserService().get_user()

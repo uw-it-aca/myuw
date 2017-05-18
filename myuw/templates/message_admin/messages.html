@@ -5,8 +5,8 @@
 <p>Error saving message</p>
 {% endif %}
 {% csrf_token %}
-Start: <input name="start" type="text" placeholder="YYYY-MM-DD" value="{{ input.start }}"> {% if start_error %} Bad start date {% endif %}<br />
-End: <input name="end" type="text" placeholder="YYYY-MM-DD" value="{{ input.end }}"> {% if end_error %} Bad end date {% endif %}<br/>
+Start: <input name="start" type="text" placeholder="YYYY-MM-DD" value="{{ input.start }}"> <input name="start_time" value="{{ input.start_time|default:'00:01' }}" />{% if start_error %} Bad start date {% endif %}<br />
+End: <input name="end" type="text" placeholder="YYYY-MM-DD" value="{{ input.end }}"> <input name="end_time" value="{{ input.end_time|default:'00:01' }}" />{% if end_error %} Bad end date {% endif %}<br/>
 Campus: 
 <input type="radio" name="campus" value="" checked="checked">All</input>
 <input type="radio" name="campus" value="seattle">Seattle</input>
@@ -38,6 +38,8 @@ Label: <input type="text" name="title" value="{{ input.title }}"/> <br />
 
 Message: <input type="text" name="message" value="{{ input.message }}"/> <br />
 
+Published: <input type="checkbox" name="is_published" checked="checked" value="yes"/><br/>
+
 <input type="submit">
 </form>
 <h2>Existing messages:</h2>
@@ -46,6 +48,7 @@ Message: <input type="text" name="message" value="{{ input.message }}"/> <br />
 <ul>
 {% for message in messages %}
 <li>
+<div {% if message.is_current %}class="current_message"{% endif %}>
 <h4>{{ message.message_title|safe }} <form action="{% url 'myuw_manage_messages'%}" method="POST">
 <input type="hidden" name="action" value="delete"/>
 <input type="hidden" name="pk" value="{{ message.pk }}">
@@ -54,8 +57,10 @@ Message: <input type="text" name="message" value="{{ input.message }}"/> <br />
 
 </form></h4>
 <em>Created by {{ message.added_by }} on {{ message.added_date }}</em>
+<br/>Published: {{ message.is_published }} <br />
 <p>{{ message.start }} to {{ message.end }}.  Campus: {{ message.campus }}.  Affiliation: {{ message.affiliation }}.  PCE: {{ message.pce }}.  Group: {{ message.group_id }}</p>
 <p>{{ message.message_body|safe }}</p>
-
+</div>
+</li>
 {% endfor %}
 </ul>

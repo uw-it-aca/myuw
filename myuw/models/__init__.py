@@ -140,10 +140,12 @@ class UserMigrationPreference(models.Model):
 
 
 class BannerMessage(models.Model):
-    start = models.DateField()
-    end = models.DateField()
+    start = models.DateTimeField()
+    end = models.DateTimeField()
     message_title = models.TextField()
     message_body = models.TextField()
+
+    is_published = models.BooleanField(default=False)
 
     affiliation = models.CharField(max_length=80, null=True)
     pce = models.NullBooleanField()

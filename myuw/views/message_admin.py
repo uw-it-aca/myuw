@@ -76,15 +76,17 @@ def _save_new_message(request, context):
     def _get_string(string):
         return string.strip()
 
-    def _get_date(string):
-        string = _get_string(string)
+    def _get_date(name):
+        datetimestr = (_get_string(request.POST.get(name, '')) + " " +
+                       _get_string(request.POST.get("%s_time" % name, '')))
         try:
-            return datetime.strptime(string, "%Y-%m-%d").date()
+            return datetime.strptime(datetimestr, "%Y-%m-%d %H:%M")
         except ValueError:
             return
 
-    start = _get_date(request.POST.get('start', ''))
-    end = _get_date(request.POST.get('end', ''))
+    start = _get_date('start')
+    end = _get_date('end')
+
     title = clean_html(request.POST.get('title', ''))
     body = clean_html(request.POST.get('message', ''))
 
@@ -106,6 +108,9 @@ def _save_new_message(request, context):
         if 'pce' == request.POST.get('pce', ''):
             pce = True
 
+        is_published = False
+        if request.POST.get('is_published', False):
+            is_published = True
         group_id = request.POST.get('group_id', None)
         added_by = UserService().get_original_user()
         BannerMessage.objects.create(start=start,
@@ -116,6 +121,7 @@ def _save_new_message(request, context):
                                      affiliation=affiliation,
                                      pce=pce,
                                      group_id=group_id,
+                                     is_published=is_published,
                                      message_body=body)
 
         log_info(logger, "Message saved.  Title: %s" % title)
