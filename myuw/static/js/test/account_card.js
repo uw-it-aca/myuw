@@ -15,7 +15,9 @@ describe('AccountsCard', function(){
                 ]
             });
 
-            Global.Environment.ajax_stub('/api/v1/profile/index.json');
+            Global.Environment.ajax_stub({
+                '/api/v1/profile/': '/api/v1/profile/index.json',
+            });
 
             $(window).on("myuw:card_load", function () {
                 done();

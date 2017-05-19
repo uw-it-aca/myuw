@@ -104,12 +104,27 @@ var Environment = {
     _abs_path: function (relative_path) {
         return path.join(__dirname, '../../../../', relative_path);
     },
-    ajax_stub: function (json_data_file) {
+    _json_from_file: function (json_data_file) {
         var json_dir = path.join('myuw/static/js/test/ajax', json_data_file);
         var json_file = Environment._abs_path(json_dir);
-        var json_data = JSON.parse(fs.readFileSync(json_file));
-        Environment._stub = sinon.stub($, 'ajax');
-        Environment._stub.yieldsTo('success', json_data);
+        return JSON.parse(fs.readFileSync(json_file));
+    },
+    ajax_stub: function (json_config) {
+        if ($.type(json_config) === 'string') {
+            var json_data = Environment._json_from_file(json_config)
+            Environment._stub = sinon.stub($, 'ajax');
+            Environment._stub.yieldsTo('success', json_data);
+        } else {
+            Environment._stub = sinon.stub($, 'ajax')
+                .callsFake(function (conf) {
+                    if (conf.url in json_config) {
+                        var json_data = Environment._json_from_file(json_config[conf.url]);
+                        conf.success.apply(null, [json_data]);
+                    } else {
+                        throw "unknown mock url: " + conf.url;
+                    }
+                });
+        }
     },
     ajax_stub_restore: function () {
         if (Environment._stub) {
