@@ -204,7 +204,7 @@ var RegStatusCard = {
             "is_seattle": window.user.seattle || window.user.seattle_affil,
             "hold_count": reg_holds.length,
             "est_reg_date": display_est_reg_date,
-            "reg_next_quarter": quarter,
+            "reg_next_quarter" : quarter,
             "reg_next_year": year,
             "plan_data": plan_data,
             "myplan_peak_load": window.card_display_dates.myplan_peak_load,
@@ -239,9 +239,9 @@ var RegStatusCard = {
                 var div, expose, hide;
                 if (summer_card_label) {
                     // summer reg card
-                    div = $("#myplan_courses_" + summer_card_label);
-                    expose = $("#show_myplan_courses_wrapper_" + summer_card_label);
-                    hide = $("#hide_myplan_courses_wrapper_" + summer_card_label);
+                    div = $("#myplan_courses_"+summer_card_label);
+                    expose = $("#show_myplan_courses_wrapper_"+summer_card_label);
+                    hide = $("#hide_myplan_courses_wrapper_"+summer_card_label);
                 } else {
                     div = $("#myplan_courses");
                     expose = $("#show_myplan_courses_wrapper");
@@ -251,7 +251,7 @@ var RegStatusCard = {
             });
 
             // show myplan unready course details
-            $('body').on('click', unready_courses, function(ev) {
+            $('body').on('click', unready_courses, function (ev) {
                 ev.preventDefault();
                 var card = $(ev.target).closest("[data-type='card']");
 
@@ -260,7 +260,8 @@ var RegStatusCard = {
                     div = $("#myplan_unready_courses_"+summer_card_label);
                     expose = $("#show_unready_courses_wrapper_"+summer_card_label);
                     hide = $("#hide_unready_courses_wrapper_"+summer_card_label);
-                } else {
+                }
+                else {
                     div = $("#myplan_unready_courses");
                     expose = $("#show_unready_courses_wrapper");
                     hide = $("#hide_unready_courses_wrapper");
@@ -278,7 +279,8 @@ var RegStatusCard = {
                     div = $("#reg_holds_"+summer_card_label);
                     expose = $("#show_reg_holds_wrapper_"+summer_card_label);
                     hide = $("#hide_reg_holds_wrapper_"+summer_card_label);
-                } else {
+                }
+                else {
                     div = $("#reg_holds");
                     expose = $("#show_reg_holds_wrapper");
                     hide = $("#hide_reg_holds_wrapper");
