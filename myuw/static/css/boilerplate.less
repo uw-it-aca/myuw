@@ -26,8 +26,13 @@
 
 @retina: ~"only screen and (-webkit-min-device-pixel-ratio: 2)";
 
-@one-column: ~"(max-width: 991px)";
-@two-column: ~"(min-width: 992px)";
+// based on 992 breakpoint
+//@one-column: ~"(max-width: 991px)";
+//@two-column: ~"(min-width: 992px)";
+
+// based on 656 breakpoint
+@one-column: ~"(max-width: 687px)";
+@two-column: ~"(min-width: 688px)";
 
 @tablet: ~"(min-width: @{tablet-width} ) and (max-width: @{tablet-max} )";
 @desktop:  ~"(min-width: @{desktop-width} )";
@@ -140,8 +145,15 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
 // start enforcing a 320px col-md-4 width as soon as 2-columns layout begins
 @media @two-column {
-    .col-md-4 { width: 330px !important; margin-left: -330px; float: right; }
-    .col-md-8 { width: auto; margin-right: 330px; }
+
+    .myuw-cards { max-width: none !important; }
+    .container { max-width: none !important;
+        .row { margin-left: 0; margin-right: 0; }
+        .row [class*="col-"] { padding-left: 0; padding-right: 0; }
+    }
+
+    .col-md-4 { width: 320px !important; margin-left: -320px; float: right; }
+    .col-md-8 { float: left; width: auto; margin-right: 336px; }
 }
 
 /**
