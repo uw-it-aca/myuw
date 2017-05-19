@@ -19,15 +19,21 @@
 @bar-height: 40px;
 
 /*** widths ***/
+@multi-column-breakpoint: 991px;
 @tablet-width: 768px;
 @tablet-max: 1023px;
 @desktop-width: 1024px;
 @large-desktop-width: 1280px;
 
 @retina: ~"only screen and (-webkit-min-device-pixel-ratio: 2)";
+
+@breaker: ~"(max-width: @{multi-column-breakpoint} )";
 @tablet: ~"(min-width: @{tablet-width} ) and (max-width: @{tablet-max} )";
 @desktop:  ~"(min-width: @{desktop-width} )";
 @large-desktop: ~"(min-width: @{large-desktop-width} )";
+
+/** size **/
+
 
 /*** helper utilities ***/
 
@@ -43,14 +49,15 @@
 
 body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,sans-serif; }
 
-.myuw-wrapper { margin: 0 auto; padding: 0 15px;
+.myuw-wrapper { margin: 0 auto; padding: 0 16px;
     @media @desktop { position: relative; max-width: 1200px; };
+    @media @large-desktop { padding: 0; }
 }
 
 
-.myuw-body { background: @uw-light-gray; padding-bottom: 15px;
+.myuw-body { background: @uw-light-gray; padding-bottom: 16px;
 
-    @media @desktop  { padding: 15px 0; }
+    @media @desktop  { padding: 16px 0; }
 
     .myuw-wrapper {
 
@@ -63,13 +70,10 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
             align-items:stretch;
 
             .myuw-menu { order:1; flex-basis:200px; height:100%; }
-            .myuw-content { order:2; flex:1; height:100%; margin: 0 0 0 20px; }
+            .myuw-content { order:2; flex:1; height:100%; margin: 0 0 0 16px; }
         }
 
         .myuw-content {
-
-            .myuw-banner, .myuw-static, .myuw-cards { /*outline: dashed 2px rgba(255,0,0,0.1);*/ margin-bottom: 15px; }
-
             // override bootstrap container class
             .container { width: auto !important; padding: 0 !important; }
         }
@@ -98,14 +102,20 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
     }
 }
 
-.card { margin-left: -16px; margin-right: -16px; margin-top: 10px !important; padding: 15px !important;
+.card {
+
+    @media @breaker { margin-left: -16px; margin-right: -16px; margin-top: 10px !important; padding: 15px !important; }
+    // mobile up to 991px (single column breakpoint)
+    //margin-left: -16px; margin-right: -16px; margin-top: 10px !important; padding: 15px !important;
+
+    //border-left: none !important;
+    //border-right: none !important;
+
     @media @desktop { margin-left: 0; margin-right: 0; padding: 10px !important; }
 }
 
 
 #app_notices {
-
-
 
     @media @desktop { margin-left: 0; margin-right: 0; padding: 10px !important; }
 
@@ -284,14 +294,11 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
     @media @desktop { margin: 0; /*padding: 10px;*/ }
     }
 
-    li { line-height: 30px; padding: 0; font-weight: bold; text-transform: uppercase; margin-bottom: 2px;
+    li { line-height: 30px; padding: 0; font-weight: bold; text-transform: uppercase; margin-bottom: 4px;
 
         @media @desktop { }
 
-        //&:first-child { padding-top: 10px; }
-        &:last-child { padding-bottom: 10px; }
-
-        a { text-decoration: none; color: #666; display: block; padding-left: 10px; border: solid 1px #ddd;
+        a { text-decoration: none; color: #666; display: block; padding-left: 8px; border: solid 1px #ddd;
 
             i { color: #666 !important; width: 20px; text-align: center; margin-right: 5px; }
 
@@ -302,7 +309,6 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
             @media @desktop {  }
 
-
         }
 
 
@@ -310,7 +316,7 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
     .myuw-menu-logout { display: none;
         @media @desktop {
-            display: block; color:#999; font-size: 13px;
+            display: block; color:#999; font-size: 13px; margin-top: 16px;
         }
     }
 }
@@ -321,7 +327,7 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 /*** modals and messages ***/
 .myuw-modals { }
 
-.myuw-banner { margin: 0 -15px 20px -15px;
+.myuw-banner { margin: 0 -16px 16px -16px;
     @media @desktop { margin: 0; }
 }
 
