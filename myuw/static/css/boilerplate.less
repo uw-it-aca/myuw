@@ -102,10 +102,12 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
 .card {
 
-    // override card styles for single column layout - removes side margins
-    @media @one-column { margin-left: -16px; margin-right: -16px; margin-top: 10px !important; padding: 15px !important; }
+    box-shadow: 0 1px 3px rgba(34,25,25,.15) !important;
+    margin-left: -16px; margin-right: -16px; margin-top: 16px !important; padding: 16px !important;
+    border-left: none !important;
+    border-right: none !important;
 
-    @media @desktop { margin-left: 0; margin-right: 0; margin-top: 16px !important; }
+    @media @two-column { border-left: solid 1px #ddd !important; border-right: solid 1px #ddd !important; margin-left: 0; margin-right: 0; }
 }
 
 
@@ -325,10 +327,29 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 }
 
 /*** cards ***/
-.myuw-card-mini { font-size: 12px;
+.myuw-card-mini {
 
-    a { text-decoration: none; color: @uw-dark-gray; display:block; padding: 8px;  background: #fff; border: solid 1px #ddd; /*border-radius: 3px;*/ margin-bottom: 8px;
+    font-size: 14px;
+    margin-left: -16px;
+    margin-right: -16px;
+
+    @media @two-column { margin-left: 0; margin-right: 0; }
+
+    a {
+
+        text-decoration: none;
+        color: @uw-dark-gray;
+        display:block;
+        padding: 16px;
+        background: #fff;
+        border-top: solid 1px #ddd;
+        border-bottom: solid 1px #ddd;
+        //border-radius: 3px;
+        margin-bottom: 8px;
         box-shadow: 0 1px 3px rgba(34,25,25,.15);
+
+        @media @two-column { border-left: solid 1px #ddd; border-right: solid 1px #ddd; }
+
         span { font-weight: bold; font-size: 14px; color: @uw-purple; display: inline-block; margin-left: 3px; }
     }
 
