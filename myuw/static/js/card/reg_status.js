@@ -242,7 +242,8 @@ var RegStatusCard = {
                     div = $("#myplan_courses_"+summer_card_label);
                     expose = $("#show_myplan_courses_wrapper_"+summer_card_label);
                     hide = $("#hide_myplan_courses_wrapper_"+summer_card_label);
-                } else {
+                }
+                else {
                     div = $("#myplan_courses");
                     expose = $("#show_myplan_courses_wrapper");
                     hide = $("#hide_myplan_courses_wrapper");

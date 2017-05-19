@@ -20,7 +20,7 @@ class TestDaoEnrollment(TestCase):
         enrollment = get_current_quarter_enrollment(req)
         self.assertIsNotNone(enrollment)
         self.assertEqual(len(enrollment.majors), 1)
-        self.assertEqual(len(enrollment.off_term_sections), 0)
+        self.assertEqual(len(enrollment.unf_pce_courses), 0)
 
         req = get_request_with_user('none',
                                     get_request_with_date("2013-04-10"))

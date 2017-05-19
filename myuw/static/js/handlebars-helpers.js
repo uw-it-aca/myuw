@@ -37,7 +37,7 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
         return moment(parse_date(str)).fromNow();
     });
 
-    // used on Grade, Library card
+    // used on Grade, Library card 
     Handlebars.registerHelper("toFriendlyDate", function(str) {
         return moment(parse_date(str)).format("ddd, MMM D");
     });
@@ -266,7 +266,7 @@ Handlebars.registerHelper('equal', function(value1, value2, options) {
         throw new Error("Handlebars Helper equal needs 2 parameters");
     if(value1 != value2) {
         return options.inverse(this);
-    }
+    } 
     else {
         return options.fn(this);
     }
@@ -278,7 +278,7 @@ Handlebars.registerHelper("eachWithIndex", function(array, fn) {
         var item = array[i];
         item.index = i;
         buffer += fn.fn(item);
-    }
+    }   
     return buffer;
 }); 
 
