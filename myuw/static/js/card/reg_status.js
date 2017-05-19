@@ -9,7 +9,7 @@ var RegStatusCard = {
         }
 
         Handlebars.registerPartial("reg_holds",
-                           $("#reg_holds_tmpl").html());
+                                   $("#reg_holds_tmpl").html());
         Handlebars.registerPartial("reg_finaid_notices",
                                    $("#reg_finaid_notices_tmpl").html());
         Handlebars.registerPartial("notice_est_reg_date",
@@ -46,8 +46,8 @@ var RegStatusCard = {
         var next_term_data = WSData.oquarter_data().next_term_data;
         var reg_next_quarter = next_term_data.quarter;
 
-        if (!window.card_display_dates.myplan_peak_load &&
-            !WSData.myplan_data(next_term_data.year, next_term_data.quarter)) {
+        if (! window.card_display_dates.myplan_peak_load &&
+            ! WSData.myplan_data(next_term_data.year, next_term_data.quarter)) {
             WSData.fetch_myplan_data(next_term_data.year,
                                      next_term_data.quarter,
                                      RegStatusCard.render_upon_data,
@@ -62,14 +62,14 @@ var RegStatusCard = {
         RegStatusCard._render();
     },
 
-    _has_all_data: function() {
+    _has_all_data: function () {
         if (WSData.notice_data() && WSData.oquarter_data() && WSData.profile_data()) {
             return true;
         }
         return false;
     },
 
-    render_error: function(status) {
+    render_error: function (status) {
         // none of the api data returns 404.
         // if any data failure, display error
         RegStatusCard.dom_target.html(CardWithError.render("Registration"));
@@ -110,10 +110,8 @@ var RegStatusCard = {
                     has_est_reg_date_notice = true;
                     reg_is_open = notice.my_reg_has_opened;
                     is_my_1st_reg_day = notice.is_my_1st_reg_day;
-                    display_est_reg_date = {
-                        "notice": notice,
-                        "date": registration_date
-                    };
+                    display_est_reg_date = {"notice": notice,
+                                            "date": registration_date };
                     break;
                 }
             }
@@ -135,7 +133,8 @@ var RegStatusCard = {
                     has_registration = true;
                 }
             }
-        } else {
+        }
+        else {
             next_term_data = WSData.oquarter_data().next_term_data;
             quarter = next_term_data.quarter;
             year = next_term_data.year;
@@ -153,7 +152,7 @@ var RegStatusCard = {
 
         var hide_card = true;
         if (financial_aid_notices && financial_aid_notices.length) {
-            hide_card = false;
+             hide_card = false;
         }
         if (hide_card && display_est_reg_date) {
             hide_card = false;
@@ -221,10 +220,11 @@ var RegStatusCard = {
 
         var card_disclosure_class, holds_class, unready_courses;
         if (summer_label) {
-            card_disclosure_class = ".show_myplan_courses_" + summer_label;
-            holds_class = ".reg_disclosure_" + summer_label;
-            unready_courses = ".myplan_unready_courses_disclosure_" + summer_label;
-        } else {
+            card_disclosure_class = ".show_myplan_courses_"+summer_label;
+            holds_class = ".reg_disclosure_"+summer_label;
+            unready_courses = ".myplan_unready_courses_disclosure_"+summer_label;
+        }
+        else {
             card_disclosure_class = ".show_myplan_courses";
             holds_class = ".reg_disclosure";
             unready_courses = ".myplan_unready_courses_disclosure";
@@ -232,7 +232,7 @@ var RegStatusCard = {
 
         // show myplan courses
         (function(summer_card_label) {
-            $('body').on('click', card_disclosure_class, function(ev) {
+            $('body').on('click', card_disclosure_class, function (ev) {
                 ev.preventDefault();
                 var card = $(ev.target).closest("[data-type='card']");
 
@@ -257,9 +257,9 @@ var RegStatusCard = {
 
                 var div, expose, hide;
                 if (summer_card_label) {
-                    div = $("#myplan_unready_courses_" + summer_card_label);
-                    expose = $("#show_unready_courses_wrapper_" + summer_card_label);
-                    hide = $("#hide_unready_courses_wrapper_" + summer_card_label);
+                    div = $("#myplan_unready_courses_"+summer_card_label);
+                    expose = $("#show_unready_courses_wrapper_"+summer_card_label);
+                    hide = $("#hide_unready_courses_wrapper_"+summer_card_label);
                 } else {
                     div = $("#myplan_unready_courses");
                     expose = $("#show_unready_courses_wrapper");
@@ -269,15 +269,15 @@ var RegStatusCard = {
             });
 
             // show hold details
-            $('body').on('click', holds_class, function(ev) {
+            $('body').on('click', holds_class, function (ev) {
                 ev.preventDefault();
                 var card = $(ev.target).closest("[data-type='card']");
 
                 var div, expose, hide;
                 if (summer_card_label) {
-                    div = $("#reg_holds_" + summer_card_label);
-                    expose = $("#show_reg_holds_wrapper_" + summer_card_label);
-                    hide = $("#hide_reg_holds_wrapper_" + summer_card_label);
+                    div = $("#reg_holds_"+summer_card_label);
+                    expose = $("#show_reg_holds_wrapper_"+summer_card_label);
+                    hide = $("#hide_reg_holds_wrapper_"+summer_card_label);
                 } else {
                     div = $("#reg_holds");
                     expose = $("#show_reg_holds_wrapper");
@@ -289,13 +289,13 @@ var RegStatusCard = {
         })(summer_label);
     },
 
-    _render: function() {
+    _render: function () {
         var next_term_data = WSData.oquarter_data().next_term_data;
         var reg_next_quarter = next_term_data.quarter;
         var myplan_data;
-        if (!window.card_display_dates.myplan_peak_load) {
+        if (! window.card_display_dates.myplan_peak_load) {
             myplan_data = WSData.myplan_data(next_term_data.year,
-                next_term_data.quarter);
+                                             next_term_data.quarter);
         }
 
         if (window.card_display_dates.myplan_peak_load || myplan_data) {

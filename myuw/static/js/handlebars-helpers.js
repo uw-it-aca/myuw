@@ -280,7 +280,7 @@ Handlebars.registerHelper("eachWithIndex", function(array, fn) {
         buffer += fn.fn(item);
     }
     return buffer;
-});
+}); 
 
 Handlebars.registerHelper('format_schedule_hour', function(hour, position) {
     if (parseInt(hour, 10) === 12) {
