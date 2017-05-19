@@ -19,7 +19,6 @@
 @bar-height: 40px;
 
 /*** widths ***/
-@multi-column-breakpoint: 991px;
 @tablet-width: 768px;
 @tablet-max: 1023px;
 @desktop-width: 1024px;
@@ -27,7 +26,9 @@
 
 @retina: ~"only screen and (-webkit-min-device-pixel-ratio: 2)";
 
-@breaker: ~"(max-width: @{multi-column-breakpoint} )";
+@one-column: ~"(max-width: 991px)";
+@two-column: ~"(min-width: 992px)";
+
 @tablet: ~"(min-width: @{tablet-width} ) and (max-width: @{tablet-max} )";
 @desktop:  ~"(min-width: @{desktop-width} )";
 @large-desktop: ~"(min-width: @{large-desktop-width} )";
@@ -51,7 +52,7 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
 .myuw-wrapper { margin: 0 auto; padding: 0 16px;
     @media @desktop { position: relative; max-width: 1200px; };
-    @media @large-desktop { padding: 0; }
+    //@media @large-desktop { padding: 0; }
 }
 
 
@@ -104,7 +105,7 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
 .card {
 
-    @media @breaker { margin-left: -16px; margin-right: -16px; margin-top: 10px !important; padding: 15px !important; }
+    @media @one-column { margin-left: -16px; margin-right: -16px; margin-top: 10px !important; padding: 15px !important; }
     // mobile up to 991px (single column breakpoint)
     //margin-left: -16px; margin-right: -16px; margin-top: 10px !important; padding: 15px !important;
 
@@ -134,6 +135,12 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
     h3 { text-transform: uppercase; font-weight: normal; font-size: 14px; color: #aaa;  }
     h2 { margin-top: 0 !important; }
+}
+
+// start enforcing a 320px col-md-4 width as soon as 2-columns layout begins
+@media @two-column {
+    .col-md-4 { width: 330px !important; margin-left: -330px; float: right; }
+    .col-md-8 { width: auto; margin-right: 330px; }
 }
 
 /**
