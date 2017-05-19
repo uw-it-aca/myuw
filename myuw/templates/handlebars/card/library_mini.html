@@ -1,9 +1,17 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "library_card_mini_content" %}
 
-    <div class="card clearfix"  data-name="LibraryCard" data-type="card">
 
-        <h3>Library Account</h3>
+    <!-- accounts summary -->
+   <div class="myuw-card-mini">
+       <h3>Accounts  Mini</h3>
+       <a href="/academic_calendar/"><i class="fa fa-calendar" aria-hidden="true"></i> Spring 2017 <span>Week 3</span></a>
+       <a href="/accounts/">Husky Card <span>$12.43</span></a>
+       <a href="/accounts/">Dining <span>$45.00</span></a>
+   </div>
+    <!-- end accounts summary -->
+
+    <div class="card clearfix"  data-name="LibraryCardMini" data-type="card">
 
         {{#if holds_ready }}
         <div class="card-noncritical-alert" role="status">
