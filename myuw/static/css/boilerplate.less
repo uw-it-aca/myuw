@@ -26,20 +26,13 @@
 
 @retina: ~"only screen and (-webkit-min-device-pixel-ratio: 2)";
 
-// based on 992 breakpoint
-//@one-column: ~"(max-width: 991px)";
-//@two-column: ~"(min-width: 992px)";
-
-// based on 656 breakpoint
+// based on 688 breakpoint for 2-columns
 @one-column: ~"(max-width: 687px)";
 @two-column: ~"(min-width: 688px)";
 
 @tablet: ~"(min-width: @{tablet-width} ) and (max-width: @{tablet-max} )";
 @desktop:  ~"(min-width: @{desktop-width} )";
 @large-desktop: ~"(min-width: @{large-desktop-width} )";
-
-/** size **/
-
 
 /*** helper utilities ***/
 
@@ -57,7 +50,6 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
 .myuw-wrapper { margin: 0 auto; padding: 0 16px;
     @media @desktop { position: relative; max-width: 1200px; };
-    //@media @large-desktop { padding: 0; }
 }
 
 
@@ -110,12 +102,8 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
 .card {
 
+    // override card styles for single column layout - removes side margins
     @media @one-column { margin-left: -16px; margin-right: -16px; margin-top: 10px !important; padding: 15px !important; }
-    // mobile up to 991px (single column breakpoint)
-    //margin-left: -16px; margin-right: -16px; margin-top: 10px !important; padding: 15px !important;
-
-    //border-left: none !important;
-    //border-right: none !important;
 
     @media @desktop { margin-left: 0; margin-right: 0; padding: 10px !important; }
 }
@@ -155,21 +143,6 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
     .col-md-4 { width: 320px !important; margin-left: -320px; float: right; }
     .col-md-8 { float: left; width: auto; margin-right: 336px; }
 }
-
-/**
-.myuw-thin-bar, .myuw-navigation, .myuw-body, .myuw-footer {
-
-    &:after {
-        content: ".";
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden;
-    }
-
-}
-**/
-
 
 /*** search ***/
 .myuw-search {
