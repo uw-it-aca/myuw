@@ -37,7 +37,7 @@ class StudUnfinishedPrevQuarClasSche(StudClasSche):
             has_unfinished_course = False
             for term in enrollment_dict.keys():
                 term_enrollments = enrollment_dict[term]
-                if term_enrollments.has_off_term_course():
+                if term_enrollments.has_unfinished_pce_course():
                     has_unfinished_course = True
                     break
 
@@ -59,13 +59,16 @@ class StudUnfinishedPrevQuarClasSche(StudClasSche):
             if term in enrollment_dict:
                 term_enrollments = enrollment_dict[term]
 
-                if term_enrollments.has_off_term_course():
+                if term_enrollments.has_unfinished_pce_course():
                     schedule_json = self.get_term_schedule(
-                        request, term, term_enrollments.off_term_sections)
+                        request, term, term_enrollments.unf_pce_courses)
                     ret_json.append(schedule_json)
         return ret_json
 
     def get_term_schedule(self, request, term, unfinished_sections):
+        """
+        Return only unfinished course schedule
+        """
         schedule = get_schedule_by_term(request, term)
         include_sections = []
         for section in schedule.sections:

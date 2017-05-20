@@ -20,6 +20,9 @@
                     {{#if cc_display_dates}}
                     <span class="offterm-date" style="display:block;">Date: {{toMonthDay start_date}} - {{toMonthDay end_date}}</span>
                     {{/if}}
+                    {{#if on_standby}}
+                    <span class="shortTitle" style="display:block;">On Standby</span>
+                    {{/if}}
                 </h4>
 
                 <div id="course_card_content{{index}}">

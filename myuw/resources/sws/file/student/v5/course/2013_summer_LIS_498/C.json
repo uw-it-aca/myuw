@@ -1,0 +1,221 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "ClassWebsiteUrl": null,
+    "Course": {
+        "CourseNumber": "498",
+        "CurriculumAbbreviation": "LIS",
+        "Href": "/student/v5/course/2013,summer,LIS,498.json",
+        "Quarter": "summer",
+        "Year": 2013
+    },
+    "CourseCampus": "Seattle",
+    "CourseDescription": "Library service and information science subject matter in seminars, workshops, or other appropriate formats. Topics vary and may be repeated for credit.",
+    "CourseHasVariableContent": false,
+    "CourseTitle": "SPECIAL TOPICS",
+    "CourseTitleLong": "SPECIAL TOPICS",
+    "CreditControl": "fixed credit",
+    "CurrentEnrollment": 0,
+    "Curriculum": {
+        "CollegeName": "INFORM SCH",
+        "DepartmentAbbreviation": "INFORM",
+        "TimeScheduleLinkAbbreviation": "95lis"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": false,
+    "DuplicateEnrollmentAllowed": false,
+    "EndDate": "2013-07-21",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": "",
+    "FeeBudget": "",
+    "FeeType": "",
+    "FinalExam": {
+        "Building": null,
+        "Date": "",
+        "EndTime": "",
+        "FinalExamBuilding": {
+            "Href": ""
+        },
+        "MeetingStatus": null,
+        "RoomNumber": null,
+        "StartTime": ""
+    },
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": "",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [
+        {
+            "DelegateLevel": "college",
+            "Person": {
+                "Href": "/student/v5/person/FBB38FE46A7C11D5A4AE0004AC494FFE.json",
+                "Name": "Bill Curtis",
+                "RegID": "FBB38FE46A7C11D5A4AE0004AC494FFE"
+            }
+        },
+        {
+            "DelegateLevel": "curriculum",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                "Name": "Bill Pce",
+                "RegID": "10000000000000000000000000000011"
+            }
+        }
+    ],
+    "GradingSystem": "credit/no credit",
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": "UW PROFESSIONAL AND CONTINUING EDUCATION",
+    "IsIndependentStart": false,
+    "JointSections": [],
+    "LMSOwnership": "PCE_AP",
+    "LimitEstimateEnrollment": 18,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "MGH",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Monday"
+                    },
+                    {
+                        "Name": "Tuesday"
+                    },
+                    {
+                        "Name": "Wednesday"
+                    },
+                    {
+                        "Name": "Thursday"
+                    },
+                    {
+                        "Name": "Friday"
+                    }
+                ],
+                "Text": "MTWTF"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "15:20",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2013,summer,LIS,498,C,10000000000000000000000000000011"
+                    },
+                    "PercentInvolve": "100",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                        "Name": "Bill PCE",
+                        "RegID": "10000000000000000000000000000011"
+                    },
+                    "TSPrint": true
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=MGH&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "lecture",
+            "RoomNumber": "430",
+            "RoomToBeArranged": false,
+            "StartTime": "08:30"
+        }
+    ],
+    "Metadata": "SectionSourceKey=SDB_EOS;",
+    "MinimumTermCredit": "3.0",
+    "OnlineLearningType": {
+        "Code": "00",
+        "Description": "No online learning component"
+    },
+    "PrimaryLMS": "CANVAS",
+    "PrimarySection": {
+        "CourseNumber": "498",
+        "CurriculumAbbreviation": "LIS",
+        "Href": "/student/v5/course/2013,summer,LIS,498/C.json",
+        "Quarter": "summer",
+        "SectionID": "C",
+        "Year": 2013
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "498",
+        "CurriculumAbbreviation": "LIS",
+        "Href": "/student/v5/registration.json?year=2013&quarter=summer&curriculum_abbreviation=LIS&course_number=498&section_id=C&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "summer",
+        "RegID": null,
+        "SectionID": "C",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2013
+    },
+    "RepositoryTimeStamp": "5/18/2013 12:09:33 PM",
+    "ResearchCredit": false,
+    "RoomCapacity": 0,
+    "SLN": "12148",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "C",
+    "SectionType": "lecture",
+    "SelfRegistrationAllowed": false,
+    "ServiceLearning": false,
+    "StartDate": "2013-07-17",
+    "StudentCreditHours": "   0.0",
+    "SummerTerm": "B-term",
+    "Term": {
+        "Href": "/student/v5/term/2013,summer.json",
+        "Quarter": "summer",
+        "Year": 2013
+    },
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": []
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": [
+                {
+                    "Text": "SCHOOL LIBRARY MEDIA ENDORSEMENT"
+                },
+                {
+                    "Text": "CERTIFICATE"
+                }
+            ]
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": [
+                {
+                    "Text": "B-term"
+                },
+                {
+                    "Text": "Credit/No Credit"
+                }
+            ]
+        }
+    }
+}
