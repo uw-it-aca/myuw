@@ -105,7 +105,9 @@ def load_schedule(request, schedule, summer_term=""):
                     section.section_label() in pce_sections:
                 pce_course = pce_sections.get(section.section_label())
                 section_data["on_standby"] = pce_course.on_standby()
-                if irregular_start_end(schedule.term, pce_course):
+                group_independent_start = irregular_start_end(
+                    schedule.term, pce_course, section.summer_term)
+                if group_independent_start:
                     section_data["cc_display_dates"] = True
                     section_data["start_date"] = str(pce_course.start_date)
                     section_data["end_date"] = str(pce_course.end_date)
@@ -187,6 +189,12 @@ def load_schedule(request, schedule, summer_term=""):
     return json_data
 
 
-def irregular_start_end(term, pce_course_data):
+def irregular_start_end(term, pce_course_data, summer_term):
+    if len(summer_term) and summer_term.lower() == "a-term":
+        return (term.first_day_quarter != pce_course_data.start_date or
+                term.aterm_last_date != pce_course_data.end_date)
+    if len(summer_term) and summer_term.lower() == "b-term":
+        return (term.bterm_first_date != pce_course_data.start_date or
+                term.last_final_exam_date != pce_course_data.end_date)
     return (term.first_day_quarter != pce_course_data.start_date or
-            term.last_final_exam_date != pce_course_data.start_date)
+            term.last_final_exam_date != pce_course_data.end_date)

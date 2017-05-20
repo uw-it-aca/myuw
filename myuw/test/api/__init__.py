@@ -67,3 +67,11 @@ class MyuwApiTest(TestCase):
     def get_response_by_reverse(self, url_reverse, *args, **kwargs):
         url = reverse(url_reverse, *args, **kwargs)
         return self.client.get(url)
+
+    def get_section(self, schedule_json_data, abbr, number, section_id):
+        for section in schedule_json_data['sections']:
+            if section['curriculum_abbr'] == abbr and\
+                    section['course_number'] == number and\
+                    section['section_id'] == section_id:
+                return section
+        self.fail('Did not find course %s %s %s' % (abbr, number, section_id))
