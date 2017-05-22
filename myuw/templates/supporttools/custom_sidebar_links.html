@@ -1,3 +1,7 @@
+{% load myuw_admin_filters %}
+{% add_admin_checks %}
+
+{% if is_overrider %}
 <h3>General</h3>
 <ul>
     {% url 'userservice_override' as user_override_url %}
@@ -5,13 +9,17 @@
     <li><a href="{{ user_override_url }}">{{ userservice_link|default:"User Override" }}</a></li>
     {% endif %}
 </ul>
+{% endif %}
 
+{% if is_myuw_admin %}
 <h3>MyUW Admin</h3>
 <ul>
     <li><a href="{% url 'myuw_manage_messages' %}">Banner Messages</a></li>
     <li><a href="{% url 'myuw_popular_links' %}">Popular Links</a></li>
 </ul>
+{% endif %}
 
+{% if is_rest_browser %}
 <h3>Web Services</h3>
 <ul>
     {% url 'restclients_proxy' 'sws' 'student/v5' as sws_url %}
@@ -113,12 +121,18 @@
     </form>
 
 {% endif %}
+{% endif %}
+
 
 <h3>Testing Tools</h3>
 <ul>
+    {% if is_overrider %}
     <li><a href="{% url 'myuw_date_override' %}">Date testing</a></li>
+    {% endif %}
+    {% if is_rest_browser %}
     {% url 'restclients_errors' as url %}
     {% if url %}
     <li><a href="{% url 'restclients_errors' %}">Webservice errors</a></li>
+    {% endif %}
     {% endif %}
 </ul>

@@ -1,14 +1,13 @@
 from django.conf import settings
 from django import template
 from django.shortcuts import render
-from authz_group import Group
-from userservice.user import UserService
 from myuw.util.thread import PrefetchThread
 from myuw.dao.affiliation import affiliation_prefetch
 from myuw.dao.enrollment import enrollment_prefetch
 from myuw.dao.library import library_resource_prefetch
 from myuw.dao.password import password_prefetch
 from myuw.dao.pws import person_prefetch
+from myuw.dao.gws import is_in_admin_group
 from myuw.dao.term import current_terms_prefetch
 from myuw.dao.upass import upass_prefetch
 from myuw.dao.uwemail import email_forwarding_prefetch
@@ -75,24 +74,7 @@ def get_enabled_features():
 def admin_required(group_key):
     def decorator(func):
         def wrapper(request, *args, **kwargs):
-            user_service = UserService()
-            user_service.get_user()
-            override_error_username = None
-            override_error_msg = None
-            # Do the group auth here.
-
-            if not hasattr(settings, group_key):
-                print "You must have a group defined as your admin group."
-                print 'Configure that using %s="foo_group"' % group_key
-                raise Exception("Missing %s in settings" % group_key)
-
-            actual_user = user_service.get_original_user()
-            if not actual_user:
-                raise Exception("No user in session")
-
-            g = Group()
-            group_name = getattr(settings, group_key)
-            is_admin = g.is_member_of_group(actual_user, group_name)
+            is_admin = is_in_admin_group(group_key)
             if is_admin is False:
                 return render(request, 'no_access.html', {})
 

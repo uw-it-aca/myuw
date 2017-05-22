@@ -3,6 +3,7 @@ from myuw.views import admin_required, set_admin_wrapper_template
 from myuw.logger.logback import log_info
 from myuw.dao.term import get_comparison_datetime
 from myuw.dao.messages import clean_html
+from userservice.user import UserService
 from authz_group import Group
 from django.conf import settings
 from django.utils import timezone
@@ -43,7 +44,11 @@ def manage_messages(request):
 
 
 def _handle_publish(request):
-    message = BannerMessage.objects.get(pk=request.POST['pk'])
+    try:
+        message = BannerMessage.objects.get(pk=request.POST.get('pk'))
+    except BannerMessage.DoesNotExist:
+        return False
+
     if 'publish' == request.POST['action']:
         message.is_published = True
     elif 'unpublish' == request.POST['action']:
