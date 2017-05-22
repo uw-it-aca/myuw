@@ -69,7 +69,9 @@ $(window.document).ready(function() {
     
     // handle touchstart to mimic :hover event for mobile touch
     $('body').bind('touchstart', function() {});
-        
+
+    register_link_recorder();
+
 });
 
 var showLoading = function() {
@@ -208,6 +210,47 @@ var toggle_card_disclosure = function(card, div_toggled, a_expose, a_hide, label
     }
 };
 
+var register_link_recorder = function() {
+    $('body').on('mousedown', "A", record_link_click);
+    // For mocha testing
+    $('body').on('click', "A", record_link_click);
+    // For ios open in new window
+    $('body').on('touchstart', "A", record_link_click);
+
+};
+
+var record_link_click = function(ev) {
+    var target = $(this);
+
+    var original_href = target.attr('myuw-data-href');
+    if (target.attr('myuw-data-href')) {
+        return;
+    }
+
+    // Google search puts things here...
+    var href = target.attr('data-ctorig');
+    if (!href) {
+        href = target.attr('href');
+    }
+
+    if (!href.match('^https?://')) {
+        return;
+    }
+    target.attr('myuw-data-href', href);
+
+    var linklabel = target.attr('data-linklabel');
+    var label = "";
+    if (linklabel) {
+        label = linklabel;
+    }
+    else {
+        label = target.text();
+    }
+
+    var new_href = '/out?u='+encodeURIComponent(href)+'&l='+encodeURIComponent(label);
+    target.attr('href', new_href);
+};
+
 var myuwFeatureEnabled = function(feature) {
     return (window.enabled_features.hasOwnProperty(feature) &&
             window.enabled_features[feature]);
@@ -236,4 +279,6 @@ if (typeof exports == "undefined") {
 exports.capitalizeString = capitalizeString;
 exports.date_from_string = date_from_string;
 exports.myuwFeatureEnabled = myuwFeatureEnabled;
+exports.register_link_recorder = register_link_recorder;
 exports.safe_label = safe_label;
+exports.renderedCardOnce = renderedCardOnce;

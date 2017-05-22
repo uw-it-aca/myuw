@@ -60,9 +60,20 @@ var RequestEmailLists = {
         $(".mailman_advanced_toggle").click(function(ev){
             $(".mailman_simple_create").hide();
             $(".mailman_advanced_toggle").hide();
+            $(".mailman_simple_toggle").show();
             //Disable the single section input
             $(".mailman_simple_create").find("input").prop('disabled', true);
             $(".mailman_advanced_create").show();
+            return false;
+        });
+
+        $(".mailman_simple_toggle").click(function(ev){
+            $(".mailman_simple_create").show();
+            $(".mailman_advanced_toggle").show();
+            $(".mailman_simple_toggle").hide();
+            //Disable the single section input
+            $(".mailman_simple_create").find("input").prop('enabled', true);
+            $(".mailman_advanced_create").hide();
             return false;
         });
 
