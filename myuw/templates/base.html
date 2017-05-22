@@ -18,7 +18,7 @@
         <link href="{% static 'vendor/css/font-awesome-4.6.3.min.css' %}" rel="stylesheet">
         <link href="{% static 'vendor/css/user-fonts.css' %}" rel="stylesheet">
         <link href="{% static 'css/mobile.less' %}" rel="stylesheet" type="text/less">
-        <link rel="stylesheet" type="text/less" href="{% static 'css/desktop.less' %}"/>
+        <link href="{% static 'css/desktop.less' %}" rel="stylesheet" type="text/less"/>
         {% endcompress %}
 
         {% compress css %}
@@ -213,7 +213,7 @@
                         </div>
                     </div>
                     <!-- end app_messages -->
-                    
+
                     <div class="visually-hidden" style="outline: solid 2px red;">
                         <h1>h1: MyUW</h1>
                         <h2>h2: {% if page_title %}{{page_title}}{% else %}undefined in view{% endif %}</h2>
