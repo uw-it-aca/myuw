@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% load compress %}
+
+{% block page_title %}
+MyUW Accounts
+{% endblock %}
+
+{% block content %}
+
+    <div id="main-content" role="main" aria-labelledby="main">
+        <div class="container accounts-container">
+            <h2>Accounts</h2>
+
+            <div class="row">
+                <div class="account-content col-md-8">
+                    <div id="account_card_content"></div>
+                    <div id="static-links"></div>
+                </div>
+                <div class="account-aside col-md-4"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- component content templates -->
+    {% include "handlebars/banner/profile.html" %}
+    {% include "handlebars/card/accounts/account_card.html" %}
+    {% include "handlebars/card/accounts/account_medicine.html" %}
+    {% include "handlebars/card/accounts/hr_payroll_card.html" %}
+    {% include "handlebars/card/loading.html" %}
+    {% include "handlebars/card/error.html" %}
+    {% include "handlebars/card/outage.html" %}
+
+    <!-- page content templates -->
+    {% include "handlebars/loading.html" %}
+    {% include "handlebars/error.html" %}
+
+
+    {% include "user_state.html" %}
+
+{% endblock %}
+
+{% block extra_js %}
+    {% compress js inline %}
+        <script src="{% static 'js/page/accounts.js' %}"></script>
+        <script src="{% static 'js/card/accounts/account_card.js' %}"></script>
+        <script src="{% static 'js/card/accounts/account_medicine.js' %}"></script>
+        <script src="{% static 'js/card/accounts/hr_payroll_card.js' %}"></script>
+    {% endcompress %}
+{% endblock %}
