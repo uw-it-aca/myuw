@@ -20,17 +20,6 @@ class TestStudUnfinishedPrevQuarClasSche(MyuwApiTest):
             self.set_date(date)
         return self.get_response_by_reverse(url_name)
 
-    def get_section(self, data, abbr, number, section_id):
-        for section in data['sections']:
-            if section['curriculum_abbr'] == abbr and\
-                    section['course_number'] == number and\
-                    section['section_id'] == section_id:
-
-                return section
-
-        self.fail('Did not find course %s %s %s' %
-                  (abbr, number, section_id))
-
     def test_404(self):
         response = self.get_prev_unfinished_schedule('javerage')
         self.assertEquals(response.content, 'Data not found')

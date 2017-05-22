@@ -1,0 +1,41 @@
+{
+    "AccessDateRangeEnd": "12/08/2014",
+    "AccessDateRangeStart": "09/13/2013",
+    "Auditor": false,
+    "Credits": "3",
+    "DuplicateCode": "",
+    "EducationUnitType": null,
+    "EndDate": "12/13/2013",
+    "FeeBaseType": "",
+    "Grade": "",
+    "GradeDate": "",
+    "GradeDocumentID": "",
+    "GradingSystem": null,
+    "HonorsCourse": false,
+    "Href": "/student/v5/registration/2013,autumn,MUSEUM,700,A,55555333366711D5BE060004AC494FFE,.json",
+    "Instructor": null,
+    "IsActive": true,
+    "IsCredit": true,
+    "IsIndependentStart": false,
+    "Metadata": "RegistrationSourceLocation=EOS;",
+    "Person": {
+        "Href": "/student/v5/person/55555333366711D5BE060004AC494FFE.json",
+        "Name": "Jessie Eos",
+        "RegID": "55555333366711D5BE060004AC494FFE"
+    },
+    "RepeatCourse": false,
+    "RepositoryTimeStamp": "5/17/2013 3:48:32 PM",
+    "RequestDate": "2013-05-16",
+    "RequestStatus": "Pending Added to class",
+    "Section": {
+        "CourseNumber": "700",
+        "CurriculumAbbreviation": "MUSEUM",
+        "Href": "/student/v5/course/2013,autumn,MUSEUM,700/A.json",
+        "Quarter": "autumn",
+        "SectionID": "A",
+        "Year": 2013
+    },
+    "StartDate": "09/25/2013",
+    "VariableCredit": true,
+    "WritingCourse": false
+}

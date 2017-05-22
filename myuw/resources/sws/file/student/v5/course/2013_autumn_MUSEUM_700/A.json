@@ -1,0 +1,190 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "ClassWebsiteUrl": null,
+    "Course": {
+        "CourseNumber": "700",
+        "CurriculumAbbreviation": "MUSEUM",
+        "Href": "/student/v5/course/2013,autumn,MUSEUM,700.json",
+        "Quarter": "autumn",
+        "Year": 2013
+    },
+    "CourseCampus": "Seattle",
+    "CourseDescription": "",
+    "CourseHasVariableContent": false,
+    "CourseTitle": "MASTER'S THESIS",
+    "CourseTitleLong": "MASTER'S THESIS",
+    "CreditControl": "variable credit - min to max credits",
+    "CurrentEnrollment": 0,
+    "Curriculum": {
+        "CollegeName": "INTERDIS GR",
+        "DepartmentAbbreviation": "MUSEOL",
+        "TimeScheduleLinkAbbreviation": "95museo"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": false,
+    "DuplicateEnrollmentAllowed": false,
+    "EndDate": "",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": "",
+    "FeeBudget": "",
+    "FeeType": "",
+    "FinalExam": {
+        "Building": null,
+        "Date": "",
+        "EndTime": "",
+        "FinalExamBuilding": {
+            "Href": ""
+        },
+        "MeetingStatus": null,
+        "RoomNumber": null,
+        "StartTime": ""
+    },
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": "",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [],
+    "GradingSystem": "credit/no credit",
+    "HonorsCourse": false,
+    "IndependentStudy": true,
+    "InstituteName": "UW PROFESSIONAL AND CONTINUING EDUCATION",
+    "IsIndependentStart": false,
+    "JointSections": [
+        {
+            "CourseNumber": "700",
+            "CurriculumAbbreviation": "MUSEUM",
+            "Href": "/student/v5/course/2013,autumn,MUSEUM,700/B.json",
+            "Quarter": "autumn",
+            "SectionID": "B",
+            "Year": 2013
+        }
+    ],
+    "LMSOwnership": "CAMPUS",
+    "LimitEstimateEnrollment": 34,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "10.0",
+    "Meetings": [
+        {
+            "Building": "*",
+            "BuildingToBeArranged": true,
+            "DaysOfWeek": {
+                "Days": [],
+                "Text": "to be arranged"
+            },
+            "DaysOfWeekToBeArranged": true,
+            "EndTime": "",
+            "Instructors": [],
+            "Meeting": {
+                "Href": ""
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "independent study",
+            "RoomNumber": "*",
+            "RoomToBeArranged": true,
+            "StartTime": ""
+        }
+    ],
+    "Metadata": "SectionSourceKey=SDB_EOS;",
+    "MinimumTermCredit": "1.0",
+    "OnlineLearningType": {
+        "Code": "00",
+        "Description": "No online learning component"
+    },
+    "PrimaryLMS": "CANVAS",
+    "PrimarySection": {
+        "CourseNumber": "700",
+        "CurriculumAbbreviation": "MUSEUM",
+        "Href": "/student/v5/course/2013,autumn,MUSEUM,700/A.json",
+        "Quarter": "autumn",
+        "SectionID": "A",
+        "Year": 2013
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "700",
+        "CurriculumAbbreviation": "MUSEUM",
+        "Href": "/student/v5/registration.json?year=2013&quarter=autumn&curriculum_abbreviation=MUSEUM&course_number=700&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "autumn",
+        "RegID": null,
+        "SectionID": "A",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2013
+    },
+    "RepositoryTimeStamp": "5/17/2013 7:32:00 PM",
+    "ResearchCredit": false,
+    "RoomCapacity": 0,
+    "SLN": "18888",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "A",
+    "SectionType": "independent study",
+    "SelfRegistrationAllowed": false,
+    "ServiceLearning": false,
+    "StartDate": "",
+    "StudentCreditHours": "   0.0",
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2013,autumn.json",
+        "Quarter": "autumn",
+        "Year": 2013
+    },
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": []
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": [
+                {
+                    "Text": "www.washington.edu/students/timeschd/95index.html"
+                }
+            ]
+        },
+        "SectionComments": {
+            "Lines": [
+                {
+                    "Text": "FACULTY CODE REQUIRED"
+                },
+                {
+                    "Text": "PLEASE CONTACT DYLAN HIGH AT"
+                },
+                {
+                    "Text": "HIGHD@UW.EDU"
+                }
+            ]
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": [
+                {
+                    "Text": "Offered jointly with MUSEUM 700 B"
+                },
+                {
+                    "Text": "Credit/No Credit"
+                }
+            ]
+        }
+    }
+}

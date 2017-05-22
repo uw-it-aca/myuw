@@ -1,4 +1,5 @@
 import json
+from myuw.views.api.base_schedule import irregular_start_end
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.test.api import MyuwApiTest, require_url, fdao_sws_override
 
@@ -96,16 +97,6 @@ class TestSchedule(MyuwApiTest):
         data = json.loads(response.content)
         self.assertEquals(data["summer_term"], "b-term")
 
-    def get_section(self, data, abbr, number, section_id):
-        for section in data['sections']:
-            if section['curriculum_abbr'] == abbr and\
-                    section['course_number'] == number and\
-                    section['section_id'] == section_id:
-
-                return section
-
-        self.fail('Did not find course %s %s %s' % (abbr, number, section_id))
-
     def test_javerage_efs_section(self):
         response = self.get_current_schedule_res('javerage',
                                                  '2013-09-17 00:00:01')
@@ -129,9 +120,10 @@ class TestSchedule(MyuwApiTest):
                           '2013-08-24')
         self.assertEquals(efs_ok['end_date'],
                           '2013-09-18')
+        self.assertTrue(efs_ok["cc_display_dates"])
         self.assertTrue(efs_ok["is_ended"])
 
-    def test_jpce_schedule(self):
+    def test_off_term_pce_course_schedule(self):
         response = self.get_current_schedule_res('jpce',
                                                  '2013-01-17 00:00:01')
         self.assertEquals(response.status_code, 200)
@@ -162,7 +154,7 @@ class TestSchedule(MyuwApiTest):
         self.assertEquals(section['end_date'], '2013-06-28')
         self.assertFalse(section["is_ended"])
 
-    def test_noncredit_cert_student_schedule(self):
+    def test_noncredit_cert_course_schedule(self):
         response = self.get_current_schedule_res('jeos',
                                                  '2013-01-17 00:00:01')
         self.assertEquals(response.status_code, 200)
@@ -170,10 +162,28 @@ class TestSchedule(MyuwApiTest):
         section = self.get_section(data, 'BIGDATA', '220', 'A')
         self.assertEquals(section['start_date'], '2013-01-16')
         self.assertEquals(section['end_date'], '2013-03-20')
+
         response = self.get_current_schedule_res('jeos',
                                                  '2013-04-01 00:00:01')
         self.assertEquals(response.status_code, 200)
         data = json.loads(response.content)
         section = self.get_section(data, 'BIGDATA', '230', 'A')
-        self.assertEquals(section['start_date'], '2013-04-03')
-        self.assertEquals(section['end_date'], '2013-06-12')
+        self.assertTrue(section["cc_display_dates"])
+        self.assertFalse(section["on_standby"])
+
+    def test_on_standby_status(self):
+        response = self.get_current_schedule_res('jeos',
+                                                 '2013-6-25 00:00:01')
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        section = self.get_section(data, 'LIS', '498', 'C')
+        self.assertTrue(section["cc_display_dates"])
+        self.assertTrue(section["on_standby"])
+
+        response = self.get_current_schedule_res('jeos',
+                                                 '2013-10-25 00:00:01')
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        section = self.get_section(data, 'MUSEUM', '700', 'A')
+        self.assertFalse("cc_display_dates" in section)
+        self.assertTrue(section["on_standby"])

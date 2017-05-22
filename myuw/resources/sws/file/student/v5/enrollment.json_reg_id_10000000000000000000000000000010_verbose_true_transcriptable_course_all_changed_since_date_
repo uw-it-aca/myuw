@@ -106,7 +106,7 @@
                     "IsActive": true,
                     "IsCredit": true,
                     "IsIndependentStart": false,
-                    "Metadata": "RegistrationSourceLocation=SDB;",
+                    "Metadata": "RegistrationSourceLocation=SDB_EOS;",
                     "Person": {
                         "Href": "/student/v5/person/27844DAE1712511A4FA00C83BAF90A8F.json",
                         "Name": "Jane Pce",
@@ -436,7 +436,7 @@
                     "IsActive": true,
                     "IsCredit": true,
                     "IsIndependentStart": false,
-                    "Metadata": "RegistrationSourceLocation=SDB;",
+                    "Metadata": "RegistrationSourceLocation=SDB_EOS;",
                     "Person": {
                         "Href": "/student/v5/person/10000000000000000000000000000010.json",
                         "Name": "Jane Pce",

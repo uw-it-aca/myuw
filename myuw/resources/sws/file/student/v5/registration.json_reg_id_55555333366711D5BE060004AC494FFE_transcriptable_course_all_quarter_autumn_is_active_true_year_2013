@@ -1,0 +1,36 @@
+{
+    "Current": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "",
+        "CurriculumAbbreviation": null,
+        "Href": "/student/v5/registration.json?year=2013&quarter=autumn&curriculum_abbreviation=&course_number=&section_id=&reg_id=55555333366711D5BE060004AC494FFE&is_active=&instructor_reg_id=&verbose=true&changed_since_date=&transcriptable_course=all&page_start=&page_size=10",
+        "InstructorRegID": "",
+        "IsActive": false,
+        "PageSize": "10",
+        "PageStart": null,
+        "Quarter": "autumn",
+        "RegID": "55555333366711D5BE060004AC494FFE",
+        "SectionID": "",
+        "TranscriptableCourse": "all",
+        "Verbose": true,
+        "Year": 2013
+    },
+    "Next": null,
+    "PageSize": "10",
+    "PageStart": null,
+    "Previous": null,
+    "Registrations": [
+        {
+                "CourseNumber": "700",
+                "CurriculumAbbreviation": "MUSEUM",
+                "DuplicateCode": "",
+                "Href": "/student/v5/registration/2013,autumn,MUSEUM,700,A,55555333366711D5BE060004AC494FFE,.json",
+                "Instructor": null,
+                "RegID": "55555333366711D5BE060004AC494FFE",
+                "Quarter": "autumn",
+                "SectionID": "A",
+                "Year": 2013
+        }
+    ],
+    "TotalCount": 1
+}

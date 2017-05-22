@@ -6,6 +6,7 @@ the SWS Enrollment resource.
 import logging
 from datetime import date
 from uw_sws.enrollment import enrollment_search_by_regid
+from myuw.dao import is_using_file_dao
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import (get_current_quarter,
                            get_prev_num_terms,
@@ -72,17 +73,10 @@ def get_prev_enrollments_with_open_sections(request, num_of_prev_terms):
     """
     terms = get_prev_num_terms(request, num_of_prev_terms)
     result_dict = get_enrollments_of_terms(terms)
+    # live data excludes expired or finished course
+    if is_using_file_dao():
+        result_dict = remove_finished(request, result_dict)
 
-    # only keep the sections that aren't finished
-    for prev_term in result_dict.keys():
-        enrollment = result_dict.get(prev_term)
-        if enrollment.has_off_term_course():
-            off_term_sections = enrollment.off_term_sections
-            section_labels = off_term_sections.keys()
-            for label in section_labels:
-                section = off_term_sections[label]
-                if is_ended(request, section.end_date):
-                    del off_term_sections[label]
     return result_dict
 
 
@@ -115,7 +109,18 @@ def get_code_for_class_level(class_name):
 
 
 def is_ended(request, end_date):
-    if len(str(end_date)) == 0:
-        return False
     now = get_comparison_date(request)
     return now > end_date
+
+
+def remove_finished(request, result_dict):
+    # keep the sections that aren't finished
+    for prev_term in result_dict.keys():
+        enrollment = result_dict.get(prev_term)
+        if enrollment.has_unfinished_pce_course():
+            unf_pce_sections = enrollment.unf_pce_courses
+            for label in unf_pce_sections.keys():
+                section = unf_pce_sections[label]
+                if is_ended(request, section.end_date):
+                    del unf_pce_sections[label]
+    return result_dict

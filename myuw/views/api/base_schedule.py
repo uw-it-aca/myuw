@@ -8,8 +8,7 @@ from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import (get_canvas_active_enrollments,
                              canvas_course_is_available)
 from myuw.dao.course_color import get_colors_by_schedule
-from myuw.dao.enrollment import (get_enrollment_for_term,
-                                 is_ended)
+from myuw.dao.enrollment import get_enrollment_for_term, is_ended
 from myuw.dao.gws import is_grad_student
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.schedule import get_schedule_by_term,\
@@ -71,11 +70,11 @@ def load_schedule(request, schedule, summer_term=""):
 
     try:
         enrollment = get_enrollment_for_term(request, schedule.term)
-        enrolled_off_term_sections = enrollment.off_term_sections
+        pce_sections = enrollment.unf_pce_courses
     except Exception as ex:
         logger.error("find enrolled off term sections (%s %d): %s",
                      schedule.term.quarter, schedule.term.year, ex)
-        enrolled_off_term_sections = {}
+        pce_sections = {}
         pass
 
     canvas_enrollments = {}
@@ -99,19 +98,21 @@ def load_schedule(request, schedule, summer_term=""):
             section_data["cc_display_dates"] = True
             section_data["early_fall_start"] = True
             json_data["has_early_fall_start"] = True
-            section_data["is_ended"] = is_ended(request, section.end_date)
+            if len(str(section.end_date)):
+                section_data["is_ended"] = is_ended(request, section.end_date)
         else:
-            if len(enrolled_off_term_sections) > 0 and\
-                    section.section_label() in enrolled_off_term_sections:
-                # print enrolled_off_term_sections.get(
-                #    section.section_label()).json_data()
-                enr_data = enrolled_off_term_sections.get(
-                    section.section_label())
-                section_data["cc_display_dates"] = True
-                section_data["start_date"] = str(enr_data.start_date)
-                section_data["end_date"] = str(enr_data.end_date)
-                section_data["is_ended"] = is_ended(request,
-                                                    enr_data.end_date)
+            if len(pce_sections) > 0 and\
+                    section.section_label() in pce_sections:
+                pce_course = pce_sections.get(section.section_label())
+                section_data["on_standby"] = pce_course.on_standby()
+                group_independent_start = irregular_start_end(
+                    schedule.term, pce_course, section.summer_term)
+                if group_independent_start:
+                    section_data["cc_display_dates"] = True
+                    section_data["start_date"] = str(pce_course.start_date)
+                    section_data["end_date"] = str(pce_course.end_date)
+                    section_data["is_ended"] = is_ended(request,
+                                                        pce_course.end_date)
 
         # if section.is_primary_section:
         if not is_valid_sln(section.sln):
@@ -187,3 +188,14 @@ def load_schedule(request, schedule, summer_term=""):
     json_data["is_grad_student"] = is_grad_student()
 
     return json_data
+
+
+def irregular_start_end(term, pce_course_data, summer_term):
+    if len(summer_term) and summer_term.lower() == "a-term":
+        return (term.first_day_quarter != pce_course_data.start_date or
+                term.aterm_last_date != pce_course_data.end_date)
+    if len(summer_term) and summer_term.lower() == "b-term":
+        return (term.bterm_first_date != pce_course_data.start_date or
+                term.last_final_exam_date != pce_course_data.end_date)
+    return (term.first_day_quarter != pce_course_data.start_date or
+            term.last_final_exam_date != pce_course_data.end_date)

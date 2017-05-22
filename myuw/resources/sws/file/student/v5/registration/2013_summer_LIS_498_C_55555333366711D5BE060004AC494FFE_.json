@@ -1,0 +1,41 @@
+{
+    "AccessDateRangeEnd": "08/18/2014",
+    "AccessDateRangeStart": "07/03/2013",
+    "Auditor": false,
+    "Credits": "3",
+    "DuplicateCode": "",
+    "EducationUnitType": null,
+    "EndDate": "07/26/2013",
+    "FeeBaseType": "",
+    "Grade": "",
+    "GradeDate": "",
+    "GradeDocumentID": "",
+    "GradingSystem": null,
+    "HonorsCourse": false,
+    "Href": "/student/v5/registration/2013,summer,LIS,498,C,55555333366711D5BE060004AC494FFE,.json",
+    "Instructor": null,
+    "IsActive": true,
+    "IsCredit": true,
+    "IsIndependentStart": false,
+    "Metadata": "RegistrationSourceLocation=EOS;",
+    "Person": {
+        "Href": "/student/v5/person/55555333366711D5BE060004AC494FFE.json",
+        "Name": "Jessie Eos",
+        "RegID": "55555333366711D5BE060004AC494FFE"
+    },
+    "RepeatCourse": false,
+    "RepositoryTimeStamp": "5/18/2013 12:11:04 PM",
+    "RequestDate": "2013-05-18",
+    "RequestStatus": "Pending Added to class",
+    "Section": {
+        "CourseNumber": "498",
+        "CurriculumAbbreviation": "LIS",
+        "Href": "/student/v5/course/2013,summer,LIS,498/C.json",
+        "Quarter": "summer",
+        "SectionID": "C",
+        "Year": 2013
+    },
+    "StartDate": "07/22/2013",
+    "VariableCredit": false,
+    "WritingCourse": false
+}
