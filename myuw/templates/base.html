@@ -113,6 +113,9 @@
 
 
 
+
+
+
         <div class="myuw-body">
             <div class="myuw-wrapper">
 
@@ -150,9 +153,7 @@
 
                 <div class="myuw-content">
 
-                    <!-- app messages -->
-                    <div class="myuw-modals" id="page-modal"></div>
-
+                    <!-- message banner -->
                     <div class="myuw-banner" id="app_messages" role="complementary">
 
                         <div class="message-banner">
@@ -165,54 +166,8 @@
                             {# Keeping code here as scumby believes we'll likely reuse this in the next few weeks#}
                            {% if false %}<div class="advert message-text"><h2>Earn $25 Husky Card Credit - <a id="survey" href="https://catalyst.uw.edu/webq/survey/fournier/290956" target="_blank">Volunteers Needed for 1-Hour UW-IT Interview</a></h2></div>{% endif %}
                        </div>
-
-                        <!-- App messages modal -->
-                        <div class="modal fade" id="message_modal" tabindex="-1" role="dialog" aria-labelledby="MyUWMessageModal" aria-hidden="true">
-                            <div class="modal-dialog message-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button id="modal_close" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h3 class="modal-title" id="myModalLabel">{% if user.affiliations.fyp %}MyUW{% else %}MyUW 2015{% endif %}: Designed to meet student needs</h3>
-                                    </div>
-                                    <div class="modal-body">
-                		        <p>{% if not user.affiliations.fyp %}It's a new MyUW!{% endif %} We did lots of research to understand student needs and we {% if not user.affiliations.fyp %}re{% endif%}built and curated MyUW to focus on these needs. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">We'd love your feedback!</a></p>
-
-                                        <h3>Different content appears, depending on the week</h3>
-                                        <p>As your quarter rolls on, we'll present the information and resources that are most useful on cards, the most important at the top</p>
-                                        <ul>
-                                            <li><strong>Visual Schedule</strong> with map links to find your classes</li>
-                                            <li><strong>Course Cards</strong> with links to Catalyst and Canvas, research guides, and instructor contact info</li>
-                                            {% if user.affiliations.fyp %}
-                                            <li><strong>ThriveUW</strong> messaging each week to help you adjust to and succeed at UW</li>
-                                            {% endif %}
-                                            <li><strong>Registration</strong> materials near your registration date</li>
-                                            <li><strong>Final Grades</strong> as soon as they come in</li>
-                                            <li><strong>Husky, Tuition, and Library account</strong> information is always visible</li>
-                                            <li>Links to all these resources, and more, are categorized and always available on <strong>Resource pages.</strong></li>
-                                        </ul>
-
-                                        <!-- if employee -->
-                                        {% if user.affiliations.stud_employee %}
-                                        <h3>Student Employees</h3>
-                                        <p>A link to Employee Self-Services (ESS) is on the <a href="/resource/employment">Employment page</a>, but you can also use the <a href="https://myuw.washington.edu/servlet/user?tab=7" target="_blank">old version of MyUW</a> to access additional employment resources.</p>
-                                        {% endif %}
-                                        <!-- /if employee -->
-
-                                        <!-- if instructor -->
-                                        {% if user.affiliations.faculty %}
-                                        <h3>Instructor or TA for a class?</h3>
-                <p><a href="https://myuw.washington.edu/servlet/user?tab=8" target="_blank">Use the old version of MyUW to access your teaching resources.</a> We're working on moving this content to this new version of MyUW so you'll eventually have everything in one place.</p>
-                                        {% endif %}
-                                        <!-- /if instructor -->
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <!-- end app_messages -->
+                    <!-- end message banner -->
 
                     <div class="visually-hidden" style="outline: solid 2px red;">
                         <h1>h1: MyUW</h1>
@@ -429,5 +384,56 @@
     </script>
     {% endif %}
     {% include 'logger.html' %}
-  </body>
+
+        <!-- App messages modal -->
+
+        <div class="myuw-modals" id="page-modal"></div>
+
+        <div class="modal fade" id="message_modal" tabindex="-1" role="dialog" aria-labelledby="MyUWMessageModal" aria-hidden="true">
+            <div class="modal-dialog message-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button id="modal_close" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title" id="myModalLabel">{% if user.affiliations.fyp %}MyUW{% else %}MyUW 2015{% endif %}: Designed to meet student needs</h3>
+                    </div>
+                    <div class="modal-body">
+                <p>{% if not user.affiliations.fyp %}It's a new MyUW!{% endif %} We did lots of research to understand student needs and we {% if not user.affiliations.fyp %}re{% endif%}built and curated MyUW to focus on these needs. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">We'd love your feedback!</a></p>
+
+                        <h3>Different content appears, depending on the week</h3>
+                        <p>As your quarter rolls on, we'll present the information and resources that are most useful on cards, the most important at the top</p>
+                        <ul>
+                            <li><strong>Visual Schedule</strong> with map links to find your classes</li>
+                            <li><strong>Course Cards</strong> with links to Catalyst and Canvas, research guides, and instructor contact info</li>
+                            {% if user.affiliations.fyp %}
+                            <li><strong>ThriveUW</strong> messaging each week to help you adjust to and succeed at UW</li>
+                            {% endif %}
+                            <li><strong>Registration</strong> materials near your registration date</li>
+                            <li><strong>Final Grades</strong> as soon as they come in</li>
+                            <li><strong>Husky, Tuition, and Library account</strong> information is always visible</li>
+                            <li>Links to all these resources, and more, are categorized and always available on <strong>Resource pages.</strong></li>
+                        </ul>
+
+                        <!-- if employee -->
+                        {% if user.affiliations.stud_employee %}
+                        <h3>Student Employees</h3>
+                        <p>A link to Employee Self-Services (ESS) is on the <a href="/resource/employment">Employment page</a>, but you can also use the <a href="https://myuw.washington.edu/servlet/user?tab=7" target="_blank">old version of MyUW</a> to access additional employment resources.</p>
+                        {% endif %}
+                        <!-- /if employee -->
+
+                        <!-- if instructor -->
+                        {% if user.affiliations.faculty %}
+                        <h3>Instructor or TA for a class?</h3>
+    <p><a href="https://myuw.washington.edu/servlet/user?tab=8" target="_blank">Use the old version of MyUW to access your teaching resources.</a> We're working on moving this content to this new version of MyUW so you'll eventually have everything in one place.</p>
+                        {% endif %}
+                        <!-- /if instructor -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end modal code -->
+
+    </body>
 </html>
