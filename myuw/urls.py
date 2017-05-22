@@ -42,7 +42,6 @@ from myuw.views.api.calendar import DepartmentalCalendar
 from myuw.views.search import search_res
 from myuw.views.api.upass import UPass
 from myuw.views.api.link import ManageLinks
-from myuw.views.api.messages import Messages
 from myuw.views.api.directory import MyDirectoryInfo
 
 urlpatterns = []
@@ -169,9 +168,6 @@ urlpatterns += [
         ),
     url(r'^api/v1/thrive/$', login_required(ThriveMessages().run),
         name="myuw_thrive_api"
-        ),
-    url(r'^api/v1/messages/$', login_required(Messages().run),
-        name="myuw_message_api"
         ),
     url(r'^api/v1/directory/$', login_required(MyDirectoryInfo().run),
         name="myuw_directory_api"
