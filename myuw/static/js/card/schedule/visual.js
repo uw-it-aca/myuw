@@ -49,7 +49,6 @@ var VisualScheduleCard = {
         var term = VisualScheduleCard.term;
         var course_data = WSData.normalized_course_data(term);
         course_data.schedule_periods = VisualScheduleCard._get_schedule_periods(course_data);
-        console.log(course_data.schedule_periods);
         var default_period = Object.keys(course_data.schedule_periods)[0];
         VisualScheduleCard.display_schedule_for_period(default_period);
 
@@ -183,7 +182,7 @@ var VisualScheduleCard = {
             var meeting_index = 0;
             for (meeting_index = 0; meeting_index < section.meetings.length; meeting_index++) {
                 var meeting = section.meetings[meeting_index];
-                var has_meetings = VisualScheduleCard._section_has_meetings(meeting);
+                var has_meetings = VisualScheduleCard._meeting_has_meetings(meeting);
 
                 if (!meeting.days_tbd && has_meetings) {
 
@@ -334,7 +333,7 @@ var VisualScheduleCard = {
         return visual_data;
     },
 
-    _section_has_meetings: function(meeting){
+    _meeting_has_meetings: function(meeting){
         var has_meeting = false;
         $.each(meeting.meeting_days, function (idx, meeting) {
             if (meeting !== null){
@@ -343,7 +342,19 @@ var VisualScheduleCard = {
         });
         return has_meeting;
     },
-        
+
+    _section_has_meetings: function(section){
+        var has_meeting = false;
+        $.each(section.meetings, function (idx, meeting) {
+            $.each(meeting.meeting_days, function (idx, meeting_days) {
+                if (meeting_days !== null) {
+                    has_meeting = true;
+                }
+            });
+        });
+        return has_meeting;
+    },
+
     render_schedule: function(visual_data, term) {
         VisualScheduleCard.shown_am_marker = false;
 

@@ -42,6 +42,47 @@
             "SectionID": "A",
             "Year": 2013
         },
+            {
+        "AccessDateRangeEnd": "06/02/2014",
+        "AccessDateRangeStart": "04/17/2013",
+        "Auditor": false,
+        "Credits": "0.0",
+        "DuplicateCode": "",
+        "EducationUnitType": "CEU",
+        "EndDate": "06/28/2013",
+        "FeeBaseType": "",
+        "Grade": "",
+        "GradeDate": "",
+        "GradeDocumentID": "",
+        "GradingSystem": "SCUSC",
+        "HonorsCourse": false,
+        "Href": "/student/v5/registration/2013,spring,TRAIN,100,A,10000000000000000000000000000010,.json",
+        "Instructor": null,
+        "IsActive": true,
+        "IsCredit": false,
+        "IsIndependentStart": false,
+        "Metadata": "RegistrationSourceLocation=EOS;",
+        "Person": {
+            "Href": "/student/v5/person/10000000000000000000000000000010.json",
+            "Name": "Jane Pce",
+            "RegID": "10000000000000000000000000000010"
+        },
+        "RepeatCourse": false,
+        "RepositoryTimeStamp": "3/28/2013 1:13:18 PM",
+        "RequestDate": "2013-03-07",
+        "RequestStatus": "Added to class",
+        "Section": {
+            "CourseNumber": "100",
+            "CurriculumAbbreviation": "TRAIN",
+            "Href": "/student/v5/course/2013,spring,CPROGRM,100/A.json",
+            "Quarter": "spring",
+            "SectionID": "A",
+            "Year": 2013
+        },
+        "StartDate": "04/29/2013",
+        "VariableCredit": false,
+        "WritingCourse": false
+    },
         {
            "DuplicateCode": "",
            "Href": "/student/v5/registration/2013,spring,ACCTG,508,A,10000000000000000000000000000010,.json",

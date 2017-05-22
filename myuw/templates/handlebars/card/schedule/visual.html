@@ -57,7 +57,7 @@
     </h3>
     <div id="schedule-tabs">
         {{ #each schedule_periods }}
-        <span class="schedule-period" data-period_id="{{ @key }}">{{ toMonthDay start_date }} - {{ toMonthDay end_date }}</span>
+        <span class="schedule-period" data-period_id="{{ @key }}">{{ toMonthDay start_date }} - {{ toMonthDay end_date }}</span> |
         {{ /each }}
 
     </div>
