@@ -1,3 +1,5 @@
+{% extends wrapper_template %}
+{% block content %}
 <style>
 .current_message { border: 1px solid red; }
 </style>
@@ -47,7 +49,6 @@ Published: <input type="checkbox" name="is_published" checked="checked" value="y
 </form>
 <h2>Existing messages:</h2>
 <p>Highlighted messages are current, and will be shown to users if they are published.  We are using <em>{{ now }}</em> as the date for determining what's current</p>
-<p>Messages set to display from one week in the past on...</p>
 <ul>
 {% for message in messages %}
 <li>
@@ -73,3 +74,4 @@ Published: <input type="checkbox" name="is_published" checked="checked" value="y
 </li>
 {% endfor %}
 </ul>
+{% endblock %}

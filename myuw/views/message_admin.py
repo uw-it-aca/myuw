@@ -1,8 +1,8 @@
 from myuw.models import BannerMessage
+from myuw.views import admin_required, set_admin_wrapper_template
 from myuw.logger.logback import log_info
 from myuw.dao.term import get_comparison_datetime
 from myuw.dao.messages import clean_html
-from userservice.user import UserService
 from authz_group import Group
 from django.conf import settings
 from django.utils import timezone
@@ -17,31 +17,8 @@ logger = logging.getLogger(__name__)
 
 
 @login_required
+@admin_required('MYUW_ADMIN_GROUP')
 def manage_messages(request):
-
-    # XXX - replace all of this once teaching page is merged and we can use
-    # @admin_required('MYUW_ADMIN_GROUP')
-    user_service = UserService()
-    user_service.get_user()
-    override_error_username = None
-    override_error_msg = None
-    # Do the group auth here.
-
-    if not hasattr(settings, "USERSERVICE_ADMIN_GROUP"):
-        print "You must have a group defined as your admin group."
-        print 'Configure that using USERSERVICE_ADMIN_GROUP="foo_group"'
-        raise Exception("Missing USERSERVICE_ADMIN_GROUP in settings")
-
-    actual_user = user_service.get_original_user()
-    if not actual_user:
-        raise Exception("No user in session")
-
-    g = Group()
-    group_name = settings.USERSERVICE_ADMIN_GROUP
-    is_admin = g.is_member_of_group(actual_user, group_name)
-    if is_admin is False:
-        return render(request, 'no_access.html', {})
-
     context = {}
     if request.POST:
         if _save_new_message(request, context):
@@ -60,8 +37,9 @@ def manage_messages(request):
 
     context['now'] = used_now
     context['messages'] = messages
+    set_admin_wrapper_template(context)
 
-    return render(request, "message_admin/messages.html", context)
+    return render(request, "admin/messages.html", context)
 
 
 def _handle_publish(request):
