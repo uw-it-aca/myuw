@@ -19,3 +19,13 @@ class TestAffilliations(TestCase):
         now_request = get_request_with_user('javerage')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations['fyp'])
+
+    def test_is_faculty(self):
+        now_request = get_request_with_user('bill')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations['faculty'])
+
+    def test_is_clinician(self):
+        now_request = get_request_with_user('eight')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations['clinician'])
