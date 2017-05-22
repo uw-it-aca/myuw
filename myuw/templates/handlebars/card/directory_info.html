@@ -1,0 +1,78 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "directory_info_card" %}
+    <div class="card" data-type="card" data-name="DirectoryInfoCard" data-identifier="{{ title }}">
+        <h3>Employee Profile</h3>
+
+        {% with link_text="Manage in Workday" extra_class="card-btn" %}
+          {% include "workday_link.html" %}
+        {% endwith %}
+
+        <div vocab="http://schema.org/" typeof="Person">
+            <div class="personal-contact-info">
+<!-- not data we have at the moment
+                <div class="home-address" property="homeLocation" typeof="Place">
+                    <h4 style="margin-top: 25px;">Home Address</h4>
+                    {{#if address1}}<span property="address">{{address1}}</span>{{else}}<span class="my-text-muted">No address available</span>{{/if}}
+-->
+<!--                        <span property="addressLocality">{{permanent_address.city}}</span>, <span property="addressRegion">{{permanent_address.state}}</span> <span property="postalCode">{{permanent_address.zip_code}}</span>
+
+                    <span property="telephone">{{phone_number phone}}</span>-->
+<!-- not data we have at the moment
+                </div>
+-->
+<!-- not data we have at the moment
+                <div class="emergency-contact col-xs-6">
+                    <h4>Emergency Contact</h4>
+                    <div property="knows" typeof="Person">
+                        <span property="name">NAME</span><br/>
+                        <span property="telephone">(xxx) xxx-xxxx</span><br/>
+                        <span property="telephone">Alt (xxx) xxx-xxxx</span>
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="directory-information">
+
+                <div class="dir-contact-info">
+                    <h4 style="margin-top: 25px;">Work Contact Information</h4>
+
+                    {{#if display_name}}<span property="additionalName">{{display_name}}</span>{{else}}<span property="name">{{first_name}} {{surname}}</span>{{/if}}
+                    <br />
+                    {{#if title1}}<span property="jobTitle">{{title1}}</span><br/>{{/if}}
+                    {{#if email1}}<span property="email">{{email1}}</span><br/>{{/if}}
+                    {{#if email2}}<span property="email">{{email}}</span><br/>{{/if}}
+
+                    <div property="workLocation" typeof="Place"  class="row" style="margin-top: 10px;">
+                        <span class="sr-only" property="name">UW Office</span>
+                        <div class="col-xs-6">
+                            <h5>Phone</h5>
+                            {{#unless phone1}}{{#unless voicemail}}{{#unless fax}}<span class="my-text-muted">No phone numbers listed</span>{{/unless}}{{/unless}}{{/unless}}
+                            {{#if phone1}}<span>Office:</span> <span property="telephone">{{phone_number phone1}}</span><br />{{/if}}
+                            {{#if voicemail}}<span>Voicemail:</span> <span property="telephone">{{phone_number voicemail}}</span><br />{{/if}}
+                            {{#if fax}}<span>Fax:</span> <span property="faxNumber">{{phone_number fax}}</span><br />{{/if}}
+<!-- no data   <span property="telephone">Alt phone (xxx)xxx-xxxx</span><br /> -->
+                        </div>
+
+                        <div class="col-xs-6">
+                            <h5>Address</h5>
+                            {{#unless mailstop}}{{#unless address1}}<span class="my-text-muted">No address available</span>{{/unless}}{{/unless}}
+                            <div property="address">
+                                {{#if mailstop}}<span>Box {{mailstop}}</span><br />{{/if}}
+                                {{#if address1}}<span>{{address1}}</span><br />{{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dir-release">
+                    <h4 style="margin-top: 25px;">UW Directory</h4>
+                    <div>
+                        <p>{{#if directory_release}}Name, position, work contact information are published.{{else}}Not published.{{/if }} <a href="https://identity.uw.edu/">Change directory settings</a></p>
+                    </div>
+                    <div class="card-related-messages"><p>Search for faculty, staff, and students in the <a href="https://www.washington.edu/home/peopledir/">UW Directory</a>.</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endtplhandlebars %}

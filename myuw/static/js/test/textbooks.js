@@ -14,7 +14,8 @@ describe('TextBooks', function(){
         });
         it('should have no book data', function(){
             var data = TextBooks.process_book_data({}, { quarter: 'Spring', 'year': 2013, 'sections': [] });
-            assert.deepEqual(data.sections, []);
+            assert.deepEqual(data.enrolled_sections, []);
+            assert.deepEqual(data.teaching_sections, []);
             assert.equal(data.quarter, "Spring");
             assert.equal(data.year, 2013);
             assert.equal(data.summer_term, null);
@@ -22,4 +23,3 @@ describe('TextBooks', function(){
         });
     });
 });
-  

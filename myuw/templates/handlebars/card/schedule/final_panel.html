@@ -76,39 +76,6 @@
          {{/with}}
          {{/if}}
 
-         <!--div class="final_schedule_table sr-only">
-             <table>
-                 <thead>
-                     <tr>
-                         <th scope="col">Class</th>
-                         <th scope="col">Exam date and time</th>
-                         <th scope="col">Exam location</th>
-                     </tr>
-                 </thead>
-                 <tbody>
-                     {{#each list_data}}
-                     <tr>
-                         <th scope="row">{{curriculum_abbr}} {{course_number}} {{course_title}}</td>
-                         {{#with final_exam}}
-                         <td>{{formatDateAsDate start_date}}, {{formatDateAsTimeAMPM start_date}} - {{formatDateAsTimeAMPM end_date}}</td>
-                         <td>
-                             {{#if building_tbd}}
-                             Room TBD
-                             {{else}}
-                                 {{#if latitude}}
-                                 <a href="http://maps.google.com/maps?q={{latitude }},{{longitude }}+({{encodeForMaps building_name}})&z=18" target="_blank" class="show_map_modal" rel="{{building_name}}">
-                                 {{/if}}
-                                 {{building}} {{room_number}}
-                                 {{#if final_exam.latitude}}</a>{{/if}}
-                             {{/if}}
-                         </td>
-                         {{/with}}
-                     </tr>
-                     {{/each}}
-                 </tbody>
-             </table>
-         </div-->
-
         <!-- begin - if there are meetings with times to be arranged -->
         {{#if tbd}}
         <div class="courseTBD" aria-hidden="true">

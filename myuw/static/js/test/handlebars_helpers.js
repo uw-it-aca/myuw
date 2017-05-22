@@ -284,6 +284,34 @@ describe('Handlebar-helpers', function(){
         });
     });
 
+    describe('phone_number', function() {
+        it("formatted from 555.555.5555", function() {
+            var template = Handlebars.compile("{{phone_number '555.555.5555' }}");
+            var output = template();
+            assert.equal(output, '(555) 555-5555');
+        });
+        it("formatted from 5555555555", function() {
+            var template = Handlebars.compile("{{phone_number '5555555555' }}");
+            var output = template();
+            assert.equal(output, '(555) 555-5555');
+        });
+        it("formatted from 555 555-5555", function() {
+            var template = Handlebars.compile("{{phone_number '555 555-5555' }}");
+            var output = template();
+            assert.equal(output, '(555) 555-5555');
+        });
+        it("unformatted (555)555-5555", function() {
+            var template = Handlebars.compile("{{phone_number '(555)555-5555' }}");
+            var output = template();
+            assert.equal(output, '(555)555-5555');
+        });
+        it("unformatted 555-5555", function() {
+            var template = Handlebars.compile("{{phone_number '555-5555' }}");
+            var output = template();
+            assert.equal(output, '555-5555');
+        });
+    });
+
     describe("muwm-2505", function() {
         it ("should have the right date", function() {
             var template = Handlebars.compile("{{toFriendlyDate '2013-03-04' }}");

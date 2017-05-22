@@ -98,7 +98,7 @@
    },
    "ResearchCredit":false,
    "SLN":"18545",
-   "SecondaryGradingOption":true,
+   "SecondaryGradingOption":false,
    "SectionID":"AQ",
    "SectionType":"laboratory",
    "ServiceLearning":false,
