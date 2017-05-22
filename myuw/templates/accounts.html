@@ -8,24 +8,10 @@ MyUW Accounts
 
 {% block content %}
 
-    <div id="main-content" role="main" aria-labelledby="main">
-        <div class="container accounts-container">
-            <h2>Accounts</h2>
-
-            <div class="row">
-                <div class="account-content col-md-8">
-                    <div id="account_card_content"></div>
-                    <div id="static-links"></div>
-                </div>
-                <div class="account-aside col-md-4"></div>
-            </div>
-        </div>
-    </div>
-
-
-
+    <div id="main-content" role="main" aria-labelledby="main"></div>
 
     <!-- component content templates -->
+    {% include "handlebars/accounts.html" %}
     {% include "handlebars/banner/profile.html" %}
     {% include "handlebars/card/accounts/account_card.html" %}
     {% include "handlebars/card/accounts/account_medicine.html" %}

@@ -1,5 +1,5 @@
 var MedicineAccountsCard = {
-    name: 'Medicine--AccountsCard',
+    name: 'Medicine-AccountsCard',
     dom_target: undefined,
 
     render_init: function() {
