@@ -1,7 +1,9 @@
     {% verbatim %}
         <h4 class="scheduleHeading">Grading</h4>
         <div rel="{{curriculum_abbr}} {{course_number}} {{section_id}}">
+
             <ul class="unstyled-list">
+
                 <li class="clearfix grading-system">
                     <div class="pull-left">
                         <span class="inst-course-label">Grade System</span>
@@ -10,27 +12,43 @@
                         <span class="card-badge-value">{{#if grading_system}}{{grading_system}}{{else}}Unspecified{{/if}}</span>
                     </div>
                 </li>
+
                 <li class="clearfix grading-period">
+
                     <div class="pull-left">
-                        <span class="inst-course-label">Grading Period</span>
+                        <span class="inst-course-label">Grade Submission</span>
                     </div>
+
                     <div class="pull-right text-right">
-                      {{#if grading_period_is_open}}
-                        <span class="card-badge-value"><a href="{{grading_status.section_url}}" target="_blank">{{#if grading_status.all_grades_submitted}}View Grading Receipt{{else}}{{#if grading_status.unsubmitted_count}}Finish Recording {{grading_status.unsubmitted_count}} Grade{{pluralize grading_status.unsubmitted_count '' 's'}}{{else}}Record Grades{{/if}}{{/if}}</a> <a href="https://itconnect.uw.edu/learn/tools/gradepage/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="gradepage_help_link" target="_blank"><i class="fa fa-question-circle"></i></a>
-{{#if grading_status.submitted_date}}
-                          {{#if grading_status.submitted_count}}<br /><span>{{grading_status.submitted_count}}{{#if grading_status.unsubmitted_count}} of {{grading_status.unsubmitted_count}}{{/if}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted {{ grading_status.submitted_relative_date }} by {{grading_status.submitted_by}}</span>{{/if}}{{/if}}
-                          {{#if grading_status.grading_status}}<br /><span>{{grading_status.grading_status}}</span>{{/if}}
-                          <br /><span>Closes {{grade_submission_deadline_date}} ({{grade_submission_relative_deadline}})</span>
-                        </span>
-                      {{else}}
-                        {{#if grading_period_is_past}}
-                        <span class="card-badge-value">Closed {{grade_submission_relative_deadline}}</span>
-                        <br /><span>{{#if grading_status.all_grades_submitted}}<a href="{{grading_status.section_url}}" target="_blank">View Grading Receipt</a>{{else}}<a href="https://apps.registrar.washington.edu/grade-change/pages/change.php" target="_blank">Change {{grading_status.unsubmitted_count}} Unsubmitted Grade{{pluralize grading_status.unsubmitted_count '' 's'}}</a>{{/if}}</span>
-                        {{#if grading_status.grading_status}}<br /><span>{{grading_status.grading_status}}</span>{{/if}}
+                    {{#if grading_period_is_open}}
+                        <div class="card-badge-value">
+                        {{#if grading_status.all_grades_submitted}}
+                            <a href="{{grading_status.section_url}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by <strong>{{grading_status.submitted_by}}</strong> on {{ grading_status.submitted_relative_date }}
                         {{else}}
-                        <span class="card-badge-value">Opens {{grading_period_open_date}} ({{grading_period_relative_open}})</span>
+                            {{#if grading_status.unsubmitted_count}}<a href="{{grading_status.section_url}}" target="_blank">{{grading_status.unsubmitted_count}} grade{{pluralize grading_status.unsubmitted_count '' 's'}} to submit </a>
+                            {{else}}
+                            {{#if allows_secondary_grading}}{{grading_status.grading_status}}{{else}}Grading for secondary sections is disabled. <a href="{{grading_status.section_url}}" target="_blank">View primary section</a>.{{/if}}
+                            {{/if}}
                         {{/if}}
-                      {{/if}}
+                        <a href="https://itconnect.uw.edu/learn/tools/gradepage/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="gradepage_help_link" target="_blank"><i class="fa fa-question-circle"></i></a>
+                            <div style="font-size:80%;font-style:italic;margin-top: -10px;">Grade submission closes <strong>{{grade_submission_deadline_date}}</strong>{{#unless deadline_in_24_hours}} ({{grade_submission_relative_deadline}}){{/unless}}</div>
+                        </div>
+                    {{else}}
+                        {{#if grading_period_is_past}}
+                            <div class="card-badge-value">
+                                {{#if grading_status.all_grades_submitted}}<a href="{{grading_status.section_url}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by <strong>{{grading_status.submitted_by}}</strong> on {{ grading_status.submitted_relative_date }}<br>
+                                <div style="font-size:80%;font-style:italic;margin-top: -10px;">Grade submission for <strong>{{capitalizeString quarter}} {{year}}</strong> closed {{grade_submission_deadline_date}}</div>
+
+                                {{else}}
+                                    {{#if grading_status.grading_status}} {{grading_status.grading_status}}{{else}} {{grading_status.unsubmitted_count}} grade{{pluralize grading_status.unsubmitted_count '' 's'}} not submitted through GradePage{{/if}}
+                                    <div style="font-size:80%;font-style:italic;margin-top: -10px;">Grade submission for <strong>{{capitalizeString quarter}} {{year}}</strong> closed {{grade_submission_deadline_date}} <a href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/" target="_blank">What can I do now?</a></div>
+                                {{/if}}
+                            </div>
+                        {{else}}
+                            <div class="card-badge-value">Grade submission opens <strong>{{grading_period_open_date}}</strong>{{#unless opens_in_24_hours}} ({{grading_period_relative_open}}){{/unless}}</div>
+                            <div style="font-size:80%;font-style:italic;margin-top: -10px;">Grade submission closes <strong>{{grade_submission_deadline_date}}</strong></div>
+                        {{/if}}
+                    {{/if}}
                     </div>
                 </li>
 
@@ -45,7 +63,7 @@
                         </div>
                       {{/each}}
                         <div class="pull-right">
-                          <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter={{capitalizeString quarter}}+{{year}}&sln={{sln}}&chanid=11" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="course_delegate_link">{{#if grade_submission_delegates}}Update{{else}}Add{{/if}} grading delegates</a>
+                          <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter={{capitalizeString quarter}}+{{year}}&sln={{sln}}&chanid=11" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="course_delegate_link">{{#if this.grade_submission_section_delegate}}Update{{else}}Add{{/if}} grading delegate</a>
                         </div>
                     </div>
                 </li>

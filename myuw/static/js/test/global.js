@@ -7,17 +7,26 @@ var Environment = {
     _stub: null,
 
     init: function (config) {
+        /*
+         * config object supports:
+         *      user: myuw user object, template in user_state.html
+         *      render_id: rendered object container id
+         *      scripts: required javascript modules to include
+         *      templates: template files used for rendering
+         */
         if (!config) {
             config = {};
         }
 
         // create test document
-        var window = require('jsdom').jsdom().defaultView;
+        JSDom = require('jsdom');
+        var window = JSDom.jsdom().defaultView;
 
         // pull in supporting tools
         var $ = require('jquery')(window);
         global.$ = $;
         global.window = window;
+        global.document = JSDom.jsdom();
         global.assert = require("assert");
         global.moment = require("moment");
         global.Handlebars = require("../../vendor/js/handlebars-v4.0.5.js");
@@ -25,8 +34,7 @@ var Environment = {
         var HandlebarsHelpers = require("../handlebars-helpers.js")
 
         // set up client environment
-        window.user = {};
-        window.user.student = true;
+        window.user = Environment._get_user(config);
 
         // default test term
         window.term = {};
@@ -64,15 +72,59 @@ var Environment = {
             });
         }
     },
+    _get_user: function (config) {
+        var user;
+        if (config.hasOwnProperty('user')) {
+            user = config.user;
+        } else {
+            user = {
+                bothell: false,
+                bothell_affil: false,
+                email_forward_icon: "",
+                email_forward_title: "",
+                email_forward_url: "",
+                employee: false,
+                faculty: false,
+                fyp: false,
+                grad: false,
+                netid: "bill",
+                pce: false,
+                seattle: true,
+                seattle_affil: false,
+                stud_employee: false,
+                student: true,
+                tacoma: false,
+                tacoma_affil: false,
+                undergrad: false
+            };
+        }
+
+        return user;
+    },
     _abs_path: function (relative_path) {
         return path.join(__dirname, '../../../../', relative_path);
     },
-    ajax_stub: function (json_data_file) {
+    _json_from_file: function (json_data_file) {
         var json_dir = path.join('myuw/static/js/test/ajax', json_data_file);
         var json_file = Environment._abs_path(json_dir);
-        var json_data = JSON.parse(fs.readFileSync(json_file));
-        Environment._stub = sinon.stub($, 'ajax');
-        Environment._stub.yieldsTo('success', json_data);
+        return JSON.parse(fs.readFileSync(json_file));
+    },
+    ajax_stub: function (json_config) {
+        if ($.type(json_config) === 'string') {
+            var json_data = Environment._json_from_file(json_config)
+            Environment._stub = sinon.stub($, 'ajax');
+            Environment._stub.yieldsTo('success', json_data);
+        } else {
+            Environment._stub = sinon.stub($, 'ajax')
+                .callsFake(function (conf) {
+                    if (conf.url in json_config) {
+                        var json_data = Environment._json_from_file(json_config[conf.url]);
+                        conf.success.apply(null, [json_data]);
+                    } else {
+                        throw "unknown mock url: " + conf.url;
+                    }
+                });
+        }
     },
     ajax_stub_restore: function () {
         if (Environment._stub) {
