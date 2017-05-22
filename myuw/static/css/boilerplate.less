@@ -182,9 +182,9 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
     height: @bar-height;
     font-size: 14px;
 
-    a, button { color: @uw-gold; display: inline-block; min-width: 30px; font-size: 13px; height: @bar-height; background: none; border: none;
+    a, button { color: #fff; display: inline-block; min-width: 30px; font-size: 13px; height: @bar-height; background: none; border: none;
 
-        &:hover { color: @uw-gold;
+        &:hover { color: #fff;
             span {  text-decoration: underline; }
         }
 
@@ -271,7 +271,7 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
     margin: 0;
     max-height: 0;
     overflow: hidden;
-    font-size: 14px;
+    font-size: 16px;
 
     // css animation for slide-down transition
     -webkit-transition: max-height 0.5s ease-in-out;
@@ -287,19 +287,19 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
     ul { margin: 10px 0; padding: 0; list-style: none; border-radius: 3px; /*background: #fff;*/
 
-    @media @desktop { margin: 0; /*padding: 10px;*/ }
+        @media @desktop { margin: 0; /*padding: 10px;*/ }
     }
 
-    li { line-height: 30px; padding: 0; font-weight: bold; text-transform: uppercase; margin-bottom: 4px;
+    li { line-height: 30px; padding: 0; margin-bottom: 8px;
 
         @media @desktop { }
 
-        a { text-decoration: none; color: #666; display: block; padding-left: 8px; border: solid 1px #ddd;
+        a { text-decoration: none; color: #333; display: block; padding-left: 8px;
 
-            i { color: #666 !important; width: 20px; text-align: center; margin-right: 5px; }
+            i { color: #333 !important; width: 20px; text-align: center; margin-right: 5px; }
 
-            &:hover { background: #ddd; border-color: #ccc; }
-            &.active { color: @uw-purple-light; background: #fff; border-color: @uw-purple-light;
+            &:hover { background: #ddd; }
+            &.active { color: @uw-purple-light; background: #ddd;
                 i { color: @uw-purple-dark !important; }
             }
 
