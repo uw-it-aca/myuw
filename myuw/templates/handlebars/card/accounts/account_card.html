@@ -1,0 +1,13 @@
+{% load templatetag_handlebars %}
+{% load static %}
+{% tplhandlebars "accounts_card" %}
+<div class="card" style="position:relative;" id="netid-pw">
+    <h3>UW NetID </h3>
+		<div class="pw-exp">
+	        <span class="pw-exp-date">Password last updated {{days_after_last_pw_change}} days ago</span>
+        </div>
+        <div class="pw-link"><a href="https://uwnetid.washington.edu/manage/?password">Change UW NetID password</a>
+        </div>
+	        <p>This password is for applications like UW email, MyUW, etc.</p>
+</div>
+{% endtplhandlebars %}

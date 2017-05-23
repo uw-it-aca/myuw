@@ -1,0 +1,145 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "profile_card" %}
+<div class="card" style="position:relative;">
+
+    <h3>{{ card_name }}</h3>
+    <div style="margin-bottom: 60px;">
+            <div class="profile-bio row">
+	            <div class="profile-student-info col-md-6">
+		            <h3 class="sr-only">Official name and student ID number</h3>
+		            <span class="sr-only">Student name:</span>
+	                <span class="profile-name">{{display_name}}</span><br/>
+	                {{#if student_number}}
+	                    <span class="">Student Number: {{student_number}}</span>
+	                {{/if}}
+	            </div>
+		    <div class="profile-student-major col-md-6">
+			<div>{{ class_level }}</div>
+			<div>
+                            <ul class="student-major-list">
+                                {{#if majors}}
+                                {{#each majors}}
+                                <li>{{full_name}}</li>
+                                {{/each}}
+                                {{/if}}
+                                {{#if minors}}
+                                {{#each minors}}
+                                <li>{{full_name}} (minor)</li>
+                                {{/each}}
+                                {{/if}}
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+
+            {{#with password}}
+            <div class="profile-passwords row">
+                <div style="margin: 0 5px;">
+                    <h3 class="sr-only">Password Information</h3>
+                    {{#if has_active_med_pw}}
+                    <div class="col-md-6 uwmedicine-password">
+                        <h4>UW Medicine Account</h4>
+                        {{#if med_pw_expired }}
+                            <span class="password-alert">Password expired on {{formatDateAsDate expires_med}}. <a href="https://services.uwmedicine.org/passwordportal/login.htm">Change your password to regain access.</a></span>
+                        {{ else }}
+                            <span class="password-status {{#if expires_in_30_days_or_less}}password-alert{{/if}}">Password expires in {{days_before_med_pw_expires}} days ({{formatDateAsDate expires_med}})</span><br>
+                            <a href="https://services.uwmedicine.org/passwordportal/login.htm">Change UW Medicine password</a>
+                        {{/if}}
+                            <p>This password is for UW Medicine applications like Epic, ORCA, MINDscape, AMC network, etc.</p>
+                    </div>
+                    <div class="uwnetid-password col-md-6">
+                        <h4>UW NetID Account</h4>
+                        <span class="password-status">Password last updated {{days_after_last_pw_change}} days ago</span><br>
+                        <a href="https://uwnetid.washington.edu/manage/?password">Change UW NetID password</a>
+                        <p>This password is for applications like UW email, MyUW, Web Publishing, etc.</p>
+                    </div>
+                    {{else}}
+                    <div class="uwnetid-password col-md-12">
+                        <h4>UW NetID Account</h4>
+                        <span class="password-status">Password last updated {{days_after_last_pw_change}} days ago</span><br>
+                        <a href="https://uwnetid.washington.edu/manage/?password">Change UW NetID password</a>
+                        <p>This password is for applications like UW email, MyUW, Web Publishing, etc.</p>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+           {{/with}}
+
+            <div class="profile-addresses row">
+                {{#if local_address}}
+                <div class="profile-mailing col-md-4" title="Mailing address information">
+                    <h3 class="sr-only">Mailing addresses and UW mail</h3>
+                    <strong><h4>Receiving UW mail</h4></strong>
+                    <ul>
+                        <li>To receive important mailings from the UW, verify that your addresses are correct.</li>
+                        <li><a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Update addresses and usage settings</a></li>
+                    </ul>
+                </div>
+
+                <div class="profile-local-address col-md-4">
+                    <h4>Local Address</h4>
+                    {{#with local_address}}
+                    {{#if street_line2}}
+                    <div><span class="">{{street_line2}}</span></div>
+                    {{/if}}
+                    {{#if street_line1}}
+                    <div><span class="">{{street_line1}}</span></div>
+                    {{/if}}
+                    {{#if city}}<span class="">{{city}}</span>{{/if}}{{#if state}}<span class="">, {{state}}</span>{{/if}}{{#if postal_code}} <span class="">{{postal_code}}</span>{{/if}}{{#if zip_code}} <span class="">{{zip_code}}</span>{{/if}}
+                    {{#if country}}
+                    <div><span class="">{{country}}</span></div>
+                    {{/if}}
+                    {{/with}}
+                    {{#if local_phone}}
+                    <div>Phone: <span class="">{{formatPhoneNumber local_phone}}</span></div>
+                    {{/if}}
+                </div>
+            {{/if}}
+
+            {{#if permanent_address}}
+                <div class="profile-perm-address col-md-4">
+                    <h4>Permanent Address</h4>
+                    {{#with permanent_address}}
+                        {{#if street_line2}}
+                        <div><span class="">{{street_line2}}</span></div>
+                        {{/if}}
+                        {{#if street_line1}}
+                        <div><span class="">{{street_line1}}</span></div>
+                        {{/if}}
+                        {{#if city}}<span class="">{{city}}</span>{{/if}}{{#if state}}<span class="">, {{state}}</span>{{/if}}{{#if postal_code}} <span class="">{{postal_code}}</span>{{/if}}{{#if zip_code}} <span class="">{{zip_code}}</span>{{/if}}
+                        {{#if country}}
+                        <div><span class="">{{country}}</span></div>
+                        {{/if}}
+                    {{/with}}
+                    {{#if permanent_phone}}
+                        <div>Phone: <span class="">{{formatPhoneNumber permanent_phone}}</span></div>
+                        {{/if}}
+                </div>
+                {{/if}}
+            </div>
+
+            <div class="profile-release row">
+		<div class="profile-publish">
+                    <h3 class="sr-only">Profile privacy settings</h3>
+                    {{#if directory_release}}
+                    <strong>Your profile information is currently <em>public</em></strong>
+                    <ul>
+                        <li><strong>Published in the UW Directory</strong> &ndash; <em>Name, phone number, email, major, and class standing</em></li>
+                        <li><strong>Releasable by Office of the Registrar</strong> &ndash; Information such as <em>date of birth, street address, and dates of attendance</em></li>
+                        <li><a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Change your release settings</a></li>
+                        <li><a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
+                    </ul>
+                    {{else}}
+                    <strong>Your profile information is currently <em>private</em></strong> (not releasable)
+                    <ul>
+                        <li><strong>Information about you cannot be released or displayed publicly in the UW Directory without your consent.</strong></li>
+                        <li><a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Change your release settings</a></li>
+                        <li><a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
+                    </ul>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+
+</div>
+{% endtplhandlebars %}
