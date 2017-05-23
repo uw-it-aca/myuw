@@ -114,7 +114,7 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
 #app_notices {
 
-    @media @desktop { margin-left: 0; margin-right: 0; padding: 0px !important; }
+    @media @desktop { margin-left: 0; margin-right: 0; padding: 0 16px !important; }
 
     .notice-header { margin-top: 0; }
 
@@ -130,10 +130,14 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
 #app_acal { margin-top: 10px;
 
-    @media @desktop { margin-top: 0; margin-left: 0; margin-right: 0; padding: 0px !important; }
+    @media @desktop { margin-top: 0; margin-left: 0; margin-right: 0; padding: 0 16px !important; }
 
     h3 { text-transform: uppercase; font-weight: normal; font-size: 14px; color: #aaa;  }
     h2 { margin-top: 0 !important; }
+}
+
+#app_messages {
+    .advert { background: transparent !important; color: #fff!important; }
 }
 
 // start enforcing a 320px col-md-4 width as soon as 2-columns layout begins

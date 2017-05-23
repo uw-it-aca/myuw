@@ -71,7 +71,6 @@
 
                 <div class="myuw-netid">
                     <a href="/profile/"><i class="icon-user icon-user-female" aria-hidden="true"></i><span>{{ user.netid }}</span></a>
-
                 </div>
 
                 <div class="myuw-search-links">
@@ -116,11 +115,6 @@
 
         </div>
 
-
-
-
-
-
         <div class="myuw-body">
             <div class="myuw-wrapper">
 
@@ -141,7 +135,7 @@
                         <li><a {% if page_title == "Teaching" %}class="active"{% endif %} href="/teaching/"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Teaching</a></li>
                         {% endif %}
 
-                        <li><a {% if page_title == "Calendar" %}class="active"{% endif %} href="/academic_calendar/"><i class="fa fa-calendar" aria-hidden="true"></i>Calendar</a></li>
+                        <li><a {% if page_title == "Academic Calendar" %}class="active"{% endif %} href="/academic_calendar/"><i class="fa fa-calendar" aria-hidden="true"></i>Calendar</a></li>
                         <li><a {% if page_title == "Accounts" %}class="active"{% endif %} href="/accounts/"><i class="fa fa-columns" aria-hidden="true"></i>Accounts</a></li>
                         <li><a {% if page_title == "Notices" %}class="active"{% endif %}  href="/nooootices/"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Notices</a></li>
                         <li><a {% if page_title == "Profile" %}class="active"{% endif %} href="/profile/"><i class="icon-user icon-user-female" aria-hidden="true" style="font-size:14px;"></i>Profile</a></li>
@@ -171,8 +165,7 @@
                     <!-- end message banner -->
 
                     <div class="visually-hidden" style="outline: solid 2px red;">
-                        <h1>h1: MyUW</h1>
-                        <h2>h2: {% if page_title %}{{page_title}}{% else %}undefined in view{% endif %}</h2>
+                        <h1>MyUW</h1>
                     </div>
 
                     <!-- app_content -->
