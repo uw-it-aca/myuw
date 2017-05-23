@@ -125,11 +125,14 @@
                                 </ul>
                         </fieldset>
                     </div>
+                            {{#unless has_lists }}
+                                <a class="mailman_simple_toggle"  style="display: none" href="#">Back  to Simple Edit</a>
+                            {{/unless}}
 
 
                 {{/unless}}
             {{/if}}
-            </div>
+            </button>
 
 
             <div class="modal-footer">

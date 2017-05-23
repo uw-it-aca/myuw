@@ -1,0 +1,14 @@
+URL,Label,campus,affiliation,pce
+http://canvas.uw.edu/,Canvas LMS,,faculty,
+http://canvas.uw.edu/,Canvas LMS,,student,
+https://myplan.uw.edu,MyPlan,,student,
+https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx,Grade Report,,student,
+https://wd5.myworkday.com/uw/login.htmld,Workday,,employee,
+http://www.washington.edu/home/peopledir/,Faculty/Staff/Student Directory,,employee,
+https://sdb.admin.uw.edu/students/uwnetid/register.asp,Registration,,student,
+http://www.uwb.edu/students/registration/time/index.xhtml,Time Schedule - Bothell,bothell,student,
+http://www.washington.edu/students/timeschd/,Time Schedule - Seattle,seattle,student,
+http://www.washington.edu/students/timeschd/T/,Time Schedule - Tacoma,tacoma,student,
+http://www.washington.edu/students/timeschd/95index.html,Time Schedule - PCE,,student,yes
+https://scout.uw.edu,Scout,,student,
+http://www.lib.washington.edu/,UW Libraries,,employee,

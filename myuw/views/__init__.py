@@ -1,4 +1,8 @@
 from django.conf import settings
+from django import template
+from django.shortcuts import render
+from authz_group import Group
+from userservice.user import UserService
 from myuw.util.thread import PrefetchThread
 from myuw.dao.affiliation import affiliation_prefetch
 from myuw.dao.enrollment import enrollment_prefetch
@@ -66,3 +70,54 @@ def prefetch_resources(request,
 
 def get_enabled_features():
     return getattr(settings, "MYUW_ENABLED_FEATURES", [])
+
+
+def admin_required(group_key):
+    def decorator(func):
+        def wrapper(request, *args, **kwargs):
+            user_service = UserService()
+            user_service.get_user()
+            override_error_username = None
+            override_error_msg = None
+            # Do the group auth here.
+
+            if not hasattr(settings, group_key):
+                print "You must have a group defined as your admin group."
+                print 'Configure that using %s="foo_group"' % group_key
+                raise Exception("Missing %s in settings" % group_key)
+
+            actual_user = user_service.get_original_user()
+            if not actual_user:
+                raise Exception("No user in session")
+
+            g = Group()
+            group_name = getattr(settings, group_key)
+            is_admin = g.is_member_of_group(actual_user, group_name)
+            if is_admin is False:
+                return render(request, 'no_access.html', {})
+
+            return func(request, *args, **kwargs)
+
+        return wrapper
+    return decorator
+
+
+def set_admin_wrapper_template(context):
+    try:
+        extra_template = "userservice/user_override_extra_info.html"
+        template.loader.get_template(extra_template)
+        context['has_extra_template'] = True
+        context['extra_template'] = 'userservice/user_override_extra_info.html'
+    except template.TemplateDoesNotExist:
+        # This is a fine exception - there doesn't need to be an extra info
+        # template
+        pass
+
+    try:
+        template.loader.get_template("userservice/user_override_wrapper.html")
+        context['wrapper_template'] = 'userservice/user_override_wrapper.html'
+    except template.TemplateDoesNotExist:
+        context['wrapper_template'] = 'support_wrapper.html'
+        # This is a fine exception - there doesn't need to be an extra info
+        # template
+        pass
