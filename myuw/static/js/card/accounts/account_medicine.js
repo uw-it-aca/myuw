@@ -3,7 +3,7 @@ var MedicineAccountsCard = {
     dom_target: undefined,
 
     render_init: function() {
-        WebServiceData.require({profile_data: new ProfileData()}, 
+        WebServiceData.require({profile_data: new ProfileData()},
                                MedicineAccountsCard.render_upon_data);
     },
 
@@ -17,7 +17,7 @@ var MedicineAccountsCard = {
 
         var profile_data = profile_resource.data;
         if(profile_data.password.has_active_med_pw) {
-            MedicineAccountsCard._render();
+            MedicineAccountsCard._render(profile_data);
         } else {
             MedicineAccountsCard.dom_target.hide();
         }
@@ -33,10 +33,10 @@ var MedicineAccountsCard = {
         return false;
     },
 
-    _render: function() {
+    _render: function(profile_data) {
         var source   = $("#accounts_medicine").html();
         var template = Handlebars.compile(source);
-        var compiled = template(WSData.profile_data().password);
+        var compiled = template(profile_data.password);
         MedicineAccountsCard.dom_target.html(compiled);
         LogUtils.cardLoaded(MedicineAccountsCard.name, MedicineAccountsCard.dom_target);
     }

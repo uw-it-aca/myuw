@@ -111,6 +111,7 @@ var Environment = {
         return JSON.parse(fs.readFileSync(json_file));
     },
     ajax_stub: function (json_config) {
+        WebServiceData.clear_requirement_cache();
         if ($.type(json_config) === 'string') {
             var json_data = Environment._json_from_file(json_config)
             Environment._stub = sinon.stub($, 'ajax');

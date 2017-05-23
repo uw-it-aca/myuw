@@ -3,7 +3,6 @@ var RenderPage = function () {
     $("#app_navigation").show();
     WebServiceData.require({profile_data: new ProfileData()},
                            RenderAfterAjax);
-    }
 };
 
 var RenderAfterAjax = function (resources) {

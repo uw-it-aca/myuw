@@ -8,6 +8,8 @@ describe('DirectoryInfoCard', function(){
             Global.Environment.init({
                 render_id: render_id,
                 scripts: [
+                    "myuw/static/js/web_services/ws_base.js",
+                    "myuw/static/js/web_services/ws_directory_data.js",
                     "myuw/static/js/card/profile/directory_info.js"
                 ],
                 templates: [

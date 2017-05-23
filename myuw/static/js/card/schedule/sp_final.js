@@ -11,7 +11,6 @@ var FinalExamCard = {
             return;
         }
 
-        debugger
         WebServiceData.require({course_data: new CourseData(FinalExamCard.term)},
                                FinalExamCard.render_upon_data);
     },
@@ -41,7 +40,4 @@ var FinalExamCard = {
         FinalExamSchedule.render(course_data, FinalExamCard.term, false);
         LogUtils.cardLoaded(FinalExamCard.name, FinalExamCard.dom_target);
     }
-
 };
-
- 

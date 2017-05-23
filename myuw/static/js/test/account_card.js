@@ -8,6 +8,8 @@ describe('AccountsCard', function(){
             Global.Environment.init({
                 render_id: render_id,
                 scripts: [
+                    "myuw/static/js/web_services/ws_base.js",
+                    "myuw/static/js/web_services/ws_profile_data.js",
                     "myuw/static/js/card/accounts/account_card.js"
                 ],
                 templates: [

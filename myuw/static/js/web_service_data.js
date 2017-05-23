@@ -19,6 +19,9 @@ WebServiceData = {
         var cached = WebServiceData.requirement_cache[requirement.url];
         return (cached && (cached.data !== null || cached.error !== null));
     },
+    clear_requirement_cache: function () {
+        WebServiceData.requirement_cache = {};
+    },
 	fetch_requirement: function(requirement, event_id) {
         if (WebServiceData.requirement_is_loaded(requirement)) {
             $(window).trigger(event_id, WebServiceData.requirement_cache[requirement.url]);
