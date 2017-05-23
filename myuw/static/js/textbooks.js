@@ -36,6 +36,7 @@ var TextBooks = {
         var template_data = {
             "teaching_sections": [],
             "enrolled_sections": [],
+            "sections": [],
             "quarter": course_data ? course_data.quarter : instructed_course_data.quarter,
             "year": course_data ? course_data.year: instructed_course_data.year,
             "summer_term": course_data ? course_data.summer_term : instructed_course_data.summer_term
@@ -64,6 +65,7 @@ var TextBooks = {
             $.each(course_data.sections, function (index) {
                 var section = section_data(index, this, false);
                 template_data.enrolled_sections.push(section);
+                template_data.sections.push(section);
             });
         }
 
@@ -71,6 +73,7 @@ var TextBooks = {
             $.each(instructed_course_data.sections, function (index) {
                 var section = section_data(index, this, true);
                 template_data.teaching_sections.push(section);
+                template_data.sections.push(section);
             });
         }
 

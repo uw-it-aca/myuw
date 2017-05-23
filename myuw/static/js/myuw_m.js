@@ -281,3 +281,4 @@ exports.date_from_string = date_from_string;
 exports.myuwFeatureEnabled = myuwFeatureEnabled;
 exports.register_link_recorder = register_link_recorder;
 exports.safe_label = safe_label;
+exports.renderedCardOnce = renderedCardOnce;

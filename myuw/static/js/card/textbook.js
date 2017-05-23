@@ -103,5 +103,10 @@ var TextbookCard = {
             },  "", "/textbooks/"+term);
         });
     }
-
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.TextbookCard = TextbookCard;
