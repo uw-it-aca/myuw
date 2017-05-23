@@ -63,7 +63,7 @@ var Landing = {
             SummerRegStatusCard1
         ];
         var desktop_sidebar_cards = [
-            LibraryCardMini,
+            //LibraryCardMini,
             EmpFacStudentCard,
             HfsCard,
             TuitionCard,
