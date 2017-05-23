@@ -59,6 +59,7 @@ var Environment = {
         // pull in scripts
         Environment._load_script('myuw/static/js/myuw_m.js');
         Environment._load_script('myuw/static/js/ws_data.js');
+        Environment._load_script('myuw/static/js/web_service_data.js');
         if (config.hasOwnProperty('scripts')) {
             $.each(config.scripts, function () {
                 Environment._load_script(this.toString());
@@ -141,7 +142,7 @@ var Environment = {
         var template = raw.replace(/{\%[ ]+load[ ]+templatetag_handlebars[ ]+\%}/, '')
             .replace(/{\%[ ]*tplhandlebars[ ]+["]?([^ \%]+)["]?[ ]*\%}/,
                      '<script id="$1" type="text/x-handlebars-template">')
-            .replace(/{\%[ ]*endtplhandlebars[ ]*\%}/, 
+            .replace(/{\%[ ]*endtplhandlebars[ ]*\%}/,
                      '</script>')
             .replace(/{\%[ ]*(end)?verbatim[ ]*\%}/g, '');
 

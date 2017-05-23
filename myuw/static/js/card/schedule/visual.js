@@ -22,32 +22,32 @@ var VisualScheduleCard = {
             $("#VisualScheduleCard").hide();
             return;
         }
-        WSData.fetch_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_upon_data, VisualScheduleCard.render_error);
+
+        WebServiceData.require({course_data: new CourseData(VisualScheduleCard.term)},
+                               VisualScheduleCard.render);
     },
 
-    _has_all_data: function () {
-        if (WSData.normalized_course_data(VisualScheduleCard.term)) {
+    render_error: function(course_resource_error) {
+        if (course_resource_error) {
+            // CourseCards displays the message
+            $("#VisualScheduleCard").hide();
             return true;
         }
+
         return false;
     },
 
-    render_error: function() {
-        // CourseCards displays the message
-        $("#VisualScheduleCard").hide();
-    },
+    // The course_index will be given when a modal is shown.
+    render: function(resources) {
+        var term = VisualScheduleCard.term;
+        var course_data_resource = resources.course_data;
 
-    render_upon_data: function(course_index) {
-        if (!VisualScheduleCard._has_all_data()) {
+        if (VisualScheduleCard.render_error(course_data_resource.error)) {
             return;
         }
-        VisualScheduleCard._render();
-    },
 
-    // The course_index will be given when a modal is shown.
-    _render: function() {
-        var term = VisualScheduleCard.term;
-        var course_data = WSData.normalized_course_data(term);
+        var course_data = course_data_resource.data;
+        course_data_resource.normalize_instructors();
 
         VisualScheduleCard.render_schedule(course_data, term);
 
@@ -55,7 +55,7 @@ var VisualScheduleCard = {
 
         LogUtils.cardLoaded(VisualScheduleCard.name, VisualScheduleCard.dom_target);
     },
-        
+
     render_schedule: function(course_data, term) {
         VisualScheduleCard.shown_am_marker = false;
         var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
@@ -63,7 +63,7 @@ var VisualScheduleCard = {
             has_early_fall_start: course_data.has_early_fall_start,
             is_pce: user.pce,
             total_sections: course_data.sections.length,
-            year: course_data.year, 
+            year: course_data.year,
             quarter: course_data.quarter,
             term: term,
             summer_term: course_data.summer_term,
@@ -216,7 +216,7 @@ var VisualScheduleCard = {
                     is_meeting: false,
                     start_at_hr: start_at_hr,
                     top:top,
-                    height:height, 
+                    height:height,
                     start: position_start,
                     end: position_end});
                 position_start = position_end;
@@ -230,7 +230,7 @@ var VisualScheduleCard = {
 
         VisualScheduleCard.add_events(term);
     },
-            
+
     // This is the height of the days bar... needed for positioning math below
     day_label_offset: 0,
 
@@ -250,7 +250,7 @@ var VisualScheduleCard = {
             building = building.replace(/[^a-z0-9]/gi, '_');
             WSData.log_interaction("show_map_from_visual_card_"+building, term);
         });
-        
+
         $("#toggle_finalexams").on("click", function(ev) {
             ev.preventDefault();
             $("#final_exam_schedule_panel").toggleClass("slide-show");
@@ -262,7 +262,7 @@ var VisualScheduleCard = {
             else {
                 $("#toggle_finalexams").attr('title', 'Show Final Exam Schedule');
                 window.myuw_log.log_card("FinalExam", "collapse");
-                
+
                 setTimeout(function() {
                       $("#toggle_finalexams").text("Show Final Exam Schedule");
                }, 700);

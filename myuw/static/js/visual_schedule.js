@@ -4,11 +4,8 @@ var VisualSchedule = {
 
     show_visual_schedule: function(term, course_index) {
         showLoading();
-        if (term) {
-            WSData.fetch_course_data_for_term(term, VisualSchedule.render, [term, course_index]);
-        } else {
-            WSData.fetch_current_course_data(VisualSchedule.render, [term, course_index]);
-        }
+        WebServiceData.require({course_data: new CourseData(term ? term : 'current')},
+                               VisualSchedule.render, [term, course_index]);
     },
 
     get_scaled_percentage: function(pos, min, max) {
@@ -20,19 +17,12 @@ var VisualSchedule = {
     },
 
     // The course_index will be given when a modal is shown.
-    render: function(term, course_index) {
+    render: function(term, course_index, resources) {
         $('html,body').animate({scrollTop: 0}, 'fast');
         VisualSchedule.shown_am_marker = false;
-        var course_data;
-        if (term) {
-            course_data = WSData.course_data_for_term(term);
-            WSData.normalize_instructors_for_term(term);
-        }
-        else {
-            course_data = WSData.current_course_data();
-            WSData.normalize_instructors_for_current_term();
-        }
 
+        var course_data = requirements.course_data;
+        course_data.normalize_instructors();
 
         var source = $("#quarter-header").html();
         var template = Handlebars.compile(source);
@@ -46,8 +36,6 @@ var VisualSchedule = {
             show_list_button: true,
             is_future_quarter: term ? true :false
         }));
-
- 
 
         $("#main-content").html(VisualSchedule.get_html(course_data, term));
 

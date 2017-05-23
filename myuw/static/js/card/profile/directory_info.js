@@ -5,37 +5,34 @@ var DirectoryInfoCard = {
     render_init: function() {
         if (myuwFeatureEnabled('employee_profile') && 
             (window.user.employee || window.user.faculty || window.user.stud_employee)) {
-            WSData.fetch_directory_data(DirectoryInfoCard.render_upon_data, DirectoryInfoCard.render_error);
+            WebServiceData.require({directory_data: new DirectoryData()},
+                                   DirectoryInfoCard.render);
         } else {
             $("#DirectoryInfoCard").hide();
-            return;
         }
     },
 
-    render_upon_data: function () {
-        if (!DirectoryInfoCard._has_all_data()) {
+    render: function (resources) {
+        var directory_resource = resources.directory_data;
+
+        if (DirectoryInfoCard.render_error(directory_resource.error)) {
             return;
         }
-        DirectoryInfoCard._render();
-    },
 
-    _render: function () {
-        var directory_info = WSData.directory_data();
+        var directory_info = directory_resource.data;
         var source = $("#directory_info_card").html();
         var template = Handlebars.compile(source);
         DirectoryInfoCard.dom_target.html(template(directory_info));
         LogUtils.cardLoaded(DirectoryInfoCard.name, DirectoryInfoCard.dom_target);
     },
 
-    _has_all_data: function () {
-        if (WSData.directory_data()) {
+    render_error: function (directory_resource_error) {
+        if (directory_resource_error) {
+            $("#DirectoryInfoCard").hide();
             return true;
         }
-        return false;
-    },
 
-    render_error: function () {
-        $("#DirectoryInfoCard").hide();
+        return false;
     }
 };
 

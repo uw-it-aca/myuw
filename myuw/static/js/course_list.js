@@ -1,28 +1,18 @@
 var CourseList = {
     show_list: function(term, course_index) {
         showLoading();
-        if (term) {
-            WSData.fetch_course_data_for_term(term, CourseList.render_list, [term, course_index]);
-        } else {
-            WSData.fetch_current_course_data(CourseList.render_list, [term, course_index]);
-        }
+        WebServiceData.require({course_data: new CourseData(term ? term : 'current')},
+                               CourseList.render_list,
+                               [term, course_index]);
     },
 
-    render_list: function(term, course_index) {
-        var course_data;
-        if (term) {
-            course_data = WSData.course_data_for_term(term);
-            WSData.normalize_instructors_for_term(term);
-        }
-        else {
-            course_data = WSData.current_course_data();
-            WSData.normalize_instructors_for_current_term();
-        }
+    render_list: function(term, course_index, requirements) {
+        var course_data = requirements.course_data;
+        course_data.normalize_instructors();
 
         if (course_index === undefined) {
             $('html,body').animate({scrollTop: 0}, 'fast');
         }
-
 
         var source = $("#quarter-header").html();
         var template = Handlebars.compile(source);
@@ -63,7 +53,6 @@ var CourseList = {
 
         if (course_index !== undefined) {
             $("#course"+course_index).collapse('show');
-            console.log("Scrolling to course_wrapper"+course_index);
             $('html,body').animate({scrollTop: $("#course_wrapper"+course_index).offset().top},'slow');
         }
 

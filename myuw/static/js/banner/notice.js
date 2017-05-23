@@ -3,16 +3,16 @@ var NoticeBanner = {
 
     render_init: function(dom_taget) {
         NoticeBanner.dom_target  = dom_taget;
-        WSData.fetch_notice_data(NoticeBanner.render);
+        WebServiceData.require({notice_data: new NoticeData()}, NoticeBanner.render);
     },
 
-    render: function () {
-        var notice_data = WSData.notice_data();
+    render: function (resources) {
+        var notice_data = resources.notice_data.data;
 
         if (notice_data.length > 0) {
             var source = $("#notice_banner").html();
             var template = Handlebars.compile(source);
-            var notices = Notices._get_critical(WSData.notice_data());
+            var notices = Notices._get_critical(Notices.notice_data);
             notices = Notices.sort_notices_by_start_date(notices);
 
             $.each(notices, function(idx, notice){

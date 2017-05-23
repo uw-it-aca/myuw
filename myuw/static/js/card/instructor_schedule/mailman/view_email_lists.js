@@ -6,29 +6,29 @@ var ManageEmailLists = {
     render_init: function(section_label) {
         ManageEmailLists.label = section_label;
         ManageEmailLists.dom_target = '#popup_emaillist_' + safe_label(ManageEmailLists.label);
-        WSData.fetch_instructed_section_emaillist_data(section_label,
-                                                       ManageEmailLists.render_upon_data,
-                                                       ManageEmailLists.render_error);
+
+        WebServiceData.require({section_emaillist_data: new InstructedSectionEmailListData()},
+                               ManageEmailLists.render);
     },
 
-    render_upon_data: function() {
-        if (WSData._instructed_emaillist_data[ManageEmailLists.label] === undefined) {
-            return;
-        }
-        ManageEmailLists.render();
-    },
-
-    render_error: function() {
-        var error_code = WSData._instructed_emaillist_data_error_status[ManageEmailLists.label];
-        if (error_code == 543) {
+    render_error: function(section_emaillist_resource_error) {
+        if (section_emaillist_resource_error && section_emaillist_resource_error.status === 543) {
             raw = CardWithError.render("Request Email List Popup");
             $(ManageEmailLists.dom_target).html(raw);
+            return true;
         }
+
+        return false;
     },
 
+    render: function(resources) {
+        var section_emaillist_resource = resources.section_emaillist_data;
 
-    render: function() {
-        var data = WSData._instructed_emaillist_data[ManageEmailLists.label];
+        if (ManageEmailLists.render_error(section_emaillist_resource.error)) {
+            return;
+        }
+
+        var data = section_emaillist_resource.data;
         var term = data.year + ',' + data.quarter;
         var source   = $("#manage_email_lists_tmpl").html();
         var template = Handlebars.compile(source);

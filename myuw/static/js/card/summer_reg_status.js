@@ -19,54 +19,63 @@ var SummerRegStatusCard = {
             $("#SummerRegStatusCard1").hide();
             return;
         }
-
-        WSData.fetch_notice_data(SummerRegStatusCard.render_upon_data,
-                                 SummerRegStatusCard.render_error);
-        WSData.fetch_oquarter_data(SummerRegStatusCard.render_upon_data,
-                                   SummerRegStatusCard.render_error);
-        WSData.fetch_profile_data(SummerRegStatusCard.render_upon_data,
-                                  SummerRegStatusCard.render_error);
+        WebServiceData.require({notice_data: new NoticeData(),
+                                oquarter_data: new OQuarterData(),
+                                profile_data: new ProfileData()},
+                               SummerRegStatusCard.pre_render);
     },
 
-    render_upon_data: function() {
-        // Having multiple callbacks come to this function,
-        // delay rendering until all requests are complete.
-        if (!RegStatusCard._has_all_data()) {
-            return;
+    render_error: function(notice_resource_error, oquarter_resource_error) {
+        if (notice_resource_error || oquarter_resource_error) {
+            // none of the api data returns 404.
+            // any data failure, display error
+            SummerRegStatusCard.dom_target.html(CardWithError.render("Summer Registration"));
+            return true;
         }
 
-        var year = WSData.oquarter_data().next_term_data.year;
-        if (! window.card_display_dates.myplan_peak_load &&
-            ! WSData.myplan_data(year, "Summer")) {
-            WSData.fetch_myplan_data(year, "Summer",
-                                     SummerRegStatusCard.render_upon_data,
-                                     SummerRegStatusCard.render_error);
-            return;
-        }
+        return false;
+    },
 
+    pre_render: function(resources) {
         // _render should be called only once.
         if (renderedCardOnce(SummerRegStatusCard.name)) {
             return;
         }
-        SummerRegStatusCard._render();
+
+        var notice_resource = resources.notice_data;
+        var oquarter_resource = resources.oquarter_data;
+        if (SummerRegStatusCard.render_error(notice_resource.error,
+                                             oquarter_resource.error)) {
+            return;
+        }
+
+        var oquarter_data = oquarter_resource.data;
+        var year = oquarter_data.next_term_data.year;
+        if (! window.card_display_dates.myplan_peak_load) {
+            WebServiceData.require({myplan_data: new MyPlanData(year, "Summer")},
+                                   SummerRegStatusCard.render,
+                                   [oquarter_resource]);
+            return;
+        }
+
+        SummerRegStatusCard.render(resources);
     },
 
-    render_error: function(status) {
-        // none of the api data returns 404.
-        // any data failure, display error
-        SummerRegStatusCard.dom_target.html(CardWithError.render("Summer Registration"));
-    },
+    render: function(oquarter_resource, myplan_resources) {
+        var oquarter_data = oquarter_resource.data;
 
-    _render: function() {
-        var year = WSData.oquarter_data().next_term_data.year;
+        var year = oquarter_data.next_term_data.year;
         var myplan_data;
         if (! window.card_display_dates.myplan_peak_load) {
-            myplan_data = WSData.myplan_data(year, "Summer");
+            if (myplan_resources) {
+                myplan_data = myplan_resources.myplan_data.data;
+            }
         }
 
         if (window.card_display_dates.myplan_peak_load || myplan_data) {
             var content = RegStatusCard._render_for_term(myplan_data,
                                                          'Summer',
+                                                         oquarter_data,
                                                          SummerRegStatusCard.label);
             if (!content) {
                 SummerRegStatusCard.dom_target.hide();

@@ -3,12 +3,12 @@ var MessageBanner = {
 
     render_init: function(dom_taget) {
         MessageBanner.dom_target  = dom_taget;
-        WSData.fetch_message_data(MessageBanner.render);
+        WebServiceData.require({message_data: new MessageData()},
+                               MessageBanner.render);
     },
 
-    render: function () {
-        var message_data = WSData.message_data();
-
+    render: function (resources) {
+        var message_data = resources.message_data.data;
         if (message_data.length > 0) {
             var source = $("#message_banner").html();
             var template = Handlebars.compile(source);

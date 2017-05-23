@@ -1,13 +1,13 @@
 var Grades = {
     show_grades: function(term) {
         showLoading();
-        WSData.fetch_grades_for_term(term, Grades.render_grades, [term]);
+        WebServiceData.require({grade_data: new GradeData(term)}, Grades.render_grades);
     },
 
-    render_grades: function(term) {
+    render_grades: function(resources) {
         $('html,body').animate({scrollTop: 0}, 'fast');
 
-        var grade_data = WSData.grade_data_for_term(term);
+        var grade_data = resources.grade_data.data;
         var source = $("#grades").html();
         var template = Handlebars.compile(source);
 

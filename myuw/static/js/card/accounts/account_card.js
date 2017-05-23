@@ -3,17 +3,30 @@ var AccountsCard = {
     dom_target: undefined,
 
     render_init: function() {
-        WSData.fetch_profile_data(AccountsCard.render, AccountsCard.render_error);
+        WebServiceData.require({profile_data: new ProfileData()}, 
+                               AccountsCard.render);
     },
 
-    render_error: function() {
-        AccountsCard.dom_target.html(CardWithError.render("UW NetID"));
+    render_error: function(profile_resource_error) {
+        if (profile_resource_error) {
+            AccountsCard.dom_target.html(CardWithError.render("UW NetID"));
+            return true;
+        }
+
+        return false;
     },
 
-    render: function() {
+    render: function(resources) {
+        var profile_resource = resources.profile_data;
+
+        if (AccountsCard.render_error(profile_resource.error)) {
+            return;
+        }
+
+        var profile_data = profile_resource.data;
         var source   = $("#accounts_card").html();
         var template = Handlebars.compile(source);
-        var compiled = template(WSData.profile_data().password);
+        var compiled = template(profile_data.password);
         AccountsCard.dom_target.html(compiled);
         LogUtils.cardLoaded(AccountsCard.name, AccountsCard.dom_target);
     }

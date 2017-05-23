@@ -8,6 +8,9 @@ describe('InstructorScheduleCards', function(){
             Global.Environment.init({
                 render_id: render_id,
                 scripts: [
+                    "myuw/static/js/web_services/ws_base.js",
+                    "myuw/static/js/web_services/ws_course_data.js",
+                    "myuw/static/js/web_services/ws_instructed_course_data.js",
                     "myuw/static/js/card/instructor_schedule/load_course_cards.js",
                     "myuw/static/js/card/instructor_schedule/course_card_content.js",
                     "myuw/static/js/card/instructor_schedule/course_sche_panel.js",
@@ -41,40 +44,55 @@ describe('InstructorScheduleCards', function(){
             assert.equal($('.card').length, 6);
             assert.equal($('.card .courseIDtitle').eq(1).html(), 'PHYS 121 A');
         });
-        it("before grading open date", function() {
+        it("before grading open date", function(done) {
             window.location.search = '?grading_date=2017-03-02%2016:17';
-            var data = WSData.normalized_instructed_course_data('2013-spring');
-            assert.equal(data.sections[1].grading_period_is_open, false);
-            assert.equal(data.sections[1].opens_in_24_hours, false);
-            assert.equal(data.sections[1].deadline_in_24_hours, false);
+            WebServiceData.require({inst_data: new InstructedCourseData('2013-spring')}, function (resources) {
+                var data = resources['inst_data'].normalized();
+                assert.equal(data.sections[1].grading_period_is_open, false);
+                assert.equal(data.sections[1].opens_in_24_hours, false);
+                assert.equal(data.sections[1].deadline_in_24_hours, false);
+                done();
+            });
         });
-        it("immediately before grading open date", function() {
+        it("immediately before grading open date", function(done) {
             window.location.search = '?grading_date=2017-03-26%2016:17';
-            var data = WSData.normalized_instructed_course_data('2013-spring');
-            assert.equal(data.sections[1].grading_period_is_open, false);
-            assert.equal(data.sections[1].opens_in_24_hours, true);
-            assert.equal(data.sections[1].deadline_in_24_hours, false);
+            WebServiceData.require({inst_data: new InstructedCourseData('2013-spring')}, function (resources) {
+                var data = resources['inst_data'].normalized();
+                assert.equal(data.sections[1].grading_period_is_open, false);
+                assert.equal(data.sections[1].opens_in_24_hours, true);
+                assert.equal(data.sections[1].deadline_in_24_hours, false);
+                done();
+            });
         });
-        it("while grading open", function() {
+        it("while grading open", function(done) {
             window.location.search = '?grading_date=2017-03-27%2016:17';
-            var data = WSData.normalized_instructed_course_data('2013-spring');
-            assert.equal(data.sections[0].grading_period_is_open, true);
-            assert.equal(data.sections[0].grading_status.all_grades_submitted, true);
-            assert.equal(data.sections[1].grading_status.all_grades_submitted, false);
+            WebServiceData.require({inst_data: new InstructedCourseData('2013-spring')}, function (resources) {
+                var data = resources['inst_data'].normalized();
+                assert.equal(data.sections[0].grading_period_is_open, true);
+                assert.equal(data.sections[0].grading_status.all_grades_submitted, true);
+                assert.equal(data.sections[1].grading_status.all_grades_submitted, false);
+                done();
+            });
         });
-        it("immediately before grading deadline", function() {
+        it("immediately before grading deadline", function(done) {
             window.location.search = '?grading_date=2017-03-28%2016:17';
-            var data = WSData.normalized_instructed_course_data('2013-spring');
-            assert.equal(data.sections[1].grading_period_is_open, true);
-            assert.equal(data.sections[1].opens_in_24_hours, false);
-            assert.equal(data.sections[1].deadline_in_24_hours, true);
+            WebServiceData.require({inst_data: new InstructedCourseData('2013-spring')}, function (resources) {
+                var data = resources['inst_data'].normalized();
+                assert.equal(data.sections[1].grading_period_is_open, true);
+                assert.equal(data.sections[1].opens_in_24_hours, false);
+                assert.equal(data.sections[1].deadline_in_24_hours, true);
+                done();
+            });
         });
-        it("after grading deadline", function() {
+        it("after grading deadline", function(done) {
             window.location.search = '?grading_date=2017-04-02%2016:17';
-            var data = WSData.normalized_instructed_course_data('2013-spring');
-            assert.equal(data.sections[1].grading_period_is_open, false);
-            assert.equal(data.sections[1].opens_in_24_hours, false);
-            assert.equal(data.sections[1].deadline_in_24_hours, false);
+            WebServiceData.require({inst_data: new InstructedCourseData('2013-spring')}, function (resources) {
+                var data = resources['inst_data'].normalized();
+                assert.equal(data.sections[1].grading_period_is_open, false);
+                assert.equal(data.sections[1].opens_in_24_hours, false);
+                assert.equal(data.sections[1].deadline_in_24_hours, false);
+                done();
+            });
         });
         after(function () {
             Global.Environment.ajax_stub_restore();

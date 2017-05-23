@@ -28,39 +28,40 @@ var GradeCard = {
         }
 
         if (GradeCard.term) {
-            WSData.fetch_course_data_for_term(GradeCard.term, GradeCard.render_upon_data, GradeCard.render_error);
+            WebServiceData.require({course_data: new CourseData(GradeCard.term)},
+                                   GradeCard.render_upon_data);
             return;
         }
 
         $("#GradeCard").hide();
     },
 
-    render_upon_data: function() {
-        if (!GradeCard._has_all_data()) {
-            return;
-        }
-        GradeCard._render();
-    },
+    render_error: function(course_resource_error) {
+        var course_error_code = course_resource_error ? course_resource_error.status : 200;
 
-    render_error: function() {
-        var course_error_code = WSData.course_data_error_code(GradeCard.term);
-        if (course_error_code === null || course_error_code === 404) {
-            $("#GradeCard").hide();
-            return;
-        }
-        GradeCard.dom_target.html(CardWithError.render("Final Grades"));
-    },
-
-    _has_all_data: function () {
-        if (WSData.normalized_course_data(GradeCard.term)) {
+        if (course_error_code) {
+            if (course_error_code === null || course_error_code === 404) {
+                $("#GradeCard").hide();
+            } else {
+                GradeCard.dom_target.html(CardWithError.render("Final Grades"));
+            }
             return true;
         }
+
         return false;
     },
 
-    _render: function () {
+    render: function (resources) {
         var term = GradeCard.term;
-        var course_data = WSData.normalized_course_data(term);
+        var course_data_resource = resources.course_data;
+
+        if (GradeCard.render_error(course_data_resource.error)) {
+            return;
+        }
+
+        var course_data = course_data_resource.data;
+        course_data_resource.normalize_instructors();
+
         var has_section_to_display = false;
         course_data.display_grade_card = true;
         course_data.display_grades = true;

@@ -3,11 +3,12 @@ var CalendarBanner = {
 
     render_init: function(dom_taget) {
         CalendarBanner.dom_target  = dom_taget;
-        WSData.fetch_current_academic_calendar_events(CalendarBanner.render);
+        WebServiceData.require({current_academic_cal_event_data: new CurrentAcademicCalendarEventData()},
+                               CalendarBanner.render);
     },
 
-    render: function () {
-        var calendar_data = WSData.current_academic_calendar_data();
+    render: function (resources) {
+        var calendar_data = resources.current_academic_cal_event_data.data;
 
         if (calendar_data.length > 0) {
             var source = $("#calendar_banner").html();

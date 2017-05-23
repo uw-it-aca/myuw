@@ -3,12 +3,19 @@ var MedicineAccountsCard = {
     dom_target: undefined,
 
     render_init: function() {
-        WSData.fetch_profile_data(MedicineAccountsCard.render_upon_data, MedicineAccountsCard.render_error);
+        WebServiceData.require({profile_data: new ProfileData()}, 
+                               MedicineAccountsCard.render_upon_data);
     },
 
 
-    render_upon_data: function() {
-        var profile_data = WSData.profile_data();
+    render_upon_data: function(resources) {
+        var profile_resource = resources.profile_data;
+
+        if (MedicineAccountsCard.render_error(profile_resource.error)) {
+            return;
+        }
+
+        var profile_data = profile_resource.data;
         if(profile_data.password.has_active_med_pw) {
             MedicineAccountsCard._render();
         } else {
@@ -16,9 +23,14 @@ var MedicineAccountsCard = {
         }
     },
 
-    render_error: function() {
-        MedicineAccountsCard.dom_target.html(CardWithError.render("UW Medicine"));
-        LogUtils.cardLoaded(MedicineAccountsCard.name, MedicineAccountsCard.dom_target);
+    render_error: function(profile_resource_error) {
+        if (profile_resource_error) {
+            MedicineAccountsCard.dom_target.html(CardWithError.render("UW Medicine"));
+            LogUtils.cardLoaded(MedicineAccountsCard.name, MedicineAccountsCard.dom_target);
+            return true;
+        }
+
+        return false;
     },
 
     _render: function() {

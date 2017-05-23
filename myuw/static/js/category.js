@@ -2,12 +2,16 @@ var Category = {
     show_category_page: function(category, topic) {
         //Navbar.render_navbar("nav-sub");
         CommonLoading.render_init();
-        WSData.fetch_category_links(Category.render_category_page, Category.render_error, [category, topic]);
+        WebServiceData.require({category_links: new CategoryLinkData(category)},
+                               Category.render_category_page, [category, topic]);
     },
 
-    render_category_page: function(category, topic) {
-        var data = WSData.category_link_data(category);
+    render_category_page: function(category, topic, resources) {
+        if (Category.render_error(resources.category_links.error)) {
+            return;
+        }
 
+        var data = resources.category_links.data;
         var title = document.title.replace("Category", data.category_name);
 
         document.title = title;
@@ -24,7 +28,12 @@ var Category = {
         }
     },
 
-    render_error: function() {
-        console.log('err');
+    render_error: function(category_error) {
+        if (category_error) {
+            console.log('category_err: ' + category_error.status);
+            return true;
+        }
+
+        return false;
     }
 };

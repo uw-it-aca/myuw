@@ -8,42 +8,27 @@ var TuitionCard = {
             TuitionCard.dom_target.hide();
             return;
         }
-        WSData.fetch_tuition_data(TuitionCard.render_upon_data,
-                                  TuitionCard.render_error);
-        WSData.fetch_notice_data(TuitionCard.render_upon_data,
-                                 TuitionCard.render_error);
+
+        WebServiceData.require({notice_data: new NoticeData(),
+                                tuition_data: new TuitionData()},
+                               TuitionCard.render);
     },
 
-    _has_all_data: function () {
-        if (WSData.tuition_data() && WSData.notice_data()) {
+    render_error: function (notice_resource_error, tuition_resource_error) {
+        if (notice_resource_error || tuition_resource_error) {
+            // notice never returns 404.
+            if (notice_resource_error && notice_resource_error.status === 404 ||
+                tuition_resource_error && tuition_resource_error.status === 404) {
+                // not student or SDB can't find the regid
+                TuitionCard.dom_target.hide();
+            } else {
+                var raw = CardWithError.render("Tuition & Fees");
+                TuitionCard.dom_target.html(raw);
+            }
             return true;
         }
+
         return false;
-    },
-
-    render_error: function (status) {
-        // notice never returns 404.
-        if (status === 404) {
-            // not student or SDB can't find the regid
-            TuitionCard.dom_target.hide();
-            return;
-        }
-        var raw = CardWithError.render("Tuition & Fees");
-        TuitionCard.dom_target.html(raw);
-    },
-
-    render_upon_data: function() {
-        // Having multiple callbacks come to this function,
-        // delay rendering until all requests are complete.
-        if (!TuitionCard._has_all_data()) {
-            return;
-        }
-
-        // _render should be called only once.
-        if (renderedCardOnce(TuitionCard.name)) {
-            return;
-        }
-        TuitionCard._render();
     },
 
     process_tuition: function(data) {
@@ -58,8 +43,19 @@ var TuitionCard = {
         };
     },
 
-    _render: function () {
-        var template_data = WSData.tuition_data(),
+    render: function (resources) {
+        var notice_resource = resources.notice_data;
+        var tuition_resource = resources.tuition_data;
+        if (TuitionCard.render_error(notice_resource.error, tuition_resource.error)) {
+            return;
+        }
+
+        // _render should be called only once.
+        if (renderedCardOnce(TuitionCard.name)) {
+            return;
+        }
+
+        var template_data = tuition_resource.data,
             tuition_due_notice,
             display_date,
             due_date,

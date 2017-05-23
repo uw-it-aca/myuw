@@ -8,25 +8,26 @@ var GradStatusCard = {
             return;
         }
 
-        WSData.fetch_mygrad_data(GradStatusCard.render_upon_data, GradStatusCard.render_error);
+        WebServiceData.require({mygrad_data: new MyGradData()}, GradStatusCard.render);
     },
 
-    render_upon_data: function() {
-        if (!GradStatusCard._has_all_data()) {
+    render: function (resources) {
+        var mygrad_resource = resources.mygrad_data;
+
+        if (GradStatusCard.render_error(mygrad_resource.error)) {
             return;
         }
-        GradStatusCard._render(WSData.mygrad_data());
-    },
 
-    _render: function (mygrad_data) {
+        var mygrad_data = mygrad_resource.data;
         var source = $("#gradstatus_card_content").html();
         var template = Handlebars.compile(source);
         if (!mygrad_data.degrees && !mygrad_data.leaves && !mygrad_data.petitions) {
             GradStatusCard.dom_target.hide();
             return;
         }
+
         if (mygrad_data.degree_err && mygrad_data.leave_err && mygrad_data.petit_err) {
-            GradStatusCard.render_error();
+            GradStatusCard.render_error(true);
             return;
         }
 
@@ -43,16 +44,13 @@ var GradStatusCard = {
         GradStatusCard.dom_target.html(template(mygrad_data));
     },
 
-    _has_all_data: function () {
-        if (WSData.mygrad_data()) {
+    render_error: function(mygrad_resource_error) {
+        if (mygrad_resource_error) {
+            var raw = CardWithError.render("Graduate Request Status");
+            GradStatusCard.dom_target.html(raw);
             return true;
         }
+
         return false;
-    },
-
-    render_error: function(status) {
-        var raw = CardWithError.render("Graduate Request Status");
-        GradStatusCard.dom_target.html(raw);
     }
-
 };

@@ -2,23 +2,16 @@ var ThankYouCard = {
     name: 'ThankYouCard',
     dom_target: undefined,
     render_init: function() {
-        WSData.fetch_notice_data(ThankYouCard.render_upon_data,ThankYouCard.render_error);
+        WebServiceData.require({notice_data: new NoticeData()},
+                               ThankYouCard.render);
     },
-        render_upon_data: function() {
-        if (!ThankYouCard._has_all_data()) {
+
+    render: function (resources) {
+        var notice_resource = resources.notice_data;
+        if (ThankYouCard.render_error(notice_resource.error)) {
             return;
         }
-        ThankYouCard._render();
-    },
 
-    _has_all_data: function () {
-        if (WSData.notice_data()) {
-            return true;
-        }
-        return false;
-    },
-
-    _render: function () {
         var source = $("#ns_thank_you").html();
         var template = Handlebars.compile(source);
         var ty_notices = Notices.get_notices_for_tag("checklist_thankyou");
@@ -44,8 +37,13 @@ var ThankYouCard = {
 
 
     },
-    render_error: function () {
-        ThankYouCard.dom_target.html(CardWithError.render("Payment Thank You"));
+    render_error: function (notice_resource_error) {
+        if (notice_resource_error) {
+            ThankYouCard.dom_target.html(CardWithError.render("Payment Thank You"));
+            return true;
+        }
+
+        return false;
     },
 
     mark_notices_read: function(notice_hashes) {

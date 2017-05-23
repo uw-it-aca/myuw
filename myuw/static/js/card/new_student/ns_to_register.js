@@ -2,23 +2,16 @@ var ToRegisterCard = {
     name: 'ToRegisterCard',
     dom_target: undefined,
     render_init: function () {
-        WSData.fetch_notice_data(ToRegisterCard.render_upon_data, ToRegisterCard.render_error);
+        WebServiceData.require({notice_data: new NoticeData()},
+                               ToRegisterCard.render);
     },
-    render_upon_data: function () {
-        if (!ToRegisterCard._has_all_data()) {
+
+    render: function (resources) {
+        var notice_resource = resources.notice_data;
+        if (ToRegisterCard.render_error(notice_resource.error)) {
             return;
         }
-        ToRegisterCard._render();
-    },
 
-    _has_all_data: function () {
-        if (WSData.notice_data()) {
-            return true;
-        }
-        return false;
-    },
-
-    _render: function () {
         var source = $("#ns_to_register").html();
         var template = Handlebars.compile(source);
         var no_orient = Notices.get_notices_for_tag("checklist_no_orient");
@@ -55,8 +48,14 @@ var ToRegisterCard = {
         }
 
     },
-    render_error: function () {
-        ToRegisterCard.dom_target.html(CardWithError.render("To Register for Classes"));
+
+    render_error: function (notice_resource_error) {
+        if (notice_resource_error) {
+            ToRegisterCard.dom_target.html(CardWithError.render("To Register for Classes"));
+            return true;
+        }
+
+        return false;
     },
 
     has_to_register_notices: function () {

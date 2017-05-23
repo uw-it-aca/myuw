@@ -12,14 +12,16 @@ var ThriveMessages = {
     show_messages: function() {
         "use strict";
         CommonLoading.render_init();
-        WSData.fetch_thrive_data_history(ThriveMessages.render_messages);
+        WebServiceData.require({thrive_history_data: new ThriveHistoryData()},
+                               ThriveMessages.render_messages);
     },
 
-    render_messages: function() {
+    render_messages: function(resources) {
         "use strict";
         Handlebars.registerPartial('thrive_highlight', $("#thrive_highlight").html());
         Handlebars.registerPartial('thrive_learnmore', $("#thrive_learnmore").html());
-        var messages = WSData.thrive_data();
+        var thrive_history_resource = resources.thrive_history_data;
+        var messages = thrive_history_resource.data;
         var source = $("#thrive_messages").html();
         var template = Handlebars.compile(source);
         var message_groups = ThriveMessages.message_groups(messages, 2);
