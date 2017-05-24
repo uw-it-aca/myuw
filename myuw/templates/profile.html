@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load set_context %}
 {% load static %}
 {% load compress %}
 
-{% block page_title %}
-MyUW Profile
+{% block load_values %}
+{% set_context 'page_title' 'Profile' %}
 {% endblock %}
 
 {% block content %}

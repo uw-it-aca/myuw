@@ -4,7 +4,5 @@ from myuw.util.page_view import page_view
 
 @page_view
 def profile(request):
-    context = {
-        "page_title": "Profile"
-    }
+    context = {}
     return page(request, context, template='profile.html')

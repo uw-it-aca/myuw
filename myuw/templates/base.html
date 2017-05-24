@@ -6,7 +6,7 @@
 
         {% block load_values %}{% endblock %}
         <meta charset="utf-8">
-        <title>{{ page_title|default:'MyUW'}}</title>
+        <title>MyUW: {{ page_title|default:'MyUW'}}</title>
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -105,11 +105,9 @@
                             <i class="fa fa-square-o fa-stack-2x"></i>
                             <i class="fa fa-bars fa-stack-1x"></i>
                         </span>
-                        {% if page_title %}
-                            {% if page_title == "Home" %}MyUW{% else %}{{page_title}}{% endif %}
-                        {% else %}
-                            <span style="color:red;">undefined in view</span>
-                        {% endif %}
+
+                        {% if page_title == "Home" %}MyUW{% else %}{{page_title}}{% endif %}
+                    
                     </button>
                 </div>
             </div>
