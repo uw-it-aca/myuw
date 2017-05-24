@@ -1,77 +1,162 @@
 {% extends wrapper_template %}
 {% block content %}
 <style>
-.current_message { border: 1px solid red; }
+.current_message { background-color: #fbfbe3; }
+h4 {font-weight: 900;}
 </style>
-<h2>Add a new message</h2>
-<form action="{% url 'myuw_manage_messages' %}" method="POST">
-<input type="hidden" name="action" value="save"/>
-{% if has_error %}
-<p>Error saving message</p>
-{% endif %}
-{% csrf_token %}
-Start: <input name="start" type="text" placeholder="YYYY-MM-DD" value="{{ input.start }}"> <input name="start_time" value="{{ input.start_time|default:'00:01' }}" />{% if start_error %} Bad start date {% endif %}<br />
-End: <input name="end" type="text" placeholder="YYYY-MM-DD" value="{{ input.end }}"> <input name="end_time" value="{{ input.end_time|default:'00:01' }}" />{% if end_error %} Bad end date {% endif %}<br/>
-Campus: 
-<input type="radio" name="campus" value="" checked="checked">All</input>
-<input type="radio" name="campus" value="seattle">Seattle</input>
-<input type="radio" name="campus" value="tacoma">Tacoma</input>
-<input type="radio" name="campus" value="bothell">Bothell</input>
-
-<br />
-Affiliation:
-
-<label class="checkbox-inline"><input type='radio' name='affiliation' value='' checked="checked"> Any</label>
-<label class="checkbox-inline"><input type='radio' name='affiliation' value='student' {% if checked.is_student %}checked="checked"{% endif %}> Student</label>
-<label class="checkbox-inline"><input type='radio' name='affiliation' value='undergrad' {% if checked.is_undergrad %}checked="checked"{% endif %}> Undergraduate</label>
-<label class="checkbox-inline"><input type='radio' name='affiliation' value='grad_student' {% if checked.is_grad_student %}checked="checked"{% endif %}> Grad Student</label>
-<label class="checkbox-inline"><input type='radio' name='affiliation' value='employee' {% if checked.is_employee %}checked="checked"{% endif %}> Employee</label>
-<label class="checkbox-inline"><input type='radio' name='affiliation' value='staff' {% if checked.is_staff %}checked="checked"{% endif %}> Staff</label>
-<label class="checkbox-inline"><input type='radio' name='affiliation' value='faculty' {% if checked.is_faculty %}checked="checked"{% endif %}> Faculty</label>
-ox-inline"><input type='radio' name='affiliation' value='student_employee' {% if checked.is_student_employee %}checked="checked"{% endif %}> Student Employee</label>
-
-<br />
-PCE:  <label class="checkbox-inline"><input type='checkbox' name='pce' value='pce'> PCE</label>
-
-<br />
-Limit to Group: <input type="text" name="group_id" value="{{ input.group_id }}"/> <br/>
-<em>You can create a group using the <a href="https://groups.uw.edu/" target="_blank">UW Groups Service</a></em><br/>
-
-<br />
-Label: <input type="text" name="title" value="{{ input.title }}"/> <br />
-<em>Not user visible</em><br />
-
-Message: <input type="text" name="message" value="{{ input.message }}"/> <br />
-
-Published: <input type="checkbox" name="is_published" checked="checked" value="yes"/><br/>
-
-<input type="submit">
-</form>
-<h2>Existing messages:</h2>
-<p>Highlighted messages are current, and will be shown to users if they are published.  We are using <em>{{ now }}</em> as the date for determining what's current</p>
-<ul>
-{% for message in messages %}
-<li>
-<div {% if message.is_current %}class="current_message"{% endif %}>
-<h4>{{ message.message_title|safe }} <form action="{% url 'myuw_manage_messages'%}" method="POST">
-<input type="hidden" name="pk" value="{{ message.pk }}">
-<button type="submit" name="action" value="delete">Delete</button>
-{% if message.is_published %}
-<button type="submit" name="action" value="unpublish">Unpublish</button>
-{% else %}
-<button type="submit" name="action" value="publish">Publish</button>
-{% endif %}
-
-{% csrf_token %}
-
-</form></h4>
-<em>Created by {{ message.added_by }} on {{ message.added_date }}</em>
-<br/>Published: {{ message.is_published }} <br />
-<br /><a href="/?banner={{ message.preview_id }}">Preview</a>
-<p>{{ message.start }} to {{ message.end }}.  Campus: {{ message.campus }}.  Affiliation: {{ message.affiliation }}.  PCE: {{ message.pce }}.  Group: {{ message.group_id }}</p>
-<p>{{ message.message_body|safe }}</p>
+<div class="container">
+<h2>Banner Messages</h2>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h3 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Add a new message</a></h3>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <form action="{% url 'myuw_manage_messages' %}" method="POST">
+                        <input type="hidden" name="action" value="save"/>
+                        {% if has_error %}
+                        <p>Error saving message</p>
+                        {% endif %}
+                        {% csrf_token %}
+                    
+                        <div class="row">
+                            <div class="form-group col-xs-6">
+                                <label for="message_start_date">Start date</label><br />
+                                <input id="message_start_date" name="start" type="text" class="form-control" placeholder="YYYY-MM-DD" value="{{ input.start }}">
+                            </div>
+                            <div class="form-group col-xs-6">
+                                <label for="message_start_time">Start time</label><br />
+                                <input id="message_start_time" name="start_time" type="text" class="form-control" value="{{ input.start_time|default:'00:01' }}" /><!-- {% if start_error %} Bad start date {% endif %} -->
+                            </div>
+                            {% if start_error %}<span id="helpBlock" class="help-block">Bad start date/time</span>{% endif %}
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-6">
+                                <label for="message_end_date">End date</label><br />
+                                <input id="message_end_date" name="end" type="text" class="form-control" class="form-control" placeholder="YYYY-MM-DD" value="{{ input.end }}">
+                            </div>
+                            <div class="form-group col-xs-6">
+                                <label for="message_end_time">End time</label><br />
+                                <input id="message_end_time" name="end_time" type="text" class="form-control" value="{{ input.end_time|default:'00:01' }}" />{% if end_error %} Bad end date {% endif %}
+                            </div>
+                        </div>
+                        <h3>Audience</h3>
+                        <h4>Campus</h4>
+                        <div class="form-group"> 
+                            <label class="radio-inline"><input type="radio" name="campus" value="" checked="checked">All</label>
+                            <label class="radio-inline"><input type="radio" name="campus" value="seattle">Seattle</label>
+                            <label class="radio-inline"><input type="radio" name="campus" value="tacoma">Tacoma</label>
+                            <label class="radio-inline"><input type="radio" name="campus" value="bothell">Bothell</label>
+                        </div>
+                    
+                        <h4>Affiliation</h4>
+                        <div class="form-group">   
+                            <label class="radio-inline"><input type='radio' name='affiliation' value='' checked="checked"> Any</label>
+                            <label class="radio-inline"><input type='radio' name='affiliation' value='student' {% if checked.is_student %}checked="checked"{% endif %}> Student</label>
+                            <label class="radio-inline"><input type='radio' name='affiliation' value='undergrad' {% if checked.is_undergrad %}checked="checked"{% endif %}> Undergraduate</label>
+                            <label class="radio-inline"><input type='radio' name='affiliation' value='grad_student' {% if checked.is_grad_student %}checked="checked"{% endif %}> Grad Student</label>
+                            <label class="radio-inline"><input type='radio' name='affiliation' value='employee' {% if checked.is_employee %}checked="checked"{% endif %}> Employee</label>
+                            <label class="radio-inline"><input type='radio' name='affiliation' value='staff' {% if checked.is_staff %}checked="checked"{% endif %}> Staff</label>
+                            <label class="radio-inline"><input type='radio' name='affiliation' value='faculty' {% if checked.is_faculty %}checked="checked"{% endif %}> Faculty</label>
+                            <label class="radio-inline"><input type='radio' name='affiliation' value='student_employee' {% if checked.is_student_employee %}checked="checked"{% endif %}> Student Employee</label>
+                        </div>
+                    
+                    
+                        <label class="checkbox-inline"><input type='checkbox' name='pce' value='pce'> Include PCE</label>
+                        
+                        <h4>Limit to a UW Group</h4>
+                        <div class="row">
+                            <div class="form-group col-xs-6">
+                                <label for="message_uwgroup">UW Group</label><br />
+                                <input id="message_uwgroup" type="text" class="form-control" name="group_id" value="{{ input.group_id }}"/> 
+                                <span class="help-block">You can create a group using the <a href="https://groups.uw.edu/" target="_blank">UW Groups Service</a></span>   
+                            </div>
+                        </div>
+                    
+                        
+                        <h3>Message</h3>
+                        <div class="row">
+                            <div class="form-group col-xs-6">
+                                <label for="mesage_title">Title</label><br />
+                                <input id="message_title" class="form-control" type="text" name="title" value="{{ input.title }}"/>
+                                <span class="help-block">Not visible to user</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-6">
+                                <label>Message</label><br />
+                                <textarea class="form-control" rows="2" name="message" value="{{ input.message }}"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-6">
+                            <label class="checkbox-inline"><input type="checkbox" name="is_published" value="yes"/> Publish</label>
+                            <span class="help-block">Selecting 'Publish' will publish message on MyUW homepage. Leave unselected to save without publishing.</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+                <h3 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Existing messsages</a></h3>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    <p>Highlighted messages are current (within start and end dates), and will be shown to users if they are published.  We are using <em>{{ now }}</em> as the date for determining what's current</p>
+                        <ul class="list-group">
+                        {% for message in messages %}
+                            <li class="list-group-item {% if message.is_current %}current_message{% endif %}">
+                                <div>
+                                    <h4>{{ message.message_title|safe }}</h4>
+                                    <em>Created by {{ message.added_by }} on {{ message.added_date }}</em>
+                                    <div style="padding: 10px 15px;font-size: 15px;text-align: center;border:1px solid #333;background-color:#fff;margin:10px 0;">{{ message.message_body|safe }}</div>
+                                    <div class="text-right">
+                                        <form action="{% url 'myuw_manage_messages'%}" method="POST">
+                                            <input type="hidden" name="pk" value="{{ message.pk }}">
+                                            <button class="btn btn-danger"type="submit" name="action" value="delete">Delete</button>
+                                            {% if message.is_published %}
+                                            <button class="btn btn-success"type="submit" name="action" value="unpublish">Unpublish</button>
+                                            {% else %}
+                                            <button class="btn btn-primary" type="submit" name="action" value="publish">Publish</button>
+                                            {% endif %}
+                                            
+                                            {% csrf_token %}
+                                            
+                                        </form>
+                                    </div>
+                                        <dl class="dl-horizontal">
+                                            <dt>Published</dt>
+                                            <dd>{{ message.is_published }}</dd>
+                                            <dt>Published dates</dt>
+                                            <dd>{{ message.start }} to {{ message.end }}</dd>
+                                            <dt>Campus</dt>
+                                            <dd>{{ message.campus }}</dd>
+                                            <dt>Affiliation</dt>
+                                            <dd>{{ message.affiliation }}</dd>
+                                            <dt>PCE</dt>
+                                            <dd>{{ message.pce }}</dd>
+                                            <dt>UW Group</dt>
+                                            <dd>{{ message.group_id }}</dd>
+                                            <dt>Preview</dt>
+                                            <dd><a href="/?banner={{ message.preview_id }}" target="_blank">/?banner={{ message.preview_id }}</a></dd>
+                                        </dl>
+                                        
+                                    
+                                 <!--   <br/>Published: {{ message.is_published }} <br />
+                                    <br /><a href="/?banner={{ message.preview_id }}">Preview</a>
+                                    <p>{{ message.start }} to {{ message.end }}.  Campus: {{ message.campus }}.  Affiliation: {{ message.affiliation }}.  PCE: {{ message.pce }}.  Group: {{ message.group_id }}</p> --> 
+                                
+                                </div>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</li>
-{% endfor %}
-</ul>
 {% endblock %}
