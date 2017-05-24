@@ -1,10 +1,12 @@
 {% load hashing_tag %}
+{% load myuw_sidebar %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
 
+        {% block load_values %}{% endblock %}
         <meta charset="utf-8">
-        <title>MyUW: {% if page_title %}{{page_title}}{% else %}undefined in view{% endif %}</title>
+        <title>{{ page_title|default:'MyUW'}}</title>
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -51,7 +53,6 @@
     </head>
 
     <body>
-
         {% csrf_token %}
 
         {% block header %}

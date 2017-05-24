@@ -1,16 +1,17 @@
 {% extends "base.html" %}
+{% load set_context %}
 {% load static %}
 {% load compress %}
 
-{% block page_title %}
-MyUW Accounts
+{% block load_values %}
+{% set_context 'page_title' 'MyUW Account' %}
 {% endblock %}
 
 {% block content %}
 
     <div id="main-content" role="main" aria-labelledby="main">
         <div class="container accounts-container">
-            <h2>Accounts</h2>
+            <h2>{{ page_title }}</h2>
 
             <div class="row">
                 <div class="account-content col-md-8">
