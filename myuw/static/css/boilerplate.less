@@ -26,9 +26,8 @@
 
 @retina: ~"only screen and (-webkit-min-device-pixel-ratio: 2)";
 
-// based on 688 breakpoint for 2-columns
-@one-column: ~"(max-width: 687px)";
-@two-column: ~"(min-width: 688px)";
+// based on 768 breakpoint for 2-columns
+@two-column: ~"(min-width: @{tablet-width} )";
 
 @tablet: ~"(min-width: @{tablet-width} ) and (max-width: @{tablet-max} )";
 @desktop:  ~"(min-width: @{desktop-width} )";

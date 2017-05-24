@@ -102,7 +102,7 @@ var showError = function() {
 // common method to set display style
 var get_is_desktop = function() {
     //var mobile_cutoff_width = 992;
-    var mobile_cutoff_width = 688;
+    var mobile_cutoff_width = 768;
     var viewport_width = $(window).width();
     return (viewport_width >= mobile_cutoff_width);
 };
