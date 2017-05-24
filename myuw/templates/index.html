@@ -2,8 +2,10 @@
 {% load static %}
 {% load compress %}
 
-{% block page_title %}
-MyUW
+{% load set_context %}
+
+{% block load_values %}
+{% set_context 'page_title' 'MyUW' %}
 {% endblock %}
 
 {% block content %}
@@ -91,16 +93,6 @@ MyUW
     {% include "handlebars/thrive_message.html" %}
 
     <script>
-    window.page_titles = {
-        "landing": "MyUW Home",
-        "course_list": "MyUW",
-        "visual": "MyUW: Visual Schedule",
-        "instructor_schedule": "Teaching Schedule",
-        "finabala": "Financial Balances",
-        "instructor": "Faculty Directory",
-        "finals": "Final Exams",
-        "grades": "Grades"
-    };
     window.webservice_outage = {{ webservice_outage|yesno:"true, false" }};
     </script>
 
