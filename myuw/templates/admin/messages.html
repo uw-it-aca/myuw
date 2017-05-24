@@ -1,7 +1,7 @@
 {% extends wrapper_template %}
 {% block content %}
 <style>
-.current_message { border: 1px solid red; }
+.current_message { background-color: #fbfbe3; }
 h4 {font-weight: 900;}
 </style>
 <div class="container">
@@ -106,22 +106,22 @@ h4 {font-weight: 900;}
             </div>
             <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
                 <div class="panel-body">
-                    <p>Highlighted messages are current, and will be shown to users if they are published.  We are using <em>{{ now }}</em> as the date for determining what's current</p>
+                    <p>Highlighted messages are current (within start and end dates), and will be shown to users if they are published.  We are using <em>{{ now }}</em> as the date for determining what's current</p>
                         <ul class="list-group">
                         {% for message in messages %}
-                            <li class="list-group-item">
-                                <div {% if message.is_current %}class="current_message"{% endif %}>
+                            <li class="list-group-item {% if message.is_current %}current_message{% endif %}">
+                                <div>
                                     <h4>{{ message.message_title|safe }}</h4>
                                     <em>Created by {{ message.added_by }} on {{ message.added_date }}</em>
-                                    <div style="padding: 10px 15px;font-size: 15px;text-align: center;background-color: #558097; color: #fff;margin:10px 0;">{{ message.message_body|safe }}</div>
+                                    <div style="padding: 10px 15px;font-size: 15px;text-align: center;border:1px solid #333;background-color:#fff;margin:10px 0;">{{ message.message_body|safe }}</div>
                                     <div class="text-right">
                                         <form action="{% url 'myuw_manage_messages'%}" method="POST">
                                             <input type="hidden" name="pk" value="{{ message.pk }}">
                                             <button class="btn btn-danger"type="submit" name="action" value="delete">Delete</button>
                                             {% if message.is_published %}
-                                            <button class="btn btn-warning"type="submit" name="action" value="unpublish">Unpublish</button>
+                                            <button class="btn btn-success"type="submit" name="action" value="unpublish">Unpublish</button>
                                             {% else %}
-                                            <button class="btn btn-success" type="submit" name="action" value="publish">Publish</button>
+                                            <button class="btn btn-primary" type="submit" name="action" value="publish">Publish</button>
                                             {% endif %}
                                             
                                             {% csrf_token %}
