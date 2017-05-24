@@ -59,6 +59,12 @@ def popular_links(request, page):
         else:
             kwargs['is_any_%s' % field] = True
 
+    # typo in the original model creation.  patching here to avoid a
+    # db migration
+    if 'is_undergrad' in filter_kwargs:
+        del filter_kwargs['is_undergrad']
+        filter_kwargs['is_undegrad'] = True
+
     all_popular = VisitedLink.get_popular(**filter_kwargs)
 
     # Display is 1-indexed, we're 0-indexed

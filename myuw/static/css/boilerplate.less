@@ -359,8 +359,12 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 /*** modals and banner messaging ***/
 .myuw-modals { }
 
-.myuw-banner { margin: 0 -16px 16px -16px;
-    @media @desktop { margin: 0;   position: absolute; top: 0; left: 0; right: 0; z-index: 1; }
+
+.myuw-banner-desktop { display: none;
+    @media @desktop { display: block; }
+}
+.myuw-banner-mobile { margin: 0 -16px 16px -16px;
+    @media @desktop { display: none; }
 }
 
 /*** cards ***/

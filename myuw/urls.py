@@ -12,6 +12,7 @@ from myuw.views.future_quarters import future_quarters
 from myuw.views.textbooks import textbooks
 from myuw.views.category import category
 from myuw.views.display_dates import override
+from myuw.views.message_admin import manage_messages
 from myuw.views.link_admin import popular_links
 from myuw.views.choose import new_site, old_site
 from myuw.views.logger import log_interaction
@@ -41,7 +42,6 @@ from myuw.views.api.calendar import DepartmentalCalendar
 from myuw.views.search import search_res
 from myuw.views.api.upass import UPass
 from myuw.views.api.link import ManageLinks
-from myuw.views.api.messages import Messages
 from myuw.views.api.directory import MyDirectoryInfo
 
 urlpatterns = []
@@ -58,6 +58,7 @@ if settings.DEBUG:
 urlpatterns += [
     url(r'admin/dates', override, name="myuw_date_override"
         ),
+    url(r'admin/messages', manage_messages, name="myuw_manage_messages"),
     url(r'admin/links/(?P<page>[0-9]+)', popular_links,
         name="myuw_popular_links_paged"),
     url(r'admin/links', popular_links, {'page': 1},
@@ -167,9 +168,6 @@ urlpatterns += [
         ),
     url(r'^api/v1/thrive/$', login_required(ThriveMessages().run),
         name="myuw_thrive_api"
-        ),
-    url(r'^api/v1/messages/$', login_required(Messages().run),
-        name="myuw_message_api"
         ),
     url(r'^api/v1/directory/$', login_required(MyDirectoryInfo().run),
         name="myuw_directory_api"

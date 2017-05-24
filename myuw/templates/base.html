@@ -112,9 +112,37 @@
                 </div>
             </div>
 
+
+
         </div>
 
         <h1 class="visually-hidden">MyUW</h1>
+
+        <!-- message banner (desktop only) -->
+        <div class="myuw-banner-desktop" id="app_messages" role="complementary">
+
+            <div class="message-banner">
+                {% if user.affiliations.grad %}
+                <div class="message-text">
+                    <h2>Welcome to MyUW!</h2>&nbsp; MyUW shows you personal, critical, and timely information. <a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn how it works.</a>
+                </div>
+                {% endif %}
+
+                {% if banner_messages %}
+                <div id="message_banner_location">
+                    <div id="messages" class="advert message-text">
+                        {% for message in banner_messages %}
+                        <p>{{ message.message_body|safe }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                {# Keeping code here as scumby believes we'll likely reuse this in the next few weeks#}
+               {% if false %}<div class="advert message-text"><h2>Earn $25 Husky Card Credit - <a id="survey" href="https://catalyst.uw.edu/webq/survey/fournier/290956" target="_blank">Volunteers Needed for 1-Hour UW-IT Interview</a></h2></div>
+               {% endif %}
+           </div>
+        </div>
+        <!-- end message banner -->
 
         <div class="myuw-body">
             <div class="myuw-wrapper">
@@ -151,8 +179,8 @@
 
                 <div class="myuw-content">
 
-                    <!-- message banner -->
-                    <div class="myuw-banner" id="app_messages" role="complementary">
+                    <!-- message banner (mobile only) -->
+                    <div class="myuw-banner-mobile" id="app_messages" role="complementary">
 
                         <div class="message-banner">
                             {% if user.affiliations.grad %}
@@ -160,9 +188,19 @@
                                 <h2>Welcome to MyUW!</h2>&nbsp; MyUW shows you personal, critical, and timely information. <a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn how it works.</a>
                             </div>
                             {% endif %}
-                            <div id="message_banner_location"></div>
+
+                            {% if banner_messages %}
+                            <div id="message_banner_location">
+                                <div id="messages" class="advert message-text">
+                                    {% for message in banner_messages %}
+                                    <p>{{ message.message_body|safe }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endif %}
                             {# Keeping code here as scumby believes we'll likely reuse this in the next few weeks#}
-                           {% if false %}<div class="advert message-text"><h2>Earn $25 Husky Card Credit - <a id="survey" href="https://catalyst.uw.edu/webq/survey/fournier/290956" target="_blank">Volunteers Needed for 1-Hour UW-IT Interview</a></h2></div>{% endif %}
+                           {% if false %}<div class="advert message-text"><h2>Earn $25 Husky Card Credit - <a id="survey" href="https://catalyst.uw.edu/webq/survey/fournier/290956" target="_blank">Volunteers Needed for 1-Hour UW-IT Interview</a></h2></div>
+                           {% endif %}
                        </div>
                     </div>
                     <!-- end message banner -->
@@ -306,7 +344,6 @@
     <script src="{% static 'js/banner/notice.js' %}"></script>
     <script src="{% static 'js/banner/pce.js' %}"></script>
     <script src="{% static 'js/banner/calendar.js' %}"></script>
-    <script src="{% static 'js/banner/messages.js' %}"></script>
     <script src="{% static 'js/card/error.js' %}"></script>
     <script src="{% static 'js/card/grade.js' %}"></script>
     <script src="{% static 'js/card/fin_aid.js' %}"></script>
