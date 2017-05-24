@@ -80,7 +80,6 @@ var VisualScheduleCard = {
 
 
     _consolidate_weeks: function(weeks){
-        console.log(weeks);
         var consolidated_weeks = {},
             first_week = parseInt(Object.keys(weeks)[0]),
             num_weeks = first_week + Object.keys(weeks).length - 1;
@@ -88,6 +87,7 @@ var VisualScheduleCard = {
         for(var i=first_week; i <= num_weeks; i++){
             if(VisualScheduleCard._sections_are_same(weeks[i], weeks[i+1])){
                 // add to consolidated list, tweak end date
+                var one = 2;
 
             }
 
@@ -97,7 +97,53 @@ var VisualScheduleCard = {
 
 
     _sections_are_same: function(list1, list2){
-        // compare section lists  
+        if (list1 === undefined || list2 === undefined) {
+            return false;
+        }
+        console.log(list1)
+        console.log(list2)
+
+        var lists_are_same = true,
+            l1_sections = list1.sections.slice(),
+            l2_sections = list2.sections.slice();
+
+        while(l1_sections.length > 1){
+            var l1_section = l1_sections.pop(),
+                list_has_section = false;
+
+            $.each(l2_sections, function(idx, l2_section){
+                if(l1_section.course_number === l2_section.course_number
+                    && l1_section.curriculum_abbr === l2_section.curriculum_abbr){
+
+                    list_has_section = true;
+                    l2_sectionssplice(idx, 1);
+                    return false;
+                }
+            });
+
+            if(!list_has_section){
+                lists_are_same = false;
+            }
+            if(l1_sections.length === 0 && l2_sections.length > 0){
+                lists_are_same = false;
+            }
+
+        }
+        //$.each(list1.sections, function(idx, l1_section){
+        //    var list_has_section = false;
+        //    $.each(list2.sections, function(idx, l2_section){
+        //        if(l1_section.course_number === l2_section.course_number && l1_section.curriculum_abbr === l2_section.curriculum_abbr){
+        //            list_has_section = true;
+        //        }
+        //    });
+        //    if(!list_has_section){
+        //        lists_are_same = false;
+        //    }
+        //});
+
+        console.log(lists_are_same);
+        return lists_are_same;
+
 
     },
 
