@@ -73,10 +73,32 @@ var VisualScheduleCard = {
         var weeks = VisualScheduleCard._get_weeks_from_range(range);
 
         weeks = VisualScheduleCard._add_sections_to_weeks(weeks, course_data.sections);
-        console.log(weeks);
-
+        weeks = VisualScheduleCard._consolidate_weeks(weeks);
 
         return VisualScheduleCard._format_dates(schedule_periods);
+    },
+
+
+    _consolidate_weeks: function(weeks){
+        console.log(weeks);
+        var consolidated_weeks = {},
+            first_week = parseInt(Object.keys(weeks)[0]),
+            num_weeks = first_week + Object.keys(weeks).length - 1;
+
+        for(var i=first_week; i <= num_weeks; i++){
+            if(VisualScheduleCard._sections_are_same(weeks[i], weeks[i+1])){
+                // add to consolidated list, tweak end date
+
+            }
+
+        }
+
+    },
+
+
+    _sections_are_same: function(list1, list2){
+        // compare section lists  
+
     },
 
     _add_sections_to_weeks: function(weeks, sections){
