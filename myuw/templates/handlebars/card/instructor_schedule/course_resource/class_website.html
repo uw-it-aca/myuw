@@ -5,19 +5,19 @@
             </div>
             {{#if class_website_data.not_found}}
                 <div class="pull-right" style="text-align: right;">
-                    <span class="card-badge-value" style="text-align: right;"><a class="course_website" href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" target="_blank"><i class="fa fa-exclamation"></i> View class website</a>
+                    <span class="card-badge-value" style="text-align: right;"><a class="course_website" href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" data-linklabel="Course Website: {{ curriculum_abbr }} {{course_number}} {{section_id}}" target="_blank"><i class="fa fa-exclamation"></i> View class website</a>
                     <div class="course-website-error-message">There is an error reaching website. <a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Please check URL</a></div>
                     </span>
                 </div>
             {{else}}
                 {{#if class_website_url}}
                   <div class="pull-right">
-                      <span class="card-badge-value" style="text-align: right;"><a class="course_website" href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" target="_blank">{{#if class_website_data.title}}{{ class_website_data.title }}{{else}}View class website{{/if}}</a><div class="course-website-update"><a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Update</a></div>
+                      <span class="card-badge-value" style="text-align: right;"><a class="course_website" href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" target="_blank">{{#if class_website_data.title}}{{ class_website_data.title }}{{else}}View class website{{/if}}</a><div class="course-website-update"><a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" data-linklabel="Update Course Website: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Update</a></div>
                       </span>
                   </div>
                 {{else}}
                   <div class="pull-right" style="text-align: right;">
-                      <span class="card-badge-value" ><a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Add</a>
+                      <span class="card-badge-value" ><a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" data-linklabel="Add Course Website: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Add</a>
                       <div class="add-delay-message">Up to one hour delay to show on MyUW</div>
                       </span>
                   </div>

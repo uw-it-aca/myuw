@@ -23,25 +23,25 @@
                     {{#if grading_period_is_open}}
                         <div class="card-badge-value">
                         {{#if grading_status.all_grades_submitted}}
-                            <a href="{{grading_status.section_url}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by <strong>{{grading_status.submitted_by}}</strong> on {{ grading_status.submitted_relative_date }}
+                            <a href="{{grading_status.section_url}}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by <strong>{{grading_status.submitted_by}}</strong> on {{ grading_status.submitted_relative_date }}
                         {{else}}
-                            {{#if grading_status.unsubmitted_count}}<a href="{{grading_status.section_url}}" target="_blank">{{grading_status.unsubmitted_count}} grade{{pluralize grading_status.unsubmitted_count '' 's'}} to submit </a>
+                            {{#if grading_status.unsubmitted_count}}<a href="{{grading_status.section_url}}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">{{grading_status.unsubmitted_count}} grade{{pluralize grading_status.unsubmitted_count '' 's'}} to submit </a>
                             {{else}}
-                            {{#if allows_secondary_grading}}{{grading_status.grading_status}}{{else}}Grading for secondary sections is disabled. <a href="{{grading_status.section_url}}" target="_blank">View primary section</a>.{{/if}}
+                            {{#if allows_secondary_grading}}{{grading_status.grading_status}}{{else}}Grading for secondary sections is disabled. <a href="{{grading_status.section_url}}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">View primary section</a>.{{/if}}
                             {{/if}}
                         {{/if}}
-                        <a href="https://itconnect.uw.edu/learn/tools/gradepage/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="gradepage_help_link" target="_blank"><i class="fa fa-question-circle"></i></a>
+                        <a href="https://itconnect.uw.edu/learn/tools/gradepage/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="gradepage_help_link" target="_blank" data-linklabel="GradePage Help"><i class="fa fa-question-circle"></i></a>
                             <div style="font-size:80%;font-style:italic;margin-top: -10px;">Grade submission closes <strong>{{grade_submission_deadline_date}}</strong>{{#unless deadline_in_24_hours}} ({{grade_submission_relative_deadline}}){{/unless}}</div>
                         </div>
                     {{else}}
                         {{#if grading_period_is_past}}
                             <div class="card-badge-value">
-                                {{#if grading_status.all_grades_submitted}}<a href="{{grading_status.section_url}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by <strong>{{grading_status.submitted_by}}</strong> on {{ grading_status.submitted_relative_date }}<br>
+                                {{#if grading_status.all_grades_submitted}}<a href="{{grading_status.section_url}}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by <strong>{{grading_status.submitted_by}}</strong> on {{ grading_status.submitted_relative_date }}<br>
                                 <div style="font-size:80%;font-style:italic;margin-top: -10px;">Grade submission for <strong>{{capitalizeString quarter}} {{year}}</strong> closed {{grade_submission_deadline_date}}</div>
 
                                 {{else}}
                                     {{#if grading_status.grading_status}} {{grading_status.grading_status}}{{else}} {{grading_status.unsubmitted_count}} grade{{pluralize grading_status.unsubmitted_count '' 's'}} not submitted through GradePage{{/if}}
-                                    <div style="font-size:80%;font-style:italic;margin-top: -10px;">Grade submission for <strong>{{capitalizeString quarter}} {{year}}</strong> closed {{grade_submission_deadline_date}} <a href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/" target="_blank">What can I do now?</a></div>
+                                    <div style="font-size:80%;font-style:italic;margin-top: -10px;">Grade submission for <strong>{{capitalizeString quarter}} {{year}}</strong> closed {{grade_submission_deadline_date}} <a href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/" data-linklabel="Change Submitted Grades" target="_blank">What can I do now?</a></div>
                                 {{/if}}
                             </div>
                         {{else}}
@@ -63,7 +63,7 @@
                         </div>
                       {{/each}}
                         <div class="pull-right">
-                          <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter={{capitalizeString quarter}}+{{year}}&sln={{sln}}&chanid=11" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="course_delegate_link">{{#if this.grade_submission_section_delegate}}Update{{else}}Add{{/if}} grading delegate</a>
+                          <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter={{capitalizeString quarter}}+{{year}}&sln={{sln}}&chanid=11" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="course_delegate_link" data-linklabel="{{#if this.grade_submission_section_delegate}}Update{{else}}Add{{/if}} Grading Delegate: {{curriculum_abbr}} {{course_number}} {{section_id}}">{{#if this.grade_submission_section_delegate}}Update{{else}}Add{{/if}} grading delegate</a>
                         </div>
                     </div>
                 </li>
