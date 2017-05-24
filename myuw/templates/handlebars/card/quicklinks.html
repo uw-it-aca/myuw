@@ -25,13 +25,14 @@
         {{#if links.recent_links}}
         <div class="myuw-qlinks-recent">
             <h4>Recently Visited</h4>
-            <span class="recent-message smaller">Save your recently visited links to your Quick Links list for future access.</span>
             <ul class="unstyled-list myuw-qlinks-recent-list">
                 {{#each links.recent_links}}
                 <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}"><span>{{label }}</span></a></div><div class="pull-right link-controls">{{#if added }}in your list{{else}}<a href="#" class="control-link" data-linkid="{{ id }}" data-linktype="recent" title="Save {{label}} link to your Quick Links list"><i class="fa fa-plus" aria-hidden="true"></i></a>{{/if}}</div></li>
                 {{/each}}
             </ul>
+            <span class="recent-message">Save your recently visited links to your Quick Links list for future access.</span>
         </div>
+        <hr>
         {{/if}}
         <div id="custom-link-edit" style="display: none; position: absolute; border: 1px solid #ccc; background: #fff; width:95%;padding:10px;">
             <div class="form-group">
