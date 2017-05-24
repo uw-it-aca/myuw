@@ -140,25 +140,48 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
     .advert { background: transparent !important; color: #fff!important; }
 }
 
-// start enforcing a 320px col-md-4 width as soon as 2-columns layout begins
-@media @two-column {
+#app_content {
+    .container {
+        .row { margin: 0 !important; }
 
-    .myuw-cards { max-width: none !important; }
-    .container { max-width: none !important;
-        .row { margin-left: 0; margin-right: 0; }
-        .row [class*="col-"] { padding-left: 0; padding-right: 0; }
+        // handle bootstrap generic col-x classes
 
-        .row [class*="col-md-6"] { padding-left: 8px; padding-right: 8px; }
+        [class*="col-"] {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        @media @two-column {
+
+            .col-md-4 {
+                width: 33.33333333% !important;
+                float: left;
+                padding-left: 8px !important;
+                padding-right: 8px !important;
+                &:first-child { padding-left: 0 !important; }
+                &:last-child { padding-right: 0 !important; }
+
+            }
+            .col-md-8 {
+                width: 66.66666667% !important;
+                float: left;
+                padding-left: 8px !important;
+                padding-right: 8px !important;
+                &:first-child { padding-left: 0 !important; }
+                &:last-child { padding-right: 0 !important; }
+            }
+
+            // handle even width columns (i.e. accounts page)
+           .col-md-6 {
+               width: 50% !important;
+               float: left;
+               padding-left: 8px !important;
+               padding-right: 8px !important;
+               &:first-child { padding-left: 0 !important; }
+               &:last-child { padding-right: 0 !important; }
+           }
+        }
     }
-
-    // handle even width columns (i.e. accounts page)
-    .col-md-6 { width: 50% !important; float: left;
-        &:first-child { padding-left: 0 !important; }
-        &:last-child { padding-right: 0 !important; }
-    }
-
-    .col-md-4 { width: 320px !important; margin-left: -320px; float: right; }
-    .col-md-8 { float: left; width: auto; margin-right: 336px; }
 }
 
 /*** search ***/
