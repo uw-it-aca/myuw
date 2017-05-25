@@ -67,6 +67,11 @@ $(window.document).ready(function() {
         return false;
     });
 
+    // handle clicking on mobile menu
+    $("#menu_toggle").bind("click", function(ev) {
+		$("#menu_container").toggleClass("slide-down");
+	});
+
     // handle touchstart to mimic :hover event for mobile touch
     $('body').bind('touchstart', function() {});
 
@@ -96,7 +101,8 @@ var showError = function() {
 
 // common method to set display style
 var get_is_desktop = function() {
-    var mobile_cutoff_width = 992;
+    //var mobile_cutoff_width = 992;
+    var mobile_cutoff_width = 768;
     var viewport_width = $(window).width();
     return (viewport_width >= mobile_cutoff_width);
 };
@@ -267,9 +273,11 @@ var getUrlParameter = function (name) {
 };
 
 var init_search_events = function() {
-    $("#app_search").on('shown.bs.collapse', function(){
+    // handle clicking on search button
+    $("#search_toggle").bind("click", function(ev) {
+		$("#app_search").toggleClass("slide-down");
         $("#search-nav").focus();
-    });
+	});
 };
 
 /* node.js exports */
