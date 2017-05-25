@@ -9,11 +9,38 @@
     <li><a href="https://isc.uw.edu/your-info/" id="employee_workday_info">Update Your Information in Workday</a></li>
     {{/if}}
 
+    {{#if is_student_employee}}
+      <li><a href="https://careers.uw.edu/jobs/" id="">Career and Internship Center</a></li>
+      <li><a href="http://www.huskyjobs.washington.edu/students" id="">Husky Jobs</a></li>
+      <li><a href="http://www.lib.washington.edu/about/employment/students" id="">Student jobs in the Libraries</a></li>
+      {{#if is_tacoma}}
+        <li><a href="http://www.tacoma.uw.edu/career-development/career-development-education">Career Development</a></li>
+      {{else}}
+        {{#if is_bothell}}
+          <li><a href="http://www.bothell.washington.edu/career">Career Services</a></li>
+        {{else}}
+          <li><a href="http://careers.washington.edu/">Career Center</a></li>
+        {{/if}}
+      {{/if}}
+    {{/if}}
+
     <li><a href="https://registrar.washington.edu/students/preferred-names/">Preferred Names</a></li>
 
     {{#if is_student}}
-    <li><a href="https://registrar.washington.edu/enrollment-and-records/name-change-policy/" id="student_legal_name">Changing Your Legal Name</a></li>
-    <li><a href="https://depts.washington.edu/qcenter/wordpress/changing-your-name-in-the-uw-student-database/" id="student_gender_change">Changing Your Name and Gender</a></li>
+      <li><a href=""></a></li>
+      <li><a href="https://registrar.washington.edu/enrollment-and-records/name-change-policy/" id="student_legal_name">Changing Your Legal Name</a></li>
+      <li><a href="https://depts.washington.edu/qcenter/wordpress/changing-your-name-in-the-uw-student-database/" id="student_gender_change">Changing Your Name and Gender</a></li>
+
+      {{#if is_tacoma}}
+        <li><a href="http://www.washington.edu/home/peopledir/">UW Directory</a></li>
+      {{else}}
+        {{#if is_bothell}}
+          <li><a href="http://www.uwb.edu/directory">Bothell Faculty and Staff Directory</a></li>
+        {{else}}
+          <li><a href="http://www.washington.edu/home/peopledir/">UW Directory</a></li>
+        {{/if}}
+      {{/if}}
+
     {{/if}}
   </ul>
 </div>
