@@ -1,7 +1,7 @@
 var Global = require("./global.js");
 
 describe('DirectoryInfoCard', function(){
-    describe("directory info instructor card default", function() {
+    describe("instructor/employee profile card default", function() {
         before(function () {
             var render_id = 'dir_info';
 
@@ -27,7 +27,7 @@ describe('DirectoryInfoCard', function(){
             assert.equal(DirectoryInfoCard.dom_target.find('span[property="telephone"]').length, 0);
         });
     });
-    describe("directory info instructor card", function() {
+    describe("instructor/employee profile card", function() {
         before(function (done) {
             var render_id = 'dir_info';
 
@@ -67,7 +67,7 @@ describe('DirectoryInfoCard', function(){
             Global.Environment.ajax_stub_restore();
         });
     });
-    describe("directory info instructor card", function() {
+    describe("instructor/employee profile card", function() {
         before(function (done) {
             var render_id = 'dir_info';
 

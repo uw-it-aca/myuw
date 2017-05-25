@@ -57,16 +57,16 @@ $(window.document).ready(function() {
     $("#nav_visual_schedule").bind("click", function(ev) {
         WSData.log_interaction("nav_menu_visual_schedule");
     });
-    
+
     // handle clicking on resources
     $("#categories_link").bind("click", function(ev) {
-        ev.preventDefault();                
+        ev.preventDefault();
         $('html, body').animate({
             scrollTop: $("#categories").offset().top
         }, "fast");
         return false;
     });
-    
+
     // handle touchstart to mimic :hover event for mobile touch
     $('body').bind('touchstart', function() {});
 
@@ -111,7 +111,7 @@ var date_from_string = function(date_string) {
         return;
     }
     var date_object = new Date(matches[1], (parseInt(matches[2], 10) - 1), parseInt(matches[3], 10), parseInt(matches[4], 10), parseInt(matches[5], 10));
-    
+
     return date_object;
 };
 
@@ -123,7 +123,7 @@ var safe_label = function(section_label) {
 };
 
 var titilizeTerm = function(term) {
-    //Takes a term string (Eg 2032,summer,b-term) and 
+    //Takes a term string (Eg 2032,summer,b-term) and
     //returns a title (Eg Summer 2032 B-term)
     var pieces = term.split(",");
     if (pieces.length === 1) {
@@ -282,3 +282,4 @@ exports.myuwFeatureEnabled = myuwFeatureEnabled;
 exports.register_link_recorder = register_link_recorder;
 exports.safe_label = safe_label;
 exports.renderedCardOnce = renderedCardOnce;
+exports.titilizeTerm = titilizeTerm;

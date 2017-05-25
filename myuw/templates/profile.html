@@ -15,6 +15,7 @@ MyUW Profile
     {% include "handlebars/banner/profile.html" %}
     {% include "handlebars/card/profile/profile_card.html" %}
     {% include "handlebars/card/directory_info.html" %}
+    {% include "handlebars/card/student_info.html" %}
     {% include "handlebars/card/profile/help_links_card.html" %}
     {% include "handlebars/card/loading.html" %}
 
@@ -32,6 +33,7 @@ MyUW Profile
         <script src="{% static 'js/page/profile.js' %}"></script>
         <script src="{% static 'js/card/profile/profile.js' %}"></script>
         <script src="{% static 'js/card/profile/directory_info.js' %}"></script>
+        <script src="{% static 'js/card/profile/student_info.js' %}"></script>
         <script src="{% static 'js/card/profile/help_links.js' %}"></script>
     {% endcompress %}
 {% endblock %}

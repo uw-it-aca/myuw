@@ -11,7 +11,10 @@ var ProfileHelpLinksCard = {
         var template = Handlebars.compile(source);
         var compiled = template({
             is_student: (window.user.student || window.user.stud_employee),
-            is_employee: (window.user.employee || window.user.stud_employee)
+            is_employee: (window.user.employee || window.user.stud_employee),
+            is_student_employee: window.user.stud_employee,
+            is_tacoma: window.user.tacoma,
+            is_bothell: window.user.bothell
         });
         ProfileHelpLinksCard.dom_target.html(compiled);
     }
