@@ -1,7 +1,7 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "common_profile_card" %}
 <div class="card common-profile" style="position:relative;">
-  <h2>{{#if has_preferred}}{{display_name}} <span>({{full_name}})</span>{{else}}{{full_name}}{{/if}}  <span><a href="https://identity.uw.edu/"><i class="fa fa-pencil"></i></a></span></h2>
+  <h2>{{#if has_preferred}}{{display_name}} <span>({{full_name}})</span>{{else}}{{full_name}}{{/if}}  <span><a href="https://identity.uw.edu/" title="Manage your preferred name"><i class="fa fa-pencil"></i></a></span></h2>
 
     
 
