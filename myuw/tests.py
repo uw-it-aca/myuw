@@ -32,7 +32,6 @@ from myuw.test.dao.emaillink import TestEmailServiceUrl
 from myuw.test.dao.user import TestUserDao
 from myuw.test.dao.upass import TestUPassDao
 from myuw.test.dao.instructor_schedule import TestInstructorSchedule
-from myuw.test.dao.messages import TestMessages
 from myuw.test.api.current_schedule import TestSchedule as APISchedule
 from myuw.test.api.books import TestApiBooks
 from myuw.test.api.cur_books import TestApiCurBooks
@@ -55,7 +54,6 @@ from myuw.test.api.dept_calendar import TestDeptCalAPI
 from myuw.test.api.instructor_schedule import (
     TestInstructorCurrentSchedule, TestInstructorTermSchedule,
     TestInstructorSection)
-from myuw.test.api.messages import TestMessages
 from myuw.test.cache import TestCustomCachePolicy
 from myuw.test.context_processors import TestContextProcessors
 from myuw.test.loggers import TestSessionLog
