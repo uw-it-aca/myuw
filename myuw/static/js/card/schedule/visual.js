@@ -73,170 +73,47 @@ var VisualScheduleCard = {
         var weeks = VisualScheduleCard._get_weeks_from_range(range);
 
         weeks = VisualScheduleCard._add_sections_to_weeks(weeks, course_data.sections);
+        VisualScheduleCard._print_weeks(weeks);
         weeks = VisualScheduleCard._consolidate_weeks(weeks);
+        //VisualScheduleCard._print_weeks(weeks);
 
         return VisualScheduleCard._format_dates(schedule_periods);
     },
 
+
+    _print_weeks: function(weeks){
+        $.each(weeks, function(i, v){
+            console.log("Start: "+ v.start_date.format("YYYY-MM-DD"));
+
+            $.each(v.sections, function(i, s){
+                console.log(s.curriculum_abbr + " " + s.course_number)
+            });
+            console.log("End: "+ v.end_date.format("YYYY-MM-DD"));
+            console.log("")
+        });
+
+    },
 
     _consolidate_weeks: function(weeks){
         //VisualScheduleCard._test_sections();
         var consolidated_weeks = {},
             first_week = parseInt(Object.keys(weeks)[0]),
             num_weeks = first_week + Object.keys(weeks).length - 1;
+        console.log(weeks)
 
         for(var i=first_week; i <= num_weeks; i++){
             if(VisualScheduleCard._sections_are_same(weeks[i], weeks[i+1])){
-                // add to consolidated list, tweak end date
-                var one = 2;
+                //Change end date
+                weeks[i].end_date = weeks[i+1].end_date;
 
+                //remove 2nd week and increment counter
+                delete weeks[i+1];
+                i += 1;
             }
 
         }
-
-    },
-
-    _test_sections: function(){
-        //var sections1 = {"sections": [
-        //    {
-        //        course_number: "123",
-        //        curriculum_abbr: "asd"
-        //    },
-        //    {
-        //        course_number: "456",
-        //        curriculum_abbr: "asd"
-        //    }
-        //]};
-        //var sections2 = {"sections": [
-        //    {
-        //        course_number: "123",
-        //        curriculum_abbr: "asd"
-        //    },
-        //    {
-        //        course_number: "456",
-        //        curriculum_abbr: "asd"
-        //    }
-        //]};
-        //if(VisualScheduleCard._sections_are_same(sections1, sections2)){
-        //    console.log("identical are same")
-        //} else {
-        //    console.log('err')
-        //}
-
-        var sections1 = {"sections": [
-            {
-                course_number: "123123123",
-                curriculum_abbr: "assd"
-            },
-            {
-                course_number: "456",
-                curriculum_abbr: "asd"
-            }
-        ]};
-        var sections2 = {"sections": [
-            {
-                course_number: "123",
-                curriculum_abbr: "asd"
-            },
-            {
-                course_number: "456",
-                curriculum_abbr: "asd"
-            }
-        ]};
-        if(VisualScheduleCard._sections_are_same(sections1, sections2)){
-            console.log("err")
-        } else {
-            console.log('are diff')
-        }
-        //
-        //var sections1 = {"sections": [
-        //    {
-        //        course_number: "123",
-        //        curriculum_abbr: "asd"
-        //    },
-        //    {
-        //        course_number: "456",
-        //        curriculum_abbr: "asd"
-        //    },
-        //    {
-        //        course_number: "4526",
-        //        curriculum_abbr: "asd"
-        //    }
-        //]};
-        //var sections2 = {"sections": [
-        //    {
-        //        course_number: "123",
-        //        curriculum_abbr: "asd"
-        //    },
-        //    {
-        //        course_number: "456",
-        //        curriculum_abbr: "asd"
-        //    }
-        //]};
-        //if(VisualScheduleCard._sections_are_same(sections1, sections2)){
-        //    console.log("err")
-        //} else {
-        //    console.log('extra in first')
-        //}
-        //
-        //var sections1 = {"sections": [
-        //    {
-        //        course_number: "123",
-        //        curriculum_abbr: "asd"
-        //    },
-        //    {
-        //        course_number: "456",
-        //        curriculum_abbr: "asd"
-        //    }
-        //]};
-        //var sections2 = {"sections": [
-        //    {
-        //        course_number: "123",
-        //        curriculum_abbr: "asd"
-        //    },
-        //    {
-        //        course_number: "456",
-        //        curriculum_abbr: "asd"
-        //    },
-        //    {
-        //        course_number: "4526",
-        //        curriculum_abbr: "asd"
-        //    }
-        //]};
-        //if(VisualScheduleCard._sections_are_same(sections1, sections2)){
-        //    console.log("err")
-        //} else {
-        //    console.log('extra in 2nd')
-        //}
-        //
-        //
-        //var sections1 = {"sections": [
-        //    {
-        //        course_number: "123",
-        //        curriculum_abbr: "asd"
-        //    },
-        //    {
-        //        course_number: "456",
-        //        curriculum_abbr: "asd"
-        //    }
-        //]};
-        //var sections2 = {"sections": [
-        //    {
-        //        course_number: "456",
-        //        curriculum_abbr: "asd"
-        //    },
-        //    {
-        //        course_number: "123",
-        //        curriculum_abbr: "asd"
-        //    }
-        //]};
-        //if(VisualScheduleCard._sections_are_same(sections1, sections2)){
-        //    console.log("success swapped order")
-        //} else {
-        //    console.log('err')
-        //}
-
-
+        console.log(weeks)
+        return weeks
 
     },
 
