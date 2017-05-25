@@ -29,9 +29,13 @@ LOGOUT_URL = "/user_logout"
 
 
 def page(request,
-         context={},
+         context=None,
          template='index.html',
          prefetch=True):
+
+    if context is None:
+        context = {}
+
     timer = Timer()
     netid = get_netid_of_current_user()
     if not netid:
