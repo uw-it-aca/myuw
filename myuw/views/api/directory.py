@@ -27,4 +27,6 @@ class MyDirectoryInfo(RESTDispatch):
             return handle_exception(logger, timer, traceback)
 
     def _json_directory(self, person):
-        return person.json_data()
+        json = person.json_data()
+        json['display_name'] = person.display_name
+        return json

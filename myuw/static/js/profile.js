@@ -38,9 +38,13 @@ var ProfilePage = {
     _load_desktop_cards: function() {
         ProfilePage._reset_content_divs();
         var desktop_body_cards = [
-            DirectoryInfoCard
+            CommonProfileCard,
+            DirectoryInfoCard,
+            StudentInfoCard
         ];
-        var desktop_sidebar_cards = [];
+        var desktop_sidebar_cards = [
+            ProfileHelpLinksCard
+        ];
 
         Cards.load_cards_in_order(desktop_body_cards, $("#profile_content_cards"));
         Cards.load_cards_in_order(desktop_sidebar_cards, $("#profile_sidebar_cards"));
@@ -49,7 +53,9 @@ var ProfilePage = {
     _load_mobile_cards: function() {
         ProfilePage._reset_content_divs();
         var mobile_cards = [
-            DirectoryInfoCard
+            CommonProfileCard,
+            DirectoryInfoCard,
+            StudentInfoCard
         ];
         Cards.load_cards_in_order(mobile_cards, $("#profile_content_cards"));
     },
@@ -60,5 +66,4 @@ var ProfilePage = {
         $("#calendar_banner_location_desktop").html('');
         $("#calendar_banner_location_mobile").html('');
     }
-
 };
