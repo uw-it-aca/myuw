@@ -80,6 +80,7 @@ var VisualScheduleCard = {
 
 
     _consolidate_weeks: function(weeks){
+        //VisualScheduleCard._test_sections();
         var consolidated_weeks = {},
             first_week = parseInt(Object.keys(weeks)[0]),
             num_weeks = first_week + Object.keys(weeks).length - 1;
@@ -95,19 +96,162 @@ var VisualScheduleCard = {
 
     },
 
+    _test_sections: function(){
+        //var sections1 = {"sections": [
+        //    {
+        //        course_number: "123",
+        //        curriculum_abbr: "asd"
+        //    },
+        //    {
+        //        course_number: "456",
+        //        curriculum_abbr: "asd"
+        //    }
+        //]};
+        //var sections2 = {"sections": [
+        //    {
+        //        course_number: "123",
+        //        curriculum_abbr: "asd"
+        //    },
+        //    {
+        //        course_number: "456",
+        //        curriculum_abbr: "asd"
+        //    }
+        //]};
+        //if(VisualScheduleCard._sections_are_same(sections1, sections2)){
+        //    console.log("identical are same")
+        //} else {
+        //    console.log('err')
+        //}
+
+        var sections1 = {"sections": [
+            {
+                course_number: "123123123",
+                curriculum_abbr: "assd"
+            },
+            {
+                course_number: "456",
+                curriculum_abbr: "asd"
+            }
+        ]};
+        var sections2 = {"sections": [
+            {
+                course_number: "123",
+                curriculum_abbr: "asd"
+            },
+            {
+                course_number: "456",
+                curriculum_abbr: "asd"
+            }
+        ]};
+        if(VisualScheduleCard._sections_are_same(sections1, sections2)){
+            console.log("err")
+        } else {
+            console.log('are diff')
+        }
+        //
+        //var sections1 = {"sections": [
+        //    {
+        //        course_number: "123",
+        //        curriculum_abbr: "asd"
+        //    },
+        //    {
+        //        course_number: "456",
+        //        curriculum_abbr: "asd"
+        //    },
+        //    {
+        //        course_number: "4526",
+        //        curriculum_abbr: "asd"
+        //    }
+        //]};
+        //var sections2 = {"sections": [
+        //    {
+        //        course_number: "123",
+        //        curriculum_abbr: "asd"
+        //    },
+        //    {
+        //        course_number: "456",
+        //        curriculum_abbr: "asd"
+        //    }
+        //]};
+        //if(VisualScheduleCard._sections_are_same(sections1, sections2)){
+        //    console.log("err")
+        //} else {
+        //    console.log('extra in first')
+        //}
+        //
+        //var sections1 = {"sections": [
+        //    {
+        //        course_number: "123",
+        //        curriculum_abbr: "asd"
+        //    },
+        //    {
+        //        course_number: "456",
+        //        curriculum_abbr: "asd"
+        //    }
+        //]};
+        //var sections2 = {"sections": [
+        //    {
+        //        course_number: "123",
+        //        curriculum_abbr: "asd"
+        //    },
+        //    {
+        //        course_number: "456",
+        //        curriculum_abbr: "asd"
+        //    },
+        //    {
+        //        course_number: "4526",
+        //        curriculum_abbr: "asd"
+        //    }
+        //]};
+        //if(VisualScheduleCard._sections_are_same(sections1, sections2)){
+        //    console.log("err")
+        //} else {
+        //    console.log('extra in 2nd')
+        //}
+        //
+        //
+        //var sections1 = {"sections": [
+        //    {
+        //        course_number: "123",
+        //        curriculum_abbr: "asd"
+        //    },
+        //    {
+        //        course_number: "456",
+        //        curriculum_abbr: "asd"
+        //    }
+        //]};
+        //var sections2 = {"sections": [
+        //    {
+        //        course_number: "456",
+        //        curriculum_abbr: "asd"
+        //    },
+        //    {
+        //        course_number: "123",
+        //        curriculum_abbr: "asd"
+        //    }
+        //]};
+        //if(VisualScheduleCard._sections_are_same(sections1, sections2)){
+        //    console.log("success swapped order")
+        //} else {
+        //    console.log('err')
+        //}
+
+
+
+    },
+
 
     _sections_are_same: function(list1, list2){
         if (list1 === undefined || list2 === undefined) {
             return false;
         }
-        console.log(list1)
-        console.log(list2)
+
 
         var lists_are_same = true,
             l1_sections = list1.sections.slice(),
             l2_sections = list2.sections.slice();
 
-        while(l1_sections.length > 1){
+        while(l1_sections.length > 0){
             var l1_section = l1_sections.pop(),
                 list_has_section = false;
 
@@ -116,7 +260,7 @@ var VisualScheduleCard = {
                     && l1_section.curriculum_abbr === l2_section.curriculum_abbr){
 
                     list_has_section = true;
-                    l2_sectionssplice(idx, 1);
+                    l2_sections.splice(idx, 1);
                     return false;
                 }
             });
@@ -124,24 +268,11 @@ var VisualScheduleCard = {
             if(!list_has_section){
                 lists_are_same = false;
             }
+
             if(l1_sections.length === 0 && l2_sections.length > 0){
                 lists_are_same = false;
             }
-
         }
-        //$.each(list1.sections, function(idx, l1_section){
-        //    var list_has_section = false;
-        //    $.each(list2.sections, function(idx, l2_section){
-        //        if(l1_section.course_number === l2_section.course_number && l1_section.curriculum_abbr === l2_section.curriculum_abbr){
-        //            list_has_section = true;
-        //        }
-        //    });
-        //    if(!list_has_section){
-        //        lists_are_same = false;
-        //    }
-        //});
-
-        console.log(lists_are_same);
         return lists_are_same;
 
 
