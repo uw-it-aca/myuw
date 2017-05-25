@@ -290,3 +290,4 @@ exports.myuwFeatureEnabled = myuwFeatureEnabled;
 exports.register_link_recorder = register_link_recorder;
 exports.safe_label = safe_label;
 exports.renderedCardOnce = renderedCardOnce;
+exports.titilizeTerm = titilizeTerm;

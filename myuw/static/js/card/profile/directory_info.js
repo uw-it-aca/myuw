@@ -23,6 +23,10 @@ var DirectoryInfoCard = {
         var directory_info = WSData.directory_data();
         var source = $("#directory_info_card").html();
         var template = Handlebars.compile(source);
+
+        // enhanced directory info
+        directory_info.is_tacoma = window.user.tacoma;
+
         DirectoryInfoCard.dom_target.html(template(directory_info));
         LogUtils.cardLoaded(DirectoryInfoCard.name, DirectoryInfoCard.dom_target);
     },
