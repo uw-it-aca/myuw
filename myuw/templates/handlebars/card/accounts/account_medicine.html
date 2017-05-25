@@ -7,8 +7,8 @@
     <p class="update-note">Note: Password status gets updated nightly.</p>
 		{{#if med_pw_expired }}
 	     <div class="pw-exp">
-		 	<span class="pw-exp-date password-alert">Password expired on {{formatDateAsDate expires_med}}.
-		 	<a href="https://services.uwmedicine.org/passwordportal/login.htm" class="password-alert"><br>Change your password to regain access.</a></span>
+		 	<p class="pw-exp-date password-alert">Password expired on {{formatDateAsDate expires_med}}.
+		 	<a href="https://services.uwmedicine.org/passwordportal/login.htm" class="password-alert"><br>Change your password to regain access.</a></p>
 		 </div><!-- .pw-exp -->
         {{ else }}
  		<div class="card-badge clearfix">   
