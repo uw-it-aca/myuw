@@ -21,6 +21,7 @@ from myuw.dao.uwemail import get_email_forwarding_for_current_user
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.views import prefetch_resources, get_enabled_features
 from restclients_core.exceptions import DataFailureException
+from myuw.dao.messages import get_current_messages
 
 
 logger = logging.getLogger(__name__)
@@ -70,6 +71,7 @@ def page(request,
     context["err"] = None
     context["user"]["affiliations"] = get_all_affiliations(request)
 
+    context["banner_messages"] = get_current_messages(request)
     context["card_display_dates"] = get_card_visibilty_date_values(request)
     try:
         my_uwemail_forwarding = get_email_forwarding_for_current_user()
