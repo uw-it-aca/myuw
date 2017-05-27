@@ -3,10 +3,10 @@ This module provides access to registered class schedule and sections
 """
 
 import logging
+from restclients.thread import generic_prefetch
+from uw_libraries.subject_guides import get_subject_guide_for_section_params
 from uw_sws.models import ClassSchedule
 from uw_sws.registration import get_schedule_by_regid_and_term
-from restclients.thread import generic_prefetch
-from restclients.library.currics import get_subject_guide_for_section_params
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import get_current_quarter, get_next_quarter,\
     get_next_autumn_quarter, get_current_summer_term,\

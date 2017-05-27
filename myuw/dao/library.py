@@ -4,8 +4,8 @@ the SWS Personal Financial resource.
 """
 
 import logging
-from restclients.library.mylibinfo import get_account
-from restclients.library.currics import get_subject_guide_for_section,\
+from uw_libraries.mylib import get_account
+from uw_libraries.subject_guides import get_subject_guide_for_section,\
     get_default_subject_guide
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.pws import get_netid_of_current_user

@@ -1,8 +1,8 @@
 import json
-from myuw.test.api import MyuwApiTest, require_url, fdao_libacc_override
+from myuw.test.api import MyuwApiTest, require_url, fdao_mylib_override
 
 
-@fdao_libacc_override
+@fdao_mylib_override
 @require_url('myuw_library_api')
 class TestLibrary(MyuwApiTest):
 

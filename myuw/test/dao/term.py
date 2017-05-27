@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.test import TestCase
-from django.conf import settings
+from commonconf import override_settings
 from uw_sws.models import ClassSchedule, Term, Section, Person
 from myuw.dao.term import get_specific_term, is_past, is_future,\
     get_default_date, get_comparison_date,\
@@ -17,7 +17,7 @@ from myuw.test import get_request_with_date, get_request_with_user,\
     get_request, fdao_sws_override
 
 
-LDAO_SWS = 'restclients.dao_implementation.sws.Live'
+ldao_sws_override = override_settings(RESTCLIENTS_SWS_DAO_CLASS='Live')
 
 
 @fdao_sws_override
@@ -57,12 +57,13 @@ class TestTerm(TestCase):
         self.assertEquals(date.month, 4)
         self.assertEquals(date.day, 15)
 
-        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=LDAO_SWS):
-            now = datetime.now()
-            date = get_default_date()
-            self.assertEquals(date.year, now.year)
-            self.assertEquals(date.month, now.month)
-            self.assertEquals(date.day, now.day)
+    @ldao_sws_override
+    def test_live_default_date(self):
+        now = datetime.now()
+        date = get_default_date()
+        self.assertEquals(date.year, now.year)
+        self.assertEquals(date.month, now.month)
+        self.assertEquals(date.day, now.day)
 
     def test_comparison_date(self):
         now_request = get_request()
