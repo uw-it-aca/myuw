@@ -56,7 +56,6 @@
         {% csrf_token %}
 
         {% block header %}
-
         <div id="app_search" class="myuw-search">
             <div class="myuw-wrapper">
                 <form action="/search" method="get" class="uw-search">
@@ -88,16 +87,10 @@
 
             </div>
         </div>
-    </div>
-    {% endblock %}
-
-    <div id="page-modal"></div>
-
+        {% endblock %}
 
         <div class="myuw-navigation">
-
             <div class="myuw-wrapper" style="background-image: url({% static 'images/w-logo-white.png' %})">
-
                 <div class="myuw-title">MyUW</div>
                 <div class="myuw-title-button">
                     <button id="menu_toggle"></i>
@@ -111,9 +104,6 @@
                     </button>
                 </div>
             </div>
-
-
-
         </div>
 
         <h1 class="visually-hidden">MyUW</h1>
@@ -177,40 +167,38 @@
                 {% endblock %}
                 <!-- end app_navigation -->
 
+                <!-- message banner (mobile only) -->
+                <div class="myuw-banner-mobile" id="app_messages" role="complementary">
+
+                    <div class="message-banner">
+                        {% if user.affiliations.grad %}
+                        <div class="message-text">
+                            <h2>Welcome to MyUW!</h2>&nbsp; MyUW shows you personal, critical, and timely information. <a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn how it works.</a>
+                        </div>
+                        {% endif %}
+
+                        {% if banner_messages %}
+                        <div id="message_banner_location">
+                            <div id="messages" class="advert message-text">
+                                {% for message in banner_messages %}
+                                <p>{{ message.message_body|safe }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        {# Keeping code here as scumby believes we'll likely reuse this in the next few weeks#}
+                       {% if false %}<div class="advert message-text"><h2>Earn $25 Husky Card Credit - <a id="survey" href="https://catalyst.uw.edu/webq/survey/fournier/290956" target="_blank">Volunteers Needed for 1-Hour UW-IT Interview</a></h2></div>
+                       {% endif %}
+                   </div>
+                </div>
+                <!-- end message banner -->
+
                 <div class="myuw-content">
-
-                    <!-- message banner (mobile only) -->
-                    <div class="myuw-banner-mobile" id="app_messages" role="complementary">
-
-                        <div class="message-banner">
-                            {% if user.affiliations.grad %}
-                            <div class="message-text">
-                                <h2>Welcome to MyUW!</h2>&nbsp; MyUW shows you personal, critical, and timely information. <a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn how it works.</a>
-                            </div>
-                            {% endif %}
-
-                            {% if banner_messages %}
-                            <div id="message_banner_location">
-                                <div id="messages" class="advert message-text">
-                                    {% for message in banner_messages %}
-                                    <p>{{ message.message_body|safe }}</p>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                            {% endif %}
-                            {# Keeping code here as scumby believes we'll likely reuse this in the next few weeks#}
-                           {% if false %}<div class="advert message-text"><h2>Earn $25 Husky Card Credit - <a id="survey" href="https://catalyst.uw.edu/webq/survey/fournier/290956" target="_blank">Volunteers Needed for 1-Hour UW-IT Interview</a></h2></div>
-                           {% endif %}
-                       </div>
-                    </div>
-                    <!-- end message banner -->
-
                     <!-- app_content -->
                     <div class="myuw-cards" id="app_content">
                         {% block content %}{% endblock %}
                     </div>
                     <!-- end app_content -->
-
                 </div>
 
             </div>
@@ -296,130 +284,128 @@
         {% endblock %}
         <!-- /footer -->
 
-    <!-- dev bar -->
+        <!-- dev bar -->
 
-    <!-- do not compress - lack of trailing semicolons breaks concatenation -->
-    <script src="{% static 'vendor/js/jquery-1.11.0.min.js' %}"></script>
-    <script src="{% static 'vendor/js/bootstrap-3.1.1.min.js' %}"></script>
-    <script src="{% static 'vendor/js/jquery.cookie-1.4.1.min.js' %}"></script>
-    <script src="{% static 'vendor/js/ios-orientationchange-fix.min.js' %}"></script>
-    <script src="{% static 'vendor/js/handlebars-v4.0.5.js' %}"></script>
-    <script src="{% static 'vendor/js/jquery.history-1.8.0.min.js' %}"></script>
-    <script src="{% static 'vendor/js/jquery.ba-dotimeout-1.0.js' %}"></script>
-    <script src="{% static 'vendor/js/moment.2.8.3.min.js' %}"></script>
-    <script src="{% static 'vendor/js/moment-timezone-2010-2020v0.3.0.min.js' %}"></script>
+        <!-- do not compress - lack of trailing semicolons breaks concatenation -->
+        <script src="{% static 'vendor/js/jquery-1.11.0.min.js' %}"></script>
+        <script src="{% static 'vendor/js/bootstrap-3.1.1.min.js' %}"></script>
+        <script src="{% static 'vendor/js/jquery.cookie-1.4.1.min.js' %}"></script>
+        <script src="{% static 'vendor/js/ios-orientationchange-fix.min.js' %}"></script>
+        <script src="{% static 'vendor/js/handlebars-v4.0.5.js' %}"></script>
+        <script src="{% static 'vendor/js/jquery.history-1.8.0.min.js' %}"></script>
+        <script src="{% static 'vendor/js/jquery.ba-dotimeout-1.0.js' %}"></script>
+        <script src="{% static 'vendor/js/moment.2.8.3.min.js' %}"></script>
+        <script src="{% static 'vendor/js/moment-timezone-2010-2020v0.3.0.min.js' %}"></script>
 
-    {% compress js %}
-    <!-- app files -->
-    <script src="{% static 'vendor/js/date.js' %}"></script>
-    <script src="{% static 'js/modal.js' %}"></script>
-    <script src="{% static 'js/ws_data.js' %}"></script>
-    <script src="{% static 'js/myuw_log.js' %}"></script>
-    <script src="{% static 'js/panel/addi_course_links.js' %}"></script>
-    <script src="{% static 'js/panel/no_courses.js' %}"></script>
-    <script src="{% static 'js/course_list.js' %}"></script>
-    <script src="{% static 'js/error410.js' %}"></script>
-    <script src="{% static 'js/visual_schedule.js' %}"></script>
-    <script src="{% static 'js/textbooks.js' %}"></script>
-    <script src="{% static 'js/grades.js' %}"></script>
-    <script src="{% static 'js/other_quarters.js' %}"></script>
-    <script src="{% static 'js/myuw_m.js' %}"></script>
-    <script src="{% static 'js/handlebars-helpers.js' %}"></script>
-    <script src="{% static 'vendor/js/uw-alert.js' %}"></script>
-    <script src="{% static 'js/libraries.js' %}"></script>
-    <script src="{% static 'js/notices.js' %}"></script>
-    <script src="{% static 'js/landing.js' %}"></script>
-    <script src="{% static 'js/teaching.js' %}"></script>
-    <script src="{% static 'js/profile.js' %}"></script>
-    <script src="{% static 'js/teaching_section.js' %}"></script>
-    <script src="{% static 'js/category.js' %}"></script>
-    <script src="{% static 'js/cards.js' %}"></script>
-    <script src="{% static 'js/future.js' %}"></script>
-    <script src="{% static 'js/navbar.js' %}"></script>
-    <script src="{% static 'js/academic_calendar.js' %}"></script>
-    <script src="{% static 'js/thrive.js' %}"></script>
-    <script src="{% static 'js/banner/email.js' %}"></script>
-    <script src="{% static 'js/banner/common_loading.js' %}"></script>
-    <script src="{% static 'js/banner/profile.js' %}"></script>
-    <script src="{% static 'js/banner/notice.js' %}"></script>
-    <script src="{% static 'js/banner/pce.js' %}"></script>
-    <script src="{% static 'js/banner/calendar.js' %}"></script>
-    <script src="{% static 'js/card/error.js' %}"></script>
-    <script src="{% static 'js/card/grade.js' %}"></script>
-    <script src="{% static 'js/card/fin_aid.js' %}"></script>
-    <script src="{% static 'js/card/hfs.js' %}"></script>
-    <script src="{% static 'js/card/no_course.js' %}"></script>
-    <script src="{% static 'js/card/library.js' %}"></script>
-    <script src="{% static 'js/card/library_mini.js' %}"></script>
-    <script src="{% static 'js/card/grad_status.js' %}"></script>
-    <script src="{% static 'js/card/grad_committee.js' %}"></script>
-    <script src="{% static 'js/card/loading.js' %}"></script>
-    <script src="{% static 'js/card/pce_tuition.js' %}"></script>
-    <script src="{% static 'js/card/reg_status.js' %}"></script>
-    <script src="{% static 'js/card/summer_reg_status.js' %}"></script>
-    <script src="{% static 'js/card/tuition.js' %}"></script>
-    <script src="{% static 'js/card/textbook.js' %}"></script>
-    <script src="{% static 'js/card/future_quarter.js' %}"></script>
-    <script src="{% static 'js/card/events.js' %}"></script>
-    <script src="{% static 'js/card/thrive.js' %}"></script>
-    <script src="{% static 'js/card/emp_fac_student.js' %}"></script>
-    <script src="{% static 'js/card/upass.js' %}"></script>
-    <script src="{% static 'js/card/outage.js' %}"></script>
-    <script src="{% static 'js/card/schedule/course_sche_panel.js' %}"></script>
-    <script src="{% static 'js/card/schedule/course_resource_panel.js' %}"></script>
-    <script src="{% static 'js/card/schedule/instructor_panel.js' %}"></script>
-    <script src="{% static 'js/card/schedule/load_evals.js' %}"></script>
-    <script src="{% static 'js/card/schedule/eval_panel.js' %}"></script>
-    <script src="{% static 'js/card/schedule/course_card_content.js' %}"></script>
-    <script src="{% static 'js/card/schedule/load_course_cards.js' %}"></script>
-    <script src="{% static 'js/card/schedule/visual.js' %}"></script>
-    <script src="{% static 'js/card/schedule/final_panel.js' %}"></script>
-    <script src="{% static 'js/card/schedule/sp_final.js' %}"></script>
-    <script src="{% static 'js/card/instructor_schedule/load_course_cards.js' %}"></script>
-    <script src="{% static 'js/card/instructor_schedule/load_section_card.js' %}"></script>
-    <script src="{% static 'js/card/instructor_schedule/course_card_content.js' %}"></script>
-    <script src="{% static 'js/card/instructor_schedule/course_sche_panel.js' %}"></script>
-    <script src="{% static 'js/card/instructor_schedule/course_resource_panel.js' %}"></script>
-    <script src="{% static 'js/card/instructor_schedule/future/course_card_content.js' %}"></script>
-    <script src="{% static 'js/card/instructor_schedule/future/course_sche_panel.js' %}"></script>
-    <script src="{% static 'js/card/instructor_schedule/future/course_resource_panel.js' %}"></script>
-    <script src="{% static 'js/card/instructor_schedule/past/course_card_content.js' %}"></script>
-    <script src="{% static 'js/card/instructor_schedule/past/course_sche_panel.js' %}"></script>
-    <script src="{% static 'js/card/instructor_schedule/past/course_resource_panel.js' %}"></script>
-    <script src="{% static 'js/card/instructor_schedule/mailman/request_email_lists.js' %}"></script>
-    <script src="{% static 'js/card/instructor_schedule/mailman/view_email_lists.js' %}"></script>
-    <script src="{% static 'js/card/new_student/ns_critical_info.js' %}"></script>
-    <script src="{% static 'js/card/new_student/ns_summer_efs.js' %}"></script>
-    <script src="{% static 'js/card/new_student/ns_thank_you.js' %}"></script>
-    <script src="{% static 'js/card/new_student/ns_to_register.js' %}"></script>
-    <script src="{% static 'js/card/new_student/ns_international_stu.js' %}"></script>
-    <script src="{% static 'js/teaching/class_list.js' %}"></script>
-    {% endcompress %}
+        {% compress js %}
+        <!-- app files -->
+        <script src="{% static 'vendor/js/date.js' %}"></script>
+        <script src="{% static 'js/modal.js' %}"></script>
+        <script src="{% static 'js/ws_data.js' %}"></script>
+        <script src="{% static 'js/myuw_log.js' %}"></script>
+        <script src="{% static 'js/panel/addi_course_links.js' %}"></script>
+        <script src="{% static 'js/panel/no_courses.js' %}"></script>
+        <script src="{% static 'js/course_list.js' %}"></script>
+        <script src="{% static 'js/error410.js' %}"></script>
+        <script src="{% static 'js/visual_schedule.js' %}"></script>
+        <script src="{% static 'js/textbooks.js' %}"></script>
+        <script src="{% static 'js/grades.js' %}"></script>
+        <script src="{% static 'js/other_quarters.js' %}"></script>
+        <script src="{% static 'js/myuw_m.js' %}"></script>
+        <script src="{% static 'js/handlebars-helpers.js' %}"></script>
+        <script src="{% static 'vendor/js/uw-alert.js' %}"></script>
+        <script src="{% static 'js/libraries.js' %}"></script>
+        <script src="{% static 'js/notices.js' %}"></script>
+        <script src="{% static 'js/landing.js' %}"></script>
+        <script src="{% static 'js/teaching.js' %}"></script>
+        <script src="{% static 'js/profile.js' %}"></script>
+        <script src="{% static 'js/teaching_section.js' %}"></script>
+        <script src="{% static 'js/category.js' %}"></script>
+        <script src="{% static 'js/cards.js' %}"></script>
+        <script src="{% static 'js/future.js' %}"></script>
+        <script src="{% static 'js/navbar.js' %}"></script>
+        <script src="{% static 'js/academic_calendar.js' %}"></script>
+        <script src="{% static 'js/thrive.js' %}"></script>
+        <script src="{% static 'js/banner/email.js' %}"></script>
+        <script src="{% static 'js/banner/common_loading.js' %}"></script>
+        <script src="{% static 'js/banner/profile.js' %}"></script>
+        <script src="{% static 'js/banner/notice.js' %}"></script>
+        <script src="{% static 'js/banner/pce.js' %}"></script>
+        <script src="{% static 'js/banner/calendar.js' %}"></script>
+        <script src="{% static 'js/card/error.js' %}"></script>
+        <script src="{% static 'js/card/grade.js' %}"></script>
+        <script src="{% static 'js/card/fin_aid.js' %}"></script>
+        <script src="{% static 'js/card/hfs.js' %}"></script>
+        <script src="{% static 'js/card/no_course.js' %}"></script>
+        <script src="{% static 'js/card/library.js' %}"></script>
+        <script src="{% static 'js/card/library_mini.js' %}"></script>
+        <script src="{% static 'js/card/grad_status.js' %}"></script>
+        <script src="{% static 'js/card/grad_committee.js' %}"></script>
+        <script src="{% static 'js/card/loading.js' %}"></script>
+        <script src="{% static 'js/card/pce_tuition.js' %}"></script>
+        <script src="{% static 'js/card/reg_status.js' %}"></script>
+        <script src="{% static 'js/card/summer_reg_status.js' %}"></script>
+        <script src="{% static 'js/card/tuition.js' %}"></script>
+        <script src="{% static 'js/card/textbook.js' %}"></script>
+        <script src="{% static 'js/card/future_quarter.js' %}"></script>
+        <script src="{% static 'js/card/events.js' %}"></script>
+        <script src="{% static 'js/card/thrive.js' %}"></script>
+        <script src="{% static 'js/card/emp_fac_student.js' %}"></script>
+        <script src="{% static 'js/card/upass.js' %}"></script>
+        <script src="{% static 'js/card/outage.js' %}"></script>
+        <script src="{% static 'js/card/schedule/course_sche_panel.js' %}"></script>
+        <script src="{% static 'js/card/schedule/course_resource_panel.js' %}"></script>
+        <script src="{% static 'js/card/schedule/instructor_panel.js' %}"></script>
+        <script src="{% static 'js/card/schedule/load_evals.js' %}"></script>
+        <script src="{% static 'js/card/schedule/eval_panel.js' %}"></script>
+        <script src="{% static 'js/card/schedule/course_card_content.js' %}"></script>
+        <script src="{% static 'js/card/schedule/load_course_cards.js' %}"></script>
+        <script src="{% static 'js/card/schedule/visual.js' %}"></script>
+        <script src="{% static 'js/card/schedule/final_panel.js' %}"></script>
+        <script src="{% static 'js/card/schedule/sp_final.js' %}"></script>
+        <script src="{% static 'js/card/instructor_schedule/load_course_cards.js' %}"></script>
+        <script src="{% static 'js/card/instructor_schedule/load_section_card.js' %}"></script>
+        <script src="{% static 'js/card/instructor_schedule/course_card_content.js' %}"></script>
+        <script src="{% static 'js/card/instructor_schedule/course_sche_panel.js' %}"></script>
+        <script src="{% static 'js/card/instructor_schedule/course_resource_panel.js' %}"></script>
+        <script src="{% static 'js/card/instructor_schedule/future/course_card_content.js' %}"></script>
+        <script src="{% static 'js/card/instructor_schedule/future/course_sche_panel.js' %}"></script>
+        <script src="{% static 'js/card/instructor_schedule/future/course_resource_panel.js' %}"></script>
+        <script src="{% static 'js/card/instructor_schedule/past/course_card_content.js' %}"></script>
+        <script src="{% static 'js/card/instructor_schedule/past/course_sche_panel.js' %}"></script>
+        <script src="{% static 'js/card/instructor_schedule/past/course_resource_panel.js' %}"></script>
+        <script src="{% static 'js/card/instructor_schedule/mailman/request_email_lists.js' %}"></script>
+        <script src="{% static 'js/card/instructor_schedule/mailman/view_email_lists.js' %}"></script>
+        <script src="{% static 'js/card/new_student/ns_critical_info.js' %}"></script>
+        <script src="{% static 'js/card/new_student/ns_summer_efs.js' %}"></script>
+        <script src="{% static 'js/card/new_student/ns_thank_you.js' %}"></script>
+        <script src="{% static 'js/card/new_student/ns_to_register.js' %}"></script>
+        <script src="{% static 'js/card/new_student/ns_international_stu.js' %}"></script>
+        <script src="{% static 'js/teaching/class_list.js' %}"></script>
+        {% endcompress %}
 
-    {% block extra_js %}{% endblock %}
+        {% block extra_js %}{% endblock %}
 
-    {% if not has_less_compiled %}
-    <!-- less js -->
-    <script src="{% static 'vendor/js/less-2.7.2.min.js' %}" type="text/javascript"></script>
-    {% endif %}
+        {% if not has_less_compiled %}
+        <!-- less js -->
+        <script src="{% static 'vendor/js/less-2.7.2.min.js' %}" type="text/javascript"></script>
+        {% endif %}
 
-    {% if has_google_analytics %}
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', '{{ GOOGLE_ANALYTICS_KEY }}', { 'userId': '{% hash_netid user.netid %}' });
-      ga('send', 'pageview');
-    </script>
-    {% endif %}
-    {% include 'logger.html' %}
+        {% if has_google_analytics %}
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', '{{ GOOGLE_ANALYTICS_KEY }}', { 'userId': '{% hash_netid user.netid %}' });
+          ga('send', 'pageview');
+        </script>
+        {% endif %}
+        {% include 'logger.html' %}
 
         <!-- App messages modal -->
-
-        <div class="myuw-modals" id="page-modal"></div>
-
-        <div class="modal fade" id="message_modal" tabindex="-1" role="dialog" aria-labelledby="MyUWMessageModal" aria-hidden="true">
+        <div id="page-modal"></div>
+        <div class="myuw-modal modal fade" id="message_modal" tabindex="-1" role="dialog" aria-labelledby="MyUWMessageModal" aria-hidden="true">
             <div class="modal-dialog message-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
