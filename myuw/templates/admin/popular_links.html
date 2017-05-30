@@ -45,13 +45,16 @@
                     <label class="checkbox-inline"><input type='checkbox' name='pce' value='pce' {% if checked.is_pce %}checked="checked"{% endif %}> PCE</label>
                 </div>
                 <div style="text-align: right;padding-top:15px;">
-                    <a href="{% url 'myuw_popular_links' %}">Clear all</a> <button type="submit" class="btn btn-primary">Filter</button>
+                     <button type="submit" class="btn btn-primary">Filter</button>
                 </div>
             </form>
         </fieldset>
 
         <hr>
-
+        <div class="well">
+            <span><strong>Viewing by:</strong> {% if checked.is_anonymous %}Anonymous users |{% endif %} Campus: {% if checked.is_any_campus %}<strong>Any</strong>{% endif %}{% if checked.is_seattle %}<strong>Seattle</strong>{% endif %}{% if checked.is_tacoma %}<strong>Tacoma</strong>{% endif %}{% if checked.is_bothell %}<strong>Bothell</strong>{% endif %} | Affiliation: {% if checked.is_any_affiliation%}<strong>Any</strong>{% endif %}{% if checked.is_student %}<strong>Student</strong>{% endif %}{% if checked.is_undergrad %}<strong>Undergrad</strong>{% endif %}{% if checked.is_grad_student %}<strong>Grad Student</strong>{% endif %}{% if checked.is_employee %}<strong>Employee</strong>{% endif %}{% if checked.is_staff %}<strong>Staff</strong>{% endif %}{% if checked.is_faculty %}<strong>Faculty</strong>{% endif %}{% if checked.is_student_employee %}<strong>Student Employee</strong>{% endif %}{% if checked.is_pce %} | <strong>PCE</strong>{% endif %}</span>
+            <span class="pull-right"><a href="{% url 'myuw_popular_links' %}">Clear all</a></span>
+        </div>
         <ol type="1" class="list-group">
         {% for link in  popular %}
             <li class="list-group-item"><span class="badge" title="Link popularity">{{ link.popularity }}</span> <a href="{{ link.url }}" target="_blank">{{ link.url }}</a> {% if link.exists %} <small><em>(Already saved as a popular link)</em></small> {% else %} 
