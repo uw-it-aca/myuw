@@ -1,4 +1,5 @@
 {% extends wrapper_template %}
+{% load myuw_large_number_display %}
 {% block content %}
 <h2>Popular links in the last 30 days</h2>
 
@@ -54,7 +55,7 @@
 
         <ol type="1" class="list-group">
         {% for link in  popular %}
-            <li class="list-group-item"><span class="badge" title="Link popularity">{{ link.popularity }}</span> <a href="{{ link.url }}" target="_blank">{{ link.url }}</a> {% if link.exists %} <small><em>(Already saved as a popular link)</em></small> {% else %} 
+            <li class="list-group-item"><span class="badge" title="Link popularity">{% large_number link.popularity %}</span> <a href="{{ link.url }}" target="_blank">{{ link.url }}</a> {% if link.exists %} <small><em>(Already saved as a popular link)</em></small> {% else %} 
 
             <form action='{{ request.path }}' method="POST">
                 {% csrf_token %}
