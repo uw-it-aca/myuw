@@ -30,19 +30,24 @@
                                                     {{/each}}
                                                 </li>
                                             {{else}}
-                                                {{#each majors}}
-                                                    <li>{{full_name}}</li>
-                                                {{/each}}
+                                                <li>
+                                                    {{#if @root.has_minors}}
+                                                        Major:
+                                                    {{/if}}
+                                                    {{#each majors}}
+                                                        {{full_name}}
+                                                    {{/each}}
+                                                </li>
                                             {{/if}}
                                         {{else}}
-                                            {{#unless same_as_previous}}
+                                            {{#if degrees_modified}}
                                                 <li>{{ pluralize_by_size majors "Major" "Majors"}}
                                                     Beginning {{ toTitleCase quarter}}:
                                                     {{#each majors}}
                                                         {{full_name}} {{#unless @last}},{{/unless}}
                                                     {{/each}}
                                                 </li>
-                                            {{/unless}}
+                                            {{/if}}
                                         {{/if}}
                                     {{/each}}
                                 {{/if}}
@@ -57,22 +62,27 @@
                                                     {{/each}}
                                                 </li>
                                             {{else}}
-                                                <li>Current {{ pluralize_by_size minors "Minor" "Minors"}}:
+                                                <li>
                                                     {{#each minors}}
+                                                        {{#if @first}}
+                                                            {{ pluralize_by_size ../minors "Minor" "Minors"}}:
+                                                        {{/if}}
                                                         {{full_name}} {{#unless @last}},{{/unless}}
                                                     {{/each}}
                                                 </li>
                                             {{/if}}
 
                                         {{else}}
-                                            {{#unless same_as_previous}}
+                                            {{#if degrees_modified}}
                                                 <li>{{ pluralize_by_size minors "Minor" "Minors"}}
                                                     Beginning {{ toTitleCase quarter}}:
                                                     {{#each minors}}
                                                         {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{else}}
+                                                        None
                                                     {{/each}}
                                                 </li>
-                                            {{/unless}}
+                                            {{/if}}
                                         {{/if}}
                                     {{/each}}
                                 {{/if}}

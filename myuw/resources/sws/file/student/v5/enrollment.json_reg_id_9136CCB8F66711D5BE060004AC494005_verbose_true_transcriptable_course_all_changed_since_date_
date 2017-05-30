@@ -11,7 +11,7 @@
             "CurrentRegisteredCredits": null,
             "EnrollmentStatus": "Registered",
             "EnrollmentStatusDate": "2013-06-08",
-            "FullName": "James McMiddle Average 3",
+            "FullName": "James McMiddle Average 5",
             "HonorsProgram": false,
             "LeaveEndQuarter": 0,
             "LeaveEndYear": 0,
@@ -43,7 +43,7 @@
             "PendingSpecialProgramChange": false,
             "Person": {
                 "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494003.json",
-                "Name": "James McMiddle Average 3",
+                "Name": "James McMiddle Average 5",
                 "RegID": "9136CCB8F66711D5BE060004AC494003"
             },
     "QtrGradePoints": 30,
@@ -64,7 +64,7 @@
             "CurrentRegisteredCredits": null,
             "EnrollmentStatus": "Registered",
             "EnrollmentStatusDate": "2013-06-08",
-            "FullName": "James McMiddle Average 3",
+            "FullName": "James McMiddle Average 5",
             "HonorsProgram": false,
             "LeaveEndQuarter": 0,
             "LeaveEndYear": 0,
@@ -96,7 +96,7 @@
             "PendingSpecialProgramChange": false,
             "Person": {
                 "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494003.json",
-                "Name": "James McMiddle Average 3",
+                "Name": "James McMiddle Average 5",
                 "RegID": "9136CCB8F66711D5BE060004AC494003"
             },
     "QtrGradePoints": 30,
@@ -117,7 +117,7 @@
             "CurrentRegisteredCredits": null,
             "EnrollmentStatus": "Registered",
             "EnrollmentStatusDate": "2013-06-08",
-            "FullName": "James McMiddle Average 3",
+            "FullName": "James McMiddle Average 5",
             "HonorsProgram": false,
             "LeaveEndQuarter": 0,
             "LeaveEndYear": 0,
@@ -149,7 +149,7 @@
             "PendingSpecialProgramChange": false,
             "Person": {
                 "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494003.json",
-                "Name": "James McMiddle Average 3",
+                "Name": "James McMiddle Average 5",
                 "RegID": "9136CCB8F66711D5BE060004AC494003"
             },
     "QtrGradePoints": 30,
@@ -169,7 +169,7 @@
             "CurrentRegisteredCredits": null,
             "EnrollmentStatus": "Registered",
             "EnrollmentStatusDate": "2014-01-08",
-            "FullName": "James McMiddle Average 3 1",
+            "FullName": "James McMiddle Average 5 1",
             "HonorsProgram": false,
             "LeaveEndQuarter": 0,
             "LeaveEndYear": 0,
@@ -201,7 +201,7 @@
             "PendingSpecialProgramChange": false,
             "Person": {
                 "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494003.json",
-                "Name": "James McMiddle Average 3",
+                "Name": "James McMiddle Average 5",
                 "RegID": "9136CCB8F66711D5BE060004AC494003"
             },
     "QtrGradePoints": 30,

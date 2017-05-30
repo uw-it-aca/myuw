@@ -1,14 +1,16 @@
 {% extends "base.html" %}
+{% load set_context %}
 {% load static %}
 {% load compress %}
 
-{% block page_title %}
-MyUW Accounts
+{% block load_values %}
+{% set_context 'page_title' 'Accounts' %}
 {% endblock %}
 
 {% block content %}
 
     <div id="main-content" role="main" aria-labelledby="main"></div>
+    <div id="static-links"></div>
 
     <!-- component content templates -->
     {% include "handlebars/accounts.html" %}

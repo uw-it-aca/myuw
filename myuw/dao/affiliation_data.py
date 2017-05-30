@@ -4,7 +4,7 @@ from myuw.exceptions import InvalidAffiliationDataFile
 
 
 def get_data_for_affiliations(model=None, file=None, affiliations=None,
-                              unique=None):
+                              unique=None, **filters):
     data = []
     matched_data = []
 
@@ -14,7 +14,7 @@ def get_data_for_affiliations(model=None, file=None, affiliations=None,
     if file:
         data = _load_data_from_file(file)
     elif model:
-        data = _load_data_from_model(model)
+        data = _load_data_from_model(model, **filters)
 
     unique_lookup = set()
     for entry in data:
@@ -44,8 +44,8 @@ def get_data_for_affiliations(model=None, file=None, affiliations=None,
     return matched_data
 
 
-def _load_data_from_model(model):
-    all_instances = model.objects.all()
+def _load_data_from_model(model, **filters):
+    all_instances = model.objects.filter(**filters)
     all_data = []
     for obj in all_instances:
         all_data.append({

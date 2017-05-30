@@ -17,7 +17,6 @@ var Landing = {
         NoticeBanner.render_init($("#notice_banner_location"));
 
         PceBanner.render_init($("#pce_banner_location"));
-        MessageBanner.render_init($("#message_banner_location"));
 
         Landing.load_cards_for_viewport();
         // Set initial display state
@@ -63,6 +62,7 @@ var Landing = {
             SummerRegStatusCard1
         ];
         var desktop_sidebar_cards = [
+            //LibraryCardMini,
             EmpFacStudentCard,
             HfsCard,
             TuitionCard,
@@ -82,6 +82,7 @@ var Landing = {
     _load_mobile_cards: function() {
         Landing._reset_content_divs();
         var mobile_cards = [
+            //LibraryCardMini,
             ThriveCard,
             FinalExamCard,
             GradeCard,
