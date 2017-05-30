@@ -1,9 +1,10 @@
 {% extends "teaching_base.html" %}
+{% load set_context %}
 {% load static %}
 {% load compress %}
 
-{% block page_title %}
-MyUW Teaching
+{% block load_values %}
+{% set_context 'page_title' 'Teaching' %}
 {% endblock %}
 
 {% block teaching_content %}
