@@ -39,10 +39,9 @@ var AccountsPage = {
         AccountsPage._reset_content_divs();
         var desktop_body_cards = [
             MedicineAccountsCard,
-            AccountsCard,
-            HRPayrollCard
+            AccountsCard
         ];
-        var desktop_sidebar_cards = [];
+        var desktop_sidebar_cards = [HRPayrollCard];
 
         Cards.load_cards_in_order(desktop_body_cards, $("#accounts_content_cards"));
         Cards.load_cards_in_order(desktop_sidebar_cards, $("#accounts_sidebar_cards"));
