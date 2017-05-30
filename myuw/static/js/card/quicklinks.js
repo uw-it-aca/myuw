@@ -53,6 +53,11 @@ var QuickLinksCard = {
             QuickLinksCard._save_edit();
         }
     },
+    _post_custom_edit_save: function(response) {
+        QuickLinksCard.redraw(response);
+        QuickLinksCard.hide_edit_panel();
+        $("#custom_qlinks").collapse("hide");
+    },
     _save_edit: function() {
         var label = $("#custom-link-edit-label").val().trim();
         if ("" === label) {
@@ -79,7 +84,7 @@ var QuickLinksCard = {
                  "X-CSRFToken": csrf_token
             },
             data: JSON.stringify(values),
-            complete: QuickLinksCard.redraw
+            complete: QuickLinksCard._post_custom_edit_save
         });
 
         return false;
