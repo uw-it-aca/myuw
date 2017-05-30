@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load set_context %}
 {% load static %}
 {% load compress %}
 
-{% block page_title %}
-Academic Calendar
+{% block load_values %}
+{% set_context 'page_title' 'Academic Calendar' %}
 {% endblock %}
 
 {% block content %}

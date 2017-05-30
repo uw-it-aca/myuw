@@ -64,6 +64,5 @@ from myuw.test.views.logout import TestLogoutLink
 from myuw.test.views.mobile_login import TestLoginRedirects
 from myuw.test.views.rest_dispatch import TestDispatchErrorCases
 from myuw.test.views.textbooks import TestTextbook
-from myuw.test.template_tags import TestNetidHash
 from myuw.test.userservice_validation import TestValidation
 from myuw.test.speed import TestPageSpeeds

@@ -1,0 +1,170 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "student_info_card" %}
+    <div class="card" data-type="card" data-name="StudentInfoCard" data-identifier="{{ title }}">
+        <h3>Student Profile</h3>
+
+        <div vocab="http://schema.org/" typeof="Person">
+          <div class="profile-bio">
+            {{#if student_number}}
+            <div class="profile-student-info">
+              <h4 style="margin-top: 25px;">Student Number</h4>
+              <span property="student_number">{{student_number}}</span>
+            </div>
+            {{/if}}
+
+            <div class="profile-student-info">
+              <h4 style="margin-top: 25px;">Student Information</h4>
+
+		    <div class="profile-student-major">
+			  <div>{{ class_level }}</div>
+			  <div>
+                        <ul class="student-major-list">
+                            {{#if term_majors}}
+                                {{#each term_majors}}
+                                    {{#if @first}}
+                                        {{#if @root.has_pending_major}}
+                                            <li>Current {{ pluralize_by_size majors "Major" "Majors"}}:
+                                                {{#each majors}}
+                                                    {{full_name}} {{#unless @last}},{{/unless}}
+                                                {{/each}}
+                                            </li>
+                                        {{else}}
+                                            <li>
+                                                {{#if @root.has_minors}}
+                                                    Major:
+                                                {{/if}}
+                                                {{#each majors}}
+                                                    {{full_name}}
+                                                {{/each}}
+                                            </li>
+                                        {{/if}}
+                                    {{else}}
+                                        {{#if degrees_modified}}
+                                            <li>{{ pluralize_by_size majors "Major" "Majors"}}
+                                                Beginning {{ toTitleCase quarter}}:
+                                                {{#each majors}}
+                                                    {{full_name}} {{#unless @last}},{{/unless}}
+                                                {{/each}}
+                                            </li>
+                                        {{/if}}
+                                    {{/if}}
+                                {{/each}}
+                            {{/if}}
+
+                            {{#if term_minors}}
+                                {{#each term_minors}}
+                                    {{#if @first}}
+                                        {{#if @root.has_pending_minor}}
+                                            <li>Current {{ pluralize_by_size minors "Minor" "Minors"}}:
+                                                {{#each minors}}
+                                                    {{full_name}} {{#unless @last}},{{/unless}}
+                                                {{/each}}
+                                            </li>
+                                        {{else}}
+                                            <li>
+                                                {{#each minors}}
+                                                    {{#if @first}}
+                                                        {{ pluralize_by_size ../minors "Minor" "Minors"}}:
+                                                    {{/if}}
+                                                    {{full_name}} {{#unless @last}},{{/unless}}
+                                                {{/each}}
+                                            </li>
+                                        {{/if}}
+
+                                    {{else}}
+                                        {{#if degrees_modified}}
+                                            <li>{{ pluralize_by_size minors "Minor" "Minors"}}
+                                                Beginning {{ toTitleCase quarter}}:
+                                                {{#each minors}}
+                                                    {{full_name}} {{#unless @last}},{{/unless}}
+                                                {{else}}
+                                                    None
+                                                {{/each}}
+                                            </li>
+                                        {{/if}}
+                                    {{/if}}
+                                {{/each}}
+                            {{/if}}
+                        </ul>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+            <div property="workLocation" typeof="Place"  class="row" style="margin-top: 10px;">
+              <span class="sr-only" property="name">Student Information</span>
+              <div class="profile-local-address col-xs-6">
+                <h5>Local Address</h5>
+                {{#if local_address}}
+                {{#with local_address}}		
+                {{#if street_line2}}		
+                <div><span class="">{{street_line2}}</span></div>		
+                {{/if}}		
+                {{#if street_line1}}		
+                <div><span class="">{{street_line1}}</span></div>		
+                {{/if}}		
+                {{#if city}}<span class="">{{city}}</span>{{/if}}{{#if state}}<span class="">, {{state}}</span>{{/if}}{{#if postal_code}} <span class="">{{postal_code}}</span>{{/if}}{{#if zip_code}} <span class="">{{zip_code}}</span>{{/if}}		
+                {{#if country}}		
+                <div><span class="">{{country}}</span></div>		
+                {{/if}}		
+                {{/with}}		
+                {{#if local_phone}}		
+                <div>Phone: <span class="">{{formatPhoneNumber local_phone}}</span></div>		
+                {{/if}}		
+                {{else}}
+                <span class="my-text-muted">No address available</span>
+                {{/if}}
+              </div>
+
+              <div class="profile-perm-address col-xs-6">
+                <h5>Permanent Address</h5>
+                {{#if permanent_address}}
+                {{#with permanent_address}}
+                {{#if street_line2}}
+                <div><span class="">{{street_line2}}</span></div>
+                {{/if}}
+                {{#if street_line1}}
+                <div><span class="">{{street_line1}}</span></div>
+                {{/if}}
+                {{#if city}}<span class="">{{city}}</span>{{/if}}{{#if state}}<span class="">, {{state}}</span>{{/if}}{{#if postal_code}} <span class="">{{postal_code}}</span>{{/if}}{{#if zip_code}} <span class="">{{zip_code}}</span>{{/if}}
+                {{#if country}}
+                <div><span class="">{{country}}</span></div>
+                {{/if}}
+                {{/with}}
+                {{#if permanent_phone}}
+                <div>Phone: <span class="">{{formatPhoneNumber permanent_phone}}</span></div>
+                {{/if}}
+                {{else}}
+                <span class="my-text-muted">No address available</span>
+                {{/if}}
+              </div>		
+            </div>
+
+            <div class="dir-release">
+              <h4 style="margin-top: 25px;">Profile Release Authorization : {{#if directory_release}}YES{{else}}NO{{/if}}</h4>
+              <div>
+                <p>
+                  {{#if directory_release}}
+                  Name, phone number, email, major, and class standing are {{#unless directory_release}}NOT {{/unless}}published in the UW Directory.
+                  <br />
+                  {{else}}
+                  <strong>Your profile information is currently <em>private</em></strong> (not releasable)
+                  <ul>
+                    <li><strong>Information about you cannot be released or displayed publicly in the UW Directory without your consent.</strong></li>
+                  </ul>
+		          {{/if}}
+                  <a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Change your release settings</a>
+                </p>
+              </div>
+              <div>
+                <p>
+                  Information such as date of birth, street address, and dates of attendance can be releaseable by the Office of the Registrar when requested.
+                  <br />
+                  <a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+{% endtplhandlebars %}
