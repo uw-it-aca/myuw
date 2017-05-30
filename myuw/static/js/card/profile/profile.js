@@ -1,19 +1,23 @@
-var ProfileCard = {
-    name: 'ProfileCard',
+var CommonProfileCard = {
+    name: 'CommonProfileCard',
     dom_target: undefined,
 
     render_init: function() {
-        WebServiceData.require({profile_data: new ProfileData()},
-                               ProfileCard.render);
+        WebServiceData.require({directory_data: new DirectoryData()},
+                               CommonProfileCard.render);
     },
 
-    _render: function(resources) {
-        var profile_resource = resources.profile_data;
-        var profile_data = profile_resource.data;
-        var source   = $("#profile_card").html();
+    render: function(resources) {
+        var directory_resource = resources.directory_data;
+        var directory_data = directory_resource.data
+        var source   = $("#common_profile_card").html();
         var template = Handlebars.compile(source);
-        profile_data.card_name = ProfileCard.name;
-        var compiled = template(profile_data);
-        ProfileCard.dom_target.html(compiled);
+        directory_data.card_name = CommonProfileCard.name;
+        var compiled = template({
+            display_name: directory_data.display_name,
+            full_name: directory_data.full_name,
+            has_preferred: (directory_data.display_name !== directory_data.full_name)
+        });
+        CommonProfileCard.dom_target.html(compiled);
     }
 };

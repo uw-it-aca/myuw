@@ -13,14 +13,20 @@ var PhotoClassList = {
     },
 
     render_upon_data: function(resources) {
+        var section_data_resource = resources.section_detail
+
+        if (PhotoClassList.render_error(section_data_resource.error)) {
+            return;
+        }
+
         var source = $("#photo_class_list").html();
         var template = Handlebars.compile(source);
-        var data = resources.section_detail.data;
+        var data = section_data_resource.data;
 
         data.sections[0].registrations = PhotoClassList.sort_students('surname,name', data);
         $("#app_content").html(template(data));
 
-        $("#download_class_list").on("click", PhotoClassList.download_list);
+        $("#download_class_list").on("click", data, PhotoClassList.download_list);
 
         $("#sort_list").on("change", function() {
             var sorted = PhotoClassList.sort_students(this.value, data);
@@ -154,9 +160,9 @@ var PhotoClassList = {
         return lines.join("\n");
     },
 
-    download_list: function() {
-        var data = WSData.instructed_section_details();
-
+    download_list: function(event) {
+        debugger
+        var data = event.data;
         var download = PhotoClassList.build_download(data.sections[0]);
         var blob = new Blob([download], {type: "text/csv" });
 
@@ -179,31 +185,32 @@ var PhotoClassList = {
         return false;
     },
 
-    render_error: function() {
-        var error_code = WSData.instructed_section_details_error_code(),
-            source,
-            course_template;
+    render_error: function(section_data_resource_error) {
+        if (section_data_resource_error) {
+            var error_code = section_data_resource_error.status,
+                source,
+                course_template;
 
-        if (error_code == 410) {
-            Error410.render();
-            return;
+            if (error_code == 410) {
+                Error410.render();
+            } else if (error_code === 403) {
+                source = $("#instructor_section_card_not_instructor").html();
+                courses_template = Handlebars.compile(source);
+                $("#app_content").html(courses_template());
+            } else if (error_code === 404) {
+                source = $("#instructor_section_card_no_course").html();
+                courses_template = Handlebars.compile(source);
+                $("#app_content").html(courses_template());
+            } else {
+                source = CardWithError.render("Teaching Section");
+                $("#app_content").html(source);
+            }
+
+            return true;
         }
 
-        if (error_code === 403) {
-            source = $("#instructor_section_card_not_instructor").html();
-            courses_template = Handlebars.compile(source);
-            $("#app_content").html(courses_template());
-        } else if (error_code === 404) {
-            source = $("#instructor_section_card_no_course").html();
-            courses_template = Handlebars.compile(source);
-            $("#app_content").html(courses_template());
-        } else {
-            source = CardWithError.render("Teaching Section");
-            $("#app_content").html(source);
-        }
-
+        return false;
     }
-
 };
 
 /* node.js exports */

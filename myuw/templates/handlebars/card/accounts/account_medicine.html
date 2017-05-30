@@ -1,8 +1,9 @@
 {% load templatetag_handlebars %}
+{% load static %}
 {% tplhandlebars "accounts_medicine" %}
 <div class="card" style="position:relative;" id="medicine-pw"> 
     <div class="c6Border" style="position:absolute; top:0; left:0; right:0;">&nbsp;</div> 
-    <div class="med-logo"><img src="static/images/UWMedicine_Logo_RGB@2x.png" width="100px" alt="UW medicine logo"></div>
+    <div class="med-logo"><img src="{% static '/images/UWMedicine_Logo_RGB@2x.png' %}" width="100px" alt="UW medicine logo"></div>
     <h3>UW Medicine  <!--{{ card_name }}--></h3>
     <p class="update-note">Note: Password status gets updated nightly.</p>
 		{{#if med_pw_expired }}
