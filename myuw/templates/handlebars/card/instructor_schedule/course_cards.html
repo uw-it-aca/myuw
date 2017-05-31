@@ -10,25 +10,17 @@
   <div class="card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
     <div class="fade-in">
       <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
-        <h4><span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>{{#if ../future_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}{{#if ../past_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}</h4>
-        <h6><span>{{ course_title }}</span></h6>
-        <table class="course_schedule" style="width: 100%">
-          <thead>
-            <tr>
-              <th scope="col">Type</th>
-              <th scope="col">SLN</th>
-              <th scope="col">Enrollment</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="meeting_type">{{ meetings.0.type }}</span></td>
-              <td><a href="https://sdb.washington.edu/?SLN={{ sln }}" target="_blank">{{ sln }}</a></td>
-              <td>{{ current_enrollment }}{{#if limit_estimate_enrollment }}/{{ limit_estimate_enrollment }}{{/if}}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <h4><span class="myuw-course-abbrtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>{{#if ../future_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}{{#if ../past_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}</h4>
+        <h6><span class="myuw-course-shortname">{{ course_title }}</span></h6>
+
+        <div>
+            <span class="myuw-meta course-sln">SLN <a href="https://sdb.washington.edu/?SLN={{ sln }}" target="_blank">{{ sln }}</a></span>
+            <span class="myuw-meta course-meeting-type">{{ meetings.0.type }}</span>
+        </div>
+
+        <h4 class="myuw-card-row-heading">Enrollment</h4>
+        {{ current_enrollment }}{{#if limit_estimate_enrollment }}/{{ limit_estimate_enrollment }}{{/if}}
+
         <div id="instructor_course_card_content{{index}}">
         </div>
       </div>

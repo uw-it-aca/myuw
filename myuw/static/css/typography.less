@@ -1,9 +1,10 @@
 
-
+@import (reference) "boilerplate.less";
 
 @fontface-card-title: 'encode_sans_normalbold';
 @fontface-card-heading: 'Roboto', sans-serif;
 @fontface-body: 'Open Sans', sans-serif;
+
 
 
 .myuw-card-title {
@@ -18,7 +19,7 @@
 }
 
 .myuw-course-shortname {
-    font-family: @fontfacecard-heading;
+    font-family: @fontface-card-heading;
     font-weight: 400;
     color: @uw-dark-gray;
     font-size: 16px;
@@ -28,5 +29,10 @@
     font-family: @fontface-body;
     font-size: 12px;
     text-transform: uppercase;
-    
+}
+
+.myuw-card-row-heading {
+    font-family: @fontface-body;
+    font-size: 14px;
+    color: #333;
 }
