@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load set_context %}
+{% load static %}
+{% load compress %}
+
+{% block load_values %}
+{% set_context 'page_title' 'Academics' %}
+{% endblock %}
+
+{% block content %}
+
+    <div id="main-content" role="main" aria-labelledby="main"></div>
+    <div id="static-links"></div>
+
+    <!-- component content templates -->
+    {% include "handlebars/card/future_quarter.html" %}
+    {% include "handlebars/card/schedule/course_cards.html" %}
+    {% include "handlebars/card/schedule/course_card_content.html" %}
+    {% include "handlebars/card/schedule/course_sche_panel.html" %}
+    {% include "handlebars/card/schedule/eval_panel.html" %}
+    {% include "handlebars/card/schedule/course_resource_panel.html" %}
+    {% include "handlebars/card/schedule/instructor_panel.html" %}
+    {% include "handlebars/card/schedule/final_panel.html" %}
+    {% include "handlebars/card/schedule/sp_final.html" %}
+    {% include "handlebars/card/schedule/final_day.html" %}
+    {% include "handlebars/card/schedule/visual.html" %}
+    {% include "handlebars/card/schedule/visual_day.html" %}
+    {% include "handlebars/card/textbook.html" %}
+    {% include "handlebars/card/grade.html" %}
+    {% include "handlebars/card/grad_status.html" %}
+    {% include "handlebars/card/grad_committee.html" %}
+    {% include "handlebars/card/no_course.html" %}
+    {% include "handlebars/card/loading.html" %}
+
+    <!-- page content templates -->
+    {% include "handlebars/academics.html" %}
+    {% include "handlebars/error.html" %}
+    {% include "handlebars/future_410_error.html" %}
+    {% include "handlebars/grades.html" %}
+    {% include "handlebars/loading.html" %}
+    {% include "handlebars/other_quarters.html" %}
+    {% include "handlebars/quarter_books.html" %}
+    {% include "handlebars/visual_schedule.html" %}
+    {% include "user_state.html" %}
+
+    <script>
+    window.webservice_outage = {{ webservice_outage|yesno:"true, false" }};
+    </script>
+{% endblock %}
+
+{% block extra_js %}
+    {% compress js inline %}
+        <script src="{% static 'js/page/academics.js' %}"></script>
+    {% endcompress %}
+{% endblock %}
