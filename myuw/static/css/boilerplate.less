@@ -103,9 +103,27 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 .card {
 
     box-shadow: 0 1px 3px rgba(34,25,25,.15) !important;
-    margin-left: -16px; margin-right: -16px; margin-top: 16px !important; padding: 16px !important;
+    margin-left: -16px;
+    margin-right: -16px;
+    margin-top: 0 !important;
+    margin-bottom: 16px !important;
+    padding: 16px !important;
     border-left: none !important;
     border-right: none !important;
+
+    .card-disclosure, .card-faux-disclosure {
+        margin-left: -16px !important;
+        margin-right: -16px !important;
+        margin-bottom: -16px !important;
+        margin-top: 0 !important;
+    }
+
+    .PCE-vs-notice {
+        margin-top: -16px !important;
+        margin-left: -16px !important;
+        margin-right: -16px !important;
+        padding: 16px !important;
+    }
 
     @media @two-column { border-left: solid 1px #ddd !important; border-right: solid 1px #ddd !important; margin-left: 0; margin-right: 0; }
 }
@@ -113,23 +131,23 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
 #app_notices {
 
-    @media @desktop { margin-left: 0; margin-right: 0; padding: 0 16px !important; }
+    @media @desktop { margin-left: 0; margin-right: 0; margin-bottom: 16px; padding: 0 16px !important; }
 
     .notice-header { margin-top: 0; }
 
-    /**
-    .notice-content-list-item { background: transparent !important;
-        .notice-category-icon {  background: transparent !important; }
+    .notice-content-list-item { background: #f5f5f5 !important;
+        .notice-category-icon {  background: #f5f5f5 !important;
+            i { color: #4d66ca !important; }
+        }
         .notice-title { background: transparent !important; }
-        .notice-body-with-title { background: #fcf9e3; display: block !important; }
+        .notice-body-with-title { background: #fefefe; display: block !important; }
     }
-    **/
 
 }
 
-#app_acal { margin-top: 10px;
+#app_acal {
 
-    @media @desktop { margin-top: 0; margin-left: 0; margin-right: 0; padding: 0 16px !important; }
+    @media @desktop { margin-top: 0; margin-left: 0; margin-right: 0; margin-bottom: 16px; padding: 0 16px !important; }
 
     h3 { text-transform: uppercase; font-weight: normal; font-size: 14px; color: #aaa;  }
     h2 { margin-top: 0 !important; }
@@ -145,7 +163,6 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
         .row { margin: 0 !important; }
 
         // handle bootstrap generic col-x classes
-
         [class*="col-"] {
             padding-left: 0 !important;
             padding-right: 0 !important;
@@ -186,21 +203,41 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
     // override notices page
     .notices-container {
         background: transparent !important;
+        margin-bottom: 0 !important;
+
+        .inner-notice-container { background: #fefefe !important; }
     }
+
+    // override category/resource pages
+    .category-container {
+        background: transparent !important;
+    }
+
+    // override academic calendar page
+    .academic_cal-container {
+        background: transparent !important;
+    }
+
+    .textbooks-container {
+        background: transparent !important;
+        margin-bottom: 0 !important;
+    }
+
+    .future-quarter-container {
+        margin-bottom: 0 !important;
+    }
+
+    // override google search results
+    .gsc-control-cse, .gsc-result, .gsc-cursor-page { background: transparent !important; border: none !important; }
 }
 
 #app_footer {
     .navigation-bar {
-
-        li { margin-right: 0 !important; margin-bottom: 16px !important; width: 100% !important;
-            a { padding: 16px !important; }
+        li { width: 50% !important; margin-right: 0 !important; min-height: 110px !important; height: auto; margin-bottom: 16px !important;
+            a { padding: 16px !important; min-height: 110px !important; }
         }
-        @media @two-column {
-
-            li { width: 49.25% !important; margin-right: 0 !important; }
-            li:nth-child(odd) { margin-right: .5% !important; }
-            li:nth-child(even) { margin-left: .5% !important; float: right !important; }
-        }
+    li:nth-child(odd) { border-right: solid 8px #dfd8c2; }
+        li:nth-child(even) { border-left: solid 8px #dfd8c2; float: right !important; }
     }
     .footer-bar {
         padding: 16px 0 !important;
