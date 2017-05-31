@@ -10,6 +10,7 @@ MyUW Teaching Section
     {% include "handlebars/card/instructor_schedule/course_section.html" %}
     {% include "handlebars/card/instructor_schedule/no_section_card.html" %}
     {% include "handlebars/card/instructor_schedule/not_instructor_card.html" %}
+    {% include "handlebars/card/teaching_resources.html" %}
     {% include "handlebars/teaching_section.html" %}
 {% endblock %}
 
@@ -21,5 +22,6 @@ MyUW Teaching Section
     </script>
     {% compress js inline %}
     <script src="{% static 'js/page/teaching_section.js' %}"></script>
+    <script src="{% static 'js/card/teaching_resources.js' %}"></script>
     {% endcompress %}
 {% endblock %}
