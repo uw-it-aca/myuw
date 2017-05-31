@@ -2,7 +2,7 @@
     {% tplhandlebars "student_info_card" %}
     <div class="card" data-type="card" data-name="StudentInfoCard" data-identifier="{{ title }}">
         <h3>Student Profile</h3>
-
+		<a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp" class="btn btn-default card-btn" title="Change address on Student Personal Services website">Change Address</a>
         <div vocab="http://schema.org/" typeof="Person">
           <div class="profile-bio">
             {{#if student_number}}
