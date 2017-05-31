@@ -233,16 +233,11 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
 #app_footer {
     .navigation-bar {
-
-        li { margin-right: 0 !important; margin-bottom: 16px !important; width: 100% !important;
-            a { padding: 16px !important; }
+        li { width: 50% !important; margin-right: 0 !important; min-height: 110px !important; height: auto; margin-bottom: 16px !important;
+            a { padding: 16px !important; height: auto !important; }
         }
-        @media @two-column {
-
-            li { width: 49.25% !important; margin-right: 0 !important; }
-            li:nth-child(odd) { margin-right: .5% !important; }
-            li:nth-child(even) { margin-left: .5% !important; float: right !important; }
-        }
+    li:nth-child(odd) { border-right: solid 8px #dfd8c2; }
+        li:nth-child(even) { border-left: solid 8px #dfd8c2; float: right !important; }
     }
     .footer-bar {
         padding: 16px 0 !important;
