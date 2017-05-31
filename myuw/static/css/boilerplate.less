@@ -103,7 +103,11 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 .card {
 
     box-shadow: 0 1px 3px rgba(34,25,25,.15) !important;
-    margin-left: -16px; margin-right: -16px; margin-top: 16px !important; padding: 16px !important;
+    margin-left: -16px;
+    margin-right: -16px;
+    margin-top: 0 !important;
+    margin-bottom: 16px !important;
+    padding: 16px !important;
     border-left: none !important;
     border-right: none !important;
 
@@ -113,23 +117,21 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
 #app_notices {
 
-    @media @desktop { margin-left: 0; margin-right: 0; padding: 0 16px !important; }
+    @media @desktop { margin-left: 0; margin-right: 0; margin-bottom: 16px; padding: 0 16px !important; }
 
     .notice-header { margin-top: 0; }
 
-    /**
-    .notice-content-list-item { background: transparent !important;
-        .notice-category-icon {  background: transparent !important; }
+    .notice-content-list-item { background: #f5f5f5 !important;
+        .notice-category-icon {  background: #f5f5f5 !important; }
         .notice-title { background: transparent !important; }
         .notice-body-with-title { background: #fcf9e3; display: block !important; }
     }
-    **/
 
 }
 
-#app_acal { margin-top: 10px;
+#app_acal {
 
-    @media @desktop { margin-top: 0; margin-left: 0; margin-right: 0; padding: 0 16px !important; }
+    @media @desktop { margin-top: 0; margin-left: 0; margin-right: 0; margin-bottom: 16px; padding: 0 16px !important; }
 
     h3 { text-transform: uppercase; font-weight: normal; font-size: 14px; color: #aaa;  }
     h2 { margin-top: 0 !important; }
@@ -145,7 +147,6 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
         .row { margin: 0 !important; }
 
         // handle bootstrap generic col-x classes
-
         [class*="col-"] {
             padding-left: 0 !important;
             padding-right: 0 !important;
@@ -194,6 +195,7 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
         padding: 16px;
     }
 
+    // override academic calendar page
     .academic_cal-container {
         background: #fff;
         padding: 16px !important;
