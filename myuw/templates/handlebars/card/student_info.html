@@ -13,7 +13,7 @@
             {{/if}}
 
             <div class="profile-student-info">
-              <h4 style="margin-top: 25px;">Student Information</h4>
+              <h4 style="margin-top: 25px;">Year and Major</h4>
 
 		    <div class="profile-student-major">
 			  <div>{{ class_level }}</div>
@@ -94,7 +94,7 @@
             <div property="workLocation" typeof="Place"  class="row" style="margin-top: 10px;">
               <span class="sr-only" property="name">Student Information</span>
               <div class="profile-local-address col-xs-6">
-                <h5>Local Address</h5>
+                <h4>Local Address</h4>
                 {{#if local_address}}
                 {{#with local_address}}		
                 {{#if street_line2}}		
@@ -117,7 +117,7 @@
               </div>
 
               <div class="profile-perm-address col-xs-6">
-                <h5>Permanent Address</h5>
+                <h4>Permanent Address</h4>
                 {{#if permanent_address}}
                 {{#with permanent_address}}
                 {{#if street_line2}}
@@ -141,27 +141,25 @@
             </div>
 
             <div class="dir-release">
-              <h4 style="margin-top: 25px;">Profile Release Authorization : {{#if directory_release}}YES{{else}}NO{{/if}}</h4>
-              <div>
-                <p>
-                  {{#if directory_release}}
-                  Name, phone number, email, major, and class standing are {{#unless directory_release}}NOT {{/unless}}published in the UW Directory.
-                  <br />
+              <h4 style="margin-top: 25px;">UW Student Directory Release: <strong>{{#if directory_release}}Yes {{else}}No {{/if}}</strong></h4>
+              <div><ul>
+	              {{#if directory_release}}
+                   
+	                   <li>Name, phone number, email, major, and class standing are {{#unless directory_release}}NOT {{/unless}}published in the UW Directory.</li>
                   {{else}}
-                  <strong>Your profile information is currently <em>private</em></strong> (not releasable)
-                  <ul>
-                    <li><strong>Information about you cannot be released or displayed publicly in the UW Directory without your consent.</strong></li>
-                  </ul>
-		          {{/if}}
-                  <a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Change your release settings</a>
-                </p>
+                  <li><strong>Your profile information is currently <em>private</em> (not releasable)</strong>: <br />
+                  Information about you cannot be released or displayed publicly in the UW Directory without your consent.</li>		          {{/if}}				
+                <a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Change your release settings</a>
+                </ul>
+                
               </div>
               <div>
-                <p>
-                  Information such as date of birth, street address, and dates of attendance can be releaseable by the Office of the Registrar when requested.
+                <ul>
+                  <li>Information such as date of birth, street address, and dates of attendance can be releaseable by the Office of the Registrar when requested.
                   <br />
                   <a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a>
-                </p>
+                </li>
+                </ul>
               </div>
             </div>
           </div>
