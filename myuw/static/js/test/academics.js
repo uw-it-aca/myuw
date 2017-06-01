@@ -10,7 +10,7 @@ describe("Academics page course cards", function() {
             ]
         });
 
-        window.card_display_dates = {};
+        window.user = {};
     });
     it("show if is student", function() {
         window.user.student = true;
