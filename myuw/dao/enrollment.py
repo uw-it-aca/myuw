@@ -73,11 +73,7 @@ def get_prev_enrollments_with_open_sections(request, num_of_prev_terms):
     """
     terms = get_prev_num_terms(request, num_of_prev_terms)
     result_dict = get_enrollments_of_terms(terms)
-    # live data excludes expired or finished course
-    if is_using_file_dao():
-        result_dict = remove_finished(request, result_dict)
-
-    return result_dict
+    return remove_finished(request, result_dict)
 
 
 def get_main_campus(request):

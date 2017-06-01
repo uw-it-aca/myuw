@@ -186,4 +186,4 @@ class TestSchedule(MyuwApiTest):
         data = json.loads(response.content)
         section = self.get_section(data, 'MUSEUM', '700', 'A')
         self.assertFalse("cc_display_dates" in section)
-        self.assertTrue(section["on_standby"])
+        self.assertFalse(section["on_standby"])

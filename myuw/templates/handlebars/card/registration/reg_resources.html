@@ -43,19 +43,6 @@
             </li>
         {{/unless}}
 
-        {{ #if is_tacoma }}
-            <li>
-                <span id="tacoma_time_schedule" class="sr-only">Browse time schedule for Tacoma</span>
-                <a aria-labelledby="tacoma_time_schedule"
-                   target="_blank"
-                   href="http://www.washington.edu/students/timeschd/T/">Time Schedule Browse</a></li>
-
-            <li>
-                <a aria-labelledby="tacoma_time_schedule_search"
-                   target="_blank"
-                   href="http://www.tacoma.washington.edu/enrollment_apps/timeschedule/search.cfm">Time Schedule Search</a>
-            </li>
-        {{ /if }}
 
         {{ #if is_bothell }}
             <li>
@@ -65,23 +52,11 @@
                 </span>
                 <a aria-labelledby="bothell_time_schedule"
                    target="_blank"
-                   href="http://www.uwb.edu/registration/time">{{ #if is_pce }}Bothell {{ /if }}Time Schedule</a>
+                   href="http://www.uwb.edu/registration/time">Bothell Time Schedule</a>
             </li>
         {{ /if }}
 
-	    {{ #if is_seattle }}
-            <li>
-                <span id="seattle_time_schedule"
-                      class="sr-only">
-                    Browse time schedule for Seattle
-                </span>
-                <a aria-labelledby="seattle_time_schedule"
-                   target="_blank"
-                   href="http://www.washington.edu/students/timeschd/">{{ #if is_pce }}Seattle {{ /if }}Time Schedule</a>
-            </li>
-        {{ /if }}	
-	        
-	    {{ #if is_pce }}
+	{{ #if is_pce }}
             <li>
                 <span id="pce_time_schedule"
                       class="sr-only">
@@ -91,8 +66,34 @@
                    target="_blank"
                    href="https://www.washington.edu/students/timeschd/95index.html">PCE Time Schedule</a>
             </li>
-        {{ /if }}        
-        
+        {{ /if }}
+
+	{{ #if is_seattle }}
+            <li>
+                <span id="seattle_time_schedule"
+                      class="sr-only">
+                    Browse time schedule for Seattle
+                </span>
+                <a aria-labelledby="seattle_time_schedule"
+                   target="_blank"
+                   href="http://www.washington.edu/students/timeschd/">Seattle Time Schedule</a>
+            </li>
+        {{ /if }}
+
+        {{ #if is_tacoma }}
+            <li>
+                <span id="tacoma_time_schedule" class="sr-only">Browse time schedule for Tacoma</span>
+                <a aria-labelledby="tacoma_time_schedule"
+                   target="_blank"
+                   href="http://www.washington.edu/students/timeschd/T/">Tacoma Time Schedule Browse</a></li>
+
+            <li>
+                <a aria-labelledby="tacoma_time_schedule_search"
+                   target="_blank"
+                   href="http://www.tacoma.washington.edu/enrollment_apps/timeschedule/search.cfm">Tacoma Time Schedule Search</a>
+            </li>
+        {{ /if }}
+
         <li>
             <span class="sr-only">Go to DARS</span>
             <a target="_blank"

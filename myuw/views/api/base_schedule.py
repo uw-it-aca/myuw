@@ -104,7 +104,7 @@ def load_schedule(request, schedule, summer_term=""):
             if len(pce_sections) > 0 and\
                     section.section_label() in pce_sections:
                 pce_course = pce_sections.get(section.section_label())
-                section_data["on_standby"] = pce_course.on_standby()
+                section_data["on_standby"] = pce_course.standby()
                 group_independent_start = irregular_start_end(
                     schedule.term, pce_course, section.summer_term)
                 if group_independent_start:
