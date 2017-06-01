@@ -1,0 +1,47 @@
+{
+    "Current": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "",
+        "CurriculumAbbreviation": null,
+        "Href": "/student/v5/registration.json?year=2013&quarter=winter&curriculum_abbreviation=&course_number=&section_id=&reg_id=10000000000000000000000000000010&is_active=&instructor_reg_id=&verbose=true&changed_since_date=&transcriptable_course=all&page_start=&page_size=10",
+        "InstructorRegID": "",
+        "IsActive": false,
+        "PageSize": "10",
+        "PageStart": null,
+        "Quarter": "winter",
+        "RegID": "10000000000000000000000000000010",
+        "SectionID": "",
+        "TranscriptableCourse": "all",
+        "Verbose": true,
+        "Year": 2013
+    },
+    "Next": null,
+    "PageSize": "10",
+    "PageStart": null,
+    "Previous": null,
+    "Registrations": [
+        {
+            "DuplicateCode": "0",
+            "Href": "/student/v5/registration/2013,winter,COM,201,A,10000000000000000000000000000010,0.json",
+            "Instructor": null,
+            "RegID": "10000000000000000000000000000010",
+            "CourseNumber": "201",
+            "CurriculumAbbreviation": "COM",
+            "Quarter": "winter",
+            "SectionID": "A",
+            "Year": 2013
+        },
+        {
+            "DuplicateCode": "0",
+            "Href": "/student/v5/registration/2013,winter,PSYCH,203,A,10000000000000000000000000000010,0.json",
+            "Instructor": null,
+            "RegID": "10000000000000000000000000000010",
+            "CourseNumber": "203",
+            "CurriculumAbbreviation": "PSYCH",
+            "Quarter": "winter",
+            "SectionID": "A",
+            "Year": 2013
+        }
+    ],
+    "TotalCount": 2
+}
