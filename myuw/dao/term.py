@@ -377,6 +377,9 @@ def add_term_data_to_context(request, context):
             compare <= cur_term.last_final_exam_date):
         context['is_finals'] = True
 
+    context['first_day'] = cur_term.first_day_quarter
+    context['last_day'] = cur_term.last_day_instruction
+
 
 def current_terms_prefetch(request):
     # This triggers a call to get_current_term when using the file dao.
