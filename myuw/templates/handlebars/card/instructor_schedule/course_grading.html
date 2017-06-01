@@ -1,11 +1,16 @@
     {% verbatim %}
-        <h4 class="myuw-card-row-heading">Grading</h4>
-        <div rel="{{curriculum_abbr}} {{course_number}} {{section_id}}">
+    <div class="row">
+        <div class="col-sm-3">
+            <h4 class="myuw-card-row-heading">Grading</h4>
+        </div>
 
-            <ul class="unstyled-list">
+        <div class="col-sm-9">
+            <div rel="{{curriculum_abbr}} {{course_number}} {{section_id}}">
 
-                <li class="clearfix grading-system">
-                    <div class="pull-left">
+                <ul class="unstyled-list">
+
+                    <li class="clearfix grading-system">
+                        <div class="pull-left">
                         <span class="inst-course-label">Grade System</span>
                     </div>
                     <div class="pull-right">
@@ -69,4 +74,6 @@
                 </li>
             </ul>
         </div>
+    </div>
+</div>
     {% endverbatim %}
