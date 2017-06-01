@@ -3,7 +3,6 @@ var TeachingResourcesCard = {
     dom_target: undefined,
 
     render_init: function() {
-        TeachingResourcesCard.dom_target = $('#TeachingResourcesCard');
         TeachingResourcesCard.render();
     },
 
