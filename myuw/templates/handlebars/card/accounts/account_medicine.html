@@ -2,10 +2,11 @@
 {% load static %}
 {% tplhandlebars "accounts_medicine" %}
 <div class="card" style="position:relative;" id="medicine-pw"> 
-    <div class="c6Border" style="position:absolute; top:0; left:0; right:0;">&nbsp;</div> 
+    <div class="c7Border" style="position:absolute; top:0; left:0; right:0;">&nbsp;</div> 
     <div class="med-logo"><img src="{% static '/images/UWMedicine_Logo_RGB@2x.png' %}" width="100px" alt=""></div>
     <h3>UW Medicine Account <!--{{ card_name }}--></h3>
-    <p class="update-note">Note: Password status gets updated nightly.</p>
+     <p>This password is for UW Medicine applications like Epic, ORCA, MINDscape, AMC network, etc.</p>
+
 		{{#if med_pw_expired }}
 	     <div class="pw-exp">
 		 	<p class="pw-exp-date password-alert">Password expired on {{formatDateAsDate expires_med}}.
@@ -20,12 +21,11 @@
             	<span aria-hidden="true" class="card-badge-value {{#if expires_in_30_days_or_less}}password-alert{{/if}}">{{formatDateAsDate expires_med}}</span><span class="sr-only">{{toFriendlyDateVerbose expires_med}}</span>
             	<span class="card-badge-action pull-right {{#if expires_in_30_days_or_less}}password-alert{{/if}}">in {{days_before_med_pw_expires}} days </span>
 			</div><!-- .pull-right --> 
-            
+            <div class="pull-left clearfix"><p class="update-note">*Expiration date is updated nightly.</p></div>
             <div class="pw-link"><a href="https://services.uwmedicine.org/passwordportal/login.htm">Change UW Medicine password</a></div>
        </div><!-- .card-badge -->
         {{/if}}
-            <p>This password is for UW Medicine applications like Epic, ORCA, MINDscape, AMC network, etc.</p>
-            
+                       
          
 
 
