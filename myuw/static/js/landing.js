@@ -64,7 +64,6 @@ var Landing = {
             SummerRegStatusCard1
         ];
         var desktop_sidebar_cards = [
-            //LibraryCardMini,
             EmpFacStudentCard,
             HfsCard,
             TuitionCard,
@@ -84,7 +83,6 @@ var Landing = {
     _load_mobile_cards: function() {
         Landing._reset_content_divs();
         var mobile_cards = [
-            //LibraryCardMini,
             ThriveCard,
             FinalExamCard,
             GradeCard,
