@@ -45,9 +45,10 @@ var Academics = {
             GradeCard,
             FutureQuarterCard1,
             GradStatusCard,
-            GradCommitteeCard,
+            GradCommitteeCard
         ];
         var desktop_sidebar_cards = [
+            QuickLinksCard
         ];
 
         if(window.webservice_outage){
@@ -55,12 +56,13 @@ var Academics = {
         }
 
         Cards.load_cards_in_order(desktop_body_cards, $("#academics_content_cards"));
-        // Cards.load_cards_in_order(desktop_sidebar_cards, $("#academics_sidebar_cards"));
+        Cards.load_cards_in_order(desktop_sidebar_cards, $("#academics_sidebar_cards"));
     },
 
     _load_mobile_cards: function() {
         Academics._reset_content_divs();
         var mobile_cards = [
+            QuickLinksCard,
             FutureQuarterCardA,
             VisualScheduleCard,
             CourseCards,
@@ -68,7 +70,7 @@ var Academics = {
             GradeCard,
             FutureQuarterCard1,
             GradStatusCard,
-            GradCommitteeCard,
+            GradCommitteeCard
         ];
         if(window.webservice_outage){
             desktop_body_cards.unshift(OutageCard);
@@ -80,7 +82,5 @@ var Academics = {
         resetCardRenderCalled();
         $("#academics_content_cards").html('');
         $("#academics_sidebar_cards").html('');
-        $("#calendar_banner_location_desktop").html('');
-        $("#calendar_banner_location_mobile").html('');
     }
 };

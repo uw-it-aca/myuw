@@ -30,6 +30,7 @@
     {% include "handlebars/card/grad_status.html" %}
     {% include "handlebars/card/grad_committee.html" %}
     {% include "handlebars/card/no_course.html" %}
+    {% include "handlebars/card/quicklinks.html" %}
     {% include "handlebars/card/loading.html" %}
 
     <!-- page content templates -->
@@ -42,7 +43,6 @@
     {% include "handlebars/quarter_books.html" %}
     {% include "handlebars/visual_schedule.html" %}
     {% include "user_state.html" %}
-
     <script>
     window.webservice_outage = {{ webservice_outage|yesno:"true, false" }};
     </script>
@@ -51,5 +51,6 @@
 {% block extra_js %}
     {% compress js inline %}
         <script src="{% static 'js/page/academics.js' %}"></script>
+        <script src="{% static 'js/card/quicklinks.js' %}"></script>
     {% endcompress %}
 {% endblock %}
