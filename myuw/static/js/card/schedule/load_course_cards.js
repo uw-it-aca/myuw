@@ -3,8 +3,15 @@ var CourseCards = {
     dom_target: undefined,
     term: 'current',
 
+    hide_card: function() {
+        if (window.user.student) {
+            return false;
+        }
+        return true;
+    },
+
     render_init: function() {
-        if (!window.user.student) {
+        if (CourseCards.hide_card()) {
             $("#CourseCards").hide();
             return;
         }
