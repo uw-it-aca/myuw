@@ -1,6 +1,7 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "instructor_course_resource_panel" %}
 
+    {% include "handlebars/card/instructor_schedule/course_resource/course_class_list.html" %}
 
     <div class="row">
         <div class="col-sm-3">
@@ -25,6 +26,5 @@
             </ul>
         </div>
     </div>
-    {% include "handlebars/card/instructor_schedule/course_resource/course_class_list.html" %}
 
 {% endtplhandlebars %}
