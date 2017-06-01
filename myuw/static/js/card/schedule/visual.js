@@ -71,49 +71,36 @@ var VisualScheduleCard = {
         });
         var range = VisualScheduleCard._get_schedule_range(course_data);
         var weeks = VisualScheduleCard._get_weeks_from_range(range);
-
         weeks = VisualScheduleCard._add_sections_to_weeks(weeks, course_data.sections);
-        VisualScheduleCard._print_weeks(weeks);
         weeks = VisualScheduleCard._consolidate_weeks(weeks);
-        //VisualScheduleCard._print_weeks(weeks);
 
-        return VisualScheduleCard._format_dates(schedule_periods);
-    },
-
-
-    _print_weeks: function(weeks){
-        $.each(weeks, function(i, v){
-            console.log("Start: "+ v.start_date.format("YYYY-MM-DD"));
-
-            $.each(v.sections, function(i, s){
-                console.log(s.curriculum_abbr + " " + s.course_number)
-            });
-            console.log("End: "+ v.end_date.format("YYYY-MM-DD"));
-            console.log("")
-        });
-
+        return VisualScheduleCard._format_dates(weeks);
     },
 
     _consolidate_weeks: function(weeks){
-        //VisualScheduleCard._test_sections();
         var consolidated_weeks = {},
             first_week = parseInt(Object.keys(weeks)[0]),
             num_weeks = first_week + Object.keys(weeks).length - 1;
-        console.log(weeks)
 
         for(var i=first_week; i <= num_weeks; i++){
-            if(VisualScheduleCard._sections_are_same(weeks[i], weeks[i+1])){
-                //Change end date
-                weeks[i].end_date = weeks[i+1].end_date;
+            //Add the first week
+            var consolidated_week = weeks[i];
 
-                //remove 2nd week and increment counter
-                delete weeks[i+1];
-                i += 1;
+            //Loop through all weeks after this one checking for same sections
+            for(var k = i+1; k <= num_weeks; k++){
+
+                if(VisualScheduleCard._sections_are_same(weeks[i], weeks[k])){
+                    //Change end date
+                    consolidated_week.end_date = weeks[k].end_date;
+                    //increment counter
+                    i += 1;
+                }
             }
+            consolidated_weeks[i] = consolidated_week;
+
 
         }
-        console.log(weeks)
-        return weeks
+        return consolidated_weeks
 
     },
 
@@ -122,7 +109,6 @@ var VisualScheduleCard = {
         if (list1 === undefined || list2 === undefined) {
             return false;
         }
-
 
         var lists_are_same = true,
             l1_sections = list1.sections.slice(),
@@ -178,8 +164,8 @@ var VisualScheduleCard = {
             var year = range[0].year();
             var week = moment().year(year).week(i);
             weeks[i] = {
-                "start_date": week.startOf('week'),
-                "end_date": week.endOf('week'),
+                "start_date": week.clone().startOf('week'),
+                "end_date": week.clone().endOf('week'),
                 "sections": []
             }
         }
