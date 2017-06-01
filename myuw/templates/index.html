@@ -76,6 +76,8 @@
     {% include "handlebars/panel/addi_course_links.html" %}
     {% include "handlebars/panel/no_courses.html" %}
 
+    {% include "handlebars/card/summary/accounts.html" %}
+
     <!-- page content templates -->
     {% include "handlebars/landing.html" %}
     {% include "handlebars/future_410_error.html" %}
@@ -92,6 +94,13 @@
 
     <script>
     window.webservice_outage = {{ webservice_outage|yesno:"true, false" }};
+    window.term_data = {
+        today: '{{ today|date:"l, F j, Y" }}',
+        year: '{{ year }}',
+        quarter: '{{ quarter }}',
+        is_finals: {{ is_finals|yesno:"true, false"}},
+        is_break: {{ is_break|yesno:"true, false"}}
+    };
     </script>
 
     {% include "user_state.html" %}

@@ -12,7 +12,7 @@ from myuw.dao.term import get_specific_term, is_past, is_future,\
     get_bod_7d_before_last_instruction, get_eod_current_term_last_final_exam,\
     get_bod_class_start_quarter_after, get_eod_specific_quarter,\
     get_eod_specific_quarter_after, get_eod_specific_quarter_last_instruction,\
-    get_current_and_next_quarters
+    get_current_and_next_quarters, add_term_data_to_context
 from myuw.test import get_request_with_date, get_request_with_user,\
     get_request, fdao_sws_override
 
@@ -313,3 +313,48 @@ class TestTerm(TestCase):
         self.assertEqual(summer.year, 2013)
         self.assertEqual(autumn.year, 2013)
         self.assertEqual(winter.year, 2014)
+
+    def test_term_data_context_in_quarter(self):
+        request = get_request_with_date("2013-03-10")
+
+        context = {}
+        add_term_data_to_context(request, context)
+
+        self.assertEquals(context['year'], 2013)
+        self.assertEquals(context['quarter'], 'winter')
+        self.assertEquals(context['is_finals'], False)
+        self.assertEquals(context['is_break'], False)
+
+        self.assertEquals(context['today'].year, 2013)
+        self.assertEquals(context['today'].month, 3)
+        self.assertEquals(context['today'].day, 10)
+
+    def test_term_data_context_in_finals(self):
+        request = get_request_with_date("2013-03-22")
+
+        context = {}
+        add_term_data_to_context(request, context)
+        self.assertEquals(context['year'], 2013)
+        self.assertEquals(context['quarter'], 'winter')
+        self.assertEquals(context['is_finals'], True)
+        self.assertEquals(context['is_break'], False)
+
+    def test_term_data_context_after_finals_break(self):
+        request = get_request_with_date("2013-03-23")
+
+        context = {}
+        add_term_data_to_context(request, context)
+        self.assertEquals(context['year'], 2013)
+        self.assertEquals(context['quarter'], 'spring')
+        self.assertEquals(context['is_finals'], False)
+        self.assertEquals(context['is_break'], True)
+
+    def test_term_dat_context_before_start_break(self):
+        request = get_request_with_date("2013-03-29")
+
+        context = {}
+        add_term_data_to_context(request, context)
+        self.assertEquals(context['year'], 2013)
+        self.assertEquals(context['quarter'], 'spring')
+        self.assertEquals(context['is_finals'], False)
+        self.assertEquals(context['is_break'], True)

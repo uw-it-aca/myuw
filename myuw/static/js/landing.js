@@ -18,6 +18,8 @@ var Landing = {
 
         PceBanner.render_init($("#pce_banner_location"));
 
+        AccountSummaryCard.render_init($("#landing_summaries"));
+
         Landing.load_cards_for_viewport();
         // Set initial display state
         Landing.is_desktop = get_is_desktop();

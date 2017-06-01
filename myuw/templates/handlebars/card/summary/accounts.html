@@ -1,0 +1,27 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "account_summary_card" %}
+    <!-- accounts summary ticker -->
+    <div class="row myuw-account-summaries">
+
+        <!-- week counter -->
+        {{#with term }}
+        <a href="/academic_calendar/"><i class="fa fa-calendar" aria-hidden="true"></i> {{ ucfirst quarter }} {{#if is_finals }}Finals {{/if}}{{#if is_break }}Break {{/if}}{{ year }}<span>{{ today }}</span></a>
+        {{ /with }}
+
+        <!-- various account summaries -->
+
+        {{#if library.items_loaned }}
+        <a href="/accounts/">Library {{ pluralize library.items_loaned "Item" "Items" }} <span>{{ library.items_loaned }}</span></a>
+        {{/if}}
+        {{#if hfs.resident_dining}}
+        <a href="/accounts/">Resident Dining <span>${{ formatPrice hfs.resident_dining.balance }}</span></a>
+        {{/if}}
+        {{#if hfs.student_husky_card}}
+        <a href="/accounts/">Student Husky <span>${{ formatPrice hfs.student_husky_card.balance }}</span></a>
+        {{/if}}
+        {{#if hfs.employee_husky_card }}
+        <a href="/accounts/">Employee Husky <span>${{ formatPrice hfs.employee_husky_card.balance }}</span></a>
+        {{/if}}
+
+    </div>
+    {% endtplhandlebars %}
