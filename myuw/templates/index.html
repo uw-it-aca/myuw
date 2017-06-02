@@ -98,7 +98,10 @@
         year: '{{ year }}',
         quarter: '{{ quarter }}',
         is_finals: {{ is_finals|yesno:"true, false"}},
-        is_break: {{ is_break|yesno:"true, false"}}
+        is_break: {{ is_break|yesno:"true, false"}},
+        today_date: new Date({{ today|date:"Y" }}, {{ today|date:"n" }}-1, {{ today|date:"j"}}),
+        first_day: new Date({{ first_day|date:"Y" }}, {{ first_day|date:"n" }}-1, {{ first_day|date:"j"}}),
+        last_day: new Date({{ last_day|date:"Y" }}, {{ last_day|date:"n" }}-1, {{ last_day|date:"j"}})
     };
     </script>
 
