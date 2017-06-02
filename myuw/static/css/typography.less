@@ -6,7 +6,8 @@
 @fontface-card-heading: 'Roboto', sans-serif;
 @fontface-body: 'Open Sans', sans-serif;
 
-
+@fontsize-small: 12px;
+@fontsize-base: 14px;
 
 #app_content .card .myuw-card-title {
     margin-top: 0;
@@ -16,9 +17,20 @@
 
 .myuw-meta {
     font-family: @fontface-body;
-    font-size: @font-meta;
+    font-size: @fontsize-small;
     text-transform: uppercase;
 }
+
+.myuw-note {
+    font-style: italic;
+    font-size: @fontsize-small;
+}
+
+.myuw-error {
+    font-style: italic;
+    font-size: @fontsize-small;
+}
+
 
 /* Extra ID, .card, and element added to override generic styles */
 #app_content .card h3.myuw-card-row-heading,
