@@ -8,7 +8,6 @@ var AccountSummaryCard = {
         AccountSummaryCard.calls = 0;
         WSData.fetch_library_data(AccountSummaryCard.on_data, AccountSummaryCard.on_data);
         WSData.fetch_hfs_data(AccountSummaryCard.on_data, AccountSummaryCard.on_data);
-//        WSData.fetch_library_data(AccountSummaryCard.on_data, AccountSummaryCard.on_error);
     },
 
     on_data: function() {
@@ -46,7 +45,12 @@ var AccountSummaryCard = {
         if (test_date.getDay() != 1) {
             original_monday_week = false;
             total_weeks++;
-            test_date.setDate(test_date.getDate() + 7 - test_date.getDay());
+
+            var day_of_week = test_date.getDay();
+            if (day_of_week == 0) {
+                day_of_week = 7;
+            }
+            test_date.setDate(test_date.getDate() + 7 - day_of_week);
 
             if (test_date > date2) {
                 return total_weeks;

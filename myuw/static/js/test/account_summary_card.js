@@ -9,24 +9,23 @@ describe('AccountSummaryCard', function() {
             ],
         });
 
-        // Testing some middle of week starts
         d1 = new Date(2017, 4, 31);
         d2 = new Date(2017, 4, 30);
 
         assert.equal(AccountSummaryCard.get_weeks_apart(d1, d2), 0);
 
-        d2 = new Date(2017, 4, 31);
-        assert.equal(AccountSummaryCard.get_weeks_apart(d1, d2), 1);
+        // Testing some middle of week starts
+        d1 = new Date(2013, 0, 9);
+        for (var i = 9; i < 14; i++) {
+            d2 = new Date(2013, 0, i);
+            assert.equal(AccountSummaryCard.get_weeks_apart(d1, d2), 1);
+        }
+        for (var i = 14; i < 21; i++) {
+            d2 = new Date(2013, 0, i);
+            assert.equal(AccountSummaryCard.get_weeks_apart(d1, d2), 2);
+        }
 
-        d2 = new Date(2017, 5, 4);
-        assert.equal(AccountSummaryCard.get_weeks_apart(d1, d2), 1);
-
-        d2 = new Date(2017, 5, 5);
-        assert.equal(AccountSummaryCard.get_weeks_apart(d1, d2), 2);
-
-        d2 = new Date(2017, 5, 11);
-        assert.equal(AccountSummaryCard.get_weeks_apart(d1, d2), 2);
-
+        d1 = new Date(2017, 4, 31);
         d2 = new Date(2017, 5, 12);
         assert.equal(AccountSummaryCard.get_weeks_apart(d1, d2), 3);
 
@@ -34,15 +33,21 @@ describe('AccountSummaryCard', function() {
         assert.equal(AccountSummaryCard.get_weeks_apart(d1, d2), 53);
 
         // Test starting on Monday
-        console.log("---------------------------------------");
         d1 = new Date(2013, 0, 7);
-        d2 = new Date(2013, 0, 7);
-        assert.equal(AccountSummaryCard.get_weeks_apart(d1, d2), 1);
+        for (var i = 7; i < 14; i++) {
+            d2 = new Date(2013, 0, i);
+            assert.equal(AccountSummaryCard.get_weeks_apart(d1, d2), 1);
+        }
 
-        d2 = new Date(2013, 0, 8);
-        assert.equal(AccountSummaryCard.get_weeks_apart(d1, d2), 1);
         d2 = new Date(2013, 0, 14);
         assert.equal(AccountSummaryCard.get_weeks_apart(d1, d2), 2);
+
+        // Test a week ending on Monday
+        d2 = new Date(2013, 0, 14);
+        for (var i = 7; i < 14; i++) {
+            d1 = new Date(2013, 0, i);
+            assert.equal(AccountSummaryCard.get_weeks_apart(d1, d2), 2);
+        }
     });
 });
 
