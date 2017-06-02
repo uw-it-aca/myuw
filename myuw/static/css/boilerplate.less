@@ -33,16 +33,6 @@
 @desktop:  ~"(min-width: @{desktop-width} )";
 @large-desktop: ~"(min-width: @{large-desktop-width} )";
 
-/*** helper utilities ***/
-
-.visually-hidden {
-    position: absolute;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    height: 1px; width: 1px;
-    margin: -1px; padding: 0; border: 0;
-}
-
 /*** layout ***/
 
 body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,sans-serif; }
@@ -414,51 +404,12 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
     }
 }
 
-/*** modals ***/
-.myuw-modal {
-    h3 {
-    margin-bottom: 10px;
-    font-family: 'encode_sans_normalbold';
-    font-size: 18px;
-    color: #85754d;
-    }
-}
-
 /*** banner messaging ***/
 .myuw-banner-desktop { display: none;
     @media @desktop { display: block; }
 }
 .myuw-banner-mobile { margin: 0 -16px 16px -16px;
     @media @desktop { display: none; }
-}
-
-/*** cards ***/
-.myuw-card-mini {
-
-    font-size: 14px;
-    margin-left: -16px;
-    margin-right: -16px;
-
-    @media @two-column { margin-left: 0; margin-right: 0; }
-
-    a {
-
-        text-decoration: none;
-        color: @uw-dark-gray;
-        display:block;
-        padding: 16px;
-        background: #fff;
-        border-top: solid 1px #ddd;
-        border-bottom: solid 1px #ddd;
-        //border-radius: 3px;
-        margin-bottom: 8px;
-        box-shadow: 0 1px 3px rgba(34,25,25,.15);
-
-        @media @two-column { border-left: solid 1px #ddd; border-right: solid 1px #ddd; }
-
-        span { font-weight: bold; font-size: 14px; color: @uw-purple; display: inline-block; margin-left: 3px; }
-    }
-
 }
 
 /*** footer ***/
