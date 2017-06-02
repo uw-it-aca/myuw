@@ -35,6 +35,10 @@ var TextBooks = {
         };
 
         var section_data = function (i, section, instructor) {
+            var has_book_data = false;
+            if (book_data && book_data[section.sln] && book_data[section.sln].length) {
+                has_book_data = true;
+            }
             return {
                 index: i,
                 section_title: section.course_title,
@@ -43,8 +47,8 @@ var TextBooks = {
                 section_id: section.section_id,
                 color_id: section.color_id,
                 sln: section.sln,
-                books: book_data ? book_data[section.sln] : [],
-                has_books: book_data ? (book_data[section.sln].length > 0) : false,
+                books: has_book_data ? book_data[section.sln] : [],
+                has_books: has_book_data,
                 is_instructor: instructor,
                 bothell_campus: section.course_campus.toLowerCase() === 'bothell',
                 tacoma_campus: section.course_campus.toLowerCase() === 'tacoma'
