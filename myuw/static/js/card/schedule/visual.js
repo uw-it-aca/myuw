@@ -100,7 +100,7 @@ var VisualScheduleCard = {
 
 
         }
-        return consolidated_weeks
+        return consolidated_weeks;
 
     },
 
@@ -119,8 +119,8 @@ var VisualScheduleCard = {
                 list_has_section = false;
 
             $.each(l2_sections, function(idx, l2_section){
-                if(l1_section.course_number === l2_section.course_number
-                    && l1_section.curriculum_abbr === l2_section.curriculum_abbr){
+                if(l1_section.course_number === l2_section.course_number &&
+                    l1_section.curriculum_abbr === l2_section.curriculum_abbr){
 
                     list_has_section = true;
                     l2_sections.splice(idx, 1);
@@ -167,7 +167,7 @@ var VisualScheduleCard = {
                 "start_date": week.clone().startOf('week'),
                 "end_date": week.clone().endOf('week'),
                 "sections": []
-            }
+            };
         }
         return weeks;
 
@@ -191,7 +191,7 @@ var VisualScheduleCard = {
                 latest = dates[1];
             }
         });
-        return [earliest, latest]
+        return [earliest, latest];
     },
 
     _format_dates: function(schedule_periods){
