@@ -114,31 +114,32 @@ var VisualScheduleCard = {
             l1_sections = list1.sections.slice(),
             l2_sections = list2.sections.slice();
 
-        while(l1_sections.length > 0){
-            var l1_section = l1_sections.pop(),
-                list_has_section = false;
-
-            $.each(l2_sections, function(idx, l2_section){
-                if(l1_section.course_number === l2_section.course_number &&
-                    l1_section.curriculum_abbr === l2_section.curriculum_abbr){
-
-                    list_has_section = true;
-                    l2_sections.splice(idx, 1);
-                    return false;
-                }
-            });
-
-            if(!list_has_section){
+        $.each(l1_sections, function(idx, section){
+            var in_list = VisualScheduleCard._section_list_has_section(section, l2_sections);
+            if(!in_list){
                 lists_are_same = false;
             }
+        });
 
-            if(l1_sections.length === 0 && l2_sections.length > 0){
+        $.each(l2_sections, function(idx, section){
+            var in_list = VisualScheduleCard._section_list_has_section(section, l1_sections);
+            if(!in_list){
                 lists_are_same = false;
             }
-        }
+        });
+
         return lists_are_same;
+    },
 
-
+    _section_list_has_section: function(section, list){
+        var in_section = false;
+        $.each(list, function(idx, l2_section){
+            if(section.course_number === l2_section.course_number &&
+                section.curriculum_abbr === l2_section.curriculum_abbr){
+                in_section = true;
+            }
+        });
+        return in_section;
     },
 
     _add_sections_to_weeks: function(weeks, sections){
