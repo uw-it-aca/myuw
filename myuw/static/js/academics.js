@@ -44,7 +44,8 @@ var Academics = {
             TextbookCard,
             GradStatusCard,
             GradCommitteeCard,
-            FutureQuarterCardA
+            FutureQuarterCardA,
+            FutureQuarterCard1
         ];
         var desktop_sidebar_cards = [
         ];
@@ -66,7 +67,8 @@ var Academics = {
             TextbookCard,
             GradStatusCard,
             GradCommitteeCard,
-            FutureQuarterCardA
+            FutureQuarterCardA,
+            FutureQuarterCard1
         ];
         if(window.webservice_outage){
             desktop_body_cards.unshift(OutageCard);
