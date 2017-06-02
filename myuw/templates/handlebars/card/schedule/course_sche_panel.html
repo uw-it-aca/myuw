@@ -18,6 +18,8 @@
         <tr class="course-schedule-row">
             {{#if days_tbd }}
                 <td colspan="2" class="text-muted course-tbd">Days and times to<br/> be arranged</td>
+            {{else if no_meeting}}
+                    <td colspan="2" class="text-muted">No classroom meeting: online learning</td>
             {{else}}
                 <td class="course-days">
                     {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
