@@ -16,8 +16,6 @@ var Landing = {
 
         NoticeBanner.render_init($("#notice_banner_location"));
 
-        PceBanner.render_init($("#pce_banner_location"));
-
         Landing.load_cards_for_viewport();
         // Set initial display state
         Landing.is_desktop = get_is_desktop();
@@ -56,6 +54,8 @@ var Landing = {
             VisualScheduleCard,
             TextbookCard,
             CourseCards,
+            PrevTermCourseCards,
+            PrevTermCourseCards1,
             GradStatusCard,
             GradCommitteeCard,
             FutureQuarterCard1,
@@ -97,6 +97,8 @@ var Landing = {
             VisualScheduleCard,
             TextbookCard,
             CourseCards,
+            PrevTermCourseCards,
+            PrevTermCourseCards1,
             GradStatusCard,
             EmpFacStudentCard,
             HfsCard,

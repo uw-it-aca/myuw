@@ -81,7 +81,9 @@ def is_undergrad_student():
 
 
 def is_student():
-    return is_undergrad_student() or is_graduate_student()
+    return (is_undergrad_student() or
+            is_graduate_student() or
+            is_pce_student())
 
 
 def is_pce_student():

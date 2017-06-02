@@ -1,0 +1,203 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "ClassWebsiteUrl": "https://canvas.uw.edu/courses/1137908",
+    "Course": {
+        "CourseNumber": "421",
+        "CurriculumAbbreviation": "CM",
+        "Href": "/student/v5/course/2013,spring,CM,421.json",
+        "Quarter": "spring",
+        "Year": 2013
+    },
+    "CourseCampus": "Seattle",
+    "CourseDescription": "Introduction to the organization, management, and administrative functions on construction projects including a hands-on and extensive case study of a commercial construction project, cost control, and introduction to the concepts of Value Engineering, partnering, and Total Quality Management. Prerequisite: CM 410; CM 411. Offered: W.",
+    "CourseHasVariableContent": false,
+    "CourseTitle": "PROJECT MGMT I",
+    "CourseTitleLong": "PROJECT MANAGEMENT I",
+    "CreditControl": "fixed credit",
+    "CurrentEnrollment": 28,
+    "Curriculum": {
+        "CollegeName": "BUILT ENVIR",
+        "DepartmentAbbreviation": "CM",
+        "TimeScheduleLinkAbbreviation": "95constmgmt"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": false,
+    "DuplicateEnrollmentAllowed": false,
+    "EndDate": "",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": "",
+    "FeeBudget": "",
+    "FeeType": "",
+    "FinalExam": {
+        "Building": "*",
+        "Date": "0000-00-00",
+        "EndTime": "00:00",
+        "FinalExamBuilding": {
+            "Href": ""
+        },
+        "MeetingStatus": "1",
+        "RoomNumber": "*",
+        "StartTime": "00:00"
+    },
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": "",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [
+        {
+            "DelegateLevel": "college",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                "Name": "Meegan M Amen",
+                "RegID": "10000000000000000000000000000011"
+            }
+        },
+        {
+            "DelegateLevel": "department",
+            "Person": {
+                "Href": "/student/v5/person/FBB38FE46A7C11D5A4AE0004AC494FFE.json",
+                "Name": "Bill Bender",
+                "RegID": "FBB38FE46A7C11D5A4AE0004AC494FFE"
+            }
+        },
+        {
+            "DelegateLevel": "curriculum",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000006.json",
+                "Name": "Katherine E McDermott",
+                "RegID": "10000000000000000000000000000006"
+            }
+        }
+    ],
+    "GradingSystem": "standard",
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": "UW PROFESSIONAL AND CONTINUING EDUCATION",
+    "IsIndependentStart": false,
+    "JointSections": [],
+    "LMSOwnership": "PCE_AP",
+    "LimitEstimateEnrollment": 50,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "*",
+            "BuildingToBeArranged": true,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Thursday"
+                    }
+                ],
+                "Text": "   T"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "20:50",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2013,spring,CM,421,A,10000000000000000000000000000011"
+                    },
+                    "PercentInvolve": "100",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                        "Name": "JAMES L SHAIMAN",
+                        "RegID": "10000000000000000000000000000011"
+                    },
+                    "TSPrint": true
+                }
+            ],
+            "Meeting": {
+                "Href": ""
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "lecture",
+            "RoomNumber": "*",
+            "RoomToBeArranged": true,
+            "StartTime": "18:00"
+        }
+    ],
+    "Metadata": "SectionSourceKey=SDB_EOS;",
+    "MinimumTermCredit": "3.0",
+    "OnlineLearningType": {
+        "Code": "00",
+        "Description": "No online learning component"
+    },
+    "PrimaryLMS": "CANVAS",
+    "PrimarySection": {
+        "CourseNumber": "421",
+        "CurriculumAbbreviation": "CM",
+        "Href": "/student/v5/course/2013,spring,CM,421/A.json",
+        "Quarter": "spring",
+        "SectionID": "A",
+        "Year": 2013
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "421",
+        "CurriculumAbbreviation": "CM",
+        "Href": "/student/v5/registration.json?year=2013&quarter=spring&curriculum_abbreviation=CM&course_number=421&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "spring",
+        "RegID": null,
+        "SectionID": "A",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2013
+    },
+    "RepositoryTimeStamp": "4/11/2013 2:37:45 PM",
+    "ResearchCredit": false,
+    "RoomCapacity": 55,
+    "SLN": "12288",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "A",
+    "SectionType": "lecture",
+    "SelfRegistrationAllowed": false,
+    "ServiceLearning": false,
+    "StartDate": "",
+    "StudentCreditHours": "  84.0",
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2013,spring.json",
+        "Quarter": "spring",
+        "Year": 2013
+    },
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": []
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": []
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": []
+        }
+    }
+}

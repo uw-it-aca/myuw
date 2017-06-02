@@ -10,12 +10,14 @@
 {% block teaching_content %}
     {% include "handlebars/card/instructor_schedule/course_cards.html" %}
     {% include "handlebars/teaching.html" %}
+    {% include "handlebars/card/outage.html" %}
     {% include "handlebars/card/quicklinks.html" %}
 {% endblock %}
 
 {% block extra_js %}
     <script src="{% static 'js/card/quicklinks.js' %}"></script>
     {% compress js inline %}
+    <script src="{% static 'js/card/teaching_resources.js' %}"></script>
     <script src="{% static 'js/page/teaching.js' %}"></script>
     {% endcompress %}
     <script>
