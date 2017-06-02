@@ -34,6 +34,11 @@ var TextBooks = {
             "summer_term": course_data ? course_data.summer_term : instructed_course_data.summer_term
         };
 
+        var has_books = false;
+        if (book_data !== undefined && book_data[section.sln] !== undefined && book_data[section.sln].length > 0) {
+            has_books = true;
+        }
+
         var section_data = function (i, section, instructor) {
             var has_book_data = false;
             if (book_data && book_data[section.sln] && book_data[section.sln].length) {
@@ -47,8 +52,8 @@ var TextBooks = {
                 section_id: section.section_id,
                 color_id: section.color_id,
                 sln: section.sln,
-                books: has_book_data ? book_data[section.sln] : [],
                 has_books: has_book_data,
+                books: has_book_data ? book_data[section.sln] : [],
                 is_instructor: instructor,
                 bothell_campus: section.course_campus.toLowerCase() === 'bothell',
                 tacoma_campus: section.course_campus.toLowerCase() === 'tacoma'
