@@ -17,16 +17,9 @@
     {% include "handlebars/banner/notice.html" %}
     {% include "handlebars/banner/calendar.html" %}
     {% include "handlebars/card/error.html" %}
-    {% include "handlebars/card/fin_aid.html" %}
     {% include "handlebars/card/grade.html" %}
-    {% include "handlebars/card/hfs.html" %}
-    {% include "handlebars/card/library.html" %}
-    {% include "handlebars/card/library_mini.html" %}
-    {% include "handlebars/card/grad_status.html" %}
-    {% include "handlebars/card/grad_committee.html" %}
     {% include "handlebars/card/loading.html" %}
     {% include "handlebars/card/no_course.html" %}
-    {% include "handlebars/card/pce_tuition.html" %}
     {% include "handlebars/card/registration/holds.html" %}
     {% include "handlebars/card/registration/est_reg_date.html" %}
     {% include "handlebars/card/registration/finaid_notices.html" %}
@@ -34,22 +27,15 @@
     {% include "handlebars/card/registration/myplan_courses.html" %}
     {% include "handlebars/card/registration/reg_resources.html" %}
     {% include "handlebars/card/reg_status.html" %}
-    {% include "handlebars/card/tuition.html" %}
     {% include "handlebars/card/textbook.html" %}
     {% include "handlebars/card/future_quarter.html" %}
     {% include "handlebars/card/events.html" %}
     {% include "handlebars/card/emp_fac_student.html" %}
+    {% include "handlebars/card/quicklinks.html" %}
     {% include "handlebars/card/thrive.html" %}
     {% include "handlebars/card/thrive_highlight.html" %}
     {% include "handlebars/card/thrive_learnmore.html" %}
-    {% include "handlebars/card/upass.html" %}
     {% include "handlebars/card/outage.html" %}
-    {% include "handlebars/card/schedule/course_cards.html" %}
-    {% include "handlebars/card/schedule/course_card_content.html" %}
-    {% include "handlebars/card/schedule/course_sche_panel.html" %}
-    {% include "handlebars/card/schedule/eval_panel.html" %}
-    {% include "handlebars/card/schedule/course_resource_panel.html" %}
-    {% include "handlebars/card/schedule/instructor_panel.html" %}
     {% include "handlebars/card/schedule/final_panel.html" %}
     {% include "handlebars/card/schedule/sp_final.html" %}
     {% include "handlebars/card/schedule/final_day.html" %}
@@ -71,9 +57,6 @@
     {% include "handlebars/card/new_student/ns_summer_efs.html" %}
     {% include "handlebars/card/new_student/ns_thank_you.html" %}
     {% include "handlebars/card/new_student/ns_to_register.html" %}
-    {% include "handlebars/header/quarter.html" %}
-    {% include "handlebars/panel/addi_course_links.html" %}
-    {% include "handlebars/panel/no_courses.html" %}
 
     <!-- page content templates -->
     {% include "handlebars/landing.html" %}
@@ -99,6 +82,7 @@
 
 {% block extra_js %}
     {% compress js inline %}
+    <script src="{% static 'js/card/quicklinks.js' %}"></script>
     <script src="{% static 'js/page/landing.js' %}"></script>
     {% endcompress %}
 {% endblock %}

@@ -41,7 +41,6 @@ var Landing = {
         Landing._reset_content_divs();
         var desktop_body_cards = [
             ThriveCard,
-            FinalExamCard,
             GradeCard,
             FutureQuarterCardA,
             ThankYouCard,
@@ -53,21 +52,12 @@ var Landing = {
             InternationalStuCard,
             VisualScheduleCard,
             TextbookCard,
-            CourseCards,
-            PrevTermCourseCards,
-            PrevTermCourseCards1,
-            GradStatusCard,
-            GradCommitteeCard,
             FutureQuarterCard1,
             SummerRegStatusCard1
         ];
         var desktop_sidebar_cards = [
-            //LibraryCardMini,
+            QuickLinksCard,
             EmpFacStudentCard,
-            HfsCard,
-            TuitionCard,
-            LibraryCard,
-            UPassCard,
             EventsCard
         ];
         // Add in outage card if we can't get the SWS/term resource
@@ -82,9 +72,8 @@ var Landing = {
     _load_mobile_cards: function() {
         Landing._reset_content_divs();
         var mobile_cards = [
-            //LibraryCardMini,
+            QuickLinksCard,
             ThriveCard,
-            FinalExamCard,
             GradeCard,
             FutureQuarterCardA,
             ThankYouCard,
@@ -96,19 +85,10 @@ var Landing = {
             InternationalStuCard,
             VisualScheduleCard,
             TextbookCard,
-            CourseCards,
-            PrevTermCourseCards,
-            PrevTermCourseCards1,
-            GradStatusCard,
-            EmpFacStudentCard,
-            HfsCard,
-            TuitionCard,
-            LibraryCard,
-            UPassCard,
-            EventsCard,
-            GradCommitteeCard,
             FutureQuarterCard1,
-            SummerRegStatusCard1
+            SummerRegStatusCard1,
+            EmpFacStudentCard,
+            EventsCard
         ];
         // Add in outage card if we can't get the SWS/term resource
         if(window.webservice_outage){
