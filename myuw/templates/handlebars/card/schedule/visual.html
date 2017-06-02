@@ -49,11 +49,12 @@
         <span class="shortTitle">{{summer_term}}</span>
         {{/if}}
     </h3>
-    <div id="schedule-tabs">
+    <div id="schedule-tabs" class="schedule-period-module">
+		<ul class="nav nav-pills">
         {{ #each schedule_periods }}
-        <span class="schedule-period" data-period_id="{{ @key }}">{{ toMonthDay start_date }} - {{ toMonthDay end_date }}</span> |
+        <li class=""><a href="#"><span class="schedule-period" data-period_id="{{ @key }}">{{ toMonthDay start_date }} - {{ toMonthDay end_date }}</span></a></li>
         {{ /each }}
-
+		</ul>
     </div>
      {{# if has_early_fall_start }}
     <div class="efs-switcher">
