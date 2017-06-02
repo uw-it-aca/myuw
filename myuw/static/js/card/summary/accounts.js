@@ -47,7 +47,7 @@ var AccountSummaryCard = {
             total_weeks++;
 
             var day_of_week = test_date.getDay();
-            if (day_of_week == 0) {
+            if (day_of_week === 0) {
                 day_of_week = 7;
             }
             test_date.setDate(test_date.getDate() + 7 - day_of_week);
