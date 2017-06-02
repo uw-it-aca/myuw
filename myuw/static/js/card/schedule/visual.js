@@ -268,6 +268,7 @@ var VisualScheduleCard = {
             var term = VisualScheduleCard.term;
             var course_data = WSData.normalized_course_data(term);
             var data = VisualScheduleCard._get_data_for_period(course_data, term, period);
+            data.active_period_id = period;
             VisualScheduleCard.render_schedule(data, term);
         }
 
@@ -541,9 +542,10 @@ var VisualScheduleCard = {
             return false;
         });
 
-        $("span.schedule-period").on("click", function(ev){
-            var period_id = $(ev.target).attr('data-period_id');
+        $("a.schedule-period-anchor").on("click", function(ev){
+            var period_id = $(this).attr('data-period_id');
             VisualScheduleCard.display_schedule_for_period(period_id);
+            return false;
         });
     }
 };
