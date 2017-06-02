@@ -38,17 +38,15 @@ var Academics = {
     _load_desktop_cards: function() {
         Academics._reset_content_divs();
         var desktop_body_cards = [
-            FutureQuarterCardA,
-            VisualScheduleCard,
-            CourseCards,
-            TextbookCard,
             GradeCard,
-            FutureQuarterCard1,
+            CourseCards,
+            VisualScheduleCard,
+            TextbookCard,
             GradStatusCard,
-            GradCommitteeCard
+            GradCommitteeCard,
+            FutureQuarterCardA
         ];
         var desktop_sidebar_cards = [
-            QuickLinksCard
         ];
 
         if(window.webservice_outage){
@@ -56,21 +54,19 @@ var Academics = {
         }
 
         Cards.load_cards_in_order(desktop_body_cards, $("#academics_content_cards"));
-        Cards.load_cards_in_order(desktop_sidebar_cards, $("#academics_sidebar_cards"));
+        // Cards.load_cards_in_order(desktop_sidebar_cards, $("#academics_sidebar_cards"));
     },
 
     _load_mobile_cards: function() {
         Academics._reset_content_divs();
         var mobile_cards = [
-            QuickLinksCard,
-            FutureQuarterCardA,
-            VisualScheduleCard,
-            CourseCards,
-            TextbookCard,
             GradeCard,
-            FutureQuarterCard1,
+            CourseCards,
+            VisualScheduleCard,
+            TextbookCard,
             GradStatusCard,
-            GradCommitteeCard
+            GradCommitteeCard,
+            FutureQuarterCardA
         ];
         if(window.webservice_outage){
             desktop_body_cards.unshift(OutageCard);
@@ -81,6 +77,6 @@ var Academics = {
     _reset_content_divs: function() {
         resetCardRenderCalled();
         $("#academics_content_cards").html('');
-        $("#academics_sidebar_cards").html('');
+        // $("#academics_sidebar_cards").html('');
     }
 };
