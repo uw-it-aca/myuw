@@ -12,11 +12,11 @@ describe("Home page course cards", function() {
 
         window.user = {};
     });
-    it("show if is student", function() {
+    it("show if is pce student", function() {
         window.user.pce = true;
         assert.equal(false, PrevTermCourseCards.hide_card());
     });
-    it("hide if not student", function() {
+    it("hide if not pce student", function() {
         window.user.pce = false;
         assert.equal(true, PrevTermCourseCards.hide_card());
     });
