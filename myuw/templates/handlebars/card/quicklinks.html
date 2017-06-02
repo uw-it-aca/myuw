@@ -6,12 +6,12 @@
         <div class="myuw-qlinks-active">
             <ul class="unstyled-list myuw-qlinks-active-list">
                 {{#each links.default_links}}
-                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}" title="{{label}}" target="_blank"><span>{{label }}</span></a></div><div class="pull-right link-controls"><a href="#" class="control-link" data-linkid="{{ url }}" data-linktype="hide" title="Remove {{label}} link from Quick Links list"><i class="fa fa-times" aria-hidden="true"></i></a></div></li>
+                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}" title="{{label}}" data-notrack='' target="_blank"><span>{{label }}</span></a></div><div class="pull-right link-controls"><a href="#" class="control-link" data-linkid="{{ url }}" data-linktype="hide" title="Remove {{label}} link from Quick Links list"><i class="fa fa-times" aria-hidden="true"></i></a></div></li>
                 {{/each}}
                 {{#each links.custom_links}}
                 <li class="list clearfix">
                     <div class="myuw-qlinks-item pull-left">
-                        <a id="custom-link-{{ id }}" href="{{ url }}" title="{{label}}" target="_blank"><span>{{label }}</span></a>
+                        <a id="custom-link-{{ id }}" href="{{ url }}" title="{{label}}" target="_blank" data-notrack=''><span>{{label }}</span></a>
                     </div>
                     <div class="pull-right link-controls">
                         <a href="#" class="control-link edit-link" data-linkid="{{ id }}" data-linktype="edit" title="Edit {{label}} link"><i class="fa fa-pencil" aria-hidden="true"></i></a>&nbsp;<a href="#" class="control-link remove-link" data-linkid="{{ id }}" data-linktype="remove" title="Remove {{label}} link from Quick Links list"><i class="fa fa-times" aria-hidden="true"></i></a>
