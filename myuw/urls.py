@@ -17,6 +17,7 @@ from myuw.views.link_admin import popular_links
 from myuw.views.choose import new_site, old_site
 from myuw.views.logger import log_interaction
 from myuw.views.photo import show_photo
+from myuw.views.academics import academics
 from myuw.views.accounts import accounts
 from myuw.views.profile import profile
 from myuw.views.link import outbound_link
@@ -182,6 +183,7 @@ urlpatterns += [
         ),
     url(r'^choose/legacy', old_site, name="myuw_pref_old_site"
         ),
+    url(r'^academics/?$', academics, name="myuw_academics_page"),
     url(r'^accounts/?$', accounts, name="myuw_accounts_page"),
     url(r'^profile/?$', profile, name="myuw_profile_page"),
     url(r'^search/?$', search_res, name="myuw_search_res_page"
