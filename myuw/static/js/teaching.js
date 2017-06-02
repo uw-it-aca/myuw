@@ -8,8 +8,6 @@ var Teaching = {
     },
 
     make_html: function () {
-        Handlebars.registerPartial('teaching_resources',
-                                   $('#teaching_resources_partial').html());
         $('html,body').animate({scrollTop: 0}, 'fast');
         var teaching_source = $("#teaching").html();
         var template = Handlebars.compile(teaching_source);
@@ -50,6 +48,7 @@ var Teaching = {
         ];
         var desktop_sidebar_cards = [
             QuickLinksCard,
+            TeachingResourcesCard,
             EventsCard
         ];
         Cards.load_cards_in_order(desktop_body_cards, $("#teaching_content_cards"));
@@ -62,6 +61,7 @@ var Teaching = {
         var mobile_cards = [
             InstructorCourseCards,
             QuickLinksCard,
+            TeachingResourcesCard,
             EventsCard
         ];
         Cards.load_cards_in_order(mobile_cards, $("#teaching_content_cards"));

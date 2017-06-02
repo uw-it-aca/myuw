@@ -1,0 +1,41 @@
+{
+                    "AccessDateRangeEnd": "06/02/2014",
+                    "AccessDateRangeStart": "03/22/2013",
+                    "Auditor": false,
+                    "Credits": "0.0",
+                    "DuplicateCode": "",
+                    "EducationUnitType": "CEU",
+                    "EndDate": "06/12/2013",
+                    "FeeBaseType": "",
+                    "Grade": "",
+                    "GradeDate": "",
+                    "GradeDocumentID": "",
+                    "GradingSystem": "SCUSC",
+                    "HonorsCourse": false,
+                    "Href": "/student/v5/registration/2013,spring,BIGDATA,230,A,55555333366711D5BE060004AC494FFE,.json",
+                    "Instructor": null,
+                    "IsActive": true,
+                    "IsCredit": false,
+                    "IsIndependentStart": false,
+                    "Metadata": "RegistrationSourceLocation=EOS;",
+                    "Person": {
+                        "Href": "/student/v5/person/55555333366711D5BE060004AC494FFE.json",
+                        "Name": "Jessie Eos",
+                        "RegID": "55555333366711D5BE060004AC494FFE"
+                    },
+                    "RepeatCourse": false,
+                    "RepositoryTimeStamp": "3/28/2013 1:13:17 PM",
+                    "RequestDate": "2013-03-10",
+                    "RequestStatus": "Added to class",
+                    "Section": {
+                        "CourseNumber": "230",
+                        "CurriculumAbbreviation": "BIGDATA",
+                        "Href": "/student/v5/course/2013,spring,BIGDATA,230/A.json",
+                        "Quarter": "spring",
+                        "SectionID": "A",
+                        "Year": 2013
+                    },
+                    "StartDate": "04/03/2013",
+                    "VariableCredit": false,
+                    "WritingCourse": false
+                }
