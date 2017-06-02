@@ -7,13 +7,16 @@
   <label for="teaching-term-select">Term</label> <select id="teaching-term-select" class="instructed-terms">{{#each related_terms}}<option {{#if matching_term}}selected{{/if}} value="{{year}},{{toLowerCase quarter}}">{{#if is_current}}{{quarter}} {{year}} (Current){{else}}{{quarter}} {{year}}{{/if}}</option>{{/each}}</select>
 
   {{#each sections}}
-  <div class="card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
+  <div class="card myuw-card instructor-course-card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
     <div class="fade-in">
       <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
-        <h4><span class="myuw-course-abbrtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>{{#if ../future_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}{{#if ../past_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}</h4>
-        <h6><span class="myuw-course-shortname">{{ course_title }}</span></h6>
+        <h3 class="myuw-card-title">
+            <span class="myuw-course-abbrtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>
+            {{#if ../future_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}{{#if ../past_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}
+            <span class="myuw-course-shortname">{{ course_title }}</span>
+        </h3>
 
-        <div>
+        <div class="course-meta">
             <span class="myuw-meta course-sln">SLN <a href="https://sdb.washington.edu/?SLN={{ sln }}" target="_blank">{{ sln }}</a></span>
             <span class="myuw-meta course-meeting-type">{{ meetings.0.type }}</span>
         </div>

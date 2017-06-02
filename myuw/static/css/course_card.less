@@ -1,0 +1,57 @@
+
+@import (reference) "typography.less";
+
+/* Course Card Text */
+.myuw-course-abbrtitle {
+    display: block;
+    font-family: @fontface-card-title;
+    font-size: 18px;
+    color: @uw-metalic-gold;
+}
+
+.myuw-course-shortname {
+    font-family: @fontface-card-heading;
+    font-weight: 400;
+    color: @uw-dark-gray;
+    font-size: 16px;
+    display: block;
+    margin-top: 8px;
+}
+
+
+.course-meta {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    .course-sln {
+        a {
+            color:inherit;
+            text-decoration: underline;
+        }
+    }
+
+    .course-meeting-type {
+        margin-left: 16px;
+    }
+}
+
+.table-course-schedule {
+    margin-bottom: 0;
+}
+
+/* Should be in generic card stylesheet */
+.myuw-card .myuw-section {
+    padding-top: 16px;
+}
+
+.myuw-card .myuw-section .row:last-child .col-sm-9 {
+    border-bottom: 1px solid #EDEDED;
+    padding-bottom: 16px;
+}
+
+
+.myuw-card .myuw-section:last-child .row:last-child .col-sm-9 {
+    border-bottom: none;
+    padding-bottom: 0;
+}
