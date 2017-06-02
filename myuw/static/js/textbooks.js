@@ -52,8 +52,8 @@ var TextBooks = {
                 section_id: section.section_id,
                 color_id: section.color_id,
                 sln: section.sln,
-                books: has_book_data ? book_data[section.sln] : [],
                 has_books: has_book_data,
+                books: has_book_data ? book_data[section.sln] : [],
                 is_instructor: instructor,
                 bothell_campus: section.course_campus.toLowerCase() === 'bothell',
                 tacoma_campus: section.course_campus.toLowerCase() === 'tacoma'
