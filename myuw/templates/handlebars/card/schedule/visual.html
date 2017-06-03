@@ -52,7 +52,7 @@
     <div id="schedule-tabs" class="schedule-period-module">
 		<ul class="nav nav-pills">
         {{ #each schedule_periods }}
-        <li class="{{#equal ../active_period_id @key}} active{{ /equal }}"><a class="schedule-period-anchor" href="#" data-period_id="{{ @key }}"><span class="schedule-period">{{ toMonthDay start_date }} - {{ toMonthDay end_date }}</span></a></li>
+        <li class="{{#equal ../active_period_id @key}} active{{ /equal }}"><a class="schedule-period-anchor" href="#" data-period_id="{{ @key }}"><span class="schedule-period">{{ toMonthDay start_date }} - {{ toMonthDay end_date }}{{#equal "finals" @key}} (FINALS){{ /equal }}</span></a></li>
         {{ /each }}
 		</ul>
     </div>
@@ -62,6 +62,7 @@
         <a href="#" class="show_efs_meetings" style="display: none;"><span class="shortTitle">Full Term </span> <span class="efs-switcher-link-text">show Early Fall Start</span></a>
     </div>
     {{/if}}
+<div id="schedule_area">
 
     {{#if display_hours }}
     <!-- week view -->
@@ -155,6 +156,7 @@
         {{/each}}
     </div>
     {{/if}}
+</div>
     <!-- end - if there are meetings with times to be arranged -->
 {{/if}}
 </div>

@@ -10,7 +10,7 @@ var FinalExamSchedule = {
         return a_date - b_date;
     },
 
-    render: function(course_data, term, show_title) {
+    render: function(course_data, term, show_title, dom_target) {
         var index = 0;
         var tbd_or_nonexistent = [];
         var scheduled_finals = [];
@@ -87,10 +87,12 @@ var FinalExamSchedule = {
             is_summer: (course_data.quarter == "summer"),
             visual_data: visual_data,
         };
-
         var source = $("#final_exam_schedule_content").html();
         var template = Handlebars.compile(source);
-        $("#final_exam_schedule_panel").html(template(template_data));
+        if(dom_target === undefined){
+            dom_target = "#final_exam_schedule_panel";
+        }
+        $(dom_target).html(template(template_data));
         FinalExamSchedule.add_events(term);
     },
 
