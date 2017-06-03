@@ -49,6 +49,7 @@ var VisualScheduleCard = {
         var term = VisualScheduleCard.term;
         var course_data = WSData.normalized_course_data(term);
         course_data.schedule_periods = VisualScheduleCard._get_schedule_periods(course_data);
+        $.extend(course_data.schedule_periods, VisualScheduleCard._get_finals(course_data.sections))
         var default_period = Object.keys(course_data.schedule_periods)[0];
         VisualScheduleCard.display_schedule_for_period(default_period);
 
@@ -201,6 +202,17 @@ var VisualScheduleCard = {
             schedule_periods[period_id].end_date = schedule_periods[period_id].end_date.format("YYYY-MM-DD");
         }
         return schedule_periods;
+    },
+
+    _get_finals: function(sections){
+        var finals_periods = {};
+        $.each(sections, function(idx, section){
+            if(section.final_exam !== undefined &&
+                section.final_exam.start_date !== undefined) {
+                VisualScheduleCard._add_to_finals(section, finals_periods)
+            }
+        });
+        return finals_periods;
     },
 
     _add_to_finals: function(section, schedule_periods){
