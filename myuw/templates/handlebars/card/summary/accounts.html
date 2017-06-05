@@ -5,7 +5,7 @@
         <!-- week counter -->
         {{#with term }}
         <div class="myuw-week-counter">
-            <a href="/academic_calendar/"><i class="fa fa-calendar" aria-hidden="true"></i> {{ ucfirst quarter }} {{#if is_finals }}Finals {{/if}}{{#if is_break }}Break {{/if}}{{ year }}<span>{{ today }} {{#unless is_finals}}{{#unless is_break}}Week {{ ../term_current_week }} of {{ ../term_total_weeks }}{{/unless}}{{/unless}}</span></a>
+            <a href="/academic_calendar/"><i class="fa fa-calendar" aria-hidden="true"></i> {{ ucfirst quarter }} {{#if is_finals }}Finals {{/if}}{{#if is_break }}Break {{/if}}{{ year }}<span>{{ today }} {{#if ../during_term}}Week {{ ../term_current_week }} of {{ ../term_total_weeks }}{{/if}}</span></a>
         </div>
         {{ /with }}
 
