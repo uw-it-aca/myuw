@@ -21,6 +21,7 @@ var AccountSummaryCard = {
             term: window.term_data,
             term_total_weeks: AccountSummaryCard.get_weeks_apart(window.term_data.first_day, window.term_data.last_day),
             term_current_week: AccountSummaryCard.get_weeks_apart(window.term_data.first_day, window.term_data.today_date),
+            during_term: (!window.term_data.is_finals && !window.term_data.is_break)
         });
     },
 

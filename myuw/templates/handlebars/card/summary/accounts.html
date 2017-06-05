@@ -11,7 +11,7 @@
                 <!-- display if finals, break, or week of the quarter -->
                 {{#if is_finals }}{{ year }}, Finals Week{{/if}}
                 {{#if is_break }}Break {{ year }}{{/if}}
-                {{#unless is_finals}}{{#unless is_break}} {{ year }}, Week {{ ../term_current_week }} of {{ ../term_total_weeks }}{{/unless}}{{/unless}}
+                {{#if ../during_term}}{{year}}, Week {{ ../term_current_week }} of {{ ../term_total_weeks }}{{/if}}
                 <!-- always show today's date -->
                 <span>{{ today }}</span>
             </a>
