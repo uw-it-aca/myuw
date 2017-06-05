@@ -66,7 +66,6 @@ var Landing = {
         }
         Cards.load_cards_in_order(desktop_body_cards, $("#landing_content_cards"));
         Cards.load_cards_in_order(desktop_sidebar_cards, $("#landing_accounts_cards"));
-        CalendarBanner.render_init($("#calendar_banner_location_desktop"));
     },
 
     _load_mobile_cards: function() {
@@ -95,7 +94,6 @@ var Landing = {
             mobile_cards.unshift(OutageCard);
         }
         Cards.load_cards_in_order(mobile_cards, $("#landing_content_cards"));
-        CalendarBanner.render_init($("#calendar_banner_location_mobile"));
     },
 
     _reset_content_divs: function() {
@@ -105,8 +103,6 @@ var Landing = {
 
         $("#landing_content_cards").html('');
         $("#landing_accounts_cards").html('');
-        $("#calendar_banner_location_desktop").html('');
-        $("#calendar_banner_location_mobile").html('');
     }
 
 };
