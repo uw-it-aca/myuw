@@ -35,7 +35,7 @@
 
 /*** layout ***/
 
-body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,sans-serif; }
+body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,sans-serif; min-width: 320px; }
 
 .myuw-wrapper { margin: 0 auto; padding: 0 16px;
     @media @desktop { max-width: 1200px; };
@@ -150,6 +150,7 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 #app_content {
 
     .container {
+
         .row { margin: 0 !important; }
 
         // handle bootstrap generic col-x classes
@@ -271,7 +272,7 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
     a, button { color: #fff; display: inline-block; min-width: 30px; font-size: 13px; height: @bar-height; background: none; border: none;
 
-        &:hover { color: #fff;
+        &:hover, &:focus { color: #fff;
             span {  text-decoration: underline; }
         }
 
@@ -385,7 +386,7 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
             i { color: #333 !important; width: 20px; text-align: center; margin-right: 5px; }
 
-            &:hover { background: #ddd; }
+            &:hover, &:focus { background: #ddd; }
             &.active { color: @uw-purple-light; background: #ddd;
                 i { color: @uw-purple-dark !important; }
             }
@@ -410,6 +411,33 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 }
 .myuw-banner-mobile { margin: 0 -16px 16px -16px;
     @media @desktop { display: none; }
+}
+
+/*** account banner ***/
+.myuw-account-banner { text-align: center; border-bottom: solid 1px #ddd; margin-bottom: 16px !important;
+
+    &:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; }
+
+    @media @two-column { border: none; }
+
+    .myuw-week-counter { display: block; border: none; padding-left: 0; border-bottom: solid 1px #ddd; padding-bottom: 8px;
+        @media @two-column { display: inline-block; text-align: left; float: left; border: none; padding-bottom: 0;}
+        @media @desktop { padding-left: 16px; }
+    }
+
+    .myuw-account-summaries { display: block; text-align: center; margin: 8px 0;
+        @media @two-column { text-align: left; padding-left: 8px; float: right; margin: 0;
+            a { border-left: solid 1px #ddd; padding-left: 8px; }
+        }
+    }
+
+    a {font-size: 12px; color: #666; min-width:110px; display: inline-block;
+        &:hover, &:focus { text-decoration: none; color: #666; }
+    }
+
+    span { display: block; font-weight: bold; font-size: 16px; color: #333;
+        &:hover, &:focus { text-decoration: underline; }
+    }
 }
 
 /*** footer ***/

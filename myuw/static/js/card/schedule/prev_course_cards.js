@@ -3,11 +3,19 @@ var PrevTermCourseCards = {
     dom_target: undefined,
     term: undefined,
 
+    hide_card: function() {
+        if (window.user.pce) {
+            return false;
+        }
+        return true;
+    },
+
     render_init: function() {
         PrevTermCourseCards.term = "prev_unfinished";
         PrevTermCourseCards.dom_target = $("#PrevTermCourseCards");
-        if (!window.user.pce) {
+        if (PrevTermCourseCards.hide_card()) {
             $("#PrevTermCourseCards").hide();
+            $("#PrevTermCourseCards1").hide();
             return;
         }
         WSData.fetch_course_data_for_term(PrevTermCourseCards.term, PrevTermCourseCards.render_upon_data, PrevTermCourseCards.render_error);
@@ -82,3 +90,9 @@ var PrevTermCourseCards1 = {
     name: 'PrevTermCourseCards1',
     render_init: function() {}
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.PrevTermCourseCards = PrevTermCourseCards;

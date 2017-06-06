@@ -359,6 +359,40 @@ def _get_term_method(year, quarter):
     return generated
 
 
+def add_term_data_to_context(request, context):
+    """
+    Updates a dictionary with information about what's happening now.
+
+    Includes the data, the quarter (or break), and the week of the quarter.
+    """
+    cur_term = get_current_quarter(request)
+    compare = get_comparison_date(request)
+
+    if cur_term is None:
+        context["err"] = "No current quarter data!"
+        return
+
+    context['today'] = compare
+    context['is_break'] = False
+    if compare < cur_term.first_day_quarter:
+        context['is_break'] = True
+
+    if compare > cur_term.last_final_exam_date:
+        context['is_break'] = True
+        cur_term = get_term_after(cur_term)
+
+    context["year"] = cur_term.year
+    context["quarter"] = cur_term.quarter
+
+    context['is_finals'] = False
+    if (compare > cur_term.last_day_instruction and
+            compare <= cur_term.last_final_exam_date):
+        context['is_finals'] = True
+
+    context['first_day'] = cur_term.first_day_quarter
+    context['last_day'] = cur_term.last_day_instruction
+
+
 def current_terms_prefetch(request):
     # This triggers a call to get_current_term when using the file dao.
     # That request won't happen on test/production
