@@ -41,13 +41,13 @@ var AccountsPage = {
         var desktop_body_cards = [
             TuitionCard,
             HfsCard,
-            LibraryCard,
-            AccountsCard
+            LibraryCard
         ];
         var desktop_sidebar_cards = [
             MedicineAccountsCard,
             HRPayrollCard,
-            UPassCard
+            UPassCard,
+            AccountsCard
         ];
 
         Cards.load_cards_in_order(desktop_body_cards, $("#accounts_content_cards"));
