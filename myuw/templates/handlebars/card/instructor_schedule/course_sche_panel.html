@@ -20,7 +20,7 @@
                     {{#each meetings}}
                     <tr class="course-schedule-row">
                         {{#if days_tbd }}
-                            <td colspan="2" class="text-muted course-tbd">Days and times to<br/> be arranged</td>
+                            <td colspan="2" class="text-muted course-tbd">Days and times to be arranged</td>
                         {{else}}
                             <td class="course-days">
                                 {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
@@ -36,7 +36,6 @@
 
                         {{#if building_tbd}}
                         <td class="text-muted course-loc-tbd" colspan="2">Room to be arranged</td>
-                        <td></td>
                         {{else}}
                             <td class="course-location">
                                 {{#if latitude}}
@@ -67,7 +66,6 @@
         </div>
 
         <div class="col-sm-9">
-            {{#unless final_exam.no_exam_or_nontraditional}}{{#unless final_exam.is_confirmed}}(<a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/{{netid}}/finalexam.asp?{{capitalizeString quarter}}+{{year}}&sln={{sln}}" target="_blank">Confirm</a>){{/unless}}{{/unless}}
 
             {{#if final_exam }}
               {{#if final_exam.no_exam_or_nontraditional}}
@@ -86,26 +84,21 @@
                     <td>{{ formatDateAsDate final_exam.start_date }}</td>
                     <td class="course-time">{{ formatDateAsTime final_exam.start_date }} - {{ formatDateAsTimeAMPM final_exam.end_date }}</td>
                     <td class="course-location">
-                      {{#if final_exam.latitude}}
-                      <a href="http://maps.google.com/maps?q={{ final_exam.latitude }},{{ final_exam.longitude }}+({{encodeForMaps final_exam.building_name }})&z=18" class="show_map" rel="{{building_name}}" data-linklabel="{{ final_exam.building }} - Google Maps">
-                        {{/if}}
-                        {{final_exam.building}}
-                        {{#if final_exam.latitude}}
-                      </a>
-                      {{/if}}
+                      {{#if final_exam.latitude}}<a href="http://maps.google.com/maps?q={{ final_exam.latitude }},{{ final_exam.longitude }}+({{encodeForMaps final_exam.building_name }})&z=18" class="show_map" rel="{{building_name}}" data-linklabel="{{ final_exam.building }} - Google Maps">{{/if}}{{final_exam.building}}{{#if final_exam.latitude}}</a>{{/if}}
                       {{final_exam.room_number}}
                     </td>
-                    <td>
-                      {{#if final_exam.classroom_info_url}}
-                      <a href="{{final_exam.classroom_info_url}}" data-linklabel="{{ final_exam.building }} {{ final_exam.room_number }}">Room info</a>
-                      {{/if}}
+                    <td class="course-location-info">
+                      {{#if final_exam.classroom_info_url}}<a href="{{final_exam.classroom_info_url}}" data-linklabel="{{ final_exam.building }} {{ final_exam.room_number }}">Room info</a>{{/if}}
                     </td>
                   </tbody>
                 </table>
               {{/if}}
             {{else}}
-              No Final Exam Scheduled
+              No Final Exam Scheduled.
             {{/if}}
+
+            {{#unless final_exam.no_exam_or_nontraditional}}{{#unless final_exam.is_confirmed}}
+            <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/{{netid}}/finalexam.asp?{{capitalizeString quarter}}+{{year}}&sln={{sln}}" target="_blank">Confirm</a>{{/unless}}{{/unless}}
         </div>
     </div>
 </div>
