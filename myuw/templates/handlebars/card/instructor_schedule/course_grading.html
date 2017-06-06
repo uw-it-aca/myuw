@@ -9,7 +9,7 @@
             <div class="col-sm-9">
                 <div rel="{{curriculum_abbr}} {{course_number}} {{section_id}}">
 
-                    <ul class="unstyled-list">
+                    <ul class="myuw-card-itemlist">
 
                         <li class="clearfix grading-system">
                             <span class="inst-course-label">Grade System:</span>
@@ -17,10 +17,10 @@
                         </li>
 
                         <li class="clearfix grading-delegates">
-                            <span class="inst-course-label">Delegate{{pluralize grade_submission_delegates.length '' 'S'}}: </span>
+                            <span class="inst-course-label">Delegate{{pluralize grade_submission_delegates.length '' 's'}}: </span>
 
                             {{#each grade_submission_delegates}}
-                                <span id="grade_submission_delegate{{index}}">{{this.person.surname}}, {{person.first_name}} (<span>{{capitalizeString level}}</span>)</span>
+                                <span id="grade_submission_delegate{{index}}">{{person.first_name}} {{this.person.surname}} (<span>{{capitalizeString level}}</span>)</span>, 
                             {{/each}}
                             <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter={{capitalizeString quarter}}+{{year}}&sln={{sln}}&chanid=11" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="course_delegate_link">{{#if this.grade_submission_section_delegate}}Update{{else}}Update{{/if}}</a>
                         </li>

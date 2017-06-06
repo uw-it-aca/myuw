@@ -72,11 +72,25 @@
     line-height: inherit;
 }
 
+
 .myuw-card-itemlist {
     list-style-type: none;
     padding-left: 0;
+    margin-bottom: 8px;
 
     li {
         margin: 0 0 8px 0;
     }
+
+    li:last-of-type {
+        margin: 0;
+    }
+}
+
+.myuw-card-itemlist + .myuw-card-itemlist {
+    margin-bottom: 16px;
+}
+
+.myuw-card-itemlist:last-child {
+    margin-bottom: 0;
 }
