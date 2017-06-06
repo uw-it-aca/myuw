@@ -148,7 +148,7 @@
                         <li><a {% if is_myuw_home %}class="active"{% endif %}  href="/"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
 
                         {% if user.affiliations.student %}
-                        <!--<li><a href="/academics/"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Academics</a></li>-->
+                        <li><a {% if is_myuw_academics_page %}class="active"{% endif %} href="/academics/"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Academics</a></li>
                         <!--<li><a href="/huskyexp/"><i class="fa fa-paw" aria-hidden="true"></i>Husky Experience</a></li>-->
                         {% endif %}
 
@@ -316,6 +316,7 @@
         <script src="{% static 'vendor/js/uw-alert.js' %}"></script>
         <script src="{% static 'js/libraries.js' %}"></script>
         <script src="{% static 'js/notices.js' %}"></script>
+        <script src="{% static 'js/academics.js' %}"></script>
         <script src="{% static 'js/landing.js' %}"></script>
         <script src="{% static 'js/teaching.js' %}"></script>
         <script src="{% static 'js/profile.js' %}"></script>
@@ -330,7 +331,6 @@
         <script src="{% static 'js/banner/common_loading.js' %}"></script>
         <script src="{% static 'js/banner/profile.js' %}"></script>
         <script src="{% static 'js/banner/notice.js' %}"></script>
-        <script src="{% static 'js/banner/pce.js' %}"></script>
         <script src="{% static 'js/banner/calendar.js' %}"></script>
         <script src="{% static 'js/card/error.js' %}"></script>
         <script src="{% static 'js/card/grade.js' %}"></script>
@@ -363,6 +363,7 @@
         <script src="{% static 'js/card/schedule/visual.js' %}"></script>
         <script src="{% static 'js/card/schedule/final_panel.js' %}"></script>
         <script src="{% static 'js/card/schedule/sp_final.js' %}"></script>
+        <script src="{% static 'js/card/schedule/prev_course_cards.js' %}"></script>
         <script src="{% static 'js/card/instructor_schedule/load_course_cards.js' %}"></script>
         <script src="{% static 'js/card/instructor_schedule/load_section_card.js' %}"></script>
         <script src="{% static 'js/card/instructor_schedule/course_card_content.js' %}"></script>

@@ -1,10 +1,11 @@
 from datetime import datetime
 from django.test import TestCase
-from django.conf import settings
+from commonconf import override_settings
 from uw_sws.models import ClassSchedule, Term, Section, Person
 from myuw.dao.term import get_specific_term, is_past, is_future,\
     get_default_date, get_comparison_date,\
     get_current_quarter, get_next_quarter,\
+    get_prev_num_terms, get_previous_quarter,\
     get_next_non_summer_quarter, get_next_autumn_quarter,\
     is_in_summer_a_term, is_in_summer_b_term,\
     get_bod_current_term_class_start, get_eod_7d_after_class_start,\
@@ -17,7 +18,7 @@ from myuw.test import get_request_with_date, get_request_with_user,\
     get_request, fdao_sws_override
 
 
-LDAO_SWS = 'restclients.dao_implementation.sws.Live'
+ldao_sws_override = override_settings(RESTCLIENTS_SWS_DAO_CLASS='Live')
 
 
 @fdao_sws_override
@@ -57,12 +58,13 @@ class TestTerm(TestCase):
         self.assertEquals(date.month, 4)
         self.assertEquals(date.day, 15)
 
-        with self.settings(RESTCLIENTS_SWS_DAO_CLASS=LDAO_SWS):
-            now = datetime.now()
-            date = get_default_date()
-            self.assertEquals(date.year, now.year)
-            self.assertEquals(date.month, now.month)
-            self.assertEquals(date.day, now.day)
+    @ldao_sws_override
+    def test_live_default_date(self):
+        now = datetime.now()
+        date = get_default_date()
+        self.assertEquals(date.year, now.year)
+        self.assertEquals(date.month, now.month)
+        self.assertEquals(date.day, now.day)
 
     def test_comparison_date(self):
         now_request = get_request()
@@ -150,6 +152,24 @@ class TestTerm(TestCase):
         quarter = get_next_quarter(now_request)
         self.assertEquals(quarter.year, 2013)
         self.assertEquals(quarter.quarter, 'summer')
+
+    def test_get_prev_num_terms(self):
+        now_request = get_request_with_date("2014-01-10")
+        quarters = get_prev_num_terms(now_request, 3)
+        self.assertEquals(len(quarters), 3)
+        self.assertEquals(quarters[0].year, 2013)
+        self.assertEquals(quarters[0].quarter, 'autumn')
+        self.assertEquals(quarters[1].year, 2013)
+        self.assertEquals(quarters[1].quarter, 'summer')
+        self.assertEquals(quarters[2].year, 2013)
+        self.assertEquals(quarters[2].quarter, 'spring')
+
+        now_request = get_request_with_date("2013-10-04")
+        quarters = get_prev_num_terms(now_request, 2)
+        self.assertEquals(quarters[0].year, 2013)
+        self.assertEquals(quarters[0].quarter, 'summer')
+        self.assertEquals(quarters[1].year, 2013)
+        self.assertEquals(quarters[1].quarter, 'spring')
 
     def test_is_past_2(self):
         quarter = get_specific_term(2013, 'autumn')

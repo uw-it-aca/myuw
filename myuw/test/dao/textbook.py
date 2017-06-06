@@ -14,7 +14,7 @@ class TestTextbooks(TestCase):
     def test_get_by_schedule(self):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = Term()
-        term.year = 2012
+        term.year = 2013
         term.quarter = "summer"
         schedule = _get_schedule(regid, term)
 

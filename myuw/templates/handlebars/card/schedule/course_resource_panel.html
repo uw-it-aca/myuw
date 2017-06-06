@@ -17,7 +17,9 @@
              {{/if}}
 
         {{/if}}
-        <li><a class="show_course_textbook" href="/textbooks/{{year}},{{quarter}}{{#if summer_term}},{{toLowerCase summer_term}}{{/if}}/{{curriculum_abbr}}{{course_number}}{{section_id}}">Textbooks</a></li>
+        {{#if sln}}
+            <li><a class="show_course_textbook" href="/textbooks/{{year}},{{quarter}}{{#if summer_term}},{{toLowerCase summer_term}}{{/if}}/{{curriculum_abbr}}{{course_number}}{{section_id}}">Textbooks</a></li>
+        {{/if}}
     </ul>
 
 {% endtplhandlebars %}
