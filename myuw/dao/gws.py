@@ -6,6 +6,9 @@ with the UW Affiliation Group API resource
 import logging
 from restclients.gws import GWS
 from myuw.dao import get_netid_of_current_user
+from userservice.user import UserService
+from django.conf import settings
+from authz_group import Group
 
 
 logger = logging.getLogger(__name__)
@@ -125,3 +128,24 @@ def is_applicant():
     Return True if the user is identified a UW applicant
     """
     return _is_member('uw_affiliation_applicant')
+
+
+def is_in_admin_group(group_key):
+    user_service = UserService()
+    user_service.get_user()
+    override_error_username = None
+    override_error_msg = None
+    # Do the group auth here.
+
+    if not hasattr(settings, group_key):
+        print "You must have a group defined as your admin group."
+        print 'Configure that using %s="foo_group"' % group_key
+        raise Exception("Missing %s in settings" % group_key)
+
+    actual_user = user_service.get_original_user()
+    if not actual_user:
+        raise Exception("No user in session")
+
+    g = Group()
+    group_name = getattr(settings, group_key)
+    return g.is_member_of_group(actual_user, group_name)

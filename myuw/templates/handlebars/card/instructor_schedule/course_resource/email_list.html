@@ -2,11 +2,8 @@
     {% verbatim %}
 
 {{#with email_list}}
-    <div class="pull-left">
-        <span class="inst-course-label">Email List</span>
-    </div>
-
-    <div class="pull-right">
+<!-- good -->
+    <span class="inst-course-label">Email List:</span>
 
         {{#if section_list.list_exists}}
             {{#if has_multiple_sections}}
@@ -30,7 +27,6 @@
             {{/if}}
         {{/if}}
 
-    </div>
 {{/with}}
 
     {% endverbatim %}
