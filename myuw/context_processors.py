@@ -17,6 +17,14 @@ def less_not_compiled(request):
     return {}
 
 
+def myuw_features(request):
+    features = {}
+    for f in getattr(settings, "MYUW_ENABLED_FEATURES", []):
+        features["MYUW_FEATURE_%s" % f.upper()] = True
+
+    return features
+
+
 def has_google_analytics(request):
 
     ga_key = getattr(settings, 'GOOGLE_ANALYTICS_KEY', False)
