@@ -16,6 +16,8 @@ var Landing = {
 
         NoticeBanner.render_init($("#notice_banner_location"));
 
+        AccountSummaryCard.render_init($("#landing_summaries"));
+
         Landing.load_cards_for_viewport();
         // Set initial display state
         Landing.is_desktop = get_is_desktop();
@@ -62,7 +64,6 @@ var Landing = {
             SummerRegStatusCard1
         ];
         var desktop_sidebar_cards = [
-            //LibraryCardMini,
             EmpFacStudentCard,
             HfsCard,
             TuitionCard,
@@ -82,7 +83,6 @@ var Landing = {
     _load_mobile_cards: function() {
         Landing._reset_content_divs();
         var mobile_cards = [
-            //LibraryCardMini,
             ThriveCard,
             FinalExamCard,
             GradeCard,

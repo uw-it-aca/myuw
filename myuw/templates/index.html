@@ -21,7 +21,6 @@
     {% include "handlebars/card/grade.html" %}
     {% include "handlebars/card/hfs.html" %}
     {% include "handlebars/card/library.html" %}
-    {% include "handlebars/card/library_mini.html" %}
     {% include "handlebars/card/grad_status.html" %}
     {% include "handlebars/card/grad_committee.html" %}
     {% include "handlebars/card/loading.html" %}
@@ -75,6 +74,8 @@
     {% include "handlebars/panel/addi_course_links.html" %}
     {% include "handlebars/panel/no_courses.html" %}
 
+    {% include "handlebars/card/summary/accounts.html" %}
+
     <!-- page content templates -->
     {% include "handlebars/landing.html" %}
     {% include "handlebars/future_410_error.html" %}
@@ -91,6 +92,16 @@
 
     <script>
     window.webservice_outage = {{ webservice_outage|yesno:"true, false" }};
+    window.term_data = {
+        today: '{{ today|date:"l, F j, Y" }}',
+        year: '{{ year }}',
+        quarter: '{{ quarter }}',
+        is_finals: {{ is_finals|yesno:"true, false"}},
+        is_break: {{ is_break|yesno:"true, false"}},
+        today_date: new Date({{ today|date:"Y" }}, {{ today|date:"n" }}-1, {{ today|date:"j"}}),
+        first_day: new Date({{ first_day|date:"Y" }}, {{ first_day|date:"n" }}-1, {{ first_day|date:"j"}}),
+        last_day: new Date({{ last_day|date:"Y" }}, {{ last_day|date:"n" }}-1, {{ last_day|date:"j"}})
+    };
     </script>
 
     {% include "user_state.html" %}
