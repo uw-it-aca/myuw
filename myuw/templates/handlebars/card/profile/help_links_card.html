@@ -4,12 +4,15 @@
   <h4>Related Help</h4>
   <ul>
     <li><a href="http://www.washington.edu/about/addressing-letters-to-the-uw/">Addressing Letters to the UW</a></li>
-
+    {{#if is_tacoma}}
+    <li><a href="https://www.tacoma.uw.edu/office-registrar/preferred-names">Preferred Names</a></li>
+    {{else}}
+    <li><a href="https://registrar.washington.edu/students/preferred-names/">Preferred Names</a></li>
+    {{/if}}
+    
     {{#if is_employee}}
     <li><a href="https://isc.uw.edu/your-info/" id="employee_workday_info">Update Your Information in Workday</a></li>
     {{/if}}
-
-
 
     {{#if is_student}}
       <li><a href=""></a></li>
