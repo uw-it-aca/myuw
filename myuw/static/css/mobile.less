@@ -1665,14 +1665,18 @@ label { font-weight: normal; }
     .schedule-period-module {
 	    margin-bottom: 1em;
     }
+    .nav>li>a:hover {background-color:#ddd;}
     .schedule-period-list {
 	    li>a {
-	    padding: 3px 5px;
+	    padding: 4px 5px;
 	    margin-right: 5px;
 	    margin-bottom: 3px;
+	    color:@uwpurple;
 	    :hover {text-decoration: underline;}
 	    }
-	    li.active>a {background-color:#ccc;color:@uwpurple; font-weight:bold;text-decoration:none;}
+	    li.active>a {background-color:#fff;color:@uwpurple; font-weight:bold;text-decoration:none;border-bottom: 3px solid @uwpurple; border-radius: 0px; padding-bottom: 1px;
+		:hover {text-decoration: none;}    
+	    }
 	    .schedule-period {
 	    text-transform: uppercase;
 	    font-size: 85%;
