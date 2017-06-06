@@ -75,7 +75,8 @@ def page(request,
 
     context["home_url"] = "/"
     context["err"] = None
-    context["user"]["affiliations"] = get_all_affiliations(request)
+    affiliations = get_all_affiliations(request)
+    context["user"]["affiliations"] = affiliations
 
     context["banner_messages"] = get_current_messages(request)
     context["card_display_dates"] = get_card_visibilty_date_values(request)
@@ -118,7 +119,7 @@ def page(request,
         settings, "GOOGLE_SEARCH_KEY", None)
 
     if add_quicklink_context:
-        _add_quicklink_context(request, context)
+        _add_quicklink_context(affiliations, context)
 
     log_success_response_with_affiliation(logger, timer, request)
     return render(request, template, context)
@@ -168,8 +169,8 @@ def logout(request):
     return HttpResponseRedirect(LOGOUT_URL)
 
 
-def _add_quicklink_context(request, context):
-    link_data = get_quicklink_data(get_all_affiliations(request))
+def _add_quicklink_context(affiliations, context):
+    link_data = get_quicklink_data(affiliations)
 
     for key in link_data:
         context[key] = link_data[key]
