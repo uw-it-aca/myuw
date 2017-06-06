@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import logout as django_logout
 from django.conf import settings
-from myuw.dao.term import get_current_quarter
+from myuw.dao.term import get_current_quarter, add_term_data_to_context
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.user import is_oldmyuw_user, get_netid_of_current_user,\
     is_oldmyuw_mobile_user
@@ -102,16 +102,7 @@ def page(request,
                       traceback.format_exc())
         pass
 
-    if ('year' not in context or context['year'] is None or
-            'quarter' not in context and context['quarter'] is None):
-        cur_term = get_current_quarter(request)
-        if cur_term is None:
-            context["err"] = "No current quarter data!"
-        else:
-            context["year"] = cur_term.year
-            context["quarter"] = cur_term.quarter
-    else:
-        pass
+    add_term_data_to_context(request, context)
 
     context['enabled_features'] = get_enabled_features()
 
