@@ -1,7 +1,5 @@
 /*** colors ***/
 @uw-purple: #4b2e83;
-
-//@uw-purple-dark: #1a0555;
 @uw-purple-dark: darken(@uw-purple, 3%);
 @uw-purple-light: #7b59b3;
 
@@ -32,16 +30,6 @@
 @tablet: ~"(min-width: @{tablet-width} ) and (max-width: @{tablet-max} )";
 @desktop:  ~"(min-width: @{desktop-width} )";
 @large-desktop: ~"(min-width: @{large-desktop-width} )";
-
-/*** helper utilities ***/
-
-.visually-hidden {
-    position: absolute;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    height: 1px; width: 1px;
-    margin: -1px; padding: 0; border: 0;
-}
 
 /*** layout ***/
 
@@ -131,7 +119,7 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
 #app_notices {
 
-    @media @desktop { margin-left: 0; margin-right: 0; margin-bottom: 16px; padding: 0 16px !important; }
+    @media @desktop { margin-left: 0; margin-right: 0; margin-bottom: 16px; padding: 0 16px; }
 
     .notice-header { margin-top: 0; }
 
@@ -415,16 +403,6 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
     }
 }
 
-/*** modals ***/
-.myuw-modal {
-    h3 {
-    margin-bottom: 10px;
-    font-family: 'encode_sans_normalbold';
-    font-size: 18px;
-    color: #85754d;
-    }
-}
-
 /*** banner messaging ***/
 .myuw-banner-desktop { display: none;
     @media @desktop { display: block; }
@@ -432,9 +410,6 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 .myuw-banner-mobile { margin: 0 -16px 16px -16px;
     @media @desktop { display: none; }
 }
-
-/*** cards ***
-
 
 /*** account banner ***/
 .myuw-account-banner { text-align: center; border-bottom: solid 1px #ddd; margin-bottom: 16px !important;

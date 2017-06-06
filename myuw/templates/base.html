@@ -26,6 +26,8 @@
         {% compress css %}
         <!-- new myuw styles -->
         <link href="{% static 'css/boilerplate.less' %}" rel="stylesheet" type="text/less">
+        <link href="{% static 'css/typography.less' %}" rel="stylesheet" type="text/less">
+        <link href="{% static 'css/components.less' %}" rel="stylesheet" type="text/less">
         {% endcompress %}
 
        <!-- google fonts -->
@@ -106,7 +108,7 @@
             </div>
         </div>
 
-        <h1 class="visually-hidden">MyUW</h1>
+        <h1 class="sr-only">MyUW</h1>
 
         <!-- message banner (desktop only) -->
         <div class="myuw-banner-desktop" id="app_messages" role="complementary">
@@ -195,7 +197,7 @@
 
                 <div class="myuw-content">
                     <!-- app_content -->
-                    <div class="myuw-cards" id="app_content">
+                    <div id="app_content">
                         {% block content %}{% endblock %}
                     </div>
                     <!-- end app_content -->
