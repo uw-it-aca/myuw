@@ -42,7 +42,7 @@ var InstructorCourseCards = {
 
                 $("div[data-tab-type='instructor-term-nav']").removeClass("active-term-tab");
                 $("div[data-tab-type='instructor-term-nav'][data-term='"+InstructorCourseCards.term+"']").addClass("active-term-tab");
-                $("#teaching-term-select option[value='"+InstructorCourseCards.term+"']").prop('selected', true);;
+                $("#teaching-term-select option[value='"+InstructorCourseCards.term+"']").prop('selected', true);
             } else {
                 $("#InstructorCourseCards").hide();
             }
