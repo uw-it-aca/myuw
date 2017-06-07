@@ -47,7 +47,6 @@ var Teaching = {
             InstructorCourseCards
         ];
         var desktop_sidebar_cards = [
-            QuickLinksCard,
             TeachingResourcesCard,
             EventsCard
         ];
@@ -60,7 +59,6 @@ var Teaching = {
         Teaching._reset_content_divs();
         var mobile_cards = [
             InstructorCourseCards,
-            QuickLinksCard,
             TeachingResourcesCard,
             EventsCard
         ];
@@ -74,5 +72,4 @@ var Teaching = {
         $("#calendar_banner_location_desktop").html('');
         $("#calendar_banner_location_mobile").html('');
     }
-
 };

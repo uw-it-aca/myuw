@@ -154,8 +154,10 @@
                         <!--<li><a href="/huskyexp/"><i class="fa fa-paw" aria-hidden="true"></i>Husky Experience</a></li>-->
                         {% endif %}
 
-                        {% if user.affiliations.faculty %}
+                        {% if instructor_schedule_enabled %}
+                          {% if user.affiliations.faculty %}
                         <li><a {% if is_myuw_teaching_page %}class="active"{% endif %} href="/teaching/"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Teaching</a></li>
+                         {% endif %}
                         {% endif %}
 
                         <li><a {% if is_myuw_academic_calendar_page %}class="active"{% endif %} href="/academic_calendar/"><i class="fa fa-calendar" aria-hidden="true"></i>Calendar</a></li>

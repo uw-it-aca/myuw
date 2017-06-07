@@ -13,12 +13,7 @@ def teaching(request,
         "summer_term": summer_term
     }
 
-    failure = try_prefetch(request)
-    if failure:
-        return failure
-
-    return page(request, context, template='teaching.html',
-                add_quicklink_context=True)
+    return page(request, context, template='teaching.html')
 
 
 @page_view
