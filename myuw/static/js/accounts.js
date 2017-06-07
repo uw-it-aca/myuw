@@ -37,11 +37,19 @@ var AccountsPage = {
 
     _load_desktop_cards: function() {
         AccountsPage._reset_content_divs();
+
         var desktop_body_cards = [
+            TuitionCard,
+            HfsCard,
+            LibraryCard
+        ];
+        var desktop_sidebar_cards = [
             MedicineAccountsCard,
+            HRPayrollCard,
+            UPassCard,
             AccountsCard
         ];
-        var desktop_sidebar_cards = [HRPayrollCard];
+ feature/accounts-page
 
         Cards.load_cards_in_order(desktop_body_cards, $("#accounts_content_cards"));
         Cards.load_cards_in_order(desktop_sidebar_cards, $("#accounts_sidebar_cards"));
@@ -50,9 +58,13 @@ var AccountsPage = {
     _load_mobile_cards: function() {
         AccountsPage._reset_content_divs();
         var mobile_cards = [
+            TuitionCard,
             MedicineAccountsCard,
-            AccountsCard,
-            HRPayrollCard
+            HfsCard,
+            HRPayrollCard,
+            LibraryCard,
+            UPassCard,
+            AccountsCard
         ];
         Cards.load_cards_in_order(mobile_cards, $("#accounts_content_cards"));
     },

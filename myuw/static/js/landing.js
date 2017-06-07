@@ -64,10 +64,6 @@ var Landing = {
         var desktop_sidebar_cards = [
             //LibraryCardMini,
             EmpFacStudentCard,
-            HfsCard,
-            TuitionCard,
-            LibraryCard,
-            UPassCard,
             EventsCard
         ];
         // Add in outage card if we can't get the SWS/term resource
@@ -99,10 +95,6 @@ var Landing = {
             CourseCards,
             GradStatusCard,
             EmpFacStudentCard,
-            HfsCard,
-            TuitionCard,
-            LibraryCard,
-            UPassCard,
             EventsCard,
             GradCommitteeCard,
             FutureQuarterCard1,
