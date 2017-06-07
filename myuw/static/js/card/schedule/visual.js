@@ -50,10 +50,22 @@ var VisualScheduleCard = {
         var course_data = WSData.normalized_course_data(term);
         course_data.schedule_periods = VisualScheduleCard._get_schedule_periods(course_data);
         $.extend(course_data.schedule_periods, VisualScheduleCard._get_finals(course_data.sections));
-        var default_period = Object.keys(course_data.schedule_periods)[0];
+        var default_period = VisualScheduleCard._get_default_period(course_data.schedule_periods);
         VisualScheduleCard.display_schedule_for_period(default_period);
 
         LogUtils.cardLoaded(VisualScheduleCard.name, VisualScheduleCard.dom_target);
+    },
+
+    _get_default_period: function(schedule_periods){
+        var today = moment(window.card_display_dates.comparison_date, "YYYY-MM-DD"),
+            default_section;
+
+        $.each(schedule_periods, function(idx, period){
+            if (moment(period.start_date, "YYYY-MM-DD").isBefore(today) && moment(period.end_date, "YYYY-MM-DD").isAfter(today)) {
+                default_section = idx;
+            }
+        });
+        return default_section;
     },
 
     _get_schedule_periods: function(course_data) {
@@ -192,6 +204,7 @@ var VisualScheduleCard = {
     },
 
     _format_dates: function(schedule_periods){
+        //Formats dates so handlebars helper can parse
         for (var period_id in schedule_periods){
             schedule_periods[period_id].start_date = schedule_periods[period_id].start_date.format("YYYY-MM-DD");
             schedule_periods[period_id].end_date = schedule_periods[period_id].end_date.format("YYYY-MM-DD");
