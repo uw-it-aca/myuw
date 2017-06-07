@@ -1,6 +1,5 @@
+from django.conf import settings
 from django.template import Library
-from django.core.urlresolvers import reverse
-from myuw.urls import urlpatterns
 from django.core.urlresolvers import resolve
 
 
@@ -16,4 +15,8 @@ def add_sidebar_context(context):
     current_url = resolve(request.path_info).url_name
 
     context['is_%s' % current_url] = True
+
+    for f in getattr(settings, "MYUW_ENABLED_FEATURES", []):
+        context["%s_enabled" % f.lower()] = True
+
     return ''
