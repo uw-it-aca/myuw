@@ -49,6 +49,7 @@ var VisualScheduleCard = {
         var term = VisualScheduleCard.term;
         var course_data = WSData.normalized_course_data(term);
         course_data.schedule_periods = VisualScheduleCard._get_schedule_periods(course_data);
+        $.extend(course_data.schedule_periods, VisualScheduleCard._get_finals(course_data.sections));
         var default_period = Object.keys(course_data.schedule_periods)[0];
         VisualScheduleCard.display_schedule_for_period(default_period);
 
@@ -63,11 +64,6 @@ var VisualScheduleCard = {
             schedule_periods = VisualScheduleCard._add_to_periods(section_dates,
                                                                   section,
                                                                   schedule_periods);
-
-            if(section.final_exam !== undefined &&
-                section.final_exam.start_date !== undefined){
-                schedule_periods = VisualScheduleCard._add_to_finals(section, schedule_periods);
-            }
         });
         var range = VisualScheduleCard._get_schedule_range(course_data);
         var weeks = VisualScheduleCard._get_weeks_from_range(range);
@@ -203,14 +199,25 @@ var VisualScheduleCard = {
         return schedule_periods;
     },
 
+    _get_finals: function(sections){
+        var finals_periods = {};
+        $.each(sections, function(idx, section){
+            if(section.final_exam !== undefined &&
+                section.final_exam.start_date !== undefined) {
+                VisualScheduleCard._add_to_finals(section, finals_periods);
+            }
+        });
+        return finals_periods;
+    },
+
     _add_to_finals: function(section, schedule_periods){
         var week_range = VisualScheduleCard._get_week_range_from_date(section.final_exam.start_date);
         if ("finals" in schedule_periods){
             schedule_periods.finals.sections.push(section);
         } else {
             schedule_periods.finals =
-            {"start_date": week_range[0],
-                "end_date" : week_range[1],
+            {"start_date": week_range[0].format("YYYY-MM-DD"),
+                "end_date" : week_range[1].format("YYYY-MM-DD"),
                 "sections": [section]
             };
         }
@@ -270,8 +277,11 @@ var VisualScheduleCard = {
             var data = VisualScheduleCard._get_data_for_period(course_data, term, period);
             data.active_period_id = period;
             VisualScheduleCard.render_schedule(data, term);
+            if(period === "finals"){
+                var target = $("#schedule_area").first();
+                FinalExamSchedule.render(course_data, term, false, target);
+            }
         }
-
     },
 
     _get_data_for_period: function(course_data, term, period){
