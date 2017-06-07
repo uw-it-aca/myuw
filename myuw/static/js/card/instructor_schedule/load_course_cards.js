@@ -43,12 +43,25 @@ var InstructorCourseCards = {
                 $("div[data-tab-type='instructor-term-nav']").removeClass("active-term-tab");
                 $("div[data-tab-type='instructor-term-nav'][data-term='"+InstructorCourseCards.term+"']").addClass("active-term-tab");
                 $("#teaching-term-select option[value='"+InstructorCourseCards.term+"']").prop('selected', true);
+                InstructorCourseCards._show_correct_term_dropdown();
+
             } else {
                 $("#InstructorCourseCards").hide();
             }
         } else {
             raw = CardWithError.render("Teaching Schedule");
             InstructorCourseCards.dom_target.html(raw);
+        }
+    },
+
+    _show_correct_term_dropdown: function() {
+        var has_active = $("div[data-tab-type='instructor-term-nav'].active-term-tab").length;
+        if (has_active) {
+            $("#teaching-term-select option[value='']").prop('selected', 'selected');
+            $("#teaching-term-select option[value='']").prop('disabled', false);
+        }
+        else {
+            $("#teaching-term-select option[value='']").prop('disabled', 'disabled');
         }
     },
 
@@ -108,6 +121,7 @@ var InstructorCourseCards = {
         });
 
         InstructorCourseCards.add_events();
+        InstructorCourseCards._show_correct_term_dropdown();
     },
 
     add_events: function(term) {
@@ -132,7 +146,7 @@ var InstructorCourseCards = {
         });
 
         $(".instructed-terms").change(function(ev) {
-            InstructorCourseCards.term = $('.instructed-terms option:selected').val();
+            InstructorCourseCards.term = $(ev.target).find(':selected').val();
             InstructorCourseCards.render_init();
             WSData.log_interaction("show_instructed_courses_for_" +
                                    InstructorCourseCards.term);
