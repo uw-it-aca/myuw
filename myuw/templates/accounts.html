@@ -21,6 +21,10 @@
     {% include "handlebars/card/loading.html" %}
     {% include "handlebars/card/error.html" %}
     {% include "handlebars/card/outage.html" %}
+    {% include "handlebars/card/tuition.html" %}
+    {% include "handlebars/card/upass.html" %}
+    {% include "handlebars/card/library.html" %}
+    {% include "handlebars/card/hfs.html" %}
 
     <!-- page content templates -->
     {% include "handlebars/loading.html" %}
@@ -37,5 +41,9 @@
         <script src="{% static 'js/card/accounts/account_card.js' %}"></script>
         <script src="{% static 'js/card/accounts/account_medicine.js' %}"></script>
         <script src="{% static 'js/card/accounts/hr_payroll_card.js' %}"></script>
+        <script src="{% static 'js/card/hfs.js' %}"></script>
+        <script src="{% static 'js/card/library.js' %}"></script>
+        <script src="{% static 'js/card/upass.js' %}"></script>
+        <script src="{% static 'js/card/tuition.js' %}"></script>
     {% endcompress %}
 {% endblock %}

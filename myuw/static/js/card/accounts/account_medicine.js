@@ -9,11 +9,16 @@ var MedicineAccountsCard = {
 
     render_upon_data: function() {
         var profile_data = WSData.profile_data();
-        if(profile_data.password.has_active_med_pw) {
-            MedicineAccountsCard._render();
-        } else {
+        try {
+            if(profile_data.password.has_active_med_pw) {
+                MedicineAccountsCard._render();
+            } else {
+                MedicineAccountsCard.dom_target.hide();
+            }
+        } catch (e) {
             MedicineAccountsCard.dom_target.hide();
         }
+
     },
 
     render_error: function() {
