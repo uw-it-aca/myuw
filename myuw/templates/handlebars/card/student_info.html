@@ -1,6 +1,8 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "student_info_card" %}
-    <div class="card" data-type="card" data-name="StudentInfoCard" data-identifier="{{ title }}">
+
+
+    <div class="myuw-card" data-type="card" data-name="StudentInfoCard" data-identifier="{{ title }}">
         <h3>Student Profile</h3>
 
         <div vocab="http://schema.org/" typeof="Person">
@@ -96,21 +98,21 @@
               <div class="profile-local-address col-xs-6">
                 <h5>Local Address</h5>
                 {{#if local_address}}
-                {{#with local_address}}		
-                {{#if street_line2}}		
-                <div><span class="">{{street_line2}}</span></div>		
-                {{/if}}		
-                {{#if street_line1}}		
-                <div><span class="">{{street_line1}}</span></div>		
-                {{/if}}		
-                {{#if city}}<span class="">{{city}}</span>{{/if}}{{#if state}}<span class="">, {{state}}</span>{{/if}}{{#if postal_code}} <span class="">{{postal_code}}</span>{{/if}}{{#if zip_code}} <span class="">{{zip_code}}</span>{{/if}}		
-                {{#if country}}		
-                <div><span class="">{{country}}</span></div>		
-                {{/if}}		
-                {{/with}}		
-                {{#if local_phone}}		
-                <div>Phone: <span class="">{{formatPhoneNumber local_phone}}</span></div>		
-                {{/if}}		
+                {{#with local_address}}
+                {{#if street_line2}}
+                <div><span class="">{{street_line2}}</span></div>
+                {{/if}}
+                {{#if street_line1}}
+                <div><span class="">{{street_line1}}</span></div>
+                {{/if}}
+                {{#if city}}<span class="">{{city}}</span>{{/if}}{{#if state}}<span class="">, {{state}}</span>{{/if}}{{#if postal_code}} <span class="">{{postal_code}}</span>{{/if}}{{#if zip_code}} <span class="">{{zip_code}}</span>{{/if}}
+                {{#if country}}
+                <div><span class="">{{country}}</span></div>
+                {{/if}}
+                {{/with}}
+                {{#if local_phone}}
+                <div>Phone: <span class="">{{formatPhoneNumber local_phone}}</span></div>
+                {{/if}}
                 {{else}}
                 <span class="my-text-muted">No address available</span>
                 {{/if}}
@@ -137,7 +139,7 @@
                 {{else}}
                 <span class="my-text-muted">No address available</span>
                 {{/if}}
-              </div>		
+              </div>
             </div>
 
             <div class="dir-release">
