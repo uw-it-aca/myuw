@@ -49,7 +49,6 @@ var AccountsPage = {
             UPassCard,
             AccountsCard
         ];
- feature/accounts-page
 
         Cards.load_cards_in_order(desktop_body_cards, $("#accounts_content_cards"));
         Cards.load_cards_in_order(desktop_sidebar_cards, $("#accounts_sidebar_cards"));
