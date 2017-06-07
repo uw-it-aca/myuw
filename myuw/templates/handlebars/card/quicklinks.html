@@ -34,12 +34,12 @@
         </div>
         <hr>
         {{/if}}
-        <div id="custom-link-edit" style="display: none; position: absolute; border: 1px solid #ccc; background: #fff; width:95%;padding:10px;">
-            <div class="form-group">
+        <div id="custom-link-edit" style="display: none; position: absolute; border: 0; background: #eee; width:100%;padding: 8px 16px;">
+            <div class="form">
                 <input class="form-control" type="hidden" id="custom-link-edit-id"> 
                 URL: <input class="form-control" type="url" id="custom-link-edit-url"> 
                 Label: <input class="form-control" type="text" id="custom-link-edit-label"> <span id="edit-label-required" style="display: none;">* Required</span>
-                <div class="text-right" style="padding: 10px 0;"><a href='#' id="close-custom-link-edit">cancel</a> <button class="btn btn-primary" type="button" id="quicklinks-save-edits">Save</button></div>
+                <div class="text-right" style="padding: 8px 0;"><a href='#' id="close-custom-link-edit">cancel</a> <button class="btn btn-primary" type="button" id="quicklinks-save-edits">Save</button></div>
             </div>
         </div>
         <div>
@@ -61,7 +61,7 @@
                     <input class="form-control" type="url" placeholder="https://www.washington.edu" id="myuw-custom-qlink" value="">
                     <div class="clearfix myuw-qlinks-custom-btn">
                         <div class="pull-right">
-                            <button class="btn btn-primary" id="quicklinks-save-new">Save</button>
+                            <div class="text-right" style="padding: 8px 0;"><a data-toggle="collapse" href="#custom_qlinks">close</a> <button class="btn btn-primary" id="quicklinks-save-new">Save</button></div>
                         </div>
                         <div class="pull-left" style="display: none;" id="error_saving" class="help-block"><span class="text-danger">Error saving</span></div>
                         <div class="pull-left" style="display: none;" id="quicklink_saving" class="help-block">Saving...</div>
