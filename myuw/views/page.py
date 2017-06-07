@@ -11,6 +11,7 @@ from myuw.dao.user import is_oldmyuw_user, get_netid_of_current_user,\
     is_oldmyuw_mobile_user
 from myuw.dao.emaillink import get_service_url_for_address
 from myuw.dao.exceptions import EmailServiceUrlException
+from myuw.dao.quicklinks import get_quicklink_data
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_exception
 from myuw.logger.logresp import log_invalid_netid_response
@@ -31,7 +32,8 @@ LOGOUT_URL = "/user_logout"
 def page(request,
          context=None,
          template='index.html',
-         prefetch=True):
+         prefetch=True,
+         add_quicklink_context=False):
 
     if context is None:
         context = {}
@@ -73,7 +75,8 @@ def page(request,
 
     context["home_url"] = "/"
     context["err"] = None
-    context["user"]["affiliations"] = get_all_affiliations(request)
+    affiliations = get_all_affiliations(request)
+    context["user"]["affiliations"] = affiliations
 
     context["banner_messages"] = get_current_messages(request)
     context["card_display_dates"] = get_card_visibilty_date_values(request)
@@ -105,6 +108,9 @@ def page(request,
 
     context['google_search_key'] = getattr(
         settings, "GOOGLE_SEARCH_KEY", None)
+
+    if add_quicklink_context:
+        _add_quicklink_context(affiliations, context)
 
     log_success_response_with_affiliation(logger, timer, request)
     return render(request, template, context)
@@ -152,3 +158,10 @@ def logout(request):
 
     # Redirects to weblogin logout page
     return HttpResponseRedirect(LOGOUT_URL)
+
+
+def _add_quicklink_context(affiliations, context):
+    link_data = get_quicklink_data(affiliations)
+
+    for key in link_data:
+        context[key] = link_data[key]
