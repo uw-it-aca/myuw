@@ -3,10 +3,12 @@
 
 
     <div class="myuw-card" data-type="card" data-name="StudentInfoCard" data-identifier="{{ title }}">
-        <h3>Student Profile</h3>
+
+        <h3 class="myuw-card-title">Student Profile</h3>
 
         <div vocab="http://schema.org/" typeof="Person">
           <div class="profile-bio">
+
             {{#if student_number}}
             <div class="profile-student-info">
               <h4 style="margin-top: 25px;">Student Number</h4>
