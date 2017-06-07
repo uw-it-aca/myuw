@@ -50,10 +50,22 @@ var VisualScheduleCard = {
         var course_data = WSData.normalized_course_data(term);
         course_data.schedule_periods = VisualScheduleCard._get_schedule_periods(course_data);
         $.extend(course_data.schedule_periods, VisualScheduleCard._get_finals(course_data.sections));
-        var default_period = Object.keys(course_data.schedule_periods)[0];
+        var default_period = VisualScheduleCard._get_default_period(course_data.schedule_periods);
         VisualScheduleCard.display_schedule_for_period(default_period);
 
         LogUtils.cardLoaded(VisualScheduleCard.name, VisualScheduleCard.dom_target);
+    },
+
+    _get_default_period: function(schedule_periods){
+        var today = moment(window.card_display_dates.comparison_date, "YYYY-MM-DD"),
+            default_section;
+
+        $.each(schedule_periods, function(idx, period){
+            if (moment(period.start_date, "YYYY-MM-DD").isBefore(today) && moment(period.end_date, "YYYY-MM-DD").isAfter(today)) {
+                default_section = idx;
+            }
+        });
+        return default_section;
     },
 
     _get_schedule_periods: function(course_data) {
@@ -192,6 +204,7 @@ var VisualScheduleCard = {
     },
 
     _format_dates: function(schedule_periods){
+        //Formats dates so handlebars helper can parse
         for (var period_id in schedule_periods){
             schedule_periods[period_id].start_date = schedule_periods[period_id].start_date.format("YYYY-MM-DD");
             schedule_periods[period_id].end_date = schedule_periods[period_id].end_date.format("YYYY-MM-DD");
@@ -519,38 +532,6 @@ var VisualScheduleCard = {
             WSData.log_interaction("show_map_from_visual_card_"+building, term);
         });
 
-        $("#toggle_finalexams").on("click", function(ev) {
-            ev.preventDefault();
-            $("#final_exam_schedule_panel").toggleClass("slide-show");
-            if ($("#final_exam_schedule_panel").hasClass("slide-show")) {
-                $("#toggle_finalexams").text("Hide Final Exam Schedule");
-                $("#toggle_finalexams").attr('title', 'Hide Final Exam Schedule');
-                window.myuw_log.log_card("FinalExam", "expand");
-            }
-            else {
-                $("#toggle_finalexams").attr('title', 'Show Final Exam Schedule');
-                window.myuw_log.log_card("FinalExam", "collapse");
-
-                setTimeout(function() {
-                    $("#toggle_finalexams").text("Show Final Exam Schedule");
-                }, 700);
-            }
-        });
-
-        $(".show_full_term_meetings").on("click", function(ev) {
-            $(".efs_course").hide();
-            $(".non_efs_course").show();
-            $(".show_efs_meetings").show();
-            $(".show_full_term_meetings").hide();
-            return false;
-        });
-        $(".show_efs_meetings").on("click", function(ev) {
-            $(".efs_course").show();
-            $(".non_efs_course").hide();
-            $(".show_full_term_meetings").show();
-            $(".show_efs_meetings").hide();
-            return false;
-        });
 
         $("a.schedule-period-anchor").on("click", function(ev){
             var period_id = $(this).attr('data-period_id');
