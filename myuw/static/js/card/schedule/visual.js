@@ -67,7 +67,7 @@ var VisualScheduleCard = {
         });
         // Handle case where period cannot be determined
         if(default_section === undefined){
-            default_section = Object.keys(schedule_periods)[0]
+            default_section = Object.keys(schedule_periods)[0];
         }
 
         return default_section;
