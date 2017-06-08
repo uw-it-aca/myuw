@@ -13,6 +13,9 @@ var QuickLinksCard = {
         if ("edit" == type) {
             return QuickLinksCard.display_edit_field(target);
         }
+        if ("remove" == type) {
+            QuickLinksCard.hide_edit_panel();
+        }
 
         QuickLinksCard._add_link({
             type: type,
@@ -31,7 +34,7 @@ var QuickLinksCard = {
         $("#custom-link-edit-label").val(custom_link.text());
 
         var target_pos = target.closest('li').position();
-        $("#custom-link-edit").css({left: target_pos.left, top: target_pos.top + 20});
+        $("#custom-link-edit").css({left: 0, top: target_pos.top + 20});
         $("#custom-link-edit").show();
 
         $("#custom-link-edit-url").focus();
@@ -54,9 +57,11 @@ var QuickLinksCard = {
         }
     },
     _post_custom_edit_save: function(response) {
-        QuickLinksCard.redraw(response);
-        QuickLinksCard.hide_edit_panel();
-        $("#custom_qlinks").collapse("hide");
+        if (response.status == 200) {
+            QuickLinksCard.redraw(response);
+            QuickLinksCard.hide_edit_panel();
+        }
+        QuickLinksCard.hide_custom_quicklinks_panel();
     },
     _save_edit: function() {
         var label = $("#custom-link-edit-label").val().trim();
@@ -96,6 +101,10 @@ var QuickLinksCard = {
     },
     hide_edit_panel: function() {
         $("#custom-link-edit").hide();
+    },
+    hide_custom_quicklinks_panel: function() {
+        $("#custom_qlinks").collapse({toggle: false});
+        $("#custom_qlinks").collapse("hide");
     },
     _add_link: function(values) {
         $("#error_saving").hide();
