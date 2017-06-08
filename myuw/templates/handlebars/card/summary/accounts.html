@@ -7,13 +7,19 @@
         <div class="myuw-week-counter">
             <a href="/academic_calendar/">
                 <!-- show current quarter -->
-                <i class="fa fa-calendar" aria-hidden="true"></i> {{ ucfirst quarter }}
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                {{#if is_break }}
+                    {{year}}
+                {{else}}
+                    {{ ucfirst quarter }} {{year}}
+                {{/if}}
+                <span>
                 <!-- display if finals, break, or week of the quarter -->
-                {{#if is_finals }}{{ year }}, Finals Week{{/if}}
-                {{#if is_break }}Break {{ year }}{{/if}}
-                {{#if ../during_term}}{{year}}, Week {{ ../term_current_week }} of {{ ../term_total_weeks }}{{/if}}
-                <!-- always show today's date -->
-                <span>{{ today }}</span>
+                {{#if is_finals }}Finals Week{{/if}}
+                {{#if is_break }}{{ucfirst quarter}} Break{{/if}}
+                {{#if ../during_term}}Week {{ ../term_current_week }} of {{ ../term_total_weeks }}{{/if}}
+
+                </span>
             </a>
         </div>
         {{ /with }}
