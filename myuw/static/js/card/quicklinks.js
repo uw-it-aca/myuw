@@ -11,7 +11,8 @@ var QuickLinksCard = {
         var type = target.attr('data-linktype');
 
         if ("edit" == type) {
-            return QuickLinksCard.display_edit_field(target);
+            QuickLinksCard.display_edit_field(target);
+            return false;
         }
         if ("remove" == type) {
             QuickLinksCard.hide_edit_panel();
@@ -101,6 +102,7 @@ var QuickLinksCard = {
     },
     hide_edit_panel: function() {
         $("#custom-link-edit").hide();
+        return false;
     },
     hide_custom_quicklinks_panel: function() {
         $("#custom_qlinks").collapse({toggle: false});
