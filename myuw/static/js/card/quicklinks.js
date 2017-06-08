@@ -5,13 +5,15 @@ var QuickLinksCard = {
     name: 'QuickLinksCard',
     dom_target: undefined,
     opened_panels: {},
+    hidden_panel: undefined,
 
     run_control: function(ev) {
         var target = $(this);
         var type = target.attr('data-linktype');
 
         if ("edit" == type) {
-            return QuickLinksCard.display_edit_field(target);
+            QuickLinksCard.display_edit_field(target);
+            return false;
         }
         if ("remove" == type) {
             QuickLinksCard.hide_edit_panel();
@@ -25,6 +27,9 @@ var QuickLinksCard = {
         return false;
     },
     display_edit_field: function(target) {
+        QuickLinksCard.display_edit_links();
+        QuickLinksCard.hidden_panel = target.parent();
+        QuickLinksCard.hidden_panel.css('display', 'none');
         var link_id = target.attr('data-linkid');
         var id = "#custom-link-"+link_id;
         var custom_link = $(id);
@@ -64,13 +69,19 @@ var QuickLinksCard = {
         QuickLinksCard.hide_custom_quicklinks_panel();
     },
     _save_edit: function() {
+        function validate(field) {
+            var value = $("#custom-link-edit-"+field).val().trim();
+            if ("" === value) {
+                $("#edit-"+field+"-required").show();
+            }
+            else {
+                $("#edit-"+field+"-required").hide();
+            }
+        }
+        validate("label");
+        validate("url");
+
         var label = $("#custom-link-edit-label").val().trim();
-        if ("" === label) {
-            $("#edit-label-required").show();
-        }
-        else {
-            $("#edit-label-required").hide();
-        }
 
         var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;
         var values = {
@@ -99,8 +110,15 @@ var QuickLinksCard = {
             QuickLinksCard.hide_edit_panel();
         }
     },
+    display_edit_links: function() {
+        if (QuickLinksCard.hidden_panel) {
+            QuickLinksCard.hidden_panel.css('display', '');
+        }
+    },
     hide_edit_panel: function() {
         $("#custom-link-edit").hide();
+        QuickLinksCard.display_edit_links();
+        return false;
     },
     hide_custom_quicklinks_panel: function() {
         $("#custom_qlinks").collapse({toggle: false});
