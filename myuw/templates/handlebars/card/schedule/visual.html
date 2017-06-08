@@ -42,15 +42,16 @@
 	    </tbody>
 	</table>
     </div>
-
+	<div><p class="sr-only"><a href="#CourseCards">Skip the visual schedule and go to course cards</a></p>
+	</div>
     <h3 id="quarter-info" aria-hidden="true">
-        {{ucfirst quarter}} {{year}} Courses
+        {{ucfirst quarter}} {{year}} Schedule
         {{#if summer_term}}
         <span class="shortTitle">{{summer_term}}</span>
         {{/if}}
     </h3>
     <div id="schedule-tabs" class="schedule-period-module">
-		<ul class="nav nav-pills">
+		<ul class="nav nav-pills schedule-period-list">
         {{ #each schedule_periods }}
         <li class="{{#equal ../active_period_id @key}} active{{ /equal }}"><a class="schedule-period-anchor" href="#" data-period_id="{{ @key }}"><span class="schedule-period">{{ toMonthDay start_date }} - {{ toMonthDay end_date }}{{#equal "finals" @key}} (FINALS){{ /equal }}</span></a></li>
         {{ /each }}
