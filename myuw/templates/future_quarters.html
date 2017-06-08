@@ -41,7 +41,15 @@ MyUW: View Future Quarters
 
 {% block extra_js %}
     <script>
-      window.future_term = "{{ future_term }}"
+        window.future_term = "{{ future_term }}";
+        window.future_term_data = {
+            "year": "{{term_data.year}}",
+            "quarter": "{{term_data.quarter}}",
+            "first_day_quarter": "{{ term_data.first_day_quarter }}",
+            "last_day_instruction": "{{ term_data.last_day_instruction }}",
+            "aterm_last_date": "{{term_data.aterm_last_date }}",
+            "bterm_first_date": "{{ term_data.bterm_first_date }}"
+        };
     </script>
     {% compress js inline %}
     <script src="{% static 'js/page/future.js' %}"></script>

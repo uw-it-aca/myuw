@@ -114,6 +114,18 @@ def get_current_quarter(request):
     return term
 
 
+def get_term_from_quarter_string(quarter_string):
+    """
+    Return a uw_sws.models.Term object
+    for the current quarter string passed in.
+    """
+    term_identifiers = quarter_string.split(",")
+    year = term_identifiers[0]
+    quarter = term_identifiers[1]
+
+    return get_specific_term(year, quarter)
+
+
 def get_next_quarter(request):
     """
     Returna uw_sws.models.Term object

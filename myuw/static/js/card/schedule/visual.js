@@ -275,6 +275,8 @@ var VisualScheduleCard = {
             if (window.term.summer_term === "None"){
                 start_date = window.term.first_day_quarter;
                 end_date = window.term.last_day_instruction;
+            } else {
+                //console.log(section);
             }
         }
         return [moment(new Date(start_date)), moment(new Date(end_date))];
