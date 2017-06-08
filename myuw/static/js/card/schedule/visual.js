@@ -270,13 +270,32 @@ var VisualScheduleCard = {
     _get_dates_for_section: function(section){
         var start_date = section.start_date,
             end_date = section.end_date;
-
         if(start_date === "None"){
-            if (window.term.summer_term === "None"){
-                start_date = window.term.first_day_quarter;
-                end_date = window.term.last_day_instruction;
+            // Regular courses don't have start/end dates
+            if(window.future_term !== undefined){
+                if(section.summer_term === ""){
+                    start_date = window.future_term_data.first_day_quarter;
+                    end_date = window.future_term_data.last_day_instruction;
+                } else {
+                    if(window.future_term.indexOf("a-term") !== -1){
+                        start_date = window.future_term_data.first_day_quarter;
+                        end_date = window.future_term_data.aterm_last_date;
+
+                    } else if(window.future_term.indexOf("b-term") !== -1){
+                        start_date = window.future_term_data.bterm_first_date;
+                        end_date = window.future_term_data.last_day_instruction;
+                    }
+
+                }
+
             } else {
-                //console.log(section);
+                // use current term dates
+                if (window.term.summer_term === "None"){
+                    start_date = window.term.first_day_quarter;
+                    end_date = window.term.last_day_instruction;
+                } else {
+                    // handle summer term for current quarter
+                }
             }
         }
         return [moment(new Date(start_date)), moment(new Date(end_date))];
