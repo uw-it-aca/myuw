@@ -65,13 +65,19 @@ var QuickLinksCard = {
         QuickLinksCard.hide_custom_quicklinks_panel();
     },
     _save_edit: function() {
+        function validate(field) {
+            var value = $("#custom-link-edit-"+field).val().trim();
+            if ("" === value) {
+                $("#edit-"+field+"-required").show();
+            }
+            else {
+                $("#edit-"+field+"-required").hide();
+            }
+        }
+        validate("label");
+        validate("url");
+
         var label = $("#custom-link-edit-label").val().trim();
-        if ("" === label) {
-            $("#edit-label-required").show();
-        }
-        else {
-            $("#edit-label-required").hide();
-        }
 
         var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;
         var values = {

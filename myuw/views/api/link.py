@@ -23,10 +23,18 @@ class ManageLinks(RESTDispatch):
         except ValueError:
             return data_not_found()
 
-        if "label" in data:
-            data["label"] = data["label"].strip()
-            if "" == data["label"]:
+        def clean(field):
+            if field not in data:
+                return True
+            data[field] = data[field].strip()
+            if "" == data[field]:
+                return False;
+            return True
+
+        for field in ("label", "url"):
+            if not clean(field):
                 return invalid_input_data()
+
         link = False
         url = None
         label = None
