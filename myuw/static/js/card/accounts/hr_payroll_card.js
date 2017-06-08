@@ -3,7 +3,7 @@ var HRPayrollCard = {
     dom_target: undefined,
 
     render_init: function() {
-        if (!(window.user.employee || window.user.faculty || window.user.stud_employee)) {
+        if (!(window.user.employee || window.user.faculty)) {
             $("#HRPayrollCard").hide();
             return;
         }
