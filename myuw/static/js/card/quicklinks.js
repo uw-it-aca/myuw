@@ -26,6 +26,7 @@ var QuickLinksCard = {
         return false;
     },
     display_edit_field: function(target) {
+        target.parent().css('display', 'none');
         var link_id = target.attr('data-linkid');
         var id = "#custom-link-"+link_id;
         var custom_link = $(id);

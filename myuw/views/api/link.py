@@ -28,7 +28,7 @@ class ManageLinks(RESTDispatch):
                 return True
             data[field] = data[field].strip()
             if "" == data[field]:
-                return False;
+                return False
             return True
 
         for field in ("label", "url"):
