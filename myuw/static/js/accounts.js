@@ -71,8 +71,6 @@ var AccountsPage = {
     _reset_content_divs: function() {
         $("#accounts_content_cards").html('');
         $("#accounts_sidebar_cards").html('');
-        $("#calendar_banner_location_desktop").html('');
-        $("#calendar_banner_location_mobile").html('');
     }
 
 };

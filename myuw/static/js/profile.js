@@ -63,7 +63,5 @@ var ProfilePage = {
     _reset_content_divs: function() {
         $("#profile_content_cards").html('');
         $("#profile_sidebar_cards").html('');
-        $("#calendar_banner_location_desktop").html('');
-        $("#calendar_banner_location_mobile").html('');
     }
 };
