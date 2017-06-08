@@ -27,10 +27,10 @@
             <h4>Recently Visited</h4>
             <ul class="unstyled-list myuw-qlinks-recent-list">
                 {{#each links.recent_links}}
-                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}" title="{{label}}" target="_blank"><span>{{label }}</span></a></div><div class="pull-right link-controls">{{#if added }}In Quick Links{{else}}<a href="#" class="control-link" data-linkid="{{ id }}" data-linktype="recent" title="Save {{label}} link to your Quick Links list"><i class="fa fa-plus" aria-hidden="true"></i></a>{{/if}}</div></li>
+                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}" title="{{label}}" target="_blank"><span>{{label }}</span></a></div><div class="pull-right link-controls">{{#if added }}<i class="fa fa-check control-link" aria-hidden="true" title="{{label}} link saved to Quick Links"></i>{{else}}<a href="#" class="control-link" data-linkid="{{ id }}" data-linktype="recent" title="Save {{label}} link to your Quick Links list"><i class="fa fa-plus" aria-hidden="true"></i></a>{{/if}}</div></li>
                 {{/each}}
             </ul>
-            <span class="recent-message visible-md-block visible-lg-block">Save your recently visited links to your Quick Links list for future access.</span>
+            <span class="recent-message visible-md-block visible-lg-block">Save your recently visited links for future access.</span>
         </div>
         <hr>
         {{/if}}
@@ -39,7 +39,7 @@
                 <input class="form-control" type="hidden" id="custom-link-edit-id"> 
                 URL: <input class="form-control" type="url" id="custom-link-edit-url"> <span class="small text-danger" id="edit-url-required" style="display: none;">* Required URL</span><br />
                 Label: <input class="form-control" type="text" id="custom-link-edit-label"> <span class="small text-danger" id="edit-label-required" style="display: none;">* Required Label</span>
-                <div class="text-right" style="padding: 8px 0;"><a href='#' id="close-custom-link-edit">Cancel</a> <button class="btn btn-primary" type="button" id="quicklinks-save-edits">Save</button></div>
+                <div class="text-right" style="padding: 8px 0;"><a href='#' id="close-custom-link-edit">Cancel</a> <button class="btn btn-primary btn-qlinks" type="button" id="quicklinks-save-edits">Save</button></div>
             </div>
         </div>
         <div>
@@ -50,7 +50,7 @@
             <h4>Popular Links</h4>
             <ul class="unstyled-list myuw-qlinks-popular-list">
                 {{#each links.popular_links }}
-                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}" title="{{label}}" target="_blank"><span>{{ label }}</span></a></div><div class="pull-right link-controls">{{#if added }}<em>In Quick Links</em>{{ else }}<a href="#" class="control-link" data-linkid="{{ id }}" data-linktype="popular" title="Save {{label}} link to your Quick Links list"><i class="fa fa-plus" aria-hidden="true"></i></a>{{ /if }}</div></li>
+                <li class="list clearfix"><div class="myuw-qlinks-item pull-left"><a href="{{ url }}" title="{{label}}" target="_blank"><span>{{ label }}</span></a></div><div class="pull-right link-controls">{{#if added }}<i class="fa fa-check control-link" aria-hidden="true" title="{{label}} link saved to Quick Links"></i>{{ else }}<a href="#" class="control-link" data-linkid="{{ id }}" data-linktype="popular" title="Save {{label}} link to your Quick Links list"><i class="fa fa-plus" aria-hidden="true"></i></a>{{ /if }}</div></li>
                 {{/each}}
             </ul>
         </div>
@@ -61,7 +61,7 @@
                     <input class="form-control" type="url" placeholder="https://www.washington.edu" id="myuw-custom-qlink" value="">
                     <div class="clearfix myuw-qlinks-custom-btn">
                         <div class="pull-right">
-                            <div class="text-right" style="padding: 8px 0;"><a data-toggle="collapse" href="#custom_qlinks">Close</a> <button class="btn btn-primary" id="quicklinks-save-new">Save</button></div>
+                            <div class="text-right" style="padding: 8px 0;"><a data-toggle="collapse" href="#custom_qlinks">Close</a> <button class="btn btn-primary btn-qlinks" id="quicklinks-save-new">Save</button></div>
                         </div>
                         <div class="pull-left" style="display: none;" id="error_saving" class="help-block"><span class="small text-danger">Error saving</span></div>
                         <div class="pull-left" style="display: none;" id="quicklink_saving" class="help-block"><span class="small">Saving...</span></div>
