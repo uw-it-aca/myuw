@@ -179,24 +179,22 @@
             <div class="myuw-card-section">
                 <div class="row">
                     <div class="col-sm-3">
-                        <h4 class="myuw-card-row-heading">UW Student Directory Release</h4>
+                        <h4 class="myuw-card-row-heading">UW Student Directory</h4>
                     </div>
                     <div class="col-sm-9">
                         <div class="myuw-card-row-content">
 
-                            <div><strong>{{#if directory_release}}Yes {{else}}No {{/if}}</strong></div>
+                            <p><strong>Releaseable: {{#if directory_release}}YES{{else}}NO{{/if}}</strong></p>
 
                             <ul class="myuw-card-itemlist">
-                                <li>
-                                    {{#if directory_release}}
-                      	             Name, phone number, email, major, and class standing are {{#unless directory_release}}NOT {{/unless}}published in the UW Directory.
-                                    {{else}}
-                                    <strong>Your profile information is currently <em>private</em> (not releasable)</strong>: <br />
-                                    Information about you cannot be released or displayed publicly in the UW Directory without your consent.
-                                    {{/if}}
-                                    <a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Change your release settings</a>
-                                </li>
-                                <li>Information such as date of birth, street address, and dates of attendance can be releaseable by the Office of the Registrar when requested. <a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
+
+                            {{#if directory_release}}
+                  	            <li>Name, phone number, email, major, and class standing are <em>visible</em> in the UW Directory. <a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Change your release settings</a></li>
+                                <li>Information such as date of birth, street address, and dates of attendance can be <em>released</em> by the Office of the Registrar when requested. <a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
+                            {{else}}
+                                <li>Information about you cannot be <em>released or displayed publicly</em> in the UW Directory without your consent. <a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Change your release settings</a></li>
+                                <li>Information such as date of birth, street address, and dates of attendance cannot be relased by the Office of the Registrar when requested. <a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
+                            {{/if}}
 
                             </ul>
                         </div>
