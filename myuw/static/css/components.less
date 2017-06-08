@@ -21,7 +21,7 @@
 
     @media @two-column { margin-left: 0; margin-right: 0; }
 
-    /*** canvas specifics ***/
+    /*** canvas title ***/
     .myuw-canvas-title { font-size: 18px !important; color: #000; margin-top: 0; }
 
 }
@@ -42,7 +42,44 @@
 
     @media @two-column { border-left: solid 1px #ddd; border-right: solid 1px #ddd; margin-left: 0; margin-right: 0; }
 
-    /*** card specifics ***/
+    /*** card title ***/
     .myuw-card-title { font-family: 'encode_sans_normalbold'; font-size: 24px !important; color: @uw-metalic-gold; margin-top: 8px; }
 
+}
+
+/* Should be in generic card stylesheet */
+.myuw-card .myuw-section {
+    padding-top: 16px;
+}
+
+.myuw-card .myuw-section .row:last-child .col-sm-9 {
+    border-bottom: 1px solid #EDEDED;
+    padding-bottom: 16px;
+}
+
+.myuw-card .myuw-section.last .row:last-child .col-sm-9 {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.myuw-card-itemlist {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 8px;
+
+    li {
+        margin: 0 0 8px 0;
+    }
+
+    li:last-of-type {
+        margin: 0;
+    }
+}
+
+.myuw-card-itemlist + .myuw-card-itemlist {
+    margin-bottom: 16px;
+}
+
+.myuw-card-itemlist:last-child {
+    margin-bottom: 0;
 }
