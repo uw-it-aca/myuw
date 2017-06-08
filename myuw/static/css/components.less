@@ -1,4 +1,5 @@
 @import (reference) "boilerplate.less";
+@import (reference) "typography.less";
 
 /*** modals ***/
 .myuw-modal {
@@ -46,22 +47,46 @@
     .myuw-card-title { font-family: 'encode_sans_normalbold'; font-size: 24px !important; color: @uw-metalic-gold; margin-top: 8px; }
 
     /*** card section ***/
-    .myuw-section { padding-top: 16px; }
+    .myuw-card-section { padding-top: 16px;
+
+        /* every last row of each section */
+        .row:last-child {
+            .col-sm-9 {
+                border-bottom: 1px solid #EDEDED;
+                padding-bottom: 16px;
+            }
+        }
+
+        /* the vest last section's last child */
+        &:last-child {
+            .col-sm-9 {
+                border-bottom: none !important;
+                padding-bottom: 0;
+            }
+        }
+    }
+
+    /*** card section heading ***/
+    .myuw-card-row-heading {
+        margin: 0;
+        margin-right: 16px;
+        line-height: inherit;
+        font-family: @fontface-body;
+        font-size: @font-base;
+        font-weight: bold;
+        color: #333;
+
+        @media @two-column { margin-bottom: 8px; }
+    }
+
+    /*** card section content ***/
+    .myuw-card-row-content {
+        margin-bottom: 8px;
+    }
 
 }
 
 /* Should be in generic card stylesheet */
-
-
-.myuw-card .myuw-section .row:last-child .col-sm-9 {
-    border-bottom: 1px solid #EDEDED;
-    padding-bottom: 16px;
-}
-
-.myuw-card .myuw-section.last .row:last-child .col-sm-9 {
-    border-bottom: none;
-    padding-bottom: 0;
-}
 
 .myuw-card-itemlist {
     list-style-type: none;
