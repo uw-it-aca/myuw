@@ -37,7 +37,6 @@ describe('InstructorScheduleCards', function(){
             InstructorCourseCards.render_init();
         });
         it("Should render instructor card", function() {
-            assert.equal($('.instructed-terms option:selected').val(), '2013,spring');
             assert.equal($('.card').length, 6);
             assert.equal($('.card .courseIDtitle').eq(1).html(), 'PHYS 121 A');
         });
