@@ -25,12 +25,23 @@
 
                 <div class="row">
                     <div class="col-sm-3">
-                        <h4 class="myuw-card-row-heading">Class Standing and Major</h4>
+                        <h4 class="myuw-card-row-heading">Class Standing</h4>
                     </div>
                     <div class="col-sm-9">
                         <div class="myuw-card-row-content">
                             <div><strong>{{ class_level }}</strong></div>
-                            <ul class="student-major-list">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h4 class="myuw-card-row-heading">Major/Minor</h4>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="myuw-card-row-content">
+
+                            <ul class="myuw-card-itemlist">
                                 {{#if term_majors}}
                                     {{#each term_majors}}
                                         {{#if @first}}
@@ -104,6 +115,7 @@
             </div>
 
             <div class="myuw-card-section">
+
                 <div property="workLocation" typeof="Place" class="row">
                     <div class="col-sm-3">
                         <h4 class="myuw-card-row-heading">Local Address</h4>
@@ -171,22 +183,22 @@
                     </div>
                     <div class="col-sm-9">
                         <div class="myuw-card-row-content">
+
                             <div><strong>{{#if directory_release}}Yes {{else}}No {{/if}}</strong></div>
-                            <ul>
-              	              {{#if directory_release}}
 
-              	                   <li>Name, phone number, email, major, and class standing are {{#unless directory_release}}NOT {{/unless}}published in the UW Directory.</li>
-                                {{else}}
-                                <li><strong>Your profile information is currently <em>private</em> (not releasable)</strong>: <br />
-                                Information about you cannot be released or displayed publicly in the UW Directory without your consent.</li>		          {{/if}}
-                              <a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Change your release settings</a>
-
-                              <li>Information such as date of birth, street address, and dates of attendance can be releaseable by the Office of the Registrar when requested.
-                                  <br />
-                                  <a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a>
+                            <ul class="myuw-card-itemlist">
+                                <li>
+                                    {{#if directory_release}}
+                      	             Name, phone number, email, major, and class standing are {{#unless directory_release}}NOT {{/unless}}published in the UW Directory.
+                                    {{else}}
+                                    <strong>Your profile information is currently <em>private</em> (not releasable)</strong>: <br />
+                                    Information about you cannot be released or displayed publicly in the UW Directory without your consent.
+                                    {{/if}}
+                                    <a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Change your release settings</a>
                                 </li>
+                                <li>Information such as date of birth, street address, and dates of attendance can be releaseable by the Office of the Registrar when requested. <a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
 
-                              </ul>
+                            </ul>
                         </div>
                     </div>
                 </div>
