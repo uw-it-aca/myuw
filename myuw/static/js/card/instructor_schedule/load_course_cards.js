@@ -40,8 +40,8 @@ var InstructorCourseCards = {
                 $(".instructor_cards .card").remove();
                 $(".instructor_cards").append(courses_template());
 
-                $("div[data-tab-type='instructor-term-nav']").removeClass("active-term-tab");
-                $("div[data-tab-type='instructor-term-nav'][data-term='"+InstructorCourseCards.term+"']").addClass("active-term-tab");
+                $("div[data-tab-type='instructor-term-nav']").removeClass("myuw-tab-selected");
+                $("div[data-tab-type='instructor-term-nav'][data-term='"+InstructorCourseCards.term+"']").addClass("myuw-tab-selected");
                 $("#teaching-term-select option[value='"+InstructorCourseCards.term+"']").prop('selected', true);
                 InstructorCourseCards._show_correct_term_dropdown();
 
@@ -55,7 +55,7 @@ var InstructorCourseCards = {
     },
 
     _show_correct_term_dropdown: function() {
-        var has_active = $("div[data-tab-type='instructor-term-nav'].active-term-tab").length;
+        var has_active = $("div[data-tab-type='instructor-term-nav'].myuw-tab-selected").length;
         if (has_active) {
             $("#teaching-term-select option[value='']").prop('selected', 'selected');
             $("#teaching-term-select option[value='']").prop('disabled', false);

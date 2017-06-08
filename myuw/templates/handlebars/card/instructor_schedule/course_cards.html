@@ -7,7 +7,7 @@
 <div class="instructor_cards" aria-labelledby="your_courses">
   <div role="tablist" class="myuw-pagetabs">
       {{#each tab_terms}}
-      <div data-tab-type="instructor-term-nav" data-term="{{year}},{{toLowerCase quarter}}" role="tab" aria-controls="{{year}},{{toLowerCase quarter}}" {{# if matching_term }}class="myuw-tab myuw-tab-selected" aria-selected="true"{{else}}class="myuw-tab" aria-selected="false"{{/if }}><a class="myuw-tab-label" href="#" data-term="{{year}},{{toLowerCase quarter}}">{{ quarter}} {{short_year year}}</a></div>
+      <div data-tab-type="instructor-term-nav" data-term="{{year}},{{toLowerCase quarter}}" role="tab" aria-controls="{{year}},{{toLowerCase quarter}}" {{# if matching_term }}class="myuw-tab myuw-tab-selected" aria-selected="true"{{else}}class="myuw-tab" aria-selected="false"{{/if }}><a class="myuw-tab-label tab-nav-terms" href="#" data-term="{{year}},{{toLowerCase quarter}}">{{ quarter}} {{short_year year}}</a></div>
       {{/each }}
   </div>
   <label for="teaching-term-select" class="sr-only">Term</label>
