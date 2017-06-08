@@ -5,6 +5,7 @@ var QuickLinksCard = {
     name: 'QuickLinksCard',
     dom_target: undefined,
     opened_panels: {},
+    hidden_panel: undefined,
 
     run_control: function(ev) {
         var target = $(this);
@@ -26,7 +27,9 @@ var QuickLinksCard = {
         return false;
     },
     display_edit_field: function(target) {
-        target.parent().css('display', 'none');
+        QuickLinksCard.display_edit_links();
+        QuickLinksCard.hidden_panel = target.parent();
+        QuickLinksCard.hidden_panel.css('display', 'none');
         var link_id = target.attr('data-linkid');
         var id = "#custom-link-"+link_id;
         var custom_link = $(id);
@@ -107,8 +110,14 @@ var QuickLinksCard = {
             QuickLinksCard.hide_edit_panel();
         }
     },
+    display_edit_links: function() {
+        if (QuickLinksCard.hidden_panel) {
+            QuickLinksCard.hidden_panel.css('display', '');
+        }
+    },
     hide_edit_panel: function() {
         $("#custom-link-edit").hide();
+        QuickLinksCard.display_edit_links();
         return false;
     },
     hide_custom_quicklinks_panel: function() {
