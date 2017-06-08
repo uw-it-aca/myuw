@@ -48,6 +48,7 @@ var VisualScheduleCard = {
     _render: function() {
         var term = VisualScheduleCard.term;
         var course_data = WSData.normalized_course_data(term);
+        window.term.summer_term = course_data.summer_term;
         course_data.schedule_periods = VisualScheduleCard._get_schedule_periods(course_data);
         $.extend(course_data.schedule_periods, VisualScheduleCard._get_finals(course_data.sections));
         var default_period = VisualScheduleCard._get_default_period(course_data.schedule_periods);
@@ -280,14 +281,11 @@ var VisualScheduleCard = {
                     if(window.future_term.indexOf("a-term") !== -1){
                         start_date = window.future_term_data.first_day_quarter;
                         end_date = window.future_term_data.aterm_last_date;
-
                     } else if(window.future_term.indexOf("b-term") !== -1){
                         start_date = window.future_term_data.bterm_first_date;
                         end_date = window.future_term_data.last_day_instruction;
                     }
-
                 }
-
             } else {
                 // use current term dates
                 if (window.term.summer_term === "None"){
@@ -295,6 +293,13 @@ var VisualScheduleCard = {
                     end_date = window.term.last_day_instruction;
                 } else {
                     // handle summer term for current quarter
+                    if(window.term.summer_term.indexOf("a-term") !== -1){
+                        start_date = window.term.first_day_quarter;
+                        end_date = window.term.aterm_last_date;
+                    } else if(window.term.summer_term.indexOf("b-term") !== -1){
+                        start_date = window.term.bterm_first_date;
+                        end_date = window.term.last_day_instruction;
+                    }
                 }
             }
         }
