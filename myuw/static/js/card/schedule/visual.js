@@ -61,10 +61,15 @@ var VisualScheduleCard = {
             default_section;
 
         $.each(schedule_periods, function(idx, period){
-            if (moment(period.start_date, "YYYY-MM-DD").isBefore(today) && moment(period.end_date, "YYYY-MM-DD").isAfter(today)) {
+            if (moment(period.start_date, "YYYY-MM-DD").isSameOrBefore(today) && moment(period.end_date, "YYYY-MM-DD").isSameOrAfter(today)) {
                 default_section = idx;
             }
         });
+        // Handle case where period cannot be determined
+        if(default_section === undefined){
+            default_section = Object.keys(schedule_periods)[0]
+        }
+
         return default_section;
     },
 
