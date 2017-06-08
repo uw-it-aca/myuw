@@ -34,6 +34,8 @@ var QuickLinksCard = {
         var id = "#custom-link-"+link_id;
         var custom_link = $(id);
 
+        $("#edit-label-required").hide();
+        $("#edit-url-required").hide();
         $("#custom-link-edit-id").val(link_id);
         $("#custom-link-edit-url").val(custom_link.attr('href'));
         $("#custom-link-edit-label").val(custom_link.text());
