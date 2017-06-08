@@ -114,14 +114,12 @@ class TestCourseColors(TestCase):
         schedule = _get_schedule(regid, term)
         colors = get_colors_by_regid_and_schedule(regid, schedule)
 
-        msg = "Primary gets the 1st color"
         self.assertEquals
-        (colors["2013,spring,PHYS,121/A"], "3", msg)
-
+        (colors["2013,spring,PHYS,121/A"], 3,
+         "Primary gets the 1st color")
         msg = "Secondary gets the 1st color, secondary version"
         self.assertEquals(
             colors["2013,spring,PHYS,121/AC"], "3a", msg)
-
         msg = "Second secondary gets the 1st color, secondary version"
         self.assertEquals(
             colors["2013,spring,PHYS,121/AQ"], "3a", msg)

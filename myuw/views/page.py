@@ -5,12 +5,13 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import logout as django_logout
 from django.conf import settings
-from myuw.dao.term import get_current_quarter
+from myuw.dao.term import get_current_quarter, add_term_data_to_context
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.user import is_oldmyuw_user, get_netid_of_current_user,\
     is_oldmyuw_mobile_user
 from myuw.dao.emaillink import get_service_url_for_address
 from myuw.dao.exceptions import EmailServiceUrlException
+from myuw.dao.quicklinks import get_quicklink_data
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_exception
 from myuw.logger.logresp import log_invalid_netid_response
@@ -21,6 +22,7 @@ from myuw.dao.uwemail import get_email_forwarding_for_current_user
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.views import prefetch_resources, get_enabled_features
 from restclients_core.exceptions import DataFailureException
+from myuw.dao.messages import get_current_messages
 
 
 logger = logging.getLogger(__name__)
@@ -28,8 +30,14 @@ LOGOUT_URL = "/user_logout"
 
 
 def page(request,
-         context={},
-         template='index.html'):
+         context=None,
+         template='index.html',
+         prefetch=True,
+         add_quicklink_context=False):
+
+    if context is None:
+        context = {}
+
     timer = Timer()
     netid = get_netid_of_current_user()
     if not netid:
@@ -40,16 +48,11 @@ def page(request,
         "session_key": request.session.session_key,
      }
 
-    try:
-        prefetch_resources(request,
-                           prefetch_email=True,
-                           prefetch_enrollment=True)
-    except DataFailureException:
-        log_exception(logger,
-                      "prefetch_resources",
-                      traceback.format_exc())
-        context["webservice_outage"] = True
-        return render(request, template, context)
+    if prefetch:
+        # Some pages need to prefetch before this point
+        failure = try_prefetch(request)
+        if failure:
+            return failure
     log_session(netid, request.session.session_key, request)
 
     if _is_mobile(request):
@@ -72,8 +75,10 @@ def page(request,
 
     context["home_url"] = "/"
     context["err"] = None
-    context["user"]["affiliations"] = get_all_affiliations(request)
+    affiliations = get_all_affiliations(request)
+    context["user"]["affiliations"] = affiliations
 
+    context["banner_messages"] = get_current_messages(request)
     context["card_display_dates"] = get_card_visibilty_date_values(request)
     try:
         my_uwemail_forwarding = get_email_forwarding_for_current_user()
@@ -97,28 +102,32 @@ def page(request,
                       traceback.format_exc())
         pass
 
-    if ('year' not in context or context['year'] is None or
-            'quarter' not in context and context['quarter'] is None):
-        cur_term = get_current_quarter(request)
-        if cur_term is None:
-            context["err"] = "No current quarter data!"
-        else:
-            context["year"] = cur_term.year
-            context["quarter"] = cur_term.quarter
-            context["first_day_quarter"] = cur_term.first_day_quarter
-            context["last_day_instruction"] = cur_term.last_day_instruction
-            context["aterm_last_date"] = cur_term.aterm_last_date
-            context["bterm_first_date"] = cur_term.bterm_first_date
-    else:
-        pass
+    add_term_data_to_context(request, context)
 
     context['enabled_features'] = get_enabled_features()
 
     context['google_search_key'] = getattr(
         settings, "GOOGLE_SEARCH_KEY", None)
 
+    if add_quicklink_context:
+        _add_quicklink_context(affiliations, context)
+
     log_success_response_with_affiliation(logger, timer, request)
     return render(request, template, context)
+
+
+def try_prefetch(request):
+    try:
+        prefetch_resources(request,
+                           prefetch_email=True,
+                           prefetch_enrollment=True)
+    except DataFailureException:
+        log_exception(logger,
+                      "prefetch_resources",
+                      traceback.format_exc())
+        context["webservice_outage"] = True
+        return render(request, template, context)
+    return
 
 
 def _is_mobile(request):
@@ -149,3 +158,10 @@ def logout(request):
 
     # Redirects to weblogin logout page
     return HttpResponseRedirect(LOGOUT_URL)
+
+
+def _add_quicklink_context(affiliations, context):
+    link_data = get_quicklink_data(affiliations)
+
+    for key in link_data:
+        context[key] = link_data[key]

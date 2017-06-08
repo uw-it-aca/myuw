@@ -19,7 +19,7 @@
             {{#if days_tbd }}
                 <td colspan="2" class="text-muted course-tbd">Days and times to<br/> be arranged</td>
             {{else if no_meeting}}
-                    <td colspan="2" class="text-muted">No classroom meeting: online learning</td>
+                    <td colspan="2" class="text-muted course-loc-tbd">No classroom meeting: online learning</td>
             {{else}}
                 <td class="course-days">
                     {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
@@ -38,7 +38,7 @@
             {{else}}
                 <td class="course-location">
                     {{#if latitude}}
-                        <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" class="show_map" rel="{{building_name}}">
+                        <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" class="show_map" rel="{{building_name}}" data-linklabel="{{ building }} - Google Maps">
                     {{/if}}
                     {{building}} {{room}}
                     {{#if latitude}}

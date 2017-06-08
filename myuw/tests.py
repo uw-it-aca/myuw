@@ -11,9 +11,9 @@ from myuw.test.dao.notice_mapping import TestMapNotices
 from myuw.test.dao.notice_categorization import TestNoticeCategories
 from myuw.test.dao.affiliations import TestAffilliations
 from myuw.test.dao.notice import TestNotices
-from myuw.test.dao.term import TestTerm
 from myuw.test.dao.building import TestBuildings
 from myuw.test.dao.category_links import TestCategoryLinks
+from myuw.test.dao.enrollment import TestDaoEnrollment
 from myuw.test.dao.finance import TestFinance
 from myuw.test.dao.canvas import TestCanvas
 from myuw.test.dao.card_display_dates import TestDisplayValues
@@ -31,7 +31,6 @@ from myuw.test.dao.emaillink import TestEmailServiceUrl
 from myuw.test.dao.user import TestUserDao
 from myuw.test.dao.upass import TestUPassDao
 from myuw.test.dao.instructor_schedule import TestInstructorSchedule
-from myuw.test.dao.messages import TestMessages
 from myuw.test.api.current_schedule import TestSchedule as APISchedule
 from myuw.test.api.books import TestApiBooks
 from myuw.test.api.cur_books import TestApiCurBooks
@@ -47,8 +46,6 @@ from myuw.test.api.finance import TestFinance as TestFinanceAPI
 from myuw.test.api.future_schedule import TestFutureSchedule
 from myuw.test.api.other_quarters import TestOtherQuarters
 from myuw.test.api.notices import TestNotices as TestNoticesAPI
-from myuw.test.api.prev_unfinished_schedule import\
-    TestStudUnfinishedPrevQuarClasSche
 from myuw.test.api.upass import TestUpassApi
 from myuw.test.api.thrive import TestApiThrive
 from myuw.test.api.academic_calendar import TestCalendarAPI
@@ -56,18 +53,15 @@ from myuw.test.api.dept_calendar import TestDeptCalAPI
 from myuw.test.api.instructor_schedule import (
     TestInstructorCurrentSchedule, TestInstructorTermSchedule,
     TestInstructorSection)
-from myuw.test.api.messages import TestMessages
 from myuw.test.cache import TestCustomCachePolicy
 from myuw.test.context_processors import TestContextProcessors
 from myuw.test.loggers import TestSessionLog
 from myuw.test.views.choose import TestChoose
-from myuw.test.views.error import TestViewsError
 from myuw.test.views.page import TestPageMethods
 from myuw.test.views.teaching import TestTeachingMethods
 from myuw.test.views.logout import TestLogoutLink
 from myuw.test.views.mobile_login import TestLoginRedirects
 from myuw.test.views.rest_dispatch import TestDispatchErrorCases
 from myuw.test.views.textbooks import TestTextbook
-from myuw.test.template_tags import TestNetidHash
 from myuw.test.userservice_validation import TestValidation
 from myuw.test.speed import TestPageSpeeds

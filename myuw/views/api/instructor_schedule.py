@@ -195,6 +195,9 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
         else:
             section_data['is_independent_study'] = False
 
+        section_data[
+            'allows_secondary_grading'] = section.allows_secondary_grading
+
         if EARLY_FALL_START == section.institute_name:
             section_data["early_fall_start"] = True
             json_data["has_early_fall_start"] = True

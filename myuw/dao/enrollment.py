@@ -4,6 +4,8 @@ the SWS Enrollment resource.
 """
 
 import logging
+from myuw.logger.timer import Timer
+from myuw.logger.logback import log_resp_time, log_exception, log_info
 from datetime import date
 from uw_sws.enrollment import enrollment_search_by_regid
 from myuw.dao import is_using_file_dao
@@ -44,7 +46,7 @@ def get_current_quarter_enrollment(request):
 
 def get_enrollment_for_term(request, term):
     """
-    :return: an Enrollment object
+    :return: an Enrollment object or None if no object exists
     """
     id = "%d%s_%s" % (term.year, term.quarter, 'enrollment')
     if hasattr(request, id):

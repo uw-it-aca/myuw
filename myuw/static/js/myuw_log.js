@@ -54,7 +54,7 @@ function MyuwLog()  {
                            action: action,
                            source_card: card_name,
                            card_info: card_info};
-            if (href.indexOf("notices") > -1) {
+            if (window.location.href.indexOf("notices") > -1) {
                 message.unread_notice_count = Notices.get_total_unread();
             }
             this.link_logger.info(JSON.stringify(message));

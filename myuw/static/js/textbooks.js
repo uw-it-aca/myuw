@@ -26,13 +26,24 @@ var TextBooks = {
 
     process_book_data: function(book_data, course_data, instructed_course_data) {
         var template_data = {
+            "teaching_sections": [],
+            "enrolled_sections": [],
             "sections": [],
             "quarter": course_data ? course_data.quarter : instructed_course_data.quarter,
             "year": course_data ? course_data.year: instructed_course_data.year,
             "summer_term": course_data ? course_data.summer_term : instructed_course_data.summer_term
         };
 
+        var has_books = false;
+        if (book_data !== undefined && book_data[section.sln] !== undefined && book_data[section.sln].length > 0) {
+            has_books = true;
+        }
+
         var section_data = function (i, section, instructor) {
+            var has_book_data = false;
+            if (book_data && book_data[section.sln] && book_data[section.sln].length) {
+                has_book_data = true;
+            }
             return {
                 index: i,
                 section_title: section.course_title,
@@ -41,7 +52,8 @@ var TextBooks = {
                 section_id: section.section_id,
                 color_id: section.color_id,
                 sln: section.sln,
-                books: book_data ? book_data[section.sln] : [],
+                has_books: has_book_data,
+                books: has_book_data ? book_data[section.sln] : [],
                 is_instructor: instructor,
                 bothell_campus: section.course_campus.toLowerCase() === 'bothell',
                 tacoma_campus: section.course_campus.toLowerCase() === 'tacoma'
@@ -50,15 +62,24 @@ var TextBooks = {
 
         if (course_data) {
             $.each(course_data.sections, function (index) {
-                template_data.sections.push(section_data(index, this, false));
+                var section = section_data(index, this, false);
+                template_data.enrolled_sections.push(section);
+                template_data.sections.push(section);
             });
         }
 
         if (myuwFeatureEnabled('instructor_textbooks') && instructed_course_data) {
             $.each(instructed_course_data.sections, function (index) {
-                template_data.sections.push(section_data(index, this, true));
+                var section = section_data(index, this, true);
+                template_data.teaching_sections.push(section);
+                template_data.sections.push(section);
             });
         }
+
+        // Determine if we need to collapse the textbook sections and whether the user is teaching
+        var num_sections = template_data.enrolled_sections.length + template_data.teaching_sections.length;
+        template_data.collapse_sections = num_sections > 10;
+        template_data.is_teaching = template_data.teaching_sections.length > 0;
 
         template_data.verba_link = book_data ? book_data.verba_link : null;
         return template_data;
@@ -76,7 +97,7 @@ var TextBooks = {
                  (book_data === undefined && book_data_err_status === 404)) &&
                 (course_data ||
                  (course_data === undefined && course_err_status === 404)) &&
-                (instructed_course_data || 
+                (instructed_course_data ||
                  (instructed_course_data === undefined && instructed_course_err_status === 404)));
     },
 

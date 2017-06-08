@@ -48,14 +48,7 @@ class TestFutureSchedule(MyuwApiTest):
         self.assertEquals(response.status_code, 404)
 
     def test_past_quarter(self):
-        self.set_user('jpce')
-        response = self.get_schedule(year=2013, quarter='winter')
-        self.assertEquals(response.status_code, 410)
-
-        self.set_date('2013-03-22')
-        response = self.get_schedule(year=2013, quarter='winter')
-        self.assertEquals(response.status_code, 200)
-
-        self.set_date('2013-04-01')
+        self.set_user('javerage')
+        self.set_date("2013-04-01")
         response = self.get_schedule(year=2013, quarter='winter')
         self.assertEquals(response.status_code, 410)

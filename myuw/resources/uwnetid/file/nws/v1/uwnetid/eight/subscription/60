@@ -1,0 +1,31 @@
+{
+  "uwNetID" : "javerage",
+  "subscriptionList" : [
+    {
+      "subscriptionCode" : 60,
+      "subscriptionName" : "A Kerberos Principal",
+      "permitted" : true,
+      "statusCode" : 20,
+      "statusName" : "Active",
+      "actions" : [
+        "Show",
+        "Disuser",
+        "Deactivate",
+        "Permit",
+        "Deny"
+      ],
+      "dataField" : "KPW",
+      "permits" : [
+        {
+          "type" : "permit",
+          "mode" : "implicit",
+          "categoryCode" : 13,
+          "categoryName" : "UW Medicne Workforce",
+          "statusCode" : 1,
+          "statusName" : "current"
+        }
+      ]
+    }
+  ],
+  "timeStamp" : "Wed, 18 Feb 2015 17:21:55 -0800"
+}

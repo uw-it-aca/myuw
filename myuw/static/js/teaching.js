@@ -8,8 +8,6 @@ var Teaching = {
     },
 
     make_html: function () {
-        Handlebars.registerPartial('teaching_resources',
-                                   $('#teaching_resources_partial').html());
         $('html,body').animate({scrollTop: 0}, 'fast');
         var teaching_source = $("#teaching").html();
         var template = Handlebars.compile(teaching_source);
@@ -49,6 +47,7 @@ var Teaching = {
             InstructorCourseCards
         ];
         var desktop_sidebar_cards = [
+            TeachingResourcesCard,
             EventsCard
         ];
         Cards.load_cards_in_order(desktop_body_cards, $("#teaching_content_cards"));
@@ -60,6 +59,7 @@ var Teaching = {
         Teaching._reset_content_divs();
         var mobile_cards = [
             InstructorCourseCards,
+            TeachingResourcesCard,
             EventsCard
         ];
         Cards.load_cards_in_order(mobile_cards, $("#teaching_content_cards"));
@@ -72,5 +72,4 @@ var Teaching = {
         $("#calendar_banner_location_desktop").html('');
         $("#calendar_banner_location_mobile").html('');
     }
-
 };

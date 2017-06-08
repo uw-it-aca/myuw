@@ -37,7 +37,7 @@ MEETING TIME
             {{else}}
                 <td class="course-location">
                     {{#if latitude}}
-                        <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" class="show_map" rel="{{building_name}}">
+                        <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" class="show_map" rel="{{building_name}}" data-linklabel="{{ building }} - Google Maps">
                     {{/if}}
                     {{building}}
                     {{#if latitude}}
@@ -75,7 +75,7 @@ FINAL EXAM WILL BE
         <td class="course-time">{{ formatDateAsTime final_exam.start_date }} - {{ formatDateAsTimeAMPM final_exam.end_date }}</td>
         <td class="course-location">
           {{#if final_exam.latitude}}
-          <a href="http://maps.google.com/maps?q={{ final_exam.latitude }},{{ final_exam.longitude }}+({{encodeForMaps final_exam.building_name }})&z=18" class="show_map" rel="{{building_name}}">
+          <a href="http://maps.google.com/maps?q={{ final_exam.latitude }},{{ final_exam.longitude }}+({{encodeForMaps final_exam.building_name }})&z=18" class="show_map" rel="{{building_name}}" data-linklabel="{{ final_exam.building }} - Google Maps">
             {{/if}}
             {{final_exam.building}}
             {{#if final_exam.latitude}}

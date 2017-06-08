@@ -60,7 +60,7 @@ var TextbookCard = {
         var no_book_assigned = true;
         var section_book_data = [];
 
-        $.each(textbook_data.sections, function (sec_idx, section) {
+        $.each(textbook_data.enrolled_sections, function (sec_idx, section) {
             var required = 0;
             var optional = 0;
             if (section.books) {
@@ -111,5 +111,10 @@ var TextbookCard = {
             },  "", "/textbooks/"+term);
         });
     }
-
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.TextbookCard = TextbookCard;

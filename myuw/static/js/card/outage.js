@@ -10,7 +10,7 @@ var OutageCard = {
         var source = $("#outage_card_content").html();
         var template = Handlebars.compile(source);
 
-        LogUtils.cardLoaded(OutageCard.name, OutageCard.dom_target);
         OutageCard.dom_target.html(template());
+        LogUtils.cardLoaded(OutageCard.name, OutageCard.dom_target);
     }
 };

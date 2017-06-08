@@ -1,0 +1,35 @@
+{
+    "BirthDate": null,
+    "DirectoryRelease": null,
+    "Email": null,
+    "EmployeeID": "",
+    "FirstName": "BILL AVERAGE",
+    "Gender": null,
+    "LastEnrolled": null,
+    "LastName": "TEACHER",
+    "LocalAddress": null,
+    "LocalPhone": null,
+    "Notices": {
+        "Href": "/student/v5/notice/FBB38FE46A7C11D5A4AE0004AC494FFE.json",
+        "RegID": "FBB38FE46A7C11D5A4AE0004AC494FFE"
+    },
+    "PermanentAddress": null,
+    "PermanentPhone": null,
+    "PersonFinancial": {
+        "Href": "/student/v5/person/FBB38FE46A7C11D5A4AE0004AC494FFE/financial.json",
+        "RegID": "FBB38FE46A7C11D5A4AE0004AC494FFE"
+    },
+    "RegID": "FBB38FE46A7C11D5A4AE0004AC494FFE",
+    "RegisteredName": "BILL AVERAGE TEACHER",
+    "Resident": null,
+    "StudentName": "BILL AVERAGE TEACHER",
+    "StudentNumber": null,
+    "StudentSystemKey": null,
+    "TestScore": {
+        "Href": "/student/v5/testscore/FBB38FE46A7C11D5A4AE0004AC494FFE.json",
+        "RegID": "FBB38FE46A7C11D5A4AE0004AC494FFE"
+    },
+    "UWNetID": "bill",
+    "Veteran": null,
+    "VisaType": null
+}
