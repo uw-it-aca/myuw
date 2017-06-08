@@ -5,13 +5,18 @@ var QuickLinksCard = {
     name: 'QuickLinksCard',
     dom_target: undefined,
     opened_panels: {},
+    hidden_panel: undefined,
 
     run_control: function(ev) {
         var target = $(this);
         var type = target.attr('data-linktype');
 
         if ("edit" == type) {
-            return QuickLinksCard.display_edit_field(target);
+            QuickLinksCard.display_edit_field(target);
+            return false;
+        }
+        if ("remove" == type) {
+            QuickLinksCard.hide_edit_panel();
         }
 
         QuickLinksCard._add_link({
@@ -22,16 +27,21 @@ var QuickLinksCard = {
         return false;
     },
     display_edit_field: function(target) {
+        QuickLinksCard.display_edit_links();
+        QuickLinksCard.hidden_panel = target.parent();
+        QuickLinksCard.hidden_panel.css('display', 'none');
         var link_id = target.attr('data-linkid');
         var id = "#custom-link-"+link_id;
         var custom_link = $(id);
 
+        $("#edit-label-required").hide();
+        $("#edit-url-required").hide();
         $("#custom-link-edit-id").val(link_id);
         $("#custom-link-edit-url").val(custom_link.attr('href'));
         $("#custom-link-edit-label").val(custom_link.text());
 
         var target_pos = target.closest('li').position();
-        $("#custom-link-edit").css({left: target_pos.left, top: target_pos.top + 20});
+        $("#custom-link-edit").css({left: 0, top: target_pos.top + 20});
         $("#custom-link-edit").show();
 
         $("#custom-link-edit-url").focus();
@@ -53,14 +63,27 @@ var QuickLinksCard = {
             QuickLinksCard._save_edit();
         }
     },
+    _post_custom_edit_save: function(response) {
+        if (response.status == 200) {
+            QuickLinksCard.redraw(response);
+            QuickLinksCard.hide_edit_panel();
+        }
+        QuickLinksCard.hide_custom_quicklinks_panel();
+    },
     _save_edit: function() {
+        function validate(field) {
+            var value = $("#custom-link-edit-"+field).val().trim();
+            if ("" === value) {
+                $("#edit-"+field+"-required").show();
+            }
+            else {
+                $("#edit-"+field+"-required").hide();
+            }
+        }
+        validate("label");
+        validate("url");
+
         var label = $("#custom-link-edit-label").val().trim();
-        if ("" === label) {
-            $("#edit-label-required").show();
-        }
-        else {
-            $("#edit-label-required").hide();
-        }
 
         var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;
         var values = {
@@ -79,7 +102,7 @@ var QuickLinksCard = {
                  "X-CSRFToken": csrf_token
             },
             data: JSON.stringify(values),
-            complete: QuickLinksCard.redraw
+            complete: QuickLinksCard._post_custom_edit_save
         });
 
         return false;
@@ -89,8 +112,19 @@ var QuickLinksCard = {
             QuickLinksCard.hide_edit_panel();
         }
     },
+    display_edit_links: function() {
+        if (QuickLinksCard.hidden_panel) {
+            QuickLinksCard.hidden_panel.css('display', '');
+        }
+    },
     hide_edit_panel: function() {
         $("#custom-link-edit").hide();
+        QuickLinksCard.display_edit_links();
+        return false;
+    },
+    hide_custom_quicklinks_panel: function() {
+        $("#custom_qlinks").collapse({toggle: false});
+        $("#custom_qlinks").collapse("hide");
     },
     _add_link: function(values) {
         $("#error_saving").hide();
@@ -112,8 +146,14 @@ var QuickLinksCard = {
         $("#quicklink_saving").hide();
         if (response.status == 200) {
             window.quicklink_data = response.responseJSON;
-            $("#myuw-custom-qlink").val("");
-            QuickLinksCard.render();
+            var html = $(QuickLinksCard.get_html());
+            var replace_ids = ['#popular_qlinks', '.myuw-qlinks-active', '.myuw-qlinks-recent',
+                               '#custom-link-edit', '#custom_qlinks'];
+            var i = 0;
+            for (i = 0; i < replace_ids.length; i++) {
+                var id = replace_ids[i];
+                $(id).html(html.find(id).html());
+            }
         }
         else {
             $("#error_saving").show();
@@ -125,13 +165,16 @@ var QuickLinksCard = {
         QuickLinksCard.render();
     },
 
-    render: function() {
+    get_html: function() {
         var source = $("#quicklinks").html();
         var template = Handlebars.compile(source);
-
-        QuickLinksCard.dom_target.html(template({
+        return template({
             'links': window.quicklink_data
-        }));
+        });
+    },
+
+    render: function() {
+        QuickLinksCard.dom_target.html(QuickLinksCard.get_html());
         QuickLinksCard.add_events();
     },
     collapse_event: function(caller) {
@@ -150,6 +193,11 @@ var QuickLinksCard = {
         QuickLinksCard.opened_panels[caller] = true;
     },
     add_events: function() {
+        if (QuickLinksCard.events_added) {
+            return;
+        }
+        QuickLinksCard.events_added = true;
+
         $("#popular_qlinks").on("show.bs.collapse", function() { QuickLinksCard.collapse_event('popular'); });
         $("#custom_qlinks").on("show.bs.collapse", function() { QuickLinksCard.collapse_event('custom'); });
         $("body").on('click', '.control-link', QuickLinksCard.run_control);
