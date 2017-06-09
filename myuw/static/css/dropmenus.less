@@ -5,6 +5,16 @@
 
 .myuw-pagemenu {
     display: inline-block;
+    position: relative;
+
+    &:before {
+        font-family: 'FontAwesome';
+        content: "\f078";
+        position: absolute;
+        right: 4px;
+        top: .7em;
+        font-size: 12px;
+    }
 
     select.myuw-dropmenu {
         /*** Remove default menu appearance ***/
@@ -27,9 +37,4 @@
         border-bottom: 4px solid #000;
     }
 
-    i.fa-chevron-down {
-        margin-left: -22px;
-        font-size: 12px;
-        vertical-align: 2px;
-    }
 }
