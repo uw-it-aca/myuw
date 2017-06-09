@@ -195,5 +195,35 @@ describe("VisualScheduleCard", function() {
 
         });
     });
+
+    describe('_add_to_periods', function() {
+        it('should add to empty periods', function() {
+            var dates = ["2013-04-01", "2013-05-01"],
+                section = "i'm a section";
+            var periods = VisualScheduleCard._add_to_periods(dates, section, {});
+            assert.equal(Object.keys(periods).length, 1);
+        });
+        it('should add to existing periods', function() {
+            var dates = [moment("2013-04-01"), moment("2013-05-01")],
+                section = "i'm a section";
+            var periods = VisualScheduleCard._add_to_periods(dates, section, {});
+
+            periods = VisualScheduleCard._add_to_periods(dates, section, periods);
+            assert.equal(Object.keys(periods).length, 1);
+            assert.equal(periods[0].sections.length, 2);
+        });
+        it('should create new period with existing', function() {
+            var dates = [moment("2013-04-01"), moment("2013-05-01")],
+                dates2 = [moment("2013-05-01"), moment("2013-06-01")],
+                section = "i'm a section";
+            var periods = VisualScheduleCard._add_to_periods(dates, section, {});
+
+            periods = VisualScheduleCard._add_to_periods(dates2, section, periods);
+            assert.equal(Object.keys(periods).length, 2);
+            assert.equal(periods[0].sections.length, 1);
+            assert.equal(periods[1].sections.length, 1);
+        });
+
+    });
 });
 

@@ -255,13 +255,6 @@ var VisualScheduleCard = {
 
 
     _add_to_periods: function(dates, section, periods){
-        if(Object.keys(periods).length === 0){
-            periods["0"] =
-            {"start_date": dates[0],
-                "end_date" : dates[1],
-                "sections": [section]
-            };
-        } else {
             for (var period_key in periods){
                 var period = periods[period_key];
                 if(period.start_date.isSame(dates[0]) &&
@@ -274,7 +267,6 @@ var VisualScheduleCard = {
                 "end_date" : dates[1],
                 "sections": [section]
             };
-        }
         return periods;
     },
 
