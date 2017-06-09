@@ -64,3 +64,6 @@ local/
 /manage.py
 db.sqlite3
 /src/
+
+# Mac OS
+*.DS_Store
