@@ -1,7 +1,6 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "student_info_card" %}
 
-
     <div class="myuw-card" data-type="card" data-name="StudentInfoCard" data-identifier="{{ title }}">
 
         <h3 class="myuw-card-title">Student Profile</h3>
@@ -18,7 +17,7 @@
                         <h4 class="myuw-card-row-heading">Student Number</h4>
                     </div>
                     <div class="col-sm-9">
-                        <div class="myuw-card-row-content" property="student_number">{{student_number}}</div>
+                        <div class="myuw-card-row-content" id="student_number">{{student_number}}</div>
                     </div>
                 </div>
                 {{/if}}
@@ -116,7 +115,7 @@
 
             <div class="myuw-card-section">
 
-                <div property="workLocation" typeof="Place" class="row">
+                <div class="row">
                     <div class="col-sm-3">
                         <h4 class="myuw-card-row-heading">Local Address</h4>
                     </div>
