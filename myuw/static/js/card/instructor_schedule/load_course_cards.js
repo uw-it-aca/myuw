@@ -105,6 +105,7 @@ var InstructorCourseCards = {
 
 
         course_data.tab_terms = tab_terms;
+        course_data.reversed_related_terms = course_data.related_terms.slice().reverse();
         var raw = courses_template(course_data);
         InstructorCourseCards.dom_target.html(raw);
 
