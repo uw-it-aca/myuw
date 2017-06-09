@@ -181,6 +181,9 @@ var VisualScheduleCard = {
         var start = range[0].week(),
             end = range[1].week(),
             weeks = {};
+        if(start > end){
+            end += 52;
+        }
 
         for (var i = start; i <=end; i++){
             var year = range[0].year();

@@ -113,6 +113,19 @@ describe("VisualScheduleCard", function() {
             assert.equal(weeks[Object.keys(weeks)[0]].start_date.format("YYYY-MM-DD"), "2017-05-28");
             assert.equal(weeks[Object.keys(weeks)[0]].end_date.format("YYYY-MM-DD"), "2017-06-03");
         });
+
+        it('should work across years', function() {
+            var start = moment.utc("2017-12-01");
+            var end = moment.utc("2018-01-12");
+
+            var weeks = VisualScheduleCard._get_weeks_from_range([start, end]);
+            assert.deepEqual(Object.keys(weeks), ["48","49","50","51","52","53","54"]);
+
+            assert.equal(weeks[Object.keys(weeks)[0]].start_date.format("YYYY-MM-DD"), "2017-11-26");
+            assert.equal(weeks[Object.keys(weeks)[0]].end_date.format("YYYY-MM-DD"), "2017-12-02");
+            assert.equal(weeks[Object.keys(weeks)[6]].start_date.format("YYYY-MM-DD"), "2018-01-07");
+            assert.equal(weeks[Object.keys(weeks)[6]].end_date.format("YYYY-MM-DD"), "2018-01-13");
+        });
     });
 
     describe('_get_default_period', function() {
