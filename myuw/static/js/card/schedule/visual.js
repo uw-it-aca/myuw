@@ -161,8 +161,10 @@ var VisualScheduleCard = {
 
     _add_sections_to_weeks: function(weeks, sections){
         $.each(weeks, function(idx, week){
+            console.log(idx)
             $.each(sections, function(idx, section){
                 var dates = VisualScheduleCard._get_dates_for_section(section);
+                console.log(dates[0].format("YYYY-MM-DD"), dates[1].format("YYYY-MM-DD"))
                 if(dates[0].isSameOrBefore(week.end_date) && dates[1].isSameOrAfter(week.start_date)){
                     week.sections.push(section);
                 }

@@ -144,6 +144,7 @@ describe("VisualScheduleCard", function() {
 
             var weeks = VisualScheduleCard._get_weeks_from_range([start, end]);
             var sections = [{start_date: "2017-06-01", end_date: "2017-06-2"}, {start_date: "2017-06-3", end_date: "2017-06-10"}, {start_date: "2017-06-11", end_date: "2017-06-12"}];
+            console.log('strt')
             var weeks_with_sections = VisualScheduleCard._add_sections_to_weeks(weeks, sections);
             var week_keys = Object.keys(weeks_with_sections);
             console.log(weeks_with_sections)
