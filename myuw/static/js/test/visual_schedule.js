@@ -146,6 +146,7 @@ describe("VisualScheduleCard", function() {
             var sections = [{start_date: "2017-06-01", end_date: "2017-06-2"}, {start_date: "2017-06-3", end_date: "2017-06-10"}, {start_date: "2017-06-11", end_date: "2017-06-12"}];
             var weeks_with_sections = VisualScheduleCard._add_sections_to_weeks(weeks, sections);
             var week_keys = Object.keys(weeks_with_sections);
+            console.log(weeks_with_sections)
 
             assert.equal(weeks_with_sections[week_keys[0]].sections.length, 2);
             assert.equal(weeks_with_sections[week_keys[1]].sections.length, 2);
