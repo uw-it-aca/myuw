@@ -42,13 +42,13 @@ describe("VisualScheduleCard", function() {
     describe('_get_week_range_from_date', function() {
         it('should get dates across months', function() {
             var range = VisualScheduleCard._get_week_range_from_date("2017-09-01");
-            assert.equal(range[0].format("YYYY-MM-DD"), "2017-08-27");
-            assert.equal(range[1].format("YYYY-MM-DD"), "2017-09-02");
+            assert.equal(range[0].format("YYYY-MM-DD"), "2017-08-28");
+            assert.equal(range[1].format("YYYY-MM-DD"), "2017-09-03");
         });
         it('should get dates across years', function() {
             var range = VisualScheduleCard._get_week_range_from_date("2016-01-01");
-            assert.equal(range[0].format("YYYY-MM-DD"), "2015-12-27");
-            assert.equal(range[1].format("YYYY-MM-DD"), "2016-01-02");
+            assert.equal(range[0].format("YYYY-MM-DD"), "2015-12-28");
+            assert.equal(range[1].format("YYYY-MM-DD"), "2016-01-03");
         });
     });
 
@@ -110,8 +110,8 @@ describe("VisualScheduleCard", function() {
 
             var weeks = VisualScheduleCard._get_weeks_from_range([start, end]);
             assert.deepEqual(Object.keys(weeks), ["22","23","24"]);
-            assert.equal(weeks[Object.keys(weeks)[0]].start_date.format("YYYY-MM-DD"), "2017-05-28");
-            assert.equal(weeks[Object.keys(weeks)[0]].end_date.format("YYYY-MM-DD"), "2017-06-03");
+            assert.equal(weeks[Object.keys(weeks)[0]].start_date.format("YYYY-MM-DD"), "2017-05-29");
+            assert.equal(weeks[Object.keys(weeks)[0]].end_date.format("YYYY-MM-DD"), "2017-06-04");
         });
 
         it('should work across years', function() {
@@ -121,10 +121,10 @@ describe("VisualScheduleCard", function() {
             var weeks = VisualScheduleCard._get_weeks_from_range([start, end]);
             assert.deepEqual(Object.keys(weeks), ["48","49","50","51","52","53","54"]);
 
-            assert.equal(weeks[Object.keys(weeks)[0]].start_date.format("YYYY-MM-DD"), "2017-11-26");
-            assert.equal(weeks[Object.keys(weeks)[0]].end_date.format("YYYY-MM-DD"), "2017-12-02");
-            assert.equal(weeks[Object.keys(weeks)[6]].start_date.format("YYYY-MM-DD"), "2018-01-07");
-            assert.equal(weeks[Object.keys(weeks)[6]].end_date.format("YYYY-MM-DD"), "2018-01-13");
+            assert.equal(weeks[Object.keys(weeks)[0]].start_date.format("YYYY-MM-DD"), "2017-11-27");
+            assert.equal(weeks[Object.keys(weeks)[0]].end_date.format("YYYY-MM-DD"), "2017-12-03");
+            assert.equal(weeks[Object.keys(weeks)[6]].start_date.format("YYYY-MM-DD"), "2018-01-08");
+            assert.equal(weeks[Object.keys(weeks)[6]].end_date.format("YYYY-MM-DD"), "2018-01-14");
         });
     });
 

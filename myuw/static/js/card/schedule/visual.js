@@ -186,10 +186,15 @@ var VisualScheduleCard = {
 
         for (var i = start; i <=end; i++){
             var year = range[0].year();
-            var week = moment().year(year).week(i);
+            var week = moment.utc().year(year).week(i);
+            var start_date = week.clone().startOf('week');
+            start_date.add(1, 'days');
+            var end_date = week.clone().endOf('week');
+            end_date.add(1, 'days');
+
             weeks[i] = {
-                "start_date": week.clone().startOf('week'),
-                "end_date": week.clone().endOf('week'),
+                "start_date": start_date,
+                "end_date": end_date,
                 "sections": []
             };
         }
@@ -310,7 +315,9 @@ var VisualScheduleCard = {
     _get_week_range_from_date: function(date){
         var exam_date = moment.utc(date);
         var start = exam_date.startOf('week');
+        start.add(1, 'days');
         var end = exam_date.clone().endOf('week');
+        end.add(1, 'days');
 
         return [start, end];
     },
