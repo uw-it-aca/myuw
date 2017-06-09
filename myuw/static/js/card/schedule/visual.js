@@ -51,7 +51,11 @@ var VisualScheduleCard = {
         window.term.summer_term = course_data.summer_term;
         course_data.schedule_periods = VisualScheduleCard._get_schedule_periods(course_data);
 
-        if(course_data.summer_term === "" || window.future_term === undefined){
+        if(window.future_term === undefined){
+            if(course_data.summer_term === ""){
+                $.extend(course_data.schedule_periods, VisualScheduleCard._get_finals(course_data.sections));
+            }
+        } else if(window.future_term.indexOf("summer") === -1){
             $.extend(course_data.schedule_periods, VisualScheduleCard._get_finals(course_data.sections));
         }
 
@@ -277,7 +281,7 @@ var VisualScheduleCard = {
         if(start_date === "None"){
             // Regular courses don't have start/end dates
             if(window.future_term !== undefined){
-                if(section.summer_term === ""){
+                if(section.summer_term === "" || section.summer_term === "Full-term"){
                     start_date = window.future_term_data.first_day_quarter;
                     end_date = window.future_term_data.last_day_instruction;
                 } else {
