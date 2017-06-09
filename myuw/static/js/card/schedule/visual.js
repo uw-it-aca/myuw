@@ -62,11 +62,11 @@ var VisualScheduleCard = {
     },
 
     _get_default_period: function(schedule_periods){
-        var today = moment(window.card_display_dates.comparison_date, "YYYY-MM-DD"),
+        var today = moment.utc(window.card_display_dates.comparison_date, "YYYY-MM-DD"),
             default_section;
 
         $.each(schedule_periods, function(idx, period){
-            if (moment(period.start_date, "YYYY-MM-DD").isSameOrBefore(today) && moment(period.end_date, "YYYY-MM-DD").isSameOrAfter(today)) {
+            if (moment.utc(period.start_date, "YYYY-MM-DD").isSameOrBefore(today) && moment.utc(period.end_date, "YYYY-MM-DD").isSameOrAfter(today)) {
                 default_section = idx;
             }
         });
@@ -115,7 +115,6 @@ var VisualScheduleCard = {
                 }
             }
             consolidated_weeks[i] = consolidated_week;
-
 
         }
         return consolidated_weeks;
@@ -307,11 +306,11 @@ var VisualScheduleCard = {
                 }
             }
         }
-        return [moment(new Date(start_date)), moment(new Date(end_date))];
+        return [moment.utc(new Date(start_date)), moment.utc(new Date(end_date))];
     },
 
     _get_week_range_from_date: function(date){
-        var exam_date = moment(date);
+        var exam_date = moment.utc(date);
         var start = exam_date.startOf('week');
         var end = exam_date.clone().endOf('week');
 
