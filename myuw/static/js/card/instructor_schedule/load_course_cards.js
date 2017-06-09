@@ -59,9 +59,11 @@ var InstructorCourseCards = {
         if (has_active) {
             $("#teaching-term-select option[value='']").prop('selected', 'selected');
             $("#teaching-term-select option[value='']").prop('disabled', false);
+            $("#teaching-term-select").removeClass('myuw-dropmenu-selected');
         }
         else {
             $("#teaching-term-select option[value='']").prop('disabled', 'disabled');
+            $("#teaching-term-select").addClass('myuw-dropmenu-selected');
         }
     },
 
