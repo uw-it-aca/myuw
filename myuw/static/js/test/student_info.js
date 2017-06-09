@@ -28,7 +28,7 @@ describe('StudentInfoCard', function(){
             StudentInfoCard.render_init();
         });
         it("Should render student only card", function() {
-            assert.equal(StudentInfoCard.dom_target.find('div.profile-student-info span').text(), '1233334');
+            assert.equal(StudentInfoCard.dom_target.find('#student_number').text(), '1233334');
         });
         after(function () {
             Global.Environment.ajax_stub_restore();
@@ -61,7 +61,7 @@ describe('StudentInfoCard', function(){
             StudentInfoCard.render_init();
         });
         it("Should render student only card", function() {
-            assert.equal(StudentInfoCard.dom_target.find('div.profile-student-info span').text(), '1033334');
+            assert.equal(StudentInfoCard.dom_target.find('#student_number').text(), '1033334');
         });
         after(function () {
             Global.Environment.ajax_stub_restore();

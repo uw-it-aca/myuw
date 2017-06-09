@@ -1,0 +1,24 @@
+# Email urls
+http://alpine.washington.edu
+http://gmail.uw.edu
+https://outlook.office365.com
+https://mail.google.com
+https://mail.live.com
+https://mail.yahoo.com
+https://login.comcast.net
+https://mail.live.com
+https://my.screenname.aol.com
+https://mail.live.com
+https://mail.163.com
+https://www.outlook.com
+https://webmail.earthlink.net
+https://www.icloud.com
+https://www.icloud.com
+https://mail.126.com
+https://en.mail.qq.com
+https://www.icloud.com
+
+# URLs we link to for the old MyUW
+https://myuw.washington.edu/servlet/user
+https://myuw.washington.edu/servlet/user?tab=7
+https://myuw.washington.edu/servlet/user?tab=8

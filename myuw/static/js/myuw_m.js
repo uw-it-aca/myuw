@@ -227,6 +227,9 @@ var register_link_recorder = function() {
 
 var record_link_click = function(ev) {
     var target = $(this);
+    if (target.attr('data-notrack') !== undefined) {
+        return;
+    }
 
     var original_href = target.attr('myuw-data-href');
     if (target.attr('myuw-data-href')) {

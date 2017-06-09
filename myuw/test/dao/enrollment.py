@@ -1,11 +1,10 @@
 from django.test import TestCase
 from restclients_core.exceptions import DataFailureException
-from myuw.dao.term import get_current_quarter,\
-    get_next_quarter, get_term_before, get_term_after,\
-    get_current_and_next_quarters
-from myuw.dao.enrollment import get_enrollment_for_term,\
-    get_enrollments_of_terms, get_current_quarter_enrollment,\
-    get_all_enrollments
+from myuw.dao.term import get_current_quarter, get_previous_quarter,\
+    get_next_quarter, get_term_before, get_term_after
+from myuw.dao.enrollment import get_current_quarter_enrollment,\
+    get_enrollment_for_term, get_enrollments_of_terms,\
+    get_prev_enrollments_with_open_sections, is_ended
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user
 
@@ -41,6 +40,39 @@ class TestDaoEnrollment(TestCase):
 
         self.assertEqual(enrollment, None)
 
+    def get_enrollment(self, netid, req_date):
+        req = get_request_with_user(netid,
+                                    get_request_with_date(req_date))
+        term = get_current_quarter(req)
+        return get_enrollment_for_term(req, term)
+
+    def test_get_enrollment_for_term(self):
+        enrollment = self.get_enrollment('staff', "2013-04-10")
+        self.assertIsNone(enrollment)
+
+        enrollment = self.get_enrollment('javerage', "2013-04-10")
+        self.assertIsNotNone(enrollment)
+        self.assertEqual(len(enrollment.majors), 1)
+        self.assertEqual(len(enrollment.minors), 1)
+
+        enrollment = self.get_enrollment('jbothell', "2013-04-01")
+        self.assertEqual(len(enrollment.majors), 1)
+        self.assertEqual(enrollment.majors[0].campus, "Bothell")
+
+        enrollment = self.get_enrollment('eight', "2013-04-01")
+        self.assertEqual(len(enrollment.majors), 2)
+        self.assertEqual(enrollment.majors[0].campus, "Tacoma")
+
+        enrollment = self.get_enrollment('jeos', "2013-10-10")
+        self.assertEqual(len(enrollment.majors), 0)
+        self.assertEqual(len(enrollment.minors), 0)
+        self.assertTrue(enrollment.has_unfinished_pce_course())
+
+        enrollment = self.get_enrollment('jpce', "2013-01-10")
+        self.assertEqual(len(enrollment.majors), 1)
+        self.assertEqual(len(enrollment.minors), 0)
+        self.assertTrue(enrollment.has_unfinished_pce_course())
+
     def test_get_enrollments_of_terms(self):
         req = get_request_with_user('javerage',
                                     get_request_with_date("2013-04-01"))
@@ -66,8 +98,8 @@ class TestDaoEnrollment(TestCase):
         self.assertEqual(len(enrollments), 3)
         self.assertTrue(t1 in enrollments)
         self.assertTrue(t2 in enrollments)
-        self.assertTrue(t2 in enrollments)
-        enrollment = get_enrollment_for_term(t1)
+        self.assertTrue(t3 in enrollments)
+        enrollment = get_enrollment_for_term(req, t1)
         self.assertEqual(len(enrollment.majors), 1)
         self.assertEqual(enrollment.majors[0].campus, "Bothell")
 
@@ -77,7 +109,37 @@ class TestDaoEnrollment(TestCase):
         self.assertEqual(len(enrollments), 3)
         self.assertTrue(t1 in enrollments)
         self.assertTrue(t2 in enrollments)
-        self.assertTrue(t2 in enrollments)
-        enrollment = get_enrollment_for_term(t1)
+        self.assertTrue(t3 in enrollments)
+        enrollment = get_enrollment_for_term(req, t1)
         self.assertEqual(len(enrollment.majors), 2)
         self.assertEqual(enrollment.majors[0].campus, "Tacoma")
+
+    def test_get_prev_enrollments_with_open_sections(self):
+        req = get_request_with_user('jpce',
+                                    get_request_with_date("2013-04-29"))
+        enrollements = get_prev_enrollments_with_open_sections(req, 2)
+        self.assertEqual(len(enrollements), 1)
+
+        term = get_previous_quarter(req)
+        self.assertTrue(term in enrollements)
+        sections = enrollements[term].unf_pce_courses
+        self.assertEqual(len(sections), 2)
+        self.assertIsNone(sections.get('3,winter,COM,201/A'))
+        s1 = sections.get('2013,winter,COM,201/A')
+        self.assertFalse(is_ended(req, s1.end_date))
+        self.assertEqual(str(s1.end_date), '2013-04-29')
+        s2 = sections.get('2013,winter,PSYCH,203/A')
+        self.assertEqual(str(s2.end_date), '2013-07-30')
+        self.assertFalse(is_ended(req, s2.end_date))
+
+        req = get_request_with_user('jpce',
+                                    get_request_with_date("2013-06-28"))
+        enrollements = get_prev_enrollments_with_open_sections(req, 2)
+        term = get_previous_quarter(req)
+        self.assertTrue(term in enrollements)
+        sections = enrollements[term].unf_pce_courses
+        self.assertEqual(len(sections), 1)
+        self.assertFalse('2013,spring,AAES,150/A' in sections)
+        self.assertTrue('2013,spring,CPROGRM,712/A' in sections)
+        s1 = sections.get('2013,spring,CPROGRM,712/A')
+        self.assertEqual(str(s1.end_date), '2013-06-28')
