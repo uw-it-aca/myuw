@@ -5,8 +5,6 @@
 
         <h3 class="myuw-card-title">Student Profile</h3>
 
-		<a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp" class="btn btn-default card-btn" title="Change address on Student Personal Services website">Change Address</a>
-
         <div vocab="http://schema.org/" typeof="Person">
 
             <div class="myuw-card-section">
@@ -28,14 +26,14 @@
                     </div>
                     <div class="col-sm-9">
                         <div class="myuw-card-row-content">
-                            <div><strong>{{ class_level }}</strong></div>
+                            <div>{{ class_level }}</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-3">
-                        <h4 class="myuw-card-row-heading">Major/Minor</h4>
+                        <h4 class="myuw-card-row-heading">Major</h4>
                     </div>
                     <div class="col-sm-9">
                         <div class="myuw-card-row-content">
@@ -45,7 +43,7 @@
                                     {{#each term_majors}}
                                         {{#if @first}}
                                             {{#if @root.has_pending_major}}
-                                                <li>Current {{ pluralize_by_size majors "Major" "Majors"}}:
+                                                <li>
                                                     {{#each majors}}
                                                         {{full_name}} {{#unless @last}},{{/unless}}
                                                     {{/each}}
@@ -53,7 +51,7 @@
                                             {{else}}
                                                 <li>
                                                     {{#if @root.has_minors}}
-                                                        Major:
+                                                        Major:&nbsp;&nbsp;
                                                     {{/if}}
                                                     {{#each majors}}
                                                         {{full_name}}
@@ -63,44 +61,9 @@
                                         {{else}}
                                             {{#if degrees_modified}}
                                                 <li>{{ pluralize_by_size majors "Major" "Majors"}}
-                                                    Beginning {{ toTitleCase quarter}}:
+                                                    Beginning {{ toTitleCase quarter}}:&nbsp;&nbsp;
                                                     {{#each majors}}
                                                         {{full_name}} {{#unless @last}},{{/unless}}
-                                                    {{/each}}
-                                                </li>
-                                            {{/if}}
-                                        {{/if}}
-                                    {{/each}}
-                                {{/if}}
-
-                                {{#if term_minors}}
-                                    {{#each term_minors}}
-                                        {{#if @first}}
-                                            {{#if @root.has_pending_minor}}
-                                                <li>Current {{ pluralize_by_size minors "Minor" "Minors"}}:
-                                                    {{#each minors}}
-                                                        {{full_name}} {{#unless @last}},{{/unless}}
-                                                    {{/each}}
-                                                </li>
-                                            {{else}}
-                                                <li>
-                                                    {{#each minors}}
-                                                        {{#if @first}}
-                                                            {{ pluralize_by_size ../minors "Minor" "Minors"}}:
-                                                        {{/if}}
-                                                        {{full_name}} {{#unless @last}},{{/unless}}
-                                                    {{/each}}
-                                                </li>
-                                            {{/if}}
-
-                                        {{else}}
-                                            {{#if degrees_modified}}
-                                                <li>{{ pluralize_by_size minors "Minor" "Minors"}}
-                                                    Beginning {{ toTitleCase quarter}}:
-                                                    {{#each minors}}
-                                                        {{full_name}} {{#unless @last}},{{/unless}}
-                                                    {{else}}
-                                                        None
                                                     {{/each}}
                                                 </li>
                                             {{/if}}
@@ -111,6 +74,51 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h4 class="myuw-card-row-heading">Minor</h4>
+                    </div>
+                    <div class="col-sm-9">
+                        <ul class="myuw-card-itemlist">
+                        {{#if term_minors}}
+                            {{#each term_minors}}
+                                {{#if @first}}
+                                    {{#if @root.has_pending_minor}}
+                                        <li>
+                                            {{#each minors}}
+                                                {{full_name}} {{#unless @last}},{{/unless}}
+                                            {{/each}}
+                                        </li>
+                                    {{else}}
+                                        <li>
+                                            {{#each minors}}
+                                                {{#if @first}}
+                                                    {{ pluralize_by_size ../minors "Minor" "Minors"}}:&nbsp;&nbsp;
+                                                {{/if}}
+                                                {{full_name}} {{#unless @last}},{{/unless}}
+                                            {{/each}}
+                                        </li>
+                                    {{/if}}
+
+                                {{else}}
+                                    {{#if degrees_modified}}
+                                        <li>{{ pluralize_by_size minors "Minor" "Minors"}}
+                                            Beginning {{ toTitleCase quarter}}:&nbsp;&nbsp;
+                                            {{#each minors}}
+                                                {{full_name}} {{#unless @last}},{{/unless}}
+                                            {{else}}
+                                                None
+                                            {{/each}}
+                                        </li>
+                                    {{/if}}
+                                {{/if}}
+                            {{/each}}
+                        {{/if}}
+                        </ul>
+                    </div>
+                </div>
+
             </div>
 
             <div class="myuw-card-section">
@@ -172,30 +180,34 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp" class="" title="Change address on Student Personal Services website">Change Address</a>
+                    </div>
+                </div>
 
             </div>
 
             <div class="myuw-card-section">
                 <div class="row">
                     <div class="col-sm-3">
-                        <h4 class="myuw-card-row-heading">UW Student Directory</h4>
+                        <h4 class="myuw-card-row-heading">Student Directory Information</h4>
                     </div>
                     <div class="col-sm-9">
                         <div class="myuw-card-row-content">
 
-                            <p><strong>Releasable: {{#if directory_release}}YES{{else}}NO{{/if}}</strong></p>
-
-                            <ul class="myuw-card-itemlist">
+                            <p style="margin-bottom:16px;">Releasable:&nbsp;&nbsp;{{#if directory_release}}YES{{else}}NO{{/if}}<br/>
+                            <a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Change your release settings</a></p>
 
                             {{#if directory_release}}
-                  	            <li>Name, phone number, email, major, and class standing are <em>visible</em> in the UW Directory. <a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Change your release settings</a></li>
-                                <li>Information such as date of birth, street address, and dates of attendance are <em>releasable</em> by the Office of the Registrar when requested. <a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
+              	            <p>Name, phone number, email, major, and class standing are <em>visible</em> in the UW Directory. </p>
+                            <p>Information such as date of birth, street address, and dates of attendance are <em>releasable</em> by the Office of the Registrar when requested. <a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></p>
                             {{else}}
-                                <li>Name, phone number, email, major, and class standing are <em>not visible</em> in the UW Directory. <a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Change your release settings</a></li>
-                                <li>Information such as date of birth, street address, and dates of attendance <em>cannot be relased</em> by the Office of the Registrar when requested. <a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></li>
+                            <p>Name, phone number, email, major, and class standing are <em>not visible</em> in the UW Directory. <a href="https://sdb.admin.uw.edu/students/uwnetid/address.asp">Change your release settings</a></p>
+                            <p>Information such as date of birth, street address, and dates of attendance <em>cannot be relased</em> by the Office of the Registrar when requested. <a href="http://www.washington.edu/students/reg/ferpa.html">Learn more about your privacy (FERPA)</a></p>
                             {{/if}}
+                        </ul>
 
-                            </ul>
                         </div>
                     </div>
                 </div>
