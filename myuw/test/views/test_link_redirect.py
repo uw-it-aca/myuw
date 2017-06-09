@@ -75,3 +75,14 @@ class TestRedirect(MyuwApiTest):
         self.assertEquals(len(all), 1)
         self.assertTrue(all[0].is_anonymous)
         self.assertEquals(all[0].username, "")
+
+    def test_ignore_link(self):
+        VisitedLink.objects.all().delete()
+        self.set_user('jbothell')
+        url = reverse('myuw_outbound_link')
+
+        response = self.client.get(url, {'u': 'http://gmail.uw.edu'})
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response["Location"], "http://gmail.uw.edu")
+        all = VisitedLink.objects.all()
+        self.assertEquals(len(all), 0)

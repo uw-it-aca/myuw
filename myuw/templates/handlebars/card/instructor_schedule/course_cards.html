@@ -22,7 +22,7 @@
           <tbody>
             <tr>
               <td class="meeting_type">{{ meetings.0.type }}</span></td>
-              <td><a href="https://sdb.washington.edu/?SLN={{ sln }}" target="_blank">{{ sln }}</a></td>
+              <td><a href="https://sdb.washington.edu/?SLN={{ sln }}" data-linklabel="SLN {{ sln }}: {{ curriculum_abbr }} {{course_number}} {{section_id}}" target="_blank">{{ sln }}</a></td>
               <td>{{ current_enrollment }}{{#if limit_estimate_enrollment }}/{{ limit_estimate_enrollment }}{{/if}}
               </td>
             </tr>

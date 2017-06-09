@@ -954,22 +954,29 @@ label { font-weight: normal; }
             .myuw-qlinks-active {
                 .edit-link {padding-right:4px;}
             }
-            .myuw-qlinks-recent {background-color:#eee;padding: 5px 10px;margin: 5px -10px;
-                .recent-message {padding:10px 0; font-style: italic; font-size: small;}
-                .myuw-qlinks-recent-list {font-size:12px;line-height: 20px;}
-                .control-link {
-                    color: #777;
-                    font-weight: normal;
-                    text-decoration: none;
+            .myuw-qlinks-recent {
+                .recent-message {font-style: italic; font-size: smaller;}
+            }
+            .myuw-qlinks-recent, .myuw-qlinks-active, .myuw-qlinks-popular {
+                .myuw-qlinks-item {
+                  width: 85%;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
                 }
             }
             .myuw-qlinks-popular {
-                .myuw-qlinks-popular-list {
-                    font-size:12px;
-                    line-height: 20px;
-                    }
+                background-color: #eeeeee;
+                padding: 4px 16px;
+                margin: 4px -16px;
+                .control-link {
+                    color: #777;
+                }
             }
             .myuw-qlinks-custom {
+                background-color: rgb(238, 238, 238);
+                padding: 4px 16px;
+                margin: 4px -16px;
                 .myuw-qlinks-custom-btn {padding: 5px 0;}
             }
             .myuw-qlinks-recent, .myuw-qlinks-active, .myuw-qlinks-popular {
@@ -982,6 +989,7 @@ label { font-weight: normal; }
                     display: inline-block;
                 }
             }
+            .btn-qlinks {margin-left:8px;}
         }
     }
 
@@ -1157,13 +1165,13 @@ label { font-weight: normal; }
 
     // ACCOUNT PAGE CARDS
     div#medicine-pw, div#netid-pw {
-	    .med-logo {margin:10px 0px 5px 0px; clear: both; float: right;}
+	    .med-logo {margin:0px; clear: both; float: right;}
 	    h3 {clear:both;}
-	    .update-note {color: #777; font-size: 95%;margin-bottom: 0px;}
+	    .update-note {color: #777; font-size: 95%; clear:both;}
 	    .pw-exp {font-size: 16px; margin-bottom:10px;}
 	    .pw-exp-date {color:#444;font-weight: bold;}
-		.password-alert {color:#a94442;
-			a {text-decoration: underline;}
+		.password-alert {color:#a94442;font-weight: normal;
+			a {text-decoration: underline;font-weight: bold;}
 		}
 		.pw-link{ clear:both; margin-bottom: 10px;}
 	.card-badge {
@@ -1178,7 +1186,7 @@ label { font-weight: normal; }
                     display: block;
                     font-weight: normal;
                     line-height: 35px;
-                    margin-top: -5px;
+                    margin-top: -8px;
                     a { display: block; }
                 }
 
