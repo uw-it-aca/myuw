@@ -4,8 +4,7 @@ var VisualScheduleCard = {
     term: 'current',
 
     should_display_card: function() {
-        if (!window.user.student ||
-            !window.card_display_dates.is_before_last_day_of_classes) {
+        if (!window.user.student) {
             if (!window.force_visual_schedule_display) {
                 return false;
             }
