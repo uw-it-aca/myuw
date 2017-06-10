@@ -42,13 +42,13 @@ describe("VisualScheduleCard", function() {
     describe('_get_week_range_from_date', function() {
         it('should get dates across months', function() {
             var range = VisualScheduleCard._get_week_range_from_date("2017-09-01");
-            assert.equal(range[0].format("YYYY-MM-DD"), "2017-08-27");
-            assert.equal(range[1].format("YYYY-MM-DD"), "2017-09-02");
+            assert.equal(range[0].format("YYYY-MM-DD"), "2017-08-28");
+            assert.equal(range[1].format("YYYY-MM-DD"), "2017-09-03");
         });
         it('should get dates across years', function() {
             var range = VisualScheduleCard._get_week_range_from_date("2016-01-01");
-            assert.equal(range[0].format("YYYY-MM-DD"), "2015-12-27");
-            assert.equal(range[1].format("YYYY-MM-DD"), "2016-01-02");
+            assert.equal(range[0].format("YYYY-MM-DD"), "2015-12-28");
+            assert.equal(range[1].format("YYYY-MM-DD"), "2016-01-03");
         });
     });
 
@@ -110,8 +110,21 @@ describe("VisualScheduleCard", function() {
 
             var weeks = VisualScheduleCard._get_weeks_from_range([start, end]);
             assert.deepEqual(Object.keys(weeks), ["22","23","24"]);
-            assert.equal(weeks[Object.keys(weeks)[0]].start_date.format("YYYY-MM-DD"), "2017-05-28");
-            assert.equal(weeks[Object.keys(weeks)[0]].end_date.format("YYYY-MM-DD"), "2017-06-03");
+            assert.equal(weeks[Object.keys(weeks)[0]].start_date.format("YYYY-MM-DD"), "2017-05-29");
+            assert.equal(weeks[Object.keys(weeks)[0]].end_date.format("YYYY-MM-DD"), "2017-06-04");
+        });
+
+        it('should work across years', function() {
+            var start = moment.utc("2017-12-01");
+            var end = moment.utc("2018-01-12");
+
+            var weeks = VisualScheduleCard._get_weeks_from_range([start, end]);
+            assert.deepEqual(Object.keys(weeks), ["48","49","50","51","52","53","54"]);
+
+            assert.equal(weeks[Object.keys(weeks)[0]].start_date.format("YYYY-MM-DD"), "2017-11-27");
+            assert.equal(weeks[Object.keys(weeks)[0]].end_date.format("YYYY-MM-DD"), "2017-12-03");
+            assert.equal(weeks[Object.keys(weeks)[6]].start_date.format("YYYY-MM-DD"), "2018-01-08");
+            assert.equal(weeks[Object.keys(weeks)[6]].end_date.format("YYYY-MM-DD"), "2018-01-14");
         });
     });
 
@@ -181,6 +194,36 @@ describe("VisualScheduleCard", function() {
             assert.equal(range[1].format("YYYY-MM-DD"), "2017-06-12")
 
         });
+    });
+
+    describe('_add_to_periods', function() {
+        it('should add to empty periods', function() {
+            var dates = ["2013-04-01", "2013-05-01"],
+                section = "i'm a section";
+            var periods = VisualScheduleCard._add_to_periods(dates, section, {});
+            assert.equal(Object.keys(periods).length, 1);
+        });
+        it('should add to existing periods', function() {
+            var dates = [moment("2013-04-01"), moment("2013-05-01")],
+                section = "i'm a section";
+            var periods = VisualScheduleCard._add_to_periods(dates, section, {});
+
+            periods = VisualScheduleCard._add_to_periods(dates, section, periods);
+            assert.equal(Object.keys(periods).length, 1);
+            assert.equal(periods[0].sections.length, 2);
+        });
+        it('should create new period with existing', function() {
+            var dates = [moment("2013-04-01"), moment("2013-05-01")],
+                dates2 = [moment("2013-05-01"), moment("2013-06-01")],
+                section = "i'm a section";
+            var periods = VisualScheduleCard._add_to_periods(dates, section, {});
+
+            periods = VisualScheduleCard._add_to_periods(dates2, section, periods);
+            assert.equal(Object.keys(periods).length, 2);
+            assert.equal(periods[0].sections.length, 1);
+            assert.equal(periods[1].sections.length, 1);
+        });
+
     });
 });
 

@@ -12,10 +12,6 @@ describe("Always shows the visual schedule", function() {
 
         window.card_display_dates = {};
     });
-    it("by default it should be hidden", function() {
-        window.card_display_dates.is_before_last_day_of_classes = false;
-        assert.equal(false, VisualScheduleCard.should_display_card());
-    });
     it("should show when force-shown", function() {
         window.card_display_dates.is_before_last_day_of_classes = false;
         window.force_visual_schedule_display = true;

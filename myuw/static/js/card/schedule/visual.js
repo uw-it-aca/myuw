@@ -4,8 +4,7 @@ var VisualScheduleCard = {
     term: 'current',
 
     should_display_card: function() {
-        if (!window.user.student ||
-            !window.card_display_dates.is_before_last_day_of_classes) {
+        if (!window.user.student) {
             if (!window.force_visual_schedule_display) {
                 return false;
             }
@@ -181,13 +180,21 @@ var VisualScheduleCard = {
         var start = range[0].week(),
             end = range[1].week(),
             weeks = {};
+        if(start > end){
+            end += 52;
+        }
 
         for (var i = start; i <=end; i++){
             var year = range[0].year();
-            var week = moment().year(year).week(i);
+            var week = moment.utc().year(year).week(i);
+            var start_date = week.clone().startOf('week');
+            start_date.add(1, 'days');
+            var end_date = week.clone().endOf('week');
+            end_date.add(1, 'days');
+
             weeks[i] = {
-                "start_date": week.clone().startOf('week'),
-                "end_date": week.clone().endOf('week'),
+                "start_date": start_date,
+                "end_date": end_date,
                 "sections": []
             };
         }
@@ -252,13 +259,6 @@ var VisualScheduleCard = {
 
 
     _add_to_periods: function(dates, section, periods){
-        if(Object.keys(periods).length === 0){
-            periods["0"] =
-            {"start_date": dates[0],
-                "end_date" : dates[1],
-                "sections": [section]
-            };
-        } else {
             for (var period_key in periods){
                 var period = periods[period_key];
                 if(period.start_date.isSame(dates[0]) &&
@@ -271,7 +271,6 @@ var VisualScheduleCard = {
                 "end_date" : dates[1],
                 "sections": [section]
             };
-        }
         return periods;
     },
 
@@ -316,7 +315,9 @@ var VisualScheduleCard = {
     _get_week_range_from_date: function(date){
         var exam_date = moment.utc(date);
         var start = exam_date.startOf('week');
+        start.add(1, 'days');
         var end = exam_date.clone().endOf('week');
+        end.add(1, 'days');
 
         return [start, end];
     },
