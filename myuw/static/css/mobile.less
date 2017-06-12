@@ -1767,16 +1767,23 @@ label { font-weight: normal; }
     .schedule-period-module {
 	    margin-bottom: 1em;
     }
-    .nav>li>a:hover {background-color:#ddd;}
+	.nav>li>a{
+		&:hover, &:focus {
+		background-color:#fff;
+		border-bottom: 3px solid #999;
+		border-radius: 0px; 
+		padding-bottom: 1px;
+		margin-bottom: 3px;
+		}
+	}
     .schedule-period-list {
 	    li>a {
 	    padding: 4px 5px;
 	    margin-right: 5px;
 	    margin-bottom: 3px;
-	    color:@uwpurple;
-	    :hover {text-decoration: underline;}
+	    color:#555;
 	    }
-	    li.active>a {background-color:#fff;color:@uwpurple; font-weight:bold;text-decoration:none;border-bottom: 3px solid @uwpurple; border-radius: 0px; padding-bottom: 1px;
+	    li.active>a {background-color:#fff;color:#000;text-decoration:none;border-bottom: 3px solid @uwpurple; border-radius: 0px; padding-bottom: 1px;
 		:hover {text-decoration: none;}    
 	    }
 	    .schedule-period {
@@ -1879,6 +1886,7 @@ label { font-weight: normal; }
       display: inline-block;
       float: left;
       color: #ffffff;
+      border-bottom: 1px solid #ccc;
     }
     .six-day p {
       color: #333;
@@ -1911,11 +1919,12 @@ label { font-weight: normal; }
       border-left: 2px groove #eeeeee;
     }
     .seven-day:nth-of-type(odd),
-    .six-day:nth-of-type(even),
+    .six-day:nth-of-type(odd),
     .five-day:nth-of-type(odd) {
     	border-left: 1px solid #ddd;
     	border-right: 1px solid #ddd;
     }
+    
     .day-col {
       position: relative;
       height: 92%;
@@ -1999,9 +2008,9 @@ label { font-weight: normal; }
       color: #3c3c3c;
       top: 0px;
     }
-
-    #final_exam_schedule_card .six-hour .day-label { height: 14%; }
-
+    
+	#final_exam_schedule_card .six-hour .day-label { height: 14%; }
+	
     .visual-course {
       width: 100%;
       display: table;
@@ -2044,7 +2053,7 @@ label { font-weight: normal; }
     .courseTBD { width: 100%; overflow: auto; margin: 15px 0;
 
         h6 { font-size: 14px; }
-        .course-box { background: #e8e3d3; width: 50px; height: 40px; font-size:11px; margin-right:5px; line-height:.9em; }
+        .course-box { background: #e8e3d3; width: 60px; height: 40px; font-size:11px; margin-right:5px; line-height:.9em; }
         .course-info { text-align:center; color:#fff; padding:2px; }
     }
 
