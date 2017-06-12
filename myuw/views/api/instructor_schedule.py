@@ -17,6 +17,7 @@ from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
     get_limit_estimate_enrollment_for_section, get_instructor_section
+from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.class_website import get_page_title_from_url, is_valid_page_url
 from myuw.dao.term import get_current_quarter, is_past, is_future
 from myuw.logger.logresp import log_success_response
@@ -92,14 +93,31 @@ def set_section_grading_status(section, person):
             section_id, act_as=person.uwnetid).json_data()
     except DataFailureException as ex:
         if ex.status == 404:
-            return {
-                'grading_status': 'no grading status for section'
-            }
+            return {}
         else:
             raise
     except Exception:
         log_exception(
             logger, 'get_section_grading_status', traceback.format_exc())
+
+
+def set_section_evaluation(section, person):
+    try:
+        evaluations = get_evaluation_by_section_and_instructor(
+            section, person.employee_id)
+        for eval in evaluations:
+            if int(eval.section_sln) == int(section.sln):
+                return eval.json_data()
+    except DataFailureException as ex:
+        if ex.status == 404:
+            return {
+                'eval_status': None
+            }
+        else:
+            raise
+    except Exception:
+        log_exception(
+            logger, 'set_section_evaluation', traceback.format_exc())
 
 
 def set_course_resources(section_data, section, person):
@@ -128,6 +146,11 @@ def set_course_resources(section_data, section, person):
                            args=(section, person,))
     t.start()
     threads.append((t, 'grading_status', section_data))
+
+    t = ThreadWithResponse(target=set_section_evaluation,
+                           args=(section, person,))
+    t.start()
+    threads.append((t, 'evaluation', section_data))
 
     for i, meeting in enumerate(section.meetings):
         t = ThreadWithResponse(target=set_classroom_info_url,

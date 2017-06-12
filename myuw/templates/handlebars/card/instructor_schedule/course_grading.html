@@ -20,7 +20,7 @@
                             <span class="inst-course-label">Delegate{{pluralize grade_submission_delegates.length '' 's'}}: </span>
 
                             {{#each grade_submission_delegates}}
-                                <span id="grade_submission_delegate{{index}}">{{person.first_name}} {{this.person.surname}} (<span>{{capitalizeString level}}</span>)</span>, 
+                                <span id="grade_submission_delegate{{index}}">{{person.first_name}}&nbsp;{{this.person.surname}}&nbsp;(<span>{{capitalizeString level}}</span>)</span>,
                             {{/each}}
                             <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter={{capitalizeString quarter}}+{{year}}&sln={{sln}}&chanid=11" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="course_delegate_link">{{#if this.grade_submission_section_delegate}}Update{{else}}Update{{/if}}</a>
                         </li>
@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    <div class="myuw-section last">
+    <div class="myuw-section">
         <div class="row">
             <div class="col-sm-3">
                 <h4 class="myuw-card-row-heading">Grade Submission</h4>

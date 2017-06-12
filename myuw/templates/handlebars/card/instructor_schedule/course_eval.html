@@ -1,0 +1,77 @@
+    {% verbatim %}
+    <div class="myuw-section">
+        <div class="row">
+        <div class="col-sm-3">
+            <h4 class="myuw-card-row-heading">Evaluations</h4>
+        </div>
+
+        <div class="col-sm-9">
+          <div rel="{{curriculum_abbr}} {{course_number}} {{section_id}}">
+            <ul class="myuw-card-itemlist">
+
+            {{#if evaluation.eval_status}}
+              {{#if evaluation.is_online}}
+                {{#if evaluation.eval_open_date}}
+                  {{#if evaluation.is_open}}
+                    <li class="clearfix evaluation-sechedule">
+                      <span class="card-badge-value">Open now</span>
+                    </li>
+                    <li class="clearfix">
+                      <span class="card-badge-value">Closes {{evaluation.eval_close_date_display}}</span>
+                    </li>
+                    <li class="clearfix evaluation-results">
+                      <span class="card-badge-value"><strong>{{evaluation.response_rate_percent}}% Response rate</strong></span>
+                    </li>
+                    <li class="clearfix">
+                      <span class="card-badge-value">Faculty report will be available {{evaluation.report_available_date_display}}</span>
+                    </li>
+                  {{else}} <!-- opening in the future -->
+                    {{#if evaluation.is_past}}
+                    <li class="clearfix evaluation-sechedule">
+                      <span class="card-badge-value">Online evaluation closed {{evaluation.eval_close_date_display}}</span>
+                    </li>
+                    {{else}}
+                    <li class="clearfix evaluation-sechedule">
+                      <span class="card-badge-value">Online evaluation will open {{evaluation.eval_open_date_display}}</span>
+                    </li>
+                    {{/if}}
+                    <li class="clearfix">
+                      <span class="card-badge-value"><a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty">Manage Evaluation</a></span>
+                    </li>
+                  {{/if}}
+                {{else}} <!-- no evaluation date, not scheduled -->
+                    <li class="clearfix evaluation-sechedule">
+                      {{#if evaluation.report_available_date}}
+                      <li class="clearfix">
+                        <span>Report Available {{evaluation.report_available_date_display}}</span>
+                      </li>
+                      {{/if}}
+                      {{#if evaluation.report_url}}
+                      <li class="clearfix">
+                        <span class="card-badge-value"><a href="{{evaluation.report_url}}">View Report</a></span>
+                      </li>
+                      {{/if}}
+                      <li class="clearfix">
+                        <span><strong>{{evaluation.response_rate_percent}}% Response rate</strong></span>
+                      </li>
+                {{/if}}
+
+              {{else}}<!-- not on line, paper based -->
+              <li class="clearfix evaluation-sechedule">
+                <span class="card-badge-value">Paper-based evaluation</span><br />
+              </li>
+              <li class="clearfix">
+                <span class="card-badge-value"><a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty">Manage Evaluation</a></span>
+              </li>
+              {{/if}}
+            {{else}}<!-- null status, no evaluation -->
+              <li class="clearfix evaluation-sechedule">
+                You do not have an evaluation set up for this course.  <a href="https://www.washington.edu/assessment/course-evaluations/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="evaluation_help_link" target="_blank"><i class="fa fa-question-circle"></i></a>
+              </li>
+            {{/if}}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endverbatim %}

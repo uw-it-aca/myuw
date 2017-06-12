@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import logout as django_logout
 from django.conf import settings
-from myuw.dao.term import get_current_quarter
+from myuw.dao.term import get_current_quarter, get_comparison_datetime
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.user import is_oldmyuw_user, get_netid_of_current_user,\
     is_oldmyuw_mobile_user
@@ -77,6 +77,7 @@ def page(request,
 
     context["banner_messages"] = get_current_messages(request)
     context["card_display_dates"] = get_card_visibilty_date_values(request)
+    context["system_date"] = str(get_comparison_datetime(request))
     try:
         my_uwemail_forwarding = get_email_forwarding_for_current_user()
         if my_uwemail_forwarding.is_active():

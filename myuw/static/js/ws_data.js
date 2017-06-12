@@ -224,6 +224,7 @@ WSData = {
             var minutes_till_deadline = grading_deadline.diff(ref, 'minutes');
             var deadline_in_24_hours = (minutes_till_deadline >= 0 &&
                                         minutes_till_deadline <= (24 * 60));
+            var system_time = moment(new Date(window.card_display_dates.system_date));
 
             $.each(course_data.sections, function (iii) {
                 var section = this;
@@ -248,7 +249,6 @@ WSData = {
                 section.grade_submission_deadline_date = grading_deadline_date;
                 section.grade_submission_relative_deadline = grading_deadline_relative;
 
-
                 section.grading_status.all_grades_submitted =
                     (section.grading_status.hasOwnProperty('submitted_count') &&
                      section.grading_status.hasOwnProperty('unsubmitted_count') &&
@@ -269,6 +269,33 @@ WSData = {
                         return false;
                     }
                 });
+
+                // wire up eval data
+                if (section.evaluation) {
+                    section.evaluation.response_rate_percent = 0;
+                    section.evaluation.is_past = false;
+                    if (section.evaluation.response_rate) {
+                        section.evaluation.response_rate_percent = Math.round(section.evaluation.response_rate * 100);
+                    }
+                    if (section.evaluation.eval_open_date) {
+                        var eval_open = moment(new Date(section.evaluation.eval_open_date));
+                        section.evaluation.eval_open_date_display = eval_open.format(fmt) + ' PST';
+                        section.evaluation.is_open = system_time.isAfter(eval_open);
+                    }
+                    if (section.evaluation.eval_close_date) {
+                        var eval_close = moment(new Date(section.evaluation.eval_close_date));
+                        section.evaluation.eval_close_date_display = eval_close.format(fmt) + ' PST';
+                        section.evaluation.is_past = system_time.isAfter(eval_close);
+                        if (section.evaluation.is_past) {
+                            section.evaluation.is_open = false;
+                        }
+                    }
+                    if (section.evaluation.report_available_date) {
+                        var report_date = moment(new Date(section.evaluation.report_available_date));
+                        section.evaluation.report_available_date_display = report_date.format(fmt) + ' PST';
+                        section.evaluation.report_is_available = system_time.isAfter(report_date);
+                    }
+                }
             });
         }
         return course_data;
