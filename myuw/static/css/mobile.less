@@ -1763,6 +1763,28 @@ label { font-weight: normal; }
         ul { list-style: none; padding-left: 0; }
     }
 
+    // visual schedule-period control
+    .schedule-period-module {
+	    margin-bottom: 1em;
+    }
+    .nav>li>a:hover {background-color:#ddd;}
+    .schedule-period-list {
+	    li>a {
+	    padding: 4px 5px;
+	    margin-right: 5px;
+	    margin-bottom: 3px;
+	    color:@uwpurple;
+	    :hover {text-decoration: underline;}
+	    }
+	    li.active>a {background-color:#fff;color:@uwpurple; font-weight:bold;text-decoration:none;border-bottom: 3px solid @uwpurple; border-radius: 0px; padding-bottom: 1px;
+		:hover {text-decoration: none;}    
+	    }
+	    .schedule-period {
+	    text-transform: uppercase;
+	    font-size: 85%;
+    	}
+    }
+        
     // visual schedule
 
     .hour-marker {border-top:1px solid #707070; width:100%;}

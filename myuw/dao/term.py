@@ -114,6 +114,18 @@ def get_current_quarter(request):
     return term
 
 
+def get_term_from_quarter_string(quarter_string):
+    """
+    Return a uw_sws.models.Term object
+    for the current quarter string passed in.
+    """
+    term_identifiers = quarter_string.split(",")
+    year = term_identifiers[0]
+    quarter = term_identifiers[1]
+
+    return get_specific_term(year, quarter)
+
+
 def get_next_quarter(request):
     """
     Returns a uw_sws.models.Term object
@@ -391,6 +403,10 @@ def add_term_data_to_context(request, context):
 
     context['first_day'] = cur_term.first_day_quarter
     context['last_day'] = cur_term.last_day_instruction
+    context["first_day_quarter"] = cur_term.first_day_quarter
+    context["last_day_instruction"] = cur_term.last_day_instruction
+    context["aterm_last_date"] = cur_term.aterm_last_date
+    context["bterm_first_date"] = cur_term.bterm_first_date
 
 
 def current_terms_prefetch(request):

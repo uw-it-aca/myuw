@@ -1,5 +1,5 @@
 Handlebars = require("../../vendor/js/handlebars-v4.0.5.js");
-moment = require("../../vendor/js/moment.2.8.3.min.js");
+moment = require("../../vendor/js/moment.2.18.1.min.js");
 require("datejs");
 require("../handlebars-helpers.js");
 
