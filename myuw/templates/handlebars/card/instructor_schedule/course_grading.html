@@ -20,7 +20,7 @@
                             <span class="inst-course-label">Delegate{{pluralize grade_submission_delegates.length '' 's'}}: </span>
 
                             {{#each grade_submission_delegates}}
-                                <span id="grade_submission_delegate{{index}}">{{person.first_name}} {{this.person.surname}} (<span>{{capitalizeString level}}</span>)</span>, 
+                                <span id="grade_submission_delegate{{index}}">{{person.first_name}} {{this.person.surname}} (<span>{{capitalizeString level}}</span>)</span>,
                             {{/each}}
                             <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter={{capitalizeString quarter}}+{{year}}&sln={{sln}}&chanid=11" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="course_delegate_link">{{#if this.grade_submission_section_delegate}}Update{{else}}Update{{/if}}</a>
                         </li>
@@ -62,7 +62,7 @@
                                 <div class="myuw-note">Grade submission for <strong>{{capitalizeString quarter}} {{year}}</strong> closed {{grade_submission_deadline_date}}</div>
 
                                 {{else}}
-                                    {{#if grading_status.grading_status}} {{grading_status.grading_status}}{{else}} {{grading_status.unsubmitted_count}} grade{{pluralize grading_status.unsubmitted_count '' 's'}} not submitted through GradePage{{/if}}
+                                    {{#if grading_status.grading_status}} <div class="myuw-text-capitalize">{{grading_status.grading_status}}</div>{{else}} {{grading_status.unsubmitted_count}} grade{{pluralize grading_status.unsubmitted_count '' 's'}} not submitted through GradePage{{/if}}
                                     <div class="myuw-note">Grade submission for <strong>{{capitalizeString quarter}} {{year}}</strong> closed {{grade_submission_deadline_date}} <a href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/" target="_blank">What can I do now?</a></div>
                                 {{/if}}
                             </div>
