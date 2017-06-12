@@ -5,16 +5,10 @@ var VisualScheduleCard = {
 
     should_display_card: function() {
         if (!window.user.student) {
-            if (!window.force_visual_schedule_display) {
-                return false;
-            }
         }
         return true;
     },
 
-    force_visual_schedule_display: function() {
-        window.force_visual_schedule_display = true;
-    },
 
     render_init: function(term, course_index) {
         if (!VisualScheduleCard.should_display_card()) {
