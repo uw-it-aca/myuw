@@ -63,7 +63,7 @@
 
                                 {{else}}
                                     {{#if grading_status.grading_status}} <div class="myuw-text-capitalize">{{grading_status.grading_status}}</div>{{else}} {{grading_status.unsubmitted_count}} grade{{pluralize grading_status.unsubmitted_count '' 's'}} not submitted through GradePage{{/if}}
-                                    <div class="myuw-note">Grade submission for <strong>{{capitalizeString quarter}} {{year}}</strong> closed {{grade_submission_deadline_date}} <a href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/" target="_blank">What can I do now?</a></div>
+                                    <div class="myuw-note">Grade submission for <strong>{{capitalizeString quarter}} {{year}}</strong> closed {{grade_submission_deadline_date}} <br/><a href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/" target="_blank">What can I do now?</a></div>
                                 {{/if}}
                             </div>
                         {{else}}
