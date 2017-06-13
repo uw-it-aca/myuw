@@ -110,6 +110,9 @@ var VisualScheduleCard = {
                     //increment counter
                     i += 1;
                 }
+                else {
+                    break;
+                }
             }
             consolidated_weeks[i] = consolidated_week;
 
@@ -293,10 +296,10 @@ var VisualScheduleCard = {
                     end_date = window.term.last_day_instruction;
                 } else {
                     // handle summer term for current quarter
-                    if(window.term.summer_term.indexOf("a-term") !== -1){
+                    if(window.term.summer_term.toLowerCase().indexOf("a-term") !== -1){
                         start_date = window.term.first_day_quarter;
                         end_date = window.term.aterm_last_date;
-                    } else if(window.term.summer_term.indexOf("b-term") !== -1){
+                    } else if(window.term.summer_term.toLowerCase().indexOf("b-term") !== -1){
                         start_date = window.term.bterm_first_date;
                         end_date = window.term.last_day_instruction;
                     }
