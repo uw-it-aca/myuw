@@ -344,4 +344,20 @@ describe('Handlebar-helpers', function(){
 
         });
     });
+
+    describe('short-year', function() {
+        it('should handle an integer', function() {
+            var template = Handlebars.compile("{{short_year 2013 }}");
+            var output = template();
+
+            assert.equal(output, '’13');
+        });
+        it('should handle a string', function() {
+            var template = Handlebars.compile("{{short_year '2017'}}");
+            var output = template();
+
+            assert.equal(output, '’17');
+        });
+
+    });
 });

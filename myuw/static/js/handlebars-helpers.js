@@ -90,6 +90,10 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
         }
 
     });
+    Handlebars.registerHelper('short_year', function(year) {
+        year = ""+year;
+        return "’"+year.substr(-2,2);
+    });
 })();
 
 Handlebars.registerHelper("safeLabel", function(str) {
