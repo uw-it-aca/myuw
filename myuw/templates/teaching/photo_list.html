@@ -1,13 +1,14 @@
 {% extends "teaching_base.html" %}
+{% load set_context %}
 {% load static %}
 {% load compress %}
 
+{% block load_values %}
+{% set_context 'page_title' 'Photo Class List' %}
+{% endblock %}
+
 {% block header %}{% endblock %}
 {% block app_navigation %}{% endblock %}
-
-{% block page_title %}
-MyUW Photo Class List
-{% endblock %}
 
 {% block teaching_content %}
     {% include "handlebars/teaching/photo_list.html" %}

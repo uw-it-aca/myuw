@@ -2,8 +2,11 @@
     {% tplhandlebars "photo_class_list" %}
 
 <div class="container">
+
+    <h2 class="heading-page">Photo Class List</h2>
+
     <div class="row">
-        <div id="photoclasslist_popup">
+        <div id="photoclasslist_popup" class="myuw-photo-list">
             <div class="card"  data-name="PhotoClasslistPopupCard" data-type="card">
                 <h3 class="scheduleHeading">{{ toTitleCase quarter }} {{ year }} | {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }} | SLN {{ sections.0.sln }}</h3>
                 <div id="classlist_controls" class="clearfix" style="padding-bottom: 40px;">
@@ -52,12 +55,12 @@
                 		<td>{{ credits }}</td>
                         <td>{{ #each majors }} {{ full_name }} {{ /each }}</td>
                 		<td>{{ class }}</td>
-                        {{ #if linked_sections }}                        
-                        {{ #each linked_sections }}                            
+                        {{ #if linked_sections }}
+                        {{ #each linked_sections }}
                             {{ #each sections }}
                 		    <td>{{ this }}</td>
-                            {{ /each }}                           
-                        {{ /each }}                        
+                            {{ /each }}
+                        {{ /each }}
                         {{ /if }}
                         <td>{{ email }}</td>
                 	</tr>
@@ -66,7 +69,7 @@
                 </table>
 
 
-                <!-- mobile view 
+                <!-- mobile view
                 <div id="student_list">
                     {{ #each sections.0.registrations }}
                         <div id="student_{{ regid }}">
@@ -83,7 +86,7 @@
                                 Email: <a href="mailto:{{ email }}">{{ email }}</a> <br />
                                 {{ #if linked_sections }}
                                 {{ #each linked_sections }}
-                                    {{ ucfirst type }} Section: 
+                                    {{ ucfirst type }} Section:
                                     {{ #each sections }}
                                         {{ this }}
                                     {{ /each }}
@@ -95,7 +98,7 @@
                         </div>
                     {{ /each }}
                 </div> -->
-        
+
 
             </div>
         </div>
