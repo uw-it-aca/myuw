@@ -77,10 +77,10 @@
                     <ol id="student_sort">
                     {{ #each sections.0.registrations }}
                         <li id="student_{{ regid }}">
-                            <div style="float: left;">
+
                                 <img class="classlist-photo" src="/photo/{{ url_key }}">
-                            </div>
-                            <div style="float: left; padding-left: 10px; padding-bottom: 10px;">
+
+                                <div>
                                 <strong>{{ surname }}, {{ name }}</strong><br />
                                 Student Number: {{ student_number }} <br />
                                 UW NetID: {{ netid }} <br />
@@ -97,8 +97,9 @@
                                     <br />
                                 {{ /each }}
                                 {{ /if }}
-                            </div>
-                            <br style="clear: both;">
+                                </div>
+
+
                         </li>
                     {{ /each }}
                 </ol>
