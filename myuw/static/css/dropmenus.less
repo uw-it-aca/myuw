@@ -1,0 +1,40 @@
+
+
+@import (reference) "boilerplate.less";
+
+
+.myuw-pagemenu {
+    display: inline-block;
+    position: relative;
+
+    &:before {
+        font-family: 'FontAwesome';
+        content: "\f078";
+        position: absolute;
+        right: 4px;
+        top: .7em;
+        font-size: 12px;
+    }
+
+    select.myuw-dropmenu {
+        /*** Remove default menu appearance ***/
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        color: #555;
+        font-size: 18px;
+        border: none;
+        background-color: transparent;
+        border-radius: 0;
+        padding: 4px 22px 4px 8px;
+
+        &:hover { cursor: pointer; }
+    }
+
+    select.myuw-dropmenu-selected {
+        color: #000;
+        border-bottom: 4px solid #000;
+    }
+
+}
