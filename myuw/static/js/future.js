@@ -11,7 +11,6 @@ var FutureQuarter = {
         var template = Handlebars.compile(page_source);
         $("#main-content").html(template({"term": term}));
 
-        VisualScheduleCard.force_visual_schedule_display();
         NoticeBanner.render_init($("#notice_banner_location"));
 
         var cards = [VisualScheduleCard,

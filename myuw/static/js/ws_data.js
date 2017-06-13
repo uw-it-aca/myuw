@@ -35,7 +35,6 @@ WSData = {
     _myplan_data: {},
     _thrive_data: null,
     _upass_data: null,
-    _message_data: null,
 
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
@@ -369,10 +368,6 @@ WSData = {
         return WSData._upass_data;
     },
 
-    message_data: function() {
-        return WSData._message_data;
-    },
-
     fetch_event_data: function(callback, err_callback, args) {
         if (WSData._department_events === null) {
             $.ajax({
@@ -536,25 +531,8 @@ WSData = {
                 type: "GET",
                 accepts: {html: "text/html"},
                 success: function(results) {
-                    // MUWM-549 and MUWM-552
-                    var sections = results.sections;
-                    var section_count = sections.length;
-                    for (var index = 0; index < section_count; index++) {
-                        section = sections[index];
-
-                        var canvas_url = section.canvas_url;
-                        if (canvas_url) {
-                            if (section.class_website_url == canvas_url) {
-                                section.class_website_url = null;
-                            }
-                            var matches = canvas_url.match(/\/([0-9]+)$/);
-                            var canvas_id = matches[1];
-                            var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
-
-                            if (section.class_website_url == alternate_url) {
-                                section.class_website_url = null;
-                            }
-                        }
+                    if (term !== 'prev_unfinished') {
+                        WSData.process_term_course_data(results);
                     }
                     WSData._course_data_error_status[term] = null;
                     WSData._course_data[term] = results;
@@ -572,6 +550,29 @@ WSData = {
             }, 0);
         }
 
+    },
+
+    process_term_course_data: function(results) {
+        // MUWM-549 and MUWM-552
+        var sections = results.sections;
+        var section_count = sections.length;
+        for (var index = 0; index < section_count; index++) {
+            section = sections[index];
+
+            var canvas_url = section.canvas_url;
+            if (canvas_url) {
+                if (section.class_website_url == canvas_url) {
+                    section.class_website_url = null;
+                }
+                var matches = canvas_url.match(/\/([0-9]+)$/);
+                var canvas_id = matches[1];
+                var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
+
+                if (section.class_website_url == alternate_url) {
+                    section.class_website_url = null;
+                }
+            }
+        }
     },
 
     fetch_instructed_course_data_for_term: function(term, callback, err_callback, args) {
@@ -1181,32 +1182,6 @@ WSData = {
                 accepts: {html: "application/json"},
                 success: function(results) {
                     WSData._upass_data = results;
-                    if (callback !== null) {
-                        callback.apply(null, args);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    err_callback.call(null, xhr.status, error);
-                }
-            });
-        }
-        else {
-            window.setTimeout(function() {
-                callback.apply(null, args);
-            }, 0);
-        }
-    },
-
-    fetch_message_data: function(callback, err_callback, args) {
-        if (WSData.upass_data() === null) {
-            var url = "/api/v1/messages/";
-            $.ajax({
-                url: url,
-                dataType: "JSON",
-                type: "GET",
-                accepts: {html: "application/json"},
-                success: function(results) {
-                    WSData._message_data = results;
                     if (callback !== null) {
                         callback.apply(null, args);
                     }

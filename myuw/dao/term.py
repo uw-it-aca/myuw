@@ -114,6 +114,18 @@ def get_current_quarter(request):
     return term
 
 
+def get_term_from_quarter_string(quarter_string):
+    """
+    Return a uw_sws.models.Term object
+    for the current quarter string passed in.
+    """
+    term_identifiers = quarter_string.split(",")
+    year = term_identifiers[0]
+    quarter = term_identifiers[1]
+
+    return get_specific_term(year, quarter)
+
+
 def get_next_quarter(request):
     """
     Returns a uw_sws.models.Term object
@@ -151,6 +163,18 @@ def get_previous_quarter(request):
     term = get_term_before(get_current_quarter(request))
     request.myuw_previous_quarter = term
     return term
+
+
+def get_prev_num_terms(request, num):
+    """
+    :return: a list of the previous number of quarters
+    """
+    quarters = []
+    term = get_current_quarter(request)
+    for i in range(num):
+        term = get_term_before(term)
+        quarters.append(term)
+    return quarters
 
 
 def is_past(term, request):
@@ -345,6 +369,44 @@ def _get_term_method(year, quarter):
     def generated(request):
         get_specific_term(year, quarter)
     return generated
+
+
+def add_term_data_to_context(request, context):
+    """
+    Updates a dictionary with information about what's happening now.
+
+    Includes the data, the quarter (or break), and the week of the quarter.
+    """
+    cur_term = get_current_quarter(request)
+    compare = get_comparison_date(request)
+
+    if cur_term is None:
+        context["err"] = "No current quarter data!"
+        return
+
+    context['today'] = compare
+    context['is_break'] = False
+    if compare < cur_term.first_day_quarter:
+        context['is_break'] = True
+
+    if compare > cur_term.last_final_exam_date:
+        context['is_break'] = True
+        cur_term = get_term_after(cur_term)
+
+    context["year"] = cur_term.year
+    context["quarter"] = cur_term.quarter
+
+    context['is_finals'] = False
+    if (compare > cur_term.last_day_instruction and
+            compare <= cur_term.last_final_exam_date):
+        context['is_finals'] = True
+
+    context['first_day'] = cur_term.first_day_quarter
+    context['last_day'] = cur_term.last_day_instruction
+    context["first_day_quarter"] = cur_term.first_day_quarter
+    context["last_day_instruction"] = cur_term.last_day_instruction
+    context["aterm_last_date"] = cur_term.aterm_last_date
+    context["bterm_first_date"] = cur_term.bterm_first_date
 
 
 def current_terms_prefetch(request):

@@ -49,19 +49,6 @@ class TestFutureSchedule(MyuwApiTest):
 
     def test_past_quarter(self):
         self.set_user('javerage')
-        response = self.get_schedule(year=2013, quarter='winter')
-        self.assertEquals(response.status_code, 410)
-
-#        session = self.client.session
-#        session["myuw_override_date"] = "2013-03-26"
-#        session.save()
-#        response = self.client.get(url)
-#        self.assertEquals(response.status_code, 410)
-
-        self.set_date('2013-03-27')
-        response = self.get_schedule(year=2013, quarter='winter')
-        self.assertEquals(response.status_code, 200)
-
-        self.set_date('2013-04-01')
+        self.set_date("2013-04-01")
         response = self.get_schedule(year=2013, quarter='winter')
         self.assertEquals(response.status_code, 410)

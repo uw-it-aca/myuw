@@ -312,7 +312,8 @@ body {
 
 /*** Headings ***/
 .heading-page {
-    font-family: 'encode_sans_normalbold';
+    font-family: 'encode_sans_normalbold', sans-serif;
+    font-weight: 600;
     color: #444;
     font-size: @font-header-larger;
     margin-top: 1.5em;
@@ -554,7 +555,7 @@ label { font-weight: normal; }
 	}
 	.message-dialog {
 		.modal-content {
-			h3 {margin-bottom: 10px;font-family: 'encode_sans_normalbold';font-size: 18px;color: #85754d;}
+			h3 {margin-bottom: 10px;font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: 18px;color: #85754d;}
 			.modal-header {border-bottom: none;padding-bottom: 0;}
 			.modal-body {padding: 0 15px;
 				ul {
@@ -574,7 +575,7 @@ label { font-weight: normal; }
 #app_notices { margin: 0; position: relative; padding-bottom: 15px;
 
     .notice-header { font-size: @font-header-smaller; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600;
-        a {font-family: 'encode_sans_normalbold'; color: #444;}
+        a {font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; color: #444;}
         .no-critical { color: #85754d; }
     }
     .critical-notices-container {margin-top: 0; margin-bottom: 15px;padding-left: 0;
@@ -781,13 +782,14 @@ label { font-weight: normal; }
     	padding: 10px;
 
         h3 {
-            font-family: 'encode_sans_normalbold';
+            font-family: 'encode_sans_normalbold', sans-serif;
+            font-weight: 600;
             font-size: @font-header-small;
             margin-top: 10px;
             margin-bottom: 15px;
             color: @darktan; }
         h4 {
-            font-family:'Roboto';
+            font-family:'Roboto', sans-serif;
             font-weight: 400;
             font-size: 16px;
             color: #444; }
@@ -907,6 +909,14 @@ label { font-weight: normal; }
             12px;background-color: #efefef;
             a { color: #444; display:block; line-height:40px; }
         }
+        //Closed course style
+        .closed-course-disclosure {
+	        text-transform: none;
+	        line-height: 14px;
+	        padding-top: 10px;
+	        color: #777;
+	        font-style: italic;
+        }
 
         // override bootstrap table styles
         .table {
@@ -936,7 +946,7 @@ label { font-weight: normal; }
             a:hover {text-decoration: none;}
             .efs-switcher-link-text {font-size:smaller;}
         }
-        // Quicklinks 
+        // Quicklinks
         .myuw-qlinks {
             .control-link {
                 color: #999;
@@ -946,57 +956,62 @@ label { font-weight: normal; }
             .myuw-qlinks-active {
                 .edit-link {padding-right:4px;}
             }
-            .myuw-qlinks-recent {background-color:#eee;padding: 5px 10px;margin: 5px -10px;
-                .recent-message {padding:10px 0; font-style: italic; font-size: small;}
-                .myuw-qlinks-recent-list {font-size:12px;line-height: 20px;}
-                .control-link {
-                    color: #777;
-                    font-weight: normal;
-                    text-decoration: none;
+            .myuw-qlinks-recent {
+                .recent-message {font-style: italic; font-size: smaller;}
+            }
+            .myuw-qlinks-recent, .myuw-qlinks-active, .myuw-qlinks-popular {
+                .myuw-qlinks-item {
+                  width: 85%;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
                 }
             }
             .myuw-qlinks-popular {
-                .myuw-qlinks-popular-list {
-                    font-size:12px;
-                    line-height: 20px;  
-                    }
+                background-color: #eeeeee;
+                padding: 4px 16px;
+                margin: 4px -16px;
+                .control-link {
+                    color: #777;
+                }
             }
             .myuw-qlinks-custom {
+                background-color: rgb(238, 238, 238);
+                padding: 4px 16px;
+                margin: 4px -16px;
                 .myuw-qlinks-custom-btn {padding: 5px 0;}
             }
             .myuw-qlinks-recent, .myuw-qlinks-active, .myuw-qlinks-popular {
-                
+
                 li.list .link-controls {
-                        display: none; 
+                        display: none;
                 }
-                    
+
                 li.list:hover .link-controls {
-                    display: inline-block; 
+                    display: inline-block;
                 }
             }
+            .btn-qlinks {margin-left:8px;}
         }
     }
 
-    // PCE card & PCE notice on Visual Schedule
-    .PCE-notice {
-        background-color: #fcf9e3;
-        i { position: absolute; top: 50%; font-size: 2em; color: #85754d; margin-top: -14px;}
-        h3 { position: relative; left: 42px;}
+    // common profile card
+    .common-profile { padding: 0; border: none; box-shadow: none;
+        span { padding-left: 12px; font-size: .5em; font-weight: normal; }
+        h2 { font-weight: bold; color: black; }
+        a { opacity: .5; }
     }
 
-    .PCE-vs-notice {
-        background-color: #fcf9e3;
-        margin: -10px -10px 2em;
-        padding: 10px;
-        h3.pce-notice { font-size: 14px;
-        display: inline-block;
-        padding-right: .5em;
-        margin: 0;
-        }
-        i {padding-right: .5em;color:#85754d;}
-        p {display: inline-block; margin: 0px;}
-    }
+	.profile-bio {padding: 0 0;
+		.profile-student-major {text-align: left; padding-top:5px;
+			.student-major-list {list-style: none;padding-left:0; margin-top:0;}
+		}
+	}
 
+    .profile-links {
+        padding-left: 16px;
+        ul { list-style-type: none; padding-left: 0; }
+    }
 
     // Grades card
 	#GradeCard {
@@ -1144,21 +1159,21 @@ label { font-weight: normal; }
         .card-badge-action {padding-bottom: 10px; padding-right: 10px;}
     }
     // end graduate student content card
-    
+
     //ACCOUNT PAGE
     .accounts-container {
-		 h2 { font-family: 'encode_sans_normalbold'; font-size:26px; color: #444; }    
+		 h2 { font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size:26px; color: #444; }
     }
-   
+
     // ACCOUNT PAGE CARDS
     div#medicine-pw, div#netid-pw {
-	    .med-logo {margin:10px 0px 5px 0px; clear: both; float: right;} 
+	    .med-logo {margin:0px; clear: both; float: right;}
 	    h3 {clear:both;}
-	    .update-note {color: #777; font-size: 95%;margin-bottom: 0px;}
-	    .pw-exp {font-size: 16px; margin-bottom:10px;}	    
+	    .update-note {color: #777; font-size: 95%; clear:both;}
+	    .pw-exp {font-size: 16px; margin-bottom:10px;}
 	    .pw-exp-date {color:#444;font-weight: bold;}
-		.password-alert {color:#a94442;
-			a {text-decoration: underline;}
+		.password-alert {color:#a94442;font-weight: normal;
+			a {text-decoration: underline;font-weight: bold;}
 		}
 		.pw-link{ clear:both; margin-bottom: 10px;}
 	.card-badge {
@@ -1173,7 +1188,7 @@ label { font-weight: normal; }
                     display: block;
                     font-weight: normal;
                     line-height: 35px;
-                    margin-top: -5px;
+                    margin-top: -8px;
                     a { display: block; }
                 }
 
@@ -1187,7 +1202,6 @@ label { font-weight: normal; }
     } //end of Medicine card
 
 
-	    
        // registration card
     #RegStatusCard, #SummerRegStatusCardA, #SummerRegStatusCard1, #TuitionCard {
         .reg-date {font-weight: bold;}
@@ -1405,7 +1419,16 @@ label { font-weight: normal; }
 
     #teaching_content {
 
+        .instructor-term-tabs {
+            display: inline-block;
+        }
 
+        .instructor-term-menu {
+            display: inline-block;
+
+            select.myuw-dropmenu { width: 6.5em; }
+            select.myuw-dropmenu-selected { width: 8em; }
+        }
 
         .unstyled-list {line-height: 30px;}
 
@@ -1478,13 +1501,13 @@ label { font-weight: normal; }
 
     // course cards
 
-    #CourseCards {
+    #CourseCards, #PrevTermCourseCards, #PrevTermCourseCards1 {
 
         .card {
-
-            h4 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; margin-bottom: 1em;
+            h4 { font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: @font-header-small; color: @darktan; margin-bottom: 1em;
 				.meeting-type {float: right; font-size: 12px; font-family: 'Open Sans', sans-serif; text-transform: uppercase; padding:2px 4px 2px 4px;border: 1px solid #eee;}
                 .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; }
+                .offterm-date { font-size: 14px; font-family:'Roboto', sans-serif; color: #444 !important; line-height: 1.5;  }
             }
 
             h5 { font-family: 'Roboto', sans-serif; font-weight: 500; color: @darktan; margin-top: 1.5em; margin-bottom: .5em; font-size: 16px;  }
@@ -1577,7 +1600,7 @@ label { font-weight: normal; }
     #FutureQuarterCardA, #FutureQuarterCard1 {
         .card {
 
-            h4 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; }
+            h4 { font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: @font-header-small; color: @darktan; }
 
             // make h5 look like h4
             h5 { font-size: 20px; color: #555; }
@@ -1613,6 +1636,7 @@ label { font-weight: normal; }
 
     }
 
+    .prev-qtr-heading { font-size:@font-header-medium; padding-top: 1em; font-family: 'Roboto', sans-serif;font-weight: 400;color:#444;}
 
 // ThriveUW
     // Thrive card
@@ -1623,7 +1647,7 @@ label { font-weight: normal; }
         .thrive-message-highlight {padding: 10px;background-color: #9df1ff;
             h4 {margin-top:0px; color:#716141;
                 .thrive-category {font-weight: 400;margin-bottom: 15px;font-size: 15px;}
-                .thrive-week-title {font-size: 18px;font-family:'encode_sans_normalbold';}
+                .thrive-week-title {font-size: 18px;font-family:'encode_sans_normalbold', sans-serif;}
             }
         }
         .thrive-trythis-learnmore {padding: 10px;margin-top: -15px;}
@@ -1656,7 +1680,7 @@ label { font-weight: normal; }
 
         .card {
 
-            h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan;
+            h3 { font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: @font-header-small; color: @darktan;
                 .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
             }
 
@@ -1748,6 +1772,35 @@ label { font-weight: normal; }
         }
 
         ul { list-style: none; padding-left: 0; }
+    }
+
+    // visual schedule-period control
+    .schedule-period-module {
+	    margin-bottom: 1em;
+    }
+	.nav>li>a{
+		&:hover, &:focus {
+		background-color:#fff;
+		border-bottom: 3px solid #999;
+		border-radius: 0px;
+		padding-bottom: 1px;
+		margin-bottom: 3px;
+		}
+	}
+    .schedule-period-list {
+	    li>a {
+	    padding: 4px 5px;
+	    margin-right: 5px;
+	    margin-bottom: 3px;
+	    color:#555;
+	    }
+	    li.active>a {background-color:#fff;color:#000;text-decoration:none;border-bottom: 3px solid @uwpurple; border-radius: 0px; padding-bottom: 1px;
+		:hover {text-decoration: none;}
+	    }
+	    .schedule-period {
+	    text-transform: uppercase;
+	    font-size: 85%;
+    	}
     }
 
     // visual schedule
@@ -1844,6 +1897,7 @@ label { font-weight: normal; }
       display: inline-block;
       float: left;
       color: #ffffff;
+      border-bottom: 1px solid #ccc;
     }
     .six-day p {
       color: #333;
@@ -1876,11 +1930,12 @@ label { font-weight: normal; }
       border-left: 2px groove #eeeeee;
     }
     .seven-day:nth-of-type(odd),
-    .six-day:nth-of-type(even),
+    .six-day:nth-of-type(odd),
     .five-day:nth-of-type(odd) {
     	border-left: 1px solid #ddd;
     	border-right: 1px solid #ddd;
     }
+
     .day-col {
       position: relative;
       height: 92%;
@@ -1964,8 +2019,8 @@ label { font-weight: normal; }
       color: #3c3c3c;
       top: 0px;
     }
-
-    #final_exam_schedule_card .six-hour .day-label { height: 14%; }
+    //#final_exam_schedule heading height adjustment
+	#final-visual-schedule.six-hour .day-label {height: 14%;}
 
     .visual-course {
       width: 100%;
@@ -2009,13 +2064,13 @@ label { font-weight: normal; }
     .courseTBD { width: 100%; overflow: auto; margin: 15px 0;
 
         h6 { font-size: 14px; }
-        .course-box { background: #e8e3d3; width: 50px; height: 40px; font-size:11px; margin-right:5px; line-height:.9em; }
+        .course-box { background: #e8e3d3; width: 60px; height: 40px; font-size:11px; margin-right:5px; line-height:.9em; }
         .course-info { text-align:center; color:#fff; padding:2px; }
     }
 
     // error container
     .error-container {
-        h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small;  }
+        h1 { font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: @font-header-small;  }
     }
 
 
@@ -2088,7 +2143,7 @@ label { font-weight: normal; }
 		margin-bottom: -3em;
 		padding-bottom: 3em;
 
-		h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444; }
+		h1 { font-family: 'encode_sans_normalbold', sans-serif;; font-weight: 600; font-size: @font-header-small; color: #444; }
         h3 { color: #333; margin-top: 0; margin-bottom:0; font-family: 'Roboto', sans-serif; font-weight: 400; }
 
 		.notice-count { }
@@ -2253,7 +2308,7 @@ label { font-weight: normal; }
 
             .navigation-item { display: inline-block; position: relative; padding: 5px; height: 100px; width: 100%;
 				.subcategories {font-size: 85%;color:#777;}
-                .navigation-item-text { font-family: 'Roboto', sans-serif; font-weight: 400; font-family: 'encode_sans_normalsemibold'; color: #555; font-size: @font-base;  }
+                .navigation-item-text {font-family: 'encode_sans_normalsemibold', sans-serif; font-weight: 600; color: #555; font-size: @font-base;  }
             }
 
             // handle :hover state as mobile touch
@@ -2271,7 +2326,7 @@ label { font-weight: normal; }
                 .footer-links-list-item { display: inline-block; padding-right: 5px; margin-right: 3px; border-right: solid 1px #aaa; color: #222;
 					#myuw-footer-modal {
 						.modal-content {font-size: 14px; line-height: 1.42857143;
-							h3 {margin-bottom: 10px;font-family: 'encode_sans_normalbold';font-size: 16px;color: #85754d;}
+							h3 {margin-bottom: 10px;font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: 16px; color: #85754d;}
 							.modal-header {border-bottom: none; padding-bottom:0;
 								button {color:#333;}
 							}

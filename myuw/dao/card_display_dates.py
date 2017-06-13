@@ -72,6 +72,7 @@ def get_values_by_date(now, request):
         "current_summer_term": "%s,%s" % (last_term.year, "summer"),
         "last_term": "%s,%s" % (last_term.year, last_term.quarter),
         "in_coursevel_fetch_window": in_coursevel_fetch_window(request),
+        "comparison_date": get_comparison_datetime(request)
     }
 
 

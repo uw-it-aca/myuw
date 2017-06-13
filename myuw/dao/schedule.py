@@ -3,10 +3,10 @@ This module provides access to registered class schedule and sections
 """
 
 import logging
+from restclients.thread import generic_prefetch
+from uw_libraries.subject_guides import get_subject_guide_for_section_params
 from uw_sws.models import ClassSchedule
 from uw_sws.registration import get_schedule_by_regid_and_term
-from restclients.thread import generic_prefetch
-from restclients.library.currics import get_subject_guide_for_section_params
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import get_current_quarter, get_next_quarter,\
     get_next_autumn_quarter, get_current_summer_term,\
@@ -15,7 +15,6 @@ from myuw.dao.term import get_comparison_date
 
 
 logger = logging.getLogger(__name__)
-EARLY_FALL_START = "EARLY FALL START"
 
 
 def _get_schedule(regid, term):
@@ -28,8 +27,12 @@ def _get_schedule(regid, term):
         return None
     logid = ('get_schedule_by_regid_and_term ' +
              str(regid) + ',' + str(term.year) + ',' + term.quarter)
-    return get_schedule_by_regid_and_term(regid, term, False,
-                                          myuw_section_prefetch)
+    return get_schedule_by_regid_and_term(
+        regid,
+        term,
+        non_time_schedule_instructors=False,
+        per_section_prefetch_callback=myuw_section_prefetch,
+        transcriptable_course="all")
 
 
 def myuw_section_prefetch(data):
@@ -53,24 +56,7 @@ def get_schedule_by_term(request, term):
     Return the actively enrolled sections for the current user
     in the given term/quarter
     """
-    # 2016 approach for MUWM-3390/3391
-    # If we're in the EFS period, include the sections.  Otherwise,
-    # exclude them.
-    schedule = _get_schedule(get_regid_of_current_user(), term)
-    comparison_date = get_comparison_date(request)
-
-    included_sections = []
-    for section in schedule.sections:
-        if EARLY_FALL_START != section.institute_name:
-            included_sections.append(section)
-        else:
-            end_date = section.end_date
-            if end_date >= comparison_date:
-                included_sections.append(section)
-
-    schedule.sections = included_sections
-
-    return schedule
+    return _get_schedule(get_regid_of_current_user(), term)
 
 
 def get_current_quarter_schedule(request):

@@ -3,12 +3,11 @@ var HRPayrollCard = {
     dom_target: undefined,
 
     render_init: function() {
-        if (!(window.user.employee || window.user.faculty || window.user.stud_employee)) {
+        if (myuwFeatureEnabled('workday_account_card') && (window.user.employee || window.user.faculty)) {
+            HRPayrollCard._render();
+        } else {
             $("#HRPayrollCard").hide();
-            return;
         }
-
-        HRPayrollCard._render();
     },
 
     render_error: function() {
