@@ -4,7 +4,7 @@ with the UW Affiliation Group API resource
 """
 
 import logging
-from restclients.gws import GWS
+from uw_gws import GWS
 from myuw.dao import get_netid_of_current_user
 from userservice.user import UserService
 from django.conf import settings
@@ -81,7 +81,9 @@ def is_undergrad_student():
 
 
 def is_student():
-    return is_undergrad_student() or is_graduate_student()
+    return (is_undergrad_student() or
+            is_graduate_student() or
+            is_pce_student())
 
 
 def is_pce_student():

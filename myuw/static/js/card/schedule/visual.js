@@ -4,18 +4,11 @@ var VisualScheduleCard = {
     term: 'current',
 
     should_display_card: function() {
-        if (!window.user.student ||
-            !window.card_display_dates.is_before_last_day_of_classes) {
-                if (!window.force_visual_schedule_display) {
-                    return false;
-                }
+        if (!window.user.student) {
         }
         return true;
     },
 
-    force_visual_schedule_display: function() {
-        window.force_visual_schedule_display = true;
-    },
 
     render_init: function(term, course_index) {
         if (!VisualScheduleCard.should_display_card()) {
@@ -48,22 +41,302 @@ var VisualScheduleCard = {
     _render: function() {
         var term = VisualScheduleCard.term;
         var course_data = WSData.normalized_course_data(term);
+        window.term.summer_term = course_data.summer_term;
+        course_data.schedule_periods = VisualScheduleCard._get_schedule_periods(course_data);
 
-        VisualScheduleCard.render_schedule(course_data, term);
+        if(window.future_term === undefined){
+            if(course_data.summer_term === ""){
+                $.extend(course_data.schedule_periods, VisualScheduleCard._get_finals(course_data.sections));
+            }
+        } else if(window.future_term.indexOf("summer") === -1){
+            $.extend(course_data.schedule_periods, VisualScheduleCard._get_finals(course_data.sections));
+        }
 
-        FinalExamSchedule.render(course_data, term, true);
+        var default_period = VisualScheduleCard._get_default_period(course_data.schedule_periods);
+        VisualScheduleCard.display_schedule_for_period(default_period);
 
         LogUtils.cardLoaded(VisualScheduleCard.name, VisualScheduleCard.dom_target);
     },
-        
-    render_schedule: function(course_data, term) {
-        VisualScheduleCard.shown_am_marker = false;
+
+    _get_default_period: function(schedule_periods){
+        var today = moment.utc(window.card_display_dates.comparison_date, "YYYY-MM-DD"),
+            default_section;
+
+        $.each(schedule_periods, function(idx, period){
+            if (moment.utc(period.start_date, "YYYY-MM-DD").isSameOrBefore(today) && moment.utc(period.end_date, "YYYY-MM-DD").isSameOrAfter(today)) {
+                default_section = idx;
+            }
+        });
+        // Handle case where period cannot be determined
+        if(default_section === undefined){
+            default_section = Object.keys(schedule_periods)[0];
+        }
+
+        return default_section;
+    },
+
+    _get_schedule_periods: function(course_data) {
+        var schedule_periods = {};
+        $(course_data.sections).each(function(idx, section){
+            // get start and end dates for section
+            var section_dates = VisualScheduleCard._get_dates_for_section(section);
+            schedule_periods = VisualScheduleCard._add_to_periods(section_dates,
+                                                                  section,
+                                                                  schedule_periods);
+        });
+        var range = VisualScheduleCard._get_schedule_range(course_data);
+        var weeks = VisualScheduleCard._get_weeks_from_range(range);
+        weeks = VisualScheduleCard._add_sections_to_weeks(weeks, course_data.sections);
+        weeks = VisualScheduleCard._consolidate_weeks(weeks);
+
+        return VisualScheduleCard._format_dates(weeks);
+    },
+
+    _consolidate_weeks: function(weeks){
+        var consolidated_weeks = {},
+            first_week = parseInt(Object.keys(weeks)[0]),
+            num_weeks = first_week + Object.keys(weeks).length - 1;
+
+        for(var i=first_week; i <= num_weeks; i++){
+            //Add the first week
+            var consolidated_week = weeks[i];
+
+            //Loop through all weeks after this one checking for same sections
+            for(var k = i+1; k <= num_weeks; k++){
+
+                if(VisualScheduleCard._sections_are_same(weeks[i], weeks[k])){
+                    //Change end date
+                    consolidated_week.end_date = weeks[k].end_date;
+                    //increment counter
+                    i += 1;
+                }
+            }
+            consolidated_weeks[i] = consolidated_week;
+
+        }
+        return consolidated_weeks;
+
+    },
+
+
+    _sections_are_same: function(list1, list2){
+        if (list1 === undefined || list2 === undefined) {
+            return false;
+        }
+
+        var lists_are_same = true,
+            l1_sections = list1.sections.slice(),
+            l2_sections = list2.sections.slice();
+
+        $.each(l1_sections, function(idx, section){
+            var in_list = VisualScheduleCard._section_list_has_section(section, l2_sections);
+            if(!in_list){
+                lists_are_same = false;
+            }
+        });
+
+        $.each(l2_sections, function(idx, section){
+            var in_list = VisualScheduleCard._section_list_has_section(section, l1_sections);
+            if(!in_list){
+                lists_are_same = false;
+            }
+        });
+
+        return lists_are_same;
+    },
+
+    _section_list_has_section: function(section, list){
+        var in_section = false;
+        $.each(list, function(idx, l2_section){
+            if(section.course_number === l2_section.course_number &&
+                section.curriculum_abbr === l2_section.curriculum_abbr){
+                in_section = true;
+            }
+        });
+        return in_section;
+    },
+
+    _add_sections_to_weeks: function(weeks, sections){
+        $.each(weeks, function(idx, week){
+            $.each(sections, function(idx, section){
+                var dates = VisualScheduleCard._get_dates_for_section(section);
+                if(dates[0].isSameOrBefore(week.end_date) && dates[1].isSameOrAfter(week.start_date)){
+                    week.sections.push(section);
+                }
+
+            });
+        });
+
+        return weeks;
+    },
+
+    _get_weeks_from_range: function(range){
+        var start = range[0].week(),
+            end = range[1].week(),
+            weeks = {};
+        if(start > end){
+            end += 52;
+        }
+
+        for (var i = start; i <=end; i++){
+            var year = range[0].year();
+            var week = moment.utc().year(year).week(i);
+            var start_date = week.clone().startOf('week');
+            start_date.add(1, 'days');
+            var end_date = week.clone().endOf('week');
+            end_date.add(1, 'days');
+
+            weeks[i] = {
+                "start_date": start_date,
+                "end_date": end_date,
+                "sections": []
+            };
+        }
+        return weeks;
+
+    },
+
+
+    _get_schedule_range: function(course_data){
+        var earliest,
+            latest;
+        $.each(course_data.sections, function(idx, section){
+            var dates = VisualScheduleCard._get_dates_for_section(section);
+            if (earliest === undefined){
+                earliest = dates[0];
+            } else if(dates[0].isBefore(earliest)){
+                earliest = dates[0];
+            }
+
+            if (latest === undefined){
+                latest = dates[1];
+            } else if(dates[1].isAfter(latest)){
+                latest = dates[1];
+            }
+        });
+        return [earliest, latest];
+    },
+
+    _format_dates: function(schedule_periods){
+        //Formats dates so handlebars helper can parse
+        for (var period_id in schedule_periods){
+            schedule_periods[period_id].start_date = schedule_periods[period_id].start_date.format("YYYY-MM-DD");
+            schedule_periods[period_id].end_date = schedule_periods[period_id].end_date.format("YYYY-MM-DD");
+        }
+        return schedule_periods;
+    },
+
+    _get_finals: function(sections){
+        var finals_periods = {};
+        $.each(sections, function(idx, section){
+            if(section.final_exam !== undefined &&
+                section.final_exam.start_date !== undefined) {
+                VisualScheduleCard._add_to_finals(section, finals_periods);
+            }
+        });
+        return finals_periods;
+    },
+
+    _add_to_finals: function(section, schedule_periods){
+        var week_range = VisualScheduleCard._get_week_range_from_date(section.final_exam.start_date);
+        if ("finals" in schedule_periods){
+            schedule_periods.finals.sections.push(section);
+        } else {
+            schedule_periods.finals =
+            {"start_date": week_range[0].format("YYYY-MM-DD"),
+                "end_date" : week_range[1].format("YYYY-MM-DD"),
+                "sections": [section]
+            };
+        }
+        return schedule_periods;
+    },
+
+
+    _add_to_periods: function(dates, section, periods){
+            for (var period_key in periods){
+                var period = periods[period_key];
+                if(period.start_date.isSame(dates[0]) &&
+                    period.end_date.isSame(dates[1])){
+                    period.sections.push(section);
+                    return periods;
+                }
+            }
+            periods[Object.keys(periods).length] = {"start_date": dates[0],
+                "end_date" : dates[1],
+                "sections": [section]
+            };
+        return periods;
+    },
+
+    _get_dates_for_section: function(section){
+        var start_date = section.start_date,
+            end_date = section.end_date;
+        if(start_date === "None"){
+            // Regular courses don't have start/end dates
+            if(window.future_term !== undefined){
+                if(section.summer_term === "" || section.summer_term === "Full-term"){
+                    start_date = window.future_term_data.first_day_quarter;
+                    end_date = window.future_term_data.last_day_instruction;
+                } else {
+                    if(window.future_term.indexOf("a-term") !== -1){
+                        start_date = window.future_term_data.first_day_quarter;
+                        end_date = window.future_term_data.aterm_last_date;
+                    } else if(window.future_term.indexOf("b-term") !== -1){
+                        start_date = window.future_term_data.bterm_first_date;
+                        end_date = window.future_term_data.last_day_instruction;
+                    }
+                }
+            } else {
+                // use current term dates
+                if (window.term.summer_term === "None" || window.term.summer_term === ""){
+                    start_date = window.term.first_day_quarter;
+                    end_date = window.term.last_day_instruction;
+                } else {
+                    // handle summer term for current quarter
+                    if(window.term.summer_term.indexOf("a-term") !== -1){
+                        start_date = window.term.first_day_quarter;
+                        end_date = window.term.aterm_last_date;
+                    } else if(window.term.summer_term.indexOf("b-term") !== -1){
+                        start_date = window.term.bterm_first_date;
+                        end_date = window.term.last_day_instruction;
+                    }
+                }
+            }
+        }
+        return [moment.utc(new Date(start_date)), moment.utc(new Date(end_date))];
+    },
+
+    _get_week_range_from_date: function(date){
+        var exam_date = moment.utc(date);
+        var start = exam_date.startOf('week');
+        start.add(1, 'days');
+        var end = exam_date.clone().endOf('week');
+        end.add(1, 'days');
+
+        return [start, end];
+    },
+
+    display_schedule_for_period: function(period){
+        if (VisualScheduleCard._has_all_data()){
+            var term = VisualScheduleCard.term;
+            var course_data = WSData.normalized_course_data(term);
+            var data = VisualScheduleCard._get_data_for_period(course_data, term, period);
+            data.active_period_id = period;
+            VisualScheduleCard.render_schedule(data, term);
+            if(period === "finals"){
+                var target = $("#schedule_area").first();
+                FinalExamSchedule.render(course_data, term, false, target);
+            }
+        }
+    },
+
+    _get_data_for_period: function(course_data, term, period){
         var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
         var visual_data = {
             has_early_fall_start: course_data.has_early_fall_start,
             is_pce: user.pce,
-            total_sections: course_data.sections.length,
-            year: course_data.year, 
+            total_sections: course_data.schedule_periods[period].sections.length,
+            year: course_data.year,
             quarter: course_data.quarter,
             term: term,
             summer_term: course_data.summer_term,
@@ -77,18 +350,21 @@ var VisualScheduleCard = {
             saturday: [],
             display_hours: [],
             has_6_days: false,
-            courses_meeting_tbd: []
+            courses_meeting_tbd: [],
+            courses_no_meeting: [],
+            schedule_periods: course_data.schedule_periods
         };
         var day, day_index, i, height, top;
 
         var index = 0;
-        for (index = 0; index < course_data.sections.length; index++) {
-            var section = course_data.sections[index];
-
+        for (index = 0; index < course_data.schedule_periods[period].sections.length; index++) {
+            var section = course_data.schedule_periods[period].sections[index];
             var meeting_index = 0;
             for (meeting_index = 0; meeting_index < section.meetings.length; meeting_index++) {
                 var meeting = section.meetings[meeting_index];
-                if (!meeting.days_tbd) {
+                var has_meetings = VisualScheduleCard._meeting_has_meetings(meeting);
+
+                if (!meeting.days_tbd && has_meetings) {
 
                     var start_parts = meeting.start_time.split(":");
                     var start_minutes = parseInt(start_parts[0], 10) * 60 + parseInt(start_parts[1], 10);
@@ -137,14 +413,25 @@ var VisualScheduleCard = {
                         }
                     }
                 }
-                else {
+                else if (meeting.days_tbd){
+                    // has meetings that are TBD
                     visual_data.courses_meeting_tbd.push({
-                        color_id: section.color_id,
-                        curriculum: section.curriculum_abbr,
-                        course_number: section.course_number,
-                        section_id: section.section_id,
-                        section_index: index
-                    });
+                                                             color_id: section.color_id,
+                                                             curriculum: section.curriculum_abbr,
+                                                             course_number: section.course_number,
+                                                             section_id: section.section_id,
+                                                             section_index: index
+                                                         });
+                }
+                else {
+                    // Has no meetings, not TBD (eg individual start PCE courses)
+                    visual_data.courses_no_meeting.push({
+                                                            color_id: section.color_id,
+                                                            curriculum: section.curriculum_abbr,
+                                                            course_number: section.course_number,
+                                                            section_id: section.section_id,
+                                                            section_index: index
+                                                        });
                 }
             }
         }
@@ -171,10 +458,10 @@ var VisualScheduleCard = {
         // We don't want to add the last hour - it's just off the end of the visual schedule
         for (i = visual_data.start_time; i <= visual_data.end_time - 1; i += 60) {
             visual_data.display_hours.push({
-                hour: (i / 60),
-                position: i,
-                hour_count: position_index
-            });
+                                               hour: (i / 60),
+                                               position: i,
+                                               hour_count: position_index
+                                           });
             position_index += 1;
         }
 
@@ -213,16 +500,43 @@ var VisualScheduleCard = {
                 top = VisualScheduleCard.get_scaled_percentage(position_start, visual_data.start_time, visual_data.end_time);
                 height =  VisualScheduleCard.get_scaled_percentage(position_end, visual_data.start_time, visual_data.end_time) - top;
                 visual_data[day].push({
-                    is_meeting: false,
-                    start_at_hr: start_at_hr,
-                    top:top,
-                    height:height, 
-                    start: position_start,
-                    end: position_end});
+                                          is_meeting: false,
+                                          start_at_hr: start_at_hr,
+                                          top:top,
+                                          height:height,
+                                          start: position_start,
+                                          end: position_end});
                 position_start = position_end;
                 start_at_hr = !start_at_hr;
             }
         }
+        return visual_data;
+    },
+
+    _meeting_has_meetings: function(meeting){
+        var has_meeting = false;
+        $.each(meeting.meeting_days, function (idx, meeting) {
+            if (meeting !== null){
+                has_meeting = true;
+            }
+        });
+        return has_meeting;
+    },
+
+    _section_has_meetings: function(section){
+        var has_meeting = false;
+        $.each(section.meetings, function (idx, meeting) {
+            $.each(meeting.meeting_days, function (idx, meeting_days) {
+                if (meeting_days !== null) {
+                    has_meeting = true;
+                }
+            });
+        });
+        return has_meeting;
+    },
+
+    render_schedule: function(visual_data, term) {
+        VisualScheduleCard.shown_am_marker = false;
 
         source   = $("#visual_schedule_card_content").html();
         template = Handlebars.compile(source);
@@ -230,7 +544,7 @@ var VisualScheduleCard = {
 
         VisualScheduleCard.add_events(term);
     },
-            
+
     // This is the height of the days bar... needed for positioning math below
     day_label_offset: 0,
 
@@ -250,37 +564,11 @@ var VisualScheduleCard = {
             building = building.replace(/[^a-z0-9]/gi, '_');
             WSData.log_interaction("show_map_from_visual_card_"+building, term);
         });
-        
-        $("#toggle_finalexams").on("click", function(ev) {
-            ev.preventDefault();
-            $("#final_exam_schedule_panel").toggleClass("slide-show");
-            if ($("#final_exam_schedule_panel").hasClass("slide-show")) {
-                $("#toggle_finalexams").text("Hide Final Exam Schedule");
-                $("#toggle_finalexams").attr('title', 'Hide Final Exam Schedule');
-                window.myuw_log.log_card("FinalExam", "expand");
-            }
-            else {
-                $("#toggle_finalexams").attr('title', 'Show Final Exam Schedule');
-                window.myuw_log.log_card("FinalExam", "collapse");
-                
-                setTimeout(function() {
-                      $("#toggle_finalexams").text("Show Final Exam Schedule");
-               }, 700);
-            }
-        });
 
-        $(".show_full_term_meetings").on("click", function(ev) {
-            $(".efs_course").hide();
-            $(".non_efs_course").show();
-            $(".show_efs_meetings").show();
-            $(".show_full_term_meetings").hide();
-            return false;
-        });
-        $(".show_efs_meetings").on("click", function(ev) {
-            $(".efs_course").show();
-            $(".non_efs_course").hide();
-            $(".show_full_term_meetings").show();
-            $(".show_efs_meetings").hide();
+
+        $("a.schedule-period-anchor").on("click", function(ev){
+            var period_id = $(this).attr('data-period_id');
+            VisualScheduleCard.display_schedule_for_period(period_id);
             return false;
         });
     }

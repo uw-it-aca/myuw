@@ -39,10 +39,6 @@ var TuitionCard = {
             return;
         }
 
-        // _render should be called only once.
-        if (renderedCardOnce(TuitionCard.name)) {
-            return;
-        }
         TuitionCard._render();
     },
 
