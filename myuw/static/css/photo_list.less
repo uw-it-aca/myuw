@@ -1,5 +1,24 @@
+@import (reference) "boilerplate.less";
+
 .myuw-photo-list {
-    table { border-color: red !important;
-        td { padding: 8px; }
+
+    ol { list-style: none; padding: 0; margin: 0;
+
+        &:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; }
+
+        /*** list view styles **/
+
+        li { border: solid 1px red; margin-bottom: 8px; }
+
+        /*** grid view styles ***/
+        &.grid-view {
+            li { border: solid 1px lime; float: left; width: 200px; margin-right: 8px; }
+        }
+
+        /*** print styles ***/
+        @media @print {
+            li { border-color: blue !important; }
+        }
+
     }
 }

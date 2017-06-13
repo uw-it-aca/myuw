@@ -3,13 +3,15 @@
 
 <div class="container">
 
-    <h2 class="heading-page">Photo Class List</h2>
-
     <div class="row">
         <div id="photoclasslist_popup" class="myuw-photo-list">
+
             <div class="card"  data-name="PhotoClasslistPopupCard" data-type="card">
                 <h3 class="scheduleHeading">{{ toTitleCase quarter }} {{ year }} | {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }} | SLN {{ sections.0.sln }}</h3>
                 <div id="classlist_controls" class="clearfix" style="padding-bottom: 40px;">
+
+                    <div class="pull-left">Display: <a id="list_view" href="#">List</a> | <a id="grid_view" href="#">Grid</a></div>
+
                     <div class="classlist-styled-select pull-left">Sort by:
                         <select id="sort_list">
                             <option value="name,surname">First Name</option>
@@ -28,7 +30,7 @@
                     </div>
                 </div>
 
-                <!-- desktop table view -->
+                <!-- desktop table view
                 <table id="student_list" border="1">
                     <thead>
                 	<tr>
@@ -66,13 +68,15 @@
                 	</tr>
                     {{ /each }}
                     </tbody>
-                </table>
+                </table> -->
 
 
-                <!-- mobile view
+
                 <div id="student_list">
+
+                    <ol id="student_sort">
                     {{ #each sections.0.registrations }}
-                        <div id="student_{{ regid }}">
+                        <li id="student_{{ regid }}">
                             <div style="float: left;">
                                 <img class="classlist-photo" src="/photo/{{ url_key }}">
                             </div>
@@ -95,9 +99,10 @@
                                 {{ /if }}
                             </div>
                             <br style="clear: both;">
-                        </div>
+                        </li>
                     {{ /each }}
-                </div> -->
+                </ol>
+                </div>
 
 
             </div>
