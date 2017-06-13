@@ -56,6 +56,22 @@ describe('LinkToFormSubmit', function() {
             assert.equal($("#l4").attr('href'), '#');
 
         });
+        it('should not swap links that have a data-notrack attr', function() {
+            var content = "<div><a id='ex1' href='http://example.com' data-notrack=''>Link</a></div>";
+
+            $('body').append($(content));
+
+            $('body').off('click', "A");
+            register_link_recorder();
+
+            global.csrf_token = 'fake_token';
+
+            $("#ex1").click();
+
+            assert.equal($("#ex1").attr('myuw-data-href'), undefined);
+            assert.equal($("#ex1").attr('href'), 'http://example.com');
+
+        });
         it('should read a data-linklabel attr if it exists', function() {
             var content = "<div><a id='dl1' href='http://example.com' data-linklabel='Link for TRAIN 101'>Link 1</a></div>";
 

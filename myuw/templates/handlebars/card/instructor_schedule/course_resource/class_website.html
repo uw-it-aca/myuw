@@ -5,7 +5,7 @@
 
             {{#if class_website_data.not_found}}
                 <span class="card-badge-value">
-                    <a class="course_website" href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" target="_blank"><i class="fa fa-exclamation"></i> View class website</a>
+                    <a class="course_website" href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" target="_blank"><i class="fa fa-exclamation" data-linklabel="Course Website: {{ curriculum_abbr }} {{course_number}} {{section_id}}"></i> View class website</a>
                     <div class="myuw-error">There is an error reaching website.
                         <a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Please check URL</a>
                     </div>
@@ -15,14 +15,14 @@
                 {{#if class_website_url}}
 
                     <span class="card-badge-value">
-                        <a class="course_website" href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" target="_blank">{{#if class_website_data.title}}{{ class_website_data.title }}{{else}}View class website{{/if}}</a>
-                        <span class="course-website-update"><a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Update</a></span>
+                        <a class="course_website" href="{{class_website_url}}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" target="_blank" data-linklabel="Course Website: {{ curriculum_abbr }} {{course_number}} {{section_id}}">{{#if class_website_data.title}}{{ class_website_data.title }}{{else}}View class website{{/if}}</a>
+                        <span class="course-website-update"><a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" data-linklabel="Update Course Website: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Update</a></span>
                     </span>
 
                 {{else}}
                     <span class="card-badge-value">
-                        <a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Add</a>
-                        <div class="add-delay-message">Up to one hour delay to show on MyUW</div>
+                        <a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{ sln }}&amp;chanid=11" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" data-linklabel="Add Course Website: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Add</a>
+                        <div class="myuw-note add-delay-message">Up to one hour delay to show on MyUW</div>
                     </span>
                 {{/if}}
             {{/if}}

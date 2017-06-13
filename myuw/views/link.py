@@ -4,7 +4,11 @@ from myuw.dao.affiliation import get_all_affiliations
 from myuw.views import prefetch_resources
 from myuw.models import VisitedLink
 from urllib import unquote
+import os
 import re
+
+
+ignored_links = set()
 
 
 def outbound_link(request):
@@ -13,6 +17,14 @@ def outbound_link(request):
     if not re.match('^https?://', url):
         return HttpResponseRedirect("/")
 
+    if is_link_of_interest(url):
+        save_visited_link(request)
+
+    return HttpResponseRedirect(url)
+
+
+def save_visited_link(request):
+    url = request.GET.get('u', '')
     label = request.GET.get('l', None)
     if label:
         label = unquote(label)
@@ -44,4 +56,21 @@ def outbound_link(request):
                                is_student_employee=is_student_employee,
                                )
 
-    return HttpResponseRedirect(url)
+
+def is_link_of_interest(url):
+    initialize_ignored_links()
+
+    if url in ignored_links:
+        return False
+    return True
+
+
+def initialize_ignored_links():
+    if len(ignored_links):
+        return
+
+    path = os.path.join(os.path.dirname(__file__),
+                        '..', 'data', 'ignored_links.txt')
+    with open(path) as handle:
+        for line in handle:
+            ignored_links.add(line.strip())

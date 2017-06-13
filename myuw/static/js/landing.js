@@ -16,7 +16,7 @@ var Landing = {
 
         NoticeBanner.render_init($("#notice_banner_location"));
 
-        PceBanner.render_init($("#pce_banner_location"));
+        AccountSummaryCard.render_init($("#landing_summaries"));
 
         Landing.load_cards_for_viewport();
         // Set initial display state
@@ -43,7 +43,6 @@ var Landing = {
         Landing._reset_content_divs();
         var desktop_body_cards = [
             ThriveCard,
-            FinalExamCard,
             GradeCard,
             FutureQuarterCardA,
             ThankYouCard,
@@ -55,19 +54,12 @@ var Landing = {
             InternationalStuCard,
             VisualScheduleCard,
             TextbookCard,
-            CourseCards,
-            GradStatusCard,
-            GradCommitteeCard,
             FutureQuarterCard1,
             SummerRegStatusCard1
         ];
         var desktop_sidebar_cards = [
-            //LibraryCardMini,
+            QuickLinksCard,
             EmpFacStudentCard,
-            HfsCard,
-            TuitionCard,
-            LibraryCard,
-            UPassCard,
             EventsCard
         ];
         // Add in outage card if we can't get the SWS/term resource
@@ -76,15 +68,13 @@ var Landing = {
         }
         Cards.load_cards_in_order(desktop_body_cards, $("#landing_content_cards"));
         Cards.load_cards_in_order(desktop_sidebar_cards, $("#landing_accounts_cards"));
-        CalendarBanner.render_init($("#calendar_banner_location_desktop"));
     },
 
     _load_mobile_cards: function() {
         Landing._reset_content_divs();
         var mobile_cards = [
-            //LibraryCardMini,
+            QuickLinksCard,
             ThriveCard,
-            FinalExamCard,
             GradeCard,
             FutureQuarterCardA,
             ThankYouCard,
@@ -96,24 +86,16 @@ var Landing = {
             InternationalStuCard,
             VisualScheduleCard,
             TextbookCard,
-            CourseCards,
-            GradStatusCard,
-            EmpFacStudentCard,
-            HfsCard,
-            TuitionCard,
-            LibraryCard,
-            UPassCard,
-            EventsCard,
-            GradCommitteeCard,
             FutureQuarterCard1,
-            SummerRegStatusCard1
+            SummerRegStatusCard1,
+            EmpFacStudentCard,
+            EventsCard
         ];
         // Add in outage card if we can't get the SWS/term resource
         if(window.webservice_outage){
             mobile_cards.unshift(OutageCard);
         }
         Cards.load_cards_in_order(mobile_cards, $("#landing_content_cards"));
-        CalendarBanner.render_init($("#calendar_banner_location_mobile"));
     },
 
     _reset_content_divs: function() {
@@ -123,8 +105,6 @@ var Landing = {
 
         $("#landing_content_cards").html('');
         $("#landing_accounts_cards").html('');
-        $("#calendar_banner_location_desktop").html('');
-        $("#calendar_banner_location_mobile").html('');
     }
 
 };

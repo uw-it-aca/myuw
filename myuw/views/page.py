@@ -5,12 +5,13 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import logout as django_logout
 from django.conf import settings
-from myuw.dao.term import get_current_quarter, get_comparison_datetime
+from myuw.dao.term import add_term_data_to_context
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.user import is_oldmyuw_user, get_netid_of_current_user,\
     is_oldmyuw_mobile_user
 from myuw.dao.emaillink import get_service_url_for_address
 from myuw.dao.exceptions import EmailServiceUrlException
+from myuw.dao.quicklinks import get_quicklink_data
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_exception
 from myuw.logger.logresp import log_invalid_netid_response
@@ -31,7 +32,8 @@ LOGOUT_URL = "/user_logout"
 def page(request,
          context=None,
          template='index.html',
-         prefetch=True):
+         prefetch=True,
+         add_quicklink_context=False):
 
     if context is None:
         context = {}
@@ -73,11 +75,11 @@ def page(request,
 
     context["home_url"] = "/"
     context["err"] = None
-    context["user"]["affiliations"] = get_all_affiliations(request)
+    affiliations = get_all_affiliations(request)
+    context["user"]["affiliations"] = affiliations
 
     context["banner_messages"] = get_current_messages(request)
     context["card_display_dates"] = get_card_visibilty_date_values(request)
-    context["system_date"] = str(get_comparison_datetime(request))
     try:
         my_uwemail_forwarding = get_email_forwarding_for_current_user()
         if my_uwemail_forwarding.is_active():
@@ -100,21 +102,15 @@ def page(request,
                       traceback.format_exc())
         pass
 
-    if ('year' not in context or context['year'] is None or
-            'quarter' not in context and context['quarter'] is None):
-        cur_term = get_current_quarter(request)
-        if cur_term is None:
-            context["err"] = "No current quarter data!"
-        else:
-            context["year"] = cur_term.year
-            context["quarter"] = cur_term.quarter
-    else:
-        pass
+    add_term_data_to_context(request, context)
 
     context['enabled_features'] = get_enabled_features()
 
     context['google_search_key'] = getattr(
         settings, "GOOGLE_SEARCH_KEY", None)
+
+    if add_quicklink_context:
+        _add_quicklink_context(affiliations, context)
 
     log_success_response_with_affiliation(logger, timer, request)
     return render(request, template, context)
@@ -162,3 +158,10 @@ def logout(request):
 
     # Redirects to weblogin logout page
     return HttpResponseRedirect(LOGOUT_URL)
+
+
+def _add_quicklink_context(affiliations, context):
+    link_data = get_quicklink_data(affiliations)
+
+    for key in link_data:
+        context[key] = link_data[key]

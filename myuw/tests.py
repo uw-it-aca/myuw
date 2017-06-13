@@ -11,7 +11,6 @@ from myuw.test.dao.notice_mapping import TestMapNotices
 from myuw.test.dao.notice_categorization import TestNoticeCategories
 from myuw.test.dao.affiliations import TestAffilliations
 from myuw.test.dao.notice import TestNotices
-from myuw.test.dao.term import TestTerm
 from myuw.test.dao.building import TestBuildings
 from myuw.test.dao.category_links import TestCategoryLinks
 from myuw.test.dao.enrollment import TestDaoEnrollment
@@ -64,6 +63,5 @@ from myuw.test.views.logout import TestLogoutLink
 from myuw.test.views.mobile_login import TestLoginRedirects
 from myuw.test.views.rest_dispatch import TestDispatchErrorCases
 from myuw.test.views.textbooks import TestTextbook
-from myuw.test.template_tags import TestNetidHash
 from myuw.test.userservice_validation import TestValidation
 from myuw.test.speed import TestPageSpeeds

@@ -224,7 +224,7 @@ WSData = {
             var minutes_till_deadline = grading_deadline.diff(ref, 'minutes');
             var deadline_in_24_hours = (minutes_till_deadline >= 0 &&
                                         minutes_till_deadline <= (24 * 60));
-            var system_time = moment(new Date(window.card_display_dates.system_date));
+            var comparison_date = moment(new Date(window.card_display_dates.comparison_date));
 
             $.each(course_data.sections, function (iii) {
                 var section = this;
@@ -280,12 +280,12 @@ WSData = {
                     if (section.evaluation.eval_open_date) {
                         var eval_open = moment(new Date(section.evaluation.eval_open_date));
                         section.evaluation.eval_open_date_display = eval_open.format(fmt) + ' PST';
-                        section.evaluation.is_open = system_time.isAfter(eval_open);
+                        section.evaluation.is_open = comparison_date.isAfter(eval_open);
                     }
                     if (section.evaluation.eval_close_date) {
                         var eval_close = moment(new Date(section.evaluation.eval_close_date));
                         section.evaluation.eval_close_date_display = eval_close.format(fmt) + ' PST';
-                        section.evaluation.is_past = system_time.isAfter(eval_close);
+                        section.evaluation.is_past = comparison_date.isAfter(eval_close);
                         if (section.evaluation.is_past) {
                             section.evaluation.is_open = false;
                         }
@@ -293,7 +293,7 @@ WSData = {
                     if (section.evaluation.report_available_date) {
                         var report_date = moment(new Date(section.evaluation.report_available_date));
                         section.evaluation.report_available_date_display = report_date.format(fmt) + ' PST';
-                        section.evaluation.report_is_available = system_time.isAfter(report_date);
+                        section.evaluation.report_is_available = comparison_date.isAfter(report_date);
                     }
                 }
             });
@@ -558,25 +558,8 @@ WSData = {
                 type: "GET",
                 accepts: {html: "text/html"},
                 success: function(results) {
-                    // MUWM-549 and MUWM-552
-                    var sections = results.sections;
-                    var section_count = sections.length;
-                    for (var index = 0; index < section_count; index++) {
-                        section = sections[index];
-
-                        var canvas_url = section.canvas_url;
-                        if (canvas_url) {
-                            if (section.class_website_url == canvas_url) {
-                                section.class_website_url = null;
-                            }
-                            var matches = canvas_url.match(/\/([0-9]+)$/);
-                            var canvas_id = matches[1];
-                            var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
-
-                            if (section.class_website_url == alternate_url) {
-                                section.class_website_url = null;
-                            }
-                        }
+                    if (term !== 'prev_unfinished') {
+                        WSData.process_term_course_data(results);
                     }
                     WSData._course_data_error_status[term] = null;
                     WSData._course_data[term] = results;
@@ -594,6 +577,29 @@ WSData = {
             }, 0);
         }
 
+    },
+
+    process_term_course_data: function(results) {
+        // MUWM-549 and MUWM-552
+        var sections = results.sections;
+        var section_count = sections.length;
+        for (var index = 0; index < section_count; index++) {
+            section = sections[index];
+
+            var canvas_url = section.canvas_url;
+            if (canvas_url) {
+                if (section.class_website_url == canvas_url) {
+                    section.class_website_url = null;
+                }
+                var matches = canvas_url.match(/\/([0-9]+)$/);
+                var canvas_id = matches[1];
+                var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
+
+                if (section.class_website_url == alternate_url) {
+                    section.class_website_url = null;
+                }
+            }
+        }
     },
 
     fetch_instructed_course_data_for_term: function(term, callback, err_callback, args) {
