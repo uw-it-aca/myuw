@@ -38,7 +38,7 @@ describe('InstructorScheduleCards', function(){
         });
         it("Should render instructor card", function() {
             assert.equal($('.card').length, 6);
-            assert.equal($('.card .courseIDtitle').eq(1).html(), 'PHYS 121 A');
+            assert.equal($('.card .myuw-course-abbrtitle').eq(1).html(), 'PHYS 121 A');
         });
         it("before grading open date", function() {
             window.location.search = '?grading_date=2017-03-02%2016:17';

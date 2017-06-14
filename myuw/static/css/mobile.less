@@ -1438,9 +1438,11 @@ label { font-weight: normal; }
 
             .card {
 
+                /* Deprecate
                 h4 {
                     font-weight:bold;
                 }
+                */
 
                 .meeting_type {
                     text-transform: capitalize;
@@ -1460,8 +1462,8 @@ label { font-weight: normal; }
                         left: 0%;
                     }
                     li {
-                        .inst-course-label {text-transform: uppercase;}
-                        .inst-course-note { font-size: small; font-style: italic; }
+                        .inst-course-label { /* removed */}
+                        .inst-course-note { /* copied to course_card.less */ font-size: small; font-style: italic; }
                         //display: inline-block;
                         //text-decoration: none;
                         //background-color: #eee;
