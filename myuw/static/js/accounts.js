@@ -20,10 +20,7 @@ var AccountsPage = {
 
         // Monitor for viewport changes and reorder cards if needed
         $(window).resize(function(){
-            if (AccountsPage.is_desktop !== get_is_desktop()){
-                AccountsPage.load_cards_for_viewport();
-                AccountsPage.is_desktop = get_is_desktop();
-            }
+            AccountsPage.order_card_list();
         });
     },
 
@@ -50,18 +47,19 @@ var AccountsPage = {
             right_list = [];
 
         var sorted_cards = all_cards.sort(AccountsPage._sort_cards);
-
-        for(var i=0; i<sorted_cards.length; i++){
-            if(i%2 === 0){
-                left_list.push(sorted_cards[i]);
-            } else {
-                right_list.push(sorted_cards[i]);
+        if(get_is_desktop()){
+            for(var i=0; i<sorted_cards.length; i++){
+                if(i%2 === 0){
+                    left_list.push(sorted_cards[i]);
+                } else {
+                    right_list.push(sorted_cards[i]);
+                }
             }
+            left_list_elem.html(left_list);
+            right_list_elem.html(right_list);
+        } else {
+            left_list_elem.html(sorted_cards);
         }
-        left_list_elem.html(left_list);
-        right_list_elem.html(right_list);
-
-
     },
 
     _sort_cards: function(a, b){
