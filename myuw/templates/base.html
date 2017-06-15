@@ -159,7 +159,7 @@
                         {% endif %}
 
                         {% if instructor_schedule_enabled %}
-                          {% if user.affiliations.faculty %}
+                          {% if user.affiliations.instructor %}
                         <li><a {% if is_myuw_teaching_page %}class="active"{% endif %} href="/teaching/"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Teaching</a></li>
                          {% endif %}
                         {% endif %}
