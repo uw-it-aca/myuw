@@ -28,44 +28,71 @@ var AccountsPage = {
     },
 
     load_cards_for_viewport: function() {
-        if (get_is_desktop()) {
-            AccountsPage._load_desktop_cards();
-        } else {
-            AccountsPage._load_mobile_cards();
+        AccountsPage._load_cards();
+    },
+
+    _load_cards: function(){
+        var cards = AccountsPage._get_card_order_by_affiliation();
+        if(cards){
+            Cards.load_cards_in_order(cards, $("#accounts_content_cards"));
+            AccountsPage.order_card_list();
         }
+        $(window).on("card-hide", function(ev) {
+            AccountsPage.order_card_list();
+        });
     },
 
-    _load_desktop_cards: function() {
-        AccountsPage._reset_content_divs();
+    order_card_list: function(){
+        var left_list_elem = $("#accounts_content_cards"),
+            right_list_elem = $("#accounts_sidebar_cards"),
+            all_cards = left_list_elem.children().add(right_list_elem.children()),
+            left_list = [],
+            right_list = [];
 
-        var desktop_body_cards = [
-            TuitionCard,
-            HfsCard,
-            LibraryCard
-        ];
-        var desktop_sidebar_cards = [
-            MedicineAccountsCard,
-            HRPayrollCard,
-            UPassCard,
-            AccountsCard
-        ];
+        var sorted_cards = all_cards.sort(AccountsPage._sort_cards);
 
-        Cards.load_cards_in_order(desktop_body_cards, $("#accounts_content_cards"));
-        Cards.load_cards_in_order(desktop_sidebar_cards, $("#accounts_sidebar_cards"));
+        for(var i=0; i<sorted_cards.length; i++){
+            if(i%2 === 0){
+                left_list.push(sorted_cards[i]);
+            } else {
+                right_list.push(sorted_cards[i]);
+            }
+        }
+        left_list_elem.html(left_list);
+        right_list_elem.html(right_list);
+
+
     },
 
-    _load_mobile_cards: function() {
-        AccountsPage._reset_content_divs();
-        var mobile_cards = [
-            TuitionCard,
-            MedicineAccountsCard,
-            HfsCard,
-            HRPayrollCard,
-            LibraryCard,
-            UPassCard,
-            AccountsCard
-        ];
-        Cards.load_cards_in_order(mobile_cards, $("#accounts_content_cards"));
+    _sort_cards: function(a, b){
+        var order_a = parseInt($(a).attr('data-order'));
+        var order_b = parseInt($(b).attr('data-order'));
+        return (order_a < order_b) ? -1 : (order_a > order_b) ? 1 : 0;
+    },
+
+    _get_card_order_by_affiliation: function(){
+        // affiliation precedence: student>employee
+        if(window.user.student) {
+            return [
+                TuitionCard,
+                MedicineAccountsCard,
+                HfsCard,
+                LibraryCard,
+                UPassCard,
+                AccountsCard
+            ];
+        }
+        if(window.user.employee){
+            return [
+                MedicineAccountsCard,
+                HRPayrollCard,
+                LibraryCard,
+                UPassCard,
+                HfsCard,
+                AccountsCard
+            ];
+        }
+
     },
 
     _reset_content_divs: function() {

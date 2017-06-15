@@ -13,7 +13,8 @@ var UPassCard = {
             UPassCard.dom_target.html(raw);
             return;
         }
-        UPassCard.dom_target.hide();
+        UPassCard.dom_target.remove();
+        $(window).trigger("card-hide");
     },
 
     render_upon_data: function () {

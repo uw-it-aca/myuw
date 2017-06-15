@@ -19,7 +19,8 @@ var HfsCard = {
         var template = Handlebars.compile(source);
         var template_data;
         if (!hfs_data.student_husky_card && !hfs_data.employee_husky_card && !hfs_data.resident_dining) {
-            HfsCard.dom_target.hide();
+            HfsCard.dom_target.remove();
+            $(window).trigger("card-hide");
         } else {
             HfsCard.dom_target.html(template(hfs_data));
             LogUtils.cardLoaded(HfsCard.name, HfsCard.dom_target);
@@ -35,7 +36,8 @@ var HfsCard = {
 
     render_error: function (status) {
         if (status === 404) {
-            HfsCard.dom_target.hide();
+            HfsCard.dom_target.remove();
+            $(window).trigger("card-hide");
             return;
         }
         var raw = CardWithError.render("Husky Card & Dining");

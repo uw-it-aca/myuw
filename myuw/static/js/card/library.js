@@ -20,7 +20,8 @@ var LibraryCard = {
         var source = $("#library_card_content").html();
         var template = Handlebars.compile(source);
         if (!library_data.next_due && !library_data.holds_ready && !library_data.items_loaned && !library_data.fines) {
-            LibraryCard.dom_target.hide();
+            LibraryCard.dom_target.remove();
+            $(window).trigger("card-hide");
         }
         else {
             LibraryCard.dom_target.html(template(library_data));
@@ -37,7 +38,8 @@ var LibraryCard = {
 
     show_error: function(status) {
         if (status === 404) {
-            LibraryCard.dom_target.hide();
+            LibraryCard.dom_target.remove();
+            $(window).trigger("card-hide");
             return;
         }
         var raw = CardWithError.render("Library Account");

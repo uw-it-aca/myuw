@@ -5,7 +5,8 @@ var TuitionCard = {
     render_init: function() {
         TuitionCard.dom_target =$('#TuitionCard');
         if (!window.user.student) {
-            TuitionCard.dom_target.hide();
+            TuitionCard.dom_target.remove();
+            $(window).trigger("card-hide");
             return;
         }
         WSData.fetch_tuition_data(TuitionCard.render_upon_data,
@@ -25,7 +26,8 @@ var TuitionCard = {
         // notice never returns 404.
         if (status === 404) {
             // not student or SDB can't find the regid
-            TuitionCard.dom_target.hide();
+            TuitionCard.dom_target.remove();
+            $(window).trigger("card-hide");
             return;
         }
         var raw = CardWithError.render("Tuition & Fees");
