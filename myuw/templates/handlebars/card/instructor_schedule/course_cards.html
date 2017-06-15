@@ -1,9 +1,7 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "instructor_course_card_list" %}
 
-<h3 id="your_courses" class="sr-only">Courses you are instructing {{ucfirst quarter}} {{year}}</h3>
-
-<div class="instructor_cards" aria-labelledby="your_courses">
+<div class="instructor_cards">
   <div role="tablist" class="instructor-term-tabs myuw-pagetabs">
       {{#each tab_terms}}
       <div data-tab-type="instructor-term-nav" data-term="{{year}},{{toLowerCase quarter}}" role="tab" aria-controls="{{year}},{{toLowerCase quarter}}" {{# if matching_term }}class="myuw-tab myuw-tab-selected" aria-selected="true"{{else}}class="myuw-tab" aria-selected="false"{{/if }}><a class="myuw-tab-label tab-nav-terms" href="#" data-term="{{year}},{{toLowerCase quarter}}">{{ quarter}} {{short_year year}}</a></div>
@@ -14,31 +12,36 @@
       <label for="teaching-term-select" class="sr-only">Term</label>
       <select id="teaching-term-select" class="instructed-terms myuw-dropmenu {{#if matching_term}}myuw-dropmenu-selected{{/if}}"><option selected="selected" value=''>All terms</option>{{#each reversed_related_terms}}<option {{#if matching_term}}selected{{/if}} value="{{year}},{{toLowerCase quarter}}">{{#if is_current}}{{quarter}} {{short_year year}} (Current){{else}}{{quarter}} {{short_year year}}{{/if}}</option>{{/each}}</select>
   </div>
-  {{#each sections}}
-  <div class="card myuw-card instructor-course-card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
-    <div class="fade-in">
-      <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
-        <h3 class="myuw-card-title">
-            <span class="myuw-course-abbrtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>
-        <!--    {{#if ../future_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}{{#if ../past_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}} -->
-            <span class="myuw-course-shortname">{{ course_title }}</span>
-        </h3>
 
-        <div class="course-meta">
-            <span class="myuw-meta course-sln">SLN <a href="https://sdb.washington.edu/?SLN={{ sln }}" target="_blank" data-linklabel="SLN {{ sln }}: {{ curriculum_abbr }} {{course_number}} {{section_id}}">{{ sln }}</a></span>
-            <span class="myuw-meta course-meeting-type">{{ meetings.0.type }}</span>
+  <div class="instructor-term-cards" aria-labelledby="your_courses">
+      <h3 id="your_courses" class="sr-only">Courses you are instructing {{ucfirst quarter}} {{year}}</h3>
+
+      {{#each sections}}
+      <div class="card myuw-card instructor-course-card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
+        <div class="fade-in">
+          <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
+            <h3 class="myuw-card-title">
+                <span class="myuw-course-abbrtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>
+            <!--    {{#if ../future_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}{{#if ../past_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}} -->
+                <span class="myuw-course-shortname">{{ course_title }}</span>
+            </h3>
+
+            <div class="course-meta">
+                <span class="myuw-meta course-sln">SLN <a href="https://sdb.washington.edu/?SLN={{ sln }}" target="_blank" data-linklabel="SLN {{ sln }}: {{ curriculum_abbr }} {{course_number}} {{section_id}}">{{ sln }}</a></span>
+                <span class="myuw-meta course-meeting-type">{{ meetings.0.type }}</span>
+            </div>
+
+            <!-- need to remove
+            <h4 class="myuw-card-row-heading">Enrollment</h4>
+            {{ current_enrollment }}{{#if limit_estimate_enrollment }}/{{ limit_estimate_enrollment }}{{/if}}
+        -->
+
+            <div id="instructor_course_card_content{{index}}"></div>
+          </div>
         </div>
-
-        <!-- need to remove
-        <h4 class="myuw-card-row-heading">Enrollment</h4>
-        {{ current_enrollment }}{{#if limit_estimate_enrollment }}/{{ limit_estimate_enrollment }}{{/if}}
-    -->
-
-        <div id="instructor_course_card_content{{index}}"></div>
       </div>
-    </div>
+      {{/each}}
   </div>
-  {{/each}}
 
   {{#if section_references}}
   <div class="card">
