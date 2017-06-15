@@ -35,3 +35,9 @@ var UPassCard = {
         LogUtils.cardLoaded(UPassCard.name, UPassCard.dom_target);
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.UPassCard = UPassCard;

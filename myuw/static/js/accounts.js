@@ -32,14 +32,14 @@ var AccountsPage = {
         var cards = AccountsPage._get_card_order_by_affiliation();
         if(cards){
             Cards.load_cards_in_order(cards, $("#accounts_content_cards"));
-            AccountsPage.order_card_list();
+            AccountsPage.order_card_list(get_is_desktop());
         }
         $(window).on("card-hide", function(ev) {
-            AccountsPage.order_card_list();
+            AccountsPage.order_card_list(get_is_desktop());
         });
     },
 
-    order_card_list: function(){
+    order_card_list: function(is_desktop){
         var left_list_elem = $("#accounts_content_cards"),
             right_list_elem = $("#accounts_sidebar_cards"),
             all_cards = left_list_elem.children().add(right_list_elem.children()),
@@ -47,7 +47,7 @@ var AccountsPage = {
             right_list = [];
 
         var sorted_cards = all_cards.sort(AccountsPage._sort_cards);
-        if(get_is_desktop()){
+        if(is_desktop){
             for(var i=0; i<sorted_cards.length; i++){
                 if(i%2 === 0){
                     left_list.push(sorted_cards[i]);
@@ -99,3 +99,9 @@ var AccountsPage = {
     }
 
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.AccountsPage = AccountsPage;

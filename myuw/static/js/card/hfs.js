@@ -44,3 +44,9 @@ var HfsCard = {
         HfsCard.dom_target.html(raw);
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.HfsCard = HfsCard;
