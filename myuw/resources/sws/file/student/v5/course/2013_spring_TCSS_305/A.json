@@ -66,7 +66,16 @@
     "IndependentStudy": false,
     "InstituteName": "",
     "IsIndependentStart": false,
-    "JointSections": [],
+    "JointSections": [
+        {
+            "CourseNumber": "305",
+            "CurriculumAbbreviation": "JOINT",
+            "Href": "/student/v5/course/2013,spring,JOINT,305/A.json",
+            "Quarter": "spring",
+            "SectionID": "A",
+            "Year": 2013
+        }
+    ],
     "LMSOwnership": null,
     "LimitEstimateEnrollment": 50,
     "LimitEstimateEnrollmentIndicator": "limit",

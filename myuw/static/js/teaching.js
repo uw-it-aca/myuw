@@ -8,15 +8,14 @@ var Teaching = {
     },
 
     make_html: function () {
-        Handlebars.registerPartial('teaching_resources',
-                                   $('#teaching_resources_partial').html());
         $('html,body').animate({scrollTop: 0}, 'fast');
         var teaching_source = $("#teaching").html();
         var template = Handlebars.compile(teaching_source);
 
         $("#main-content").html(template({
-            'bothell_affil': window.user.bothell_affil,
-            'tacoma_affil': window.user.tacoma_affil
+            'seattle_affil': (window.user.seattle_affil || window.user.seattle),
+            'bothell_affil': (window.user.bothell_affil || window.user.bothell),
+            'tacoma_affil': (window.user.tacoma_affil || window.user.tacoma)
         }));
 
         NoticeBanner.render_init($("#notice_banner_location"));
@@ -49,6 +48,7 @@ var Teaching = {
             InstructorCourseCards
         ];
         var desktop_sidebar_cards = [
+            TeachingResourcesCard,
             EventsCard
         ];
         Cards.load_cards_in_order(desktop_body_cards, $("#teaching_content_cards"));
@@ -61,6 +61,7 @@ var Teaching = {
         var mobile_cards = [
             VisualScheduleCard,
             InstructorCourseCards,
+            TeachingResourcesCard,
             EventsCard
         ];
         Cards.load_cards_in_order(mobile_cards, $("#teaching_content_cards"));
@@ -73,5 +74,4 @@ var Teaching = {
         $("#calendar_banner_location_desktop").html('');
         $("#calendar_banner_location_mobile").html('');
     }
-
 };

@@ -29,7 +29,15 @@
       "Writing":false
    },
    "GradeSubmissionDelegates":[
-
+		{
+			"DelegateLevel":"section",
+			"Person":
+			{
+				"RegID":"6DF0A9206A7D11D5A4AE0004AC494FFE",
+				"Href":"/student/v5/person/6DF0A9206A7D11D5A4AE0004AC494FFE.json",
+				"Name":"MILLER,SUSAN HEE-JUNG"
+			}
+		}
    ],
    "GradingSystem":"",
    "HonorsCourse":false,

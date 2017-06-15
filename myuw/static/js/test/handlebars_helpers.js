@@ -1,11 +1,33 @@
-Handlebars = require("../../vendor/js/handlebars-v2.0.0.js");
-moment = require("../../vendor/js/moment.2.8.3.min.js");
+Handlebars = require("../../vendor/js/handlebars-v4.0.5.js");
+moment = require("../../vendor/js/moment.2.18.1.min.js");
 require("datejs");
-
 require("../handlebars-helpers.js");
 
 var assert = require("assert");
 describe('Handlebar-helpers', function(){
+
+    describe("formatTime", function() {
+        it ("should return HH:MM{AM,PM}", function() {
+            var template = Handlebars.compile("{{formatTime '13:30:00'}}");
+            var output = template();
+            assert.equal(output, "1:30");
+            template = Handlebars.compile("{{formatTime '12:30:00'}}");
+            output = template();
+            assert.equal(output, "12:30");
+        });
+    });
+
+    describe("formatTimeAMPM", function() {
+        it ("should return HH:MM{AM,PM}", function() {
+            var template = Handlebars.compile("{{formatTimeAMPM '12:00:00'}}");
+            var output = template();
+            assert.equal(output, "12:00PM");
+            template = Handlebars.compile("{{formatTimeAMPM '11:30:00'}}");
+            output = template();
+            assert.equal(output, "11:30AM");
+        });
+    });
+
     describe('phonenumber', function(){
         it('should replace 10 digits with a formatted phone number', function(){
             var template = Handlebars.compile("{{formatPhoneNumber '5035551234'}}");
@@ -285,6 +307,34 @@ describe('Handlebar-helpers', function(){
         });
     });
 
+    describe('phone_number', function() {
+        it("formatted from 555.555.5555", function() {
+            var template = Handlebars.compile("{{phone_number '555.555.5555' }}");
+            var output = template();
+            assert.equal(output, '(555) 555-5555');
+        });
+        it("formatted from 5555555555", function() {
+            var template = Handlebars.compile("{{phone_number '5555555555' }}");
+            var output = template();
+            assert.equal(output, '(555) 555-5555');
+        });
+        it("formatted from 555 555-5555", function() {
+            var template = Handlebars.compile("{{phone_number '555 555-5555' }}");
+            var output = template();
+            assert.equal(output, '(555) 555-5555');
+        });
+        it("unformatted (555)555-5555", function() {
+            var template = Handlebars.compile("{{phone_number '(555)555-5555' }}");
+            var output = template();
+            assert.equal(output, '(555)555-5555');
+        });
+        it("unformatted 555-5555", function() {
+            var template = Handlebars.compile("{{phone_number '555-5555' }}");
+            var output = template();
+            assert.equal(output, '555-5555');
+        });
+    });
+
     describe("muwm-2505", function() {
         it ("should have the right date", function() {
             var template = Handlebars.compile("{{toFriendlyDate '2013-03-04' }}");
@@ -293,5 +343,21 @@ describe('Handlebar-helpers', function(){
             assert.equal(output, 'Mon, Mar 4');
 
         });
+    });
+
+    describe('short-year', function() {
+        it('should handle an integer', function() {
+            var template = Handlebars.compile("{{short_year 2013 }}");
+            var output = template();
+
+            assert.equal(output, '’13');
+        });
+        it('should handle a string', function() {
+            var template = Handlebars.compile("{{short_year '2017'}}");
+            var output = template();
+
+            assert.equal(output, '’17');
+        });
+
     });
 });

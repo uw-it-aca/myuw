@@ -96,9 +96,9 @@
             },
             "MeetingType": "lecture",
             "RoomToBeArranged": true,
-            "StartTime": "08:30",
+            "StartTime": "12:30",
             "DaysOfWeekToBeArranged": false,
-            "EndTime": "09:20",
+            "EndTime": "13:20",
             "BuildingToBeArranged": true
         }
     ],

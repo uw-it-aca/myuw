@@ -1,47 +1,42 @@
 {
-    "Current": {
-        "EmployeeID": null,
-        "Href": "/student/v5/person.json?reg_id=10000000000000000000000000000001&net_id=&student_number=&employee_id=&student_system_key=",
-        "NetID": null,
-        "PageSize": "10",
-        "PageStart": "1",
-        "RegID": "10000000000000000000000000000001",
-        "StudentNumber": null,
-        "StudentSystemKey": null
-    },
-    "Next": null,
-    "PageSize": "10",
-    "PageStart": "1",
-    "Persons": [
-        {
-            "BirthDate": null,
-            "DirectoryRelease": null,
-            "Email": null,
-            "EmployeeID": "100000001",
-            "FirstName": "James",
-            "Gender": null,
-            "Href": "/student/v5/person/10000000000000000000000000000001.json",
-            "LastEnrolled": null,
-            "LastName": "Staff",
-            "LocalAddress": null,
-            "LocalPhone": null,
-            "PermanentAddress": "4545 15 Av, Seattle, WA98105",
-            "PermanentPhone": "206-221-1234",
-            "RegID": "10000000000000000000000000000001",
-            "RegisteredName": "JAMES STAFF",
-            "Resident": null,
-            "StudentName": "JAMES STAFF",
-            "StudentNumber": null,
-            "StudentSystemKey": null,
-            "TestScore": {
-                "Href": "/student/v5/testscore/10000000000000000000000000000001.json",
-                "RegID": "10000000000000000000000000000001"
-            },
-            "UWNetID": "staff",
-            "Veteran": null,
-            "VisaType": null
-        }
-    ],
-    "Previous": null,
-    "TotalCount": 1
-}
+"BirthDate":"1961-10-26",
+"DirectoryRelease":true,
+"Email":"staff@uw.edu",
+"EmployeeID":"100000001",
+"FirstName":"James",
+"Gender":"M",
+"LastEnrolled":{
+        "Href":"\/student\/v5\/term\/2013,winter.json",
+        "Quarter":"winter",
+        "Year":2012},
+"LastName":"Staff",
+"LocalAddress":{
+        "City":"Seattle",
+        "Country":"United States",
+        "Line1":"4545 25th Ave NE",
+        "Line2":"APT 007",
+        "PostalCode":"",
+        "State":"WA",
+        "Zip":""},
+"LocalPhone":null,
+"PermanentAddress":{
+        "City":"Bellevue",
+        "Country":"United States",
+        "Line1":"1645 140th Ave NE",
+        "Line2":"APT 980",
+        "PostalCode":"",
+        "State":"WA",
+        "Zip":"98005-1234"},
+"PermanentPhone":"4255556789",
+"RegID":"10000000000000000000000000000002",
+"Resident":null,
+"StudentName":null,
+"StudentNumber":null,
+"StudentSystemKey":null,
+"TestScore":{
+   "Href":"\/student\/v5\/testscore\/10000000000000000000000000000001.json",
+   "RegID":10000000000000000000000000000001},
+"UWNetID":"seagrad",
+"Veteran":{"Code":"0",
+           "Description":null},
+"VisaType":null}

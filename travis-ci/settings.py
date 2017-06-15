@@ -72,6 +72,8 @@ AUTHENTICATION_BACKENDS = (
 #    'django.contrib.auth.backends.ModelBackend',
 )
 
+EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+
 ROOT_URLCONF = 'travis-ci.urls'
 
 WSGI_APPLICATION = 'travis-ci.wsgi.application'
@@ -80,12 +82,23 @@ WSGI_APPLICATION = 'travis-ci.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+import os
+if os.environ['DB'] == "sqlite3":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+elif os.environ['DB'] == "mysql":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'myuw',
+            'USER': 'myuw',
+            'PASSWORD': 'my_pass',
+        }
+    }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -115,8 +128,8 @@ STATICFILES_FINDERS = (
 
 COMPRESS_ENABLED = False
 COMPRESS_ROOT = "compress_root"
-
-# Test the memcached cache code
 RESTCLIENTS_TEST_MEMCACHED = True
 RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
 USERSERVICE_ADMIN_GROUP = "x"
+AUTHZ_GROUP_BACKEND = 'authz_group.authz_implementation.all_ok.AllOK'
+MAILMAN_COURSEREQUEST_RECIPIENT = ""

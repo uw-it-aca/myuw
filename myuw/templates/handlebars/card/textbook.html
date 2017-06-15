@@ -5,12 +5,12 @@
     <div class="fade-in">
         <h3>Textbooks</h3>
         <ul class="unstyled-list textbooks-list">
-            {{ #each sections }}
+            {{#each sections }}
                 <li class="textbooks-list-item">
                     <div class="c{{color_id}} simplesquare todo"></div>
                     <span class="textbooks-course-title">{{ course_id }}:</span>
                     <span class="textbooks-course-books">
-                    {{ #if no_course_books }}
+                    {{#if no_course_books }}
                         No books
                     {{else}}
                         {{ total }} {{ pluralize total 'book' 'books' }}
@@ -19,8 +19,8 @@
                              ({{#if required}}{{required}}{{else}}not{{/if}} required)
                         </span>
                         </li>
-                {{ /if }}
-            {{ /each }}
+                {{/if }}
+            {{/each }}
         </ul>
 
         {{#unless no_book_assigned}}

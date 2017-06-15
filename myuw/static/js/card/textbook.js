@@ -6,7 +6,7 @@ var TextbookCard = {
     render_init: function() {
         TextbookCard.dom_target = $('#TextbookCard');
         if (!window.user.student) {
-            $("#TextbookCard").hide();
+            TextbookCard.dom_target.hide();
         }
         if (TextbookCard.term === 'current') {
             if (!window.card_display_dates.is_before_eof_7days_of_term) {
@@ -35,6 +35,7 @@ var TextbookCard = {
         if (!TextbookCard._has_all_data()) {
             return;
         }
+
         // _render should be called only once.
         if (renderedCardOnce(TextbookCard.name)) {
             return;
@@ -59,7 +60,7 @@ var TextbookCard = {
         var no_book_assigned = true;
         var section_book_data = [];
 
-        $.each(textbook_data.sections, function (sec_idx, section) {
+        $.each(textbook_data.enrolled_sections, function (sec_idx, section) {
             var required = 0;
             var optional = 0;
             if (section.books) {
@@ -110,5 +111,10 @@ var TextbookCard = {
             },  "", "/textbooks/"+term);
         });
     }
-
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.TextbookCard = TextbookCard;

@@ -1,17 +1,43 @@
-var ec = require("../card/events.js"),
-    assert = require("assert");
-moment = require("../../vendor/js/moment.2.8.3.min.js");
+Global = require("./global.js");
 
 describe('EventsCard', function(){
     describe('group_by_date', function(){
-        var events = JSON.parse("[{\"start\": \"2013-04-1610: 00: 00-07: 00\",\"event_url\": \"http: //www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D110608069\",\"event_location\": \"ChemistryBuilding(CHB)\",\"summary\": \"OrganicChemistrySeminar: Asst.Prof.AlexanderStatsyuk\"    },    {\"start\": \"2013-04-1618: 00: 00-07: 00\",\"event_url\": \"http: //www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D110608069\",\"event_location\": \"ChemistryBuilding(CHB)\",\"summary\": \"OrganicChemistrySeminar: Steve\"    },    {\"start\": \"2013-04-1716: 00: 00-07: 00\",\"event_url\": \"http: //www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D110741160\",\"event_location\": \"ChemistryBuilding(CHB)\",\"summary\": \"OrganicChemistrySeminar: Prof.MatthewBecker\"    },    {\"start\": \"2013-04-1916: 00: 00-07: 00\",\"event_url\": \"http: //www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D113278967\",\"event_location\": \"ChemistryBuilding(CHB)\",\"summary\": \"OrganicChemistrySeminar: Assoc.Prof.RyanShenvi\"    },    {\"start\": \"2013-04-1916: 00: 00-07: 00\",\"event_url\": \"http: //www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D113278967\",\"event_location\": \"ChemistryBuilding(CHB)\",\"summary\": \"OrganicChemistrySeminar: Assoc.Prof.RyanShenvi\"    },    {\"start\": \"2013-04-1916: 00: 00-07: 00\",\"event_url\": \"http: //www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D113278967\",\"event_location\": \"ChemistryBuilding(CHB)\",\"summary\": \"OrganicChemistrySeminar: Assoc.Prof.RyanShenvi\"    },    {\"start\": \"2013-04-1916: 00: 00-07: 00\",\"event_url\": \"http: //www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D113278967\",\"event_location\": \"ChemistryBuilding(CHB)\",\"summary\": \"OrganicChemistrySeminar: Assoc.Prof.RyanShenvi\"    },    {\"start\": \"2013-04-1916: 00: 00-07: 00\",\"event_url\": \"http: //www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D113278967\",\"event_location\": \"ChemistryBuilding(CHB)\",\"summary\": \"OrganicChemistrySeminar: Assoc.Prof.RyanShenvi\"    },    {\"start\": \"2013-04-1916: 00: 00-07: 00\",\"event_url\": \"http: //www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D113278967\",\"event_location\": \"ChemistryBuilding(CHB)\",\"summary\": \"OrganicChemistrySeminar: Assoc.Prof.RyanShenvi\"    },    {\"start\": \"2013-04-1916: 00: 00-07: 00\",\"event_url\": \"http: //www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D113278967\",\"event_location\": \"ChemistryBuilding(CHB)\",\"summary\": \"OrganicChemistrySeminar: Assoc.Prof.RyanShenvi\"}]");
+        before(function (done) {
+            var render_id = 'events_card';
+
+            Global.Environment.init({
+                render_id: render_id,
+                scripts: [
+                    "myuw/static/js/card/events.js"
+                ],
+                templates: [
+                    "myuw/templates/handlebars/card/events.html"
+                ]
+            });
+
+            Global.Environment.ajax_stub('/api/v1/deptcal/index.json');
+
+            $(window).on("myuw:card_load", function () {
+                done();
+            });
+
+            EventsCard.dom_target = $('#' + render_id);
+            EventsCard.render_init();
+        });
+        it ('should render card', function () {
+            assert.equal($('.myuw-events').length, 1);
+            assert.equal($('.myuw-events-list').length, 10);
+        });
         it('should sort events', function(){
-            var data = ec.EventsCard.group_by_date(events);
+            var event_data = WSData.dept_event_data();
+            var data = EventsCard.group_by_date(event_data.events);
             var shown = data[0];
             var hidden = data[1];
             assert.equal(hidden.length, 4);
             assert.equal(shown.length, 6);
         });
+        after(function () {
+            Global.Environment.ajax_stub_restore();
+        });
     });
-
 });

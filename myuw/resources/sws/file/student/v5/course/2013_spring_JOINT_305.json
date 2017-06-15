@@ -1,0 +1,41 @@
+{
+    "CourseCampus": "Tacoma",
+    "CourseCollege": "UW Tacoma",
+    "CourseComment": "EMAIL PREQ CHG",
+    "CourseDescription": "Provides a practicum in program design and development. Programming practice on a medium-scale, object-oriented application, consolidating prior programming principles and expanding knowledge of application design.",
+    "CourseNumber": "305",
+    "CourseTitle": "PROGRAMMING PRACT",
+    "CourseTitleLong": "PROGRAMMING PRACTICUM",
+    "CreditControl": "fixed credit",
+    "Curriculum": {
+        "CurriculumAbbreviation": "JOINT",
+        "Href": "/student/v5/curriculum/2013,spring,JOINT.json",
+        "Quarter": "spring",
+        "Year": 2013
+    },
+    "FirstEffectiveTerm": {
+        "Href": "/student/v5/term/2010,winter.json",
+        "Quarter": "winter",
+        "Year": 2010
+    },
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": true,
+        "QuantitativeAndSymbolicReasoning": true,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradingSystem": "credit/no credit or standard",
+    "LastEffectiveTerm": {
+        "Href": "/student/v5/term/2015,summer.json",
+        "Quarter": "summer",
+        "Year": 2015
+    },
+    "MaximumCredit": 0.0,
+    "MaximumTermCredit": 0.0,
+    "Metadata": "CourseSourceKey=SDB;",
+    "MinimumTermCredit": 5.0,
+    "RepositoryTimeStamp": "8/9/2016 12:46:12 PM"
+}

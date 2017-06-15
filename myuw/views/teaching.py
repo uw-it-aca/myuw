@@ -1,4 +1,4 @@
-from myuw.views.page import page
+from myuw.views.page import page, try_prefetch
 from myuw.util.page_view import page_view
 
 
@@ -12,6 +12,7 @@ def teaching(request,
         "quarter": quarter,
         "summer_term": summer_term
     }
+
     return page(request, context, template='teaching.html')
 
 

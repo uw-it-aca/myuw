@@ -23,11 +23,11 @@ var LoadCourseEval = {
 
             CourseCardContentPanel.render(section, fetched_eval_data);
         }
-        LoadCourseEval.add_events();
+        LoadCourseEval.add_events(course_data.quarter);
     },
     
-    add_events: function() {
-        $(".toggle_course_card_disclosure").on("click", function(ev) {
+    add_events: function(quarter) {
+        $(".toggle_course_card_disclosure_" + quarter).on("click", function(ev) {
             ev.preventDefault();
             var card = $(ev.target).closest("[data-type='card']");
             var item_index = this.getAttribute("aria-controls");

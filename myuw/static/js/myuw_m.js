@@ -2,10 +2,11 @@
 var data;
 var multi_res_card_render_called = {};
 
-$(document).ready(function() {
+$(window.document).ready(function() {
     LogUtils.init_logging();
     init_profile_events();
     init_modal_events();
+    init_search_events();
     var course_data = null;
     var book_data = null;
     // This is to prevent multiple events on load from making
@@ -56,19 +57,26 @@ $(document).ready(function() {
     $("#nav_visual_schedule").bind("click", function(ev) {
         WSData.log_interaction("nav_menu_visual_schedule");
     });
-    
+
     // handle clicking on resources
     $("#categories_link").bind("click", function(ev) {
-        ev.preventDefault();                
+        ev.preventDefault();
         $('html, body').animate({
             scrollTop: $("#categories").offset().top
         }, "fast");
         return false;
     });
-    
+
+    // handle clicking on mobile menu
+    $("#menu_toggle").bind("click", function(ev) {
+		$("#menu_container").toggleClass("slide-down");
+	});
+
     // handle touchstart to mimic :hover event for mobile touch
     $('body').bind('touchstart', function() {});
-        
+
+    register_link_recorder();
+
 });
 
 var showLoading = function() {
@@ -93,7 +101,8 @@ var showError = function() {
 
 // common method to set display style
 var get_is_desktop = function() {
-    var mobile_cutoff_width = 992;
+    //var mobile_cutoff_width = 992;
+    var mobile_cutoff_width = 768;
     var viewport_width = $(window).width();
     return (viewport_width >= mobile_cutoff_width);
 };
@@ -108,12 +117,19 @@ var date_from_string = function(date_string) {
         return;
     }
     var date_object = new Date(matches[1], (parseInt(matches[2], 10) - 1), parseInt(matches[3], 10), parseInt(matches[4], 10), parseInt(matches[5], 10));
-    
+
     return date_object;
 };
 
+var safe_label = function(section_label) {
+    if(section_label){
+        return section_label.replace(/[^a-z0-9]/gi, '_');
+    }
+    return section_label;
+};
+
 var titilizeTerm = function(term) {
-    //Takes a term string (Eg 2032,summer,b-term) and 
+    //Takes a term string (Eg 2032,summer,b-term) and
     //returns a title (Eg Summer 2032 B-term)
     var pieces = term.split(",");
     if (pieces.length === 1) {
@@ -200,7 +216,81 @@ var toggle_card_disclosure = function(card, div_toggled, a_expose, a_hide, label
     }
 };
 
+var register_link_recorder = function() {
+    $('body').on('mousedown', "A", record_link_click);
+    // For mocha testing
+    $('body').on('click', "A", record_link_click);
+    // For ios open in new window
+    $('body').on('touchstart', "A", record_link_click);
+
+};
+
+var record_link_click = function(ev) {
+    var target = $(this);
+    if (target.attr('data-notrack') !== undefined) {
+        return;
+    }
+
+    var original_href = target.attr('myuw-data-href');
+    if (target.attr('myuw-data-href')) {
+        return;
+    }
+
+    // Google search puts things here...
+    var href = target.attr('data-ctorig');
+    if (!href) {
+        href = target.attr('href');
+    }
+
+    if (!href.match('^https?://')) {
+        return;
+    }
+    target.attr('myuw-data-href', href);
+
+    var linklabel = target.attr('data-linklabel');
+    var label = "";
+    if (linklabel) {
+        label = linklabel;
+    }
+    else {
+        label = target.text();
+    }
+
+    var new_href = '/out?u='+encodeURIComponent(href)+'&l='+encodeURIComponent(label);
+    target.attr('href', new_href);
+};
+
 var myuwFeatureEnabled = function(feature) {
     return (window.enabled_features.hasOwnProperty(feature) &&
             window.enabled_features[feature]);
 };
+
+var getUrlParameter = function (name) {
+    var url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+};
+
+var init_search_events = function() {
+    // handle clicking on search button
+    $("#search_toggle").bind("click", function(ev) {
+		$("#app_search").toggleClass("slide-down");
+        $("#search-nav").focus();
+	});
+};
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.capitalizeString = capitalizeString;
+exports.date_from_string = date_from_string;
+exports.myuwFeatureEnabled = myuwFeatureEnabled;
+exports.register_link_recorder = register_link_recorder;
+exports.safe_label = safe_label;
+exports.renderedCardOnce = renderedCardOnce;
+exports.titilizeTerm = titilizeTerm;

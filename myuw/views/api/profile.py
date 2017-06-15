@@ -2,9 +2,8 @@ import json
 import logging
 import traceback
 from django.http import HttpResponse
-from myuw.dao.enrollment import (get_current_quarter_enrollment,
-                                 get_main_campus)
-from myuw.dao.gws import is_grad_student, is_student
+from myuw.dao.gws import is_student
+from myuw.dao.student_profile import get_student_profile
 from myuw.dao.password import get_pw_json
 from myuw.dao.pws import get_display_name_of_current_user
 from myuw.dao.student_profile import get_profile_of_current_user
@@ -13,6 +12,7 @@ from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response, log_msg
 from myuw.views import prefetch_resources
 from myuw.views.rest_dispatch import RESTDispatch
+from restclients_core.exceptions import DataFailureException
 from myuw.views.error import data_not_found, handle_exception
 
 
@@ -36,35 +36,9 @@ class MyProfile(RESTDispatch):
                                prefetch_password=True)
 
             netid = get_netid_of_current_user()
+
             if is_student():
-                profile = get_profile_of_current_user()
-                response = profile.json_data()
-                response['is_student'] = True
-                response['is_grad_student'] = is_grad_student()
-
-                campuses = get_main_campus(request)
-                if 'Seattle' in campuses:
-                    response['campus'] = 'Seattle'
-                elif 'Tacoma' in campuses:
-                    response['campus'] = 'Tacoma'
-                elif 'Bothell' in campuses:
-                    response['campus'] = 'Bothell'
-                try:
-                    enrollment = get_current_quarter_enrollment(request)
-                    response['class_level'] = enrollment.class_level
-                    if len(enrollment.majors) > 0:
-                        response['majors'] = []
-                        for major in enrollment.majors:
-                            response['majors'].append(major.json_data())
-                    if len(enrollment.minors) > 0:
-                        response['minors'] = []
-                        for minor in enrollment.minors:
-                            response['minors'].append(minor.json_data())
-                except Exception as ex:
-                    logger.error(
-                        "%s get_current_quarter_enrollment: %s" %
-                        (netid, ex))
-
+                response = get_student_profile(request)
             else:
                 response = {}
                 response['is_grad_student'] = False

@@ -6,31 +6,6 @@
     <div id="instructor_course_resource{{index}}">
     </div>
 
-    {{#if grade_submission_delegates}}
-        <h4 class="scheduleHeading">Grading</h4>
-        <div rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
-            <ul class="unstyled-list">
-                <li class="clearfix">
-                    <div class="pull-left">
-                        <span class="inst-course-label">Grade System</span>
-                    </div>
-                    <div class="pull-right">
-                        <span class="card-badge-value">Standard</span>
-                    </div>
-                </li>
-                <li class="clearfix">
-                    <div class="pull-left">
-                        <span class="inst-course-label">Delegate {{ pluralize grade_submission_delegates.length '' 'S'}}</span>
-                    </div>
-                    <div class="pull-right">
-                        {{ #each grade_submission_delegates }}
-                        <div id="grade_submission_delegate{{index}}" class="card-badge-value">
-                          <span>{{level}}</span>: {{this.person.surname}}, {{person.first_name}}
-                        </div>
-                      {{/each}}
-                    </div>
-                </li>
-            </ul>  
-        </div>
-    {{/if}}
+    {% include "handlebars/card/instructor_schedule/course_grading.html" %}
+
 {% endtplhandlebars %}

@@ -14,7 +14,11 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
 
     function parse_date(str) {
         // After MUWM-3672, we're not using browser based parsing anymore.  Too many quirks.
-        return Date.parse(str);
+        var date = Date.parse(str);
+        if (!date){
+            date = date_from_string(date);
+        }
+        return date;
     }
 
     // used on course card
@@ -37,7 +41,7 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
         return moment(parse_date(str)).fromNow();
     });
 
-    // used on Grade, Library card 
+    // used on Grade, Library card
     Handlebars.registerHelper("toFriendlyDate", function(str) {
         return moment(parse_date(str)).format("ddd, MMM D");
     });
@@ -86,10 +90,21 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
         }
 
     });
+    Handlebars.registerHelper('short_year', function(year) {
+        year = ""+year;
+        return "’"+year.substr(-2,2);
+    });
 })();
 
+Handlebars.registerHelper("safeLabel", function(str) {
+    return safe_label(str);
+});
+
 Handlebars.registerHelper("toUrlSafe", function(str) {
-    return str.replace(/ /g, "%20");
+    if(str) {
+        return str.replace(/ /g, "%20");
+    }
+    return str;
 });
 
 Handlebars.registerHelper("toLowerCase", function(str) {
@@ -136,17 +151,17 @@ Handlebars.registerHelper("encodeForMaps", function(str) {
     return str;
 });
 
-//probably extraneous
+//convert to 12 hour and remove seconds
 Handlebars.registerHelper("formatTime", function(time) {
     formatted = time.toString().split(":");
     formatted[0] = parseInt(formatted[0], 10);
     if (formatted[0] > 12) {
         formatted[0] -= 12;
     }
-    return formatted.join(":");
+    return formatted[0] + ":" + formatted[1];
 });
 
-//converts 24 hour time to 12 hour
+//converts 24 hour time to 12 hour, remove seconds
 Handlebars.registerHelper("formatTimeAMPM", function(time) {
     formatted = time.toString().split(":");
     formatted[0] = parseInt(formatted[0], 10);
@@ -158,9 +173,9 @@ Handlebars.registerHelper("formatTimeAMPM", function(time) {
     }
 
     if (formatted[0] > 12) {
-        formatted[0] = formatted[0] - 12;
+        formatted[0] -= 12;
     }
-    return formatted.join(":");
+    return formatted[0] + ":" + formatted[1];
 });
 
 // converts date string into 12 hour display - no am/pm
@@ -259,7 +274,7 @@ Handlebars.registerHelper('equal', function(value1, value2, options) {
         throw new Error("Handlebars Helper equal needs 2 parameters");
     if(value1 != value2) {
         return options.inverse(this);
-    } 
+    }
     else {
         return options.fn(this);
     }
@@ -271,9 +286,9 @@ Handlebars.registerHelper("eachWithIndex", function(array, fn) {
         var item = array[i];
         item.index = i;
         buffer += fn.fn(item);
-    }   
+    }
     return buffer;
-}); 
+});
 
 Handlebars.registerHelper('format_schedule_hour', function(hour, position) {
     if (parseInt(hour, 10) === 12) {
@@ -417,4 +432,17 @@ Handlebars.registerHelper('get_quarter_code', function(quarter_str) {
 Handlebars.registerHelper('slugify', function(value) {
     var slug = value.replace(/[^\w\s]+/gi, '').replace(/ +/gi, '-');
     return slug.toLowerCase();
+});
+
+Handlebars.registerHelper('phone_number', function(value) {
+    var number;
+
+    if (value) {
+        number = value.match(/^(\d{3})[ -\.]?(\d{3})[ -\.]?(\d{4})$/);
+        if (number) {
+            return '(' + number[1] + ') ' + number[2] + '-' + number[3];
+        }
+    }
+
+    return value;
 });

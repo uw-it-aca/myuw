@@ -14,6 +14,7 @@ class ResCategoryLink(models.Model):
     url = models.CharField(max_length=150)
     title = models.CharField(max_length=150)
     affiliation = models.CharField(max_length=80, null=True)
+    pce = models.NullBooleanField()
     campus = models.CharField(max_length=8, null=True)
     category_id = models.CharField(max_length=80)
     category_name = models.CharField(max_length=80)

@@ -1,0 +1,95 @@
+{
+    "Current":
+     {
+        "Href": "/student/v5/enrollment.json?reg_id=9136CCB8F66711D5BE060004AC494004&verbose=true&changed_since_date=&transcriptable_course=all",
+        "RegID": "9136CCB8F66711D5BE060004AC494004",
+        "Verbose": true
+    },
+    "Enrollments": [
+        {
+            "ClassLevel": "SENIOR",
+            "CurrentRegisteredCredits": null,
+            "EnrollmentStatus": "Registered",
+            "EnrollmentStatusDate": "2013-06-08",
+            "FullName": "James McMiddle Average 4",
+            "HonorsProgram": false,
+            "LeaveEndQuarter": 0,
+            "LeaveEndYear": 0,
+            "Majors": [
+
+            ],
+            "Metadata": "EnrollmentSourceLocation=SDB;",
+            "Minors": [
+
+            ],
+            "PendingClassChange": false,
+            "PendingHonorsChange": false,
+            "PendingMajorChange": false,
+            "PendingResidentChange": false,
+            "PendingSpecialProgramChange": false,
+            "Person": {
+                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494004.json",
+                "Name": "James McMiddle Average 4",
+                "RegID": "9136CCB8F66711D5BE060004AC494004"
+            },
+    "QtrGradePoints": 30,
+    "QtrGradedAttmp": 10,
+    "QtrNonGrdEarned": 2,
+    "RegID": "9136CCB8F66711D5BE060004AC494004",
+    "Registrations": [
+
+      ],
+      "RepositoryTimeStamp": "3/28/2017 2:21:36 PM",
+      "Term": {
+                "Href": "/student/v5/term/2013,spring.json",
+                "Quarter": "spring",
+                "Year": 2013
+            }
+   },
+          {
+           "ClassLevel": "SENIOR",
+           "CurrentRegisteredCredits": null,
+           "EnrollmentStatus": "Registered",
+           "EnrollmentStatusDate": "2013-06-08",
+           "FullName": "James McMiddle Average 4",
+           "HonorsProgram": false,
+           "LeaveEndQuarter": 0,
+           "LeaveEndYear": 0,
+           "Majors": [
+
+           ],
+           "Metadata": "EnrollmentSourceLocation=SDB;",
+           "Minors": [
+
+           ],
+           "PendingClassChange": false,
+           "PendingHonorsChange": false,
+           "PendingMajorChange": false,
+           "PendingResidentChange": false,
+           "PendingSpecialProgramChange": false,
+           "Person": {
+               "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494004.json",
+               "Name": "James McMiddle Average 4",
+               "RegID": "9136CCB8F66711D5BE060004AC494004"
+           },
+    "QtrGradePoints": 30,
+    "QtrGradedAttmp": 10,
+    "QtrNonGrdEarned": 2,
+    "RegID": "9136CCB8F66711D5BE060004AC494004",
+    "Registrations": [
+
+     ],
+     "RepositoryTimeStamp": "3/28/2017 2:21:36 PM",
+     "Term": {
+               "Href": "/student/v5/term/2013,summer.json",
+               "Quarter": "summer",
+               "Year": 2013
+           }
+    }
+   ],
+    "Next": null,
+    "PageSize": "10",
+    "PageStart": "1",
+    "Previous": null,
+    "TotalCount": 1
+}

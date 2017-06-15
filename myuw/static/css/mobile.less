@@ -1,5 +1,6 @@
 /*** breakpoints ***/
 
+@over550: ~"screen and (min-width: 550px)";
 @phablet: ~"screen and (min-width: 768px)";
 @under992: ~"screen and (max-width: 991px)";
 @desktop: ~"screen and (min-width: 992px)";
@@ -36,6 +37,7 @@ border-color: @border;}
 @font-base: 14px;
 @font-meta: 12px;
 
+@font-header-larger: 26px;
 @font-header-large: 22px;
 @font-header-medium: 20px;
 @font-header-small: 18px;
@@ -305,7 +307,18 @@ body {
 
 }
 
-.my-text-muted {font: #666;}
+.my-text-muted { color: #666; }
+
+
+/*** Headings ***/
+.heading-page {
+    font-family: 'encode_sans_normalbold', sans-serif;
+    font-weight: 600;
+    color: #444;
+    font-size: @font-header-larger;
+    margin-top: 1.5em;
+}
+
 
 /*** uw alert ***/
 
@@ -358,15 +371,37 @@ body {
 	font-weight: bold;
 }
 
+label { font-weight: normal; }
+
 
 /*** header ***/
+
+#app_search {
+
+    .container {
+        text-align: center;
+        padding: 40px 100px 50px 100px;
+    }
+}
+
+.search-button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 10px;
+    border: 1px solid #fff;
+    border-radius: 100%;
+    height: 18px;
+    width: 18px;
+    vertical-align: middle;
+}
 
 #app_header { background: @uwpurple; overflow: hidden; position: relative;
 
     // header bar (thin dark purple)
     .header-bar { position: relative; height: 30px;
         .top_navigation_list { list-style-type: none;
-	        li { display: inline-block; }
+	        li { display: inline-block; padding-left: .5em; }
         }
         .header-myuw {
 	        h1 {
@@ -501,6 +536,7 @@ body {
 /*** message banner ***/
 #app_messages {
 	.message-banner {background-color: #558097;color:#fff; //#72adcb too light
+        p {margin:0;}
 	    h2 { font-size: 15px; display: inline; font-weight: bold; }
         .advert {
             background: #F5E200; color: blue;
@@ -519,7 +555,7 @@ body {
 	}
 	.message-dialog {
 		.modal-content {
-			h3 {margin-bottom: 10px;font-family: 'encode_sans_normalbold';font-size: 18px;color: #85754d;}
+			h3 {margin-bottom: 10px;font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: 18px;color: #85754d;}
 			.modal-header {border-bottom: none;padding-bottom: 0;}
 			.modal-body {padding: 0 15px;
 				ul {
@@ -539,7 +575,7 @@ body {
 #app_notices { margin: 0; position: relative; padding-bottom: 15px;
 
     .notice-header { font-size: @font-header-smaller; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600;
-        a {font-family: 'encode_sans_normalbold'; color: #444;}
+        a {font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; color: #444;}
         .no-critical { color: #85754d; }
     }
     .critical-notices-container {margin-top: 0; margin-bottom: 15px;padding-left: 0;
@@ -575,7 +611,7 @@ body {
 
 #app_acal { margin: 0; position: relative; padding-bottom: 15px;
     .acal-header {
-        h2 {font-size: @font-header-smaller; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600;/*font-family: 'encode_sans_normalbold';*/color: #85754d;}
+        h2 {font-size: @font-header-smaller; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600; color: #85754d;}
         .view-all {border:none;font-size: 14px;color: #4d66ca;margin-top: 17px;}
         .acal-banner-events {margin-top:0;clear:both;
 	        .acal-banner-list { list-style-type: none;padding-left: 0;
@@ -597,6 +633,141 @@ body {
 
 /*** content ***/
 
+/* Search Input */
+
+/* Search input and button */
+#app_search, #search_content {
+
+    /* Customizing Google's provided HTML for search
+    .cse .gsc-search-button input.gsc-search-button-v2, input.gsc-search-button-v2 {
+        width: auto;
+        height: 54px;
+        padding: 20px;
+        border: 0;
+        margin-top: 3px;
+        margin-left: 1px;
+    }
+
+    .gsc-input-box {
+        height: auto;
+        background-color: #f5f5f5;
+    }
+
+    .gsc-search-box .gsc-input-box input.gsc-input {
+        padding: 14px 0 13px 25px !important;
+        height: auto !important;
+        background-color: #f5f5f5 !important;
+    }
+
+    .gsc-search-box-tools .gsc-search-box .gsc-input {
+        padding-right: 0;
+    } */
+
+    /* Custom Search Input */
+    .uw-search {
+        outline: 1px solid #ADADAD;
+        font-size: 20px;
+        color: #7a7a7a;
+        position: relative;
+
+        #search-results-page, #search-nav {
+            width: 100%;
+            padding: 14px 0 13px 25px;
+            font-size: 16px;
+            outline: 0;
+            background-color: #f5f5f5;
+            border: none;
+            line-height: 27.5555px;
+        }
+
+        button {
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 0;
+            outline: 1px solid #4b2e83;
+            border: none;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-color: #4b2e83;
+            background-size: 22px;
+            height: 54px;
+            width: 55px;
+            text-indent: -99999px;
+            overflow: hidden;
+        }
+    }
+
+
+}
+
+/* Search results */
+#search_content {
+
+    /* Google Custom Search Overrides */
+
+    .uw-search {
+        max-width: 650px;
+    }
+
+    .cse .gsc-control-cse, .gsc-control-cse {
+        padding: 0;
+    }
+    .gsc-control-cse {
+        font-family: inherit;
+    }
+
+    .gsc-control-cse .gsc-table-result {
+        font-family: inherit;
+    }
+
+    .gsc-result div.gs-title {
+        height: auto;
+    }
+
+    .gsc-control-cse .gs-spelling, .gsc-control-cse .gs-result .gs-title, .gsc-control-cse .gs-result .gs-title * {
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .gs-result .gs-title, .gs-result .gs-title * {
+        text-decoration: none;
+    }
+
+    .gs-result .gs-title:hover, .gs-result .gs-title:hover * {
+        text-decoration: underline;
+    }
+
+    .gsc-table-result, .gsc-thumbnail-inside, .gsc-url-top { padding-left: 0; padding-right: 0; }
+
+    .gsc-url-top {
+        margin: 0 0 5px 0;
+    }
+
+    .gsc-webResult .gsc-result {
+        border-bottom: 1px solid #ebebeb;
+        padding: .5em 0;
+    }
+
+    .gs-webResult.gs-result {
+        margin: 15px 0;
+    }
+
+    /* Pagination */
+    .gsc-cursor-box.gs-bidi-start-align {
+        text-align: center;
+        padding: 10px;
+    }
+    .gsc-cursor-box.gs-bidi-start-align .gsc-cursor-page {
+        margin: 10px;
+        font-size: 14px;
+    }
+
+    .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+        color: #A90A08;
+    }
+}
+
 #app_content { min-height: 250px;
 
     // cards
@@ -611,16 +782,21 @@ body {
     	padding: 10px;
 
         h3 {
-            font-family: 'encode_sans_normalbold';
+            font-family: 'encode_sans_normalbold', sans-serif;
+            font-weight: 600;
             font-size: @font-header-small;
             margin-top: 10px;
             margin-bottom: 15px;
             color: @darktan; }
         h4 {
-            font-family:'Roboto';
+            font-family:'Roboto', sans-serif;
             font-weight: 400;
             font-size: 16px;
             color: #444; }
+
+        .card-btn {
+            @media @over550 { position: absolute; top: 12px; right: 10px;}
+        }
 
         .card-content {  }
 
@@ -733,6 +909,14 @@ body {
             12px;background-color: #efefef;
             a { color: #444; display:block; line-height:40px; }
         }
+        //Closed course style
+        .closed-course-disclosure {
+	        text-transform: none;
+	        line-height: 14px;
+	        padding-top: 10px;
+	        color: #777;
+	        font-style: italic;
+        }
 
         // override bootstrap table styles
         .table {
@@ -762,28 +946,72 @@ body {
             a:hover {text-decoration: none;}
             .efs-switcher-link-text {font-size:smaller;}
         }
-    }
+        // Quicklinks
+        .myuw-qlinks {
+            .control-link {
+                color: #999;
+                font-weight: normal;
+                text-decoration: none;
+            }
+            .myuw-qlinks-active {
+                .edit-link {padding-right:4px;}
+            }
+            .myuw-qlinks-recent {
+                .recent-message {font-style: italic; font-size: smaller;}
+            }
+            .myuw-qlinks-recent, .myuw-qlinks-active, .myuw-qlinks-popular {
+                .myuw-qlinks-item {
+                  width: 85%;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                }
+            }
+            .myuw-qlinks-popular {
+                background-color: #eeeeee;
+                padding: 4px 16px;
+                margin: 4px -16px;
+                .control-link {
+                    color: #777;
+                }
+            }
+            .myuw-qlinks-custom {
+                background-color: rgb(238, 238, 238);
+                padding: 4px 16px;
+                margin: 4px -16px;
+                .myuw-qlinks-custom-btn {padding: 5px 0;}
+            }
+            .myuw-qlinks-recent, .myuw-qlinks-active, .myuw-qlinks-popular {
 
-    // PCE card & PCE notice on Visual Schedule
-    .PCE-notice {
-        background-color: #fcf9e3;
-        i { position: absolute; top: 50%; font-size: 2em; color: #85754d; margin-top: -14px;}
-        h3 { position: relative; left: 42px;}
-    }
+                li.list .link-controls {
+                        display: none;
+                }
 
-    .PCE-vs-notice {
-        background-color: #fcf9e3;
-        margin: -10px -10px 2em;
-        padding: 10px;
-        h3.pce-notice { font-size: 14px;
-        display: inline-block;
-        padding-right: .5em;
-        margin: 0;
+                li.list:hover .link-controls {
+                    display: inline-block;
+                }
+            }
+            .btn-qlinks {margin-left:8px;}
         }
-        i {padding-right: .5em;color:#85754d;}
-        p {display: inline-block; margin: 0px;}
     }
 
+    // common profile card
+    .common-profile { padding: 0; border: none; box-shadow: none;
+        span { padding-left: 12px; font-size: .5em; font-weight: normal; }
+        h2 { font-weight: bold; color: black; }
+        a { opacity: .5; }
+    }
+
+	.profile-bio {padding: 0 0;
+		.profile-student-major {text-align: left; padding-top:5px;
+			.student-major-list {list-style: none;padding-left:0; margin-top:0;}
+		}
+	}
+
+    .profile-links {
+        padding-left: 16px;
+        ul { list-style-type: none; padding-left: 0; }
+    }
 
     // Grades card
 	#GradeCard {
@@ -932,12 +1160,56 @@ body {
     }
     // end graduate student content card
 
+    //ACCOUNT PAGE
+    .accounts-container {
+		 h2 { font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size:26px; color: #444; }
+    }
 
-    // registration card
+    // ACCOUNT PAGE CARDS
+    div#medicine-pw, div#netid-pw {
+	    .med-logo {margin:0px; clear: both; float: right;}
+	    h3 {clear:both;}
+	    .update-note {color: #777; font-size: 95%; clear:both;}
+	    .pw-exp {font-size: 16px; margin-bottom:10px;}
+	    .pw-exp-date {color:#444;font-weight: bold;}
+		.password-alert {color:#a94442;font-weight: normal;
+			a {text-decoration: underline;font-weight: bold;}
+		}
+		.pw-link{ clear:both; margin-bottom: 10px;}
+	.card-badge {
+                padding: 8px 10px 0px 0px;
+                padding-top: 0px;
+                position: relative;
+                .card-badge-label {
+                    display: block;
+                    font-weight: bold;
+                /*line-height: 35px;*/ }
+                .card-badge-action {
+                    display: block;
+                    font-weight: normal;
+                    line-height: 35px;
+                    margin-top: -8px;
+                    a { display: block; }
+                }
+
+                .card-badge-value {
+                    display: block;
+                    font-size: 22px;
+                    font-weight: bold;
+                    text-align: right;
+                }
+	}
+    } //end of Medicine card
+
+
+       // registration card
     #RegStatusCard, #SummerRegStatusCardA, #SummerRegStatusCard1, #TuitionCard {
         .reg-date {font-weight: bold;}
         .card {
             .card-critical-alert {margin-bottom: 0;}
+            .pending-major {
+                .card-badge-value {line-height: 20px; margin:7px 0;font-size: 17px;}
+            }
             .card-badge-container {
 // STUFF PATRICK ADDED //
                 .reg-holds-container {
@@ -1147,7 +1419,16 @@ body {
 
     #teaching_content {
 
+        .instructor-term-tabs {
+            display: inline-block;
+        }
 
+        .instructor-term-menu {
+            display: inline-block;
+
+            select.myuw-dropmenu { width: 6.5em; }
+            select.myuw-dropmenu-selected { width: 8em; }
+        }
 
         .unstyled-list {line-height: 30px;}
 
@@ -1157,9 +1438,11 @@ body {
 
             .card {
 
+                /* Deprecate
                 h4 {
                     font-weight:bold;
                 }
+                */
 
                 .meeting_type {
                     text-transform: capitalize;
@@ -1179,8 +1462,8 @@ body {
                         left: 0%;
                     }
                     li {
-                        .inst-course-label {text-transform: uppercase;}
-                        .inst-course-note { font-size: small; font-style: italic; }
+                        .inst-course-label { /* removed */}
+                        .inst-course-note { /* copied to course_card.less */ font-size: small; font-style: italic; }
                         //display: inline-block;
                         //text-decoration: none;
                         //background-color: #eee;
@@ -1198,6 +1481,15 @@ body {
                 }
             }
         }
+
+        .grading-system .card-badge-value {
+            text-transform: capitalize
+        }
+
+        .grading-delegates .card-badge-value {
+            text-align: right;
+        }
+
         #teaching_resources {
 
             .card {
@@ -1211,13 +1503,13 @@ body {
 
     // course cards
 
-    #CourseCards {
+    #CourseCards, #PrevTermCourseCards, #PrevTermCourseCards1 {
 
         .card {
-
-            h4 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; margin-bottom: 1em;
+            h4 { font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: @font-header-small; color: @darktan; margin-bottom: 1em;
 				.meeting-type {float: right; font-size: 12px; font-family: 'Open Sans', sans-serif; text-transform: uppercase; padding:2px 4px 2px 4px;border: 1px solid #eee;}
                 .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; }
+                .offterm-date { font-size: 14px; font-family:'Roboto', sans-serif; color: #444 !important; line-height: 1.5;  }
             }
 
             h5 { font-family: 'Roboto', sans-serif; font-weight: 500; color: @darktan; margin-top: 1.5em; margin-bottom: .5em; font-size: 16px;  }
@@ -1310,7 +1602,7 @@ body {
     #FutureQuarterCardA, #FutureQuarterCard1 {
         .card {
 
-            h4 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan; }
+            h4 { font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: @font-header-small; color: @darktan; }
 
             // make h5 look like h4
             h5 { font-size: 20px; color: #555; }
@@ -1342,6 +1634,11 @@ body {
         }
     }
 
+    #DirectoryInfoCard {
+
+    }
+
+    .prev-qtr-heading { font-size:@font-header-medium; padding-top: 1em; font-family: 'Roboto', sans-serif;font-weight: 400;color:#444;}
 
 // ThriveUW
     // Thrive card
@@ -1352,7 +1649,7 @@ body {
         .thrive-message-highlight {padding: 10px;background-color: #9df1ff;
             h4 {margin-top:0px; color:#716141;
                 .thrive-category {font-weight: 400;margin-bottom: 15px;font-size: 15px;}
-                .thrive-week-title {font-size: 18px;font-family:'encode_sans_normalbold';}
+                .thrive-week-title {font-size: 18px;font-family:'encode_sans_normalbold', sans-serif;}
             }
         }
         .thrive-trythis-learnmore {padding: 10px;margin-top: -15px;}
@@ -1367,10 +1664,11 @@ body {
     }
 
     // Thrive pages
-    .thrive-messages, .what-is-thrive {padding-bottom: 3em;
-        h2 { font-family: 'encode_sans_normalbold'; color: #444; font-size: 26px; margin-top: 1.5em;
-            span {font-size: 16px;}
-        }
+    .thrive-messages, .what-is-thrive {
+        padding-bottom: 3em;
+
+        h2 span {font-size: 16px;}
+
         .thrive-archive-instructions {font-style: italic;}
         .card {box-shadow: none; border:0; padding: 0 20px 0 0;}
         .thrive-description {padding:15px 0;}
@@ -1384,7 +1682,7 @@ body {
 
         .card {
 
-            h3 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: @darktan;
+            h3 { font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: @font-header-small; color: @darktan;
                 .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
             }
 
@@ -1420,6 +1718,15 @@ body {
              a { padding-left: 0; color: #4d66ca; }
          }
      }
+
+    #UPassCard {
+        .card-badge { margin-top: 24px; margin-bottom: 24px; padding-top: 0px; padding-bottom: 0; }
+        #upass-notices h4 { font-family: 'Roboto', sans-serif; font-weight: 500; color: @darktan; margin-top: 24px; font-size: 16px; }
+        ul { list-style-type: none; padding-left: 0; }
+        #upass-links { margin-top: 24px;
+            li {text-align: right;}
+        }
+    }
 
     // Events Card
     #EventsCard {
@@ -1467,6 +1774,35 @@ body {
         }
 
         ul { list-style: none; padding-left: 0; }
+    }
+
+    // visual schedule-period control
+    .schedule-period-module {
+	    margin-bottom: 1em;
+    }
+	.nav>li>a{
+		&:hover, &:focus {
+		background-color:#fff;
+		border-bottom: 3px solid #999;
+		border-radius: 0px;
+		padding-bottom: 1px;
+		margin-bottom: 3px;
+		}
+	}
+    .schedule-period-list {
+	    li>a {
+	    padding: 4px 5px;
+	    margin-right: 5px;
+	    margin-bottom: 3px;
+	    color:#555;
+	    }
+	    li.active>a {background-color:#fff;color:#000;text-decoration:none;border-bottom: 3px solid @uwpurple; border-radius: 0px; padding-bottom: 1px;
+		:hover {text-decoration: none;}
+	    }
+	    .schedule-period {
+	    text-transform: uppercase;
+	    font-size: 85%;
+    	}
     }
 
     // visual schedule
@@ -1563,6 +1899,7 @@ body {
       display: inline-block;
       float: left;
       color: #ffffff;
+      border-bottom: 1px solid #ccc;
     }
     .six-day p {
       color: #333;
@@ -1595,11 +1932,12 @@ body {
       border-left: 2px groove #eeeeee;
     }
     .seven-day:nth-of-type(odd),
-    .six-day:nth-of-type(even),
+    .six-day:nth-of-type(odd),
     .five-day:nth-of-type(odd) {
     	border-left: 1px solid #ddd;
     	border-right: 1px solid #ddd;
     }
+
     .day-col {
       position: relative;
       height: 92%;
@@ -1683,8 +2021,8 @@ body {
       color: #3c3c3c;
       top: 0px;
     }
-
-    #final_exam_schedule_card .six-hour .day-label { height: 14%; }
+    //#final_exam_schedule heading height adjustment
+	#final-visual-schedule.six-hour .day-label {height: 14%;}
 
     .visual-course {
       width: 100%;
@@ -1734,13 +2072,13 @@ body {
     .courseTBD { width: 100%; overflow: auto; margin: 15px 0;
 
         h6 { font-size: 14px; }
-        .course-box { background: #e8e3d3; width: 50px; height: 40px; font-size:11px; margin-right:5px; line-height:.9em; }
+        .course-box { background: #e8e3d3; width: 60px; height: 40px; font-size:11px; margin-right:5px; line-height:.9em; }
         .course-info { text-align:center; color:#fff; padding:2px; }
     }
 
     // error container
     .error-container {
-        h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small;  }
+        h1 { font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: @font-header-small;  }
     }
 
 
@@ -1763,7 +2101,6 @@ body {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
 
-		h2 { font-family: 'encode_sans_normalbold'; color: #444; font-size: @font-header-small;  }
 		h3 { font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 16px; line-height: 30px; margin: 0; color: #222; }
 		h4 { font-family: 'Open Sans', sans-serif; font-size: 14px;
     		span { text-transform: uppercase; font-size: 11px; }
@@ -1795,7 +2132,6 @@ body {
             .category-links { padding-left: 0; list-style: none; }
         }
 
-        h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; }
         h3 { font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 16px; }
     }
     // future quarters page
@@ -1803,8 +2139,6 @@ body {
     .future-quarter-container {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
-
-        h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444;}
 
         .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; display: block; }
     }
@@ -1817,8 +2151,7 @@ body {
 		margin-bottom: -3em;
 		padding-bottom: 3em;
 
-		h1 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444; }
-		h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; margin-top: 10px; color: #444;}
+		h1 { font-family: 'encode_sans_normalbold', sans-serif;; font-weight: 600; font-size: @font-header-small; color: #444; }
         h3 { color: #333; margin-top: 0; margin-bottom:0; font-family: 'Roboto', sans-serif; font-weight: 400; }
 
 		.notice-count { }
@@ -1928,13 +2261,12 @@ body {
 
 	.academic_cal-container {
 		.acal-main {
-			h2 { font-family: 'encode_sans_normalbold'; font-size: @font-header-small; color: #444; }
 			.acal-page-filters { padding:10px 0;margin-bottom:15px;margin-top:15px;
 				#myuw-event-filter-breaks, #myuw-event-filter-all, #myuw-event-filter-classes {font-size:15px;}
 				.myuw-selected-button {color: #fff; background-color:#4f318c;border-color: #4f318c;}
 			}
 			.acal-page-events {
-				h2 {color: #333;margin-top: 0;margin-bottom: 0;font-family: 'Roboto', sans-serif;font-weight: 400;padding:20px 0;}
+				h3 {color: #333;margin-top: 0;margin-bottom: 0;font-family: 'Roboto', sans-serif;font-weight: 400; font-size: 20px; padding:20px 0;}
 				.acal-page-term-break {border-top:1px; border-bottom:1px; border-left:0; border-right:0; border-color: #bbb; border-style: dotted; padding: 20px 0;text-align:center;}
 				.acal-page-event-list { list-style-type: none;padding-left: 0;
 					.acal-page-event-list-item { margin-bottom:10px;
@@ -1946,6 +2278,27 @@ body {
 		}
 	}
 
+
+}
+
+/** Mailman Dialogs **/
+
+.modal-dialog.view-email-lists .list-address {
+    margin-right: 1em;
+}
+
+
+/*** Accounts page ***/
+
+#og_workday {
+    background-repeat: no-repeat;
+    background-position: 10px 50%;
+    background-size: 18px;
+    padding-left: 38px;
+}
+
+.hr-payroll-card #og_workday {
+    margin-bottom: 10px;
 }
 
 /*** footer ***/
@@ -1963,7 +2316,7 @@ body {
 
             .navigation-item { display: inline-block; position: relative; padding: 5px; height: 100px; width: 100%;
 				.subcategories {font-size: 85%;color:#777;}
-                .navigation-item-text { font-family: 'Roboto', sans-serif; font-weight: 400; font-family: 'encode_sans_normalsemibold'; color: #555; font-size: @font-base;  }
+                .navigation-item-text {font-family: 'encode_sans_normalsemibold', sans-serif; font-weight: 600; color: #555; font-size: @font-base;  }
             }
 
             // handle :hover state as mobile touch
@@ -1981,7 +2334,7 @@ body {
                 .footer-links-list-item { display: inline-block; padding-right: 5px; margin-right: 3px; border-right: solid 1px #aaa; color: #222;
 					#myuw-footer-modal {
 						.modal-content {font-size: 14px; line-height: 1.42857143;
-							h3 {margin-bottom: 10px;font-family: 'encode_sans_normalbold';font-size: 16px;color: #85754d;}
+							h3 {margin-bottom: 10px;font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: 16px; color: #85754d;}
 							.modal-header {border-bottom: none; padding-bottom:0;
 								button {color:#333;}
 							}
