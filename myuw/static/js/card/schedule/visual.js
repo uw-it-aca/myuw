@@ -31,7 +31,6 @@ var VisualScheduleCard = {
                 VisualScheduleCard.render_error();
             }
         }
-
     },
 
     _has_all_responses: function () {
@@ -41,7 +40,7 @@ var VisualScheduleCard = {
         var course_err_status = WSData.course_data_error_code(VisualScheduleCard.term);
         var instructed_course_err_status = WSData.instructed_course_data_error_code(VisualScheduleCard.term);
 
-        var has_all_data = (course_data || course_err_status );
+        var has_all_data = ( course_data || course_err_status );
         if(myuwFeatureEnabled('instructor_schedule')){
             has_all_data = (has_all_data &&
             (instructed_course_data || instructed_course_err_status ));
@@ -82,30 +81,34 @@ var VisualScheduleCard = {
             }
         }
 
-        var default_period = VisualScheduleCard._get_default_period(course_data, instructed_course_data);
+        var default_period = VisualScheduleCard._get_default_period(course_data ? course_data.schedule_periods : null,
+                                                                    instructed_course_data ? instructed_course_data.schedule_periods: null);
         VisualScheduleCard.display_schedule_for_period(default_period);
 
         LogUtils.cardLoaded(VisualScheduleCard.name, VisualScheduleCard.dom_target);
     },
 
-    _get_default_period: function(course_schedule, instructed_course_schedule){
+    _get_default_period: function(course_periods, instructed_course_periods){
         var today = moment.utc(window.card_display_dates.comparison_date, "YYYY-MM-DD"),
-            default_section;
+            default_section, i;
 
-        $.each([course_schedule, instructed_course_schedule], function (i, course_data) {
-            if (course_data) {
-                var schedule_periods = course_data.schedule_periods;
-                $.each(schedule_periods, function(idx, period){
-                    if (moment.utc(period.start_date, "YYYY-MM-DD").isSameOrBefore(today) && moment.utc(period.end_date, "YYYY-MM-DD").isSameOrAfter(today)) {
+        $.each([course_periods, instructed_course_periods], function (i, periods) {
+            if (periods) {
+                $.each(periods, function(idx, period){
+                    if (moment.utc(period.start_date, "YYYY-MM-DD").isSameOrBefore(today) &&
+                            moment.utc(period.end_date, "YYYY-MM-DD").isSameOrAfter(today)) {
                         default_section = idx;
                     }
                 });
             }
         });
+
         // Handle case where period cannot be determined
-        if(default_section === undefined){
-            default_section = Object.keys(schedule_periods)[0];
-        }
+        $.each([course_periods, instructed_course_periods], function (i, periods) {
+            if(periods && default_section === undefined){
+                default_section = Object.keys(periods)[0];
+            }
+        });
 
         return default_section;
     },
@@ -373,12 +376,12 @@ var VisualScheduleCard = {
     _get_data_for_period: function(course_data, instructed_course_data, term, period){
         var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
         var visual_data = {
-            has_early_fall_start: ((course_data && course_data.has_early_fall_start)
-                                   || (instructed_course_data 
-                                       && instructed_course_data.has_early_fall_start)),
+            has_early_fall_start: ((course_data && course_data.has_early_fall_start) ||
+                                   (instructed_course_data &&
+                                    instructed_course_data.has_early_fall_start)),
             is_pce: user.pce,
-            total_sections: (course_data ? course_data.schedule_periods[period].sections.length : 0)
-                + (instructed_course_data ? instructed_course_data.schedule_periods[period].sections.length : 0),
+            total_sections: (course_data ? course_data.schedule_periods[period].sections.length : 0) +
+                (instructed_course_data ? instructed_course_data.schedule_periods[period].sections.length : 0),
             year: course_data ? course_data.year : instructed_course_data.year,
             quarter: course_data ? course_data.quarter : instructed_course_data.quarter,
             term: term,
@@ -395,18 +398,16 @@ var VisualScheduleCard = {
             has_6_days: false,
             courses_meeting_tbd: [],
             courses_no_meeting: [],
-            schedule_periods: (course_data ? course_data.schedule_periods : 0)
-                + (instructed_course_data ? instructed_course_data.schedule_periods : 0),
+            schedule_periods: (course_data ? course_data.schedule_periods : 0) +
+                (instructed_course_data ? instructed_course_data.schedule_periods : 0),
             is_instructor: false
         };
 
-        var set_meeting = function(course_data, meeting, index, is_instructor) {
-            var index = 0;
-            for (index = 0; index < course_data.schedule_periods[period].sections.length; index++) {
-                var section = course_data.schedule_periods[period].sections[index];
-                var meeting_index = 0;
-                for (meeting_index = 0; meeting_index < section.meetings.length; meeting_index++) {
-                    var meeting = section.meetings[meeting_index];
+        var set_meeting = function(course_data, meeting, is_instructor) {
+            $.each(course_data.schedule_periods[period].sections, function(section_index) {
+                var section = this;
+                $.each(section.meetings, function(){
+                    var meeting = this;
                     var has_meetings = VisualScheduleCard._meeting_has_meetings(meeting);
 
                     if (!meeting.days_tbd && has_meetings) {
@@ -434,7 +435,7 @@ var VisualScheduleCard = {
                             course_number: section.course_number,
                             term: term,
                             section_id: section.section_id,
-                            section_index: index,
+                            section_index: section_index,
                             building_tbd: meeting.building_tbd,
                             building: meeting.building,
                             building_name: meeting.building_name,
@@ -446,7 +447,7 @@ var VisualScheduleCard = {
                             has_early_fall_start: course_data.has_early_fall_start
                         };
 
-                        $.each(days, function (day_index) {
+                        $.each(days, function(){
                             day = this;
                             if (meeting.meeting_days[day]) {
                                 if (day === "saturday") {
@@ -463,7 +464,7 @@ var VisualScheduleCard = {
                             curriculum: section.curriculum_abbr,
                             course_number: section.course_number,
                             section_id: section.section_id,
-                            section_index: index
+                            section_index: section_index
                         });
                     }
                     else {
@@ -473,27 +474,27 @@ var VisualScheduleCard = {
                             curriculum: section.curriculum_abbr,
                             course_number: section.course_number,
                             section_id: section.section_id,
-                            section_index: index
+                            section_index: section_index
                         });
                     }
-                }
-            }
+                });
+            });
         };
         var day, day_index, i, height, top;
 
         if (course_data) {
-            $.each(course_data.sections, function (index) {
-                $.each(this.meetings, function (meeting_index) {
-                    set_meeting(course_data, this, index, false);
+            $.each(course_data.sections, function () {
+                $.each(this.meetings, function () {
+                    set_meeting(course_data, this, false);
                 });
             });
         }
 
         if (instructed_course_data) {
             visual_data.is_instructor = true;
-            $.each(instructed_course_data.sections, function (index) {
-                $.each(this.meetings, function (meeting_index) {
-                    set_meeting(instructed_course_data, this, index, true);
+            $.each(instructed_course_data.sections, function () {
+                $.each(this.meetings, function () {
+                    set_meeting(instructed_course_data, this, true);
                 });
             });
         }

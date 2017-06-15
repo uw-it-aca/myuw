@@ -24,7 +24,7 @@ describe("VisualScheduleCard", function() {
             var are_same = VisualScheduleCard._sections_are_same(list1, list2);
             assert.equal(are_same, true)
         });
-        
+
         it('should handle different lists', function() {
             var list1 = {sections: [{course_number: "123", curriculum_abbr: "ASD"}, {course_number: "456", curriculum_abbr: "ASD"}, {course_number: "789", curriculum_abbr: "ASD"}]};
             var list2 = {sections: [{course_number: "123", curriculum_abbr: "DEF"}, {course_number: "456", curriculum_abbr: "DEF"}, {course_number: "789", curriculum_abbr: "DEF"}]};
@@ -135,7 +135,7 @@ describe("VisualScheduleCard", function() {
             var end = moment.utc("2017-06-12");
             var weeks = VisualScheduleCard._get_weeks_from_range([start, end]);
 
-            var default_period = VisualScheduleCard._get_default_period(weeks);
+            var default_period = VisualScheduleCard._get_default_period(null, weeks);
             assert.equal(default_period, "23")
         });
 
@@ -145,7 +145,7 @@ describe("VisualScheduleCard", function() {
             var end = moment.utc("2017-06-12");
             var weeks = VisualScheduleCard._get_weeks_from_range([start, end]);
 
-            var default_period = VisualScheduleCard._get_default_period(weeks);
+            var default_period = VisualScheduleCard._get_default_period(weeks, null);
             assert.equal(default_period, "22")
         });
     });
