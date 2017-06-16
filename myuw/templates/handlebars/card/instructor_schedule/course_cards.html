@@ -3,17 +3,17 @@
 
 <div class="instructor_cards">
     <div class="instructor-term-selection">
-      <div role="tablist" class="instructor-term-tabs myuw-pagetabs">
+        <div role="tablist" class="instructor-term-tabs myuw-pagetabs">
           {{#each tab_terms}}
           <div data-tab-type="instructor-term-nav" data-term="{{year}},{{toLowerCase quarter}}" role="tab" aria-controls="{{year}},{{toLowerCase quarter}}" {{# if matching_term }}class="myuw-tab myuw-tab-selected" aria-selected="true"{{else}}class="myuw-tab" aria-selected="false"{{/if }}><a class="myuw-tab-label tab-nav-terms" href="#" data-term="{{year}},{{toLowerCase quarter}}">{{ quarter}} {{short_year year}}</a></div>
           {{/each }}
-      </div>
+        </div>
 
-      <div class="instructor-term-menu myuw-pagemenu">
+        <div class="instructor-term-menu myuw-pagemenu">
           <label for="teaching-term-select" class="sr-only">Term</label>
           <select id="teaching-term-select" class="instructed-terms myuw-dropmenu {{#if matching_term}}myuw-dropmenu-selected{{/if}}"><option selected="selected" value=''>All terms</option>{{#each reversed_related_terms}}<option {{#if matching_term}}selected{{/if}} value="{{year}},{{toLowerCase quarter}}">{{#if is_current}}{{quarter}} {{short_year year}} (Current){{else}}{{quarter}} {{short_year year}}{{/if}}</option>{{/each}}</select>
-      </div>
-  </div>
+        </div>
+    </div>
 
   <div class="instructor-term-cards" aria-labelledby="your_courses">
       <h3 id="your_courses" class="sr-only">Courses you are instructing {{ucfirst quarter}} {{year}}</h3>
