@@ -35,14 +35,20 @@
 
     .course-meeting-type {
         margin-left: 16px;
-        padding:2px 4px 2px 4px; 
+        padding:2px 4px 2px 4px;
         border: 1px solid #eee;
     }
 }
 
 
 .table-course-schedule {
-    margin-bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    border: 0;
+
+    td {
+        padding: 0 0 8px 0;
+    }
 }
 
 .course-website-update,
@@ -55,19 +61,3 @@
 
 /* Message text */
 .inst-course-note { font-size: small; font-style: italic; }
-
-
-/* Should be in generic card stylesheet */
-.myuw-card .myuw-section {
-    padding-top: 16px;
-}
-
-.myuw-card .myuw-section .row:last-child .col-sm-9 {
-    border-bottom: 1px solid #EDEDED;
-    padding-bottom: 16px;
-}
-
-.myuw-card .myuw-section.last .row:last-child .col-sm-9 {
-    border-bottom: none;
-    padding-bottom: 0;
-}
