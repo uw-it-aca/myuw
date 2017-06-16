@@ -58,6 +58,14 @@
             }
         }
 
+        /* Not the first row */
+        .row + .row { padding-top: 16px; }
+
+        @media @two-column {
+            .row + .row { padding-top: 8px; }
+
+        }
+
         /* the very last section's last child */
         &.last {
             .col-sm-9 {
