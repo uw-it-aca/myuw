@@ -86,6 +86,9 @@ class TestBannerMessageDAO(TestCase):
         self.assertEquals(out, '<span style="font-size: 12px; color: red;">' +
                                'OK</span>')
 
+        out = clean_html('<i aria-hidden="true"></i>')
+        self.assertEquals(out, '<i aria-hidden="true"></i>')
+
         out = clean_html('<a href="http://uw.edu">UW</a>')
         self.assertEquals(out, '<a href="http://uw.edu">UW</a>')
 

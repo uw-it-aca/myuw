@@ -15,7 +15,7 @@ from authz_group import Group
 MESSAGE_ALLOWED_TAGS = bleach.sanitizer.ALLOWED_TAGS + ["span", "h1", "h2",
                                                         "h3", "h4"]
 MESSAGE_ALLOWED_ATTRIBUTES = bleach.sanitizer.ALLOWED_ATTRIBUTES.copy()
-MESSAGE_ALLOWED_ATTRIBUTES["*"] = ["class", "style"]
+MESSAGE_ALLOWED_ATTRIBUTES["*"] = ["class", "style", "aria-hidden"]
 MESSAGE_ALLOWED_STYLES = ["font-size", "color"]
 
 
