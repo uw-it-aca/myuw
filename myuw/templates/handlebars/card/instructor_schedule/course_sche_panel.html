@@ -31,7 +31,7 @@
                                 meeting_days.saturday}}<abbr title="Saturday">Sa</abbr>{{/if}}{{#if
                                 meeting_days.sunday}}<abbr title="Sunday">Su</abbr>{{/if}}
                             </td>
-                            <td class="course-time">{{formatTime start_time}} - {{formatTimeAMPM end_time}}</td>
+                            <td class="course-time">{{formatTime start_time}} &ndash; {{formatTimeAMPM end_time}}</td>
                         {{/if}}
 
                         {{#if building_tbd}}
@@ -81,8 +81,8 @@
                     </tr>
                   </thead>
                   <tbody class="tbody-course-schedule">
-                    <td>{{ formatDateAsDate final_exam.start_date }}</td>
-                    <td class="course-time">{{ formatDateAsTime final_exam.start_date }} - {{ formatDateAsTimeAMPM final_exam.end_date }}</td>
+                    <td class="course-final-date">{{ formatDateAsDate final_exam.start_date }}</td>
+                    <td class="course-time">{{ formatDateAsTime final_exam.start_date }} &ndash; {{ formatDateAsTimeAMPM final_exam.end_date }}</td>
                     <td class="course-location">
                       {{#if final_exam.latitude}}<a href="http://maps.google.com/maps?q={{ final_exam.latitude }},{{ final_exam.longitude }}+({{encodeForMaps final_exam.building_name }})&z=18" class="show_map" rel="{{building_name}}" data-linklabel="{{ final_exam.building }} - Google Maps">{{/if}}{{final_exam.building}}{{#if final_exam.latitude}}</a>{{/if}}
                       {{final_exam.room_number}}
