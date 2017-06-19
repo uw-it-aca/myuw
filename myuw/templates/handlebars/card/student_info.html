@@ -31,9 +31,6 @@
                     </div>
                 </div>
 
-                {{#if term_majors}}
-                    {{#each term_majors}}
-                        {{#if @first}}
                 <div class="row">
                     <div class="col-sm-3">
                         <h4 class="myuw-card-row-heading">Major</h4>
@@ -42,104 +39,88 @@
                         <div class="myuw-card-row-content">
 
                             <ul class="myuw-card-itemlist">
-                                <li>
-                                    {{#each majors}}
-                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                {{#if term_majors}}
+                                    {{#each term_majors}}
+                                        {{#if @first}}
+                                            {{#if @root.has_pending_major}}
+                                                <li>
+                                                    {{#each majors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{/each}}
+                                                </li>
+                                            {{else}}
+                                                <li>
+                                                    {{#if @root.has_minors}}
+                                                        Major:&nbsp;&nbsp;
+                                                    {{/if}}
+                                                    {{#each majors}}
+                                                        {{full_name}}
+                                                    {{/each}}
+                                                </li>
+                                            {{/if}}
+                                        {{else}}
+                                            {{#if degrees_modified}}
+                                                <li>{{ pluralize_by_size majors "Major" "Majors"}}
+                                                    Beginning {{ toTitleCase quarter}}:&nbsp;&nbsp;
+                                                    {{#each majors}}
+                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{/each}}
+                                                </li>
+                                            {{/if}}
+                                        {{/if}}
                                     {{/each}}
-                                </li>
+                                {{/if}}
                             </ul>
                         </div>
                     </div>
                 </div>
-                        {{else}}
-                            {{#if degrees_modified}}
-                                {{#each majors}}
-                                    {{#if @first}}
-                <div class="row">
-                    <div class="col-sm-3">
-                        <h4 class="myuw-card-row-heading">
-                            {{ pluralize_by_size ../majors "Major" "Majors"}}
-                            Beginning {{ capitalizeString ../quarter}} {{../year}}:
-                        </h4>
-                    </div>
-                    <div class="col-sm-9">
-                        <div class="myuw-card-row-content">
-
-                            <ul class="myuw-card-itemlist">
-                                <li>
-                                    {{/if}}
-                                    {{full_name}} {{#unless @last}},{{/unless}}
-                                    {{#if @last}}
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                                    {{/if}}
-                                {{/each}}
-                            {{/if}}
-                        {{/if}}
-                    {{/each}}
-                {{/if}}
-
-
 
                 {{#if has_minors}}
-                    {{#if term_minors}}
-                        {{#each term_minors}}
-                            {{#if @first}}
                     <div class="row">
                         <div class="col-sm-3">
                             <h4 class="myuw-card-row-heading">Minor</h4>
                         </div>
                         <div class="col-sm-9">
-                            <div class="myuw-card-row-content">
-
-                                <ul class="myuw-card-itemlist">
-                                    <li>
-                                        {{#each minors}}
-                                            {{full_name}} {{#unless @last}},{{/unless}}
-                                        {{/each}}
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                            {{else}}
-                                {{#if degrees_modified}}
-                                    {{#each minors}}
-                                        {{#if @first}}
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <h4 class="myuw-card-row-heading">
-                                {{ pluralize_by_size ../minors "Minor" "Minors"}}
-                                Beginning {{ capitalizeString ../quarter}} {{../year}}:
-                            </h4>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="myuw-card-row-content">
-
-                                <ul class="myuw-card-itemlist">
-                                    <li>
+                            <ul class="myuw-card-itemlist">
+                            {{#if term_minors}}
+                                {{#each term_minors}}
+                                    {{#if @first}}
+                                        {{#if @root.has_pending_minor}}
+                                            <li>
+                                                {{#each minors}}
+                                                    {{full_name}} {{#unless @last}},{{/unless}}
+                                                {{/each}}
+                                            </li>
+                                        {{else}}
+                                            <li>
+                                                {{#each minors}}
+                                                    {{#if @first}}
+                                                        {{ pluralize_by_size ../minors "Minor" "Minors"}}:&nbsp;&nbsp;
+                                                    {{/if}}
+                                                    {{full_name}} {{#unless @last}},{{/unless}}
+                                                {{/each}}
+                                            </li>
                                         {{/if}}
-                                        {{full_name}} {{#unless @last}},{{/unless}}
-                                        {{#if @last}}
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+
+                                    {{else}}
+                                        {{#if degrees_modified}}
+                                            <li>{{ pluralize_by_size minors "Minor" "Minors"}}
+                                                Beginning {{ toTitleCase quarter}}:&nbsp;&nbsp;
+                                                {{#each minors}}
+                                                    {{full_name}} {{#unless @last}},{{/unless}}
+                                                {{else}}
+                                                    None
+                                                {{/each}}
+                                            </li>
                                         {{/if}}
-                                    {{/each}}
-                                {{/if}}
+                                    {{/if}}
+                                {{/each}}
                             {{/if}}
-                        {{/each}}
-                    {{/if}}
+                            </ul>
+                        </div>
+                    </div>
                 {{/if}}
-
-
-
-            </div>
+        </div>
 
             <div class="myuw-card-section">
 
