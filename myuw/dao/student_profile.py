@@ -76,9 +76,9 @@ def get_academic_info(request, response):
     response['term_minors'] = _get_degrees_for_terms(terms, enrollments,
                                                      "minors")
 
-    if (len(response['term_minors']) > 1 and
-            len(response['term_minors'][0]['minors']) > 0):
-        response['has_minors'] = True
+    for minor in response['term_minors']:
+        if len(minor['minors']) > 0:
+            response['has_minors'] = True
 
     response['has_pending_minor'] = False
 

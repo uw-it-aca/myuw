@@ -52,3 +52,32 @@ class TestStudentProfile(TestCase):
 
         for minor in minors:
             self.assertFalse(minor['degrees_modified'])
+
+    def test_major_drop_empty(self):
+        req = get_request_with_user('jeos',
+                                    get_request_with_date("2013-01-10"))
+        terms = get_current_and_next_quarters(req, 4)
+        enrollments = get_enrollments_of_terms(terms)
+
+        majors = _get_degrees_for_terms(terms, enrollments, "majors")
+        minors = _get_degrees_for_terms(terms, enrollments, "minors")
+        self.assertEquals(len(minors), 4)
+        for minor in minors:
+            self.assertFalse(minor['degrees_modified'])
+            self.assertEquals(len(minor["minors"]), 0)
+
+        self.assertEquals(len(majors), 4)
+        self.assertFalse(majors[0]['degrees_modified'])
+        self.assertTrue(len(majors[0]["majors"]) > 0)
+
+        self.assertTrue(majors[1]['degrees_modified'])
+        self.assertTrue(len(majors[1]["majors"]) == 0)
+        self.assertTrue(majors[1]['has_only_dropped'])
+
+        self.assertFalse(majors[2]['degrees_modified'])
+        self.assertTrue(len(majors[2]["majors"]) == 0)
+        self.assertFalse(majors[2]['has_only_dropped'])
+
+        self.assertFalse(majors[3]['degrees_modified'])
+        self.assertTrue(len(majors[3]["majors"]) == 0)
+        self.assertFalse(majors[3]['has_only_dropped'])

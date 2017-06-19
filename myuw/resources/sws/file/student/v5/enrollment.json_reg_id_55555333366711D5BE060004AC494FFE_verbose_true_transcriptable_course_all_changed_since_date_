@@ -6,15 +6,29 @@
     },
     "Enrollments": [
         {
-            "ClassLevel": "BLANK",
-            "CurrentRegisteredCredits": null,
-            "EnrollmentStatus": null,
+            "ClassLevel": "GRADUATE",
+            "CurrentRegisteredCredits": 12,
+            "EnrollmentStatus": "Registered",
             "EnrollmentStatusDate": "",
             "FullName": "Jessie Eos",
             "HonorsProgram": false,
             "LeaveEndQuarter": 0,
             "LeaveEndYear": 0,
-            "Majors": [],
+            "Majors": [
+                 {
+                    "Abbreviation": "SIMX",
+                    "Campus": "Seattle",
+                    "CollegeAbbreviation": "INFORM",
+                    "CollegeFullName": "THE INFORMATION SCHOOL",
+                    "DegreeLevel": 2,
+                    "DegreeName": "MASTER OF SCIENCE IN INFORMATION MANAGEMENT",
+                    "DegreeType": 6,
+                    "FullName": "Information Management",
+                    "MajorName": "INFORMATION MANAGEMENT",
+                    "Pathway": 0,
+                    "ShortName": "SIMX"
+                }
+            ],
             "Metadata": "EnrollmentSourceLocation=EOS;",
             "Minors": [],
             "PendingClassChange": false,
