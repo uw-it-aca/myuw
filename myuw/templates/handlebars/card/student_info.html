@@ -42,28 +42,20 @@
                                 {{#if term_majors}}
                                     {{#each term_majors}}
                                         {{#if @first}}
-                                            {{#if @root.has_pending_major}}
                                                 <li>
                                                     {{#each majors}}
                                                         {{full_name}} {{#unless @last}},{{/unless}}
                                                     {{/each}}
                                                 </li>
-                                            {{else}}
-                                                <li>
-                                                    {{#if @root.has_minors}}
-                                                        Major:&nbsp;&nbsp;
-                                                    {{/if}}
-                                                    {{#each majors}}
-                                                        {{full_name}}
-                                                    {{/each}}
-                                                </li>
-                                            {{/if}}
+
                                         {{else}}
                                             {{#if degrees_modified}}
-                                                <li>{{ pluralize_by_size majors "Major" "Majors"}}
-                                                    Beginning {{ toTitleCase quarter}}:&nbsp;&nbsp;
+                                                <li>
+                                                    Beginning {{ toTitleCase quarter}} {{year}}:&nbsp;&nbsp;
                                                     {{#each majors}}
                                                         {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{else}}
+                                                        None
                                                     {{/each}}
                                                 </li>
                                             {{/if}}
@@ -85,27 +77,16 @@
                             {{#if term_minors}}
                                 {{#each term_minors}}
                                     {{#if @first}}
-                                        {{#if @root.has_pending_minor}}
                                             <li>
                                                 {{#each minors}}
                                                     {{full_name}} {{#unless @last}},{{/unless}}
                                                 {{/each}}
                                             </li>
-                                        {{else}}
-                                            <li>
-                                                {{#each minors}}
-                                                    {{#if @first}}
-                                                        {{ pluralize_by_size ../minors "Minor" "Minors"}}:&nbsp;&nbsp;
-                                                    {{/if}}
-                                                    {{full_name}} {{#unless @last}},{{/unless}}
-                                                {{/each}}
-                                            </li>
-                                        {{/if}}
 
                                     {{else}}
                                         {{#if degrees_modified}}
-                                            <li>{{ pluralize_by_size minors "Minor" "Minors"}}
-                                                Beginning {{ toTitleCase quarter}}:&nbsp;&nbsp;
+                                            <li>
+                                                Beginning {{ toTitleCase quarter}} {{year}}:&nbsp;&nbsp;
                                                 {{#each minors}}
                                                     {{full_name}} {{#unless @last}},{{/unless}}
                                                 {{else}}
