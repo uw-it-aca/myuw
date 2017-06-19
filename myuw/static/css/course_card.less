@@ -2,6 +2,47 @@
 @import (reference) "typography.less";
 
 
+// course colors and class name prefixes
+@course-colors:
+c1 #2E6884,
+c1a #36799A,
+c2 #844B2E,
+c2a #9A5736,
+c3 #14511E,
+c3a #218431,
+c4 #444444,
+c4a #646464,
+c5 #91279f,
+c5a #BD37CF,
+c6 #716141,
+c6a #653FB2,
+c7 #4B2E84,
+c7a #653FB2,
+c8 #352E9B,
+c8a #473EC5;
+
+.generate-course-colors(@course-colors);
+
+// Loops through course-colors list and creates various classes
+.generate-course-colors(@list) {
+
+    .iter(length(@list));
+    .iter(@i) when (@i > 0) {
+        .iter(@i - 1);
+        @pair: extract(@list, @i);
+        @key: extract(@pair, 1);
+        @value: extract(@pair, 2);
+
+        .@{key} { background-color: @value; }
+        .@{key}Border { border-top: 6px solid @value; &:extend(.cBorder); }
+        .@{key}LeftBorder { border-left: 6px solid @value; }
+        .@{key}Color { color: @value; }
+    }
+}
+
+.cBorder { position:absolute; top:0; left:0; right:0; height: 0; }
+
+
 
 /* Course Card Text */
 .myuw-course-abbrtitle {
