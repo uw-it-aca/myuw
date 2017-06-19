@@ -4,20 +4,32 @@
 
     ol { list-style: none; padding: 0; margin: 0;
 
-        &:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; }
-
         /*** list view styles **/
 
-        li { border: solid 1px red; margin-bottom: 8px; }
+        li { /*border: solid 1px red;*/ margin-bottom: 16px;
+
+            &:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; }
+
+            .myuw-photo-list-image { float: left; margin-right: 16px; }
+            .myuw-photo-list-content { float: left; }
+        }
 
         /*** grid view styles ***/
         &.grid-view {
-            li { border: solid 1px lime; float: left; width: 200px; margin-right: 8px; }
+
+            &:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; }
+
+            li { /*border: solid 1px lime;*/ float: left; width: 200px; margin-right: 8px;
+
+                .myuw-photo-list-image { float: none; }
+                .myuw-photo-list-content { float: none; margin-top: 16px; }
+
+            }
         }
 
         /*** print styles ***/
         @media @print {
-            li { border-color: blue !important; }
+            li { border: solid 1px blue; }
         }
 
     }
