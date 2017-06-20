@@ -20,7 +20,7 @@
                     {{#each meetings}}
                     <tr class="course-schedule-row">
                         {{#if days_tbd }}
-                            <td colspan="2" class="text-muted course-tbd">Days and times to be arranged</td>
+                            <td colspan="2" class="course-tbd">Days and times to be arranged.</td>
                         {{else}}
                             <td class="course-days">
                                 {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
@@ -35,7 +35,7 @@
                         {{/if}}
 
                         {{#if building_tbd}}
-                        <td class="text-muted course-loc-tbd" colspan="2">Room to be arranged</td>
+                        <td class="course-loc-tbd" colspan="2">Room to be arranged.</td>
                         {{else}}
                             <td class="course-location">
                                 {{#if latitude}}
@@ -69,7 +69,7 @@
 
             {{#if final_exam }}
               {{#if final_exam.no_exam_or_nontraditional}}
-                No Exam or Non-Traditional
+                <span>No Exam or Non-Traditional</span>
               {{else}}
                 {{#if final_exam.start_date }}
                     <table class="table-course-schedule">
@@ -94,12 +94,12 @@
                       </tbody>
                     </table>
                 {{else}}
-                    Final exam schedule unavailable.
+                    <span>Day and time to be arranged.</span>
                 {{/if}}
 
               {{/if}}
             {{else}}
-              No Final Exam Scheduled.
+              <span>No Final Exam Scheduled.</span>
             {{/if}}
 
             {{#unless final_exam.no_exam_or_nontraditional}}{{#unless final_exam.is_confirmed}}
