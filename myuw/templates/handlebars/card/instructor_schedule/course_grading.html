@@ -1,6 +1,6 @@
     {% verbatim %}
 
-    <div class="myuw-section">
+    <div class="myuw-card-section">
         <div class="row">
             <div class="col-sm-3">
                 <h4 class="myuw-card-row-heading">Grading</h4>
@@ -12,17 +12,18 @@
                     <ul class="myuw-card-itemlist">
 
                         <li class="clearfix grading-system">
-                            <span class="inst-course-label">Grade System:</span>
+                            <span class="inst-course-label">Grade System:&nbsp;&nbsp;</span>
                             <span class="card-badge-value">{{#if grading_system}}{{grading_system}}{{else}}Unspecified{{/if}}</span>
                         </li>
 
                         <li class="clearfix grading-delegates">
-                            <span class="inst-course-label">Delegate{{pluralize grade_submission_delegates.length '' 's'}}: </span>
+                            <span class="inst-course-label">Delegate{{pluralize grade_submission_delegates.length '' 's'}}:&nbsp;&nbsp;</span>
 
                             {{#each grade_submission_delegates}}
                                 <span id="grade_submission_delegate{{index}}">{{person.first_name}} {{this.person.surname}} (<span>{{capitalizeString level}}</span>)</span>,
                             {{/each}}
-                            <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter={{capitalizeString quarter}}+{{year}}&sln={{sln}}&chanid=11" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="course_delegate_link" data-linklabel="{{#if this.grade_submission_section_delegate}}Update{{else}}Add{{/if}} Grading Delegate: {{curriculum_abbr}} {{course_number}} {{section_id}}">{{#if this.grade_submission_section_delegate}}Update{{else}}Update{{/if}}</a>
+
+                            <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter={{capitalizeString quarter}}+{{year}}&sln={{sln}}&chanid=11" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="course_delegate_link" data-linklabel="{{#if this.grade_submission_section_delegate}}Update{{else}}Add{{/if}} Grading Delegate: {{curriculum_abbr}} {{course_number}} {{section_id}}">{{#if this.grade_submission_section_delegate}}Update grade submission delegate{{else}}Add grade submission delegate{{/if}}</a>
                         </li>
                     </ul>
                 </div>
@@ -30,7 +31,7 @@
         </div>
     </div>
 
-    <div class="myuw-section last">
+    <div class="myuw-card-section last">
         <div class="row">
             <div class="col-sm-3">
                 <h4 class="myuw-card-row-heading">Grade Submission</h4>
