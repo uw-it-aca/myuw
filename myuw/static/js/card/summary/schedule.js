@@ -74,6 +74,8 @@ var  SummaryScheduleCard = {
         var courses_template = Handlebars.compile(source);
 
         var raw = courses_template({
+            quarter: (course_data) ? course_data.quarter: instructed_course_data.quarter,
+            year: (course_data) ? course_data.year: instructed_course_data.year,
             course_data: course_data,
             instructed_course_data: instructed_course_data
         });

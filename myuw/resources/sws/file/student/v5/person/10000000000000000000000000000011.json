@@ -1,0 +1,36 @@
+{
+    "BirthDate": "1993-12-10",
+    "DirectoryRelease": null,
+    "Email": "billpce@uw.edu",
+    "EmployeeID": "867530901",
+    "FirstName": "BILL PCE",
+    "Gender": null,
+    "LastEnrolled": null,
+    "LastName": "INSTRUCTOR",
+    "LocalAddress": null,
+    "LocalPhone": null,
+    "Notices": {
+        "Href": "/student/v5/notice/10000000000000000000000000000011.json",
+        "RegID": "10000000000000000000000000000011"
+    },
+    "PermanentAddress": null,
+    "PermanentPhone": null,
+    "PersonFinancial": {
+        "Href": "/student/v5/person/10000000000000000000000000000011/financial.json",
+        "RegID": "10000000000000000000000000000011"
+    },
+    "RegID": "10000000000000000000000000000011",
+    "RegisteredName": "BILL PCE INSTRUCTOR",
+    "Resident": null,
+    "StudentName": "BILL PCE INSTRUCTOR",
+    "StudentNumber": null,
+    "StudentSystemKey": null,
+    "TestScore": {
+        "Href": "/student/v5/testscore/10000000000000000000000000000011.json",
+        "RegID": "10000000000000000000000000000011"
+    },
+    "UWNetID": "billpce",
+    "Veteran": null,
+    "VisaType": null
+}
+
