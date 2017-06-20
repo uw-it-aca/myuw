@@ -1,12 +1,24 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "instructor_summary_schedule" %}
-
     <div class="card" data-type="card" data-name="SummaryScheduleCard" data-identifier="{{ title }}">
         <h3>
           {{capitalizeString quarter}} {{year}} Schedule
         </h3>
-        {{#each sections}}
-        {%include "handlebars/card/summary/schedule_panel.html" %}
-{{/each}}
-</div>
+        {{#if instructed_course_data}}
+            {{#if course_data}}
+            <h5>Teaching</h5>
+            {{/if}}
+            {{#each instructed_course_data.sections}}
+            {%include "handlebars/card/summary/schedule_panel.html" %}
+            {{/each}}
+        {{/if}}
+        {{#if course_data}}
+            {{#if instructed_course_data}}
+            <h5>Academics</h5>
+            {{/if}}
+            {{#each course_data.sections}}
+            {%include "handlebars/card/summary/schedule_panel.html" %}
+            {{/each}}
+        {{/if}}
+    </div>
 {% endtplhandlebars %}
