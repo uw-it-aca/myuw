@@ -11,7 +11,6 @@
                         <th>Day(s)</th>
                         <th>Time</th>
                         <th>Location</th>
-                        <th>Location Information</th>
                         <th>Section Type</th>
                     </tr>
                 </thead>
@@ -45,11 +44,6 @@
                                     </a>
                                 {{/if}}
                                 {{room}}
-                            </td>
-                            <td class="course-location-info">
-                              {{#if classroom_info_url}}
-                              <a href="{{classroom_info_url}}" data-linklabel="{{ building }} {{ room }} - Room Info">Room info</a>
-                              {{/if}}
                             </td>
                         {{/if}}
                         <td>
