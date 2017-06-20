@@ -12,10 +12,12 @@ from myuw.views.future_quarters import future_quarters
 from myuw.views.textbooks import textbooks
 from myuw.views.category import category
 from myuw.views.display_dates import override
+from myuw.views.message_admin import manage_messages
 from myuw.views.link_admin import popular_links
 from myuw.views.choose import new_site, old_site
 from myuw.views.logger import log_interaction
 from myuw.views.photo import show_photo
+from myuw.views.academics import academics
 from myuw.views.accounts import accounts
 from myuw.views.profile import profile
 from myuw.views.link import outbound_link
@@ -25,6 +27,8 @@ from myuw.views.api.instructor_schedule import (InstScheCurQuar, InstScheQuar,
 from myuw.views.api.finance import Finance
 from myuw.views.api.hfs import HfsBalances
 from myuw.views.api.future_schedule import StudClasScheFutureQuar
+from myuw.views.api.prev_unfinished_schedule import\
+    StudUnfinishedPrevQuarClasSche
 from myuw.views.api.grad import MyGrad
 from myuw.views.api.iasystem import IASystem
 from myuw.views.api.library import MyLibInfo
@@ -41,7 +45,6 @@ from myuw.views.api.calendar import DepartmentalCalendar
 from myuw.views.search import search_res
 from myuw.views.api.upass import UPass
 from myuw.views.api.link import ManageLinks
-from myuw.views.api.messages import Messages
 from myuw.views.api.directory import MyDirectoryInfo
 
 urlpatterns = []
@@ -58,6 +61,7 @@ if settings.DEBUG:
 urlpatterns += [
     url(r'admin/dates', override, name="myuw_date_override"
         ),
+    url(r'admin/messages', manage_messages, name="myuw_manage_messages"),
     url(r'admin/links/(?P<page>[0-9]+)', popular_links,
         name="myuw_popular_links_paged"),
     url(r'admin/links', popular_links, {'page': 1},
@@ -135,6 +139,10 @@ urlpatterns += [
         login_required(StudClasScheCurQuar().run),
         name="myuw_current_schedule"
         ),
+    url(r'^api/v1/schedule/prev_unfinished/?$',
+        login_required(StudUnfinishedPrevQuarClasSche().run),
+        name="myuw_prev_unfinished_schedule"
+        ),
     url(r'^api/v1/schedule/(?P<year>\d{4}),(?P<quarter>[a-z]+),'
         r'(?P<summer_term>[-,abterm]*)$',
         login_required(StudClasScheFutureQuar().run),
@@ -168,9 +176,6 @@ urlpatterns += [
     url(r'^api/v1/thrive/$', login_required(ThriveMessages().run),
         name="myuw_thrive_api"
         ),
-    url(r'^api/v1/messages/$', login_required(Messages().run),
-        name="myuw_message_api"
-        ),
     url(r'^api/v1/directory/$', login_required(MyDirectoryInfo().run),
         name="myuw_directory_api"
         ),
@@ -178,6 +183,7 @@ urlpatterns += [
         ),
     url(r'^choose/legacy', old_site, name="myuw_pref_old_site"
         ),
+    url(r'^academics/?$', academics, name="myuw_academics_page"),
     url(r'^accounts/?$', accounts, name="myuw_accounts_page"),
     url(r'^profile/?$', profile, name="myuw_profile_page"),
     url(r'^search/?$', search_res, name="myuw_search_res_page"

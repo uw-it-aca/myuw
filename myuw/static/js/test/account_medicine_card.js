@@ -25,14 +25,14 @@ describe('MedicineAccountsCard', function(){
             MedicineAccountsCard.render_init();
         });
         it("Should render card", function() {
-            assert.equal(MedicineAccountsCard.dom_target.find('span.pw-exp-date').length, 1);
+            assert.equal(MedicineAccountsCard.dom_target.find('div#medicine-pw').length, 1);
         });
         it("Should NOT render card", function() {
             var profile = WSData.profile_data();
             profile.password.has_active_med_pw = false;
             MedicineAccountsCard.dom_target.html('');
             MedicineAccountsCard.render_upon_data();
-            assert.equal(MedicineAccountsCard.dom_target.find('span.pw-exp-date').length, 0);
+            assert.equal(MedicineAccountsCard.dom_target.find('div#medicine-pw').length, 0);
         });
         after(function () {
             Global.Environment.ajax_stub_restore();

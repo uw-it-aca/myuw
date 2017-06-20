@@ -5,6 +5,6 @@
             </div>
 
             <div class="pull-right">
-                <span class="card-badge-value">{{#if canvas_url}}<a href="{{canvas_url}}" class="course_canvas_site" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Canvas</a>{{else}}No Canvas site{{/if}}, <a href="#">Catalyst</a></span>
+                <span class="card-badge-value">{{#if canvas_url}}<a href="{{canvas_url}}" class="course_canvas_site" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" data-linklabel="Course Canvas: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Canvas</a>{{else}}No Canvas site{{/if}}</span>
             </div>
     {% endverbatim %}

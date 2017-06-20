@@ -72,6 +72,7 @@ def get_values_by_date(now, request):
         "current_summer_term": "%s,%s" % (last_term.year, "summer"),
         "last_term": "%s,%s" % (last_term.year, last_term.quarter),
         "in_coursevel_fetch_window": in_coursevel_fetch_window(request),
+        "comparison_date": get_comparison_datetime(request)
     }
 
 
@@ -208,6 +209,10 @@ def is_term_myplan_peak(now, term, data):
 
 
 def get_term_reg_data(now, term, data):
+    if term.registration_period1_start is None:
+        data["myplan_peak_load"] = False
+        return
+
     if not (data["myplan_peak_load"] is True):
         data["myplan_peak_load"] = is_term_myplan_peak(now, term, data)
 

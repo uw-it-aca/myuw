@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load set_context %}
 {% load static %}
 {% load compress %}
 
-{% block page_title %}
-MyUW: Search the UW
+{% block load_values %}
+{% set_context 'page_title' 'Search Results' %}
 {% endblock %}
 
 {% block content %}
@@ -11,7 +12,8 @@ MyUW: Search the UW
     <div id="main-content" role="main" aria-labelledby="main">
         <div class="container search-container">
             <div id="search_content">
-                <h2 class="heading-page">Search Results</h2>
+
+                <h2 class="heading-page">{{ page_title }}</h2>
 
                 <form action="/search" method="get" class="uw-search">
                     <label class="sr-only" for="search-results-page">Search for:</label>

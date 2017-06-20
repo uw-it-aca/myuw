@@ -1,0 +1,35 @@
+@import (reference) "boilerplate.less";
+@import (reference) "mobile.less";
+
+@fontface-card-title: 'encode_sans_normalbold', sans-serif;
+@fontface-card-heading: 'Roboto', sans-serif;
+@fontface-body: 'Open Sans', sans-serif;
+
+
+
+#app_content .card .myuw-card-title {
+    margin-top: 0;
+}
+
+/* Course Card Text */
+.myuw-course-abbrtitle {
+    display: block;
+    font-family: @fontface-card-title;
+    font-size: 18px;
+    color: @uw-metalic-gold;
+}
+
+.myuw-course-shortname {
+    font-family: @fontface-card-heading;
+    font-weight: 400;
+    color: @uw-dark-gray;
+    font-size: 16px;
+    display: block;
+    margin-top: 8px;
+}
+
+.myuw-meta {
+    font-family: @fontface-body;
+    font-size: @font-meta;
+    text-transform: uppercase;
+}

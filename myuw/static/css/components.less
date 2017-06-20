@@ -1,0 +1,114 @@
+@import (reference) "boilerplate.less";
+@import (reference) "typography.less";
+
+/*** modals ***/
+.myuw-modal {
+    h3 {
+    margin-bottom: 10px;
+    font-family: 'encode_sans_normalbold', sans-serif;
+    font-size: 18px;
+    color: #85754d;
+    }
+}
+
+
+/*** canvas aka non-card ***/
+.myuw-canvas {
+    margin-top: 0;
+    margin-left: -16px;
+    margin-right: -16px;
+    margin-bottom: 16px;
+    padding: 16px !important;
+
+    @media @two-column { margin-left: 0; margin-right: 0; }
+
+    /*** canvas title ***/
+    .myuw-canvas-title { font-size: 18px !important; color: #000; margin-top: 0; }
+
+}
+
+/*** cards ***/
+.myuw-card {
+
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(34,25,25,.15);
+    margin-top: 0;
+    margin-left: -16px;
+    margin-right: -16px;
+    margin-bottom: 16px;
+    padding: 16px !important;
+    border: 1px solid #ddd;
+    border-left: none;
+    border-right: none;
+
+    @media @two-column { border-left: solid 1px #ddd; border-right: solid 1px #ddd; margin-left: 0; margin-right: 0; }
+
+    /*** card title ***/
+    .myuw-card-title { font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: 24px !important; color: @uw-metalic-gold; margin-top: 8px;
+        &.text-danger { color: #a94442; }
+    }
+
+    /*** card section ***/
+    .myuw-card-section { padding-top: 16px;
+
+        /* every last row of each section */
+        .row:last-child {
+            .col-sm-9 {
+                border-bottom: 1px solid #EDEDED;
+                padding-bottom: 16px;
+            }
+        }
+
+        /* the vest last section's last child */
+        &:last-child {
+            .col-sm-9 {
+                border-bottom: none !important;
+                padding-bottom: 0;
+            }
+        }
+    }
+
+    /*** card section heading ***/
+    .myuw-card-row-heading {
+        margin: 0;
+        margin-right: 16px;
+        line-height: inherit;
+        font-family: @fontface-body;
+        font-size: @font-base;
+        font-weight: bold;
+        color: #333;
+
+        @media @two-column { margin-bottom: 8px; }
+    }
+
+    /*** card section content ***/
+    .myuw-card-row-content {
+        margin-bottom: 8px;
+
+        em { color: #555; }
+    }
+
+    /*** card item list ***/
+    .myuw-card-itemlist {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 8px;
+
+        li {
+            margin: 0 0 8px 0;
+        }
+
+        li:last-of-type {
+            margin: 0;
+        }
+    }
+
+    .myuw-card-itemlist + .myuw-card-itemlist {
+        margin-bottom: 16px;
+    }
+
+    .myuw-card-itemlist:last-child {
+        margin-bottom: 0;
+    }
+
+} /*** /cards ***/
