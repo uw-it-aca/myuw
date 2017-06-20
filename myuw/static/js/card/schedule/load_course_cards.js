@@ -64,6 +64,17 @@ var CourseCards = {
         LoadCourseEval.render(term, false);
 
         CourseCards.add_events(term);
+
+        if (window.location.hash) {
+            var l = $('div[data-identifier="' +
+                      window.location.hash.substr(1).replace(/-/g, ' ') +
+                      '"]');
+            if (l.length) {
+                setTimeout(function () {
+                    $('html,body').animate({scrollTop: l.offset().top},'slow');
+                }, 500);
+            }
+        }
     },
 
     add_events: function(term) {
@@ -86,7 +97,7 @@ var CourseCards = {
             building = building.replace(/[^a-z0-9]/gi, '_');
             WSData.log_interaction("show_map_from_course_list_"+building, term);
         });
-        
+
         $(".course_canvas_site").on("click", function(ev) {
             var course_id = ev.currentTarget.getAttribute("rel");
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');

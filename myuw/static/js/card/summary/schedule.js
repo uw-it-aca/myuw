@@ -77,7 +77,8 @@ var  SummaryScheduleCard = {
             quarter: (course_data) ? course_data.quarter: instructed_course_data.quarter,
             year: (course_data) ? course_data.year: instructed_course_data.year,
             course_data: course_data,
-            instructed_course_data: instructed_course_data
+            instructed_course_data: instructed_course_data,
+            is_instructor: (instructed_course_data !== undefined)
         });
 
         SummaryScheduleCard.dom_target.html(raw);

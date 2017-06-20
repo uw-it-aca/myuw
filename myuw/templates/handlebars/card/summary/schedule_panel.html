@@ -2,7 +2,7 @@
 
     <div class="row">
         <div class="col-sm-3">
-            <h4 class="myuw-card-row-heading"><div class="c{{color_id}} simplesquare" aria-hidden="true"></div><a href="/teaching/#{{section_label}}">{{curriculum_abbr}} {{course_number}} {{section_id}}</a></h4>
+            <h4 class="myuw-card-row-heading"><div class="c{{color_id}} simplesquare" aria-hidden="true"></div><a href="/{{#if ../is_instructor}}teaching{{else}}academics{{/if}}/#{{curriculum_abbr}}-{{course_number}}-{{section_id}}">{{curriculum_abbr}} {{course_number}} {{section_id}}</a></h4>
         </div>
         <div class="col-sm-9">
             <table class="table table-condensed table-course-schedule">

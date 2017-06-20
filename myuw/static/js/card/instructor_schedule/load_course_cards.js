@@ -126,16 +126,16 @@ var InstructorCourseCards = {
         InstructorCourseCards.add_events();
         InstructorCourseCards._show_correct_term_dropdown();
 
-        $(window).on("myuw:card_load", function () {
-            if (window.location.hash) {
-                var l = $('div[data-identifier="'
-                          + window.location.hash.split("-").slice(2).join(" ")
-                          + '"]');
-                if (l.length) {
+        if (window.location.hash) {
+            var l = $('div[data-identifier="' +
+                      window.location.hash.substr(1).replace(/-/g, ' ') +
+                      '"]');
+            if (l.length) {
+                setTimeout(function () {
                     $('html,body').animate({scrollTop: l.offset().top},'slow');
-                }
+                }, 500);
             }
-        });
+        }
     },
 
     add_events: function(term) {
