@@ -20,7 +20,7 @@ var AccountsPage = {
 
         // Monitor for viewport changes and reorder cards if needed
         $(window).resize(function(){
-            AccountsPage.order_card_list();
+            AccountsPage.order_card_list(get_is_desktop());
         });
     },
 
