@@ -125,6 +125,15 @@ var InstructorCourseCards = {
 
         InstructorCourseCards.add_events();
         InstructorCourseCards._show_correct_term_dropdown();
+
+        $(window).on("myuw:card_load", function () {
+            if (window.location.hash) {
+                var l = $(window.location.hash);
+                if (l.length) {
+                    $('html,body').animate({scrollTop: l.offset().top},'slow');
+                }
+            }
+        });
     },
 
     add_events: function(term) {
