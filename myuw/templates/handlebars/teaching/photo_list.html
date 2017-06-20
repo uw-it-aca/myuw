@@ -9,12 +9,13 @@
 
                 <h3 class="scheduleHeading">{{ toTitleCase quarter }} {{ year }} | {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }} | SLN {{ sections.0.sln }}</h3>
 
-                <div id="classlist_controls" class="row" style="padding-bottom: 40px;">
+                <div id="classlist_controls" class="row myuw-photo-list-controls" style="padding-bottom: 40px;">
 
-                    <div class="col-sm-6">
-                        Display: <a id="list_view" href="#">List</a> | <a id="grid_view" href="#">Grid</a>
-                        <span class="classlist-styled-select" style="display:inline-block; margin-left: 16px;">Sort by:
-                            <select id="sort_list">
+                    <div class="col-sm-5">
+                        Display:&nbsp;&nbsp;<a id="list_view" href="#"><i class="fa fa-list" aria-hidden="true"></i> Detailed (List)</a> | <a id="grid_view" href="#"><i class="fa fa-th" aria-hidden="true"></i> Simple (Grid)</a>
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="classlist-styled-select" style="display:inline-block;">Sort by:&nbsp;&nbsp;<select id="sort_list">
                                 <option value="name,surname">First Name</option>
                                 <option value="surname,name" selected="selected">Last Name</option>
                                 <option value="netid">UW NetID</option>
@@ -24,86 +25,189 @@
                                 <option value="linked_type_{{ this }},surname,name">{{ ucfirst this }} Section</option>
                                 {{ /each }}
                             </select>
-
                         </span>
                     </div>
-                    <div class="col-sm-6" style="text-align:right;">
+                    <div class="col-sm-4">
                         <a href="#" id="download_class_list"><i class="fa fa-download"></i>&nbsp;Download class list (Excel)</a> | <a href="javascript:window.print()" class="classlist-print"><i class="fa fa-print"></i>&nbsp;Print</a>
                     </div>
 
                 </div>
 
-                <!-- desktop table view
-                <table id="student_list" border="1">
-                    <thead>
-                	<tr>
-                		<th>Photo</th>
-                		<th>Name</th>
-                        <th>Student #</th>
-                		<th>UW NetID</th>
-                		<th>Credits</th>
-                        <th>Major</th>
-                		<th>Class</th>
-                        {{ #each sections.0.linked_types }}
-                		<th>{{ ucfirst this }} Section</th>
-                        {{ /each }}
-                        <th>Email</th>
-                	</tr>
-                    </thead>
-                    <tbody>
-                    {{ #each sections.0.registrations }}
-                	<tr id="student_{{ regid }}">
-                		<td><img width="75" class="classlist-photo" src="/photo/{{ url_key }}"></td>
-                		<td>{{ surname }}, {{ name }}</td>
-                        <td>{{ student_number }}</td>
-                		<td>{{ netid }}</td>
-                		<td>{{ credits }}</td>
-                        <td>{{ #each majors }} {{ full_name }} {{ /each }}</td>
-                		<td>{{ class }}</td>
-                        {{ #if linked_sections }}
-                        {{ #each linked_sections }}
-                            {{ #each sections }}
-                		    <td>{{ this }}</td>
-                            {{ /each }}
-                        {{ /each }}
-                        {{ /if }}
-                        <td>{{ email }}</td>
-                	</tr>
-                    {{ /each }}
-                    </tbody>
-                </table> -->
-
                 <div id="student_list">
 
                     <ol id="student_sort">
-                    {{ #each sections.0.registrations }}
-                        <li id="student_{{ regid }}">
 
-                            <img class="classlist-photo myuw-photo-list-image" src="/photo/{{ url_key }}">
+                        {{ #each sections.0.registrations }}
+                            <li id="student_{{ regid }}">
 
-                            <div class="myuw-photo-list-content">
-                            <strong>{{ surname }}, {{ name }}</strong><br />
-                            Student Number: {{ student_number }} <br />
-                            UW NetID: {{ netid }} <br />
-                            Credits: {{ credits }} <Br />
-                            Major: {{ #each majors }} {{ full_name }} {{ /each }}<br />
-                            Class: {{ class }} <br />
-                            Email: <a href="mailto:{{ email }}">{{ netid }}</a> <br />
-                            {{ #if linked_sections }}
-                            {{ #each linked_sections }}
-                                {{ ucfirst type }} Section:
-                                {{ #each sections }}
-                                    {{ this }}
-                                {{ /each }}
-                                <br />
-                            {{ /each }}
-                            {{ /if }}
-                            </div>
+                                <img class="classlist-photo myuw-photo-list-image" src="/photo/{{ url_key }}">
+
+                                <div class="myuw-photo-list-content">
+                                <strong>{{ surname }}, {{ name }}</strong><br />
 
 
-                        </li>
-                    {{ /each }}
-                </ol>
+                                <span class="sr-only">Email:</span> <a href="mailto:{{ email }}">{{ email }}</a> <br />
+
+                                    <div class="myuw-photo-list-meta">
+                                        Student Number: {{ student_number }} <br />
+                                        UW NetID: {{ netid }} <br />
+                                        Credits: {{ credits }} <Br />
+                                        Major: {{ #each majors }} {{ full_name }} {{ /each }}<br />
+                                        Class: {{ class }} <br />
+
+                                        {{ #if linked_sections }}
+                                        {{ #each linked_sections }}
+                                            {{ ucfirst type }} Section:
+                                            {{ #each sections }}
+                                                {{ this }}
+                                            {{ /each }}
+                                            <br />
+                                        {{ /each }}
+                                        {{ /if }}
+                                    </div>
+                                </div>
+
+
+                            </li>
+                        {{ /each }}
+
+                        {{ #each sections.0.registrations }}
+                            <li id="student_{{ regid }}">
+
+                                <img class="classlist-photo myuw-photo-list-image" src="/photo/{{ url_key }}">
+
+                                <div class="myuw-photo-list-content">
+                                <strong>{{ surname }}, {{ name }}</strong><br />
+
+
+                                <span class="sr-only">Email:</span> <a href="mailto:{{ email }}">{{ email }}</a> <br />
+
+                                    <div class="myuw-photo-list-meta">
+                                        Student number: {{ student_number }} <br />
+                                        Netid: {{ netid }} <br />
+                                        Credits: {{ credits }} <Br />
+                                        Major: {{ #each majors }} {{ full_name }} {{ /each }}<br />
+                                        Class: {{ class }} <br />
+
+                                        {{ #if linked_sections }}
+                                        {{ #each linked_sections }}
+                                            {{ ucfirst type }} Section:
+                                            {{ #each sections }}
+                                                {{ this }}
+                                            {{ /each }}
+                                            <br />
+                                        {{ /each }}
+                                        {{ /if }}
+                                    </div>
+                                </div>
+
+
+                            </li>
+                        {{ /each }}
+
+                        {{ #each sections.0.registrations }}
+                            <li id="student_{{ regid }}">
+
+                                <img class="classlist-photo myuw-photo-list-image" src="/photo/{{ url_key }}">
+
+                                <div class="myuw-photo-list-content">
+                                <strong>{{ surname }}, {{ name }}</strong><br />
+
+
+                                <span>Email:</span> <a href="mailto:{{ email }}">{{ email }}</a> <br />
+
+                                    <div class="myuw-photo-list-meta">
+                                        Student number: {{ student_number }} <br />
+                                        Netid: {{ netid }} <br />
+                                        Credits: {{ credits }} <Br />
+                                        Major: {{ #each majors }} {{ full_name }} {{ /each }}<br />
+                                        Class: {{ class }} <br />
+
+                                        {{ #if linked_sections }}
+                                        {{ #each linked_sections }}
+                                            {{ ucfirst type }} Section:
+                                            {{ #each sections }}
+                                                {{ this }}
+                                            {{ /each }}
+                                            <br />
+                                        {{ /each }}
+                                        {{ /if }}
+                                    </div>
+                                </div>
+
+
+                            </li>
+                        {{ /each }}
+
+                        {{ #each sections.0.registrations }}
+                            <li id="student_{{ regid }}">
+
+                                <img class="classlist-photo myuw-photo-list-image" src="/photo/{{ url_key }}">
+
+                                <div class="myuw-photo-list-content">
+                                <strong>{{ surname }}, {{ name }}</strong><br />
+
+
+                                <span>Email:</span> <a href="mailto:{{ email }}">{{ email }}</a> <br />
+
+                                    <div class="myuw-photo-list-meta">
+                                        Student number: {{ student_number }} <br />
+                                        Netid: {{ netid }} <br />
+                                        Credits: {{ credits }} <Br />
+                                        Major: {{ #each majors }} {{ full_name }} {{ /each }}<br />
+                                        Class: {{ class }} <br />
+
+                                        {{ #if linked_sections }}
+                                        {{ #each linked_sections }}
+                                            {{ ucfirst type }} Section:
+                                            {{ #each sections }}
+                                                {{ this }}
+                                            {{ /each }}
+                                            <br />
+                                        {{ /each }}
+                                        {{ /if }}
+                                    </div>
+                                </div>
+
+
+                            </li>
+                        {{ /each }}
+
+                        {{ #each sections.0.registrations }}
+                            <li id="student_{{ regid }}">
+
+                                <img class="classlist-photo myuw-photo-list-image" src="/photo/{{ url_key }}">
+
+                                <div class="myuw-photo-list-content">
+                                <strong>{{ surname }}, {{ name }}</strong><br />
+
+
+                                <span>Email:</span> <a href="mailto:{{ email }}">{{ email }}</a> <br />
+
+                                    <div class="myuw-photo-list-meta">
+                                        Student number: {{ student_number }} <br />
+                                        Netid: {{ netid }} <br />
+                                        Credits: {{ credits }} <Br />
+                                        Major: {{ #each majors }} {{ full_name }} {{ /each }}<br />
+                                        Class: {{ class }} <br />
+
+                                        {{ #if linked_sections }}
+                                        {{ #each linked_sections }}
+                                            {{ ucfirst type }} Section:
+                                            {{ #each sections }}
+                                                {{ this }}
+                                            {{ /each }}
+                                            <br />
+                                        {{ /each }}
+                                        {{ /if }}
+                                    </div>
+                                </div>
+
+
+                            </li>
+                        {{ /each }}
+
+                    </ol>
                 </div>
 
             </div>

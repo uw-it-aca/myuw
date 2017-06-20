@@ -2,16 +2,22 @@
 
 .myuw-photo-list {
 
+    .myuw-photo-list-controls { white-space: nowrap; }
+    
     ol { list-style: none; padding: 0; margin: 0;
 
         /*** list view styles **/
 
-        li { /*border: solid 1px red;*/ margin-bottom: 16px;
+        li { border: solid 1px #ddd; margin-bottom: 16px; padding: 8px;
 
             &:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; }
 
+            @media @tablet { border: none; }
+            @media @desktop { border: none; }
+
             .myuw-photo-list-image { float: left; margin-right: 16px; }
-            .myuw-photo-list-content { float: left; }
+            .myuw-photo-list-content { float: left; margin-top: 8px; }
+            .myuw-photo-list-meta { border-top: solid 1px #eee; margin-top: 8px; padding-top: 8px; font-size: 13px; }
         }
 
         /*** grid view styles ***/
@@ -19,18 +25,29 @@
 
             &:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; }
 
-            li { /*border: solid 1px lime;*/ float: left; width: 200px; margin-right: 8px;
+            li { float: left; width: 200px; margin-right: 8px;
 
                 .myuw-photo-list-image { float: none; }
-                .myuw-photo-list-content { float: none; margin-top: 16px; }
+                .myuw-photo-list-content { float: none; margin-top: 8px; margin-bottom: 8px; }
+                .myuw-photo-list-meta { display: none; }
 
             }
         }
-
-        /*** print styles ***/
-        @media @print {
-            li { border: solid 1px blue; }
-        }
-
     }
+
+    /*** print styles ***/
+    @media @print { border: none;
+
+        .myuw-photo-list-controls { display: none !important; }
+
+        ol { margin-top: 24px;
+            li { margin-bottom: 0px; page-break-inside: avoid; border: none;
+                a[href]:after {
+                    content: none !important;
+                }
+
+            }
+        }
+    }
+
 }
