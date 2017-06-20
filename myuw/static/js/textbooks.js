@@ -16,7 +16,7 @@ var TextBooks = {
         var course_err_status = WSData.course_data_error_code(TextBooks.term);
         var instructed_course_err_status = WSData.instructed_course_data_error_code(TextBooks.term);
 
-        if (book_err_status === 543 || course_err_status === 543 || (window.enabled_featured['instructor_textbooks'] && instructed_course_err_status === 543)) {
+        if (book_err_status === 543 || course_err_status === 543 || (window.enabled_featured.instructor_textbooks && instructed_course_err_status === 543)) {
             var raw = CardWithError.render("Textbooks");
             $("#main-content").html(raw);
         } else {
