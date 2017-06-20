@@ -6,13 +6,17 @@ var HRPayrollCard = {
         if (myuwFeatureEnabled('workday_account_card') && (window.user.employee || window.user.faculty)) {
             HRPayrollCard._render();
         } else {
-            $("#HRPayrollCard").remove();
-            $(window).trigger("card-hide");
+            HRPayrollCard.remove_card();
         }
     },
 
     render_error: function() {
         HRPayrollCard.dom_target.html(CardWithError.render("UW NetID"));
+    },
+
+    remove_card: function() {
+        HRPayrollCard.dom_target.remove();
+        $(window).trigger("card-hide");
     },
 
     _render: function() {

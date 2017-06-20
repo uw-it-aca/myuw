@@ -13,12 +13,16 @@ var UPassCard = {
             UPassCard.dom_target.html(raw);
             return;
         }
-        UPassCard.dom_target.remove();
-        $(window).trigger("card-hide");
+        UPassCard.remove_card();
     },
 
     render_upon_data: function () {
         UPassCard._render();
+    },
+
+    remove_card: function() {
+        UPassCard.dom_target.remove();
+        $(window).trigger("card-hide");
     },
 
     _render: function () {

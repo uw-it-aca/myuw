@@ -13,14 +13,17 @@ var MedicineAccountsCard = {
             if(profile_data.password.has_active_med_pw) {
                 MedicineAccountsCard._render();
             } else {
-                MedicineAccountsCard.dom_target.remove();
-                $(window).trigger("card-hide");
+                MedicineAccountsCard.remove_card();
             }
         } catch (e) {
-            MedicineAccountsCard.dom_target.remove();
-            $(window).trigger("card-hide");
+            MedicineAccountsCard.remove_card();
         }
 
+    },
+
+    remove_card: function() {
+        MedicineAccountsCard.dom_target.remove();
+        $(window).trigger("card-hide");
     },
 
     render_error: function() {
