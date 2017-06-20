@@ -45,10 +45,10 @@ MyUW: View Future Quarters
         window.future_term_data = {
             "year": "{{term_data.year}}",
             "quarter": "{{term_data.quarter}}",
-            "first_day_quarter": "{{ term_data.first_day_quarter }}",
-            "last_day_instruction": "{{ term_data.last_day_instruction }}",
-            "aterm_last_date": "{{term_data.aterm_last_date }}",
-            "bterm_first_date": "{{ term_data.bterm_first_date }}"
+            "first_day_quarter": "{{ term_data.first_day_quarter |date:"l, F j, Y" }}",
+            "last_day_instruction": "{{ term_data.last_day_instruction |date:"l, F j, Y" }}",
+            "aterm_last_date": "{{term_data.aterm_last_date |date:"l, F j, Y" }}",
+            "bterm_first_date": "{{ term_data.bterm_first_date |date:"l, F j, Y" }}"
         };
     </script>
     {% compress js inline %}
