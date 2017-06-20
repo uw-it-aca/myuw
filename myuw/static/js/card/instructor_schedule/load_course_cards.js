@@ -133,7 +133,7 @@ var InstructorCourseCards = {
             if (l.length) {
                 setTimeout(function () {
                     $('html,body').animate({scrollTop: l.offset().top},'slow');
-                }, 500);
+                }, 250);
             }
         }
     },
