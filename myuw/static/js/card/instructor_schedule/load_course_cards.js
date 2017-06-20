@@ -128,7 +128,9 @@ var InstructorCourseCards = {
 
         $(window).on("myuw:card_load", function () {
             if (window.location.hash) {
-                var l = $(window.location.hash);
+                var l = $('div[data-identifier="'
+                          + window.location.hash.split("-").slice(2).join(" ")
+                          + '"]');
                 if (l.length) {
                     $('html,body').animate({scrollTop: l.offset().top},'slow');
                 }
