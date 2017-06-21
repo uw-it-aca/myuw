@@ -22,8 +22,9 @@
                             {{#each grade_submission_delegates}}
                                 <span id="grade_submission_delegate{{index}}">{{person.first_name}} {{this.person.surname}} (<span>{{capitalizeString level}}</span>)</span>,
                             {{/each}}
-
+                            {{#unless past_term}}
                             <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter={{capitalizeString quarter}}+{{year}}&sln={{sln}}&chanid=11" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="course_delegate_link" data-linklabel="{{#if this.grade_submission_section_delegate}}Update{{else}}Add{{/if}} Grading Delegate: {{curriculum_abbr}} {{course_number}} {{section_id}}">{{#if this.grade_submission_section_delegate}}Update grade submission delegate{{else}}Add grade submission delegate{{/if}}</a>
+                            {{/unless}}
                         </li>
                     </ul>
                 </div>
