@@ -351,7 +351,8 @@ var VisualScheduleCard = {
             has_6_days: false,
             courses_meeting_tbd: [],
             courses_no_meeting: [],
-            schedule_periods: course_data.schedule_periods
+            schedule_periods: course_data.schedule_periods,
+            show_periods: Object.keys(course_data.schedule_periods).length > 1
         };
         var day, day_index, i, height, top;
 
