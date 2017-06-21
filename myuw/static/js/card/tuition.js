@@ -5,7 +5,7 @@ var TuitionCard = {
     render_init: function() {
         TuitionCard.dom_target =$('#TuitionCard');
         if (!window.user.student) {
-            TuitionCard.remove_card();
+            remove_card(TuitionCard.dom_target);
             return;
         }
         WSData.fetch_tuition_data(TuitionCard.render_upon_data,
@@ -21,16 +21,11 @@ var TuitionCard = {
         return false;
     },
 
-    remove_card: function() {
-        TuitionCard.dom_target.remove();
-        $(window).trigger("card-hide");
-    },
-
     render_error: function (status) {
         // notice never returns 404.
         if (status === 404) {
             // not student or SDB can't find the regid
-            TuitionCard.remove_card();
+            remove_card(TuitionCard.dom_target);
             return;
         }
         var raw = CardWithError.render("Tuition & Fees");

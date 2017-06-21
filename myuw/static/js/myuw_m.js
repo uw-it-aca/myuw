@@ -283,6 +283,11 @@ var init_search_events = function() {
 	});
 };
 
+var remove_card = function(target) {
+    $(target).remove();
+    $(window).trigger("card-hide");
+};
+
 /* node.js exports */
 if (typeof exports == "undefined") {
     var exports = {};
