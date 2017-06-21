@@ -2,7 +2,13 @@
 
 .myuw-photo-list {
 
-    .myuw-photo-list-controls { white-space: nowrap; }
+    .myuw-photo-list-controls {
+        .myuw-photo-list-controls-view { display:inline-block; margin-right:16px; }
+        .myuw-photo-list-controls-sort { display:inline-block; }
+        .myuw-photo-list-controls-actions {
+            @media @two-column { text-align: right; }
+        }
+    }
 
     ol { list-style: none; padding: 0; margin: 0;
 
@@ -12,12 +18,20 @@
 
             &:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; }
 
-            @media @tablet { border: none; }
-            @media @desktop { border: none; }
+            &:last-child { margin: 0; }
 
-            .myuw-photo-list-image { float: left; margin-right: 16px; }
-            .myuw-photo-list-content { float: left; margin-top: 8px; }
-            .myuw-photo-list-meta { border-top: solid 1px #eee; margin-top: 4px; padding-top: 4px; font-size: 13px; }
+            @media @two-column { border: none; padding: 0; }
+
+            .myuw-photo-list-image {margin-right: 16px; width: 120px;
+                @media @two-column { float: left; }
+            }
+            .myuw-photo-list-content {
+
+                @media @two-column { margin-left: 136px; }
+
+                a { font-size: 13px; }
+            }
+            .myuw-photo-list-meta { border-top: solid 1px #eee; margin-top: 4px; padding-top: 4px; font-size: 14px; }
         }
 
         /*** grid view styles ***/
@@ -25,10 +39,16 @@
 
             &:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; }
 
-            li { float: left; width: 200px; margin-right: 8px;
+            li { float: left;  margin-right: 16px; width: 100%;
+
+                @media @two-column { width: 200px; }
+
+                &:last-child { margin: 0; }
 
                 .myuw-photo-list-image { float: none; }
-                .myuw-photo-list-content { float: none; margin-top: 8px; margin-bottom: 8px; }
+                .myuw-photo-list-content { float: none; margin-top: 8px; margin-left: 0;
+
+                }
                 .myuw-photo-list-meta { display: none; }
 
             }
@@ -38,12 +58,14 @@
     /*** print styles ***/
     @media @print { border: none;
 
+        .myuw-card { border: none; }
         .myuw-photo-list-controls { display: none !important; }
 
-        ol { margin-top: 24px;
-            li { margin-bottom: 0px; page-break-inside: avoid; border: none;
+        ol {
+            li { page-break-inside: avoid; border: none;
                 a[href]:after {
                     content: none !important;
+                    //font-size: 11px;
                 }
 
             }
