@@ -13,52 +13,47 @@
                   {{#if evaluation.is_online}}
                     {{#if evaluation.eval_open_date}}
                       {{#if evaluation.is_open}}
-                        <li class="evaluation-sechedule">Open now. Closes {{evaluation.eval_close_date_display}}</li>
-                        <li class=""></li>
-                        <li class="evaluation-results"><strong>{{evaluation.response_rate_percent}}% Response rate</strong></li>
-                        <li>Faculty report will be available {{evaluation.report_available_date_display}}</li>
-                      {{else}} <!-- opening in the future -->
+                        <li class="evaluation-sechedule">
+                            <span>Open:&nbsp;&nbsp;{{evaluation.response_rate_percent}}% of responses received</span>
+                            <p class="myuw-note">Closes {{evaluation.eval_close_date_display}}</p>
+                        </li>
+                        <li class="evaluation-results">
+                            <span>Results:&nbsp;&nbsp;Report will be available {{evaluation.report_available_date_display}}</span>
+                        </li>
+                        <li><a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty">Manage evaluation</a></li>
+                      {{else}}
                         {{#if evaluation.is_past}}
-                        <li class="evaluation-sechedule">
-                          Online evaluation closed {{evaluation.eval_close_date_display}}</span>
-                        </li>
-                        {{else}}
-                        <li class="evaluation-sechedule">
-                          Online evaluation will open {{evaluation.eval_open_date_display}}</span>
-                        </li>
+                            <li>
+                                <span>Closed {{evaluation.eval_close_date_display}}{{#if evaluation.response_rate_percent}} with a {{evaluation.response_rate_percent}}% response rate{{/if}}.</span>
+                            </li>
+                            {{#if evaluation.report_url}}
+                              <li>
+                                  <a href="{{evaluation.report_url}}">View evaluation results report</a>
+                              </li>
+                            {{/if}}
+                        {{else}} <!-- opening in the future -->
+                            <li class="evaluation-sechedule">Online evaluation will open {{evaluation.eval_open_date_display}}</li>
+                            <li><a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty">Manage evaluation</a></li>
                         {{/if}}
-                        <li class="">
-                          <a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty">Manage Evaluation</a></span>
-                        </li>
+
                       {{/if}}
                     {{else}} <!-- no evaluation date, not scheduled -->
-                        <li class="evaluation-sechedule">
-                          {{#if evaluation.report_available_date}}
-                          <li class="">
-                            <span>Report Available {{evaluation.report_available_date_display}}</span>
-                          </li>
-                          {{/if}}
-                          {{#if evaluation.report_url}}
-                          <li class="">
-                            <a href="{{evaluation.report_url}}">View Report</a></span>
-                          </li>
-                          {{/if}}
-                          <li class="">
-                            <span><strong>{{evaluation.response_rate_percent}}% Response rate</strong></span>
-                          </li>
+                        {{#if evaluation.report_available_date}}
+                            <li class="evaluation-sechedule">Report Available {{evaluation.report_available_date_display}}</li>
+                        {{/if}}
+                        {{#if evaluation.report_url}}
+                          <li><a href="{{evaluation.report_url}}">View Report</a></li>
+                        {{/if}}
+                        <li class=""><strong>{{evaluation.response_rate_percent}}% Response rate</strong></li>
                     {{/if}}
 
-                  {{else}}<!-- not on line, paper based -->
-                  <li class="evaluation-sechedule">
-                    Paper-based evaluation</span><br />
-                  </li>
-                  <li class="">
-                    <a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty">Manage Evaluation</a></span>
-                  </li>
+                  {{else}}<!-- not online, paper based -->
+                      <li class="evaluation-sechedule">Paper-based evaluation</li>
+                      <li class=""><a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty">Manage evaluation</a></li>
                   {{/if}}
                 {{else}}<!-- null status, no evaluation -->
                   <li class="evaluation-sechedule">
-                    You do not have an evaluation set up for this course.  <a href="https://www.washington.edu/assessment/course-evaluations/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="evaluation_help_link" target="_blank"><i class="fa fa-question-circle"></i></a>
+                      {{#if past_term}}You did not have an evaluation set up for this course.{{else}}You do not have an evaluation set up for this course.{{/if}} <a href="https://www.washington.edu/assessment/course-evaluations/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="evaluation_help_link" target="_blank"><i class="fa fa-question-circle"></i></a>
                   </li>
                 {{/if}}
                 </ul>
