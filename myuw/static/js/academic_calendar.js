@@ -12,9 +12,24 @@ var AcademicCalendar = {
         var source = $("#calendar_events").html();
         var template = Handlebars.compile(source);
         var grouped = AcademicCalendar.group_events_by_term(events);
-        $("#main-content").html(template({terms: grouped}));
+        var sorted = grouped.sort(AcademicCalendar.term_sort);
+        $("#main-content").html(template({terms: sorted}));
 
         AcademicCalendar.add_events();
+    },
+
+    term_sort: function(term_a, term_b){
+        var a_year = parseInt(term_a.year),
+            b_year = parseInt(term_b.year),
+            term_order = ["winter", "spring", "summer", "autumn"];
+        if(a_year != b_year) {
+            return a_year > b_year ? 1 : -1;
+        }
+        if(term_a.quarter != term_b.quarter){
+            return term_order.indexOf(term_a.quarter.toLowerCase()) > term_order.indexOf(term_b.quarter.toLowerCase()) ? 1 : -1;
+        }
+        return 0;
+
     },
 
     group_events_by_term: function(events) {
@@ -27,7 +42,6 @@ var AcademicCalendar = {
 
             var term_name = ev.year + " " + ev.quarter;
             var group_name = term_name;
-
             var new_group = {
                 year: ev.year,
                 quarter: ev.quarter,
