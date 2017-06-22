@@ -41,7 +41,7 @@ var AcademicCalendar = {
                 by_group[group_name] = new_group;
                 groups.push(new_group);
             }
-            else if (term_name != current_term) {
+            else if (!by_group.hasOwnProperty(group_name)) {
                 current_term = term_name;
 
                 by_group[group_name] = new_group;
@@ -78,3 +78,9 @@ var AcademicCalendar = {
         $("#myuw-event-filter-classes").click(AcademicCalendar.filter_classes);
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.AcademicCalendar = AcademicCalendar;
