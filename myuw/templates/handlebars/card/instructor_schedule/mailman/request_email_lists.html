@@ -1,13 +1,13 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "request_email_lists_tmpl" %}
 
-<div class="modal-dialog" role="document">
+<div class="myuw-modal modal-dialog" role="document">
     <div class="modal-content">
         <form role="form" id="request_emaillist_form" method="POST">{% csrf_token %}
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-                <h4>Create Mailing List</h4>
+                <h2 class="myuw-modal-title">Create Mailing List</h2>
             </div>
 
 
