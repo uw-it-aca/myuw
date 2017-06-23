@@ -380,8 +380,7 @@ var VisualScheduleCard = {
                                    (instructed_course_data &&
                                     instructed_course_data.has_early_fall_start)),
             is_pce: user.pce,
-            total_sections: (course_data ? course_data.schedule_periods[period].sections.length : 0) +
-                (instructed_course_data ? instructed_course_data.schedule_periods[period].sections.length : 0),
+            total_sections: course_data ? course_data.schedule_periods[period].sections.length : 0,
             year: course_data ? course_data.year : instructed_course_data.year,
             quarter: course_data ? course_data.quarter : instructed_course_data.quarter,
             term: term,
@@ -398,12 +397,24 @@ var VisualScheduleCard = {
             has_6_days: false,
             courses_meeting_tbd: [],
             courses_no_meeting: [],
-            schedule_periods: (course_data ? course_data.schedule_periods : 0) +
-                (instructed_course_data ? instructed_course_data.schedule_periods : 0),
+            schedule_periods: (course_data && course_data.schedule_periods) ? course_data.schedule_periods
+                : (instructed_course_data && instructed_course_data.schedule_periods) ? instructed_course_data.schedule_periods
+                : {},
             is_instructor: false
         };
 
+        if (instructed_course_data && instructed_course_data.schedule_periods) {
+            if (instructed_course_data.schedule_periods.hasOwnProperty(period)) {
+                visual_data.total_sections +=
+                    instructed_course_data.schedule_periods[period].sections.length;
+            }
+        }
+
         var set_meeting = function(course_data, meeting, is_instructor) {
+            if (!course_data.schedule_periods.hasOwnProperty(period)) {
+                return;
+            }
+
             $.each(course_data.schedule_periods[period].sections, function(section_index) {
                 var section = this;
                 $.each(section.meetings, function(){

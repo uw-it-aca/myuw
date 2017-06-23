@@ -15,7 +15,7 @@ var FinalExamSchedule = {
         var finals = {
             tbd_or_nonexistent: [],
             tbd_or_nonexistent_taught: [],
-            scheduled_finals = [];
+            scheduled_finals: [],
             last_day_of_finals: null,
             is_summer_qtr: false,
             term_data: null,
@@ -75,7 +75,7 @@ var FinalExamSchedule = {
         FinalExamSchedule.add_events(term);
     },
 
-    var process_final_data = function(course_data, for_instructor, finals) {
+    process_final_data: function(course_data, for_instructor, finals) {
         var date = date_from_string(course_data.term.last_final_exam_date);
 
         finals.last_day_of_finals = date;
@@ -288,5 +288,3 @@ var FinalExamSchedule = {
         return visual_data;
     }
 };
-
- 
