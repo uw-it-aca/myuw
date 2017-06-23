@@ -360,4 +360,22 @@ describe('Handlebar-helpers', function(){
         });
 
     });
+
+    describe("toTitleCase", function() {
+        it ("should handle summer term", function() {
+            var template = Handlebars.compile("{{toTitleCase 'summer a-term'}}");
+            var output = template();
+            assert.equal(output, "Summer A-Term");
+            template = Handlebars.compile("{{toTitleCase 'summer b-term'}}");
+            output = template();
+            assert.equal(output, "Summer B-Term");
+            template = Handlebars.compile("{{toTitleCase 'winter, 2013'}}");
+            output = template();
+            assert.equal(output, "Winter 2013");
+            template = Handlebars.compile("{{toTitleCase 'spring'}}");
+            output = template();
+            assert.equal(output, "Spring");
+        });
+    });
+
 });
