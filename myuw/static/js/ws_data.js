@@ -253,8 +253,8 @@ WSData = {
                     (section.grading_status.hasOwnProperty('submitted_count') &&
                      section.grading_status.hasOwnProperty('unsubmitted_count') &&
                      section.grading_status.unsubmitted_count === 0);
-                if (section.grading_status.submitted_date 
-                    && section.grading_status.submitted_date != 'None') {
+                if (section.grading_status.submitted_date &&
+                    section.grading_status.submitted_date != 'None') {
                     var submitted = moment(section.grading_status.submitted_date);
                     if (Math.abs(submitted.diff(ref, 'days')) > month_to_day_shift) {
                         section.grading_status.submitted_relative_date = submitted.format(fmt) + ' PST';
