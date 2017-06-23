@@ -20,19 +20,18 @@
             {{/if}}
 
             {{#unless is_primary}}
-            <div class="clearfix">
-                <div class="pull-left">
-                    <span>{{course_abbr}} {{course_number}} {{section_list.section_id}}</span>
-                </div>
                 {{ #if section_list.list_admin_url }}
-                <div class="pull-right">
-                    <a href="mailto:{{section_list.list_address}}@uw.edu" class="list-address">{{section_list.list_address}}@uw.edu</a>
-                    <a href="{{section_list.list_admin_url}}" target="_blank">Manage</a>
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <span>{{course_abbr}} {{course_number}} {{section_list.section_id}}</span>
+                    </div>
+
+                    <div class="pull-right">
+                        <a href="mailto:{{section_list.list_address}}@uw.edu" class="list-address">{{section_list.list_address}}@uw.edu</a>
+                        <a href="{{section_list.list_admin_url}}" target="_blank">Manage</a>
+                    </div>
                 </div>
-                {{ else }}
-                <div class="pull-right">-</div>
                 {{ /if }}
-            </div>
             {{/unless}}
 
             {{#if is_primary}}
@@ -40,43 +39,42 @@
                 <thead>
                     <tr>
                         <th class="mailman-sections-column">Section</th>
-                        <th class="mailman-manage-column">Mailing List</th>
+                        <th class="mailman-address-column">Mailing List</th>
+                        <th class="mailman-manage-column"><span class="sr-only">Manage list in Mailman</span></th>
                     </tr>
                 </thead>
                 <tbody>
+                    {{ #if section_list.list_admin_url }}
                     <tr>
                         <td>
-                        {{course_abbr}} {{course_number}} {{section_list.section_id}} <span class="myuw-note">Primary section</span>
+                        {{course_abbr}} {{course_number}} {{section_list.section_id}}
                         </td>
                         <td>
-                        {{ #if section_list.list_admin_url }}
                             <a href="mailto:{{section_list.list_address}}@uw.edu" class="list-address">{{section_list.list_address}}@uw.edu</a>
-                            <a href="{{section_list.list_admin_url}}" target="_blank">Manage</a>
-                        {{ else }}
-                            -
-                            {{ /if }}
                         </td>
+                        <td><a href="{{section_list.list_admin_url}}" target="_blank">Manage</a></td>
                     </tr>
-
+                    {{ /if }}
 
                     {{#each secondary_section_lists}}
+                    {{#if list_exists}}
                     <tr>
                         <td>
                             <span class="mailman-secondary-section">{{../course_abbr}} {{../course_number}} {{section_id}}</span>
                         </td>
                         <td class="mailman-manage-links">
-                        {{#if list_exists}}
                             <a href="mailto:{{list_address}}@uw.edu" class="list-address">{{list_address}}@uw.edu</a>
-                            <a href="{{list_admin_url}}" target="_blank">Manage</a>
-                        {{else}}
-                            -
-                        {{/if}}
                         </td>
+                        <td><a href="{{list_admin_url}}" target="_blank">Manage</a></td>
                     </tr>
+                    {{/if}}
                     {{/each}}
                 </tbody>
             </table>
             {{/if}}
+
+            <p>Need help with mailing lists? <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
+                  rel="help" target="_blank">Mailman help documentation</a></p>
 
         </div>
         <div class="modal-footer">

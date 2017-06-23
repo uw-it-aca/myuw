@@ -15,46 +15,50 @@
             <div class="modal-body">
 
             {{#if request_sent }}
-                <div class="">
-                    <h3>Request submitted</h3>
+                <div class="mailman-create-success">
+                    <div class="text-center">
+                        <strong class="text-success"><i class="fa fa-check" aria-hidden="true"></i> Request submitted</strong>
+                    </div>
                     {#} <p>Total email list requested: {{ total_lists_requested }}.</p> {#}
-                    <ul class="">
+                    <p>Please note:</p>
+                    <ul>
                         <li>An email confirmation will be sent to {{ netid }}@uw.edu</li>
                         <li>Mailing lists may take up to 24 hours to activate</li>
+                        <li>Learn more: <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
+                              rel="help" target="_blank">Mailman help documentation</a></li>
                     </ul>
-                    <p><a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
-                          rel="help" target="_blank">Learn more about Mailman email list manager</a></p>
                 </div>
 
             {{else}}
                 {{#unless has_lists}}
                     <div class="mailman_simple_create">
                         {{#unless section_list.list_exists}}
-                            <div>{{ course_abbr }} {{course_number}} {{section_id}}</div>
-                            <div>{{ capitalizeString quarter }} {{ year }}</div>
-                            <ul class="">
-                                <li>Creates a single email list for this section: {{section_list.list_address}}@uw.edu</li>
-                                <li>Stays synced with the official class list</li>
+                            <p>
+                                <strong>Request a single email list for {{ course_abbr }} {{course_number}} {{section_id}}, {{ capitalizeString quarter }} {{ year }}.</strong>
+                                {{#unless no_secondary_section }}{{#unless has_lists}}
+                                <br/>
+                                <span class="small">Need more email lists for this class? <a class="mailman_advanced_toggle" href="#">Request multiple email lists.</a></span>
+                                {{/unless}}{{/unless}}
+                            </p>
+
+                            <ul>
+                                <li>Mailing list address: {{section_list.list_address}}@uw.edu</li>
+                                <li>Mailing list will stay synced with the official class list</li>
+                                <li>Learn more: <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
+                                      rel="help" target="_blank">Mailman help documentation</a></li>
                             </ul>
-                            <p><a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
-                                  rel="help" target="_blank">Learn more about Mailman email list manager</a></p>
                             <input type="hidden" id="section_single_{{section_list.section_id}}"
                                    name="section_single_{{section_list.section_id}}" value="{{section_list.section_label}}"/>
                         {{/unless}}
                     </div>
                 {{/unless}}
-                {{#unless no_secondary_section }}
+
+                {{#unless no_secondary_section }} {# if there are secondary sections #}
                     {#Hide advanced view if no lists exist#}
-                    {{#if has_lists}}
-                        <div class="mailman_advanced_create">
-                    {{else}}
-                        <a class="mailman_advanced_toggle" href="#">Advanced Edit</a>
-                        <div class="mailman_advanced_create" style="display:none">
-                    {{/if}}
+
+                    <div class="mailman_advanced_create" {{#unless has_lists}}style="display:none"{{/unless}}>
                         <div>
-                            <p>Create multiple email lists, one for each section selected.</p>
-                            <p><a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
-                              rel="help" target="_blank">Learn more about Mailman email list manager</a></p>
+                            <p><strong>Request multiple email lists, one for each section selected:</strong></p>
                        </div>
 
                         <fieldset>
@@ -68,12 +72,13 @@
                                             <input type="checkbox" title="select or unselect all checkboxes" id="select_all" name="select-all" />
                                             {{/if}}
                                         </th>
-                                        <th>
+                                        <th class="mailman-create-sectionname-column">
                                             Section
                                             {{#if multi_sections_wo_list}}<br />
-                                            <label for="select-all" class="mailman-select-all-label">Select all</label>
+                                            <label for="select_all" class="mailman-select-all-label">Select all</label>
                                             {{/if}}
                                         </th>
+                                        <th><span class="sr-only">Does section already have a mailing list?</span></th>
                                     </tr>
                                 </thead>
 
@@ -84,8 +89,9 @@
                                                 <input type="checkbox" disabled="true" id="section_single_{{section_list.section_id}}">
                                             </td>
                                             <td>
-                                                <label for="section_single_{{section_list.section_id}}">{{ course_abbr }} {{course_number}} {{section_list.section_id}} <span class="myuw-note">Primary section</span> <span>(List already exists)</span></label>
+                                                <label class="text-muted" for="section_single_{{section_list.section_id}}">{{ course_abbr }} {{course_number}} {{section_list.section_id}}</label>
                                             </td>
+                                            <td class="text-muted myuw-note">List already exists</td>
 
                                         {{ else }}
                                             <td>
@@ -98,9 +104,10 @@
                                             <td>
                                                 <label for="section_single_{{section_list.section_id}}"
                                                        title="primary section">
-                                                    {{ course_abbr }} {{course_number}} {{section_list.section_id}} <span class="myuw-note">Primary section</span>
+                                                    {{ course_abbr }} {{course_number}} {{section_list.section_id}}
                                                 </label>
                                             </td>
+                                            <td></td>
                                         {{/if}}
                                     </tr>
 
@@ -111,8 +118,9 @@
                                                     <input type="checkbox" disabled="true" id="secondary_single_{{section_id}}">
                                                 </td>
                                                 <td>
-                                                    <label for="secondary_single_{{section_id}}">{{../course_abbr}} {{../course_number}} {{section_id}} <span>(List already exists)</label>
+                                                    <label class="text-muted" for="secondary_single_{{section_id}}">{{../course_abbr}} {{../course_number}} {{section_id}}
                                                 </td>
+                                                <td class="text-muted myuw-note">List already exists</td>
                                             {{else}}
                                                 <td>
                                                     <input type="checkbox" id="secondary_single_{{section_id}}"
@@ -125,6 +133,7 @@
                                                         {{../course_abbr}} {{../course_number}} {{section_id}}
                                                     </label>
                                                 </td>
+                                                <td></td>
                                             {{/if}}
                                         </tr>
                                     {{/each}}
@@ -132,19 +141,22 @@
                             </table>
                         </fieldset>
                     </div>
-                            {{#unless has_lists }}
-                                <a class="mailman_simple_toggle"  style="display: none" href="#">Back to Simple Edit</a>
-                            {{/unless}}
+
+
+                   {{#unless has_lists }}
+                        <a class="mailman_simple_toggle"  style="display: none" href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back: request a single mailing list</a>
+                    {{/unless}}
 
 
                 {{/unless}}
             {{/if}}
 
+            </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 {{#unless request_sent }}
-                <button type="submit" class="btn btn-primary" form="request_emaillist_form" value="Create Mailing Lists">Create Mailing Lists</button>
+                <button type="submit" class="btn btn-primary" form="request_emaillist_form" value="Create Mailing Lists">Submit</button>
                 {{/unless}}
             </div>
         </form>
