@@ -12,7 +12,7 @@ var FinalExamSchedule = {
 
     render: function(student_course_data, instructed_course_data, term, show_title, dom_target) {
         var index = 0;
-        var finals {
+        var finals = {
             tbd_or_nonexistent: [],
             tbd_or_nonexistent_taught: [],
             scheduled_finals = [];
