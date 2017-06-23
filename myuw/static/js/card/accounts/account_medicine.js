@@ -13,10 +13,10 @@ var MedicineAccountsCard = {
             if(profile_data.password.has_active_med_pw) {
                 MedicineAccountsCard._render();
             } else {
-                MedicineAccountsCard.dom_target.hide();
+                remove_card(MedicineAccountsCard.dom_target);
             }
         } catch (e) {
-            MedicineAccountsCard.dom_target.hide();
+            remove_card(MedicineAccountsCard.dom_target);
         }
 
     },

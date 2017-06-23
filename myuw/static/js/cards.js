@@ -4,7 +4,8 @@ var Cards = {
         //Creates target divs and inserts loading messages
         $.each(cards, function (idx, card){
             var div = $("<div>", {id: card.name,
-                                  html: loading_html});
+                                  html: loading_html,
+                                  "data-order": idx});
             target.append(div);
         });
         //Initialize card loading/rendering
