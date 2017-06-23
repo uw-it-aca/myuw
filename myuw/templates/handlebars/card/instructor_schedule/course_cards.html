@@ -31,7 +31,7 @@
             </h3>
 
             <div class="course-meta">
-                <span class="myuw-meta course-sln">SLN <a href="https://sdb.washington.edu/?SLN={{ sln }}" target="_blank" data-linklabel="SLN {{ sln }}: {{ curriculum_abbr }} {{course_number}} {{section_id}}">{{ sln }}</a></span>
+                <span class="myuw-meta course-sln">SLN <a href="https://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{get_quarter_abbreviation ../quarter}}+{{../year}}&SLN={{ sln }}" target="_blank" data-linklabel="SLN {{ sln }}: {{ curriculum_abbr }} {{course_number}} {{section_id}}">{{ sln }}</a></span>
                 <span class="myuw-meta course-meeting-type c{{color_id}}Color">{{ meetings.0.type }}</span>
             </div>
 
