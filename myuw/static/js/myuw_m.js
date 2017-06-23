@@ -132,7 +132,7 @@ var titilizeTerm = function (term) {
     //Takes a term string (Eg summer 2013, b-term)
     //returns a title (Eg Summer 2013 B-Term)
     var i;
-    var pieces = term.split(/ |, /);
+    var pieces = term.split(/ |, |,/);
     var string = "";
     for (i = 0; i < pieces.length; i += 1) {
         if (i > 0) {
