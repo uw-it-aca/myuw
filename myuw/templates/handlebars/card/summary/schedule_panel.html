@@ -2,7 +2,7 @@
 <div class="myuw-card-section">
     <div class="row">
         <div class="col-sm-3">
-            <h5 class="myuw-card-row-heading"><div class="c{{color_id}} simplesquare" aria-hidden="true"></div><a href="/{{#if ../is_instructor}}teaching{{else}}academics{{/if}}/#{{curriculum_abbr}}-{{course_number}}-{{section_id}}">{{curriculum_abbr}} {{course_number}} {{section_id}}</a></h5>
+            <h4 class="myuw-card-row-heading" style="margin-bottom:0px;"><div class="c{{color_id}} simplesquare" aria-hidden="true"></div><a href="/teaching/#{{curriculum_abbr}}-{{course_number}}-{{section_id}}">{{curriculum_abbr}} {{course_number}} {{section_id}}</a></h4><span style="font-size:12px;text-transform: uppercase;margin-left: 1.4em;">{{ meetings.0.type }}</span>
         </div>
         <div class="col-sm-9">
             <table class="table-course-schedule">
@@ -47,7 +47,7 @@
                             </td>
                             {{/if}}
                             <td class="course-type">
-                              {{../section_type}}
+                              <a target="_blank" href="#" class="course_class_list" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">Class list</a>
                             </td>
                     </tr>
                     {{/each}}

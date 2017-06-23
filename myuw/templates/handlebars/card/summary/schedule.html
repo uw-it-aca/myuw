@@ -2,21 +2,10 @@
     {% tplhandlebars "instructor_summary_schedule" %}
     <div class="myuw-card" data-type="card" data-name="SummaryScheduleCard" data-identifier="{{ title }}">
         <h3 class="myuw-card-title">
-          {{capitalizeString quarter}} {{year}} Schedule
+          {{capitalizeString quarter}} {{year}} Teaching Schedule
         </h3>
         {{#if instructed_course_data}}
-            {{#if course_data}}
-            <h4 class="shortTitle">Teaching</h4>
-            {{/if}}
             {{#each instructed_course_data.sections}}
-            {%include "handlebars/card/summary/schedule_panel.html" %}
-            {{/each}}
-        {{/if}}
-        {{#if course_data}}
-            {{#if instructed_course_data}}
-            <h4 class="shortTitle">Academics</h4>
-            {{/if}}
-            {{#each course_data.sections}}
             {%include "handlebars/card/summary/schedule_panel.html" %}
             {{/each}}
         {{/if}}
