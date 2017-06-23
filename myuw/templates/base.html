@@ -161,7 +161,7 @@
                         {% endif %}
 
                         {% if instructor_schedule_enabled %}
-                          {% if user.affiliations.faculty %}
+                          {% if user.affiliations.instructor %}
                         <li><a {% if is_myuw_teaching_page %}class="active"{% endif %} href="/teaching/"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Teaching</a></li>
                          {% endif %}
                         {% endif %}
@@ -391,6 +391,7 @@
         <script src="{% static 'js/card/new_student/ns_to_register.js' %}"></script>
         <script src="{% static 'js/card/new_student/ns_international_stu.js' %}"></script>
         <script src="{% static 'js/card/summary/accounts.js' %}"></script>
+        <script src="{% static 'js/card/summary/schedule.js' %}"></script>
         <script src="{% static 'js/teaching/class_list.js' %}"></script>
         {% endcompress %}
 

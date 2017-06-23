@@ -58,4 +58,4 @@ class TestPageSpeeds(TestCase):
         # Make sure there aren't more requests made.  0.5 seconds should be
         # enough time to generate the view!
         # Adding a little more - travis-ci is right on the line at 2.0
-        self.assertLess(delta, 2.3)
+        self.assertLess(delta, 2.5)
