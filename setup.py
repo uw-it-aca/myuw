@@ -41,6 +41,7 @@ setup(
         'UW-RestClients-GWS>=0.2,<1.0',
         'UW-RestClients-GradePage>=0.1,<1.0',
         'UW-RestClients-Libraries>=0.2,<1.0',
+        'UW-RestClients-IASystem>=0.1,<1.0',
         'Django-SupportTools',
         'django_mobileesp',
         'django_client_logger',
