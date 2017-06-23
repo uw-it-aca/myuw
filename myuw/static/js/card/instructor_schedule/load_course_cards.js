@@ -120,6 +120,17 @@ var InstructorCourseCards = {
 
         InstructorCourseCards.add_events();
         InstructorCourseCards._show_correct_term_dropdown();
+
+        if (window.location.hash) {
+            var l = $('div[data-identifier="' +
+                      window.location.hash.substr(1).replace(/-/g, ' ') +
+                      '"]');
+            if (l.length) {
+                setTimeout(function () {
+                    $('html,body').animate({scrollTop: l.offset().top},'slow');
+                }, 250);
+            }
+        }
     },
 
     add_events: function(term) {

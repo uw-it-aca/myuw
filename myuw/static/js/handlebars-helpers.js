@@ -429,6 +429,28 @@ Handlebars.registerHelper('get_quarter_code', function(quarter_str) {
     }
 });
 
+Handlebars.registerHelper('get_quarter_abbreviation', function(quarter_str) {
+    if (arguments.length < 1) {
+        throw new Error("Handlebars Helper quarter_abbreviation needs 1 parameter");
+    }
+    var q = quarter_str.toLowerCase();
+    if(q === "winter") {
+        return "WIN";
+    }
+    else if(q === "spring") {
+        return "SPR";
+    }
+    else if(q === "summer") {
+        return "SUM";
+    }
+    else if(q === "autumn") {
+        return "AUT";
+    }
+    else {
+        return "";
+    }
+});
+
 Handlebars.registerHelper('slugify', function(value) {
     var slug = value.replace(/[^\w\s]+/gi, '').replace(/ +/gi, '-');
     return slug.toLowerCase();
