@@ -12,105 +12,58 @@ var FinalExamSchedule = {
 
     render: function(student_course_data, instructed_course_data, term, show_title, dom_target) {
         var index = 0;
-        var tbd_or_nonexistent = [];
-        var tbd_or_nonexistent_taught = [];
-        var scheduled_finals = [];
-
-        var last_day_of_finals,
-            is_summer_qtr,
-            term_data;
-        var max_date = last_day_of_finals;
-        var min_date;
-        // If there's something unexpected, show a list, not the visual schedule
-        var show_list_instead_of_visual = false;
-
-        var process_final_data = function(course_data, for_instructor) {
-            if(course_data !== undefined){
-                last_day_of_finals = date_from_string(course_data.term.last_final_exam_date);
-                is_summer_qtr = course_data.quarter === "summer";
-                term_data = course_data.term;
-                for (index = 0; index < course_data.sections.length; index++) {
-                    var section = course_data.sections[index];
-                    // We need to set this here, since the code that displays links doesn't have access
-                    // to the full list of sections, necessarily
-                    section.index = index;
-                    if (for_instructor){
-                        section.is_instructor = true;
-                    }
-                    if (section.final_exam && !section.final_exam.no_exam_or_nontraditional) {
-                        var final_exam = section.final_exam;
-                        var start_date = date_from_string(final_exam.start_date);
-
-                        if (final_exam.start_date) {
-                            if (max_date === null || max_date < start_date) {
-                                max_date = start_date;
-                            }
-                            if (min_date === null || min_date > start_date) {
-                                min_date = start_date;
-                            }
-                            if (start_date > last_day_of_finals) {
-                                show_list_instead_of_visual = true;
-                            }
-                            if (final_exam.building === "*") {
-                                final_exam.building_tbd = true;
-                            }
-                            scheduled_finals.push(section);
-                        }
-                        else {
-                            if(for_instructor){
-                                tbd_or_nonexistent_taught.push(section);
-                            } else {
-                                tbd_or_nonexistent.push(section);
-                            }
-
-                        }
-                    }
-                    else {
-                        if(for_instructor){
-                            tbd_or_nonexistent_taught.push(section);
-                        } else {
-                            tbd_or_nonexistent.push(section);
-                        }
-                    }
-                }
-            }
-
+        var finals {
+            tbd_or_nonexistent: [],
+            tbd_or_nonexistent_taught: [],
+            scheduled_finals = [];
+            last_day_of_finals: null,
+            is_summer_qtr: false,
+            term_data: null,
+            max_date: null,
+            min_date: null,
+            // If there's something unexpected, show a list, not the visual schedule
+            show_list_instead_of_visual: false
         };
-        process_final_data(student_course_data, false);
-        process_final_data(instructed_course_data, true);
 
+        if (student_course_data) {
+            FinalExamSchedule.process_final_data(student_course_data, false, finals);
+        }
+
+        if (instructed_course_data) {
+            FinalExamSchedule.process_final_data(instructed_course_data, true, finals);
+        }
 
         // This shouldn't happen, but if we have over a week span of finals, just list them out.
-        if (scheduled_finals.length) {
-            if ((max_date - min_date) > (1000 * 60 * 60 * 24 * 7)) {
-                show_list_instead_of_visual = true;
+        if (finals.scheduled_finals.length) {
+            if ((finals.max_date - finals.min_date) > (1000 * 60 * 60 * 24 * 7)) {
+                finals.show_list_instead_of_visual = true;
             }
         }
 
         // It's our current understanding that the last day of finals is always a friday -
         // grades are due on the following tuesday.  If the last day of finals isn't a friday,
         // fall back to the list view.
-        if (last_day_of_finals.getDay() != FinalExamSchedule.FRIDAY) {
-            show_list_instead_of_visual = true;
+        if (finals.last_day_of_finals.getDay() != FinalExamSchedule.FRIDAY) {
+            finals.show_list_instead_of_visual = true;
         }
 
         var list_data = [];
         var visual_data = {};
 
-        list_data = scheduled_finals.sort(FinalExamSchedule.sort_by_finals_date);
+        list_data = finals.scheduled_finals.sort(FinalExamSchedule.sort_by_finals_date);
 
-        if (!is_summer_qtr) {
+        if (!finals.is_summer_qtr) {
             // summer quarter doesn't have properly scheduled finals
-            visual_data = FinalExamSchedule._build_visual_schedule_data(scheduled_finals, term_data);
+            visual_data = FinalExamSchedule._build_visual_schedule_data(finals.scheduled_finals, finals.term_data);
         }
 
         var template_data = {
             show_title: show_title,
             term: term,
-            tbd: tbd_or_nonexistent,
-            tbd_taught: tbd_or_nonexistent_taught,
+            tbd: finals.tbd_or_nonexistent,
+            tbd_taught: finals.tbd_or_nonexistent_taught,
             list_data: list_data,
-            is_summer: is_summer_qtr,
+            is_summer: finals.is_summer_qtr,
             visual_data: visual_data,
         };
         var source = $("#final_exam_schedule_content").html();
@@ -120,6 +73,58 @@ var FinalExamSchedule = {
         }
         $(dom_target).html(template(template_data));
         FinalExamSchedule.add_events(term);
+    },
+
+    var process_final_data = function(course_data, for_instructor, finals) {
+        var date = date_from_string(course_data.term.last_final_exam_date);
+
+        finals.last_day_of_finals = date;
+        finals.is_summer_qtr = course_data.quarter === "summer";
+        finals.term_data = course_data.term;
+        $.each(course_data.sections, function (index) {
+            var section = this;
+            // We need to set this here, since the code that displays links doesn't have access
+            // to the full list of sections, necessarily
+            section.index = index;
+            if (for_instructor){
+                section.is_instructor = true;
+            }
+            if (section.final_exam && !section.final_exam.no_exam_or_nontraditional) {
+                var final_exam = section.final_exam;
+                var start_date = date_from_string(final_exam.start_date);
+
+                if (final_exam.start_date) {
+                    if (finals.max_date === null || finals.max_date < start_date) {
+                        finals.max_date = start_date;
+                    }
+                    if (finals.min_date === null || finals.min_date > start_date) {
+                        finals.min_date = start_date;
+                    }
+                    if (start_date > finals.last_day_of_finals) {
+                        finals.show_list_instead_of_visual = true;
+                    }
+                    if (final_exam.building === "*") {
+                        final_exam.building_tbd = true;
+                    }
+                    finals.scheduled_finals.push(section);
+                }
+                else {
+                    if(for_instructor){
+                        finals.tbd_or_nonexistent_taught.push(section);
+                    } else {
+                        finals.tbd_or_nonexistent.push(section);
+                    }
+
+                }
+            }
+            else {
+                if(for_instructor){
+                    finals.tbd_or_nonexistent_taught.push(section);
+                } else {
+                    finals.tbd_or_nonexistent.push(section);
+                }
+            }
+        });
     },
 
     add_events: function(term) {
