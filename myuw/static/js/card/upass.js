@@ -13,7 +13,7 @@ var UPassCard = {
             UPassCard.dom_target.html(raw);
             return;
         }
-        UPassCard.dom_target.hide();
+        remove_card(UPassCard.dom_target);
     },
 
     render_upon_data: function () {
@@ -34,3 +34,9 @@ var UPassCard = {
         LogUtils.cardLoaded(UPassCard.name, UPassCard.dom_target);
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.UPassCard = UPassCard;
