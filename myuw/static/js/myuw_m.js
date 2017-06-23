@@ -128,22 +128,24 @@ var safe_label = function(section_label) {
     return section_label;
 };
 
-var titilizeTerm = function(term) {
-    //Takes a term string (Eg 2032,summer,b-term) and
-    //returns a title (Eg Summer 2032 B-term)
-    var pieces = term.split(",");
-    if (pieces.length === 1) {
-        return capitalizeString(term);
-    }
-    var string = capitalizeString(pieces[1]) + " " + pieces[0];
-    if (pieces.length > 2) {
-        string += " " + capitalizeString(pieces[2]);
+var titilizeTerm = function (term) {
+    //Takes a term string (Eg summer 2013, b-term)
+    //returns a title (Eg Summer 2013 B-Term)
+    var i;
+    var pieces = term.split(/ |, /);
+    var string = "";
+    for (i = 0; i < pieces.length; i += 1) {
+        if (i > 0) {
+            string += " ";
+        }
+        string += capitalizeString(pieces[i]);
     }
     return string;
 
 };
 
 var capitalizeString = function(string) {
+    //Takes a string eg, b-term
     if (string === undefined) {
         return;
     }
