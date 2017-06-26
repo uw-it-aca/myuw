@@ -9,8 +9,8 @@ var CardWithNoCourse = {
         var term_str = (term === 'current' ?
                         (window.card_display_dates.is_summer ?
                          (window.card_display_dates.is_after_summer_b_start ?
-                          'Summer Term B'
-                          : 'Summer Term A')
+                          'summer b-term'
+                          : 'summer a-term')
                          : cur_qr)
                         : term);
         var quarter_str = (term === 'current' ?

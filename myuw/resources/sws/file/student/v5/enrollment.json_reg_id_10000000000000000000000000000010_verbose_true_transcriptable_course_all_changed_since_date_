@@ -37,14 +37,14 @@
             "PendingResidentChange": false,
             "PendingSpecialProgramChange": false,
             "Person": {
-                "Href": "/student/v5/person/27844DAE1712511A4FA00C83BAF90A8F.json",
+                "Href": "/student/v5/person/10000000000000000000000000000010.json",
                 "Name": "Jane Pce",
-                "RegID": "27844DAE1712511A4FA00C83BAF90A8F"
+                "RegID": "10000000000000000000000000000010"
             },
             "QtrGradePoints": 0.00,
             "QtrGradedAttmp": 0.0,
             "QtrNonGrdEarned": 0.0,
-            "RegID": "27844DAE1712511A4FA00C83BAF90A8F",
+            "RegID": "10000000000000000000000000000010",
             "Registrations": [
                 {
                     "AccessDateRangeEnd": "07/25/2013",
@@ -60,16 +60,16 @@
                     "GradeDocumentID": "",
                     "GradingSystem": null,
                     "HonorsCourse": false,
-                    "Href": "/student/v5/registration/2013,winter,COM,201,A,27844DAE1712511A4FA00C83BAF90A8F,0.json",
+                    "Href": "/student/v5/registration/2013,winter,COM,201,A,10000000000000000000000000000010,0.json",
                     "Instructor": null,
                     "IsActive": true,
                     "IsCredit": true,
                     "IsIndependentStart": true,
                     "Metadata": "RegistrationSourceLocation=SDB_EOS;",
                     "Person": {
-                        "Href": "/student/v5/person/27844DAE1712511A4FA00C83BAF90A8F.json",
+                        "Href": "/student/v5/person/10000000000000000000000000000010.json",
                         "Name": "Jane Pce",
-                        "RegID": "27844DAE1712511A4FA00C83BAF90A8F"
+                        "RegID": "10000000000000000000000000000010"
                     },
                     "RepeatCourse": false,
                     "RepositoryTimeStamp": "3/28/2013 1:16:41 PM",
@@ -101,16 +101,16 @@
                     "GradeDocumentID": "",
                     "GradingSystem": null,
                     "HonorsCourse": false,
-                    "Href": "/student/v5/registration/2013,winter,PSYCH,203,A,27844DAE1712511A4FA00C83BAF90A8F,0.json",
+                    "Href": "/student/v5/registration/2013,winter,PSYCH,203,A,10000000000000000000000000000010,0.json",
                     "Instructor": null,
                     "IsActive": true,
                     "IsCredit": true,
                     "IsIndependentStart": false,
                     "Metadata": "RegistrationSourceLocation=SDB_EOS;",
                     "Person": {
-                        "Href": "/student/v5/person/27844DAE1712511A4FA00C83BAF90A8F.json",
+                        "Href": "/student/v5/person/10000000000000000000000000000010.json",
                         "Name": "Jane Pce",
-                        "RegID": "27844DAE1712511A4FA00C83BAF90A8F"
+                        "RegID": "10000000000000000000000000000010"
                     },
                     "RepeatCourse": false,
                     "RepositoryTimeStamp": "3/28/2013 1:17:37 PM",
