@@ -3,8 +3,8 @@
 
 /*** modals ***/
 .myuw-modal {
-    h3 {
-    margin-bottom: 10px;
+    h3, .myuw-modal-title {
+    margin-bottom: 8px;
     font-family: 'encode_sans_normalbold', sans-serif;
     font-weight: 600;
     font-size: 18px;
@@ -108,11 +108,11 @@
         padding-left: 0;
         margin-bottom: 8px;
 
-        li {
+        > li {
             margin: 0 0 8px 0;
         }
 
-        li:last-of-type {
+        > li:last-of-type {
             margin: 0;
         }
     }
@@ -146,7 +146,7 @@
     }
 
     /*** card content table **/
-    .table {
+    .table-borderless {
         tr {
             td:first-child { padding-left: 0; }
         }
