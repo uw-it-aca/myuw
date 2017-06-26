@@ -420,6 +420,7 @@ var VisualScheduleCard = {
                 $.each(section.meetings, function(){
                     var meeting = this;
                     var has_meetings = VisualScheduleCard._meeting_has_meetings(meeting);
+                    var seen = false;
 
                     if (!meeting.days_tbd && has_meetings) {
 
@@ -469,7 +470,6 @@ var VisualScheduleCard = {
                         });
                     }
                     else if (meeting.days_tbd){
-                        var seen = false;
                         $.each(visual_data.courses_meeting_tbd, function () {
                             if (this.section_index == section_index) {
                                 seen = true;
@@ -489,7 +489,6 @@ var VisualScheduleCard = {
                         }
                     }
                     else {
-                        var seen = false;
                         $.each(visual_data.courses_no_meeting, function () {
                             if (this.section_index == section_index) {
                                 seen = true;
