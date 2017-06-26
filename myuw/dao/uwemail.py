@@ -4,7 +4,7 @@ the uwnetid subscription resource.
 """
 
 import logging
-from restclients.uwnetid.subscription import get_email_forwarding
+from uw_uwnetid.subscription import get_email_forwarding
 from restclients_core.exceptions import DataFailureException
 from myuw.dao import get_netid_of_current_user
 
