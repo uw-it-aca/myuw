@@ -20,7 +20,7 @@
                         <li class="evaluation-results">
                             <span>Results:&nbsp;&nbsp;Report will be available {{evaluation.report_available_date_display}}</span>
                         </li>
-                        <li><a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty">Manage evaluation</a></li>
+                        <li><a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation ">Manage evaluation</a></li>
                       {{else}}
                         {{#if evaluation.is_past}}
                             <li>
@@ -28,12 +28,12 @@
                             </li>
                             {{#if evaluation.report_url}}
                               <li>
-                                  <a href="{{evaluation.report_url}}">View evaluation results report</a>
+                                  <a href="{{evaluation.report_url}}" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation Report">View evaluation results report</a>
                               </li>
                             {{/if}}
                         {{else}} <!-- opening in the future -->
                             <li class="evaluation-schedule">Online evaluation will open {{evaluation.eval_open_date_display}}</li>
-                            <li><a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty">Manage evaluation</a></li>
+                            <li><a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation ">Manage evaluation</a></li>
                         {{/if}}
 
                       {{/if}}
@@ -42,18 +42,18 @@
                             <li class="evaluation-schedule">Report Available {{evaluation.report_available_date_display}}</li>
                         {{/if}}
                         {{#if evaluation.report_url}}
-                          <li><a href="{{evaluation.report_url}}">View Report</a></li>
+                          <li><a href="{{evaluation.report_url}}" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation Report">View evaluation results report</a></li>
                         {{/if}}
                         <li><strong>{{evaluation.response_rate_percent}}% Response rate</strong></li>
                     {{/if}}
 
                   {{else}}<!-- not online, paper based -->
                       <li class="evaluation-schedule">Paper-based evaluation</li>
-                      <li><a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty">Manage evaluation</a></li>
+                      <li><a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation ">Manage evaluation</a></li>
                   {{/if}}
                 {{else}}<!-- null status, no evaluation -->
                   <li class="evaluation-schedule">
-                      {{#if past_term}}You did not have an evaluation set up for this course.{{else}}You do not have an evaluation set up for this course.{{/if}} <a href="https://www.washington.edu/assessment/course-evaluations/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="evaluation_help_link" target="_blank"><i class="fa fa-question-circle"></i></a>
+                      {{#if past_term}}You did not have an evaluation set up for this course.{{else}}You do not have an evaluation set up for this course.{{/if}} <a href="https://www.washington.edu/assessment/course-evaluations/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="evaluation_help_link" target="_blank" data-linklabel="Learn About Course Evaluations"><i class="fa fa-question-circle"></i></a>
                   </li>
                 {{/if}}
                 </ul>
