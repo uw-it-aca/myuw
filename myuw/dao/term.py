@@ -389,12 +389,16 @@ def add_term_data_to_context(request, context):
     if compare < cur_term.first_day_quarter:
         context['is_break'] = True
 
+    break_term = cur_term
     if compare > cur_term.last_final_exam_date:
         context['is_break'] = True
-        cur_term = get_term_after(cur_term)
+        break_term = get_term_after(cur_term)
 
     context["year"] = cur_term.year
     context["quarter"] = cur_term.quarter
+
+    context["break_year"] = break_term.year
+    context["break_quarter"] = break_term.quarter
 
     context['is_finals'] = False
     if (compare > cur_term.last_day_instruction and
