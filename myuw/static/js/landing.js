@@ -60,7 +60,6 @@ var Landing = {
         ];
         var desktop_sidebar_cards = [
             QuickLinksCard,
-            EmpFacStudentCard,
             EventsCard
         ];
         // Add in outage card if we can't get the SWS/term resource
@@ -90,7 +89,6 @@ var Landing = {
             TextbookCard,
             FutureQuarterCard1,
             SummerRegStatusCard1,
-            EmpFacStudentCard,
             EventsCard
         ];
         // Add in outage card if we can't get the SWS/term resource
