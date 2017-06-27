@@ -140,13 +140,18 @@ var LogUtils = {
     isScrolledIntoView: function(elem) {
         var docViewTop = $(window).scrollTop();
         var docViewBottom = docViewTop + $(window).height();
+        try {
+            var elmHeight = $(elem).height();
+            var offset = $(elem).offset();
+            var elemTop = $(elem).offset().top;
+            var elemBottom = elemTop + elmHeight;
 
-        var elmHeight = $(elem).height();
-        var offset = $(elem).offset();
-        var elemTop = $(elem).offset().top;
-        var elemBottom = elemTop + elmHeight;
+            return LogUtils.isInViewport(docViewTop, docViewBottom, elemTop, elemBottom);
+        }
+        catch(TypeError){
+            return false;
+        }
 
-        return LogUtils.isInViewport(docViewTop, docViewBottom, elemTop, elemBottom);
     },
 
     isInViewport: function(viewport_top, viewport_bottom, elem_top, elem_bottom) {
