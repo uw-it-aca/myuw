@@ -116,6 +116,7 @@
 
         <h1 class="sr-only">MyUW</h1>
 
+        {% block desktop_banner %}
         <!-- message banner (desktop only) -->
         <div class="myuw-banner-desktop" id="app_messages" role="complementary">
             <div class="message-banner">
@@ -134,6 +135,7 @@
            </div>
         </div>
         <!-- end message banner -->
+        {% endblock %}
 
         <div class="myuw-body">
             <div class="myuw-wrapper">
@@ -172,6 +174,7 @@
                 {% endblock %}
                 <!-- end app_navigation -->
 
+                {% block mobile_banner %}
                 <!-- message banner (mobile only) -->
                 <div class="myuw-banner-mobile" id="app_messages" role="complementary">
                     <div class="message-banner">
@@ -190,6 +193,7 @@
                    </div>
                 </div>
                 <!-- end message banner -->
+                {% endblock %}
 
                 <div class="myuw-content">
                     <!-- app_content -->
