@@ -1,49 +1,50 @@
-var SummaryScheduleCard = {
-    name: 'SummaryScheduleCard',
+var  FutureSummaryScheduleCard = {
+    name: 'FutureSummaryScheduleCard',
     dom_target: undefined,
-    term: 'current',
+    term: 'next',
 
     render_init: function() {
+        debugger
         if (myuwFeatureEnabled('instructor_schedule') && window.user.instructor) {
-            if (SummaryScheduleCard.term === 'current') {
-                SummaryScheduleCard.term = window.term.year + ',' + window.term.quarter;
+            if (FutureSummaryScheduleCard.term === 'current') {
+                FutureSummaryScheduleCard.term = window.term.next.year + ',' + window.term.next.quarter;
             }
 
-            WSData.fetch_instructed_course_data_for_term(SummaryScheduleCard.term,
-                                                         SummaryScheduleCard.render_upon_data,
-                                                         SummaryScheduleCard.render_error);
+            WSData.fetch_instructed_course_data_for_term(FutureSummaryScheduleCard.term,
+                                                         FutureSummaryScheduleCard.render_upon_data,
+                                                         FutureSummaryScheduleCard.render_error);
         } else {
-            $("#SummaryScheduleCard").hide();
+            $("#FutureSummaryScheduleCard").hide();
         }
     },
 
     render_upon_data: function() {
-        if (!SummaryScheduleCard._has_all_data()) {
+        if (!FutureSummaryScheduleCard._has_all_data()) {
             return;
         }
 
-        SummaryScheduleCard._render();
-        LogUtils.cardLoaded(SummaryScheduleCard.name, SummaryScheduleCard.dom_target);
+        FutureSummaryScheduleCard._render();
+        LogUtils.cardLoaded(FutureSummaryScheduleCard.name, FutureSummaryScheduleCard.dom_target);
     },
 
     render_error: function() {
-        var error_code = WSData.instructed_course_data_error_code(SummaryScheduleCard.term);
+        var error_code = WSData.instructed_course_data_error_code(FutureSummaryScheduleCard.term);
         if (error_code === 410) {
             Error410.render();
         } else if (error_code === 404) {
-            $("#SummaryScheduleCard").hide();
+            $("#FutureSummaryScheduleCard").hide();
         } else {
-            raw = CardWithError.render("Summary Schedule");
+            raw = CardWithError.render("FutureSummary Schedule");
             InstructorCourseCards.dom_target.html(raw);
         }
     },
 
     _has_all_data: function () {
-        return WSData.normalized_instructed_course_data(SummaryScheduleCard.term) !== undefined;
+        return WSData.normalized_instructed_course_data(FutureSummaryScheduleCard.term) !== undefined;
     },
 
     _render: function () {
-        var term = SummaryScheduleCard.term;
+        var term = FutureSummaryScheduleCard.term;
         var instructed_course_data = WSData.normalized_instructed_course_data(term);
         var source = $("#instructor_summary_schedule").html();
         var courses_template = Handlebars.compile(source);
@@ -52,11 +53,12 @@ var SummaryScheduleCard = {
             quarter: instructed_course_data.quarter,
             year: instructed_course_data.year,
             sections: instructed_course_data.sections,
-            is_instructor: (instructed_course_data !== undefined)
+            is_instructor: (instructed_course_data !== undefined),
+            show_enrollment: true
         });
 
-        SummaryScheduleCard.dom_target.html(raw);
-        SummaryScheduleCard.add_events(SummaryScheduleCard.term);
+        FutureSummaryScheduleCard.dom_target.html(raw);
+        FutureSummaryScheduleCard.add_events();
     },
 
     add_events: function(term) {
@@ -89,4 +91,4 @@ var SummaryScheduleCard = {
 if (typeof exports == "undefined") {
     var exports = {};
 }
-exports.SummaryScheduleCard = SummaryScheduleCard;
+exports.FutureSummaryScheduleCard = FutureSummaryScheduleCard;

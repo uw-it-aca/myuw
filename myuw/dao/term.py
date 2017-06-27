@@ -377,13 +377,15 @@ def add_term_data_to_context(request, context):
 
     Includes the data, the quarter (or break), and the week of the quarter.
     """
-    cur_term = get_current_quarter(request)
-    compare = get_comparison_date(request)
+    terms = get_current_and_next_quarters(request, 2)
+    cur_term = terms[0]
+    next_term = terms[1]
 
     if cur_term is None:
         context["err"] = "No current quarter data!"
         return
 
+    compare = get_comparison_date(request)
     context['today'] = compare
     context['is_break'] = False
     if compare < cur_term.first_day_quarter:
@@ -411,6 +413,9 @@ def add_term_data_to_context(request, context):
     context["last_day_instruction"] = cur_term.last_day_instruction
     context["aterm_last_date"] = cur_term.aterm_last_date
     context["bterm_first_date"] = cur_term.bterm_first_date
+
+    context["next_year"] = next_term.year
+    context["next_quarter"] = next_term.quarter
 
 
 def current_terms_prefetch(request):
