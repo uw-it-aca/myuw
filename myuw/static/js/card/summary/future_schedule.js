@@ -4,7 +4,6 @@ var  FutureSummaryScheduleCard = {
     term: 'next',
 
     render_init: function() {
-        debugger
         if (myuwFeatureEnabled('instructor_schedule') && window.user.instructor) {
             if (FutureSummaryScheduleCard.term === 'current') {
                 FutureSummaryScheduleCard.term = window.term.next.year + ',' + window.term.next.quarter;
