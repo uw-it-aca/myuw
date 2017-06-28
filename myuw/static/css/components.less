@@ -51,7 +51,7 @@
     /*** card section ***/
     .myuw-card-section { padding-top: 16px;
 
-        /* every last row of each section */
+        /* add a separator for every last row of each section */
         .row:last-child {
             .col-sm-9 {
                 border-bottom: 1px solid #EDEDED;
@@ -64,23 +64,18 @@
 
         @media @two-column {
             .row + .row { padding-top: 8px; }
-
         }
 
-        /* the very last section's last child */
+        // target the very last section of a card by usign the "last" class
         &.last {
+
+            // remove the bottom border for last element
             .col-sm-9 {
                 border-bottom: none !important;
-                padding-bottom: 0;
+                padding-bottom: 0 !important;
             }
         }
 
-    }
-
-    .myuw-card-section:last-child div.col-sm-9:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-        padding-bottom: 0;
     }
 
     /*** card section heading ***/
