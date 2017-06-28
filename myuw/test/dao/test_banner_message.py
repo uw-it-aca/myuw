@@ -32,11 +32,11 @@ class TestBannerMessageDAO(TestCase):
         request = get_request_with_user('javerage', request)
         self.assertEquals(len(get_current_messages(request)), 1)
 
-        request = get_request_with_date('2013-04-07')
+        request = get_request_with_date('2013-04-06')
         request = get_request_with_user('javerage', request)
         self.assertEquals(len(get_current_messages(request)), 1)
 
-        request = get_request_with_date('2013-04-08')
+        request = get_request_with_date('2013-04-07')
         request = get_request_with_user('javerage', request)
         self.assertEquals(len(get_current_messages(request)), 0)
 
@@ -63,7 +63,7 @@ class TestBannerMessageDAO(TestCase):
                                      group_id='uw_test_group',
                                      is_published=True)
 
-        request = get_request_with_date('2013-04-07')
+        request = get_request_with_date('2013-04-06')
         request = get_request_with_user('javerage', request)
 
         by_settings = 'authz_group.authz_implementation.settings.Settings'

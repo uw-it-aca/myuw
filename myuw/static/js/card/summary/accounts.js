@@ -15,6 +15,9 @@ var AccountSummaryCard = {
         if (AccountSummaryCard.calls < 2) {
             return;
         }
+        if (window.term_data.break_year != window.term_data.year) {
+            window.term_data.spans_years = true;
+        }
         AccountSummaryCard._render({
             library: WSData.library_data(),
             hfs: WSData.hfs_data(),

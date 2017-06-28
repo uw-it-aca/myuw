@@ -3,6 +3,7 @@ This module encapsulates the interactions with the uw_sws.person,
 provides student record information of the current user
 """
 
+import logging
 from uw_sws.person import get_person_by_regid
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.enrollment import (get_current_quarter_enrollment,
@@ -12,6 +13,9 @@ from myuw.dao.term import (get_current_quarter,
                            get_next_quarter,
                            get_current_and_next_quarters)
 from myuw.dao.gws import is_grad_student
+
+
+logger = logging.getLogger(__name__)
 
 
 def get_profile_of_current_user():
@@ -76,9 +80,9 @@ def get_academic_info(request, response):
     response['term_minors'] = _get_degrees_for_terms(terms, enrollments,
                                                      "minors")
 
-    if (len(response['term_minors']) > 1 and
-            len(response['term_minors'][0]['minors']) > 0):
-        response['has_minors'] = True
+    for minor in response['term_minors']:
+        if len(minor['minors']) > 0:
+            response['has_minors'] = True
 
     response['has_pending_minor'] = False
 

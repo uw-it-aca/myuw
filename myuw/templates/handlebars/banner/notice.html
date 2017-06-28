@@ -2,15 +2,14 @@
 {% tplhandlebars "notice_banner" %}
 
     <div id="app_notices" class="myuw-card">
-        <div class="notice-header">
-            {{ #if notices}}
-                <h3 class="notice-header text-danger">Critical Notices</h3>
-            {{else}}
-                <h3 class="notice-header no-critical">Notices</h3>
-            {{/if}}
-        </div>
 
-        <div class="critical-notices-container">
+        {{ #if notices}}
+            <h3 class="myuw-card-title text-danger">Critical Notices</h3>
+        {{else}}
+            <h3 class="myuw-card-title">Notices</h3>
+        {{/if}}
+
+        <div class="critical-notices-container myuw-card-section">
                {{ #if notices }}
                <ul class="notice-content-list">
                    {{ #each notices }}

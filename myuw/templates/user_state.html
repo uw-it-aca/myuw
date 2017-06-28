@@ -31,10 +31,10 @@
         "year": "{{year}}",
         "quarter": "{{quarter}}",
         "summer_term": "{{summer_term}}",
-        "first_day_quarter": "{{ first_day_quarter }}",
-        "last_day_instruction": "{{ last_day_instruction }}",
-        "aterm_last_date": "{{ aterm_last_date }}",
-        "bterm_first_date": "{{ bterm_first_date }}",
+        "first_day_quarter": '{{ first_day_quarter|date:"l, F j, Y" }}',
+        "last_day_instruction": '{{ last_day_instruction|date:"l, F j, Y" }}',
+        "aterm_last_date": '{{ aterm_last_date|date:"l, F j, Y" }}',
+        "bterm_first_date": '{{ bterm_first_date|date:"l, F j, Y" }}'
 
     };
     window.card_display_dates = {

@@ -148,6 +148,9 @@ var VisualScheduleCard = {
                     //increment counter
                     i += 1;
                 }
+                else {
+                    break;
+                }
             }
             consolidated_weeks[i] = consolidated_week;
 
@@ -316,32 +319,28 @@ var VisualScheduleCard = {
         if(start_date === "None"){
             // Regular courses don't have start/end dates
             if(window.future_term !== undefined){
-                if(section.summer_term === "" || section.summer_term === "Full-term"){
+                if(window.future_term.indexOf("a-term") !== -1){
                     start_date = window.future_term_data.first_day_quarter;
+                    end_date = window.future_term_data.aterm_last_date;
+                } else if(window.future_term.indexOf("b-term") !== -1){
+                    start_date = window.future_term_data.bterm_first_date;
                     end_date = window.future_term_data.last_day_instruction;
                 } else {
-                    if(window.future_term.indexOf("a-term") !== -1){
-                        start_date = window.future_term_data.first_day_quarter;
-                        end_date = window.future_term_data.aterm_last_date;
-                    } else if(window.future_term.indexOf("b-term") !== -1){
-                        start_date = window.future_term_data.bterm_first_date;
-                        end_date = window.future_term_data.last_day_instruction;
-                    }
+                    start_date = window.future_term_data.first_day_quarter;
+                    end_date = window.future_term_data.last_day_instruction;
                 }
             } else {
                 // use current term dates
-                if (window.term.summer_term === "None" || window.term.summer_term === ""){
+                // handle summer term for current quarter
+                if(window.term.summer_term.toLowerCase().indexOf("a-term") !== -1){
                     start_date = window.term.first_day_quarter;
+                    end_date = window.term.aterm_last_date;
+                } else if(window.term.summer_term.toLowerCase().indexOf("b-term") !== -1){
+                    start_date = window.term.bterm_first_date;
                     end_date = window.term.last_day_instruction;
                 } else {
-                    // handle summer term for current quarter
-                    if(window.term.summer_term.indexOf("a-term") !== -1){
-                        start_date = window.term.first_day_quarter;
-                        end_date = window.term.aterm_last_date;
-                    } else if(window.term.summer_term.indexOf("b-term") !== -1){
-                        start_date = window.term.bterm_first_date;
-                        end_date = window.term.last_day_instruction;
-                    }
+                    start_date = window.term.first_day_quarter;
+                    end_date = window.term.last_day_instruction;
                 }
             }
         }

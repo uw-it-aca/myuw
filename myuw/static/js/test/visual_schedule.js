@@ -180,6 +180,24 @@ describe("VisualScheduleCard", function() {
             var week_keys = Object.keys(consolidated);
             assert.deepEqual(week_keys, ["23", "24"])
         });
+
+        it('should handle a, ab, a periods', function() {
+            var start = moment.utc("2017-06-12");
+            var end = moment.utc("2017-07-20");
+
+            var weeks = VisualScheduleCard._get_weeks_from_range([start, end]);
+            var sections = [{start_date: "2017-06-12", end_date: "2017-07-20", course_number: "123", curriculum_abbr: "ASD"},
+                {start_date: "2017-06-21", end_date: "2017-06-24", course_number: "456", curriculum_abbr: "ASD"}];
+            var weeks_with_sections = VisualScheduleCard._add_sections_to_weeks(weeks, sections);
+            var consolidated = VisualScheduleCard._consolidate_weeks(weeks_with_sections);
+            var week_keys = Object.keys(consolidated);
+
+            assert.equal(week_keys.length, 3)
+            assert.equal(weeks[week_keys[0]].sections.length, 1)
+            assert.equal(weeks[week_keys[1]].sections.length, 2)
+            assert.equal(weeks[week_keys[2]].sections.length, 1)
+
+        });
     });
 
     describe('_get_schedule_range', function() {

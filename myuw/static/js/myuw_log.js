@@ -146,12 +146,16 @@ var LogUtils = {
             return false;
         }
 
-        var elmHeight = $(elem).height();
-        var offset = $(elem).offset();
-        var elemTop = $(elem).offset().top;
-        var elemBottom = elemTop + elmHeight;
-
-        return LogUtils.isInViewport(docViewTop, docViewBottom, elemTop, elemBottom);
+        try {
+            var elmHeight = $(elem).height();
+            var offset = $(elem).offset();
+            var elemTop = $(elem).offset().top;
+            var elemBottom = elemTop + elmHeight;
+            return LogUtils.isInViewport(docViewTop, docViewBottom, elemTop, elemBottom);
+        }
+        catch(TypeError){
+            return false;
+        }
     },
 
     isInViewport: function(viewport_top, viewport_bottom, elem_top, elem_bottom) {
