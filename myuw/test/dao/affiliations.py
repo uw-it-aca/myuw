@@ -16,7 +16,7 @@ class TestAffilliations(TestCase):
         affiliations = get_all_affiliations(now_request)
 
     def test_fyp_enrollment(self):
-        now_request = get_request_with_user('javerage')
+        now_request = get_request_with_user('jnew')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations['fyp'])
 
