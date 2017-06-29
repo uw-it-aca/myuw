@@ -3,6 +3,7 @@ This module encapsulates the interactions with the uw_sws.person,
 provides student record information of the current user
 """
 
+import logging
 from uw_sws.person import get_person_by_regid
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.enrollment import (get_current_quarter_enrollment,
@@ -12,6 +13,9 @@ from myuw.dao.term import (get_current_quarter,
                            get_next_quarter,
                            get_current_and_next_quarters)
 from myuw.dao.gws import is_grad_student
+
+
+logger = logging.getLogger(__name__)
 
 
 def get_profile_of_current_user():
