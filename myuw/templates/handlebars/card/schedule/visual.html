@@ -52,9 +52,9 @@
     </h3>
     <div id="schedule-tabs" class="schedule-period-module">
 		<ul class="nav nav-pills schedule-period-list">
-        {{ #each schedule_periods }}
-        <li class="{{#equal ../active_period_id @key}} active{{ /equal }}"><a class="schedule-period-anchor" href="#" data-period_id="{{ @key }}"><span class="schedule-period">{{#equal "finals" @key}}Finals {{ else }}{{ toMonthDay start_date }} - {{ toMonthDay end_date }} {{ /equal }}</span></a></li>
-        {{ /each }}
+        {{#each schedule_periods }}
+        <li class="{{#equal ../active_period_id @key}} active{{/equal }}"><a class="schedule-period-anchor" href="#" data-period_id="{{ @key }}"><span class="schedule-period">{{#equal "finals" @key}}Finals {{ else }}{{ toMonthDay start_date }} - {{ toMonthDay end_date }} {{/equal }}</span></a></li>
+        {{/each }}
 		</ul>
     </div>
 <div id="schedule_area">
