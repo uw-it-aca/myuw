@@ -80,10 +80,19 @@ var AccountsPage = {
                 AccountsCard
             ];
         }
-        if(window.user.employee){
+        if(window.user.employee && (window.user.instructor || window.user.stud_employee || window.user.clinician)){
             return [
                 MedicineAccountsCard,
                 HRPayrollCard,
+                LibraryCard,
+                UPassCard,
+                HfsCard,
+                AccountsCard
+            ];
+        }
+        if(window.user.employee){
+            return [
+                MedicineAccountsCard,
                 LibraryCard,
                 UPassCard,
                 HfsCard,

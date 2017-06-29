@@ -6,7 +6,7 @@ var HRPayrollCard = {
         if (myuwFeatureEnabled('workday_account_card') && (window.user.employee || window.user.faculty)) {
             HRPayrollCard._render();
         } else {
-            remove_card(HRPayrollCard.dom_target);
+            $("#HRPayrollCard").hide();
         }
     },
 
