@@ -34,6 +34,10 @@ describe("VisualScheduleCard", function() {
 
             window.enabled_features = { 'instructor_schedule': true };
 
+            // clear cache
+            WSData._course_data = {}
+            WSData._instructed_course_data = {}
+
             $(window).on("myuw:card_load", function () {
                 done();
             });
