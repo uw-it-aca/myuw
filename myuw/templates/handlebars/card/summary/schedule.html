@@ -4,6 +4,8 @@
         <h3 class="myuw-card-title">
           {{capitalizeString quarter}} {{year}} Teaching Schedule
         </h3>
+            <!-- only if future quarter -->{{#if is_future}}<span>You are teaching <!-- number of courses -->#<!-- -->courses in {{capitalizeString quarter}} {{year}}. <br />
+            First day of instruction is <!-- date of first day of future quarter --></span>{{/if}}
             {{#each sections}}
               <div class="myuw-card-section">
                   <div class="row">
@@ -51,5 +53,6 @@
                   </div>
               </div>
             {{/each}}
+            <!-- only if future quarter -->{{#if is_future}}<div class="future-quarter-links" style="margin-top:16px;"><a href="#">View {{capitalizeString quarter}} {{year}} important dates and deadlines.</a></div>{{/if}}
     </div>
 {% endtplhandlebars %}
