@@ -40,4 +40,8 @@ var FinalExamCard = {
 
 };
 
- 
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.FinalExamCard = FinalExamCard;

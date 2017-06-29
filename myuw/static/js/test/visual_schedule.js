@@ -2,14 +2,58 @@ var Global = require("./global.js");
 
 describe("VisualScheduleCard", function() {
     before(function () {
+        var render_id = 'test_visual_schedule';
+
         Global.Environment.init({
-                                    scripts: [
-                                        "myuw/static/js/card/schedule/visual.js"
-                                    ]
-                                });
+            render_id: render_id,
+            scripts: [
+                "myuw/static/js/visual_schedule.js",
+                "myuw/static/js/card/schedule/visual.js",
+                "myuw/static/js/card/schedule/final_panel.js",
+                "myuw/static/js/card/schedule/sp_final.js"
+            ],
+            templates: [
+                'myuw/templates/handlebars/visual_schedule.html',
+                'myuw/templates/handlebars/card/schedule/visual.html',
+                'myuw/templates/handlebars/card/schedule/visual_day.html',
+                'myuw/templates/handlebars/card/schedule/final_day.html',
+                'myuw/templates/handlebars/card/schedule/final_panel.html'
+            ]
+        });
 
         window.card_display_dates = {};
+        VisualScheduleCard.dom_target = $('#' + render_id);
     });
+
+    describe('card renders', function() {
+        before(function (done) {
+            Global.Environment.ajax_stub({
+                '/api/v1/instructor_schedule/2013,spring': 'api/v1/instructor_schedule/eight.json',
+                '/api/v1/schedule/2013,spring': 'api/v1/schedule/eight.json'
+            });
+
+            window.enabled_features = { 'instructor_schedule': true };
+
+            $(window).on("myuw:card_load", function () {
+                done();
+            });
+
+            VisualScheduleCard.term = '2013,spring'
+            VisualScheduleCard.render_init();
+        });
+
+        it('for netid eight', function () {
+            var $schedule = VisualScheduleCard.dom_target.find('.visual-schedule');
+            assert.equal($schedule.length, 1);
+            assert.equal($schedule.find('> .six-day').length, 6);
+            assert.equal($schedule.find('> .six-day').eq(0).find('.visual-course').length, 2);
+            assert.equal($schedule.find('> .six-day').eq(5).find('.visual-course').length, 1);
+        });
+        after(function () {
+            Global.Environment.ajax_stub_restore();
+        });
+    });
+
     describe('_sections_are_same', function() {
         it('should handle identical lists', function() {
             var list1 = {sections: [{course_number: "123", curriculum_abbr: "ASD"}, {course_number: "456", curriculum_abbr: "ASD"}, {course_number: "789", curriculum_abbr: "ASD"}]};

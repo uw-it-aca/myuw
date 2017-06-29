@@ -80,7 +80,6 @@ var VisualScheduleCard = {
                 $.extend(instructed_course_data.schedule_periods, VisualScheduleCard._get_finals(instructed_course_data.sections));
             }
         }
-
         var default_period = VisualScheduleCard._get_default_period(course_data ? course_data.schedule_periods : null,
                                                                     instructed_course_data ? instructed_course_data.schedule_periods: null);
         VisualScheduleCard.display_schedule_for_period(default_period);
@@ -115,7 +114,7 @@ var VisualScheduleCard = {
 
     _get_schedule_periods: function(course_data) {
         var schedule_periods = {};
-        $(course_data.sections).each(function(idx, section){
+        $.each(course_data.sections, function(idx, section){
             // get start and end dates for section
             var section_dates = VisualScheduleCard._get_dates_for_section(section);
             schedule_periods = VisualScheduleCard._add_to_periods(section_dates,
@@ -126,7 +125,6 @@ var VisualScheduleCard = {
         var weeks = VisualScheduleCard._get_weeks_from_range(range);
         weeks = VisualScheduleCard._add_sections_to_weeks(weeks, course_data.sections);
         weeks = VisualScheduleCard._consolidate_weeks(weeks);
-
         return VisualScheduleCard._format_dates(weeks);
     },
 
@@ -238,27 +236,26 @@ var VisualScheduleCard = {
     },
 
 
-    _get_schedule_range: function(course_data, instructed_course_data){
+    _get_schedule_range: function(course_data){
         var earliest,
             latest;
-        $.each([course_data, instructed_course_data], function (i, data) {
-            if (data) {
-                $.each(data.sections, function(idx, section){
-                    var dates = VisualScheduleCard._get_dates_for_section(section);
-                    if (earliest === undefined){
-                        earliest = dates[0];
-                    } else if(dates[0].isBefore(earliest)){
-                        earliest = dates[0];
-                    }
+        if (course_data) {
+            $.each(course_data.sections, function(idx, section){
+                var dates = VisualScheduleCard._get_dates_for_section(section);
+                if (earliest === undefined){
+                    earliest = dates[0];
+                } else if(dates[0].isBefore(earliest)){
+                    earliest = dates[0];
+                }
 
-                    if (latest === undefined){
-                        latest = dates[1];
-                    } else if(dates[1].isAfter(latest)){
-                        latest = dates[1];
-                    }
-                });
-            }
-        });
+                if (latest === undefined){
+                    latest = dates[1];
+                } else if(dates[1].isAfter(latest)){
+                    latest = dates[1];
+                }
+            });
+        }
+
         return [earliest, latest];
     },
 
@@ -378,7 +375,7 @@ var VisualScheduleCard = {
             has_early_fall_start: ((course_data && course_data.has_early_fall_start) ||
                                    (instructed_course_data &&
                                     instructed_course_data.has_early_fall_start)),
-            is_pce: user.pce,
+            is_pce: window.user.pce,
             total_sections: course_data ? course_data.schedule_periods[period].sections.length : 0,
             year: course_data ? course_data.year : instructed_course_data.year,
             quarter: course_data ? course_data.quarter : instructed_course_data.quarter,
@@ -409,7 +406,7 @@ var VisualScheduleCard = {
             }
         }
 
-        var set_meeting = function(course_data, meeting, is_instructor) {
+        var set_meeting = function(course_data, is_instructor) {
             if (!course_data.schedule_periods.hasOwnProperty(period)) {
                 return;
             }
@@ -420,7 +417,6 @@ var VisualScheduleCard = {
                     var meeting = this;
                     var has_meetings = VisualScheduleCard._meeting_has_meetings(meeting);
                     var seen = false;
-
                     if (!meeting.days_tbd && has_meetings) {
 
                         var start_parts = meeting.start_time.split(":");
@@ -459,7 +455,7 @@ var VisualScheduleCard = {
                         };
 
                         $.each(days, function(){
-                            day = this;
+                            day = this.toString();
                             if (meeting.meeting_days[day]) {
                                 if (day === "saturday") {
                                     visual_data.has_6_days = true;
@@ -512,20 +508,12 @@ var VisualScheduleCard = {
         var day, day_index, i, height, top;
 
         if (course_data) {
-            $.each(course_data.sections, function () {
-                $.each(this.meetings, function () {
-                    set_meeting(course_data, this, false);
-                });
-            });
+            set_meeting(course_data, false);
         }
 
         if (instructed_course_data) {
             visual_data.is_instructor = true;
-            $.each(instructed_course_data.sections, function () {
-                $.each(this.meetings, function () {
-                    set_meeting(instructed_course_data, this, true);
-                });
-            });
+            set_meeting(instructed_course_data, true);
         }
 
         // Make it so the start and end times are always on the hour:

@@ -288,3 +288,9 @@ var FinalExamSchedule = {
         return visual_data;
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.FinalExamSchedule = FinalExamSchedule;
