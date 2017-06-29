@@ -75,6 +75,8 @@
         today: '{{ today|date:"l, F j, Y" }}',
         year: '{{ year }}',
         quarter: '{{ quarter }}',
+        break_year: '{{ break_year }}',
+        break_quarter: '{{ break_quarter }}',
         is_finals: {{ is_finals|yesno:"true, false"}},
         is_break: {{ is_break|yesno:"true, false"}},
         today_date: new Date({{ today|date:"Y" }}, {{ today|date:"n" }}-1, {{ today|date:"j"}}),

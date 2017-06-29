@@ -1,0 +1,42 @@
+{
+    "Current": {
+        "Href": "\/student\/v5\/registration.json?year=2013&quarter=spring&curriculum_abbreviation=&course_number=&section_id=&reg_id=10000000000000000000000000000008&is_active=&instructor_reg_id=",
+        "CourseNumber": null,
+        "CurriculumAbbreviation": null,
+        "InstructorRegID": null,
+        "IsActive": null,
+        "PageSize": null,
+        "PageStart": null,
+        "Quarter": "spring",
+        "RegID": "10000000000000000000000000000008",
+        "SectionID": null,
+        "Year": "2013"
+    },
+    "Next": null,
+    "PageSize": "10",
+    "PageStart": "1",
+    "Previous": null,
+    "Registrations": [{
+        "Href": "\/student\/v5\/registration\/2013,spring,MATH,125,GA,10000000000000000000000000000008,1.json",
+        "CourseNumber": "125",
+        "CurriculumAbbreviation": "MATH",
+        "DuplicateCode": "1",
+        "Instructor": null,
+        "Quarter": "spring",
+        "RegID": "10000000000000000000000000000008",
+        "SectionID": "GA",
+        "Year": "2013"
+    },
+    {
+        "Href": "\/student\/v5\/registration\/2013,spring,MATH,125,G,10000000000000000000000000000008,1.json",
+        "CourseNumber": "125",
+        "CurriculumAbbreviation": "MATH",
+        "DuplicateCode": "1",
+        "Instructor": null,
+        "Quarter": "spring",
+        "RegID": "10000000000000000000000000000008",
+        "SectionID": "G",
+        "Year": "2013"
+    }],
+    "TotalCount": 1
+}

@@ -141,12 +141,21 @@ var LogUtils = {
         var docViewTop = $(window).scrollTop();
         var docViewBottom = docViewTop + $(window).height();
 
-        var elmHeight = $(elem).height();
-        var offset = $(elem).offset();
-        var elemTop = $(elem).offset().top;
-        var elemBottom = elemTop + elmHeight;
+        if($(elem).length === 0) {
+            // return false when card isn't attached to the page
+            return false;
+        }
 
-        return LogUtils.isInViewport(docViewTop, docViewBottom, elemTop, elemBottom);
+        try {
+            var elmHeight = $(elem).height();
+            var offset = $(elem).offset();
+            var elemTop = $(elem).offset().top;
+            var elemBottom = elemTop + elmHeight;
+            return LogUtils.isInViewport(docViewTop, docViewBottom, elemTop, elemBottom);
+        }
+        catch(TypeError){
+            return false;
+        }
     },
 
     isInViewport: function(viewport_top, viewport_bottom, elem_top, elem_bottom) {

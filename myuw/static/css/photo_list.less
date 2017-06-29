@@ -22,15 +22,15 @@
 
             @media @two-column { border: none; padding: 0; }
 
-            .myuw-photo-list-image {margin-right: 16px; width: 120px;
+            .myuw-photo-list-image { margin-right: 16px; width: 120px;
                 @media @two-column { float: left; }
             }
+
             .myuw-photo-list-content {
-
                 @media @two-column { margin-left: 136px; }
-
                 a { font-size: 13px; }
             }
+
             .myuw-photo-list-meta { border-top: solid 1px #eee; margin-top: 4px; padding-top: 4px; font-size: 14px; }
         }
 
@@ -46,9 +46,7 @@
                 &:last-child { margin: 0; }
 
                 .myuw-photo-list-image { float: none; }
-                .myuw-photo-list-content { float: none; margin-top: 8px; margin-left: 0;
-
-                }
+                .myuw-photo-list-content { float: none; margin-top: 8px; margin-left: 0; }
                 .myuw-photo-list-meta { display: none; }
 
             }
@@ -63,11 +61,14 @@
 
         ol {
             li { page-break-inside: avoid; border: none;
-                a[href]:after {
-                    content: none !important;
-                    //font-size: 11px;
-                }
 
+                .myuw-photo-list-image { float: left; }
+                .myuw-photo-list-content { margin-left: 136px; }
+                a[href]:after { content: none !important; }
+            }
+
+            &.grid-view {
+                li { width: 200px; }
             }
         }
     }

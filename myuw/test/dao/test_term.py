@@ -364,7 +364,9 @@ class TestTerm(TestCase):
         context = {}
         add_term_data_to_context(request, context)
         self.assertEquals(context['year'], 2013)
-        self.assertEquals(context['quarter'], 'spring')
+        self.assertEquals(context['break_year'], 2013)
+        self.assertEquals(context['quarter'], 'winter')
+        self.assertEquals(context['break_quarter'], 'spring')
         self.assertEquals(context['is_finals'], False)
         self.assertEquals(context['is_break'], True)
 

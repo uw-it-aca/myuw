@@ -40,6 +40,8 @@ var Environment = {
         window.term = {};
         window.term.year = 2013;
         window.term.quarter = 'spring';
+        window.term.first_day_quarter = 'Monday, April 1, 2013';
+        window.term.last_day_instruction = 'Friday, June 7, 2013';
 
         if (config.hasOwnProperty('render_id')) {
             $('body').append($('<div/>', { 'id': config.render_id }));
@@ -121,7 +123,7 @@ var Environment = {
                         var json_data = Environment._json_from_file(json_config[conf.url]);
                         conf.success.apply(null, [json_data]);
                     } else {
-                        throw "unknown mock url: " + conf.url;
+                        conf.error.apply(null, [{status: 404}, 404, "unknown mock url: " + conf.url]);
                     }
                 });
         }
@@ -141,7 +143,7 @@ var Environment = {
         var template = raw.replace(/{\%[ ]+load[ ]+templatetag_handlebars[ ]+\%}/, '')
             .replace(/{\%[ ]*tplhandlebars[ ]+["]?([^ \%]+)["]?[ ]*\%}/,
                      '<script id="$1" type="text/x-handlebars-template">')
-            .replace(/{\%[ ]*endtplhandlebars[ ]*\%}/, 
+            .replace(/{\%[ ]*endtplhandlebars[ ]*\%}/,
                      '</script>')
             .replace(/{\%[ ]*(end)?verbatim[ ]*\%}/g, '');
 

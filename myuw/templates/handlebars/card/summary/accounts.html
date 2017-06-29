@@ -9,14 +9,18 @@
                 <!-- show current quarter -->
                 <i class="fa fa-calendar" aria-hidden="true"></i>
                 {{#if is_break }}
+                    {{#if spans_years }}
+                    {{ year }} / {{ break_year}}
+                    {{else}}
                     {{year}}
+                    {{/if}}
                 {{else}}
                     {{ ucfirst quarter }} {{year}}
                 {{/if}}
                 <span>
                 <!-- display if finals, break, or week of the quarter -->
                 {{#if is_finals }}Finals Week{{/if}}
-                {{#if is_break }}{{ucfirst quarter}} Break{{/if}}
+                {{#if is_break }}{{ucfirst break_quarter}} Break{{/if}}
                 {{#if ../during_term}}Week {{ ../term_current_week }} of {{ ../term_total_weeks }}{{/if}}
 
                 </span>

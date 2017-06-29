@@ -2,14 +2,62 @@ var Global = require("./global.js");
 
 describe("VisualScheduleCard", function() {
     before(function () {
+        var render_id = 'test_visual_schedule';
+
         Global.Environment.init({
-                                    scripts: [
-                                        "myuw/static/js/card/schedule/visual.js"
-                                    ]
-                                });
+            render_id: render_id,
+            scripts: [
+                "myuw/static/js/visual_schedule.js",
+                "myuw/static/js/card/schedule/visual.js",
+                "myuw/static/js/card/schedule/final_panel.js",
+                "myuw/static/js/card/schedule/sp_final.js"
+            ],
+            templates: [
+                'myuw/templates/handlebars/visual_schedule.html',
+                'myuw/templates/handlebars/card/schedule/visual.html',
+                'myuw/templates/handlebars/card/schedule/visual_day.html',
+                'myuw/templates/handlebars/card/schedule/final_day.html',
+                'myuw/templates/handlebars/card/schedule/final_panel.html'
+            ]
+        });
 
         window.card_display_dates = {};
+        VisualScheduleCard.dom_target = $('#' + render_id);
     });
+
+    describe('card renders', function() {
+        before(function (done) {
+            Global.Environment.ajax_stub({
+                '/api/v1/instructor_schedule/2013,spring': 'api/v1/instructor_schedule/eight.json',
+                '/api/v1/schedule/2013,spring': 'api/v1/schedule/eight.json'
+            });
+
+            window.enabled_features = { 'instructor_schedule': true };
+
+            // clear cache
+            WSData._course_data = {}
+            WSData._instructed_course_data = {}
+
+            $(window).on("myuw:card_load", function () {
+                done();
+            });
+
+            VisualScheduleCard.term = '2013,spring'
+            VisualScheduleCard.render_init();
+        });
+
+        it('for netid eight', function () {
+            var $schedule = VisualScheduleCard.dom_target.find('.visual-schedule');
+            assert.equal($schedule.length, 1);
+            assert.equal($schedule.find('> .six-day').length, 6);
+            assert.equal($schedule.find('> .six-day').eq(0).find('.visual-course').length, 2);
+            assert.equal($schedule.find('> .six-day').eq(5).find('.visual-course').length, 1);
+        });
+        after(function () {
+            Global.Environment.ajax_stub_restore();
+        });
+    });
+
     describe('_sections_are_same', function() {
         it('should handle identical lists', function() {
             var list1 = {sections: [{course_number: "123", curriculum_abbr: "ASD"}, {course_number: "456", curriculum_abbr: "ASD"}, {course_number: "789", curriculum_abbr: "ASD"}]};
@@ -24,7 +72,7 @@ describe("VisualScheduleCard", function() {
             var are_same = VisualScheduleCard._sections_are_same(list1, list2);
             assert.equal(are_same, true)
         });
-        
+
         it('should handle different lists', function() {
             var list1 = {sections: [{course_number: "123", curriculum_abbr: "ASD"}, {course_number: "456", curriculum_abbr: "ASD"}, {course_number: "789", curriculum_abbr: "ASD"}]};
             var list2 = {sections: [{course_number: "123", curriculum_abbr: "DEF"}, {course_number: "456", curriculum_abbr: "DEF"}, {course_number: "789", curriculum_abbr: "DEF"}]};
@@ -135,7 +183,7 @@ describe("VisualScheduleCard", function() {
             var end = moment.utc("2017-06-12");
             var weeks = VisualScheduleCard._get_weeks_from_range([start, end]);
 
-            var default_period = VisualScheduleCard._get_default_period(weeks);
+            var default_period = VisualScheduleCard._get_default_period(null, weeks);
             assert.equal(default_period, "23")
         });
 
@@ -145,7 +193,7 @@ describe("VisualScheduleCard", function() {
             var end = moment.utc("2017-06-12");
             var weeks = VisualScheduleCard._get_weeks_from_range([start, end]);
 
-            var default_period = VisualScheduleCard._get_default_period(weeks);
+            var default_period = VisualScheduleCard._get_default_period(weeks, null);
             assert.equal(default_period, "22")
         });
     });
@@ -179,6 +227,24 @@ describe("VisualScheduleCard", function() {
             var consolidated = VisualScheduleCard._consolidate_weeks(weeks_with_sections);
             var week_keys = Object.keys(consolidated);
             assert.deepEqual(week_keys, ["23", "24"])
+        });
+
+        it('should handle a, ab, a periods', function() {
+            var start = moment.utc("2017-06-12");
+            var end = moment.utc("2017-07-20");
+
+            var weeks = VisualScheduleCard._get_weeks_from_range([start, end]);
+            var sections = [{start_date: "2017-06-12", end_date: "2017-07-20", course_number: "123", curriculum_abbr: "ASD"},
+                {start_date: "2017-06-21", end_date: "2017-06-24", course_number: "456", curriculum_abbr: "ASD"}];
+            var weeks_with_sections = VisualScheduleCard._add_sections_to_weeks(weeks, sections);
+            var consolidated = VisualScheduleCard._consolidate_weeks(weeks_with_sections);
+            var week_keys = Object.keys(consolidated);
+
+            assert.equal(week_keys.length, 3)
+            assert.equal(weeks[week_keys[0]].sections.length, 1)
+            assert.equal(weeks[week_keys[1]].sections.length, 2)
+            assert.equal(weeks[week_keys[2]].sections.length, 1)
+
         });
     });
 
