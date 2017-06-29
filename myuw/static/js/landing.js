@@ -43,7 +43,7 @@ var Landing = {
         Landing._reset_content_divs();
 
         var desktop_body_cards;
-        if(window.user.employee && !(window.user.instructor || window.user.stud_employee)){
+        if(window.user.employee && !(window.user.instructor || window.user.stud_employee || window.user.clinician)){
             desktop_body_cards = [
                 HRPayrollCard
             ];
