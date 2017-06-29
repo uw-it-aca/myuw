@@ -61,6 +61,7 @@ def get_all_affiliations(request):
             "undergrad": is_undergrad_student(),
             "student": is_student(),
             "pce": is_pce_student(),
+            "staff_employee": is_staff_employee(),
             "stud_employee": is_student_employee(),
             "employee": is_employee(),
             "fyp": is_fyp,

@@ -83,13 +83,14 @@ var AccountsPage = {
         if(window.user.employee) {
             var cards = [
                 MedicineAccountsCard,
+                HRPayrollCard,
                 LibraryCard,
                 UPassCard,
                 HfsCard,
                 AccountsCard
             ];
-            if (window.user.instructor || window.user.stud_employee || window.user.clinician) {
-                cards.splice(1, 0, HRPayrollCard);
+            if(window.user.staff_employee) {
+                cards.splice(1, 1);
             }
             return cards;
         }
