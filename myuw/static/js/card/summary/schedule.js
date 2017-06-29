@@ -51,7 +51,9 @@ var SummaryScheduleCard = {
         var raw = courses_template({
             quarter: instructed_course_data.quarter,
             year: instructed_course_data.year,
+            future_term: instructed_course_data.future_term,
             sections: instructed_course_data.sections,
+            section_count: instructed_course_data.sections.length,
             is_instructor: (instructed_course_data !== undefined)
         });
 
