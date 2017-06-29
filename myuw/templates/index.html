@@ -57,7 +57,7 @@
     {% include "handlebars/card/new_student/ns_summer_efs.html" %}
     {% include "handlebars/card/new_student/ns_thank_you.html" %}
     {% include "handlebars/card/new_student/ns_to_register.html" %}
-
+    {% include "handlebars/card/accounts/hr_payroll_card.html" %}
     {% include "handlebars/card/summary/accounts.html" %}
     {% include "handlebars/card/summary/schedule.html" %}
 
@@ -97,6 +97,7 @@
 {% endblock %}
 
 {% block extra_js %}
+    <script src="{% static 'js/card/accounts/hr_payroll_card.js' %}"></script>
     <script src="{% static 'js/card/quicklinks.js' %}"></script>
     {% compress js inline %}
     <script src="{% static 'js/page/landing.js' %}"></script>

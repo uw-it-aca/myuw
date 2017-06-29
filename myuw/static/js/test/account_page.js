@@ -31,7 +31,6 @@ describe("AccountsPage", function() {
             ];
             var employee_order = [
                 MedicineAccountsCard,
-                HRPayrollCard,
                 LibraryCard,
                 UPassCard,
                 HfsCard,

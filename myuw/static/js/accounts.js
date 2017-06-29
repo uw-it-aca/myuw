@@ -80,17 +80,19 @@ var AccountsPage = {
                 AccountsCard
             ];
         }
-        if(window.user.employee){
-            return [
+        if(window.user.employee) {
+            var cards = [
                 MedicineAccountsCard,
-                HRPayrollCard,
                 LibraryCard,
                 UPassCard,
                 HfsCard,
                 AccountsCard
             ];
+            if (window.user.instructor || window.user.stud_employee || window.user.clinician) {
+                cards.splice(1, 0, HRPayrollCard);
+            }
+            return cards;
         }
-
     },
 
     _reset_content_divs: function() {
