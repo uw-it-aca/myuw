@@ -24,13 +24,45 @@
     "Previous": null,
     "Sections": [
         {
+            "CourseNumber": "150",
+            "CurriculumAbbreviation": "AAES",
+            "Href": "/student/v5/course/2013,spring,AAES,150/A.json",
+            "Quarter": "spring",
+            "SectionID": "A",
+            "Year": 2013
+        },
+        {
             "CourseNumber": "508",
             "CurriculumAbbreviation": "ACCTG",
             "Href": "/student/v5/course/2013,spring,ACCTG,508/A.json",
             "Quarter": "spring",
-            "SectionID": "CU",
+            "SectionID": "A",
+            "Year": 2013
+        },
+        {
+            "CourseNumber": "230",
+            "CurriculumAbbreviation": "BIGDATA",
+            "Href": "/student/v5/course/2013,spring,BIGDATA,230/A.json",
+            "Quarter": "spring",
+            "SectionID": "A",
+            "Year": 2013
+        },
+        {
+            "CourseNumber": "712",
+            "CurriculumAbbreviation": "CPROGRM",
+            "Href": "/student/v5/course/2013,spring,CPROGRM,712/A.json",
+            "Quarter": "spring",
+            "SectionID": "A",
+            "Year": 2013
+        },
+        {
+            "CourseNumber": "421",
+            "CurriculumAbbreviation": "CM",
+            "Href": "/student/v5/course/2013,spring,CM,421/A.json",
+            "Quarter": "spring",
+            "SectionID": "A",
             "Year": 2013
         }
     ],
-    "TotalCount": 4
+    "TotalCount": 5
 }
