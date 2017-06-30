@@ -5,26 +5,8 @@
 
         <h3 class="myuw-card-title">Employee Profile</h3>
 
-        {% with link_text="Manage in Workday" extra_class="card-btn" %}
-          {% include "workday_link.html" %}
-        {% endwith %}
+        <div class="directory-information myuw-card-section" vocab="http://schema.org/" typeof="Person">
 
-        <div class="directory-information" vocab="http://schema.org/" typeof="Person">
-
-            <div class="dir-contact-info myuw-card-section">
-
-                <div class="row">
-                    <div class="col-sm-3">
-                        <h4 class="myuw-card-row-heading">Full Name</h4>
-                    </div>
-                    <div class="col-sm-9">
-                        {{#if display_name}}
-                        <span property="additionalName">{{display_name}}</span>
-                        {{else}}
-                        <span property="name">{{first_name}} {{surname}}</span>
-                        {{/if}}
-                    </div>
-                </div>
 
                 {{#if title1}}
                 <div class="row">
@@ -59,9 +41,6 @@
                 </div>
                 {{/if}}
 
-            </div>
-
-            <div class="myuw-card-section" property="workLocation" typeof="Place">
 
                 <span class="sr-only" property="name">UW Office</span>
 
@@ -90,25 +69,34 @@
                     </div>
                 </div>
 
-            </div>
-
-            <div class="dir-release myuw-card-section last">
                 <div class="row">
-                    <div class="col-sm-3">
-                        <h4 class="myuw-card-row-heading">UW Directory</h4>
-                    </div>
-                    <div class="col-sm-9">
-
-                        <p>{{#if directory_release}}Name, position, work contact information are published.{{else}}Not published.{{/if }}<br/>
-                        <a href="https://identity.uw.edu/">Change directory settings</a></p>
-
-                        <p class="card-related-messages">Search for faculty, staff, and students in the {{#if is_tacoma}}<a href="http://directory.tacoma.uw.edu/">UW Tacoma Directory</a>{{else}}<a href="https://www.washington.edu/home/peopledir/">UW Directory</a>{{/if}}.</p>
-
+                    <div class="col-sm-offset-3 col-sm-9">
+                        {% with link_text="Manage profile in Workday" extra_class="workday-link" %}
+                          {% include "workday_link.html" %}
+                        {% endwith %}
                     </div>
                 </div>
-            </div>
+
 
         </div>
+
+        <div class="dir-release myuw-card-section last">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h4 class="myuw-card-row-heading">UW Directory</h4>
+                </div>
+                <div class="col-sm-9">
+
+                    <p>{{#if directory_release}}Name, position, work contact information are published.{{else}}Not published.{{/if }}<br/>
+                    <a href="https://identity.uw.edu/">Change directory settings</a></p>
+
+                    <p class="card-related-messages">Search for faculty, staff, and students in the {{#if is_tacoma}}<a href="http://directory.tacoma.uw.edu/">UW Tacoma Directory</a>{{else}}<a href="https://www.washington.edu/home/peopledir/">UW Directory</a>{{/if}}.</p>
+
+                </div>
+            </div>
+        </div>
+
+
 
     </div>
 {% endtplhandlebars %}
