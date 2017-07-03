@@ -31,30 +31,25 @@
 
         {{#if hfs }}
             {{#if library }}
-
                 <!-- various account summaries -->
                 <div class="myuw-account-summaries">
-                {{#if hfs.student_husky_card}}
-                <a href="/accounts/">Student Husky <span>${{ formatPrice hfs.student_husky_card.balance }}</span></a>
-                {{/if}}
-
-                {{#if hfs.resident_dining}}
-                <a href="/accounts/">Resident Dining <span>${{ formatPrice hfs.resident_dining.balance }}</span></a>
-                {{/if}}
-
-                {{#if hfs.employee_husky_card }}
-                <a href="/accounts/">Employee Husky <span>${{ formatPrice hfs.employee_husky_card.balance }}</span></a>
-                {{/if}}
-
-                {{#if library.next_due }}
-                <a href="/accounts/">Library Item Due <span>{{ toFromNowDate library.next_due }}</span></a>
-                {{else}}
-                    {{#if library.holds_ready }}
-                        <a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/myAccountMenu.do?activity=requests" target="_blank" data-linklabel="Library Account Requests">Library {{ pluralize library.holds_ready "Item" "Items" }} Ready<span>{{ library.holds_ready }} {{ pluralize library.holds_ready "item" "items" }} ready</span></a>
+                    {{#if hfs.student_husky_card}}
+                    <a href="/accounts/">Student Husky <span>${{ formatPrice hfs.student_husky_card.balance }}</span></a>
                     {{/if}}
-                {{/if}}
+                    {{#if hfs.resident_dining}}
+                    <a href="/accounts/">Resident Dining <span>${{ formatPrice hfs.resident_dining.balance }}</span></a>
+                    {{/if}}
+                    {{#if hfs.employee_husky_card }}
+                    <a href="/accounts/">Employee Husky <span>${{ formatPrice hfs.employee_husky_card.balance }}</span></a>
+                    {{/if}}
+                    {{#if library.next_due }}
+                    <a href="/accounts/">Library Item Due <span>{{ toFromNowDate library.next_due }}</span></a>
+                    {{else}}
+                        {{#if library.holds_ready }}
+                            <a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/myAccountMenu.do?activity=requests" target="_blank" data-linklabel="Library Account Requests">Library {{ pluralize library.holds_ready "Item" "Items" }} Ready<span>{{ library.holds_ready }} {{ pluralize library.holds_ready "item" "items" }} ready</span></a>
+                        {{/if}}
+                    {{/if}}
                 </div>
-
             {{/if}}
         {{/if}}
 
