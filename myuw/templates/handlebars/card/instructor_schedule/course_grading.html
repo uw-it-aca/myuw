@@ -52,7 +52,7 @@
                     {{#if grading_period_is_open}}
                         <div class="card-badge-value">
                             {{#if grading_status.all_grades_submitted}}
-                                    <a href="{{grading_status.section_url}}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by <strong>{{grading_status.submitted_by}}</strong> on {{ grading_status.submitted_relative_date }}
+                                    <a href="{{grading_status.section_url}}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by {{grading_status.submitted_by}} on {{ grading_status.submitted_relative_date }}
                             {{else}}
                                 {{#if grading_status.unsubmitted_count}}<a href="{{grading_status.section_url}}"  data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">{{grading_status.unsubmitted_count}} grade{{pluralize grading_status.unsubmitted_count '' 's'}} to submit </a>
                                 {{else}}
@@ -66,18 +66,18 @@
                     {{else}}
                         {{#if grading_period_is_past}}
                             <div class="card-badge-value">
-                                {{#if grading_status.all_grades_submitted}}<a href="{{grading_status.section_url}}" ata-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by <strong>{{grading_status.submitted_by}}</strong> on {{ grading_status.submitted_relative_date }}
+                                {{#if grading_status.all_grades_submitted}}<a href="{{grading_status.section_url}}" ata-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by {{grading_status.submitted_by}} on {{ grading_status.submitted_relative_date }}
                                     <br />
-                                <div class="myuw-note">Grade submission for <strong>{{capitalizeString quarter}} {{year}}</strong> closed {{grade_submission_deadline_date}}</div>
+                                <div class="myuw-note">Grade submission for {{capitalizeString quarter}} {{year}} closed {{grade_submission_deadline_date}}</div>
 
                                 {{else}}
                                     {{#if grading_status.grading_status}} <div class="myuw-text-capitalize">{{grading_status.grading_status}}</div>{{else}} {{grading_status.unsubmitted_count}} grade{{pluralize grading_status.unsubmitted_count '' 's'}} not submitted through GradePage{{/if}}
-                                    <div class="myuw-note">Grade submission for <strong>{{capitalizeString quarter}} {{year}}</strong> closed {{grade_submission_deadline_date}} <br/><a href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/" data-linklabel="Change Submitted Grades" target="_blank">What can I do now?</a></div>
+                                    <div class="myuw-note">Grade submission for {{capitalizeString quarter}} {{year}} closed {{grade_submission_deadline_date}} <br/><a href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/" data-linklabel="Change Submitted Grades" target="_blank">What can I do now?</a></div>
                                 {{/if}}
                             </div>
                         {{else}}
-                            <div class="card-badge-value">Grade submission opens <strong>{{grading_period_open_date}}</strong>{{#unless opens_in_24_hours}} ({{grading_period_relative_open}}){{/unless}}</div>
-                            <div class="myuw-note">Grade submission closes <strong>{{grade_submission_deadline_date}}</strong></div>
+                            <div class="card-badge-value">Grade submission opens {{grading_period_open_date}}{{#unless opens_in_24_hours}} ({{grading_period_relative_open}}){{/unless}}</div>
+                            <div class="myuw-note">Grade submission closes {{grade_submission_deadline_date}}</div>
                         {{/if}}
                     {{/if}}
                 </div>
