@@ -427,8 +427,10 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
     .myuw-account-summaries { display: block; text-align: center; margin: 8px 0; border-top: solid 1px #ddd; padding-top: 8px;
 
+        a:nth-child(even) { margin-bottom: 8px; }
+
         @media @two-column { text-align: left; float: right; margin: 0; border: none; padding: 0;
-            a { border-left: solid 1px #ddd; padding-left: 8px; }
+            a { border-left: solid 1px #ddd; padding-left: 8px; margin-bottom: 0 !important; }
         }
     }
 
