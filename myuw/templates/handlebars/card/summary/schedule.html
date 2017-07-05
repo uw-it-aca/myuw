@@ -1,10 +1,12 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "instructor_summary_schedule" %}
     <div class="myuw-card" data-type="card" data-name="SummaryScheduleCard" data-identifier="{{ title }}">
+        <div style="position:relative;">
         <h3 class="myuw-card-title">
           {{capitalizeString quarter}} {{year}} Teaching Schedule
         </h3>
-            {{#if future_term}}<p>You are teaching <strong>{{section_count}} course{{pluralize section_count '' 's'}}</strong> in {{capitalizeString quarter}} {{year}}. <br />
+        {{#if future_term}}<div class="course-meta"><div style="margin-top: 8px;"><a href="/teaching/#" data-term="{{year}},{{quarter}}" data-linklabel="View {{capitalizeString quarter}} {{year}} Details">View details</a></div></div>
+            <p>You are teaching <strong>{{section_count}} course{{pluralize section_count '' 's'}}</strong> in {{capitalizeString quarter}} {{year}}. <br />
             First day of instruction is {{toFriendlyDate term.first_day_quarter}} ({{toFromNowDate term.first_day_quarter}})</p>{{/if}}
             {{#each sections}}
               <div class="myuw-card-section {{#if @last}}last{{/if}}">
@@ -54,5 +56,6 @@
               </div>
             {{/each}}
             {{#if future_term}}<div class="future-quarter-links" style="margin-top:16px;"><a href="/academic_calendar/#{{term.year}},{{term.quarter}}">View {{capitalizeString quarter}} {{year}} important dates and deadlines.</a></div>{{/if}}
+        </div>
     </div>
 {% endtplhandlebars %}
