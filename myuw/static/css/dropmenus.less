@@ -29,17 +29,23 @@
         border-radius: 0;
         padding: 0px 22px 4px 0px;
 
-        @media @tablet {
+        @media @two-column {
             font-size: 18px;
-            padding: 0px 22px 4px 8px;
         }
 
-        &:hover { cursor: pointer; }
+        &:hover {
+            cursor: pointer;
+            border-bottom: 4px solid #999;
+        }
     }
 
     select.myuw-dropmenu-selected {
         color: #000;
         border-bottom: 4px solid #000;
+
+        &:hover {
+            border-bottom: 4px solid #000;
+        }
     }
 
 }
