@@ -1,0 +1,714 @@
+{
+    "collection": {
+        "queries": [
+            {
+                "href": "https://uw.iasysdev.org/api/v1/evaluation",
+                "data": [
+                    {
+                        "required": true,
+                        "name": "year",
+                        "prompt": "Year"
+                    },
+                    {
+                        "required": true,
+                        "name": "term_name",
+                        "prompt": "Term Name"
+                    },
+                    {
+                        "prompt": "Curriculum Abbreviation",
+                        "name": "curriculum_abbreviation"
+                    },
+                    {
+                        "name": "course_number",
+                        "prompt": "Course Number"
+                    },
+                    {
+                        "prompt": "Section ID",
+                        "name": "section_id"
+                    },
+                    {
+                        "prompt": "Student ID",
+                        "name": "student_id"
+                    }
+                ],
+                "rel": "collection filter",
+                "prompt": "Evaluation Search Resource"
+            }
+        ],
+        "items": [
+            {
+                "meta": [
+                    {
+                        "name": "type",
+                        "value": "evaluation"
+                    },
+                    {
+                        "value": "1",
+                        "name": "id"
+                    },
+                    {
+                        "value": "2",
+                        "name": "childId"
+                    },
+                    {
+                        "value": "3",
+                        "name": "childId"
+                    }
+                ],
+                "data": [
+                    {
+                        "value": "132068",
+                        "name": "id",
+                        "prompt": "Id"
+                    },
+                    {
+                        "name": "year",
+                        "prompt": "Year",
+                        "value": "2014"
+                    },
+                    {
+                        "value": "Autumn",
+                        "name": "termName",
+                        "prompt": "Term"
+                    },
+                    {
+                        "name": "deliveryMethod",
+                        "prompt": "Delivery Method",
+                        "value": "Online"
+                    },
+                    {
+                        "value": "Open",
+                        "prompt": "Status",
+                        "name": "status"
+                    },
+                    {
+                        "value": "2014-11-24T15:00:00Z",
+                        "prompt": "Open Date",
+                        "name": "openDate"
+                    },
+                    {
+                        "value": "2051-12-03T07:59:59Z",
+                        "name": "closeDate",
+                        "prompt": "Close Date"
+                    }
+                ],
+                "links": [
+                    {
+                        "rel": "publishedto",
+                        "href": "https://uw.iasysdev.org/survey/132068",
+                        "prompt": "Evaluation URL"
+                    }
+                ],
+                "href": "https://uw.iasysdev.org/api/v1/evaluation/132068"
+            },
+            {
+                "meta": [
+                    {
+                        "name": "type",
+                        "value": "section"
+                    },
+                    {
+                        "name": "id",
+                        "value": "2"
+                    }
+                ],
+                "data": [
+                    {
+                        "value": "15314",
+                        "name": "instCourseId"
+                    },
+                    {
+                        "name": "year",
+                        "value": "2014"
+                    },
+                    {
+                        "value": "Autumn",
+                        "name": "termName"
+                    },
+                    {
+                        "name": "curriculumAbbreviation",
+                        "value": "GERMAN"
+                    },
+                    {
+                        "value": "201",
+                        "name": "courseNumber"
+                    },
+                    {
+                        "name": "sectionId",
+                        "value": "B"
+                    },
+                    {
+                        "value": "Second-year German",
+                        "name": "courseTitle"
+                    }
+                ]
+            },
+            {
+                "meta": [
+                    {
+                        "value": "instructor",
+                        "name": "type"
+                    },
+                    {
+                        "value": "3",
+                        "name": "id"
+                    }
+                ],
+                "data": [
+                    {
+                        "name": "instInstructorId",
+                        "value": "851006409"
+                    },
+                    {
+                        "value": "Kristina",
+                        "name": "firstName"
+                    },
+                    {
+                        "name": "lastName",
+                        "value": "Pilz"
+                    }
+                ]
+            },
+            {
+                "meta": [
+                    {
+                        "value": "evaluation",
+                        "name": "type"
+                    },
+                    {
+                        "value": "4",
+                        "name": "id"
+                    },
+                    {
+                        "value": "5",
+                        "name": "childId"
+                    },
+                    {
+                        "name": "childId",
+                        "value": "6"
+                    },
+                    {
+                        "name": "childId",
+                        "value": "7"
+                    },
+                    {
+                        "name": "childId",
+                        "value": "8"
+                    }
+                ],
+                "data": [
+                    {
+                        "name": "id",
+                        "prompt": "Id",
+                        "value": "132136"
+                    },
+                    {
+                        "value": "2014",
+                        "name": "year",
+                        "prompt": "Year"
+                    },
+                    {
+                        "prompt": "Term",
+                        "name": "termName",
+                        "value": "Autumn"
+                    },
+                    {
+                        "prompt": "Delivery Method",
+                        "name": "deliveryMethod",
+                        "value": "Online"
+                    },
+                    {
+                        "name": "status",
+                        "prompt": "Status",
+                        "value": "Closed"
+                    },
+                    {
+                        "value": "2014-11-24T15:00:00Z",
+                        "prompt": "Open Date",
+                        "name": "openDate"
+                    },
+                    {
+                        "prompt": "Close Date",
+                        "name": "closeDate",
+                        "value": "2014-12-03T07:59:59Z"
+                    }
+                ],
+                "href": "https://uw.iasysdev.org/api/v1/evaluation/132136",
+                "links": [
+                    {
+                        "rel": "publishedto",
+                        "href": "https://uw.iasysdev.org/survey/132136",
+                        "prompt": "Evaluation URL"
+                    }
+                ]
+            },
+            {
+                "data": [
+                    {
+                        "name": "instCourseId",
+                        "value": "11840"
+                    },
+                    {
+                        "value": "2014",
+                        "name": "year"
+                    },
+                    {
+                        "value": "Autumn",
+                        "name": "termName"
+                    },
+                    {
+                        "value": "C LIT",
+                        "name": "curriculumAbbreviation"
+                    },
+                    {
+                        "value": "270",
+                        "name": "courseNumber"
+                    },
+                    {
+                        "value": "AG",
+                        "name": "sectionId"
+                    },
+                    {
+                        "name": "courseTitle",
+                        "value": "Perspectives On Film: Introduction"
+                    }
+                ],
+                "meta": [
+                    {
+                        "value": "section",
+                        "name": "type"
+                    },
+                    {
+                        "name": "id",
+                        "value": "5"
+                    }
+                ]
+            },
+            {
+                "meta": [
+                    {
+                        "value": "section",
+                        "name": "type"
+                    },
+                    {
+                        "value": "6",
+                        "name": "id"
+                    }
+                ],
+                "data": [
+                    {
+                        "value": "15327",
+                        "name": "instCourseId"
+                    },
+                    {
+                        "name": "year",
+                        "value": "2014"
+                    },
+                    {
+                        "value": "Autumn",
+                        "name": "termName"
+                    },
+                    {
+                        "value": "GERMAN",
+                        "name": "curriculumAbbreviation"
+                    },
+                    {
+                        "name": "courseNumber",
+                        "value": "275"
+                    },
+                    {
+                        "value": "AG",
+                        "name": "sectionId"
+                    },
+                    {
+                        "value": "Crime Scenes: Investigating The Cinema And Its Cultures",
+                        "name": "courseTitle"
+                    }
+                ]
+            },
+            {
+                "meta": [
+                    {
+                        "name": "type",
+                        "value": "section"
+                    },
+                    {
+                        "value": "7",
+                        "name": "id"
+                    }
+                ],
+                "data": [
+                    {
+                        "value": "20334",
+                        "name": "instCourseId"
+                    },
+                    {
+                        "name": "year",
+                        "value": "2014"
+                    },
+                    {
+                        "value": "Autumn",
+                        "name": "termName"
+                    },
+                    {
+                        "value": "SCAND",
+                        "name": "curriculumAbbreviation"
+                    },
+                    {
+                        "value": "275",
+                        "name": "courseNumber"
+                    },
+                    {
+                        "value": "AG",
+                        "name": "sectionId"
+                    },
+                    {
+                        "name": "courseTitle",
+                        "value": "Crime Scenes: Investigating The Cinema And Its Cultures"
+                    }
+                ]
+            },
+            {
+                "data": [
+                    {
+                        "name": "instInstructorId",
+                        "value": "849001851"
+                    },
+                    {
+                        "value": "Douglas",
+                        "name": "firstName"
+                    },
+                    {
+                        "name": "lastName",
+                        "value": "Anderson"
+                    }
+                ],
+                "meta": [
+                    {
+                        "name": "type",
+                        "value": "instructor"
+                    },
+                    {
+                        "name": "id",
+                        "value": "8"
+                    }
+                ]
+            },
+            {
+                "meta": [
+                    {
+                        "name": "type",
+                        "value": "evaluation"
+                    },
+                    {
+                        "value": "9",
+                        "name": "id"
+                    },
+                    {
+                        "value": "10",
+                        "name": "childId"
+                    },
+                    {
+                        "name": "childId",
+                        "value": "11"
+                    },
+                    {
+                        "name": "childId",
+                        "value": "12"
+                    },
+                    {
+                        "name": "childId",
+                        "value": "13"
+                    },
+                    {
+                        "value": "14",
+                        "name": "childId"
+                    },
+                    {
+                        "name": "childId",
+                        "value": "15"
+                    }
+                ],
+                "data": [
+                    {
+                        "prompt": "Id",
+                        "name": "id",
+                        "value": "132167"
+                    },
+                    {
+                        "value": "2014",
+                        "name": "year",
+                        "prompt": "Year"
+                    },
+                    {
+                        "value": "Autumn",
+                        "name": "termName",
+                        "prompt": "Term"
+                    },
+                    {
+                        "value": "Paper",
+                        "name": "deliveryMethod",
+                        "prompt": "Delivery Method"
+                    },
+                    {
+                        "prompt": "Status",
+                        "name": "status",
+                        "value": "Closed"
+                    },
+                    {
+                        "value": "2014-11-24T15:00:00Z",
+                        "prompt": "Open Date",
+                        "name": "openDate"
+                    },
+                    {
+                        "value": "2014-12-03T07:59:59Z",
+                        "prompt": "Close Date",
+                        "name": "closeDate"
+                    }
+                ],
+                "links": [
+                    {
+                        "prompt": "Evaluation URL",
+                        "href": "https://uw.iasysdev.org/survey/132167",
+                        "rel": "publishedto"
+                    }
+                ],
+                "href": "https://uw.iasysdev.org/api/v1/evaluation/132167"
+            },
+            {
+                "meta": [
+                    {
+                        "value": "section",
+                        "name": "type"
+                    },
+                    {
+                        "name": "id",
+                        "value": "10"
+                    }
+                ],
+                "data": [
+                    {
+                        "value": "11833",
+                        "name": "instCourseId"
+                    },
+                    {
+                        "value": "2014",
+                        "name": "year"
+                    },
+                    {
+                        "name": "termName",
+                        "value": "Autumn"
+                    },
+                    {
+                        "name": "curriculumAbbreviation",
+                        "value": "C LIT"
+                    },
+                    {
+                        "value": "270",
+                        "name": "courseNumber"
+                    },
+                    {
+                        "name": "sectionId",
+                        "value": "A"
+                    },
+                    {
+                        "name": "courseTitle",
+                        "value": "Perspectives On Film: Introduction"
+                    }
+                ]
+            },
+            {
+                "data": [
+                    {
+                        "value": "15320",
+                        "name": "instCourseId"
+                    },
+                    {
+                        "name": "year",
+                        "value": "2014"
+                    },
+                    {
+                        "value": "Autumn",
+                        "name": "termName"
+                    },
+                    {
+                        "value": "GERMAN",
+                        "name": "curriculumAbbreviation"
+                    },
+                    {
+                        "value": "275",
+                        "name": "courseNumber"
+                    },
+                    {
+                        "value": "A",
+                        "name": "sectionId"
+                    },
+                    {
+                        "value": "Crime Scenes: Investigating The Cinema And Its Cultures",
+                        "name": "courseTitle"
+                    }
+                ],
+                "meta": [
+                    {
+                        "name": "type",
+                        "value": "section"
+                    },
+                    {
+                        "name": "id",
+                        "value": "11"
+                    }
+                ]
+            },
+            {
+                "data": [
+                    {
+                        "value": "15328",
+                        "name": "instCourseId"
+                    },
+                    {
+                        "name": "year",
+                        "value": "2014"
+                    },
+                    {
+                        "name": "termName",
+                        "value": "Autumn"
+                    },
+                    {
+                        "value": "GERMAN",
+                        "name": "curriculumAbbreviation"
+                    },
+                    {
+                        "value": "275",
+                        "name": "courseNumber"
+                    },
+                    {
+                        "name": "sectionId",
+                        "value": "B"
+                    },
+                    {
+                        "name": "courseTitle",
+                        "value": "Crime Scenes: Investigating The Cinema And Its Cultures"
+                    }
+                ],
+                "meta": [
+                    {
+                        "value": "section",
+                        "name": "type"
+                    },
+                    {
+                        "name": "id",
+                        "value": "12"
+                    }
+                ]
+            },
+            {
+                "meta": [
+                    {
+                        "value": "section",
+                        "name": "type"
+                    },
+                    {
+                        "value": "13",
+                        "name": "id"
+                    }
+                ],
+                "data": [
+                    {
+                        "name": "instCourseId",
+                        "value": "20327"
+                    },
+                    {
+                        "name": "year",
+                        "value": "2014"
+                    },
+                    {
+                        "value": "Autumn",
+                        "name": "termName"
+                    },
+                    {
+                        "name": "curriculumAbbreviation",
+                        "value": "SCAND"
+                    },
+                    {
+                        "value": "275",
+                        "name": "courseNumber"
+                    },
+                    {
+                        "value": "A",
+                        "name": "sectionId"
+                    },
+                    {
+                        "name": "courseTitle",
+                        "value": "Crime Scenes: Investigating The Cinema And Its Cultures"
+                    }
+                ]
+            },
+            {
+                "data": [
+                    {
+                        "name": "instInstructorId",
+                        "value": "867009934"
+                    },
+                    {
+                        "name": "firstName",
+                        "value": "Eric"
+                    },
+                    {
+                        "value": "Ames",
+                        "name": "lastName"
+                    }
+                ],
+                "meta": [
+                    {
+                        "value": "instructor",
+                        "name": "type"
+                    },
+                    {
+                        "name": "id",
+                        "value": "14"
+                    }
+                ]
+            },
+            {
+                "data": [
+                    {
+                        "name": "instInstructorId",
+                        "value": "877002560"
+                    },
+                    {
+                        "name": "firstName",
+                        "value": "Andrew"
+                    },
+                    {
+                        "value": "Nestingen",
+                        "name": "lastName"
+                    }
+                ],
+                "meta": [
+                    {
+                        "value": "instructor",
+                        "name": "type"
+                    },
+                    {
+                        "name": "id",
+                        "value": "15"
+                    }
+                ]
+            }
+        ],
+        "links": [
+            {
+                "rel": "home",
+                "href": "https://uw.iasysdev.org/api/v1",
+                "prompt": "IASystem v1 Web API"
+            },
+            {
+                "rel": "self",
+                "href": "https://uw.iasysdev.org/api/v1/evaluation?student_id=1230430&term_name=Autumn&year=2014",
+                "prompt": "IASystem Evaluation Listing"
+            }
+        ],
+        "href": "https://uw.iasysdev.org/api/v1/evaluation",
+        "version": "1.0"
+    }
+}
