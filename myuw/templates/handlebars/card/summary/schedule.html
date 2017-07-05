@@ -4,8 +4,8 @@
         <h3 class="myuw-card-title">
           {{capitalizeString quarter}} {{year}} Teaching Schedule
         </h3>
-            {{#if future_term}}<span>You are teaching {{section_count}} course{{pluralize section_count '' 's'}} in {{capitalizeString quarter}} {{year}}. <br />
-            First day of instruction is {{toFriendlyDate term.first_day_quarter}} ({{toFromNowDate term.first_day_quarter}})</span>{{/if}}
+            {{#if future_term}}<p>You are teaching <strong>{{section_count}} course{{pluralize section_count '' 's'}}</strong> in {{capitalizeString quarter}} {{year}}. <br />
+            First day of instruction is {{toFriendlyDate term.first_day_quarter}} ({{toFromNowDate term.first_day_quarter}})</p>{{/if}}
             {{#each sections}}
               <div class="myuw-card-section">
                   <div class="row">
