@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import logout as django_logout
 from django.conf import settings
-from myuw.dao.term import get_current_quarter, add_term_data_to_context
+from myuw.dao.term import add_term_data_to_context
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.user import is_oldmyuw_user, get_netid_of_current_user,\
     is_oldmyuw_mobile_user

@@ -8,7 +8,7 @@ from datetime import datetime
 from django.utils import timezone
 from uw_pws import PWS
 from restclients_core.exceptions import DataFailureException
-from restclients.iasystem import evaluation
+from uw_iasystem import evaluation
 from myuw.logger.logback import log_exception
 from myuw.dao.student_profile import get_profile_of_current_user
 from myuw.dao.term import get_comparison_datetime, is_b_term,\
@@ -31,6 +31,17 @@ def _get_evaluations_by_section_and_student(section, student_number):
                      'course_number': section.course_number,
                      'section_id': section.section_id,
                      'student_id': student_number}
+    return evaluation.search_evaluations(section.course_campus.lower(),
+                                         **search_params)
+
+
+def get_evaluation_by_section_and_instructor(section, instructor_id):
+    search_params = {'year': section.term.year,
+                     'term_name': section.term.quarter.capitalize(),
+                     'curriculum_abbreviation': section.curriculum_abbr,
+                     'course_number': section.course_number,
+                     'section_id': section.section_id,
+                     'instructor_id': instructor_id}
     return evaluation.search_evaluations(section.course_campus.lower(),
                                          **search_params)
 
@@ -101,6 +112,9 @@ def json_for_evaluation(request, evaluations, section):
     pws = PWS()
     json_data = []
     for evaluation in evaluations:
+
+        if not evaluation.is_online():
+            continue
 
         if summer_term_overlaped(request, section):
 
