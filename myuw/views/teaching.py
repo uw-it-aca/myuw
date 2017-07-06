@@ -8,11 +8,10 @@ def teaching(request,
              quarter=None,
              summer_term=None):
     context = {
-        "year": year,
-        "quarter": quarter,
+        "display_term": {"year": year,
+                         "quarter": quarter},
         "summer_term": summer_term
     }
-
     return page(request, context, template='teaching.html')
 
 
@@ -24,8 +23,8 @@ def teaching_section(request,
                      summer_term=None):
     context = {
         "section": section,
-        "year": year,
-        "quarter": quarter,
+        "display_term": {"year": year,
+                         "quarter": quarter},
         "summer_term": summer_term
     }
     return page(request, context, template='teaching_section.html')

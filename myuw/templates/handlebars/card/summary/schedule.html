@@ -5,7 +5,9 @@
         <h3 class="myuw-card-title">
           {{capitalizeString quarter}} {{year}} Teaching Schedule
         </h3>
-        {{#if future_term}}<div class="course-meta"><div style="margin-top: 8px;"><a href="/teaching/#" data-term="{{year}},{{quarter}}" data-linklabel="{{capitalizeString quarter}} {{year}} Teaching Details">View details</a></div></div>
+        {{#if future_term}}<div class="course-meta"><div style="margin-top: 8px;"><a class="future-nav-term"
+              href="/teaching/{{year}},{{toLowerCase quarter}}" data-term="{{year}},{{toLowerCase quarter}}"
+              data-linklabel="{{capitalizeString quarter}} {{year}} Teaching Details">View details</a></div></div>
             <p>You are teaching <strong>{{section_count}} course{{pluralize section_count '' 's'}}</strong> in {{capitalizeString quarter}} {{year}}. <br />
             First day of instruction is {{toFriendlyDate term.first_day_quarter}} ({{toFromNowDate term.first_day_quarter}})</p>{{/if}}
             {{#each sections}}

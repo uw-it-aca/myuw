@@ -12,6 +12,21 @@ legacy_url = "http://some-test-server/myuw"
 @override_settings(MYUW_USER_SERVLET_URL=legacy_url)
 class TestTeachingMethods(MyuwApiTest):
 
+    @skipIf(missing_url("myuw_teaching_page",
+                        kwargs={'year': '2013', 'quarter': 'summer'}),
+            "myuw urls not configured")
+    def test_future_quarter_access(self):
+        url = reverse("myuw_teaching_page",
+                      kwargs={'year': '2013', 'quarter': 'summer'})
+        self.set_user('bill')
+        response = self.client.get(
+            url,
+            HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['display_term']["year"], '2013')
+        self.assertEquals(response.context['display_term']["quarter"],
+                          'summer')
+
     @skipIf(missing_url("myuw_teaching_page"), "myuw urls not configured")
     def test_instrucor_access(self):
         url = reverse("myuw_teaching_page")

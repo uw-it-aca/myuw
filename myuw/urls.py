@@ -188,6 +188,9 @@ urlpatterns += [
     url(r'^profile/?$', profile, name="myuw_profile_page"),
     url(r'^search/?$', search_res, name="myuw_search_res_page"
         ),
+    url(r'^teaching/(?P<year>2[0-9]{3}),(?P<quarter>[a-z]+)',
+        teaching, name="myuw_teaching_page"
+        ),
     url(r'^teaching/?$', teaching, name="myuw_teaching_page"
         ),
     url(r'^teaching/'

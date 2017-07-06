@@ -86,6 +86,12 @@ var  FutureSummaryScheduleCard = {
             WSData.log_interaction("open_course_classlist_"+course_id, term);
             return false;
         });
+
+        $(".future-nav-term").click(function(ev) {
+            var term = $(ev.target).attr('data-term');
+            WSData.log_interaction("view_instructed_courses_for_" + term);
+        });
+
     }
 };
 
