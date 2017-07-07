@@ -55,10 +55,11 @@ describe('AccountSummaryCard', function() {
     });
 
     describe("account summaries info", function() {
+        var dom_target;
 
         before(function () {
 
-            var render_id = 'account_summary_card';
+            render_id = 'render_account_summary_card';
 
             Global.Environment.init({
                 render_id: render_id,
@@ -70,37 +71,38 @@ describe('AccountSummaryCard', function() {
                 ]
             });
 
-            window['term_data'] = {break_year:2017};
-            console.log(window.term_data);
+            window['term_data'] = {break_year:2017,
+            quarter: "Spring",
+            year: 2017};
 
-            AccountSummaryCard.dom_target = $('#' + render_id);
+            dom_target = $('#' + render_id);
 
         });
 
         beforeEach(function () {
             // reset hfs and library to null
-            WSData._hfs_data = null;
-            WSData._library_data = null;
+            WSData._hfs_data = undefined;
+            WSData._library_data = undefined;
         });
 
 
         it("should NOT render", function() {
             // test if hfs and library are both null
-            AccountSummaryCard.render_init();
+            AccountSummaryCard.render_init(dom_target);
             assert.equal(AccountSummaryCard.dom_target.find('.myuw-account-summaries').length, 0);
         });
 
         it("should render if only hfs", function() {
             // test if only hfs is true
-            WSData._hfs_data = true;
-            AccountSummaryCard.render_init();
+            WSData._hfs_data = {resident_dining: "123"};
+            AccountSummaryCard.render_init(dom_target);
             assert.equal(AccountSummaryCard.dom_target.find('.myuw-account-summaries').length, 1);
         });
 
         it("should render if only library", function() {
             // test if only library is true
-            WSData._library_data = true;
-            AccountSummaryCard.render_init();
+            WSData._library_data = {"next_due": true};
+            AccountSummaryCard.render_init(dom_target);
             assert.equal(AccountSummaryCard.dom_target.find('.myuw-account-summaries').length, 1);
         });
 
