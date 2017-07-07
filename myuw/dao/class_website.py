@@ -8,6 +8,8 @@ from BeautifulSoup import BeautifulSoup
 from restclients_core.exceptions import DataFailureException
 from myuw.dao import is_using_file_dao
 from restclients_core.dao import DAO
+from os.path import abspath, dirname
+import os
 import re
 
 logger = logging.getLogger(__name__)
@@ -29,7 +31,14 @@ def _fetch_url(method, url):
         return None
 
     headers = {'ACCEPT': 'text/html'}
-    response = CLASS_WEBSITE_DAO().getURL(p, headers)
+    dao = CLASS_WEBSITE_DAO()
+
+    if dao.get_implementation().is_live():
+        url = "/%s://%s" % (p.scheme, p.netloc)
+    else:
+        url = "/%s%s" % (p.netloc, p.path)
+
+    response = dao.getURL(url, headers)
 
     if response.status != 200:
         raise DataFailureException(url, response.status, response.data)
@@ -49,6 +58,8 @@ def get_page_title_from_url(url):
         raise
     except Exception as ex:
         logger.error("get_page_title_from_url(%s)==>%s" % (url, ex))
+        import traceback
+        traceback.print_exc()
 
     return None
 

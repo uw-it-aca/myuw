@@ -14,6 +14,11 @@ from uw_bookstore.util import fdao_bookstore_override
 from uw_canvas.utilities import fdao_canvas_override
 from uw_mailman.util import fdao_mailman_override
 from uw_upass.util import fdao_upass_override
+from restclients_core.util.decorators import use_mock
+from myuw.dao.class_website import CLASS_WEBSITE_DAO
+
+
+fdao_class_website_override = use_mock(CLASS_WEBSITE_DAO())
 
 
 EMAILBACKEND = 'django.core.mail.backends.locmem.EmailBackend'
