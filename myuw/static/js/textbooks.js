@@ -17,8 +17,7 @@ var TextBooks = {
         var instructed_course_err_status = WSData.instructed_course_data_error_code(TextBooks.term);
 
         if (book_err_status === 543 || course_err_status === 543 || (window.enabled_features.instructor_textbooks && instructed_course_err_status === 543)) {
-            var raw = CardWithError.render("Textbooks");
-            $("#main-content").html(raw);
+            ContentError.render("Textbooks");
         } else {
             TextBooks.render_books();
         }
