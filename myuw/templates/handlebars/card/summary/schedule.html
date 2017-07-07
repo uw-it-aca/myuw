@@ -5,8 +5,8 @@
         <h3 class="myuw-card-title">
           {{capitalizeString quarter}} {{year}} Teaching Schedule
         </h3>
-        {{#if future_term}}<div class="course-meta"><div style="margin-top: 8px;"><a class="future-nav-term"
-              href="/teaching/{{year}},{{toLowerCase quarter}}" data-term="{{year}},{{toLowerCase quarter}}"
+        {{#if future_term}}<div class="course-meta"><div style="margin-top: 8px;"><a class="future-nav-link"
+              href="/teaching/{{year}},{{quarter}}" future-nav-target="{{year}},{{quarter}}"
               data-linklabel="{{capitalizeString quarter}} {{year}} Teaching Details">View details</a></div></div>
             <p>You are teaching <strong>{{section_count}} course{{pluralize section_count '' 's'}}</strong> in {{capitalizeString quarter}} {{year}}. <br />
             First day of instruction is {{toFriendlyDate term.first_day_quarter}} ({{toFromNowDate term.first_day_quarter}})</p>{{/if}}
@@ -14,7 +14,9 @@
               <div class="myuw-card-section {{#if @last}}last{{/if}}">
                   <div class="row">
                       <div class="col-sm-3">
-                          <h4 class="myuw-card-row-heading" style="margin-bottom:0px;"><div class="c{{color_id}} simplesquare" aria-hidden="true"></div><a href="/teaching/#{{curriculum_abbr}}-{{course_number}}-{{section_id}}">{{curriculum_abbr}} {{course_number}} {{section_id}}</a></h4><span style="font-size:12px;text-transform: uppercase;margin-left: 1.4em;">{{ meetings.0.type }}</span>
+                          <h4 class="myuw-card-row-heading" style="margin-bottom:0px;"><div class="c{{color_id}} simplesquare" aria-hidden="true"></div><a
+                              href="/teaching/{{../year}},{{../quarter}}#{{curriculum_abbr}}-{{course_number}}-{{section_id}}"
+                              class="future-nav-link" future-nav-target="{{../year}},{{../quarter}},{{curriculum_abbr}}-{{course_number}}-{{section_id}}">{{curriculum_abbr}} {{course_number}} {{section_id}}</a></h4><span style="font-size:12px;text-transform: uppercase;margin-left: 1.4em;">{{ meetings.0.type }}</span>
                       </div>
                       <div class="col-sm-9">
                           <table class="table-course-schedule">

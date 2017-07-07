@@ -188,18 +188,19 @@ urlpatterns += [
     url(r'^profile/?$', profile, name="myuw_profile_page"),
     url(r'^search/?$', search_res, name="myuw_search_res_page"
         ),
-    url(r'^teaching/(?P<year>2[0-9]{3}),(?P<quarter>[a-z]+)',
+    url(r'^teaching/(?P<year>2[0-9]{3}),(?P<quarter>[a-z]+),'
+        r'(?P<section>[\w& ]+,\d{3}\/[A-Z][A-Z0-9]?)$',
+        teaching_section, name="myuw_section_page"
+        ),
+    url(r'^teaching/(?P<year>2[0-9]{3}),(?P<quarter>[a-z]+),'
+        r'(?P<section>[\w& ]+,\d{3}\/[A-Z][A-Z0-9]?)'
+        r'/students$',
+        student_photo_list, name="myuw_photo_list"
+        ),
+    url(r'^teaching/(?P<year>2[0-9]{3}),(?P<quarter>[a-z]+)$',
         teaching, name="myuw_teaching_page"
         ),
     url(r'^teaching/?$', teaching, name="myuw_teaching_page"
-        ),
-    url(r'^teaching/'
-        r'(?P<section>\d{4},[a-zA-Z]+,[\w& ]+,\d{3}\/[A-Z][A-Z0-9]?)$',
-        teaching_section, name="myuw_section_page"
-        ),
-    url(r'^teaching/(?P<section>\d{4},[a-zA-Z]+,[\w& ]+,\d{3}\/[A-Z][A-Z0-9]?)'
-        r'/students$',
-        student_photo_list, name="myuw_photo_list"
         ),
     url(r'^notices/?', notices, name="myuw_notices_page"
         ),

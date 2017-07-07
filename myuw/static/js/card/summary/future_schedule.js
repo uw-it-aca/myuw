@@ -87,9 +87,9 @@ var  FutureSummaryScheduleCard = {
             return false;
         });
 
-        $(".future-nav-term").click(function(ev) {
-            var term = $(ev.target).attr('data-term');
-            WSData.log_interaction("view_instructed_courses_for_" + term);
+        $(".future-nav-link").click(function(ev) {
+            var target = $(ev.target).attr('future-nav-target');
+            WSData.log_interaction("view_instr_future_course_" + target);
         });
 
     }

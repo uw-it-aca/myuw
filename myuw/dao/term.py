@@ -397,7 +397,13 @@ def add_term_data_to_context(request, context):
         break_term = get_term_after(cur_term)
 
     context["year"] = cur_term.year
-    context["quarter"] = cur_term.quarter
+    context["quarter"] = cur_term.quarter.lower()
+
+    if "display_term" not in context:
+        context["display_term"] = {
+            "year": context["year"],
+            "quarter": context["quarter"]
+            }
 
     context["break_year"] = break_term.year
     context["break_quarter"] = break_term.quarter
