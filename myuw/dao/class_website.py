@@ -34,7 +34,7 @@ def _fetch_url(method, url):
     dao = CLASS_WEBSITE_DAO()
 
     if dao.get_implementation().is_live():
-        url = "/%s://%s" % (p.scheme, p.netloc)
+        url = "%s://%s" % (p.scheme, p.netloc)
     else:
         url = "/%s%s" % (p.netloc, p.path)
 

@@ -36,13 +36,8 @@ class IASystem(RESTDispatch):
         """
         timer = Timer()
         try:
-            dao_class = getattr(settings,
-                                "RESTCLIENTS_IASYSTEM_DAO_CLASS",
-                                MOCKDAO)
-            if dao_class == MOCKDAO and\
-                    get_netid_of_current_user() == "eight":
-                time.sleep(10)
 
+            # time.sleep(10)
             if not is_student():
                 log_msg(logger, timer, "Not a student, abort!")
                 return data_not_found()
