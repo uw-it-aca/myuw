@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 def get_password_info(uwnetid):
     """
-    returns restclients.models.uwnetid.UwPassword object
+    returns uw_netid.models.UwPassword object
     for a given uwnetid
     """
     if uwnetid is None:

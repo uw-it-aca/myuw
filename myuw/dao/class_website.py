@@ -5,13 +5,19 @@ This module provides access to instructed class website
 import logging
 from urlparse import urlparse
 from BeautifulSoup import BeautifulSoup
-from restclients.dao_implementation.live import get_con_pool, get_live_url
-from restclients.dao_implementation.mock import get_mockdata_url
-from restclients.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 from myuw.dao import is_using_file_dao
 import re
 
 logger = logging.getLogger(__name__)
+
+
+class CLASS_WEBSITE_DAO(DAO):
+    def service_name(self):
+        return "www"
+
+    def service_mock_paths(self):
+        return [abspath(os.path.join(dirname(__file__), "resources"))]
 
 
 def _fetch_url(method, url):
@@ -22,13 +28,7 @@ def _fetch_url(method, url):
         return None
 
     headers = {'ACCEPT': 'text/html'}
-    if is_using_file_dao():
-        response = get_mockdata_url(
-            'www', 'file', "/%s%s" % (p.netloc, p.path), headers)
-    else:
-        pool = get_con_pool("%s://%s" % (p.scheme, p.netloc), socket_timeout=2)
-        response = get_live_url(
-            pool, method, p.hostname, url, headers)
+    response = CLASS_WEBSITE_DAO().getURL(p, headers)
 
     if response.status != 200:
         raise DataFailureException(url, response.status, response.data)

@@ -1,8 +1,7 @@
 import json
-from myuw.test.api import MyuwApiTest, require_url, fdao_hfs_override
+from myuw.test.api import MyuwApiTest, require_url
 
 
-@fdao_hfs_override
 @require_url('myuw_hfs_api')
 class TestHFS(MyuwApiTest):
 

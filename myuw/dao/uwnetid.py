@@ -6,7 +6,7 @@ with the UW Netid Web Service
 import logging
 from uw_uwnetid.subscription_60 import is_current_clinician
 from myuw.dao import get_netid_of_current_user
-from restclients.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 
 
 logger = logging.getLogger(__name__)

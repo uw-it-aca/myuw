@@ -7,12 +7,7 @@ from myuw.dao.grad import get_degree_by_regid,\
     get_petition_by_regid, leave_to_json, petition_to_json,\
     is_before_eof_2weeks_since_decision_date, degree_to_json
 from myuw.test import get_request_with_date, get_request
-
-
-FDAO_GRA = 'restclients.dao_implementation.grad.File'
-fdao_grad_override = override_settings(
-    RESTCLIENTS_GRAD_DAO_CLASS=FDAO_GRA
-)
+from uw_grad.util import fdao_grad_override
 
 
 @fdao_grad_override

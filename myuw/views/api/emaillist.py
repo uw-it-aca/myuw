@@ -14,7 +14,7 @@ from myuw.dao.mailman import get_course_email_lists, request_mailman_lists,\
     is_valid_section_label
 from myuw.views.error import handle_exception, not_instructor_error,\
     InvalidInputFormData
-from restclients.sws.v5.section import get_section_by_label
+from uw_sws.v5.section import get_section_by_label
 
 logger = logging.getLogger(__name__)
 

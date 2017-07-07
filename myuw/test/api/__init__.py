@@ -7,7 +7,7 @@ from django.test import TestCase
 from myuw.test import (get_user, get_user_pass, fdao_uwnetid_override,
                        fdao_sws_override, fdao_subject_guide_override,
                        fdao_mylib_override, fdao_ias_override,
-                       fdao_hfs_override, fdao_gws_override,
+                       fdao_gws_override,
                        fdao_pws_override, fdao_grad_override,
                        fdao_bookstore_override, fdao_canvas_override,
                        fdao_mailman_override, fdao_upass_override)

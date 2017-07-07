@@ -1,6 +1,6 @@
 import logging
-from restclients.canvas.enrollments import Enrollments
-from restclients.canvas.courses import Courses
+from uw_canvas.enrollments import Enrollments
+from uw_canvas.courses import Courses
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.exceptions import CanvasNonSWSException

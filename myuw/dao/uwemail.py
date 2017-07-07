@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 def _get_email_forwarding_by_uwnetid(uwnetid):
     """
-    returns restclients.models.uwnetid.UwEmailForwarding object
+    returns uw_uwnetid.UwEmailForwarding object
     for a given uwnetid
     """
     if uwnetid is None:
