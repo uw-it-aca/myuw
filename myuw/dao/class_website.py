@@ -7,6 +7,7 @@ from urlparse import urlparse
 from BeautifulSoup import BeautifulSoup
 from restclients_core.exceptions import DataFailureException
 from myuw.dao import is_using_file_dao
+from restclients_core.dao import DAO
 import re
 
 logger = logging.getLogger(__name__)
