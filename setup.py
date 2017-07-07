@@ -46,6 +46,7 @@ setup(
         'UW-RestClients-UWNetID>=0.1,<1.0',
         'UW-RestClients-Grad>=0.1,<1.0',
         'UW-RestClients-Bookstore>=0.1,<1.0',
+        'UW-RestClients-Mailman>=0.1,<1.0',
         'UW-RestClients-MyPlan>=0.1,<1.0',
         'UW-RestClients-Trumba>=0.1,<1.0',
         'UW-RestClients-Django-Utils>=0.5,<1.0',
