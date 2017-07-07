@@ -1,26 +1,34 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "instructor_course_resource_panel" %}
 
+    {% include "handlebars/card/instructor_schedule/course_resource/course_class_list.html" %}
 
-    <h4 class="scheduleHeading">Course Materials</h4>
-    <ul class="unstyled-list">
-        <li class="clearfix" style="line-height:3;">
-          {% include "handlebars/card/instructor_schedule/course_resource/class_website.html" %}
-        </li>
-        <li class="clearfix">
-          {% include "handlebars/card/instructor_schedule/course_resource/online_tools.html" %}
-        </li>
-        {{#if email_list }}
-        <li class="clearfix">
-          {% include "handlebars/card/instructor_schedule/course_resource/email_list.html" %}
-        </li>
-        {{/if}}
-        <li class="clearfix">
-          {% include "handlebars/card/instructor_schedule/course_resource/textbooks.html" %}
-        </li>
-        <li class="clearfix">
-          {% include "handlebars/card/instructor_schedule/course_resource/course_class_list.html" %}
-        </li>
+<!-- good -->
+    <div class="myuw-card-section">
+        <div class="row">
+            <div class="col-sm-3">
+                <h4 class="myuw-card-row-heading">Course Materials</h4>
+            </div>
+            <div class="col-sm-9">
+                <ul class="myuw-card-itemlist">
+                    <li class="clearfix">
+                      {% include "handlebars/card/instructor_schedule/course_resource/class_website.html" %}
+                    </li>
+                    {{#if email_list }}
+                    <li class="clearfix">
+                      {% include "handlebars/card/instructor_schedule/course_resource/email_list.html" %}
+                    </li>
+                    {{/if}}
+                    <li class="clearfix">
+                      {% include "handlebars/card/instructor_schedule/course_resource/online_tools.html" %}
+                    </li>
+                    <li class="clearfix">
+                      {% include "handlebars/card/instructor_schedule/course_resource/textbooks.html" %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-    </ul>
+
 {% endtplhandlebars %}

@@ -23,6 +23,7 @@
 @large-desktop-width: 1280px;
 
 @retina: ~"only screen and (-webkit-min-device-pixel-ratio: 2)";
+@print: ~"print";
 
 // based on 768 breakpoint for 2-columns
 @two-column: ~"(min-width: @{tablet-width} )";
@@ -33,7 +34,7 @@
 
 /*** layout ***/
 
-body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,sans-serif; min-width: 320px; }
+body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,sans-serif; min-width: 320px; background: @uw-light-gray !important; }
 
 .myuw-wrapper { margin: 0 auto; padding: 0 16px;
     @media @desktop { max-width: 1200px; };
@@ -70,9 +71,12 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 #app_content {
     //outline: dashed 3px rgba(255,0,0,0.1);
     min-height: 350px;
+    max-width: none;
     padding: 0;
     margin: 0;
 
+    .container { max-width: none; }
+    
     .heading-page { display: none;
         @media @desktop { display: block; margin-top: 0; }
     }

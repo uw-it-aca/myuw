@@ -3,9 +3,10 @@
 
 /*** modals ***/
 .myuw-modal {
-    h3 {
-    margin-bottom: 10px;
+    h3, .myuw-modal-title {
+    margin-bottom: 8px;
     font-family: 'encode_sans_normalbold', sans-serif;
+    font-weight: 600;
     font-size: 18px;
     color: #85754d;
     }
@@ -23,8 +24,9 @@
     @media @two-column { margin-left: 0; margin-right: 0; }
 
     /*** canvas title ***/
-    .myuw-canvas-title { font-size: 18px !important; color: #000; margin-top: 0; }
+    .myuw-canvas-title { font-size: 18px !important; line-height: 1.3; color: #000; margin-top: 0; }
 
+    .myuw-canvas-subheading { font-size: 14px !important; color: #000; margin: 1.42857143rem 0 0rem 0px; }
 }
 
 /*** cards ***/
@@ -40,8 +42,13 @@
     border: 1px solid #ddd;
     border-left: none;
     border-right: none;
+    position: relative;
 
     @media @two-column { border-left: solid 1px #ddd; border-right: solid 1px #ddd; margin-left: 0; margin-right: 0; }
+
+    .card-btn {
+        @media @two-column { position: absolute; top: 12px; right: 10px;}
+    }
 
     /*** card title ***/
     .myuw-card-title { font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: 24px !important; color: @uw-metalic-gold; margin-top: 8px;
@@ -51,7 +58,7 @@
     /*** card section ***/
     .myuw-card-section { padding-top: 16px;
 
-        /* every last row of each section */
+        /* add a separator for every last row of each section */
         .row:last-child {
             .col-sm-9 {
                 border-bottom: 1px solid #EDEDED;
@@ -59,18 +66,36 @@
             }
         }
 
-        /* the vest last section's last child */
-        &:last-child {
+        /* Not the first row */
+        .row + .row { padding-top: 16px; }
+
+        @media @two-column {
+            .row + .row { padding-top: 8px; }
+        }
+
+        // target the very last section of a card by usign the "last" class
+        &.last {
+
+            // remove the bottom border for last element
             .col-sm-9 {
                 border-bottom: none !important;
-                padding-bottom: 0;
+                padding-bottom: 0 !important;
             }
         }
+
+        /*** workday specific link ***/
+        .workday-link {
+            display: inline-block;
+            line-height: 30px;
+            background-position: 0 50% !important;
+            padding-left: 28px !important;
+        }
+
     }
 
     /*** card section heading ***/
     .myuw-card-row-heading {
-        margin: 0;
+        margin: 0 16px 8px 0;
         margin-right: 16px;
         line-height: inherit;
         font-family: @fontface-body;
@@ -78,7 +103,6 @@
         font-weight: bold;
         color: #333;
 
-        @media @two-column { margin-bottom: 8px; }
     }
 
     /*** card section content ***/
@@ -94,11 +118,11 @@
         padding-left: 0;
         margin-bottom: 8px;
 
-        li {
+        > li {
             margin: 0 0 8px 0;
         }
 
-        li:last-of-type {
+        > li:last-of-type {
             margin: 0;
         }
     }
@@ -109,6 +133,34 @@
 
     .myuw-card-itemlist:last-child {
         margin-bottom: 0;
+    }
+
+    /*** comma delimted list ***/
+    .myuw-card-comma-list {
+        display: inline;
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .myuw-card-comma-list li {
+        display: inline;
+        white-space: nowrap;
+    }
+
+    .myuw-card-comma-list li:after {
+        content: ", "
+    }
+
+    .myuw-card-comma-list li:last-child:after {
+        content: ""
+    }
+
+    /*** card content table **/
+    .table-borderless {
+        tr {
+            td:first-child { padding-left: 0; }
+        }
+        td { border: none; }
     }
 
 } /*** /cards ***/

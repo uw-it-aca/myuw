@@ -77,6 +77,18 @@ class TestBannerMessageDAO(TestCase):
                 self.assertEquals(len(get_current_messages(request)), 1)
 
     def test_html_cleanup(self):
+        out = clean_html('Awesome: <i class="fa fa-bullhorn"></i>')
+        self.assertEquals(out, 'Awesome: <i class="fa fa-bullhorn"></i>')
+
+        out = clean_html('<span style="font-size: 12px; background-image: x;' +
+                         'color: red;">OK</span>')
+
+        self.assertEquals(out, '<span style="font-size: 12px; color: red;">' +
+                               'OK</span>')
+
+        out = clean_html('<i aria-hidden="true"></i>')
+        self.assertEquals(out, '<i aria-hidden="true"></i>')
+
         out = clean_html('<a href="http://uw.edu">UW</a>')
         self.assertEquals(out, '<a href="http://uw.edu">UW</a>')
 

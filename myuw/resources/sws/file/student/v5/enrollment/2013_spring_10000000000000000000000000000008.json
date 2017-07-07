@@ -1,0 +1,104 @@
+{
+    "ClassLevel": "Sophmore",
+    "FullName": "SEATTLE, BILL",
+    "HonorsProgram": false,
+    "LeaveEndQuarter": 0,
+    "LeaveEndYear": 0,
+    "Majors": [
+       {"Abbreviation":"B PRE",
+       "Campus":"Bothell",
+       "DegreeLevel":0,
+       "DegreeName":null,
+       "DegreeType":0,
+       "FullName":"Premajor (Bothell Campus)",
+       "MajorName":"PREMAJOR (BOTHELL)",
+       "Pathway":0,
+       "ShortName":"B PRE"}],
+    "Minors":[],
+    "PendingClassChange": false,
+    "PendingHonorsChange": false,
+    "PendingMajorChange": false,
+    "PendingResidentChange": false,
+    "PendingSpecialProgramChange": false,
+    "Person": {
+        "Href": "/student/v5/person/10000000000000000000000000000009.json",
+        "Name": "SEATTLE, BILL",
+        "RegID": "10000000000000000000000000000009"
+    },
+    "QtrGradePoints": 30,
+    "QtrGradedAttmp": 10,
+    "QtrNonGrdEarned": 2,
+    "RegID": "10000000000000000000000000000008",
+    "Registrations": [
+        {
+            "AddAccessCode": "",
+            "Auditor": false,
+            "Credits": " 2.0",
+            "DropAccessCode": "",
+            "DuplicateCode": "1",
+            "FacultySequenceNumber": "",
+            "FeeBaseType": "",
+            "Grade": "CR",
+            "GradeDate": "",
+            "GradeDocumentID": "061102100",
+            "HonorsCourse": false,
+            "IsActive": true,
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000008.json",
+                "Name": "BOTHELL, JAMES",
+                "RegID": "10000000000000000000000000000008"
+            },
+            "RepeatCourse": false,
+            "RequestDate": "",
+            "RequestStatus": "",
+            "Section": {
+                "Href": "/student/v5/course/2013,spring,MATH,125/GA.json",
+                "CourseNumber": "125",
+                "CurriculumAbbreviation": "MATH",
+                "Quarter": "spring",
+                "SectionID": "GA",
+                "Year": "2013"
+            },
+            "VariableCredit": false,
+            "WritingCourse": false
+        },
+        {
+            "AddAccessCode": "",
+            "Auditor": false,
+            "Credits": " 2.0",
+            "DropAccessCode": "",
+            "DuplicateCode": "1",
+            "FacultySequenceNumber": "",
+            "FeeBaseType": "",
+            "Grade": "CR",
+            "GradeDate": "",
+            "GradeDocumentID": "061102100",
+            "HonorsCourse": false,
+            "IsActive": true,
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000008.json",
+                "Name": "BOTHELL, JAMES",
+                "RegID": "10000000000000000000000000000008"
+            },
+            "RepeatCourse": false,
+            "RequestDate": "",
+            "RequestStatus": "",
+            "Section": {
+                "Href": "/student/v5/course/2013,spring,MATH,125/G.json",
+                "CourseNumber": "125",
+                "CurriculumAbbreviation": "MATH",
+                "Quarter": "spring",
+                "SectionID": "G",
+                "Year": "2013"
+            },
+            "VariableCredit": false,
+            "WritingCourse": false
+        }
+
+    ],
+    "Term": {
+        "Href": "/student/v5/term/2013,spring.json",
+        "Quarter": "spring",
+        "Year": "2013"
+    }
+}

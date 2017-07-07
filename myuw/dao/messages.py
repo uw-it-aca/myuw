@@ -13,7 +13,11 @@ from userservice.user import UserService
 from authz_group import Group
 from django.utils import timezone
 
-MESSAGE_ALLOWED_TAGS = bleach.sanitizer.ALLOWED_TAGS + ["h1", "h2", "h3", "h4"]
+MESSAGE_ALLOWED_TAGS = bleach.sanitizer.ALLOWED_TAGS + ["span", "h1", "h2",
+                                                        "h3", "h4"]
+MESSAGE_ALLOWED_ATTRIBUTES = bleach.sanitizer.ALLOWED_ATTRIBUTES.copy()
+MESSAGE_ALLOWED_ATTRIBUTES["*"] = ["class", "style", "aria-hidden"]
+MESSAGE_ALLOWED_STYLES = ["font-size", "color"]
 
 
 def get_current_messages(request):
@@ -48,4 +52,6 @@ def get_current_messages(request):
 
 
 def clean_html(input):
-    return bleach.clean(input, tags=MESSAGE_ALLOWED_TAGS)
+    return bleach.clean(input, tags=MESSAGE_ALLOWED_TAGS,
+                        attributes=MESSAGE_ALLOWED_ATTRIBUTES,
+                        styles=MESSAGE_ALLOWED_STYLES)

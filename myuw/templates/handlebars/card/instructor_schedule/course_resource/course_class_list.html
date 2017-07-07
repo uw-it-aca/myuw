@@ -1,20 +1,17 @@
 {% load templatetag_handlebars %}
 
     {% verbatim %}
-    <h4 class="scheduleHeading">Enrollment</h4>
-    <div>
-        <ul class="unstyled-list">
-            <li class="clearfix">
-                <div class="pull-left">
-                    <span class="inst-course-label">Classlist</span>
+    <div class="myuw-card-section">
+        <div class="row">
+            <div class="col-sm-3">
+                <h4 class="myuw-card-row-heading">Enrollment</h4>
+            </div>
+
+            <div class="col-sm-9">
+                <div class="card-badge-value">
+                    <span>{{ current_enrollment }} of {{ limit_estimate_enrollment }} {{#if current_enrollment }}</span> <a target="_blank" href="/teaching/{{year}},{{quarter}},{{ curriculum_abbr }},{{course_number}}/{{section_id}}/students" class="course_class_list" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">View class list</a>{{/if}}
                 </div>
-                <div class="pull-right">
-                    
-                    <div id="" class="card-badge-value">
-                      <span>{{#if current_enrollment }}<a target="_blank" href="/teaching/{{year}},{{quarter}},{{ curriculum_abbr }},{{course_number}}/{{section_id}}/students" class="course_class_list" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">{{ current_enrollment }} of {{ limit_estimate_enrollment }}</a>{{else}} {{ current_enrollment }} of {{ limit_estimate_enrollment }} {{/if}}</span>
-                    </div>
-                </div>
-            </li>
-        </ul>  
+            </div>
+        </div>
     </div>
     {% endverbatim %}

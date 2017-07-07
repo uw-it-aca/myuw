@@ -2,11 +2,8 @@
     {% verbatim %}
 
 {{#with email_list}}
-    <div class="pull-left">
-        <span class="inst-course-label">Email List</span>
-    </div>
-
-    <div class="pull-right">
+<!-- good -->
+    <span class="inst-course-label">Email List:&nbsp;&nbsp;</span>
 
         {{#if section_list.list_exists}}
             {{#if has_multiple_sections}}
@@ -15,7 +12,7 @@
                 <div id="popup_emaillist_{{safeLabel section_list.section_label}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="manage_emaillist_{{safeLabel section_list.section_label}}"></div>
             {{else}}
                 <span>{{section_list.list_address}}@uw.edu</span>
-                <a href="{{section_list.list_admin_url}}" target="_blank">Manage</a>
+                <a href="{{section_list.list_admin_url}}" target="_blank" class="course-manage-email">Manage</a>
             {{/if}}
 
         {{else}}
@@ -30,7 +27,6 @@
             {{/if}}
         {{/if}}
 
-    </div>
 {{/with}}
 
     {% endverbatim %}

@@ -101,9 +101,9 @@ var showError = function() {
 
 // common method to set display style
 var get_is_desktop = function() {
-    //var mobile_cutoff_width = 992;
     var mobile_cutoff_width = 768;
-    var viewport_width = $(window).width();
+    //using innerWidth as it takes into account scroll bars
+    var viewport_width = window.innerWidth;
     return (viewport_width >= mobile_cutoff_width);
 };
 
@@ -285,6 +285,11 @@ var init_search_events = function() {
 	});
 };
 
+var remove_card = function(target) {
+    $(target).remove();
+    $(window).trigger("card-hide");
+};
+
 /* node.js exports */
 if (typeof exports == "undefined") {
     var exports = {};
@@ -296,3 +301,4 @@ exports.register_link_recorder = register_link_recorder;
 exports.safe_label = safe_label;
 exports.renderedCardOnce = renderedCardOnce;
 exports.titilizeTerm = titilizeTerm;
+exports.remove_card = remove_card;

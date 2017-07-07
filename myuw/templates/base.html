@@ -25,11 +25,13 @@
 
         {% compress css %}
         <!-- new myuw styles -->
+        <link href="{% static 'css/typography.less' %}" rel="stylesheet" type="text/less">
+        <link href="{% static 'css/course_card.less' %}" rel="stylesheet" type="text/less">
         <link href="{% static 'css/boilerplate.less' %}" rel="stylesheet" type="text/less">
         <link href="{% static 'css/tabs.less' %}" rel="stylesheet" type="text/less">
         <link href="{% static 'css/dropmenus.less' %}" rel="stylesheet" type="text/less">
-        <link href="{% static 'css/typography.less' %}" rel="stylesheet" type="text/less">
         <link href="{% static 'css/components.less' %}" rel="stylesheet" type="text/less">
+        <link href="{% static 'css/photo_list.less' %}" rel="stylesheet" type="text/less">
         {% endcompress %}
 
        <!-- google fonts -->
@@ -93,6 +95,7 @@
         </div>
         {% endblock %}
 
+        {% block mobile_navigation %}
         <div class="myuw-navigation">
             <div class="myuw-wrapper" style="background-image: url({% static 'images/w-logo-white.png' %})">
                 <div class="myuw-title"><a href="/">MyUW</a></div>
@@ -109,9 +112,11 @@
                 </div>
             </div>
         </div>
+        {% endblock %}
 
         <h1 class="sr-only">MyUW</h1>
 
+        {% block desktop_banner %}
         <!-- message banner (desktop only) -->
         <div class="myuw-banner-desktop" id="app_messages" role="complementary">
             <div class="message-banner">
@@ -130,6 +135,7 @@
            </div>
         </div>
         <!-- end message banner -->
+        {% endblock %}
 
         <div class="myuw-body">
             <div class="myuw-wrapper">
@@ -150,14 +156,16 @@
                         {% endif %}
 
                         {% if instructor_schedule_enabled %}
-                          {% if user.affiliations.faculty %}
+                          {% if user.affiliations.instructor %}
                         <li><a {% if is_myuw_teaching_page %}class="active"{% endif %} href="/teaching/"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Teaching</a></li>
                          {% endif %}
                         {% endif %}
 
                         <li><a {% if is_myuw_academic_calendar_page %}class="active"{% endif %} href="/academic_calendar/"><i class="fa fa-calendar" aria-hidden="true"></i>Calendar</a></li>
                         <li><a {% if is_myuw_accounts_page  %}class="active"{% endif %} href="/accounts/"><i class="fa fa-columns" aria-hidden="true"></i>Accounts</a></li>
+                        {% if user.affiliations.student %}
                         <li><a {% if is_myuw_notices_page %}class="active"{% endif %}  href="/notices/"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Notices</a></li>
+                        {% endif %}
                         <li><a {% if is_myuw_profile_page %}class="active"{% endif %} href="/profile/"><i class="icon-user icon-user-female" aria-hidden="true" style="font-size:14px;"></i>Profile</a></li>
 
                     </ul>
@@ -166,6 +174,7 @@
                 {% endblock %}
                 <!-- end app_navigation -->
 
+                {% block mobile_banner %}
                 <!-- message banner (mobile only) -->
                 <div class="myuw-banner-mobile" id="app_messages" role="complementary">
                     <div class="message-banner">
@@ -184,6 +193,7 @@
                    </div>
                 </div>
                 <!-- end message banner -->
+                {% endblock %}
 
                 <div class="myuw-content">
                     <!-- app_content -->
@@ -327,12 +337,6 @@
         <script src="{% static 'js/card/instructor_schedule/course_card_content.js' %}"></script>
         <script src="{% static 'js/card/instructor_schedule/course_sche_panel.js' %}"></script>
         <script src="{% static 'js/card/instructor_schedule/course_resource_panel.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/future/course_card_content.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/future/course_sche_panel.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/future/course_resource_panel.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/past/course_card_content.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/past/course_sche_panel.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/past/course_resource_panel.js' %}"></script>
         <script src="{% static 'js/card/instructor_schedule/mailman/request_email_lists.js' %}"></script>
         <script src="{% static 'js/card/instructor_schedule/mailman/view_email_lists.js' %}"></script>
         <script src="{% static 'js/card/new_student/ns_critical_info.js' %}"></script>
@@ -341,6 +345,8 @@
         <script src="{% static 'js/card/new_student/ns_to_register.js' %}"></script>
         <script src="{% static 'js/card/new_student/ns_international_stu.js' %}"></script>
         <script src="{% static 'js/card/summary/accounts.js' %}"></script>
+        <script src="{% static 'js/card/summary/schedule.js' %}"></script>
+        <script src="{% static 'js/card/summary/future_schedule.js' %}"></script>
         <script src="{% static 'js/teaching/class_list.js' %}"></script>
         {% endcompress %}
 

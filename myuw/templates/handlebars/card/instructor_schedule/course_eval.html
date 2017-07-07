@@ -1,0 +1,64 @@
+    {% verbatim %}
+    <div class="myuw-card-section last">
+        <div class="row">
+            <div class="col-sm-3">
+                <h4 class="myuw-card-row-heading">Evaluations</h4>
+            </div>
+
+            <div class="col-sm-9">
+              <div rel="{{curriculum_abbr}} {{course_number}} {{section_id}}">
+                <ul class="myuw-card-itemlist">
+
+                {{#if evaluation.eval_status}}
+                  {{#if evaluation.is_online}}
+                    {{#if evaluation.eval_open_date}}
+                      {{#if evaluation.is_open}}
+                        <li class="evaluation-schedule">
+                            <span>Open:&nbsp;&nbsp;{{evaluation.response_rate_percent}}% of responses received</span>
+                            <p class="myuw-note">Closes {{evaluation.eval_close_date_display}}</p>
+                        </li>
+                        <li class="evaluation-results">
+                            <span>Results:&nbsp;&nbsp;Report will be available {{evaluation.report_available_date_display}}</span>
+                        </li>
+                        <li><a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation ">Manage evaluation</a></li>
+                      {{else}}
+                        {{#if evaluation.is_past}}
+                            <li>
+                                <span>Closed {{evaluation.eval_close_date_display}}{{#if evaluation.response_rate_percent}} with a {{evaluation.response_rate_percent}}% response rate{{/if}}.</span>
+                            </li>
+                            {{#if evaluation.report_url}}
+                              <li>
+                                  <a href="{{evaluation.report_url}}" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation Report">View evaluation results report</a>
+                              </li>
+                            {{/if}}
+                        {{else}} <!-- opening in the future -->
+                            <li class="evaluation-schedule">Online evaluation will open {{evaluation.eval_open_date_display}}</li>
+                            <li><a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation ">Manage evaluation</a></li>
+                        {{/if}}
+
+                      {{/if}}
+                    {{else}} <!-- no evaluation date, not scheduled -->
+                        {{#if evaluation.report_available_date}}
+                            <li class="evaluation-schedule">Report Available {{evaluation.report_available_date_display}}</li>
+                        {{/if}}
+                        {{#if evaluation.report_url}}
+                          <li><a href="{{evaluation.report_url}}" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation Report">View evaluation results report</a></li>
+                        {{/if}}
+                        <li><strong>{{evaluation.response_rate_percent}}% Response rate</strong></li>
+                    {{/if}}
+
+                  {{else}}<!-- not online, paper based -->
+                      <li class="evaluation-schedule">Paper-based evaluation</li>
+                      <li><a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation ">Manage evaluation</a></li>
+                  {{/if}}
+                {{else}}<!-- null status, no evaluation -->
+                  <li class="evaluation-schedule">
+                      {{#if past_term}}You did not have an evaluation set up for this course.{{else}}You do not have an evaluation set up for this course.{{/if}} <a href="https://www.washington.edu/assessment/course-evaluations/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="evaluation_help_link" target="_blank" data-linklabel="Learn About Course Evaluations"><i class="fa fa-question-circle"></i></a>
+                  </li>
+                {{/if}}
+                </ul>
+              </div>
+            </div>
+        </div>
+    </div>
+    {% endverbatim %}
