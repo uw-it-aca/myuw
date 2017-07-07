@@ -53,9 +53,9 @@ var Landing = {
             CriticalInfoCard,
             InternationalStuCard,
             SummaryScheduleCard,
-            FutureSummaryScheduleCard,
             VisualScheduleCard,
             TextbookCard,
+            FutureSummaryScheduleCard,
             FutureQuarterCard1,
             SummerRegStatusCard1
         ];
