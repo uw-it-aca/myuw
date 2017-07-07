@@ -50,6 +50,7 @@
         <span class="shortTitle">{{summer_term}}</span>
         {{/if}}
     </h3>
+    {{#if show_periods}}
     <div id="schedule-tabs" class="schedule-period-module">
 		<ul class="nav nav-pills schedule-period-list">
         {{ #each schedule_periods }}
@@ -57,6 +58,7 @@
         {{ /each }}
 		</ul>
     </div>
+    {{/if}}
 <div id="schedule_area">
 
     {{#if display_hours }}
