@@ -58,8 +58,6 @@ def get_page_title_from_url(url):
         raise
     except Exception as ex:
         logger.error("get_page_title_from_url(%s)==>%s" % (url, ex))
-        import traceback
-        traceback.print_exc()
 
     return None
 
