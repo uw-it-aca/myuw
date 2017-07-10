@@ -62,7 +62,7 @@
         .row:last-child {
             .col-sm-9 {
                 border-bottom: 1px solid #EDEDED;
-                padding-bottom: 16px;
+                padding-bottom: 8px;
             }
         }
 
@@ -135,7 +135,7 @@
         margin-bottom: 0;
     }
 
-    /*** comma delimted list ***/
+    /*** comma delimited list ***/
     .myuw-card-comma-list {
         display: inline;
         list-style-type: none;
@@ -154,6 +154,17 @@
     .myuw-card-comma-list li:last-child:after {
         content: ""
     }
+
+    /*** standard line-height, unstyled list ***/
+    .myuw-card-section .unstyled-list,
+    .myuw-card-section .unstyled {
+        list-style-type: none;
+        padding-left: 0;
+        margin: 0 0 8px 0;
+        line-height: inherit !important;
+
+    }
+
 
     /*** card content table **/
     .table-borderless {

@@ -6,7 +6,7 @@ var InstructorCourseCards = {
     render_init: function() {
         if (myuwFeatureEnabled('instructor_schedule')) {
             if (InstructorCourseCards.term === 'current') {
-                InstructorCourseCards.term = window.term.year + ',' + window.term.quarter;
+                InstructorCourseCards.term = window.term.display_term;
             }
 
             WSData.fetch_instructed_course_data_for_term(InstructorCourseCards.term,

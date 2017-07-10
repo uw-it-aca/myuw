@@ -7,56 +7,40 @@
             <h4 class="myuw-card-row-heading">Meeting Time</h4>
         </div>
         <div class="col-sm-9">
-            <table class="table-course-schedule">
-                <thead class="sr-only">
-                    <tr>
-                        <th>Day(s)</th>
-                        <th>Time</th>
-                        <th>Location</th>
-                        <th>Location Information</th>
-                    </tr>
-                </thead>
-                <tbody class="tbody-course-schedule">
-                    {{#each meetings}}
-                    <tr class="course-schedule-row">
-                        {{#if days_tbd }}
-                            <td colspan="2" class="course-tbd">Days and times to be arranged.</td>
-                        {{else}}
-                            <td class="course-days">
-                                {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
-                                meeting_days.tuesday}}<abbr title="Tuesday">T</abbr>{{/if}}{{#if
-                                meeting_days.wednesday}}<abbr title="Wednesday">W</abbr>{{/if}}{{#if
-                                meeting_days.thursday}}<abbr title="Thursday">Th</abbr>{{/if}}{{#if
-                                meeting_days.friday}}<abbr title="Friday">F</abbr>{{/if}}{{#if
-                                meeting_days.saturday}}<abbr title="Saturday">Sa</abbr>{{/if}}{{#if
-                                meeting_days.sunday}}<abbr title="Sunday">Su</abbr>{{/if}}
-                            </td>
-                            <td class="course-time">{{formatTime start_time}} &ndash; {{formatTimeAMPM end_time}}</td>
-                        {{/if}}
+            <div class="myuw-card-row-content">
+                <table class="table-course-schedule">
+                    <thead class="sr-only">
+                        <tr>
+                            <th>Day(s)</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                            <th>Location Information</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody-course-schedule">
+                        {{#each meetings}}
+                        <tr class="course-schedule-row">
+                            {{#if days_tbd }}
+                                <td colspan="2" class="course-tbd">Days and times to be arranged.</td>
+                            {{else}}
+                                {% include "handlebars/card/schedule/course_sche_col_days.html" %}
+                            {{/if}}
 
-                        {{#if building_tbd}}
-                        <td class="course-loc-tbd" colspan="2">Room to be arranged.</td>
-                        {{else}}
-                            <td class="course-location">
-                                {{#if latitude}}
-                                    <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" class="show_map" rel="{{building_name}}" data-linklabel="{{ building }} - Google Maps">
-                                {{/if}}
-                                {{building}}
-                                {{#if latitude}}
-                                    </a>
-                                {{/if}}
-                                {{room}}
-                            </td>
-                            <td class="course-location-info">
-                              {{#if classroom_info_url}}
-                              <a href="{{classroom_info_url}}" data-linklabel="{{ building }} {{ room }} - Room Info">Room info</a>
-                              {{/if}}
-                            </td>
-                        {{/if}}
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
+                            {{#if building_tbd}}
+                            <td class="course-loc-tbd" colspan="2">Room to be arranged.</td>
+                            {{else}}
+                                {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
+                                <td class="course-location-info">
+                                  {{#if classroom_info_url}}
+                                  <a href="{{classroom_info_url}}" data-linklabel="{{ building }} {{ room }} - Room Info">Room info</a>
+                                  {{/if}}
+                                </td>
+                            {{/if}}
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -66,44 +50,44 @@
         </div>
 
         <div class="col-sm-9">
-
-            {{#if final_exam }}
-              {{#if final_exam.no_exam_or_nontraditional}}
-                <span>No Exam or Non-Traditional</span>
-              {{else}}
-                {{#if final_exam.start_date }}
-                    <table class="table-course-schedule">
-                      <thead class="sr-only">
-                        <tr>
-                          <th>Day</th>
-                          <th>Time</th>
-                          <th>Location</th>
-                          <th>Location Information</th>
-                        </tr>
-                      </thead>
-                      <tbody class="tbody-course-schedule">
-                        <td class="course-final-date">{{ formatDateAsDate final_exam.start_date }}</td>
-                        <td class="course-time">{{ formatDateAsTime final_exam.start_date }} &ndash; {{ formatDateAsTimeAMPM final_exam.end_date }}</td>
-                        <td class="course-location">
-                          {{#if final_exam.latitude}}<a href="http://maps.google.com/maps?q={{ final_exam.latitude }},{{ final_exam.longitude }}+({{encodeForMaps final_exam.building_name }})&z=18" class="show_map" rel="{{building_name}}" data-linklabel="{{ final_exam.building }} - Google Maps">{{/if}}{{final_exam.building}}{{#if final_exam.latitude}}</a>{{/if}}
-                          {{final_exam.room_number}}
-                        </td>
-                        <td class="course-location-info">
-                          {{#if final_exam.classroom_info_url}}<a href="{{final_exam.classroom_info_url}}" data-linklabel="{{ final_exam.building }} {{ final_exam.room_number }}">Room info</a>{{/if}}
-                        </td>
-                      </tbody>
-                    </table>
+            <div class="myuw-card-row-content">
+                {{#if final_exam }}
+                  {{#if final_exam.no_exam_or_nontraditional}}
+                    <span>No Exam or Non-Traditional</span>
+                  {{else}}
+                    {{#if final_exam.start_date }}
+                        <table class="table-course-schedule">
+                          <thead class="sr-only">
+                            <tr>
+                              <th>Day</th>
+                              <th>Time</th>
+                              <th>Location</th>
+                              <th>Location Information</th>
+                            </tr>
+                          </thead>
+                          <tbody class="tbody-course-schedule">
+                            <td class="course-final-date">{{ formatDateAsDate final_exam.start_date }}</td>
+                            <td class="course-time">{{ formatDateAsTime final_exam.start_date }} &ndash; {{ formatDateAsTimeAMPM final_exam.end_date }}</td>
+                            <td class="course-location">
+                              {{#if final_exam.latitude}}<a href="http://maps.google.com/maps?q={{ final_exam.latitude }},{{ final_exam.longitude }}+({{encodeForMaps final_exam.building_name }})&z=18" class="show_map" rel="{{building_name}}" data-linklabel="{{ final_exam.building }} - Google Maps">{{/if}}{{final_exam.building}}{{#if final_exam.latitude}}</a>{{/if}}
+                              {{final_exam.room_number}}
+                            </td>
+                            <td class="course-location-info">
+                              {{#if final_exam.classroom_info_url}}<a href="{{final_exam.classroom_info_url}}" data-linklabel="{{ final_exam.building }} {{ final_exam.room_number }}">Room info</a>{{/if}}
+                            </td>
+                          </tbody>
+                        </table>
+                    {{else}}
+                        <span>Day and time to be arranged.</span>
+                    {{/if}}
+                  {{/if}}
                 {{else}}
-                    <span>Day and time to be arranged.</span>
+                  <span>No Final Exam Scheduled.</span>
                 {{/if}}
 
-              {{/if}}
-            {{else}}
-              <span>No Final Exam Scheduled.</span>
-            {{/if}}
-
-            {{#unless final_exam.no_exam_or_nontraditional}}{{#unless final_exam.is_confirmed}}
-            <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/{{netid}}/finalexam.asp?{{capitalizeString quarter}}+{{year}}&sln={{sln}}" target="_blank" data-linklabel="Confirm Final: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Confirm final exam</a>{{/unless}}{{/unless}}
+                {{#unless final_exam.no_exam_or_nontraditional}}{{#unless final_exam.is_confirmed}}
+                <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/{{netid}}/finalexam.asp?{{capitalizeString quarter}}+{{year}}&sln={{sln}}" target="_blank" data-linklabel="Confirm Final: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Confirm final exam</a>{{/unless}}{{/unless}}
+            </div>
         </div>
     </div>
 </div>
