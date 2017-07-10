@@ -15,6 +15,16 @@ var AcademicCalendar = {
         $("#main-content").html(template({terms: grouped}));
 
         AcademicCalendar.add_events();
+        if (window.location.hash) {
+            var l = $('a[name="' +
+                      window.location.hash.substr(1).replace(/-/g, ' ') +
+                      '"]');
+            if (l.length) {
+                setTimeout(function () {
+                    $('html,body').animate({scrollTop: l.offset().top},'slow');
+                }, 250);
+            }
+        }
     },
 
     group_events_by_term: function(events) {
