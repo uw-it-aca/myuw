@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 def get_account_balances_by_uwnetid(uwnetid):
     """
-    returns restclients.models.hfs.HfsAccouts
+    returns uw_hfs.models.HfsAccouts
     for the given uwnetid
     """
     if uwnetid is None:
