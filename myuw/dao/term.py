@@ -8,8 +8,7 @@ import pytz
 from django.conf import settings
 from django.utils import timezone
 from uw_sws.models import Term
-from restclients.util.datetime_convertor import convert_to_begin_of_day, \
-    convert_to_end_of_day
+from uw_sws.util import convert_to_begin_of_day, convert_to_end_of_day
 from uw_sws.section import is_a_term, is_b_term, is_full_summer_term
 from uw_sws.term import get_term_by_date, get_specific_term, \
     get_current_term, get_next_term, get_previous_term, \

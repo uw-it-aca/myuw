@@ -4,7 +4,7 @@ the uwnetid subscription resource.
 """
 
 import logging
-from restclients.uwnetid.subscription import get_email_forwarding
+from uw_uwnetid.subscription import get_email_forwarding
 from restclients_core.exceptions import DataFailureException
 from myuw.dao import get_netid_of_current_user
 
@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 def _get_email_forwarding_by_uwnetid(uwnetid):
     """
-    returns restclients.models.uwnetid.UwEmailForwarding object
+    returns uw_uwnetid.UwEmailForwarding object
     for a given uwnetid
     """
     if uwnetid is None:

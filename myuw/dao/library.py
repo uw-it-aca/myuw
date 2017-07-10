@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 def _get_account_by_uwnetid(uwnetid):
     """
-    returns restclients.models.library.MyLibAccount object
+    returns uw_libraries.models.MyLibAccount object
     for a given uwnetid
     """
     if uwnetid is None:
