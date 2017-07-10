@@ -3,7 +3,7 @@ from myuw.views.error import handle_exception
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
 from myuw.dao.term import get_comparison_date, get_current_quarter
-from restclients.trumba import get_calendar_by_name
+from uw_trumba import get_calendar_by_name
 from uw_sws.term import get_term_after
 from django.http import HttpResponse
 from datetime import timedelta

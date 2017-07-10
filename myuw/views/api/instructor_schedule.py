@@ -5,9 +5,9 @@ import logging
 from django.http import HttpResponse
 from operator import itemgetter
 from myuw.logger.timer import Timer
-from restclients.sws.person import get_person_by_regid
-from restclients.sws.enrollment import get_enrollment_by_regid_and_term
-from restclients.sws.term import get_specific_term
+from uw_sws.person import get_person_by_regid
+from uw_sws.enrollment import get_enrollment_by_regid_and_term
+from uw_sws.term import get_specific_term
 from uw_gradepage.grading_status import get_grading_status
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_course_url

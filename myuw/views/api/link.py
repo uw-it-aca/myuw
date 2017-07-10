@@ -6,7 +6,7 @@ from myuw.dao import get_user_model, get_netid_of_current_user
 from myuw.dao.quicklinks import get_quicklink_data, get_link_label
 from myuw.dao.class_website import get_page_title_from_url
 from myuw.dao.affiliation import get_all_affiliations
-from restclients.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponse

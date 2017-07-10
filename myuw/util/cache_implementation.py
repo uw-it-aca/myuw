@@ -1,6 +1,6 @@
 import re
 from django.conf import settings
-from restclients.cache_implementation import MemcachedCache, TimedCache
+from rc_django.cache_implementation import MemcachedCache, TimedCache
 from restclients_core.exceptions import DataFailureException
 
 

@@ -6,12 +6,20 @@ from uw_gws.utilities import fdao_gws_override
 from uw_pws.util import fdao_pws_override
 from uw_sws.util import fdao_sws_override
 from uw_libraries.util import fdao_mylib_override, fdao_subject_guide_override
-from restclients.test import (fdao_uwnetid_override,
-                              fdao_ias_override,
-                              fdao_hfs_override,
-                              fdao_grad_override, fdao_bookstore_override,
-                              fdao_canvas_override,  fdao_mailman_override,
-                              fdao_upass_override)
+from uw_uwnetid.util import fdao_uwnetid_override
+from uw_bookstore.util import fdao_bookstore_override
+from uw_iasystem.util import fdao_ias_override
+from uw_grad.util import fdao_grad_override
+from uw_bookstore.util import fdao_bookstore_override
+from uw_canvas.utilities import fdao_canvas_override
+from uw_mailman.util import fdao_mailman_override
+from uw_upass.util import fdao_upass_override
+from uw_hfs.util import fdao_hfs_override
+from restclients_core.util.decorators import use_mock
+from myuw.dao.class_website import CLASS_WEBSITE_DAO
+
+
+fdao_class_website_override = use_mock(CLASS_WEBSITE_DAO())
 
 
 EMAILBACKEND = 'django.core.mail.backends.locmem.EmailBackend'
