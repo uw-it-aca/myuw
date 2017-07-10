@@ -3,7 +3,7 @@ import logging
 import traceback
 from django.http import HttpResponse
 from restclients_core.exceptions import DataFailureException
-from restclients.myplan import get_plan
+from uw_myplan import get_plan
 from myuw.dao.pws import get_regid_of_current_user
 from uw_sws.section import get_section_by_label
 from myuw.dao.card_display_dates import during_myplan_peak_load

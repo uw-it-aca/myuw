@@ -1,7 +1,6 @@
 var InstructorCourseCardContent = {
 
-    render: function (c_section, fetched_eval) {
-        var eval_data = (fetched_eval? WSData.iasystem_data(): null);
+    render: function (c_section) {
         var index = c_section.index;
         var source = $("#instructor_course_card_content_panel").html();
         var template = Handlebars.compile(source);

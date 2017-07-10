@@ -5,10 +5,10 @@ the Grad School request resource.
 
 import logging
 from datetime import date, datetime, timedelta
-from restclients.grad.degree import get_degree_by_regid
-from restclients.grad.committee import get_committee_by_regid
-from restclients.grad.leave import get_leave_by_regid
-from restclients.grad.petition import get_petition_by_regid
+from uw_grad.degree import get_degree_by_regid
+from uw_grad.committee import get_committee_by_regid
+from uw_grad.leave import get_leave_by_regid
+from uw_grad.petition import get_petition_by_regid
 from myuw.logger.logback import log_exception
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.gws import is_grad_student

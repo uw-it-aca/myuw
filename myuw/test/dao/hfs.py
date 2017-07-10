@@ -2,8 +2,10 @@ from django.test import TestCase
 from decimal import *
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.hfs import get_account_balances_by_uwnetid
+from myuw.test import fdao_hfs_override
 
 
+@fdao_hfs_override
 class TestHFS(TestCase):
 
     def test_get_account_balance(self):
