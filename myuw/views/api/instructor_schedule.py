@@ -27,6 +27,7 @@ from myuw.logger.logback import log_exception
 from myuw.logger.timer import Timer
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.api.base_schedule import irregular_start_end
 
 
 logger = logging.getLogger(__name__)
@@ -198,8 +199,15 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
             'allows_secondary_grading'] = section.allows_secondary_grading
 
         if section.is_early_fall_start():
+            section_data["cc_display_dates"] = True
             section_data["early_fall_start"] = True
             json_data["has_early_fall_start"] = True
+        else:
+            if section.is_campus_pce():
+                group_independent_start = irregular_start_end(
+                    schedule.term, section, section.summer_term)
+                if group_independent_start:
+                    section_data["cc_display_dates"] = True
 
         # if section.is_primary_section:
         section_data['grade_submission_delegates'] = []

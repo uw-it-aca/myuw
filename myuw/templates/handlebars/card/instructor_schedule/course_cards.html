@@ -29,6 +29,9 @@
             <!--    {{#if ../future_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}{{#if ../past_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}} -->
                 <span class="myuw-course-shortname">{{ course_title }}</span>
             </h3>
+            {{#if cc_display_dates}}
+                <span class="offterm-date" style="display:block;">Date: {{toMonthDay start_date}} - {{toMonthDay end_date}}</span>
+            {{/if}}
 
             <div class="course-meta">
                 {{# if sln}}
