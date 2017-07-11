@@ -28,7 +28,7 @@
 
                     <div class="pull-right">
                         <a href="mailto:{{section_list.list_address}}@uw.edu" class="list-address">{{section_list.list_address}}@uw.edu</a>
-                        <a href="{{section_list.list_admin_url}}" target="_blank">Manage</a>
+                        <a href="{{section_list.list_admin_url}}" target="_blank" data-linklabel="Manage Email List for {{course_abbr}} {{course_number}} {{section_list.section_id}}">Manage</a>
                     </div>
                 </div>
                 {{ /if }}
@@ -52,7 +52,7 @@
                         <td>
                             <a href="mailto:{{section_list.list_address}}@uw.edu" class="list-address">{{section_list.list_address}}@uw.edu</a>
                         </td>
-                        <td><a href="{{section_list.list_admin_url}}" target="_blank">Manage</a></td>
+                        <td><a href="{{section_list.list_admin_url}}" target="_blank" data-linklabel="Manage Email List for {{course_abbr}} {{course_number}} {{section_list.section_id}}">Manage</a></td>
                     </tr>
                     {{ /if }}
 
@@ -65,7 +65,7 @@
                         <td class="mailman-manage-links">
                             <a href="mailto:{{list_address}}@uw.edu" class="list-address">{{list_address}}@uw.edu</a>
                         </td>
-                        <td><a href="{{list_admin_url}}" target="_blank">Manage</a></td>
+                        <td><a href="{{list_admin_url}}" target="_blank" data-linklabel="Manage Email List for {{../course_abbr}} {{../course_number}} {{section_id}}">Manage</a></td>
                     </tr>
                     {{/if}}
                     {{/each}}
@@ -74,7 +74,7 @@
             {{/if}}
 
             <p>Need help with mailing lists? <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
-                  rel="help" target="_blank">Mailman help documentation</a></p>
+                  rel="help" target="_blank" data-linklabel="Mailman Help">Mailman help documentation</a></p>
 
         </div>
         <div class="modal-footer">
