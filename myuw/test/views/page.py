@@ -45,13 +45,13 @@ class TestPageMethods(MyuwApiTest):
             HTTP_USER_AGENT="Mozilla/4.0 (compatible; MSIE 5.01; WebISOGet")
         self.assertEquals(response.status_code, 302)
 
-        self.set_user('staff')
+        self.set_user('faculty')
         response = self.client.get(
             url,
             HTTP_USER_AGENT="Mozilla/4.0 (compatible; MSIE 5.01; WebISOGet")
         self.assertEquals(response.status_code, 302)
 
-        self.set_user('faculty')
+        self.set_user('japplicant')
         response = self.client.get(
             url,
             HTTP_USER_AGENT="Mozilla/4.0 (compatible; MSIE 5.01; WebISOGet")
