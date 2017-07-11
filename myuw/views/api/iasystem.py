@@ -18,6 +18,7 @@ from myuw.logger.logresp import log_data_not_found_response,\
 from myuw.logger.timer import Timer
 from myuw.views.rest_dispatch import RESTDispatch
 from myuw.views.error import data_not_found, handle_exception
+from uw_iasystem.dao import IASystem_DAO
 
 
 logger = logging.getLogger(__name__)
@@ -35,13 +36,8 @@ class IASystem(RESTDispatch):
         """
         timer = Timer()
         try:
-            dao_class = getattr(settings,
-                                "RESTCLIENTS_IASYSTEM_DAO_CLASS",
-                                MOCKDAO)
-            if dao_class == MOCKDAO and\
-                    get_netid_of_current_user() == "eight":
-                time.sleep(10)
 
+            # time.sleep(10)
             if not is_student():
                 log_msg(logger, timer, "Not a student, abort!")
                 return data_not_found()

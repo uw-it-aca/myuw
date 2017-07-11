@@ -58,11 +58,11 @@
     /*** card section ***/
     .myuw-card-section { padding-top: 16px;
 
-        /* every last row of each section */
+        /* add a separator for every last row of each section */
         .row:last-child {
             .col-sm-9 {
                 border-bottom: 1px solid #EDEDED;
-                padding-bottom: 16px;
+                padding-bottom: 8px;
             }
         }
 
@@ -71,14 +71,15 @@
 
         @media @two-column {
             .row + .row { padding-top: 8px; }
-
         }
 
-        /* the very last section's last child */
+        // target the very last section of a card by usign the "last" class
         &.last {
+
+            // remove the bottom border for last element
             .col-sm-9 {
                 border-bottom: none !important;
-                padding-bottom: 0;
+                padding-bottom: 0 !important;
             }
         }
 
@@ -90,12 +91,6 @@
             padding-left: 28px !important;
         }
 
-    }
-
-    .myuw-card-section:last-child div.col-sm-9:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-        padding-bottom: 0;
     }
 
     /*** card section heading ***/
@@ -132,7 +127,6 @@
         }
     }
 
-
     .myuw-card-itemlist + .myuw-card-itemlist {
         margin-bottom: 16px;
     }
@@ -140,6 +134,37 @@
     .myuw-card-itemlist:last-child {
         margin-bottom: 0;
     }
+
+    /*** comma delimited list ***/
+    .myuw-card-comma-list {
+        display: inline;
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .myuw-card-comma-list li {
+        display: inline;
+        white-space: nowrap;
+    }
+
+    .myuw-card-comma-list li:after {
+        content: ", "
+    }
+
+    .myuw-card-comma-list li:last-child:after {
+        content: ""
+    }
+
+    /*** standard line-height, unstyled list ***/
+    .myuw-card-section .unstyled-list,
+    .myuw-card-section .unstyled {
+        list-style-type: none;
+        padding-left: 0;
+        margin: 0 0 8px 0;
+        line-height: inherit !important;
+
+    }
+
 
     /*** card content table **/
     .table-borderless {

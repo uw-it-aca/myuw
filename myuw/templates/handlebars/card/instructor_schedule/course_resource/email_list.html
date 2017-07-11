@@ -2,7 +2,6 @@
     {% verbatim %}
 
 {{#with email_list}}
-<!-- good -->
     <span class="inst-course-label">Email List:&nbsp;&nbsp;</span>
 
         {{#if section_list.list_exists}}
@@ -12,7 +11,7 @@
                 <div id="popup_emaillist_{{safeLabel section_list.section_label}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="manage_emaillist_{{safeLabel section_list.section_label}}"></div>
             {{else}}
                 <span>{{section_list.list_address}}@uw.edu</span>
-                <a href="{{section_list.list_admin_url}}" target="_blank" class="course-manage-email">Manage</a>
+                <a href="{{section_list.list_admin_url}}" target="_blank" class="course-manage-email" data-linklabel="Manage Email List for {{course_abbr}} {{course_number}} {{section_list.section_id}}">Manage</a>
             {{/if}}
 
         {{else}}

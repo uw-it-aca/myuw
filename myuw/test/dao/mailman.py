@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.core import mail
-from restclients.exceptions import DataFailureException
-from restclients.sws.section import get_section_by_label
+from restclients_core.exceptions import DataFailureException
+from uw_sws.section import get_section_by_label
 from myuw.dao.mailman import get_list_json,\
     get_instructor_term_list, get_section_secondary_combined_list,\
     get_single_course_list, get_single_section_list, get_section_id,\

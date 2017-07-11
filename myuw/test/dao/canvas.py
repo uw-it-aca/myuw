@@ -3,7 +3,7 @@ from myuw.dao.canvas import _get_canvas_enrollment_dict_for_regid,\
     canvas_course_is_available, get_canvas_course_from_section,\
     get_canvas_course_url
 from myuw.dao.schedule import _get_schedule
-from restclients.sws.section import get_section_by_label
+from uw_sws.section import get_section_by_label
 from myuw.dao.term import get_current_quarter
 from myuw.test import fdao_sws_override, get_request_with_user, get_request
 

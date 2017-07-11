@@ -2,7 +2,7 @@
 encapsulates the interactions with the Bookstore web service.
 """
 
-from restclients.bookstore import Bookstore
+from uw_bookstore import Bookstore
 
 
 def get_textbook_by_schedule(schedule):
