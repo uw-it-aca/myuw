@@ -1,4 +1,4 @@
-var  SummaryScheduleCard = {
+var SummaryScheduleCard = {
     name: 'SummaryScheduleCard',
     dom_target: undefined,
     term: 'current',
@@ -51,12 +51,14 @@ var  SummaryScheduleCard = {
         var raw = courses_template({
             quarter: instructed_course_data.quarter,
             year: instructed_course_data.year,
+            future_term: instructed_course_data.future_term,
             sections: instructed_course_data.sections,
+            section_count: instructed_course_data.sections.length,
             is_instructor: (instructed_course_data !== undefined)
         });
 
         SummaryScheduleCard.dom_target.html(raw);
-        SummaryScheduleCard.add_events();
+        SummaryScheduleCard.add_events(SummaryScheduleCard.term);
     },
 
     add_events: function(term) {
@@ -89,4 +91,4 @@ var  SummaryScheduleCard = {
 if (typeof exports == "undefined") {
     var exports = {};
 }
-exports.InstructorCourseCards = InstructorCourseCards;
+exports.SummaryScheduleCard = SummaryScheduleCard;

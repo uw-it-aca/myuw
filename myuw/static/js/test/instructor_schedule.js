@@ -27,6 +27,7 @@ describe('InstructorScheduleCards', function(){
             Global.Environment.ajax_stub('api/v1/instructor_schedule/2013-spring');
 
             window.enabled_features = { 'instructor_schedule': true };
+            window.card_display_dates = { system_date: '2017-03-28 16:17' };
             window.location.search = '?grading_date=2017-03-28 16:17';
             $(window).on("myuw:card_load", function () {
                 done();

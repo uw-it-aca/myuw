@@ -41,7 +41,6 @@ var Landing = {
 
     _load_desktop_cards: function() {
         Landing._reset_content_divs();
-
         var desktop_body_cards;
         if(window.user.staff_employee) {
             desktop_body_cards = [
@@ -62,11 +61,11 @@ var Landing = {
                 SummaryScheduleCard,
                 VisualScheduleCard,
                 TextbookCard,
+                FutureSummaryScheduleCard,
                 FutureQuarterCard1,
                 SummerRegStatusCard1
             ];
         }
-
         var desktop_sidebar_cards = [
             QuickLinksCard,
             EmpFacStudentCard,
@@ -101,6 +100,7 @@ var Landing = {
                 CriticalInfoCard,
                 InternationalStuCard,
                 SummaryScheduleCard,
+                FutureSummaryScheduleCard,
                 VisualScheduleCard,
                 TextbookCard,
                 FutureQuarterCard1,

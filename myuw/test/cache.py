@@ -2,15 +2,15 @@ from datetime import timedelta
 from unittest2 import skipIf
 from django.test import TestCase
 from django.conf import settings
-from restclients.mock_http import MockHTTP
-from restclients.models import CacheEntryTimed
+from restclients_core.models import MockHTTP
+from rc_django.models import CacheEntryTimed
 from restclients_core.exceptions import DataFailureException
-from restclients.dao import SWS_DAO
+from uw_sws.dao import SWS_DAO
+from uw_sws.util import fdao_sws_override
 from myuw.util.cache_implementation import MyUWCache, get_cache_time,\
     MyUWMemcachedCache
 
 
-SWS = 'restclients.dao_implementation.sws.File'
 CACHE = 'myuw.util.cache_implementation.MyUWCache'
 MEMCACHE = 'myuw.util.cache_implementation.MyUWMemcachedCache'
 FIVE_SECONDS = 5
@@ -21,6 +21,7 @@ ONE_DAY = 60 * 60 * 24
 ONE_WEEK = 60 * 60 * 24 * 7
 
 
+@fdao_sws_override
 class TestCustomCachePolicy(TestCase):
 
     def test_get_cache_time(self):
@@ -271,8 +272,7 @@ class TestCustomCachePolicy(TestCase):
     @skipIf(not getattr(settings, 'RESTCLIENTS_TEST_MEMCACHED', False),
             "Needs configuration to test memcached cache")
     def test_calling_myuw_get_cache_expiration_time(self):
-        with self.settings(RESTCLIENTS_DAO_CACHE_CLASS=MEMCACHE,
-                           RESTCLIENTS_SWS_DAO_CLASS=SWS):
+        with self.settings(RESTCLIENTS_DAO_CACHE_CLASS=MEMCACHE):
             cache = MyUWMemcachedCache()
             c_entry = cache.getCache(
                 'sws', '/student/v5/term/2013,summer.json', {})

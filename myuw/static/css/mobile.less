@@ -1224,7 +1224,7 @@ label { font-weight: normal; margin-bottom: auto; }
         .instructor-term-menu {
             display: inline-block;
 
-            select.myuw-dropmenu { width: 6.5em; }
+            select.myuw-dropmenu { width: 5.7em; }
             select.myuw-dropmenu-selected { width: 8em; }
         }
 
@@ -1274,6 +1274,7 @@ label { font-weight: normal; margin-bottom: auto; }
                             .course-website-update {margin-top: -23px;}
                             .add-delay-message {margin-top: -18px; font-size: 75%; font-style:italic;}
                             .course-website-error-message {margin-top: -18px; font-size: 75%; font-style:italic;}
+                            div.note-content { margin-top: -10px; }
                         }
                     }
                 }
@@ -1877,7 +1878,7 @@ label { font-weight: normal; margin-bottom: auto; }
       color: #f8f7f0;
     }
 
-    
+
 
     // course TBD
 
@@ -1893,13 +1894,22 @@ label { font-weight: normal; margin-bottom: auto; }
         h1 { font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: @font-header-small;  }
     }
 
+    //card and page errors
+    .full-page-error, .card {
+        .text-danger {
+            i.fa {padding-right: 4px;}
+        }
+    }
+    .full-page-error {
+        .text-danger {font-size: 16px;}
+    }
 
     //ROLL-UP ERROR MESSAGE
 	#OutageCard{
 	.card{
 	    background-color: #fcf9e3;
 	    .error-rollup {
-	        i { position: absolute; top: 33px; font-size: 2em; color: #a94442; margin-top: -14px;}
+	        i { position: absolute; top: 33px; font-size: 2em; color: #a94442; margin-top: -11px;}
 	        h3 { position: relative; left: 42px; color: #a94442; width:92%;}
 			}
 		}
