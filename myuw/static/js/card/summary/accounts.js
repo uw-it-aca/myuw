@@ -34,6 +34,7 @@ var AccountSummaryCard = {
         var source = $("#account_summary_card").html();
         var template = Handlebars.compile(source);
         AccountSummaryCard.dom_target.html(template(data));
+        LogUtils.cardLoaded('AccountSummaryCard', AccountSummaryCard.dom_target);
     },
 
     get_weeks_apart: function(date1, date2) {
