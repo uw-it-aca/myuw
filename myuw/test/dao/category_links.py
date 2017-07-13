@@ -8,9 +8,9 @@ import re
 
 class TestCategoryLinks(TestCase):
 
-    def test_get_all_likes(self):
+    def test_get_all_links(self):
         all_links = Res_Links.get_all_links()
-        self.assertEquals(len(all_links), 155)
+        self.assertEquals(len(all_links), 156)
         val = URLValidator()
         for link in all_links:
             try:
@@ -36,28 +36,31 @@ class TestCategoryLinks(TestCase):
         self.assertEquals(category_id, "studentcampuslife")
         affi = {"grad": False,
                 "undergrad": True,
-                "pce": False}
+                "pce": False,
+                "fyp": False}
+
         links = _get_links_by_category_and_campus(category_id,
                                                   "seattle",
                                                   affi)
-        self.assertEquals(len(links), 23)
+        self.assertEquals(len(links), 22)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "bothell",
                                                   affi)
-        self.assertEquals(len(links), 22)
+        self.assertEquals(len(links), 21)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "tacoma",
                                                   affi)
-        self.assertEquals(len(links), 22)
+        self.assertEquals(len(links), 21)
 
     def test_grad_category(self):
         category_id = _get_category_id("Student & Campus Life")
         self.assertEquals(category_id, "studentcampuslife")
         affi = {"grad": True,
                 "undergrad": False,
-                "pce": False}
+                "pce": False,
+                "fyp": False}
         links = _get_links_by_category_and_campus(category_id,
                                                   "seattle",
                                                   affi)
@@ -78,8 +81,21 @@ class TestCategoryLinks(TestCase):
         self.assertEquals(category_id, "studentcampuslife")
         affi = {"grad": False,
                 "undergrad": False,
-                "pce": True}
+                "pce": True,
+                "fyp": False}
         links = _get_links_by_category_and_campus(category_id,
                                                   "",
                                                   affi)
         self.assertEquals(len(links), 6)
+
+    def test_fyp_links(self):
+        category_id = _get_category_id("Student & Campus Life")
+        self.assertEquals(category_id, "studentcampuslife")
+        affi = {"grad": False,
+                "undergrad": False,
+                "pce": False,
+                "fyp": True}
+        links = _get_links_by_category_and_campus(category_id,
+                                                  "",
+                                                  affi)
+        self.assertEquals(len(links), 7)

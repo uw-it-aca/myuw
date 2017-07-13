@@ -459,6 +459,7 @@ class TestDisplayValues(TestCase):
             '2013-04-14 06:00:00',
             '2013-04-15 05:29:59',
             '2013-06-23 06:30:01',
+            '2015-11-04 06:30:01',
         )
 
         # Assert peak load true on these dates

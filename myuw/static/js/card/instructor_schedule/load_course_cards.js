@@ -6,7 +6,7 @@ var InstructorCourseCards = {
     render_init: function() {
         if (myuwFeatureEnabled('instructor_schedule')) {
             if (InstructorCourseCards.term === 'current') {
-                InstructorCourseCards.term = window.term.year + ',' + window.term.quarter;
+                InstructorCourseCards.term = window.term.display_term;
             }
 
             WSData.fetch_instructed_course_data_for_term(InstructorCourseCards.term,
@@ -37,7 +37,7 @@ var InstructorCourseCards = {
             if ($('.instructed-terms').length) {
                 var source = $("#instructor_course_card_no_courses").html();
                 var courses_template = Handlebars.compile(source);
-                $(".instructor_cards .card").remove();
+                $(".instructor_cards .instructor-course-card").remove();
                 $(".instructor_cards").append(courses_template());
 
                 $("div[data-tab-type='instructor-term-nav']").removeClass("myuw-tab-selected");
@@ -109,22 +109,28 @@ var InstructorCourseCards = {
         var raw = courses_template(course_data);
         InstructorCourseCards.dom_target.html(raw);
 
-        var course_sections = course_data.sections;
-        $.each(course_sections, function () {
+        $.each(course_data.sections, function () {
             this.year = course_data.year;
             this.quarter = course_data.quarter;
             this.summer_term = course_data.summer_term;
-            if (course_data.future_term) {
-                InstructorFutureCourseCardContent.render(this, null);
-            } else if (course_data.past_term) {
-                InstructorPastCourseCardContent.render(this, null);
-            } else {
-                InstructorCourseCardContent.render(this, null);
-            }
+            this.future_term = course_data.future_term;
+            this.past_term = course_data.past_term;
+            InstructorCourseCardContent.render(this, null);
         });
 
         InstructorCourseCards.add_events();
         InstructorCourseCards._show_correct_term_dropdown();
+
+        if (window.location.hash) {
+            var l = $('div[data-identifier="' +
+                      window.location.hash.substr(1).replace(/-/g, ' ') +
+                      '"]');
+            if (l.length) {
+                setTimeout(function () {
+                    $('html,body').animate({scrollTop: l.offset().top},'slow');
+                }, 250);
+            }
+        }
     },
 
     add_events: function(term) {

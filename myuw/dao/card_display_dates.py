@@ -209,6 +209,10 @@ def is_term_myplan_peak(now, term, data):
 
 
 def get_term_reg_data(now, term, data):
+    if term.registration_period1_start is None:
+        data["myplan_peak_load"] = False
+        return
+
     if not (data["myplan_peak_load"] is True):
         data["myplan_peak_load"] = is_term_myplan_peak(now, term, data)
 

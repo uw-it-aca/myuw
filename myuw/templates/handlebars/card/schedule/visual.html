@@ -47,18 +47,21 @@
     <h3 id="quarter-info" aria-hidden="true">
         {{ucfirst quarter}} {{year}} Schedule
         {{#if summer_term}}
-        <span class="shortTitle">{{summer_term}}</span>
+        <span class="shortTitle">{{summer_term}}</span> 
         {{/if}}
     </h3>
     <div id="schedule-tabs" class="schedule-period-module">
 		<ul class="nav nav-pills schedule-period-list">
-        {{ #each schedule_periods }}
-        <li class="{{#equal ../active_period_id @key}} active{{ /equal }}"><a class="schedule-period-anchor" href="#" data-period_id="{{ @key }}"><span class="schedule-period">{{#equal "finals" @key}}Finals {{ else }}{{ toMonthDay start_date }} - {{ toMonthDay end_date }} {{ /equal }}</span></a></li>
-        {{ /each }}
+        {{#each schedule_periods }}
+        <li class="{{#equal ../active_period_id @key}} active{{/equal }}"><a class="schedule-period-anchor" href="#" data-period_id="{{ @key }}"><span class="schedule-period">{{#equal "finals" @key}}Finals {{ else }}{{ toMonthDay start_date }} - {{ toMonthDay end_date }} {{/equal }}</span></a></li>
+        {{/each }}
 		</ul>
     </div>
+	<div>{{#if summer_term}}
+        <p class="summer-dates"><strong>A-term classes end Jul 19</strong>  and <strong>B-term classes begin Jul 20</strong>. </p> 
+        {{/if}}
+	</div>
 <div id="schedule_area">
-
     {{#if display_hours }}
     <!-- week view -->
     <div class="visual-schedule {{schedule_hours_class}}" aria-hidden="true">
@@ -121,7 +124,7 @@
     <div class="courseTBD" aria-hidden="true">
         {{#each courses_meeting_tbd }}
 	    <div class="pull-left course-box">
-	        <div class="c{{color_id}} course-info">{{curriculum}} {{course_number}}&nbsp;{{section_id}}</div>
+	        <div class="c{{color_id}} course-info"><a href="/{{#if ../is_instructor}}teaching{{else}}academics{{/if}}/#{{curriculum}}-{{course_number}}-{{section_id}}" style="color: white;" class="show_section_card">{{curriculum}} {{course_number}}&nbsp;{{section_id}}</a></div>
 	        <div style="font-size:.8em; color:#555; text-align:center; margin-top:3px;">Room TBD</div>
 	    </div>
         {{/each}}
@@ -135,7 +138,7 @@
         <p>Following courses have not specified a meeting time:</p>
         {{#each courses_no_meeting }}
 	    <div class="pull-left course-box">
-	        <div class="c{{color_id}} course-info">{{curriculum}} {{course_number}}&nbsp;{{section_id}}</div>
+	        <div class="c{{color_id}} course-info"><a href="/{{#if ../is_instructor}}teaching{{else}}academics{{/if}}/#{{curriculum}}-{{course_number}}-{{section_id}}" style="color: white;" class="show_section_card">{{curriculum}} {{course_number}}&nbsp;{{section_id}}</a></div>
 	        <div style="font-size:.8em; color:#555; text-align:center; margin-top:3px;">
                 {{#if building_tbd}}
                     Room TBD

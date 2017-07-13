@@ -5,7 +5,7 @@
 {{ #if has_eval}}{{ucfirst meetings.0.type}}{{ /if }} Schedule
 </h5>
 
-<table class="table table-condensed table-course-schedule">
+<table class="table table-borderless table-condensed table-course-schedule">
     <thead class="sr-only">
         <tr>
             <th>Day(s)</th>
@@ -21,30 +21,13 @@
             {{else if no_meeting}}
                     <td colspan="2" class="text-muted course-loc-tbd">No classroom meeting: online learning</td>
             {{else}}
-                <td class="course-days">
-                    {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
-                    meeting_days.tuesday}}<abbr title="Tuesday">T</abbr>{{/if}}{{#if
-                    meeting_days.wednesday}}<abbr title="Wednesday">W</abbr>{{/if}}{{#if
-                    meeting_days.thursday}}<abbr title="Thursday">Th</abbr>{{/if}}{{#if
-                    meeting_days.friday}}<abbr title="Friday">F</abbr>{{/if}}{{#if
-                    meeting_days.saturday}}<abbr title="Saturday">Sa</abbr>{{/if}}{{#if
-                    meeting_days.sunday}}<abbr title="Sunday">Su</abbr>{{/if}}
-                </td>
-                <td class="course-time">{{formatTime start_time}} - {{formatTimeAMPM end_time}}</td>
+                {% include "handlebars/card/schedule/course_sche_col_days.html" %}
             {{/if}}
 
             {{#if building_tbd}}
                 <td class="text-muted course-loc-tbd">Room to be arranged</td>
             {{else}}
-                <td class="course-location">
-                    {{#if latitude}}
-                        <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" class="show_map" rel="{{building_name}}" data-linklabel="{{ building }} - Google Maps">
-                    {{/if}}
-                    {{building}} {{room}}
-                    {{#if latitude}}
-                        </a>
-                    {{/if}}
-                </td>
+                {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
             {{/if}}
         </tr>
         {{/each}}

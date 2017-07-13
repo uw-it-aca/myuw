@@ -27,6 +27,7 @@ describe('InstructorScheduleCards', function(){
             Global.Environment.ajax_stub('api/v1/instructor_schedule/2013-spring');
 
             window.enabled_features = { 'instructor_schedule': true };
+            window.card_display_dates = { system_date: '2017-03-28 16:17' };
             window.location.search = '?grading_date=2017-03-28 16:17';
             $(window).on("myuw:card_load", function () {
                 done();
@@ -37,8 +38,9 @@ describe('InstructorScheduleCards', function(){
             InstructorCourseCards.render_init();
         });
         it("Should render instructor card", function() {
-            assert.equal($('.card').length, 6);
-            assert.equal($('.card .myuw-course-abbrtitle').eq(1).html(), 'PHYS 121 A');
+            assert.equal($('div[data-type="card"]').length, 6);
+            assert.equal($('div[data-identifier="PHYS 121 A"]').length, 1);
+            assert.equal($('div[data-identifier="TRAIN 101 A"]').length, 1);
         });
         it("before grading open date", function() {
             window.location.search = '?grading_date=2017-03-02%2016:17';
