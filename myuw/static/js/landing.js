@@ -59,6 +59,9 @@ var Landing = {
             FutureQuarterCard1,
             SummerRegStatusCard1
         ];
+        if(window.user.staff_employee) {
+            desktop_body_cards.unshift(HRPayrollCard);
+        }
         var desktop_sidebar_cards = [
             QuickLinksCard,
             EmpFacStudentCard,
@@ -75,26 +78,29 @@ var Landing = {
     _load_mobile_cards: function() {
         Landing._reset_content_divs();
         var mobile_cards = [
-            QuickLinksCard,
-            ThriveCard,
-            GradeCard,
-            FutureQuarterCardA,
-            ThankYouCard,
-            ToRegisterCard,
-            RegStatusCard,
-            SummerEFSCard,
-            SummerRegStatusCardA,
-            CriticalInfoCard,
-            InternationalStuCard,
-            SummaryScheduleCard,
-            FutureSummaryScheduleCard,
-            VisualScheduleCard,
-            TextbookCard,
-            FutureQuarterCard1,
-            SummerRegStatusCard1,
-            EmpFacStudentCard,
-            EventsCard
+                QuickLinksCard,
+                ThriveCard,
+                GradeCard,
+                FutureQuarterCardA,
+                ThankYouCard,
+                ToRegisterCard,
+                RegStatusCard,
+                SummerEFSCard,
+                SummerRegStatusCardA,
+                CriticalInfoCard,
+                InternationalStuCard,
+                SummaryScheduleCard,
+                FutureSummaryScheduleCard,
+                VisualScheduleCard,
+                TextbookCard,
+                FutureQuarterCard1,
+                SummerRegStatusCard1,
+                EmpFacStudentCard,
+                EventsCard
         ];
+        if(window.user.staff_employee) {
+            mobile_cards.unshift(HRPayrollCard);
+        }
         // Add in outage card if we can't get the SWS/term resource
         if(window.webservice_outage){
             mobile_cards.unshift(OutageCard);
