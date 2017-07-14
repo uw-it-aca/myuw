@@ -381,12 +381,17 @@
                         <h3 class="modal-title" id="myModalLabel">
 
                             {% if user.affiliations.student %}
-                                New in MyUW<i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 25px; padding: 0 6px 0 6px;"></i>
+                                {% if user.affiliations.instructor %}
+                                    <!-- Student Instructor -->
+                                    MyUW is Designed for You
+                                {% else %} <!-- Regular student -->
+                                    New in MyUW<i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 25px; padding: 0 6px 0 6px;"></i>
+                                {% endif %}
                             {% else %}
                                 {% if user.affiliations.instructor %}
-                                    MyUW is designed for instructors
+                                    MyUW is Designed for Instructors
                                 {% else %}   <!-- For employees -->
-                                    MyUW is designed for you
+                                    MyUW is Designed for You
                                 {% endif %}
                             {% endif %}
                         </h3>
@@ -395,11 +400,12 @@
                         {% if user.affiliations.student %}
                             <ul>
                                 <li><strong>Menu & Pages</strong> - We moved cards onto pages. Use the menu at top left to navigate to Academics, Profile, and Accounts. The home page will still show timely content and notices, like your registration date and financial aid deadlines.</li>
+                                {% if user.affiliations.instructor %}<li><strong>Teaching</strong> schedule and resources help you stay on top of your work.</li>{% endif %}
                                 <li><strong>Week Counter</strong> - We know things can get hectic, so we added a counter to remind you which week of the quarter you’re in.</li>
                                 <li><strong>Account Summaries</strong> - A summary of your critical accounts appear in the top right of the home page. Click any of them to go to the Accounts page.</li>
                                 <li><strong>Search</strong> - Maybe you’ve noticed we added search recently? It’s the same search as on UW.edu!</li>
                                 <li><strong>Quick Links</strong> - Access popular links and recently visited sites. Customize the list of links by adding your own.</li>
-    <li><strong>Log out easier</strong> - We moved the logout link to the top right corner of every page: look for “Sign out.”</li>
+                                <li><strong>Log out easier</strong> - We moved the logout link to the top right corner of every page: look for “Sign out.”</li>
                             </ul>
                             <p><strong><a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Let us know what you think!</a> We’ll keep making tweaks to improve MyUW for you.</strong></p>
 
