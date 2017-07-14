@@ -31,17 +31,24 @@
                     <tbody class="tbody-course-schedule">
                         {{#each meetings}}
                         <tr class="course-schedule-row">
-                            {{#if days_tbd }}
-                                <td colspan="2" class="course-tbd">Days and times to be arranged.</td>
+                            {{#if wont_meet}}
+                                <!-- waiting on sws
+                                <td colspan="2" class="text-muted course-tbd">No meeting day on ... </td>
+                                -->
                             {{else}}
-                                {% include "handlebars/card/schedule/course_sche_col_days.html" %}
+                                {{#if days_tbd }}
+                                    <td colspan="2" class="course-tbd">Days and times to be arranged.</td>
+                                {{else}}
+                                    {% include "handlebars/card/schedule/course_sche_col_days.html" %}
+                                {{/if}}
+
+                                {{#if building_tbd}}
+                                   <td class="course-loc-tbd">Room to be arranged.</td>
+                                {{else}}
+                                   {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
+                                {{/if}}
                             {{/if}}
 
-                            {{#if building_tbd}}
-                            <td class="course-loc-tbd">Room to be arranged.</td>
-                            {{else}}
-                            {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
-                            {{/if}}
                             {{#if ../../show_enrollment}}
                             <td class="course-type">
                                   {{#if ../current_enrollment}}<a target="_blank" href="/teaching/{{../../year}},{{../../quarter}},{{ ../curriculum_abbr }},{{../course_number}}/{{../section_id}}/students" class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">{{../current_enrollment}}</a>{{else}}0{{/if}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}
