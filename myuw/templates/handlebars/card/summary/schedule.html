@@ -37,7 +37,9 @@
                                 -->
                             {{else}}
                                 {{#if days_tbd }}
-                                    <td colspan="2" class="course-tbd">Days and times to be arranged.</td>
+                                    <td colspan="2" class="text-muted course-tbd">Days and times to be arranged.</td>
+                                {{else if no_meeting}}
+                                    <td colspan="2" class="text-muted course-tbd">No classroom meeting: online learning</td>
                                 {{else}}
                                     {% include "handlebars/card/schedule/course_sche_col_days.html" %}
                                 {{/if}}
