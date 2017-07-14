@@ -16,20 +16,27 @@
     <tbody class="tbody-course-schedule">
         {{#each meetings}}
         <tr class="course-schedule-row">
-            {{#if days_tbd }}
-                <td colspan="2" class="text-muted course-tbd">Days and times to<br/> be arranged</td>
-            {{else if no_meeting}}
+            {{#if wont_meet}}
+                <!-- waiting on sws
+                <td colspan="2" class="text-muted course-tbd">No meeting on ... </td>
+                -->
+            {{else}}
+                {{#if days_tbd }}
+                    <td colspan="2" class="text-muted course-tbd">Days and times to<br/> be arranged</td>
+                {{else if no_meeting}}
                     <td colspan="2" class="text-muted course-loc-tbd">No classroom meeting: online learning</td>
-            {{else}}
-                {% include "handlebars/card/schedule/course_sche_col_days.html" %}
-            {{/if}}
+                {{else}}
+                    {% include "handlebars/card/schedule/course_sche_col_days.html" %}
+                {{/if}}
 
-            {{#if building_tbd}}
-                <td class="text-muted course-loc-tbd">Room to be arranged</td>
-            {{else}}
-                {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
+                {{#if building_tbd}}
+                    <td class="text-muted course-loc-tbd">Room to be arranged</td>
+                {{else}}
+                    {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
+                {{/if}}
             {{/if}}
         </tr>
+
         {{/each}}
     </tbody>
 </table>

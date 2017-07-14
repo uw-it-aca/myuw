@@ -20,23 +20,29 @@
                     <tbody class="tbody-course-schedule">
                         {{#each meetings}}
                         <tr class="course-schedule-row">
-                            {{#if days_tbd }}
-                                <td colspan="2" class="text-muted course-tbd">Days and times to be arranged.</td>
-                            {{else if no_meeting}}
-                                <td colspan="2" class="text-muted course-tbd">No classroom meeting: online learning</td>
+                            {{#if wont_meet}}
+                                <!-- waiting on sws
+                                <td colspan="2" class="text-muted course-tbd">No meeting day on ... </td>
+                                -->
                             {{else}}
-                                {% include "handlebars/card/schedule/course_sche_col_days.html" %}
-                            {{/if}}
+                                {{#if days_tbd }}
+                                    <td colspan="2" class="text-muted course-tbd">Days and times to be arranged.</td>
+                                {{else if no_meeting}}
+                                    <td colspan="2" class="text-muted course-tbd">No classroom meeting: online learning</td>
+                                {{else}}
+                                    {% include "handlebars/card/schedule/course_sche_col_days.html" %}
+                                {{/if}}
 
-                            {{#if building_tbd}}
-                                <td class="course-loc-tbd" colspan="2">Room to be arranged.</td>
-                            {{else}}
-                                {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
-                                <td class="course-location-info">
-                                    {{#if classroom_info_url}}
-                                        <a href="{{classroom_info_url}}" data-linklabel="{{ building }} {{ room }} - Room Info">Room info</a>
-                                    {{/if}}
-                                </td>
+                                {{#if building_tbd}}
+                                    <td class="course-loc-tbd" colspan="2">Room to be arranged.</td>
+                                {{else}}
+                                    {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
+                                    <td class="course-location-info">
+                                        {{#if classroom_info_url}}
+                                            <a href="{{classroom_info_url}}" data-linklabel="{{ building }} {{ room }} - Room Info">Room info</a>
+                                        {{/if}}
+                                    </td>
+                                {{/if}}
                             {{/if}}
                         </tr>
                         {{/each}}
