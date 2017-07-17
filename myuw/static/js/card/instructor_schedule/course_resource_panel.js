@@ -8,6 +8,10 @@ var InstructorCourseResourcePanel = {
             c_section.has_resources = true;
         }
 
+        if (c_section.has_resources || c_section.sln) {
+            c_section.display_resources = true;
+        }
+
         var source = $("#instructor_course_resource_panel").html();
         var template = Handlebars.compile(source);
         var raw = template(c_section);

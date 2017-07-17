@@ -29,9 +29,14 @@
             <!--    {{#if ../future_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}{{#if ../past_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}} -->
                 <span class="myuw-course-shortname">{{ course_title }}</span>
             </h3>
+            {{#if cc_display_dates}}
+                <span class="offterm-date" style="display:block;">Date: {{toMonthDay start_date}} - {{toMonthDay end_date}}</span>
+            {{/if}}
 
             <div class="course-meta">
+                {{# if sln}}
                 <span class="myuw-meta course-sln">SLN <a href="https://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{get_quarter_abbreviation ../quarter}}+{{../year}}&SLN={{ sln }}" target="_blank" data-linklabel="SLN {{ sln }}: {{ curriculum_abbr }} {{course_number}} {{section_id}}">{{ sln }}</a></span>
+                {{/if}}
                 <span class="myuw-meta course-meeting-type c{{color_id}}Color">{{ meetings.0.type }}</span>
             </div>
 
