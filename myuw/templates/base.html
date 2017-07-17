@@ -379,6 +379,35 @@
         {% include 'logger.html' %}
 
 
+        <!-- Opt-out Modal -->
+        <div id="optout_page-modal"></div>
+        <div class="myuw-modal modal fade" id="optout_modal" tabindex="-1" role="dialog" aria-labelledby="optout_modal_label" aria-hidden="true">
+            <div class="modal-dialog message-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button id="optout_modal_close" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title" id="optout_modal_label">Switch to the Old Version of MyUW</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>This will set the old version of MyUW as your default destination the next time you sign in.</p>
+
+                        <a href="">Use the old version of MyUW</a>
+
+                        <h4>Share Your Feedback</h4>
+
+                        <p>Rate the new MyUW: insert stars here</p>
+                        <p>We want to know how to make MyUW work better for you. Let us know <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">why you're switching back to the old MyUW</a>. (Opens in a new window)</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end modal code -->
+
+
         <!-- App messages modal -->
         <div id="page-modal"></div>
         <div class="myuw-modal modal fade" id="message_modal" tabindex="-1" role="dialog" aria-labelledby="MyUWMessageModal" aria-hidden="true">
