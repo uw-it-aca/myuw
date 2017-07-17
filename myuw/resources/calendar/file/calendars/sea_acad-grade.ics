@@ -1,0 +1,355 @@
+BEGIN:VCALENDAR
+PRODID:-//Trumba Corporation//Trumba Calendar Services 0.11.15114//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+X-WR-CALNAME:UW Seattle Academic Calendar|Grade Deadlines
+X-WR-TIMEZONE:America/Los_Angeles
+METHOD:PUBLISH
+BEGIN:VEVENT
+SUMMARY:Summer B-Term Quarter W Grade and Week Number Designated for Dropped Courses Begins
+DTSTART;VALUE=DATE:20130801
+DTEND;VALUE=DATE:20130802
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/gencat/front/Grading_Sys.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130406T152556Z
+DESCRIPTION:Year: 2013\nQuarter: Summer\nEvent types: Academics\nLink: https://www.washington.edu/students/gencat/front/Grading_Sys.html
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123243992
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123243992
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Grades Due from Faculty - Summer Quarter All Terms
+DTSTART;VALUE=DATE:20130827
+DTEND;VALUE=DATE:20130828
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://depts.washington.edu/registra/learning/grading-resources/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130425T132628Z
+DESCRIPTION:Year: 2013\nQuarter: Summer\nEvent types: Academics\nLink: http://depts.washington.edu/registra/learning/grading-resources/\n\nOnline grade submission closes at 5pm
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123244025
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123244025
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:First day grades posted to transcript and GPA available on MyUW, Summer
+DTSTART;VALUE=DATE:20130828
+DTEND;VALUE=DATE:20130829
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130406T153954Z
+DESCRIPTION:Year: 2013\nQuarter: Summer\nEvent types: Academics
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123244043
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123244043
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Cancellation for Autumn Quarter based on Summer Quarter low scholarship
+DTSTART;VALUE=DATE:20130927
+DTEND;VALUE=DATE:20130928
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/gencat/front/Low_Scholarship.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130407T082437Z
+DESCRIPTION:Year: 2013\nQuarter: Summer\nEvent types: Academics\nLink: http://www.washington.edu/students/gencat/front/Low_Scholarship.html
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123248000
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123248000
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Autumn Quarter W Grade and Week Number Designated for Dropped Courses Begins
+DTSTART;VALUE=DATE:20131009
+DTEND;VALUE=DATE:20131010
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/gencat/front/Grading_Sys.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130406T152205Z
+DESCRIPTION:Year: 2013\nQuarter: Autumn\nEvent types: Academics\nLink: https://www.washington.edu/students/gencat/front/Grading_Sys.html\n\nDropped courses will appear on the transcript with a W and number indicating the week of the quarter in which the course was withdrawn.
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123243972
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123243972
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Grades Due from Faculty - Autumn Quarter
+DTSTART;VALUE=DATE:20131217
+DTEND;VALUE=DATE:20131218
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://depts.washington.edu/registra/learning/grading-resources/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130406T153622Z
+DESCRIPTION:Year: 2013\nQuarter: Autumn\nEvent types: Academics\nLink: http://depts.washington.edu/registra/learning/grading-resources/\n\nOnline grade submission closes at 5pm
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123244028
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123244028
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:First day grades posted to transcript and GPA available on MyUW, Autumn
+DTSTART;VALUE=DATE:20131218
+DTEND;VALUE=DATE:20131219
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130406T153802Z
+DESCRIPTION:Year: 2013\nQuarter: Autumn\nEvent types: Academics
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123244035
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123244035
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Cancellation for Winter Quarter based on Autumn Quarter low scholarship
+DTSTART;VALUE=DATE:20140108
+DTEND;VALUE=DATE:20140109
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/gencat/front/Low_Scholarship.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130407T082346Z
+DESCRIPTION:Year: 2013\nQuarter: Autumn\nEvent types: Academics\nLink: http://www.washington.edu/students/gencat/front/Low_Scholarship.html
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123248026
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123248026
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Winter Quarter W Grade and Week Number Designated for Dropped Courses Begins
+DTSTART;VALUE=DATE:20140120
+DTEND;VALUE=DATE:20140121
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/gencat/front/Grading_Sys.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130406T152231Z
+DESCRIPTION:Year: 2014\nQuarter: Winter\nEvent types: Academics\nLink: https://www.washington.edu/students/gencat/front/Grading_Sys.html\n\nDropped courses will appear on the transcript with a W and number indicating the week of the quarter in which the course was withdrawn.
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123243974
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123243974
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Grades Due from Faculty - Winter Quarter
+DTSTART;VALUE=DATE:20140325
+DTEND;VALUE=DATE:20140326
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://depts.washington.edu/registra/learning/grading-resources/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130406T153645Z
+DESCRIPTION:Year: 2014\nQuarter: Winter\nEvent types: Academics\nLink: http://depts.washington.edu/registra/learning/grading-resources/\n\nOnline grade submission closes at 5pm
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123244030
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123244030
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:First day grades posted to transcript and GPA available on MyUW, Winter
+DTSTART;VALUE=DATE:20140326
+DTEND;VALUE=DATE:20140327
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130406T153821Z
+DESCRIPTION:Year: 2014\nQuarter: Winter\nEvent types: Academics
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123244037
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123244037
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Cancellation for Spring Quarter based on Winter Quarter low scholarship
+DTSTART;VALUE=DATE:20140402
+DTEND;VALUE=DATE:20140403
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/gencat/front/Low_Scholarship.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130407T082443Z
+DESCRIPTION:Year: 2014\nQuarter: Winter\nEvent types: Academics\nLink: http://www.washington.edu/students/gencat/front/Low_Scholarship.html
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123248015
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123248015
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Spring Quarter W Grade and Week Number Designated for Dropped Courses Begins
+DTSTART;VALUE=DATE:20140414
+DTEND;VALUE=DATE:20140415
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/gencat/front/Grading_Sys.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130406T152258Z
+DESCRIPTION:Year: 2014\nQuarter: Spring\nEvent types: Academics\nLink: https://www.washington.edu/students/gencat/front/Grading_Sys.html\n\nDropped courses will appear on the transcript with a W and number indicating the week of the quarter in which the course was withdrawn.
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123243977
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123243977
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Grades Due from Faculty - Spring Quarter
+DTSTART;VALUE=DATE:20140617
+DTEND;VALUE=DATE:20140618
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://depts.washington.edu/registra/learning/grading-resources/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130406T153712Z
+DESCRIPTION:Year: 2014\nQuarter: Spring\nEvent types: Academics\nLink: http://depts.washington.edu/registra/learning/grading-resources/\n\nOnline grade submission closes at 5pm
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123244033
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123244033
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:First day grades posted to transcript and GPA available on MyUW, Spring
+DTSTART;VALUE=DATE:20140618
+DTEND;VALUE=DATE:20140619
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130406T153844Z
+DESCRIPTION:Year: 2014\nQuarter: Spring\nEvent types: Academics
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123244041
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123244041
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Cancellation for Summer Quarter based on Spring Quarter low scholarship
+DTSTART;VALUE=DATE:20140625
+DTEND;VALUE=DATE:20140626
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/gencat/front/Low_Scholarship.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130407T082447Z
+DESCRIPTION:Year: 2014\nQuarter: Spring\nEvent types: Academics\nLink: http://www.washington.edu/students/gencat/front/Low_Scholarship.html
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123248010
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123248010
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Summer A-Term Quarter W Grade and Week Number Designated for Dropped Courses Begins
+DTSTART;VALUE=DATE:20140630
+DTEND;VALUE=DATE:20140701
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/gencat/front/Grading_Sys.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130406T152544Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics\nLink: https://www.washington.edu/students/gencat/front/Grading_Sys.html
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123243989
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123243989
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Summer Full-Term Quarter W Grade and Week Number Designated for Dropped Courses Begins
+DTSTART;VALUE=DATE:20140826
+DTEND;VALUE=DATE:20140827
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/gencat/front/Grading_Sys.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130406T153355Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics\nLink: https://www.washington.edu/students/gencat/front/Grading_Sys.html
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123243981
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123243981
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Summer B-Term Quarter W Grade and Week Number Designated for Dropped Courses Begins
+DTSTART;VALUE=DATE:20140731
+DTEND;VALUE=DATE:20140801
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/gencat/front/Grading_Sys.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130406T152605Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics\nLink: https://www.washington.edu/students/gencat/front/Grading_Sys.html
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123243994
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123243994
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Grades Due from Faculty - Summer Quarter All Terms
+DTSTART;VALUE=DATE:20140826
+DTEND;VALUE=DATE:20140827
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://depts.washington.edu/registra/learning/grading-resources/
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130425T132543Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics\nLink: http://depts.washington.edu/registra/learning/grading-resources/\n\nOnline grade submission closes at 5pm
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123244026
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123244026
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:First day grades posted to transcript and GPA available on MyUW, Summer
+DTSTART;VALUE=DATE:20140827
+DTEND;VALUE=DATE:20140828
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130406T154007Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123244044
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123244044
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Cancellation for Autumn Quarter based on Summer Quarter low scholarship
+DTSTART;VALUE=DATE:20140926
+DTEND;VALUE=DATE:20140927
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/gencat/front/Low_Scholarship.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130407T082451Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics\nLink: http://www.washington.edu/students/gencat/front/Low_Scholarship.html
+CATEGORIES:Grade Deadlines
+UID:http://uid.trumba.com/event/123248001
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-grade?eventid=123248001
+END:VEVENT
+END:VCALENDAR
