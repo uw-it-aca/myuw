@@ -45,18 +45,12 @@
     {% include "handlebars/card/instructor_schedule/course_sche_panel.html" %}
     {% include "handlebars/card/instructor_schedule/course_resource_panel.html" %}
     {% include "handlebars/card/instructor_schedule/no_courses_card.html" %}
-    {% include "handlebars/card/instructor_schedule/future/course_card_content.html" %}
-    {% include "handlebars/card/instructor_schedule/future/course_sche_panel.html" %}
-    {% include "handlebars/card/instructor_schedule/future/course_resource_panel.html" %}
-    {% include "handlebars/card/instructor_schedule/past/course_card_content.html" %}
-    {% include "handlebars/card/instructor_schedule/past/course_sche_panel.html" %}
-    {% include "handlebars/card/instructor_schedule/past/course_resource_panel.html" %}
     {% include "handlebars/card/new_student/ns_critical_info.html" %}
     {% include "handlebars/card/new_student/ns_international_stu.html" %}
     {% include "handlebars/card/new_student/ns_summer_efs.html" %}
     {% include "handlebars/card/new_student/ns_thank_you.html" %}
     {% include "handlebars/card/new_student/ns_to_register.html" %}
-
+    {% include "handlebars/card/accounts/hr_payroll_card.html" %}
     {% include "handlebars/card/summary/accounts.html" %}
     {% include "handlebars/card/summary/schedule.html" %}
 
@@ -96,6 +90,7 @@
 {% endblock %}
 
 {% block extra_js %}
+    <script src="{% static 'js/card/accounts/hr_payroll_card.js' %}"></script>
     <script src="{% static 'js/card/quicklinks.js' %}"></script>
     {% compress js inline %}
     <script src="{% static 'js/page/landing.js' %}"></script>

@@ -1224,7 +1224,7 @@ label { font-weight: normal; margin-bottom: auto; }
         .instructor-term-menu {
             display: inline-block;
 
-            select.myuw-dropmenu { width: 6.5em; }
+            select.myuw-dropmenu { width: 5.7em; }
             select.myuw-dropmenu-selected { width: 8em; }
         }
 
@@ -1274,6 +1274,7 @@ label { font-weight: normal; margin-bottom: auto; }
                             .course-website-update {margin-top: -23px;}
                             .add-delay-message {margin-top: -18px; font-size: 75%; font-style:italic;}
                             .course-website-error-message {margin-top: -18px; font-size: 75%; font-style:italic;}
+                            div.note-content { margin-top: -10px; }
                         }
                     }
                 }
@@ -1573,7 +1574,13 @@ label { font-weight: normal; margin-bottom: auto; }
 
         ul { list-style: none; padding-left: 0; }
     }
-
+	// Visual schedule: text above the grid
+	.summer-dates {
+		font-size:.85em;
+		color: #555;
+		margin-bottom: 1.25em;
+	}
+	
     // visual schedule-period control
     .schedule-period-module {
 	    margin-bottom: 1em;
@@ -1828,9 +1835,24 @@ label { font-weight: normal; margin-bottom: auto; }
       text-align: center;
       font-size: 12px;
       line-height: 12px;
+
+        .visual-instructor-t {
+            color:#333; font-family: sans-serif;font-weight: 600; font-size: smaller;line-height: 1.4em;
+            abbr[title] {
+                cursor: help;
+                border-bottom: none;
+                text-decoration: none;
+            }
+        }
     }
     .visual-info {
     	width: 100%;
+        .visual-confirm {
+            margin-top: 25px;
+            width: 100%;
+            font-size: .8em;
+            text-align: center;
+        }
     }
     .visual-course-id {
     	position: absolute;
@@ -1862,6 +1884,8 @@ label { font-weight: normal; margin-bottom: auto; }
       color: #f8f7f0;
     }
 
+
+
     // course TBD
 
     .courseTBD { width: 100%; overflow: auto; margin: 15px 0;
@@ -1876,13 +1900,22 @@ label { font-weight: normal; margin-bottom: auto; }
         h1 { font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: @font-header-small;  }
     }
 
+    //card and page errors
+    .full-page-error, .card {
+        .text-danger {
+            i.fa {padding-right: 4px;}
+        }
+    }
+    .full-page-error {
+        .text-danger {font-size: 16px;}
+    }
 
     //ROLL-UP ERROR MESSAGE
 	#OutageCard{
 	.card{
 	    background-color: #fcf9e3;
 	    .error-rollup {
-	        i { position: absolute; top: 33px; font-size: 2em; color: #a94442; margin-top: -14px;}
+	        i { position: absolute; top: 33px; font-size: 2em; color: #a94442; margin-top: -11px;}
 	        h3 { position: relative; left: 42px; color: #a94442; width:92%;}
 			}
 		}

@@ -39,7 +39,7 @@ class TestLoginRedirects(MyuwApiTest):
 
     def test_non_student_mobile(self):
         del settings.MYUW_USER_SERVLET_URL
-        self.set_user('staff')
+        self.set_user('japplicant')
         response = self.get_home_mobile()
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.get("Location"), redirect_to_legacy_url)

@@ -4,6 +4,7 @@
         "grad": {{ user.affiliations.grad|yesno:"true, false" }},
         "undergrad": {{ user.affiliations.undergrad|yesno:"true, false" }},
         "pce": {{ user.affiliations.pce|yesno:"true, false" }},
+        "staff_employee": {{ user.affiliations.staff_employee|yesno:"true, false" }},
         "stud_employee": {{ user.affiliations.stud_employee|yesno:"true, false" }},
         "employee": {{ user.affiliations.employee|yesno:"true, false" }},
         "fyp": {{ user.affiliations.fyp|yesno:"true, false" }},
@@ -19,7 +20,8 @@
         "email_forward_url": "{{ user.email_forward_url }}",
         "email_forward_title": "{{ user.email_forward_title }}",
         "email_forward_icon": "{{ user.email_forward_icon }}",
-        "netid": "{{ user.netid }}"
+        "netid": "{{ user.netid }}",
+        "is_instructor": true
     };
     window.enabled_features = {
         {% for feature in enabled_features %}
@@ -27,14 +29,18 @@
         {% endfor %}
     }
     window.term = {
+        "display_term": "{{display_term.year}},{{display_term.quarter}}",
         "year": "{{year}}",
         "quarter": "{{quarter}}",
         "summer_term": "{{summer_term}}",
         "first_day_quarter": '{{ first_day_quarter|date:"l, F j, Y" }}',
         "last_day_instruction": '{{ last_day_instruction|date:"l, F j, Y" }}',
         "aterm_last_date": '{{ aterm_last_date|date:"l, F j, Y" }}',
-        "bterm_first_date": '{{ bterm_first_date|date:"l, F j, Y" }}'
-
+        "bterm_first_date": '{{ bterm_first_date|date:"l, F j, Y" }}',
+        "next": {
+            "year": "{{next_year}}",
+            "quarter": "{{next_quarter}}",
+        }
     };
     window.card_display_dates = {
         "is_after_grade_submission_deadline": {{ card_display_dates.is_after_grade_submission_deadline|yesno:"true, false" }},
@@ -56,6 +62,6 @@
         "is_after_summer_b_start": {{ card_display_dates.is_after_summer_b|yesno:"true, false"}},
         "last_term": "{{ card_display_dates.last_term }}",
         "in_coursevel_fetch_window": {{ card_display_dates.in_coursevel_fetch_window|yesno:"true, false"}},
-        "comparison_date": "{{ card_display_dates.comparison_date|date:"Y-m-d" }}"
+        "comparison_date": "{{ card_display_dates.comparison_date|date:"Y-m-d h:m:s" }}"
     };
     </script>

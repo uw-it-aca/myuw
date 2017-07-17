@@ -8,8 +8,7 @@ import pytz
 from django.conf import settings
 from django.utils import timezone
 from uw_sws.models import Term
-from restclients.util.datetime_convertor import convert_to_begin_of_day, \
-    convert_to_end_of_day
+from uw_sws.util import convert_to_begin_of_day, convert_to_end_of_day
 from uw_sws.section import is_a_term, is_b_term, is_full_summer_term
 from uw_sws.term import get_term_by_date, get_specific_term, \
     get_current_term, get_next_term, get_previous_term, \
@@ -377,13 +376,15 @@ def add_term_data_to_context(request, context):
 
     Includes the data, the quarter (or break), and the week of the quarter.
     """
-    cur_term = get_current_quarter(request)
-    compare = get_comparison_date(request)
+    terms = get_current_and_next_quarters(request, 2)
+    cur_term = terms[0]
+    next_term = terms[1]
 
     if cur_term is None:
         context["err"] = "No current quarter data!"
         return
 
+    compare = get_comparison_date(request)
     context['today'] = compare
     context['is_break'] = False
     if compare < cur_term.first_day_quarter:
@@ -395,7 +396,13 @@ def add_term_data_to_context(request, context):
         break_term = get_term_after(cur_term)
 
     context["year"] = cur_term.year
-    context["quarter"] = cur_term.quarter
+    context["quarter"] = cur_term.quarter.lower()
+
+    if "display_term" not in context:
+        context["display_term"] = {
+            "year": context["year"],
+            "quarter": context["quarter"]
+            }
 
     context["break_year"] = break_term.year
     context["break_quarter"] = break_term.quarter
@@ -411,6 +418,9 @@ def add_term_data_to_context(request, context):
     context["last_day_instruction"] = cur_term.last_day_instruction
     context["aterm_last_date"] = cur_term.aterm_last_date
     context["bterm_first_date"] = cur_term.bterm_first_date
+
+    context["next_year"] = next_term.year
+    context["next_quarter"] = next_term.quarter
 
 
 def current_terms_prefetch(request):

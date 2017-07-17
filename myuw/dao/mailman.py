@@ -7,13 +7,13 @@ import logging
 import re
 from django.core.mail import send_mail
 from django.conf import settings
-from restclients.sws.section import get_section_by_label,\
+from uw_sws.section import get_section_by_label,\
     is_valid_section_label
-from restclients.mailman.basic_list import get_admin_url
-from restclients.mailman.course_list import get_course_list_name,\
+from uw_mailman.basic_list import get_admin_url
+from uw_mailman.course_list import get_course_list_name,\
     exists_course_list, get_section_secondary_combined_list_name,\
     exists_section_secondary_combined_list, get_section_list_name
-from restclients.mailman.instructor_term_list import\
+from uw_mailman.instructor_term_list import\
     get_instructor_term_list_name, exists_instructor_term_list
 from myuw.util.thread import ThreadWithResponse
 from myuw.dao.exceptions import CourseRequestEmailRecipientNotFound

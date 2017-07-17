@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load set_context %}
 {% load static %}
 {% load compress %}
 
-{% block page_title %}
-MyUW: Textbooks
+{% block load_values %}
+{% set_context 'page_title' 'Textbooks' %}
 {% endblock %}
 
 {% block content %}
@@ -11,11 +12,9 @@ MyUW: Textbooks
     <div id="main-content" role="main" aria-labelledby="main"></div>
     <div id="static-links"></div>
 
-    <!-- component content templates -->
-    {% include "handlebars/banner/profile.html" %}
-
     <!-- page content templates -->
     {% include "handlebars/loading.html" %}
+    {% include "handlebars/content_err.html" %}
     {% include "handlebars/error.html" %}
     {% include "handlebars/textbooks.html" %}
 

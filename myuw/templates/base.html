@@ -116,6 +116,7 @@
 
         <h1 class="sr-only">MyUW</h1>
 
+        {% block desktop_banner %}
         <!-- message banner (desktop only) -->
         <div class="myuw-banner-desktop" id="app_messages" role="complementary">
             <div class="message-banner">
@@ -134,6 +135,7 @@
            </div>
         </div>
         <!-- end message banner -->
+        {% endblock %}
 
         <div class="myuw-body">
             <div class="myuw-wrapper">
@@ -172,6 +174,7 @@
                 {% endblock %}
                 <!-- end app_navigation -->
 
+                {% block mobile_banner %}
                 <!-- message banner (mobile only) -->
                 <div class="myuw-banner-mobile" id="app_messages" role="complementary">
                     <div class="message-banner">
@@ -190,6 +193,7 @@
                    </div>
                 </div>
                 <!-- end message banner -->
+                {% endblock %}
 
                 <div class="myuw-content">
                     <!-- app_content -->
@@ -230,7 +234,7 @@
                     </li>
                     <li class="pull-left">
                         <a href="/resource/employment" class="navigation-item hover"><span class="navigation-item-text">Employment</span>
-                            <div class="subcategories">Career Center, Husky Jobs, Employee Self-Service&#8230;</div></a>
+                            <div class="subcategories">Career Center, Husky Jobs, Workday&#8230;</div></a>
                     </li>
                 </ul>
             </div>
@@ -272,6 +276,7 @@
         <script src="{% static 'js/panel/addi_course_links.js' %}"></script>
         <script src="{% static 'js/panel/no_courses.js' %}"></script>
         <script src="{% static 'js/course_list.js' %}"></script>
+        <script src="{% static 'js/content_err.js' %}"></script>
         <script src="{% static 'js/error410.js' %}"></script>
         <script src="{% static 'js/visual_schedule.js' %}"></script>
         <script src="{% static 'js/textbooks.js' %}"></script>
@@ -332,12 +337,6 @@
         <script src="{% static 'js/card/instructor_schedule/course_card_content.js' %}"></script>
         <script src="{% static 'js/card/instructor_schedule/course_sche_panel.js' %}"></script>
         <script src="{% static 'js/card/instructor_schedule/course_resource_panel.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/future/course_card_content.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/future/course_sche_panel.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/future/course_resource_panel.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/past/course_card_content.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/past/course_sche_panel.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/past/course_resource_panel.js' %}"></script>
         <script src="{% static 'js/card/instructor_schedule/mailman/request_email_lists.js' %}"></script>
         <script src="{% static 'js/card/instructor_schedule/mailman/view_email_lists.js' %}"></script>
         <script src="{% static 'js/card/new_student/ns_critical_info.js' %}"></script>
@@ -347,6 +346,7 @@
         <script src="{% static 'js/card/new_student/ns_international_stu.js' %}"></script>
         <script src="{% static 'js/card/summary/accounts.js' %}"></script>
         <script src="{% static 'js/card/summary/schedule.js' %}"></script>
+        <script src="{% static 'js/card/summary/future_schedule.js' %}"></script>
         <script src="{% static 'js/teaching/class_list.js' %}"></script>
         {% endcompress %}
 

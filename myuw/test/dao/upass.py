@@ -1,5 +1,5 @@
 from django.test import TestCase
-from restclients.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 from myuw.dao.upass import get_upass_by_netid, around_qtr_begin,\
     in_summer_display_window
 from myuw.test import fdao_upass_override, get_request_with_user,\
