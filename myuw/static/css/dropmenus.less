@@ -6,6 +6,7 @@
     position: relative;
     margin-bottom: 16px;
 
+
     &:before {
         font-family: 'FontAwesome';
         content: "\f078";
@@ -13,9 +14,11 @@
         right: 4px;
         top: .3em;
         font-size: 12px;
+        z-index: 1;
     }
 
     select.myuw-dropmenu {
+
         /*** Remove default menu appearance ***/
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -27,7 +30,9 @@
         border: none;
         background-color: transparent;
         border-radius: 0;
-        padding: 0px 22px 4px 0px;
+        padding: 0px 0 4px 0px;
+        position: relative;
+        z-index: 2;
 
         @media @two-column {
             font-size: 18px;

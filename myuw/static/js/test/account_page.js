@@ -18,9 +18,10 @@ describe("AccountsPage", function() {
     beforeEach(function (){
         window.user.student = false;
         window.user.employee = false;
+        window.user.staff_employee = false;
     });
     describe('_get_card_order_by_affiliation', function() {
-        it('should handle single affiliation', function() {
+        it('should handle student affiliation', function() {
             var student_order = [
                 TuitionCard,
                 MedicineAccountsCard,
@@ -29,6 +30,12 @@ describe("AccountsPage", function() {
                 UPassCard,
                 AccountsCard
             ];
+            window.user.student = true;
+            var card_order = AccountsPage._get_card_order_by_affiliation();
+            assert.deepEqual(card_order, student_order)
+        });
+
+        it('should handle employee affiliation', function() {
             var employee_order = [
                 MedicineAccountsCard,
                 HRPayrollCard,
@@ -37,15 +44,25 @@ describe("AccountsPage", function() {
                 HfsCard,
                 AccountsCard
             ];
-            window.user.student = true;
-            var card_order = AccountsPage._get_card_order_by_affiliation();
-            assert.deepEqual(card_order, student_order)
-
-            window.user.student = false;
             window.user.employee = true;
             var card_order = AccountsPage._get_card_order_by_affiliation();
             assert.deepEqual(card_order, employee_order)
         });
+
+        it('should handle staff affiliation', function() {
+            var employee_order = [
+                MedicineAccountsCard,
+                LibraryCard,
+                UPassCard,
+                HfsCard,
+                AccountsCard
+            ];
+            window.user.employee = true;
+            window.user.staff_employee = true;
+            var card_order = AccountsPage._get_card_order_by_affiliation();
+            assert.deepEqual(card_order, employee_order)
+        });
+
 
         it('should default to student', function() {
             var student_order = [

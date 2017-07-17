@@ -59,9 +59,11 @@ var Landing = {
             FutureQuarterCard1,
             SummerRegStatusCard1
         ];
+        if(window.user.staff_employee) {
+            desktop_body_cards.unshift(HRPayrollCard);
+        }
         var desktop_sidebar_cards = [
             QuickLinksCard,
-            EmpFacStudentCard,
             EventsCard
         ];
         // Add in outage card if we can't get the SWS/term resource
@@ -92,9 +94,11 @@ var Landing = {
             TextbookCard,
             FutureQuarterCard1,
             SummerRegStatusCard1,
-            EmpFacStudentCard,
             EventsCard
         ];
+        if(window.user.staff_employee) {
+            mobile_cards.unshift(HRPayrollCard);
+        }
         // Add in outage card if we can't get the SWS/term resource
         if(window.webservice_outage){
             mobile_cards.unshift(OutageCard);

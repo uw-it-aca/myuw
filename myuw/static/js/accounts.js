@@ -80,8 +80,8 @@ var AccountsPage = {
                 AccountsCard
             ];
         }
-        if(window.user.employee){
-            return [
+        if(window.user.employee) {
+            var cards = [
                 MedicineAccountsCard,
                 HRPayrollCard,
                 LibraryCard,
@@ -89,8 +89,11 @@ var AccountsPage = {
                 HfsCard,
                 AccountsCard
             ];
+            if(window.user.staff_employee) {
+                cards.splice(1, 1);
+            }
+            return cards;
         }
-
     },
 
     _reset_content_divs: function() {
