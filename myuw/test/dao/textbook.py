@@ -20,7 +20,7 @@ class TestTextbooks(TestCase):
 
         books = get_textbook_by_schedule(schedule)
         self.assertEquals(len(books), 1)
-        self.assertEquals(books["13833"][0].title,
+        self.assertEquals(books[13833][0].title,
                           "2 P/S Tutorials In Introductory Physics")
 
     def test_get_verba_by_schedule(self):
