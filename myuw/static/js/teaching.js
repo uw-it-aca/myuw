@@ -18,8 +18,6 @@ var Teaching = {
             'tacoma_affil': (window.user.tacoma_affil || window.user.tacoma)
         }));
 
-        NoticeBanner.render_init($("#notice_banner_location"));
-
         Teaching.load_cards_for_viewport();
         // Set initial display state
         Teaching.is_desktop = get_is_desktop();
