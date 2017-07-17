@@ -20,7 +20,6 @@ class TestTextbooks(TestCase):
 
         books = get_textbook_by_schedule(schedule)
         self.assertEquals(len(books), 1)
-
         self.assertEquals(books[13833][0].title,
                           "2 P/S Tutorials In Introductory Physics")
 
