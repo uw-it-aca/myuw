@@ -122,12 +122,12 @@
             <div class="message-banner">
                 <div class="message-text">
 
-                    <!-- If existing new MyUW user (opted-in before 25th) -->
-                    <h2>New in MyUW<i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 20px; padding: 0 6px 0 6px;"></i>&nbsp;</h2>Quick Links, Pages, Search, and more! &nbsp;<a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn what's new in MyUW</a>
-
-                    <!-- If new MyUW user -->
-                    <h2>Welcome to the new MyUW!</h2> <a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">See what's new.</a><br/>
-                    <span class="small">Not ready yet? <a id="optout_toggle" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW.</a></span>
+                    {% if user.affiliations.student %}<!-- If undergrad student -->
+                        <h2>New in MyUW<i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 20px; padding: 0 6px 0 6px;"></i>&nbsp;</h2>Quick Links, Pages, Search, and more! &nbsp;<a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn what's new in MyUW</a>
+                    {% else %} <!-- Everyone else -->
+                        <h2>Welcome to the new MyUW!</h2>&nbsp;&nbsp;<strong><a style="font-weight:bold;" id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">See what's new.</a></strong><br/>
+                        <span class="small">Not ready yet? <a id="optout_toggle" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW.</a></span>
+                    {% endif %}
 
 
                 </div>
@@ -389,10 +389,11 @@
                         <h3 class="modal-title" id="optout_modal_label">Switch to the Old Version of MyUW</h3>
                     </div>
                     <div class="modal-body">
-                        <p>This will set the old version of MyUW as your default destination the next time you sign in.</p>
+                        <p>Use the old version of MyUW as your default destination the next time you sign in.</p>
 
-                        <a href="">Use the old version of MyUW</a>
+                        <a href="/choose/legacy" title="Go to the old version of MyUW">Use the old version of MyUW</a>
 
+                        <br/><br/>
                         <h4>Share Your Feedback</h4>
 
                         <p>Rate the new MyUW:
@@ -400,7 +401,7 @@
                             <a href=""><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 2 of 5 stars</span></a>
                             <a href=""><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 3 of 5 stars</span></a>
                             <a href=""><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 4 of 5 stars</span></a>
-                            <a href=""><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 5 of 5 stars</span></a>
+                            <a href=""><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 1 of 5 stars</span></a>
 
                         </p>
                         <p>We want to know how to make MyUW work better for you. Let us know <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">why you're switching back to the old MyUW</a>. (Opens in a new window)</p>
