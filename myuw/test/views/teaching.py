@@ -52,5 +52,50 @@ class TestTeachingMethods(MyuwApiTest):
         self.assertEquals(response.context['display_term']["year"], '2013')
         self.assertEquals(response.context['display_term']["quarter"],
                           'spring')
+        self.assertEquals(response.context['display_term'],
+                          {'quarter': u'spring', 'year': u'2013'})
         self.assertEquals(response.context['section'],
                           "2013,spring,TRAIN,101/A")
+
+        url = reverse("myuw_section_page",
+                      kwargs={'year': '2013', 'quarter': 'Spring',
+                              'section': 'TRAIN,101/A'})
+        self.set_user('bill100')
+        response = self.client.get(
+            url,
+            HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['section'],
+                          "2013,Spring,TRAIN,101/A")
+        self.assertEquals(response.context['display_term'],
+                          {'quarter': u'Spring', 'year': u'2013'})
+
+    @skipIf(missing_url("myuw_photo_list",
+                        kwargs={'year': '2013', 'quarter': 'spring',
+                                'section': 'TRAIN,101/A'}),
+            "myuw urls not configured")
+    def test_instructor_section_access(self):
+        url = reverse("myuw_photo_list",
+                      kwargs={'year': '2013', 'quarter': 'spring',
+                              'section': 'TRAIN,101/A'})
+        self.set_user('bill')
+        response = self.client.get(
+            url,
+            HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['section'],
+                          "2013,spring,TRAIN,101/A")
+        self.assertEquals(response.context['display_term'],
+                          {'quarter': u'spring', 'year': u'2013'})
+
+        url = reverse("myuw_photo_list",
+                      kwargs={'year': '2013', 'quarter': 'Spring',
+                              'section': 'TRAIN,101/A'})
+        response = self.client.get(
+            url,
+            HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['section'],
+                          "2013,Spring,TRAIN,101/A")
+        self.assertEquals(response.context['display_term'],
+                          {'quarter': u'Spring', 'year': u'2013'})
