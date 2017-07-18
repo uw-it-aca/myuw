@@ -187,8 +187,13 @@
                 <div class="myuw-banner-mobile" id="app_messages" role="complementary">
                     <div class="message-banner">
                         <div class="message-text">
-                    <h2>New in MyUW<i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 20px; padding: 0 6px 0 6px;"></i>&nbsp;</h2>Quick Links, Pages, Search, and more! &nbsp;<a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn what's new in MyUW</a>
-                            </div>
+                            {% if user.affiliations.student %}<!-- If undergrad student -->
+                                <h2>New in MyUW<i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 20px; padding: 0 6px 0 6px;"></i>&nbsp;</h2>Quick Links, Pages, Search, and more! &nbsp;<a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn what's new in MyUW</a>
+                            {% else %} <!-- Everyone else -->
+                                <h2>Welcome to the new MyUW!</h2>&nbsp;&nbsp;<strong><a style="font-weight:bold;" id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">See what's new.</a></strong><br/>
+                                <span class="small">Not ready yet? <a id="optout_toggle" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW.</a></span>
+                            {% endif %}
+                        </div>
                         {% if banner_messages %}
                         <div id="message_banner_location">
                             <div id="messages" class="advert message-text">
@@ -451,6 +456,7 @@
                     </div>
                     <div class="modal-body">
                         {% if user.affiliations.student %}
+                            <!-- If undergrad students -->
                             <ul>
                                 <li><strong>Menu & Pages</strong> - We moved cards onto pages. Use the menu at top left to navigate to Academics, Profile, and Accounts. The home page will still show timely content and notices, like your registration date and financial aid deadlines.</li>
                                 {% if user.affiliations.instructor %}<li><strong>Teaching</strong> schedule and resources help you stay on top of your work.</li>{% endif %}
@@ -462,8 +468,18 @@
                             </ul>
                             <p><strong><a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Let us know what you think!</a> We’ll keep making tweaks to improve MyUW for you.</strong></p>
 
+                            <!-- End Undergrad -->
+
+                            <!-- If graduate -->
+                                <!-- If also instructor -->
+                                    <!-- Show Grad TA Content -->
+                                <!-- else -->
+                                    <!-- Show regular grad student content -->
+                            <!-- End Grad student -->
+
+
                         {% else %} <!-- End students -->
-                            {% if user.affiliations.instructor %}
+                            {% if user.affiliations.instructor %} <!-- Show to instructors -->
                                 <p>With the new MyUW, you’ll be able to easily keep track of your teaching schedule and access your class information and tools. We’ve curated frequently-visited teaching resources so they are findable and organized.</p>
 
                                 <h4>What's New</h4>
@@ -497,6 +513,11 @@
                             <p>We want to know how to make MyUW work better for you. Let us know what you think of it so far and share your ideas for future improvements. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Send us your feedback.</a></p>
 
                         {% endif %}<!-- End ALL -->
+
+                        {% if user.affiliations.student %} <!-- If undergrad student -->
+                            <a href="/choose/legacy" title="Go to the old version of MyUW">Use the old version of MyUW</a>
+                        <!-- Endif -->
+                        {% endif %}
 
                     </div>
                     <div class="modal-footer">
