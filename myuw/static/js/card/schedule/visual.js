@@ -5,6 +5,7 @@ var VisualScheduleCard = {
 
     should_display_card: function() {
         if (!window.user.student) {
+            return false;
         }
         return true;
     },
