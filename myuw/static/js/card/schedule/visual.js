@@ -4,10 +4,10 @@ var VisualScheduleCard = {
     term: 'current',
 
     should_display_card: function() {
-        if (!window.user.student) {
-            return false;
+        if (window.user.student || window.user.instructor ) {
+            return true;
         }
-        return true;
+        return false;
     },
 
 
@@ -26,7 +26,7 @@ var VisualScheduleCard = {
         if(VisualScheduleCard._has_all_responses()){
             var course_data = WSData.normalized_course_data(VisualScheduleCard.term);
             var instructed_course_data = WSData.normalized_instructed_course_data(VisualScheduleCard.term);
-            if (course_data || instructed_course_data){
+            if (course_data && course_data.sections.length || instructed_course_data && instructed_course_data.sections.length){
                 VisualScheduleCard._render();
             } else {
                 VisualScheduleCard.render_error();
