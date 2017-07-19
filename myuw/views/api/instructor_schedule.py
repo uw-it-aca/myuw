@@ -16,7 +16,8 @@ from myuw.dao.gws import is_grad_student
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
-    get_limit_estimate_enrollment_for_section, get_instructor_section
+    get_limit_estimate_enrollment_for_section, get_instructor_section,\
+    get_prior_instructed_terms, get_future_instructed_terms
 from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.class_website import get_page_title_from_url, is_valid_page_url
 from myuw.dao.term import get_current_quarter, is_past, is_future
@@ -27,14 +28,11 @@ from myuw.views.rest_dispatch import RESTDispatch
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.pws import get_url_key_for_regid
 from myuw.dao.enrollment import get_code_for_class_level
-from uw_sws.term import get_term_before, get_term_after
 from restclients_core.exceptions import DataFailureException
 
 
 logger = logging.getLogger(__name__)
 EARLY_FALL_START = "EARLY FALL START"
-MYUW_PRIOR_INSTRUCTED_TERM_COUNT = 24
-MYUW_FUTURE_INSTRUCTED_TERM_COUNT = 2
 
 
 class InstSche(RESTDispatch):
@@ -311,27 +309,16 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
 
 def _load_related_terms(request):
     current_term = get_current_quarter(request)
-    json_data = current_term.json_data()
-    terms = [json_data]
-    term = current_term
-    for i in range(MYUW_PRIOR_INSTRUCTED_TERM_COUNT):
-        try:
-            term = get_term_before(term)
-            json_data = term.json_data()
-            terms.insert(0, json_data)
-        except DataFailureException as ex:
-            if ex.status == 404:
-                pass
+    terms = []
 
-    term = current_term
-    for i in range(MYUW_FUTURE_INSTRUCTED_TERM_COUNT):
-        try:
-            term = get_term_after(term)
-            json_data = term.json_data()
-            terms.append(json_data)
-        except DataFailureException as ex:
-            if ex.status == 404:
-                pass
+    for term in get_prior_instructed_terms(current_term):
+        terms.append(term.json_data())
+
+    terms.append(current_term.json_data())
+
+    for term in get_future_instructed_terms(current_term):
+        terms.append(term.json_data())
+
     return terms
 
 

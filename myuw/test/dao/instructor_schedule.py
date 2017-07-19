@@ -7,7 +7,7 @@ from myuw.test import fdao_sws_override, fdao_pws_override
 from myuw.dao.instructor_schedule import is_instructor,\
     get_current_quarter_instructor_schedule,\
     get_limit_estimate_enrollment_for_section,\
-    get_instructor_section
+    get_instructor_section, get_prior_instructed_terms
 from userservice.user import UserServiceMiddleware
 
 
@@ -49,3 +49,21 @@ class TestInstructorSchedule(TestCase):
 
         limit = get_limit_estimate_enrollment_for_section(section)
         self.assertEqual(limit, 5)
+
+    def test_get_prior_instructed_terms(self):
+        term = Term()
+        term.year = 2013
+        term.quarter = 'spring'
+        prior = get_prior_instructed_terms(term)
+        # test assending order
+        self.assertEqual(len(prior), 5)
+        self.assertEqual(prior[0].quarter, 'winter')
+        self.assertEqual(prior[0].year, 2012)
+        self.assertEqual(prior[1].quarter, 'spring')
+        self.assertEqual(prior[1].year, 2012)
+        self.assertEqual(prior[2].quarter, 'summer')
+        self.assertEqual(prior[2].year, 2012)
+        self.assertEqual(prior[3].quarter, 'autumn')
+        self.assertEqual(prior[3].year, 2012)
+        self.assertEqual(prior[0].quarter, 'winter')
+        self.assertEqual(prior[4].year, 2013)
