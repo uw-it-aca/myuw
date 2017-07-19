@@ -122,7 +122,7 @@
             <div class="message-banner">
                 <div class="message-text">
 
-                    {% if user.affiliations.student %}<!-- If undergrad student -->
+                    {% if user.affiliations.undergrad %}
                         <h2>New in MyUW<i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 20px; padding: 0 6px 0 6px;"></i>&nbsp;</h2>Quick Links, Pages, Search, and more! &nbsp;<a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn what's new in MyUW</a>
                     {% else %} <!-- Everyone else -->
                         <h2>Welcome to the new MyUW!</h2>&nbsp;&nbsp;<strong><a style="font-weight:bold;" id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">See what's new.</a></strong><br/>
@@ -187,7 +187,7 @@
                 <div class="myuw-banner-mobile" id="app_messages" role="complementary">
                     <div class="message-banner">
                         <div class="message-text">
-                            {% if user.affiliations.student %}<!-- If undergrad student -->
+                            {% if user.affiliations.undergrad %}
                                 <h2>New in MyUW<i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 20px; padding: 0 6px 0 6px;"></i>&nbsp;</h2>Quick Links, Pages, Search, and more! &nbsp;<a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn what's new in MyUW</a>
                             {% else %} <!-- Everyone else -->
                                 <h2>Welcome to the new MyUW!</h2>&nbsp;&nbsp;<strong><a style="font-weight:bold;" id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">See what's new.</a></strong><br/>
@@ -455,8 +455,7 @@
                         </h3>
                     </div>
                     <div class="modal-body">
-                        {% if user.affiliations.student %}
-                            <!-- If undergrad students -->
+                        {% if user.affiliations.undergrad %}
                             <ul>
                                 <li><strong>Menu & Pages</strong> - We moved cards onto pages. Use the menu at top left to navigate to Academics, Profile, and Accounts. The home page will still show timely content and notices, like your registration date and financial aid deadlines.</li>
                                 {% if user.affiliations.instructor %}<li><strong>Teaching</strong> schedule and resources help you stay on top of your work.</li>{% endif %}
@@ -514,7 +513,7 @@
 
                         {% endif %}<!-- End ALL -->
 
-                        {% if user.affiliations.student %} <!-- If undergrad student -->
+                        {% if user.affiliations.undergrad %}
                             <a id="optout_toggle" href="#" data-toggle="modal" data-target="#optout_modal" data-dismiss="modal">Switch back to the old MyUW.</a>
                         <!-- Endif -->
                         {% endif %}
