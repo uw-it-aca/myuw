@@ -56,7 +56,7 @@
 
   {{#if section_references}}<!-- Summary list of courses for over 10 -->
   <div class="myuw-card" aria-labelledby="your_courses">
-      <h3 class="myuw-card-title">{{ucfirst quarter}} {{year}} Courses</h3>
+      <h3 class="myuw-card-title" id="your_courses">{{ucfirst quarter}} {{year}} Courses</h3>
       <p class="myuw-note">Due to the high number of course sections, course details have been omitted. Select a section for details.</p>
       <ul class="unstyled-list">
           {{#each section_references}}
