@@ -1,0 +1,4 @@
+to add mock calendar file:
+1. save a calendar ical feed file
+2. modify year and the start/end dates in the file
+3. fix broken lines in the file

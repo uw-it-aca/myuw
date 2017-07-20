@@ -209,6 +209,7 @@
         <!-- footer -->
         {% block footer %}
         <div id="app_footer">
+	        {% if user.affiliations.student %}
             <div class="myuw-wrapper navigation-bar" role="navigation" aria-labelledby="categories">
                 <h2 id="categories" class="sr-only">Categorized Resources</h2>
                 <ul class="clearfix navigation-list">
@@ -238,7 +239,7 @@
                     </li>
                 </ul>
             </div>
-
+			{% endif %}
             <div class="footer-bar" role="contentinfo">
                 <div class="myuw-wrapper footer-links" style="position:relative;">
                     <ul class="footer-links-list">
@@ -320,7 +321,6 @@
         <script src="{% static 'js/card/future_quarter.js' %}"></script>
         <script src="{% static 'js/card/events.js' %}"></script>
         <script src="{% static 'js/card/thrive.js' %}"></script>
-        <script src="{% static 'js/card/emp_fac_student.js' %}"></script>
         <script src="{% static 'js/card/outage.js' %}"></script>
         <script src="{% static 'js/card/schedule/course_sche_panel.js' %}"></script>
         <script src="{% static 'js/card/schedule/course_resource_panel.js' %}"></script>
