@@ -3,6 +3,7 @@ from django.conf import settings
 from uw_sws.dao import SWS_DAO
 from userservice.user import UserService
 from myuw.models import User
+from uw_pws import PWS
 
 
 def get_netid_of_current_user():
@@ -11,12 +12,10 @@ def get_netid_of_current_user():
 
 def get_user_model():
     user_netid = get_netid_of_current_user()
-    try:
-        user = User.objects.get(uwnetid=user_netid)
-    except User.DoesNotExist:
-        user = User(uwnetid=user_netid)
+    user, created = User.objects.get_or_create(uwnetid=user_netid)
+    if created:
+        user.uwregid = PWS().get_person_by_netid(user_netid).uwregid
         user.save()
-
     return user
 
 
