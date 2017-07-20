@@ -2,6 +2,7 @@ from myuw.views.rest_dispatch import RESTDispatch
 from myuw.views.error import handle_exception
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
+from myuw.dao.instructor_schedule import is_instructor
 from myuw.dao.term import get_comparison_date, get_current_quarter
 from uw_trumba import get_calendar_by_name
 from uw_sws.term import get_term_after
@@ -26,6 +27,8 @@ class AcademicEvents(RESTDispatch):
             events = []
 
             cal_names = ['sea_acad-inst', 'sea_acad-holidays']
+            if is_instructor(request):
+                cal_names = cal_names + ['sea_acad-regi', 'sea_acad-grade']
 
             calendars = []
             for cal in cal_names:
@@ -164,6 +167,12 @@ class AcademicEvents(RESTDispatch):
         categories = {'all': True}
 
         calendar_name = event.get("calendar_name")
+
+        if "sea_acad-grade" == calendar_name:
+            categories["grade"] = True
+
+        if "sea_acad-regi" == calendar_name:
+            categories["registration"] = True
 
         if "sea_acad-holidays" == calendar_name:
             categories["breaks"] = True
