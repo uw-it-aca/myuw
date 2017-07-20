@@ -58,6 +58,12 @@ $(window.document).ready(function() {
         WSData.log_interaction("nav_menu_visual_schedule");
     });
 
+    $(".opt-out-rate-myuw").bind("click", function(ev) {
+        var rating_value = ev.currentTarget.getAttribute("rel");
+        WSData.log_interaction("opt-out_rate_myuw_" + rating_value);
+    });
+
+
     // handle clicking on resources
     $("#categories_link").bind("click", function(ev) {
         ev.preventDefault();
