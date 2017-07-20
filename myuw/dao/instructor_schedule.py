@@ -173,11 +173,10 @@ def is_instructor(request):
         person = get_person_of_current_user()
         sections = _get_instructor_sections(person, term, future_terms=2)
         if len(sections) > 0:
-            seen = SeenInstructor.objects.create(
+            SeenInstructor.objects.update_or_create(
                 user=user,
                 year=term.year,
                 quarter=term.quarter)
-            seen.save()
             return True
 
         return False
