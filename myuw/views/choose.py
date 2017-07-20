@@ -17,7 +17,8 @@ logger = logging.getLogger(__name__)
 def new_site(request):
     timer = Timer()
     set_preference_to_new_myuw(get_netid_of_current_user())
-    log_msg_with_affiliation(logger, timer, request, "Choose new myuw")
+    log_msg_with_affiliation(logger, timer, request,
+                             add_referer(request, "Choose new myuw"))
     return HttpResponseRedirect(reverse("myuw_home"))
 
 
@@ -25,5 +26,10 @@ def new_site(request):
 def old_site(request):
     timer = Timer()
     set_preference_to_old_myuw(get_netid_of_current_user())
-    log_msg_with_affiliation(logger, timer, request, "Choose old myuw")
+    log_msg_with_affiliation(logger, timer, request,
+                             add_referer(request, "Choose old myuw"))
     return redirect_to_legacy_site()
+
+
+def add_referer(request, msg):
+    return "%s (Referer: %s)" % (msg, request.META.get('HTTP_REFERER'))
