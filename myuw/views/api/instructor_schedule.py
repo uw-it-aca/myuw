@@ -4,35 +4,34 @@ from myuw.views.error import handle_exception, not_instructor_error
 import logging
 from django.http import HttpResponse
 from operator import itemgetter
-from myuw.logger.timer import Timer
+from restclients_core.exceptions import DataFailureException
 from uw_sws.person import get_person_by_regid
 from uw_sws.enrollment import get_enrollment_by_regid_and_term
-from uw_sws.term import get_specific_term
+from uw_sws.term import get_specific_term, get_term_before, get_term_after
 from uw_gradepage.grading_status import get_grading_status
+from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_course_url
+from myuw.dao.class_website import get_page_title_from_url, is_valid_page_url
 from myuw.dao.course_color import get_colors_by_schedule
+from myuw.dao.enrollment import get_code_for_class_level
 from myuw.dao.gws import is_grad_student
-from myuw.dao.library import get_subject_guide_by_section
-from myuw.dao.mailman import get_section_email_lists
+from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
     get_limit_estimate_enrollment_for_section, get_instructor_section
-from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
-from myuw.dao.class_website import get_page_title_from_url, is_valid_page_url
+from myuw.dao.library import get_subject_guide_by_section
+from myuw.dao.mailman import get_section_email_lists
+from myuw.dao.pws import get_url_key_for_regid
 from myuw.dao.term import get_current_quarter, is_past, is_future
 from myuw.logger.logresp import log_success_response
 from myuw.logger.logback import log_exception
+from myuw.logger.timer import Timer
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.rest_dispatch import RESTDispatch
-from myuw.dao.exceptions import NotSectionInstructorException
-from myuw.dao.pws import get_url_key_for_regid
-from myuw.dao.enrollment import get_code_for_class_level
-from uw_sws.term import get_term_before, get_term_after
-from restclients_core.exceptions import DataFailureException
+from myuw.views.api.base_schedule import irregular_start_end
 
 
 logger = logging.getLogger(__name__)
-EARLY_FALL_START = "EARLY FALL START"
 MYUW_PRIOR_INSTRUCTED_TERM_COUNT = 24
 MYUW_FUTURE_INSTRUCTED_TERM_COUNT = 2
 
@@ -127,10 +126,11 @@ def set_course_resources(section_data, section, person):
     t.start()
     threads.append((t, 'canvas_url', section_data))
 
-    t = ThreadWithResponse(target=get_subject_guide_by_section,
-                           args=(section,))
-    t.start()
-    threads.append((t, 'lib_subj_guide', section_data))
+    if section.sln:
+        t = ThreadWithResponse(target=get_subject_guide_by_section,
+                               args=(section,))
+        t.start()
+        threads.append((t, 'lib_subj_guide', section_data))
 
     t = ThreadWithResponse(target=get_section_email_lists,
                            args=(section, True))
@@ -221,9 +221,17 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
         section_data[
             'allows_secondary_grading'] = section.allows_secondary_grading
 
-        if EARLY_FALL_START == section.institute_name:
+        if section.is_early_fall_start():
+            section_data["cc_display_dates"] = True
             section_data["early_fall_start"] = True
             json_data["has_early_fall_start"] = True
+        else:
+            if section.is_campus_pce():
+                group_independent_start = irregular_start_end(
+                    schedule.term, section, section.summer_term)
+                if group_independent_start:
+                    section_data["cc_display_dates"] = True
+
         # if section.is_primary_section:
         section_data['grade_submission_delegates'] = []
         for delegate in section.grade_submission_delegates:
