@@ -11,7 +11,12 @@ def get_netid_of_current_user():
 
 def get_user_model():
     user_netid = get_netid_of_current_user()
-    user, created = User.objects.get_or_create(uwnetid=user_netid)
+    try:
+        user = User.objects.get(uwnetid=user_netid)
+    except User.DoesNotExist:
+        user = User(uwnetid=user_netid)
+        user.save()
+
     return user
 
 
