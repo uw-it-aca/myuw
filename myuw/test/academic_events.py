@@ -54,6 +54,18 @@ class TestAcademicEvents(TestCase):
         self.assertTrue(categories['all'])
         self.assertTrue(categories['classes'])
 
+        event['calendar_name'] = 'sea_acad-regi'
+        categories = AcademicEvents().get_event_categories(event)
+        self.assertEquals(len(categories.keys()), 2)
+        self.assertTrue(categories['all'])
+        self.assertTrue(categories['registration'])
+
+        event['calendar_name'] = 'sea_acad-grade'
+        categories = AcademicEvents().get_event_categories(event)
+        self.assertEquals(len(categories.keys()), 2)
+        self.assertTrue(categories['all'])
+        self.assertTrue(categories['grade'])
+
         event['calendar_name'] = 'sea_acad-rand'
         event['summary'] = '* Winter break'
         categories = AcademicEvents().get_event_categories(event)

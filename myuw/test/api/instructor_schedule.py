@@ -124,3 +124,26 @@ class TestInstructorSection(MyuwApiTest):
                               course_number, course_section)
 
         self.assertEqual(resp.status_code, 403)
+
+    def test_billpce_current_term(self):
+        now_request = get_request()
+        get_request_with_user('bill', now_request)
+        schedule = get_current_quarter_instructor_schedule(now_request)
+
+        resp = InstScheCurQuar().GET(now_request)
+        data = json.loads(resp.content)
+
+        self.assertEqual(len(data['sections']), 6)
+        section1 = data['sections'][0]
+        self.assertFalse('cc_display_dates' in section1)
+        self.assertFalse(section1['sln'] == 0)
+
+        get_request_with_user('billpce', now_request)
+        schedule = get_current_quarter_instructor_schedule(now_request)
+
+        resp = InstScheCurQuar().GET(now_request)
+        data = json.loads(resp.content)
+        self.assertEqual(len(data['sections']), 5)
+        section1 = data['sections'][0]
+        self.assertTrue(section1['cc_display_dates'])
+        self.assertTrue(section1['sln'] == 0)
