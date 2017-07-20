@@ -45,6 +45,8 @@ def get_all_affiliations(request):
                  according to the SWS Enrollment.
     ["official_tacoma"]: True if the user is an UW Tacoma student
                 according to the SWS Enrollment.
+    ["official_pce"]: True if the user is an UW PCE student
+                according to the SWS Enrollment.
     """
 
     if hasattr(request, 'myuw_user_affiliations'):
@@ -108,7 +110,8 @@ def _get_campuses_by_schedule(schedule):
     """
     campuses = {"seattle": False,
                 "bothell": False,
-                "tacoma": False}
+                "tacoma": False,
+                "pce": False}
 
     if schedule is not None and len(schedule.sections) > 0:
         for section in schedule.sections:
@@ -118,6 +121,8 @@ def _get_campuses_by_schedule(schedule):
                 campuses["bothell"] = True
             elif section.course_campus == "Tacoma":
                 campuses["tacoma"] = True
+            elif section.course_campus == "PCE":
+                campuses["pce"] = True
             else:
                 pass
     return campuses
@@ -126,7 +131,8 @@ def _get_campuses_by_schedule(schedule):
 def _get_official_campuses(campuses):
     official_campuses = {'official_seattle': False,
                          'official_bothell': False,
-                         'official_tacoma': False}
+                         'official_tacoma': False,
+                         'official_pce': False}
     for campus in campuses:
         if campus.lower() == "seattle":
             official_campuses['official_seattle'] = True
@@ -134,6 +140,8 @@ def _get_official_campuses(campuses):
             official_campuses['official_tacoma'] = True
         if campus.lower() == "bothell":
             official_campuses['official_bothell'] = True
+        if campus.lower() == "pce":
+            official_campuses['official_pce'] = True
     return official_campuses
 
 
@@ -151,6 +159,8 @@ def get_base_campus(request):
             campus = "bothell"
         if affiliations["official_tacoma"]:
             campus = "tacoma"
+        if affiliations["official_pce"]:
+            campus = "pce"
     except KeyError:
         try:
             if affiliations["seattle"]:
@@ -244,3 +254,45 @@ def affiliation_prefetch():
             wrapped_is_clinician,
             wrapped_is_instructor,
             ]
+
+
+def get_identity_log_str(request):
+    """
+    Return "(Affiliations: <affiliations>, <campus codes>)"
+    """
+    res = "(Affiliations:"
+    no_affiliation_lengthmark = len(res)
+    affi = get_all_affiliations(request)
+    if affi["grad"]:
+        res += ' Grad'
+    if affi["undergrad"]:
+        res += ' Undergrad'
+    if affi["pce"]:
+        res += ' PCE-student'
+    if affi["faculty"]:
+        res += ' Faculty'
+    if affi["staff_employee"]:
+        res += ' Staff'
+    if affi["instructor"]:
+        res += ' Instructor'
+    if affi["clinician"]:
+        res += 'Clinician'
+    if affi["employee"]:
+        res += ' Employee'
+    if len(res) == no_affiliation_lengthmark:
+        res += 'None'
+
+    res += ', Campuses:'
+    no_campus_lengthmark = len(res)
+    if affi["seattle"] or affi["official_seattle"]:
+        res += ' Seattle'
+    if affi["bothell"] or affi["official_bothell"]:
+        res += ' Bothell'
+    if affi["tacoma"] or affi["official_tacoma"]:
+        res += ' Tacoma'
+    if affi["pce"] or affi["official_pce"]:
+        res += ' PCE'
+    if len(res) == no_campus_lengthmark:
+        res += 'None'
+    res += ') '
+    return res

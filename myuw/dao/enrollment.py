@@ -11,6 +11,7 @@ from uw_sws.enrollment import enrollment_search_by_regid
 from myuw.dao import is_using_file_dao
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import (get_current_quarter,
+                           get_current_and_next_quarters,
                            get_prev_num_terms,
                            get_comparison_date)
 from restclients_core.exceptions import DataFailureException
@@ -81,14 +82,19 @@ def get_prev_enrollments_with_open_sections(request, num_of_prev_terms):
 def get_main_campus(request):
     campuses = []
     try:
-        enrollment = get_current_quarter_enrollment(request)
-        for major in enrollment.majors:
-            campuses.append(major.campus)
+        result_dict = get_enrollments_of_terms(
+            get_current_and_next_quarters(request, 2))
+
+        for term in result_dict.keys():
+            enrollment = result_dict.get(term)
+            for major in enrollment.majors:
+                if major.campus and major.campus not in campuses:
+                    campuses.append(major.campus)
     except DataFailureException as ex:
-        logger.error("get_current_quarter_enrollment: %s" % ex)
+        logger.error("get_main_campus: %s" % ex)
         raise IndeterminateCampusException()
     except Exception as ex:
-        logger.error("get_current_quarter_enrollment: %s" % ex)
+        logger.error("get_main_campus: %s" % ex)
         pass
 
     return campuses

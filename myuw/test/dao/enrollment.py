@@ -4,7 +4,8 @@ from myuw.dao.term import get_current_quarter, get_previous_quarter,\
     get_next_quarter, get_term_before, get_term_after
 from myuw.dao.enrollment import get_current_quarter_enrollment,\
     get_enrollment_for_term, get_enrollments_of_terms,\
-    get_prev_enrollments_with_open_sections, is_ended
+    get_prev_enrollments_with_open_sections, is_ended,\
+    get_main_campus
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user
 
@@ -143,3 +144,33 @@ class TestDaoEnrollment(TestCase):
         self.assertTrue('2013,spring,CPROGRM,712/A' in sections)
         s1 = sections.get('2013,spring,CPROGRM,712/A')
         self.assertEqual(str(s1.end_date), '2013-06-28')
+
+    def test_get_main_campus(self):
+        req = get_request_with_user('javerage',
+                                    get_request_with_date("2013-04-10"))
+        campus = get_main_campus(req)
+        self.assertEqual(len(campus), 1)
+        self.assertEqual(campus[0], 'Seattle')
+
+        req = get_request_with_user('jbothell',
+                                    get_request_with_date("2013-04-10"))
+        campus = get_main_campus(req)
+        self.assertEqual(len(campus), 1)
+        self.assertEqual(campus[0], 'Bothell')
+
+        req = get_request_with_user('eight',
+                                    get_request_with_date("2013-04-10"))
+        campus = get_main_campus(req)
+        self.assertEqual(len(campus), 1)
+        self.assertEqual(campus[0], 'Tacoma')
+
+        req = get_request_with_user('jpce',
+                                    get_request_with_date("2013-04-10"))
+        campus = get_main_campus(req)
+        self.assertEqual(len(campus), 1)
+        self.assertEqual(campus[0], 'Seattle')
+
+        req = get_request_with_user('jeos',
+                                    get_request_with_date("2013-04-10"))
+        campus = get_main_campus(req)
+        self.assertEqual(len(campus), 0)
