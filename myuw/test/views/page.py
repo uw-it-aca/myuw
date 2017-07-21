@@ -81,3 +81,18 @@ class TestPageMethods(MyuwApiTest):
             url,
             HTTP_USER_AGENT='Fake iPhone Agent')
         self.assertEquals(response.status_code, 302)
+
+    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
+    def test_instructor(self):
+        url = reverse("myuw_home")
+        self.set_user('bill')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+        self.set_user('billpce')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+        self.set_user('billseata')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)

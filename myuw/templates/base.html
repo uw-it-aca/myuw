@@ -454,8 +454,8 @@
                         </h3>
                     </div>
                     <div class="modal-body">
-                        {% if user.affiliations.undergrad %}
-                            <!-- If undergrad students -->
+                        {% if user.affiliations.student %}
+                            {% if user.affiliations.undergrad %}
                                 <ul>
                                     <li><strong>Menu & Pages</strong> - We moved cards onto pages. Use the menu at top left to navigate to Academics, Profile, and Accounts. The home page will still show timely content and notices, like your registration date and financial aid deadlines.</li>
                                     {% if user.affiliations.instructor %}<li><strong>Teaching</strong> schedule and resources help you stay on top of your work.</li>{% endif %}
@@ -466,9 +466,9 @@
                                     <li><strong>Log out easier</strong> - We moved the logout link to the top right corner of every page: look for “Sign out.”</li>
                                 </ul>
                                 <p><strong><a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Let us know what you think!</a> We’ll keep making tweaks to improve MyUW for you.</strong></p>
-                            <!-- End Undergrad -->
+                            {% endif %} <!-- End undergrad student -->
 
-                            <!-- If graduate student -->
+                            {% if user.affiliations.grad %}
                                 <p>Easily access class information and tools, frequently-visited resources, and your UW accounts. As your quarter rolls on, we'll present timely information and resources on the home page.</p>
                                 <h4>What's New</h4>
                                 <ul>
@@ -477,57 +477,52 @@
                                     <li><strong>Textbooks</strong> for all your classes listed together</li>
                                     <li><strong>Quick Links</strong> a customizable list of popular and recently visited pages</li>
                                     <li><strong>Academic Calendar</strong> to reference when planning</li>
-                                    <!-- If also instructor -->
+                                    {% if user.affiliations.instructor %} <!-- If also instructor -->
                                         <!-- Show Grad TA Content list -->
                                         <li><strong>GradePage and Course Evaluation</strong> status for your classes</li>
                                         <li><strong>Class Email Lists</strong> are easier to create and manage</li>
-                                    <!-- end grad TA content -->
+                                    {% endif %} <!-- end grad TA content -->
                                     <li><strong>Husky, Library, and Library account</strong> information is always visible</li>
                                 </ul>
                                 <h4>Share Your Feedback</h4>
                                 <p>We want to know how to make MyUW work better for you. Let us know what you think of it so far and share your ideas for future improvements. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Send us your feedback.</a></p>
-                            <!-- End Grad student -->
-
+                            {% endif %} <!-- End Grad student -->
 
                         {% else %} <!-- End students -->
-                            {% if user.affiliations.instructor %} <!-- Show to instructors -->
-                                <p>With the new MyUW, you can easily keep track of your teaching schedule and access your class information and tools. We’ve curated frequently-visited teaching resources so they are easy to find and convenient.</p>
+                            {% if user.affiliations.employee %} <!-- Start employees -->
+                                {% if user.affiliations.instructor %} <!-- Show to instructors -->
+                                    <p>With the new MyUW, you can easily keep track of your teaching schedule and access your class information and tools. We’ve curated frequently-visited teaching resources so they are easy to find and convenient.</p>
 
-                                <h4>What's New</h4>
-                                <ul>
-                                    <li><strong>Academic Calendar</strong> to reference when planning your class</li>
-                                    <li><strong>Visual Schedule</strong> with map links to find your classrooms</li>
-                                    <li><strong>Textbooks</strong> conveniently listed in one place</li>
-                                    <li><strong>GradePage and Course Evaluation</strong> status for your classes</li>
-                                    <li><strong>Class Email Lists</strong> are easier to create and manage</li>
-                                    <li><strong>Past courses taught</strong> are available for up to six years</li>
-                                    <li><strong>Personalized Quick Links</strong> that also list popular and recently visited pages</li>
-                                    <li><strong>Husky, Library, and UPASS</strong> account information is always visible</li>
-                                </ul>
+                                    <h4>What's New</h4>
+                                    <ul>
+                                        <li><strong>Academic Calendar</strong> to reference when planning your class</li>
+                                        <li><strong>Visual Schedule</strong> with map links to find your classrooms</li>
+                                        <li><strong>Textbooks</strong> conveniently listed in one place</li>
+                                        <li><strong>GradePage and Course Evaluation</strong> status for your classes</li>
+                                        <li><strong>Class Email Lists</strong> are easier to create and manage</li>
+                                        <li><strong>Past courses taught</strong> are available for up to six years</li>
+                                        <li><strong>Personalized Quick Links</strong> that also list popular and recently visited pages</li>
+                                        <li><strong>Husky, Library, and UPASS</strong> account information is always visible</li>
+                                    </ul>
+                                    <!-- End instructors -->
+                                {% else %}
+                                    <p>With the new MyUW, you can easily keep track of your UW accounts and find frequently-used resources.</p>
 
-                            <!-- End instructors -->
-                            {% else %}
-                            <!-- Start employees -->
-
-                                <p>With the new MyUW, you can easily keep track of your UW accounts and find frequently-used resources.</p>
-
-                                <h4>What's New</h4>
-                                <ul>
-                                    <li><strong>Academic Calendar</strong> to reference when planning your schedule and holidays</li>
-                                    <li><strong>Personalized Quick Links</strong> that also list popular and recently visited pages</li>
-                                    <li><strong>Husky, Library, and UPASS</strong> account information is always visible</li>
-                                    <li><strong>Workday</strong> and related HR links are highlighted for easy access</li>
-                                </ul>
-
-                            {% endif %}<!-- End employees -->
-                            <h4>Share Your Feedback</h4>
-                            <p>We want to know how to make MyUW work better for you. Let us know what you think of it so far and share your ideas for future improvements. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Send us your feedback.</a></p>
-
-                        {% endif %}<!-- End ALL -->
+                                    <h4>What's New</h4>
+                                    <ul>
+                                        <li><strong>Academic Calendar</strong> to reference when planning your schedule and holidays</li>
+                                        <li><strong>Personalized Quick Links</strong> that also list popular and recently visited pages</li>
+                                        <li><strong>Husky, Library, and UPASS</strong> account information is always visible</li>
+                                        <li><strong>Workday</strong> and related HR links are highlighted for easy access</li>
+                                    </ul>
+                                {% endif %}
+                                <h4>Share Your Feedback</h4>
+                                <p>We want to know how to make MyUW work better for you. Let us know what you think of it so far and share your ideas for future improvements. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Send us your feedback.</a></p>
+                            {% endif %}  <!-- End employees -->
+                        {% endif %}  <!-- End ALL -->
 
                         {% if user.affiliations.undergrad %}
                             Still not convinced? <a id="optout_toggle" href="#" data-toggle="modal" data-target="#optout_modal" data-dismiss="modal">Switch back to the old MyUW.</a>
-                        <!-- Endif -->
                         {% endif %}
 
                     </div>
