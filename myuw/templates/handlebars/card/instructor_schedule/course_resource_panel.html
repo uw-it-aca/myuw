@@ -3,7 +3,7 @@
 
     {% include "handlebars/card/instructor_schedule/course_resource/course_class_list.html" %}
 
-<!-- good -->
+{{#if display_resources}}
     <div class="myuw-card-section">
         <div class="row">
             <div class="col-sm-3">
@@ -31,6 +31,6 @@
             </div>
         </div>
     </div>
-
+{{/if}}
 
 {% endtplhandlebars %}

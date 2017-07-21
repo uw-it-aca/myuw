@@ -1,0 +1,601 @@
+BEGIN:VCALENDAR
+PRODID:-//Trumba Corporation//Trumba Calendar Services 0.11.15114//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+X-WR-CALNAME:UW Seattle Academic Calendar|Registration Dates
+X-WR-TIMEZONE:America/Los_Angeles
+METHOD:PUBLISH
+BEGIN:VEVENT
+SUMMARY:Registration Period 2 Autumn Quarter
+DTSTART;VALUE=DATE:20130624
+DTEND;VALUE=DATE:20130925
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T122939Z
+DESCRIPTION:Year: 2013\nQuarter: Autumn\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/addpolicy.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123222202
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123222202
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 3 Summer B Term
+DTSTART;VALUE=DATE:20130624
+DTEND;VALUE=DATE:20130725
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T154345Z
+DESCRIPTION:Year: 2013\nQuarter: Summer\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/addpolicy.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123228714
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123228714
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$25 Late Registration Fee Period Summer B-term
+DTSTART;VALUE=DATE:20130725
+DTEND;VALUE=DATE:20130726
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T131512Z
+DESCRIPTION:Year: 2013\nQuarter: Summer\nEvent types: Academics\nLink: http://www.washington.edu/students/reg/latereg.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123222729
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123222729
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$75 Late Registration Fee Period Summer B-term
+DTSTART;VALUE=DATE:20130801
+DTEND;VALUE=DATE:20130802
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T161143Z
+DESCRIPTION:Year: 2013\nQuarter: Summer\nEvent types: Academics\nLink: http://www.washington.edu/students/reg/latereg.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123229168
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123229168
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$25 Late Registration Fee Begins Autumn
+DTSTART;VALUE=DATE:20130925
+DTEND;VALUE=DATE:20130926
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T124234Z
+DESCRIPTION:Year: 2013\nQuarter: Autumn\nEvent types: Academics\nLink: http://www.washington.edu/students/reg/latereg.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123222487
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123222487
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 3 Autumn Quarter
+DTSTART;VALUE=DATE:20130925
+DTEND;VALUE=DATE:20131002
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
+ /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T153533Z
+DESCRIPTION:Year: 2013\nQuarter: Autumn\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/addpolicy.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123228669
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123228669
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for Tuition Exempt (UW Faculty/Staff) Autumn Quarter
+DTSTART;VALUE=DATE:20130927
+DTEND;VALUE=DATE:20130928
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/tuition_exempt.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T154916Z
+DESCRIPTION:Year: 2013\nQuarter: Autumn\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/tuition_exempt.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123228797
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123228797
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for UW Access Program Autumn Quarter
+DTSTART;VALUE=DATE:20130927
+DTEND;VALUE=DATE:20130928
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/access.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T155349Z
+DESCRIPTION:Year: 2013\nQuarter: Autumn\nEvent types: Academics\nLink: http://www.washington.edu/students/reg/access.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123228836
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123228836
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for Tuition Exempt (WA State Emp) Autumn Quarter
+DTSTART;VALUE=DATE:20130928
+DTEND;VALUE=DATE:20130929
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/tuition_exempt.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T155900Z
+DESCRIPTION:Year: 2013\nQuarter: Autumn\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/tuition_exempt.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123229092
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123229092
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$75 Late Registration Fee Period Autumn
+DTSTART;VALUE=DATE:20131009
+DTEND;VALUE=DATE:20131010
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T160432Z
+DESCRIPTION:Year: 2013\nQuarter: Autumn\nEvent types: Academics\nLink: http://www.washington.edu/students/reg/latereg.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123229122
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123229122
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 1 Priority  Winter Quarter
+DTSTART;VALUE=DATE:20131108
+DTEND;VALUE=DATE:20131125
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T121956Z
+DESCRIPTION:Year: 2014\nQuarter: Winter\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/addpolicy.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123222140
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123222140
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$25 Late Registration Fee Begins Winter
+DTSTART;VALUE=DATE:20140106
+DTEND;VALUE=DATE:20140107
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T124315Z
+DESCRIPTION:Year: 2014\nQuarter: Winter\nEvent types: Academics\nLink: http://www.washington.edu/students/reg/latereg.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123222495
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123222495
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 3 Winter Quarter
+DTSTART;VALUE=DATE:20140106
+DTEND;VALUE=DATE:20140113
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T153720Z
+DESCRIPTION:Year: 2014\nQuarter: Winter\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/addpolicy.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123228677
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123228677
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for Tuition Exempt (UW Faculty/Staff) Winter Quarter
+DTSTART;VALUE=DATE:20140108
+DTEND;VALUE=DATE:20140109
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/tuition_exempt.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T155045Z
+DESCRIPTION:Year: 2014\nQuarter: Winter\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/tuition_exempt.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123228804
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123228804
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for UW Access Program Winter Quarter
+DTSTART;VALUE=DATE:20140108
+DTEND;VALUE=DATE:20140109
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/access.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T155424Z
+DESCRIPTION:Year: 2014\nQuarter: Winter\nEvent types: Academics\nLink: http://www.washington.edu/students/reg/access.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123228841
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123228841
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for Tuition Exempt (WA State Emp) Winter Quarter
+DTSTART;VALUE=DATE:20140109
+DTEND;VALUE=DATE:20140110
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/tuition_exempt.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T155938Z
+DESCRIPTION:Year: 2014\nQuarter: Winter\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/tuition_exempt.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123229096
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123229096
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$75 Late Registration Fee Period Winter
+DTSTART;VALUE=DATE:20140120
+DTEND;VALUE=DATE:20140121
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T160712Z
+DESCRIPTION:Year: 2014\nQuarter: Winter\nEvent types: Academics\nLink: http://www.washington.edu/students/reg/latereg.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123229133
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123229133
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 1 Priority Spring Quarter
+DTSTART;VALUE=DATE:20140214
+DTEND;VALUE=DATE:20140303
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T122105Z
+DESCRIPTION:Year: 2014\nQuarter: Spring\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/addpolicy.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123222148
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123222148
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 2 Spring Quarter
+DTSTART;VALUE=DATE:20140303
+DTEND;VALUE=DATE:20140331
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T123212Z
+DESCRIPTION:Year: 2014\nQuarter: Spring\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/addpolicy.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123222238
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123222238
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$25 Late Registration Fee Begins Spring
+DTSTART;VALUE=DATE:20140330
+DTEND;VALUE=DATE:20140331
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T124413Z
+DESCRIPTION:Year: 2014\nQuarter: Spring\nEvent types: Academics\nLink: http://www.washington.edu/students/reg/latereg.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123222502
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123222502
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 3 Spring Quarter
+DTSTART;VALUE=DATE:20140331
+DTEND;VALUE=DATE:20140407
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T153817Z
+DESCRIPTION:Year: 2014\nQuarter: Spring\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/addpolicy.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123228683
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123228683
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for Tuition Exempt (UW Faculty/Staff) Spring Quarter
+DTSTART;VALUE=DATE:20140402
+DTEND;VALUE=DATE:20140403
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/tuition_exempt.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T155117Z
+DESCRIPTION:Year: 2014\nQuarter: Spring\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/tuition_exempt.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123228809
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123228809
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for UW Access Program Spring Quarter
+DTSTART;VALUE=DATE:20140402
+DTEND;VALUE=DATE:20140403
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/access.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T155507Z
+DESCRIPTION:Year: 2014\nQuarter: Spring\nEvent types: Academics\nLink: http://www.washington.edu/students/reg/access.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123228847
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123228847
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for Tuition Exempt (WA State Emp) Spring Quarter
+DTSTART;VALUE=DATE:20140403
+DTEND;VALUE=DATE:20140404
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/tuition_exempt.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T160025Z
+DESCRIPTION:Year: 2014\nQuarter: Spring\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/tuition_exempt.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123229103
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123229103
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$75 Late Registration Fee Period Spring
+DTSTART;VALUE=DATE:20140414
+DTEND;VALUE=DATE:20140415
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T160746Z
+DESCRIPTION:Year: 2014\nQuarter: Spring\nEvent types: Academics\nLink: http://www.washington.edu/students/reg/latereg.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123229136
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123229136
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 1 Priority  Summer Quarter\, All Terms
+DTSTART;VALUE=DATE:20140414
+DTEND;VALUE=DATE:20140522
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T122439Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/addpolicy.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123222162
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123222162
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 2 Summer Quarter\, All Terms
+DTSTART;VALUE=DATE:20140522
+DTEND;VALUE=DATE:20140623
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T123357Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/addpolicy.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123222258
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123222258
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$25 Late Registration Fee Period Summer Full-term and A-term
+DTSTART;VALUE=DATE:20140623
+DTEND;VALUE=DATE:20140624
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T131446Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics\nLink: http://www.washington.edu/students/reg/latereg.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123222727
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123222727
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 3 Summer B-term
+DTSTART;VALUE=DATE:20140623
+DTEND;VALUE=DATE:20140731
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T154359Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/addpolicy.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123228715
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123228715
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration Period 3 Summer Full-term and A-term
+DTSTART;VALUE=DATE:20140623
+DTEND;VALUE=DATE:20140630
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/addpolicy.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T154009Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/addpolicy.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123228691
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123228691
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for Tuition Exempt (UW Faculty/Staff) Summer Quarter, All Terms
+DTSTART;VALUE=DATE:20140625
+DTEND;VALUE=DATE:20140626
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/tuition_exempt.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T155219Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/tuition_exempt.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123228817
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123228817
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for UW Access Program Summer\, all terms
+DTSTART;VALUE=DATE:20140625
+DTEND;VALUE=DATE:20140626
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/access.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T155547Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics\nLink: http://www.washington.edu/students/reg/access.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123228849
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123228849
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Registration for Tuition Exempt (WA State Emp) Summer\, all terms
+DTSTART;VALUE=DATE:20140626
+DTEND;VALUE=DATE:20140627
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:https://www.washington.edu/students/reg/tuition_exempt.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T160104Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics\nLink: https://www.washington.edu/students/reg/tuition_exempt.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123229108
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123229108
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$75 Late Registration Fee Period Summer A-term
+DTSTART;VALUE=DATE:20140707
+DTEND;VALUE=DATE:20140708
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T161204Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics\nLink: http://www.washington.edu/students/reg/latereg.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123229170
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123229170
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$75 Late Registration Fee Period Summer Full-term
+DTSTART;VALUE=DATE:20140707
+DTEND;VALUE=DATE:20140708
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T161211Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics\nLink: http://www.washington.edu/students/reg/latereg.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123229171
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123229171
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$25 Late Registration Fee Period Summer B-term
+DTSTART;VALUE=DATE:20140724
+DTEND;VALUE=DATE:20140725
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T131534Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics\nLink: http://www.washington.edu/students/reg/latereg.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123222731
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123222731
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:$75 Late Registration Fee Period Summer B-term
+DTSTART;VALUE=DATE:20140731
+DTEND;VALUE=DATE:20140801
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+URL:http://www.washington.edu/students/reg/latereg.html
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+DTSTAMP:20130405T161230Z
+DESCRIPTION:Year: 2014\nQuarter: Summer\nEvent types: Academics\nLink: http://www.washington.edu/students/reg/latereg.html
+CATEGORIES:Registration Dates
+UID:http://uid.trumba.com/event/123229173
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-regi?eventid=123229173
+END:VEVENT
+END:VCALENDAR

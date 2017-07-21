@@ -209,6 +209,7 @@
         <!-- footer -->
         {% block footer %}
         <div id="app_footer">
+	        {% if user.affiliations.student %}
             <div class="myuw-wrapper navigation-bar" role="navigation" aria-labelledby="categories">
                 <h2 id="categories" class="sr-only">Categorized Resources</h2>
                 <ul class="clearfix navigation-list">
@@ -238,7 +239,7 @@
                     </li>
                 </ul>
             </div>
-
+			{% endif %}
             <div class="footer-bar" role="contentinfo">
                 <div class="myuw-wrapper footer-links" style="position:relative;">
                     <ul class="footer-links-list">
