@@ -290,7 +290,7 @@ def get_identity_log_str(request):
         res += ' Bothell'
     if affi["tacoma"] or affi["official_tacoma"]:
         res += ' Tacoma'
-    if affi["pce"] or affi["official_pce"]:
+    if affi["official_pce"]:
         res += ' PCE'
     if len(res) == no_campus_lengthmark:
         res += 'None'

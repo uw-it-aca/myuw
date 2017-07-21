@@ -30,14 +30,26 @@ class TestAffilliations(TestCase):
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations['clinician'])
 
+    def test_is_grad_stud_employee(self):
+        now_request = get_request_with_user('billseata')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("grad"))
+        self.assertTrue(affiliations.get("student"))
+        self.assertTrue(affiliations.get("official_seattle"))
+        self.assertTrue(affiliations.get("instructor"))
+        self.assertTrue(affiliations.get("stud_employee"))
+
     def test_is_pce_stud(self):
         now_request = get_request_with_user('jpce')
         affiliations = get_all_affiliations(now_request)
-        self.assertTrue(affiliations['pce'])
+        self.assertTrue(affiliations.get('pce'))
+        self.assertTrue(affiliations.get("undergrad"))
+        self.assertTrue(affiliations.get("student"))
+        self.assertTrue(affiliations.get("official_seattle"))
+        self.assertFalse(affiliations.get("official_pce"))
         self.assertTrue('PCE-student' in get_identity_log_str(now_request))
 
         now_request = get_request_with_user('jeos')
-        affiliations = get_all_affiliations(now_request)
-        self.assertTrue(affiliations['pce'])
-        self.assertTrue('PCE-student' in get_identity_log_str(now_request))
-        self.assertTrue('Campuses: PCE' in get_identity_log_str(now_request))
+        log_str = get_identity_log_str(now_request)
+        self.assertTrue('PCE-student' in log_str)
+        self.assertFalse('Campus: PCE' in log_str)
