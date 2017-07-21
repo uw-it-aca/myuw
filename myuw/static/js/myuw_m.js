@@ -61,6 +61,16 @@ $(window.document).ready(function() {
     $(".opt-out-rate-myuw").bind("click", function(ev) {
         var rating_value = ev.currentTarget.getAttribute("rel");
         WSData.log_interaction("opt-out_rate_myuw_" + rating_value);
+        var hide = $("#leave-feedback-div-onpop");
+        var expose = $("#thank-feedback-div-onpop");
+        window.setTimeout(function() {
+            hide.attr("hidden", true);
+            hide.attr("aria-hidden", true);
+            expose.attr("hidden", false);
+            expose.attr("aria-hidden", false);
+            expose.focus();
+        }, 0);
+        return false;
     });
 
 

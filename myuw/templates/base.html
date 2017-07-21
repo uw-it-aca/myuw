@@ -395,30 +395,32 @@
                         <h3 class="modal-title" id="optout_modal_label">Switch to the Old Version of MyUW</h3>
                     </div>
                     <div class="modal-body">
-                        <br/>
-                        <p>Use the old version of MyUW as your default destination the next time you sign in.</p>
+                        <div style=" margin-top:10px; margin-bottom:30px;">
+                            <p>Use the old version of MyUW as your default destination the next time you sign in.</p>
 
-                        <a href="/choose/legacy" class="btn btn-primary" title="Go to the old version of MyUW">Use the old version of MyUW</a> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <a href="/choose/legacy" class="btn btn-primary" title="Go to the old version of MyUW">Use the old version of MyUW</a> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
 
-                        <br/><br/>
-                        <h4>Before you leave, share your feedback</h4>
+                        <div id="leave-feedback-div-onpop" aria-hidden="false">
+                            <h4>Before you leave, share your feedback</h4>
 
-                        <p>We want to make MyUW work better for you. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Tell us why you're switching back.</a></p>
-                        <div class="myuw-ratings" style="text-align: center;">
-                            <div class="myuw-ratings-control"><!-- hide after rating is given -->
-                                <ol class="myuw-ratings-options">
-                                    <li><a class="opt-out-rate-myuw" rel="1-star" href="/choose/legacy" title="Rate MyUW 1 of 5 stars"><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 1 of 5 stars</span></a></li>
-                                    <li><a class="opt-out-rate-myuw" rel="2-star" href="/choose/legacy" title="Rate MyUW 2 of 5 stars"><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 2 of 5 stars</span></a></li>
-                                    <li><a class="opt-out-rate-myuw" rel="3-star" href="/choose/legacy" title="Rate MyUW 3 of 5 stars"><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 3 of 5 stars</span></a></li>
-                                    <li><a class="opt-out-rate-myuw" rel="4-star" href="/choose/legacy" title="Rate MyUW 4 of 5 stars"><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 4 of 5 stars</span></a></li>
-                                    <li><a class="opt-out-rate-myuw" rel="5-star" href="/choose/legacy" title="Rate MyUW 5 of 5 stars"><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 5 of 5 stars</span></a></li>
-                                </ol>
-                                <div class="myuw-ratings-instructions">Rate the new MyUW</div>
+                            <p>We want to make MyUW work better for you. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Tell us why you're switching back.</a></p>
+                            <div class="myuw-ratings" style="text-align: center;">
+                                <div class="myuw-ratings-control"><!-- hide after rating is given -->
+                                    <ol class="myuw-ratings-options">
+                                        <li><a class="opt-out-rate-myuw" rel="1-star" href="" title="Rate MyUW 1 of 5 stars"><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 1 of 5 stars</span></a></li>
+                                        <li><a class="opt-out-rate-myuw" rel="2-star" href="" title="Rate MyUW 2 of 5 stars"><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 2 of 5 stars</span></a></li>
+                                        <li><a class="opt-out-rate-myuw" rel="3-star" href="" title="Rate MyUW 3 of 5 stars"><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 3 of 5 stars</span></a></li>
+                                        <li><a class="opt-out-rate-myuw" rel="4-star" href="" title="Rate MyUW 4 of 5 stars"><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 4 of 5 stars</span></a></li>
+                                        <li><a class="opt-out-rate-myuw" rel="5-star" href="" title="Rate MyUW 5 of 5 stars"><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 5 of 5 stars</span></a></li>
+                                    </ol>
+                                    <div class="myuw-ratings-instructions">Rate the new MyUW</div>
+                                </div>
                             </div>
+                        </div>  <!-- end leave-feedback-div -->
 
-                            <div aria-hidden="true" style="display:none;"><!-- Show after rating given -->
-                                <p class="myuw-note">Thanks for your feedback!</p>
-                            </div>
+                        <div id="thank-feedback-div-onpop" aria-hidden="true" hidden><!-- Show after rating given -->
+                            <p class="myuw-note">Thanks for your feedback!</p>
                         </div>
 
                     </div>
