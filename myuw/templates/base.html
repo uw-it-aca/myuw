@@ -466,9 +466,9 @@
                                     <li><strong>Log out easier</strong> - We moved the logout link to the top right corner of every page: look for “Sign out.”</li>
                                 </ul>
                                 <p><strong><a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Let us know what you think!</a> We’ll keep making tweaks to improve MyUW for you.</strong></p>
-                            {% endif %} <!-- End undergrad student -->
-
-                            {% if user.affiliations.grad %}
+                                <!-- End undergrad student -->
+                            {% else %}
+                                <!-- students who are new to MyUW -->
                                 <p>Easily access class information and tools, frequently-visited resources, and your UW accounts. As your quarter rolls on, we'll present timely information and resources on the home page.</p>
                                 <h4>What's New</h4>
                                 <ul>
@@ -486,7 +486,7 @@
                                 </ul>
                                 <h4>Share Your Feedback</h4>
                                 <p>We want to know how to make MyUW work better for you. Let us know what you think of it so far and share your ideas for future improvements. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Send us your feedback.</a></p>
-                            {% endif %} <!-- End Grad student -->
+                            {% endif %} <!-- End non-undergrad students -->
 
                         {% else %} <!-- End students -->
                             {% if user.affiliations.employee %} <!-- Start employees -->
