@@ -64,6 +64,7 @@ var Landing = {
         }
         var desktop_sidebar_cards = [
             QuickLinksCard,
+            AcadCalSnippet,
             EventsCard
         ];
         // Add in outage card if we can't get the SWS/term resource
@@ -94,6 +95,7 @@ var Landing = {
             TextbookCard,
             FutureQuarterCard1,
             SummerRegStatusCard1,
+            AcadCalSnippet,
             EventsCard
         ];
         if(window.user.staff_employee) {

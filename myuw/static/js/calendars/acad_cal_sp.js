@@ -1,21 +1,26 @@
-var CalendarBanner = {
+var AcadCalSnippet = {
+    name: 'AcadCalSnippet',
     dom_target: undefined,
 
-    render_init: function(dom_taget) {
-        CalendarBanner.dom_target  = dom_taget;
-        WSData.fetch_current_academic_calendar_events(CalendarBanner.render);
+    render_init: function() {
+        AcadCalSnippet.dom_target  = $('#AcadCalSnippet');
+        if (!window.user.instructor) {
+            AcadCalSnippet.dom_target.hide();
+            return;
+        }
+        WSData.fetch_current_academic_calendar_events(AcadCalSnippet.render);
     },
 
     render: function () {
         var calendar_data = WSData.current_academic_calendar_data();
 
         if (calendar_data.length > 0) {
-            var source = $("#calendar_banner").html();
+            var source = $("#calendar_snippet").html();
             var template = Handlebars.compile(source);
 
-            var events = CalendarBanner.refine_event_fields(calendar_data);
+            var events = AcadCalSnippet.refine_event_fields(calendar_data);
             var html = template({events: events});
-            CalendarBanner.dom_target.html(html);
+            AcadCalSnippet.dom_target.html(html);
         }
     },
 
