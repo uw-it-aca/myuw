@@ -14,12 +14,12 @@ def get_user_model():
     user_netid = get_netid_of_current_user()
     try:
         user = User.objects.get(uwnetid=user_netid)
-        if not user.uwregid:
-            user_regid = PWS().get_person_by_netid(user_netid).uwregid
-            user.uwregid = user_regid
-            user.save()
     except User.DoesNotExist:
-        user = User(uwnetid=user_netid, uwregid=user_regid)
+        user = User(uwnetid=user_netid)
+
+    if not user.uwregid:
+        user_regid = PWS().get_person_by_netid(user_netid).uwregid
+        user.uwregid = user_regid
         user.save()
 
     return user
