@@ -3,10 +3,17 @@ var OutageCard = {
     dom_target: undefined,
 
     render_init: function() {
-        OutageCard._render();
+        if(window.webservice_outage){
+            OutageCard._render();
+        } else {
+            OutageCard.dom_target.hide();
+        }
     },
 
     _render: function () {
+        // In case previously hidden
+        OutageCard.dom_target.show();
+
         var source = $("#outage_card_content").html();
         var template = Handlebars.compile(source);
 
