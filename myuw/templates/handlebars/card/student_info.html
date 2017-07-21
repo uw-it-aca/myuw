@@ -44,7 +44,7 @@
                                         {{#if @first}}
                                                 <li>
                                                     {{#each majors}}
-                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                        {{full_name}}{{#unless @last}},{{/unless}}
                                                     {{/each}}
                                                 </li>
 
@@ -53,7 +53,7 @@
                                                 <li>
                                                     Beginning {{ toTitleCase quarter}} {{year}}:&nbsp;&nbsp;
                                                     {{#each majors}}
-                                                        {{full_name}} {{#unless @last}},{{/unless}}
+                                                        {{full_name}}{{#unless @last}},{{/unless}}
                                                     {{else}}
                                                         None
                                                     {{/each}}
@@ -79,7 +79,7 @@
                                     {{#if @first}}
                                             <li>
                                                 {{#each minors}}
-                                                    {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{full_name}}{{#unless @last}},{{/unless}}
                                                 {{/each}}
                                             </li>
 
@@ -88,7 +88,7 @@
                                             <li>
                                                 Beginning {{ toTitleCase quarter}} {{year}}:&nbsp;&nbsp;
                                                 {{#each minors}}
-                                                    {{full_name}} {{#unless @last}},{{/unless}}
+                                                    {{full_name}}{{#unless @last}},{{/unless}}
                                                 {{else}}
                                                     None
                                                 {{/each}}
