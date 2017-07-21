@@ -138,11 +138,13 @@ class SeenRegistration(models.Model):
 
 
 class SeenInstructor(models.Model):
-    user = models.ForeignKey('User', on_delete=models.PROTECT)
+    uwnetid = models.SlugField(max_length=16,
+                               db_index=True,
+                               unique=True)
     year = models.PositiveSmallIntegerField(db_index=True)
     quarter = models.CharField(max_length=10, db_index=True)
 
-    unique_together = (("user",
+    unique_together = (("uwnetid",
                         "year",
                         "quarter"
                         ),

@@ -57,7 +57,7 @@ class TestQuickLinkDAO(TestCase):
         self.assertEquals(len(recent), 5)
 
     def test_link_label_override(self):
-        username = 'ql_override_label_user'
+        username = 'ql_override_lbl_user'
         l1 = VisitedLink.objects.create(username=username,
                                         url="http://example.com?q=replaceit",
                                         label="Original")

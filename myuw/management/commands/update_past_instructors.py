@@ -12,18 +12,12 @@ class Command(BaseCommand):
         change_since = '2010-07-07'
         prior_terms = get_prior_instructed_terms(get_current_term())
         for term in prior_terms:
-            print "TERM: %s-%s" % (term.year, term.quarter)
             for section_ref in get_changed_sections_by_term(
                     change_since, term):
-                print "section_ref.url: %s" % (section_ref.url)
                 section = get_section_by_url(section_ref.url)
                 for instructor in section.get_instructors():
-                    print "instructor: %s" % (instructor.uwnetid)
-                    user, created = User.objects.get_or_create(
-                        uwnetid=instructor.uwnetid,
-                        uwregid=instructor.uwregid)
                     seen, created = SeenInstructor.objects.update_or_create(
-                        user=user,
+                        uwnetid=instructor.uwnetid,
                         year=term.year,
                         quarter=term.quarter)
 
