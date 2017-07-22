@@ -139,8 +139,7 @@ class SeenRegistration(models.Model):
 
 class SeenInstructor(models.Model):
     uwnetid = models.SlugField(max_length=16,
-                               db_index=True,
-                               unique=True)
+                               db_index=True)
     year = models.PositiveSmallIntegerField(db_index=True)
     quarter = models.CharField(max_length=10, db_index=True)
 

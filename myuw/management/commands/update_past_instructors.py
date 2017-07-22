@@ -1,7 +1,8 @@
 from django.core.management.base import BaseCommand
 from uw_sws.section import get_changed_sections_by_term, get_section_by_url
-from uw_sws.term import get_current_term, get_term_before
-from myuw.models import User, SeenInstructor
+from uw_sws.term import get_current_term
+from myuw.dao.instructor import add_seen_instructor,\
+    remove_seen_instructors_for_prior_terms
 from myuw.dao.instructor_schedule import get_prior_instructed_terms
 
 
@@ -16,18 +17,6 @@ class Command(BaseCommand):
                     change_since, term):
                 section = get_section_by_url(section_ref.url)
                 for instructor in section.get_instructors():
-                    seen, created = SeenInstructor.objects.update_or_create(
-                        uwnetid=instructor.uwnetid,
-                        year=term.year,
-                        quarter=term.quarter)
+                    add_seen_instructor(instructor.uwnetid, term)
 
-        # prune anything beyond prior terms
-        term = prior_terms[0]
-        for i in range(4):
-            term = get_term_before(term)
-            SeenInstructor.objects.filter(
-                year=term.year,
-                quarter=term.quarter
-            ).delete()
-
-        SeenInstructor.objects.filter(year__lte=term.year).delete()
+        remove_seen_instructors_for_prior_terms(prior_terms[0])

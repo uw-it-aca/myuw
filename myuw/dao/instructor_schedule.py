@@ -14,10 +14,10 @@ from uw_sws.term import get_specific_term, get_term_before, get_term_after
 from uw_sws.section_status import get_section_status_by_label
 from uw_sws.models import ClassSchedule
 from restclients_core.exceptions import DataFailureException
-from myuw.models import SeenInstructor
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.term import get_current_quarter
+from myuw.dao.instructor import is_seen_instructor, add_seen_instructor
 from myuw.dao.registered_term import get_summer_term
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.util.thread import Thread, ThreadWithResponse
@@ -166,18 +166,13 @@ def is_instructor(request):
     try:
         term = get_current_quarter(request)
         user_netid = get_netid_of_current_user()
-
-        qset = SeenInstructor.objects.filter(uwnetid=user_netid)
-        if qset.count() > 0:
+        if is_seen_instructor(user_netid):
             return True
 
         person = get_person_of_current_user()
         sections = _get_instructor_sections(person, term, future_terms=2)
         if len(sections) > 0:
-            SeenInstructor.objects.create(
-                uwnetid=user_netid,
-                year=term.year,
-                quarter=term.quarter)
+            add_seen_instructor(user_netid, term)
             return True
 
         return False
