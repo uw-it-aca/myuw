@@ -83,6 +83,14 @@ class TestPageMethods(MyuwApiTest):
         self.assertEquals(response.status_code, 302)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
+    def test_instructor_access(self):
+        url = reverse("myuw_home")
+        self.set_user('bill')
+        response = self.client.get(
+            url,
+            HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
+
+    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_instructor(self):
         url = reverse("myuw_home")
         self.set_user('bill')
