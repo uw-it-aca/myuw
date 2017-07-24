@@ -12,7 +12,11 @@ var TeachingSection = {
         var teaching_source = $("#teaching_section").html();
         var template = Handlebars.compile(teaching_source);
 
-        $("#main-content").html(template());
+        $("#main-content").html(template({
+            'seattle_affil': (window.user.seattle_affil || window.user.seattle),
+            'bothell_affil': (window.user.bothell_affil || window.user.bothell),
+            'tacoma_affil': (window.user.tacoma_affil || window.user.tacoma)
+        }));
 
         TeachingSection.load_cards_for_viewport();
         // Set initial display state
@@ -60,5 +64,4 @@ var TeachingSection = {
         $("#teaching_content_cards").html('');
         $("#teaching_accounts_cards").html('');
     }
-
 };
