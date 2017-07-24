@@ -52,14 +52,19 @@ var Landing = {
             SummerRegStatusCardA,
             CriticalInfoCard,
             InternationalStuCard,
+            SummaryScheduleCard,
             VisualScheduleCard,
             TextbookCard,
+            FutureSummaryScheduleCard,
             FutureQuarterCard1,
             SummerRegStatusCard1
         ];
+        if(window.user.staff_employee) {
+            desktop_body_cards.unshift(HRPayrollCard);
+        }
         var desktop_sidebar_cards = [
             QuickLinksCard,
-            EmpFacStudentCard,
+            AcadCalSnippet,
             EventsCard
         ];
         // Add in outage card if we can't get the SWS/term resource
@@ -84,13 +89,18 @@ var Landing = {
             SummerRegStatusCardA,
             CriticalInfoCard,
             InternationalStuCard,
+            SummaryScheduleCard,
+            FutureSummaryScheduleCard,
             VisualScheduleCard,
             TextbookCard,
             FutureQuarterCard1,
             SummerRegStatusCard1,
-            EmpFacStudentCard,
+            AcadCalSnippet,
             EventsCard
         ];
+        if(window.user.staff_employee) {
+            mobile_cards.unshift(HRPayrollCard);
+        }
         // Add in outage card if we can't get the SWS/term resource
         if(window.webservice_outage){
             mobile_cards.unshift(OutageCard);

@@ -2,38 +2,41 @@ import json
 import traceback
 from myuw.views.error import handle_exception, not_instructor_error
 import logging
+from django.conf import settings
 from django.http import HttpResponse
 from operator import itemgetter
-from myuw.logger.timer import Timer
-from restclients.sws.person import get_person_by_regid
-from restclients.sws.enrollment import get_enrollment_by_regid_and_term
-from restclients.sws.term import get_specific_term
+from restclients_core.exceptions import DataFailureException
+from uw_sws.person import get_person_by_regid
+from uw_sws.enrollment import get_enrollment_by_regid_and_term
+from uw_sws.term import get_specific_term
 from uw_gradepage.grading_status import get_grading_status
+from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_course_url
 from myuw.dao.course_color import get_colors_by_schedule
+from myuw.dao.enrollment import get_code_for_class_level
 from myuw.dao.gws import is_grad_student
-from myuw.dao.library import get_subject_guide_by_section
-from myuw.dao.mailman import get_section_email_lists
+from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
     get_limit_estimate_enrollment_for_section, get_instructor_section
 from myuw.dao.class_website import get_page_title_from_url, is_valid_page_url
-from myuw.dao.term import get_current_quarter, is_past, is_future
+from myuw.dao.library import get_subject_guide_by_section
+from myuw.dao.mailman import get_section_email_lists
+from myuw.dao.pws import get_url_key_for_regid
+from myuw.dao.term import get_current_quarter, is_past, is_future,\
+    get_previous_number_quarters, get_future_number_quarters
 from myuw.logger.logresp import log_success_response
 from myuw.logger.logback import log_exception
+from myuw.logger.timer import Timer
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.rest_dispatch import RESTDispatch
-from myuw.dao.exceptions import NotSectionInstructorException
-from myuw.dao.pws import get_url_key_for_regid
-from myuw.dao.enrollment import get_code_for_class_level
-from uw_sws.term import get_term_before, get_term_after
-from restclients_core.exceptions import DataFailureException
+from myuw.views.api.base_schedule import irregular_start_end
 
 
 logger = logging.getLogger(__name__)
 EARLY_FALL_START = "EARLY FALL START"
-MYUW_PRIOR_INSTRUCTED_TERM_COUNT = 24
-MYUW_FUTURE_INSTRUCTED_TERM_COUNT = 2
+MYUW_PRIOR_INSTRUCTED_TERM_YEARS_DEFAULT = 6
+MYUW_FUTURE_INSTRUCTED_TERM_COUNT_DEFAULT = 2
 
 
 class InstSche(RESTDispatch):
@@ -92,14 +95,31 @@ def set_section_grading_status(section, person):
             section_id, act_as=person.uwnetid).json_data()
     except DataFailureException as ex:
         if ex.status == 404:
-            return {
-                'grading_status': 'no grading status for section'
-            }
+            return {}
         else:
             raise
     except Exception:
         log_exception(
             logger, 'get_section_grading_status', traceback.format_exc())
+
+
+def set_section_evaluation(section, person):
+    try:
+        evaluations = get_evaluation_by_section_and_instructor(
+            section, person.employee_id)
+        for eval in evaluations:
+            if int(eval.section_sln) == int(section.sln):
+                return eval.json_data()
+    except DataFailureException as ex:
+        if ex.status == 404:
+            return {
+                'eval_status': None
+            }
+        else:
+            raise
+    except Exception:
+        log_exception(
+            logger, 'set_section_evaluation', traceback.format_exc())
 
 
 def set_course_resources(section_data, section, person):
@@ -109,10 +129,11 @@ def set_course_resources(section_data, section, person):
     t.start()
     threads.append((t, 'canvas_url', section_data))
 
-    t = ThreadWithResponse(target=get_subject_guide_by_section,
-                           args=(section,))
-    t.start()
-    threads.append((t, 'lib_subj_guide', section_data))
+    if section.sln:
+        t = ThreadWithResponse(target=get_subject_guide_by_section,
+                               args=(section,))
+        t.start()
+        threads.append((t, 'lib_subj_guide', section_data))
 
     t = ThreadWithResponse(target=get_section_email_lists,
                            args=(section, True))
@@ -128,6 +149,11 @@ def set_course_resources(section_data, section, person):
                            args=(section, person,))
     t.start()
     threads.append((t, 'grading_status', section_data))
+
+    t = ThreadWithResponse(target=set_section_evaluation,
+                           args=(section, person,))
+    t.start()
+    threads.append((t, 'evaluation', section_data))
 
     for i, meeting in enumerate(section.meetings):
         t = ThreadWithResponse(target=set_classroom_info_url,
@@ -198,9 +224,17 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
         section_data[
             'allows_secondary_grading'] = section.allows_secondary_grading
 
-        if EARLY_FALL_START == section.institute_name:
+        if section.is_early_fall_start():
+            section_data["cc_display_dates"] = True
             section_data["early_fall_start"] = True
             json_data["has_early_fall_start"] = True
+        else:
+            if section.is_campus_pce():
+                group_independent_start = irregular_start_end(
+                    schedule.term, section, section.summer_term)
+                if group_independent_start:
+                    section_data["cc_display_dates"] = True
+
         # if section.is_primary_section:
         section_data['grade_submission_delegates'] = []
         for delegate in section.grade_submission_delegates:
@@ -288,27 +322,20 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
 
 def _load_related_terms(request):
     current_term = get_current_quarter(request)
-    json_data = current_term.json_data()
-    terms = [json_data]
-    term = current_term
-    for i in range(MYUW_PRIOR_INSTRUCTED_TERM_COUNT):
-        try:
-            term = get_term_before(term)
-            json_data = term.json_data()
-            terms.insert(0, json_data)
-        except DataFailureException as ex:
-            if ex.status == 404:
-                pass
+    terms = []
 
-    term = current_term
-    for i in range(MYUW_FUTURE_INSTRUCTED_TERM_COUNT):
-        try:
-            term = get_term_after(term)
-            json_data = term.json_data()
-            terms.append(json_data)
-        except DataFailureException as ex:
-            if ex.status == 404:
-                pass
+    prior_years = getattr(settings, "MYUW_PRIOR_INSTRUCTED_TERM_YEARS",
+                          MYUW_PRIOR_INSTRUCTED_TERM_YEARS_DEFAULT)
+    for term in get_previous_number_quarters(request, prior_years * 4):
+        terms.append(term.json_data())
+
+    terms.append(current_term.json_data())
+
+    future_terms = getattr(settings, "MYUW_FUTURE_INSTRUCTED_TERM_COUNT",
+                           MYUW_FUTURE_INSTRUCTED_TERM_COUNT_DEFAULT)
+    for term in get_future_number_quarters(request, future_terms):
+        terms.append(term.json_data())
+
     return terms
 
 

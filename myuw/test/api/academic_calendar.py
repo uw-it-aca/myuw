@@ -65,3 +65,24 @@ class TestCalendarAPI(MyuwApiTest):
 
         data = json.loads(response.content)
         self.assertGreater(len(data), 1)
+
+    def test_grade_events(self):
+        self.set_user('bill')
+        self.set_date('2013-08-27')
+        response = self.get_cal_current()
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertEquals(len(data), 4)
+        self.assertEquals(data[0]["category"],
+                          "Registration Dates")
+        self.assertEquals(data[3]["category"],
+                          "Grade Deadlines")
+
+        self.set_user('javerage')
+        self.set_date('2013-08-27')
+        response = self.get_cal_current()
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertEquals(len(data), 1)
+        self.assertEquals(data[0]["category"],
+                          "Dates of Instruction")

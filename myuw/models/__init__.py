@@ -137,6 +137,19 @@ class SeenRegistration(models.Model):
         db_table = "myuw_mobile_seenregistration"
 
 
+class SeenInstructor(models.Model):
+    uwnetid = models.SlugField(max_length=16,
+                               db_index=True)
+    year = models.PositiveSmallIntegerField(db_index=True)
+    quarter = models.CharField(max_length=10, db_index=True)
+
+    unique_together = (("uwnetid",
+                        "year",
+                        "quarter"
+                        ),
+                       )
+
+
 class UserMigrationPreference(models.Model):
     username = models.CharField(max_length=20, db_index=True, unique=True)
     use_legacy_site = models.BooleanField(default=False)

@@ -1,10 +1,12 @@
 {% extends "base.html" %}
+{% load set_context %}
 {% load static %}
 {% load compress %}
 
-{% block page_title %}
-Thrive Messages
+{% block load_values %}
+{% set_context 'page_title' 'Thrive Messages' %}
 {% endblock %}
+
 
 {% block content %}
 

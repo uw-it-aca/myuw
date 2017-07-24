@@ -12,8 +12,10 @@ from uw_sws.term import get_specific_term
 from uw_sws.section_status import get_section_status_by_label
 from uw_sws.models import ClassSchedule
 from restclients_core.exceptions import DataFailureException
+from myuw.dao import get_netid_of_current_user
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.term import get_current_quarter
+from myuw.dao.instructor import is_seen_instructor, add_seen_instructor
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.util.thread import Thread, ThreadWithResponse
 
@@ -21,7 +23,7 @@ from myuw.util.thread import Thread, ThreadWithResponse
 logger = logging.getLogger(__name__)
 
 
-def _get_instructor_sections(person, term):
+def _get_instructor_sections(person, term, future_terms=None):
     """
     @return a uw_sws.models.ClassSchedule object
     Return the actively enrolled sections for the current user
@@ -29,7 +31,8 @@ def _get_instructor_sections(person, term):
     """
     if person is None or term is None:
         return None
-    return get_sections_by_instructor_and_term(person, term)
+    return get_sections_by_instructor_and_term(
+        person, term, future_terms=future_terms)
 
 
 def _get_instructor_schedule(person, term):
@@ -155,10 +158,18 @@ def is_instructor(request):
     Determines if user is an instructor of the request's term
     """
     try:
-        person = get_person_of_current_user()
         term = get_current_quarter(request)
-        sections = _get_instructor_sections(person, term)
-        return (len(sections) > 0)
+        user_netid = get_netid_of_current_user()
+        if is_seen_instructor(user_netid):
+            return True
+
+        person = get_person_of_current_user()
+        sections = _get_instructor_sections(person, term, future_terms=2)
+        if len(sections) > 0:
+            add_seen_instructor(user_netid, term)
+            return True
+
+        return False
     except DataFailureException as err:
         if err.status == 404:
             return False

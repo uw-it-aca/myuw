@@ -5,7 +5,7 @@ the uwnetid subscription resource.
 
 import logging
 from datetime import date, datetime, timedelta
-from restclients.uwnetid.password import get_uwnetid_password
+from uw_uwnetid.password import get_uwnetid_password
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.term import get_comparison_datetime_with_tz
 from myuw.dao import get_netid_of_current_user
@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 def get_password_info(uwnetid):
     """
-    returns restclients.models.uwnetid.UwPassword object
+    returns uw_netid.models.UwPassword object
     for a given uwnetid
     """
     if uwnetid is None:

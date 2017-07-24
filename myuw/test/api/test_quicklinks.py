@@ -1,9 +1,11 @@
 from myuw.test.api import MyuwApiTest
 from myuw.models import VisitedLink, PopularLink, CustomLink, HiddenLink
 from django.core.urlresolvers import reverse
+from myuw.test import fdao_class_website_override
 import json
 
 
+@fdao_class_website_override
 class TestQuickLinksAPI(MyuwApiTest):
     def test_add_popular_link(self):
         PopularLink.objects.all().delete()

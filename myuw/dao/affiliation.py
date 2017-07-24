@@ -14,6 +14,7 @@ from myuw.dao.gws import is_grad_student, is_student,\
     is_pce_student, is_student_employee, is_employee, is_faculty,\
     is_seattle_student, is_bothell_student, is_tacoma_student,\
     is_staff_employee
+from myuw.dao.instructor_schedule import is_instructor
 from myuw.dao.uwnetid import is_clinician
 from myuw.dao.enrollment import get_main_campus
 from myuw.dao.exceptions import IndeterminateCampusException
@@ -44,6 +45,8 @@ def get_all_affiliations(request):
                  according to the SWS Enrollment.
     ["official_tacoma"]: True if the user is an UW Tacoma student
                 according to the SWS Enrollment.
+    ["official_pce"]: True if the user is an UW PCE student
+                according to the SWS Enrollment.
     """
 
     if hasattr(request, 'myuw_user_affiliations'):
@@ -60,11 +63,13 @@ def get_all_affiliations(request):
             "undergrad": is_undergrad_student(),
             "student": is_student(),
             "pce": is_pce_student(),
+            "staff_employee": is_staff_employee(),
             "stud_employee": is_student_employee(),
             "employee": is_employee(),
             "fyp": is_fyp,
             "faculty": is_faculty(),
             "clinician": is_clinician(),
+            "instructor": is_instructor(request),
             "seattle": is_seattle_student(),
             "bothell": is_bothell_student(),
             "tacoma": is_tacoma_student(),
@@ -105,7 +110,8 @@ def _get_campuses_by_schedule(schedule):
     """
     campuses = {"seattle": False,
                 "bothell": False,
-                "tacoma": False}
+                "tacoma": False,
+                "pce": False}
 
     if schedule is not None and len(schedule.sections) > 0:
         for section in schedule.sections:
@@ -115,6 +121,8 @@ def _get_campuses_by_schedule(schedule):
                 campuses["bothell"] = True
             elif section.course_campus == "Tacoma":
                 campuses["tacoma"] = True
+            elif section.course_campus == "PCE":
+                campuses["pce"] = True
             else:
                 pass
     return campuses
@@ -123,7 +131,8 @@ def _get_campuses_by_schedule(schedule):
 def _get_official_campuses(campuses):
     official_campuses = {'official_seattle': False,
                          'official_bothell': False,
-                         'official_tacoma': False}
+                         'official_tacoma': False,
+                         'official_pce': False}
     for campus in campuses:
         if campus.lower() == "seattle":
             official_campuses['official_seattle'] = True
@@ -131,6 +140,8 @@ def _get_official_campuses(campuses):
             official_campuses['official_tacoma'] = True
         if campus.lower() == "bothell":
             official_campuses['official_bothell'] = True
+        if campus.lower() == "pce":
+            official_campuses['official_pce'] = True
     return official_campuses
 
 
@@ -148,6 +159,8 @@ def get_base_campus(request):
             campus = "bothell"
         if affiliations["official_tacoma"]:
             campus = "tacoma"
+        if affiliations["official_pce"]:
+            campus = "pce"
     except KeyError:
         try:
             if affiliations["seattle"]:
@@ -189,12 +202,17 @@ request_cached_is_student = _build_cache_method("student",
 request_cached_is_pce_student = _build_cache_method("pce_student",
                                                     is_pce_student)
 
+
 request_cached_is_student_employee = _build_cache_method("student_employee",
                                                          is_student_employee)
 
 
 request_cached_is_employee = _build_cache_method("student_employee",
                                                  is_employee)
+
+
+request_cached_is_staff_employee = _build_cache_method("staff_employee",
+                                                       is_staff_employee)
 
 
 request_cached_is_faculty = _build_cache_method("faculty",
@@ -217,16 +235,64 @@ def wrapped_is_clinician(request):
     return is_clinician()
 
 
+def wrapped_is_instructor(request):
+    return is_instructor(request)
+
+
 def affiliation_prefetch():
     return [request_cached_is_grad_student,
             request_cached_is_undergrad,
             request_cached_is_student,
             request_cached_is_pce_student,
             request_cached_is_student_employee,
+            request_cached_is_staff_employee,
             request_cached_is_employee,
             request_cached_is_faculty,
             wrapped_is_seattle,
             wrapped_is_tacoma,
             wrapped_is_bothell,
             wrapped_is_clinician,
+            wrapped_is_instructor,
             ]
+
+
+def get_identity_log_str(request):
+    """
+    Return "(Affiliations: <affiliations>, <campus codes>)"
+    """
+    res = "(Affiliations:"
+    no_affiliation_lengthmark = len(res)
+    affi = get_all_affiliations(request)
+    if affi["grad"]:
+        res += ' Grad'
+    if affi["undergrad"]:
+        res += ' Undergrad'
+    if affi["pce"]:
+        res += ' PCE-student'
+    if affi["faculty"]:
+        res += ' Faculty'
+    if affi["staff_employee"]:
+        res += ' Staff'
+    if affi["instructor"]:
+        res += ' Instructor'
+    if affi["clinician"]:
+        res += 'Clinician'
+    if affi["employee"]:
+        res += ' Employee'
+    if len(res) == no_affiliation_lengthmark:
+        res += 'None'
+
+    res += ', Campuses:'
+    no_campus_lengthmark = len(res)
+    if affi["seattle"] or affi["official_seattle"]:
+        res += ' Seattle'
+    if affi["bothell"] or affi["official_bothell"]:
+        res += ' Bothell'
+    if affi["tacoma"] or affi["official_tacoma"]:
+        res += ' Tacoma'
+    if affi["official_pce"]:
+        res += ' PCE'
+    if len(res) == no_campus_lengthmark:
+        res += 'None'
+    res += ') '
+    return res

@@ -25,11 +25,14 @@
 
         {% compress css %}
         <!-- new myuw styles -->
+        <link href="{% static 'css/typography.less' %}" rel="stylesheet" type="text/less">
+        <link href="{% static 'css/course_card.less' %}" rel="stylesheet" type="text/less">
         <link href="{% static 'css/boilerplate.less' %}" rel="stylesheet" type="text/less">
         <link href="{% static 'css/tabs.less' %}" rel="stylesheet" type="text/less">
         <link href="{% static 'css/dropmenus.less' %}" rel="stylesheet" type="text/less">
-        <link href="{% static 'css/typography.less' %}" rel="stylesheet" type="text/less">
+        <link href="{% static 'css/ratings.less' %}" rel="stylesheet" type="text/less">
         <link href="{% static 'css/components.less' %}" rel="stylesheet" type="text/less">
+        <link href="{% static 'css/photo_list.less' %}" rel="stylesheet" type="text/less">
         {% endcompress %}
 
        <!-- google fonts -->
@@ -93,6 +96,7 @@
         </div>
         {% endblock %}
 
+        {% block mobile_navigation %}
         <div class="myuw-navigation">
             <div class="myuw-wrapper" style="background-image: url({% static 'images/w-logo-white.png' %})">
                 <div class="myuw-title"><a href="/">MyUW</a></div>
@@ -109,14 +113,24 @@
                 </div>
             </div>
         </div>
+        {% endblock %}
 
         <h1 class="sr-only">MyUW</h1>
 
+        {% block desktop_banner %}
         <!-- message banner (desktop only) -->
         <div class="myuw-banner-desktop" id="app_messages" role="complementary">
             <div class="message-banner">
                 <div class="message-text">
-                    <h2>New in MyUW</i><i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 20px; padding: 0 6px 0 6px;"></i>&nbsp;</h2>Quick Links, Pages, Search, and more! &nbsp;<a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn what's new in MyUW</a>
+
+                    {% if user.affiliations.undergrad %}
+                        <h2>New in MyUW<i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 20px; padding: 0 6px 0 6px;"></i>&nbsp;</h2>Quick Links, Pages, Search, and more! &nbsp;<a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn what's new in MyUW</a>
+                    {% else %} <!-- Everyone else -->
+                        <h2>Welcome to the new MyUW!</h2>&nbsp;&nbsp;<strong><a style="font-weight:bold;" id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">See what's new.</a></strong><br/>
+                        <span class="small">Not ready yet? <a id="optout_toggle" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW.</a></span>
+                    {% endif %}
+
+
                 </div>
                 {% if banner_messages %}
                 <div id="message_banner_location">
@@ -130,6 +144,7 @@
            </div>
         </div>
         <!-- end message banner -->
+        {% endblock %}
 
         <div class="myuw-body">
             <div class="myuw-wrapper">
@@ -150,14 +165,16 @@
                         {% endif %}
 
                         {% if instructor_schedule_enabled %}
-                          {% if user.affiliations.faculty %}
+                          {% if user.affiliations.instructor %}
                         <li><a {% if is_myuw_teaching_page %}class="active"{% endif %} href="/teaching/"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Teaching</a></li>
                          {% endif %}
                         {% endif %}
 
-                        <li><a {% if is_myuw_academic_calendar_page %}class="active"{% endif %} href="/academic_calendar/"><i class="fa fa-calendar" aria-hidden="true"></i>Calendar</a></li>
-                        <li><a {% if is_myuw_accounts_page  %}class="active"{% endif %} href="/accounts/"><i class="fa fa-columns" aria-hidden="true"></i>Accounts</a></li>
+                        <li><a {% if is_myuw_academic_calendar_page %}class="active"{% endif %} href="/academic_calendar/"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Calendar</a></li>
+                        <li><a {% if is_myuw_accounts_page  %}class="active"{% endif %} href="/accounts/"><i class="fa fa-credit-card" aria-hidden="true"></i>Accounts</a></li>
+                        {% if user.affiliations.student %}
                         <li><a {% if is_myuw_notices_page %}class="active"{% endif %}  href="/notices/"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Notices</a></li>
+                        {% endif %}
                         <li><a {% if is_myuw_profile_page %}class="active"{% endif %} href="/profile/"><i class="icon-user icon-user-female" aria-hidden="true" style="font-size:14px;"></i>Profile</a></li>
 
                     </ul>
@@ -166,12 +183,18 @@
                 {% endblock %}
                 <!-- end app_navigation -->
 
+                {% block mobile_banner %}
                 <!-- message banner (mobile only) -->
                 <div class="myuw-banner-mobile" id="app_messages" role="complementary">
                     <div class="message-banner">
                         <div class="message-text">
-                    <h2>New in MyUW<i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 20px; padding: 0 6px 0 6px;"></i>&nbsp;</h2>Quick Links, Pages, Search, and more! &nbsp;<a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn what's new in MyUW</a>
-                            </div>
+                            {% if user.affiliations.undergrad %}
+                                <h2>New in MyUW<i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 20px; padding: 0 6px 0 6px;"></i>&nbsp;</h2>Quick Links, Pages, Search, and more! &nbsp;<a id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">Learn what's new in MyUW</a>
+                            {% else %} <!-- Everyone else -->
+                                <h2>Welcome to the new MyUW!</h2>&nbsp;&nbsp;<strong><a style="font-weight:bold;" id="modal_toggle" href="#" class="btn btn-link" data-toggle="modal" data-target="#message_modal">See what's new.</a></strong><br/>
+                                <span class="small">Not ready yet? <a id="optout_toggle" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW.</a></span>
+                            {% endif %}
+                        </div>
                         {% if banner_messages %}
                         <div id="message_banner_location">
                             <div id="messages" class="advert message-text">
@@ -184,6 +207,7 @@
                    </div>
                 </div>
                 <!-- end message banner -->
+                {% endblock %}
 
                 <div class="myuw-content">
                     <!-- app_content -->
@@ -199,6 +223,7 @@
         <!-- footer -->
         {% block footer %}
         <div id="app_footer">
+	        {% if user.affiliations.student %}
             <div class="myuw-wrapper navigation-bar" role="navigation" aria-labelledby="categories">
                 <h2 id="categories" class="sr-only">Categorized Resources</h2>
                 <ul class="clearfix navigation-list">
@@ -228,7 +253,7 @@
                     </li>
                 </ul>
             </div>
-
+			{% endif %}
             <div class="footer-bar" role="contentinfo">
                 <div class="myuw-wrapper footer-links" style="position:relative;">
                     <ul class="footer-links-list">
@@ -293,7 +318,8 @@
         <script src="{% static 'js/banner/common_loading.js' %}"></script>
         <script src="{% static 'js/banner/profile.js' %}"></script>
         <script src="{% static 'js/banner/notice.js' %}"></script>
-        <script src="{% static 'js/banner/calendar.js' %}"></script>
+        <script src="{% static 'js/card/calendars/acad_cal_sp.js' %}"></script>
+        <script src="{% static 'js/card/calendars/events.js' %}"></script>
         <script src="{% static 'js/card/error.js' %}"></script>
         <script src="{% static 'js/card/grade.js' %}"></script>
         <script src="{% static 'js/card/fin_aid.js' %}"></script>
@@ -308,9 +334,7 @@
         <script src="{% static 'js/card/tuition.js' %}"></script>
         <script src="{% static 'js/card/textbook.js' %}"></script>
         <script src="{% static 'js/card/future_quarter.js' %}"></script>
-        <script src="{% static 'js/card/events.js' %}"></script>
         <script src="{% static 'js/card/thrive.js' %}"></script>
-        <script src="{% static 'js/card/emp_fac_student.js' %}"></script>
         <script src="{% static 'js/card/outage.js' %}"></script>
         <script src="{% static 'js/card/schedule/course_sche_panel.js' %}"></script>
         <script src="{% static 'js/card/schedule/course_resource_panel.js' %}"></script>
@@ -328,12 +352,6 @@
         <script src="{% static 'js/card/instructor_schedule/course_card_content.js' %}"></script>
         <script src="{% static 'js/card/instructor_schedule/course_sche_panel.js' %}"></script>
         <script src="{% static 'js/card/instructor_schedule/course_resource_panel.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/future/course_card_content.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/future/course_sche_panel.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/future/course_resource_panel.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/past/course_card_content.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/past/course_sche_panel.js' %}"></script>
-        <script src="{% static 'js/card/instructor_schedule/past/course_resource_panel.js' %}"></script>
         <script src="{% static 'js/card/instructor_schedule/mailman/request_email_lists.js' %}"></script>
         <script src="{% static 'js/card/instructor_schedule/mailman/view_email_lists.js' %}"></script>
         <script src="{% static 'js/card/new_student/ns_critical_info.js' %}"></script>
@@ -342,6 +360,8 @@
         <script src="{% static 'js/card/new_student/ns_to_register.js' %}"></script>
         <script src="{% static 'js/card/new_student/ns_international_stu.js' %}"></script>
         <script src="{% static 'js/card/summary/accounts.js' %}"></script>
+        <script src="{% static 'js/card/summary/schedule.js' %}"></script>
+        <script src="{% static 'js/card/summary/future_schedule.js' %}"></script>
         <script src="{% static 'js/teaching/class_list.js' %}"></script>
         {% endcompress %}
 
@@ -365,6 +385,51 @@
         {% include 'logger.html' %}
 
 
+        <!-- Opt-out Modal -->
+        <div id="optout_page-modal"></div>
+        <div class="myuw-modal modal fade" id="optout_modal" tabindex="-1" role="dialog" aria-labelledby="optout_modal_label" aria-hidden="true">
+            <div class="modal-dialog message-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button id="optout_modal_close" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title" id="optout_modal_label">Switch to the Old Version of MyUW</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div style=" margin-top:10px; margin-bottom:30px;">
+                            <p>Use the old version of MyUW as your default destination the next time you sign in.</p>
+
+                            <a href="/choose/legacy" class="btn btn-primary" title="Go to the old version of MyUW">Use the old version of MyUW</a> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+
+                        <div>
+                            <h4>Before you leave, share your feedback</h4>
+
+                            <p>We want to make MyUW work better for you. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Tell us why you're switching back.</a></p>
+                            <div class="myuw-ratings" style="text-align: center;">
+                                <div id="leave-feedback-div-onpop" class="myuw-ratings-control"><!-- hide after rating is given -->
+                                    <ol class="myuw-ratings-options">
+                                        <li><a class="opt-out-rate-myuw" rel="1-star" href="" title="Rate MyUW 1 of 5 stars"><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 1 of 5 stars</span></a></li>
+                                        <li><a class="opt-out-rate-myuw" rel="2-star" href="" title="Rate MyUW 2 of 5 stars"><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 2 of 5 stars</span></a></li>
+                                        <li><a class="opt-out-rate-myuw" rel="3-star" href="" title="Rate MyUW 3 of 5 stars"><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 3 of 5 stars</span></a></li>
+                                        <li><a class="opt-out-rate-myuw" rel="4-star" href="" title="Rate MyUW 4 of 5 stars"><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 4 of 5 stars</span></a></li>
+                                        <li><a class="opt-out-rate-myuw" rel="5-star" href="" title="Rate MyUW 5 of 5 stars"><i class="fa fa-star-o" aria-hidden="true"></i><span class="sr-only">Rate MyUW 5 of 5 stars</span></a></li>
+                                    </ol>
+                                    <div class="myuw-ratings-instructions">Rate the new MyUW</div>
+                                </div>
+                            </div>
+                        </div>  <!-- end leave-feedback-div -->
+
+                        <div id="thank-feedback-div-onpop" aria-hidden="true" hidden><!-- Show after rating given -->
+                            <p class="myuw-note">Thanks for your feedback!</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end modal code -->
+
+
         <!-- App messages modal -->
         <div id="page-modal"></div>
         <div class="myuw-modal modal fade" id="message_modal" tabindex="-1" role="dialog" aria-labelledby="MyUWMessageModal" aria-hidden="true">
@@ -372,18 +437,96 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button id="modal_close" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h3 class="modal-title" id="myModalLabel">New in MyUW<i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 25px; padding: 0 6px 0 6px;"></i></h3>
+                        <h3 class="modal-title" id="myModalLabel">
+
+                            {% if user.affiliations.undergrad %}<!-- Undergrad Student -->
+                                {% if user.affiliations.instructor %}
+                                    <!-- Student Instructor -->
+                                    MyUW is Designed for You
+                                {% else %} <!-- Regular student -->
+                                    New in MyUW<i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 25px; padding: 0 6px 0 6px;"></i>
+                                {% endif %}
+                            {% else %}
+                                {% if user.affiliations.instructor %}
+                                    MyUW is Designed for Instructors
+                                {% else %}   <!-- For employees -->
+                                    MyUW is Designed for You
+                                {% endif %}
+                            {% endif %}
+                        </h3>
                     </div>
                     <div class="modal-body">
-                        <ul>
-                            <li><strong>Menu & Pages</strong> - We moved cards onto pages. Use the menu at top left to navigate to Academics, Profile, and Accounts. The home page will still show timely content and notices, like your registration date and financial aid deadlines.</li>
-                            <li><strong>Week Counter</strong> - We know things can get hectic, so we added a counter to remind you which week of the quarter you’re in.</li>
-                            <li><strong>Account Summaries</strong> - A summary of your critical accounts appear in the top right of the home page. Click any of them to go to the Accounts page.</li>
-                            <li><strong>Search</strong> - Maybe you’ve noticed we added search recently? It’s the same search as on UW.edu!</li>
-                            <li><strong>Quick Links</strong> - Access popular links and recently visited sites. Customize the list of links by adding your own.</li>
-<li><strong>Log out easier</strong> - We moved the logout link to the top right corner of every page: look for “Sign out.”</li>
-                        </ul>
-                        <p><strong><a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Let us know what you think!</a> We’ll keep making tweaks to improve MyUW for you.</strong></p>
+                        {% if user.affiliations.student %}
+                            {% if user.affiliations.undergrad %}
+                                <ul>
+                                    <li><strong>Menu & Pages</strong> - We moved cards onto pages. Use the menu at top left to navigate to Academics, Profile, and Accounts. The home page will still show timely content and notices, like your registration date and financial aid deadlines.</li>
+                                    {% if user.affiliations.instructor %}<li><strong>Teaching</strong> schedule and resources help you stay on top of your work.</li>{% endif %}
+                                    <li><strong>Week Counter</strong> - We know things can get hectic, so we added a counter to remind you which week of the quarter you’re in.</li>
+                                    <li><strong>Account Summaries</strong> - A summary of your critical accounts appear in the top right of the home page. Click any of them to go to the Accounts page.</li>
+                                    <li><strong>Search</strong> - Maybe you’ve noticed we added search recently? It’s the same search as on UW.edu!</li>
+                                    <li><strong>Quick Links</strong> - Access popular links and recently visited sites. Customize the list of links by adding your own.</li>
+                                    <li><strong>Log out easier</strong> - We moved the logout link to the top right corner of every page: look for “Sign out.”</li>
+                                </ul>
+                                <p><strong><a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Let us know what you think!</a> We’ll keep making tweaks to improve MyUW for you.</strong></p>
+                                <!-- End undergrad student -->
+                            {% else %}
+                                <!-- students who are new to MyUW -->
+                                <p>Easily access class information and tools, frequently-visited resources, and your UW accounts. As your quarter rolls on, we'll present timely information and resources on the home page.</p>
+                                <h4>What's New</h4>
+                                <ul>
+                                    <li><strong>Visual Schedule</strong> with map links to find your classes</li>
+                                    <li><strong>Course Cards</strong> with course website, research guides, and instructor information</li>
+                                    <li><strong>Textbooks</strong> for all your classes listed together</li>
+                                    <li><strong>Quick Links</strong> a customizable list of popular and recently visited pages</li>
+                                    <li><strong>Academic Calendar</strong> to reference when planning</li>
+                                    {% if user.affiliations.instructor %} <!-- If also instructor -->
+                                        <!-- Show Grad TA Content list -->
+                                        <li><strong>GradePage and Course Evaluation</strong> status for your classes</li>
+                                        <li><strong>Class Email Lists</strong> are easier to create and manage</li>
+                                    {% endif %} <!-- end grad TA content -->
+                                    <li><strong>Husky, Library, and Library account</strong> information is always visible</li>
+                                </ul>
+                                <h4>Share Your Feedback</h4>
+                                <p>We want to know how to make MyUW work better for you. Let us know what you think of it so far and share your ideas for future improvements. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Send us your feedback.</a></p>
+                            {% endif %} <!-- End non-undergrad students -->
+
+                        {% else %} <!-- End students -->
+                            {% if user.affiliations.employee %} <!-- Start employees -->
+                                {% if user.affiliations.instructor %} <!-- Show to instructors -->
+                                    <p>With the new MyUW, you can easily keep track of your teaching schedule and access your class information and tools. We’ve curated frequently-visited teaching resources so they are easy to find and convenient.</p>
+
+                                    <h4>What's New</h4>
+                                    <ul>
+                                        <li><strong>Academic Calendar</strong> to reference when planning your class</li>
+                                        <li><strong>Visual Schedule</strong> with map links to find your classrooms</li>
+                                        <li><strong>Textbooks</strong> conveniently listed in one place</li>
+                                        <li><strong>GradePage and Course Evaluation</strong> status for your classes</li>
+                                        <li><strong>Class Email Lists</strong> are easier to create and manage</li>
+                                        <li><strong>Past courses taught</strong> are available for up to six years</li>
+                                        <li><strong>Personalized Quick Links</strong> that also list popular and recently visited pages</li>
+                                        <li><strong>Husky, Library, and UPASS</strong> account information is always visible</li>
+                                    </ul>
+                                    <!-- End instructors -->
+                                {% else %}
+                                    <p>With the new MyUW, you can easily keep track of your UW accounts and find frequently-used resources.</p>
+
+                                    <h4>What's New</h4>
+                                    <ul>
+                                        <li><strong>Academic Calendar</strong> to reference when planning your schedule and holidays</li>
+                                        <li><strong>Personalized Quick Links</strong> that also list popular and recently visited pages</li>
+                                        <li><strong>Husky, Library, and UPASS</strong> account information is always visible</li>
+                                        <li><strong>Workday</strong> and related HR links are highlighted for easy access</li>
+                                    </ul>
+                                {% endif %}
+                                <h4>Share Your Feedback</h4>
+                                <p>We want to know how to make MyUW work better for you. Let us know what you think of it so far and share your ideas for future improvements. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Send us your feedback.</a></p>
+                            {% endif %}  <!-- End employees -->
+                        {% endif %}  <!-- End ALL -->
+
+                        {% if user.affiliations.undergrad %}
+                            Still not convinced? <a id="optout_toggle" href="#" data-toggle="modal" data-target="#optout_modal" data-dismiss="modal">Switch back to the old MyUW.</a>
+                        {% endif %}
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

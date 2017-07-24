@@ -1,8 +1,9 @@
 import os
 from django.conf import settings
-from restclients.dao import SWS_DAO
+from uw_sws.dao import SWS_DAO
 from userservice.user import UserService
 from myuw.models import User
+from uw_pws import PWS
 
 
 def get_netid_of_current_user():

@@ -67,3 +67,6 @@ db.sqlite3
 
 # Mac OS
 *.DS_Store
+
+pip-selfcheck.json
+share/

@@ -20,52 +20,80 @@ var AccountsPage = {
 
         // Monitor for viewport changes and reorder cards if needed
         $(window).resize(function(){
-            if (AccountsPage.is_desktop !== get_is_desktop()){
-                AccountsPage.load_cards_for_viewport();
-                AccountsPage.is_desktop = get_is_desktop();
-            }
+            AccountsPage.order_card_list(get_is_desktop());
         });
     },
 
     load_cards_for_viewport: function() {
-        if (get_is_desktop()) {
-            AccountsPage._load_desktop_cards();
+        AccountsPage._load_cards();
+    },
+
+    _load_cards: function(){
+        var cards = AccountsPage._get_card_order_by_affiliation();
+        if(cards){
+            Cards.load_cards_in_order(cards, $("#accounts_content_cards"));
+            AccountsPage.order_card_list(get_is_desktop());
+        }
+        $(window).on("card-hide", function(ev) {
+            AccountsPage.order_card_list(get_is_desktop());
+        });
+    },
+
+    order_card_list: function(is_desktop){
+        var left_list_elem = $("#accounts_content_cards"),
+            right_list_elem = $("#accounts_sidebar_cards"),
+            all_cards = left_list_elem.children().add(right_list_elem.children()),
+            left_list = [],
+            right_list = [];
+
+        var sorted_cards = all_cards.sort(AccountsPage._sort_cards);
+        if(is_desktop){
+            for(var i=0; i<sorted_cards.length; i++){
+                if(i%2 === 0){
+                    left_list.push(sorted_cards[i]);
+                } else {
+                    right_list.push(sorted_cards[i]);
+                }
+            }
+            left_list_elem.html(left_list);
+            right_list_elem.html(right_list);
         } else {
-            AccountsPage._load_mobile_cards();
+            left_list_elem.html(sorted_cards);
         }
     },
 
-    _load_desktop_cards: function() {
-        AccountsPage._reset_content_divs();
-
-        var desktop_body_cards = [
-            TuitionCard,
-            HfsCard,
-            LibraryCard
-        ];
-        var desktop_sidebar_cards = [
-            MedicineAccountsCard,
-            HRPayrollCard,
-            UPassCard,
-            AccountsCard
-        ];
-
-        Cards.load_cards_in_order(desktop_body_cards, $("#accounts_content_cards"));
-        Cards.load_cards_in_order(desktop_sidebar_cards, $("#accounts_sidebar_cards"));
+    _sort_cards: function(a, b){
+        var order_a = parseInt($(a).attr('data-order'));
+        var order_b = parseInt($(b).attr('data-order'));
+        return (order_a < order_b) ? -1 : (order_a > order_b) ? 1 : 0;
     },
 
-    _load_mobile_cards: function() {
-        AccountsPage._reset_content_divs();
-        var mobile_cards = [
-            TuitionCard,
-            MedicineAccountsCard,
-            HfsCard,
-            HRPayrollCard,
-            LibraryCard,
-            UPassCard,
-            AccountsCard
-        ];
-        Cards.load_cards_in_order(mobile_cards, $("#accounts_content_cards"));
+    _get_card_order_by_affiliation: function(){
+        // affiliation precedence: student>employee
+        if(window.user.student) {
+            return [
+                TuitionCard,
+                MedicineAccountsCard,
+                HfsCard,
+                LibraryCard,
+                UPassCard,
+                AccountsCard
+            ];
+        }
+        if(window.user.employee) {
+            var cards = [
+                MedicineAccountsCard,
+                HRPayrollCard,
+                LibraryCard,
+                UPassCard,
+                HfsCard,
+                AccountsCard
+            ];
+            if(window.user.staff_employee) {
+                cards.splice(1, 1);
+            }
+            return cards;
+        }
     },
 
     _reset_content_divs: function() {
@@ -74,3 +102,9 @@ var AccountsPage = {
     }
 
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.AccountsPage = AccountsPage;

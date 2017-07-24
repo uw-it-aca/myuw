@@ -82,10 +82,23 @@
             <h5>Courses with final exam meeting times to be determined or courses with no final exam:</h5>
             {{#each tbd}}
             <div class="pull-left course-box">
-                <div class="c{{color_id}} course-info">{{curriculum_abbr}} {{course_number}}&nbsp;{{section_id}}</div>
+                <div class="c{{color_id}} course-info"><a href="/{{#if ../is_instructor}}teaching{{else}}academics{{/if}}/#{{curriculum_abbr}}-{{course_number}}-{{section_id}}" style="color: white;" class="show_section_card">{{curriculum_abbr}} {{course_number}}&nbsp;{{section_id}}</a></div>
                 <div style="font-size:.8em; color:#555; text-align:center; margin-top:3px;">Room TBD</div>
             </div>
             {{/each}}
+        </div>
+        {{/if}}
+        {{#if tbd_taught}}
+        <div class="courseTBDTaught" aria-hidden="true">
+            <h5>Courses you teach with no final exam scheduled:</h5>
+            <ul class="unstyled-list tbd-list">
+            {{#each tbd_taught}}
+                <li class="tbd-list-item">
+                    <div class="c{{color_id}} simplesquare todo"></div>
+                    <span class="tbd-course-title">{{curriculum_abbr}} {{course_number}}&nbsp;{{section_id}}</span>
+                </li>
+            {{/each}}
+            </ul>
         </div>
         {{/if}}
         <!-- end - if there are meetings with times to be arranged -->

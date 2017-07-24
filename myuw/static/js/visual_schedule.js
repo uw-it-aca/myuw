@@ -47,8 +47,6 @@ var VisualSchedule = {
             is_future_quarter: term ? true :false
         }));
 
- 
-
         $("#main-content").html(VisualSchedule.get_html(course_data, term));
 
         $("#addi_links").addi_course_links({
@@ -258,3 +256,9 @@ var VisualSchedule = {
     _get_meeting_info: function(meeting) {
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.VisualSchedule = VisualSchedule;

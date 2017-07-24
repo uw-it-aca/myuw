@@ -60,7 +60,7 @@ describe('DirectoryInfoCard', function(){
                          '(206) 555-1235');
         });
         it("UW Seattle instructor", function() {
-            assert.equal(DirectoryInfoCard.dom_target.find('div.card-related-messages a').attr('href'),
+            assert.equal(DirectoryInfoCard.dom_target.find('.card-related-messages a').attr('href'),
                          'https://www.washington.edu/home/peopledir/');
         });
         after(function () {
@@ -102,7 +102,7 @@ describe('DirectoryInfoCard', function(){
                          '(253) 867-5309');
         });
         it("UW Tacoma instructor", function() {
-            assert.equal(DirectoryInfoCard.dom_target.find('div.card-related-messages a').attr('href'),
+            assert.equal(DirectoryInfoCard.dom_target.find('.card-related-messages a').attr('href'),
                          'http://directory.tacoma.uw.edu/');
         });
         after(function () {
