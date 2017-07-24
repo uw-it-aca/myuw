@@ -47,6 +47,7 @@ var SummaryScheduleCard = {
         var instructed_course_data = WSData.normalized_instructed_course_data(term);
         var source = $("#instructor_summary_schedule").html();
         var courses_template = Handlebars.compile(source);
+        var total_sections = instructed_course_data.section_references.length;
 
         var raw = courses_template({
             quarter: instructed_course_data.quarter,
@@ -54,7 +55,9 @@ var SummaryScheduleCard = {
             future_term: instructed_course_data.future_term,
             sections: instructed_course_data.sections,
             section_count: instructed_course_data.sections.length,
-            is_instructor: (instructed_course_data !== undefined)
+            is_instructor: (instructed_course_data !== undefined),
+            total_sections: total_sections,
+            has_section_references: (total_sections > 0)
         });
 
         SummaryScheduleCard.dom_target.html(raw);
