@@ -14,6 +14,7 @@ from uw_sws.term import get_term_by_date, get_specific_term, \
     get_current_term, get_next_term, get_previous_term, \
     get_term_before, get_term_after, get_next_autumn_term, \
     get_next_non_summer_term
+from restclients_core.exceptions import DataFailureException
 from myuw.dao import is_using_file_dao
 
 
@@ -164,16 +165,54 @@ def get_previous_quarter(request):
     return term
 
 
-def get_prev_num_terms(request, num):
+def get_previous_number_quarters(request, num):
     """
-    :return: a list of the previous number of quarters
+    for previous quarters prior to current quarter
+    refered in the user session.
     """
-    quarters = []
     term = get_current_quarter(request)
+    return get_prev_num_terms(term, num)
+
+
+def get_future_number_quarters(request, num):
+    """
+    for future quarters prior to current quarter
+    refered in the user session.
+    """
+    term = get_current_quarter(request)
+    return get_future_num_terms(term, num)
+
+
+def get_prev_num_terms(term, num):
+    """
+    return num prior term objects in ascending order
+    """
+    terms = []
     for i in range(num):
-        term = get_term_before(term)
-        quarters.append(term)
-    return quarters
+        try:
+            term = get_term_before(term)
+            terms.insert(0, term)
+        except DataFailureException as ex:
+            if ex.status == 404:
+                pass
+
+    return terms
+
+
+def get_future_num_terms(term, num):
+    """
+    return num future term objects in ascending order
+    """
+    terms = []
+    for i in range(num):
+        try:
+            term = get_term_after(term)
+            terms.append(term)
+        except DataFailureException as ex:
+            if ex.status == 404:
+                pass
+
+    return terms
 
 
 def is_past(term, request):
