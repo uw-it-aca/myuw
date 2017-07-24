@@ -1,11 +1,11 @@
-from django.test import TestCase
+from django.test import TransactionTestCase
 from myuw.dao.instructor import add_seen_instructor, is_seen_instructor,\
     remove_seen_instructors_for_term, remove_seen_instructors_for_prior_terms,\
     remove_seen_instructors_for_prior_years
 from myuw.dao.term import get_specific_term
 
 
-class TestSeenInstructor(TestCase):
+class TestSeenInstructor(TransactionTestCase):
     def test_non_instructorness(self):
         self.assertEqual(is_seen_instructor('bill'), False)
 
