@@ -39,8 +39,6 @@ MYUW_PRIOR_INSTRUCTED_TERM_YEARS_DEFAULT = 6
 MYUW_FUTURE_INSTRUCTED_TERM_COUNT_DEFAULT = 2
 
 
-
-
 class InstSche(RESTDispatch):
 
     def make_http_resp(self, timer, term, request, summer_term=None):
