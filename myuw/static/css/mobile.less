@@ -402,28 +402,28 @@ label { font-weight: normal; margin-bottom: auto; }
 /*** academic calendar banner ***/
 .acal-break-icon {color: @icon-break-color; font-size:.7em; line-height: 20px; vertical-align: text-top;} // for both banner & acal landing page
 
+/*
 @media @under992 {
- #app_acal { border-bottom: 1px solid #ddd; margin-bottom: 10px;}
+ #app_acal { border-bottom: 1px solid #ddd; }
 }
+*/
 
-#app_acal { margin: 0; position: relative; padding-bottom: 15px;
-    .acal-header {
-        h2 {font-size: @font-header-smaller; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600; color: #85754d;}
-        .view-all {border:none;font-size: 14px;color: #4d66ca;margin-top: 17px;}
-        .acal-banner-events {margin-top:0;clear:both;
+#app_acal { position: relative;
+
+        .acal-banner-events { margin-top:0;clear:both;
 	        .acal-banner-list { list-style-type: none;padding-left: 0;
 		        .acal-banner-list-item {margin-bottom: 8px;
 			        .acal-banner-event-container {margin: 0; width: 99%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
 			        	.acal-break-icon {
 				        	margin-left:-13px;
 				        	}
-				        .acal-banner-date {/*font-family: 'encode_sans_normalbold';font-weight:bold;line-height:10px;*/ color:#333; font-size: 110%;display: block;padding-bottom: 2px;padding-top: 2px;font-weight:600;}
+				        .acal-banner-date { color:#333; display: block;font-weight:600;}
 						a {font-weight:normal;font-size: 14px;}
 					}
 		        }
 	        }
         }
-    }
+
 
     .acal-information { font-size: 11px; font-weight:normal; display: block; white-space: nowrap; margin-top: -15px; line-height: normal; }
 }
