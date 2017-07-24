@@ -1,5 +1,5 @@
 from myuw.models import SeenInstructor
-from uw_sws.term import get_term_before
+from myuw.dao.term import get_prev_num_terms
 
 
 def is_seen_instructor(uwnetid):
@@ -20,9 +20,7 @@ def remove_seen_instructors_for_term(term):
 
 
 def remove_seen_instructors_for_prior_terms(term):
-    # prune anything beyond prior terms
-    for i in range(4):
-        term = get_term_before(term)
+    for term in get_prev_num_terms(term, 4):
         remove_seen_instructors_for_term(term)
 
     remove_seen_instructors_for_prior_years(term.year)

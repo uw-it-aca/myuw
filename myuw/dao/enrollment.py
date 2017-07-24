@@ -11,7 +11,7 @@ from uw_sws.enrollment import enrollment_search_by_regid
 from myuw.dao import is_using_file_dao
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import (get_current_quarter,
-                           get_prev_num_terms,
+                           get_previous_number_quarters,
                            get_comparison_date)
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.exceptions import IndeterminateCampusException
@@ -73,7 +73,7 @@ def get_prev_enrollments_with_open_sections(request, num_of_prev_terms):
     :return: the dictionary of {Term: Enrollment} of the given
     number of previous terms with unfinished sections
     """
-    terms = get_prev_num_terms(request, num_of_prev_terms)
+    terms = get_previous_number_quarters(request, num_of_prev_terms)
     result_dict = get_enrollments_of_terms(terms)
     return remove_finished(request, result_dict)
 

@@ -2,6 +2,7 @@ import json
 import traceback
 from myuw.views.error import handle_exception, not_instructor_error
 import logging
+from django.conf import settings
 from django.http import HttpResponse
 from operator import itemgetter
 from restclients_core.exceptions import DataFailureException
@@ -17,13 +18,13 @@ from myuw.dao.enrollment import get_code_for_class_level
 from myuw.dao.gws import is_grad_student
 from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
-    get_limit_estimate_enrollment_for_section, get_instructor_section,\
-    get_prior_instructed_terms, get_future_instructed_terms
+    get_limit_estimate_enrollment_for_section, get_instructor_section
 from myuw.dao.class_website import get_page_title_from_url, is_valid_page_url
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.pws import get_url_key_for_regid
-from myuw.dao.term import get_current_quarter, is_past, is_future
+from myuw.dao.term import get_current_quarter, is_past, is_future,\
+    get_previous_number_quarters, get_future_number_quarters
 from myuw.logger.logresp import log_success_response
 from myuw.logger.logback import log_exception
 from myuw.logger.timer import Timer
@@ -34,8 +35,10 @@ from myuw.views.api.base_schedule import irregular_start_end
 
 logger = logging.getLogger(__name__)
 EARLY_FALL_START = "EARLY FALL START"
-MYUW_PRIOR_INSTRUCTED_TERM_COUNT = 24
-MYUW_FUTURE_INSTRUCTED_TERM_COUNT = 2
+MYUW_PRIOR_INSTRUCTED_TERM_YEARS_DEFAULT = 6
+MYUW_FUTURE_INSTRUCTED_TERM_COUNT_DEFAULT = 2
+
+
 
 
 class InstSche(RESTDispatch):
@@ -323,12 +326,16 @@ def _load_related_terms(request):
     current_term = get_current_quarter(request)
     terms = []
 
-    for term in get_prior_instructed_terms(current_term):
+    prior_years = getattr(settings, "MYUW_PRIOR_INSTRUCTED_TERM_YEARS",
+                          MYUW_PRIOR_INSTRUCTED_TERM_YEARS_DEFAULT)
+    for term in get_previous_number_quarters(request, prior_years * 4):
         terms.append(term.json_data())
 
     terms.append(current_term.json_data())
 
-    for term in get_future_instructed_terms(current_term):
+    future_terms = getattr(settings, "MYUW_FUTURE_INSTRUCTED_TERM_COUNT",
+                           MYUW_FUTURE_INSTRUCTED_TERM_COUNT_DEFAULT)
+    for term in get_future_number_quarters(request, future_terms):
         terms.append(term.json_data())
 
     return terms

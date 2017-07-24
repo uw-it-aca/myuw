@@ -4,13 +4,11 @@ This module provides access to instructed class schedule and sections
 
 from django.conf import settings
 import logging
-import datetime
-from dateutil.relativedelta import relativedelta
 from uw_sws.section import get_sections_by_instructor_and_term,\
     get_section_by_url
 from uw_sws.registration import get_active_registrations_by_section
 from uw_sws.section import get_section_by_label
-from uw_sws.term import get_specific_term, get_term_before, get_term_after
+from uw_sws.term import get_specific_term
 from uw_sws.section_status import get_section_status_by_label
 from uw_sws.models import ClassSchedule
 from restclients_core.exceptions import DataFailureException
@@ -18,15 +16,11 @@ from myuw.dao import get_netid_of_current_user
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.term import get_current_quarter
 from myuw.dao.instructor import is_seen_instructor, add_seen_instructor
-from myuw.dao.registered_term import get_summer_term
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.util.thread import Thread, ThreadWithResponse
 
 
 logger = logging.getLogger(__name__)
-
-MYUW_PRIOR_INSTRUCTED_TERM_YEARS_DEFAULT = 6
-MYUW_FUTURE_INSTRUCTED_TERM_COUNT_DEFAULT = 2
 
 
 def _get_instructor_sections(person, term, future_terms=None):
@@ -181,36 +175,6 @@ def is_instructor(request):
             return False
 
         raise
-
-
-def get_prior_instructed_terms(term):
-    terms = []
-    prior_years = getattr(settings, "MYUW_PRIOR_INSTRUCTED_TERM_YEARS",
-                          MYUW_PRIOR_INSTRUCTED_TERM_YEARS_DEFAULT)
-    for i in range(prior_years * 4):
-        try:
-            term = get_term_before(term)
-            terms.insert(0, term)
-        except DataFailureException as ex:
-            if ex.status == 404:
-                pass
-
-    return terms
-
-
-def get_future_instructed_terms(term):
-    terms = []
-    future_terms = getattr(settings, "MYUW_FUTURE_INSTRUCTED_TERM_COUNT",
-                           MYUW_FUTURE_INSTRUCTED_TERM_COUNT_DEFAULT)
-    for i in range(future_terms):
-        try:
-            term = get_term_after(term)
-            terms.append(term)
-        except DataFailureException as ex:
-            if ex.status == 404:
-                pass
-
-    return terms
 
 
 def is_section_instructor(section_label):
