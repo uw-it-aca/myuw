@@ -42,6 +42,7 @@ var Landing = {
     _load_desktop_cards: function() {
         Landing._reset_content_divs();
         var desktop_body_cards = [
+            OutageCard,
             ThriveCard,
             GradeCard,
             FutureQuarterCardA,
@@ -67,10 +68,6 @@ var Landing = {
             AcadCalSnippet,
             EventsCard
         ];
-        // Add in outage card if we can't get the SWS/term resource
-        if(window.webservice_outage){
-            desktop_body_cards.unshift(OutageCard);
-        }
         Cards.load_cards_in_order(desktop_body_cards, $("#landing_content_cards"));
         Cards.load_cards_in_order(desktop_sidebar_cards, $("#landing_accounts_cards"));
     },
@@ -78,6 +75,7 @@ var Landing = {
     _load_mobile_cards: function() {
         Landing._reset_content_divs();
         var mobile_cards = [
+            OutageCard,
             QuickLinksCard,
             ThriveCard,
             GradeCard,
@@ -100,10 +98,6 @@ var Landing = {
         ];
         if(window.user.staff_employee) {
             mobile_cards.unshift(HRPayrollCard);
-        }
-        // Add in outage card if we can't get the SWS/term resource
-        if(window.webservice_outage){
-            mobile_cards.unshift(OutageCard);
         }
         Cards.load_cards_in_order(mobile_cards, $("#landing_content_cards"));
     },
