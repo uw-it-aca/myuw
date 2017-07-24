@@ -47,7 +47,9 @@ var SummaryScheduleCard = {
         var instructed_course_data = WSData.normalized_instructed_course_data(term);
         var source = $("#instructor_summary_schedule").html();
         var courses_template = Handlebars.compile(source);
-        var total_sections = instructed_course_data.section_references.length;
+        var total_sections = instructed_course_data.hasOwnProperty('section_references')
+            ? instructed_course_data.section_references.length 
+            : instructed_course_data.sections.length;
 
         var raw = courses_template({
             quarter: instructed_course_data.quarter,
