@@ -187,3 +187,8 @@ class TestSchedule(MyuwApiTest):
         section = self.get_section(data, 'MUSEUM', '700', 'A')
         self.assertFalse("cc_display_dates" in section)
         self.assertFalse(section["on_standby"])
+
+    def test_non_student(self):
+        response = self.get_current_schedule_res('staff',
+                                                 '2013-4-25 00:00:01')
+        self.assertEquals(response.status_code, 404)

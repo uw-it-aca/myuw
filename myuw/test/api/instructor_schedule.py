@@ -1,4 +1,5 @@
 from myuw.test.api import require_url, MyuwApiTest
+from restclients_core.exceptions import DataFailureException
 from myuw.views.api.instructor_schedule import InstScheCurQuar, InstSect
 import json
 from myuw.dao.instructor_schedule import\
@@ -147,3 +148,13 @@ class TestInstructorSection(MyuwApiTest):
         section1 = data['sections'][0]
         self.assertTrue(section1['cc_display_dates'])
         self.assertTrue(section1['sln'] == 0)
+
+    def test_non_instructor(self):
+        now_request = get_request()
+        get_request_with_user('staff', now_request)
+        resp = InstScheCurQuar().GET(now_request)
+        self.assertEquals(resp.status_code, 404)
+        try:
+            sche = get_current_quarter_instructor_schedule(now_request)
+        except DataFailureException as ex:
+            self.assertEquals(ex.status, 404)
