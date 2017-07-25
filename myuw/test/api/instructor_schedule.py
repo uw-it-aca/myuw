@@ -152,9 +152,6 @@ class TestInstructorSection(MyuwApiTest):
     def test_non_instructor(self):
         now_request = get_request()
         get_request_with_user('staff', now_request)
+        sche = get_current_quarter_instructor_schedule(now_request)
         resp = InstScheCurQuar().GET(now_request)
-        self.assertEquals(resp.status_code, 404)
-        try:
-            sche = get_current_quarter_instructor_schedule(now_request)
-        except DataFailureException as ex:
-            self.assertEquals(ex.status, 404)
+        self.assertEquals(resp.status_code, 200)
