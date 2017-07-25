@@ -23,7 +23,7 @@ from myuw.util.thread import Thread, ThreadWithResponse
 logger = logging.getLogger(__name__)
 
 
-def _get_instructor_sections(person, term, future_terms=None):
+def _get_instructor_sections(person, term, future_terms=0):
     """
     @return a uw_sws.models.ClassSchedule object
     Return the actively enrolled sections for the current user
