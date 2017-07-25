@@ -28,10 +28,8 @@
     {% include "handlebars/card/teaching_resources.html" %}
 
     <!-- page content templates -->
-    {% block teaching_content %}{% endblock %}
+    {% block teaching_content %}{% endblock teaching_content %}
     {% include "handlebars/loading.html" %}
-    {% include "handlebars/notices.html" %}
-    {% include "handlebars/academic_calendar.html" %}
 
     <!-- includes -->
     {% include "user_state.html" %}
