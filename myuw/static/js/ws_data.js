@@ -184,7 +184,6 @@ WSData = {
             var grading_is_open = course_data.grading_period_is_open;
             var grading_is_closed = course_data.grading_period_is_past;
             var grading_open = moment(course_data.term.grading_period_open);
-            var grading_aterm_open = moment(course_data.term.aterm_grading_period_open);
             var grading_deadline = moment(course_data.term.grade_submission_deadline);
             var ref = moment();
             // search param supports testing
@@ -198,7 +197,6 @@ WSData = {
             }
 
             var grading_open_relative = grading_open.from(ref);
-            var grading_aterm_open_relative = grading_aterm_open.from(ref);
             var grading_deadline_relative = grading_deadline.from(ref);
             var grading_open_date;
             var grading_deadline_date;
@@ -245,7 +243,6 @@ WSData = {
                 section.deadline_in_24_hours = deadline_in_24_hours;
                 section.grading_period_open_date = grading_open_date;
                 section.grading_period_relative_open = grading_open_relative;
-                section.aterm_grading_period_relative_open = grading_aterm_open_relative;
                 section.grade_submission_deadline_date = grading_deadline_date;
                 section.grade_submission_relative_deadline = grading_deadline_relative;
 
