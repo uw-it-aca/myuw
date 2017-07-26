@@ -62,7 +62,7 @@
           {{#each section_references}}
                 <li>
                     <div data-name="CourseCard" data-type="card" data-identifier="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
-                        <div id="course_wrapper{{index}}">
+                        <div id="course_wrapper{{@index}}">
                             <a href="/teaching/{{term.year}},{{term.quarter}},{{curriculum_abbr}},{{course_number}}/{{section_id}}"><span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span></a>
                         </div>
                     </div>
