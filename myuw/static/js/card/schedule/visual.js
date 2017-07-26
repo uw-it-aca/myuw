@@ -401,14 +401,14 @@ var VisualScheduleCard = {
         };
 
         if (instructed_course_data && instructed_course_data.schedule_periods) {
-            if (instructed_course_data.schedule_periods.hasOwnProperty(period)) {
+            if (period in instructed_course_data.schedule_periods) {
                 visual_data.total_sections +=
                     instructed_course_data.schedule_periods[period].sections.length;
             }
         }
 
         var set_meeting = function(course_data, is_instructor) {
-            if (!course_data.schedule_periods.hasOwnProperty(period)) {
+            if (!period in course_data.schedule_periods) {
                 return;
             }
 
