@@ -154,4 +154,4 @@ class TestInstructorSection(MyuwApiTest):
         get_request_with_user('staff', now_request)
         sche = get_current_quarter_instructor_schedule(now_request)
         resp = InstScheCurQuar().GET(now_request)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEquals(resp.status_code, 404)

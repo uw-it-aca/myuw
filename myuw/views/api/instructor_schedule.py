@@ -1,6 +1,7 @@
 import json
 import traceback
-from myuw.views.error import handle_exception, not_instructor_error
+from myuw.views.error import (handle_exception, not_instructor_error,
+                              data_not_found)
 import logging
 from django.conf import settings
 from django.http import HttpResponse
@@ -47,9 +48,15 @@ class InstSche(RESTDispatch):
                 status 404: no schedule found (teaching no courses)
         """
         schedule = get_instructor_schedule_by_term(term)
-        resp_data = load_schedule(request, schedule)
+        if (len(schedule.sections) == 0 and
+                not hasattr(schedule, 'section_references')):
+            response = data_not_found()
+        else:
+            resp_data = load_schedule(request, schedule)
+            response = HttpResponse(json.dumps(resp_data))
+
         log_success_response(logger, timer)
-        return HttpResponse(json.dumps(resp_data))
+        return response
 
 
 def set_class_website_data(url):
