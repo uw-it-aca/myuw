@@ -5,8 +5,8 @@ var InstructorSectionCard = {
     term: null,
 
     render_init: function() {
-        if (window.hasOwnProperty('section_data') && 
-            window.section_data.hasOwnProperty('section') && 
+        if ('section_data' in window &&
+            'section' in window.section_data &&
             myuwFeatureEnabled('instructor_schedule')) {
             InstructorSectionCard.section = window.section_data.section;
             match = window.section_data.section.match(/(\d{4},[a-zA-Z]+),.*/);
