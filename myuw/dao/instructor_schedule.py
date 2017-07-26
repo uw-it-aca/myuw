@@ -161,22 +161,17 @@ def is_instructor(request):
         term = get_current_quarter(request)
         user_netid = get_netid_of_current_user()
         if is_seen_instructor(user_netid):
-            print "is_instructor True"
             return True
 
         person = get_person_of_current_user()
         sections = _get_instructor_sections(person, term, future_terms=2)
-        print "sections: %s" % len(sections)
         if len(sections) > 0:
             add_seen_instructor(user_netid, term)
-            print "is_instructor True"
             return True
 
-        print "is_instructor False"
         return False
     except DataFailureException as err:
         if err.status == 404:
-            print "is_instructor False"
             return False
 
         raise
