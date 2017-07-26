@@ -249,17 +249,17 @@ WSData = {
                 section.grade_submission_deadline_date = grading_deadline_date;
                 section.grade_submission_relative_deadline = grading_deadline_relative;
 
-                section.grading_status.all_grades_submitted =
-                    (section.grading_status.hasOwnProperty('submitted_count') &&
-                     section.grading_status.hasOwnProperty('unsubmitted_count') &&
-                     section.grading_status.unsubmitted_count === 0);
-                if (section.grading_status.submitted_date &&
-                    section.grading_status.submitted_date != 'None') {
-                    var submitted = moment(section.grading_status.submitted_date);
-                    if (Math.abs(submitted.diff(ref, 'days')) > month_to_day_shift) {
-                        section.grading_status.submitted_relative_date = submitted.format(fmt) + ' PST';
-                    } else {
-                        section.grading_status.submitted_relative_date = submitted.calendar(ref);
+                if ('grading_status' in section && section.grading_status) {
+                    section.grading_status.all_grades_submitted =
+                        (section.grading_status.unsubmitted_count === 0);
+                    if (section.grading_status.submitted_date &&
+                        section.grading_status.submitted_date != 'None') {
+                        var submitted = moment(section.grading_status.submitted_date);
+                        if (Math.abs(submitted.diff(ref, 'days')) > month_to_day_shift) {
+                            section.grading_status.submitted_relative_date = submitted.format(fmt) + ' PST';
+                        } else {
+                            section.grading_status.submitted_relative_date = submitted.calendar(ref);
+                        }
                     }
                 }
 
