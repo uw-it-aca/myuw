@@ -59,7 +59,7 @@ var Landing = {
             FutureQuarterCard1,
             SummerRegStatusCard1
         ];
-        if(window.user.staff_employee && !(window.user.student || window.user.is_instructor)) {
+        if(window.user.staff_employee && !(window.user.student || window.user.instructor)) {
             desktop_body_cards.unshift(HRPayrollCard);
         }
         var desktop_sidebar_cards = [
@@ -98,7 +98,7 @@ var Landing = {
             AcadCalSnippet,
             EventsCard
         ];
-        if(window.user.staff_employee && !(window.user.student || window.user.is_instructor)) {
+        if(window.user.staff_employee && !(window.user.student || window.user.instructor)) {
             mobile_cards.unshift(HRPayrollCard);
         }
         // Add in outage card if we can't get the SWS/term resource
