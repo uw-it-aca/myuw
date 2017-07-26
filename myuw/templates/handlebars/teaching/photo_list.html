@@ -54,7 +54,7 @@
                                         <div class="pull-left" style="width:50%; min-width: 272px;">
                                         Student Number:&nbsp;&nbsp;{{ student_number }} <br />
                                         UW NetID:&nbsp;&nbsp;{{ netid }} <br />
-                                        Major:&nbsp;&nbsp;{{ #each majors }}{{ full_name }}{{ /each }}<br />
+                                        Major:&nbsp;&nbsp;{{ #each majors }}{{ full_name }}{{#unless @last}},&nbsp;{{/unless}}{{ /each }}<br />
                                         Class:&nbsp;&nbsp;{{ class }}
                                         </div>
                                         <div class="pull-left" style="width:50%; min-width: 272px;">
