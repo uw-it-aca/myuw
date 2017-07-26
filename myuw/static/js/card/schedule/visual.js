@@ -408,7 +408,7 @@ var VisualScheduleCard = {
         }
 
         var set_meeting = function(course_data, is_instructor) {
-            if (!period in course_data.schedule_periods) {
+            if (!(period in course_data.schedule_periods)) {
                 return;
             }
 
