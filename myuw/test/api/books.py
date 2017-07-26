@@ -41,8 +41,18 @@ class TestApiBooks(MyuwApiTest):
         self.assertIsNone(book["price"])
 
     @require_url('myuw_home')
-    def test_javerage_books(self):
+    def test_no_sche_books(self):
         self.set_user('staff')
+        response = self.get_response_by_reverse(
+            'myuw_book_api',
+            kwargs={'year': 2013,
+                    'quarter': 'spring',
+                    'summer_term': ''})
+        self.assertEquals(response.status_code, 404)
+
+    @require_url('myuw_home')
+    def test_invalid_sln_books(self):
+        self.set_user('jeos')
         response = self.get_response_by_reverse(
             'myuw_book_api',
             kwargs={'year': 2013,
