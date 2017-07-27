@@ -4,14 +4,13 @@ This module provides access to instructed class schedule and sections
 
 from django.conf import settings
 import logging
-from uw_sws.section import get_sections_by_instructor_and_term,\
-    get_section_by_url
-from uw_sws.registration import get_active_registrations_by_section
-from uw_sws.section import get_section_by_label
-from uw_sws.term import get_specific_term
-from uw_sws.section_status import get_section_status_by_label
-from uw_sws.models import ClassSchedule
 from restclients_core.exceptions import DataFailureException
+from uw_sws.models import ClassSchedule
+from uw_sws.registration import get_active_registrations_by_section
+from uw_sws.section import get_sections_by_instructor_and_term,\
+    get_section_by_url, get_section_by_label
+from uw_sws.section_status import get_section_status_by_label
+from uw_sws.term import get_specific_term
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.term import get_current_quarter
@@ -32,7 +31,8 @@ def _get_instructor_sections(person, term, future_terms=0):
     if person is None or term is None:
         return None
     return get_sections_by_instructor_and_term(
-        person, term, future_terms=future_terms)
+        person, term, future_terms=future_terms,
+        transcriptable_course='all')
 
 
 def _get_instructor_schedule(person, term):
