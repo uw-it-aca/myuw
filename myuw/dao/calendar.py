@@ -5,7 +5,7 @@ from urllib import quote_plus, urlencode
 from django.conf import settings
 from django.utils import timezone
 from restclients_core.exceptions import DataFailureException
-from restclients.trumba import get_calendar_by_name
+from uw_trumba import get_calendar_by_name
 from myuw.dao.term import get_comparison_date
 from myuw.dao.calendar_mapping import get_calendars_for_current_user
 

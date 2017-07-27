@@ -45,9 +45,10 @@ class Textbook(RESTDispatch):
                     schedule, summer_term))
 
                 verba_link = get_verba_link_by_schedule(schedule)
-                by_sln["verba_link"] = verba_link
+                if verba_link:
+                    by_sln["verba_link"] = verba_link
             except DataFailureException as ex:
-                if ex.status != 404:
+                if ex.status != 400 and ex.status != 404:
                     raise
 
             # instructed sections

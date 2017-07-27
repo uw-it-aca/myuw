@@ -183,22 +183,20 @@ WSData = {
 
             var grading_is_open = course_data.grading_period_is_open;
             var grading_is_closed = course_data.grading_period_is_past;
-            var grading_open = moment(new Date(course_data.term.grading_period_open));
-            var grading_aterm_open = moment(new Date(course_data.term.aterm_grading_period_open));
-            var grading_deadline = moment(new Date(course_data.term.grade_submission_deadline));
+            var grading_open = moment(course_data.term.grading_period_open);
+            var grading_deadline = moment(course_data.term.grade_submission_deadline);
             var ref = moment();
             // search param supports testing
             if (window.location.search.length) {
                 match = window.location.search.match(/\?grading_date=(.+)$/);
                 if (match) {
-                    ref = moment(new Date(decodeURI(match[1])));
+                    ref = moment(decodeURI(match[1]));
                     grading_is_closed = grading_deadline.isBefore(ref);
                     grading_is_open = (!grading_is_closed && grading_open.isBefore(ref));
                 }
             }
 
             var grading_open_relative = grading_open.from(ref);
-            var grading_aterm_open_relative = grading_aterm_open.from(ref);
             var grading_deadline_relative = grading_deadline.from(ref);
             var grading_open_date;
             var grading_deadline_date;
@@ -224,6 +222,7 @@ WSData = {
             var minutes_till_deadline = grading_deadline.diff(ref, 'minutes');
             var deadline_in_24_hours = (minutes_till_deadline >= 0 &&
                                         minutes_till_deadline <= (24 * 60));
+            var comparison_date = moment(window.card_display_dates.comparison_date);
 
             $.each(course_data.sections, function (iii) {
                 var section = this;
@@ -244,21 +243,20 @@ WSData = {
                 section.deadline_in_24_hours = deadline_in_24_hours;
                 section.grading_period_open_date = grading_open_date;
                 section.grading_period_relative_open = grading_open_relative;
-                section.aterm_grading_period_relative_open = grading_aterm_open_relative;
                 section.grade_submission_deadline_date = grading_deadline_date;
                 section.grade_submission_relative_deadline = grading_deadline_relative;
 
-
-                section.grading_status.all_grades_submitted =
-                    (section.grading_status.hasOwnProperty('submitted_count') &&
-                     section.grading_status.hasOwnProperty('unsubmitted_count') &&
-                     section.grading_status.unsubmitted_count === 0);
-                if (section.grading_status.submitted_date) {
-                    var submitted = moment(new Date(section.grading_status.submitted_date));
-                    if (Math.abs(submitted.diff(ref, 'days')) > month_to_day_shift) {
-                        section.grading_status.submitted_relative_date = submitted.format(fmt) + ' PST';
-                    } else {
-                        section.grading_status.submitted_relative_date = submitted.calendar(ref);
+                if ('grading_status' in section && section.grading_status) {
+                    section.grading_status.all_grades_submitted =
+                        (section.grading_status.unsubmitted_count === 0);
+                    if (section.grading_status.submitted_date &&
+                        section.grading_status.submitted_date != 'None') {
+                        var submitted = moment(section.grading_status.submitted_date);
+                        if (Math.abs(submitted.diff(ref, 'days')) > month_to_day_shift) {
+                            section.grading_status.submitted_relative_date = submitted.format(fmt) + ' PST';
+                        } else {
+                            section.grading_status.submitted_relative_date = submitted.calendar(ref);
+                        }
                     }
                 }
 
@@ -269,6 +267,33 @@ WSData = {
                         return false;
                     }
                 });
+
+                // wire up eval data
+                if (section.evaluation) {
+                    section.evaluation.response_rate_percent = 0;
+                    section.evaluation.is_past = false;
+                    if (section.evaluation.response_rate) {
+                        section.evaluation.response_rate_percent = Math.round(section.evaluation.response_rate * 100);
+                    }
+                    if (section.evaluation.eval_open_date) {
+                        var eval_open = moment(section.evaluation.eval_open_date);
+                        section.evaluation.eval_open_date_display = eval_open.format(fmt) + ' PST';
+                        section.evaluation.is_open = comparison_date.isAfter(eval_open);
+                    }
+                    if (section.evaluation.eval_close_date) {
+                        var eval_close = moment(section.evaluation.eval_close_date);
+                        section.evaluation.eval_close_date_display = eval_close.format(fmt) + ' PST';
+                        section.evaluation.is_past = comparison_date.isAfter(eval_close);
+                        if (section.evaluation.is_past) {
+                            section.evaluation.is_open = false;
+                        }
+                    }
+                    if (section.evaluation.report_available_date) {
+                        var report_date = moment(section.evaluation.report_available_date);
+                        section.evaluation.report_available_date_display = report_date.format(fmt) + ' PST';
+                        section.evaluation.report_is_available = comparison_date.isAfter(report_date);
+                    }
+                }
             });
         }
         return course_data;

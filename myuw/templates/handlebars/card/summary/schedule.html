@@ -1,0 +1,84 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "instructor_summary_schedule" %}
+    <div class="myuw-card" data-type="card" data-name="SummaryScheduleCard" data-identifier="{{ title }}">
+        <div style="position:relative;">
+        <h3 class="myuw-card-title">
+          {{capitalizeString quarter}} {{year}} Teaching Schedule
+        </h3>
+        {{#if section_count}}
+            {{#if future_term}}
+                <div class="course-meta"><div style="margin-top: 8px;"><a class="future-nav-link"
+                href="/teaching/{{ year }},{{ quarter }}" future-nav-target="{{year}},{{quarter}}"
+                data-linklabel="{{capitalizeString quarter}} {{year}} Teaching Details">View details</a></div></div>
+                <p>You are teaching <strong>{{section_count}} course{{pluralize section_count '' 's'}}</strong> in {{capitalizeString quarter}} {{year}}. <br />
+                First day of instruction is {{toFriendlyDate term.first_day_quarter}} ({{toFromNowDate term.first_day_quarter}})</p>
+            {{/if}}
+            {{#each sections}}
+              <div class="myuw-card-section {{#if @last}}last{{/if}}">
+                  <div class="row">
+                      <div class="col-sm-3">
+                          <h4 class="myuw-card-row-heading" style="display:inline-block; margin-bottom:0px;"><div class="c{{color_id}} simplesquare" aria-hidden="true"></div><a
+                              href="/teaching/{{ ../year }},{{ ../quarter }}#{{ curriculum_abbr }}-{{ course_number }}-{{ section_id }}"
+                              class="future-nav-link" future-nav-target="{{../year}},{{../quarter}},{{curriculum_abbr}}-{{course_number}}-{{section_id}}">{{curriculum_abbr}} {{course_number}} {{section_id}}</a></h4><span style="font-size:12px;text-transform: uppercase;margin-left: 1.4em;">{{ meetings.0.type }}</span>
+                      </div>
+                      <div class="col-sm-9">
+                          <table class="table-course-schedule">
+                              <thead class="sr-only">
+                                  <tr>
+                                      <th>Day(s)</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                            <th>Section Type</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody-course-schedule">
+                        {{#each meetings}}
+                        <tr class="course-schedule-row">
+                            {{#if wont_meet}}
+                                <!-- waiting on sws
+                                <td colspan="2" class="text-muted course-tbd">No meeting day on ... </td>
+                                -->
+                            {{else}}
+                                {{#if days_tbd }}
+                                    <td colspan="2" class="text-muted course-tbd">Days and times to be arranged.</td>
+                                {{else if no_meeting}}
+                                    <td colspan="3" class="text-muted course-tbd">No classroom meeting: online learning</td>
+                                {{else}}
+                                    {% include "handlebars/card/schedule/course_sche_col_days.html" %}
+                                {{/if}}
+
+                                {{#unless no_meeting}}
+                                    {{#if building_tbd}}
+                                       <td class="course-loc-tbd">Room to be arranged.</td>
+                                    {{else}}
+                                       {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
+                                    {{/if}}
+                                {{/unless}}
+
+                                {{#if ../../show_enrollment}}
+                                    <td class="course-type">
+                                        {{#if ../current_enrollment}}<a target="_blank" href="/teaching/{{ ../../year }},{{ ../../quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students" class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">{{../current_enrollment}}</a>{{else}}0{{/if}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}
+                                    </td>
+                                {{else}}
+                                    <td class="course-type">
+                                        <a target="_blank" href="/teaching/{{ ../../year }},{{ ../../quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students" class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">Class list</a>
+                                    </td>
+                                {{/if}}
+                            {{/if}}
+                        </tr>
+                        {{/each}}
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+            {{/each}}
+        {{/if}}
+        {{#if has_section_references }}
+             <p>You are an instructor of record on <strong>{{ total_section_refs }}</strong> courses this quarter. <a href="/teaching/{{ year }},{{ quarter }}">View list of courses.</a></p>
+        {{/if}}
+
+        <div class="future-quarter-links" style="margin-top:16px;"><a href="/academic_calendar/#{{ year }},{{capitalizeString quarter }}">View {{capitalizeString quarter}} {{year}} important dates and deadlines.</a></div>
+        </div>
+    </div>
+{% endtplhandlebars %}

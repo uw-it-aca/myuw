@@ -53,9 +53,6 @@ class TestUserDao(TransactionTestCase):
         get_request_with_user('currgrad')
         self.assertTrue(is_oldmyuw_user())
 
-        get_request_with_user('staff')
-        self.assertTrue(is_oldmyuw_user())
-
         get_request_with_user('faculty')
         self.assertTrue(is_oldmyuw_user())
 
@@ -79,9 +76,6 @@ class TestUserDao(TransactionTestCase):
         self.assertTrue(is_oldmyuw_mobile_user())
 
         get_request_with_user('faculty')
-        self.assertTrue(is_oldmyuw_mobile_user())
-
-        get_request_with_user('staff')
         self.assertTrue(is_oldmyuw_mobile_user())
 
         get_request_with_user('japplicant')

@@ -4,7 +4,7 @@ import traceback
 from django.http import HttpResponse
 from myuw.dao.enrollment import get_prev_enrollments_with_open_sections
 from myuw.dao.schedule import get_schedule_by_term
-from myuw.dao.term import get_prev_num_terms
+from myuw.dao.term import get_previous_number_quarters
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_msg, log_success_response,\
     log_data_not_found_response
@@ -53,7 +53,7 @@ class StudUnfinishedPrevQuarClasSche(StudClasSche):
 
     def make_resp_json(self, request, enrollment_dict):
         ret_json = []
-        terms = get_prev_num_terms(request, 2)
+        terms = get_previous_number_quarters(request, 2)
 
         for term in terms:
             if term in enrollment_dict:

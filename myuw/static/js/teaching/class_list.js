@@ -27,15 +27,26 @@ var PhotoClassList = {
         $("#sort_list").on("change", function() {
             var sorted = PhotoClassList.sort_students(this.value);
 
-            var new_body = $("<tbody>");
+            var new_body = $("<div>");
             for (var i = 0; i < sorted.length; i++) {
                 var regid = sorted[i].regid;
                 var student_row = $("#student_"+regid);
                 new_body.append(student_row);
             }
 
-            $("#student_list tbody").html(new_body.html());
+            $("#student_sort").html(new_body.html());
         });
+
+        $("#list_view").on("click", function(e) {
+            e.preventDefault();
+            $("#student_sort").removeClass("grid-view");
+        });
+
+        $("#grid_view").on("click", function(e) {
+            e.preventDefault();
+            $("#student_sort").addClass("grid-view");
+        });
+
     },
 
     sort_students: function(key) {

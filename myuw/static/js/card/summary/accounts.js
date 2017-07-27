@@ -18,9 +18,11 @@ var AccountSummaryCard = {
         if (window.term_data.break_year != window.term_data.year) {
             window.term_data.spans_years = true;
         }
+
         AccountSummaryCard._render({
             library: WSData.library_data(),
             hfs: WSData.hfs_data(),
+            accounts: (WSData.hfs_data() || WSData.library_data()),
             term: window.term_data,
             term_total_weeks: AccountSummaryCard.get_weeks_apart(window.term_data.first_day, window.term_data.last_day),
             term_current_week: AccountSummaryCard.get_weeks_apart(window.term_data.first_day, window.term_data.today_date),
@@ -32,6 +34,7 @@ var AccountSummaryCard = {
         var source = $("#account_summary_card").html();
         var template = Handlebars.compile(source);
         AccountSummaryCard.dom_target.html(template(data));
+        LogUtils.cardLoaded('AccountSummaryCard', AccountSummaryCard.dom_target);
     },
 
     get_weeks_apart: function(date1, date2) {

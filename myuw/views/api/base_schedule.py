@@ -3,7 +3,6 @@ import logging
 from myuw.util.thread import Thread
 from django.http import HttpResponse
 from operator import itemgetter
-from uw_sws.section import is_valid_sln
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import (get_canvas_active_enrollments,
                              canvas_course_is_available)
@@ -115,9 +114,7 @@ def load_schedule(request, schedule, summer_term=""):
                                                         pce_course.end_date)
 
         # if section.is_primary_section:
-        if not is_valid_sln(section.sln):
-            section_data["sln"] = 0
-        else:
+        if section.sln:
             try:
                 section_data["lib_subj_guide"] =\
                     get_subject_guide_by_section(section)

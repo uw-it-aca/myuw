@@ -3,7 +3,7 @@ This module provides access to registered class schedule and sections
 """
 
 import logging
-from restclients.thread import generic_prefetch
+from restclients_core.thread import generic_prefetch
 from uw_libraries.subject_guides import get_subject_guide_for_section_params
 from uw_sws.models import ClassSchedule
 from uw_sws.registration import get_schedule_by_regid_and_term

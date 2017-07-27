@@ -61,7 +61,7 @@ def handle_exception(logger, timer, stack_trace):
         return invalid_input_data()
 
     if isinstance(exc_value, DataFailureException) and\
-            exc_value.status == 404:
+            (exc_value.status == 400 or exc_value.status == 404):
         return data_not_found()
     return data_error()
 

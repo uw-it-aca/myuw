@@ -196,7 +196,7 @@ def _get_registered_summer_terms(registered_summer_sections):
     return data
 
 
-def _get_summer_term(term):
+def get_summer_term(term):
     if is_a_term(term["summer_term"]):
         return "A"
     if is_b_term(term["summer_term"]):
@@ -215,7 +215,7 @@ def _get_actual_now(now):
 def save_seen_registration_obj(user, request, term):
     year = term["year"]
     quarter = term["quarter"]
-    summer_term = _get_summer_term(term)
+    summer_term = get_summer_term(term)
 
     qset = SeenRegistration.objects.filter(user=user,
                                            year=year,
