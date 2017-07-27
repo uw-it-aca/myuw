@@ -51,14 +51,12 @@ var SummaryScheduleCard = {
         if ('section_references' in instructed_course_data) {
             total_section_refs = instructed_course_data.section_references.length;
         }
-
         var raw = courses_template({
             quarter: instructed_course_data.quarter,
             year: instructed_course_data.year,
             future_term: instructed_course_data.future_term,
             sections: instructed_course_data.sections,
             section_count: instructed_course_data.sections.length,
-            is_instructor: (instructed_course_data !== undefined),
             total_section_refs: total_section_refs,
             has_section_references: (total_section_refs > 0)
         });

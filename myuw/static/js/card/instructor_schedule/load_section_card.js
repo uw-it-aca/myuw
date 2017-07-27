@@ -75,13 +75,7 @@ var InstructorSectionCard = {
             this.year = course_data.year;
             this.quarter = course_data.quarter;
             this.summer_term = course_data.summer_term;
-            if (course_data.future_term) {
-                InstructorFutureCourseCardContent.render(this, null);
-            } else if (course_data.past_term) {
-                InstructorPastCourseCardContent.render(this, null);
-            } else {
-                InstructorCourseCardContent.render(this, null);
-            }
+            InstructorCourseCardContent.render(this, null);
         });
     }
 };

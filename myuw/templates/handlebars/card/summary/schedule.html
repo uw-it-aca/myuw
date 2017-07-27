@@ -5,11 +5,14 @@
         <h3 class="myuw-card-title">
           {{capitalizeString quarter}} {{year}} Teaching Schedule
         </h3>
-        {{#if future_term}}<div class="course-meta"><div style="margin-top: 8px;"><a class="future-nav-link"
-              href="/teaching/{{ year }},{{ quarter }}" future-nav-target="{{year}},{{quarter}}"
-              data-linklabel="{{capitalizeString quarter}} {{year}} Teaching Details">View details</a></div></div>
-            <p>You are teaching <strong>{{section_count}} course{{pluralize section_count '' 's'}}</strong> in {{capitalizeString quarter}} {{year}}. <br />
-            First day of instruction is {{toFriendlyDate term.first_day_quarter}} ({{toFromNowDate term.first_day_quarter}})</p>{{/if}}
+        {{#if section_count}}
+            {{#if future_term}}
+                <div class="course-meta"><div style="margin-top: 8px;"><a class="future-nav-link"
+                href="/teaching/{{ year }},{{ quarter }}" future-nav-target="{{year}},{{quarter}}"
+                data-linklabel="{{capitalizeString quarter}} {{year}} Teaching Details">View details</a></div></div>
+                <p>You are teaching <strong>{{section_count}} course{{pluralize section_count '' 's'}}</strong> in {{capitalizeString quarter}} {{year}}. <br />
+                First day of instruction is {{toFriendlyDate term.first_day_quarter}} ({{toFromNowDate term.first_day_quarter}})</p>
+            {{/if}}
             {{#each sections}}
               <div class="myuw-card-section {{#if @last}}last{{/if}}">
                   <div class="row">
@@ -70,12 +73,12 @@
                   </div>
               </div>
             {{/each}}
+        {{/if}}
+        {{#if has_section_references }}
+             <p>You are an instructor of record on <strong>{{ total_section_refs }}</strong> courses this quarter. <a href="/teaching/{{ year }},{{ quarter }}">View list of courses.</a></p>
+        {{/if}}
 
-            {{#if has_section_references }}
-                <p>You are an instructor of record on <strong>{{ total_section_refs }}</strong> courses this quarter. <a href="/teaching/{{ year }},{{ quarter }}">View list of courses.</a></p>
-            {{/if}}
-
-            <div class="future-quarter-links" style="margin-top:16px;"><a href="/academic_calendar/#{{ year }},{{capitalizeString quarter}}">View {{capitalizeString quarter}} {{year}} important dates and deadlines.</a></div>
+        <div class="future-quarter-links" style="margin-top:16px;"><a href="/academic_calendar/#{{ year }},{{capitalizeString quarter }}">View {{capitalizeString quarter}} {{year}} important dates and deadlines.</a></div>
         </div>
     </div>
 {% endtplhandlebars %}
