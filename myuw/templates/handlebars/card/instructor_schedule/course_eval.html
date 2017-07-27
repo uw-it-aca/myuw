@@ -42,7 +42,7 @@
                             <li class="evaluation-schedule">Report Available {{evaluation.report_available_date_display}}</li>
                         {{/if}}
                         {{#if evaluation.report_url}}
-                          <li><a href="{{evaluation.report_url}}" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation Report">View evaluation results report</a></li>
+                          <li><a href="{{ evaluation.report_url }}" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation Report">View evaluation results report</a></li>
                         {{/if}}
                         <li><strong>{{evaluation.response_rate_percent}}% Response rate</strong></li>
                     {{/if}}
