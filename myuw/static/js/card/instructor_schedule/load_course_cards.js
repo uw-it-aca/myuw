@@ -48,6 +48,7 @@ var InstructorCourseCards = {
         var source = $("#instructor_course_card_no_courses").html();
         var courses_template = Handlebars.compile(source);
         $(".instructor_cards .instructor-course-card").remove();
+        $(".instructor_cards .myuw-card").remove();
         $(".instructor_cards").append(courses_template());
 
         $("div[data-tab-type='instructor-term-nav']").removeClass("myuw-tab-selected");
