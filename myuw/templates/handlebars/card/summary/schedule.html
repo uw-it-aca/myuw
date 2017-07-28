@@ -77,8 +77,11 @@
         {{#if has_section_references }}
              <p>You are an instructor of record on <strong>{{ total_section_refs }}</strong> courses this quarter. <a href="/teaching/{{ year }},{{ quarter }}">View list of courses.</a></p>
         {{/if}}
-
+        {{#if has_sections}}
         <div class="future-quarter-links" style="margin-top:16px;"><a href="/academic_calendar/#{{ year }},{{capitalizeString quarter }}">View {{capitalizeString quarter}} {{year}} important dates and deadlines.</a></div>
         </div>
+        {{else}}
+        You are not teaching any courses {{capitalizeString quarter}} {{year}}.
+        {{/if}}
     </div>
 {% endtplhandlebars %}
