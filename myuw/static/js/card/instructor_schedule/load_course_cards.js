@@ -33,18 +33,8 @@ var InstructorCourseCards = {
         }
 
         if (error_code === 404) {
-            // no instructed courses found
             if ($('.instructed-terms').length) {
-                var source = $("#instructor_course_card_no_courses").html();
-                var courses_template = Handlebars.compile(source);
-                $(".instructor_cards .instructor-course-card").remove();
-                $(".instructor_cards").append(courses_template());
-
-                $("div[data-tab-type='instructor-term-nav']").removeClass("myuw-tab-selected");
-                $("div[data-tab-type='instructor-term-nav'][data-term='"+InstructorCourseCards.term+"']").addClass("myuw-tab-selected");
-                $("#teaching-term-select option[value='"+InstructorCourseCards.term+"']").prop('selected', true);
-                InstructorCourseCards._show_correct_term_dropdown();
-
+                InstructorCourseCards._render_no_courses_found();
             } else {
                 $("#InstructorCourseCards").hide();
             }
@@ -52,6 +42,19 @@ var InstructorCourseCards = {
             raw = CardWithError.render("Teaching Schedule");
             InstructorCourseCards.dom_target.html(raw);
         }
+    },
+
+    _render_no_courses_found: function() {
+        var source = $("#instructor_course_card_no_courses").html();
+        var courses_template = Handlebars.compile(source);
+        $(".instructor_cards .instructor-course-card").remove();
+        $(".instructor_cards .myuw-card").remove();
+        $(".instructor_cards").append(courses_template());
+
+        $("div[data-tab-type='instructor-term-nav']").removeClass("myuw-tab-selected");
+        $("div[data-tab-type='instructor-term-nav'][data-term='"+InstructorCourseCards.term+"']").addClass("myuw-tab-selected");
+        $("#teaching-term-select option[value='"+InstructorCourseCards.term+"']").prop('selected', true);
+        InstructorCourseCards._show_correct_term_dropdown();
     },
 
     _show_correct_term_dropdown: function() {
@@ -103,20 +106,23 @@ var InstructorCourseCards = {
             }
         });
 
-
         course_data.tab_terms = tab_terms;
         course_data.reversed_related_terms = course_data.related_terms.slice().reverse();
         var raw = courses_template(course_data);
         InstructorCourseCards.dom_target.html(raw);
 
-        $.each(course_data.sections, function () {
-            this.year = course_data.year;
-            this.quarter = course_data.quarter;
-            this.summer_term = course_data.summer_term;
-            this.future_term = course_data.future_term;
-            this.past_term = course_data.past_term;
-            InstructorCourseCardContent.render(this, null);
-        });
+        if (!(course_data.sections.length || course_data.section_references)) {
+            InstructorCourseCards._render_no_courses_found();
+        } else {
+            $.each(course_data.sections, function () {
+                this.year = course_data.year;
+                this.quarter = course_data.quarter;
+                this.summer_term = course_data.summer_term;
+                this.future_term = course_data.future_term;
+                this.past_term = course_data.past_term;
+                InstructorCourseCardContent.render(this, null);
+            });
+        }
 
         InstructorCourseCards.add_events();
         InstructorCourseCards._show_correct_term_dropdown();

@@ -48,15 +48,9 @@ class InstSche(RESTDispatch):
                 status 404: no schedule found (teaching no courses)
         """
         schedule = get_instructor_schedule_by_term(term)
-        if (len(schedule.sections) == 0 and
-                not hasattr(schedule, 'section_references')):
-            response = data_not_found()
-        else:
-            resp_data = load_schedule(request, schedule)
-            response = HttpResponse(json.dumps(resp_data))
-
+        resp_data = load_schedule(request, schedule)
         log_success_response(logger, timer)
-        return response
+        return HttpResponse(json.dumps(resp_data))
 
 
 def set_class_website_data(url):
