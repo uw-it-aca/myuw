@@ -1,10 +1,13 @@
-from unittest2 import TestCase
+from django.test import TransactionTestCase
 from myuw.models import VisitedLink, CustomLink, PopularLink, User
-from myuw.dao.quicklinks import get_quicklink_data, get_link_label
+from myuw.dao.quicklinks import get_quicklink_data, get_link_label,\
+    add_custom_link, delete_custom_link, edit_custom_link,\
+    add_hidden_link, delete_hidden_link
 from myuw.test import get_request_with_user
 
 
-class TestQuickLinkDAO(TestCase):
+class TestQuickLinkDAO(TransactionTestCase):
+
     def test_recent_filtering(self):
         def _get_recent(data):
             recent = set()
@@ -12,9 +15,6 @@ class TestQuickLinkDAO(TestCase):
                 recent.add(link['url'])
             return recent
 
-        VisitedLink.objects.all().delete()
-        PopularLink.objects.all().delete()
-        CustomLink.objects.all().delete()
         username = 'link_dao_user'
         get_request_with_user(username)
         user, created = User.objects.get_or_create(uwnetid=username)
@@ -68,3 +68,47 @@ class TestQuickLinkDAO(TestCase):
                                         url="http://example.com?q=whatever",
                                         label="Original")
         self.assertEquals(get_link_label(l1), "Original")
+
+    def test_hidden_link(self):
+        username = 'add_hidlink_user'
+        get_request_with_user(username)
+        url = "http://s.ss.edu"
+        link = add_hidden_link(url)
+        self.assertEquals(link.url, url)
+        self.assertIsNotNone(delete_hidden_link(link.url_key))
+        self.assertIsNone(delete_hidden_link(link.url_key))
+
+    def test_add_custom_link(self):
+        username = 'add_link_user'
+        get_request_with_user(username)
+        url = "http://s.ss.edu"
+        link_label = "ss"
+        link = add_custom_link(url, link_label)
+        self.assertEquals(link.url, url)
+        self.assertEquals(link.label, link_label)
+        link = add_custom_link("http://s1.ss.edu")
+        self.assertIsNone(link.label)
+
+    def test_delete_custom_link(self):
+        username = 'rm_link_user'
+        get_request_with_user(username)
+        url = "http://s.ss.edu"
+        link = add_custom_link(url)
+        self.assertIsNotNone(delete_custom_link(link.url_key))
+        self.assertIsNone(delete_custom_link(link.url_key))
+
+    def test_edit_custom_link(self):
+        username = 'edit_link_user'
+        get_request_with_user(username)
+        url = "http://s.ss.edu"
+        link = add_custom_link(url)
+
+        url1 = "http://s1.ss.edu"
+        link1 = edit_custom_link(link.url_key, url1)
+        self.assertEquals(link1.url, url1)
+
+        url2 = "http://s2.ss.edu"
+        label2 = "s2"
+        link2 = edit_custom_link(link1.url_key, url2, label2)
+        self.assertIsNotNone(link2)
+        self.assertEquals(link2.label, label2)

@@ -1,12 +1,15 @@
+import csv
+import logging
+import os
+from django.db import transaction, IntegrityError
 from myuw.models import VisitedLink, PopularLink, CustomLink, HiddenLink
 from myuw.dao import get_netid_of_current_user, get_user_model
 from myuw.dao.affiliation_data import get_data_for_affiliations
-import csv
-import os
 
 
 RECENT_LINKS_DISPLAY_LIMIT = 5
 CACHED_LABEL_DATA = {}
+logger = logging.getLogger(__name__)
 
 
 def get_quicklink_data(affiliations):
@@ -98,3 +101,64 @@ def _get_default_links(affiliations):
         defaults.append({'url': link['URL'], 'label': link['Label']})
 
     return defaults
+
+
+def add_hidden_link(url):
+    try:
+        with transaction.atomic():
+            return HiddenLink.objects.create(user=get_user_model(),
+                                             url=url)
+    except IntegrityError as ex:
+        logger.error("%s add_hidden_link(%s) ==> %s",
+                     get_netid_of_current_user(), url, ex)
+    return None
+
+
+def delete_hidden_link(link_id):
+    try:
+        link = HiddenLink.objects.get(url_key=link_id,
+                                      user=get_user_model())
+        return link.delete()
+    except HiddenLink.DoesNotExist as ex:
+        logger.error("%s delete_hidden_link(%s) ==> %s",
+                     get_netid_of_current_user(), link_id, ex)
+    return None
+
+
+def add_custom_link(url, link_label=None):
+    try:
+        with transaction.atomic():
+            return CustomLink.objects.create(user=get_user_model(),
+                                             url=url,
+                                             label=link_label)
+    except IntegrityError as ex:
+        logger.error("%s add_custom_link(%s, %s) ==> %s",
+                     get_netid_of_current_user(), url, link_label, ex)
+    return None
+
+
+def delete_custom_link(link_id):
+    try:
+        link = CustomLink.objects.get(user=get_user_model(),
+                                      url_key=link_id)
+        return link.delete()
+    except CustomLink.DoesNotExist as ex:
+        logger.error("%s delete_custom_link(%s) ==> %s",
+                     get_netid_of_current_user(), link_id, ex)
+    return None
+
+
+def edit_custom_link(link_id, new_url, new_label=None):
+    try:
+        link = CustomLink.objects.get(url_key=link_id,
+                                      user=get_user_model())
+        link.url = new_url
+        if new_label is not None and len(new_label):
+            link.label = new_label
+        link.save()
+        return link
+    except CustomLink.DoesNotExist as ex:
+        logger.error("%s edit_custom_link(%s, %s, %s) ==> %s",
+                     get_netid_of_current_user(), link_id,
+                     new_url, new_label, ex)
+    return None
