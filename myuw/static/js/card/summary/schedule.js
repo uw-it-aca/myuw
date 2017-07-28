@@ -58,6 +58,8 @@ var SummaryScheduleCard = {
             sections: instructed_course_data.sections,
             section_count: instructed_course_data.sections.length,
             total_section_refs: total_section_refs,
+            has_sections: (instructed_course_data.sections.length > 0 ||
+                          total_section_refs > 0),
             has_section_references: (total_section_refs > 0)
         });
 
