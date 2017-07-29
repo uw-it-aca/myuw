@@ -75,19 +75,28 @@ class TestQuickLinkDAO(TransactionTestCase):
         url = "http://s.ss.edu"
         link = add_hidden_link(url)
         self.assertEquals(link.url, url)
+        # second time
+        link1 = add_hidden_link(url)
+        self.assertEquals(link.url_key, link1.url_key)
+
         self.assertIsNotNone(delete_hidden_link(link.url_key))
+        # second time
         self.assertIsNone(delete_hidden_link(link.url_key))
 
     def test_add_custom_link(self):
         username = 'add_link_user'
         get_request_with_user(username)
-        url = "http://s.ss.edu"
-        link_label = "ss"
-        link = add_custom_link(url, link_label)
-        self.assertEquals(link.url, url)
-        self.assertEquals(link.label, link_label)
         link = add_custom_link("http://s1.ss.edu")
         self.assertIsNone(link.label)
+
+        url = "http://s.ss.edu"
+        link_label = "ss"
+        link1 = add_custom_link(url, link_label)
+        self.assertEquals(link1.url, url)
+        self.assertEquals(link1.label, link_label)
+        # second time
+        link2 = add_custom_link(url, link_label)
+        self.assertEquals(link2.url_key, link1.url_key)
 
     def test_delete_custom_link(self):
         username = 'rm_link_user'
@@ -95,6 +104,7 @@ class TestQuickLinkDAO(TransactionTestCase):
         url = "http://s.ss.edu"
         link = add_custom_link(url)
         self.assertIsNotNone(delete_custom_link(link.url_key))
+        # second time
         self.assertIsNone(delete_custom_link(link.url_key))
 
     def test_edit_custom_link(self):

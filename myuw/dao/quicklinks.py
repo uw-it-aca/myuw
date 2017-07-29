@@ -108,21 +108,31 @@ def add_hidden_link(url):
         with transaction.atomic():
             return HiddenLink.objects.create(user=get_user_model(),
                                              url=url)
-    except IntegrityError as ex:
-        logger.error("%s add_hidden_link(%s) ==> %s",
-                     get_netid_of_current_user(), url, ex)
+    except IntegrityError:
+        try:
+            return get_hidden_link_by_url(url)
+        except Exception as ex:
+            logger.error("%s add_hidden_link(%s) ==> %s",
+                         get_netid_of_current_user(), url, ex)
     return None
 
 
 def delete_hidden_link(link_id):
     try:
-        link = HiddenLink.objects.get(url_key=link_id,
-                                      user=get_user_model())
+        link = get_hidden_link_by_id(link_id)
         return link.delete()
-    except HiddenLink.DoesNotExist as ex:
+    except Exception as ex:
         logger.error("%s delete_hidden_link(%s) ==> %s",
                      get_netid_of_current_user(), link_id, ex)
     return None
+
+
+def get_hidden_link_by_id(link_id):
+    return HiddenLink.objects.get(url_key=link_id, user=get_user_model())
+
+
+def get_hidden_link_by_url(url):
+    return HiddenLink.objects.get(user=get_user_model(), url=url)
 
 
 def add_custom_link(url, link_label=None):
@@ -131,18 +141,20 @@ def add_custom_link(url, link_label=None):
             return CustomLink.objects.create(user=get_user_model(),
                                              url=url,
                                              label=link_label)
-    except IntegrityError as ex:
-        logger.error("%s add_custom_link(%s, %s) ==> %s",
-                     get_netid_of_current_user(), url, link_label, ex)
+    except IntegrityError:
+        try:
+            return get_custom_link_by_url(url)
+        except Exception as ex:
+            logger.error("%s add_custom_link(%s, %s) ==> %s",
+                         get_netid_of_current_user(), url, link_label, ex)
     return None
 
 
 def delete_custom_link(link_id):
     try:
-        link = CustomLink.objects.get(user=get_user_model(),
-                                      url_key=link_id)
+        link = get_custom_link_by_id(link_id)
         return link.delete()
-    except CustomLink.DoesNotExist as ex:
+    except Exception as ex:
         logger.error("%s delete_custom_link(%s) ==> %s",
                      get_netid_of_current_user(), link_id, ex)
     return None
@@ -150,15 +162,22 @@ def delete_custom_link(link_id):
 
 def edit_custom_link(link_id, new_url, new_label=None):
     try:
-        link = CustomLink.objects.get(url_key=link_id,
-                                      user=get_user_model())
+        link = get_custom_link_by_id(link_id)
         link.url = new_url
         if new_label is not None and len(new_label):
             link.label = new_label
         link.save()
         return link
-    except CustomLink.DoesNotExist as ex:
+    except Exception as ex:
         logger.error("%s edit_custom_link(%s, %s, %s) ==> %s",
                      get_netid_of_current_user(), link_id,
                      new_url, new_label, ex)
     return None
+
+
+def get_custom_link_by_id(link_id):
+    return CustomLink.objects.get(url_key=link_id, user=get_user_model())
+
+
+def get_custom_link_by_url(url):
+    return CustomLink.objects.get(user=get_user_model(), url=url)
