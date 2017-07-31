@@ -172,7 +172,7 @@ class TestQuickLinksAPI(MyuwApiTest):
 
         link_id = CustomLink.objects.all()[0].pk
 
-        # Try to edit the link as someone else
+        # If edit the link as someone else, the other user has a new link
         self.set_user('jpce')
         data = json.dumps({'type': 'custom-edit',
                            'url': 'http://example.com',
@@ -254,12 +254,11 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEqual(len(all), 1)
 
     def test_remove_default_by_url(self):
-        HiddenLink.objects.all().delete()
         self.set_user('javerage')
         url = reverse('myuw_manage_links')
 
         data = json.dumps({'type': 'hide',
-                           'id': 'http://example.com'})
+                           'url': 'http://example.com'})
 
         response = self.client.post(url, data, content_type='application_json')
         self.assertEquals(response.status_code, 200)
@@ -275,7 +274,7 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEqual(len(all), 1)
 
         data = json.dumps({'type': 'hide',
-                           'id': 'http://uw.edu'})
+                           'url': 'http://uw.edu'})
 
         response = self.client.post(url, data, content_type='application_json')
         self.assertEquals(response.status_code, 200)
