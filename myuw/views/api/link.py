@@ -115,12 +115,14 @@ def get_link_data(data, get_id=True):
         label = data["label"]
     else:
         if not re.match('^[a-z]+://', url):
-            url = "http://%s" % url
+            full_url = "http://%s" % url
+        else:
+            full_url = url
 
         try:
-            label = get_page_title_from_url(url)
+            label = get_page_title_from_url(full_url)
         except DataFailureException:
-            label = None
+            label = url
 
     if get_id:
         link_id = get_link_id(data)

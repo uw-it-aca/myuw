@@ -124,7 +124,7 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEqual(len(all), 1)
 
         self.assertEqual(all[0].url,
-                         'http://www.washington.edu/classroom/SMI+401')
+                         'www.washington.edu/classroom/SMI+401')
         self.assertEqual(all[0].label, 'Room Information')
 
         # Same w/ protocol
@@ -136,7 +136,7 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEqual(response.status_code, 200)
 
         all = CustomLink.objects.all()
-        self.assertEqual(len(all), 1)
+        self.assertEqual(len(all), 2)
 
         # https is different though
         http_url = 'https://www.washington.edu/classroom/SMI+401'
@@ -148,7 +148,7 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEqual(response.status_code, 200)
 
         all = CustomLink.objects.all()
-        self.assertEqual(len(all), 2)
+        self.assertEqual(len(all), 3)
 
         # Make sure we do a reasonable job w/ urls we can't resolve
         data = json.dumps({'type': 'custom',
@@ -156,7 +156,7 @@ class TestQuickLinksAPI(MyuwApiTest):
                            })
 
         response = self.client.post(url, data, content_type='application_json')
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 200)
 
     def test_edit_custom_link(self):
         self.set_user('javerage')
@@ -186,7 +186,7 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEquals(len(all), 1)
         link = all[0]
         self.assertEquals(link.url,
-                          'http://www.washington.edu/classroom/SMI+401')
+                          'www.washington.edu/classroom/SMI+401')
 
         self.set_user('javerage')
         response = self.client.post(url, data, content_type='application_json')
