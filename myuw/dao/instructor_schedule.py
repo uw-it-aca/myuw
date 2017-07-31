@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 
 def _get_instructor_sections(person, term,
                              future_terms=0,
-                             include_secondaries='on'):
+                             include_secondaries=True):
     """
     @return a uw_sws.models.ClassSchedule object
     Return the actively enrolled sections for the current user
@@ -172,7 +172,7 @@ def is_instructor(request):
         sections = _get_instructor_sections(person,
                                             term,
                                             future_terms=2,
-                                            include_secondaries="")
+                                            include_secondaries=False)
         if len(sections) > 0:
             add_seen_instructor(user_netid, term)
             return True
