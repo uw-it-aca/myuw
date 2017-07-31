@@ -51,6 +51,13 @@ var  FutureSummaryScheduleCard = {
         if ('section_references' in instructed_course_data) {
             total_section_refs = instructed_course_data.section_references.length;
         }
+
+        if (instructed_course_data.sections.length === 0 &&
+           total_section_refs === 0) {
+            $("#FutureSummaryScheduleCard").hide();
+            return;
+        }
+
         var raw = courses_template({
             quarter: instructed_course_data.quarter,
             year: instructed_course_data.year,
@@ -59,6 +66,8 @@ var  FutureSummaryScheduleCard = {
             sections: instructed_course_data.sections,
             section_count: instructed_course_data.sections.length,
             total_section_refs: total_section_refs,
+            has_sections: (instructed_course_data.sections.length > 0 ||
+                          total_section_refs > 0),
             has_section_references: (total_section_refs > 0),
             show_enrollment: true
         });
