@@ -52,27 +52,25 @@ class ManageLinks(RESTDispatch):
             link_id = get_link_id(data)
             if link_id:
                 try:
-                    link = get_popular_link_by_id(link_id)
+                    plink = get_popular_link_by_id(link_id)
                 except PopularLink.DoesNotExist:
                     return data_not_found()
-                link = add_custom_link(link.url, link.label)
-                if link:
-                    log_msg_with_affiliation(logger, timer, request,
-                                             "Popular==>Custom link (%s)" %
-                                             link.url)
+                link = add_custom_link(plink.url, plink.label)
+                log_msg_with_affiliation(logger, timer, request,
+                                         "Popular==>Custom link (%s)" %
+                                         plink.url)
 
         elif "recent" == data["type"]:
             link_id = get_link_id(data)
             if link_id:
                 try:
-                    link = get_recent_link_by_id(link_id)
+                    vlink = get_recent_link_by_id(link_id)
                 except VisitedLink.DoesNotExist:
                     return data_not_found()
-                link = add_custom_link(link.url, link.label)
-                if link:
-                    log_msg_with_affiliation(logger, timer, request,
-                                             "Recent==>Custom link (%s)" %
-                                             link.url)
+                link = add_custom_link(vlink.url, vlink.label)
+                log_msg_with_affiliation(logger, timer, request,
+                                         "Recent==>Custom link (%s)" %
+                                         vlink.url)
 
         elif "custom" == data["type"]:
             # add a custom link
