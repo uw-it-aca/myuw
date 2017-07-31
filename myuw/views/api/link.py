@@ -1,23 +1,32 @@
-from myuw.dao.class_website import get_page_title_from_url
-from myuw.views.rest_dispatch import RESTDispatch
-from myuw.views.error import data_not_found, invalid_input_data
-from myuw.models import PopularLink, VisitedLink, CustomLink, HiddenLink
-from myuw.dao import get_user_model, get_netid_of_current_user
-from myuw.dao.quicklinks import get_quicklink_data, get_link_label
-from myuw.dao.class_website import get_page_title_from_url
-from myuw.dao.affiliation import get_all_affiliations
-from restclients_core.exceptions import DataFailureException
+import json
+import logging
+import re
+from django.db import transaction, IntegrityError
+from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
-from django.http import HttpResponse
-from django.db import transaction, IntegrityError
-import json
-import re
+from restclients_core.exceptions import DataFailureException
+from myuw.dao.class_website import get_page_title_from_url
+from myuw.dao.quicklinks import get_quicklink_data, get_link_label,\
+    add_custom_link, delete_custom_link, edit_custom_link,\
+    add_hidden_link, delete_hidden_link, get_popular_link_by_id,\
+    get_recent_link_by_id
+from myuw.dao.class_website import get_page_title_from_url
+from myuw.dao.affiliation import get_all_affiliations
+from myuw.models import PopularLink, VisitedLink, CustomLink, HiddenLink
+from myuw.logger.logresp import log_msg_with_affiliation
+from myuw.logger.timer import Timer
+from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.error import data_not_found, invalid_input_data
+
+
+logger = logging.getLogger(__name__)
 
 
 class ManageLinks(RESTDispatch):
     @method_decorator(csrf_protect)
     def POST(self, request):
+        timer = Timer()
         try:
             data = json.loads(request.body)
         except ValueError:
@@ -35,90 +44,118 @@ class ManageLinks(RESTDispatch):
             if not clean(field):
                 return invalid_input_data()
 
-        link = False
-        url = None
-        label = None
-        add_custom = False
+        link = None
         if "type" not in data:
             return data_not_found()
 
-        user = get_user_model()
         if "popular" == data["type"]:
-            try:
-                link = PopularLink.objects.get(pk=data['id'])
-                url = link.url
-                label = link.label
-                link = True
-                add_custom = True
-            except PopularLink.DoesNotExist:
-                return data_not_found()
+            link_id = get_link_id(data)
+            if link_id:
+                try:
+                    plink = get_popular_link_by_id(link_id)
+                except PopularLink.DoesNotExist:
+                    return data_not_found()
+                link = add_custom_link(plink.url, plink.label)
+                log_msg_with_affiliation(logger, timer, request,
+                                         "Popular==>Custom link (%s)" %
+                                         plink.url)
 
         elif "recent" == data["type"]:
-            try:
-                username = get_netid_of_current_user()
-                link = VisitedLink.objects.get(pk=data['id'],
-                                               username=username)
-                url = link.url
-                label = get_link_label(link)
-                link = True
-                add_custom = True
-            except VisitedLink.DoesNotExist:
-                return data_not_found()
+            link_id = get_link_id(data)
+            if link_id:
+                try:
+                    vlink = get_recent_link_by_id(link_id)
+                except VisitedLink.DoesNotExist:
+                    return data_not_found()
+                link = add_custom_link(vlink.url, vlink.label)
+                log_msg_with_affiliation(logger, timer, request,
+                                         "Recent==>Custom link (%s)" %
+                                         vlink.url)
 
         elif "custom" == data["type"]:
-            url = data["url"]
-            if not re.match('^https?://', url):
-                url = "http://%s" % url
-            try:
-                label = get_page_title_from_url(url)
-            except DataFailureException:
+            # add a custom link
+            url, label = get_link_data(data, get_id=False)
+            if url and label:
+                link = add_custom_link(url, label)
+                log_msg_with_affiliation(logger, timer, request,
+                                         "Add Custom link (%s)" % url)
+            else:
                 return data_not_found()
-            link = True
-            add_custom = True
 
         elif "custom-edit" == data["type"]:
-            try:
-                link = CustomLink.objects.get(pk=data['id'],
-                                              user=user)
-            except CustomLink.DoesNotExist:
+            link_id, new_url, new_label = get_link_data(data)
+            if link_id and new_url:
+                link = edit_custom_link(link_id, new_url, new_label)
+                log_msg_with_affiliation(logger, timer, request,
+                                         "Edit Custom link (%s)" % new_url)
+            else:
                 return data_not_found()
 
-            url = data["url"]
-            if not re.match('^https?://', url):
-                url = "http://%s" % url
-            label = data["label"]
-
-            link.url = url
-            link.label = label
-
-            link.save()
-
         elif "remove" == data["type"]:
-            link_id = data['id']
-            try:
-                link = CustomLink.objects.get(user=user, pk=link_id)
-                link.delete()
-            except CustomLink.DoesNotExist:
+            # remove a custom link
+            link_id = get_link_id(data)
+            if link_id:
+                link = delete_custom_link(link_id)
+            else:
                 return data_not_found()
 
         elif "hide" == data["type"]:
-            try:
-                with transaction.atomic():
-                    HiddenLink.objects.create(user=user, url=data["id"])
-            except IntegrityError as ex:
-                pass
-            link = True
+            # hide a default link
+            url = get_link_id(data)
+            if url:
+                link = add_hidden_link(url)
+                log_msg_with_affiliation(logger, timer, request,
+                                         "Hide Default link (%s)" % url)
+            else:
+                return data_not_found()
 
         if not link:
             return data_not_found()
 
-        if add_custom:
-            try:
-                with transaction.atomic():
-                    CustomLink.objects.create(user=user,
-                                              url=url,
-                                              label=label)
-            except IntegrityError as ex:
-                pass
         affiliations = get_all_affiliations(request)
         return HttpResponse(json.dumps(get_quicklink_data(affiliations)))
+
+
+def get_link_id(data):
+    return data.get('id')
+
+
+def get_link_url(data):
+    """
+    return full URL
+    """
+    url = data.get('url')
+    if url:
+        if not re.match('^[a-z]+://', url):
+            return "http://%s" % url
+        return url
+    return None
+
+
+def get_link_label(data):
+    return data.get('label')
+
+
+def discover_link_label(url):
+    if re.match('^http://', url):
+        try:
+            return get_page_title_from_url(url)
+        except DataFailureException:
+            pass
+    return None
+
+
+def get_link_data(data, get_id=True):
+    url = get_link_url(data)
+
+    label = get_link_label(data)
+    if not label:
+        label = discover_link_label(url)
+        if not label:
+            label = url
+
+    if get_id:
+        link_id = get_link_id(data)
+        return link_id, url, label
+    else:
+        return url, label
