@@ -19,6 +19,9 @@ class TestInstructorSchedule(TestCase):
         get_request_with_user('bill', now_request)
         self.assertTrue(is_instructor(now_request))
 
+        get_request_with_user('billpce', now_request)
+        self.assertTrue(is_instructor(now_request))
+
     def test_get_current_quarter_instructor_schedule(self):
         now_request = get_request()
         get_request_with_user('bill', now_request)
