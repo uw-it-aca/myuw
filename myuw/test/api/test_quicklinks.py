@@ -1,12 +1,37 @@
-from myuw.test.api import MyuwApiTest
-from myuw.models import VisitedLink, PopularLink, CustomLink, HiddenLink
+import json
 from django.core.urlresolvers import reverse
 from myuw.test import fdao_class_website_override
-import json
+from myuw.test.api import MyuwApiTest
+from myuw.models import VisitedLink, PopularLink, CustomLink, HiddenLink
+from myuw.views.api.link import get_link_data
 
 
 @fdao_class_website_override
 class TestQuickLinksAPI(MyuwApiTest):
+
+    def test_get_link_data(self):
+        data = {'type': 'custom',
+                'url': 'www.washington.edu/'
+                }
+        url, label = get_link_data(data, get_id=False)
+        self.assertEquals(url, 'http://www.washington.edu/')
+        self.assertEquals(label, 'http://www.washington.edu/')
+
+        data = {'type': 'custom',
+                'url': 'www.washington.edu/',
+                'label': 'UW Homepage'
+                }
+        url, label = get_link_data(data, get_id=False)
+        self.assertEquals(label, 'UW Homepage')
+
+        data = {'type': 'custom',
+                'url': 'www.washington.edu/',
+                'label': 'UW Homepage',
+                'id': 1
+                }
+        link_id, url, label = get_link_data(data)
+        self.assertEquals(link_id, 1)
+
     def test_add_popular_link(self):
         PopularLink.objects.all().delete()
         CustomLink.objects.all().delete()
@@ -109,9 +134,9 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEquals(response.status_code, 404)
 
     def test_add_pure_custom(self):
+        CustomLink.objects.all().delete()
         self.set_user('javerage')
         url = reverse('myuw_manage_links')
-        CustomLink.objects.all().delete()
 
         data = json.dumps({'type': 'custom',
                            'url': 'www.washington.edu/classroom/SMI+401'
@@ -124,10 +149,10 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEqual(len(all), 1)
 
         self.assertEqual(all[0].url,
-                         'www.washington.edu/classroom/SMI+401')
+                         'http://www.washington.edu/classroom/SMI+401')
         self.assertEqual(all[0].label, 'Room Information')
 
-        # Same w/ protocol
+        # Add the same link but w/ protocol
         data = json.dumps({'type': 'custom',
                            'url': 'http://www.washington.edu/classroom/SMI+401'
                            })
@@ -136,9 +161,9 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEqual(response.status_code, 200)
 
         all = CustomLink.objects.all()
-        self.assertEqual(len(all), 2)
+        self.assertEqual(len(all), 1)
 
-        # https is different though
+        # https is different
         http_url = 'https://www.washington.edu/classroom/SMI+401'
         data = json.dumps({'type': 'custom',
                            'url': http_url
@@ -148,50 +173,45 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEqual(response.status_code, 200)
 
         all = CustomLink.objects.all()
-        self.assertEqual(len(all), 3)
+        self.assertEqual(len(all), 2)
+        self.assertEqual(all[0].url,
+                         'http://www.washington.edu/classroom/SMI+401')
+        self.assertEqual(all[1].url,
+                         'https://www.washington.edu/classroom/SMI+401')
 
-        # Make sure we do a reasonable job w/ urls we can't resolve
-        data = json.dumps({'type': 'custom',
-                           'url': 'http://www.washington.edu/classroom/404'
-                           })
+        # not http/https url
+        data = json.dumps({
+                'type': 'custom',
+                'url': 'webcal://www.trumba.com/calendars/sea_acad-cal.ics'
+                })
 
         response = self.client.post(url, data, content_type='application_json')
         self.assertEqual(response.status_code, 200)
+        all = CustomLink.objects.all()
+        self.assertEqual(len(all), 3)
 
     def test_edit_custom_link(self):
+        CustomLink.objects.all().delete()
         self.set_user('javerage')
         url = reverse('myuw_manage_links')
-        CustomLink.objects.all().delete()
-
+        # add link
         data = json.dumps({'type': 'custom',
                            'url': 'www.washington.edu/classroom/SMI+401'
                            })
 
         response = self.client.post(url, data, content_type='application_json')
         self.assertEqual(response.status_code, 200)
-
-        link_id = CustomLink.objects.all()[0].pk
-
-        # If edit the link as someone else, the other user has a new link
-        self.set_user('jpce')
+        all = CustomLink.objects.all()
+        self.assertEqual(len(all), 1)
+        # edit
+        link_id = all[0].pk
         data = json.dumps({'type': 'custom-edit',
                            'url': 'http://example.com',
                            'label': 'Just example',
                            'id': link_id,
                            })
         response = self.client.post(url, data, content_type='application_json')
-        self.assertEqual(response.status_code, 404)
-
-        all = CustomLink.objects.all()
-        self.assertEquals(len(all), 1)
-        link = all[0]
-        self.assertEquals(link.url,
-                          'www.washington.edu/classroom/SMI+401')
-
-        self.set_user('javerage')
-        response = self.client.post(url, data, content_type='application_json')
         self.assertEqual(response.status_code, 200)
-
         all = CustomLink.objects.all()
         self.assertEquals(len(all), 1)
         link = all[0]
@@ -200,7 +220,7 @@ class TestQuickLinksAPI(MyuwApiTest):
 
         # Make sure links actually have a label...
         data = json.dumps({'type': 'custom-edit',
-                           'url': 'http://example.com',
+                           'url': 'www.washington.edu/classroom/SMI+401',
                            'label': '     ',
                            'id': link_id,
                            })
@@ -215,11 +235,11 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEquals(link.label, 'Just example')
 
     def test_remove_link(self):
+        CustomLink.objects.all().delete()
+
         # Add a link as 2 users, make sure we can remove ours, but not theirs
         self.set_user('javerage')
         url = reverse('myuw_manage_links')
-        CustomLink.objects.all().delete()
-
         data = json.dumps({'type': 'custom',
                            'url': 'www.washington.edu/classroom/SMI+401'
                            })
@@ -254,29 +274,27 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEqual(len(all), 1)
 
     def test_remove_default_by_url(self):
+        HiddenLink.objects.all().delete()
         self.set_user('javerage')
         url = reverse('myuw_manage_links')
 
+        # add HiddenLink
         data = json.dumps({'type': 'hide',
-                           'url': 'http://example.com'})
-
+                           'id': 'http://example.com'})
         response = self.client.post(url, data, content_type='application_json')
         self.assertEquals(response.status_code, 200)
         all = HiddenLink.objects.all()
-
         self.assertEqual(len(all), 1)
         self.assertEqual(all[0].url, 'http://example.com')
-
+        # same link second time
         response = self.client.post(url, data, content_type='application_json')
         self.assertEquals(response.status_code, 200)
         all = HiddenLink.objects.all()
-
         self.assertEqual(len(all), 1)
-
+        # Hide a non-default
         data = json.dumps({'type': 'hide',
                            'url': 'http://uw.edu'})
-
         response = self.client.post(url, data, content_type='application_json')
-        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.status_code, 404)
         all = HiddenLink.objects.all()
-        self.assertEqual(len(all), 2)
+        self.assertEqual(len(all), 1)
