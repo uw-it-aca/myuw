@@ -62,7 +62,7 @@ var VisualScheduleCard = {
         if (course_data) {
             course_data.schedule_periods = VisualScheduleCard._get_schedule_periods(course_data);
         }
-        if (instructed_course_data) {
+        if (instructed_course_data && instructed_course_data.sections.length) {
             instructed_course_data.schedule_periods = VisualScheduleCard._get_schedule_periods(instructed_course_data);
         }
 
@@ -70,14 +70,14 @@ var VisualScheduleCard = {
             if(course_data && course_data.summer_term === ""){
                 $.extend(course_data.schedule_periods, VisualScheduleCard._get_finals(course_data.sections));
             }
-            if(instructed_course_data && instructed_course_data.summer_term === ""){
+            if(instructed_course_data && instructed_course_data.sections.length && instructed_course_data.summer_term === ""){
                 $.extend(instructed_course_data.schedule_periods, VisualScheduleCard._get_finals(instructed_course_data.sections));
             }
         } else if(window.future_term.indexOf("summer") === -1){
             if (course_data) {
                 $.extend(course_data.schedule_periods, VisualScheduleCard._get_finals(course_data.sections));
             }
-            if (instructed_course_data) {
+            if (instructed_course_data && instructed_course_data.sections.length) {
                 $.extend(instructed_course_data.schedule_periods, VisualScheduleCard._get_finals(instructed_course_data.sections));
             }
         }
@@ -512,7 +512,7 @@ var VisualScheduleCard = {
             set_meeting(course_data, false);
         }
 
-        if (instructed_course_data) {
+        if (instructed_course_data && instructed_course_data.sections.length) {
             visual_data.is_instructor = true;
             set_meeting(instructed_course_data, true);
         }
