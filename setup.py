@@ -38,7 +38,7 @@ setup(
         'UW-RestClients-PWS<1.0',
         'UW-RestClients-HFS<1.0',
         'UW-RestClients-GWS<1.0',
-        'UW-RestClients-GradePage<1.0',
+        'UW-RestClients-GradePage<1.0,>=0.1.1',
         'UW-RestClients-Libraries<1.0',
         'UW-RestClients-IASystem<1.0',
         'UW-RestClients-Canvas<1.0',
