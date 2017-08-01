@@ -12,7 +12,7 @@
 "UIDNumber":"35443",
 "UWNetID":"billpce",
 "UWRegID":"10000000000000000000000000000011",
-"WhitepagesPublish":false,
+"WhitepagesPublish": true,
 "PersonAffiliations":{"AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
                       "EmployeePersonAffiliation":{
                           "EmployeeID":"867530901",
@@ -26,7 +26,7 @@
                                                 "Name":"BILL PCE INSTRUCTOR",
                                                 "Phone1":"+1 206 123-1234",
                                                 "Phone2":"+1 206 543-1234",
-                                                "PublishInDirectory":false,
+                                                "PublishInDirectory":true,
                                                 "Title1":"Professor",
                                                 "Title2":null,
                                                 "TouchDial":null,

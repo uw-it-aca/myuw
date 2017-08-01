@@ -22,3 +22,4 @@ class TestMyDirectoryInfo(MyuwApiTest):
         data = json.loads(response.content)
         self.assertEquals(data['surname'], 'TEACHER')
         self.assertEquals(data['title1'], 'Associate Professor')
+        self.assertTrue(data['publish_in_emp_directory'])
