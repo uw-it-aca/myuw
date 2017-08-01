@@ -122,10 +122,12 @@ def get_instructor_section(year, quarter, curriculum,
     if not section.is_instructor(schedule.person):
         raise NotSectionInstructorException()
 
-    if section.is_independent_study:
-        section.independent_study_instructor_regid = schedule.person.uwregid
+    if include_registrations:
+        if section.is_independent_study:
+            section.independent_study_instructor_regid =\
+                schedule.person.uwregid
 
-    section.registrations = get_active_registrations_by_section(section)
+        section.registrations = get_active_registrations_by_section(section)
 
     schedule.sections.append(section)
     if include_linked_sections:
