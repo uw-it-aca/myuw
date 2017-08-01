@@ -22,7 +22,9 @@ from myuw.util.thread import Thread, ThreadWithResponse
 logger = logging.getLogger(__name__)
 
 
-def _get_instructor_sections(person, term, future_terms=0):
+def _get_instructor_sections(person, term,
+                             future_terms=0,
+                             include_secondaries=True):
     """
     @return a uw_sws.models.ClassSchedule object
     Return the actively enrolled sections for the current user
@@ -31,7 +33,10 @@ def _get_instructor_sections(person, term, future_terms=0):
     if person is None or term is None:
         return None
     return get_sections_by_instructor_and_term(
-        person, term, future_terms=future_terms,
+        person,
+        term,
+        future_terms=future_terms,
+        include_secondaries=include_secondaries,
         transcriptable_course='all')
 
 
@@ -166,7 +171,10 @@ def is_instructor(request):
             return True
 
         person = get_person_of_current_user()
-        sections = _get_instructor_sections(person, term, future_terms=2)
+        sections = _get_instructor_sections(person,
+                                            term,
+                                            future_terms=2,
+                                            include_secondaries=False)
         if len(sections) > 0:
             add_seen_instructor(user_netid, term)
             return True
