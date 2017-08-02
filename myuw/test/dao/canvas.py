@@ -3,6 +3,7 @@ from myuw.dao.canvas import _get_canvas_enrollment_dict_for_regid,\
     canvas_course_is_available, get_canvas_course_from_section,\
     get_canvas_course_url
 from myuw.dao.schedule import _get_schedule
+from uw_sws.models import Person
 from uw_sws.section import get_section_by_label
 from myuw.dao.term import get_current_quarter
 from myuw.test import fdao_sws_override, get_request_with_user, get_request
@@ -34,7 +35,10 @@ class TestCanvas(TestCase):
                           'https://canvas.uw.edu/courses/249650')
 
     def test_get_canvas_course_url(self):
+        person = Person()
+        person.uwnetid = "javerage"
+        person.regid = "00000000000000000000000000000001"
         sws_section = get_section_by_label('2013,spring,TRAIN,101/A')
         self.assertIsNotNone(get_canvas_course_from_section(sws_section))
-        self.assertEquals(get_canvas_course_url(sws_section),
+        self.assertEquals(get_canvas_course_url(sws_section, person),
                           'https://canvas.uw.edu/courses/149651')
