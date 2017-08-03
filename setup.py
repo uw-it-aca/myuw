@@ -48,7 +48,7 @@ setup(
         'UW-RestClients-Bookstore<1.0',
         'UW-RestClients-Mailman<1.0',
         'UW-RestClients-MyPlan<1.0',
-        'UW-RestClients-Trumba<1.0',
+        'UW-RestClients-Trumba<1.0,>=0.3',
         'UW-RestClients-Django-Utils<1.0',
         'Django-SupportTools',
         'django_mobileesp',
