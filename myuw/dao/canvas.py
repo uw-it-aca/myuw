@@ -70,7 +70,10 @@ def get_canvas_course_from_section(sws_section):
         raise
 
 
-def get_canvas_course_url(sws_section):
+def get_canvas_course_url(sws_section, person):
+    if sws_section.is_independent_study:
+        sws_section.independent_study_instructor_regid = person.uwregid
+
     canvas_course = get_canvas_course_from_section(sws_section)
     if canvas_course:
         return canvas_course.course_url

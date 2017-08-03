@@ -126,7 +126,7 @@ def set_section_evaluation(section, person):
 def set_course_resources(section_data, section, person):
     threads = []
     t = ThreadWithResponse(target=get_canvas_course_url,
-                           args=(section,))
+                           args=(section, person))
     t.start()
     threads.append((t, 'canvas_url', section_data))
 
