@@ -70,7 +70,7 @@ class TestCalendarMapping(TestCase):
         req = get_request_with_user('javerage',
                                     get_request_with_date("2013-04-10"))
         enrollments = _get_enrollments(req)
-        self.assertEqual(len(enrollments['majors']) , 3)
+        self.assertEqual(len(enrollments['majors']), 3)
         self.assertEqual(enrollments['majors'][0],
                          'ENGLISH')
         self.assertEqual(enrollments['majors'][1],
