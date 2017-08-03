@@ -5,13 +5,10 @@ provides student record information of the current user
 
 import logging
 from uw_sws.person import get_person_by_regid
+from myuw.dao import get_netid_of_current_user
 from myuw.dao.pws import get_regid_of_current_user
-from myuw.dao.enrollment import (get_current_quarter_enrollment,
-                                 get_main_campus,
-                                 get_enrollments_of_terms)
-from myuw.dao.term import (get_current_quarter,
-                           get_next_quarter,
-                           get_current_and_next_quarters)
+from myuw.dao.enrollment import get_main_campus, get_enrollments_of_terms
+from myuw.dao.term import get_current_and_next_quarters
 from myuw.dao.gws import is_grad_student
 
 
@@ -49,21 +46,22 @@ def get_student_profile(request):
     return response
 
 
+def get_cur_future_enrollments(request):
+    try:
+        terms = get_current_and_next_quarters(request, 4)
+        return terms, get_enrollments_of_terms(terms)
+    except Exception as ex:
+        logger.error(
+            "%s get_enrollments: %s" % (get_netid_of_current_user(), ex))
+        return None
+
+
 def get_academic_info(request, response):
     """
     Iterates through the student enrollments and populates the profile
     fields based upon data available
     """
-
-    terms = get_current_and_next_quarters(request, 4)
-
-    try:
-        enrollments = get_enrollments_of_terms(terms)
-    except Exception as ex:
-        logger.error(
-            "%s get_academic_info: %s" %
-            (netid, ex))
-        return
+    terms, enrollments = get_cur_future_enrollments(request)
 
     if terms[0] in enrollments:
         enrollment = enrollments[terms[0]]
