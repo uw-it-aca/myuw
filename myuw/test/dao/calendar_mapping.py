@@ -77,4 +77,4 @@ class TestCalendarMapping(TestCase):
                          'ACMS (SOC & BEH SCI)')
         self.assertEqual(enrollments['majors'][2],
                          'COMPUTER SCIENCE')
-        self.assertEqual(len(enrollments['minors']), 1)
+        self.assertEqual(len(enrollments['minors']), 2)
