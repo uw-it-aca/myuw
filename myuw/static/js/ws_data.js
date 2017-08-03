@@ -172,6 +172,11 @@ WSData = {
         } else {
             course_data = WSData.current_instructed_course_data();
         }
+
+        return WSData._normalize_instructed_data(course_data);
+    },
+
+    _normalize_instructed_data: function (course_data) {
         if (course_data) {
             WSData._normalize_instructors(course_data);
             $.each(course_data.related_terms, function () {
@@ -312,10 +317,7 @@ WSData = {
     },
     normalized_instructed_section_data: function(section_label) {
         var section_data = WSData.instructed_section_data(section_label);
-        if (section_data) {
-            WSData._normalize_instructors(section_data);
-        }
-        return section_data;
+        return WSData._normalize_instructed_data(section_data);
     },
 
     instructed_section_data: function(section_label) {
