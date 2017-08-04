@@ -1,0 +1,28 @@
+{
+    "Current": {
+        "ChangedSinceDate": null,
+        "CourseNumber": null,
+        "CurriculumAbbreviation": null,
+        "DeleteFlag": null,
+        "FacilityCode": null,
+        "FutureTerms": 0,
+        "Href": "/student/v5/section.json?year=2013&quarter=autumn&future_terms=0&curriculum_abbreviation=&course_number=&reg_id=10000000000000000000000000000006&search_by=Instructor&include_secondaries=&delete_flag=&changed_since_date=&transcriptable_course=yes&page_size=10&page_start=1&facility_code=&room_number=&sln=",
+        "IncludeSecondaries": false,
+        "PageSize": "10",
+        "PageStart": "1",
+        "Quarter": "autumn",
+        "RegID": "10000000000000000000000000000006",
+        "RoomNumber": null,
+        "SLN": null,
+        "SearchBy": "Instructor",
+        "TranscriptableCourse": "yes",
+        "Year": "2013"
+    },
+    "Next": null,
+    "PageSize": "10",
+    "PageStart": "1",
+    "Previous": null,
+    "Sections": [
+    ],
+    "TotalCount": 0
+}
