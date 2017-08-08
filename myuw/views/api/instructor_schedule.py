@@ -115,7 +115,7 @@ def set_section_evaluation(section, person):
     except DataFailureException as ex:
         # eval search never returns 404
         if isinstance(ex, TermEvalNotCreated):
-            return { 'eval_not_created_for_term': True }
+            return {'eval_not_created_for_term': True}
         raise
     except Exception:
         log_exception(
