@@ -1,0 +1,37 @@
+{
+"collection":{
+   "links":[
+       {"rel":"home",
+        "prompt":"IASystem v1 Web API",
+        "href":"https://uw.iasystem.org/api/v1"},
+       {"prompt":"IASystem Evaluation Listing",
+        "href":"https://uw.iasystem.org/api/v1/evaluation",
+        "rel":"self"}],
+   "queries":[
+       {"rel":"collection filter",
+        "href":"https://uw.iasystem.org/api/v1/evaluation",
+        "data":[
+           {"prompt":"Year",
+            "name":"year",
+            "required":true},
+           {"required":true,
+            "name":"term_name",
+            "prompt":"Term Name"},
+           {"name":"curriculum_abbreviation",
+            "prompt":"Curriculum Abbreviation"},
+           {"name":"course_number",
+            "prompt":"Course Number"},
+           {"name":"section_id",
+            "prompt":"Section ID"},
+           {"prompt":"Student ID",
+            "name":"student_id"},
+           {"prompt":"Instructor ID",
+            "name":"instructor_id"}],
+       "prompt":"Evaluation Search Resource"}],
+   "error":{"message":"The year and term_name parameters did not match an existing term.",
+            "title":"Term is out of range",
+            "code":400},
+   "version":"1.0",
+   "href":"https://uw.iasystem.org/api/v1/evaluation"
+   }
+}
