@@ -7,6 +7,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from operator import itemgetter
 from restclients_core.exceptions import DataFailureException
+from uw_iasystem.exceptions import TermEvalNotCreated
 from uw_sws.person import get_person_by_regid
 from uw_sws.enrollment import get_enrollment_by_regid_and_term
 from uw_sws.term import get_specific_term
@@ -109,15 +110,13 @@ def set_section_evaluation(section, person):
         evaluations = get_evaluation_by_section_and_instructor(
             section, person.employee_id)
         for eval in evaluations:
-            if int(eval.section_sln) == int(section.sln):
+            if eval.section_sln == section.sln:
                 return eval.json_data()
     except DataFailureException as ex:
-        if ex.status == 404:
-            return {
-                'eval_status': None
-            }
-        else:
-            raise
+        # eval search never returns 404
+        if isinstance(ex, TermEvalNotCreated):
+            return { 'eval_not_created_for_term': True }
+        raise
     except Exception:
         log_exception(
             logger, 'set_section_evaluation', traceback.format_exc())

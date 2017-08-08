@@ -51,10 +51,17 @@
                       <li class="evaluation-schedule">Paper-based evaluation</li>
                       <li><a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation ">Manage evaluation</a></li>
                   {{/if}}
-                {{else}}<!-- null status, no evaluation -->
-                  <li class="evaluation-schedule">
-                      {{#if past_term}}You did not have an evaluation set up for this course.{{else}}You do not have an evaluation set up for this course.{{/if}} <a href="https://www.washington.edu/assessment/course-evaluations/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="evaluation_help_link" target="_blank" data-linklabel="Learn About Course Evaluations"><i class="fa fa-question-circle"></i></a>
-                  </li>
+                {{else}}
+                  <!-- no evaluation -->
+                  {{#if evaluation.eval_not_created_for_term }}
+                      <li class="evaluation-schedule">
+                          {{#if past_term}}You did not have an evaluation set up for this course.{{else}}You do not have an evaluation set up for this course.{{/if}} <a href="https://www.washington.edu/assessment/course-evaluations/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="evaluation_help_link" target="_blank" data-linklabel="Learn About Course Evaluations"><i class="fa fa-question-circle"></i></a>
+                      </li>
+                  {{else}}
+                      <li class="">
+                          An error has occurred and we can't load this content right now.
+                      </li>
+                  {{/if}}
                 {{/if}}
                 </ul>
               </div>
