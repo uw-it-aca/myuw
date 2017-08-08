@@ -14,8 +14,13 @@ var InstructorCourseResourcePanel = {
 
         var course_campus = c_section.course_campus.toLowerCase();
         var time_schedule_published = c_section.time_schedule_published;
+        var all_published = true;
+        for (var campus in time_schedule_published) {
+            all_published = all_published && time_schedule_published[campus];
+            if (!all_published) { break; }
+        }
         c_section.no_current_enrolment = false;
-        if (c_section.sln === 0 && !time_schedule_published.course_campus) {
+        if (!all_published && c_section.sln === 0 && course_campus in time_schedule_published && !time_schedule_published[course_campus]) {
             c_section.no_current_enrolment = true;
             c_section.last_enrolment_year = c_section.year - 1;
         }
