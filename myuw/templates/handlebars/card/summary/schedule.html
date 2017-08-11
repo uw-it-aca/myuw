@@ -57,14 +57,9 @@
 
                                 <td class="course-type">
                                 {{#if @first }}
-                                    {{#if ../../show_enrollment}}
-                                        {{#if ../current_enrollment}}<a target="_blank" href="/teaching/{{ ../../year }},{{ ../../quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students" class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">{{../current_enrollment}}</a>{{else}}0{{/if}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}
-                                    {{else}}
-                                        <a target="_blank" href="/teaching/{{ ../../year }},{{ ../../quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students" class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">Class list</a>
-                                    {{/if}}
+                                    {{#if ../current_enrollment}}<a target="_blank" href="/teaching/{{ ../../year }},{{ ../../quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students" class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">{{../current_enrollment}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}</a>{{else}}0&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/if}}
                                 {{/if}}
                                 </td>
-
                             {{/if}}
                         </tr>
                         {{/each}}
