@@ -3,7 +3,7 @@ import logging
 import traceback
 from django.http import HttpResponse
 from myuw.dao.enrollment import get_prev_enrollments_with_open_sections
-from myuw.dao.schedule import get_schedule_by_term
+from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_previous_number_quarters
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_msg, log_success_response,\
@@ -69,7 +69,7 @@ class StudUnfinishedPrevQuarClasSche(StudClasSche):
         """
         Return only unfinished course schedule
         """
-        schedule = get_schedule_by_term(request, term)
+        schedule = get_schedule_by_term(term)
         include_sections = []
         for section in schedule.sections:
             if section.section_label() in unfinished_sections:

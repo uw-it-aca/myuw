@@ -1,0 +1,69 @@
+{
+    "Current": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "700",
+        "CurriculumAbbreviation": "MUSEUM",
+        "Href": "/student/v5/registration.json?year=2013&quarter=autumn&curriculum_abbreviation=MUSEUM&course_number=700&section_id=A&reg_id=&is_active=true&instructor_reg_id=&verbose=&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": "",
+        "IsActive": true,
+        "PageSize": null,
+        "PageStart": null,
+        "Quarter": "autumn",
+        "RegID": null,
+        "SectionID": "A",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2013
+    },
+    "Next": null,
+    "PageSize": null,
+    "PageStart": null,
+    "Previous": null,
+    "Registrations": [
+            {
+            "AccessDateRangeEnd": "12/08/2014",
+            "AccessDateRangeStart": "09/13/2013",
+            "Auditor": false,
+            "Credits": "3",
+            "DuplicateCode": "",
+            "EducationUnitType": null,
+            "EndDate": "12/13/2013",
+            "FeeBaseType": "Fee based course",
+            "Grade": "X",
+            "GradeDate": "",
+            "GradeDocumentID": "",
+            "GradingSystem": null,
+            "HonorsCourse": false,
+            "Href": "/student/v5/registration/2013,autumn,MUSEUM,700,A,9136CCB8F66711D5BE060004AC494001,.json",
+            "Instructor": {
+                "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                "Name": "Bill Pce",
+                "RegID": "10000000000000000000000000000011"
+            },
+            "IsActive": true,
+            "IsCredit": true,
+            "IsIndependentStart": false,
+            "Metadata": "RegistrationSourceLocation=SDB_EOS;",
+            "Person": {
+                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494001.json",
+                "Name": "Average Student",
+                "RegID": "9136CCB8F66711D5BE060004AC494001"
+            },
+            "RepeatCourse": false,
+            "RepositoryTimeStamp": "07/21/2013 7:53:10 AM",
+            "RequestDate": "2013-06-14",
+            "RequestStatus": "ADDED TO CLASS",
+            "Section": {
+                "CourseNumber": "700",
+                "CurriculumAbbreviation": "MUSEUM",
+                "Href": "/student/v5/course/2013,autumn,MUSEUM,700/A.json",
+                "Quarter": "autumn",
+                "SectionID": "A",
+                "Year": 2013
+            },
+            "StartDate": "09/25/2013",
+            "VariableCredit": true,
+            "WritingCourse": false
+        }
+    ]
+}
