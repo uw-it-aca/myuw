@@ -184,11 +184,12 @@ def set_course_resources(section_data, section, person):
             logger.error("%s: %s" % (k, t.exception))
 
 
-def set_section_enrollments(section, section_json_data):
+def set_indep_study_section_enrollments(section, section_json_data):
     """
     for the instructor (current user)
     """
-    if not section.sln or not section.current_enrollment:
+    if not section.sln or not section.current_enrollment or\
+            not section.is_independent_study:
         return
     try:
         registrations = get_active_registrations_for_section(
@@ -207,7 +208,7 @@ def set_section_enrollments(section, section_json_data):
             raise
     except Exception:
         log_exception(
-            logger, 'set_section_enrollments', traceback.format_exc())
+            logger, 'set_indep_study_section_enrollments', traceback.format_exc())
 
 
 def load_schedule(request, schedule, summer_term="", section_callback=None):
@@ -247,7 +248,7 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
             section_data['independent_study_instructor_regid'] =\
                 section.independent_study_instructor_regid
 
-            set_section_enrollments(section, section_data)
+            set_indep_study_section_enrollments(section, section_data)
         else:
             section_data['is_independent_study'] = False
 
