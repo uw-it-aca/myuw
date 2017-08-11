@@ -2,7 +2,7 @@ from django.test import TestCase
 from myuw.dao.canvas import _get_canvas_enrollment_dict_for_regid,\
     canvas_course_is_available, get_canvas_course_from_section,\
     get_canvas_course_url
-from myuw.dao.schedule import _get_schedule
+from myuw.dao.registration import _get_schedule
 from uw_sws.models import Person
 from uw_sws.section import get_section_by_label
 from myuw.dao.term import get_current_quarter

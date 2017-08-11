@@ -3,11 +3,8 @@ This module provides access to registered class schedule and sections
 """
 
 import logging
-from restclients_core.thread import generic_prefetch
-from uw_libraries.subject_guides import get_subject_guide_for_section_params
 from uw_sws.models import ClassSchedule
-from uw_sws.registration import get_schedule_by_regid_and_term
-from myuw.dao.pws import get_regid_of_current_user
+from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_current_quarter, get_next_quarter,\
     get_next_autumn_quarter, get_current_summer_term,\
     is_a_term, is_b_term
@@ -17,48 +14,6 @@ from myuw.dao.term import get_comparison_date
 logger = logging.getLogger(__name__)
 
 
-def _get_schedule(regid, term):
-    """
-    @return a uw_sws.models.ClassSchedule object
-    Return the actively enrolled sections for the current user
-    in the given term/quarter
-    """
-    if regid is None or term is None:
-        return None
-    logid = ('get_schedule_by_regid_and_term ' +
-             str(regid) + ',' + str(term.year) + ',' + term.quarter)
-    return get_schedule_by_regid_and_term(
-        regid,
-        term,
-        non_time_schedule_instructors=False,
-        per_section_prefetch_callback=myuw_section_prefetch,
-        transcriptable_course="all")
-
-
-def myuw_section_prefetch(data):
-    primary = data["PrimarySection"]
-    params = [primary["Year"],
-              primary["Quarter"],
-              primary["CurriculumAbbreviation"],
-              primary["CourseNumber"],
-              data["SectionID"]
-              ]
-
-    key = "library-%s-%s-%s-%s-%s" % (tuple(params))
-    method = generic_prefetch(get_subject_guide_for_section_params,
-                              params)
-
-    return [[key, method]]
-
-
-def get_schedule_by_term(request, term):
-    """
-    Return the actively enrolled sections for the current user
-    in the given term/quarter
-    """
-    return _get_schedule(get_regid_of_current_user(), term)
-
-
 def get_current_quarter_schedule(request):
     """
     Return the actively enrolled sections in the current quarter
@@ -66,7 +21,7 @@ def get_current_quarter_schedule(request):
     if hasattr(request, "myuw_current_quarter_schedule"):
         return request.myuw_current_quarter_schedule
 
-    schedule = get_schedule_by_term(request, get_current_quarter(request))
+    schedule = get_schedule_by_term(get_current_quarter(request))
     request.myuw_current_quarter_schedule = schedule
 
     return schedule
@@ -79,7 +34,7 @@ def get_next_quarter_schedule(request):
     # MUWM-1981
     if get_next_quarter(request) == get_current_quarter(request):
         return None
-    return get_schedule_by_term(request, get_next_quarter(request))
+    return get_schedule_by_term(get_next_quarter(request))
 
 
 def get_next_autumn_quarter_schedule(request):
@@ -89,7 +44,7 @@ def get_next_autumn_quarter_schedule(request):
     # MUWM-1981
     if get_next_autumn_quarter(request) == get_current_quarter(request):
         return None
-    return get_schedule_by_term(request, get_next_autumn_quarter(request))
+    return get_schedule_by_term(get_next_autumn_quarter(request))
 
 
 def filter_schedule_sections_by_summer_term(schedule, summer_term):

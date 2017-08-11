@@ -3,7 +3,7 @@ from django.conf import settings
 from uw_sws.models import ClassSchedule, Term, Section, Person
 from myuw.dao.term import get_specific_term, get_next_non_summer_quarter,\
     is_a_term, is_b_term, is_full_summer_term
-from myuw.dao.schedule import _get_schedule
+from myuw.dao.registration import _get_schedule
 from myuw.dao.registered_term import _get_registered_summer_terms,\
     _must_displayed_separately, _get_registered_future_quarters,\
     save_seen_registration_obj

@@ -3,7 +3,7 @@ from django.test import TestCase
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.library import _get_account_by_uwnetid
 from myuw.dao.library import get_subject_guide_by_section
-from myuw.dao.schedule import _get_schedule
+from myuw.dao.registration import _get_schedule
 from uw_sws.models import Term
 from myuw.test import fdao_pws_override, fdao_sws_override, get_request
 

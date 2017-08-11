@@ -6,13 +6,13 @@ from django.conf import settings
 import logging
 from restclients_core.exceptions import DataFailureException
 from uw_sws.models import ClassSchedule
-from uw_sws.registration import get_active_registrations_by_section
 from uw_sws.section import get_sections_by_instructor_and_term,\
     get_section_by_url, get_section_by_label
 from uw_sws.section_status import get_section_status_by_label
 from uw_sws.term import get_specific_term
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.pws import get_person_of_current_user
+from myuw.dao.registration import get_active_registrations_for_section
 from myuw.dao.term import get_current_quarter
 from myuw.dao.instructor import is_seen_instructor, add_seen_instructor
 from myuw.dao.exceptions import NotSectionInstructorException
@@ -123,11 +123,8 @@ def get_instructor_section(year, quarter, curriculum,
         raise NotSectionInstructorException()
 
     if include_registrations:
-        if section.is_independent_study:
-            section.independent_study_instructor_regid =\
-                schedule.person.uwregid
-
-        section.registrations = get_active_registrations_by_section(section)
+        section.registrations = get_active_registrations_for_section(
+            section, schedule.person.uwregid)
 
     schedule.sections.append(section)
     if include_linked_sections:
