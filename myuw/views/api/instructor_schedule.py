@@ -207,8 +207,9 @@ def set_indep_study_section_enrollments(section, section_json_data):
         else:
             raise
     except Exception:
-        log_exception(
-            logger, 'set_indep_study_section_enrollments', traceback.format_exc())
+        log_exception(logger,
+                      'set_indep_study_section_enrollments',
+                      traceback.format_exc())
 
 
 def load_schedule(request, schedule, summer_term="", section_callback=None):
