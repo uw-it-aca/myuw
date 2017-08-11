@@ -40,7 +40,7 @@ class Textbook(RESTDispatch):
 
             # enrolled sections
             try:
-                schedule = get_schedule_by_term(request, term)
+                schedule = get_schedule_by_term(term)
                 by_sln.update(self._get_schedule_textbooks(
                     schedule, summer_term))
 

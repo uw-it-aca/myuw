@@ -3,7 +3,7 @@ from django.conf import settings
 from userservice.user import UserServiceMiddleware
 from uw_sws.models import ClassSchedule, Term, Person, Section
 from myuw.dao.course_color import get_colors_by_regid_and_schedule
-from myuw.dao.schedule import _get_schedule
+from myuw.dao.registration import _get_schedule
 from myuw.test import get_request
 
 
