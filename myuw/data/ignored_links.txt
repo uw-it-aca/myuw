@@ -1,7 +1,7 @@
 # Email urls
 http://alpine.washington.edu
 http://gmail.uw.edu
-https://outlook.office365.com
+https://outlook.office365.com/uw.edu
 https://mail.google.com
 https://mail.live.com
 https://mail.yahoo.com
