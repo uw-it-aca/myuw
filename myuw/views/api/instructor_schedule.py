@@ -199,8 +199,8 @@ def set_indep_study_section_enrollments(section, section_json_data):
             section_json_data['current_enrollment'] = total_enrollment
         if total_enrollment == 1:
             person = registrations[0].person
-            section_json_data['enrollment_student_name'] = person.display_name
-
+            section_json_data['enrollment_student_name'] =\
+                "%s, %s" % (person.surname.title(), person.first_name.title())
     except DataFailureException as ex:
         if ex.status == 404:
             section_json_data['current_enrollment'] = 0
