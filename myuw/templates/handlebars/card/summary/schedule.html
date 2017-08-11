@@ -55,15 +55,16 @@
                                     {{/if}}
                                 {{/unless}}
 
-                                {{#if ../../show_enrollment}}
-                                    <td class="course-type">
+                                <td class="course-type">
+                                {{#if @first }}
+                                    {{#if ../../show_enrollment}}
                                         {{#if ../current_enrollment}}<a target="_blank" href="/teaching/{{ ../../year }},{{ ../../quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students" class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">{{../current_enrollment}}</a>{{else}}0{{/if}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}
-                                    </td>
-                                {{else}}
-                                    <td class="course-type">
+                                    {{else}}
                                         <a target="_blank" href="/teaching/{{ ../../year }},{{ ../../quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students" class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">Class list</a>
-                                    </td>
+                                    {{/if}}
                                 {{/if}}
+                                </td>
+
                             {{/if}}
                         </tr>
                         {{/each}}
