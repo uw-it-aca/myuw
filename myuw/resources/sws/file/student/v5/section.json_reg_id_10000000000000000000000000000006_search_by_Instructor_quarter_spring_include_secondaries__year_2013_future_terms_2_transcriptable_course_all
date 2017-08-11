@@ -62,6 +62,14 @@
             "Quarter": "spring",
             "SectionID": "C",
             "Year": 2013
+        },
+        {
+            "CourseNumber": "700",
+            "CurriculumAbbreviation": "MUSEUM",
+            "Href": "/student/v5/course/2013,autumn,MUSEUM,700/A.json",
+            "Quarter": "autumn",
+            "SectionID": "A",
+            "Year": 2013
         }
     ],
     "TotalCount": 7
