@@ -49,7 +49,7 @@ class IASystem(RESTDispatch):
                 log_msg(logger, timer, "Not in fetching window")
                 return data_not_found()
             term = get_current_quarter(request)
-            schedule = get_schedule_by_term(request, term)
+            schedule = get_schedule_by_term(term)
 
             summer_term = get_current_summer_term_in_schedule(
                 schedule, request)
