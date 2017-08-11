@@ -37,7 +37,7 @@ class StudClasSche(RESTDispatch):
         @return class schedule data in json format
                 status 404: no schedule found (not registered)
         """
-        schedule = get_schedule_by_term(request, term)
+        schedule = get_schedule_by_term(term)
 
         if summer_term is None:
             summer_term = get_current_summer_term_in_schedule(schedule,

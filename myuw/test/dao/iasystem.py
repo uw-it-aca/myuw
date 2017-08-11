@@ -7,7 +7,7 @@ from uw_sws.models import Section, Term
 from uw_iasystem.evaluation import get_evaluation_by_id
 from myuw.dao.iasystem import json_for_evaluation,\
     _get_evaluations_by_section_and_student, summer_term_overlaped
-from myuw.dao.schedule import _get_schedule
+from myuw.dao.registration import _get_schedule
 from uw_iasystem.util import fdao_ias_override
 from myuw.test import fdao_pws_override, fdao_sws_override,\
     get_request_with_date, get_request_with_user, get_request

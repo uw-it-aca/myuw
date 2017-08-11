@@ -16,7 +16,11 @@
                                 <p>({{ current_enrollment }} of {{ limit_estimate_enrollment }} students registered for course in {{ toTitleCase quarter }} {{ last_enrolment_year }})</p>
                             </div>
                         {{else}}
-                            <span>{{ current_enrollment }} of {{ limit_estimate_enrollment }} {{#if current_enrollment }}</span> <a target="_blank" href="/teaching/{{ year }},{{ quarter }},{{ curriculum_abbr }},{{ course_number }}/{{ section_id }}/students" class="course_class_list" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">View class list</a>{{/if}}
+                            {{#if enrollment_student_name}}
+                                <span>{{ enrollment_student_name }}</span> <a target="_blank" href="/teaching/{{ year }},{{ quarter }},{{ curriculum_abbr }},{{ course_number }}/{{ section_id }}/students" class="course_class_list" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">View student</a>
+                            {{else}}
+                                <span>{{ current_enrollment }} of {{ limit_estimate_enrollment }} {{#if current_enrollment }}</span> <a target="_blank" href="/teaching/{{ year }},{{ quarter }},{{ curriculum_abbr }},{{ course_number }}/{{ section_id }}/students" class="course_class_list" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">View class list</a>{{/if}}
+                            {{/if}}
                         {{/if}}
                     </div>
                 </div>
