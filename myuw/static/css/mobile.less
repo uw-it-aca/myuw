@@ -2144,12 +2144,23 @@ th.mailman-sections-column { width: 99%; }
 }
 
 /*** Teaching Summary Card ***/
-.teaching-schedule-summary.myuw-card .myuw-card-title {
-    margin-right: 4em;
-    
-    @media only screen and (max-width: 815px) {
-
+.teaching-schedule-summary.myuw-card {
+    .myuw-card-title {
+        margin-right: 4em;
     }
+
+    .meeting-type {
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-left: 1.4em;
+
+        @media @phablet {
+            display: block;
+        }
+    }
+
+//    @media only screen and (max-width: 815px) { }
+
 }
 
 
