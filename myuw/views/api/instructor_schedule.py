@@ -112,9 +112,7 @@ def set_section_evaluation(section, person):
             section, person.employee_id)
         if evaluations is not None:
             for eval in evaluations:
-                print eval.json_data()
-                if eval.section_sln == section.sln:
-                    print eval.json_data()
+                if section.sln and eval.section_sln == section.sln:
                     return eval.json_data()
         return {'eval_not_exist': True}
     except Exception as ex:
