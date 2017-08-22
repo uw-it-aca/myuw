@@ -53,7 +53,7 @@
                   {{/if}}
                 {{else}}
                   <!-- no evaluation -->
-                  {{#if evaluation.eval_not_created_for_term }}
+                  {{#if evaluation.eval_not_exist }}
                       <li class="evaluation-schedule">
                           {{#if past_term}}You did not have an evaluation set up for this course.{{else}}You do not have an evaluation set up for this course.{{/if}} <a href="https://www.washington.edu/assessment/course-evaluations/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="evaluation_help_link" target="_blank" data-linklabel="Learn About Course Evaluations"><i class="fa fa-question-circle"></i></a>
                       </li>

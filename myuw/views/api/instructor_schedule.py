@@ -110,15 +110,18 @@ def set_section_evaluation(section, person):
     try:
         evaluations = get_evaluation_by_section_and_instructor(
             section, person.employee_id)
-        for eval in evaluations:
-            if eval.section_sln == section.sln:
-                return eval.json_data()
-    except DataFailureException as ex:
-        # eval search never returns 404
+        if evaluations is not None:
+            for eval in evaluations:
+                print eval.json_data()
+                if eval.section_sln == section.sln:
+                    print eval.json_data()
+                    return eval.json_data()
+        return {'eval_not_exist': True}
+    except Exception as ex:
         if isinstance(ex, TermEvalNotCreated):
-            return {'eval_not_created_for_term': True}
-        raise
-    except Exception:
+            # eval not created for the term
+            return {'eval_not_exist': True}
+        # eval search never returns 404
         log_exception(
             logger, 'set_section_evaluation', traceback.format_exc())
 

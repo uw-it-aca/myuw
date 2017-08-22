@@ -1,0 +1,35 @@
+{"collection":
+   {"queries":[
+       {"href":"https://uwb.iasystem.org/api/v1/evaluation",
+        "data":[
+            {"prompt":"Year",
+             "name":"year",
+              "required":true},
+             {"name":"term_name",
+              "prompt":"Term Name",
+              "required":true},
+             {"prompt":"Curriculum Abbreviation",
+              "name":"curriculum_abbreviation"},
+             {"name":"course_number",
+              "prompt":"Course Number"},
+             {"prompt":"Section ID",
+              "name":"section_id"},
+             {"name":"student_id",
+              "prompt":"Student ID"},
+             {"name":"instructor_id",
+              "prompt":"Instructor ID"}
+              ],
+        "prompt":"Evaluation Search Resource",
+        "rel":"collection filter"}
+        ],
+    "links":[
+         {"rel":"home",
+          "prompt":"IASystem v1 Web API",
+          "href":"https://uwb.iasystem.org/api/v1"},{"rel":"self",
+          "prompt":"IASystem Evaluation Listing",
+          "href":"https://uwb.iasystem.org/api/v1/evaluation?year=2012&term_name=Spring&curriculum_abbreviation=&course_number=&section_id=&instructor_id="}
+          ],
+    "version":"1.0",
+    "href":"https://uwb.iasystem.org/api/v1/evaluation"
+    }
+}
