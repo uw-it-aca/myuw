@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponse
 from myuw.dao.pws import get_person_of_current_user
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response
+from myuw.logger.logresp import log_response_time
 from myuw.views.rest_dispatch import RESTDispatch
 from myuw.dao.user import get_netid_of_current_user
 from myuw.dao.mailman import get_course_email_lists, request_mailman_lists,\
@@ -40,7 +40,9 @@ class Emaillist(RESTDispatch):
                 year, quarter, curriculum_abbr,
                 course_number, section_id, True)
 
-            log_success_response(logger, timer)
+            log_response_time(logger,
+                              "Checked with %s" % section_label,
+                              timer)
             return HttpResponse(json.dumps(email_list_json))
         except Exception:
             return handle_exception(logger, timer, traceback)
@@ -60,7 +62,9 @@ class Emaillist(RESTDispatch):
             else:
                 resp = request_mailman_lists(get_netid_of_current_user(),
                                              single_section_labels)
-                log_success_response(logger, timer)
+                log_response_time(logger,
+                                  "Requested for %s" % single_section_labels,
+                                  timer)
 
             return HttpResponse(json.dumps(resp))
         except Exception as ex:
