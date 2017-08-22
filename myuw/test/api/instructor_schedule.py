@@ -148,6 +148,8 @@ class TestInstructorSection(MyuwApiTest):
         section1 = data['sections'][0]
         self.assertTrue(section1['cc_display_dates'])
         self.assertTrue(section1['sln'] == 0)
+        section1 = data['sections'][1]
+        self.assertTrue(section1['evaluation']["eval_not_exist"])
 
         request = get_request_with_user('billpce',
                                         get_request_with_date("2013-10-01"))
