@@ -62,9 +62,10 @@ class Emaillist(RESTDispatch):
             else:
                 resp = request_mailman_lists(get_netid_of_current_user(),
                                              single_section_labels)
-                log_response_time(logger,
-                                  "Requested for %s" % single_section_labels,
-                                  timer)
+            log_response_time(
+                logger,
+                "Request %s ==> %s" % (single_section_labels, resp),
+                timer)
 
             return HttpResponse(json.dumps(resp))
         except Exception as ex:
