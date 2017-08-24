@@ -59,6 +59,7 @@ var  FutureSummaryScheduleCard = {
         }
 
         var raw = courses_template({
+            first_day_quarter: instructed_course_data.term.first_day_quarter,
             quarter: instructed_course_data.quarter,
             year: instructed_course_data.year,
             term: instructed_course_data.term,
