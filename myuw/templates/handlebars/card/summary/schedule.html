@@ -11,7 +11,7 @@
                 href="/teaching/{{ year }},{{ quarter }}" future-nav-target="{{year}},{{quarter}}"
                 data-linklabel="{{capitalizeString quarter}} {{year}} Teaching Details">View details</a></div></div>
                 <p>You are teaching <strong>{{section_count}} course{{pluralize section_count '' 's'}}</strong> in {{capitalizeString quarter}} {{year}}. <br />
-                First day of instruction is {{toFriendlyDate term.first_day_quarter}} ({{toFromNowDate term.first_day_quarter}})</p>
+                First day of instruction is {{toFriendlyDate first_day_quarter}} ({{toFromNowDate first_day_quarter}})</p>
             {{/if}}
             {{#each sections}}
               <div class="myuw-card-section {{#if @last}}last{{/if}}">
