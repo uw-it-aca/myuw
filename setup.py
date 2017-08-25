@@ -26,7 +26,7 @@ setup(
         'Django==1.10.5',
         'ordereddict',
         'simplejson',
-        'django-compressor',
+        'django-compressor==2.2',
         'BeautifulSoup',
         'urllib3==1.10.2',
         'django-templatetag-handlebars',
