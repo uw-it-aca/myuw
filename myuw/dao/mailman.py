@@ -201,6 +201,7 @@ def request_mailman_lists(requestor_uwnetid,
         if recipient is None:
             raise CourseRequestEmailRecipientNotFound
         sender = "%s@uw.edu" % requestor_uwnetid
+
         send_mail(EMAIL_SUBJECT,
                   message_body,
                   sender,
@@ -238,9 +239,8 @@ def get_message_body(requestor_uwnetid,
             message_body += _get_single_line(section)
         else:
             logger.error("%s", thread.exception)
-    log_info(logger,
-             "%s ==message body==> %s" % (single_section_labels,
-                                          message_body.splitlines()))
+    log_info(logger, "For %s ==request emaillist message body==> %s" %
+             (single_section_labels, message_body.splitlines()))
     return message_body, num_sections_found
 
 
