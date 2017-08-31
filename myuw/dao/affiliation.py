@@ -5,7 +5,7 @@ This module provides affiliations of the current user
 import logging
 import traceback
 from django.conf import settings
-from myuw.logger.logback import log_info, log_exception
+from myuw.logger.logback import log_info
 from myuw.dao import is_fyp_thrive_viewer, get_netid_of_current_user
 from myuw.dao.schedule import get_current_quarter_schedule
 from myuw.dao.pws import get_campus_of_current_user
