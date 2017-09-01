@@ -52,7 +52,7 @@ setup(
         'UW-RestClients-Trumba<1.0,>=0.3',
         'UW-RestClients-Django-Utils<1.0',
         'Django-Safe-EmailBackend>=0.1,<1.0',
-        'Django-SupportTools',
+        'Django-SupportTools>=1.2,<2.0',
         'django_mobileesp',
         'django_client_logger',
         'yajl',
