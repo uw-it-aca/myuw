@@ -9,7 +9,6 @@ from django.utils import timezone
 from uw_pws import PWS
 from restclients_core.exceptions import DataFailureException
 from uw_iasystem.evaluation import search_evaluations
-from myuw.logger.logback import log_exception
 from myuw.dao.student_profile import get_profile_of_current_user
 from myuw.dao.term import get_comparison_datetime, is_b_term,\
     get_current_summer_term, get_bod_7d_before_last_instruction,\

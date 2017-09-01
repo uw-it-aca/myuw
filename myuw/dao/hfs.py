@@ -6,7 +6,6 @@ the student account balances (MyUW HFS) web service.
 import logging
 from uw_hfs.idcard import get_hfs_accounts
 from restclients_core.exceptions import DataFailureException
-from myuw.logger.logback import log_exception
 from myuw.dao import get_netid_of_current_user
 
 
