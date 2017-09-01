@@ -195,6 +195,7 @@ var renderedCardOnce = function(card_name) {
 
 var resetCardRenderCalled = function() {
     multi_res_card_render_called = {};
+    window.webservice_outage = false;
 };
 
 var toggle_card_disclosure = function(card, div_toggled, a_expose, a_hide, label) {
