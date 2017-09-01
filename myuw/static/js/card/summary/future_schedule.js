@@ -3,18 +3,28 @@ var  FutureSummaryScheduleCard = {
     dom_target: undefined,
     term: 'next',
 
-    render_init: function() {
+    hide_card: function() {
         if (myuwFeatureEnabled('instructor_schedule') && window.user.instructor) {
-            if (FutureSummaryScheduleCard.term === 'current') {
-                FutureSummaryScheduleCard.term = window.term.next.year + ',' + window.term.next.quarter;
-            }
-
-            WSData.fetch_instructed_course_data_for_term(FutureSummaryScheduleCard.term,
-                                                         FutureSummaryScheduleCard.render_upon_data,
-                                                         FutureSummaryScheduleCard.render_error);
-        } else {
-            $("#FutureSummaryScheduleCard").hide();
+            return false;
         }
+        return true;
+    },
+
+
+    render_init: function() {
+        FutureSummaryScheduleCard.dom_target = $("#FutureSummaryScheduleCard");
+        if (FutureSummaryScheduleCard.hide_card()) {
+            FutureSummaryScheduleCard.dom_target.hide();
+            return;
+        }
+
+        if (FutureSummaryScheduleCard.term === 'current') {
+            FutureSummaryScheduleCard.term = window.term.next.year + ',' + window.term.next.quarter;
+        }
+
+        WSData.fetch_instructed_course_data_for_term(FutureSummaryScheduleCard.term,
+                                                     FutureSummaryScheduleCard.render_upon_data,
+                                                     FutureSummaryScheduleCard.render_error);
     },
 
     render_upon_data: function() {
@@ -31,10 +41,10 @@ var  FutureSummaryScheduleCard = {
         if (error_code === 410) {
             Error410.render();
         } else if (error_code === 404) {
-            $("#FutureSummaryScheduleCard").hide();
+            FutureSummaryScheduleCard.dom_target.hide();
         } else {
             raw = CardWithError.render("FutureSummary Schedule");
-            InstructorCourseCards.dom_target.html(raw);
+            FutureSummaryScheduleCard.dom_target.html(raw);
         }
     },
 

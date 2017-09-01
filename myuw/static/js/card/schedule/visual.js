@@ -16,8 +16,10 @@ var VisualScheduleCard = {
             $("#VisualScheduleCard").hide();
             return;
         }
-        WSData.fetch_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_handler, VisualScheduleCard.render_handler);
-        if(myuwFeatureEnabled('instructor_schedule')) {
+        if (window.user.stude) {
+            WSData.fetch_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_handler, VisualScheduleCard.render_handler);
+        }
+        if(myuwFeatureEnabled('instructor_schedule') && window.user.instructor) {
             WSData.fetch_instructed_course_data_for_term(VisualScheduleCard.term, VisualScheduleCard.render_handler, VisualScheduleCard.render_handler);
         }
     },

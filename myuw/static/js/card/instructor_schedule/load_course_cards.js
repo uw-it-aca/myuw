@@ -3,18 +3,29 @@ var InstructorCourseCards = {
     dom_target: undefined,
     term: 'current',
 
-    render_init: function() {
-        if (myuwFeatureEnabled('instructor_schedule')) {
-            if (InstructorCourseCards.term === 'current') {
-                InstructorCourseCards.term = window.term.display_term;
-            }
-
-            WSData.fetch_instructed_course_data_for_term(InstructorCourseCards.term,
-                                                         InstructorCourseCards.render_upon_data,
-                                                         InstructorCourseCards.render_error);
-        } else {
-            $("#InstructorCourseCards").hide();
+    hide_card: function() {
+        if (myuwFeatureEnabled('instructor_schedule') && window.user.instructor) {
+            return false;
         }
+        return true;
+    },
+
+
+    render_init: function() {
+        InstructorCourseCards.dom_target = $("#InstructorCourseCards");
+
+        if (InstructorCourseCards.hide_card()) {
+            InstructorCourseCards.dom_target.hide();
+            return;
+        }
+
+        if (InstructorCourseCards.term === 'current') {
+            InstructorCourseCards.term = window.term.display_term;
+        }
+
+        WSData.fetch_instructed_course_data_for_term(InstructorCourseCards.term,
+                                                     InstructorCourseCards.render_upon_data,
+                                                     InstructorCourseCards.render_error);
     },
 
     render_upon_data: function() {
@@ -36,7 +47,7 @@ var InstructorCourseCards = {
             if ($('.instructed-terms').length) {
                 InstructorCourseCards._render_no_courses_found();
             } else {
-                $("#InstructorCourseCards").hide();
+                InstructorCourseCards.dom_target.hide();
             }
         } else {
             raw = CardWithError.render("Teaching Schedule");
