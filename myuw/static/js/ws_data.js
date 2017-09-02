@@ -75,7 +75,7 @@ WSData = {
         delete WSData._callback_args[url];
     },
 
-    _run_error_callbacks_for_url: function(url) {
+    _run_error_callbacks_for_url: function(url, status) {
         var i,
             callback,
             args;
@@ -92,7 +92,9 @@ WSData = {
         delete WSData._success_callbacks[url];
         delete WSData._error_callbacks[url];
         delete WSData._callback_args[url];
-        WSData._display_outage_message(url);
+        if (status && status != 404) {
+            WSData._display_outage_message(url);
+        }
     },
 
     _display_outage_message: function(url) {
@@ -459,7 +461,7 @@ WSData = {
                     WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {
-                    WSData._run_error_callbacks_for_url(url);
+                    WSData._run_error_callbacks_for_url(url, xhr.status);
                 }
             });
         }
@@ -491,7 +493,7 @@ WSData = {
                     WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {
-                    WSData._run_error_callbacks_for_url(url);
+                    WSData._run_error_callbacks_for_url(url, xhr.status);
                 }
             });
         }
@@ -524,7 +526,7 @@ WSData = {
                 },
                 error: function(xhr, status, error) {
                     WSData._book_data_error_status[term] = xhr.status;
-                    WSData._run_error_callbacks_for_url(url);
+                    WSData._run_error_callbacks_for_url(url, xhr.status);
                 }
                 });
             }
@@ -567,7 +569,7 @@ WSData = {
                 },
                 error: function(xhr, status, error) {
                     WSData._course_data_error_status[term] = xhr.status;
-                    WSData._run_error_callbacks_for_url(url);
+                    WSData._run_error_callbacks_for_url(url, xhr.status);
                 }
             });
         }
@@ -645,7 +647,7 @@ WSData = {
                 },
                 error: function(xhr, status, error) {
                     WSData._instructed_course_data_error_status[term] = xhr.status;
-                    WSData._run_error_callbacks_for_url(url);
+                    WSData._run_error_callbacks_for_url(url, xhr.status);
                 }
             });
         }
@@ -701,7 +703,7 @@ WSData = {
                 },
                 error: function(xhr, status, error) {
                     WSData._instructed_section_data_error_status[section_label] = xhr.status;
-                    WSData._run_error_callbacks_for_url(url);
+                    WSData._run_error_callbacks_for_url(url, xhr.status);
                 }
             });
         }
@@ -736,7 +738,7 @@ WSData = {
             },
             error: function(xhr, status, error) {
                 WSData._instructed_section_details_error_status = xhr.status;
-                WSData._run_error_callbacks_for_url(url);
+                WSData._run_error_callbacks_for_url(url, xhr.status);
             }
         });
 
@@ -1071,7 +1073,7 @@ WSData = {
                 },
                 error: function(xhr, status, error) {
                     WSData._notice_data_error_status = xhr.status;
-                    WSData._run_error_callbacks_for_url(url);
+                    WSData._run_error_callbacks_for_url(url, xhr.status);
                 }
             });
         }
@@ -1152,7 +1154,7 @@ WSData = {
                     },
                     error: function(xhr, status, error) {
                         WSData._profile_data_error_status = xhr.status;
-                        WSData._run_error_callbacks_for_url(url);
+                        WSData._run_error_callbacks_for_url(url, xhr.status);
                     }
                  });
               }
@@ -1187,7 +1189,7 @@ WSData = {
                     WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {
-                    WSData._run_error_callbacks_for_url(url);
+                    WSData._run_error_callbacks_for_url(url, xhr.status);
                 }
             });
         }
@@ -1299,7 +1301,7 @@ WSData = {
                         WSData._run_success_callbacks_for_url(url);
                     },
                     error: function(xhr, status, error) {
-                        WSData._run_error_callbacks_for_url(url);
+                        WSData._run_error_callbacks_for_url(url, xhr.status);
                     }
                  });
               }
@@ -1331,7 +1333,7 @@ WSData = {
                         WSData._run_success_callbacks_for_url(url);
                     },
                     error: function(xhr, status, error) {
-                        WSData._run_error_callbacks_for_url(url);
+                        WSData._run_error_callbacks_for_url(url, xhr.status);
                     }
                  });
               }
@@ -1366,7 +1368,7 @@ WSData = {
                 },
                 error: function(xhr, status, error) {
                     WSData._instructed_emaillist_data_error_status[section_label] = xhr.status;
-                    WSData._run_error_callbacks_for_url(url);
+                    WSData._run_error_callbacks_for_url(url, xhr.status);
                 }
             });
         }
