@@ -20,11 +20,11 @@ var CourseCards = {
     },
 
     render_upon_data: function() {
-        if (!CourseCards._has_all_data()) {
-            return;
+        var course_data = WSData._course_data[CourseCards.term];
+        if (course_data) {
+            CourseCards._render();
+            LogUtils.cardLoaded(CourseCards.name, CourseCards.dom_target);
         }
-        CourseCards._render();
-        LogUtils.cardLoaded(CourseCards.name, CourseCards.dom_target);
     },
 
     render_error: function() {
@@ -39,13 +39,6 @@ var CourseCards = {
         } else {
             $("#future_content").html(raw);
         }
-    },
-
-    _has_all_data: function () {
-        if (WSData.normalized_course_data(CourseCards.term)) {
-            return true;
-        }
-        return false;
     },
 
     _render: function () {

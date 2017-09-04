@@ -2,7 +2,6 @@ var TextbookCard = {
     name: 'TextbookCard',
     dom_target: undefined,
     term: undefined,
-    rendered_once: false,
 
     hide_card: function() {
         if (window.user.student) {
@@ -35,7 +34,7 @@ var TextbookCard = {
         var book_error_code = WSData.book_data_error_code(TextbookCard.term);
         var book_data = WSData._book_data[TextbookCard.term];
         var course_error_code = WSData.course_data_error_code(TextbookCard.term);
-        var course_data = WSData._course_data[TextbookCard.term];
+        var course_data = WSData.course_data_for_term(TextbookCard.term);
 
         if (!book_data && !book_error_code ||
             !course_data && !course_error_code) {
@@ -58,9 +57,6 @@ var TextbookCard = {
     },
 
     _render: function () {
-        if (TextBooks.rendered_once) {
-            return;
-        }
         var term = TextbookCard.term;
         var course_data = WSData.course_data_for_term(term);
         var textbook_data  = TextBooks.process_book_data(WSData.book_data(term), course_data);
@@ -104,7 +100,6 @@ var TextbookCard = {
         var template = Handlebars.compile(source);
         var raw = template(template_data);
         TextbookCard.dom_target.html(raw);
-        TextBooks.rendered_once = true;
         LogUtils.cardLoaded(TextbookCard.name, TextbookCard.dom_target);
         TextbookCard.add_events(term);
     },
