@@ -2,7 +2,7 @@ var OutageCard = {
     name: 'OutageCard',
     term: 'current',
     dom_target: undefined,
-    displayed_error: false,
+    rendered_once: false,
 
     render_init: function() {
         OutageCard.dom_target = $("#OutageCard");
@@ -74,18 +74,19 @@ var OutageCard = {
     },
 
     render_error: function () {
-        if (!OutageCard.displayed_error) {
-            var source = $("#outage_card_content").html();
-            var template = Handlebars.compile(source);
-
-            OutageCard.dom_target.html(template());
-            LogUtils.cardLoaded(OutageCard.name, OutageCard.dom_target);
-            OutageCard.displayed_error = true;
+        if (OutageCard.rendered_once) {
+            return;
         }
-    },
+        var source = $("#outage_card_content").html();
+        var template = Handlebars.compile(source);
+
+        OutageCard.dom_target.html(template());
+        LogUtils.cardLoaded(OutageCard.name, OutageCard.dom_target);
+        OutageCard.rendered_once = true;
+   },
 
     reset: function() {
-        OutageCard.displayed_error = false;
+        OutageCard.rendered_once = false;
     }
 };
 

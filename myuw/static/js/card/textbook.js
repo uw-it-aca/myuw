@@ -2,50 +2,54 @@ var TextbookCard = {
     name: 'TextbookCard',
     dom_target: undefined,
     term: undefined,
+    rendered_once: false,
+
+    hide_card: function() {
+        if (window.user.student) {
+            return false;
+        }
+        return true;
+    },
 
     render_init: function() {
         TextbookCard.dom_target = $('#TextbookCard');
-        if (!window.user.student) {
+        if (TextbookCard.hide_card() ||
+            (TextbookCard.term === 'current' &&
+             !window.card_display_dates.is_before_eof_7days_of_term)) {
             TextbookCard.dom_target.hide();
-        }
-        if (TextbookCard.term === 'current') {
-            if (!window.card_display_dates.is_before_eof_7days_of_term) {
-                $("#TextbookCard").hide();
-                return;
-            }
+            return;
         }
         WSData.fetch_book_data(TextbookCard.term,
-                               TextbookCard.render_upon_data,
-                               TextbookCard.render_error);
+                               TextbookCard.render,
+                               TextbookCard.render);
         WSData.fetch_course_data_for_term(TextbookCard.term,
-                                          TextbookCard.render_upon_data,
-                                          TextbookCard.render_error);
+                                          TextbookCard.render,
+                                          TextbookCard.render);
     },
 
-    _has_all_data: function () {
-        if (WSData.book_data(TextbookCard.term) && WSData.course_data_for_term(TextbookCard.term)) {
-            return true;
-        }
-        return false;
+    reset: function () {
+        TextBooks.rendered_once = false;
     },
 
-    render_upon_data: function(args) {
-        // Having multiple callbacks come to this function,
-        // delay rendering until all requests are complete.
-        if (!TextbookCard._has_all_data()) {
-            return;
-        }
-
-        // _render should be called only once.
-        if (renderedCardOnce(TextbookCard.name)) {
-            return;
-        }
-        TextbookCard._render();
-    },
-
-    render_error: function() {
+    render: function() {
         var book_error_code = WSData.book_data_error_code(TextbookCard.term);
+        var book_data = WSData._book_data[TextbookCard.term];
         var course_error_code = WSData.course_data_error_code(TextbookCard.term);
+        var course_data = WSData._course_data[TextbookCard.term];
+
+        if (!book_data && !book_error_code ||
+            !course_data && !course_error_code) {
+            return;
+        }
+
+        if (book_data && course_data) {
+            TextbookCard._render();
+            return;
+        }
+        TextbookCard._render_error(book_error_code, course_error_code);
+    },
+
+    _render_error: function(book_error_code, course_error_code) {
         if (course_error_code === 404 || book_error_code === 404) {
             $("#TextbookCard").hide();
             return;
@@ -54,6 +58,9 @@ var TextbookCard = {
     },
 
     _render: function () {
+        if (TextBooks.rendered_once) {
+            return;
+        }
         var term = TextbookCard.term;
         var course_data = WSData.course_data_for_term(term);
         var textbook_data  = TextBooks.process_book_data(WSData.book_data(term), course_data);
@@ -97,6 +104,7 @@ var TextbookCard = {
         var template = Handlebars.compile(source);
         var raw = template(template_data);
         TextbookCard.dom_target.html(raw);
+        TextBooks.rendered_once = true;
         LogUtils.cardLoaded(TextbookCard.name, TextbookCard.dom_target);
         TextbookCard.add_events(term);
     },
