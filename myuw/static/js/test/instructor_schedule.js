@@ -28,12 +28,13 @@ describe('InstructorScheduleCards', function(){
 
             window.enabled_features = { 'instructor_schedule': true };
             window.card_display_dates = { system_date: '2017-03-28 16:17' };
+            window.user.instructor = true;
             window.location.search = '?grading_date=2017-03-28 16:17';
             $(window).on("myuw:card_load", function () {
                 done();
             });
 
-            InstructorCourseCards.term = '2013,spring'
+            InstructorCourseCards.term = '2013,spring';
             InstructorCourseCards.dom_target = $('#' + render_id);
             InstructorCourseCards.render_init();
         });

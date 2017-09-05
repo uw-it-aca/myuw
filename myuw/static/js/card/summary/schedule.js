@@ -1,29 +1,37 @@
 var SummaryScheduleCard = {
     name: 'SummaryScheduleCard',
     dom_target: undefined,
-    term: 'current',
+    term: undefined,
 
-    render_init: function() {
-        if (myuwFeatureEnabled('instructor_schedule') && window.user.instructor) {
-            if (SummaryScheduleCard.term === 'current') {
-                SummaryScheduleCard.term = window.term.year + ',' + window.term.quarter;
-            }
-
-            WSData.fetch_instructed_course_data_for_term(SummaryScheduleCard.term,
-                                                         SummaryScheduleCard.render_upon_data,
-                                                         SummaryScheduleCard.render_error);
-        } else {
-            $("#SummaryScheduleCard").hide();
+    hide_card: function() {
+        if (myuwFeatureEnabled('instructor_schedule') &&
+            window.user.instructor) {
+            return false;
         }
+        return true;
     },
 
-    render_upon_data: function() {
-        if (!SummaryScheduleCard._has_all_data()) {
+    render_init: function() {
+        if (SummaryScheduleCard.hide_card()) {
+            $("#SummaryScheduleCard").hide();
             return;
         }
 
-        SummaryScheduleCard._render();
-        LogUtils.cardLoaded(SummaryScheduleCard.name, SummaryScheduleCard.dom_target);
+        if (SummaryScheduleCard.term === 'current') {
+            SummaryScheduleCard.term = window.term.year + ',' + window.term.quarter;
+        }
+
+        WSData.fetch_instructed_course_data_for_term(SummaryScheduleCard.term,
+                                                     SummaryScheduleCard.render_upon_data,
+                                                     SummaryScheduleCard.render_error);
+    },
+
+    render_upon_data: function() {
+        var inst_course_data = WSData._instructed_course_data[SummaryScheduleCard.term];
+        if (inst_course_data) {
+            SummaryScheduleCard._render();
+            LogUtils.cardLoaded(SummaryScheduleCard.name, SummaryScheduleCard.dom_target);
+        }
     },
 
     render_error: function() {
@@ -36,10 +44,6 @@ var SummaryScheduleCard = {
             raw = CardWithError.render("Summary Schedule");
             InstructorCourseCards.dom_target.html(raw);
         }
-    },
-
-    _has_all_data: function () {
-        return WSData.normalized_instructed_course_data(SummaryScheduleCard.term) !== undefined;
     },
 
     _render: function () {

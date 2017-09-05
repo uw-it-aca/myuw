@@ -20,11 +20,12 @@ WSData = {
     _library_data: null,
     _oquarter_data: null,
     _notice_data: null,
-    _notice_data_error_status: null,
+    _notice_error_status: null,
     _profile_data: null,
-    _profile_data_error_status: null,
+    _profile_error_status: null,
     _tuition_data: null,
     _directory_data: null,
+    _directory_error_status: null,
     _instructor_data: {},
     _link_data: null,
     _success_callbacks: {},
@@ -92,36 +93,7 @@ WSData = {
         delete WSData._success_callbacks[url];
         delete WSData._error_callbacks[url];
         delete WSData._callback_args[url];
-        WSData._display_outage_message(url);
     },
-
-    _display_outage_message: function(url) {
-        // Displays the outage card if specific webservices are down
-        if (WSData._is_outage_api_url(url)){
-            var card = OutageCard;
-            card.dom_target =  $("#" + card.name);
-            card.render_init();
-            window.webservice_outage = true;
-        }
-
-    },
-
-    _is_outage_api_url: function(url) {
-        var endpoints = [
-            "profile",
-            "notices",
-            "schedule"
-        ];
-        var is_outage = false;
-        $(endpoints).each(function(idx, endpoint){
-            if (url.indexOf(endpoint) !== -1){
-                is_outage = true;
-            }
-        });
-        return is_outage;
-
-    },
-
 
     book_data: function(term) {
         return WSData._book_data[term];
@@ -1037,6 +1009,7 @@ WSData = {
                         }
                     },
                     error: function(xhr, status, error) {
+                        WSData._directory_error_status = xhr.status;
                         err_callback.call(null, xhr.status, error);
                         }
                     });
@@ -1070,7 +1043,7 @@ WSData = {
                     WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {
-                    WSData._notice_data_error_status = xhr.status;
+                    WSData._notice_error_status = xhr.status;
                     WSData._run_error_callbacks_for_url(url);
                 }
             });
@@ -1151,7 +1124,7 @@ WSData = {
                         WSData._run_success_callbacks_for_url(url);
                     },
                     error: function(xhr, status, error) {
-                        WSData._profile_data_error_status = xhr.status;
+                        WSData._profile_error_status = xhr.status;
                         WSData._run_error_callbacks_for_url(url);
                     }
                  });
