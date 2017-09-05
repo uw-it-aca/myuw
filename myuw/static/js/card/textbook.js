@@ -2,6 +2,7 @@ var TextbookCard = {
     name: 'TextbookCard',
     dom_target: undefined,
     term: undefined,
+    rendered_once: undefined,
 
     hide_card: function() {
         if (window.user.student) {
@@ -11,6 +12,7 @@ var TextbookCard = {
     },
 
     render_init: function() {
+        TextBooks.rendered_once = false,
         TextbookCard.dom_target = $('#TextbookCard');
         if (TextbookCard.hide_card() ||
             (TextbookCard.term === 'current' &&
@@ -42,7 +44,9 @@ var TextbookCard = {
         }
 
         if (book_data && course_data) {
-            TextbookCard._render();
+            if (!TextBooks.rendered_once) {
+                TextbookCard._render();
+            }
             return;
         }
         TextbookCard._render_error(book_error_code, course_error_code);
@@ -100,6 +104,7 @@ var TextbookCard = {
         var template = Handlebars.compile(source);
         var raw = template(template_data);
         TextbookCard.dom_target.html(raw);
+        TextBooks.rendered_once = true;
         LogUtils.cardLoaded(TextbookCard.name, TextbookCard.dom_target);
         TextbookCard.add_events(term);
     },
