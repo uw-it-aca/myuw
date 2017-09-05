@@ -12,7 +12,7 @@ var TextbookCard = {
     },
 
     render_init: function() {
-        TextBooks.rendered_once = false,
+        TextBooks.rendered_once = false;
         TextbookCard.dom_target = $('#TextbookCard');
         if (TextbookCard.hide_card() ||
             (TextbookCard.term === 'current' &&
