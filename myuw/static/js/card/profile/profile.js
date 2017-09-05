@@ -32,12 +32,6 @@ var CommonProfileCard = {
         CommonProfileCard.dom_target.html(raw);
     },
 
-    _has_all_data: function () {
-            return true;
-        }
-        return false;
-    },
-
     _render: function() {
         var directory_data = WSData.directory_data();
         var source   = $("#common_profile_card").html();
