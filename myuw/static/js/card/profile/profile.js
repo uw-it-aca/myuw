@@ -2,19 +2,7 @@ var CommonProfileCard = {
     name: 'CommonProfileCard',
     dom_target: undefined,
 
-    hide_card: function() {
-        if (window.user.employee) {
-            return false;
-        }
-        return true;
-    },
-
-
     render_init: function() {
-        if (CommonProfileCard.hide_card()) {
-            $("#CommonProfileCard").hide();
-            return;
-        }
         WSData.fetch_directory_data(CommonProfileCard.render_upon_data);
     },
 
