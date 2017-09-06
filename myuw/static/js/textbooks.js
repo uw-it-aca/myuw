@@ -5,7 +5,6 @@ var TextBooks = {
         //Navbar.render_navbar("nav-sub");
         TextBooks.term = term;
         showLoading();
-        CommonLoading.render_init();
         WSData.fetch_book_data(term, TextBooks.render_books, TextBooks.render_error);
         WSData.fetch_course_data_for_term(TextBooks.term, TextBooks.render_books, TextBooks.render_error);
         WSData.fetch_instructed_course_data_for_term(TextBooks.term, TextBooks.render_books, TextBooks.render_error);

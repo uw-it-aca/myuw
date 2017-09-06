@@ -3,7 +3,6 @@ var Academics = {
 
     render: function() {
         showLoading();
-        CommonLoading.render_init();
         Academics.make_html();
     },
 

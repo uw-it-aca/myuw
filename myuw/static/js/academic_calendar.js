@@ -1,7 +1,6 @@
 var AcademicCalendar = {
     show_events: function() {
         "use strict";
-        CommonLoading.render_init();
         WSData.fetch_academic_calendar_events(AcademicCalendar.render_events);
     },
 

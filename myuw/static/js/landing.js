@@ -3,7 +3,6 @@ var Landing = {
 
     render: function() {
         showLoading();
-        CommonLoading.render_init();
         Landing.make_html();
     },
 
