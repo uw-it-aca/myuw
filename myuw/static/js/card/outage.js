@@ -4,8 +4,21 @@ var OutageCard = {
     dom_target: undefined,
     rendered_once: false,
 
+    hide_card: function() {
+        if (window.user.student ||
+            window.user.instructor ||
+            window.user.employee) {
+            return false;
+        }
+        return true;
+    },
+
+
     render_init: function() {
-        OutageCard.dom_target = $("#OutageCard");
+        if (OutageCard.hide_card()) {
+            $("#OutageCard").hide();
+            return;
+        }
         if (window.user.student) {
             WSData.fetch_course_data_for_term(OutageCard.term,
                                               OutageCard.render,
