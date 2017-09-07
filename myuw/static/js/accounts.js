@@ -3,7 +3,6 @@ var AccountsPage = {
 
     render: function() {
         showLoading();
-        CommonLoading.render_init();
         AccountsPage.make_html();
     },
 
