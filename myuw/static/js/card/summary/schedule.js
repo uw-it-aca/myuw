@@ -88,7 +88,7 @@ var SummaryScheduleCard = {
             var left = window.screenX + 200;
             var top = window.screenY + 200;
 
-            window.open(ev.target.href, '_blank', 'width='+width+',height='+height+',left='+left+',top='+top);
+            window.open(ev.target.href, '_blank', 'scrollbars=1,resizable=1,width='+width+',height='+height+',left='+left+',top='+top);
 
             var course_id = ev.currentTarget.getAttribute("rel");
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');
