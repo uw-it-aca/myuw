@@ -2,21 +2,26 @@ var DirectoryInfoCard = {
     name: 'DirectoryInfoCard',
     dom_target: undefined,
 
+    hide_card: function() {
+        if (myuwFeatureEnabled('employee_profile') && window.user.employee) {
+            return false;
+        }
+        return true;
+    },
+
     render_init: function() {
-        if (myuwFeatureEnabled('employee_profile') && 
-            (window.user.employee || window.user.faculty || window.user.stud_employee)) {
-            WSData.fetch_directory_data(DirectoryInfoCard.render_upon_data, DirectoryInfoCard.render_error);
-        } else {
+        if (DirectoryInfoCard.hide_card()) {
             $("#DirectoryInfoCard").hide();
             return;
         }
+        WSData.fetch_directory_data(DirectoryInfoCard.render_upon_data,
+                                    DirectoryInfoCard.render_error);
     },
 
     render_upon_data: function () {
-        if (!DirectoryInfoCard._has_all_data()) {
-            return;
+        if (WSData.directory_data()) {
+            DirectoryInfoCard._render();
         }
-        DirectoryInfoCard._render();
     },
 
     _render: function () {
@@ -29,13 +34,6 @@ var DirectoryInfoCard = {
 
         DirectoryInfoCard.dom_target.html(template(directory_info));
         LogUtils.cardLoaded(DirectoryInfoCard.name, DirectoryInfoCard.dom_target);
-    },
-
-    _has_all_data: function () {
-        if (WSData.directory_data()) {
-            return true;
-        }
-        return false;
     },
 
     render_error: function () {

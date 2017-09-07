@@ -3,7 +3,8 @@ var CommonProfileCard = {
     dom_target: undefined,
 
     render_init: function() {
-        WSData.fetch_directory_data(CommonProfileCard.render_upon_data);
+        WSData.fetch_directory_data(CommonProfileCard.render_upon_data,
+                                    CommonProfileCard.render_upon_data);
     },
 
     render_upon_data: function () {
@@ -11,13 +12,7 @@ var CommonProfileCard = {
             CommonProfileCard._render();
             return;
         }
-        var dir_info_err = WSData._directory_error_status;
-        if (dir_info_err === 404) {
-            $("#CommonProfileCard").hide();
-            return;
-        }
-        var raw = CardWithError.render("Profile Card");
-        CommonProfileCard.dom_target.html(raw);
+        $("#CommonProfileCard").hide();
     },
 
     _render: function() {

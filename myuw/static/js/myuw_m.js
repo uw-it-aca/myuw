@@ -4,7 +4,6 @@ var multi_res_card_render_called = {};
 
 $(window.document).ready(function() {
     LogUtils.init_logging();
-    init_profile_events();
     init_modal_events();
     init_search_events();
     var course_data = null;
@@ -177,10 +176,6 @@ var capitalizeString = function(string) {
                               return (txt.charAt(0).toUpperCase() +
                                       txt.substr(1).toLowerCase());
                           });
-};
-
-var init_profile_events = function () {
-    Profile.add_events();
 };
 
 var init_modal_events = function () {

@@ -3,7 +3,6 @@ var ProfilePage = {
 
     render: function() {
         showLoading();
-        CommonLoading.render_init();
         ProfilePage.make_html();
     },
 
