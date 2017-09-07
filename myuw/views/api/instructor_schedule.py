@@ -1,11 +1,13 @@
 import json
 import traceback
-from myuw.views.error import handle_exception, not_instructor_error
+from myuw.views.error import (handle_exception, not_instructor_error,
+                              data_not_found)
 import logging
 from django.conf import settings
 from django.http import HttpResponse
 from operator import itemgetter
 from restclients_core.exceptions import DataFailureException
+from uw_iasystem.exceptions import TermEvalNotCreated
 from uw_sws.person import get_person_by_regid
 from uw_sws.enrollment import get_enrollment_by_regid_and_term
 from uw_sws.term import get_specific_term
@@ -22,7 +24,8 @@ from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
 from myuw.dao.class_website import get_page_title_from_url, is_valid_page_url
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
-from myuw.dao.pws import get_url_key_for_regid
+from myuw.dao.pws import get_url_key_for_regid, get_regid_of_current_user
+from myuw.dao.registration import get_active_registrations_for_section
 from myuw.dao.term import get_current_quarter, is_past, is_future,\
     get_previous_number_quarters, get_future_number_quarters
 from myuw.logger.logresp import log_success_response
@@ -94,8 +97,8 @@ def set_section_grading_status(section, person):
         return get_grading_status(
             section_id, act_as=person.uwnetid).json_data()
     except DataFailureException as ex:
-        if ex.status == 404:
-            return {}
+        if ex.status == 400 or ex.status == 404:
+            return None
         else:
             raise
     except Exception:
@@ -107,17 +110,16 @@ def set_section_evaluation(section, person):
     try:
         evaluations = get_evaluation_by_section_and_instructor(
             section, person.employee_id)
-        for eval in evaluations:
-            if int(eval.section_sln) == int(section.sln):
-                return eval.json_data()
-    except DataFailureException as ex:
-        if ex.status == 404:
-            return {
-                'eval_status': None
-            }
-        else:
-            raise
-    except Exception:
+        if evaluations is not None:
+            for eval in evaluations:
+                if section.sln and eval.section_sln == section.sln:
+                    return eval.json_data()
+        return {'eval_not_exist': True}
+    except Exception as ex:
+        if isinstance(ex, TermEvalNotCreated):
+            # eval not created for the term
+            return {'eval_not_exist': True}
+        # eval search never returns 404
         log_exception(
             logger, 'set_section_evaluation', traceback.format_exc())
 
@@ -125,7 +127,7 @@ def set_section_evaluation(section, person):
 def set_course_resources(section_data, section, person):
     threads = []
     t = ThreadWithResponse(target=get_canvas_course_url,
-                           args=(section,))
+                           args=(section, person))
     t.start()
     threads.append((t, 'canvas_url', section_data))
 
@@ -182,6 +184,34 @@ def set_course_resources(section_data, section, person):
             logger.error("%s: %s" % (k, t.exception))
 
 
+def set_indep_study_section_enrollments(section, section_json_data):
+    """
+    for the instructor (current user)
+    """
+    if not section.sln or not section.current_enrollment or\
+            not section.is_independent_study:
+        return
+    try:
+        registrations = get_active_registrations_for_section(
+            section, get_regid_of_current_user())
+        total_enrollment = len(registrations)
+        if total_enrollment < section.current_enrollment:
+            section_json_data['current_enrollment'] = total_enrollment
+        if total_enrollment == 1:
+            person = registrations[0].person
+            section_json_data['enrollment_student_name'] =\
+                "%s, %s" % (person.surname.title(), person.first_name.title())
+    except DataFailureException as ex:
+        if ex.status == 404:
+            section_json_data['current_enrollment'] = 0
+        else:
+            raise
+    except Exception:
+        log_exception(logger,
+                      'set_indep_study_section_enrollments',
+                      traceback.format_exc())
+
+
 def load_schedule(request, schedule, summer_term="", section_callback=None):
 
     json_data = schedule.json_data()
@@ -218,6 +248,8 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
             section_data['is_independent_study'] = True
             section_data['independent_study_instructor_regid'] =\
                 section.independent_study_instructor_regid
+
+            set_indep_study_section_enrollments(section, section_data)
         else:
             section_data['is_independent_study'] = False
 
@@ -471,6 +503,7 @@ class InstSectionDetails(RESTDispatch):
 
         for registration in resp_data["sections"][0]["registrations"]:
             regid = registration["regid"]
+            registration["linked_sections"] = []
             if regid in sections_for_user:
                 user_types = {}
                 for section in sections_for_user[regid]:
@@ -481,21 +514,19 @@ class InstSectionDetails(RESTDispatch):
 
                     user_types[section_type].append(section)
 
-                linked = []
                 for section_type in sorted(all_types):
                     # These are for sorting
                     if section_type in user_types:
                         sort_string = ",".join(user_types[section_type])
-                        linked.append({'type': section_type,
-                                       'sections': user_types[section_type]})
+                        registration["linked_sections"].append(
+                            {'type': section_type,
+                             'sections': user_types[section_type]})
                     else:
                         sort_string = "ZZ"
-                        linked.append({'type': section_type,
-                                       'sections': [""]})
+                        registration["linked_sections"].append(
+                            {'type': section_type,
+                             'sections': [""]})
                     registration["linked_type_"+section_type] = sort_string
-
-                    # This is for display
-                registration["linked_sections"] = linked
 
         types_list = list(set(section_types.values()))
         resp_data["sections"][0]["linked_types"] = types_list
@@ -545,18 +576,18 @@ class InstSectionDetails(RESTDispatch):
         for regid in name_threads:
             thread = name_threads[regid]
             thread.join()
-
             registrations[regid]["name"] = thread.response["name"]
             registrations[regid]["surname"] = thread.response["surname"]
             registrations[regid]["email"] = thread.response["email"]
 
             thread = enrollment_threads[regid]
             thread.join()
-            registrations[regid]["majors"] = thread.response["majors"]
-            registrations[regid]["class"] = thread.response["class"]
+            if thread.response:
+                registrations[regid]["majors"] = thread.response["majors"]
+                registrations[regid]["class"] = thread.response["class"]
 
-            code = get_code_for_class_level(thread.response["class"])
-            registrations[regid]['class_code'] = code
+                code = get_code_for_class_level(thread.response["class"])
+                registrations[regid]['class_code'] = code
 
             registration_list.append(registrations[regid])
         section_data["registrations"] = registration_list

@@ -1,0 +1,310 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "ClassWebsiteUrl": null,
+    "Course": {
+        "CourseNumber": "430",
+        "CurriculumAbbreviation": "MGMT",
+        "Href": "/student/v5/course/2014,winter,MGMT,430.json",
+        "Quarter": "winter",
+        "Year": 2014
+    },
+    "CourseCampus": "Seattle",
+    "CourseDescription": "Develops strategic thinking skills for balancing opportunities and risks of business competition to generate superior value for stakeholders. Performs in-depth analyses of industries and competitors, predicts competitive behavior, and explores how firms develop and sustain competitive advantage over time. Prerequisite: FIN 350; MKTG 301; either HRMOB 300 or MGMT 300.",
+    "CourseHasVariableContent": true,
+    "CourseTitle": "STRATEGIC MGMT",
+    "CourseTitleLong": "STRATEGIC MANAGEMENT",
+    "CreditControl": "fixed credit",
+    "CurrentEnrollment": 37,
+    "Curriculum": {
+        "CollegeName": "BUSINESS",
+        "DepartmentAbbreviation": "B A",
+        "TimeScheduleLinkAbbreviation": "mgmt"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": false,
+    "DistanceLearningType": {
+        "Code": null,
+        "Description": null
+    },
+    "DuplicateEnrollmentAllowed": false,
+    "EndDate": "",
+    "EnrollmentRestrictions": true,
+    "FeeAmount": "",
+    "FeeBudget": "",
+    "FeeType": "",
+    "FinalExam": {
+        "Building": "PCAR",
+        "Date": "2014-03-12",
+        "EndTime": "12:20",
+        "FinalExamBuilding": {
+            "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=PCAR&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+        },
+        "MeetingStatus": "0",
+        "RoomNumber": "292",
+        "StartTime": "10:30"
+    },
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": "",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [
+        {
+            "DelegateLevel": "college",
+            "Person": {
+                "Href": "/student/v5/person/823D48266A7C11D5A4AE0004AC494FFE.json",
+                "Name": "James Fac",
+                "RegID": "10000000000000000000000000000005"
+            }
+        },
+        {
+            "DelegateLevel": "department",
+            "Person": {
+                "Href": "/student/v5/person/E7087D166A7C11D5A4AE0004AC494FFE.json",
+                "Name": "Seattle Faculty",
+                "RegID": "10000000000000000000000000000006"
+            }
+        }
+    ],
+    "GradingSystem": "standard",
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": "",
+    "IsIndependentStart": false,
+    "JointSections": [],
+    "LMSOwnership": null,
+    "LimitEstimateEnrollment": 45,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [
+        {
+            "LinkedSections": [
+                {
+                    "IsPrimarySection": false,
+                    "Section": {
+                        "CourseNumber": "430",
+                        "CurriculumAbbreviation": "MGMT",
+                        "Href": "/student/v5/course/2014,winter,MGMT,430/DA.json",
+                        "Quarter": "winter",
+                        "SectionID": "DA",
+                        "Year": 2014
+                    }
+                }
+            ],
+            "Type": "quiz"
+        }
+    ],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "PCAR",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Tuesday"
+                    },
+                    {
+                        "Name": "Thursday"
+                    }
+                ],
+                "Text": " T T"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "12:20",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2014,winter,MGMT,430,D,10000000000000000000000000000006"
+                    },
+                    "PercentInvolve": "100",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000006.json",
+                        "Name": "Seattle Faculty",
+                        "RegID": "10000000000000000000000000000006"
+                    },
+                    "TSPrint": true
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=PCAR&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "lecture",
+            "RoomNumber": "292",
+            "RoomToBeArranged": false,
+            "StartTime": "10:30"
+        }
+    ],
+    "Metadata": "SectionSourceKey=SDB;",
+    "MinimumTermCredit": "4.0",
+    "OnlineLearningType": {
+        "Code": "00",
+        "Description": "No online learning component"
+    },
+    "PrimaryLMS": null,
+    "PrimarySection": {
+        "CourseNumber": "430",
+        "CurriculumAbbreviation": "MGMT",
+        "Href": "/student/v5/course/2014,winter,MGMT,430/D.json",
+        "Quarter": "winter",
+        "SectionID": "D",
+        "Year": 2014
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "430",
+        "CurriculumAbbreviation": "MGMT",
+        "Href": "/student/v5/registration.json?year=2014&quarter=winter&curriculum_abbreviation=MGMT&course_number=430&section_id=D&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "winter",
+        "RegID": null,
+        "SectionID": "D",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2014
+    },
+    "RepositoryTimeStamp": "8/1/2017 8:22:43 PM",
+    "ResearchCredit": false,
+    "RoomCapacity": 0,
+    "SLN": "00000",
+    "SameVariableContentAs": [
+        {
+            "CourseNumber": "430",
+            "CurriculumAbbreviation": "MGMT",
+            "Href": "/student/v5/course/2014,winter,MGMT,430/A.json",
+            "Quarter": "winter",
+            "SectionID": "A",
+            "Year": 2014
+        },
+        {
+            "CourseNumber": "430",
+            "CurriculumAbbreviation": "MGMT",
+            "Href": "/student/v5/course/2014,winter,MGMT,430/AA.json",
+            "Quarter": "winter",
+            "SectionID": "AA",
+            "Year": 2014
+        },
+        {
+            "CourseNumber": "430",
+            "CurriculumAbbreviation": "MGMT",
+            "Href": "/student/v5/course/2014,winter,MGMT,430/AB.json",
+            "Quarter": "winter",
+            "SectionID": "AB",
+            "Year": 2014
+        },
+        {
+            "CourseNumber": "430",
+            "CurriculumAbbreviation": "MGMT",
+            "Href": "/student/v5/course/2014,winter,MGMT,430/C.json",
+            "Quarter": "winter",
+            "SectionID": "C",
+            "Year": 2014
+        },
+        {
+            "CourseNumber": "430",
+            "CurriculumAbbreviation": "MGMT",
+            "Href": "/student/v5/course/2014,winter,MGMT,430/CA.json",
+            "Quarter": "winter",
+            "SectionID": "CA",
+            "Year": 2014
+        },
+        {
+            "CourseNumber": "430",
+            "CurriculumAbbreviation": "MGMT",
+            "Href": "/student/v5/course/2014,winter,MGMT,430/DA.json",
+            "Quarter": "winter",
+            "SectionID": "DA",
+            "Year": 2014
+        },
+        {
+            "CourseNumber": "430",
+            "CurriculumAbbreviation": "MGMT",
+            "Href": "/student/v5/course/2014,winter,MGMT,430/E.json",
+            "Quarter": "winter",
+            "SectionID": "E",
+            "Year": 2014
+        },
+        {
+            "CourseNumber": "430",
+            "CurriculumAbbreviation": "MGMT",
+            "Href": "/student/v5/course/2014,winter,MGMT,430/EA.json",
+            "Quarter": "winter",
+            "SectionID": "EA",
+            "Year": 2014
+        }
+    ],
+    "SecondaryGradingOption": false,
+    "SectionID": "D",
+    "SectionType": "lecture",
+    "SelfRegistrationAllowed": true,
+    "ServiceLearning": false,
+    "StartDate": "",
+    "StudentCreditHours": " 148.0",
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2014,winter.json",
+        "Quarter": "winter",
+        "Year": 2014
+    },
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": []
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": [
+                {
+                    "Text": "NO ADD CODES; NO OVERLOADS."
+                },
+                {
+                    "Text": "REGISTRATION OPEN FOR AVAILABLE"
+                },
+                {
+                    "Text": "SPACE THROUGH FIRST WEEK OF"
+                },
+                {
+                    "Text": "QUARTER.  MORE DETAILS"
+                },
+                {
+                    "Text": "AT:WWW.FOSTER.WASHINGTON.EDU/ADDCOD"
+                },
+                {
+                    "Text": "ES"
+                }
+            ]
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": [
+                {
+                    "Text": "No Freshmen,Sophmrs,Juniors,Grads"
+                },
+                {
+                    "Text": "Only majors from B A College"
+                }
+            ]
+        }
+    }
+}

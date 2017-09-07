@@ -1,29 +1,37 @@
 var SummaryScheduleCard = {
     name: 'SummaryScheduleCard',
     dom_target: undefined,
-    term: 'current',
+    term: undefined,
 
-    render_init: function() {
-        if (myuwFeatureEnabled('instructor_schedule') && window.user.instructor) {
-            if (SummaryScheduleCard.term === 'current') {
-                SummaryScheduleCard.term = window.term.year + ',' + window.term.quarter;
-            }
-
-            WSData.fetch_instructed_course_data_for_term(SummaryScheduleCard.term,
-                                                         SummaryScheduleCard.render_upon_data,
-                                                         SummaryScheduleCard.render_error);
-        } else {
-            $("#SummaryScheduleCard").hide();
+    hide_card: function() {
+        if (myuwFeatureEnabled('instructor_schedule') &&
+            window.user.instructor) {
+            return false;
         }
+        return true;
     },
 
-    render_upon_data: function() {
-        if (!SummaryScheduleCard._has_all_data()) {
+    render_init: function() {
+        if (SummaryScheduleCard.hide_card()) {
+            $("#SummaryScheduleCard").hide();
             return;
         }
 
-        SummaryScheduleCard._render();
-        LogUtils.cardLoaded(SummaryScheduleCard.name, SummaryScheduleCard.dom_target);
+        if (SummaryScheduleCard.term === 'current') {
+            SummaryScheduleCard.term = window.term.year + ',' + window.term.quarter;
+        }
+
+        WSData.fetch_instructed_course_data_for_term(SummaryScheduleCard.term,
+                                                     SummaryScheduleCard.render_upon_data,
+                                                     SummaryScheduleCard.render_error);
+    },
+
+    render_upon_data: function() {
+        var inst_course_data = WSData._instructed_course_data[SummaryScheduleCard.term];
+        if (inst_course_data) {
+            SummaryScheduleCard._render();
+            LogUtils.cardLoaded(SummaryScheduleCard.name, SummaryScheduleCard.dom_target);
+        }
     },
 
     render_error: function() {
@@ -38,25 +46,25 @@ var SummaryScheduleCard = {
         }
     },
 
-    _has_all_data: function () {
-        return WSData.normalized_instructed_course_data(SummaryScheduleCard.term) !== undefined;
-    },
-
     _render: function () {
         var term = SummaryScheduleCard.term;
         var instructed_course_data = WSData.normalized_instructed_course_data(term);
         var source = $("#instructor_summary_schedule").html();
         var courses_template = Handlebars.compile(source);
-        var total_section_refs = instructed_course_data.hasOwnProperty('section_references') ? instructed_course_data.section_references.length : 0;
-
+        var total_section_refs = 0;
+        if ('section_references' in instructed_course_data) {
+            total_section_refs = instructed_course_data.section_references.length;
+        }
         var raw = courses_template({
+            first_day_quarter: instructed_course_data.term.first_day_quarter,
             quarter: instructed_course_data.quarter,
             year: instructed_course_data.year,
             future_term: instructed_course_data.future_term,
             sections: instructed_course_data.sections,
             section_count: instructed_course_data.sections.length,
-            is_instructor: (instructed_course_data !== undefined),
             total_section_refs: total_section_refs,
+            has_sections: (instructed_course_data.sections.length > 0 ||
+                          total_section_refs > 0),
             has_section_references: (total_section_refs > 0)
         });
 

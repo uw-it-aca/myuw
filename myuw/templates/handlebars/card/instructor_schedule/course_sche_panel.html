@@ -26,7 +26,7 @@
                                 -->
                             {{else}}
                                 {{#if days_tbd }}
-                                    <td colspan="2" class="text-muted course-tbd">Days and times to be arranged.</td>
+                                    <td colspan="2" class="course-tbd">Days and times to be arranged.</td>
                                     {{else if no_meeting}}
                                     <td colspan="4" class="course-tbd">No classroom meeting: online learning</td>
                                     {{else}}
@@ -40,7 +40,7 @@
                                         {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
                                         <td class="course-location-info">
                                             {{#if classroom_info_url}}
-                                                <a href="{{classroom_info_url}}" data-linklabel="{{ building }} {{ room }} - Room Info">Room info</a>
+                                                <a href="{{ classroom_info_url }}" data-linklabel="{{ building }} {{ room }} - Room Info">Room info</a>
                                             {{/if}}
                                         </td>
                                     {{/if}}
@@ -83,7 +83,7 @@
                                             {{#if latitude}}<a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" class="show_map" rel="{{building_name}}" data-linklabel="{{ building }} - Google Maps" title="Map {{building_name}}">{{/if}}{{building}}{{#if latitude}} {{room_number}}</a>{{/if}}
                                         </td>
                                         <td class="course-location-info">
-                                            {{#if classroom_info_url}}<a href="{{classroom_info_url}}" data-linklabel="{{ building }} {{ room_number }}">Room info</a>{{/if}}
+                                            {{#if classroom_info_url}}<a href="{{ classroom_info_url }}" data-linklabel="{{ building }} {{ room_number }}">Room info</a>{{/if}}
                                         </td>
                                     </tbody>
                                 </table>
@@ -99,7 +99,7 @@
 
                 {{#unless final_exam.no_exam_or_nontraditional}}{{#unless final_exam.is_confirmed}}
                     {{#if sln}}
-                        <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/{{netid}}/finalexam.asp?{{capitalizeString quarter}}+{{year}}&sln={{sln}}" target="_blank" data-linklabel="Confirm Final: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Confirm final exam</a>
+                        <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?quarter={{capitalizeString quarter}}+{{ year }}&sln={{sln}}&chanid=" target="_blank" data-linklabel="Confirm Final: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Confirm final exam</a>
                     {{/if}}
                 {{/unless}}{{/unless}}
             </div>

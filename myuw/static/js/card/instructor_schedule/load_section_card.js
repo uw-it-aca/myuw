@@ -5,8 +5,8 @@ var InstructorSectionCard = {
     term: null,
 
     render_init: function() {
-        if (window.hasOwnProperty('section_data') && 
-            window.section_data.hasOwnProperty('section') && 
+        if ('section_data' in window &&
+            'section' in window.section_data &&
             myuwFeatureEnabled('instructor_schedule')) {
             InstructorSectionCard.section = window.section_data.section;
             match = window.section_data.section.match(/(\d{4},[a-zA-Z]+),.*/);
@@ -75,13 +75,9 @@ var InstructorSectionCard = {
             this.year = course_data.year;
             this.quarter = course_data.quarter;
             this.summer_term = course_data.summer_term;
-            if (course_data.future_term) {
-                InstructorFutureCourseCardContent.render(this, null);
-            } else if (course_data.past_term) {
-                InstructorPastCourseCardContent.render(this, null);
-            } else {
-                InstructorCourseCardContent.render(this, null);
-            }
+            this.time_schedule_published = course_data.term.time_schedule_published;
+            this.registration_start = course_data.term.registration_periods[0].start;
+            InstructorCourseCardContent.render(this, null);
         });
     }
 };

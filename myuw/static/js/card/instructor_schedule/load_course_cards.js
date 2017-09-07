@@ -3,48 +3,48 @@ var InstructorCourseCards = {
     dom_target: undefined,
     term: 'current',
 
-    render_init: function() {
-        if (myuwFeatureEnabled('instructor_schedule')) {
-            if (InstructorCourseCards.term === 'current') {
-                InstructorCourseCards.term = window.term.display_term;
-            }
-
-            WSData.fetch_instructed_course_data_for_term(InstructorCourseCards.term,
-                                                         InstructorCourseCards.render_upon_data,
-                                                         InstructorCourseCards.render_error);
-        } else {
-            $("#InstructorCourseCards").hide();
+    hide_card: function() {
+        if (myuwFeatureEnabled('instructor_schedule') &&
+            window.user.instructor) {
+            return false;
         }
+        return true;
     },
 
-    render_upon_data: function() {
-        if (!InstructorCourseCards._has_all_data()) {
+    render_init: function() {
+        if (InstructorCourseCards.hide_card()) {
+            $("#InstructorCourseCards").hide();
+            return;
+        }
+
+        if (InstructorCourseCards.term === 'current') {
+            InstructorCourseCards.term = window.term.display_term;
+        }
+
+        WSData.fetch_instructed_course_data_for_term(InstructorCourseCards.term,
+                                                     InstructorCourseCards.render_upon_resp,
+                                                     InstructorCourseCards.render_upon_resp);
+    },
+
+    render_upon_resp: function() {
+        var error_code = WSData.instructed_course_data_error_code(InstructorCourseCards.term);
+        if (error_code) {
+            InstructorCourseCards._render_error(error_code);
             return;
         }
         InstructorCourseCards._render();
         LogUtils.cardLoaded(InstructorCourseCards.name, InstructorCourseCards.dom_target);
     },
 
-    render_error: function() {
-        var error_code = WSData.instructed_course_data_error_code(InstructorCourseCards.term);
+    _render_error: function(error_code) {
         if (error_code == 410) {
             Error410.render();
             return;
         }
 
         if (error_code === 404) {
-            // no instructed courses found
             if ($('.instructed-terms').length) {
-                var source = $("#instructor_course_card_no_courses").html();
-                var courses_template = Handlebars.compile(source);
-                $(".instructor_cards .instructor-course-card").remove();
-                $(".instructor_cards").append(courses_template());
-
-                $("div[data-tab-type='instructor-term-nav']").removeClass("myuw-tab-selected");
-                $("div[data-tab-type='instructor-term-nav'][data-term='"+InstructorCourseCards.term+"']").addClass("myuw-tab-selected");
-                $("#teaching-term-select option[value='"+InstructorCourseCards.term+"']").prop('selected', true);
-                InstructorCourseCards._show_correct_term_dropdown();
-
+                InstructorCourseCards._render_no_courses_found();
             } else {
                 $("#InstructorCourseCards").hide();
             }
@@ -52,6 +52,19 @@ var InstructorCourseCards = {
             raw = CardWithError.render("Teaching Schedule");
             InstructorCourseCards.dom_target.html(raw);
         }
+    },
+
+    _render_no_courses_found: function() {
+        var source = $("#instructor_course_card_no_courses").html();
+        var courses_template = Handlebars.compile(source);
+        $(".instructor_cards .instructor-course-card").remove();
+        $(".instructor_cards .myuw-card").remove();
+        $(".instructor_cards").append(courses_template());
+
+        $("div[data-tab-type='instructor-term-nav']").removeClass("myuw-tab-selected");
+        $("div[data-tab-type='instructor-term-nav'][data-term='"+InstructorCourseCards.term+"']").addClass("myuw-tab-selected");
+        $("#teaching-term-select option[value='"+InstructorCourseCards.term+"']").prop('selected', true);
+        InstructorCourseCards._show_correct_term_dropdown();
     },
 
     _show_correct_term_dropdown: function() {
@@ -65,13 +78,6 @@ var InstructorCourseCards = {
             $("#teaching-term-select option[value='']").prop('disabled', 'disabled');
             $("#teaching-term-select").addClass('myuw-dropmenu-selected');
         }
-    },
-
-    _has_all_data: function () {
-        if (WSData.normalized_instructed_course_data(InstructorCourseCards.term)) {
-            return true;
-        }
-        return false;
     },
 
     _render: function () {
@@ -103,20 +109,25 @@ var InstructorCourseCards = {
             }
         });
 
-
         course_data.tab_terms = tab_terms;
         course_data.reversed_related_terms = course_data.related_terms.slice().reverse();
         var raw = courses_template(course_data);
         InstructorCourseCards.dom_target.html(raw);
 
-        $.each(course_data.sections, function () {
-            this.year = course_data.year;
-            this.quarter = course_data.quarter;
-            this.summer_term = course_data.summer_term;
-            this.future_term = course_data.future_term;
-            this.past_term = course_data.past_term;
-            InstructorCourseCardContent.render(this, null);
-        });
+        if (!(course_data.sections.length || course_data.section_references)) {
+            InstructorCourseCards._render_no_courses_found();
+        } else {
+            $.each(course_data.sections, function () {
+                this.year = course_data.year;
+                this.quarter = course_data.quarter;
+                this.summer_term = course_data.summer_term;
+                this.future_term = course_data.future_term;
+                this.past_term = course_data.past_term;
+                this.time_schedule_published = course_data.term.time_schedule_published;
+                this.registration_start = course_data.term.registration_periods[0].start;
+                InstructorCourseCardContent.render(this, null);
+            });
+        }
 
         InstructorCourseCards.add_events();
         InstructorCourseCards._show_correct_term_dropdown();

@@ -40,14 +40,15 @@ class Textbook(RESTDispatch):
 
             # enrolled sections
             try:
-                schedule = get_schedule_by_term(request, term)
+                schedule = get_schedule_by_term(term)
                 by_sln.update(self._get_schedule_textbooks(
                     schedule, summer_term))
 
                 verba_link = get_verba_link_by_schedule(schedule)
-                by_sln["verba_link"] = verba_link
+                if verba_link:
+                    by_sln["verba_link"] = verba_link
             except DataFailureException as ex:
-                if ex.status != 404:
+                if ex.status != 400 and ex.status != 404:
                     raise
 
             # instructed sections

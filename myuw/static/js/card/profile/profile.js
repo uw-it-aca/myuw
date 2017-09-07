@@ -3,22 +3,16 @@ var CommonProfileCard = {
     dom_target: undefined,
 
     render_init: function() {
-        WSData.fetch_directory_data(CommonProfileCard.render_upon_data);
+        WSData.fetch_directory_data(CommonProfileCard.render_upon_data,
+                                    CommonProfileCard.render_upon_data);
     },
 
     render_upon_data: function () {
-        if (!CommonProfileCard._has_all_data()) {
+        if (WSData.directory_data()) {
+            CommonProfileCard._render();
             return;
         }
-
-        CommonProfileCard._render();
-    },
-
-    _has_all_data: function () {
-        if (WSData.directory_data()) {
-            return true;
-        }
-        return false;
+        $("#CommonProfileCard").hide();
     },
 
     _render: function() {

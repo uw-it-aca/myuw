@@ -15,7 +15,7 @@
     "CourseTitle": "MASTER'S THESIS",
     "CourseTitleLong": "MASTER'S THESIS",
     "CreditControl": "variable credit - min to max credits",
-    "CurrentEnrollment": 0,
+    "CurrentEnrollment": 3,
     "Curriculum": {
         "CollegeName": "INTERDIS GR",
         "DepartmentAbbreviation": "MUSEOL",
@@ -83,7 +83,34 @@
             },
             "DaysOfWeekToBeArranged": true,
             "EndTime": "",
-            "Instructors": [],
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "1",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2013,autumn,MUSEUM,700,A,10000000000000000000000000000011"
+                    },
+                    "PercentInvolve": "100",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                        "Name": "Bill Pce",
+                        "RegID": "10000000000000000000000000000011"
+                    },
+                    "TSPrint": false
+                },
+                {
+                    "FacultySequenceNumber": "6",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2013,autumn,MUSEUM,700,A,10000000000000000000000000000006"
+                    },
+                    "PercentInvolve": "100",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000006.json",
+                        "Name": "Bill Sea",
+                        "RegID": "10000000000000000000000000000006"
+                    },
+                    "TSPrint": false
+                }
+            ],
             "Meeting": {
                 "Href": ""
             },
@@ -167,12 +194,6 @@
             "Lines": [
                 {
                     "Text": "FACULTY CODE REQUIRED"
-                },
-                {
-                    "Text": "PLEASE CONTACT DYLAN HIGH AT"
-                },
-                {
-                    "Text": "HIGHD@UW.EDU"
                 }
             ]
         },

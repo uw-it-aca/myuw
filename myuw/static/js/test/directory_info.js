@@ -16,15 +16,12 @@ describe('DirectoryInfoCard', function(){
             });
 
             window.enabled_features = { 'employee_profile': false };
-            window.user.faculty = false;
-            window.user.employee = false;
-            window.user.stud_employee = false;
-
             DirectoryInfoCard.dom_target = $('#' + render_id);
-            DirectoryInfoCard.render_init();
+
         });
         it("Should NOT render instructor card", function() {
-            assert.equal(DirectoryInfoCard.dom_target.find('span[property="telephone"]').length, 0);
+            window.user.employee = false;
+            assert.equal(true, DirectoryInfoCard.hide_card());
         });
     });
     describe("instructor/employee profile card", function() {
@@ -50,8 +47,7 @@ describe('DirectoryInfoCard', function(){
             });
 
             window.enabled_features = { 'employee_profile': true };
-            window.user.faculty = true;
-
+            window.user.employee = true;
             DirectoryInfoCard.dom_target = $('#' + render_id);
             DirectoryInfoCard.render_init();
         });
@@ -91,7 +87,7 @@ describe('DirectoryInfoCard', function(){
             });
 
             window.enabled_features = { 'employee_profile': true };
-            window.user.faculty = true;
+            window.user.employee = true;
             window.user.tacoma = true;
 
             DirectoryInfoCard.dom_target = $('#' + render_id);

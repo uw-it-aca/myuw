@@ -4,16 +4,15 @@ This module provides access to instructed class schedule and sections
 
 from django.conf import settings
 import logging
-from uw_sws.section import get_sections_by_instructor_and_term,\
-    get_section_by_url
-from uw_sws.registration import get_active_registrations_by_section
-from uw_sws.section import get_section_by_label
-from uw_sws.term import get_specific_term
-from uw_sws.section_status import get_section_status_by_label
-from uw_sws.models import ClassSchedule
 from restclients_core.exceptions import DataFailureException
+from uw_sws.models import ClassSchedule
+from uw_sws.section import get_sections_by_instructor_and_term,\
+    get_section_by_url, get_section_by_label
+from uw_sws.section_status import get_section_status_by_label
+from uw_sws.term import get_specific_term
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.pws import get_person_of_current_user
+from myuw.dao.registration import get_active_registrations_for_section
 from myuw.dao.term import get_current_quarter
 from myuw.dao.instructor import is_seen_instructor, add_seen_instructor
 from myuw.dao.exceptions import NotSectionInstructorException
@@ -23,7 +22,9 @@ from myuw.util.thread import Thread, ThreadWithResponse
 logger = logging.getLogger(__name__)
 
 
-def _get_instructor_sections(person, term, future_terms=None):
+def _get_instructor_sections(person, term,
+                             future_terms=0,
+                             include_secondaries=True):
     """
     @return a uw_sws.models.ClassSchedule object
     Return the actively enrolled sections for the current user
@@ -32,7 +33,11 @@ def _get_instructor_sections(person, term, future_terms=None):
     if person is None or term is None:
         return None
     return get_sections_by_instructor_and_term(
-        person, term, future_terms=future_terms)
+        person,
+        term,
+        future_terms=future_terms,
+        include_secondaries=include_secondaries,
+        transcriptable_course='all')
 
 
 def _get_instructor_schedule(person, term):
@@ -114,11 +119,12 @@ def get_instructor_section(year, quarter, curriculum,
         year, quarter.lower(), curriculum.upper(),
         course_number, course_section))
 
-    if include_registrations:
-        section.registrations = get_active_registrations_by_section(section)
-
     if not section.is_instructor(schedule.person):
         raise NotSectionInstructorException()
+
+    if include_registrations:
+        section.registrations = get_active_registrations_for_section(
+            section, schedule.person.uwregid)
 
     schedule.sections.append(section)
     if include_linked_sections:
@@ -164,7 +170,10 @@ def is_instructor(request):
             return True
 
         person = get_person_of_current_user()
-        sections = _get_instructor_sections(person, term, future_terms=2)
+        sections = _get_instructor_sections(person,
+                                            term,
+                                            future_terms=2,
+                                            include_secondaries=False)
         if len(sections) > 0:
             add_seen_instructor(user_netid, term)
             return True

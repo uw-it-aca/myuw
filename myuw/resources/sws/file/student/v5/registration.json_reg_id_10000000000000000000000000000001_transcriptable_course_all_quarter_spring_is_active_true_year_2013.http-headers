@@ -1,0 +1,8 @@
+{
+ "status":400,
+ "headers":{
+     "InnerExceptions":null,
+     "StackTrace":null,
+     "StatusCode":"400",
+     "StatusDescription":"Student not found for regid: 10000000000000000000000000000001"}
+}

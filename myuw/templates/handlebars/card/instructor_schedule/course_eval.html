@@ -42,7 +42,7 @@
                             <li class="evaluation-schedule">Report Available {{evaluation.report_available_date_display}}</li>
                         {{/if}}
                         {{#if evaluation.report_url}}
-                          <li><a href="{{evaluation.report_url}}" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation Report">View evaluation results report</a></li>
+                          <li><a href="{{ evaluation.report_url }}" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation Report">View evaluation results report</a></li>
                         {{/if}}
                         <li><strong>{{evaluation.response_rate_percent}}% Response rate</strong></li>
                     {{/if}}
@@ -51,10 +51,17 @@
                       <li class="evaluation-schedule">Paper-based evaluation</li>
                       <li><a href="https://{{#if is_bothell}}uwb{{else}}{{#if is_tacoma}}uwt{{else}}uw{{/if}}{{/if}}.iasystem.org/faculty" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation ">Manage evaluation</a></li>
                   {{/if}}
-                {{else}}<!-- null status, no evaluation -->
-                  <li class="evaluation-schedule">
-                      {{#if past_term}}You did not have an evaluation set up for this course.{{else}}You do not have an evaluation set up for this course.{{/if}} <a href="https://www.washington.edu/assessment/course-evaluations/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="evaluation_help_link" target="_blank" data-linklabel="Learn About Course Evaluations"><i class="fa fa-question-circle"></i></a>
-                  </li>
+                {{else}}
+                  <!-- no evaluation -->
+                  {{#if evaluation.eval_not_exist }}
+                      <li class="evaluation-schedule">
+                          {{#if past_term}}You did not have an evaluation set up for this course.{{else}}You do not have an evaluation set up for this course.{{/if}} <a href="https://www.washington.edu/assessment/course-evaluations/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="evaluation_help_link" target="_blank" data-linklabel="Learn About Course Evaluations"><i class="fa fa-question-circle"></i></a>
+                      </li>
+                  {{else}}
+                      <li class="evaluation-schedule">
+                          <span class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error has occurred and we can't load this content right now. Please try again later.</span>
+                      </li>
+                  {{/if}}
                 {{/if}}
                 </ul>
               </div>

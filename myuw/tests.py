@@ -54,7 +54,6 @@ from myuw.test.api.instructor_schedule import (
     TestInstructorCurrentSchedule, TestInstructorTermSchedule,
     TestInstructorSection)
 from myuw.test.cache import TestCustomCachePolicy
-from myuw.test.context_processors import TestContextProcessors
 from myuw.test.loggers import TestSessionLog
 from myuw.test.views.choose import TestChoose
 from myuw.test.views.page import TestPageMethods

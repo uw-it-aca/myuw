@@ -3,7 +3,6 @@ var Teaching = {
 
     render: function() {
         showLoading();
-        CommonLoading.render_init();
         Teaching.make_html();
     },
 

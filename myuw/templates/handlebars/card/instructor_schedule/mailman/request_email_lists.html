@@ -1,9 +1,11 @@
 {% load templatetag_handlebars %}
-{% tplhandlebars "request_email_lists_tmpl" %}
+<script type="text/x-handlebars-template" id="request_email_lists_tmpl">
+        {% verbatim %}
+
 
 <div class="myuw-modal modal-dialog" role="document">
     <div class="modal-content">
-        <form role="form" id="request_emaillist_form" method="POST">{% csrf_token %}
+        <form role="form" id="request_emaillist_form" method="POST">{% endverbatim %}{% csrf_token %}{% verbatim %}
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
@@ -19,7 +21,7 @@
                     <div class="text-center">
                         <strong class="text-success"><i class="fa fa-check" aria-hidden="true"></i> Request submitted</strong>
                     </div>
-                    {#} <p>Total email list requested: {{ total_lists_requested }}.</p> {#}
+
                     <p>Please note:</p>
                     <ul>
                         <li>An email confirmation will be sent to {{ netid }}@uw.edu</li>
@@ -53,8 +55,8 @@
                     </div>
                 {{/unless}}
 
-                {{#unless no_secondary_section }} {# if there are secondary sections #}
-                    {#Hide advanced view if no lists exist#}
+                {{#unless no_secondary_section }}
+                    <!-- if there are secondary sections, Hide advanced view if no lists exist -->
 
                     <div class="mailman_advanced_create" {{#unless has_lists}}style="display:none"{{/unless}}>
                         <div>
@@ -154,7 +156,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 {{#unless request_sent }}
                 <button type="submit" class="btn btn-primary" form="request_emaillist_form" value="Create Mailing Lists">Submit</button>
                 {{/unless}}
@@ -163,4 +165,5 @@
     </div>
 </div>
 
-{% endtplhandlebars %}
+{% endverbatim %}
+</script>

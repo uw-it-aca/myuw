@@ -11,7 +11,6 @@ var Thrive = {
 var ThriveMessages = {
     show_messages: function() {
         "use strict";
-        CommonLoading.render_init();
         WSData.fetch_thrive_data_history(ThriveMessages.render_messages);
     },
 

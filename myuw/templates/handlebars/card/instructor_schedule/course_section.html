@@ -18,7 +18,7 @@
 
                     <div class="course-meta">
                     {{# if sln}}
-                        <span class="myuw-meta course-sln">SLN <a href="https://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{get_quarter_abbreviation ../quarter}}+{{../year}}&SLN={{ sln }}" target="_blank" data-linklabel="SLN {{ sln }}: {{ curriculum_abbr }} {{course_number}} {{section_id}}">{{ sln }}</a></span>
+                        <span class="myuw-meta course-sln">SLN <a href="https://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation ../quarter}}+{{ ../year }}&SLN={{ sln }}" target="_blank" data-linklabel="SLN {{ sln }}: {{ curriculum_abbr }} {{course_number}} {{section_id}}">{{ sln }}</a></span>
                     {{/if}}
                         <span class="myuw-meta course-meeting-type c{{color_id}}Color">{{ meetings.0.type }}</span>
                     </div>
@@ -31,8 +31,8 @@
         <div class="myuw-card instructor-course-card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
             <div class="c{{color_id}}Border"></div>
             <div class="fade-in">
-                <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
-                <a href="/teaching/{{term.year}},{{term.quarter}},{{curriculum_abbr}},{{course_number}}/{{section_id}}"><span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span></a>{{#if ../future_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}{{#if ../past_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}
+                <div id="course_wrapper{{@index}}" class="OFF" style="position:relative;">
+                <a href="/teaching/{{ term.year }},{{ term.quarter }},{{ curriculum_abbr }},{{ course_number }}/{{ section_id }}"><span class="courseIDtitle">{{ curriculum_abbr }} {{ course_number }} {{ section_id }}</span></a>{{#if ../future_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}{{#if ../past_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}
                 </div>
             </div>
         </div>

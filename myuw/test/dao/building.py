@@ -2,7 +2,7 @@ import datetime
 from django.test import TestCase
 from myuw.dao.building import get_building_by_code, \
     get_buildings_by_schedule
-from myuw.dao.schedule import _get_schedule
+from myuw.dao.registration import _get_schedule
 from uw_sws.models import Term
 from myuw.test import get_request
 
