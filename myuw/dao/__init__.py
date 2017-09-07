@@ -23,14 +23,12 @@ def is_using_file_dao():
 def _is_optin_user(uwnetid):
     file_path = _get_file_path("MYUW_OPTIN_SWITCH_PATH",
                                "optin-list.txt")
-
     return is_netid_in_list(uwnetid, file_path)
 
 
-def is_fyp_thrive_viewer(uwnetid):
+def is_thrive_viewer(uwnetid, population):
     file_path = _get_file_path("MYUW_MANDATORY_SWITCH_PATH",
-                               "thrive-viewer-list.txt")
-
+                               population + "-list.txt")
     return is_netid_in_list(uwnetid, file_path)
 
 

@@ -3,14 +3,64 @@ import datetime
 import csv
 import StringIO
 from myuw.dao.thrive import _get_offset, _make_urls, _is_displayed, \
-    _make_thrive_payload
+    _make_thrive_payload, get_current_message, get_previous_messages,\
+    get_target_group, is_fyp, is_aut_transfer, is_win_transfer, TARGET_FYP
 from uw_sws.models import Term
-from myuw.test import fdao_sws_override, fdao_pws_override
+from myuw.test import fdao_sws_override, fdao_pws_override,\
+    get_request_with_date, get_request_with_user, get_request
 
 
 @fdao_pws_override
 @fdao_sws_override
 class TestThrive(TestCase):
+
+    def test_is_target_group(self):
+        get_request()
+        self.assertIsNone(get_target_group())
+
+        request = get_request_with_user('jnew', get_request())
+        self.assertTrue(is_fyp())
+
+        request = get_request_with_user('javg001', get_request())
+        self.assertTrue(is_aut_transfer())
+
+        request = get_request_with_user('javg002', get_request())
+        self.assertTrue(is_win_transfer())
+
+    def test_get_current_message(self):
+        request = get_request_with_user('jnew',
+                                        get_request_with_date("2013-09-24"))
+        message = get_current_message(request)
+        self.assertEqual(message['target'], 'fyp')
+        self.assertEqual(message['week_label'], 'Week 1')
+        self.assertIsNotNone(message['title'])
+
+        request = get_request_with_user('jnew',
+                                        get_request_with_date("2013-10-01"))
+        message = get_current_message(request)
+        self.assertEqual(message['target'], 'fyp')
+        self.assertEqual(message['week_label'], 'Week 2')
+
+        request = get_request_with_user('jnew',
+                                        get_request_with_date("2013-10-08"))
+        message = get_current_message(request)
+        self.assertEqual(message['target'], 'fyp')
+        self.assertEqual(message['week_label'], 'Week 3')
+
+    def test_get_current_message_aut_transfer(self):
+        request = get_request_with_user('javg001',
+                                        get_request_with_date("2013-10-03"))
+        message = get_current_message(request)
+        self.assertEqual(message['target'], 'aut-tran')
+        self.assertEqual(message['week_label'], 'Week 2')
+
+    def test_get_previous_messages(self):
+        request = get_request_with_user('jnew',
+                                        get_request_with_date("2013-09-24"))
+        messages = get_previous_messages(request)
+        self.assertEqual(len(messages), 2)
+        self.assertEqual(messages[0]['target'], 'fyp')
+        self.assertEqual(messages[0]['week_label'], 'Week 0')
 
     def test_get_offset(self):
         term = Term()
@@ -97,7 +147,7 @@ class TestThrive(TestCase):
         string = StringIO.StringIO(three_url_row)
         reader = csv.reader(string)
         for row in reader:
-            payload = _make_thrive_payload(row)
+            payload = _make_thrive_payload(row, TARGET_FYP)
             target_payload = {'message': 'this is the message',
                               'urls': [
                                   {'href': 'http://www.google.com',
@@ -107,6 +157,7 @@ class TestThrive(TestCase):
                                   {'href': 'http://my.uw.edu',
                                    'title': 'urlthree'}
                               ],
+                              'target': 'fyp',
                               'try_this': 'try this', 'title': 'title',
                               'week_label': 'week_label',
                               'category_label': 'category_label'}
