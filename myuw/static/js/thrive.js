@@ -22,8 +22,17 @@ var ThriveMessages = {
         var source = $("#thrive_messages").html();
         var template = Handlebars.compile(source);
         var message_groups = ThriveMessages.message_groups(messages, 2);
-
-        $("#main-content").html(template({ message_groups: message_groups }));
+        data = {message_groups: message_groups};
+        if (window.user.fyp) {
+            data['target_fyp'] = true;
+        }
+        if (window.user.aut_transfer) {
+            data['target_aut_transfer'] = true;
+        }
+        if (window.user.win_transfer) {
+            data['target_win_transfer'] = true;
+        }
+        $("#main-content").html(template(data));
     },
 
     message_groups: function(messages, per_row){
