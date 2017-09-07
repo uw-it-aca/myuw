@@ -3,40 +3,23 @@ from django.conf import settings
 from restclients_core.exceptions import DataFailureException
 from uw_sws.models import ClassSchedule, Term, Section, Person
 from myuw.dao.term import get_current_quarter, get_next_quarter
-from myuw.dao.schedule import _get_schedule,\
+from myuw.dao.schedule import get_current_quarter_schedule,\
+    get_next_quarter_schedule, get_next_autumn_quarter_schedule,\
     has_summer_quarter_section, filter_schedule_sections_by_summer_term
-from myuw.dao.schedule import get_schedule_by_term
 from myuw.test import fdao_sws_override, fdao_pws_override,\
-    get_request_with_date, get_request, get_request_with_user
+    get_request_with_date, get_request_with_user
 
 
 @fdao_pws_override
 @fdao_sws_override
 class TestSchedule(TestCase):
-    def setUp(self):
-        get_request()
-
-    def test_has_summer_quarter_section(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
-        term = Term()
-        term.year = 2013
-        term.quarter = "summer"
-        schedule = _get_schedule(regid, term)
-        self.assertTrue(has_summer_quarter_section(schedule))
-
-        term = Term()
-        term.year = 2014
-        term.quarter = "autumn"
-        self.assertRaises(DataFailureException,
-                          _get_schedule,
-                          regid, term)
 
     def test_filter_schedule_sections_by_summer_term(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
-        term = Term()
-        term.year = 2013
-        term.quarter = "summer"
-        schedule = _get_schedule(regid, term)
+        request = get_request_with_user('javerage',
+                                        get_request_with_date("2013-04-01"))
+        schedule = get_next_quarter_schedule(request)
+        self.assertTrue(has_summer_quarter_section(schedule))
+
         # ensure it has both A and B terms
         has_a_term = False
         has_b_term = False
@@ -65,45 +48,23 @@ class TestSchedule(TestCase):
         self.assertTrue(filtered_has_full_term)
         self.assertTrue(filtered_has_a_term)
 
+    def test_spring_quarter_schedule(self):
+        request = get_request_with_user('javerage',
+                                        get_request_with_date("2013-04-01"))
+        schedule = get_current_quarter_schedule(request)
+        self.assertIsNotNone(schedule)
+        self.assertEqual(len(schedule.sections), 5)
+
     def test_winter_quarter_schedule(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
-
-        now_request = get_request_with_date("2013-11-30")
-        cur_term = get_current_quarter(now_request)
-        self.assertEqual(cur_term.year, 2013)
-        self.assertEqual(cur_term.quarter, "autumn")
-
-        next_term = get_next_quarter(now_request)
-        self.assertEqual(next_term.year, 2014)
-        self.assertEqual(next_term.quarter, "winter")
-        self.assertFalse(cur_term == next_term)
-
-        winter2014_sche = _get_schedule(regid, next_term)
-        self.assertIsNotNone(winter2014_sche)
-        self.assertEqual(len(winter2014_sche.sections), 5)
+        request = get_request_with_user('javerage',
+                                        get_request_with_date("2013-09-01"))
+        schedule = get_next_quarter_schedule(request)
+        self.assertIsNotNone(schedule)
+        self.assertEqual(len(schedule.sections), 5)
 
     def test_efs_before_end(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
-
-        now_request = get_request_with_date("2013-09-01")
-        cur_term = get_current_quarter(now_request)
-        self.assertEqual(cur_term.year, 2013)
-        self.assertEqual(cur_term.quarter, "autumn")
-
-        cur_term = get_current_quarter(now_request)
-        fall_efs_schedule = _get_schedule(regid, cur_term)
-        self.assertIsNotNone(fall_efs_schedule)
-        self.assertEqual(len(fall_efs_schedule.sections), 2)
-
-    def test_efs_after_end_of_early_start(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
-
-        now_request = get_request_with_date("2013-09-20")
-        cur_term = get_current_quarter(now_request)
-        self.assertEqual(cur_term.year, 2013)
-        self.assertEqual(cur_term.quarter, "autumn")
-        get_request_with_user('javerage', now_request)
-        cur_term = get_current_quarter(now_request)
-        fall_efs_schedule = get_schedule_by_term(now_request, cur_term)
+        request = get_request_with_user('javerage',
+                                        get_request_with_date("2013-04-01"))
+        fall_efs_schedule = get_next_autumn_quarter_schedule(request)
         self.assertIsNotNone(fall_efs_schedule)
         self.assertEqual(len(fall_efs_schedule.sections), 2)

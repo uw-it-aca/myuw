@@ -4,7 +4,6 @@ var multi_res_card_render_called = {};
 
 $(window.document).ready(function() {
     LogUtils.init_logging();
-    init_profile_events();
     init_modal_events();
     init_search_events();
     var course_data = null;
@@ -179,10 +178,6 @@ var capitalizeString = function(string) {
                           });
 };
 
-var init_profile_events = function () {
-    Profile.add_events();
-};
-
 var init_modal_events = function () {
     Modal.add_events();
 };
@@ -195,6 +190,7 @@ var renderedCardOnce = function(card_name) {
 
 var resetCardRenderCalled = function() {
     multi_res_card_render_called = {};
+    OutageCard.reset();
 };
 
 var toggle_card_disclosure = function(card, div_toggled, a_expose, a_hide, label) {

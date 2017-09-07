@@ -3,7 +3,6 @@ var Academics = {
 
     render: function() {
         showLoading();
-        CommonLoading.render_init();
         Academics.make_html();
     },
 
@@ -38,6 +37,7 @@ var Academics = {
     _load_desktop_cards: function() {
         Academics._reset_content_divs();
         var desktop_body_cards = [
+            OutageCard,
             GradeCard,
             CourseCards,
             VisualScheduleCard,
@@ -52,10 +52,6 @@ var Academics = {
         var desktop_sidebar_cards = [
         ];
 
-        if(window.webservice_outage){
-            desktop_body_cards.unshift(OutageCard);
-        }
-
         Cards.load_cards_in_order(desktop_body_cards, $("#academics_content_cards"));
         // Cards.load_cards_in_order(desktop_sidebar_cards, $("#academics_sidebar_cards"));
     },
@@ -63,6 +59,7 @@ var Academics = {
     _load_mobile_cards: function() {
         Academics._reset_content_divs();
         var mobile_cards = [
+            OutageCard,
             GradeCard,
             CourseCards,
             VisualScheduleCard,
@@ -74,9 +71,6 @@ var Academics = {
             FutureQuarterCardA,
             FutureQuarterCard1
         ];
-        if(window.webservice_outage){
-            desktop_body_cards.unshift(OutageCard);
-        }
         Cards.load_cards_in_order(mobile_cards, $("#academics_content_cards"));
     },
 

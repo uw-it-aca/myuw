@@ -16,6 +16,7 @@ from uw_mailman.course_list import get_course_list_name,\
 from uw_mailman.instructor_term_list import\
     get_instructor_term_list_name, exists_instructor_term_list
 from myuw.util.thread import ThreadWithResponse
+from myuw.logger.logback import log_info
 from myuw.dao.exceptions import CourseRequestEmailRecipientNotFound
 
 
@@ -200,14 +201,13 @@ def request_mailman_lists(requestor_uwnetid,
         if recipient is None:
             raise CourseRequestEmailRecipientNotFound
         sender = "%s@uw.edu" % requestor_uwnetid
+
         send_mail(EMAIL_SUBJECT,
                   message_body,
                   sender,
                   [recipient],
                   fail_silently=False)
         ret_data["request_sent"] = True
-        logger.info("Request_mailman_lists: %s, message body: %s",
-                    ret_data, message_body)
 
     return ret_data
 
@@ -239,7 +239,8 @@ def get_message_body(requestor_uwnetid,
             message_body += _get_single_line(section)
         else:
             logger.error("%s", thread.exception)
-
+    log_info(logger, "For %s ==request emaillist message body==> %s" %
+             (single_section_labels, message_body.splitlines()))
     return message_body, num_sections_found
 
 
@@ -248,10 +249,10 @@ def _get_single_line(section):
     <list_address> <quarter_code> YYYY <sln>
     """
     return "%s %s %s %s\n" % (
-            get_section_list_name(section),
-            _get_quarter_code(section.term.quarter),
-            section.term.year,
-            section.sln)
+        get_section_list_name(section),
+        _get_quarter_code(section.term.quarter),
+        section.term.year,
+        section.sln)
 
 
 QUARTER_CODES = {

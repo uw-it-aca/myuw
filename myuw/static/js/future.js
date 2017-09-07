@@ -1,7 +1,6 @@
 var FutureQuarter = {
     render: function(term) {
         showLoading();
-        CommonLoading.render_init();
         FutureQuarter.make_html(term);
     },
 

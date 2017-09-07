@@ -4,9 +4,6 @@ the SWS Enrollment resource.
 """
 
 import logging
-from myuw.logger.timer import Timer
-from myuw.logger.logback import log_resp_time, log_exception, log_info
-from datetime import date
 from uw_sws.enrollment import enrollment_search_by_regid
 from myuw.dao import is_using_file_dao
 from myuw.dao.pws import get_regid_of_current_user

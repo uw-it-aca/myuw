@@ -35,14 +35,19 @@ describe("VisualScheduleCard", function() {
             window.enabled_features = { 'instructor_schedule': true };
 
             // clear cache
-            WSData._course_data = {}
-            WSData._instructed_course_data = {}
+            WSData._course_data = {};
+            WSData._instructed_course_data = {};
 
+            //handle the two card load events the VS fires for inst+stu schedules
+            var has_loaded = false;
             $(window).on("myuw:card_load", function () {
-                done();
+                if(!has_loaded){
+                    done();
+                    has_loaded = true;
+                }
             });
 
-            VisualScheduleCard.term = '2013,spring'
+            VisualScheduleCard.term = '2013,spring';
             VisualScheduleCard.render_init();
         });
 

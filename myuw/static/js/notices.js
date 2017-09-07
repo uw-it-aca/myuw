@@ -3,7 +3,6 @@
 var Notices = {
     show_notices: function () {
         "use strict";
-        CommonLoading.render_init();
         WSData.fetch_notice_data(Notices.render_notices);
     },
 

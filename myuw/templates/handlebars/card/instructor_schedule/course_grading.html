@@ -55,7 +55,15 @@
                             {{else}}
                                 {{#if grading_status.unsubmitted_count}}<a href="{{ grading_status.section_url }}"  data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">{{grading_status.unsubmitted_count}} grade{{pluralize grading_status.unsubmitted_count '' 's'}} to submit </a>
                                 {{else}}
-                                {{#if allows_secondary_grading}}{{grading_status.grading_status}}{{else}}Grading for secondary section is disabled. <a class="text-nowrap" href="{{ grading_status.section_url }}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}"  target="_blank">Grade primary section</a>.{{/if}}
+                                  {{#if is_primary_section}}
+                                    {{grading_status.grading_status}}
+                                  {{else}}
+                                    {{#if allows_secondary_grading}}
+                                      {{grading_status.grading_status}}
+                                    {{else}}
+                                      Grading for secondary section is disabled. <a class="text-nowrap" href="{{ grading_status.section_url }}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}"  target="_blank">Grade primary section</a>.
+                                    {{/if}}
+                                  {{/if}}
                                 {{/if}}
                             {{/if}}
                             <a href="https://itconnect.uw.edu/learn/tools/gradepage/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="gradepage_help_link" target="_blank" data-linklabel="GradePage Help"><i class="fa fa-question-circle" aria-hidden="true"></i></a>

@@ -1,9 +1,9 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User
-from myuw.test import get_request, get_request_with_user
 from uw_sws.models import Term, Section
-from myuw.test import fdao_sws_override, fdao_pws_override
+from myuw.test import fdao_sws_override, fdao_pws_override,\
+    get_request_with_date, get_request_with_user, get_request
 from myuw.dao.instructor_schedule import is_instructor,\
     get_current_quarter_instructor_schedule,\
     get_limit_estimate_enrollment_for_section,\
@@ -17,6 +17,9 @@ class TestInstructorSchedule(TestCase):
     def test_is_instructor(self):
         now_request = get_request()
         get_request_with_user('bill', now_request)
+        self.assertTrue(is_instructor(now_request))
+
+        get_request_with_user('billpce', now_request)
         self.assertTrue(is_instructor(now_request))
 
     def test_get_current_quarter_instructor_schedule(self):
@@ -49,3 +52,10 @@ class TestInstructorSchedule(TestCase):
 
         limit = get_limit_estimate_enrollment_for_section(section)
         self.assertEqual(limit, 5)
+
+    def test_pce_instructor_schedule(self):
+        request = get_request_with_user('billpce',
+                                        get_request_with_date("2013-10-01"))
+        schedule = get_current_quarter_instructor_schedule(request)
+        self.assertEqual(len(schedule.sections), 1)
+        self.assertEqual(schedule.sections[0].current_enrollment, 3)

@@ -1,6 +1,6 @@
 import csv
 import os
-from myuw.dao.enrollment import get_current_quarter_enrollment
+from myuw.dao.student_profile import get_cur_future_enrollments
 from myuw.dao.gws import is_grad_student
 
 
@@ -33,15 +33,17 @@ def _get_enrollments(request):
     majors = []
     minors = []
     try:
-        enrollment = get_current_quarter_enrollment(request)
+        terms, enrollments = get_cur_future_enrollments(request)
+        for enrollment in enrollments.values():
+            if len(enrollment.majors) > 0:
+                for major in enrollment.majors:
+                    if major.major_name and major.major_name not in majors:
+                        majors.append(major.major_name)
 
-        if len(enrollment.majors) > 0:
-            for major in enrollment.majors:
-                majors.append(major.major_name)
-
-        if len(enrollment.minors) > 0:
-            for minor in enrollment.minors:
-                minors.append(minor.short_name)
+            if len(enrollment.minors) > 0:
+                for minor in enrollment.minors:
+                    if minor.short_name and minor.short_name not in minors:
+                        minors.append(minor.short_name)
     except Exception:
         pass
     return {'is_grad': is_grad_student(),
