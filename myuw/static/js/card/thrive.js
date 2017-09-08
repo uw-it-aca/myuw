@@ -33,13 +33,13 @@ var ThriveCard = {
                                    $("#thrive_learnmore").html());
         var thrive = WSData.thrive_data();
         if (window.user.fyp) {
-            thrive['target_fyp'] = true;
+            thrive.target_fyp = true;
         }
         if (window.user.aut_transfer) {
-            thrive['target_aut_transfer'] = true;
+            thrive.target_aut_transfer = true;
         }
         if (window.user.win_transfer) {
-            thrive['target_win_transfer'] = true;
+            thrive.target_win_transfer = true;
         }
         var source = $("#thrive_card").html();
         var template = Handlebars.compile(source);

@@ -24,13 +24,13 @@ var ThriveMessages = {
         var message_groups = ThriveMessages.message_groups(messages, 2);
         data = {message_groups: message_groups};
         if (window.user.fyp) {
-            data['target_fyp'] = true;
+            data.target_fyp = true;
         }
         if (window.user.aut_transfer) {
-            data['target_aut_transfer'] = true;
+            data.target_aut_transfer = true;
         }
         if (window.user.win_transfer) {
-            data['target_win_transfer'] = true;
+            data.target_win_transfer = true;
         }
         $("#main-content").html(template(data));
     },
