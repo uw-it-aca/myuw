@@ -9,8 +9,8 @@ from myuw.dao.term import get_comparison_date, get_current_quarter,\
 
 logger = logging.getLogger(__name__)
 TARGET_FYP = "fyp"
-TARGET_AUT_TRANSFER = "aut-tran"
-TARGET_WIN_TRANSFER = "win-tran"
+TARGET_AUT_TRANSFER = "au_xfer"
+TARGET_WIN_TRANSFER = "wi_xfer"
 target_groups = [TARGET_FYP,
                  TARGET_AUT_TRANSFER,
                  TARGET_WIN_TRANSFER]

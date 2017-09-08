@@ -28,7 +28,7 @@ def _is_optin_user(uwnetid):
 
 def is_thrive_viewer(uwnetid, population):
     file_path = _get_file_path("MYUW_MANDATORY_SWITCH_PATH",
-                               population + "-list.txt")
+                               population + "_list.txt")
     return is_netid_in_list(uwnetid, file_path)
 
 
