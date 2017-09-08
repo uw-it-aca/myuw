@@ -29,38 +29,45 @@ class TestThrive(TestCase):
 
     def test_get_current_message(self):
         request = get_request_with_user('jnew',
-                                        get_request_with_date("2013-09-24"))
+                                        get_request_with_date("2017-09-18"))
         message = get_current_message(request)
         self.assertEqual(message['target'], 'fyp')
-        self.assertEqual(message['week_label'], 'Week 1')
+        self.assertEqual(message['week_label'], 'Week -1')
         self.assertIsNotNone(message['title'])
 
         request = get_request_with_user('jnew',
-                                        get_request_with_date("2013-10-01"))
+                                        get_request_with_date("2017-09-25"))
+        message = get_current_message(request)
+        self.assertEqual(message['target'], 'fyp')
+        self.assertEqual(message['week_label'], 'Week 1')
+
+        request = get_request_with_user('jnew',
+                                        get_request_with_date("2017-10-03"))
         message = get_current_message(request)
         self.assertEqual(message['target'], 'fyp')
         self.assertEqual(message['week_label'], 'Week 2')
 
-        request = get_request_with_user('jnew',
-                                        get_request_with_date("2013-10-08"))
-        message = get_current_message(request)
-        self.assertEqual(message['target'], 'fyp')
-        self.assertEqual(message['week_label'], 'Week 3')
-
     def test_get_current_message_aut_transfer(self):
         request = get_request_with_user('javg001',
-                                        get_request_with_date("2013-10-03"))
+                                        get_request_with_date("2017-10-03"))
         message = get_current_message(request)
         self.assertEqual(message['target'], 'aut-tran')
         self.assertEqual(message['week_label'], 'Week 2')
 
+    def test_get_current_message_win_transfer(self):
+        request = get_request_with_user('javg002',
+                                        get_request_with_date("2018-01-03"))
+        message = get_current_message(request)
+        self.assertEqual(message['target'], 'win-tran')
+        self.assertEqual(message['week_label'], 'Week 1')
+
     def test_get_previous_messages(self):
         request = get_request_with_user('jnew',
-                                        get_request_with_date("2013-09-24"))
+                                        get_request_with_date("2017-09-24"))
         messages = get_previous_messages(request)
         self.assertEqual(len(messages), 2)
         self.assertEqual(messages[0]['target'], 'fyp')
-        self.assertEqual(messages[0]['week_label'], 'Week 0')
+        self.assertEqual(messages[0]['week_label'], 'Week -1')
 
     def test_get_offset(self):
         term = Term()
