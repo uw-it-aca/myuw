@@ -2,6 +2,14 @@
 
 .myuw-photo-list {
 
+    @media @two-column {
+        margin-top: 0;
+        margin-left: -16px;
+        margin-right: -16px;
+        margin-bottom: 16px;
+        padding: 16px !important;
+    }
+
     .myuw-photo-list-controls {
         .myuw-photo-list-controls-view { display:inline-block; margin-right:16px; }
         .myuw-photo-list-controls-sort { display:inline-block; }
@@ -39,9 +47,9 @@
 
             &:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; }
 
-            li { float: left;  margin-right: 16px; width: 100%; height: 230px;
+            li { float: left; margin-right: 16px; width: 100%; height: 230px; padding: 8px;
 
-                @media @two-column { width: 200px; margin-bottom: 0;}
+                @media @two-column { width: 200px; margin-bottom: 16px;}
 
                 &:last-child { margin: 0; }
 
