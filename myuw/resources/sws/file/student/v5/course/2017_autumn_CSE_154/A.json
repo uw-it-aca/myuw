@@ -1,0 +1,302 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "ClassWebsiteUrl": null,
+    "Course": {
+        "CourseNumber": "154",
+        "CurriculumAbbreviation": "CSE",
+        "Href": "/student/v5/course/2017,autumn,CSE,154.json",
+        "Quarter": "autumn",
+        "Year": 2017
+    },
+    "CourseCampus": "Seattle",
+    "CourseDescription": "Covers languages,tools,and techniques for developing interactive and dynamic web pages. Topics include page styling,design,and layout; client and server side scripting; web security; and interacting with data sources such as databases. Prerequisite: minimum grade of 2.0 in either CSE 142,CSE 143,or CSE 160.",
+    "CourseHasVariableContent": false,
+    "CourseTitle": "WEB PROGRAMMING",
+    "CourseTitleLong": "WEB PROGRAMMING",
+    "CreditControl": "fixed credit",
+    "CurrentEnrollment": 109,
+    "Curriculum": {
+        "CollegeName": "ENGINEERING",
+        "DepartmentAbbreviation": "CSE",
+        "TimeScheduleLinkAbbreviation": "cse"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": false,
+    "DistanceLearningType": {
+        "Code": null,
+        "Description": null
+    },
+    "DuplicateEnrollmentAllowed": false,
+    "EndDate": "",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": "",
+    "FeeBudget": "",
+    "FeeType": "",
+    "FinalExam": {
+        "Building": "ARC",
+        "Date": "2017-12-12",
+        "EndTime": "16:20",
+        "FinalExamBuilding": {
+            "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=ARC&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+        },
+        "MeetingStatus": "0",
+        "RoomNumber": "147",
+        "StartTime": "14:30"
+    },
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": "",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": true,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [
+        {
+            "DelegateLevel": "college",
+            "Person": {
+                "Href": "/student/v5/person/FBB38FE46A7C11D5A4AE0004AC494FFE.json",
+                "Name": "Bill Winter",
+                "RegID": "FBB38FE46A7C11D5A4AE0004AC494FFE"
+            }
+        },
+        {
+            "DelegateLevel": "department",
+            "Person": {
+                "Href": "/student/v5/person/FBB38FE46A7C11D5A4AE0004AC494100.json",
+                "Name": "Bill 100",
+                "RegID": "FBB38FE46A7C11D5A4AE0004AC494100"
+            }
+        },
+        {
+            "DelegateLevel": "curriculum",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000006.json",
+                "Name": "Bill Sea",
+                "RegID": "10000000000000000000000000000006"
+            }
+        }
+    ],
+    "GradingSystem": "standard",
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": "",
+    "IsIndependentStart": false,
+    "JointSections": [],
+    "LMSOwnership": null,
+    "LimitEstimateEnrollment": 220,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [
+        {
+            "LinkedSections": [
+                {
+                    "IsPrimarySection": false,
+                    "Section": {
+                        "CourseNumber": "154",
+                        "CurriculumAbbreviation": "CSE",
+                        "Href": "/student/v5/course/2017,autumn,CSE,154/AA.json",
+                        "Quarter": "autumn",
+                        "SectionID": "AA",
+                        "Year": 2017
+                    }
+                },
+                {
+                    "IsPrimarySection": false,
+                    "Section": {
+                        "CourseNumber": "154",
+                        "CurriculumAbbreviation": "CSE",
+                        "Href": "/student/v5/course/2017,autumn,CSE,154/AB.json",
+                        "Quarter": "autumn",
+                        "SectionID": "AB",
+                        "Year": 2017
+                    }
+                },
+                {
+                    "IsPrimarySection": false,
+                    "Section": {
+                        "CourseNumber": "154",
+                        "CurriculumAbbreviation": "CSE",
+                        "Href": "/student/v5/course/2017,autumn,CSE,154/AC.json",
+                        "Quarter": "autumn",
+                        "SectionID": "AC",
+                        "Year": 2017
+                    }
+                },
+                {
+                    "IsPrimarySection": false,
+                    "Section": {
+                        "CourseNumber": "154",
+                        "CurriculumAbbreviation": "CSE",
+                        "Href": "/student/v5/course/2017,autumn,CSE,154/AD.json",
+                        "Quarter": "autumn",
+                        "SectionID": "AD",
+                        "Year": 2017
+                    }
+                }
+            ],
+            "Type": "quiz"
+        }
+    ],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "ARC",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Monday"
+                    },
+                    {
+                        "Name": "Wednesday"
+                    },
+                    {
+                        "Name": "Friday"
+                    }
+                ],
+                "Text": "M W F"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "15:20",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2017,autumn,CSE,154,A,10000000000000000000000000000006"
+                    },
+                    "PercentInvolve": "100",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000006.json",
+                        "Name": "Bill Sea",
+                        "RegID": "10000000000000000000000000000006"
+                    },
+                    "TSPrint": true
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=ARC&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "lecture",
+            "RoomNumber": "147",
+            "RoomToBeArranged": false,
+            "StartTime": "14:30"
+        }
+    ],
+    "Metadata": "SectionSourceKey=SDB;",
+    "MinimumTermCredit": "5.0",
+    "OnlineLearningType": {
+        "Code": "00",
+        "Description": "No online learning component"
+    },
+    "PrimaryLMS": null,
+    "PrimarySection": {
+        "CourseNumber": "154",
+        "CurriculumAbbreviation": "CSE",
+        "Href": "/student/v5/course/2017,autumn,CSE,154/A.json",
+        "Quarter": "autumn",
+        "SectionID": "A",
+        "Year": 2017
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "154",
+        "CurriculumAbbreviation": "CSE",
+        "Href": "/student/v5/registration.json?year=2017&quarter=autumn&curriculum_abbreviation=CSE&course_number=154&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "autumn",
+        "RegID": null,
+        "SectionID": "A",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2017
+    },
+    "RepositoryTimeStamp": "9/7/2017 7:26:49 PM",
+    "ResearchCredit": false,
+    "RoomCapacity": 305,
+    "SLN": "13174",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "A",
+    "SectionType": "lecture",
+    "SelfRegistrationAllowed": true,
+    "ServiceLearning": false,
+    "StartDate": "",
+    "StudentCreditHours": " 545.0",
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2017,autumn.json",
+        "Quarter": "autumn",
+        "Year": 2017
+    },
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": [
+                {
+                    "Text": "ENTRY CODES AVAILABLE IN PAUL ALLEN CENTER,CSE"
+                },
+                {
+                    "Text": "MAIN OFFICE."
+                }
+            ]
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": [
+                {
+                    "Text": "==============================="
+                },
+                {
+                    "Text": "NOTE RECENT TIME CHANGES"
+                },
+                {
+                    "Text": "-----------------------------"
+                },
+                {
+                    "Text": "STUDENTS REGISTERING FOR SECTIONS"
+                },
+                {
+                    "Text": "AA/AB/AC/AD REQUIRED TO BRING"
+                },
+                {
+                    "Text": "LAPTOP TO THURS. MEETING"
+                },
+                {
+                    "Text": "-----------------------------"
+                },
+                {
+                    "Text": "==============================="
+                }
+            ]
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": [
+                {
+                    "Text": "No Grads Period 1 (5/5/2017-6/18/2017)"
+                },
+                {
+                    "Text": "No C SCI,CMP E majors Period 1 (5/5/2017-6/18/2017)"
+                }
+            ]
+        }
+    }
+}
