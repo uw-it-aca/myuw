@@ -28,6 +28,14 @@ class TestThrive(TestCase):
         request = get_request_with_user('javg002', get_request())
         self.assertTrue(is_win_transfer())
 
+        request = get_request_with_user('javg003', get_request())
+        self.assertTrue(is_aut_transfer())
+        self.assertFalse(is_fyp())
+
+        request = get_request_with_user('javg004', get_request())
+        self.assertTrue(is_win_transfer())
+        self.assertFalse(is_aut_transfer())
+
     def test_get_current_message(self):
         request = get_request_with_user('jnew',
                                         get_request_with_date("2017-09-18"))

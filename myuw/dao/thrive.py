@@ -11,9 +11,9 @@ logger = logging.getLogger(__name__)
 TARGET_FYP = "fyp"
 TARGET_AUT_TRANSFER = "au_xfer"
 TARGET_WIN_TRANSFER = "wi_xfer"
-target_groups = [TARGET_FYP,
-                 TARGET_AUT_TRANSFER,
-                 TARGET_WIN_TRANSFER]
+target_groups = [TARGET_AUT_TRANSFER,
+                 TARGET_WIN_TRANSFER,
+                 TARGET_FYP]
 # the order says the priority
 
 
