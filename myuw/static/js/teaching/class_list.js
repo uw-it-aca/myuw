@@ -1,7 +1,17 @@
 var PhotoClassList = {
     is_desktop: undefined,
 
+    hide_card: function() {
+        if (window.user.instructor) {
+            return false;
+        }
+        return true;
+    },
+
     render: function() {
+        if (PhotoClassList.hide_card()) {
+            return;
+        }
         showLoading();
 
         if (window.hasOwnProperty('section_data') &&
