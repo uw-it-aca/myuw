@@ -58,7 +58,7 @@ $(window.document).ready(function() {
     });
 
     $(".opt-out-rate-myuw").bind("click", function(ev) {
-        var rating_value = ev.currentTarget.getAttribute("rel");
+        var rating_value = ev.currentTarget.getAttribute("data-rating");
         WSData.log_interaction("opt-out_rate_myuw_" + rating_value);
         var hide = $("#leave-feedback-div-onpop");
         var expose = $("#thank-feedback-div-onpop");
