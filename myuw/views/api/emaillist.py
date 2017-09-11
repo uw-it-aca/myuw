@@ -5,11 +5,13 @@ import re
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponse
+from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.pws import get_person_of_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_response_time
 from myuw.views.rest_dispatch import RESTDispatch
 from myuw.dao.user import get_netid_of_current_user
+from myuw.dao.instructor_schedule import check_section_instructor
 from myuw.dao.mailman import get_course_email_lists, request_mailman_lists,\
     is_valid_section_label
 from myuw.views.error import handle_exception, not_instructor_error,\
@@ -125,16 +127,10 @@ def is_emaillist_authorized(section_label):
     Instructor of section OR instructor of primary section
     """
     try:
-        user_is_authorized = False
-        person = get_person_of_current_user()
-        section = get_section_by_label(section_label)
-        user_is_authorized = section.is_instructor(person)
-
-        if not section.is_primary_section and not user_is_authorized:
-            secondary = get_section_by_label(section.primary_section_label())
-            user_is_authorized = secondary.is_instructor(person)
-        return user_is_authorized
-
+        check_section_instructor(get_section_by_label(section_label))
+        return True
+    except NotSectionInstructorException:
+        return False
     except Exception as err:
         if err.status == 404:
             return False

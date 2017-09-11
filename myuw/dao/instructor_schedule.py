@@ -119,8 +119,7 @@ def get_instructor_section(year, quarter, curriculum,
         year, quarter.lower(), curriculum.upper(),
         course_number, course_section))
 
-    if not section.is_instructor(schedule.person):
-        raise NotSectionInstructorException()
+    check_section_instructor(section, schedule.person)
 
     if include_registrations:
         section.registrations = get_active_registrations_for_section(
@@ -186,17 +185,12 @@ def is_instructor(request):
         raise
 
 
-def is_section_instructor(section_label):
-    """
-    Determines if user is an instructor of the given section label
-    """
-    try:
+def check_section_instructor(section, person=None):
+    if person is None:
         person = get_person_of_current_user()
-        section = get_section_by_label(section_label)
-        return section.is_instructor(person)
-
-    except Exception as err:
-        if err.status == 404:
-            return False
-
-        raise
+    if not section.is_instructor(person):
+        if section.is_primary_section:
+            raise NotSectionInstructorException()
+        primary_section = get_section_by_label(section.primary_section_label())
+        if not primary_section.is_instructor(person):
+            raise NotSectionInstructorException()
