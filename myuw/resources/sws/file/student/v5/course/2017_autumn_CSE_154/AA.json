@@ -1,0 +1,243 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "ClassWebsiteUrl": null,
+    "Course": {
+        "CourseNumber": "154",
+        "CurriculumAbbreviation": "CSE",
+        "Href": "/student/v5/course/2017,autumn,CSE,154.json",
+        "Quarter": "autumn",
+        "Year": 2017
+    },
+    "CourseCampus": "Seattle",
+    "CourseDescription": "Covers languages,tools,and techniques for developing interactive and dynamic web pages. Topics include page styling,design,and layout; client and server side scripting; web security; and interacting with data sources such as databases. Prerequisite: minimum grade of 2.0 in either CSE 142,CSE 143,or CSE 160.",
+    "CourseHasVariableContent": false,
+    "CourseTitle": "WEB PROGRAMMING",
+    "CourseTitleLong": "WEB PROGRAMMING",
+    "CreditControl": "zero credits",
+    "CurrentEnrollment": 21,
+    "Curriculum": {
+        "CollegeName": "ENGINEERING",
+        "DepartmentAbbreviation": "CSE",
+        "TimeScheduleLinkAbbreviation": "cse"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": false,
+    "DistanceLearningType": {
+        "Code": null,
+        "Description": null
+    },
+    "DuplicateEnrollmentAllowed": false,
+    "EndDate": "",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": "",
+    "FeeBudget": "",
+    "FeeType": "",
+    "FinalExam": {
+        "Building": null,
+        "Date": "",
+        "EndTime": "",
+        "FinalExamBuilding": {
+            "Href": ""
+        },
+        "MeetingStatus": null,
+        "RoomNumber": null,
+        "StartTime": ""
+    },
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": "",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [
+        {
+            "DelegateLevel": "college",
+            "Person": {
+                "Href": "/student/v5/person/FBB38FE46A7C11D5A4AE0004AC494FFE.json",
+                "Name": "Bill Winter",
+                "RegID": "FBB38FE46A7C11D5A4AE0004AC494FFE"
+            }
+        },
+        {
+            "DelegateLevel": "department",
+            "Person": {
+                "Href": "/student/v5/person/FBB38FE46A7C11D5A4AE0004AC494100.json",
+                "Name": "Bill 100",
+                "RegID": "FBB38FE46A7C11D5A4AE0004AC494100"
+            }
+        },
+        {
+            "DelegateLevel": "curriculum",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000006.json",
+                "Name": "Bill Sea",
+                "RegID": "10000000000000000000000000000006"
+            }
+        }
+    ],
+    "GradingSystem": null,
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": "",
+    "IsIndependentStart": false,
+    "JointSections": [],
+    "LMSOwnership": null,
+    "LimitEstimateEnrollment": 22,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "MGH",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Tuesday"
+                    }
+                ],
+                "Text": " T"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "15:20",
+            "Instructors": [],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=MGH&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "quiz",
+            "RoomNumber": "284",
+            "RoomToBeArranged": false,
+            "StartTime": "14:30"
+        },
+        {
+            "Building": "OUG",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Thursday"
+                    }
+                ],
+                "Text": "   T"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "15:20",
+            "Instructors": [],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=OUG&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "2",
+            "MeetingType": "laboratory",
+            "RoomNumber": "141",
+            "RoomToBeArranged": false,
+            "StartTime": "14:30"
+        }
+    ],
+    "Metadata": "SectionSourceKey=SDB;",
+    "MinimumTermCredit": "",
+    "OnlineLearningType": {
+        "Code": "00",
+        "Description": "No online learning component"
+    },
+    "PrimaryLMS": null,
+    "PrimarySection": {
+        "CourseNumber": "154",
+        "CurriculumAbbreviation": "CSE",
+        "Href": "/student/v5/course/2017,autumn,CSE,154/A.json",
+        "Quarter": "autumn",
+        "SectionID": "A",
+        "Year": 2017
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "154",
+        "CurriculumAbbreviation": "CSE",
+        "Href": "/student/v5/registration.json?year=2017&quarter=autumn&curriculum_abbreviation=CSE&course_number=154&section_id=AA&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "autumn",
+        "RegID": null,
+        "SectionID": "AA",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2017
+    },
+    "RepositoryTimeStamp": "9/7/2017 7:26:26 PM",
+    "ResearchCredit": false,
+    "RoomCapacity": 25,
+    "SLN": "13175",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "AA",
+    "SectionType": "quiz",
+    "SelfRegistrationAllowed": true,
+    "ServiceLearning": false,
+    "StartDate": "",
+    "StudentCreditHours": "   0.0",
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2017,autumn.json",
+        "Quarter": "autumn",
+        "Year": 2017
+    },
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": [
+                {
+                    "Text": "ENTRY CODES AVAILABLE IN PAUL ALLEN CENTER,CSE"
+                },
+                {
+                    "Text": "MAIN OFFICE."
+                }
+            ]
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": [
+                {
+                    "Text": "================================"
+                },
+                {
+                    "Text": "*** LAPTOP LAB ***"
+                },
+                {
+                    "Text": "STUDENTS REQUIRED TO BRING LAPTOP"
+                },
+                {
+                    "Text": "TO THURSDAY CLASS MEETING"
+                },
+                {
+                    "Text": "================================"
+                }
+            ]
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": [
+                {
+                    "Text": "Quiz Section"
+                }
+            ]
+        }
+    }
+}
