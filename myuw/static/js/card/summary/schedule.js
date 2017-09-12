@@ -47,27 +47,22 @@ var SummaryScheduleCard = {
     },
 
     _render: function () {
+        Handlebars.registerPartial('summary_section_panel', $("#summary_section_panel").html());
+
         var term = SummaryScheduleCard.term;
-        var instructed_course_data = WSData.normalized_instructed_course_data(term);
+        var instructed_course_data = WSData._link_secondary_sections(term);
         var source = $("#instructor_summary_schedule").html();
         var courses_template = Handlebars.compile(source);
-        var total_section_refs = 0;
-        if ('section_references' in instructed_course_data) {
-            total_section_refs = instructed_course_data.section_references.length;
-        }
-        var raw = courses_template({
+        var data = {
             first_day_quarter: instructed_course_data.term.first_day_quarter,
             quarter: instructed_course_data.quarter,
             year: instructed_course_data.year,
             future_term: instructed_course_data.future_term,
             sections: instructed_course_data.sections,
             section_count: instructed_course_data.sections.length,
-            total_section_refs: total_section_refs,
-            has_sections: (instructed_course_data.sections.length > 0 ||
-                          total_section_refs > 0),
-            has_section_references: (total_section_refs > 0)
-        });
-
+            hide_secondary: instructed_course_data.exceeded_max_display_sections
+        };
+        var raw = courses_template(data);
         SummaryScheduleCard.dom_target.html(raw);
         SummaryScheduleCard.add_events(SummaryScheduleCard.term);
     },

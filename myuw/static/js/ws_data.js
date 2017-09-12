@@ -148,6 +148,37 @@ WSData = {
         return WSData._normalize_instructed_data(course_data);
     },
 
+    _link_secondary_sections: function (term) {
+        var course_data;
+        if (term) {
+            course_data = WSData.instructed_course_data_for_term(term);
+        } else {
+            course_data = WSData.current_instructed_course_data();
+        }
+
+        if (course_data && course_data.exceeded_max_display_sections) {
+            var linked_secondaries = undefined;
+            var linked_primary_label = undefined;
+            for (var index in course_data.sections) {
+                var section = course_data.sections[index];
+                if (section.is_primary_section) {
+                    if (section.total_linked_secondaries) {
+                        section.linked_secondaries = [];
+                        linked_secondaries = section.linked_secondaries;
+                        linked_primary_label = section.section_label;
+                    }
+                } else {
+                    primary_label = section.primary_section_label;
+                    if (primary_label === linked_primary_label &&
+                       linked_secondaries !== undefined) {
+                        linked_secondaries.push(section);
+                    }
+                }
+            }
+        }
+        return course_data;
+    },
+
     _normalize_instructed_data: function (course_data) {
         if (course_data) {
             WSData._normalize_instructors(course_data);
@@ -207,12 +238,6 @@ WSData = {
                 section.is_seattle = (course_campus === 'seattle');
                 section.is_bothell = (course_campus === 'bothell');
                 section.is_tacoma =  (course_campus === 'tacoma');
-
-                section.section_label = course_data.term.year + '-' +
-                    course_data.term.quarter.toLowerCase() + '-' +
-                    section.curriculum_abbr + '-' +
-                    section.course_number + '-' +
-                    section.section_id;
 
                 section.grading_period_is_open = grading_is_open;
                 section.grading_period_is_past = grading_is_closed;

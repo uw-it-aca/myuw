@@ -1,0 +1,54 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "summary_section_panel" %}
+    <div class="row">
+        <div class="col-sm-3">
+            <h4 class="myuw-card-row-heading" style="display:inline-block;
+                margin-bottom:0px;"><div class="c{{color_id}} simplesquare" aria-hidden="true"></div><a href="/teaching/{{ ../year }},{{ ../quarter }}#{{ curriculum_abbr }}-{{ course_number }}-{{ section_id }}"
+                class="future-nav-link" future-nav-target="{{../year}},{{../quarter}},{{curriculum_abbr}}-{{course_number}}-{{section_id}}">{{curriculum_abbr}} {{course_number}} {{section_id}}</a></h4>
+            <span class="meeting-type">{{ meetings.0.type }}</span>
+        </div>
+        <div class="col-sm-9">
+            <table class="table-course-schedule">
+                <thead class="sr-only">
+                    <tr><th>Day(s)</th>
+                        <th>Time</th>
+                        <th>Location</th>
+                        <th>Section Type</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody-course-schedule">
+                    {{#each meetings}}
+                    <tr class="course-schedule-row">
+                        {{#if wont_meet}}
+                        <!-- waiting on sws
+                             <td colspan="2" class="text-muted course-tbd">No meeting day on ... </td>
+                        -->
+                        {{else}}
+                            {{#if days_tbd }}
+                        <td colspan="2" class="text-muted course-tbd">Days and times to be arranged.</td>
+                            {{else if no_meeting}}
+                        <td colspan="3" class="text-muted course-tbd">No classroom meeting: online learning</td>
+                            {{else}}
+                        {% include "handlebars/card/schedule/course_sche_col_days.html" %}
+                            {{/if}}
+                        {{#unless no_meeting}}
+                            {{#if building_tbd}}
+                        <td class="course-loc-tbd">Room to be arranged.</td>
+                            {{else}}
+                        {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
+                            {{/if}}
+                        {{/unless}}
+
+                        <td class="course-type">
+                            {{#if @first }}
+                            {{#if ../current_enrollment}}<a target="_blank" href="/teaching/{{ ../../year }},{{ ../../quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students" class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">{{../current_enrollment}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}</a>{{else}}0&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/if}}
+                            {{/if}}
+                        </td>
+                        {{/if}}
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endtplhandlebars %}
