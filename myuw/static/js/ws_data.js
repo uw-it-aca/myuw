@@ -157,8 +157,8 @@ WSData = {
         }
 
         if (course_data && course_data.exceeded_max_display_sections) {
-            var linked_secondaries = undefined;
-            var linked_primary_label = undefined;
+            var linked_secondaries;
+            var linked_primary_label;
             for (var index in course_data.sections) {
                 var section = course_data.sections[index];
                 if (section.is_primary_section) {
