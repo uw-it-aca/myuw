@@ -2,7 +2,6 @@ import logging
 import simplejson as json
 from django.http import HttpResponse
 from myuw.logger.timer import Timer
-from myuw.dao.affiliation import is_thrive_viewer
 from myuw.dao.thrive import get_current_message, get_previous_messages
 from myuw.logger.logresp import log_data_not_found_response,\
     log_success_response
@@ -23,11 +22,10 @@ class ThriveMessages(RESTDispatch):
         timer = Timer()
         logger = logging.getLogger(__name__)
         message = None
-        if is_thrive_viewer():
-            if request.GET.get('history', False):
-                message = get_previous_messages(request)
-            else:
-                message = get_current_message(request)
+        if request.GET.get('history', False):
+            message = get_previous_messages(request)
+        else:
+            message = get_current_message(request)
 
         if message is None:
             log_data_not_found_response(logger, timer)
