@@ -41,7 +41,7 @@ class TestThrive(TestCase):
                                         get_request_with_date("2017-09-18"))
         message = get_current_message(request)
         self.assertEqual(message['target'], TARGET_FYP)
-        self.assertEqual(message['week_label'], 'Week -1')
+        self.assertEqual(message['week_label'], 'Week 0')
         self.assertIsNotNone(message['title'])
 
         request = get_request_with_user('jnew',
@@ -76,7 +76,7 @@ class TestThrive(TestCase):
         messages = get_previous_messages(request)
         self.assertEqual(len(messages), 2)
         self.assertEqual(messages[0]['target'], TARGET_FYP)
-        self.assertEqual(messages[0]['week_label'], 'Week -1')
+        self.assertEqual(messages[0]['week_label'], 'Week 0')
 
     def test_get_offset(self):
         term = Term()
