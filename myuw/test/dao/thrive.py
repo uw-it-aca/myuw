@@ -16,25 +16,24 @@ from myuw.test import fdao_sws_override, fdao_pws_override,\
 class TestThrive(TestCase):
 
     def test_is_target_group(self):
-        get_request()
-        self.assertIsNone(get_target_group())
+        self.assertIsNone(get_target_group(get_request()))
 
         request = get_request_with_user('jnew', get_request())
-        self.assertTrue(is_fyp())
+        self.assertTrue(is_fyp(request))
 
         request = get_request_with_user('javg001', get_request())
-        self.assertTrue(is_aut_transfer())
+        self.assertTrue(is_aut_transfer(request))
 
         request = get_request_with_user('javg002', get_request())
-        self.assertTrue(is_win_transfer())
+        self.assertTrue(is_win_transfer(request))
 
         request = get_request_with_user('javg003', get_request())
-        self.assertTrue(is_aut_transfer())
-        self.assertFalse(is_fyp())
+        self.assertTrue(is_aut_transfer(request))
+        self.assertFalse(is_fyp(request))
 
         request = get_request_with_user('javg004', get_request())
-        self.assertTrue(is_win_transfer())
-        self.assertFalse(is_aut_transfer())
+        self.assertTrue(is_win_transfer(request))
+        self.assertFalse(is_aut_transfer(request))
 
     def test_get_current_message(self):
         request = get_request_with_user('jnew',
