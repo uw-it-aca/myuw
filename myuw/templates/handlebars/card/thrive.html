@@ -2,14 +2,24 @@
     {% tplhandlebars "thrive_card" %}
     <div class="card" data-type="card" data-name="ThriveCard" data-identifier="{{ title }}">
         <h3>
-            <span>Thrive - First Year</span>
-            <br>Husky Experience
+            {{#if target_fyp}}
+                <span>Thrive - First Year</span>
+                <br>Husky Experience
+            {{/if}}
+            {{#if target_aut_transfer}}
+                <span>Thrive - Transfer</span>
+                <br>Husky Experience
+            {{/if}}
+            {{#if target_win_transfer}}
+                <span>Thrive - Transfer</span>
+                <br>Husky Experience
+            {{/if}}
         </h3>
         {{> thrive_highlight }}
         <div class="thrive-trythis-learnmore">
           {{> thrive_learnmore }}
           <div class="thrive-card-footer">
-              <a href="/thrive/">What is Thrive?</a> | <a href="/thrive_messages/">View Thrive messages</a>
+              <a href="/thrive/" class="what-is-thrive">What is Thrive?</a> | <a href="/thrive_messages/" class="view-thrive-msg">View Thrive messages</a>
           </div>
         </div>
     </div>

@@ -50,8 +50,6 @@ def is_oldmyuw_user():
         return True
     if is_optin_user(uwnetid) or has_newmyuw_preference(uwnetid):
         return False
-    if is_applicant():
-        return True
     if is_staff_employee():
         return True
     if is_faculty():
@@ -60,6 +58,8 @@ def is_oldmyuw_user():
         return True
     if is_undergrad_student():
         return False
+    if is_applicant():
+        return True
     return True
 
 
