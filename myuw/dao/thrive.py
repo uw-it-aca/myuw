@@ -8,6 +8,7 @@ from myuw.dao.term import get_comparison_date, get_current_quarter,\
 
 
 logger = logging.getLogger(__name__)
+CACHE_ID = "thrive_target"
 TARGET_FYP = "fyp"
 TARGET_AUT_TRANSFER = "au_xfer"
 TARGET_WIN_TRANSFER = "wi_xfer"
@@ -17,34 +18,38 @@ target_groups = [TARGET_AUT_TRANSFER,
 # the order says the priority
 
 
-def get_target_group():
+def get_target_group(request):
+    if hasattr(request, CACHE_ID):
+        return request.CACHE_ID
+
     uwnetid = get_netid_of_current_user()
     for target in target_groups:
         try:
             if is_thrive_viewer(uwnetid, target):
+                request.CACHE_ID = target
                 return target
         except Exception:
             pass
     return None
 
 
-def is_fyp():
-    return TARGET_FYP == get_target_group()
+def is_fyp(request):
+    return TARGET_FYP == get_target_group(request)
 
 
-def is_aut_transfer():
-    return TARGET_AUT_TRANSFER == get_target_group()
+def is_aut_transfer(request):
+    return TARGET_AUT_TRANSFER == get_target_group(request)
 
 
-def is_win_transfer():
-    return TARGET_WIN_TRANSFER == get_target_group()
+def is_win_transfer(request):
+    return TARGET_WIN_TRANSFER == get_target_group(request)
 
 
 def get_current_message(request):
     """
     Gets the thrive message for the current day in the current quarter
     """
-    target = get_target_group()
+    target = get_target_group(request)
     if target:
         current_date = get_comparison_date(request)
         current_qtr = get_current_quarter(request)
@@ -60,7 +65,7 @@ def get_previous_messages(request):
     """
     Gets the thrive messages up to the currrent date in the current quarter
     """
-    target = get_target_group()
+    target = get_target_group(request)
     if target is None:
         return None
 

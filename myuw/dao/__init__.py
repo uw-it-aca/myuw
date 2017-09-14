@@ -22,7 +22,7 @@ def is_using_file_dao():
 
 def _is_optin_user(uwnetid):
     file_path = _get_file_path("MYUW_OPTIN_SWITCH_PATH",
-                               "optin-list.txt")
+                               "opt_in_list.txt")
     return is_netid_in_list(uwnetid, file_path)
 
 
@@ -32,14 +32,15 @@ def is_thrive_viewer(uwnetid, population):
     return is_netid_in_list(uwnetid, file_path)
 
 
-def _get_file_path(settings_key, default_filename):
+def _get_file_path(settings_key, filename):
     file_path = getattr(settings, settings_key, None)
-    if not file_path:
-        current_dir = os.path.dirname(os.path.realpath(__file__))
+    if file_path:
+        return os.path.join(file_path, filename)
 
-        file_path = os.path.abspath(os.path.join(current_dir,
-                                                 "..", "data",
-                                                 default_filename))
+    current_dir = os.path.dirname(os.path.realpath(__file__))
+    file_path = os.path.abspath(os.path.join(current_dir,
+                                             "..", "data",
+                                             filename))
     return file_path
 
 
