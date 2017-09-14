@@ -57,7 +57,7 @@ class TestUserDao(TransactionTestCase):
         self.assertTrue(is_oldmyuw_user())
 
         get_request_with_user('japplicant')
-        self.assertTrue(is_oldmyuw_user())
+        self.assertFalse(is_oldmyuw_user())
 
     def test_is_oldmyuw_mobile_user(self):
         get_request_with_user('javerage')
