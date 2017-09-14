@@ -68,22 +68,23 @@ class TestInstructorTermSchedule(MyuwApiTest):
         self.assertEquals(response.status_code, 200)
 
     def test_exceeded_max_display_sections_case(self):
-        now_request = get_request_with_user(
-            'billsea', get_request_with_date("2017-10-01"))
-        schedule = get_current_quarter_instructor_schedule(now_request)
-        resp = InstScheCurQuar().GET(now_request)
-        self.assertEquals(resp.status_code, 200)
-        data = json.loads(resp.content)
-        self.assertTrue(data["exceeded_max_display_sections"])
-        self.assertFalse(data["future_term"])
-        self.assertEqual(len(data['sections']), 5)
-        primary_section = data['sections'][0]
-        self.assertEqual(primary_section["section_label"],
-                         "2017-autumn-CSE-154-A")
-        self.assertEqual(primary_section["total_linked_secondaries"], 4)
-        sec_section = data['sections'][1]
-        self.assertEqual(sec_section["primary_section_label"],
-                         "2017-autumn-CSE-154-A")
+        with self.settings(MYUW_MAX_INSTRUCTOR_SECTIONS=3):
+            now_request = get_request_with_user(
+                'billsea', get_request_with_date("2017-10-01"))
+            schedule = get_current_quarter_instructor_schedule(now_request)
+            resp = InstScheCurQuar().GET(now_request)
+            self.assertEquals(resp.status_code, 200)
+            data = json.loads(resp.content)
+            self.assertTrue(data["exceeded_max_display_sections"])
+            self.assertFalse(data["future_term"])
+            self.assertEqual(len(data['sections']), 5)
+            primary_section = data['sections'][0]
+            self.assertEqual(primary_section["section_label"],
+                             "2017-autumn-CSE-154-A")
+            self.assertEqual(primary_section["total_linked_secondaries"], 4)
+            sec_section = data['sections'][1]
+            self.assertEqual(sec_section["primary_section_label"],
+                             "2017-autumn-CSE-154-A")
 
 
 class TestInstructorSection(MyuwApiTest):
