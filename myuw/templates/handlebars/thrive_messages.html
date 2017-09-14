@@ -1,8 +1,21 @@
 	{% load templatetag_handlebars %}
     {% tplhandlebars "thrive_messages" %}
     <div class="container thrive-messages">
-      <h2 id="main" class="heading-page"><span>Thrive - First Year</span><br>Husky Experience</h2>
-      <p class="thrive-archive-instructions">Revisit Thrive messages that have appeared during the quarter. &nbsp;<a href="/thrive/">What is Thrive?</a></p>
+      <h2 id="main" class="heading-page">
+          {{#if target_fyp}}
+                <span>Thrive - First Year</span>
+                <br>Husky Experience
+            {{/if}}
+            {{#if target_aut_transfer}}
+                <span>Thrive - Transfer</span>
+                <br>Husky Experience
+            {{/if}}
+            {{#if target_win_transfer}}
+                <span>Thrive - Transfer</span>
+                <br>Husky Experience
+            {{/if}}
+      </h2>
+      <p class="thrive-archive-instructions">Revisit Thrive messages that have appeared during the quarter. &nbsp;<a href="{{#if target_fyp}}/thrive/{{/if}}{{#if target_win_transfer}}/thrive/...{{/if}}{{#if target_win_transfer}}/thrive/...{{/if}}">What is Thrive?</a></p>
       {{#each message_groups}}
       <div class="row">
         {{#each this}}

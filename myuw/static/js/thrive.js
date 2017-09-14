@@ -3,8 +3,21 @@ var Thrive = {
         "use strict";
         var source = $("#thrive_content").html();
         var template = Handlebars.compile(source);
-        $("#main-content").html(template());
-    }
+        $("#main-content").html(template(Thrive.set_target({})));
+    },
+
+    set_target: function(data) {
+        if (window.user.fyp) {
+            data.target_fyp = true;
+        }
+        if (window.user.aut_transfer) {
+            data.target_aut_transfer = true;
+        }
+        if (window.user.win_transfer) {
+            data.target_win_transfer = true;
+        }
+        return data;
+    },
 };
 
 
@@ -22,8 +35,8 @@ var ThriveMessages = {
         var source = $("#thrive_messages").html();
         var template = Handlebars.compile(source);
         var message_groups = ThriveMessages.message_groups(messages, 2);
-
-        $("#main-content").html(template({ message_groups: message_groups }));
+        data = {message_groups: message_groups};
+        $("#main-content").html(template(Thrive.set_target(data)));
     },
 
     message_groups: function(messages, per_row){

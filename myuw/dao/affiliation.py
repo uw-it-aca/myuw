@@ -6,7 +6,7 @@ import logging
 import traceback
 from django.conf import settings
 from myuw.logger.logback import log_info
-from myuw.dao import is_fyp_thrive_viewer, get_netid_of_current_user
+from myuw.dao import get_netid_of_current_user
 from myuw.dao.schedule import get_current_quarter_schedule
 from myuw.dao.pws import get_campus_of_current_user
 from myuw.dao.gws import is_grad_student, is_student,\
@@ -17,6 +17,8 @@ from myuw.dao.gws import is_grad_student, is_student,\
 from myuw.dao.instructor_schedule import is_instructor
 from myuw.dao.uwnetid import is_clinician
 from myuw.dao.enrollment import get_main_campus
+from myuw.dao.thrive import get_target_group, is_fyp, is_aut_transfer,\
+    is_win_transfer
 from myuw.dao.exceptions import IndeterminateCampusException
 
 
@@ -52,13 +54,6 @@ def get_all_affiliations(request):
     if hasattr(request, 'myuw_user_affiliations'):
         return request.myuw_user_affiliations
 
-    is_fyp = False
-    try:
-        is_fyp = is_thrive_viewer()
-    except Exception:
-        # This fails in unit tests w/o userservice
-        pass
-
     data = {"grad": is_grad_student(),
             "undergrad": is_undergrad_student(),
             "student": is_student(),
@@ -66,7 +61,9 @@ def get_all_affiliations(request):
             "staff_employee": is_staff_employee(),
             "stud_employee": is_student_employee(),
             "employee": is_employee(),
-            "fyp": is_fyp,
+            "fyp": is_fyp(request),
+            "aut_transfer": is_aut_transfer(request),
+            "win_transfer": is_win_transfer(request),
             "faculty": is_faculty(),
             "clinician": is_clinician(),
             "instructor": is_instructor(request),
@@ -74,6 +71,7 @@ def get_all_affiliations(request):
             "bothell": is_bothell_student(),
             "tacoma": is_tacoma_student(),
             }
+
     # add 'official' campus info
     campuses = []
     try:
@@ -93,10 +91,6 @@ def get_all_affiliations(request):
     log_info(logger, data)
     request.myuw_user_affiliations = data
     return data
-
-
-def is_thrive_viewer():
-    return is_fyp_thrive_viewer(get_netid_of_current_user())
 
 
 def _get_campuses_by_schedule(schedule):

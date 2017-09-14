@@ -15,10 +15,26 @@ class TestAffilliations(TestCase):
         now_request = get_request_with_user('jeos')
         affiliations = get_all_affiliations(now_request)
 
-    def test_fyp_enrollment(self):
+    def test_fyp(self):
         now_request = get_request_with_user('jnew')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations['fyp'])
+        self.assertFalse(affiliations['aut_transfer'])
+        self.assertFalse(affiliations['win_transfer'])
+
+    def test_aut_transfer(self):
+        now_request = get_request_with_user('javg001')
+        affiliations = get_all_affiliations(now_request)
+        self.assertFalse(affiliations['fyp'])
+        self.assertTrue(affiliations['aut_transfer'])
+        self.assertFalse(affiliations['win_transfer'])
+
+    def test_win_transfer(self):
+        now_request = get_request_with_user('javg002')
+        affiliations = get_all_affiliations(now_request)
+        self.assertFalse(affiliations['fyp'])
+        self.assertFalse(affiliations['aut_transfer'])
+        self.assertTrue(affiliations['win_transfer'])
 
     def test_is_faculty(self):
         now_request = get_request_with_user('bill')
