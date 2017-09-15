@@ -149,13 +149,7 @@ WSData = {
     },
 
     _link_secondary_sections: function (term) {
-        var course_data;
-        if (term) {
-            course_data = WSData.instructed_course_data_for_term(term);
-        } else {
-            course_data = WSData.current_instructed_course_data();
-        }
-
+        var course_data = WSData.instructed_course_data_for_term(term);
         if (course_data && course_data.exceeded_max_display_sections) {
             var linked_secondaries;
             var linked_primary_label;
