@@ -16,9 +16,38 @@
                 First day of instruction is {{toFriendlyDate first_day_quarter}} ({{toFromNowDate first_day_quarter}})</p>
             {{/if}}
             {{#each sections}}
-              <div class="myuw-card-section {{#if @last}}last{{/if}}">
-                  {{> summary_section_panel }}
-              </div>
+                {{#unless under_disclosure}}
+                    <div class="myuw-card-section {{#if @last}}last{{/if}}">
+                        {{> summary_section_panel }}
+
+                        {{#if linked_secondaries}}
+                            <div class="card-disclosure">
+                                <span id="show_secondary_{{section_label}}_wrapper">
+                                    <a class="toggle_secondary_{{ ../year }}_{{ ../quarter }}"
+                                       id="show_secondary_{{section_label}}" href="#"
+                                       aria-controls="instr_summary_{{section_label}}"
+                                       title="Expand to show secondary sections">Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
+                                </span>
+                                <span id="hide_secondary_{{section_label}}_wrapper"
+                                      hidden aria-hidden="true">
+                                    <a class="toggle_secondary_{{ ../year }}_{{ ../quarter }}"
+                                       id="hide_secondary_{{section_label}}" href="#"
+                                       aria-controls="instr_summary_{{section_label}}"
+                                       title="Collapse to hide secondary sections">Hide Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
+                                </span>
+                            </div>
+                            <div id="instr_summary_{{section_label}}" class="slide-hide"
+                                 aria-label="Course instructor information"
+                                 rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
+                                 aria-hidden="true" hidden aria-expanded="false"
+                                 style="display: none;" tabindex="-1">
+                                {{#each linked_secondaries}}
+                                    {{> summary_section_panel }}
+                                {{/each}}
+                            </div>
+                        {{/if}}
+                    </div>
+                {{/unless}}
            {{/each}}
            <div class="future-quarter-links" style="margin-top:16px;"><a href="/academic_calendar/#{{ year }},{{capitalizeString quarter }}">View {{capitalizeString quarter}} {{year}} important dates and deadlines.</a></div>
         {{/unless}}

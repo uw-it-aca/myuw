@@ -17,7 +17,7 @@ var SummaryScheduleCard = {
             return;
         }
 
-        if (SummaryScheduleCard.term === 'current') {
+        if (!SummaryScheduleCard.term || SummaryScheduleCard.term === 'current') {
             SummaryScheduleCard.term = window.term.year + ',' + window.term.quarter;
         }
 
@@ -29,6 +29,7 @@ var SummaryScheduleCard = {
     render_upon_data: function() {
         var inst_course_data = WSData._instructed_course_data[SummaryScheduleCard.term];
         if (inst_course_data) {
+            // if .sections.length is 0, display msg
             SummaryScheduleCard._render();
             LogUtils.cardLoaded(SummaryScheduleCard.name, SummaryScheduleCard.dom_target);
         }
@@ -38,17 +39,18 @@ var SummaryScheduleCard = {
         var error_code = WSData.instructed_course_data_error_code(SummaryScheduleCard.term);
         if (error_code === 410) {
             Error410.render();
-        } else if (error_code === 404) {
-            $("#SummaryScheduleCard").hide();
-        } else {
-            raw = CardWithError.render("Summary Schedule");
-            InstructorCourseCards.dom_target.html(raw);
+            return;
         }
+        if (error_code === 404) {
+            $("#SummaryScheduleCard").hide();
+            return;
+        }
+        var raw = CardWithError.render("Schedule Summary");
+        InstructorCourseCards.dom_target.html(raw);
     },
 
     _render: function () {
         Handlebars.registerPartial('summary_section_panel', $("#summary_section_panel").html());
-
         var term = SummaryScheduleCard.term;
         var instructed_course_data = WSData._link_secondary_sections(term);
         var source = $("#instructor_summary_schedule").html();
@@ -64,10 +66,12 @@ var SummaryScheduleCard = {
         };
         var raw = courses_template(data);
         SummaryScheduleCard.dom_target.html(raw);
-        SummaryScheduleCard.add_events(SummaryScheduleCard.term);
+        SummaryScheduleCard.add_events(term);
     },
 
     add_events: function(term) {
+        var term_id = term.replace(',', '_');
+
         $(".show_map").on("click", function(ev) {
             var course_id = ev.currentTarget.getAttribute("rel");
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');
@@ -89,6 +93,16 @@ var SummaryScheduleCard = {
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');
             WSData.log_interaction("open_course_classlist_"+course_id, term);
             return false;
+        });
+
+        $(".toggle_secondary_" + term_id).on("click", function(ev) {
+            ev.preventDefault();
+            var card = $(ev.target).closest("[data-type='card']");
+            var item_id = this.getAttribute("aria-controls");
+            var div = $("#" + item_id);
+            var expose = $("#show_" + item_id + "_wrapper");
+            var hide = $("#hide_"  + item_id + "_wrapper");
+            toggle_card_disclosure(card, div, expose, hide, item_id);
         });
     }
 };

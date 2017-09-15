@@ -168,6 +168,7 @@ WSData = {
                         linked_primary_label = section.section_label;
                     }
                 } else {
+                    section.under_disclosure = true;
                     primary_label = section.primary_section_label;
                     if (primary_label === linked_primary_label &&
                        linked_secondaries !== undefined) {
