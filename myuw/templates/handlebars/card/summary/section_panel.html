@@ -1,17 +1,21 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "summary_section_panel" %}
     <div class="row">
+        {{#unless under_disclosure}}
         <div class="col-sm-3">
             <h4 class="myuw-card-row-heading" style="display:inline-block;
-                margin-bottom:0px;"><div class="c{{color_id}} {{#if under_disclosure}}minirectangle{{else}}simplesquare{{/if}}" aria-hidden="true"></div><a href="/teaching/{{ @root.year }},{{ @root.quarter }}#{{ curriculum_abbr }}-{{ course_number }}-{{ section_id }}"
-                class="future-nav-link" future-nav-target="{{@root.year}},{{@root.quarter}},{{curriculum_abbr}}-{{course_number}}-{{section_id}}">{{#unless under_disclosure}}{{curriculum_abbr}} {{course_number}} {{/unless}}{{section_id}}</a></h4>
-            {{#unless under_disclosure}}<span class="meeting-type">{{ meetings.0.type }}</span>{{/unless}}
+                margin-bottom:0px;"><div class="c{{color_id}} simplesquare" aria-hidden="true"></div><a href="/teaching/{{ @root.year }},{{ @root.quarter }}#{{ curriculum_abbr }}-{{ course_number }}-{{ section_id }}"
+                class="future-nav-link" future-nav-target="{{@root.year}},{{@root.quarter}},{{curriculum_abbr}}-{{course_number}}-{{section_id}}">{{curriculum_abbr}} {{course_number}} {{section_id}}</a></h4>
+            <span class="meeting-type">{{ meetings.0.type }}</span>
         </div>
 
         <div class="col-sm-9">
+        {{/unless}}
             <table class="table-course-schedule">
                 <thead class="sr-only">
-                    <tr><th>Day(s)</th>
+                    <tr>
+                        {{#if under_disclosure}}<th>Section</th>{{/if}}
+                        <th>Day(s)</th>
                         <th>Time</th>
                         <th>Location</th>
                         <th>Enrollment</th>
@@ -22,6 +26,15 @@
                 <tbody class="tbody-course-schedule">
                 {{#each meetings}}
                     <tr class="course-schedule-row">
+                        {{#if ../under_disclosure}}
+                            <td>
+                                {{#if @first }}
+                                <h4 class="myuw-card-row-heading" style="display:inline-block;
+                                margin-bottom:0px;"><div class="c{{../color_id}} minirectangle" aria-hidden="true"></div><a href="/teaching/{{ @root.year }},{{ @root.quarter }}#{{ ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}"
+                                class="future-nav-link" future-nav-target="{{@root.year}},{{@root.quarter}},{{../curriculum_abbr}}-{{../course_number}}-{{../section_id}}">{{../section_id}}</a></h4>
+                                {{/if}}
+                            </td>
+                        {{/if}}
                     {{#if wont_meet}}
                         <!-- waiting on sws
                              <td colspan="2" class="text-muted course-tbd">No meeting day on ... </td>
@@ -55,7 +68,7 @@
 
                         <td class="course-sln">
                             {{#if @first }}
-                            {{#if ../sln}}{{../sln}}{{/if}}
+                            {{#if ../sln}}<a href="" target="_blank" data-linklabel="">{{../sln}}</a>{{/if}}
                             {{/if}}
                         </td>
                     {{/if}}
@@ -63,6 +76,10 @@
                 {{/each}}
                 </tbody>
             </table>
+
+        {{#unless under_disclosure}}
         </div>
+        {{/unless}}
+
     </div>
 {% endtplhandlebars %}
