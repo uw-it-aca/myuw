@@ -24,6 +24,22 @@
     "Previous": null,
     "Sections": [
         {
+            "CourseNumber": "122",
+            "CurriculumAbbreviation": "PHYS",
+            "Href": "/student/v5/course/2013,spring,PHYS,122/BA.json",
+            "Quarter": "spring",
+            "SectionID": "BA",
+            "Year": 2013
+        },
+        {
+            "CourseNumber": "122",
+            "CurriculumAbbreviation": "PHYS",
+            "Href": "/student/v5/course/2013,spring,PHYS,122/BS.json",
+            "Quarter": "spring",
+            "SectionID": "BS",
+            "Year": 2013
+        },
+        {
             "CourseNumber": "123",
             "CurriculumAbbreviation": "PHYS",
             "Href": "/student/v5/course/2013,spring,PHYS,123/AA.json",
@@ -54,7 +70,15 @@
             "Quarter": "spring",
             "SectionID": "CU",
             "Year": 2013
+        },
+        {
+            "CourseNumber": "123",
+            "CurriculumAbbreviation": "PHYS",
+            "Href": "/student/v5/course/2013,spring,PHYS,123/BA.json",
+            "Quarter": "spring",
+            "SectionID": "BA",
+            "Year": 2013
         }
     ],
-    "TotalCount": 4
+    "TotalCount": 7
 }

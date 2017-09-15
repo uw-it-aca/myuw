@@ -156,16 +156,21 @@ WSData = {
             for (var index in course_data.sections) {
                 var section = course_data.sections[index];
                 if (section.is_primary_section) {
+                    // verify prev linked_secondaries
+                    if (linked_secondaries && linked_secondaries.length ===0) {
+                        linked_secondaries = null;
+                    }
+
                     if (section.total_linked_secondaries) {
                         section.linked_secondaries = [];
                         linked_secondaries = section.linked_secondaries;
                         linked_primary_label = section.section_label;
                     }
                 } else {
-                    section.under_disclosure = true;
                     primary_label = section.primary_section_label;
                     if (primary_label === linked_primary_label &&
                        linked_secondaries !== undefined) {
+                        section.under_disclosure = true;
                         linked_secondaries.push(section);
                     }
                 }
