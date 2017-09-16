@@ -6,8 +6,10 @@ from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user, get_request
 from myuw.dao.instructor_schedule import is_instructor,\
     get_current_quarter_instructor_schedule,\
+    get_instructor_schedule_by_term,\
     get_limit_estimate_enrollment_for_section,\
     get_instructor_section
+from myuw.dao.term import get_current_quarter
 from userservice.user import UserServiceMiddleware
 
 
@@ -19,6 +21,12 @@ class TestInstructorSchedule(TestCase):
         get_request_with_user('bill', now_request)
         self.assertTrue(is_instructor(now_request))
 
+        get_request_with_user('billsea', now_request)
+        self.assertTrue(is_instructor(now_request))
+
+        get_request_with_user('billseata', now_request)
+        self.assertTrue(is_instructor(now_request))
+
         get_request_with_user('billpce', now_request)
         self.assertTrue(is_instructor(now_request))
 
@@ -27,6 +35,13 @@ class TestInstructorSchedule(TestCase):
         get_request_with_user('bill', now_request)
         schedule = get_current_quarter_instructor_schedule(now_request)
         self.assertEqual(len(schedule.sections), 6)
+
+        request = get_request_with_user('billseata',
+                                        get_request())
+        UserServiceMiddleware().process_request(request)
+        term = get_current_quarter(request)
+        schedule = get_instructor_schedule_by_term(term)
+        self.assertEqual(len(schedule.sections), 7)
 
     def test_get_instructor_section(self):
         now_request = RequestFactory().get("/")
