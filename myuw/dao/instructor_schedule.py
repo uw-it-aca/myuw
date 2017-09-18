@@ -191,4 +191,4 @@ def check_section_instructor(section, person=None):
 def exceeded_max_display_sections(total_sections):
     return total_sections > getattr(settings,
                                     "MYUW_MAX_INSTRUCTOR_SECTIONS",
-                                    3)
+                                    10)
