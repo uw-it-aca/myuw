@@ -25,6 +25,15 @@
                 <tbody class="tbody-course-schedule">
                 {{#each meetings}}
                     <tr class="course-schedule-row">
+                        {{#if ../under_disclosure}}
+                            <td>
+                                {{#if @first }}
+                                <h4 class="myuw-card-row-heading" style="display:inline-block;
+                                margin-bottom:0px;"><div class="c{{../color_id}} minirectangle" aria-hidden="true"></div><a href="/teaching/{{ @root.year }},{{ @root.quarter }}#{{ ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}"
+                                class="future-nav-link" future-nav-target="{{@root.year}},{{@root.quarter}},{{../curriculum_abbr}}-{{../course_number}}-{{../section_id}}">{{../section_id}}</a></h4>
+                                {{/if}}
+                            </td>
+                        {{/if}}
                     {{#if wont_meet}}
                         <!-- waiting on sws
                              <td colspan="2" class="text-muted course-tbd">No meeting day on ... </td>
@@ -66,6 +75,10 @@
                 {{/each}}
                 </tbody>
             </table>
+
+        {{#unless under_disclosure}}
         </div>
+        {{/unless}}
+
     </div>
 {% endtplhandlebars %}
