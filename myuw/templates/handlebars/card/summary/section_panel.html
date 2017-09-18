@@ -14,6 +14,9 @@
             <table class="table-course-schedule">
                 <thead class="sr-only">
                     <tr>
+                        {{#if ../under_disclosure}}
+                            <th>Section</th>
+                        {{/if}}
                         <th>Day(s)</th>
                         <th>Time</th>
                         <th>Location</th>
