@@ -88,15 +88,19 @@ c8a #473EC5;
 
     td {
         padding: 0 8px 8px 0;
-        width:6em;
 
         &.course-final-date { min-width: 4em; }
-        //&.course-days {text-align:center;}
+        &.course-days { text-align:left; width: 6em; }
+        &.course-section { width: 4.2em; white-space: nowrap; }
         &.course-time { width: 8.4em; }
         &.course-location { width: 6em; text-align: right; padding-right: 16px; }
-        &.course-type {width: 8em; text-align: right;}
+        &.course-enrollment { width: 6em; }
+        &.course-type { text-align: left; text-transform: capitalize; }
         &.course-location-info { width: 6em; }
+        &.course-sln { text-align: right; }
     }
+
+    tr:last-child td { padding-bottom: 0; }
 }
 
 .grading-system { display: block; }
