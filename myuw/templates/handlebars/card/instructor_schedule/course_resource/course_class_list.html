@@ -10,10 +10,10 @@
             <div class="col-sm-9">
                 <div class="myuw-card-row-content">
                     <div class="card-badge-value">
-                        {{#if no_current_enrolment}}
+                        {{#if is_prev_term_enrollment}}
                             <div>
                                 <p>Registration opens {{ toMonthDay registration_start }} at 6:00 AM PST.</p>
-                                <p>({{ current_enrollment }} of {{ limit_estimate_enrollment }} students registered for course in {{ toTitleCase quarter }} {{ last_enrolment_year }})</p>
+                                <p>({{ current_enrollment }} of {{ limit_estimate_enrollment }} students registered for course in {{ toTitleCase quarter }} {{ prev_enrollment_year }})</p>
                             </div>
                         {{else}}
                             {{#if enrollment_student_name}}

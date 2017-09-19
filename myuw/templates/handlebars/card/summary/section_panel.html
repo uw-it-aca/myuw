@@ -4,8 +4,8 @@
     {{#unless under_disclosure}}
         <div class="col-sm-3">
             <h4 class="myuw-card-row-heading" style="display:inline-block;
-                margin-bottom:0px;"><div class="c{{color_id}} simplesquare" aria-hidden="true"></div><a href="/teaching/{{ @root.year }},{{ @root.quarter }}#{{ curriculum_abbr }}-{{ course_number }}-{{ section_id }}"
-                class="future-nav-link" future-nav-target="{{@root.year}},{{@root.quarter}},{{curriculum_abbr}}-{{course_number}}-{{section_id}}">{{curriculum_abbr}} {{course_number}} {{section_id}}</a></h4>
+                margin-bottom:0px;"><div class="c{{color_id}} simplesquare" aria-hidden="true"></div><a href="/teaching/{{ year }},{{ quarter }}#{{ curriculum_abbr }}-{{ course_number }}-{{ section_id }}"
+                class="future-nav-link" future-nav-target="{{year}},{{quarter}},{{curriculum_abbr}}-{{course_number}}-{{section_id}}">{{curriculum_abbr}} {{course_number}} {{section_id}}</a></h4>
             <span class="meeting-type">{{ meetings.0.type }}</span>
         </div>
 
@@ -60,7 +60,16 @@
 
                         <td class="course-enrollment">
                         {{#if @first }}
-                            {{#if ../current_enrollment}}<a target="_blank" href="/teaching/{{ @root.year }},{{ @root.quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students" class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">{{../current_enrollment}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}</a>{{else}}0&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/if}}
+                            {{#if is_prev_term_enrollment}}0  <!-- the current_enrollment value is of previous term -->
+                                {{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
+                            {{else}}
+                                {{#unless ../current_enrollment}}0
+                                    {{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
+                                {{else}}
+                                     <a target="_blank" href="/teaching/{{ @root.year }},{{ @root.quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students"
+                                        class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">{{../current_enrollment}}{{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}</a>
+                                {{/unless}}
+                            {{/if}}
                         {{/if}}
                         </td>
 
