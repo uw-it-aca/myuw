@@ -39,18 +39,20 @@
                                                    title="Collapse to hide secondary sections"><i class="fa fa-caret-right" aria-hidden="true"></i>Hide Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
                                             </span>
                                         </div>
-                                        <div id="instr_summary_{{section_label}}" class="slide-hide secondary-section-disclosure"
-                                             aria-label="Course instructor information"
-                                             rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
-                                             aria-hidden="true" hidden aria-expanded="false"
-                                             style="display: none;" tabindex="-1">
-                                            {{#each linked_secondaries}}
-                                                {{> summary_section_panel }}
-                                            {{/each}}
-                                        </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <div id="instr_summary_{{section_label}}" class="slide-hide secondary-section-disclosure"
+                                 aria-label="Course instructor information"
+                                 rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
+                                 aria-hidden="true" hidden aria-expanded="false"
+                                 style="display: none;" tabindex="-1">
+                                {{#each linked_secondaries}}
+                                    {{> summary_section_panel }}
+                                {{/each}}
+                            </div>
+
                         {{/if}}
                     </div>
                 {{/unless}}

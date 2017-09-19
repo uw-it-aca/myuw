@@ -90,8 +90,15 @@ c8a #473EC5;
         padding: 0 8px 8px 0;
 
         &.course-final-date { min-width: 4em; }
-        &.course-days { text-align:left; width: 6em; }
-        &.course-section { width: 4.2em; white-space: nowrap; }
+        &.course-days { text-align:left; width: 4.5em; }
+        &.course-section {
+            width: 4.2em;
+            white-space: nowrap;
+
+            a {
+                font-weight: bold;
+            }
+        }
         &.course-time { width: 8.4em; }
         &.course-location { width: 6em; text-align: right; padding-right: 16px; }
         &.course-enrollment { width: 6em; }
@@ -101,6 +108,7 @@ c8a #473EC5;
     }
 
     tr:last-child td { padding-bottom: 0; }
+
 }
 
 .grading-system { display: block; }
@@ -121,3 +129,29 @@ c8a #473EC5;
 
 /* Message text */
 .inst-course-note { font-size: small; font-style: italic; }
+
+
+/* Secondary section summary */
+.teaching-schedule-summary {
+
+    .card-disclosure {
+
+        @media @two-column {
+            margin-left: 1.3em;
+
+        }
+    }
+
+    .secondary-section-disclosure {
+
+        .myuw-card-row-content {
+
+            padding-left: 8px;
+
+            @media @two-column {
+                padding-left: 16px;
+            }
+        }
+
+    }
+}
