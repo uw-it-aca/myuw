@@ -28,14 +28,14 @@
                                             <span id="show_secondary_{{section_label}}_wrapper">
                                                 <a class="myuw-disclosurelink myuw-disclosurelink-hidden toggle_secondary_{{ ../year }}_{{ ../quarter }}"
                                                    id="show_secondary_{{section_label}}" href="#"
-                                                   aria-controls="instr_summary_{{section_label}}"
+                                                   aria-controls="secondary_{{section_label}}"
                                                    title="Expand to show secondary sections"><i class="fa fa-caret-right" aria-hidden="true"></i>Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
                                             </span>
                                             <span id="hide_secondary_{{section_label}}_wrapper"
                                                   hidden aria-hidden="true">
                                                 <a class="myuw-disclosurelink myuw-disclosurelink-shown toggle_secondary_{{ ../year }}_{{ ../quarter }}"
                                                    id="hide_secondary_{{section_label}}" href="#"
-                                                   aria-controls="instr_summary_{{section_label}}"
+                                                   aria-controls="secondary_{{section_label}}"
                                                    title="Collapse to hide secondary sections"><i class="fa fa-caret-right" aria-hidden="true"></i>Hide Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
                                             </span>
                                         </div>
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
 
-                            <div id="instr_summary_{{section_label}}" class="slide-hide secondary-section-disclosure"
+                            <div id="secondary_{{section_label}}" class="slide-hide secondary-section-disclosure"
                                  aria-label="Course instructor information"
                                  rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
                                  aria-hidden="true" hidden aria-expanded="false"
