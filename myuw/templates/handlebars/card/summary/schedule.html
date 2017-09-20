@@ -26,16 +26,15 @@
                                         <div class="card-disclosure">
                                             <span id="show_secondary_{{section_label}}_wrapper">
                                                 <a class="myuw-disclosurelink myuw-disclosurelink-hidden toggle_secondary_{{ ../year }}_{{ ../quarter }}"
-                                                   id="show_secondary_{{section_label}}" href="#"
-                                                   aria-controls="secondary_{{section_label}}"
-                                                   title="Expand to show secondary sections"><i class="fa fa-caret-right" aria-hidden="true"></i>Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
+                                                  id="show_secondary_{{section_label}}" href="#"
+                                                  aria-controls="secondary_{{section_label}}"
+                                                  title="Expand to show secondary sections"><i class="fa fa-caret-right"
+                                                  aria-hidden="true"></i>Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
                                             </span>
                                             <span id="hide_secondary_{{section_label}}_wrapper"
                                                   hidden aria-hidden="true">
                                                 <a class="myuw-disclosurelink myuw-disclosurelink-shown toggle_secondary_{{ ../year }}_{{ ../quarter }}"
-                                                   id="hide_secondary_{{section_label}}" href="#"
-                                                   aria-controls="secondary_{{section_label}}"
-                                                   title="Collapse to hide secondary sections"><i class="fa fa-caret-right" aria-hidden="true"></i>Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
+                                                   id="hide_secondary_{{section_label}}" href="#" aria-controls="secondary_{{section_label}}" title="Collapse to hide secondary sections"><i class="fa fa-caret-right" aria-hidden="true"></i>Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
                                             </span>
                                         </div>
                                     </div>
@@ -56,7 +55,8 @@
                     </div>
                 {{/unless}}
            {{/each}}
-           <div class="future-quarter-links" style="margin-top:16px;"><a href="/academic_calendar/#{{ year }},{{capitalizeString quarter }}">View {{capitalizeString quarter}} {{year}} important dates and deadlines.</a></div>
+           <div class="future-quarter-links" style="margin-top:16px;"><a
+                href="/academic_calendar/#{{ year }},{{capitalizeString quarter }}">View {{capitalizeString quarter}} {{year}} important dates and deadlines.</a></div>
         {{/unless}}
     </div>
 {% endtplhandlebars %}

@@ -17,6 +17,7 @@
         <div class="col-sm-12">
 
     {{/unless}}
+
             <div class="myuw-card-row-content">
                 <table class="table-course-schedule">
                     <thead class="sr-only">
@@ -28,73 +29,71 @@
                             <th>Time</th>
                             <th>Location</th>
                             <th>Enrollment</th>
-                            {{#if under_disclosure}}<th>Section Type</th>{{/if}}
+                            {{#if under_disclosure}}
+                                <th>Section Type</th>
+                            {{/if}}
                             <th>SLN</th>
                         </tr>
                     </thead>
+
                     <tbody class="tbody-course-schedule">
-                    {{#each meetings}}
-                        <tr class="course-schedule-row">
-                            {{#if ../under_disclosure}}
+                        {{#each meetings}}
+                            <tr class="course-schedule-row">
+                                {{#if ../under_disclosure}}
                                 <td class="course-section">
                                     {{#if @first }}
-                                    <div class="c{{../color_id}} minirectangle" aria-hidden="true"></div><a href="/teaching/{{ @root.year }},{{ @root.quarter }}#{{ ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}" future-nav-target="{{@root.year}},{{@root.quarter}},{{../curriculum_abbr}}-{{../course_number}}-{{../section_id}}">{{../section_id}}</a>
+                                        <div class="c{{../color_id}} minirectangle" aria-hidden="true"></div><a
+                                             href="/teaching/{{ @root.year }},{{ @root.quarter }}#{{ ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}"
+                                             future-nav-target="{{@root.year}},{{@root.quarter}},{{../curriculum_abbr}}-{{../course_number}}-{{../section_id}}">{{../section_id}}</a>
                                     {{/if}}
                                 </td>
-                            {{/if}}
-                        {{#if wont_meet}}
-                            <!-- waiting on sws
-                                 <td colspan="2" class="text-muted course-tbd">No meeting day on ... </td>
-                            -->
-                        {{else}}
-                            {{#if days_tbd }}
-                                <td colspan="2" class="text-muted course-tbd">Days and times to be arranged</td>
-                            {{else if no_meeting}}
-                                <td colspan="3" class="text-muted course-tbd">No classroom meeting: online learning</td>
-                            {{else}}
-                                {% include "handlebars/card/schedule/course_sche_col_days.html" %}
-                            {{/if}}
-
-                            {{#unless no_meeting}}
-                                {{#if building_tbd}}
-                                    <td class="course-loc-tbd">Room to be arranged</td>
-                                {{else}}
-                                    {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
                                 {{/if}}
-                            {{/unless}}
 
-                            <td class="course-enrollment">
-                            {{#if @first }}
-                                {{#if is_prev_term_enrollment}}0  <!-- the current_enrollment value is of previous term -->
-                                    {{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
+                                {{#if days_tbd }}
+                                    <td colspan="2" class="text-muted course-tbd">Days and times to be arranged</td>
+                                {{else if no_meeting}}
+                                    <td colspan="3" class="text-muted course-tbd">No classroom meeting: online learning</td>
                                 {{else}}
-                                    {{#unless ../current_enrollment}}0
-                                        {{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
+                                    {% include "handlebars/card/schedule/course_sche_col_days.html" %}
+                                {{/if}}
+
+                                {{#unless no_meeting}}
+                                    {{#if building_tbd}}
+                                        <td class="course-loc-tbd">Room to be arranged</td>
                                     {{else}}
-                                         <a target="_blank" href="/teaching/{{ @root.year }},{{ @root.quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students"
-                                            class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">{{../current_enrollment}}{{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}</a>
-                                    {{/unless}}
+                                        {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
+                                    {{/if}}
+                                {{/unless}}
+
+                                <td class="course-enrollment">
+                                    {{#if @first }}
+                                        {{#if is_prev_term_enrollment}}0  <!-- the current_enrollment value is of previous term -->
+                                             {{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
+                                        {{else}}
+                                            {{#unless ../current_enrollment}}0
+                                                {{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
+                                            {{else}}
+                                                <a target="_blank" href="/teaching/{{ @root.year }},{{ @root.quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students"
+                                                   class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">{{../current_enrollment}}{{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}</a>
+                                            {{/unless}}
+                                        {{/if}}
+                                    {{/if}}
+                                </td>
+
+                                {{#if ../under_disclosure}}
+                                    <td class="course-type">{{ type }}</td>
                                 {{/if}}
-                            {{/if}}
-                            </td>
 
-                            {{#if ../under_disclosure}}
-                                <td class="course-type">{{ type }}</td>
-                            {{/if}}
-
-                            <td class="course-sln">
-                            {{#if @first }}
-                                {{#if ../sln}}<a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{ ../sln }}" target="_blank" data-linklabel="SLN {{../sln}}: {{../curriculum_abbr}} {{../course_number}} {{../section_id}}">{{../sln}}</a>{{/if}}
-                            {{/if}}
-                            </td>
-                        {{/if}}
-                        </tr>
-                    {{/each}}
+                                <td class="course-sln">
+                                    {{#if @first }}
+                                        {{#if ../sln}}<a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{ ../sln }}" target="_blank" data-linklabel="SLN {{../sln}}: {{../curriculum_abbr}} {{../course_number}} {{../section_id}}">{{../sln}}</a>{{/if}}
+                                    {{/if}}
+                                </td>
+                            </tr>
+                            {{/each}}
                     </tbody>
                 </table>
             </div>
-
         </div>
-
     </div>
 {% endtplhandlebars %}

@@ -36,7 +36,7 @@ describe('SummaryScheduleCard', function(){
     });
     describe("shows summary schedule", function() {
         it("Should render summary card", function() {
-            assert.equal(SummaryScheduleCard.dom_target.find('.myuw-card-section').length, 1);
+            assert.equal(SummaryScheduleCard.dom_target.find('.myuw-card-section-fulldivider').length, 1);
         });
     });
 });
