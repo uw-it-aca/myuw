@@ -16,7 +16,8 @@ describe('SummaryScheduleCard', function(){
         });
 
         Global.Environment.ajax_stub({
-            '/api/v1/instructor_schedule/2013,spring': 'api/v1/instructor_schedule/2013-spring'
+            '/api/v1/instructor_schedule/2013,spring': 'api/v1/instructor_schedule/2013-spring',
+            '/api/v1/instructor_schedule/2013,summer': 'api/v1/instructor_schedule/2013-summer'
         });
 
         $(window).on("myuw:card_load", function () {
@@ -25,9 +26,9 @@ describe('SummaryScheduleCard', function(){
 
         window.user.instructor = true;
         window.enabled_features = {};
-        window.card_display_dates = { system_date: '2017-03-28 16:17' };
+        window.card_display_dates = { system_date: '2013-06-28 16:17' };
         SummaryScheduleCard.dom_target = $('#' + render_id);
-        SummaryScheduleCard.term = '2013,spring';
+        SummaryScheduleCard.term = '2013,summer';
         SummaryScheduleCard.render_init();
     });
     after(function () {
@@ -35,7 +36,7 @@ describe('SummaryScheduleCard', function(){
     });
     describe("shows summary schedule", function() {
         it("Should render summary card", function() {
-            assert.equal(SummaryScheduleCard.dom_target.find('.myuw-card-section').length, 6);
+            assert.equal(SummaryScheduleCard.dom_target.find('.myuw-card-section-fulldivider').length, 1);
         });
     });
 });
