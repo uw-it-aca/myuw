@@ -50,7 +50,7 @@ setup(
         'UW-RestClients-Mailman<1.0',
         'UW-RestClients-MyPlan<1.0',
         'UW-RestClients-Trumba<1.0,>=0.3',
-        'UW-RestClients-Django-Utils<1.0',
+        'UW-RestClients-Django-Utils==0.6.8',
         'Django-Safe-EmailBackend>=0.1,<1.0',
         'Django-SupportTools>=1.2,<2.0',
         'django_mobileesp',
