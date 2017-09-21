@@ -27,7 +27,7 @@
                                         <div class="card-disclosure">
                                             <a class="collapsed myuw-disclosurelink toggle_secondary_{{../year}}_{{../quarter}}"
                                                href="#secondary_{{section_label}}" role="button" aria-controls="secondary_{{section_label}}"
-                                               aria-expanded="false" data-toggle="collapse" title="Show/Hide the secondary sections"><i
+                                               aria-expanded="false" data-toggle="collapse" title="Show/Hide secondary sections"><i
                                                class="fa fa-caret-right"></i>Secondary sections for
                                                {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
                                         </div>
@@ -37,7 +37,7 @@
 
                             <div id="secondary_{{section_label}}" class="collapse secondary-section-disclosure"
                                  rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
-                                 aria-label="econdary course information" aria-expanded="false" >
+                                 aria-label="Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}">
 
                                 {{#each linked_secondaries}}
                                     {{> summary_section_panel }}
