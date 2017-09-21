@@ -93,7 +93,7 @@ var SummaryScheduleCard = {
             WSData.log_interaction("open_course_classlist_"+course_id, term);
             return false;
         });
-
+/*
         $(".toggle_secondary_" + term_id).on("click", function(ev) {
             ev.preventDefault();
             var card = $(ev.target).closest("[data-type='card']");
@@ -103,6 +103,7 @@ var SummaryScheduleCard = {
             var hide = $("#hide_"  + item_id + "_wrapper");
             toggle_card_disclosure(card, div, expose, hide, item_id);
         });
+        */
     }
 };
 

@@ -25,29 +25,20 @@
                                 <div class="col-sm-12">
                                     <div class="myuw-card-row-content">
                                         <div class="card-disclosure">
-                                            <span id="show_secondary_{{section_label}}_wrapper">
-                                                <a class="myuw-disclosurelink myuw-disclosurelink-hidden toggle_secondary_{{ ../year }}_{{ ../quarter }}"
-                                                  id="show_secondary_{{section_label}}" href="#"
-                                                  aria-controls="secondary_{{section_label}}"
-                                                  title="Expand to show secondary sections"><i class="fa fa-caret-right"
-                                                  aria-hidden="true"></i>Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
-                                            </span>
-                                            <span id="hide_secondary_{{section_label}}_wrapper" hidden aria-hidden="true">
-                                                <a class="myuw-disclosurelink myuw-disclosurelink-shown toggle_secondary_{{ ../year }}_{{ ../quarter }}"
-                                                   id="hide_secondary_{{section_label}}" href="#"
-                                                   aria-controls="secondary_{{section_label}}"
-                                                   title="Collapse to hide secondary sections"><i class="fa fa-caret-right"
-                                                   aria-hidden="true"></i>Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
-                                            </span>
+                                            <a class="collapsed myuw-disclosurelink" id="show_secondary_{{section_label}}"
+                                               href="#secondary_{{section_label}}" role="button" aria-controls="secondary_{{section_label}}"
+                                               aria-expanded="false" data-toggle="collapse" title="Expand to show secondary sections"><i
+                                               class="fa fa-caret-right" aria-hidden="true"></i>Secondary sections for
+                                               {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div id="secondary_{{section_label}}" class="slide-hide secondary-section-disclosure"
-                                 aria-label="Secondary course information"
+                            <div id="secondary_{{section_label}}" class="collapse secondary-section-disclosure"
                                  rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
-                                 aria-hidden="true" aria-expanded="false" tabindex="-1">
+                                 aria-label="econdary course information" aria-expanded="false" >
+
                                 {{#each linked_secondaries}}
                                     {{> summary_section_panel }}
                                 {{/each}}
