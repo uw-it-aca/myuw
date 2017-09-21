@@ -93,17 +93,11 @@ var SummaryScheduleCard = {
             WSData.log_interaction("open_course_classlist_"+course_id, term);
             return false;
         });
-/*
+
         $(".toggle_secondary_" + term_id).on("click", function(ev) {
-            ev.preventDefault();
-            var card = $(ev.target).closest("[data-type='card']");
             var item_id = this.getAttribute("aria-controls");
-            var div = $("#" + item_id);
-            var expose = $("#show_" + item_id + "_wrapper");
-            var hide = $("#hide_"  + item_id + "_wrapper");
-            toggle_card_disclosure(card, div, expose, hide, item_id);
+            WSData.log_interaction("toggle_disclosure_of_"+item_id);
         });
-        */
     }
 };
 
