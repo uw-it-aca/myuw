@@ -1,6 +1,7 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "instructor_summary_schedule" %}
-    <div class="myuw-card teaching-schedule-summary" data-type="card" data-name="SummaryScheduleCard" data-identifier="{{ title }}">
+    <div class="myuw-card teaching-schedule-summary" data-type="card"
+         data-name="SummaryScheduleCard" data-identifier="{{ title }}">
         <h3 class="myuw-card-title">
           {{capitalizeString quarter}} {{year}} Teaching Schedule
         </h3>
@@ -24,14 +25,20 @@
                                 <div class="col-sm-12">
                                     <div class="myuw-card-row-content">
                                         <div class="card-disclosure">
-                                            <a class="collapsed myuw-disclosurelink" id="show_secondary_{{section_label}}" href="#secondary_{{section_label}}" role="button" aria-controls="secondary_{{section_label}}" aria-expanded="false" data-toggle="collapse" title="Expand to show secondary sections"><i class="fa fa-caret-right"
-                                                  aria-hidden="true"></i>Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
+                                            <a class="collapsed myuw-disclosurelink" id="show_secondary_{{section_label}}"
+                                               href="#secondary_{{section_label}}" role="button" aria-controls="secondary_{{section_label}}"
+                                               aria-expanded="false" data-toggle="collapse" title="Expand to show secondary sections"><i
+                                               class="fa fa-caret-right" aria-hidden="true"></i>Secondary sections for
+                                               {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div id="secondary_{{section_label}}" class="collapse secondary-section-disclosure" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" aria-label="Course instructor information" aria-expanded="false">
+                            <div id="secondary_{{section_label}}" class="collapse secondary-section-disclosure"
+                                 rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
+                                 aria-label="econdary course information" aria-expanded="false" >
+
                                 {{#each linked_secondaries}}
                                     {{> summary_section_panel }}
                                 {{/each}}
