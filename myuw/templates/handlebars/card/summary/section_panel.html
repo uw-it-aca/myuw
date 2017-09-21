@@ -2,6 +2,7 @@
     {% tplhandlebars "summary_section_panel" %}
     <div class="row">
     {{#unless under_disclosure}}
+    <!-- use two column layout -->
         <div class="col-sm-3">
             <h4 class="myuw-card-row-heading" style="display:inline-block;
                 margin-bottom:0px;"><div class="c{{color_id}} simplesquare" aria-hidden="true"></div><a href="/teaching/{{ year }},{{ quarter }}#{{ curriculum_abbr }}-{{ course_number }}-{{ section_id }}"
@@ -10,87 +11,89 @@
         </div>
 
         <div class="col-sm-9">
+
+    {{else}}
+    <!-- use one column layout -->
+        <div class="col-sm-12">
+
     {{/unless}}
-            <table class="table-course-schedule">
-                <thead class="sr-only">
-                    <tr>
-                        {{#if ../under_disclosure}}
-                            <th>Section</th>
-                        {{/if}}
-                        <th>Day(s)</th>
-                        <th>Time</th>
-                        <th>Location</th>
-                        <th>Enrollment</th>
-                        {{#if under_disclosure}}<th>Section Type</th>{{/if}}
-                        <th>SLN</th>
-                    </tr>
-                </thead>
-                <tbody class="tbody-course-schedule">
-                {{#each meetings}}
-                    <tr class="course-schedule-row">
-                        {{#if ../under_disclosure}}
-                            <td>
-                                {{#if @first }}
-                                <h4 class="myuw-card-row-heading" style="display:inline-block;
-                                margin-bottom:0px;"><div class="c{{../color_id}} minirectangle" aria-hidden="true"></div><a href="/teaching/{{ @root.year }},{{ @root.quarter }}#{{ ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}"
-                                class="future-nav-link" future-nav-target="{{@root.year}},{{@root.quarter}},{{../curriculum_abbr}}-{{../course_number}}-{{../section_id}}">{{../section_id}}</a></h4>
+
+            <div class="myuw-card-row-content">
+                <table class="table-course-schedule">
+                    <thead class="sr-only">
+                        <tr>
+                            {{#if ../under_disclosure}}
+                                <th>Section</th>
+                            {{/if}}
+                            <th>Day(s)</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                            <th>Enrollment</th>
+                            {{#if under_disclosure}}
+                                <th>Section Type</th>
+                            {{/if}}
+                            <th>SLN</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="tbody-course-schedule">
+                        {{#each meetings}}
+                            <tr class="course-schedule-row">
+                                {{#if ../under_disclosure}}
+                                <td class="course-section">
+                                    {{#if @first }}
+                                        <div class="c{{../color_id}} minirectangle" aria-hidden="true"></div><a
+                                             href="/teaching/{{ @root.year }},{{ @root.quarter }}#{{ ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}"
+                                             future-nav-target="{{@root.year}},{{@root.quarter}},{{../curriculum_abbr}}-{{../course_number}}-{{../section_id}}">{{../section_id}}</a>
+                                    {{/if}}
+                                </td>
                                 {{/if}}
-                            </td>
-                        {{/if}}
-                    {{#if wont_meet}}
-                        <!-- waiting on sws
-                             <td colspan="2" class="text-muted course-tbd">No meeting day on ... </td>
-                        -->
-                    {{else}}
-                        {{#if days_tbd }}
-                            <td colspan="2" class="text-muted course-tbd">Days and times to be arranged.</td>
-                        {{else if no_meeting}}
-                            <td colspan="3" class="text-muted course-tbd">No classroom meeting: online learning</td>
-                        {{else}}
-                            {% include "handlebars/card/schedule/course_sche_col_days.html" %}
-                        {{/if}}
 
-                        {{#unless no_meeting}}
-                            {{#if building_tbd}}
-                                <td class="course-loc-tbd">Room to be arranged.</td>
-                            {{else}}
-                                {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
-                            {{/if}}
-                        {{/unless}}
-
-                        <td class="course-enrollment">
-                        {{#if @first }}
-                            {{#if is_prev_term_enrollment}}0  <!-- the current_enrollment value is of previous term -->
-                                {{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
-                            {{else}}
-                                {{#unless ../current_enrollment}}0
-                                    {{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
+                                {{#if days_tbd }}
+                                    <td colspan="2" class="text-muted course-tbd">Days and times to be arranged</td>
+                                {{else if no_meeting}}
+                                    <td colspan="3" class="text-muted course-tbd">No classroom meeting: online learning</td>
                                 {{else}}
-                                     <a target="_blank" href="/teaching/{{ @root.year }},{{ @root.quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students"
-                                        class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">{{../current_enrollment}}{{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}</a>
+                                    {% include "handlebars/card/schedule/course_sche_col_days.html" %}
+                                {{/if}}
+
+                                {{#unless no_meeting}}
+                                    {{#if building_tbd}}
+                                        <td class="course-loc-tbd">Room to be arranged</td>
+                                    {{else}}
+                                        {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
+                                    {{/if}}
                                 {{/unless}}
-                            {{/if}}
-                        {{/if}}
-                        </td>
 
-                        {{#if ../under_disclosure}}
-                            <td class="course-type">{{ type }}</td>
-                        {{/if}}
+                                <td class="course-enrollment">
+                                    {{#if @first }}
+                                        {{#if is_prev_term_enrollment}}0  <!-- the current_enrollment value is of previous term -->
+                                             {{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
+                                        {{else}}
+                                            {{#unless ../current_enrollment}}0
+                                                {{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
+                                            {{else}}
+                                                <a target="_blank" href="/teaching/{{ @root.year }},{{ @root.quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students"
+                                                   class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">{{../current_enrollment}}{{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}</a>
+                                            {{/unless}}
+                                        {{/if}}
+                                    {{/if}}
+                                </td>
 
-                        <td class="course-sln">
-                        {{#if @first }}
-                            {{#if ../sln}}<a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{ ../sln }}" target="_blank" data-linklabel="SLN {{../sln}}: {{../curriculum_abbr}} {{../course_number}} {{../section_id}}">{{../sln}}</a>{{/if}}
-                        {{/if}}
-                        </td>
-                    {{/if}}
-                    </tr>
-                {{/each}}
-                </tbody>
-            </table>
+                                {{#if ../under_disclosure}}
+                                    <td class="course-type">{{ type }}</td>
+                                {{/if}}
 
-        {{#unless under_disclosure}}
+                                <td class="course-sln">
+                                    {{#if @first }}
+                                        {{#if ../sln}}<a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{ ../sln }}" target="_blank" data-linklabel="SLN {{../sln}}: {{../curriculum_abbr}} {{../course_number}} {{../section_id}}">{{../sln}}</a>{{/if}}
+                                    {{/if}}
+                                </td>
+                            </tr>
+                            {{/each}}
+                    </tbody>
+                </table>
+            </div>
         </div>
-        {{/unless}}
-
     </div>
 {% endtplhandlebars %}

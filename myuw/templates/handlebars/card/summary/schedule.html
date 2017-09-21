@@ -1,7 +1,6 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "instructor_summary_schedule" %}
     <div class="myuw-card teaching-schedule-summary" data-type="card" data-name="SummaryScheduleCard" data-identifier="{{ title }}">
-        <div style="position:relative;">
         <h3 class="myuw-card-title">
           {{capitalizeString quarter}} {{year}} Teaching Schedule
         </h3>
@@ -17,40 +16,47 @@
             {{/if}}
             {{#each sections}}
                 {{#unless under_disclosure}}
-                    <div class="myuw-card-section {{#if @last}}last{{/if}}">
+                    <div class="myuw-card-section-fulldivider {{#if @last}}last{{/if}}">
                         {{> summary_section_panel }}
 
                         {{#if linked_secondaries}}
-                            <div class="card-disclosure">
-                                <span id="show_secondary_{{section_label}}_wrapper">
-                                    <a class="myuw-disclosurelink myuw-disclosurelink-hidden toggle_secondary_{{ ../year }}_{{ ../quarter }}"
-                                       id="show_secondary_{{section_label}}" href="#"
-                                       aria-controls="secondary_{{section_label}}"
-                                       title="Expand to show secondary sections"><i class="fa fa-caret-right" aria-hidden="true"></i>Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
-                                </span>
-                                <span id="hide_secondary_{{section_label}}_wrapper"
-                                      hidden aria-hidden="true">
-                                    <a class="myuw-disclosurelink myuw-disclosurelink-shown toggle_secondary_{{ ../year }}_{{ ../quarter }}"
-                                       id="hide_secondary_{{section_label}}" href="#"
-                                       aria-controls="secondary_{{section_label}}"
-                                       title="Collapse to hide secondary sections"><i class="fa fa-caret-right" aria-hidden="true"></i>Hide Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
-                                </span>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="myuw-card-row-content">
+                                        <div class="card-disclosure">
+                                            <span id="show_secondary_{{section_label}}_wrapper">
+                                                <a class="myuw-disclosurelink myuw-disclosurelink-hidden toggle_secondary_{{ ../year }}_{{ ../quarter }}"
+                                                  id="show_secondary_{{section_label}}" href="#"
+                                                  aria-controls="secondary_{{section_label}}"
+                                                  title="Expand to show secondary sections"><i class="fa fa-caret-right"
+                                                  aria-hidden="true"></i>Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
+                                            </span>
+                                            <span id="hide_secondary_{{section_label}}_wrapper"
+                                                  hidden aria-hidden="true">
+                                                <a class="myuw-disclosurelink myuw-disclosurelink-shown toggle_secondary_{{ ../year }}_{{ ../quarter }}"
+                                                   id="hide_secondary_{{section_label}}" href="#" aria-controls="secondary_{{section_label}}" title="Collapse to hide secondary sections"><i class="fa fa-caret-right" aria-hidden="true"></i>Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
                             <div id="secondary_{{section_label}}" class="slide-hide secondary-section-disclosure"
                                  aria-label="Course instructor information"
                                  rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
-                                 aria-hidden="true" hidden aria-expanded="false"
+                                 aria-hidden="true" aria-expanded="false"
                                  style="display: none;" tabindex="-1">
                                 {{#each linked_secondaries}}
                                     {{> summary_section_panel }}
                                 {{/each}}
                             </div>
+
                         {{/if}}
                     </div>
                 {{/unless}}
            {{/each}}
-           <div class="future-quarter-links" style="margin-top:16px;"><a href="/academic_calendar/#{{ year }},{{capitalizeString quarter }}">View {{capitalizeString quarter}} {{year}} important dates and deadlines.</a></div>
+           <div class="future-quarter-links" style="margin-top:16px;"><a
+                href="/academic_calendar/#{{ year }},{{capitalizeString quarter }}">View {{capitalizeString quarter}} {{year}} important dates and deadlines.</a></div>
         {{/unless}}
     </div>
-</div>
 {% endtplhandlebars %}
