@@ -77,10 +77,12 @@ def set_class_website_data(url):
 
 
 def set_classroom_info_url(meeting):
-    url = 'http://www.washington.edu/classroom/%s+%s' % (
-        meeting.building, meeting.room_number)
-    if is_valid_page_url(url):
-        return url
+    if len(meeting.building) and meeting.building != "*" and\
+            len(meeting.room_number) and meeting.room_number != "*":
+        url = 'http://www.washington.edu/classroom/%s+%s' % (
+            meeting.building, meeting.room_number)
+        if is_valid_page_url(url):
+            return url
 
     return None
 
