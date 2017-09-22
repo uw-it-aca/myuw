@@ -20,6 +20,12 @@ logger = logging.getLogger(__name__)
 
 class CLASS_WEBSITE_DAO(DAO):
     def __init__(self):
+        settings.RESTCLIENTS_WWW_VERIFY_HTTPS = False
+        settings.RESTCLIENTS_WWW_CERT_FILE = None
+        settings.RESTCLIENTS_WWW_KEY_FILE = None
+        settings.RESTCLIENTS_WWW_TIMEOUT = 10
+        settings.RESTCLIENTS_WWW_POOL_SIZE = 30
+
         settings.RESTCLIENTS_WWW_DAO_CLASS =\
             getattr(settings, 'RESTCLIENTS_WWW_DAO_CLASS',
                     'Mock' if is_using_file_dao() else 'Live')
@@ -40,15 +46,10 @@ class CLASS_WEBSITE_DAO(DAO):
 
         if self.get_implementation().is_mock():
             url = "/%s%s" % (p.netloc, p.path)
-            return self._load_resource("GET", url, headers, None)
         else:
-            try:
-                http = urllib3.PoolManager()
-                return http.request('GET', p.geturl())
-            except Exception:
-                log_exception(logger, "getURL(%s)" % p.geturl(),
-                              traceback.format_exc())
-        return None
+            settings.RESTCLIENTS_WWW_HOST = "%s://%s" % (p.scheme, p.netloc)
+            url = p.path
+        return self._load_resource("GET", url, headers, None)
 
 
 def _fetch_url(url):
