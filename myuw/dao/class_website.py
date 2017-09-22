@@ -5,13 +5,14 @@ This module provides access to instructed class website
 import logging
 import traceback
 import os
+from os.path import abspath, dirname
 import urllib3
 from django.conf import settings
 from urlparse import urlparse
 from BeautifulSoup import BeautifulSoup
 from restclients_core.exceptions import DataFailureException
 from restclients_core.dao import DAO
-from os.path import abspath, dirname
+from myuw.dao import is_using_file_dao
 
 
 logger = logging.getLogger(__name__)
@@ -20,7 +21,8 @@ logger = logging.getLogger(__name__)
 class CLASS_WEBSITE_DAO(DAO):
     def __init__(self):
         settings.RESTCLIENTS_WWW_DAO_CLASS =\
-            getattr(settings, 'RESTCLIENTS_WWW_DAO_CLASS', 'Mock')
+            getattr(settings, 'RESTCLIENTS_WWW_DAO_CLASS',
+                    'Mock' if is_using_file_dao() else 'Live')
 
     def service_name(self):
         return "www"
