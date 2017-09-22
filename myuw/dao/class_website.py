@@ -22,6 +22,8 @@ class CLASS_WEBSITE_DAO(DAO):
         settings.RESTCLIENTS_WWW_VERIFY_HTTPS = False
         settings.RESTCLIENTS_WWW_CERT_FILE = None
         settings.RESTCLIENTS_WWW_KEY_FILE = None
+        settings.RESTCLIENTS_WWW_DAO_CLASS =\
+            getattr(settings, 'RESTCLIENTS_WWW_DAO_CLASS', 'Mock')
 
     def service_name(self):
         return "www"
@@ -54,6 +56,7 @@ class CLASS_WEBSITE_DAO(DAO):
 def _fetch_url(url):
     headers = {'ACCEPT': 'text/html'}
     dao = CLASS_WEBSITE_DAO()
+
     response = dao.getURL(url, headers)
     if response.status != 200:
         logger.error("fetch_url %s ==> %s", url, response.status)
@@ -80,9 +83,6 @@ def get_page_title_from_url(url):
 
 def is_valid_page_url(url):
     try:
-        _fetch_url(url)
-        return True
+        return _fetch_url(url) is not None
     except Exception as ex:
-        pass
-
-    return False
+        return False
