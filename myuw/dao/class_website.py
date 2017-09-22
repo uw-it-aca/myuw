@@ -31,7 +31,7 @@ class CLASS_WEBSITE_DAO(DAO):
     def service_mock_paths(self):
         return [abspath(os.path.join(dirname(__file__), "resources"))]
 
-    def getURL(self, url, headers={}):
+    def getURL(self, url, headers={'ACCEPT': 'text/html'}):
         try:
             p = urlparse(url)
         except Exception as ex:
@@ -40,7 +40,6 @@ class CLASS_WEBSITE_DAO(DAO):
             return None
 
         if self.get_implementation().is_mock():
-            settings.RESTCLIENTS_WWW_HOST = p.netloc
             url = "/%s%s" % (p.netloc, p.path)
             return self._load_resource("GET", url, headers, None)
         else:
@@ -54,14 +53,13 @@ class CLASS_WEBSITE_DAO(DAO):
 
 
 def _fetch_url(url):
-    headers = {'ACCEPT': 'text/html'}
-    dao = CLASS_WEBSITE_DAO()
+    response = CLASS_WEBSITE_DAO().getURL(url)
+    if response is None:
+        return None
 
-    response = dao.getURL(url, headers)
     if response.status != 200:
         logger.error("fetch_url %s ==> %s", url, response.status)
         raise DataFailureException(url, response.status, response.data)
-
     return response.data
 
 
