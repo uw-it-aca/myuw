@@ -19,9 +19,6 @@ logger = logging.getLogger(__name__)
 
 class CLASS_WEBSITE_DAO(DAO):
     def __init__(self):
-        settings.RESTCLIENTS_WWW_VERIFY_HTTPS = False
-        settings.RESTCLIENTS_WWW_CERT_FILE = None
-        settings.RESTCLIENTS_WWW_KEY_FILE = None
         settings.RESTCLIENTS_WWW_DAO_CLASS =\
             getattr(settings, 'RESTCLIENTS_WWW_DAO_CLASS', 'Mock')
 
