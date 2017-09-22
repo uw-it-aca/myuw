@@ -23,7 +23,7 @@ class CLASS_WEBSITE_DAO(DAO):
         settings.RESTCLIENTS_WWW_VERIFY_HTTPS = False
         settings.RESTCLIENTS_WWW_CERT_FILE = None
         settings.RESTCLIENTS_WWW_KEY_FILE = None
-        settings.RESTCLIENTS_WWW_TIMEOUT = 10
+        settings.RESTCLIENTS_WWW_TIMEOUT = 30
         settings.RESTCLIENTS_WWW_POOL_SIZE = 30
 
         settings.RESTCLIENTS_WWW_DAO_CLASS =\
@@ -83,4 +83,6 @@ def is_valid_page_url(url):
     try:
         return _fetch_url(url) is not None
     except Exception as ex:
-        return False
+        log_exception(logger, "is_valid_page_url(%s)" % url,
+                      traceback.format_exc())
+    return False
