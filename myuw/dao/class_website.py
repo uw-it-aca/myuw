@@ -12,6 +12,7 @@ from urlparse import urlparse
 from BeautifulSoup import BeautifulSoup
 from restclients_core.exceptions import DataFailureException
 from restclients_core.dao import DAO
+from myuw.logger.logback import log_exception
 from myuw.dao import is_using_file_dao
 
 
@@ -74,7 +75,9 @@ def get_page_title_from_url(url):
     except DataFailureException as ex:
         raise
     except Exception as ex:
-        logger.error("get_page_title_from_url(%s)==>%s" % (url, ex))
+        log_exception(logger,
+                      "get_page_title_from_url(%s)" % url,
+                      traceback.format_exc())
 
     return None
 
