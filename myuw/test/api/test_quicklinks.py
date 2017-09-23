@@ -1,12 +1,10 @@
 import json
 from django.core.urlresolvers import reverse
-from myuw.test import fdao_class_website_override
 from myuw.test.api import MyuwApiTest
 from myuw.models import VisitedLink, PopularLink, CustomLink, HiddenLink
 from myuw.views.api.link import get_link_data
 
 
-@fdao_class_website_override
 class TestQuickLinksAPI(MyuwApiTest):
 
     def test_get_link_data(self):
@@ -150,7 +148,8 @@ class TestQuickLinksAPI(MyuwApiTest):
 
         self.assertEqual(all[0].url,
                          'http://www.washington.edu/classroom/SMI+401')
-        self.assertEqual(all[0].label, 'Room Information')
+        self.assertEqual(all[0].label,
+                         'http://www.washington.edu/classroom/SMI+401')
 
         # Add the same link but w/ protocol
         data = json.dumps({'type': 'custom',

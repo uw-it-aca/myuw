@@ -21,7 +21,6 @@ from myuw.dao.gws import is_grad_student
 from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
     get_limit_estimate_enrollment_for_section, get_instructor_section
-from myuw.dao.class_website import get_page_title_from_url, is_valid_page_url
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.pws import get_url_key_for_regid, get_regid_of_current_user
@@ -55,35 +54,11 @@ class InstSche(RESTDispatch):
         return HttpResponse(json.dumps(resp_data))
 
 
-def set_class_website_data(url):
-    website_data = {
-        'title': None,
-        'unauthorized': False,
-        'not_found': False
-    }
-    try:
-        if url:
-            website_data['title'] = get_page_title_from_url(url)
-    except DataFailureException as ex:
-        if ex.status == 401:
-            website_data['authorized'] = True
-        elif ex.status == 404:
-            website_data['not_found'] = True
-        else:
-            logger.error("class_website_url: %s: %s: %s" % (
-                url, ex.status, ex.message))
-
-    return website_data
-
-
 def set_classroom_info_url(meeting):
     if len(meeting.building) and meeting.building != "*" and\
             len(meeting.room_number) and meeting.room_number != "*":
-        url = 'http://www.washington.edu/classroom/%s+%s' % (
+        return 'http://www.washington.edu/classroom/%s+%s' % (
             meeting.building, meeting.room_number)
-        if is_valid_page_url(url):
-            return url
-
     return None
 
 
@@ -143,11 +118,6 @@ def set_course_resources(section_data, section, person):
                            args=(section, True))
     t.start()
     threads.append((t, 'email_list', section_data))
-
-    t = ThreadWithResponse(target=set_class_website_data,
-                           args=(section.class_website_url,))
-    t.start()
-    threads.append((t, 'class_website_data', section_data))
 
     t = ThreadWithResponse(target=set_section_grading_status,
                            args=(section, person,))
