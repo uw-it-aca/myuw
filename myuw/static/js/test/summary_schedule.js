@@ -10,12 +10,14 @@ describe('SummaryScheduleCard', function(){
                 "myuw/static/js/card/summary/schedule.js",
             ],
             templates: [
-                'myuw/templates/handlebars/card/summary/schedule.html'
+                'myuw/templates/handlebars/card/summary/section_panel.html',
+                'myuw/templates/handlebars/card/summary/schedule.html',
             ]
         });
 
         Global.Environment.ajax_stub({
-            '/api/v1/instructor_schedule/2013,spring': 'api/v1/instructor_schedule/2013-spring'
+            '/api/v1/instructor_schedule/2013,spring': 'api/v1/instructor_schedule/2013-spring',
+            '/api/v1/instructor_schedule/2013,summer': 'api/v1/instructor_schedule/2013-summer'
         });
 
         $(window).on("myuw:card_load", function () {
@@ -23,10 +25,10 @@ describe('SummaryScheduleCard', function(){
         });
 
         window.user.instructor = true;
-        window.enabled_features = { 'instructor_schedule': true };
-        window.card_display_dates = { system_date: '2017-03-28 16:17' };
+        window.enabled_features = {};
+        window.card_display_dates = { system_date: '2013-06-28 16:17' };
         SummaryScheduleCard.dom_target = $('#' + render_id);
-        SummaryScheduleCard.term = '2013,spring';
+        SummaryScheduleCard.term = '2013,summer';
         SummaryScheduleCard.render_init();
     });
     after(function () {
@@ -34,7 +36,7 @@ describe('SummaryScheduleCard', function(){
     });
     describe("shows summary schedule", function() {
         it("Should render summary card", function() {
-            assert.equal(SummaryScheduleCard.dom_target.find('.myuw-card-section').length, 6);
+            assert.equal(SummaryScheduleCard.dom_target.find('.myuw-card-section-fulldivider').length, 1);
         });
     });
 });
@@ -49,6 +51,7 @@ describe('SummaryScheduleCard', function(){
                 "myuw/static/js/card/summary/schedule.js",
             ],
             templates: [
+                'myuw/templates/handlebars/card/summary/section_panel.html',
                 'myuw/templates/handlebars/card/summary/schedule.html'
             ]
         });
@@ -62,7 +65,7 @@ describe('SummaryScheduleCard', function(){
         });
 
         window.user.instructor = true;
-        window.enabled_features = { 'instructor_schedule': true };
+        window.enabled_features = {};
         window.card_display_dates = { system_date: '2017-03-28 16:17' };
         SummaryScheduleCard.dom_target = $('#' + render_id);
         SummaryScheduleCard.term = '2012,autumn';

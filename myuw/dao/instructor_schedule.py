@@ -2,24 +2,55 @@
 This module provides access to instructed class schedule and sections
 """
 
-from django.conf import settings
 import logging
 from restclients_core.exceptions import DataFailureException
 from uw_sws.models import ClassSchedule
 from uw_sws.section import get_sections_by_instructor_and_term,\
     get_section_by_url, get_section_by_label
 from uw_sws.section_status import get_section_status_by_label
-from uw_sws.term import get_specific_term
+from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.dao import get_netid_of_current_user
+from myuw.dao.exceptions import NotSectionInstructorException
+from myuw.dao.instructor import is_seen_instructor, add_seen_instructor
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.registration import get_active_registrations_for_section
-from myuw.dao.term import get_current_quarter
-from myuw.dao.instructor import is_seen_instructor, add_seen_instructor
-from myuw.dao.exceptions import NotSectionInstructorException
-from myuw.util.thread import Thread, ThreadWithResponse
+from myuw.dao.term import get_current_quarter, get_specific_term
 
 
 logger = logging.getLogger(__name__)
+
+
+def get_current_quarter_instructor_schedule(request):
+    """
+    Return sections instructor is teaching in the current quarter
+    """
+    if hasattr(request, "myuw_current_quarter_instructor_schedule"):
+        return request.myuw_current_quarter_instructor_schedule
+
+    schedule = get_instructor_schedule_by_term(get_current_quarter(request))
+    request.myuw_current_quarter_instructor_schedule = schedule
+
+    return schedule
+
+
+def get_instructor_schedule_by_term(term):
+    """
+    Return the sections the current user is instructing
+    in the given term/quarter
+    """
+    person = get_person_of_current_user()
+    schedule = _get_instructor_schedule(person, term)
+    return schedule
+
+
+def _get_instructor_schedule(person, term):
+    schedule = ClassSchedule()
+    schedule.person = person
+    schedule.term = term
+
+    section_references = _get_instructor_sections(person, term)
+    schedule.sections = _get_sections_by_section_reference(section_references)
+    return schedule
 
 
 def _get_instructor_sections(person, term,
@@ -38,23 +69,6 @@ def _get_instructor_sections(person, term,
         future_terms=future_terms,
         include_secondaries=include_secondaries,
         transcriptable_course='all')
-
-
-def _get_instructor_schedule(person, term):
-    schedule = ClassSchedule()
-    schedule.person = person
-    schedule.term = term
-    section_references = _get_instructor_sections(person, term)
-
-    if len(section_references) <= getattr(
-            settings, "MYUW_MAX_INSTRUCTOR_SECTIONS", 10):
-        schedule.sections = _get_sections_by_section_reference(
-            section_references)
-    else:
-        schedule.sections = []
-        schedule.section_references = section_references
-
-    return schedule
 
 
 def _set_section_from_url(sections, section_url):
@@ -78,29 +92,6 @@ def _get_sections_by_section_reference(section_references):
         t.join()
 
     return sections
-
-
-def get_instructor_schedule_by_term(term):
-    """
-    Return the sections the current user is instructing
-    in the given term/quarter
-    """
-    person = get_person_of_current_user()
-    schedule = _get_instructor_schedule(person, term)
-    return schedule
-
-
-def get_current_quarter_instructor_schedule(request):
-    """
-    Return sections instructor is teaching in the current quarter
-    """
-    if hasattr(request, "myuw_current_quarter_instructor_schedule"):
-        return request.myuw_current_quarter_instructor_schedule
-
-    schedule = get_instructor_schedule_by_term(get_current_quarter(request))
-    request.myuw_current_quarter_instructor_schedule = schedule
-
-    return schedule
 
 
 def get_instructor_section(year, quarter, curriculum,

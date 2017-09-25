@@ -137,6 +137,7 @@ WSData = {
     instructed_course_data_error_code: function(term) {
         return WSData._instructed_course_data_error_status[term];
     },
+
     normalized_instructed_course_data: function(term) {
         var course_data;
         if (term) {
@@ -148,9 +149,43 @@ WSData = {
         return WSData._normalize_instructed_data(course_data);
     },
 
+    _link_secondary_sections: function (term) {
+        var course_data = WSData.instructed_course_data_for_term(term);
+        if (course_data) {
+            WSData._normalize_instructors(course_data);
+
+            var linked_secondaries;
+            var linked_primary_label;
+            $.each(course_data.sections, function () {
+                if (this.is_primary_section) {
+                    // verify prev linked_secondaries
+                    if (linked_secondaries &&
+                        linked_secondaries.length ===0) {
+                        linked_secondaries = null;
+                    }
+
+                    if (this.total_linked_secondaries) {
+                        this.linked_secondaries = [];
+                        linked_secondaries = this.linked_secondaries;
+                        linked_primary_label = this.section_label;
+                    }
+                } else {
+                    primary_label = this.primary_section_label;
+                    if (primary_label === linked_primary_label &&
+                        linked_secondaries !== undefined) {
+                        this.under_disclosure = true;
+                        linked_secondaries.push(this);
+                    }
+                }
+            });
+        }
+        return course_data;
+    },
+
     _normalize_instructed_data: function (course_data) {
         if (course_data) {
             WSData._normalize_instructors(course_data);
+
             $.each(course_data.related_terms, function () {
                 this.is_current = (window.term.year == this.year &&
                                    window.term.quarter.toLowerCase() == this.quarter.toLowerCase());
@@ -201,74 +236,91 @@ WSData = {
                                         minutes_till_deadline <= (24 * 60));
             var comparison_date = moment(window.card_display_dates.comparison_date);
 
-            $.each(course_data.sections, function (iii) {
-                var section = this;
-                var course_campus = section.course_campus.toLowerCase();
-                section.is_seattle = (course_campus === 'seattle');
-                section.is_bothell = (course_campus === 'bothell');
-                section.is_tacoma =  (course_campus === 'tacoma');
+            $.each(course_data.sections, function () {
+                var course_campus = this.course_campus.toLowerCase();
+                this.is_seattle = (course_campus === 'seattle');
+                this.is_bothell = (course_campus === 'bothell');
+                this.is_tacoma =  (course_campus === 'tacoma');
 
-                section.section_label = course_data.term.year + '-' +
-                    course_data.term.quarter.toLowerCase() + '-' +
-                    section.curriculum_abbr + '-' +
-                    section.course_number + '-' +
-                    section.section_id;
+                this.year = course_data.year;
+                this.quarter = course_data.quarter;
+                this.summer_term = course_data.summer_term;
+                this.future_term = course_data.future_term;
+                this.past_term = course_data.past_term;
 
-                section.grading_period_is_open = grading_is_open;
-                section.grading_period_is_past = grading_is_closed;
-                section.opens_in_24_hours = opens_in_24_hours;
-                section.deadline_in_24_hours = deadline_in_24_hours;
-                section.grading_period_open_date = grading_open_date;
-                section.grading_period_relative_open = grading_open_relative;
-                section.grade_submission_deadline_date = grading_deadline_date;
-                section.grade_submission_relative_deadline = grading_deadline_relative;
+                this.registration_start = course_data.term.registration_periods[0].start;
+                this.time_schedule_published = course_data.term.time_schedule_published;
 
-                if ('grading_status' in section && section.grading_status) {
-                    section.grading_status.all_grades_submitted =
-                        (section.grading_status.unsubmitted_count === 0);
-                    if (section.grading_status.submitted_date &&
-                        section.grading_status.submitted_date != 'None') {
-                        var submitted = moment(section.grading_status.submitted_date);
+                // check if the enrollment is of previous term
+                var all_published = true;
+                for (var campus in this.time_schedule_published) {
+                    all_published = all_published && this.time_schedule_published[campus];
+                    if (!all_published) { break; }
+                }
+                var not_published_on_course_campus = (course_campus in this.time_schedule_published &&
+                                                      !this.time_schedule_published[course_campus]);
+                this.is_prev_term_enrollment = false;
+                if (!all_published && this.sln === 0 && not_published_on_course_campus) {
+                    this.is_prev_term_enrollment = true;
+                    this.prev_enrollment_year = this.year - 1;
+                }
+
+                // grading
+                this.grading_period_is_open = grading_is_open;
+                this.grading_period_is_past = grading_is_closed;
+                this.opens_in_24_hours = opens_in_24_hours;
+                this.deadline_in_24_hours = deadline_in_24_hours;
+                this.grading_period_open_date = grading_open_date;
+                this.grading_period_relative_open = grading_open_relative;
+                this.grade_submission_deadline_date = grading_deadline_date;
+                this.grade_submission_relative_deadline = grading_deadline_relative;
+
+                if ('grading_status' in this && this.grading_status) {
+                    this.grading_status.all_grades_submitted =
+                        (this.grading_status.unsubmitted_count === 0);
+                    if (this.grading_status.submitted_date &&
+                        this.grading_status.submitted_date != 'None') {
+                        var submitted = moment(this.grading_status.submitted_date);
                         if (Math.abs(submitted.diff(ref, 'days')) > month_to_day_shift) {
-                            section.grading_status.submitted_relative_date = submitted.format(fmt) + ' PST';
+                            this.grading_status.submitted_relative_date = submitted.format(fmt) + ' PST';
                         } else {
-                            section.grading_status.submitted_relative_date = submitted.calendar(ref);
+                            this.grading_status.submitted_relative_date = submitted.calendar(ref);
                         }
                     }
                 }
 
-                section.grade_submission_section_delegate = false;
-                $.each(section.grade_submission_delegates, function () {
+                this.grade_submission_section_delegate = false;
+                $.each(this.grade_submission_delegates, function () {
                     if (this.level.toLowerCase() === 'section') {
-                        section.grade_submission_section_delegate = true;
+                        this.grade_submission_section_delegate = true;
                         return false;
                     }
                 });
 
                 // wire up eval data
-                if (section.evaluation) {
-                    section.evaluation.response_rate_percent = 0;
-                    section.evaluation.is_past = false;
-                    if (section.evaluation.response_rate) {
-                        section.evaluation.response_rate_percent = Math.round(section.evaluation.response_rate * 100);
+                if (this.evaluation) {
+                    this.evaluation.response_rate_percent = 0;
+                    this.evaluation.is_past = false;
+                    if (this.evaluation.response_rate) {
+                        this.evaluation.response_rate_percent = Math.round(this.evaluation.response_rate * 100);
                     }
-                    if (section.evaluation.eval_open_date) {
-                        var eval_open = moment(section.evaluation.eval_open_date);
-                        section.evaluation.eval_open_date_display = eval_open.format(fmt) + ' PST';
-                        section.evaluation.is_open = comparison_date.isAfter(eval_open);
+                    if (this.evaluation.eval_open_date) {
+                        var eval_open = moment(this.evaluation.eval_open_date);
+                        this.evaluation.eval_open_date_display = eval_open.format(fmt) + ' PST';
+                        this.evaluation.is_open = comparison_date.isAfter(eval_open);
                     }
-                    if (section.evaluation.eval_close_date) {
-                        var eval_close = moment(section.evaluation.eval_close_date);
-                        section.evaluation.eval_close_date_display = eval_close.format(fmt) + ' PST';
-                        section.evaluation.is_past = comparison_date.isAfter(eval_close);
-                        if (section.evaluation.is_past) {
-                            section.evaluation.is_open = false;
+                    if (this.evaluation.eval_close_date) {
+                        var eval_close = moment(this.evaluation.eval_close_date);
+                        this.evaluation.eval_close_date_display = eval_close.format(fmt) + ' PST';
+                        this.evaluation.is_past = comparison_date.isAfter(eval_close);
+                        if (this.evaluation.is_past) {
+                            this.evaluation.is_open = false;
                         }
                     }
-                    if (section.evaluation.report_available_date) {
-                        var report_date = moment(section.evaluation.report_available_date);
-                        section.evaluation.report_available_date_display = report_date.format(fmt) + ' PST';
-                        section.evaluation.report_is_available = comparison_date.isAfter(report_date);
+                    if (this.evaluation.report_available_date) {
+                        var report_date = moment(this.evaluation.report_available_date);
+                        this.evaluation.report_available_date_display = report_date.format(fmt) + ' PST';
+                        this.evaluation.report_is_available = comparison_date.isAfter(report_date);
                     }
                 }
             });
@@ -530,7 +582,8 @@ WSData = {
                 type: "GET",
                 accepts: {html: "text/html"},
                 success: function(results) {
-                    if (term !== 'prev_unfinished') {
+                    if (results.sections && results.sections.length &&
+                        term !== 'prev_unfinished') {
                         WSData.process_term_course_data(results);
                     }
                     WSData._course_data_error_status[term] = null;
@@ -553,25 +606,21 @@ WSData = {
 
     process_term_course_data: function(results) {
         // MUWM-549 and MUWM-552
-        var sections = results.sections;
-        var section_count = sections.length;
-        for (var index = 0; index < section_count; index++) {
-            section = sections[index];
-
-            var canvas_url = section.canvas_url;
+        $.each(results.sections, function () {
+            var canvas_url = this.canvas_url;
             if (canvas_url) {
-                if (section.class_website_url == canvas_url) {
-                    section.class_website_url = null;
+                if (this.class_website_url == canvas_url) {
+                    this.class_website_url = null;
                 }
                 var matches = canvas_url.match(/\/([0-9]+)$/);
                 var canvas_id = matches[1];
                 var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
 
-                if (section.class_website_url == alternate_url) {
-                    section.class_website_url = null;
+                if (this.class_website_url == alternate_url) {
+                    this.class_website_url = null;
                 }
             }
-        }
+        });
     },
 
     fetch_instructed_course_data_for_term: function(term, callback, err_callback, args) {
@@ -591,25 +640,8 @@ WSData = {
                 type: "GET",
                 accepts: {html: "text/html"},
                 success: function(results) {
-                    // MUWM-549 and MUWM-552
-                    var sections = results.sections;
-                    var section_count = sections.length;
-                    for (var index = 0; index < section_count; index++) {
-                        section = sections[index];
-
-                        var canvas_url = section.canvas_url;
-                        if (canvas_url) {
-                            if (section.class_website_url == canvas_url) {
-                                section.class_website_url = null;
-                            }
-                            var matches = canvas_url.match(/\/([0-9]+)$/);
-                            var canvas_id = matches[1];
-                            var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
-
-                            if (section.class_website_url == alternate_url) {
-                                section.class_website_url = null;
-                            }
-                        }
+                    if (results.sections && results.sections.length) {
+                        WSData.process_term_course_data(results);
                     }
                     WSData._instructed_course_data_error_status[term] = null;
                     WSData._instructed_course_data[term] = results;
@@ -647,25 +679,8 @@ WSData = {
                 type: "GET",
                 accepts: {html: "text/html"},
                 success: function(results) {
-                    // MUWM-549 and MUWM-552
-                    var sections = results.sections;
-                    var section_count = sections.length;
-                    for (var index = 0; index < section_count; index++) {
-                        section = sections[index];
-
-                        var canvas_url = section.canvas_url;
-                        if (canvas_url) {
-                            if (section.class_website_url == canvas_url) {
-                                section.class_website_url = null;
-                            }
-                            var matches = canvas_url.match(/\/([0-9]+)$/);
-                            var canvas_id = matches[1];
-                            var alternate_url = "https://canvas.uw.edu/courses/"+canvas_id;
-
-                            if (section.class_website_url == alternate_url) {
-                                section.class_website_url = null;
-                            }
-                        }
+                    if (results.sections && results.sections.length) {
+                        WSData.process_term_course_data(results);
                     }
                     WSData._instructed_section_data_error_status[section_label] = null;
                     WSData._instructed_section_data[section_label] = results;
