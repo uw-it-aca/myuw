@@ -2,54 +2,56 @@
     {% tplhandlebars "instructor_summary_schedule" %}
     <div class="myuw-card teaching-schedule-summary" data-type="card"
          data-name="SummaryScheduleCard" data-identifier="{{ title }}">
-        <h3 class="myuw-card-title">
-          {{capitalizeString quarter}} {{year}} Teaching Schedule
-        </h3>
-        {{#unless section_count}}
-            You are not teaching any courses {{capitalizeString quarter}} {{year}}.
-        {{else}}
-            {{#if future_term}}
-                <div class="course-meta"><div style="margin-top: 8px;"><a class="future-nav-link"
-                href="/teaching/{{ year }},{{ quarter }}" future-nav-target="{{year}},{{quarter}}"
-                data-linklabel="{{capitalizeString quarter}} {{year}} Teaching Details">View details</a></div></div>
-                <p>You are teaching <strong>{{section_count}} course{{pluralize section_count '' 's'}}</strong> in {{capitalizeString quarter}} {{year}}. <br />
-                First day of instruction is {{toFriendlyDate first_day_quarter}} ({{toFromNowDate first_day_quarter}})</p>
-            {{/if}}
-            {{#each sections}}
-                {{#unless under_disclosure}}
-                    <div class="myuw-card-section-fulldivider {{#if @last}}last{{/if}}">
-                        {{> summary_section_panel }}
+         <div style="position:relative;">
+            <h3 class="myuw-card-title">
+              {{capitalizeString quarter}} {{year}} Teaching Schedule
+            </h3>
+            {{#unless section_count}}
+                You are not teaching any courses {{capitalizeString quarter}} {{year}}.
+            {{else}}
+                {{#if future_term}}
+                    <div class="course-meta"><div style="margin-top: 8px;"><a class="future-nav-link"
+                    href="/teaching/{{ year }},{{ quarter }}" future-nav-target="{{year}},{{quarter}}"
+                    data-linklabel="{{capitalizeString quarter}} {{year}} Teaching Details">View details</a></div></div>
+                    <p>You are teaching <strong>{{section_count}} course{{pluralize section_count '' 's'}}</strong> in {{capitalizeString quarter}} {{year}}. <br />
+                    First day of instruction is {{toFriendlyDate first_day_quarter}} ({{toFromNowDate first_day_quarter}})</p>
+                {{/if}}
+                {{#each sections}}
+                    {{#unless under_disclosure}}
+                        <div class="myuw-card-section-fulldivider {{#if @last}}last{{/if}}">
+                            {{> summary_section_panel }}
 
-                        {{#if linked_secondaries}}
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="myuw-card-row-content">
-                                        <div class="card-disclosure">
-                                            <a class="collapsed myuw-disclosurelink toggle_secondary_{{../year}}_{{../quarter}}"
-                                               href="#secondary_{{section_label}}" role="button" aria-controls="secondary_{{section_label}}"
-                                               aria-expanded="false" data-toggle="collapse" title="Show/Hide secondary sections"><i
-                                               class="fa fa-caret-right"></i>Secondary sections for
-                                               {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
+                            {{#if linked_secondaries}}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="myuw-card-row-content">
+                                            <div class="card-disclosure">
+                                                <a class="collapsed myuw-disclosurelink toggle_secondary_{{../year}}_{{../quarter}}"
+                                                   href="#secondary_{{section_label}}" role="button" aria-controls="secondary_{{section_label}}"
+                                                   aria-expanded="false" data-toggle="collapse" title="Show/Hide secondary sections"><i
+                                                   class="fa fa-caret-right"></i>Secondary sections for
+                                                   {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div id="secondary_{{section_label}}" class="collapse secondary-section-disclosure"
-                                 rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
-                                 aria-label="Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}">
+                                <div id="secondary_{{section_label}}" class="collapse secondary-section-disclosure"
+                                     rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
+                                     aria-label="Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}">
 
-                                {{#each linked_secondaries}}
-                                    {{> summary_section_panel }}
-                                {{/each}}
-                            </div>
+                                    {{#each linked_secondaries}}
+                                        {{> summary_section_panel }}
+                                    {{/each}}
+                                </div>
 
-                        {{/if}}
-                    </div>
-                {{/unless}}
-           {{/each}}
-           <div class="future-quarter-links" style="margin-top:16px;"><a
-                href="/academic_calendar/#{{ year }},{{capitalizeString quarter }}">View {{capitalizeString quarter}} {{year}} important dates and deadlines.</a></div>
-        {{/unless}}
+                            {{/if}}
+                        </div>
+                    {{/unless}}
+               {{/each}}
+               <div class="future-quarter-links" style="margin-top:16px;"><a
+                    href="/academic_calendar/#{{ year }},{{capitalizeString quarter }}">View {{capitalizeString quarter}} {{year}} important dates and deadlines.</a></div>
+            {{/unless}}
+        </div>
     </div>
 {% endtplhandlebars %}
