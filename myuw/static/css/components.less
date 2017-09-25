@@ -66,7 +66,8 @@
     }
 
     /*** card section ***/
-    .myuw-card-section { padding-top: 16px;
+    .myuw-card-section {
+        padding-top: 16px;
 
         /* add a separator for every last row of each section */
         .row:last-child {
@@ -93,15 +94,34 @@
             }
         }
 
-        /*** workday specific link ***/
+        /*** workday specific link (need to move this)***/
         .workday-link {
             display: inline-block;
             line-height: 30px;
             background-position: 0 50% !important;
             padding-left: 28px !important;
         }
+    }
+
+    .myuw-card-section-fulldivider {
+        padding-top: 16px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #EDEDED;
+
+        &.last {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        /* Not the first row */
+        .row + .row { padding-top: 8px; }
+
+        @media @two-column {
+            .row + .row { padding-top: 8px; }
+        }
 
     }
+
 
     /*** card section heading ***/
     .myuw-card-row-heading {
