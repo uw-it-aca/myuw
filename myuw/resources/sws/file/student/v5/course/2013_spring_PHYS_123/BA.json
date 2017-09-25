@@ -99,26 +99,26 @@
                 {
                     "FacultySequenceNumber": "",
                     "GradeRoster": {
-                        "Href": "/student/v5/graderoster/2013,spring,PHYS,123,BA,5A9EBAA4F86A44119A4C7B21DEAC91CA"
+                        "Href": "/student/v5/graderoster/2013,spring,PHYS,123,BA,10000000000000000000000000000006"
                     },
                     "PercentInvolve": "50",
                     "Person": {
-                        "Href": "/student/v5/person/5A9EBAA4F86A44119A4C7B21DEAC91CA.json",
-                        "Name": "Julian Flemming Picard",
-                        "RegID": "5A9EBAA4F86A44119A4C7B21DEAC91CA"
+                        "Href": "/student/v5/person/10000000000000000000000000000006.json",
+                        "Name": "Bill Sea",
+                        "RegID": "10000000000000000000000000000006"
                     },
                     "TSPrint": true
                 },
                 {
                     "FacultySequenceNumber": "",
                     "GradeRoster": {
-                        "Href": "/student/v5/graderoster/2013,spring,PHYS,123,BA,B28D9060F0C647AF8EFE1B467571894A"
+                        "Href": "/student/v5/graderoster/2013,spring,PHYS,123,BA,10000000000000000000000000000009"
                     },
                     "PercentInvolve": "50",
                     "Person": {
-                        "Href": "/student/v5/person/B28D9060F0C647AF8EFE1B467571894A.json",
-                        "Name": "Zachary J. Geary",
-                        "RegID": "B28D9060F0C647AF8EFE1B467571894A"
+                        "Href": "/student/v5/person/10000000000000000000000000000009.json",
+                        "Name": "Bill Sea TA",
+                        "RegID": "10000000000000000000000000000009"
                     },
                     "TSPrint": true
                 }

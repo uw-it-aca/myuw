@@ -96,3 +96,46 @@ ul.unstyled-list, ol.unstyled-list, ul.unstyled, ol.unstyled {
     font-weight: bold;
     color: #333;
 }
+
+
+
+/* Disclosure Links */
+
+.myuw-disclosurelink {
+
+    i.fa {
+        margin-right: 8px;
+        transition: all .2s;
+    }
+
+    i.fa-caret-right {
+        filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+        -webkit-transform:rotate(90deg);
+        -ms-transform:rotate(90deg);
+        transform:rotate(90deg);
+    }
+
+    &.collapsed {
+
+        i.fa-caret-right {
+            filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+            -webkit-transform:rotate(0deg);
+            -ms-transform:rotate(0deg);
+            transform:rotate(0deg);
+        }
+    }
+}
+
+.myuw-disclosurelink-hidden {
+
+}
+
+.myuw-disclosurelink-shown {
+
+    i.fa-caret-right {
+        filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+        -webkit-transform:rotate(90deg);
+        -ms-transform:rotate(90deg);
+        transform:rotate(90deg);
+    }
+}

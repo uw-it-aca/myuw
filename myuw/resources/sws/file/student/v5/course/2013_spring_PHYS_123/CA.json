@@ -99,18 +99,18 @@
                 {
                     "FacultySequenceNumber": "",
                     "GradeRoster": {
-                        "Href": "/student/v5/graderoster/2013,spring,PHYS,123,CA,82FC8BEA62EB11D89C64000629C31437"
+                        "Href": "/student/v5/graderoster/2013,spring,PHYS,123,CA,10000000000000000000000000000006"
                     },
                     "PercentInvolve": "50",
                     "Person": {
-                        "Href": "/student/v5/person/82FC8BEA62EB11D89C64000629C31437.json",
-                        "Name": "Elizabeth Lee McBride",
-                        "RegID": "82FC8BEA62EB11D89C64000629C31437"
+                        "Href": "/student/v5/person/10000000000000000000000000000006.json",
+                        "Name": "Bill Sea",
+                        "RegID": "10000000000000000000000000000006"
                     },
                     "TSPrint": true
                 },
                 {
-                    "FacultySequenceNumber": "",
+                    "FacultySequenceNumber": "50",
                     "GradeRoster": {
                         "Href": "/student/v5/graderoster/2013,spring,PHYS,123,CA,10000000000000000000000000000009"
                     },
