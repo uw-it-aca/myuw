@@ -3,7 +3,6 @@ This module provides access to instructed class schedule and sections
 """
 
 import logging
-from django.conf import settings
 from restclients_core.exceptions import DataFailureException
 from uw_sws.models import ClassSchedule
 from uw_sws.section import get_sections_by_instructor_and_term,\
@@ -186,9 +185,3 @@ def check_section_instructor(section, person=None):
         primary_section = get_section_by_label(section.primary_section_label())
         if not primary_section.is_instructor(person):
             raise NotSectionInstructorException()
-
-
-def exceeded_max_display_sections(total_sections):
-    return total_sections > getattr(settings,
-                                    "MYUW_MAX_INSTRUCTOR_SECTIONS",
-                                    10)

@@ -68,7 +68,6 @@ var  FutureSummaryScheduleCard = {
             future_term: instructed_course_data.future_term,
             sections: instructed_course_data.sections,
             section_count: instructed_course_data.sections.length,
-            hide_secondary: instructed_course_data.exceeded_max_display_sections,
             show_enrollment: true
         };
         var raw = courses_template(data);

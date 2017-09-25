@@ -60,8 +60,7 @@ var SummaryScheduleCard = {
             year: instructed_course_data.year,
             future_term: instructed_course_data.future_term,
             sections: instructed_course_data.sections,
-            section_count: instructed_course_data.sections.length,
-            hide_secondary: instructed_course_data.exceeded_max_display_sections
+            section_count: instructed_course_data.sections.length
         };
         var raw = courses_template(data);
         SummaryScheduleCard.dom_target.html(raw);

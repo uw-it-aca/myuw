@@ -21,8 +21,7 @@ from myuw.dao.enrollment import get_code_for_class_level
 from myuw.dao.gws import is_grad_student
 from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
-    get_limit_estimate_enrollment_for_section, get_instructor_section,\
-    exceeded_max_display_sections
+    get_limit_estimate_enrollment_for_section, get_instructor_section
 from myuw.dao.class_website import get_page_title_from_url, is_valid_page_url
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
@@ -215,7 +214,7 @@ def set_indep_study_section_enrollments(section, section_json_data):
 
 
 def convert_section_label(label):
-    return re.sub(r"[,/]", "-", label)
+    return re.sub(r"[ ,/]", "-", label)
 
 
 def load_schedule(request, schedule, summer_term="", section_callback=None):
@@ -352,9 +351,6 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
     for section in json_data["sections"]:
         section["index"] = index
         index = index + 1
-
-    json_data["exceeded_max_display_sections"] =\
-        exceeded_max_display_sections(index)
 
     json_data["is_grad_student"] = is_grad_student()
     return json_data

@@ -154,32 +154,30 @@ WSData = {
         if (course_data) {
             WSData._normalize_instructors(course_data);
 
-            if (course_data.exceeded_max_display_sections) {
-                var linked_secondaries;
-                var linked_primary_label;
-                $.each(course_data.sections, function () {
-                    if (this.is_primary_section) {
-                        // verify prev linked_secondaries
-                        if (linked_secondaries &&
-                            linked_secondaries.length ===0) {
-                            linked_secondaries = null;
-                        }
-
-                        if (this.total_linked_secondaries) {
-                            this.linked_secondaries = [];
-                            linked_secondaries = this.linked_secondaries;
-                            linked_primary_label = this.section_label;
-                        }
-                    } else {
-                        primary_label = this.primary_section_label;
-                        if (primary_label === linked_primary_label &&
-                            linked_secondaries !== undefined) {
-                            this.under_disclosure = true;
-                            linked_secondaries.push(this);
-                        }
+            var linked_secondaries;
+            var linked_primary_label;
+            $.each(course_data.sections, function () {
+                if (this.is_primary_section) {
+                    // verify prev linked_secondaries
+                    if (linked_secondaries &&
+                        linked_secondaries.length ===0) {
+                        linked_secondaries = null;
                     }
-                });
-            }
+
+                    if (this.total_linked_secondaries) {
+                        this.linked_secondaries = [];
+                        linked_secondaries = this.linked_secondaries;
+                        linked_primary_label = this.section_label;
+                    }
+                } else {
+                    primary_label = this.primary_section_label;
+                    if (primary_label === linked_primary_label &&
+                        linked_secondaries !== undefined) {
+                        this.under_disclosure = true;
+                        linked_secondaries.push(this);
+                    }
+                }
+            });
         }
         return course_data;
     },
