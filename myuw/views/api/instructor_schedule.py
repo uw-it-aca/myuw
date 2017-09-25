@@ -1,4 +1,5 @@
 import json
+import re
 import traceback
 from myuw.views.error import (handle_exception, not_instructor_error,
                               data_not_found)
@@ -184,6 +185,10 @@ def set_indep_study_section_enrollments(section, section_json_data):
                       traceback.format_exc())
 
 
+def convert_section_label(label):
+    return re.sub(r"[ ,/]", "-", label)
+
+
 def load_schedule(request, schedule, summer_term="", section_callback=None):
 
     json_data = schedule.json_data()
@@ -215,6 +220,17 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
             color = colors[section.section_label()]
             section_data["color_id"] = color
         section_index += 1
+
+        section_data["section_label"] =\
+            convert_section_label(section.section_label())
+
+        if section.is_primary_section:
+            if section.linked_section_urls:
+                section_data["total_linked_secondaries"] =\
+                    len(section.linked_section_urls)
+        else:
+            section_data["primary_section_label"] =\
+                convert_section_label(section.primary_section_label())
 
         if section.is_independent_study:
             section_data['is_independent_study'] = True
@@ -307,18 +323,6 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
     for section in json_data["sections"]:
         section["index"] = index
         index = index + 1
-
-    if hasattr(schedule, 'section_references'):
-        section_references = []
-        for section_ref in schedule.section_references:
-            section_references.append({
-                'term': section_ref.term.json_data(),
-                'curriculum_abbr': section_ref.curriculum_abbr,
-                'course_number': section_ref.course_number,
-                'section_id': section_ref.section_id,
-                'url': section_ref.url})
-
-        json_data['section_references'] = section_references
 
     json_data["is_grad_student"] = is_grad_student()
     return json_data

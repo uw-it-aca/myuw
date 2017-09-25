@@ -99,26 +99,26 @@
                 {
                     "FacultySequenceNumber": "",
                     "GradeRoster": {
-                        "Href": "/student/v5/graderoster/2013,spring,PHYS,122,BA,06BEEE4A55E0403D8CC4F7182CEEAA9E"
+                        "Href": "/student/v5/graderoster/2013,spring,PHYS,122,BA,10000000000000000000000000000006"
                     },
                     "PercentInvolve": "50",
                     "Person": {
-                        "Href": "/student/v5/person/06BEEE4A55E0403D8CC4F7182CEEAA9E.json",
-                        "Name": "Julian Drake Gifford",
-                        "RegID": "06BEEE4A55E0403D8CC4F7182CEEAA9E"
+                        "Href": "/student/v5/person/10000000000000000000000000000006.json",
+                        "Name": "Bill Sea",
+                        "RegID": "10000000000000000000000000000006"
                     },
                     "TSPrint": true
                 },
                 {
                     "FacultySequenceNumber": "",
                     "GradeRoster": {
-                        "Href": "/student/v5/graderoster/2013,spring,PHYS,122,BA,B6D9DBF680AC4CA1AEC5FBAE4ACDF28F"
+                        "Href": "/student/v5/graderoster/2013,spring,PHYS,122,BA,10000000000000000000000000000009"
                     },
                     "PercentInvolve": "50",
                     "Person": {
-                        "Href": "/student/v5/person/B6D9DBF680AC4CA1AEC5FBAE4ACDF28F.json",
-                        "Name": "GINA PASSANTE",
-                        "RegID": "B6D9DBF680AC4CA1AEC5FBAE4ACDF28F"
+                        "Href": "/student/v5/person/10000000000000000000000000000009.json",
+                        "Name": "Bill Sea Ta",
+                        "RegID": "10000000000000000000000000000009"
                     },
                     "TSPrint": true
                 }
