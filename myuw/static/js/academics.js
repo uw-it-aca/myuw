@@ -73,7 +73,8 @@ var Academics = {
             GradStatusCard,
             GradCommitteeCard,
             FutureQuarterCardA,
-            FutureQuarterCard1
+            FutureQuarterCard1,
+            SidebarLinks
         ];
         Cards.load_cards_in_order(mobile_cards, $("#academics_content_cards"));
     },
