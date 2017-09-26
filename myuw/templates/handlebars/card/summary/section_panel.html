@@ -67,13 +67,11 @@
 
                                 <td class="course-enrollment">
                                     {{#if @first }}
-                                        {{#if is_prev_term_enrollment}}0  <!-- the current_enrollment value is of previous term -->
-                                             {{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
+                                        {{#if is_prev_term_enrollment}}0<!-- the current_enrollment value is of previous term -->{{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
                                         {{else}}
-                                            {{#unless ../current_enrollment}}0
-                                                {{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
+                                            {{#unless ../current_enrollment}}0{{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
                                             {{else}}
-                                                <a target="_blank" href="/teaching/{{ @root.year }},{{ @root.quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students"
+                                                <a target="_blank" href="/teaching/{{ @root.year }},{{ @root.quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students" title="View class list"
                                                    class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">{{../current_enrollment}}{{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}</a>
                                             {{/unless}}
                                         {{/if}}
@@ -86,7 +84,7 @@
 
                                 <td class="course-sln">
                                     {{#if @first }}
-                                        {{#if ../sln}}<a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{ ../sln }}" target="_blank" data-linklabel="SLN {{../sln}}: {{../curriculum_abbr}} {{../course_number}} {{../section_id}}">{{../sln}}</a>{{/if}}
+                                        {{#if ../sln}}<a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{ ../sln }}" title="Time Schedule for SLN {{../sln}}" target="_blank" data-linklabel="SLN {{../sln}}: {{../curriculum_abbr}} {{../course_number}} {{../section_id}}">{{../sln}}</a>{{/if}}
                                     {{/if}}
                                 </td>
                             </tr>
