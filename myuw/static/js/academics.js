@@ -82,6 +82,6 @@ var Academics = {
     _reset_content_divs: function() {
         resetCardRenderCalled();
         $("#academics_content_cards").html('');
-        // $("#academics_sidebar_cards").html('');
+        $("#academics_sidebar_cards").html('');
     }
 };
