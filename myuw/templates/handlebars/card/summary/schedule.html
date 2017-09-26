@@ -10,14 +10,14 @@
                 You are not teaching any courses {{capitalizeString quarter}} {{year}}.
             {{else}}
                 {{#if future_term}}
-                    <div class="course-meta"><div style="margin-top: 8px;"><a class="future-nav-link"
-                    href="/teaching/{{ year }},{{ quarter }}" future-nav-target="{{year}},{{quarter}}"
-                    data-linklabel="{{capitalizeString quarter}} {{year}} Teaching Details">View details</a></div></div>
                     <p>You are teaching <strong>{{section_count}} course{{pluralize section_count '' 's'}}</strong> in {{capitalizeString quarter}} {{year}}. <br />
                     First day of instruction is {{toFriendlyDate first_day_quarter}} ({{toFromNowDate first_day_quarter}})</p>
+                    <div class="view-schedule-details"><a class="future-nav-link"
+                    href="/teaching/{{ year }},{{ quarter }}" future-nav-target="{{year}},{{quarter}}"
+                    data-linklabel="{{capitalizeString quarter}} {{year}} Teaching Details">View details</a></div>
                 {{/if}}
                 {{#each sections}}
-                    {{#unless under_disclosure}}
+                    {{#unless under_disclosure}} <!-- If primary section -->
                         <div class="myuw-card-section-fulldivider {{#if @last}}last{{/if}}">
                             {{> summary_section_panel }}
 

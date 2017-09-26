@@ -137,16 +137,36 @@ c8a #473EC5;
 .inst-course-note { font-size: small; font-style: italic; }
 
 
-/* Secondary section summary */
-.teaching-schedule-summary {
+/* Teaching Schedule Summary Card */
+.teaching-schedule-summary.myuw-card {
 
-    .card-disclosure {
+    .meeting-type {
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-left: 1.4em;
+    }
 
-        @media @two-column {
+    @media @two-column {
+
+        .meeting-type {
+            display: block;
+        }
+        .myuw-card-title {
+            margin-right: 4em;
+        }
+
+        .view-schedule-details {
+            position: absolute;
+            top: 8px;
+            right: 0;
+        }
+
+        .card-disclosure {
             margin-left: 1.3em;
-
         }
     }
+
+
 
     .secondary-section-disclosure {
 
