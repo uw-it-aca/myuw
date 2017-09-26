@@ -1,0 +1,13 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "sidebar_link_card" %}
+    <div class="myuw-canvas profile-links" style="position:relative;">
+    {{ #each link_data }}
+        <h4 id="{{subcat_slug}}" class="myuw-canvas-title">{{ subcategory }}</h4>
+        {{ #each links }}
+        <ul class="category-links">
+            <li> <a href="{{ url }}" {{#if new_tab }}target="_blank"{{ /if }}>{{ title }}</a></li>
+        </ul>
+        {{ /each }}
+    {{ /each }}
+    </div>
+{% endtplhandlebars %}

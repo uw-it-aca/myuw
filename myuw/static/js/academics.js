@@ -13,6 +13,9 @@ var Academics = {
         var template = Handlebars.compile(source);
         $("#main-content").html(template());
 
+        // Set category for sidebar links
+        window.sidebar_links_category = 'pageacademics';
+
         Academics.load_cards_for_viewport();
         // Set initial display state
         Academics.is_desktop = get_is_desktop();
@@ -50,10 +53,11 @@ var Academics = {
             FutureQuarterCard1
         ];
         var desktop_sidebar_cards = [
+            SidebarLinks
         ];
 
         Cards.load_cards_in_order(desktop_body_cards, $("#academics_content_cards"));
-        // Cards.load_cards_in_order(desktop_sidebar_cards, $("#academics_sidebar_cards"));
+        Cards.load_cards_in_order(desktop_sidebar_cards, $("#academics_sidebar_cards"));
     },
 
     _load_mobile_cards: function() {
