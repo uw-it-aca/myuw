@@ -78,11 +78,11 @@ class TestInstructorTermSchedule(MyuwApiTest):
         self.assertEqual(len(data['sections']), 5)
         primary_section = data['sections'][0]
         self.assertEqual(primary_section["section_label"],
-                         "2017-autumn-CSE-154-A")
+                         "2017_autumn_CSE_154_A")
         self.assertEqual(primary_section["total_linked_secondaries"], 4)
         sec_section = data['sections'][1]
         self.assertEqual(sec_section["primary_section_label"],
-                         "2017-autumn-CSE-154-A")
+                         "2017_autumn_CSE_154_A")
 
 
 class TestInstructorSection(MyuwApiTest):
