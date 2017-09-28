@@ -14,7 +14,6 @@
                             <th>Day(s)</th>
                             <th>Time</th>
                             <th>Location</th>
-                            <th>Location Information</th>
                         </tr>
                     </thead>
                     <tbody class="tbody-course-schedule">
@@ -28,7 +27,7 @@
                                 {{#if days_tbd }}
                                     <td colspan="2" class="course-tbd">Days and times to be arranged.</td>
                                     {{else if no_meeting}}
-                                    <td colspan="4" class="course-tbd">No classroom meeting: online learning</td>
+                                    <td colspan="3" class="course-tbd">No classroom meeting: online learning</td>
                                     {{else}}
                                     {% include "handlebars/card/schedule/course_sche_col_days.html" %}
                                 {{/if}}
@@ -38,12 +37,6 @@
                                         <td class="course-loc-tbd" colspan="2">Room to be arranged.</td>
                                         {{else}}
                                         {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
-                                        <td class="course-location-info">
-                                            {{#if classroom_info_url}}
-                                                <a href="{{ classroom_info_url }}" target="_blank"
-                                                   data-linklabel="{{ building }} {{ room }} - Room Info">Room info</a>
-                                            {{/if}}
-                                        </td>
                                     {{/if}}
                                 {{/unless}}
                             {{/if}}
@@ -74,25 +67,13 @@
                                             <th>Day</th>
                                             <th>Time</th>
                                             <th>Location</th>
-                                            <th>Location Information</th>
                                         </tr>
                                     </thead>
                                     <tbody class="tbody-course-schedule">
                                         <td class="course-final-date">{{ formatDateAsDate start_date }}</td>
                                         <td class="course-time">{{ formatDateAsTime start_date }} &ndash; {{ formatDateAsTimeAMPM end_date }}</td>
-                                        <td class="course-location">
-                                            {{#if latitude}}
-                                            <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18"
-                                               target="_blank" class="show_map" rel="{{building_name}}"
-                                               data-linklabel="{{ building }} - Google Maps"
-                                               title="Map {{building_name}}">
-                                            {{/if}}{{building}}{{#if latitude}} {{room_number}}</a>{{/if}}
-                                        </td>
-                                        <td class="course-location-info">
-                                            {{#if classroom_info_url}}
-                                            <a href="{{ classroom_info_url }}" target="_blank"
-                                               data-linklabel="{{ building }} {{ room_number }}">Room info</a>{{/if}}
-                                        </td>
+
+                                        {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
                                     </tbody>
                                 </table>
                             {{else}}

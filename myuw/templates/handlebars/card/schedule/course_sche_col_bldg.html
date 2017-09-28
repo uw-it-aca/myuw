@@ -1,13 +1,15 @@
 {% verbatim %}
-                <td class="course-location">
-                    {{#if latitude}}
-                        <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18"
-                           target="_blank" class="show_map" rel="{{building_name}}"
-                           data-linklabel="{{ building }} - Google Maps" title="Map {{building_name}}">
-                    {{/if}}
-                    {{building}} {{room}}
-                    {{#if latitude}}
-                        </a>
-                    {{/if}}
-                </td>
+<td class="course-location">
+    {{#if latitude}}
+       <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" target="_blank" class="show_map" rel="{{building_name}}" data-linklabel="{{ building }} - Google Maps" title="Map {{building_name}}">
+    {{/if}}
+    {{building}} {{room}}
+    {{#if latitude}}
+       </a>
+    {{/if}}
+
+    {{#if classroom_info_url}}
+       <a href="{{ classroom_info_url }}" target="_blank" data-linklabel="{{ building }} {{ room }} - Room Info"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+    {{/if}}
+</td>
 {% endverbatim %}
