@@ -34,15 +34,11 @@
                                 {{#if ../under_disclosure}}
                                 <td class="course-section">
                                     {{#if @first }}
-                                        <div class="c{{../color_id}} minirectangle" aria-hidden="true"></div><a
+                                        <div class="section-id"><div class="c{{../color_id}} minirectangle" aria-hidden="true"></div><a
                                              href="/teaching/{{ @root.year }},{{ @root.quarter }}#{{ ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}"
-                                             future-nav-target="{{@root.year}},{{@root.quarter}},{{../curriculum_abbr}}-{{../course_number}}-{{../section_id}}">{{../section_id}}</a>
-                                    {{/if}}
-                                </td>
+                                             future-nav-target="{{@root.year}},{{@root.quarter}},{{../curriculum_abbr}}-{{../course_number}}-{{../section_id}}">{{../section_id}}</a></div>
 
-                                <td class="course-sln">
-                                    {{#if @first }}
-                                        {{#if ../sln}}<a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{ ../sln }}" title="Time Schedule for SLN {{../sln}}" target="_blank" data-linklabel="SLN {{../sln}}: {{../curriculum_abbr}} {{../course_number}} {{../section_id}}">{{../sln}}</a>{{/if}}
+                                             {{#if ../sln}}<span class="course-sln"><a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{ ../sln }}" title="Time Schedule for SLN {{../sln}}" target="_blank" data-linklabel="SLN {{../sln}}: {{../curriculum_abbr}} {{../course_number}} {{../section_id}}">{{../sln}}</a></span>{{/if}}
                                     {{/if}}
                                 </td>
 
