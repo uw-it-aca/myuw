@@ -75,6 +75,33 @@ abbr[title] {
     font-size: @fontsize-small;
 }
 
+
+.myuw-ratio-minimized {
+    display: inline;
+
+    @media @two-column {
+        display: none;
+    }
+}
+
+.myuw-ratio-expanded {
+    overflow: hidden;
+    display: inline-block;
+    width: 0;
+    position: absolute;
+    text-indent: -500px;
+
+    @media @two-column {
+        text-indent: 0;
+        display: inline;
+        position: relative;
+        width: auto;
+    }
+}
+
+
+
+
 .myuw-label-disabled {
 
 }

@@ -72,7 +72,7 @@
                                             {{#unless ../current_enrollment}}0{{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
                                             {{else}}
                                                 <a target="_blank" href="/teaching/{{ @root.year }},{{ @root.quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students" title="View class list"
-                                                   class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">{{../current_enrollment}}{{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}</a>
+                                                   class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">{{../current_enrollment}}{{#unless ../is_independent_study}}<span class="myuw-ratio-expanded"> of </span><span class="myuw-ratio-minimized" aria-hidden="true">/</span>{{../limit_estimate_enrollment}}{{/unless}}</a>
                                             {{/unless}}
                                         {{/if}}
                                     {{/if}}
