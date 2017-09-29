@@ -17,8 +17,8 @@ def outbound_link(request):
     if not re.match('^https?://', url):
         return HttpResponseRedirect("/")
 
-    if is_link_of_interest(url):
-        save_visited_link(request)
+    # if is_link_of_interest(url):
+        # save_visited_link(request)
 
     return HttpResponseRedirect(url)
 
