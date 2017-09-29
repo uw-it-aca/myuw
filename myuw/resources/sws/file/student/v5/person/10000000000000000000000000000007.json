@@ -1,9 +1,9 @@
 {
     "BirthDate": "1993-12-10",
     "DirectoryRelease": null,
-    "Email": "billpce@uw.edu",
-    "EmployeeID": "867530901",
-    "FirstName": "BILL PCE",
+    "Email": "billbot@uw.edu",
+    "EmployeeID": "100000007",
+    "FirstName": "BILL BOTHELL",
     "Gender": null,
     "LastEnrolled": null,
     "LastName": "INSTRUCTOR",
@@ -16,15 +16,14 @@
     "PersonFinancial": {
     },
     "RegID": "10000000000000000000000000000011",
-    "RegisteredName": "BILL PCE INSTRUCTOR",
+    "RegisteredName": "BILL BOTHELL INSTRUCTOR",
     "Resident": null,
-    "StudentName": "BILL PCE INSTRUCTOR",
+    "StudentName": "BILL BOTHELL INSTRUCTOR",
     "StudentNumber": null,
     "StudentSystemKey": null,
     "TestScore": {
     },
-    "UWNetID": "billpce",
+    "UWNetID": "billbot",
     "Veteran": null,
     "VisaType": null
 }
-
