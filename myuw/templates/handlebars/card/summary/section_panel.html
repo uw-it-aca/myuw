@@ -41,7 +41,8 @@
                                     {{/if}}
                                 </td>
 
-                                <td class="course-type">{{ type }}</td>
+                                <td class="course-type">{{ shorten_meeting_type type }}</td>
+
                                 {{/if}}
 
                                 {{#if days_tbd }}
@@ -72,10 +73,6 @@
                                         {{/if}}
                                     {{/if}}
                                 </td>
-
-                                {{#if ../under_disclosure}}
-                                    <td class="course-type">{{ shorten_meeting_type type }}</td>
-                                {{/if}}
 
                             </tr>
                         {{/each}}

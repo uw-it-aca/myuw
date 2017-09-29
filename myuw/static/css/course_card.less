@@ -94,7 +94,7 @@ c8a #473EC5;
 
         &:last-child { padding-right: 0; }
 
-        &.course-final-date { min-width: 4em; }
+        &.course-final-date { width: 4.5em; }
         &.course-days { text-align:left; width: 4.5em; }
         &.course-section {
             .section-id {
@@ -108,7 +108,16 @@ c8a #473EC5;
             }
         }
         &.course-time { width: 8.4em; }
-        &.course-location { width: 6em; }
+        &.course-location {
+            width: 7em;
+            .room-info {
+                white-space: nowrap;
+
+                i {
+                    margin-left: 4px;
+                }
+            }
+        }
         &.course-enrollment {
             width: 6em;
             text-align: right;
