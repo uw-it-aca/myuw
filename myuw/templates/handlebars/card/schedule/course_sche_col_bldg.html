@@ -7,8 +7,10 @@
     {{#if classroom_info_url}}
        <a href="{{ classroom_info_url }}" class="room-info" title="View classroom information" target="_blank" data-linklabel="{{ building }} {{ room }} - Room Info">{{room}}<i class="fa fa-info-circle" aria-hidden="true"></i></a>
 
-   {{else}}
-      <span class="room-info" title="No classroom information available">{{room}}<i class="fa fa-info-circle" title="No classroom information available" aria-hidden="true"></i></span>
+    {{else}}
+        {{#if room}}
+            <span class="room-info" title="No classroom information available">{{room}}<i class="fa fa-info-circle" title="No classroom information available" aria-hidden="true"></i></span>
+        {{/if}}
     {{/if}}
 </td>
 {% endverbatim %}
