@@ -40,21 +40,22 @@ def save_visited_link(request):
     is_student_employee = affiliations.get('stud_employee', False)
     is_undergrad = affiliations.get('undergrad', False)
 
-    VisitedLinkNew.objects.create(username=request.user.username,
-                                  url=url,
-                                  label=label,
-                                  is_anonymous=is_anon,
-                                  is_student=affiliations.get('student', False),
-                                  is_undegrad=is_undergrad,
-                                  is_grad_student=affiliations.get('grad', False),
-                                  is_employee=affiliations.get('employee', False),
-                                  is_faculty=affiliations.get('faculty', False),
-                                  is_seattle=affiliations.get('seattle', False),
-                                  is_tacoma=affiliations.get('tacoma', False),
-                                  is_bothell=affiliations.get('bothell', False),
-                                  is_pce=affiliations.get('pce', False),
-                                  is_student_employee=is_student_employee,
-                                  )
+    link_data = {"username": request.user.username,
+                 "url": url,
+                 "label": label,
+                 "is_anonymous": is_anon,
+                 "is_student": affiliations.get('student', False),
+                 "is_undegrad": is_undergrad,
+                 "is_grad_student": affiliations.get('grad', False),
+                 "is_employee": affiliations.get('employee', False),
+                 "is_faculty": affiliations.get('faculty', False),
+                 "is_seattle": affiliations.get('seattle', False),
+                 "is_tacoma": affiliations.get('tacoma', False),
+                 "is_bothell": affiliations.get('bothell', False),
+                 "is_pce": affiliations.get('pce', False),
+                 "is_student_employee": is_student_employee}
+
+    VisitedLinkNew.objects.create(**link_data)
 
 
 def is_link_of_interest(url):
