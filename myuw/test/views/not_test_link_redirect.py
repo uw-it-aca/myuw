@@ -1,5 +1,5 @@
 from myuw.test.api import missing_url, require_url, MyuwApiTest
-from myuw.models import VisitedLink
+from myuw.models import VisitedLinkNew
 from django.core.urlresolvers import reverse
 from django.test import Client
 
@@ -8,7 +8,7 @@ from django.test import Client
 class TestRedirect(MyuwApiTest):
 
     def test_invalid_urls(self):
-        VisitedLink.objects.all().delete()
+        VisitedLinkNew.objects.all().delete()
 
         self.client.logout()
         url = reverse('myuw_outbound_link')
@@ -31,11 +31,11 @@ class TestRedirect(MyuwApiTest):
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response["Location"], "/")
 
-        all = VisitedLink.objects.all()
+        all = VisitedLinkNew.objects.all()
         self.assertEquals(len(all), 0)
 
     def test_valid_urls(self):
-        VisitedLink.objects.all().delete()
+        VisitedLinkNew.objects.all().delete()
 
         self.set_user('javerage')
         url = reverse('myuw_outbound_link')
@@ -44,45 +44,45 @@ class TestRedirect(MyuwApiTest):
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response["Location"], "https://example.com")
 
-        all = VisitedLink.objects.all()
+        all = VisitedLinkNew.objects.all()
         self.assertEquals(all[0].label, 'example')
 
         response = self.client.get(url, {'u': 'http://example.com'})
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response["Location"], "http://example.com")
 
-        all = VisitedLink.objects.all()
+        all = VisitedLinkNew.objects.all()
         self.assertEquals(len(all), 2)
 
         self.set_user('jbothell')
         response = self.client.get(url, {'u': 'http://example.com'})
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response["Location"], "http://example.com")
-        all = VisitedLink.objects.all()
+        all = VisitedLinkNew.objects.all()
         self.assertEquals(len(all), 3)
 
-        pce = VisitedLink.objects.filter(is_seattle=True)
+        pce = VisitedLinkNew.objects.filter(is_seattle=True)
         self.assertEquals(len(pce), 2)
 
     def test_anonymous_user(self):
-        VisitedLink.objects.all().delete()
+        VisitedLinkNew.objects.all().delete()
         self.client.logout()
         url = reverse('myuw_outbound_link')
         response = self.client.get(url, {'u': 'https://example.com',
                                          'l': 'example'})
 
-        all = VisitedLink.objects.all()
+        all = VisitedLinkNew.objects.all()
         self.assertEquals(len(all), 1)
         self.assertTrue(all[0].is_anonymous)
         self.assertEquals(all[0].username, "")
 
     def test_ignore_link(self):
-        VisitedLink.objects.all().delete()
+        VisitedLinkNew.objects.all().delete()
         self.set_user('jbothell')
         url = reverse('myuw_outbound_link')
 
         response = self.client.get(url, {'u': 'http://gmail.uw.edu'})
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response["Location"], "http://gmail.uw.edu")
-        all = VisitedLink.objects.all()
+        all = VisitedLinkNew.objects.all()
         self.assertEquals(len(all), 0)

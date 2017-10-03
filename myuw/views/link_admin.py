@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 import logging
 from myuw.dao.user import get_netid_of_current_user
 from myuw.views import admin_required, set_admin_wrapper_template
-from myuw.models import VisitedLink, PopularLink
+from myuw.models import VisitedLinkNew, PopularLink
 
 
 PAGE_SIZE = 10
@@ -65,7 +65,7 @@ def popular_links(request, page):
         del filter_kwargs['is_undergrad']
         filter_kwargs['is_undegrad'] = True
 
-    all_popular = VisitedLink.get_popular(**filter_kwargs)
+    all_popular = VisitedLinkNew.get_popular(**filter_kwargs)
 
     # Display is 1-indexed, we're 0-indexed
     page = int(page)

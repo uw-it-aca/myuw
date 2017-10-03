@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.views import prefetch_resources
-from myuw.models import VisitedLink
+from myuw.models import VisitedLinkNew
 from urllib import unquote
 import os
 import re
@@ -40,21 +40,21 @@ def save_visited_link(request):
     is_student_employee = affiliations.get('stud_employee', False)
     is_undergrad = affiliations.get('undergrad', False)
 
-    VisitedLink.objects.create(username=request.user.username,
-                               url=url,
-                               label=label,
-                               is_anonymous=is_anon,
-                               is_student=affiliations.get('student', False),
-                               is_undegrad=is_undergrad,
-                               is_grad_student=affiliations.get('grad', False),
-                               is_employee=affiliations.get('employee', False),
-                               is_faculty=affiliations.get('faculty', False),
-                               is_seattle=affiliations.get('seattle', False),
-                               is_tacoma=affiliations.get('tacoma', False),
-                               is_bothell=affiliations.get('bothell', False),
-                               is_pce=affiliations.get('pce', False),
-                               is_student_employee=is_student_employee,
-                               )
+    VisitedLinkNew.objects.create(username=request.user.username,
+                                  url=url,
+                                  label=label,
+                                  is_anonymous=is_anon,
+                                  is_student=affiliations.get('student', False),
+                                  is_undegrad=is_undergrad,
+                                  is_grad_student=affiliations.get('grad', False),
+                                  is_employee=affiliations.get('employee', False),
+                                  is_faculty=affiliations.get('faculty', False),
+                                  is_seattle=affiliations.get('seattle', False),
+                                  is_tacoma=affiliations.get('tacoma', False),
+                                  is_bothell=affiliations.get('bothell', False),
+                                  is_pce=affiliations.get('pce', False),
+                                  is_student_employee=is_student_employee,
+                                  )
 
 
 def is_link_of_interest(url):
