@@ -64,9 +64,11 @@ class TestQuickLinkDAO(TransactionTestCase):
     def test_link_label_override(self):
         username = 'ql_override_lbl_user'
         user = get_myuw_user(username)
-        l1 = VisitedLinkNew.objects.create(user=user,
-                                           url="http://example.com?q=replaceit",
-                                           label="Original")
+        data = {"user": user,
+                "url": "http://example.com?q=replaceit",
+                "label": "Original"}
+
+        l1 = VisitedLinkNew.objects.create(**data)
 
         self.assertEquals(get_link_label(l1), "Row For Unit Tests")
 
