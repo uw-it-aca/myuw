@@ -62,6 +62,10 @@ class TestInstructorSchedule(TestCase):
         schedule = get_instructor_section('2017', 'autumn', 'CSE', '154', 'AA')
         self.assertEqual(len(schedule.sections), 1)
 
+        schedule = get_instructor_section('2017', 'autumn',
+                                          'EDC&I', '552', 'A')
+        self.assertEqual(len(schedule.sections), 1)
+
     def test_get_limit_estimate_enrollment_for_section(self):
         term = Term()
         term.year = 2013
