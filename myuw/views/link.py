@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from myuw.dao.affiliation import get_all_affiliations
+from myuw.dao import get_user_model
 from myuw.views import prefetch_resources
 from myuw.models import VisitedLinkNew
 from urllib import unquote
@@ -26,6 +27,7 @@ def outbound_link(request):
 def save_visited_link(request):
     url = request.GET.get('u', '')
     label = request.GET.get('l', None)
+    user = get_user_model()
     if label:
         label = unquote(label)
     prefetch_resources(request)
@@ -40,7 +42,7 @@ def save_visited_link(request):
     is_student_employee = affiliations.get('stud_employee', False)
     is_undergrad = affiliations.get('undergrad', False)
 
-    link_data = {"username": request.user.username,
+    link_data = {"user": user,
                  "url": url,
                  "label": label,
                  "is_anonymous": is_anon,
