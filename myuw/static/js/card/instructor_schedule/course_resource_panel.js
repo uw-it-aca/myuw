@@ -47,14 +47,14 @@ var InstructorCourseResourcePanel = {
         $(".create_email_list", panel).on("click", function(ev) {
             var section_label = InstructorCourseResourcePanel.get_section_label(term, ev.currentTarget);
             label = safe_label(section_label);
-            WSData.log_interaction("open_create_email_list_"+label, term);
+            WSData.log_interaction("open_create_email_list_"+label);
             RequestEmailLists.render_init(section_label);
         });
 
         $(".manage_email_list", panel).on("click", function(ev) {
             var section_label = InstructorCourseResourcePanel.get_section_label(term, ev.currentTarget);
             label = safe_label(section_label);
-            WSData.log_interaction("open_manage_email_list_"+label, term);
+            WSData.log_interaction("open_manage_email_list_"+label);
             ManageEmailLists.render_init(section_label);
         });
 
@@ -66,10 +66,8 @@ var InstructorCourseResourcePanel = {
             var top = window.screenY + 200;
 
             window.open(ev.target.href, '_blank', 'scrollbars=1,resizable=1,width='+width+',height='+height+',left='+left+',top='+top);
-
-            var course_id = ev.currentTarget.getAttribute("rel");
-            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("open_course_classlist_"+course_id, term);
+            var section_label = ev.currentTarget.getAttribute("rel");
+            WSData.log_interaction("open_course_classlist_"+section_label);
             return false;
         });
     },

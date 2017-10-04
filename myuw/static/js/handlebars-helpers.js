@@ -100,11 +100,8 @@ Handlebars.registerHelper("safeLabel", function(str) {
     return safe_label(str);
 });
 
-Handlebars.registerHelper("toUrlSafe", function(str) {
-    if(str) {
-        return str.replace(/ /g, "%20");
-    }
-    return str;
+Handlebars.registerHelper("toUrlSafe", function(curr_abbr) {
+    return curr_abbr_url_safe(curr_abbr);
 });
 
 Handlebars.registerHelper("toLowerCase", function(str) {

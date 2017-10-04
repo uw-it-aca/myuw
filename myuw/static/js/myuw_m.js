@@ -143,6 +143,13 @@ var safe_label = function(section_label) {
     return section_label;
 };
 
+var curr_abbr_url_safe = function(curr_abbr) {
+    if(curr_abbr){
+        return curr_abbr.replace(/ /g, '%20').replace(/&/g, '%26');
+    }
+    return curr_abbr;
+};
+
 var titilizeTerm = function (term) {
     //Takes a term string (Eg summer 2013, b-term)
     //returns a title (Eg Summer 2013 B-Term)
@@ -311,6 +318,7 @@ exports.date_from_string = date_from_string;
 exports.myuwFeatureEnabled = myuwFeatureEnabled;
 exports.register_link_recorder = register_link_recorder;
 exports.safe_label = safe_label;
+exports.curr_abbr_url_safe = curr_abbr_url_safe;
 exports.renderedCardOnce = renderedCardOnce;
 exports.titilizeTerm = titilizeTerm;
 exports.remove_card = remove_card;
