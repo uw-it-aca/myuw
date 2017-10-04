@@ -4,4 +4,4 @@ from myuw.views.page import page
 
 @page_view
 def index(request):
-    return page(request, add_quicklink_context=False)
+    return page(request, add_quicklink_context=True)
