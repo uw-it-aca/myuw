@@ -72,9 +72,7 @@ class TestRedirect(MyuwApiTest):
                                          'l': 'example'})
 
         all = VisitedLinkNew.objects.all()
-        self.assertEquals(len(all), 1)
-        self.assertTrue(all[0].is_anonymous)
-        self.assertEquals(all[0].username, "")
+        self.assertEquals(len(all), 0)
 
     def test_ignore_link(self):
         VisitedLinkNew.objects.all().delete()

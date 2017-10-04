@@ -1,4 +1,5 @@
 from django.http import HttpResponseRedirect, HttpResponse
+from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao import get_user_model
@@ -27,7 +28,10 @@ def outbound_link(request):
 def save_visited_link(request):
     url = request.GET.get('u', '')
     label = request.GET.get('l', None)
-    user = get_user_model()
+    try:
+        user = get_user_model()
+    except IntegrityError:
+        return
     if label:
         label = unquote(label)
     prefetch_resources(request)
