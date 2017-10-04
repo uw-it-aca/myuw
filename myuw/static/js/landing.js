@@ -63,6 +63,7 @@ var Landing = {
             desktop_body_cards.unshift(HRPayrollCard);
         }
         var desktop_sidebar_cards = [
+            QuickLinksCard,
             AcadCalSnippet,
             EventsCard
         ];
@@ -73,6 +74,7 @@ var Landing = {
     _load_mobile_cards: function() {
         Landing._reset_content_divs();
         var mobile_cards = [
+            QuickLinksCard,
             ThriveCard,
             OutageCard,
             GradeCard,
