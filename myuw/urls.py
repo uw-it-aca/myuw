@@ -105,7 +105,7 @@ urlpatterns += [
         ),
     url(r'^api/v1/emaillist/(?P<year>\d{4}),'
         r'(?P<quarter>[A-Za-z]+),'
-        r'(?P<curriculum_abbr>[&%0-9A-Za-z]+),'
+        r'(?P<curriculum_abbr>[ &%0-9A-Za-z]+),'
         r'(?P<course_number>\d{3})/'
         r'(?P<section_id>[A-Za-z][A-Z0-9a-z]?)$',
         login_required(Emaillist().run),
