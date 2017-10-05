@@ -2,21 +2,23 @@ import json
 import traceback
 import logging
 import re
+from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
-from django.http import HttpResponse
+from restclients_core.exceptions import DataFailureException
+from uw_sws.exceptions import InvalidSectionID
 from myuw.dao.exceptions import NotSectionInstructorException
-from myuw.dao.pws import get_person_of_current_user
-from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_response_time
-from myuw.views.rest_dispatch import RESTDispatch
 from myuw.dao.user import get_netid_of_current_user
 from myuw.dao.instructor_schedule import check_section_instructor
 from myuw.dao.mailman import get_course_email_lists, request_mailman_lists,\
-    is_valid_section_label
+    is_valid_section_label, get_section_by_label
+from myuw.logger.timer import Timer
+from myuw.logger.logresp import log_response_time
+from myuw.views.rest_dispatch import RESTDispatch
 from myuw.views.error import handle_exception, not_instructor_error,\
     InvalidInputFormData
-from uw_sws.section import get_section_by_label
+from myuw.views.api import unescape_curriculum_abbr
+
 
 logger = logging.getLogger(__name__)
 
@@ -30,16 +32,17 @@ class Emaillist(RESTDispatch):
         """
         timer = Timer()
         try:
+            cur_abb = unescape_curriculum_abbr(curriculum_abbr)
             section_label = "%s,%s,%s,%s/%s" % (year,
                                                 quarter.lower(),
-                                                curriculum_abbr.upper(),
+                                                cur_abb.upper(),
                                                 course_number,
                                                 section_id)
             if not is_emaillist_authorized(section_label):
                 return not_instructor_error()
 
             email_list_json = get_course_email_lists(
-                year, quarter, curriculum_abbr,
+                year, quarter, cur_abb,
                 course_number, section_id, True)
 
             log_response_time(logger,
@@ -129,9 +132,17 @@ def is_emaillist_authorized(section_label):
     try:
         check_section_instructor(get_section_by_label(section_label))
         return True
-    except NotSectionInstructorException:
+    except InvalidSectionID:
+        logger.error("%s is_emaillist_authorized(%s) ==> InvalidSectionLabel",
+                     get_netid_of_current_user(), section_label)
         return False
-    except Exception as err:
+    except NotSectionInstructorException:
+        logger.error("%s is_emaillist_authorized(%s) ==> NotSectionInstructor",
+                     get_netid_of_current_user(), section_label)
+        return False
+    except DataFailureException as err:
         if err.status == 404:
             return False
+        raise
+    except Exception as ex:
         raise

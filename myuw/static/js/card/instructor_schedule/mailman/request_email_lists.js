@@ -85,6 +85,7 @@ var RequestEmailLists = {
                 return;
             }
             WSData.log_interaction("submit_request_emaillist_form_"+label);
+            var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;
             $.ajax({
                 url: "/api/v1/emaillist/",
                 dataType: "JSON",
@@ -92,6 +93,10 @@ var RequestEmailLists = {
                 type: 'POST',
                 accepts: {html: "text/html"},
                 data: $(target).serialize(),
+                headers: {
+                    "X-CSRFToken": csrf_token
+                },
+
                 success: function(results) {
                     if (results.none_selected) {
                         RequestEmailLists.render();

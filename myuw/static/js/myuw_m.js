@@ -138,7 +138,7 @@ var date_from_string = function(date_string) {
 
 var safe_label = function(section_label) {
     if(section_label){
-        return section_label.replace(/[^a-z0-9]/gi, '_');
+        return section_label.replace(/[^A-Za-z0-9]/gi, '_');
     }
     return section_label;
 };
