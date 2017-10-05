@@ -34,7 +34,7 @@ setup(
         'unittest2',
         'AuthZ-Group',
         'python-binary-memcached',
-        'UW-RestClients-Core<1.0,>=0.9.1',
+        'UW-RestClients-Core==0.9.1',
         'UW-RestClients-SWS<2.0,>=1.4.4',
         'UW-RestClients-PWS<1.0,>=0.6',
         'UW-RestClients-HFS<1.0',
