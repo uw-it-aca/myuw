@@ -11,7 +11,7 @@ from myuw.dao.quicklinks import get_quicklink_data, get_link_label,\
     add_hidden_link, delete_hidden_link, get_popular_link_by_id,\
     get_recent_link_by_id
 from myuw.dao.affiliation import get_all_affiliations
-from myuw.models import PopularLink, VisitedLink, CustomLink, HiddenLink
+from myuw.models import PopularLink, VisitedLinkNew, CustomLink, HiddenLink
 from myuw.logger.logresp import log_msg_with_affiliation
 from myuw.logger.timer import Timer
 from myuw.views.rest_dispatch import RESTDispatch
@@ -63,7 +63,7 @@ class ManageLinks(RESTDispatch):
             if link_id:
                 try:
                     vlink = get_recent_link_by_id(link_id)
-                except VisitedLink.DoesNotExist:
+                except VisitedLinkNew.DoesNotExist:
                     return data_not_found()
                 link = add_custom_link(vlink.url, vlink.label)
                 log_msg_with_affiliation(logger, timer, request,

@@ -9,7 +9,6 @@ FIFTEEN_MINS = 60 * 15
 ONE_HOUR = 60 * 60
 FOUR_HOURS = 60 * 60 * 4
 ONE_DAY = 60 * 60 * 24
-ONE_WEEK = 60 * 60 * 24 * 7
 
 
 def get_cache_time(service, url):
@@ -17,19 +16,15 @@ def get_cache_time(service, url):
         return FIVE_SECONDS
 
     if "sws" == service:
-        if re.match('^/student/v5/term/current', url):
-            return ONE_DAY
-
         if re.match('^/student/v5/term', url):
-            return ONE_WEEK
+            return ONE_DAY
+        return FIFTEEN_MINS
 
-        if re.match('^/student/v5/course', url) or\
-                re.match('^/student/v5/enrollment', url) or\
-                re.match('^/student/v5/notice', url):
-            return ONE_HOUR
+    if "pws" == service:
+        return ONE_HOUR
 
-        if re.match('^/student/v5/registration', url):
-            return FIFTEEN_MINS
+    if "uwnetid" == service:
+        return ONE_HOUR
 
     return FOUR_HOURS
 
