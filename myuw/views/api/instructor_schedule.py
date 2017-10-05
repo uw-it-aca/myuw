@@ -570,8 +570,8 @@ class InstSectionDetails(RESTDispatch):
 
     def get_person_info(self, person):
         sws_person = get_person_by_regid(person.uwregid)
-        return {"name": sws_person.first_name,
-                "surname": sws_person.last_name,
+        return {"name": sws_person.first_name.title(),
+                "surname": sws_person.last_name.title(),
                 "email": sws_person.email
                 }
 
