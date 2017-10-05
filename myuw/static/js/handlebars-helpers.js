@@ -456,6 +456,13 @@ Handlebars.registerHelper('slugify', function(value) {
     return slug.toLowerCase();
 });
 
+Handlebars.registerHelper('shorten_meeting_type', function(str) {
+    if (str.length > 4) {
+        return str.substring(0, 3);
+    }
+    return str;
+});
+
 Handlebars.registerHelper('phone_number', function(value) {
     var number;
 

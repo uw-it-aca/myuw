@@ -75,6 +75,35 @@ abbr[title] {
     font-size: @fontsize-small;
 }
 
+
+/** Responsive system alternates between the contents of the minimized
+**  and expanded version. Using " of " and "/" as the defaults **/
+.myuw-ratio-minimized {
+    display: inline;
+
+    @media @two-column {
+        display: none;
+    }
+}
+
+.myuw-ratio-expanded {
+    overflow: hidden;
+    display: inline-block;
+    width: 0;
+    position: absolute;
+    text-indent: -500px;
+
+    @media @two-column {
+        text-indent: 0;
+        display: inline;
+        position: relative;
+        width: auto;
+    }
+}
+
+
+
+
 .myuw-label-disabled {
 
 }
