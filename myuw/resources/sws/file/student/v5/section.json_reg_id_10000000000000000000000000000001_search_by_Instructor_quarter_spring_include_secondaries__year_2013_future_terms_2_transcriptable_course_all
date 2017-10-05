@@ -1,6 +1,6 @@
 {
 "Current":
-    {"Href":"\/student\/v5\/section.json?year=2013&quarter=spring&curriculum_abbreviation=&course_number=&reg_id=10000000000000000000000000000001&search_by=Instructor&include_secondaries=on&delete_flag=&page_size=10&page_start=1",
+    {"Href":"\/student\/v5\/section.json?year=2013&quarter=spring&curriculum_abbreviation=&course_number=&reg_id=10000000000000000000000000000001&search_by=Instructor&include_secondaries=&delete_flag=&page_size=10&page_start=1",
     "CourseNumber":null,
     "CurriculumAbbreviation":null,
     "DeleteFlag":null,
