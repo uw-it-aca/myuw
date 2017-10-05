@@ -1,52 +1,48 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "summary_section_panel" %}
-    <div class="row">
+
     {{#unless under_disclosure}}
-    <!-- use two column layout -->
-        <div class="col-sm-3">
-            <h4 class="myuw-card-row-heading" style="display:inline-block;
-                margin-bottom:0px;"><div class="c{{color_id}} simplesquare" aria-hidden="true"></div><a href="/teaching/{{ @root.year }},{{ @root.quarter }}#{{ curriculum_abbr }}-{{ course_number }}-{{ section_id }}"
-                class="future-nav-link" future-nav-target="{{ @root.year }},{{ @root.quarter }},{{curriculum_abbr}}-{{course_number}}-{{section_id}}">{{curriculum_abbr}} <span class="text-nowrap">{{course_number}} {{section_id}}</span></a></h4>
-            <span class="meeting-type">{{ meetings.0.type }}</span>
+    <!-- use two column layout for primary sections -->
+        <div class="col-sm-4">
+            <h4 class="myuw-card-row-heading"><div class="c{{color_id}} simplesquare" aria-hidden="true"></div><a href="/teaching/{{ @root.year }},{{ @root.quarter }}#{{ curriculum_abbr }}-{{ course_number }}-{{ section_id }}" class="future-nav-link" future-nav-target="{{ @root.year }},{{ @root.quarter }},{{curriculum_abbr}}-{{course_number}}-{{section_id}}">{{curriculum_abbr}} <span class="text-nowrap">{{course_number}} {{section_id}}</span></a></h4>
+            <div class="section-meta">
+                <span class="myuw-meta course-meeting-type">{{ meetings.0.type }}</span>
+                {{#if sln}}
+                <span class="myuw-meta course-sln"><a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{sln}}" title="Time Schedule for SLN {{sln}}" target="_blank" data-linklabel="SLN {{sln}}: {{curriculum_abbr}} {{course_number}} {{section_id}}">{{sln}}</a></span>
+                {{/if}}
+            </div>
         </div>
 
-        <div class="col-sm-9">
-
-    {{else}}
-    <!-- use one column layout -->
-        <div class="col-sm-12">
-
-    {{/unless}}
-
+        <div class="col-sm-8">
             <div class="myuw-card-row-content">
                 <table class="table-course-schedule">
                     <thead class="sr-only">
                         <tr>
-                            {{#if ../under_disclosure}}
-                                <th>Section</th>
-                            {{/if}}
                             <th>Day(s)</th>
                             <th>Time</th>
                             <th>Location</th>
                             <th>Enrollment</th>
-                            {{#if under_disclosure}}
-                                <th>Section Type</th>
-                            {{/if}}
-                            <th>SLN</th>
                         </tr>
                     </thead>
 
                     <tbody class="tbody-course-schedule">
+    {{/unless}}
+
                         {{#each meetings}}
                             <tr class="course-schedule-row">
                                 {{#if ../under_disclosure}}
                                 <td class="course-section">
                                     {{#if @first }}
-                                        <div class="c{{../color_id}} minirectangle" aria-hidden="true"></div><a
+                                        <div class="section-id"><div class="c{{../color_id}} minirectangle" aria-hidden="true"></div><a
                                              href="/teaching/{{ @root.year }},{{ @root.quarter }}#{{ ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}"
-                                             future-nav-target="{{@root.year}},{{@root.quarter}},{{../curriculum_abbr}}-{{../course_number}}-{{../section_id}}">{{../section_id}}</a>
+                                             future-nav-target="{{@root.year}},{{@root.quarter}},{{../curriculum_abbr}}-{{../course_number}}-{{../section_id}}">{{../section_id}}</a></div>
+
+                                             {{#if ../sln}}<span class="course-sln"><a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{ ../sln }}" title="Time Schedule for SLN {{../sln}}" target="_blank" data-linklabel="SLN {{../sln}}: {{../curriculum_abbr}} {{../course_number}} {{../section_id}}">{{../sln}}</a></span>{{/if}}
                                     {{/if}}
                                 </td>
+
+                                <td class="course-type">{{ shorten_meeting_type type }}</td>
+
                                 {{/if}}
 
                                 {{#if days_tbd }}
@@ -59,7 +55,7 @@
 
                                 {{#unless no_meeting}}
                                     {{#if building_tbd}}
-                                        <td class="course-loc-tbd">Room to be arranged</td>
+                                        <td class="course-loc-tbd">Room <abbr title="To be determined">TBD</abbr></td>
                                     {{else}}
                                         {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
                                     {{/if}}
@@ -67,33 +63,24 @@
 
                                 <td class="course-enrollment">
                                     {{#if @first }}
-                                        {{#if is_prev_term_enrollment}}0  <!-- the current_enrollment value is of previous term -->
-                                             {{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
+                                        {{#if is_prev_term_enrollment}}0<!-- the current_enrollment value is of previous term -->{{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
                                         {{else}}
-                                            {{#unless ../current_enrollment}}0
-                                                {{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
+                                            {{#unless ../current_enrollment}}0{{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
                                             {{else}}
-                                                <a target="_blank" href="/teaching/{{ @root.year }},{{ @root.quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students"
-                                                   class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">{{../current_enrollment}}{{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}</a>
+                                                <a target="_blank" href="/teaching/{{ @root.year }},{{ @root.quarter }},{{ ../curriculum_abbr }},{{ ../course_number }}/{{ ../section_id }}/students" title="View class list"
+                                                   class="course_class_list" rel="{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}}">{{../current_enrollment}}{{#unless ../is_independent_study}}<span class="myuw-ratio-expanded"> of </span><span class="myuw-ratio-minimized" aria-hidden="true">/</span>{{../limit_estimate_enrollment}}{{/unless}}</a>
                                             {{/unless}}
                                         {{/if}}
                                     {{/if}}
                                 </td>
 
-                                {{#if ../under_disclosure}}
-                                    <td class="course-type">{{ type }}</td>
-                                {{/if}}
-
-                                <td class="course-sln">
-                                    {{#if @first }}
-                                        {{#if ../sln}}<a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{ ../sln }}" target="_blank" data-linklabel="SLN {{../sln}}: {{../curriculum_abbr}} {{../course_number}} {{../section_id}}">{{../sln}}</a>{{/if}}
-                                    {{/if}}
-                                </td>
                             </tr>
-                            {{/each}}
+                        {{/each}}
+
+    {{#unless under_disclosure}}<!-- close out table and div wrappers for primary sections -->
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
+    {{/unless}}
 {% endtplhandlebars %}
