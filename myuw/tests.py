@@ -53,7 +53,6 @@ from myuw.test.api.dept_calendar import TestDeptCalAPI
 from myuw.test.api.instructor_schedule import (
     TestInstructorCurrentSchedule, TestInstructorTermSchedule,
     TestInstructorSection)
-from myuw.test.cache import TestCustomCachePolicy
 from myuw.test.loggers import TestSessionLog
 from myuw.test.views.choose import TestChoose
 from myuw.test.views.page import TestPageMethods
