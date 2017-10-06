@@ -155,7 +155,7 @@ class UserMigrationPreference(models.Model):
     use_legacy_site = models.BooleanField(default=False)
 
 
-class VisitedLink(models.Model):
+class VisitedLinkNew(models.Model):
     url = models.CharField(max_length=512)
     label = models.CharField(max_length=50, null=True)
     is_anonymous = models.BooleanField(default=True)
@@ -171,7 +171,7 @@ class VisitedLink(models.Model):
     is_pce = models.BooleanField(default=False)
     is_student_employee = models.BooleanField(default=False)
 
-    username = models.CharField(max_length=20)
+    user = models.ForeignKey('User', on_delete=models.PROTECT)
     visit_date = models.DateTimeField(db_index=True, auto_now_add=True)
 
     MAX_RECENT_HISTORY = 100
@@ -179,13 +179,13 @@ class VisitedLink(models.Model):
     OLDEST_POPULAR_TIME_DELTA = timedelta(days=-30)
 
     @classmethod
-    def recent_for_user(cls, username):
+    def recent_for_user(cls, user):
         # This is more code than i want, because django doesn't support
         # distinct on fields for sqlite
-        min_visit = timezone.now() + VisitedLink.OLDEST_RECENT_TIME_DELTA
-        objs = VisitedLink.objects.filter(username=username,
-                                          visit_date__gte=min_visit)
-        objs = objs.order_by('-pk')[:VisitedLink.MAX_RECENT_HISTORY]
+        min_visit = timezone.now() + VisitedLinkNew.OLDEST_RECENT_TIME_DELTA
+        objs = VisitedLinkNew.objects.filter(user=user,
+                                             visit_date__gte=min_visit)
+        objs = objs.order_by('-pk')[:VisitedLinkNew.MAX_RECENT_HISTORY]
         lookup = set()
         ordered = []
         for visited in objs:
@@ -197,11 +197,11 @@ class VisitedLink(models.Model):
 
     @classmethod
     def get_popular(cls, **kwargs):
-        min_visit = timezone.now() + VisitedLink.OLDEST_POPULAR_TIME_DELTA
-        objs = VisitedLink.objects.filter(visit_date__gte=min_visit,
-                                          **kwargs)
+        min_visit = timezone.now() + VisitedLinkNew.OLDEST_POPULAR_TIME_DELTA
+        objs = VisitedLinkNew.objects.filter(visit_date__gte=min_visit,
+                                             **kwargs)
         objs = objs.values('url', 'label')
-        objs = objs.annotate(num_users=Count('username', distinct=True),
+        objs = objs.annotate(num_users=Count('user', distinct=True),
                              all=Count('*'))
 
         by_url = {}

@@ -1,0 +1,29 @@
+{
+    "BirthDate": "1993-12-10",
+    "DirectoryRelease": null,
+    "Email": "billbot@uw.edu",
+    "EmployeeID": "100000007",
+    "FirstName": "BILL BOTHELL",
+    "Gender": null,
+    "LastEnrolled": null,
+    "LastName": "INSTRUCTOR",
+    "LocalAddress": null,
+    "LocalPhone": null,
+    "Notices": {
+    },
+    "PermanentAddress": null,
+    "PermanentPhone": null,
+    "PersonFinancial": {
+    },
+    "RegID": "10000000000000000000000000000011",
+    "RegisteredName": "BILL BOTHELL INSTRUCTOR",
+    "Resident": null,
+    "StudentName": "BILL BOTHELL INSTRUCTOR",
+    "StudentNumber": null,
+    "StudentSystemKey": null,
+    "TestScore": {
+    },
+    "UWNetID": "billbot",
+    "Veteran": null,
+    "VisaType": null
+}

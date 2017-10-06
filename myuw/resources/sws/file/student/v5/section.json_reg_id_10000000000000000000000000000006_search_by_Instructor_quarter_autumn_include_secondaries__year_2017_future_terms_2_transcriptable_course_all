@@ -30,7 +30,15 @@
             "Quarter": "autumn",
             "SectionID": "A",
             "Year": 2017
+        },
+        {
+            "CourseNumber": "552",
+            "CurriculumAbbreviation": "EDC&I",
+            "Href": "/student/v5/course/2017,autumn,EDC%26I,552/A.json",
+            "Quarter": "autumn",
+            "SectionID": "A",
+            "Year": 2017
         }
     ],
-    "TotalCount": 1
+    "TotalCount": 2
 }
