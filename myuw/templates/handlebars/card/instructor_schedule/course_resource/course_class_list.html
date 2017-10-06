@@ -17,9 +17,13 @@
                             </div>
                         {{else}}
                             {{#if enrollment_student_name}}
-                                <span>{{ enrollment_student_name }}</span> <a target="_blank" href="/teaching/{{ year }},{{ quarter }},{{ curriculum_abbr }},{{ course_number }}/{{ section_id }}/students" class="course_class_list" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">View student</a>
+                                <span>{{ enrollment_student_name }}</span> <a target="_blank" href="/teaching/{{ year }},{{ quarter }},{{ toUrlSafe curriculum_abbr }},{{ course_number }}/{{ section_id }}/students" class="course_class_list" rel="{{section_label}}">View student</a>
                             {{else}}
-                                <span>{{ current_enrollment }}{{#unless is_independent_study}} of {{ limit_estimate_enrollment }}{{/unless}}</span> {{#if current_enrollment }}<a target="_blank" href="/teaching/{{ year }},{{ quarter }},{{ curriculum_abbr }},{{ course_number }}/{{ section_id }}/students" class="course_class_list" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}">View class list</a>{{/if}}
+                                <span>{{ current_enrollment }}{{#unless is_independent_study}} of {{ limit_estimate_enrollment }}{{/unless}}</span>
+                                {{#if current_enrollment }}
+                                    <a target="_blank" href="/teaching/{{ year }},{{ quarter }},{{ toUrlSafe curriculum_abbr }},{{ course_number }}/{{ section_id }}/students"
+                                       class="course_class_list" rel="{{section_label}}">View class list</a>
+                                {{/if}}
                             {{/if}}
                         {{/if}}
                     </div>

@@ -100,11 +100,8 @@ Handlebars.registerHelper("safeLabel", function(str) {
     return safe_label(str);
 });
 
-Handlebars.registerHelper("toUrlSafe", function(str) {
-    if(str) {
-        return str.replace(/ /g, "%20");
-    }
-    return str;
+Handlebars.registerHelper("toUrlSafe", function(curr_abbr) {
+    return curr_abbr_url_safe(curr_abbr);
 });
 
 Handlebars.registerHelper("toLowerCase", function(str) {
@@ -454,6 +451,13 @@ Handlebars.registerHelper('get_quarter_abbreviation', function(quarter_str) {
 Handlebars.registerHelper('slugify', function(value) {
     var slug = value.replace(/[^\w\s]+/gi, '').replace(/ +/gi, '-');
     return slug.toLowerCase();
+});
+
+Handlebars.registerHelper('shorten_meeting_type', function(str) {
+    if (str.length > 4) {
+        return str.substring(0, 3);
+    }
+    return str;
 });
 
 Handlebars.registerHelper('phone_number', function(value) {

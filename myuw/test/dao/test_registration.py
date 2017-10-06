@@ -43,3 +43,12 @@ class TestRegistrationsDao(TestCase):
         self.assertEqual(len(registrations), 1)
         enrolled_student = registrations[0].person
         self.assertEqual(enrolled_student.uwnetid, "javg001")
+
+        section = get_section_by_label('2017,autumn,EDC&I,552/A')
+        self.assertEqual(section.section_label(), '2017,autumn,EDC&I,552/A')
+
+        regid = "10000000000000000000000000000006"
+        reg = get_active_registrations_for_section(section, regid)
+        self.assertEqual(len(reg), 2)
+        enrolled_student = reg[0].person
+        self.assertEqual(enrolled_student.uwnetid, "javg003")
