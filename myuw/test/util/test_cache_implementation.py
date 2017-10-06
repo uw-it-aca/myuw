@@ -18,7 +18,6 @@ FIFTEEN_MINS = 60 * 15
 ONE_HOUR = 60 * 60
 FOUR_HOURS = 60 * 60 * 4
 ONE_DAY = 60 * 60 * 24
-ONE_WEEK = 60 * 60 * 24 * 7
 
 
 @fdao_sws_override
@@ -26,33 +25,38 @@ class TestCustomCachePolicy(TestCase):
 
     def test_get_cache_time(self):
         self.assertEquals(get_cache_time(
-                "sws", "/student/myuwcachetest1"), FOUR_HOURS)
+                "myplan", "/api/plan/"), FIVE_SECONDS)
+
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/term/2013,spring.json"), ONE_WEEK)
+                "sws", "/student/v5/term/2013,spring.json"), ONE_DAY)
         self.assertEquals(get_cache_time(
                 "sws", "/student/v5/term/current.json"), ONE_DAY)
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/course"), ONE_HOUR)
+                "sws", "/student/v5/course"), FIFTEEN_MINS)
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/enrollment"), ONE_HOUR)
+                "sws", "/student/v5/enrollment"), FIFTEEN_MINS)
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/notice"), ONE_HOUR)
+                "sws", "/student/v5/notice"), FIFTEEN_MINS)
         self.assertEquals(get_cache_time(
                 "sws", "/student/v5/registration"), FIFTEEN_MINS)
         self.assertEquals(get_cache_time(
-                "myplan", "/api/plan/"), FIVE_SECONDS)
+                "sws", "/student/v5/section"), FIFTEEN_MINS)
+
+        self.assertEquals(get_cache_time(
+                "pws", "/nws/v1/uwnetid"), ONE_HOUR)
+        self.assertEquals(get_cache_time(
+                "uwnetid", "/nws/v1/uwnetid"), ONE_HOUR)
+
         self.assertEquals(get_cache_time(
                 "grad", "/services/students"), FOUR_HOURS)
         self.assertEquals(get_cache_time(
-                "iasystem", "/uw/api/v1/evaluation"), FOUR_HOURS)
+                "iasystem_uw", "/uw/api/v1/evaluation"), FOUR_HOURS)
         self.assertEquals(get_cache_time(
-                "iasystem", "/uwb/api/v1/evaluation"), FOUR_HOURS)
+                "iasystem_uwb", "/uwb/api/v1/evaluation"), FOUR_HOURS)
         self.assertEquals(get_cache_time(
-                "iasystem", "/uwt/api/v1/evaluation"), FOUR_HOURS)
+                "iasystem_uwt", "/uwt/api/v1/evaluation"), FOUR_HOURS)
         self.assertEquals(get_cache_time(
                 "digitlib", "/php/currics/service.php"), FOUR_HOURS)
-        self.assertEquals(get_cache_time(
-                "uwnetid", "/nws/v1/uwnetid"), FOUR_HOURS)
         self.assertEquals(get_cache_time(
                 "gws", "group_sws/v2/group"), FOUR_HOURS)
 
@@ -74,18 +78,18 @@ class TestCustomCachePolicy(TestCase):
             cache_entry = CacheEntryTimed.objects.get(
                 service="sws",
                 url="/student/myuwcachetest1")
-            # Cached response is returned after 3 hours and 58 minutes
+            # Cached response is returned before 15 minutes
             orig_time_saved = cache_entry.time_saved
             cache_entry.time_saved = (orig_time_saved -
-                                      timedelta(minutes=(60 * 4)-2))
+                                      timedelta(minutes=14))
             cache_entry.save()
 
             response = cache.getCache('sws', '/student/myuwcachetest1', {})
             self.assertNotEquals(response, None)
 
-            # Cached response is not returned after 4 hours and 1 minute
+            # Cached response is not returned after 15 minute
             cache_entry.time_saved = (orig_time_saved -
-                                      timedelta(minutes=(60 * 4)+1))
+                                      timedelta(minutes=16))
             cache_entry.save()
 
             response = cache.getCache('sws', '/student/myuwcachetest1', {})
@@ -112,7 +116,7 @@ class TestCustomCachePolicy(TestCase):
             # Cached response is returned after 6 days
             orig_time_saved = cache_entry.time_saved
             cache_entry.time_saved = orig_time_saved - timedelta(
-                minutes=(60*24*7-1))
+                minutes=(60*24-1))
             cache_entry.save()
 
             response = cache.getCache(
@@ -218,7 +222,7 @@ class TestCustomCachePolicy(TestCase):
                 service="sws", url="/student/v5/course/xx")
             orig_time_saved = cache_entry.time_saved
             cache_entry.time_saved = (orig_time_saved -
-                                      timedelta(minutes=61))
+                                      timedelta(minutes=16))
             cache_entry.save()
             response = cache.getCache('sws', '/student/v5/course/xx', {})
             self.assertEquals(response, None)
@@ -241,7 +245,7 @@ class TestCustomCachePolicy(TestCase):
                 service="sws", url="/student/v5/enrollment/xx")
             orig_time_saved = cache_entry.time_saved
             cache_entry.time_saved = (orig_time_saved -
-                                      timedelta(minutes=61))
+                                      timedelta(minutes=16))
             cache_entry.save()
             response = cache.getCache('sws', '/student/v5/enrollment/xx', {})
             self.assertEquals(response, None)
@@ -264,7 +268,7 @@ class TestCustomCachePolicy(TestCase):
                 service="sws", url="/student/v5/notice/xx")
             orig_time_saved = cache_entry.time_saved
             cache_entry.time_saved = (orig_time_saved -
-                                      timedelta(minutes=61))
+                                      timedelta(minutes=16))
             cache_entry.save()
             response = cache.getCache('sws', '/student/v5/notice/xx', {})
             self.assertEquals(response, None)
