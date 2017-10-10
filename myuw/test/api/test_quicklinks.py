@@ -1,12 +1,11 @@
 import json
 from django.core.urlresolvers import reverse
-from myuw.test import fdao_class_website_override
 from myuw.test.api import MyuwApiTest
-from myuw.models import VisitedLink, PopularLink, CustomLink, HiddenLink
+from myuw.test import get_myuw_user
+from myuw.models import VisitedLinkNew, PopularLink, CustomLink, HiddenLink
 from myuw.views.api.link import get_link_data
 
 
-@fdao_class_website_override
 class TestQuickLinksAPI(MyuwApiTest):
 
     def test_get_link_data(self):
@@ -68,16 +67,18 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEquals(len(all), 1)
 
     def test_add_recent(self):
-        VisitedLink.objects.all().delete()
+        VisitedLinkNew.objects.all().delete()
         CustomLink.objects.all().delete()
+        not_me = get_myuw_user('not_me')
+        javerage = get_myuw_user('javerage')
 
-        l1 = VisitedLink.objects.create(label="L1",
-                                        url="http://example.com",
-                                        username="not_me")
+        l1 = VisitedLinkNew.objects.create(label="L1",
+                                           url="http://example.com",
+                                           user=not_me)
 
-        l2 = VisitedLink.objects.create(label="L2",
-                                        url="http://uw.edu",
-                                        username="javerage")
+        l2 = VisitedLinkNew.objects.create(label="L2",
+                                           url="http://uw.edu",
+                                           user=javerage)
 
         self.set_user('javerage')
 
@@ -150,7 +151,8 @@ class TestQuickLinksAPI(MyuwApiTest):
 
         self.assertEqual(all[0].url,
                          'http://www.washington.edu/classroom/SMI+401')
-        self.assertEqual(all[0].label, 'Room Information')
+        self.assertEqual(all[0].label,
+                         'http://www.washington.edu/classroom/SMI+401')
 
         # Add the same link but w/ protocol
         data = json.dumps({'type': 'custom',

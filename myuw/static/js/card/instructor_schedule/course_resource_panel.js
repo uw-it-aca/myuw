@@ -12,19 +12,6 @@ var InstructorCourseResourcePanel = {
             c_section.display_resources = true;
         }
 
-        var course_campus = c_section.course_campus.toLowerCase();
-        var time_schedule_published = c_section.time_schedule_published;
-        var all_published = true;
-        for (var campus in time_schedule_published) {
-            all_published = all_published && time_schedule_published[campus];
-            if (!all_published) { break; }
-        }
-        c_section.no_current_enrolment = false;
-        if (!all_published && c_section.sln === 0 && course_campus in time_schedule_published && !time_schedule_published[course_campus]) {
-            c_section.no_current_enrolment = true;
-            c_section.last_enrolment_year = c_section.year - 1;
-        }
-
         var source = $("#instructor_course_resource_panel").html();
         var template = Handlebars.compile(source);
         var raw = template(c_section);
@@ -60,14 +47,14 @@ var InstructorCourseResourcePanel = {
         $(".create_email_list", panel).on("click", function(ev) {
             var section_label = InstructorCourseResourcePanel.get_section_label(term, ev.currentTarget);
             label = safe_label(section_label);
-            WSData.log_interaction("open_create_email_list_"+label, term);
+            WSData.log_interaction("open_create_email_list_"+label);
             RequestEmailLists.render_init(section_label);
         });
 
         $(".manage_email_list", panel).on("click", function(ev) {
             var section_label = InstructorCourseResourcePanel.get_section_label(term, ev.currentTarget);
             label = safe_label(section_label);
-            WSData.log_interaction("open_manage_email_list_"+label, term);
+            WSData.log_interaction("open_manage_email_list_"+label);
             ManageEmailLists.render_init(section_label);
         });
 
@@ -78,11 +65,9 @@ var InstructorCourseResourcePanel = {
             var left = window.screenX + 200;
             var top = window.screenY + 200;
 
-            window.open(ev.target.href, '_blank', 'width='+width+',height='+height+',left='+left+',top='+top);
-
-            var course_id = ev.currentTarget.getAttribute("rel");
-            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
-            WSData.log_interaction("open_course_classlist_"+course_id, term);
+            window.open(ev.target.href, '_blank', 'scrollbars=1,resizable=1,width='+width+',height='+height+',left='+left+',top='+top);
+            var section_label = ev.currentTarget.getAttribute("rel");
+            WSData.log_interaction("open_course_classlist_"+section_label);
             return false;
         });
     },

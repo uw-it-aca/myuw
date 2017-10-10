@@ -1,5 +1,6 @@
 from django.test import TransactionTestCase
-from myuw.models import VisitedLink, CustomLink, PopularLink, User
+from myuw.models import VisitedLinkNew, CustomLink, PopularLink, User
+from myuw.test import get_request_with_user, get_myuw_user
 from myuw.dao.quicklinks import get_quicklink_data, get_link_label,\
     add_custom_link, delete_custom_link, edit_custom_link,\
     add_hidden_link, delete_hidden_link, get_popular_link_by_id,\
@@ -24,10 +25,10 @@ class TestQuickLinkDAO(TransactionTestCase):
         u1 = 'http://example.com?q=1'
         u2 = 'http://example.com?q=2'
 
-        v1 = VisitedLink.objects.create(username=username, url=u1)
+        v1 = VisitedLinkNew.objects.create(user=user, url=u1)
         self.assertTrue(get_recent_link_by_id(v1.pk))
 
-        v2 = VisitedLink.objects.create(username=username, url=u2)
+        v2 = VisitedLinkNew.objects.create(user=user, url=u2)
 
         data = get_quicklink_data({})
         recent = _get_recent(data)
@@ -52,8 +53,8 @@ class TestQuickLinkDAO(TransactionTestCase):
         self.assertEquals(len(recent), 0)
 
         for i in range(10):
-            VisitedLink.objects.create(username=username,
-                                       url="http://example.com?q=%s" % i)
+            VisitedLinkNew.objects.create(user=user,
+                                          url="http://example.com?q=%s" % i)
 
         data = get_quicklink_data({})
         recent = _get_recent(data)
@@ -62,15 +63,18 @@ class TestQuickLinkDAO(TransactionTestCase):
 
     def test_link_label_override(self):
         username = 'ql_override_lbl_user'
-        l1 = VisitedLink.objects.create(username=username,
-                                        url="http://example.com?q=replaceit",
-                                        label="Original")
+        user = get_myuw_user(username)
+        data = {"user": user,
+                "url": "http://example.com?q=replaceit",
+                "label": "Original"}
+
+        l1 = VisitedLinkNew.objects.create(**data)
 
         self.assertEquals(get_link_label(l1), "Row For Unit Tests")
 
-        l1 = VisitedLink.objects.create(username=username,
-                                        url="http://example.com?q=whatever",
-                                        label="Original")
+        l1 = VisitedLinkNew.objects.create(user=user,
+                                           url="http://example.com?q=whatever",
+                                           label="Original")
         self.assertEquals(get_link_label(l1), "Original")
 
     def test_hidden_link(self):

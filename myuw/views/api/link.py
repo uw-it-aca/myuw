@@ -6,14 +6,12 @@ from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from restclients_core.exceptions import DataFailureException
-from myuw.dao.class_website import get_page_title_from_url
 from myuw.dao.quicklinks import get_quicklink_data, get_link_label,\
     add_custom_link, delete_custom_link, edit_custom_link,\
     add_hidden_link, delete_hidden_link, get_popular_link_by_id,\
     get_recent_link_by_id
-from myuw.dao.class_website import get_page_title_from_url
 from myuw.dao.affiliation import get_all_affiliations
-from myuw.models import PopularLink, VisitedLink, CustomLink, HiddenLink
+from myuw.models import PopularLink, VisitedLinkNew, CustomLink, HiddenLink
 from myuw.logger.logresp import log_msg_with_affiliation
 from myuw.logger.timer import Timer
 from myuw.views.rest_dispatch import RESTDispatch
@@ -65,7 +63,7 @@ class ManageLinks(RESTDispatch):
             if link_id:
                 try:
                     vlink = get_recent_link_by_id(link_id)
-                except VisitedLink.DoesNotExist:
+                except VisitedLinkNew.DoesNotExist:
                     return data_not_found()
                 link = add_custom_link(vlink.url, vlink.label)
                 log_msg_with_affiliation(logger, timer, request,
@@ -136,23 +134,12 @@ def get_link_label(data):
     return data.get('label')
 
 
-def discover_link_label(url):
-    if re.match('^http://', url):
-        try:
-            return get_page_title_from_url(url)
-        except DataFailureException:
-            pass
-    return None
-
-
 def get_link_data(data, get_id=True):
     url = get_link_url(data)
 
     label = get_link_label(data)
     if not label:
-        label = discover_link_label(url)
-        if not label:
-            label = url
+        label = url
 
     if get_id:
         link_id = get_link_id(data)

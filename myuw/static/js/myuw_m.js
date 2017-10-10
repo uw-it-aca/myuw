@@ -58,7 +58,7 @@ $(window.document).ready(function() {
     });
 
     $(".opt-out-rate-myuw").bind("click", function(ev) {
-        var rating_value = ev.currentTarget.getAttribute("rel");
+        var rating_value = ev.currentTarget.getAttribute("data-rating");
         WSData.log_interaction("opt-out_rate_myuw_" + rating_value);
         var hide = $("#leave-feedback-div-onpop");
         var expose = $("#thank-feedback-div-onpop");
@@ -138,9 +138,16 @@ var date_from_string = function(date_string) {
 
 var safe_label = function(section_label) {
     if(section_label){
-        return section_label.replace(/[^a-z0-9]/gi, '_');
+        return section_label.replace(/[^A-Za-z0-9]/gi, '_');
     }
     return section_label;
+};
+
+var curr_abbr_url_safe = function(curr_abbr) {
+    if(curr_abbr){
+        return curr_abbr.replace(/ /g, '%20').replace(/&/g, '%26');
+    }
+    return curr_abbr;
 };
 
 var titilizeTerm = function (term) {
@@ -311,6 +318,7 @@ exports.date_from_string = date_from_string;
 exports.myuwFeatureEnabled = myuwFeatureEnabled;
 exports.register_link_recorder = register_link_recorder;
 exports.safe_label = safe_label;
+exports.curr_abbr_url_safe = curr_abbr_url_safe;
 exports.renderedCardOnce = renderedCardOnce;
 exports.titilizeTerm = titilizeTerm;
 exports.remove_card = remove_card;

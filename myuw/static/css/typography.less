@@ -21,8 +21,10 @@
     font-family: 'encode_sans_normalbold', sans-serif;
     font-weight: 600;
     color: #444;
-    font-size: @font-header-larger;
     margin: 0 0 8px 0;
+
+    h2& { font-size: @font-header-larger; }
+    h3& { font-size: @font-header-large; }
 }
 
 #app_content .card .myuw-card-title {
@@ -73,6 +75,35 @@ abbr[title] {
     font-size: @fontsize-small;
 }
 
+
+/** Responsive system alternates between the contents of the minimized
+**  and expanded version. Using " of " and "/" as the defaults **/
+.myuw-ratio-minimized {
+    display: inline;
+
+    @media @two-column {
+        display: none;
+    }
+}
+
+.myuw-ratio-expanded {
+    overflow: hidden;
+    display: inline-block;
+    width: 0;
+    position: absolute;
+    text-indent: -500px;
+
+    @media @two-column {
+        text-indent: 0;
+        display: inline;
+        position: relative;
+        width: auto;
+    }
+}
+
+
+
+
 .myuw-label-disabled {
 
 }
@@ -93,4 +124,47 @@ ul.unstyled-list, ol.unstyled-list, ul.unstyled, ol.unstyled {
     font-size: @font-base;
     font-weight: bold;
     color: #333;
+}
+
+
+
+/* Disclosure Links */
+
+.myuw-disclosurelink {
+
+    i.fa {
+        margin-right: 8px;
+        transition: all .2s;
+    }
+
+    i.fa-caret-right {
+        filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+        -webkit-transform:rotate(90deg);
+        -ms-transform:rotate(90deg);
+        transform:rotate(90deg);
+    }
+
+    &.collapsed {
+
+        i.fa-caret-right {
+            filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+            -webkit-transform:rotate(0deg);
+            -ms-transform:rotate(0deg);
+            transform:rotate(0deg);
+        }
+    }
+}
+
+.myuw-disclosurelink-hidden {
+
+}
+
+.myuw-disclosurelink-shown {
+
+    i.fa-caret-right {
+        filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+        -webkit-transform:rotate(90deg);
+        -ms-transform:rotate(90deg);
+        transform:rotate(90deg);
+    }
 }

@@ -1,0 +1,94 @@
+{
+    "Current": {
+        "ChangedSinceDate": null,
+        "CourseNumber": null,
+        "CurriculumAbbreviation": null,
+        "DeleteFlag": null,
+        "FacilityCode": null,
+        "FutureTerms": 0,
+        "Href": "/student/v5/section.json?year=2017&quarter=autumn&future_terms=0&curriculum_abbreviation=&course_number=&reg_id=10000000000000000000000000000006&search_by=Instructor&include_secondaries=on&delete_flag=&changed_since_date=&transcriptable_course=all&page_size=10&page_start=1&facility_code=&room_number=&sln=",
+        "IncludeSecondaries": true,
+        "PageSize": "10",
+        "PageStart": "1",
+        "Quarter": "autumn",
+        "RegID": "10000000000000000000000000000006",
+        "RoomNumber": null,
+        "SLN": null,
+        "SearchBy": "Instructor",
+        "TranscriptableCourse": "all",
+        "Year": "2017"
+    },
+    "Next": {
+        "ChangedSinceDate": null,
+        "CourseNumber": null,
+        "CurriculumAbbreviation": null,
+        "DeleteFlag": null,
+        "FacilityCode": null,
+        "FutureTerms": 0,
+        "Href": "/student/v5/section.json?year=2017&quarter=autumn&future_terms=0&curriculum_abbreviation=&course_number=&reg_id=10000000000000000000000000000006&search_by=Instructor&include_secondaries=on&delete_flag=&changed_since_date=&transcriptable_course=all&page_size=10&page_start=11&facility_code=&room_number=&sln=",
+        "IncludeSecondaries": true,
+        "PageSize": "10",
+        "PageStart": "11",
+        "Quarter": "autumn",
+        "RegID": "10000000000000000000000000000006",
+        "RoomNumber": null,
+        "SLN": null,
+        "SearchBy": "Instructor",
+        "TranscriptableCourse": "all",
+        "Year": "2017"
+    },
+    "PageSize": "10",
+    "PageStart": "1",
+    "Previous": null,
+    "Sections": [
+        {
+            "CourseNumber": "154",
+            "CurriculumAbbreviation": "CSE",
+            "Href": "/student/v5/course/2017,autumn,CSE,154/A.json",
+            "Quarter": "autumn",
+            "SectionID": "A",
+            "Year": 2017
+        },
+        {
+            "CourseNumber": "154",
+            "CurriculumAbbreviation": "CSE",
+            "Href": "/student/v5/course/2017,autumn,CSE,154/AA.json",
+            "Quarter": "autumn",
+            "SectionID": "AA",
+            "Year": 2017
+        },
+        {
+            "CourseNumber": "154",
+            "CurriculumAbbreviation": "CSE",
+            "Href": "/student/v5/course/2017,autumn,CSE,154/AB.json",
+            "Quarter": "autumn",
+            "SectionID": "AB",
+            "Year": 2017
+        },
+        {
+            "CourseNumber": "154",
+            "CurriculumAbbreviation": "CSE",
+            "Href": "/student/v5/course/2017,autumn,CSE,154/AC.json",
+            "Quarter": "autumn",
+            "SectionID": "AC",
+            "Year": 2017
+        },
+        {
+            "CourseNumber": "154",
+            "CurriculumAbbreviation": "CSE",
+            "Href": "/student/v5/course/2017,autumn,CSE,154/AD.json",
+            "Quarter": "autumn",
+            "SectionID": "AD",
+            "Year": 2017
+        },
+        {
+            "CourseNumber": "552",
+            "CurriculumAbbreviation": "EDC&I",
+            "Href": "/student/v5/course/2017,autumn,EDC%26I,552/A.json",
+            "Quarter": "autumn",
+            "SectionID": "A",
+            "Year": 2017
+        }
+    ],
+    "TotalCount": 6
+}

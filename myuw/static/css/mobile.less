@@ -330,7 +330,7 @@ label { font-weight: normal; margin-bottom: auto; }
 }
 
 /*** message banner ***/
-#app_messages {
+.app-messages {
 	.message-banner {background-color: #558097;color:#fff; //#72adcb too light
         p {margin:0;}
 	    h2 { font-size: 15px; display: inline; font-weight: bold; }
@@ -808,7 +808,7 @@ label { font-weight: normal; margin-bottom: auto; }
 		}
 	}
 
-    .profile-links {
+    .profile-links, .aside-links {
         padding-left: 16px;
         ul { list-style-type: none; padding-left: 0; }
     }
@@ -835,7 +835,8 @@ label { font-weight: normal; margin-bottom: auto; }
 
 
 
-	.simplesquare {display: inline-block; height: .9em; width: .9em; margin-right: 0.3em;}
+	.simplesquare { display: inline-block; height: .9em; width: .9em; margin-right: 0.3em; }
+    .minirectangle { display: inline-block; height: .9em; width: .55em; margin-right: .3em; }
 
 
 
@@ -1926,31 +1927,6 @@ label { font-weight: normal; margin-bottom: auto; }
 		}
 	}
 
-    // textbooks page
-
-    .textbooks-container {
-		color: #555;
-		background-color: #fff;
-		margin-bottom: -3em;
-		padding-bottom: 3em;
-
-		h3 { font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 16px; line-height: 30px; margin: 0; color: #222; }
-		h4 { font-family: 'Open Sans', sans-serif; font-size: 14px;
-    		span { text-transform: uppercase; font-size: 11px; }
-		}
-
-		.book-cover, .no-book-cover { margin-right: 10px; }
-
-		.no-book-cover { width:80px; height: 127px; border:solid 1px #ddd; padding: 20px 10px; color: #777; text-align: center; }
-
-		.dl-books { font-size: 13px;
-
-    		dt { color: #444; text-transform: uppercase; font-size: 12px; }
-    		dd { color: #222; margin-bottom: 7px; }
-		}
-
-    }
-
 
     // categories (resources) page
 
@@ -2143,25 +2119,7 @@ th.mailman-sections-column { width: 99%; }
     margin-bottom: 10px;
 }
 
-/*** Teaching Summary Card ***/
-.teaching-schedule-summary.myuw-card {
-    .myuw-card-title {
-        margin-right: 4em;
-    }
 
-    .meeting-type {
-        font-size: 12px;
-        text-transform: uppercase;
-        margin-left: 1.4em;
-
-        @media @phablet {
-            display: block;
-        }
-    }
-
-//    @media only screen and (max-width: 815px) { }
-
-}
 
 
 /*** footer ***/
@@ -2230,9 +2188,9 @@ th.mailman-sections-column { width: 99%; }
 .slide-hide {
    max-height: 0;
    overflow: hidden;
-   -webkit-transition: max-height 0.8s;
-   -moz-transition: max-height 0.8s;
-   transition: max-height 0.8s;
+   -webkit-transition: max-height 1s;
+   -moz-transition: max-height 1s;
+   transition: max-height 1s;
 }
 
 // animated show div

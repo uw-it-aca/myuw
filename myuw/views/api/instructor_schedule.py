@@ -1,4 +1,5 @@
 import json
+import re
 import traceback
 from myuw.views.error import (handle_exception, not_instructor_error,
                               data_not_found)
@@ -21,7 +22,6 @@ from myuw.dao.gws import is_grad_student
 from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
     get_limit_estimate_enrollment_for_section, get_instructor_section
-from myuw.dao.class_website import get_page_title_from_url, is_valid_page_url
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.pws import get_url_key_for_regid, get_regid_of_current_user
@@ -55,33 +55,11 @@ class InstSche(RESTDispatch):
         return HttpResponse(json.dumps(resp_data))
 
 
-def set_class_website_data(url):
-    website_data = {
-        'title': None,
-        'unauthorized': False,
-        'not_found': False
-    }
-    try:
-        if url:
-            website_data['title'] = get_page_title_from_url(url)
-    except DataFailureException as ex:
-        if ex.status == 401:
-            website_data['authorized'] = True
-        elif ex.status == 404:
-            website_data['not_found'] = True
-        else:
-            logger.error("class_website_url: %s: %s: %s" % (
-                url, ex.status, ex.message))
-
-    return website_data
-
-
 def set_classroom_info_url(meeting):
-    url = 'http://www.washington.edu/classroom/%s+%s' % (
-        meeting.building, meeting.room_number)
-    if is_valid_page_url(url):
-        return url
-
+    if len(meeting.building) and meeting.building != "*" and\
+            len(meeting.room_number) and meeting.room_number != "*":
+        return 'http://www.washington.edu/classroom/%s+%s' % (
+            meeting.building, meeting.room_number)
     return None
 
 
@@ -141,11 +119,6 @@ def set_course_resources(section_data, section, person):
                            args=(section, True))
     t.start()
     threads.append((t, 'email_list', section_data))
-
-    t = ThreadWithResponse(target=set_class_website_data,
-                           args=(section.class_website_url,))
-    t.start()
-    threads.append((t, 'class_website_data', section_data))
 
     t = ThreadWithResponse(target=set_section_grading_status,
                            args=(section, person,))
@@ -212,6 +185,10 @@ def set_indep_study_section_enrollments(section, section_json_data):
                       traceback.format_exc())
 
 
+def safe_label(label):
+    return re.sub(r"[^A-Za-z0-9]", "_", label)
+
+
 def load_schedule(request, schedule, summer_term="", section_callback=None):
 
     json_data = schedule.json_data()
@@ -243,6 +220,17 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
             color = colors[section.section_label()]
             section_data["color_id"] = color
         section_index += 1
+
+        section_data["section_label"] =\
+            safe_label(section.section_label())
+
+        if section.is_primary_section:
+            if section.linked_section_urls:
+                section_data["total_linked_secondaries"] =\
+                    len(section.linked_section_urls)
+        else:
+            section_data["primary_section_label"] =\
+                safe_label(section.primary_section_label())
 
         if section.is_independent_study:
             section_data['is_independent_study'] = True
@@ -335,18 +323,6 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
     for section in json_data["sections"]:
         section["index"] = index
         index = index + 1
-
-    if hasattr(schedule, 'section_references'):
-        section_references = []
-        for section_ref in schedule.section_references:
-            section_references.append({
-                'term': section_ref.term.json_data(),
-                'curriculum_abbr': section_ref.curriculum_abbr,
-                'course_number': section_ref.course_number,
-                'section_id': section_ref.section_id,
-                'url': section_ref.url})
-
-        json_data['section_references'] = section_references
 
     json_data["is_grad_student"] = is_grad_student()
     return json_data

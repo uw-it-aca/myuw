@@ -15,7 +15,7 @@ c4a #646464,
 c5 #91279f,
 c5a #BD37CF,
 c6 #716141,
-c6a #653FB2,
+c6a #84734C,
 c7 #4B2E84,
 c7a #653FB2,
 c8 #352E9B,
@@ -67,19 +67,21 @@ c8a #473EC5;
     top: 0;
     right: 0;
 
-    .course-sln {
-        a {
-            color:inherit;
-            text-decoration: underline;
-        }
-    }
-
     .course-meeting-type {
         margin-left: 16px;
         padding:2px 4px 2px 4px;
         border: 1px solid #eee;
     }
 }
+
+.course-sln {
+    a {
+        color:inherit;
+        text-decoration: underline;
+    }
+}
+
+
 
 
 .table-course-schedule {
@@ -88,15 +90,53 @@ c8a #473EC5;
 
     td {
         padding: 0 8px 8px 0;
-        width:6em;
+        vertical-align: top;
 
-        &.course-final-date { min-width: 4em; }
-        //&.course-days {text-align:center;}
+        &:last-child { padding-right: 0; }
+
+        &.course-final-date { width: 4.5em; }
+        &.course-days { text-align:left; width: 4.5em; }
+        &.course-section {
+            .section-id {
+                font-weight: bold;
+                white-space: nowrap;
+                display: inline-block;
+                margin-right: -4px;
+            }
+            .course-sln {
+                margin-left: 12px;
+            }
+        }
         &.course-time { width: 8.4em; }
-        &.course-location { width: 6em; text-align: right; padding-right: 16px; }
-        &.course-type {width: 8em; text-align: right;}
+        &.course-location {
+            width: 7em;
+            .room-info {
+                white-space: nowrap;
+
+                i {
+                    color: #8f9bcc;
+                    margin-left: 4px;
+                }
+            }
+            span.room-info i {
+                color: #777;
+            }
+        }
+        &.course-enrollment {
+            width: 6em;
+            text-align: right;
+
+            .course_class_list {
+                margin-left: auto;
+            }
+        }
+        &.course-type { text-align: left; text-transform: capitalize; }
         &.course-location-info { width: 6em; }
+        &.course-sln {  }
     }
+
+    tr:last-child td { padding-bottom: 0; }
+
 }
 
 .grading-system { display: block; }
@@ -112,8 +152,59 @@ c8a #473EC5;
     display: block;
 }
 
-.fa-question-circle {color:#8f9bcc;}
+.fa-question-circle { color: #8f9bcc; }
 
 
 /* Message text */
 .inst-course-note { font-size: small; font-style: italic; }
+
+
+/* Teaching Schedule Summary Card */
+.teaching-schedule-summary.myuw-card {
+
+    .course-meeting-type {
+        margin-left: 1.4em;
+        margin-right: 1em;
+    }
+
+    .section-meta {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    @media @two-column {
+
+        .section-meta {
+            position: relative;
+            display: block;
+        }
+        .myuw-card-title {
+            margin-right: 4em;
+        }
+
+        .view-schedule-details {
+            position: absolute;
+            top: 8px;
+            right: 0;
+        }
+
+        .card-disclosure {
+            margin-left: 1.3em;
+        }
+    }
+
+
+
+    .secondary-section-disclosure {
+
+        padding-top: 8px;
+        padding-left: 8px;
+
+        @media @two-column {
+            padding-left: 16px;
+        }
+
+
+    }
+}

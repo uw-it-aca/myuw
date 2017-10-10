@@ -2,7 +2,7 @@ import csv
 import logging
 import os
 from django.db import transaction, IntegrityError
-from myuw.models import VisitedLink, PopularLink, CustomLink, HiddenLink
+from myuw.models import VisitedLinkNew, PopularLink, CustomLink, HiddenLink
 from myuw.dao import get_netid_of_current_user, get_user_model
 from myuw.dao.affiliation_data import get_data_for_affiliations
 
@@ -14,8 +14,6 @@ logger = logging.getLogger(__name__)
 
 def get_quicklink_data(affiliations):
     data = {}
-
-    username = get_netid_of_current_user()
 
     # For excluding from the recent list
     existing_list_urls = set()
@@ -62,7 +60,7 @@ def get_quicklink_data(affiliations):
     data['default_links'] = shown_defaults
 
     recents = []
-    recent_links = VisitedLink.recent_for_user(username)
+    recent_links = VisitedLinkNew.recent_for_user(user)
     for link in recent_links:
         if link.url in existing_list_urls:
             continue
@@ -188,5 +186,5 @@ def get_popular_link_by_id(link_id):
 
 
 def get_recent_link_by_id(link_id):
-    return VisitedLink.objects.get(pk=link_id,
-                                   username=get_netid_of_current_user())
+    return VisitedLinkNew.objects.get(pk=link_id,
+                                      user=get_user_model())

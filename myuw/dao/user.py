@@ -46,11 +46,9 @@ def has_newmyuw_preference(uwnetid):
 
 def is_oldmyuw_user():
     uwnetid = get_netid_of_current_user()
-    if has_legacy_preference(uwnetid):
-        return True
-    if is_optin_user(uwnetid) or has_newmyuw_preference(uwnetid):
+    if has_newmyuw_preference(uwnetid) or is_optin_user(uwnetid):
         return False
-    if is_applicant():
+    if has_legacy_preference(uwnetid):
         return True
     if is_staff_employee():
         return True
@@ -60,6 +58,8 @@ def is_oldmyuw_user():
         return True
     if is_undergrad_student():
         return False
+    if is_applicant():
+        return True
     return True
 
 
