@@ -1,7 +1,5 @@
-import json
 import logging
 import traceback
-from django.http import HttpResponse
 from restclients_core.exceptions import DataFailureException
 from uw_myplan import get_plan
 from myuw.dao.pws import get_regid_of_current_user
@@ -9,21 +7,21 @@ from uw_sws.section import get_section_by_label
 from myuw.dao.card_display_dates import during_myplan_peak_load
 from myuw.dao.term import get_current_quarter, get_comparison_datetime
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response, log_msg,\
-    log_data_not_found_response, log_err
-from myuw.views.rest_dispatch import RESTDispatch
+from myuw.logger.logresp import (
+    log_success_response, log_msg, log_data_not_found_response, log_err)
+from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
-
 
 logger = logging.getLogger(__name__)
 
 
-class MyPlan(RESTDispatch):
+class MyPlan(ProtectedAPI):
     """
     Performs actions on /api/v1/myplan
     """
-
-    def GET(self, request, year, quarter):
+    def get(self, request, *args, **kwargs):
+        year = kwargs.get("year")
+        quarter = kwargs.get("quarter")
         timer = Timer()
         try:
             no_myplan_access = during_myplan_peak_load(
@@ -31,7 +29,7 @@ class MyPlan(RESTDispatch):
             if no_myplan_access:
                 log_msg(logger, timer,
                         "No MyPlan access during their peak load, abort!")
-                return HttpResponse('[]')
+                return self.json_response([])
 
             plan = get_plan(regid=get_regid_of_current_user(),
                             year=year,
@@ -74,7 +72,7 @@ class MyPlan(RESTDispatch):
             base_json["terms"][0]["has_sections"] = has_sections
 
             log_success_response(logger, timer)
-            return HttpResponse(json.dumps(base_json))
+            return self.json_response(base_json)
         except Exception:
             log_err(logger, timer, traceback.format_exc())
-            return HttpResponse('[]')
+            return self.json_response([])

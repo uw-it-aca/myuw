@@ -1,7 +1,5 @@
-import json
 import logging
 import traceback
-from django.http import HttpResponse
 from myuw.dao.gws import is_student
 from myuw.dao.student_profile import get_student_profile
 from myuw.dao.password import get_pw_json
@@ -11,20 +9,19 @@ from myuw.dao.user import get_netid_of_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response, log_msg
 from myuw.views import prefetch_resources
-from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.api import ProtectedAPI
 from restclients_core.exceptions import DataFailureException
 from myuw.views.error import data_not_found, handle_exception
-
 
 logger = logging.getLogger(__name__)
 
 
-class MyProfile(RESTDispatch):
+class MyProfile(ProtectedAPI):
     """
     Performs actions on resource at /api/v1/profile/.
     """
 
-    def GET(self, request):
+    def get(self, request, *args, **kwargs):
         """
         GET returns 200 with the student account balances
         of the current user
@@ -53,6 +50,6 @@ class MyProfile(RESTDispatch):
                 logger.error("%s get_pw_json: %s" % (netid, ex))
 
             log_success_response(logger, timer)
-            return HttpResponse(json.dumps(response, default=str))
+            return self.json_response(response)
         except Exception:
             return handle_exception(logger, timer, traceback)
