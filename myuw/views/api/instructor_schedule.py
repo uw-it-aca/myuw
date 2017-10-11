@@ -181,8 +181,8 @@ def set_indep_study_section_enrollments(section, section_json_data):
                       traceback.format_exc())
 
 
-def convert_section_label(label):
-    return re.sub(r"[ ,/]", "-", label)
+def safe_label(label):
+    return re.sub(r"[^A-Za-z0-9]", "_", label)
 
 
 def load_schedule(request, schedule, summer_term="", section_callback=None):
@@ -218,7 +218,7 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
         section_index += 1
 
         section_data["section_label"] =\
-            convert_section_label(section.section_label())
+            safe_label(section.section_label())
 
         if section.is_primary_section:
             if section.linked_section_urls:
@@ -226,7 +226,7 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
                     len(section.linked_section_urls)
         else:
             section_data["primary_section_label"] =\
-                convert_section_label(section.primary_section_label())
+                safe_label(section.primary_section_label())
 
         if section.is_independent_study:
             section_data['is_independent_study'] = True

@@ -77,7 +77,7 @@ class TestMailmanDao(TestCase):
         list_data = get_single_section_list(
             get_section_by_label('2013,summer,B BIO,180/AA'))
         self.assertEqual(list_data["list_address"], 'bbio180aa_su13')
-        self.assertTrue(list_data["list_exists"])
+        self.assertFalse(list_data["list_exists"])
 
         list_data = get_single_section_list(
             get_section_by_label('2013,spring,T ARTS,110/A'))

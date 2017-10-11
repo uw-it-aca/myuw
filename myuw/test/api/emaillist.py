@@ -1,10 +1,11 @@
 import json
 from django.core.urlresolvers import reverse
 from django.test import Client
-from django.test.utils import override_settings
-from myuw.views.api.emaillist import Emaillist, section_id_matched
+from myuw.views.api.emaillist import Emaillist, section_id_matched,\
+    is_emaillist_authorized
 from myuw.test import get_request, get_request_with_user, get_user,\
     email_backend_override
+from django.test.utils import override_settings
 from myuw.test.api import MyuwApiTest, require_url,\
     fdao_sws_override, fdao_mailman_override
 
@@ -51,6 +52,19 @@ class TestEmaillistApi(MyuwApiTest):
         self.assertEquals(data["course_abbr"], "PHYS")
         self.assertEquals(data["section_id"], "A")
         self.assertTrue(data["has_lists"])
+
+    def test_get_bot(self):
+        self.set_user('billbot')
+        response = self.get_response_by_reverse(
+            'myuw_emaillist_api',
+            kwargs={'year': 2013,
+                    'quarter': 'summer',
+                    'curriculum_abbr': 'B%20BIO',
+                    'course_number': '180',
+                    'section_id': 'A'})
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertTrue(data["is_primary"])
 
     def test_post_with_csrf_checks(self):
         client = Client(enforce_csrf_checks=True)
@@ -150,3 +164,8 @@ class TestEmaillistApi(MyuwApiTest):
             url,
             {u'section_single_AB': u'2013,spring,ESS,102/AB'})
         self.assertEquals(resp.status_code, 200)
+
+    def test_is_emaillist_authorized(self):
+        get_request_with_user('billbot')
+        self.assertTrue(is_emaillist_authorized("2013,summer,B BIO,180/A"))
+        self.assertFalse(is_emaillist_authorized("2013,summer,B%20BIO,180/A"))

@@ -75,14 +75,17 @@ class TestInstructorTermSchedule(MyuwApiTest):
         self.assertEquals(resp.status_code, 200)
         data = json.loads(resp.content)
         self.assertFalse(data["future_term"])
-        self.assertEqual(len(data['sections']), 5)
+        self.assertEqual(len(data['sections']), 6)
         primary_section = data['sections'][0]
         self.assertEqual(primary_section["section_label"],
-                         "2017-autumn-CSE-154-A")
+                         "2017_autumn_CSE_154_A")
         self.assertEqual(primary_section["total_linked_secondaries"], 4)
         sec_section = data['sections'][1]
         self.assertEqual(sec_section["primary_section_label"],
-                         "2017-autumn-CSE-154-A")
+                         "2017_autumn_CSE_154_A")
+        primary_section = data['sections'][5]
+        self.assertEqual(primary_section["section_label"],
+                         "2017_autumn_EDC_I_552_A")
 
 
 class TestInstructorSection(MyuwApiTest):
@@ -191,3 +194,20 @@ class TestInstructorSection(MyuwApiTest):
         self.assertEquals(resp.status_code, 200)
         data = json.loads(resp.content)
         self.assertEqual(len(data['sections']), 0)
+
+    def test_billsea_section(self):
+        now_request = get_request()
+        get_request_with_user('billsea', now_request)
+        year = '2017'
+        quarter = 'autumn'
+        curriculum = 'EDC&I'
+        course_number = '552'
+        course_section = 'A'
+        resp = InstSect().GET(now_request, year, quarter, curriculum,
+                              course_number, course_section)
+        data = json.loads(resp.content)
+        self.assertEqual(len(data['sections']), 1)
+        self.assertEqual(data['sections'][0]['section_label'],
+                         '2017_autumn_EDC_I_552_A')
+        self.assertEqual(data['sections'][0]['curriculum_abbr'],
+                         'EDC&I')
