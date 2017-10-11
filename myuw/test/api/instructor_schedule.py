@@ -203,8 +203,10 @@ class TestInstructorSection(MyuwApiTest):
         curriculum = 'EDC&I'
         course_number = '552'
         course_section = 'A'
-        resp = InstSect().GET(now_request, year, quarter, curriculum,
-                              course_number, course_section)
+        resp = InstSect().get(now_request, year=year, quarter=quarter,
+                              curriculum=curriculum,
+                              course_number=course_number,
+                              course_section=course_section)
         data = json.loads(resp.content)
         self.assertEqual(len(data['sections']), 1)
         self.assertEqual(data['sections'][0]['section_label'],
