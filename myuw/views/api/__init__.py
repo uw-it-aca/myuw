@@ -16,7 +16,7 @@ def unescape_curriculum_abbr(cur_abb):
     if re.search(AMP_PATTERN, cur_abb):
         cur_abb = re.sub(AMP_PATTERN, '&', cur_abb)
     return cur_abb
-  
+
 
 def json_serializer(obj):
     if hasattr(obj, 'isoformat'):
