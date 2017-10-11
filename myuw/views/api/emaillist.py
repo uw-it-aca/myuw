@@ -5,15 +5,15 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.pws import get_person_of_current_user
-from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_response_time
 from myuw.dao.user import get_netid_of_current_user
 from myuw.dao.instructor_schedule import check_section_instructor
-from myuw.dao.mailman import get_course_email_lists, request_mailman_lists,\
-    is_valid_section_label
+from myuw.dao.mailman import (
+    get_course_email_lists, request_mailman_lists, is_valid_section_label)
+from myuw.logger.timer import Timer
+from myuw.logger.logresp import log_response_time
 from myuw.views.api import ProtectedAPI
-from myuw.views.error import handle_exception, not_instructor_error,\
-    InvalidInputFormData
+from myuw.views.error import (
+    handle_exception, not_instructor_error, InvalidInputFormData)
 from uw_sws.section import get_section_by_label
 
 logger = logging.getLogger(__name__)
