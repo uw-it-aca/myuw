@@ -15,7 +15,7 @@ class StuVisSchedCurQtr(StudClasSche):
     Performs actions on resource at /api/v1/schedule/current/.
     """
 
-    def GET(self, request):
+    def get(self, request, *args, **kwargs):
         """
         GET returns 200 with the current quarter visual schedule
         @return visual schedule data in json format
