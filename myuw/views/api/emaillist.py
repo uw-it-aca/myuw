@@ -1,19 +1,17 @@
-import json
 import traceback
 import logging
 import re
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
-from django.http import HttpResponse
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.pws import get_person_of_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_response_time
-from myuw.views.rest_dispatch import RESTDispatch
 from myuw.dao.user import get_netid_of_current_user
 from myuw.dao.instructor_schedule import check_section_instructor
 from myuw.dao.mailman import get_course_email_lists, request_mailman_lists,\
     is_valid_section_label
+from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception, not_instructor_error,\
     InvalidInputFormData
 from uw_sws.section import get_section_by_label
@@ -21,13 +19,16 @@ from uw_sws.section import get_section_by_label
 logger = logging.getLogger(__name__)
 
 
-class Emaillist(RESTDispatch):
-
-    def GET(self, request, year, quarter,
-            curriculum_abbr, course_number, section_id):
+class Emaillist(ProtectedAPI):
+    def get(self, request, *args, **kwargs):
         """
         GET returns 200 with email lists for the course
         """
+        year = kwargs.get("year")
+        quarter = kwargs.get("quarter")
+        curriculum_abbr = kwargs.get("curriculum_abbr")
+        course_number = kwargs.get("course_number")
+        section_id = kwargs.get("section_id")
         timer = Timer()
         try:
             section_label = "%s,%s,%s,%s/%s" % (year,
@@ -45,12 +46,12 @@ class Emaillist(RESTDispatch):
             log_response_time(logger,
                               "Checked with %s" % section_label,
                               timer)
-            return HttpResponse(json.dumps(email_list_json))
+            return self.json_response(email_list_json)
         except Exception:
             return handle_exception(logger, timer, traceback)
 
     @method_decorator(csrf_protect)
-    def POST(self, request):
+    def post(self, request, *args, **kwargs):
         timer = Timer()
         try:
             single_section_labels = get_input(request)
@@ -69,7 +70,7 @@ class Emaillist(RESTDispatch):
                 "Request %s ==> %s" % (single_section_labels, resp),
                 timer)
 
-            return HttpResponse(json.dumps(resp))
+            return self.json_response(resp)
         except Exception as ex:
             return handle_exception(logger, timer, traceback)
 

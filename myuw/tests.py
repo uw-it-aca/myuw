@@ -60,7 +60,7 @@ from myuw.test.views.page import TestPageMethods
 from myuw.test.views.teaching import TestTeachingMethods
 from myuw.test.views.logout import TestLogoutLink
 from myuw.test.views.mobile_login import TestLoginRedirects
-from myuw.test.views.rest_dispatch import TestDispatchErrorCases
+from myuw.test.views.test_api import TestDispatchErrorCases
 from myuw.test.views.textbooks import TestTextbook
 from myuw.test.userservice_validation import TestValidation
 from myuw.test.speed import TestPageSpeeds

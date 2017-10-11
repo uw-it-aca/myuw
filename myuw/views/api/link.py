@@ -1,29 +1,27 @@
-import json
-import logging
-import re
-from django.db import transaction, IntegrityError
-from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
+import logging
+import json
+import re
+from django.db import transaction, IntegrityError
 from restclients_core.exceptions import DataFailureException
-from myuw.dao.quicklinks import get_quicklink_data, get_link_label,\
-    add_custom_link, delete_custom_link, edit_custom_link,\
-    add_hidden_link, delete_hidden_link, get_popular_link_by_id,\
-    get_recent_link_by_id
+from myuw.dao.quicklinks import (
+    get_quicklink_data, get_link_label, add_custom_link, delete_custom_link,
+    edit_custom_link, add_hidden_link, delete_hidden_link,
+    get_popular_link_by_id, get_recent_link_by_id)
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.models import PopularLink, VisitedLink, CustomLink, HiddenLink
 from myuw.logger.logresp import log_msg_with_affiliation
 from myuw.logger.timer import Timer
-from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found, invalid_input_data
-
 
 logger = logging.getLogger(__name__)
 
 
-class ManageLinks(RESTDispatch):
+class ManageLinks(ProtectedAPI):
     @method_decorator(csrf_protect)
-    def POST(self, request):
+    def post(self, request, *args, **kwargs):
         timer = Timer()
         try:
             data = json.loads(request.body)
@@ -111,7 +109,7 @@ class ManageLinks(RESTDispatch):
             return data_not_found()
 
         affiliations = get_all_affiliations(request)
-        return HttpResponse(json.dumps(get_quicklink_data(affiliations)))
+        return self.json_response(get_quicklink_data(affiliations))
 
 
 def get_link_id(data):

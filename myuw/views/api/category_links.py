@@ -1,26 +1,26 @@
-from django.http import HttpResponse
-import json
 import logging
 import re
 from myuw.dao.category_links import get_links_for_category
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_data_not_found_response
 from myuw.logger.logresp import log_success_response
-from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found
 
+logger = logging.getLogger(__name__)
 
-class CategoryLinks(RESTDispatch):
+
+class CategoryLinks(ProtectedAPI):
     """
     Performs actions on resource at /api/v1/categorylinks/.
     """
 
-    def GET(self, request, category_id):
+    def get(self, request, *args, **kwargs):
         """
         GET returns 200 with links for the given category
         """
+        category_id = kwargs.get('category_id')
         timer = Timer()
-        logger = logging.getLogger('views.api.CategoryLinks.GET')
         links = get_links_for_category(category_id, request)
         if not links:
             log_data_not_found_response(logger, timer)
@@ -30,8 +30,8 @@ class CategoryLinks(RESTDispatch):
         category_name = links[0].category_name
 
         log_success_response(logger, timer)
-        return HttpResponse(json.dumps({"link_data": link_data,
-                                        "category_name": category_name}))
+        return self.json_response({"link_data": link_data,
+                                   "category_name": category_name})
 
     def _group_links_by_subcategory(self, links):
         ordered_subcategories = []

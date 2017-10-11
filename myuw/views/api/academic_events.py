@@ -1,4 +1,4 @@
-from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
@@ -6,10 +6,9 @@ from myuw.dao.instructor_schedule import is_instructor
 from myuw.dao.term import get_comparison_date, get_current_quarter
 from uw_trumba import get_calendar_by_name
 from uw_sws.term import get_term_after
-from django.http import HttpResponse
 from datetime import timedelta
-import json
 import re
+import json
 import logging
 import traceback
 
@@ -17,11 +16,12 @@ CURRENT_LIST_MAX_DAYS = 3
 logger = logging.getLogger(__name__)
 
 
-class AcademicEvents(RESTDispatch):
+class AcademicEvents(ProtectedAPI):
     """
     Performs actions on /api/v1/academic_events
     """
-    def GET(self, request, current=False):
+    def get(self, request, *args, **kwargs):
+        current = kwargs.get('current', False)
         timer = Timer()
         try:
             events = []
@@ -56,7 +56,7 @@ class AcademicEvents(RESTDispatch):
             for event in raw_events:
                 events.append(self.json_for_event(event))
             log_success_response(logger, timer)
-            return HttpResponse(json.dumps(events))
+            return self.json_response(events)
         except Exception:
             return handle_exception(logger, timer, traceback)
 

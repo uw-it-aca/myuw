@@ -1,28 +1,24 @@
-import json
 import logging
 import traceback
-from django.http import HttpResponse
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.gws import is_grad_student
-from myuw.dao.grad import get_grad_degree_for_current_user,\
-    get_grad_committee_for_current_user, get_grad_leave_for_current_user,\
-    get_grad_petition_for_current_user, degree_to_json, committee_to_json,\
-    leave_to_json, petition_to_json
+from myuw.dao.grad import (
+    get_grad_degree_for_current_user, get_grad_committee_for_current_user,
+    get_grad_leave_for_current_user, get_grad_petition_for_current_user,
+    degree_to_json, committee_to_json, leave_to_json, petition_to_json)
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_msg, log_success_response
-from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found, handle_exception
-
 
 logger = logging.getLogger(__name__)
 
 
-class MyGrad(RESTDispatch):
+class MyGrad(ProtectedAPI):
     """
     Performs actions on resource at /api/v1/grad/.
     """
-
-    def GET(self, request):
+    def get(self, request, *args, **kwargs):
         """
         GET returns 200 with the student account balances
         of the current user
@@ -72,6 +68,6 @@ class MyGrad(RESTDispatch):
                     json_ret["petit_err"] = ex.status
 
             log_success_response(logger, timer)
-            return HttpResponse(json.dumps(json_ret))
+            return self.json_response(json_ret)
         except Exception:
             return handle_exception(logger, timer, traceback)

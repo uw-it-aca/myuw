@@ -1,35 +1,34 @@
-import json
 import logging
 import traceback
-from django.http import HttpResponse
 from myuw.dao.gws import is_student
 from restclients_core.exceptions import DataFailureException
-from myuw.dao.schedule import get_schedule_by_term,\
-    filter_schedule_sections_by_summer_term
+from myuw.dao.schedule import (
+    get_schedule_by_term, filter_schedule_sections_by_summer_term)
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
-from myuw.dao.term import get_specific_term, get_current_quarter,\
-    get_current_summer_term
+from myuw.dao.term import (
+    get_specific_term, get_current_quarter, get_current_summer_term)
 from myuw.dao.textbook import get_textbook_by_schedule
 from myuw.dao.textbook import get_verba_link_by_schedule
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response, log_msg,\
-    log_data_not_found_response
-from myuw.views.rest_dispatch import RESTDispatch
+from myuw.logger.logresp import (
+    log_success_response, log_msg, log_data_not_found_response)
+from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception, data_not_found
-
 
 logger = logging.getLogger(__name__)
 
 
-class Textbook(RESTDispatch):
+class Textbook(ProtectedAPI):
     """
     Performs actions on resource at /api/v1/books/current/.
     """
-
-    def GET(self, request, year, quarter, summer_term):
+    def get(self, request, *args, **kwargs):
         """
         GET returns 200 with textbooks for the current quarter
         """
+        year = kwargs.get("year")
+        quarter = kwargs.get("quarter")
+        summer_term = kwargs.get("summer_term")
         return self.respond(request, year, quarter, summer_term)
 
     def respond(self, request, year, quarter, summer_term):
@@ -65,7 +64,7 @@ class Textbook(RESTDispatch):
                 return data_not_found()
 
             log_success_response(logger, timer)
-            return HttpResponse(json.dumps(by_sln))
+            return self.json_response(by_sln)
         except Exception:
             return handle_exception(logger, timer, traceback)
 
@@ -97,8 +96,7 @@ class TextbookCur(Textbook):
     """
     Performs actions on resource at /api/v1/book/current/.
     """
-
-    def GET(self, request):
+    def get(self, request, *args, **kwargs):
         """
         GET returns 200 with the current quarter Textbook
         """
