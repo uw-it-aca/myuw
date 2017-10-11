@@ -35,7 +35,7 @@ class TestProfile(MyuwApiTest):
         self.assertFalse(data["is_grad_student"])
         pw_data = data["password"]
         self.assertEquals(pw_data["last_change"],
-                          "2013-01-27 10:49:42-08:00")
+                          "2013-01-27T10:49:42-08:00")
         self.assertFalse(pw_data["has_active_med_pw"])
         self.assertIsNone(pw_data["last_change_med"])
         self.assertIsNone(pw_data["expires_med"])

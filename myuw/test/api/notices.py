@@ -1,6 +1,6 @@
 from myuw.test.api import MyuwApiTest, require_url
 from django.core.urlresolvers import reverse
-import json
+import simplejson as json
 
 
 @require_url('myuw_notices_api')
@@ -28,7 +28,7 @@ class TestNotices(MyuwApiTest):
         response = self.put_notice('{"notice_hashes":["%s"]}' % hash_value)
 
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.content, '')
+        self.assertEquals(json.loads(response.content), '')
 
         response = self.get_notices_response()
         self.assertEquals(response.status_code, 200)
@@ -47,7 +47,7 @@ class TestNotices(MyuwApiTest):
         response = self.put_notice('{"notice_hashes":["fake-fake-fake"]}')
 
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.content, '')
+        self.assertEquals(json.loads(response.content), '')
 
     def test_error_cases(self):
         self.set_user('jerror')
@@ -57,7 +57,7 @@ class TestNotices(MyuwApiTest):
         self.set_user('staff')
         response = self.get_notices_response()
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.content, '[]')
+        self.assertEquals(json.loads(response.content), [])
 
     def test_est_reg_date(self):
         self.set_user('jinter')

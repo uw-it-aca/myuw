@@ -1,26 +1,23 @@
-import json
 import logging
 import traceback
-from django.http import HttpResponse
 from restclients_core.exceptions import DataFailureException
-from myuw.dao.registered_term import get_registered_future_quarters,\
-    should_highlight_future_quarters
+from myuw.dao.registered_term import (
+    get_registered_future_quarters, should_highlight_future_quarters)
 from myuw.dao.term import get_next_non_summer_quarter
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
-from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
-
 
 logger = logging.getLogger(__name__)
 
 
-class RegisteredFutureQuarters(RESTDispatch):
+class RegisteredFutureQuarters(ProtectedAPI):
     """
     Performs actions on resource at /api/v1/oquarters/.
     """
 
-    def GET(self, request):
+    def get(self, request, *args, **kwargs):
         """
         GET returns 200 with the registered future quarters of the current user
                     if not registered, returns 200 with
@@ -45,9 +42,9 @@ class RegisteredFutureQuarters(RESTDispatch):
 
             has_registration_for_next_term = False
             for term in future_quarters:
-                if term["quarter"].lower() == next_quarter and\
-                        term["year"] == next_year and\
-                        term["section_count"] > 0:
+                if (term["quarter"].lower() == next_quarter and
+                        term["year"] == next_year and
+                        term["section_count"] > 0):
                     has_registration_for_next_term = True
 
             resp_data["next_term_data"] = {
@@ -60,6 +57,6 @@ class RegisteredFutureQuarters(RESTDispatch):
                 future_quarters, request)
             resp_data["highlight_future_quarters"] = highlight
             log_success_response(logger, timer)
-            return HttpResponse(json.dumps(resp_data))
+            return self.json_response(resp_data)
         except Exception as ex:
             return handle_exception(logger, timer, traceback)
