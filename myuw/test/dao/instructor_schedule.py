@@ -6,9 +6,9 @@ from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user, get_request
 from myuw.dao.instructor_schedule import is_instructor,\
     get_current_quarter_instructor_schedule,\
-    get_instructor_schedule_by_term,\
+    get_instructor_schedule_by_term, get_section_by_label,\
     get_limit_estimate_enrollment_for_section,\
-    get_instructor_section
+    get_instructor_section, get_primary_section
 from myuw.dao.term import get_current_quarter
 from userservice.user import UserServiceMiddleware
 
@@ -85,3 +85,9 @@ class TestInstructorSchedule(TestCase):
         schedule = get_current_quarter_instructor_schedule(request)
         self.assertEqual(len(schedule.sections), 1)
         self.assertEqual(schedule.sections[0].current_enrollment, 3)
+
+    def test_get_primary_section(self):
+        secondary_section = get_section_by_label('2017,autumn,CSE,154/AA')
+        section = get_primary_section(secondary_section)
+        self.assertEqual(secondary_section.primary_section_label(),
+                         section.section_label())

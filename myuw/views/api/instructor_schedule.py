@@ -21,7 +21,8 @@ from myuw.dao.enrollment import get_code_for_class_level
 from myuw.dao.gws import is_grad_student
 from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
-    get_limit_estimate_enrollment_for_section, get_instructor_section
+    get_limit_estimate_enrollment_for_section, get_instructor_section,\
+    get_primary_section
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.pws import get_url_key_for_regid, get_regid_of_current_user
@@ -61,6 +62,17 @@ def set_classroom_info_url(meeting):
         return 'http://www.washington.edu/classroom/%s+%s' % (
             meeting.building, meeting.room_number)
     return None
+
+
+def set_secondary_final_exam(secondary_section):
+    try:
+        primary_section = get_primary_section(secondary_section)
+        if primary_section and primary_section.final_exam:
+            return primary_section.final_exam.json_data()
+    except Exception:
+        log_exception(
+            logger, 'set_secondary_final_exam', traceback.format_exc())
+    return secondary_section.final_exam.json_data()
 
 
 def set_section_grading_status(section, person):
@@ -141,6 +153,12 @@ def set_course_resources(section_data, section, person):
                                args=(section.final_exam,))
         t.start()
         threads.append((t, 'classroom_info_url', section_data['final_exam']))
+
+    if not section.is_primary_section:
+        t = ThreadWithResponse(target=set_secondary_final_exam,
+                               args=(section,))
+        t.start()
+        threads.append((t, 'final_exam', section_data))
 
     if not hasattr(section, 'limit_estimate_enrollment'):
         t = ThreadWithResponse(
