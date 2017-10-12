@@ -16,8 +16,8 @@
     </div>
 
   {{#unless section_references}} <!-- Standard, detailed list of courses -->
-  <div class="instructor-term-cards" aria-labelledby="your_courses">
-      <h3 id="your_courses" class="sr-only">Courses you are instructing {{ucfirst quarter}} {{year}}</h3>
+  <div id="instructor-term-{{ucfirst quarter}}-{{year}}" class="instructor-term-cards" aria-labelledby="your_courses">
+      <h3 class="sr-only">Courses you are instructing {{ucfirst quarter}} {{year}}</h3>
 
       {{#each sections}}
       <a name="{{ curriculum_abbr }}-{{course_number}}-{{section_id}}"></a>
