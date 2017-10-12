@@ -185,3 +185,7 @@ def check_section_instructor(section, person=None):
         primary_section = get_section_by_label(section.primary_section_label())
         if not primary_section.is_instructor(person):
             raise NotSectionInstructorException()
+
+
+def get_primary_section(secondary_section):
+    return get_section_by_label(secondary_section.primary_section_label())

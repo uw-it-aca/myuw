@@ -61,6 +61,9 @@
                              <span>No Exam or Non-Traditional</span>
                         {{else}}
                             {{#if start_date }}
+                                {{#unless ../is_primary_section}}
+                                    <span>The final exam for the primary section is:</span><br>
+                                {{/unless}}
                                 <table class="table-course-schedule">
                                     <thead class="sr-only">
                                         <tr>
@@ -85,13 +88,16 @@
                 {{else}}
                     <span>No Final Exam Scheduled.</span>
                 {{/if}}
-
-                {{#unless final_exam.no_exam_or_nontraditional}}{{#unless final_exam.is_confirmed}}
-                    {{#if sln}}
-                        <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?quarter={{capitalizeString quarter}}+{{ year }}&sln={{sln}}&chanid="
-                           target="_blank" data-linklabel="Confirm Final: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Confirm final exam</a>
-                    {{/if}}
-                {{/unless}}{{/unless}}
+                {{#if is_primary_section}}
+                    {{#unless final_exam.no_exam_or_nontraditional}}
+                        {{#unless final_exam.is_confirmed}}
+                            {{#if sln}}
+                                 <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?quarter={{capitalizeString quarter}}+{{ year }}&sln={{sln}}&chanid="
+                                    target="_blank" data-linklabel="Confirm Final: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Confirm final exam</a>
+                            {{/if}}
+                        {{/unless}}
+                    {{/unless}}
+                {{/if}}
             </div>
         </div>
     </div>
