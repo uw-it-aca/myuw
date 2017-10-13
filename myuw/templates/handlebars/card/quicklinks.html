@@ -14,7 +14,7 @@
                         <a id="custom-link-{{ id }}" href="{{ url }}" title="{{label}}" target="_blank" data-notrack=''><span>{{label }}</span></a>
                     </div>
                     <div class="pull-right link-controls">
-                        <a href="#" class="control-link edit-link" data-linkid="{{ id }}" data-linktype="edit" title="Edit {{label}} link"><i class="fa fa-pencil" aria-hidden="true"></i></a>&nbsp;<a href="#" class="control-link remove-link" data-linkid="{{ id }}" data-linktype="remove" title="Remove {{label}} link from Quick Links list"><i class="fa fa-times" aria-hidden="true"></i></a>
+                        <a id="custom-link-edit-control-{{id}}" href="#" class="control-link edit-link" data-linkid="{{ id }}" data-linktype="edit" title="Edit {{label}} link" aria-controls="custom-link-edit" aria-haspopup="true" aria-expanded="false"><i class="fa fa-pencil" aria-hidden="true"></i></a>&nbsp;<a href="#" class="control-link remove-link" data-linkid="{{ id }}" data-linktype="remove" title="Remove {{label}} link from Quick Links list"><i class="fa fa-times" aria-hidden="true"></i></a>
                     </div>
                 </li>
                 {{/each}}
@@ -34,16 +34,19 @@
         </div>
         <hr>
         {{/if}}
-        <div id="custom-link-edit" class="myuw-popover" style="display: none;">
+        <div id="custom-link-edit" class="myuw-popover" style="display: none;" role="form" aria-labelledby="custom-link-edit-form-label">
             <div class="form">
-                <input class="form-control" type="hidden" id="custom-link-edit-id">
-                URL: <input class="form-control" type="url" id="custom-link-edit-url"> <span class="small text-danger" id="edit-url-required" style="display: none;">* Required URL</span><br />
-                Label: <input class="form-control" type="text" id="custom-link-edit-label"> <span class="small text-danger" id="edit-label-required" style="display: none;">* Required Label</span>
-                <div class="text-right" style="padding: 8px 0;"><a href='#' id="close-custom-link-edit">Cancel</a> <button class="btn btn-primary btn-qlinks" type="button" id="quicklinks-save-edits">Save</button></div>
+                <fieldset>
+                    <h4 id="custom-link-edit-form-label">Edit Quick Link</h4>
+                    <input class="form-control" type="hidden" id="custom-link-edit-id">
+                    <label for="custom-link-edit-url">URL</label> <input class="form-control" type="url" id="custom-link-edit-url"> <span class="small text-danger" id="edit-url-required" style="display: none;">* Required URL</span><br />
+                    <label for="custom-link-edit-label">Label</label> <input class="form-control" type="text" id="custom-link-edit-label"> <span class="small text-danger" id="edit-label-required" style="display: none;">* Required Label</span>
+                    <div class="text-right" style="padding: 8px 0;"><a href='#' id="close-custom-link-edit">Cancel</a> <button class="btn btn-primary btn-qlinks" type="button" id="quicklinks-save-edits">Save</button></div>
+                </fieldset>
             </div>
         </div>
         <div>
-            <span>Not seeing the links you're looking for? {{#if links.popular_links }}Select from <a data-toggle="collapse" href="#popular_qlinks" aria-expanded="false" aria-controls="popular_qlinks">popular links,</a> or {{/if}}<a data-toggle="collapse" href="#custom_qlinks" aria-expanded="false" aria-controls="custom_qlinks">add your own.</a></span>
+            <span>Not seeing the links you're looking for? {{#if links.popular_links }}Select from <a data-toggle="collapse" href="#popular_qlinks" aria-expanded="false" aria-controls="popular_qlinks">popular links,</a> or {{/if}}<a data-toggle="collapse" href="#custom_qlinks" aria-expanded="false" aria-haspopup="true" aria-controls="custom_qlinks">add your own.</a></span>
         </div>
 
         <div class="collapse myuw-qlinks-popular" id="popular_qlinks">
@@ -54,18 +57,21 @@
                 {{/each}}
             </ul>
         </div>
-        <div class="myuw-qlinks-custom collapse"  id="custom_qlinks">
+        <div class="myuw-qlinks-custom collapse" id="custom_qlinks" role="form" aria-labelledby="custom_qlinks_label">
             <div class="form-group">
-                <h4>Add your link to Quick Links</h4>
+                <h4 id="custom_qlinks_label">Add your link to Quick Links</h4>
                 <div class="col-10">
-                    <input class="form-control" type="url" placeholder="https://www.washington.edu" id="myuw-custom-qlink" value="">
-                    <div class="clearfix myuw-qlinks-custom-btn">
-                        <div class="pull-right">
-                            <div class="text-right" style="padding: 8px 0;"><a data-toggle="collapse" href="#custom_qlinks">Close</a> <button class="btn btn-primary btn-qlinks" id="quicklinks-save-new">Save</button></div>
+                    <label for="myuw-custom-qlink" class="sr-only">Web Address</label>
+                    <fieldset>
+                        <input class="form-control" type="url" placeholder="https://www.washington.edu" id="myuw-custom-qlink" value="">
+                        <div class="clearfix myuw-qlinks-custom-btn">
+                            <div class="pull-right">
+                                <div class="text-right" style="padding: 8px 0;"><a data-toggle="collapse" href="#custom_qlinks">Close</a> <button class="btn btn-primary btn-qlinks" id="quicklinks-save-new">Save</button></div>
+                            </div>
+                            <div class="pull-left" style="display: none;" id="error_saving" class="help-block"><span class="small text-danger">Error saving</span></div>
+                            <div class="pull-left" style="display: none;" id="quicklink_saving" class="help-block"><span class="small">Saving...</span></div>
                         </div>
-                        <div class="pull-left" style="display: none;" id="error_saving" class="help-block"><span class="small text-danger">Error saving</span></div>
-                        <div class="pull-left" style="display: none;" id="quicklink_saving" class="help-block"><span class="small">Saving...</span></div>
-                    </div>
+                    </fieldset>
                 </div>
             </div>
         </div>
