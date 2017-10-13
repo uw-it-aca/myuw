@@ -76,8 +76,7 @@ var InstructorCourseCards = {
         }
         else {
             $("div[data-tab-type='instructor-term-nav'] a[aria-selected='true']").attr({
-                "aria-selected" : "false",
-                "aria-hidden" : "true"
+                "aria-selected" : "false"
             });
             $("#teaching-term-select option[value='']").prop('disabled', 'disabled');
             $("#teaching-term-select").addClass('myuw-dropmenu-selected');
