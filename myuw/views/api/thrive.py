@@ -1,26 +1,24 @@
 import logging
-import simplejson as json
-from django.http import HttpResponse
 from myuw.logger.timer import Timer
 from myuw.dao.thrive import get_current_message, get_previous_messages
-from myuw.logger.logresp import log_data_not_found_response,\
-    log_success_response
-from myuw.views.rest_dispatch import RESTDispatch
+from myuw.logger.logresp import (
+    log_data_not_found_response, log_success_response)
+from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found
 
+logger = logging.getLogger(__name__)
 
-class ThriveMessages(RESTDispatch):
+
+class ThriveMessages(ProtectedAPI):
     """
     Performs actions on resource at /api/v1/thrive/.
     """
-
-    def GET(self, request):
+    def get(self, request, *args, **kwargs):
         """
         GET returns 200 with current thrive message
         for the current user if they are a first year student
         """
         timer = Timer()
-        logger = logging.getLogger(__name__)
         message = None
         if request.GET.get('history', False):
             message = get_previous_messages(request)
@@ -32,4 +30,4 @@ class ThriveMessages(RESTDispatch):
             return data_not_found()
 
         log_success_response(logger, timer)
-        return HttpResponse(json.dumps(message))
+        return self.json_response(message)

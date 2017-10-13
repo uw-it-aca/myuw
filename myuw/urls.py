@@ -22,13 +22,13 @@ from myuw.views.accounts import accounts
 from myuw.views.profile import profile
 from myuw.views.link import outbound_link
 from myuw.views.api.current_schedule import StudClasScheCurQuar
-from myuw.views.api.instructor_schedule import (InstScheCurQuar, InstScheQuar,
-                                                InstSect, InstSectionDetails)
+from myuw.views.api.instructor_schedule import (
+    InstScheCurQuar, InstScheQuar, InstSect, InstSectionDetails)
 from myuw.views.api.finance import Finance
 from myuw.views.api.hfs import HfsBalances
 from myuw.views.api.future_schedule import StudClasScheFutureQuar
-from myuw.views.api.prev_unfinished_schedule import\
-    StudUnfinishedPrevQuarClasSche
+from myuw.views.api.prev_unfinished_schedule import (
+    StudUnfinishedPrevQuarClasSche)
 from myuw.views.api.grad import MyGrad
 from myuw.views.api.iasystem import IASystem
 from myuw.views.api.library import MyLibInfo
@@ -68,126 +68,110 @@ urlpatterns += [
         name="myuw_popular_links"),
     url(r'^logger/(?P<interaction_type>.*)$', log_interaction
         ),
-    url(r'^api/v1/academic_events$', login_required(AcademicEvents().run),
-        name="myuw_academic_calendar"
-        ),
+    url(r'^api/v1/academic_events$',
+        AcademicEvents.as_view(),
+        name="myuw_academic_calendar"),
     url(r'^api/v1/academic_events/current/$',
-        login_required(AcademicEvents().run), {'current': True},
-        name="myuw_academic_calendar_current"
-        ),
-    url(r'^api/v1/book/current/?$', login_required(TextbookCur().run),
-        name="myuw_current_book"
-        ),
+        AcademicEvents.as_view(), {'current': True},
+        name="myuw_academic_calendar_current"),
+    url(r'^api/v1/book/current/?$',
+        TextbookCur.as_view(),
+        name="myuw_current_book"),
     url(r'^api/v1/book/(?P<year>\d{4}),(?P<quarter>[a-z]+)'
         r'(?P<summer_term>[-,fulabterm]*)$',
-        login_required(Textbook().run), name="myuw_book_api"
-        ),
+        Textbook.as_view(),
+        name="myuw_book_api"),
     url(r'^api/v1/categorylinks/(?P<category_id>.*?)$',
-        login_required(CategoryLinks().run), name="myuw_links_api"
-        ),
-    url(r'^api/v1/deptcal/$', login_required(DepartmentalCalendar().run),
-        name="myuw_deptcal_events"
-        ),
-    url(r'^api/v1/finance/$', login_required(Finance().run),
-        name="myuw_finance_api"
-        ),
-    url(r'^api/v1/grad/$', login_required(MyGrad().run),
-        name="myuw_grad_api"
-        ),
-    url(r'^api/v1/hfs/$', login_required(HfsBalances().run),
-        name="myuw_hfs_api"
-        ),
-    url(r'^api/v1/ias/$', login_required(IASystem().run),
-        name="myuw_iasystem_api"
-        ),
-    url(r'^api/v1/library/$', login_required(MyLibInfo().run),
-        name="myuw_library_api"
-        ),
+        CategoryLinks.as_view(),
+        name="myuw_links_api"),
+    url(r'^api/v1/deptcal/$',
+        DepartmentalCalendar.as_view(),
+        name="myuw_deptcal_events"),
+    url(r'^api/v1/finance/$',
+        Finance.as_view(),
+        name="myuw_finance_api"),
+    url(r'^api/v1/grad/$',
+        MyGrad.as_view(),
+        name="myuw_grad_api"),
+    url(r'^api/v1/hfs/$',
+        HfsBalances.as_view(),
+        name="myuw_hfs_api"),
+    url(r'^api/v1/ias/$',
+        IASystem.as_view(),
+        name="myuw_iasystem_api"),
+    url(r'^api/v1/library/$',
+        MyLibInfo.as_view(),
+        name="myuw_library_api"),
     url(r'^api/v1/emaillist/(?P<year>\d{4}),'
         r'(?P<quarter>[A-Za-z]+),'
         r'(?P<curriculum_abbr>[ &%0-9A-Za-z]+),'
         r'(?P<course_number>\d{3})/'
         r'(?P<section_id>[A-Za-z][A-Z0-9a-z]?)$',
-        login_required(Emaillist().run),
-        name="myuw_emaillist_api"
-        ),
+        Emaillist.as_view(),
+        name="myuw_emaillist_api"),
     url(r'^api/v1/emaillist',
-        login_required(Emaillist().run),
-        name="myuw_emaillist_api"
-        ),
+        Emaillist.as_view(),
+        name="myuw_emaillist_api"),
     url(r'^api/v1/myplan/(?P<year>\d{4})/(?P<quarter>[a-zA-Z]+)',
-        login_required(MyPlan().run),
-        name="myuw_myplan_api"
-        ),
-    url(r'^api/v1/notices/$', login_required(Notices().run),
-        name="myuw_notices_api"
-        ),
+        MyPlan.as_view(),
+        name="myuw_myplan_api"),
+    url(r'^api/v1/notices/$',
+        Notices.as_view(),
+        name="myuw_notices_api"),
     url(r'^api/v1/oquarters/$',
-        login_required(RegisteredFutureQuarters().run),
-        name="myuw_other_quarters_api"
-        ),
-    url(r'^api/v1/profile/$', login_required(MyProfile().run),
-        name="myuw_profile_api"
-        ),
-    url(r'api/v1/link/?$', login_required(ManageLinks().run),
-        name='myuw_manage_links'
-        ),
-    url(r'^api/v1/upass/$', login_required(UPass().run),
-        name="myuw_upass_api"
-        ),
+        RegisteredFutureQuarters.as_view(),
+        name="myuw_other_quarters_api"),
+    url(r'^api/v1/profile/$',
+        MyProfile.as_view(),
+        name="myuw_profile_api"),
+    url(r'api/v1/link/?$',
+        ManageLinks.as_view(),
+        name='myuw_manage_links'),
+    url(r'^api/v1/upass/$',
+        UPass.as_view(),
+        name="myuw_upass_api"),
     url(r'^api/v1/schedule/current/?$',
-        login_required(StudClasScheCurQuar().run),
-        name="myuw_current_schedule"
-        ),
+        StudClasScheCurQuar.as_view(),
+        name="myuw_current_schedule"),
     url(r'^api/v1/schedule/prev_unfinished/?$',
-        login_required(StudUnfinishedPrevQuarClasSche().run),
-        name="myuw_prev_unfinished_schedule"
-        ),
+        StudUnfinishedPrevQuarClasSche.as_view(),
+        name="myuw_prev_unfinished_schedule"),
     url(r'^api/v1/schedule/(?P<year>\d{4}),(?P<quarter>[a-z]+),'
         r'(?P<summer_term>[-,abterm]*)$',
-        login_required(StudClasScheFutureQuar().run),
-        name="myuw_future_summer_schedule_api"
-        ),
+        StudClasScheFutureQuar.as_view(),
+        name="myuw_future_summer_schedule_api"),
     url(r'^api/v1/schedule/(?P<year>\d{4}),(?P<quarter>[a-z]+)',
-        login_required(StudClasScheFutureQuar().run),
-        name="myuw_future_schedule_api"
-        ),
+        StudClasScheFutureQuar.as_view(),
+        name="myuw_future_schedule_api"),
     url(r'^api/v1/instructor_schedule/current/?$',
-        login_required(InstScheCurQuar().run),
-        name="myuw_instructor_current_schedule_api"
-        ),
+        InstScheCurQuar.as_view(),
+        name="myuw_instructor_current_schedule_api"),
     url(r'^api/v1/instructor_schedule/(?P<year>\d{4}),(?P<quarter>[a-z]+)',
-        login_required(InstScheQuar().run),
-        name="myuw_instructor_schedule_api"
-        ),
+        InstScheQuar.as_view(),
+        name="myuw_instructor_schedule_api"),
     url(r'^api/v1/instructor_section/(?P<year>\d{4}),(?P<quarter>[a-zA-Z]+),'
         r'(?P<curriculum>[\w& ]+),(?P<course_number>\d{3})\/'
         r'(?P<course_section>[A-Z][A-Z0-9]?)$',
-        login_required(InstSect().run),
-        name="myuw_instructor_section_api"
-        ),
+        InstSect.as_view(),
+        name="myuw_instructor_section_api"),
     url(r'^api/v1/instructor_section_details/(?P<year>\d{4}),'
         r'(?P<quarter>[a-zA-Z]+),'
         r'(?P<curriculum>[\w& ]+),(?P<course_number>\d{3})\/'
         r'(?P<course_section>[A-Z][A-Z0-9]?)$',
-        login_required(InstSectionDetails().run),
-        name="myuw_instructor_section_details_api"
-        ),
-    url(r'^api/v1/thrive/$', login_required(ThriveMessages().run),
-        name="myuw_thrive_api"
-        ),
-    url(r'^api/v1/directory/$', login_required(MyDirectoryInfo().run),
-        name="myuw_directory_api"
-        ),
-    url(r'^choose/new', new_site, name="myuw_pref_new_site"
-        ),
-    url(r'^choose/legacy', old_site, name="myuw_pref_old_site"
-        ),
+        InstSectionDetails.as_view(),
+        name="myuw_instructor_section_details_api"),
+    url(r'^api/v1/thrive/$',
+        ThriveMessages.as_view(),
+        name="myuw_thrive_api"),
+    url(r'^api/v1/directory/$',
+        MyDirectoryInfo.as_view(),
+        name="myuw_directory_api"),
+    url(r'^choose/new', new_site, name="myuw_pref_new_site"),
+    url(r'^choose/legacy', old_site, name="myuw_pref_old_site"),
     url(r'^academics/?$', academics, name="myuw_academics_page"),
     url(r'^accounts/?$', accounts, name="myuw_accounts_page"),
     url(r'^profile/?$', profile, name="myuw_profile_page"),
-    url(r'^search/?$', search_res, name="myuw_search_res_page"
-        ),
+    url(r'^search/?$', search_res, name="myuw_search_res_page"),
     url(r'^teaching/(?P<year>2[0-9]{3}),(?P<quarter>[A-Za-z]+),'
         r'(?P<section>[\w& ]+,\d{3}\/[A-Z][A-Z0-9]?)$',
         teaching_section, name="myuw_section_page"

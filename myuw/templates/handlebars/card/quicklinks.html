@@ -34,9 +34,9 @@
         </div>
         <hr>
         {{/if}}
-        <div id="custom-link-edit" style="display: none; position: absolute; border: 0; background: #eee; width:100%;padding: 8px 16px;">
+        <div id="custom-link-edit" class="myuw-popover" style="display: none;">
             <div class="form">
-                <input class="form-control" type="hidden" id="custom-link-edit-id"> 
+                <input class="form-control" type="hidden" id="custom-link-edit-id">
                 URL: <input class="form-control" type="url" id="custom-link-edit-url"> <span class="small text-danger" id="edit-url-required" style="display: none;">* Required URL</span><br />
                 Label: <input class="form-control" type="text" id="custom-link-edit-label"> <span class="small text-danger" id="edit-label-required" style="display: none;">* Required Label</span>
                 <div class="text-right" style="padding: 8px 0;"><a href='#' id="close-custom-link-edit">Cancel</a> <button class="btn btn-primary btn-qlinks" type="button" id="quicklinks-save-edits">Save</button></div>

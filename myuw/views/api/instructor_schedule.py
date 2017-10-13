@@ -1,11 +1,9 @@
-import json
+from django.conf import settings
 import re
 import traceback
-from myuw.views.error import (handle_exception, not_instructor_error,
-                              data_not_found)
+from myuw.views.error import (
+    handle_exception, not_instructor_error, data_not_found)
 import logging
-from django.conf import settings
-from django.http import HttpResponse
 from operator import itemgetter
 from restclients_core.exceptions import DataFailureException
 from uw_iasystem.exceptions import TermEvalNotCreated
@@ -33,9 +31,8 @@ from myuw.logger.logresp import log_success_response
 from myuw.logger.logback import log_exception
 from myuw.logger.timer import Timer
 from myuw.util.thread import Thread, ThreadWithResponse
-from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.api import ProtectedAPI
 from myuw.views.api.base_schedule import irregular_start_end
-
 
 logger = logging.getLogger(__name__)
 EARLY_FALL_START = "EARLY FALL START"
@@ -43,8 +40,7 @@ MYUW_PRIOR_INSTRUCTED_TERM_YEARS_DEFAULT = 6
 MYUW_FUTURE_INSTRUCTED_TERM_COUNT_DEFAULT = 2
 
 
-class InstSche(RESTDispatch):
-
+class InstSche(ProtectedAPI):
     def make_http_resp(self, timer, term, request, summer_term=None):
         """
         @return instructor schedule data in json format
@@ -53,7 +49,7 @@ class InstSche(RESTDispatch):
         schedule = get_instructor_schedule_by_term(term)
         resp_data = load_schedule(request, schedule)
         log_success_response(logger, timer)
-        return HttpResponse(json.dumps(resp_data))
+        return self.json_response(resp_data)
 
 
 def set_classroom_info_url(meeting):
@@ -179,8 +175,8 @@ def set_indep_study_section_enrollments(section, section_json_data):
     """
     for the instructor (current user)
     """
-    if not section.sln or not section.current_enrollment or\
-            not section.is_independent_study:
+    if (not section.sln or not section.current_enrollment or
+            not section.is_independent_study):
         return
     try:
         registrations = get_active_registrations_for_section(
@@ -369,8 +365,7 @@ class InstScheCurQuar(InstSche):
     """
     Performs actions on resource at /api/v1/instructor_schedule/current/
     """
-
-    def GET(self, request):
+    def get(self, request, *args, **kwargs):
         """
         GET returns 200 with the current quarter course section schedule
         @return class schedule data in json format
@@ -391,13 +386,16 @@ class InstScheQuar(InstSche):
     Performs actions on resource at
     /api/v1/instructor_schedule/<year>,<quarter>(,<summer_term>)?
     """
-    def GET(self, request, year, quarter, summer_term=None):
+    def get(self, request, *args, **kwargs):
         """
         GET returns 200 with a specific term instructor schedule
         @return course schedule data in json format
                 status 404: no schedule found (not registered)
                 status 543: data error
         """
+        year = kwargs.get("year")
+        quarter = kwargs.get("quarter")
+        summer_term = kwargs.get("summer_term", None)
         timer = Timer()
         try:
             smr_term = ""
@@ -411,7 +409,7 @@ class InstScheQuar(InstSche):
             return handle_exception(logger, timer, traceback)
 
 
-class InstSect(RESTDispatch):
+class InstSect(ProtectedAPI):
     """
     Performs actions on resource at
     /api/v1/instructor_section/<year>,<quarter>,<curriculum>,
@@ -431,16 +429,20 @@ class InstSect(RESTDispatch):
 
         resp_data = load_schedule(request, schedule)
         log_success_response(logger, timer)
-        return HttpResponse(json.dumps(resp_data))
+        return self.json_response(resp_data)
 
-    def GET(self, request, year, quarter, curriculum,
-            course_number, course_section):
+    def get(self, request, *args, **kwargs):
         """
         GET returns 200 with a specific term instructor schedule
         @return course schedule data in json format
                 status 404: no schedule found (not registered)
                 status 543: data error
         """
+        year = kwargs.get("year")
+        quarter = kwargs.get("quarter")
+        curriculum = kwargs.get("curriculum")
+        course_number = kwargs.get("course_number")
+        course_section = kwargs.get("course_section")
         timer = Timer()
         try:
             return self.make_http_resp(timer, year, quarter, curriculum,
@@ -450,7 +452,7 @@ class InstSect(RESTDispatch):
             return handle_exception(logger, timer, traceback)
 
 
-class InstSectionDetails(RESTDispatch):
+class InstSectionDetails(ProtectedAPI):
     """
     Performs actions on resource at
     /api/v1/instructor_section/<year>,<quarter>,<curriculum>,
@@ -479,7 +481,7 @@ class InstSectionDetails(RESTDispatch):
         self.add_linked_section_data(resp_data)
         log_success_response(logger, timer)
 
-        return HttpResponse(json.dumps(resp_data))
+        return self.json_response(resp_data)
 
     def add_linked_section_data(self, resp_data):
         section_types = {}
@@ -603,14 +605,18 @@ class InstSectionDetails(RESTDispatch):
 
         return {"majors": majors, "class": enrollments.class_level}
 
-    def GET(self, request, year, quarter, curriculum,
-            course_number, course_section):
+    def get(self, request, *args, **kwargs):
         """
         GET returns 200 with a specific term instructor schedule
         @return course schedule data in json format
                 status 404: no schedule found (not registered)
                 status 543: data error
         """
+        year = kwargs.get("year")
+        quarter = kwargs.get("quarter")
+        curriculum = kwargs.get("curriculum")
+        course_number = kwargs.get("course_number")
+        course_section = kwargs.get("course_section")
         timer = Timer()
         try:
             return self.make_http_resp(timer, year, quarter, curriculum,

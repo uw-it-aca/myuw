@@ -1,16 +1,13 @@
-import json
 import logging
 import traceback
-from django.http import HttpResponse
 from myuw.dao.enrollment import get_prev_enrollments_with_open_sections
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_previous_number_quarters
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_msg, log_success_response,\
-    log_data_not_found_response
+from myuw.logger.logresp import (
+    log_msg, log_success_response, log_data_not_found_response)
 from myuw.views.api.base_schedule import StudClasSche, load_schedule
 from myuw.views.error import handle_exception, data_not_found
-
 
 logger = logging.getLogger(__name__)
 
@@ -20,7 +17,7 @@ class StudUnfinishedPrevQuarClasSche(StudClasSche):
     Performs actions on resource at
     /api/v1/schedule/prev_unfinished
     """
-    def GET(self, request):
+    def get(self, request, *args, **kwargs):
         """
         GET returns 200 with course section schedule details of
         the unfinished previous quarters' PCE course
@@ -47,7 +44,7 @@ class StudUnfinishedPrevQuarClasSche(StudClasSche):
 
             resp_data = self.make_resp_json(request, enrollment_dict)
             log_success_response(logger, timer)
-            return HttpResponse(json.dumps(resp_data))
+            return self.json_response(resp_data)
         except Exception:
             return handle_exception(logger, timer, traceback)
 

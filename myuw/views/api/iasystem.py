@@ -1,36 +1,32 @@
-import json
 import logging
 import time
 import traceback
 from operator import itemgetter
 from django.conf import settings
-from django.http import HttpResponse
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.gws import is_student
 from myuw.dao.schedule import get_schedule_by_term
 from myuw.dao.schedule import filter_schedule_sections_by_summer_term
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
 from myuw.dao.term import get_comparison_date, get_current_quarter
-from myuw.dao.iasystem import get_evaluations_by_section,\
-    json_for_evaluation, in_coursevel_fetch_window
-from myuw.logger.logresp import log_data_not_found_response,\
-    log_msg, log_success_response
+from myuw.dao.iasystem import (
+    get_evaluations_by_section, json_for_evaluation, in_coursevel_fetch_window)
+from myuw.logger.logresp import (
+    log_data_not_found_response, log_msg, log_success_response)
 from myuw.logger.timer import Timer
-from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found, handle_exception
 from uw_iasystem.dao import IASystem_DAO
-
 
 logger = logging.getLogger(__name__)
 MOCKDAO = 'restclients.dao_implementation.iasystem.File'
 
 
-class IASystem(RESTDispatch):
+class IASystem(ProtectedAPI):
     """
     Performs actions on resource at /api/v1/ias/*.
     """
-
-    def GET(self, request):
+    def get(self, request, *args, **kwargs):
         """
         GET /api/v1/ias/
         """
@@ -61,7 +57,7 @@ class IASystem(RESTDispatch):
 
             resp_data = load_course_eval(request, schedule, summer_term)
             log_success_response(logger, timer)
-            return HttpResponse(json.dumps(resp_data))
+            return self.json_response(resp_data)
         except Exception:
             return handle_exception(logger, timer, traceback)
 
@@ -71,7 +67,7 @@ def load_course_eval(request, schedule, summer_term=""):
     @return the course schedule sections having
     the attribute ["evaluation_data"] with the evaluations
     that should be shown; or
-    "{}" if whouldn't display any; or
+    "{}" if wouldn't display any; or
     None if a data error.
     """
     json_data = schedule.json_data()
