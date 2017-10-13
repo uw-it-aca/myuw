@@ -71,7 +71,7 @@ class TestInstructorTermSchedule(MyuwApiTest):
         now_request = get_request_with_user(
             'billsea', get_request_with_date("2017-10-01"))
         schedule = get_current_quarter_instructor_schedule(now_request)
-        resp = InstScheCurQuar().GET(now_request)
+        resp = InstScheCurQuar().get(now_request)
         self.assertEquals(resp.status_code, 200)
         data = json.loads(resp.content)
         self.assertFalse(data["future_term"])
