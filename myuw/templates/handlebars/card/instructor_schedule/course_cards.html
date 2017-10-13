@@ -5,19 +5,19 @@
     <div class="instructor-term-selection">
         <div role="tablist" class="instructor-term-tabs myuw-pagetabs">
           {{#each tab_terms}}
-          <div data-tab-type="instructor-term-nav" data-term="{{year}},{{toLowerCase quarter}}" role="tab" aria-controls="{{year}},{{toLowerCase quarter}}" {{# if matching_term }}class="myuw-tab myuw-tab-selected" aria-selected="true"{{else}}class="myuw-tab" aria-selected="false"{{/if }}><a class="myuw-tab-label tab-nav-terms" href="#" data-term="{{year}},{{toLowerCase quarter}}">{{ quarter}} {{short_year year}}</a></div>
+          <div data-tab-type="instructor-term-nav" data-term="{{year}},{{toLowerCase quarter}}" role="tab" aria-controls="instructor-term-{{toLowerCase quarter}}-{{year}}" {{# if matching_term }}class="myuw-tab myuw-tab-selected" aria-selected="true"{{else}}class="myuw-tab" aria-selected="false"{{/if }}><a class="myuw-tab-label tab-nav-terms" href="#" data-term="{{year}},{{toLowerCase quarter}}">{{ quarter}} {{short_year year}}</a></div>
           {{/each }}
         </div>
 
         <div class="instructor-term-menu myuw-pagemenu">
-          <label for="teaching-term-select" class="sr-only">Term</label>
-          <select id="teaching-term-select" class="instructed-terms myuw-dropmenu {{#if matching_term}}myuw-dropmenu-selected{{/if}}"><option selected="selected" value=''>All terms</option>{{#each reversed_related_terms}}<option {{#if matching_term}}selected{{/if}} value="{{year}},{{toLowerCase quarter}}">{{#if is_current}}{{quarter}} {{short_year year}} (Current){{else}}{{quarter}} {{short_year year}}{{/if}}</option>{{/each}}</select>
+          <label for="teaching-term-select" class="sr-only">Select from all terms</label>
+          <select id="teaching-term-select" class="instructed-terms myuw-dropmenu {{#if matching_term}}myuw-dropmenu-selected{{/if}}"><option selected="selected" value=''>All terms</option>{{#each reversed_related_terms}}<option {{#if matching_term}}selected{{/if}} value="{{year}},{{toLowerCase quarter}}" aria-controls="instructor-term-{{toLowerCase quarter}}-{{year}}">{{#if is_current}}{{quarter}} {{short_year year}} (Current){{else}}{{quarter}} {{short_year year}}{{/if}}</option>{{/each}}</select>
         </div>
     </div>
 
   {{#unless section_references}} <!-- Standard, detailed list of courses -->
-  <div id="instructor-term-{{ucfirst quarter}}-{{year}}" class="instructor-term-cards" aria-labelledby="your_courses">
-      <h3 class="sr-only">Courses you are instructing {{ucfirst quarter}} {{year}}</h3>
+  <div id="instructor-term-{{toLowerCase quarter}}-{{year}}" class="instructor-term-cards" aria-labelledby="instructor-term-label">
+      <h3 id="instructor-term-label" class="sr-only">Courses you are instructing {{ucfirst quarter}} {{year}}</h3>
 
       {{#each sections}}
       <a name="{{ curriculum_abbr }}-{{course_number}}-{{section_id}}"></a>
@@ -55,8 +55,8 @@
   {{/unless}}
 
   {{#if section_references}}<!-- Summary list of courses for over 10 -->
-  <div class="myuw-card" aria-labelledby="your_courses">
-      <h3 class="myuw-card-title" id="your_courses">{{ucfirst quarter}} {{year}} Courses</h3>
+  <div id="instructor-term-{{toLowerCase quarter}}-{{year}}" class="myuw-card" aria-labelledby="instructor-term-label">
+      <h3 class="myuw-card-title" id="instructor-term-label">{{ucfirst quarter}} {{year}} Courses</h3>
       <p class="myuw-note">Due to the high number of course sections, course details have been omitted. Select a section for details.</p>
       <ul class="unstyled-list">
           {{#each section_references}}
