@@ -76,13 +76,26 @@ class TestInstructorTermSchedule(MyuwApiTest):
         data = json.loads(resp.content)
         self.assertFalse(data["future_term"])
         self.assertEqual(len(data['sections']), 6)
+
         primary_section = data['sections'][0]
         self.assertEqual(primary_section["section_label"],
                          "2017_autumn_CSE_154_A")
         self.assertEqual(primary_section["total_linked_secondaries"], 4)
-        sec_section = data['sections'][1]
-        self.assertEqual(sec_section["primary_section_label"],
+        final = primary_section['final_exam']
+        self.assertFalse(final["is_confirmed"])
+        self.assertEqual(final["building"], 'ARC')
+        self.assertEqual(final["room"], '147')
+
+        secondary_section = data['sections'][1]
+        self.assertEqual(secondary_section["section_label"],
+                         "2017_autumn_CSE_154_AA")
+        self.assertEqual(secondary_section["primary_section_label"],
                          "2017_autumn_CSE_154_A")
+        final = secondary_section["final_exam"]
+        self.assertFalse(final["is_confirmed"])
+        self.assertEqual(final["building"], 'ARC')
+        self.assertEqual(final["room"], '147')
+
         primary_section = data['sections'][5]
         self.assertEqual(primary_section["section_label"],
                          "2017_autumn_EDC_I_552_A")
