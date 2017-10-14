@@ -65,7 +65,7 @@ var InstructorCourseResourcePanel = {
             var left = window.screenX + 200;
             var top = window.screenY + 200;
 
-            window.open(ev.target.href, '_blank', 'scrollbars=1,resizable=1,width='+width+',height='+height+',left='+left+',top='+top);
+            window.open(ev.currentTarget.href, '_blank', 'scrollbars=1,resizable=1,width='+width+',height='+height+',left='+left+',top='+top);
             var section_label = ev.currentTarget.getAttribute("rel");
             WSData.log_interaction("open_course_classlist_"+section_label);
             return false;
