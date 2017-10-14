@@ -47,7 +47,7 @@ def _consolidate_weeks(weeks):
             del weeks[i+1]
         i += 1
 
-    return consolidated_weeks
+    return weeks
 
 
 def _section_lists_are_same(list1, list2):
