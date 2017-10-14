@@ -1,11 +1,12 @@
 from dateutil.relativedelta import *
 from datetime import timedelta
 
+
 def get_visual_schedule(schedule):
 
-   _add_dates_to_sections(schedule)
-   bounds = get_schedule_bounds(schedule)
-   periods = get_periods_from_bounds(bounds)
+    _add_dates_to_sections(schedule)
+    bounds = get_schedule_bounds(schedule)
+    periods = get_periods_from_bounds(bounds)
 
 
 def get_periods_from_bounds(bounds):
@@ -18,7 +19,7 @@ def get_periods_from_bounds(bounds):
         # period.start_date =
         current_date = current_date + relativedelta(weeks=1)
 
-    # while start_week <= end_week:
+        # while start_week <= end_week:
 
         # period = SchedulePeriod()
         # period.create_from_week_num_year(start_week, start.strftime('%Y'))
@@ -26,12 +27,15 @@ def get_periods_from_bounds(bounds):
         # periods[start_week] = period
         # start_week += 1
 
+
 def _add_sections_to_weeks(sections, weeks):
     for week in weeks:
         for section in sections:
-            if section.start_date <= week.end_date and section.end_date >= week.start_date:
+            if section.start_date <= week.end_date \
+                    and section.end_date >= week.start_date:
                 week.sections.append(section)
     return weeks
+
 
 def _consolidate_weeks(weeks):
     consolidated_weeks = []
@@ -44,7 +48,6 @@ def _consolidate_weeks(weeks):
         i += 1
 
     return consolidated_weeks
-
 
 
 def _section_lists_are_same(list1, list2):
@@ -67,7 +70,6 @@ def _sections_are_same(section1, section2):
            and (section1.section_id == section2.section_id)
 
 
-
 def _get_weeks_from_bounds(bounds):
     start, end = bounds
     periods = []
@@ -84,6 +86,7 @@ def _get_weeks_from_bounds(bounds):
         schedule_length -= 1
 
     return periods
+
 
 def get_schedule_bounds(schedule):
     start = None
@@ -124,14 +127,9 @@ def _add_dates_to_sections(schedule):
     return schedule
 
 
-
 class SchedulePeriod():
     def __init__(self):
         self.start_date = None
         self.end_date = None
         self.sections = []
         self.is_boundary_period = False
-
-
-
-
