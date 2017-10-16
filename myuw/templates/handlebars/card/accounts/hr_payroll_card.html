@@ -12,7 +12,7 @@
         </div>
         <p class="card-related-messages">Workday is UW's human resources, benefits, payroll, and time tracking system.</p>
     </div>
-
+{{#unless is_stud_employee}}
     {{#if is_employee}}
     <div style="padding-bottom: 10px;">
         <h4>Get Help</h4>
@@ -44,7 +44,7 @@
         </div>
     </div>
     {{/if}}
-
+{{/unless}}
     {{#if is_stud_employee}}
     <div style="padding-bottom: 10px;">
         <h4>Resources for Student Workers</h4>
