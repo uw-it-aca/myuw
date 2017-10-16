@@ -13,7 +13,6 @@ var TextbookCard = {
 
     render_init: function() {
         TextBooks.rendered_once = false;
-        TextbookCard.dom_target = $('#TextbookCard');
         if (TextbookCard.hide_card() ||
             (TextbookCard.term === 'current' &&
              !window.card_display_dates.is_before_eof_7days_of_term)) {

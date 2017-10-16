@@ -59,7 +59,8 @@ var Landing = {
             FutureQuarterCard1,
             SummerRegStatusCard1
         ];
-        if(window.user.staff_employee && !(window.user.student || window.user.instructor)) {
+        if(window.user.employee || window.user.clinician &&
+           !(window.user.student || window.user.instructor)) {
             desktop_body_cards.unshift(HRPayrollCard);
         }
         var desktop_sidebar_cards = [
@@ -95,7 +96,8 @@ var Landing = {
             AcadCalSnippet,
             EventsCard
         ];
-        if(window.user.staff_employee && !(window.user.student || window.user.instructor)) {
+        if(window.user.employee || window.user.clinician &&
+           !(window.user.student || window.user.instructor)) {
             mobile_cards.unshift(HRPayrollCard);
         }
         Cards.load_cards_in_order(mobile_cards, $("#landing_content_cards"));

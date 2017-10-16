@@ -26,8 +26,8 @@ describe("AccountsPage", function() {
                 TuitionCard,
                 MedicineAccountsCard,
                 HfsCard,
-                LibraryCard,
                 UPassCard,
+                LibraryCard,
                 AccountsCard
             ];
             window.user.student = true;
@@ -39,9 +39,9 @@ describe("AccountsPage", function() {
             var employee_order = [
                 MedicineAccountsCard,
                 HRPayrollCard,
-                LibraryCard,
-                UPassCard,
                 HfsCard,
+                UPassCard,
+                LibraryCard,
                 AccountsCard
             ];
             window.user.employee = true;
@@ -49,46 +49,28 @@ describe("AccountsPage", function() {
             assert.deepEqual(card_order, employee_order)
         });
 
-        it('should handle staff affiliation', function() {
-            var employee_order = [
-                MedicineAccountsCard,
-                LibraryCard,
-                UPassCard,
-                HfsCard,
-                AccountsCard
-            ];
-            window.user.employee = true;
-            window.user.staff_employee = true;
-            var card_order = AccountsPage._get_card_order_by_affiliation();
-            assert.deepEqual(card_order, employee_order)
-        });
-
-
-        it('should default to student', function() {
-            var student_order = [
+        it('should handle student employee affiliation', function() {
+            var stud_employee_order = [
                 TuitionCard,
                 MedicineAccountsCard,
-                HfsCard,
-                LibraryCard,
-                UPassCard,
-                AccountsCard
-            ];
-            var employee_order = [
-                MedicineAccountsCard,
                 HRPayrollCard,
-                LibraryCard,
-                UPassCard,
                 HfsCard,
+                UPassCard,
+                LibraryCard,
                 AccountsCard
             ];
             window.user.student = true;
-            window.user.employee = true;
+            window.user.stud_employee = true;
             var card_order = AccountsPage._get_card_order_by_affiliation();
-            assert.deepEqual(card_order, student_order)
+            assert.deepEqual(card_order, stud_employee_order)
         });
+
         it('should handle no affiliation', function() {
+            var default_order = [LibraryCard,
+                                 AccountsCard
+                                ];
             var card_order = AccountsPage._get_card_order_by_affiliation();
-            assert.equal(card_order, undefined)
+            assert.deepEqual(card_order, default_order)
         });
     });
     describe('order_card_list', function() {

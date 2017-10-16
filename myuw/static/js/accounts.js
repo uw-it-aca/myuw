@@ -69,30 +69,29 @@ var AccountsPage = {
 
     _get_card_order_by_affiliation: function(){
         // affiliation precedence: student>employee
+        var cards = [];
         if(window.user.student) {
-            return [
-                TuitionCard,
-                MedicineAccountsCard,
-                HfsCard,
-                LibraryCard,
-                UPassCard,
-                AccountsCard
-            ];
+            cards.push(TuitionCard);
         }
-        if(window.user.employee) {
-            var cards = [
-                MedicineAccountsCard,
-                HRPayrollCard,
-                LibraryCard,
-                UPassCard,
-                HfsCard,
-                AccountsCard
-            ];
-            if(window.user.staff_employee) {
-                cards.splice(1, 1);
+        if(window.user.student ||
+           window.user.employee ||
+           window.user.clinician) {
+
+            cards.push(MedicineAccountsCard);
+
+            if(window.user.stud_employee ||
+               window.user.employee ||
+               window.user.clinician) {
+                cards.push(HRPayrollCard);
             }
-            return cards;
+            cards = cards.concat([HfsCard,
+                                  UPassCard
+                                 ]);
         }
+        cards = cards.concat([LibraryCard,
+                              AccountsCard
+                             ]);
+        return cards;
     },
 
     _reset_content_divs: function() {
