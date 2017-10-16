@@ -8,7 +8,7 @@ var HRPayrollCard = {
         var compiled = template({
             card_name: HRPayrollCard.name,
             is_faculty: window.user.faculty,
-            is_employee: window.user.employee,
+            is_employee: (window.user.employee || window.user.clinician),
             is_stud_employee: window.user.stud_employee
         });
 
