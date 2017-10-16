@@ -90,9 +90,11 @@
 {% endblock %}
 
 {% block extra_js %}
-    <script src="{% static 'js/card/accounts/hr_payroll_card.js' %}"></script>
     <script src="{% static 'js/card/quicklinks.js' %}"></script>
     {% compress js inline %}
     <script src="{% static 'js/page/landing.js' %}"></script>
+    <script src="{% static 'js/card/calendars/acad_cal_sp.js' %}"></script>
+    <script src="{% static 'js/card/calendars/events.js' %}"></script>
+    <script src="{% static 'js/card/accounts/hr_payroll_card.js' %}"></script>
     {% endcompress %}
 {% endblock %}
