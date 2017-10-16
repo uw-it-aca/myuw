@@ -3,7 +3,6 @@ var AcademicCalendarCard = {
     dom_target: undefined,
 
     render_init: function() {
-        AcademicCalendarCard.dom_target = $('#AcademicCalendarCard');
         WSData.fetch_academic_calendar_events(AcademicCalendarCard.render);
     },
 

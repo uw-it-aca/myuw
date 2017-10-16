@@ -4,8 +4,7 @@ var InstructorCourseCards = {
     term: 'current',
 
     hide_card: function() {
-        if (myuwFeatureEnabled('instructor_schedule') &&
-            window.user.instructor) {
+        if (window.user.instructor) {
             return false;
         }
         return true;

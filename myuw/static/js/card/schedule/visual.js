@@ -9,8 +9,7 @@ var VisualScheduleCard = {
         if (window.user.student) {
             VisualScheduleCard.ck_student_schedule = true;
         }
-        if (myuwFeatureEnabled('instructor_schedule') &&
-            window.user.instructor) {
+        if (window.user.instructor) {
             VisualScheduleCard.ck_instructor_schedule = true;
         }
         if (VisualScheduleCard.ck_student_schedule || VisualScheduleCard.ck_instructor_schedule) {

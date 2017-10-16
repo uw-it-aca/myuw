@@ -161,7 +161,6 @@ var QuickLinksCard = {
     },
 
     render_init: function() {
-        QuickLinksCard.dom_target = $('#QuickLinksCard');
         QuickLinksCard.render();
     },
 

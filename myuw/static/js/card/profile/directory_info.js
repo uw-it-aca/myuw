@@ -3,7 +3,7 @@ var DirectoryInfoCard = {
     dom_target: undefined,
 
     hide_card: function() {
-        if (myuwFeatureEnabled('employee_profile') && window.user.employee) {
+        if (window.user.employee) {
             return false;
         }
         return true;
