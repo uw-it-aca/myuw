@@ -34,8 +34,7 @@ def _enrollments_dict_by_sws_label(enrollments):
     """
     enrollments_dict = {}
     for enrollment in enrollments:
-        section = CanvasSection(sis_section_id=enrollment.sis_section_id)
-        sws_label = section.sws_section_id()
+        (sws_label, inst_regid) = sws_section_label(enrollment.sis_section_id)
         if sws_label is not None:
             enrollments_dict[sws_label] = enrollment
 
@@ -71,10 +70,15 @@ def canvas_course_is_available(canvas_id):
             return False
 
 
-def sws_course_label(sis_course_id):
-    canvas_course = CanvasCourse(sis_course_id=sis_course_id)
-    return (canvas_course.sws_course_id(),
-            canvas_course.sws_instructor_regid())
+def sws_section_label(sis_id):
+    canvas_section = CanvasSection(sis_section_id=sis_id)
+    sws_label = canvas_section.sws_section_id()
+    if sws_label is None:
+        canvas_course = CanvasCourse(sis_course_id=sis_id)
+        sws_label = canvas_course.sws_course_id()
+        return (sws_label, canvas_course.sws_instructor_regid())
+    else:
+        return (sws_label, canvas_section.sws_instructor_regid())
 
 
 def get_viewable_course_sections(canvas_course_id, canvas_user_id):

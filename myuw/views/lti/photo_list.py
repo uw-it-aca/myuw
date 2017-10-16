@@ -1,6 +1,6 @@
 from django.utils.decorators import method_decorator
 from blti.views import BLTILaunchView
-from myuw.dao.canvas import sws_course_label, get_viewable_course_sections
+from myuw.dao.canvas import sws_section_label, get_viewable_course_sections
 from myuw.util.performance import log_response_time
 from restclients_core.exceptions import DataFailureException
 import re
@@ -19,7 +19,7 @@ class LTIPhotoList(BLTILaunchView):
         user_id = blti_data.get('custom_canvas_user_id')
         sections = []
 
-        (sws_course_id, sws_instructor_regid) = sws_course_label(sis_course_id)
+        (sws_course_id, sws_inst_regid) = sws_section_label(sis_course_id)
 
         try:
             sections = get_viewable_course_sections(course_id, user_id)
