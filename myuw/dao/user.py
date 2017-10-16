@@ -61,4 +61,3 @@ def is_oldmyuw_user():
     if is_applicant():
         return True
     return True
-
