@@ -7,8 +7,7 @@ from django.contrib.auth import logout as django_logout
 from django.conf import settings
 from myuw.dao.term import add_term_data_to_context
 from myuw.dao.affiliation import get_all_affiliations
-from myuw.dao.user import is_oldmyuw_user, get_netid_of_current_user,\
-    is_oldmyuw_mobile_user
+from myuw.dao.user import is_oldmyuw_user, get_netid_of_current_user
 from myuw.dao.emaillink import get_service_url_for_address
 from myuw.dao.exceptions import EmailServiceUrlException
 from myuw.dao.quicklinks import get_quicklink_data
@@ -55,23 +54,8 @@ def page(request,
             return failure
     log_session(netid, request.session.session_key, request)
 
-    if _is_mobile(request):
-        # On mobile devices, all students get the current myuw.  Non-students
-        # are sent to the legacy site.
-        try:
-            if is_oldmyuw_mobile_user():
-                logger.info("mobile user %s, redirect to legacy!" % netid)
-                return redirect_to_legacy_site()
-        except Exception:
-            log_exception(logger,
-                          '%s is_oldmyuw_mobile_user' % netid,
-                          traceback.format_exc())
-            logger.info("%s, redirected to legacy!" % netid)
-            return redirect_to_legacy_site()
-
-    else:
-        if is_oldmyuw_user():
-            return redirect_to_legacy_site()
+    if is_oldmyuw_user():
+        return redirect_to_legacy_site()
 
     context["home_url"] = "/"
     context["err"] = None
@@ -128,21 +112,6 @@ def try_prefetch(request):
         context["webservice_outage"] = True
         return render(request, template, context)
     return
-
-
-def _is_mobile(request):
-    user_agent = request.META.get("HTTP_USER_AGENT")
-
-    if not user_agent:
-        return False
-
-    # This is the check we were doing in our apache config...
-    if re.match('.*iPhone.*', user_agent):
-        return True
-
-    if re.match('.*Android.*Mobile.*', user_agent):
-        return True
-    return False
 
 
 def redirect_to_legacy_site():
