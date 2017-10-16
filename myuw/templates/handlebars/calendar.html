@@ -1,0 +1,18 @@
+{% load templatetag_handlebars %}
+    {% tplhandlebars "calendar_page" %}
+
+<div class="container academic_calr-container">
+    <div class="acal-main">
+        <h2 id="main" class="heading-page">Academic Calendar</h2>
+
+        <div class="row">
+            <div id="calendar_content" class="col-md-8">
+                <div id="calendar_content_cards">
+                </div>
+            </div>
+	    <div id="calendar_sidebar_cards" class="calendar_aside col-md-4">
+	    </div>
+        </div>
+    </div>
+</div>
+{% endtplhandlebars %}

@@ -1,5 +1,5 @@
-PhotoClassList = require("../teaching/class_list.js").PhotoClassList;
 var assert = require("assert");
+PhotoClassList = require("../teaching/class_list.js").PhotoClassList;
 
 describe("PhotoClassList", function() {
     describe('download name', function() {
@@ -13,6 +13,7 @@ describe("PhotoClassList", function() {
             assert.equal(name, 'TEST_IT_101_A1_winter_2012_students.csv');
         });
     });
+
     describe('quoting fields', function() {
         it('should put fields in quotes, and escape double quotes', function() {
             assert.equal('"value, ok"', PhotoClassList.quote_field('value, ok'));
@@ -20,50 +21,147 @@ describe("PhotoClassList", function() {
         });
     });
 
-    describe('build download', function() {
-        it('should put data in the right fields', function() {
-            var data = {};
-            data.linked_types = ["funtimes", "quiz"];
-            data.registrations = [];
-            data.registrations.push({student_number: '1234',
-                                     netid: 'testing',
-                                     full_name: 'preferred name',
-                                     name: 'preferred',
-                                     surname: 'name',
-                                     credits: '2.0',
-                                     class: 'JUNIOR',
-                                     majors: [{full_name: 'my major' }],
-                                     email: 'testing@uw.edu',
-                                     linked_sections: [{sections: ["AQ"], type: "funtimes"}, {sections: ["A1"], type: "quiz"}],
-                                     });
-
-            var result = PhotoClassList.build_download(data);
-
-            var lines = result.split("\n");
-            // Header...
-            assert.equal(lines[0], 'Student Number,UW NetID,Name,Last Name,Funtimes Section,Quiz Section,Credits,Class,Majors,Email');
-
-            var row1 = lines[1].split(",");
-            assert.equal(row1[0], '"1234"');
-            assert.equal(row1[1], '"testing"');
-            assert.equal(row1[2], '"preferred"');
-            assert.equal(row1[3], '"name"');
-            assert.equal(row1[4], '"AQ"');
-            assert.equal(row1[5], '"A1"');
-            assert.equal(row1[6], '"2.0"');
-            assert.equal(row1[7], '"JUNIOR"');
-            assert.equal(row1[8], '"my major"');
-            assert.equal(row1[9], '"testing@uw.edu"');
-        });
-    });
-
     describe('multiple majors', function() {
         it('should just comma separate them', function() {
-            assert.equal(PhotoClassList.combine_majors([{ full_name: 'major1' }, { full_name: 'another major'}, { full_name: 'a major, but with commas' }]), "major1, another major, a major, but with commas");
+            assert.equal(PhotoClassList.combine_majors([{ full_name: 'major1' },
+                                                        { full_name: 'another major'},
+                                                        { full_name: 'a major, but with commas' }]),
+                         "major1, another major, a major, but with commas");
             assert.equal(PhotoClassList.combine_majors([{ full_name: 'major1' }]), "major1");
             assert.equal(PhotoClassList.combine_majors([]), "");
             assert.equal(PhotoClassList.combine_majors(), "");
         });
     });
-});
 
+    describe('sort students', function() {
+        it('should put registration records into right order', function() {
+            var data = [{"surname": "Student2",
+                         "credits": "2.0",
+                         "class": "FRESHMAN",
+                         "name": "Jane",
+                         "netid": "javg003",
+                         "class_code": 1,
+                         "email": "javg003@uw.edu"},
+                        {"surname": "Student2",
+                         "credits": "2.0",
+                         "class": "JUNIOR",
+                         "name": "Jade",
+                         "netid": "javg002",
+                         "class_code": 3,
+                         "email": "javg002@uw.edu"},
+                        {"surname": "Student1",
+                         "credits": "2.0",
+                         "class": "SOPHOMORE",
+                         "name": "Jake",
+                         "netid": "javg001",
+                         "class_code": 2,
+                         "email": "javg001@uw.edu"}];
+            var sorted = PhotoClassList.sort_registrations(data, 'surname');
+            assert.equal(sorted[0].surname, "Student1");
+            assert.equal(sorted[1].surname, "Student2");
+            assert.equal(sorted[2].surname, "Student2");
+            var sorted = PhotoClassList.sort_students(data, 'surname,name');
+            assert.equal(sorted[0].surname, "Student1");
+            assert.equal(sorted[1].surname, "Student2");
+            assert.equal(sorted[1].name, "Jade");
+            assert.equal(sorted[2].surname, "Student2");
+            assert.equal(sorted[2].name, "Jane");
+            var sorted = PhotoClassList.sort_registrations(data, 'class_code');
+            assert.equal(sorted[0].class, "FRESHMAN");
+            assert.equal(sorted[1].class, "SOPHOMORE");
+            assert.equal(sorted[2].class, "JUNIOR");
+        });
+    });
+
+    describe('build download csv', function() {
+        it('should put data in right fields', function() {
+            var data = {
+              "linked_types": ["funtimes", "quiz"],
+              "registrations": [{"surname": "Student3",
+                                 "credits": "2.0",
+                                 "full_name": "June Average Student",
+                                 "regid": "9136CCB8F66711D5BE060004AC494003",
+                                 "student_number": "1033003",
+                                 "url_key": "9136CCB8F66711D5BE060004AC494003",
+                                 "class": "FRESHMAN",
+                                 "majors": [{"degree_name": null,
+                                             "short_name": "B PRE",
+                                             "name": "TRAIN",
+                                             "full_name": "Premajor (Bothell Campus)",
+                                             "college_abbr": "",
+                                             "degree_abbr": "TRAIN",
+                                             "degree_level": 0,
+                                             "college_full_name": "",
+                                             "campus": "Bothell"}],
+                                 "name": "Jane",
+                                 "netid": "javg003",
+                                 "linked_sections": [],
+                                 "class_code": 1,
+                                 "email": "javg003@uw.edu"},
+                                {"surname": "Student2",
+                                 "credits": "2.0",
+                                 "full_name": "Jade Average Student",
+                                 "regid": "9136CCB8F66711D5BE060004AC494002",
+                                 "student_number": "1033002",
+                                 "url_key": "9136CCB8F66711D5BE060004AC494002",
+                                 "class": "JUNIOR",
+                                 "majors": [{"degree_name": null,
+                                             "short_name": "B PRE",
+                                             "name": "TRAIN",
+                                             "full_name": "Premajor (Bothell Campus)",
+                                             "college_abbr": "",
+                                             "degree_abbr": "TRAIN",
+                                             "degree_level": 0,
+                                             "college_full_name": "",
+                                             "campus": "Bothell"}],
+                                 "name": "Jade",
+                                 "netid": "javg002",
+                                 "linked_sections": [],
+                                 "class_code": 3,
+                                 "email": "javg002@uw.edu"},
+                                {"surname": "Student1",
+                                 "credits": "2.0",
+                                 "full_name": "Jake Average Student",
+                                 "regid": "9136CCB8F66711D5BE060004AC494001",
+                                 "student_number": "1033001",
+                                 "url_key": "9136CCB8F66711D5BE060004AC494001",
+                                 "class": "SOPHOMORE",
+                                 "majors": [{"degree_name": "ASD",
+                                             "short_name": "UPCOM",
+                                             "name": "UPCOM",
+                                             "full_name": "UPCOM (Tacoma Campus)",
+                                             "college_abbr": "",
+                                             "degree_abbr": "UPCOM",
+                                             "degree_level": 2,
+                                             "college_full_name": "",
+                                             "campus": "Tacoma"}],
+                                 "name": "Jake",
+                                 "netid": "javg001",
+                                 "linked_sections": [{sections: ["AQ"], type: "funtimes"},
+                                                     {sections: ["A1"], type: "quiz"}],
+                                 "class_code": 2,
+                                 "email": "javg001@uw.edu"}],
+                };
+            var result = PhotoClassList.build_download(data);
+            var lines = result.split("\n");
+            // Header...
+            assert.equal(lines[0], 'Student Number,UW NetID,Name,Last Name,Funtimes Section,Quiz Section,Credits,Class,Majors,Email');
+            var row1 = lines[1].split(",");
+            assert.equal(row1[0], '"1033001"');
+            assert.equal(row1[1], '"javg001"');
+            assert.equal(row1[2], '"Jake"');
+            assert.equal(row1[3], '"Student1"');
+            assert.equal(row1[4], '"AQ"');
+            assert.equal(row1[5], '"A1"');
+            assert.equal(row1[6], '"2.0"');
+            assert.equal(row1[7], '"SOPHOMORE"');
+            assert.equal(row1[8], '"UPCOM (Tacoma Campus)"');
+            assert.equal(row1[9], '"javg001@uw.edu"');
+            var row2 = lines[2].split(",");
+            assert.equal(row2[3], '"Student2"');
+            var row3 = lines[3].split(",");
+            assert.equal(row3[3], '"Student3"');
+        });
+    });
+
+});
