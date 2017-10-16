@@ -114,21 +114,6 @@ def try_prefetch(request):
     return
 
 
-def _is_mobile(request):
-    user_agent = request.META.get("HTTP_USER_AGENT")
-
-    if not user_agent:
-        return False
-
-    # This is the check we were doing in our apache config...
-    if re.match('.*iPhone.*', user_agent):
-        return True
-
-    if re.match('.*Android.*Mobile.*', user_agent):
-        return True
-    return False
-
-
 def redirect_to_legacy_site():
     legacy_url = getattr(settings,
                          "MYUW_USER_SERVLET_URL",
