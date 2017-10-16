@@ -298,10 +298,18 @@ var getUrlParameter = function (name) {
 
 var init_search_events = function() {
     // handle clicking on search button
+
     $("#search_toggle").bind("click", function(ev) {
-		$("#app_search").toggleClass("slide-down");
-        $("#search-nav").focus();
+        window.setTimeout(function() {
+            if ($("#search_toggle").hasClass("collapsed")) {
+                $("#search-toggle").focus();
+            }
+            else {
+                $("#search-nav").focus();
+            }
+        }, 300);
 	});
+
 };
 
 var remove_card = function(target) {

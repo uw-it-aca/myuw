@@ -44,6 +44,10 @@ var QuickLinksCard = {
         $("#custom-link-edit").css({left: 0, top: target_pos.top + 20});
         $("#custom-link-edit").show();
 
+        $("#custom-link-edit-control-"+link_id).attr({
+            "aria-expanded" : "true"
+        });
+
         $("#custom-link-edit-url").focus();
     },
     custom_add: function(ev) {
@@ -119,6 +123,11 @@ var QuickLinksCard = {
     },
     hide_edit_panel: function() {
         $("#custom-link-edit").hide();
+
+        $(".link-controls .edit-link[aria-expanded=true]").attr({
+            "aria-expanded" : "false"
+        });
+
         QuickLinksCard.display_edit_links();
         return false;
     },
@@ -209,5 +218,3 @@ var QuickLinksCard = {
         $("body").on('keydown', QuickLinksCard.handle_escape);
     }
 };
-
-
