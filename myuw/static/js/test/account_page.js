@@ -38,8 +38,8 @@ describe("AccountsPage", function() {
         it('should handle employee affiliation', function() {
             var employee_order = [
                 MedicineAccountsCard,
-                HRPayrollCard,
                 HfsCard,
+                HRPayrollCard,
                 UPassCard,
                 LibraryCard,
                 AccountsCard
@@ -53,8 +53,8 @@ describe("AccountsPage", function() {
             var stud_employee_order = [
                 TuitionCard,
                 MedicineAccountsCard,
-                HRPayrollCard,
                 HfsCard,
+                HRPayrollCard,
                 UPassCard,
                 LibraryCard,
                 AccountsCard
