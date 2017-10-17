@@ -1,5 +1,6 @@
 from myuw.models import BannerMessage
-from myuw.views import admin_required, set_admin_wrapper_template
+from myuw.views.decorators import admin_required
+from myuw.views import set_admin_wrapper_template
 from myuw.logger.logback import log_info
 from myuw.dao.term import get_comparison_datetime
 from myuw.dao.messages import clean_html

@@ -67,12 +67,27 @@ var AcademicCalendarCard = {
 
     filter_all: function() {
         $(".myuw-selected-button").removeClass("myuw-selected-button");
+        $("#myuw-event-filter-all").attr({
+            "aria-selected" : "true"
+        });
         $("#myuw-event-filter-all").addClass("myuw-selected-button");
+        $("#myuw-event-filter-breaks").attr({
+            "aria-selected" : "false"
+        });
+        $("#acal-events-wrapper").attr("aria-labelledby", "myuw-events-filter-all");
         $(".acal-page-event").show();
     },
     filter_breaks: function() {
         $(".myuw-selected-button").removeClass("myuw-selected-button");
+        $("#myuw-event-filter-all").attr({
+            "aria-selected" : "false"
+        });
         $("#myuw-event-filter-breaks").addClass("myuw-selected-button");
+        $("#myuw-event-filter-breaks").attr({
+            "aria-selected" : "true"
+        });
+        $("#acal-events-wrapper").attr("aria-labelledby", "myuw-events-filter-breaks");
+
         $(".acal-page-event").hide();
         $(".acal-page-event-break").show();
     },

@@ -5,7 +5,8 @@ from django.http import Http404
 from datetime import datetime
 import logging
 from django.contrib.auth.decorators import login_required
-from myuw.views import admin_required, set_admin_wrapper_template
+from myuw.views.decorators import admin_required
+from myuw.views import set_admin_wrapper_template
 from myuw.dao import get_user_model
 from myuw.dao.card_display_dates import get_values_by_date
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
