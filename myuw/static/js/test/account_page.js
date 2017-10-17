@@ -16,37 +16,39 @@ describe("AccountsPage", function() {
                                 });
     });
     beforeEach(function (){
-        window.user.student = false;
+        window.user.clinician = false;
         window.user.employee = false;
-        window.user.staff_employee = false;
+        window.user.instructor = false;
+        window.user.student = false;
+        window.user.stud_employee = false;
     });
     describe('_get_card_order_by_affiliation', function() {
+
+        it('should handle clinician affiliation', function() {
+            var order = [
+                MedicineAccountsCard,
+                HfsCard,
+                LibraryCard,
+                UPassCard,
+                AccountsCard
+            ];
+            window.user.clinician = true;
+            var card_order = AccountsPage._get_card_order_by_affiliation();
+            assert.deepEqual(card_order, order)
+        });
+
         it('should handle student affiliation', function() {
             var student_order = [
                 TuitionCard,
                 MedicineAccountsCard,
                 HfsCard,
-                UPassCard,
                 LibraryCard,
+                UPassCard,
                 AccountsCard
             ];
             window.user.student = true;
             var card_order = AccountsPage._get_card_order_by_affiliation();
             assert.deepEqual(card_order, student_order)
-        });
-
-        it('should handle employee affiliation', function() {
-            var employee_order = [
-                MedicineAccountsCard,
-                HfsCard,
-                HRPayrollCard,
-                UPassCard,
-                LibraryCard,
-                AccountsCard
-            ];
-            window.user.employee = true;
-            var card_order = AccountsPage._get_card_order_by_affiliation();
-            assert.deepEqual(card_order, employee_order)
         });
 
         it('should handle student employee affiliation', function() {
@@ -55,14 +57,42 @@ describe("AccountsPage", function() {
                 MedicineAccountsCard,
                 HfsCard,
                 HRPayrollCard,
-                UPassCard,
                 LibraryCard,
+                UPassCard,
                 AccountsCard
             ];
             window.user.student = true;
             window.user.stud_employee = true;
             var card_order = AccountsPage._get_card_order_by_affiliation();
             assert.deepEqual(card_order, stud_employee_order)
+        });
+
+        it('should handle employee affiliation', function() {
+            var employee_order = [
+                MedicineAccountsCard,
+                HfsCard,
+                LibraryCard,
+                UPassCard,
+                AccountsCard
+            ];
+            window.user.employee = true;
+            var card_order = AccountsPage._get_card_order_by_affiliation();
+            assert.deepEqual(card_order, employee_order)
+        });
+
+        it('should handle instructor affiliation', function() {
+            var instructor_order = [
+                MedicineAccountsCard,
+                HfsCard,
+                HRPayrollCard,
+                LibraryCard,
+                UPassCard,
+                AccountsCard
+            ];
+            window.user.instructor = true;
+            window.user.employee = true;
+            var card_order = AccountsPage._get_card_order_by_affiliation();
+            assert.deepEqual(card_order, instructor_order)
         });
 
         it('should handle no affiliation', function() {

@@ -76,21 +76,23 @@ var AccountsPage = {
         if(window.user.student ||
            window.user.employee ||
            window.user.clinician) {
-
             cards = cards.concat([MedicineAccountsCard,
                                   HfsCard]);
+        }
 
-            if(window.user.stud_employee ||
-               window.user.employee ||
-               window.user.clinician) {
-                cards.push(HRPayrollCard);
-            }
+        if(window.user.stud_employee || window.user.instructor) {
+            cards.push(HRPayrollCard);
+        }
 
+        cards.push(LibraryCard);
+
+        if(window.user.student ||
+           window.user.employee ||
+           window.user.clinician) {
             cards.push(UPassCard);
         }
-        cards = cards.concat([LibraryCard,
-                              AccountsCard
-                             ]);
+
+        cards.push(AccountsCard);
         return cards;
     },
 
