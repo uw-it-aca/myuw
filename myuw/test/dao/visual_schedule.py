@@ -173,7 +173,7 @@ class TestVisualSchedule(TestCase):
         section2.course_number = 456
         section2.section_id = 'A'
         section2.start_date = datetime.date(2017, 10, 16)
-        section2.end_date = datetime.date(2017, 10, 20)
+        section2.end_date = datetime.date(2017, 10, 27)
         schedule = ClassSchedule()
         schedule.sections = [section1, section2]
 
@@ -191,5 +191,5 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(consolidated[1].sections[0], section1)
         self.assertEqual(consolidated[1].sections[1], section2)
 
-        self.assertEqual(len(consolidated[1].sections), 1)
-        self.assertEqual(consolidated[1].sections[0], section2)
+        self.assertEqual(len(consolidated[2].sections), 1)
+        self.assertEqual(consolidated[2].sections[0], section2)

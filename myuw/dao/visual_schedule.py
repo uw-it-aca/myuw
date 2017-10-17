@@ -39,15 +39,21 @@ def _add_sections_to_weeks(sections, weeks):
 
 def _consolidate_weeks(weeks):
     consolidated_weeks = []
+    prev_week = None
 
-    i = 0
-    while i < len(weeks):
-        if _section_lists_are_same(weeks[i].sections, weeks[i+1].sections):
-            weeks[i].end_date = weeks[i+1].end_date
-            del weeks[i+1]
-        i += 1
-
-    return weeks
+    for week in weeks:
+        if prev_week is None:
+            prev_week = week
+        else:
+            #  Merge weeks with same sections
+            if _section_lists_are_same(prev_week.sections, week.sections):
+                prev_week.end_date = week.end_date
+            else:
+                consolidated_weeks.append(prev_week)
+                prev_week = week
+    # Append last week block
+    consolidated_weeks.append(prev_week)
+    return consolidated_weeks
 
 
 def _section_lists_are_same(list1, list2):
