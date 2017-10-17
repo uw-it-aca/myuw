@@ -77,16 +77,16 @@ var AccountsPage = {
            window.user.employee ||
            window.user.clinician) {
 
-            cards.push(MedicineAccountsCard);
+            cards = cards.concat([MedicineAccountsCard,
+                                  HfsCard]);
 
             if(window.user.stud_employee ||
                window.user.employee ||
                window.user.clinician) {
                 cards.push(HRPayrollCard);
             }
-            cards = cards.concat([HfsCard,
-                                  UPassCard
-                                 ]);
+
+            cards.push(UPassCard);
         }
         cards = cards.concat([LibraryCard,
                               AccountsCard
