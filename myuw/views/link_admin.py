@@ -3,7 +3,8 @@ from django.shortcuts import render
 from django.core.urlresolvers import reverse
 import logging
 from myuw.dao.user import get_netid_of_current_user
-from myuw.views import admin_required, set_admin_wrapper_template
+from myuw.views.decorators import admin_required
+from myuw.views import set_admin_wrapper_template
 from myuw.models import VisitedLinkNew, PopularLink
 
 
