@@ -193,3 +193,34 @@ class TestVisualSchedule(TestCase):
 
         self.assertEqual(len(consolidated[2].sections), 1)
         self.assertEqual(consolidated[2].sections[0], section2)
+
+
+    def test_consolidate_weeks_jpce(self):
+        regid = "10000000000000000000000000000010"
+        term = get_term_from_quarter_string("2013,spring")
+
+        schedule = _get_schedule(regid, term)
+        schedule = _add_dates_to_sections(schedule)
+
+        bounds = get_schedule_bounds(schedule)
+        weeks = _get_weeks_from_bounds(bounds)
+        weeks = _add_sections_to_weeks(schedule.sections, weeks)
+        consolidated = _consolidate_weeks(weeks)
+
+        self.assertEqual(len(consolidated), 4)
+
+        w1 = [schedule.sections[1], schedule.sections[2], schedule.sections[3], schedule.sections[4]]
+        self.assertEqual(len(consolidated[0].sections), 4)
+        self.assertTrue(_section_lists_are_same(consolidated[0].sections, w1))
+
+        w2 = [schedule.sections[0], schedule.sections[1], schedule.sections[2], schedule.sections[3], schedule.sections[4]]
+        self.assertEqual(len(consolidated[1].sections), 5)
+        self.assertTrue(_section_lists_are_same(consolidated[1].sections, w2))
+
+        w3 = [schedule.sections[0], schedule.sections[4]]
+        self.assertEqual(len(consolidated[2].sections), 2)
+        self.assertTrue(_section_lists_are_same(consolidated[2].sections, w3))
+
+        w4 = [schedule.sections[0]]
+        self.assertEqual(len(consolidated[3].sections), 1)
+        self.assertTrue(_section_lists_are_same(consolidated[3].sections, w4))
