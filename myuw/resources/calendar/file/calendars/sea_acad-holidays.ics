@@ -11,13 +11,11 @@ SUMMARY:Example Event Pre + More
 DTSTART;VALUE=DATE:20130410
 DTEND;VALUE=DATE:20130425
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
 DTSTAMP:20130806T100041Z
-DESCRIPTION:Year: 2013\nQuarter: Spring\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2013\nQuarter: Spring\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271651
 END:VEVENT
@@ -27,13 +25,11 @@ SUMMARY:Example Event First Day
 DTSTART;VALUE=DATE:20130415
 DTEND;VALUE=DATE:20130416
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
 DTSTAMP:20130806T100041Z
-DESCRIPTION:Year: 2013\nQuarter: Spring\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2013\nQuarter: Spring\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271651
 END:VEVENT
@@ -43,13 +39,11 @@ SUMMARY:Example Event Few Days In
 DTSTART;VALUE=DATE:20130418
 DTEND;VALUE=DATE:20130421
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
 DTSTAMP:20130806T100041Z
-DESCRIPTION:Year: 2013\nQuarter: Spring\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2013\nQuarter: Spring\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271651
 END:VEVENT
@@ -64,14 +58,10 @@ X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
 DTSTAMP:20130806T100041Z
-DESCRIPTION:Year: 2013\nQuarter: Spring\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2013\nQuarter: Spring\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271651
 END:VEVENT
-
-
-
 
 BEGIN:VEVENT
 SUMMARY:Christmas (no classes)
@@ -83,350 +73,469 @@ X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2010
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
 DTSTAMP:20130806T100041Z
-DESCRIPTION:Year: 2010\nQuarter: Autumn\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2010\nQuarter: Autumn\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271651
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:New Year's Day (no classes)
 DTSTART;VALUE=DATE:20110101
 DTEND;VALUE=DATE:20110102
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2011
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
 DTSTAMP:20130806T100058Z
-DESCRIPTION:Year: 2011\nQuarter: Winter\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2011\nQuarter: Winter\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271652
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:Martin Luther King Day (no classes)
 DTSTART;VALUE=DATE:20110119
 DTEND;VALUE=DATE:20110120
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2011
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
 DTSTAMP:20130806T100113Z
-DESCRIPTION:Year: 2011\nQuarter: Winter\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2011\nQuarter: Winter\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271653
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:President's Day (no classes)
 DTSTART;VALUE=DATE:20110216
 DTEND;VALUE=DATE:20110217
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2011
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
 DTSTAMP:20130806T100126Z
-DESCRIPTION:Year: 2011\nQuarter: Winter\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2011\nQuarter: Winter\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271654
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:Memorial Day (no classes)
 DTSTART;VALUE=DATE:20110525
 DTEND;VALUE=DATE:20110526
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2011
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
 DTSTAMP:20130806T100140Z
-DESCRIPTION:Year: 2011\nQuarter: Spring\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2011\nQuarter: Spring\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271655
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:Independence Day OBSERVED (no classes)
 DTSTART;VALUE=DATE:20110703
 DTEND;VALUE=DATE:20110704
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2011
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
 DTSTAMP:20131104T110927Z
-DESCRIPTION:Year: 2011\nQuarter: Summer\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2011\nQuarter: Summer\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271656
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:Labor Day (no classes)
 DTSTART;VALUE=DATE:20110907
 DTEND;VALUE=DATE:20110908
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2011
 DTSTAMP:20130806T100212Z
 DESCRIPTION:Year: 2011\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271657
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:Veteran's Day (no classes)
 DTSTART;VALUE=DATE:20111111
 DTEND;VALUE=DATE:20111112
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2011
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
 DTSTAMP:20130806T100229Z
-DESCRIPTION:Year: 2011\nQuarter: Autumn\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2011\nQuarter: Autumn\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271658
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:Thanksgiving (no classes)
 DTSTART;VALUE=DATE:20111126
 DTEND;VALUE=DATE:20111128
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2011
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
 DTSTAMP:20130806T100242Z
-DESCRIPTION:Year: 2011\nQuarter: Autumn\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2011\nQuarter: Autumn\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271659
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:Christmas (no classes)
 DTSTART;VALUE=DATE:20111225
 DTEND;VALUE=DATE:20111226
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2011
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
 DTSTAMP:20130806T100256Z
-DESCRIPTION:Year: 2011\nQuarter: Autumn\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2011\nQuarter: Autumn\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271660
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:New Year's Day (no classes)
 DTSTART;VALUE=DATE:20120101
 DTEND;VALUE=DATE:20120102
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2012
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
 DTSTAMP:20130806T100309Z
-DESCRIPTION:Year: 2012\nQuarter: Winter\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2012\nQuarter: Winter\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271661
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:Martin Luther King Day (no classes)
 DTSTART;VALUE=DATE:20120118
 DTEND;VALUE=DATE:20120119
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2012
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
 DTSTAMP:20130806T100323Z
-DESCRIPTION:Year: 2012\nQuarter: Winter\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2012\nQuarter: Winter\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271662
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:President's Day (no classes)
 DTSTART;VALUE=DATE:20120215
 DTEND;VALUE=DATE:20120216
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2012
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
 DTSTAMP:20130806T100340Z
-DESCRIPTION:Year: 2012\nQuarter: Winter\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2012\nQuarter: Winter\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271663
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:Memorial Day (no classes)
 DTSTART;VALUE=DATE:20120530
 DTEND;VALUE=DATE:20120531
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2012
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
 DTSTAMP:20130806T100354Z
-DESCRIPTION:Year: 2012\nQuarter: Spring\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2012\nQuarter: Spring\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271664
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:Independence Day (no classes)
 DTSTART;VALUE=DATE:20120704
 DTEND;VALUE=DATE:20120705
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2012
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
 DTSTAMP:20130806T100408Z
-DESCRIPTION:Year: 2012\nQuarter: Summer\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2012\nQuarter: Summer\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271665
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:Labor Day (no classes)
 DTSTART;VALUE=DATE:20120905
 DTEND;VALUE=DATE:20120906
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2012
 DTSTAMP:20130806T100422Z
 DESCRIPTION:Year: 2012\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271666
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:Veteran's Day (no classes)
 DTSTART;VALUE=DATE:20121111
 DTEND;VALUE=DATE:20121112
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2012
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
 DTSTAMP:20130806T100434Z
-DESCRIPTION:Year: 2012\nQuarter: Autumn\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2012\nQuarter: Autumn\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271667
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:Thanksgiving (no classes)
 DTSTART;VALUE=DATE:20121124
 DTEND;VALUE=DATE:20121126
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2012
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
 DTSTAMP:20130806T100448Z
-DESCRIPTION:Year: 2012\nQuarter: Autumn\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2012\nQuarter: Autumn\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271668
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:Christmas OBSERVED (no classes)
 DTSTART;VALUE=DATE:20121226
 DTEND;VALUE=DATE:20121227
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2012
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
 DTSTAMP:20131104T111044Z
-DESCRIPTION:Year: 2012\nQuarter: Autumn\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2012\nQuarter: Autumn\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271669
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:New Year's Day OBSERVED (no classes)
 DTSTART;VALUE=DATE:20130102
 DTEND;VALUE=DATE:20130103
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
 DTSTAMP:20131104T111105Z
-DESCRIPTION:Year: 2013\nQuarter: Winter\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2013\nQuarter: Winter\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271670
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:Martin Luther King Day (no classes)
 DTSTART;VALUE=DATE:20130116
 DTEND;VALUE=DATE:20130117
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
 DTSTAMP:20130806T100529Z
-DESCRIPTION:Year: 2013\nQuarter: Winter\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2013\nQuarter: Winter\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271671
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:President's Day (no classes)
 DTSTART;VALUE=DATE:20130220
 DTEND;VALUE=DATE:20130221
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
 DTSTAMP:20130806T100541Z
-DESCRIPTION:Year: 2013\nQuarter: Winter\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2013\nQuarter: Winter\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271672
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:Memorial Day (no classes)
 DTSTART;VALUE=DATE:20130529
 DTEND;VALUE=DATE:20130530
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
 DTSTAMP:20130806T100556Z
-DESCRIPTION:Year: 2013\nQuarter: Spring\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2013\nQuarter: Spring\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271673
 END:VEVENT
+
 BEGIN:VEVENT
 SUMMARY:Independence Day (no classes)
 DTSTART;VALUE=DATE:20130704
 DTEND;VALUE=DATE:20130705
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
-X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates
- /Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2013
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
 DTSTAMP:20130806T100611Z
-DESCRIPTION:Year: 2013\nQuarter: Summer\n\nUniversity holiday\, no class
- es
+DESCRIPTION:Year: 2013\nQuarter: Summer\n\nUniversity holiday\, no classes
 CATEGORIES:Holidays
 UID:http://uid.trumba.com/event/106271674
 END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Veterans Day (no classes)
+DTSTART;VALUE=DATE:20171110
+DTEND;VALUE=DATE:20171111
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event interval";ID=30051;TYPE=CustomAsset:One-time event
+X-TRUMBA-CUSTOMFIELD;NAME="Custom Sort Order";ID=13630;TYPE=Number:2
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+X-TRUMBA-CUSTOMFIELD;NAME="Custom Sort Order";ID=13630;TYPE=Number:1
+X-TRUMBA-CUSTOMFIELD;NAME="Type of important dates";ID=30149;TYPE=CustomAsset:Holidays
+DTSTAMP:20170407T082846Z
+DESCRIPTION:Year: 2017\nQuarter: Autumn\nEvent types: Academics\n\nUniversity holiday\, no classes
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/123248085
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-holidays?eventid=123248085
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Thanksgiving  (no classes)
+DTSTART;VALUE=DATE:20171123
+DTEND;VALUE=DATE:20171125
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event interval";ID=30051;TYPE=CustomAsset:One-time event
+X-TRUMBA-CUSTOMFIELD;NAME="Custom Sort Order";ID=13630;TYPE=Number:2
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2017
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Autumn
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+X-TRUMBA-CUSTOMFIELD;NAME="Custom Sort Order";ID=13630;TYPE=Number:1
+X-TRUMBA-CUSTOMFIELD;NAME="Type of important dates";ID=30149;TYPE=CustomAsset:Holidays
+DTSTAMP:20170407T082933Z
+DESCRIPTION:Year: 2017\nQuarter: Autumn\nEvent types: Academics\n\nUniversity holiday\, no classes
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/123248093
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-holidays?eventid=123248093
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:New Year's Day (no classes)
+DTSTART;VALUE=DATE:20180101
+DTEND;VALUE=DATE:20180102
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event interval";ID=30051;TYPE=CustomAsset:One-time event
+X-TRUMBA-CUSTOMFIELD;NAME="Custom Sort Order";ID=13630;TYPE=Number:2
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2018
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+X-TRUMBA-CUSTOMFIELD;NAME="Custom Sort Order";ID=13630;TYPE=Number:1
+X-TRUMBA-CUSTOMFIELD;NAME="Type of important dates";ID=30149;TYPE=CustomAsset:Holidays
+DTSTAMP:20170407T083019Z
+DESCRIPTION:Year: 2018\nQuarter: Winter\nEvent types: Academics\n\nUniversity holiday\, no classes
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/123248099
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-holidays?eventid=123248099
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Martin Luther King Day (no classes)
+DTSTART;VALUE=DATE:20180115
+DTEND;VALUE=DATE:20180116
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event interval";ID=30051;TYPE=CustomAsset:One-time event
+X-TRUMBA-CUSTOMFIELD;NAME="Custom Sort Order";ID=13630;TYPE=Number:2
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2018
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+X-TRUMBA-CUSTOMFIELD;NAME="Custom Sort Order";ID=13630;TYPE=Number:1
+X-TRUMBA-CUSTOMFIELD;NAME="Type of important dates";ID=30149;TYPE=CustomAsset:Holidays
+DTSTAMP:20170407T083052Z
+DESCRIPTION:Year: 2018\nQuarter: Winter\nEvent types: Academics\n\nUniversity holiday\, no classes
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/123248105
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-holidays?eventid=123248105
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Presidents Day (no classes)
+DTSTART;VALUE=DATE:20180219
+DTEND;VALUE=DATE:20180220
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event interval";ID=30051;TYPE=CustomAsset:One-time event
+X-TRUMBA-CUSTOMFIELD;NAME="Custom Sort Order";ID=13630;TYPE=Number:2
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2018
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+X-TRUMBA-CUSTOMFIELD;NAME="Custom Sort Order";ID=13630;TYPE=Number:1
+X-TRUMBA-CUSTOMFIELD;NAME="Type of important dates";ID=30149;TYPE=CustomAsset:Holidays
+DTSTAMP:20170407T083120Z
+DESCRIPTION:Year: 2018\nQuarter: Winter\nEvent types: Academics\n\nUniversity holiday\, no classes
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/123248111
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-holidays?eventid=123248111
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Memorial Day (no classes)
+DTSTART;VALUE=DATE:20180528
+DTEND;VALUE=DATE:20180529
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event interval";ID=30051;TYPE=CustomAsset:One-time event
+X-TRUMBA-CUSTOMFIELD;NAME="Custom Sort Order";ID=13630;TYPE=Number:2
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2018
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Spring
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+X-TRUMBA-CUSTOMFIELD;NAME="Custom Sort Order";ID=13630;TYPE=Number:1
+X-TRUMBA-CUSTOMFIELD;NAME="Type of important dates";ID=30149;TYPE=CustomAsset:Holidays
+DTSTAMP:20170407T083150Z
+DESCRIPTION:Year: 2018\nQuarter: Spring\nEvent types: Academics\n\nUniversity holiday\, no classes
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/123248118
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-holidays?eventid=123248118
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Independence Day (no classes)
+DTSTART;VALUE=DATE:20180704
+DTEND;VALUE=DATE:20180705
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlines
+X-TRUMBA-CUSTOMFIELD;NAME="Event interval";ID=30051;TYPE=CustomAsset:One-time event
+X-TRUMBA-CUSTOMFIELD;NAME="Custom Sort Order";ID=13630;TYPE=Number:2
+X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2018
+X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Summer
+X-TRUMBA-CUSTOMFIELD;NAME="Event types";ID=30073;TYPE=CustomAsset:Academics
+X-TRUMBA-CUSTOMFIELD;NAME="Custom Sort Order";ID=13630;TYPE=Number:1
+X-TRUMBA-CUSTOMFIELD;NAME="Type of important dates";ID=30149;TYPE=CustomAsset:Holidays
+DTSTAMP:20170629T093932Z
+DESCRIPTION:Year: 2018\nQuarter: Summer\nEvent types: Academics\n\nUniversity holiday\, no classes
+CATEGORIES:Holidays
+UID:http://uid.trumba.com/event/123248148
+X-TRUMBA-LINK:http://www.trumba.com/calendars/sea_acad-holidays?eventid=123248148
+END:VEVENT
+
 END:VCALENDAR
