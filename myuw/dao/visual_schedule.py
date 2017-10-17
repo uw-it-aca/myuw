@@ -28,6 +28,17 @@ def get_periods_from_bounds(bounds):
         # start_week += 1
 
 
+def _add_weekend_meeting_data(weeks):
+    for week in weeks:
+        for section in week.sections:
+            for meeting in section.meetings:
+                if meeting.meets_saturday:
+                    week.meets_saturday = True
+                if meeting.meets_sunday:
+                    week.meets_sunday = True
+    return weeks
+
+
 def _add_sections_to_weeks(sections, weeks):
     for week in weeks:
         for section in sections:
@@ -139,3 +150,5 @@ class SchedulePeriod():
         self.end_date = None
         self.sections = []
         self.is_boundary_period = False
+        self.meets_saturday = False
+        self.meets_sunday = False
