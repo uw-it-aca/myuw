@@ -127,7 +127,7 @@ def get_schedule_bounds(schedule):
     # set end to last saturday
     if end.strftime('%w') != 6:
         days_to_add = 6 - int(end.strftime('%w'))
-        end = end + relativedelta(days=days_to_add)
+        end += relativedelta(days=days_to_add)
     return start, end
 
 
@@ -137,9 +137,19 @@ def _add_dates_to_sections(schedule):
     """
     for section in schedule.sections:
         if section.start_date is None:
-            # TODO: Handle summer term
-            section.start_date = schedule.term.first_day_quarter
-            section.end_date = schedule.term.last_day_instruction
+            if section.summer_term == "":
+                section.start_date = schedule.term.first_day_quarter
+                section.end_date = schedule.term.last_day_instruction
+            else:
+                if section.summer_term == "A-term":
+                    section.start_date = schedule.term.first_day_quarter
+                    section.end_date = schedule.term.aterm_last_date
+                elif section.summer_term == "B-term":
+                    section.start_date = schedule.term.bterm_first_date
+                    section.end_date = schedule.term.last_day_instruction
+                else:
+                    section.start_date = schedule.term.first_day_quarter
+                    section.end_date = schedule.term.last_day_instruction
 
     return schedule
 
@@ -152,3 +162,7 @@ class SchedulePeriod():
         self.is_boundary_period = False
         self.meets_saturday = False
         self.meets_sunday = False
+
+        # sections will be either A term OR B term, full term classes will
+        # be split into corresponding A and B term pieces
+        self.summer_term = None

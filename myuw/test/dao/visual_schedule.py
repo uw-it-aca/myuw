@@ -262,3 +262,21 @@ class TestVisualSchedule(TestCase):
 
         self.assertTrue(consolidated[0].meets_saturday)
         self.assertTrue(consolidated[0].meets_sunday)
+
+
+    def test_summer_a_term(self):
+            regid = "9136CCB8F66711D5BE060004AC494FFE"
+            term = get_term_from_quarter_string("2013,summer")
+
+            schedule = _get_schedule(regid, term)
+            schedule = _add_dates_to_sections(schedule)
+
+
+            self.assertEqual(schedule.sections[0].start_date, datetime.date(2013, 6, 24))
+            self.assertEqual(schedule.sections[0].end_date, datetime.date(2013, 7, 24))
+
+            self.assertEqual(schedule.sections[1].start_date, datetime.date(2013, 7, 25))
+            self.assertEqual(schedule.sections[1].end_date, datetime.date(2013, 8, 23))
+
+            self.assertEqual(schedule.sections[2].start_date, datetime.date(2013, 6, 24))
+            self.assertEqual(schedule.sections[2].end_date, datetime.date(2013, 8, 23))
