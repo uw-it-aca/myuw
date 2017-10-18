@@ -264,7 +264,7 @@ class TestVisualSchedule(TestCase):
         self.assertTrue(consolidated[0].meets_sunday)
 
 
-    def test_summer_a_term(self):
+    def test_summer_term_dates(self):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = get_term_from_quarter_string("2013,summer")
 
