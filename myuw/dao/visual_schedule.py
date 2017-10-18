@@ -3,10 +3,47 @@ from datetime import timedelta
 
 
 def get_visual_schedule(schedule):
-
     _add_dates_to_sections(schedule)
-    bounds = get_schedule_bounds(schedule)
-    periods = get_periods_from_bounds(bounds)
+    if "not_summer" or "summer_full_only":
+        bounds = get_schedule_bounds(schedule)
+        weeks = _get_weeks_from_bounds(bounds)
+        weeks = _add_sections_to_weeks(schedule.sections, weeks)
+        consolidated = _consolidate_weeks(weeks)
+    if "summer a or b":
+        a_bounds, b_bounds = get_summer_schedule_bounds(schedule)
+        a_weeks = _get_weeks_from_bounds(a_bounds)
+        a_weeks = _add_sections_to_weeks(schedule.sections, a_weeks)
+        a_consolidated = _consolidate_weeks(a_weeks)
+        trim_summer_meetings(a_consolidated)
+        
+        b_weeks = _get_weeks_from_bounds(a_bounds)
+        b_weeks = _add_sections_to_weeks(schedule.sections, b_weeks)
+        b_consolidated = _consolidate_weeks(b_weeks)
+        trim_summer_meetings(b_consolidated)
+
+        consolidated = a_consolidated + b_consolidated
+    return consolidated
+
+
+def get_summer_schedule_bounds(schedule):
+    a_start = schedule.term.first_day_quarter
+    # set start to first sunday
+    if a_start.strftime('%w') != 0:
+        days_to_remove = int(a_start.strftime('%w'))
+        a_start -= relativedelta(days=days_to_remove)
+
+    b_end = schedule.term.last_day_instruction
+    # set end to last saturday
+    if b_end.strftime('%w') != 6:
+        days_to_add = 6 - int(b_end.strftime('%w'))
+        b_end += relativedelta(days=days_to_add)
+
+    a_bounds = a_start, schedule.term.aterm_last_date
+    b_bounds = schedule.term.bterm_first_date, b_end
+    return a_bounds, b_bounds
+
+
+def trim_summer_meetings(weeks):
 
 
 def get_periods_from_bounds(bounds):
