@@ -1,13 +1,11 @@
 import logging
 import traceback
-from django.http import HttpResponse
 from myuw.dao.term import get_specific_term, is_past
 from myuw.dao.card_display_dates import in_show_grades_period
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_msg
 from myuw.views.api.base_schedule import StudClasSche
 from myuw.views.error import invalid_future_term, handle_exception
-
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +15,7 @@ class StudClasScheFutureQuar(StudClasSche):
     Performs actions on resource at
     /api/v1/schedule/<year>,<quarter>(,<summer_term>)?
     """
-    def GET(self, request, year, quarter, summer_term=None):
+    def get(self, request, *args, **kwargs):
         """
         GET returns 200 with course section schedule details of
         the given year, quarter.
@@ -27,6 +25,9 @@ class StudClasScheFutureQuar(StudClasSche):
                 status 404: no schedule found (not registered)
                 status 543: data error
         """
+        year = kwargs.get("year")
+        quarter = kwargs.get("quarter")
+        summer_term = kwargs.get("summer_term", None)
         timer = Timer()
         try:
             smr_term = ""

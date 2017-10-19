@@ -57,7 +57,8 @@ INSTALLED_APPS = (
     'myuw',
     'userservice',
     'django_client_logger',
-    'rc_django'
+    'rc_django',
+    'blti'
 )
 
 MIDDLEWARE_CLASSES = (

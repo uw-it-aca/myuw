@@ -15,7 +15,7 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
         get_request_with_user('bill', now_request)
         schedule = get_current_quarter_instructor_schedule(now_request)
 
-        resp = InstScheCurQuar().GET(now_request)
+        resp = InstScheCurQuar().get(now_request)
         data = json.loads(resp.content)
 
         self.assertEqual(len(data['sections']), 6)
@@ -71,8 +71,7 @@ class TestInstructorTermSchedule(MyuwApiTest):
         now_request = get_request_with_user(
             'billsea', get_request_with_date("2017-10-01"))
         schedule = get_current_quarter_instructor_schedule(now_request)
-        resp = InstScheCurQuar().GET(now_request)
-
+        resp = InstScheCurQuar().get(now_request)
         self.assertEquals(resp.status_code, 200)
         data = json.loads(resp.content)
         self.assertFalse(data["future_term"])
@@ -112,8 +111,10 @@ class TestInstructorSection(MyuwApiTest):
         curriculum = 'ESS'
         course_number = '102'
         course_section = 'A'
-        resp = InstSect().GET(now_request, year, quarter, curriculum,
-                              course_number, course_section)
+        resp = InstSect().get(now_request, year=year, quarter=quarter,
+                              curriculum=curriculum,
+                              course_number=course_number,
+                              course_section=course_section)
         data = json.loads(resp.content)
 
         self.assertEqual(len(data['sections']), 1)
@@ -141,8 +142,10 @@ class TestInstructorSection(MyuwApiTest):
         curriculum = 'ESS'
         course_number = '102'
         course_section = 'Z'
-        resp = InstSect().GET(now_request, year, quarter, curriculum,
-                              course_number, course_section)
+        resp = InstSect().get(now_request, year=year, quarter=quarter,
+                              curriculum=curriculum,
+                              course_number=course_number,
+                              course_section=course_section)
 
         self.assertEqual(resp.status_code, 404)
 
@@ -155,8 +158,10 @@ class TestInstructorSection(MyuwApiTest):
         curriculum = 'ESS'
         course_number = '102'
         course_section = 'A'
-        resp = InstSect().GET(now_request, year, quarter, curriculum,
-                              course_number, course_section)
+        resp = InstSect().get(now_request, year=year, quarter=quarter,
+                              curriculum=curriculum,
+                              course_number=course_number,
+                              course_section=course_section)
 
         self.assertEqual(resp.status_code, 403)
 
@@ -165,7 +170,7 @@ class TestInstructorSection(MyuwApiTest):
         get_request_with_user('bill', now_request)
         schedule = get_current_quarter_instructor_schedule(now_request)
 
-        resp = InstScheCurQuar().GET(now_request)
+        resp = InstScheCurQuar().get(now_request)
         data = json.loads(resp.content)
 
         self.assertEqual(len(data['sections']), 6)
@@ -176,7 +181,7 @@ class TestInstructorSection(MyuwApiTest):
         get_request_with_user('billpce', now_request)
         schedule = get_current_quarter_instructor_schedule(now_request)
 
-        resp = InstScheCurQuar().GET(now_request)
+        resp = InstScheCurQuar().get(now_request)
         data = json.loads(resp.content)
         self.assertEqual(len(data['sections']), 5)
         section1 = data['sections'][0]
@@ -187,7 +192,7 @@ class TestInstructorSection(MyuwApiTest):
 
         request = get_request_with_user('billpce',
                                         get_request_with_date("2013-10-01"))
-        resp = InstScheCurQuar().GET(request)
+        resp = InstScheCurQuar().get(request)
         data = json.loads(resp.content)
         self.assertEqual(len(data['sections']), 1)
         self.assertEqual(data['sections'][0]['current_enrollment'], 1)
@@ -198,7 +203,7 @@ class TestInstructorSection(MyuwApiTest):
         now_request = get_request()
         get_request_with_user('staff', now_request)
         sche = get_current_quarter_instructor_schedule(now_request)
-        resp = InstScheCurQuar().GET(now_request)
+        resp = InstScheCurQuar().get(now_request)
         self.assertEquals(resp.status_code, 200)
         data = json.loads(resp.content)
         self.assertEqual(len(data['sections']), 0)
@@ -211,8 +216,10 @@ class TestInstructorSection(MyuwApiTest):
         curriculum = 'EDC&I'
         course_number = '552'
         course_section = 'A'
-        resp = InstSect().GET(now_request, year, quarter, curriculum,
-                              course_number, course_section)
+        resp = InstSect().get(now_request, year=year, quarter=quarter,
+                              curriculum=curriculum,
+                              course_number=course_number,
+                              course_section=course_section)
         data = json.loads(resp.content)
         self.assertEqual(len(data['sections']), 1)
         self.assertEqual(data['sections'][0]['section_label'],

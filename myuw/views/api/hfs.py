@@ -1,24 +1,20 @@
 import logging
 import time
-import simplejson as json
 import traceback
-from django.http import HttpResponse
 from myuw.dao.hfs import get_account_balances_for_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
-from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
-
 
 logger = logging.getLogger(__name__)
 
 
-class HfsBalances(RESTDispatch):
+class HfsBalances(ProtectedAPI):
     """
     Performs actions on resource at /api/v1/hfs/.
     """
-
-    def GET(self, request):
+    def get(self, request, *args, **kwargs):
         """
         GET returns 200 with the HFS account balances
         of the current user
@@ -29,6 +25,6 @@ class HfsBalances(RESTDispatch):
 
             resp_json = balances.json_data(use_custom_date_format=True)
             log_success_response(logger, timer)
-            return HttpResponse(json.dumps(resp_json))
+            return self.json_response(resp_json)
         except Exception as ex:
             return handle_exception(logger, timer, traceback)

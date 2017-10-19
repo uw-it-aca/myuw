@@ -1,27 +1,25 @@
-import logging
 import json
+import logging
 import traceback
 from datetime import datetime
 from restclients_core.exceptions import DataFailureException
-from django.http import HttpResponse
 from myuw.dao.gws import is_student
 from myuw.dao.notice import get_notices_for_current_user
 from myuw.dao.notice import mark_notices_read_for_current_user
 from myuw.dao.notice_mapping import get_json_for_notices
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
-from myuw.views.rest_dispatch import RESTDispatch
+from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
-
 
 logger = logging.getLogger(__name__)
 
 
-class Notices(RESTDispatch):
+class Notices(ProtectedAPI):
     """
     Performs actions on resource at /api/v1/notices/.
     """
-    def GET(self, request):
+    def get(self, request, *args, **kwargs):
         """
         GET returns 200 with a list of notices for the current user
                         with an empty array if no notice.
@@ -35,7 +33,7 @@ class Notices(RESTDispatch):
                     request, get_notices_for_current_user())
 
             log_success_response(logger, timer)
-            return HttpResponse(json.dumps(notice_json))
+            return self.json_response(notice_json)
         except Exception:
             return handle_exception(logger, timer, traceback)
 
@@ -56,7 +54,7 @@ class Notices(RESTDispatch):
             notice_json.append(data)
         return _associate_short_to_long(notice_json)
 
-    def PUT(self, request):
+    def put(self, request, *args, **kwargs):
         notice_hashes = json.loads(request.body).get('notice_hashes', None)
         mark_notices_read_for_current_user(notice_hashes)
-        return HttpResponse('')
+        return self.json_response()
