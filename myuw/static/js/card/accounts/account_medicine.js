@@ -1,5 +1,5 @@
 var MedicineAccountsCard = {
-    name: 'Medicine-AccountsCard',
+    name: 'MedicineAccountsCard',
     dom_target: undefined,
 
     render_init: function() {
@@ -27,10 +27,12 @@ var MedicineAccountsCard = {
     },
 
     _render: function() {
+        var data = WSData.profile_data().password;
         var source   = $("#accounts_medicine").html();
         var template = Handlebars.compile(source);
-        var compiled = template(WSData.profile_data().password);
-        MedicineAccountsCard.dom_target.html(compiled);
+        var raw = template(data);
+        MedicineAccountsCard.dom_target.html(raw);
+
         LogUtils.cardLoaded(MedicineAccountsCard.name, MedicineAccountsCard.dom_target);
     }
 };

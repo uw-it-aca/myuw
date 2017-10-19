@@ -3,7 +3,6 @@ var TuitionCard = {
     dom_target: undefined,
 
     render_init: function() {
-        TuitionCard.dom_target =$('#TuitionCard');
         if (!window.user.student) {
             remove_card(TuitionCard.dom_target);
             return;

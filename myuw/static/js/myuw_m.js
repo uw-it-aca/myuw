@@ -127,7 +127,9 @@ var date_from_string = function(date_string) {
     if (!date_string) {
         return;
     }
-    var matches = date_string.match(/([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2})/);
+    // handle format: 2013-04-22 10:57:06-08:00
+    //                2013-04-22T10:57:06-08:00
+    var matches = date_string.match(/([0-9]{4})-([0-9]{2})-([0-9]{2})[ T]([0-9]{2}):([0-9]{2})/);
     if (!matches) {
         return;
     }

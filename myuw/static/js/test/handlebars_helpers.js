@@ -6,6 +6,17 @@ require("../handlebars-helpers.js");
 var assert = require("assert");
 describe('Handlebar-helpers', function(){
 
+    describe('date_from_string', function(){
+        it('should work for YYYY-MM-DD hh:mm:ss', function(){
+            var d = date_from_string('2013-04-22 10:57:06-08:00');
+            assert(d);
+        });
+        it('should work for YYYY-MM-DDThh:mm:ss', function(){
+            var d = date_from_string('2013-04-22T10:57:06-08:00');
+            assert(d);
+        });
+    });
+
     describe("formatTime", function() {
         it ("should return HH:MM{AM,PM}", function() {
             var template = Handlebars.compile("{{formatTime '13:30:00'}}");

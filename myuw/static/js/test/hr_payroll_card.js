@@ -22,38 +22,33 @@ describe('HRPayrollCard', function(){
             window.user.faculty = false;
             window.user.employee = false;
             window.user.stud_employee = false;
-            window.enabled_features = { 'workday_account_card': true };
+            window.enabled_features = {};
             HRPayrollCard.dom_target.html('');
         });
-        it("Should NOT render instructor card", function() {
-            window.enabled_features = { 'workday_account_card': false };
-            window.user.faculty = true;
-            HRPayrollCard.render_init();
-            assert.equal(HRPayrollCard.dom_target.find('a[href="http://hr.uw.edu/"]').length, 0);
-            assert.equal(HRPayrollCard.dom_target.find('a[href="http://ap.washington.edu/ahr/"]').length, 0);
-        });
-        it("Should render instructor card", function() {
+        it("Should render for instructor", function() {
+            window.user.employee = true;
             window.user.faculty = true;
             HRPayrollCard.render_init();
             assert.equal(HRPayrollCard.dom_target.find('a[href="http://hr.uw.edu/"]').length, 0);
             assert.equal(HRPayrollCard.dom_target.find('a[href="http://ap.washington.edu/ahr/"]').length, 1);
         });
-        it("Should render staff card", function() {
+        it("Should render for employee", function() {
             window.user.employee = true;
             HRPayrollCard.render_init();
             assert.equal(HRPayrollCard.dom_target.find('a[href="http://hr.uw.edu/"]').length, 1);
             assert.equal(HRPayrollCard.dom_target.find('a[href="http://ap.washington.edu/ahr/"]').length, 0);
         });
-        it("Should NOT render student/staff card", function() {
+        it("Should render for student employee", function() {
             window.user.stud_employee = true;
             HRPayrollCard.render_init();
-            assert.equal(HRPayrollCard.dom_target.find('a[href="http://hr.uw.edu/"]').length, 0);
-            assert.equal(HRPayrollCard.dom_target.find('a[href="http://ap.washington.edu/ahr/"]').length, 0);
+            assert.equal(HRPayrollCard.dom_target.find('a[href="http://hr.uw.edu/"]').length, 1);
+            assert.equal(HRPayrollCard.dom_target.find('a[href="https://isc.uw.edu/"]').length, 1);
         });
-        it("Should NOT render student card", function() {
+        it("Should NOT render for student", function() {
             window.user.student = true;
             HRPayrollCard.render_init();
             assert.equal(HRPayrollCard.dom_target.find('a[href="http://hr.uw.edu/"]').length, 0);
+            assert.equal(HRPayrollCard.dom_target.find('a[href="https://isc.uw.edu/"]').length, 0);
             assert.equal(HRPayrollCard.dom_target.find('a[href="http://ap.washington.edu/ahr/"]').length, 0);
         });
     });
