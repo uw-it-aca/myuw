@@ -19,17 +19,22 @@ class LTIPhotoList(BLTILaunchView):
         user_id = blti_data.get('custom_canvas_user_id')
         sections = []
 
-        (sws_course_id, sws_inst_regid) = sws_section_label(sis_course_id)
-
         try:
             sections = get_viewable_course_sections(course_id, user_id)
-            sections.sort(key=lambda section: section.name)
         except DataFailureException as err:
             pass
+
+        # Temp code, current version just uses the course id..
+        (sws_course_id, sws_inst_regid) = sws_section_label(sis_course_id)
+        blti_data['independent_study_instructor_regid'] = sws_inst_regid
+        # End
+
+        blti_data['authorized_sections'] = [s.sis_section_id for s in sections]
+        self.set_session(request, **blti_data)
 
         return {
             'lti_session_id': request.session.session_key,
             'lti_course_name': blti_data.get('context_label'),
-            'sections': sections,
+            'sections': sorted(sections, key=lambda section: section.name),
             'section': sws_course_id,
         }
