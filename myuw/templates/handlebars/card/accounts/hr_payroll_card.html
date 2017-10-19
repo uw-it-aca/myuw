@@ -12,14 +12,15 @@
         </div>
         <p class="card-related-messages">Workday is UW's human resources, benefits, payroll, and time tracking system.</p>
     </div>
-
+{{#unless is_stud_employee}}
+    {{#if is_employee}}
     <div style="padding-bottom: 10px;">
         <h4>Get Help</h4>
         <ul class="unstyled-list">
-            <li><a href="https://isc.uw.edu">Integrated Service Center (ISC)</a></li>
-            <li>{{#if is_faculty}}<a href="http://ap.washington.edu/ahr/">Academic HR</a>{{else}}<a href="http://hr.uw.edu/">UW Human Resources</a>{{/if}}</li>
+            <li><a href="https://isc.uw.edu" target="_blank">Integrated Service Center (ISC)</a></li>
+            <li>{{#if is_faculty}}<a href="http://ap.washington.edu/ahr/" target="_blank">Academic HR</a>{{else}}<a href="http://hr.uw.edu/">UW Human Resources</a>{{/if}}</li>
         </ul>
-        <p class="card-related-messages">Learn how to <a href="https://isc.uw.edu/your-time-absence/time-off/" data-linklabel="ISC Time Off">look up sick and vacation time</a>, <a href="https://isc.uw.edu/your-time-absence/time-reporting/" data-linklabel="ISC Time Reporting">enter your hours in Workday</a>, <a href="https://isc.uw.edu/your-pay-taxes/paycheck-info/#direct-deposit" data-linklabel="ISC Set Up Direct Deposit">set up direct deposit</a>, and more.</p>
+        <p class="card-related-messages">Learn how to <a href="https://isc.uw.edu/your-time-absence/time-off/" data-linklabel="ISC Time Off" target="_blank">look up sick and vacation time</a>, <a href="https://isc.uw.edu/your-time-absence/time-reporting/" target="_blank" data-linklabel="ISC Time Reporting">enter your hours in Workday</a>, <a href="https://isc.uw.edu/your-pay-taxes/paycheck-info/#direct-deposit" data-linklabel="ISC Set Up Direct Deposit" target="_blank">set up direct deposit</a>, and more.</p>
     </div>
 
     <div style="">
@@ -27,20 +28,37 @@
         <div class="row">
             <div class="col-xs-6">
                 <ul class="unstyled-list">
-                    <li><a href="https://www.washington.edu/wholeu/">Whole U</a></li>
-                    <li><a href="https://nb.fidelity.com/public/nb/uw/home">Fidelity NetBenefits</a></li>
-                    <li><a href="http://hr.uw.edu/benefits/retirement-plans/seminars-and-consultations/meet-with-an-investment-professional/">Financial Planning Help</a></li>
-                    <li><a href="https://www.washington.edu/facilities/transportation/employee-u-pass">Employee U-PASS</a></li>
+                    <li><a href="https://www.washington.edu/wholeu/" target="_blank">Whole U</a></li>
+                    <li><a href="https://nb.fidelity.com/public/nb/uw/home" target="_blank">Fidelity NetBenefits</a></li>
+                    <li><a href="http://hr.uw.edu/benefits/retirement-plans/seminars-and-consultations/meet-with-an-investment-professional/" target="_blank">Financial Planning Help</a></li>
+                    <li><a href="https://www.washington.edu/facilities/transportation/employee-u-pass" target="_blank">Employee U-PASS</a></li>
                 </ul>
             </div>
             <div class="col-xs-6">
                 <ul class="unstyled-list">
-                    <li><a href="http://www.washington.edu/safecampus/">SafeCampus</a></li>
-                    <li><a href="https://www.washington.edu/facilities/transportation/commute-options">Commute Options</a></li>
-                    <li><a href="http://www.washington.edu/ima/" data-linklabel="Intramural Activities">Join the IMA (Intramural Activities)</a></li>
+                    <li><a href="http://www.washington.edu/safecampus/" target="_blank">SafeCampus</a></li>
+                    <li><a href="https://www.washington.edu/facilities/transportation/commute-options" target="_blank">Commute Options</a></li>
+                    <li><a href="http://www.washington.edu/ima/" data-linklabel="Intramural Activities" target="_blank">Join the IMA (Intramural Activities)</a></li>
                 </ul>
             </div>
         </div>
     </div>
+    {{/if}}
+{{/unless}}
+    {{#if is_stud_employee}}
+    <div style="padding-bottom: 10px;">
+        <h4>Related</h4>
+        <ul class="unstyled-list">
+	        <li><a href="https://isc.uw.edu/" target="_blank">Integrated Service Center (ISC)</a></li>
+            <li><a href="http://hr.uw.edu/benefits/health-insurance/graduate-appointees-health-insurance/gaip-eligibility-and-coverage/" target="_blank">Graduate Appointee Insurance Program (GAIP)</a></li>
+            <li><a href="https://grad.uw.edu/graduate-student-funding/funding-information-for-departments/administering-assistantships/tara-salaries/" target="_blank">Teaching or research assistant salary schedules</a></li>
+            <li><a href="http://hr.uw.edu/" target="_blank">UW Human Resources</a></li>
+        </ul>
+         <p class="card-related-messages">
+             Learn how to <a href="https://isc.uw.edu/your-time-absence/time-reporting/" data-linklabel="ISC Enter Time" target="_blank">enter your hours in Workday</a>, <a href="https://isc.uw.edu/your-pay-taxes/paycheck-info/#direct-deposit" target="_blank" data-linklabel="ISC Set Up direct deposit">set up direct deposit</a>, and more.
+         </p>
+
+    </div>
+    {{/if}}
 </div>
 {% endtplhandlebars %}
