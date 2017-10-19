@@ -1,7 +1,8 @@
 from django.test import TestCase
-from myuw.dao.canvas import _get_canvas_enrollment_dict_for_regid,\
-    canvas_course_is_available, get_canvas_course_from_section,\
-    get_canvas_course_url
+from myuw.dao.canvas import (
+    _get_canvas_enrollment_dict_for_regid, canvas_course_is_available,
+    get_canvas_course_from_section, get_canvas_course_url, sws_section_label,
+    get_viewable_course_sections)
 from myuw.dao.registration import _get_schedule
 from uw_sws.models import Person
 from uw_sws.section import get_section_by_label
@@ -42,3 +43,24 @@ class TestCanvas(TestCase):
         self.assertIsNotNone(get_canvas_course_from_section(sws_section))
         self.assertEquals(get_canvas_course_url(sws_section, person),
                           'https://canvas.uw.edu/courses/149651')
+
+    def test_sws_section_label(self):
+        self.assertEquals(sws_section_label(None), (None, None))
+        self.assertEquals(sws_section_label('course_12345'), (None, None))
+        self.assertEquals(
+            sws_section_label('2013-spring-TRAIN-100-A'),
+            ('2013,spring,TRAIN,100/A', None))
+        self.assertEquals(
+            sws_section_label(
+                '2013-spring-TRAIN-100-A-12345678901234567890123456789012'),
+            ('2013,spring,TRAIN,100/A', '12345678901234567890123456789012'))
+        self.assertEquals(
+            sws_section_label('2013-spring-TRAIN-100-AB'),
+            ('2013,spring,TRAIN,100/AB', None))
+        self.assertEquals(
+            sws_section_label('2013-spring-TRAIN-100-A--'),
+            ('2013,spring,TRAIN,100/A', None))
+        self.assertEquals(
+            sws_section_label(
+                '2013-spring-TRAIN-100-A-12345678901234567890123456789012--'),
+            ('2013,spring,TRAIN,100/A', '12345678901234567890123456789012'))

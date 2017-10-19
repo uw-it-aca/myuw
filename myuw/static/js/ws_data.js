@@ -703,6 +703,10 @@ WSData = {
     fetch_instructed_section_details: function(section_label, callback, err_callback, args) {
         var url = "/api/v1/instructor_section_details/" + section_label.replace(/&amp;/g, "%26");
 
+        if (window.section_data.hasOwnProperty('lti_session_id')) {
+            url = "/lti" + url;
+        }
+
         if (WSData._is_running_url(url)) {
             WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
             return;

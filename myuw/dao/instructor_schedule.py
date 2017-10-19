@@ -110,8 +110,6 @@ def get_instructor_section(year, quarter, curriculum,
         year, quarter.lower(), curriculum.upper(),
         course_number, course_section))
 
-    check_section_instructor(section, schedule.person)
-
     if include_registrations:
         section.registrations = get_active_registrations_for_section(
             section, schedule.person.uwregid)
@@ -179,6 +177,7 @@ def is_instructor(request):
 def check_section_instructor(section, person=None):
     if person is None:
         person = get_person_of_current_user()
+
     if not section.is_instructor(person):
         if section.is_primary_section:
             raise NotSectionInstructorException()
