@@ -1,5 +1,6 @@
 from dateutil.relativedelta import *
 from datetime import timedelta
+import math
 
 
 def get_visual_schedule(schedule):
@@ -7,11 +8,16 @@ def get_visual_schedule(schedule):
     if _is_split_summer(schedule):
         a_bounds, b_bounds = get_summer_schedule_bounds(schedule)
         a_weeks = _get_weeks_from_bounds(a_bounds)
+
+        for week in a_weeks:
+            week.summer_term = "A-term"
         a_weeks = _add_sections_to_weeks(schedule.sections, a_weeks)
         a_consolidated = _consolidate_weeks(a_weeks)
         trim_summer_meetings(a_consolidated)
 
-        b_weeks = _get_weeks_from_bounds(a_bounds)
+        b_weeks = _get_weeks_from_bounds(b_bounds)
+        for week in b_weeks:
+            week.summer_term = "B-term"
         b_weeks = _add_sections_to_weeks(schedule.sections, b_weeks)
         b_consolidated = _consolidate_weeks(b_weeks)
         trim_summer_meetings(b_consolidated)
@@ -45,8 +51,54 @@ def get_summer_schedule_bounds(schedule):
 
 
 def trim_summer_meetings(weeks):
+    if weeks[0].summer_term == "A-term":
+        week_to_trim = weeks[-1]
+        week_to_trim.sections = _trim_sections_after(week_to_trim.sections,
+                                                     week_to_trim.end_date)
+    if weeks[0].summer_term == "B-term":
+        week_to_trim = weeks[0]
+        week_to_trim.sections = _trim_sections_before(week_to_trim.sections,
+                                                      week_to_trim.start_date)
 
     return weeks
+
+
+def _trim_sections_after(sections, date):
+    cutoff_day = int(date.strftime('%w'))
+    for section in sections:
+        for meeting in section.meetings:
+            if cutoff_day <= 5:
+                meeting.meets_saturday = False
+            if cutoff_day <= 4:
+                meeting.meets_friday = False
+            if cutoff_day <= 3:
+                meeting.meets_thursday = False
+            if cutoff_day <= 2:
+                meeting.meets_wednesday = False
+            if cutoff_day <= 1:
+                meeting.meets_tuesday = False
+            if cutoff_day <= 0:
+                meeting.meets_monday = False
+    return sections
+
+
+def _trim_sections_before(sections, date):
+    cutoff_day = int(date.strftime('%w'))
+    for section in sections:
+        for meeting in section.meetings:
+            if cutoff_day >= 1:
+                meeting.meets_sunday = False
+            if cutoff_day >= 2:
+                meeting.meets_monday = False
+            if cutoff_day >= 3:
+                meeting.meets_tuesday = False
+            if cutoff_day >= 4:
+                meeting.meets_wednesday = False
+            if cutoff_day >= 5:
+                meeting.meets_thursday = False
+            if cutoff_day >= 6:
+                meeting.meets_friday = False
+    return sections
 
 
 def _is_split_summer(schedule):
@@ -56,24 +108,6 @@ def _is_split_summer(schedule):
     for section in schedule.sections:
         if section.summer_term != "Full-term":
             return True
-
-def get_periods_from_bounds(bounds):
-    start, end = bounds
-    periods = []
-
-    current_date = start
-    while(current_date > end):
-        period = SchedulePeriod()
-        # period.start_date =
-        current_date = current_date + relativedelta(weeks=1)
-
-        # while start_week <= end_week:
-
-        # period = SchedulePeriod()
-        # period.create_from_week_num_year(start_week, start.strftime('%Y'))
-        #
-        # periods[start_week] = period
-        # start_week += 1
 
 
 def _add_weekend_meeting_data(weeks):
@@ -104,12 +138,22 @@ def _consolidate_weeks(weeks):
         if prev_week is None:
             prev_week = week
         else:
-            #  Merge weeks with same sections
-            if _section_lists_are_same(prev_week.sections, week.sections):
-                prev_week.end_date = week.end_date
-            else:
+            # Don't merge last week of A-term
+            if week.summer_term == "A-term" \
+                    and weeks.index(week) == len(weeks) - 1:
                 consolidated_weeks.append(prev_week)
                 prev_week = week
+            # Don't merge 2nd week of B term with 1st
+            elif week.summer_term == "B-term" and weeks.index(week) == 1:
+                consolidated_weeks.append(prev_week)
+                prev_week = week
+            else:
+                #  Merge weeks with same sections
+                if _section_lists_are_same(prev_week.sections, week.sections):
+                    prev_week.end_date = week.end_date
+                else:
+                    consolidated_weeks.append(prev_week)
+                    prev_week = week
     # Append last week block
     consolidated_weeks.append(prev_week)
     return consolidated_weeks
@@ -140,14 +184,25 @@ def _get_weeks_from_bounds(bounds):
     periods = []
 
     # weeks between start>end dates, including first day
-    schedule_length = ((end-start).days + 1)/7
+    schedule_length = math.ceil(((end-start).days + 1)/7.0)
 
     while schedule_length > 0:
         period = SchedulePeriod()
         period.start_date = start
-        period.end_date = (start + timedelta(days=6))
+
+        start_day = int(start.strftime('%w'))
+        end_offset = 6-start_day
+        end_date = (start + timedelta(days=end_offset))
+
+        # handle case where week ends midweek
+        if end_date > end:
+            end_date = end
+        period.end_date = end_date
+
         periods.append(period)
-        start = (start + timedelta(days=7))
+
+        next_start_offset = 7-start_day
+        start = (start + timedelta(days=next_start_offset))
         schedule_length -= 1
 
     return periods
@@ -168,12 +223,12 @@ def get_schedule_bounds(schedule):
             end = section.end_date
 
     # set start to first sunday
-    if start.strftime('%w') != 0:
+    if int(start.strftime('%w')) != 0:
         days_to_remove = int(start.strftime('%w'))
         start = start - relativedelta(days=days_to_remove)
 
     # set end to last saturday
-    if end.strftime('%w') != 6:
+    if int(end.strftime('%w')) != 6:
         days_to_add = 6 - int(end.strftime('%w'))
         end += relativedelta(days=days_to_add)
     return start, end
