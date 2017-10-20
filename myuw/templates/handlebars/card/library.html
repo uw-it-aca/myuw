@@ -21,8 +21,6 @@
                         </div>
                         <div class="pull-right">
                             <span class="card-badge-value">{{ items_loaned }} {{ pluralize items_loaned "item" "items"}}</span>
-			    &nbsp;
-                            <span class="card-badge-action pull-right"><a href="http://search.lib.uw.edu/account" target="_blank" data-linklabel="Your Library Account">See account</a></span>
                         </div>
                     </div>
                 </li>
@@ -53,11 +51,19 @@
                         <div class="pull-right">
                             <span class="card-badge-value text-danger">${{ formatPrice fines }}</span>
 			    &nbsp;
-                            <span class="card-badge-action pull-right"><a href="https://p.lib.washington.edu/payfines/" target="_blank" data-linklabel="Pay Library Fees">Pay fees</a></span>
+                            <span class="card-badge-action"><a href="https://p.lib.washington.edu/payfines/" target="_blank" data-linklabel="Pay Library Fees">Pay fees</a></span>
                         </div>
                     </div>
 		</li>
                 {{/if}}
+                <li>
+                    <div class="card-badge clearfix">
+                        <div class="pull-right">
+                            <span class="btn btn-default card-badge-action-btn pull-right"><a href="http://search.lib.uw.edu/account" target="_blank" data-linklabel="Your Library Account">Access library account</a></span>
+                        </div>
+                    </div>
+                </li>
+
 	    </ul>
         </div>
 

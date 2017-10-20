@@ -645,14 +645,19 @@ label { font-weight: normal; margin-bottom: auto; }
                     display: block;
                     font-weight: bold;
                 /*line-height: 35px;*/ }
-                .card-badge-action {
+                .card-badge-action-btn { //change to button
+                    &:hover {background-color:#D3BE7B;border-color:#D3BE7B;}                   
+                    a {color:#444;
+                    	&:hover {color: #000; text-decoration: none; }
+                    }
+                }
+				 .card-badge-action {
                     display: block;
                     font-weight: normal;
                     line-height: 35px;
                     margin-top: -10px;
                     a { display: block; }
                 }
-
                 .card-badge-value {
                     display: block;
                     font-size: 22px;
