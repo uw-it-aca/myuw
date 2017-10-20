@@ -5,7 +5,7 @@ describe("AccountsPage", function() {
         Global.Environment.init({
                                     scripts: [
                                         "myuw/static/js/accounts.js",
-                                        "myuw/static/js/card/tuition.js",
+                                        "myuw/static/js/card/accounts/tuition.js",
                                         "myuw/static/js/card/accounts/account_card.js",
                                         "myuw/static/js/card/accounts/account_medicine.js",
                                         "myuw/static/js/card/accounts/hr_payroll_card.js",

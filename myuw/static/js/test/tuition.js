@@ -1,4 +1,4 @@
-TuitionCard = require("../card/tuition.js").TuitionCard;
+TuitionCard = require("../card/accounts/tuition.js").TuitionCard;
 
 var assert = require("assert");
 describe('Tuition', function(){
