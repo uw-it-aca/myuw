@@ -35,26 +35,6 @@
         </div>
     {{ /unless }}
 
-    {{ #if pce_accbalance }}
-        <div class="card-badge-container">
-	    <ul class="card_list">
-		<li>
-	            <div class="card-badge clearfix">
-	                <div class="pull-left">
-	                    <h4 class="card-badge-label">You owe PCE</h4>
-	                </div>
-			<div class="pull-right">
-	                    <span class="card-badge-value text-danger">${{ pce_accbalance }}</span>
-			    &nbsp;
-	                    <span class="card-badge-action pull-right"><a href="https://www.pce.uw.edu/help/registration-costs/payment-options" target="_blank" data-linklabel="PCE Payment Options">Make payment</a></span><br/>
-                        <span class="pull-right" style="width: 100%; line-height: 1.1em; font-size: .9em; text-align: right; margin-top: -.2em;"> Contact PCE for due date</span>
-	                </div>
-	            </div>
-		</li>
-	    </ul>
-	</div>
-    {{ /if }}
-
     {{ #if has_balance }}
         {{ #if is_credit }}
             <div class="card-badge-container">
@@ -109,6 +89,34 @@
         <!-- end if has_balance -->
     {{ /if }}
 
+    {{ #if pce_accbalance }}
+        <div class="card-badge-container">
+	    <ul class="card_list">
+		<li>
+	            <div class="card-badge clearfix">
+	                <div class="pull-left">
+	                    <h4 class="card-badge-label">You owe PCE</h4>
+	                </div>
+			<div class="pull-right">
+	                    <span class="card-badge-value text-danger">${{ pce_accbalance }}</span>
+			    &nbsp;
+	                    <span class="card-badge-action pull-right"><a href="https://www.pce.uw.edu/help/registration-costs/payment-options" target="_blank" data-linklabel="PCE Payment Options">Make payment</a></span><br/>
+                        <span class="pull-right" style="width: 100%; line-height: 1.1em; font-size: .9em; text-align: right; margin-top: -.2em;"> Contact PCE for due date</span>
+	                </div>
+	            </div>
+		</li>
+	    </ul>
+	</div>
+    {{ /if }}
+
+    <div class="card-related-messages">
+        <p><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx" target="_blank">Give access to your tuition account and financial aid information</a> to parents or other third parties.</p>
+
+        {{ #each pce_tuition_dup }}
+            <p class="pce-message">{{{ this.notice_content }}}</p>
+        {{ /each }}
+    </div>
+
     {{ #if finaid_notices }}
         <!-- finaid notices begin -->
         <div class="finaid-notices-container">
@@ -135,13 +143,8 @@
         <!-- finaid notices end -->
     {{ /if }}
 
-    <div class="card-related-messages">
-        <p><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx" target="_blank">Give access to your tuition account and financial aid information</a> to parents or other third parties.</p>
+    {% include "handlebars/card/accounts/tuition_resources.html" %}
 
-        {{ #each pce_tuition_dup }}
-            <p class="pce-message">{{{ this.notice_content }}}</p>
-        {{ /each }}
-    </div>
 </div>
 
     {% endtplhandlebars %}

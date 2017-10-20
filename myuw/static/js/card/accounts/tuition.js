@@ -67,6 +67,10 @@ var TuitionCard = {
             template_data.pce_accbalance = 0;
         }
 
+        template_data.is_tacoma = window.user.tacoma_affil;
+        template_data.is_bothell = window.user.bothell_affil;
+        template_data.is_seattle = window.user.seattle_affil;
+
         has_credit_values = TuitionCard.process_tuition(template_data.tuition_accbalance);
         template_data.plain_tuition = has_credit_values.tuition;
         template_data.is_credit = has_credit_values.is_credit;
