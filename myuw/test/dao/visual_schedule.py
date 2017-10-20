@@ -374,3 +374,107 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(consolidated[3].start_date,
                          datetime.date(2013, 7, 28))
         self.assertEqual(consolidated[3].end_date, datetime.date(2013, 8, 24))
+
+    def test_summer_term_schedule_pce_beyond_term(self):
+            regid = "9136CCB8F66711D5BE060004AC494FFE"
+            term = get_term_from_quarter_string("2013,summer")
+
+            section1 = Section()
+            section1.curriculum_abbr = 'ASD'
+            section1.course_number = 123
+            section1.section_id = 'A'
+            section1.start_date = datetime.date(2013, 6, 2)
+            section1.end_date = datetime.date(2013, 9, 4)
+            section1.meetings = []
+
+            schedule = _get_schedule(regid, term)
+            schedule.sections.append(section1)
+
+            consolidated = get_visual_schedule(schedule)
+
+            self.assertEqual(len(consolidated), 4)
+
+            self.assertEqual(consolidated[0].start_date,
+                             datetime.date(2013, 6, 23))
+            self.assertEqual(consolidated[3].end_date,
+                             datetime.date(2013, 8, 24))
+            for week in consolidated:
+                self.assertIn(section1, week.sections)
+
+    def test_summer_term_schedule_pce(self):
+            regid = "9136CCB8F66711D5BE060004AC494FFE"
+            term = get_term_from_quarter_string("2013,summer")
+
+            section1 = Section()
+            section1.curriculum_abbr = 'ASD'
+            section1.course_number = 123
+            section1.section_id = 'A'
+            section1.start_date = datetime.date(2013, 7, 10)
+            section1.end_date = datetime.date(2013, 8, 4)
+            section1.meetings = []
+
+            schedule = _get_schedule(regid, term)
+            schedule.sections.append(section1)
+
+            consolidated = get_visual_schedule(schedule)
+
+            self.assertEqual(len(consolidated), 6)
+
+            self.assertEqual(consolidated[0].start_date,
+                             datetime.date(2013, 6, 23))
+            self.assertEqual(consolidated[0].end_date,
+                             datetime.date(2013, 7, 6))
+
+            self.assertEqual(consolidated[1].start_date,
+                             datetime.date(2013, 7, 7))
+            self.assertEqual(consolidated[1].end_date,
+                             datetime.date(2013, 7, 20))
+
+            self.assertEqual(consolidated[2].start_date,
+                             datetime.date(2013, 7, 21))
+            self.assertEqual(consolidated[2].end_date,
+                             datetime.date(2013, 7, 24))
+
+            self.assertEqual(consolidated[3].start_date,
+                             datetime.date(2013, 7, 25))
+            self.assertEqual(consolidated[3].end_date,
+                             datetime.date(2013, 7, 27))
+
+            self.assertEqual(consolidated[4].start_date,
+                             datetime.date(2013, 7, 28))
+            self.assertEqual(consolidated[4].end_date,
+                             datetime.date(2013, 8, 10))
+
+            self.assertEqual(consolidated[5].start_date,
+                             datetime.date(2013, 8, 11))
+            self.assertEqual(consolidated[5].end_date,
+                             datetime.date(2013, 8, 24))
+
+            pce_weeks = [consolidated[index] for index in [1, 2, 3, 4]]
+            non_pce_weeks = [consolidated[index] for index in [0, 5]]
+
+            for week in pce_weeks:
+                self.assertIn(section1, week.sections)
+            for week in non_pce_weeks:
+                self.assertNotIn(section1, week.sections)
+
+    def test_efs_schedule(self):
+        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        term = get_term_from_quarter_string("2013,autumn")
+        schedule = _get_schedule(regid, term)
+        consolidated = get_visual_schedule(schedule)
+        for week in consolidated:
+            print week.start_date, len(week.sections), week.end_date
+        self.assertEqual(consolidated[0].start_date,
+                         datetime.date(2013, 8, 18))
+        self.assertEqual(consolidated[0].end_date,
+                         datetime.date(2013, 9, 21))
+
+        self.assertEqual(consolidated[1].start_date,
+                         datetime.date(2013, 9, 22))
+        self.assertEqual(consolidated[1].end_date,
+                         datetime.date(2013, 12, 07))
+
+        # TODO: have every period trim meetings based on section start date
+        # if it exists This will ensure EFS courses' meetings are cut down
+        # before/after section dates
