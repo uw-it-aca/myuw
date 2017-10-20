@@ -111,7 +111,8 @@ var TuitionCard = {
         template_data.finaid_notices = Notices.get_ordered_finaid_notices(finaid_tags);
         var source = $("#tuition_card").html();
         var template = Handlebars.compile(source);
-        TuitionCard.dom_target.html(template(template_data));
+        var raw = template(template_data);
+        TuitionCard.dom_target.html(raw);
         LogUtils.cardLoaded(TuitionCard.name, TuitionCard.dom_target);
         TuitionCard._init_events();
     },
