@@ -989,7 +989,13 @@ label { font-weight: normal; margin-bottom: auto; }
                 .card-badge-label {
                     display: block;
                     font-weight: bold;
-                /*line-height: 35px;*/ }
+                }
+                .card-badge-action-btn { 
+                    &:hover {background-color:#D3BE7B;border-color:#D3BE7B;}                   
+                    a {color:#444;
+                    	&:hover {color: #000; text-decoration: none; }
+                    }
+                }
                 .card-badge-action {
                     display: block;
                     font-weight: normal;
@@ -2120,7 +2126,12 @@ th.mailman-sections-column { width: 99%; }
     margin-bottom: 10px;
 }
 
-
+.card-badge-action-btn { //change to button
+                    &:hover {background-color:#D3BE7B;border-color:#D3BE7B;}                   
+                    a {color:#444;
+                    	&:hover {color: #000; text-decoration: none; }
+                    }
+                }
 
 
 /*** footer ***/
