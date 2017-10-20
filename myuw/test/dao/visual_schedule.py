@@ -3,11 +3,11 @@ from restclients_core.exceptions import DataFailureException
 from uw_sws.models import Term, Section, ClassSchedule, SectionMeeting
 from myuw.dao.term import get_term_from_quarter_string
 from myuw.dao.registration import _get_schedule
-from myuw.dao.visual_schedule import get_visual_schedule,\
-    get_schedule_bounds, _add_dates_to_sections, _get_weeks_from_bounds,\
+from myuw.dao.visual_schedule import get_visual_schedule, \
+    get_schedule_bounds, _add_dates_to_sections, _get_weeks_from_bounds, \
     _add_sections_to_weeks, _section_lists_are_same, _sections_are_same, \
-    _consolidate_weeks, _add_weekend_meeting_data
-from myuw.test import fdao_sws_override, fdao_pws_override,\
+    _consolidate_weeks, _add_weekend_meeting_data, get_summer_schedule_bounds
+from myuw.test import fdao_sws_override, fdao_pws_override, \
     get_request
 import datetime
 import copy
@@ -264,41 +264,50 @@ class TestVisualSchedule(TestCase):
         self.assertTrue(consolidated[0].meets_sunday)
 
     def test_summer_term_dates(self):
-            regid = "9136CCB8F66711D5BE060004AC494FFE"
-            term = get_term_from_quarter_string("2013,summer")
+        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        term = get_term_from_quarter_string("2013,summer")
 
-            schedule = _get_schedule(regid, term)
-            schedule = _add_dates_to_sections(schedule)
+        schedule = _get_schedule(regid, term)
+        schedule = _add_dates_to_sections(schedule)
 
-            self.assertEqual(schedule.sections[0].start_date,
-                             datetime.date(2013, 6, 24))
-            self.assertEqual(schedule.sections[0].end_date,
-                             datetime.date(2013, 7, 24))
+        self.assertEqual(schedule.sections[0].start_date,
+                         datetime.date(2013, 6, 24))
+        self.assertEqual(schedule.sections[0].end_date,
+                         datetime.date(2013, 7, 24))
 
-            self.assertEqual(schedule.sections[1].start_date,
-                             datetime.date(2013, 7, 25))
-            self.assertEqual(schedule.sections[1].end_date,
-                             datetime.date(2013, 8, 23))
+        self.assertEqual(schedule.sections[1].start_date,
+                         datetime.date(2013, 7, 25))
+        self.assertEqual(schedule.sections[1].end_date,
+                         datetime.date(2013, 8, 23))
 
-            self.assertEqual(schedule.sections[2].start_date,
-                             datetime.date(2013, 6, 24))
-            self.assertEqual(schedule.sections[2].end_date,
-                             datetime.date(2013, 8, 23))
+        self.assertEqual(schedule.sections[2].start_date,
+                         datetime.date(2013, 6, 24))
+        self.assertEqual(schedule.sections[2].end_date,
+                         datetime.date(2013, 8, 23))
 
-    def test_summer_term_consolidate(self):
-            regid = "9136CCB8F66711D5BE060004AC494FFE"
-            term = get_term_from_quarter_string("2013,summer")
+    def test_summer_schedule_bounds(self):
+        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        term = get_term_from_quarter_string("2013,summer")
 
-            schedule = _get_schedule(regid, term)
-            schedule = _add_dates_to_sections(schedule)
-            bounds = get_schedule_bounds(schedule)
-            weeks = _get_weeks_from_bounds(bounds)
-            weeks = _add_sections_to_weeks(schedule.sections, weeks)
-            consolidated = _consolidate_weeks(weeks)
+        schedule = _get_schedule(regid, term)
+        schedule = _add_dates_to_sections(schedule)
+        a_term, b_term = get_summer_schedule_bounds(schedule)
+        self.assertEqual(a_term[0], datetime.date(2013, 6, 23))
+        self.assertEqual(a_term[1], datetime.date(2013, 7, 24))
 
-            for week in consolidated:
-                print week.start_date, week.end_date
+        self.assertEqual(b_term[0], datetime.date(2013, 7, 25))
+        self.assertEqual(b_term[1], datetime.date(2013, 8, 24))
 
-            self.assertEqual(len(consolidated), 2)
-            self.assertEqual(consolidated[0].summer_term, "A-term")
-            self.assertEqual(consolidated[1].summer_term, "B-term")
+    def test_summer_term_schedule(self):
+        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        term = get_term_from_quarter_string("2013,summer")
+        schedule = _get_schedule(regid, term)
+        consolidated = get_visual_schedule(schedule)
+
+
+        for week in consolidated:
+            print week.start_date, week.end_date
+
+        # self.assertEqual(len(consolidated), 2)
+        # self.assertEqual(consolidated[0].summer_term, "A-term")
+        # self.assertEqual(consolidated[1].summer_term, "B-term")

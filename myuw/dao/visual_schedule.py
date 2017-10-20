@@ -4,24 +4,25 @@ from datetime import timedelta
 
 def get_visual_schedule(schedule):
     _add_dates_to_sections(schedule)
-    if "not_summer" or "summer_full_only":
-        bounds = get_schedule_bounds(schedule)
-        weeks = _get_weeks_from_bounds(bounds)
-        weeks = _add_sections_to_weeks(schedule.sections, weeks)
-        consolidated = _consolidate_weeks(weeks)
-    if "summer a or b":
+    if _is_split_summer(schedule):
         a_bounds, b_bounds = get_summer_schedule_bounds(schedule)
         a_weeks = _get_weeks_from_bounds(a_bounds)
         a_weeks = _add_sections_to_weeks(schedule.sections, a_weeks)
         a_consolidated = _consolidate_weeks(a_weeks)
         trim_summer_meetings(a_consolidated)
-        
+
         b_weeks = _get_weeks_from_bounds(a_bounds)
         b_weeks = _add_sections_to_weeks(schedule.sections, b_weeks)
         b_consolidated = _consolidate_weeks(b_weeks)
         trim_summer_meetings(b_consolidated)
 
         consolidated = a_consolidated + b_consolidated
+
+    else:
+        bounds = get_schedule_bounds(schedule)
+        weeks = _get_weeks_from_bounds(bounds)
+        weeks = _add_sections_to_weeks(schedule.sections, weeks)
+        consolidated = _consolidate_weeks(weeks)
     return consolidated
 
 
@@ -45,6 +46,16 @@ def get_summer_schedule_bounds(schedule):
 
 def trim_summer_meetings(weeks):
 
+    return weeks
+
+
+def _is_split_summer(schedule):
+    if schedule.term.quarter != 'summer':
+        return False
+    split = False
+    for section in schedule.sections:
+        if section.summer_term != "Full-term":
+            return True
 
 def get_periods_from_bounds(bounds):
     start, end = bounds
