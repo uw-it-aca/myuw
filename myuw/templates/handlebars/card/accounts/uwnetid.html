@@ -1,13 +1,25 @@
 {% load templatetag_handlebars %}
 {% load static %}
 {% tplhandlebars "accounts_card" %}
+
 <div class="card" style="position:relative;" id="netid-pw">
     <h3>UW NetID </h3>
-		<div class="pw-exp">
-	        <span class="pw-exp-date">Password last updated {{days_after_last_pw_change}} days ago</span>
-        </div>
-        <div class="pw-link"><a href="https://uwnetid.washington.edu/manage/?password">Change UW NetID password</a>
-        </div>
-	        <p>This password is for applications like UW email, MyUW, etc.</p>
+
+    <a href="https://uwnetid.washington.edu/manage/">Manage UW NetID account</a>
+
+    <div class="pw-exp">
+        <a href="https://uwnetid.washington.edu/manage/?password" class="pw-exp-date">Password</a><br>
+	<span>Last updated {{days_after_last_pw_change}} days ago</span>
+    </div>
+
+    <ul class="pw-link unstyled-list">
+       <li><a href="https://identity.uw.edu/account/recovery/">UW NetID account recovery settings</a></li>
+
+       {{#if display_2fa}}
+       <li><a href="https://identity.uw.edu/2fa/">Two-factor authentication (2FA) settings</a></li>
+       {{/if}}
+    </ul>
+
+    <p>This password is for applications like UW email, MyUW, etc.</p>
 </div>
 {% endtplhandlebars %}
