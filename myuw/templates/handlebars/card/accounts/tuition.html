@@ -80,11 +80,14 @@
 	                </div>
 				</li>
 	            {{ /if }}
-		    <div class="card-badge cleafix">
-			    <div class="pull-right">
-			    	<span class="btn btn-default card-badge-action-btn pull-right"><a href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank" data-linklabel="Make Tuition Payment">Make payment</a></span>
+		    
+		    <li>
+			    <div class="card-badge cleafix">
+			    	<div class="pull-right">
+			    		<div class="btn btn-default card-badge-action-btn"><a href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank" data-linklabel="Make Tuition Payment">Make payment</a></div>
+					</div>
 		    	</div>
-		    </div>
+		    </li>
 	        </ul>
 	    </div>
         <!-- end if tuition_credit -->
@@ -93,7 +96,7 @@
     {{ /if }}
 
     {{ #if pce_accbalance }}
-        <div class="card-badge-container">
+        <div class="card-badge-container pce">
 	    <ul class="card_list">
 		<li>
 	        <div class="card-badge clearfix">
@@ -106,7 +109,7 @@
 	        		</div>            
 	        </div>
 	        <div class="card-badge clearfix">            
-	        	<div class="pull-right"><span class="btn btn-default card-badge-action-btn "><a href="https://www.pce.uw.edu/help/registration-costs/payment-options" target="_blank" data-linklabel="PCE Payment Options">Make payment to PCE</a></span>
+	        	<div class="pull-right"><div class="btn btn-default card-badge-action-btn "><a href="https://www.pce.uw.edu/help/registration-costs/payment-options" target="_blank" data-linklabel="PCE Payment Options">Make payment to PCE</a></div>
 	        	</div>
 	        </div>
 	    </li>
@@ -124,7 +127,7 @@
 
     <div class="finaid-notices-container">
 	    <h4>Financial Aid</h4>
-	    <a href="" target="_blank">See the financial aid status</a> 
+	    <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx" target="_blank">See Financial Aid Status</a> 
 		{{ #if finaid_notices }}
         <!-- finaid notices begin -->
             <ul class="panel-group finaid-notices-panel-group" id="tui_finaid_notices_accordion" role="tablist" aria-multiselectable="true">
