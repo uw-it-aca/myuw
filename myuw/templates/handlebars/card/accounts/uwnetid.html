@@ -5,18 +5,18 @@
 <div class="card" style="position:relative;" id="netid-pw">
     <h3>UW NetID </h3>
 
-    <a href="https://uwnetid.washington.edu/manage/">Manage UW NetID account</a>
+    <a href="https://uwnetid.washington.edu/manage/" target="_blank">Manage UW NetID account</a>
 
     <div class="pw-exp">
-        <a href="https://uwnetid.washington.edu/manage/?password" class="pw-exp-date">Password</a><br>
+        <a href="https://uwnetid.washington.edu/manage/?password" class="pw-exp-date" target="_blank">Password</a><br>
 	<span>Last updated {{days_after_last_pw_change}} days ago</span>
     </div>
 
     <ul class="pw-link unstyled-list">
-       <li><a href="https://identity.uw.edu/account/recovery/">UW NetID account recovery settings</a></li>
+       <li><a href="https://identity.uw.edu/account/recovery/" target="_blank">UW NetID account recovery settings</a></li>
 
        {{#if display_2fa}}
-       <li><a href="https://identity.uw.edu/2fa/">Two-factor authentication (2FA) settings</a></li>
+       <li><a href="https://identity.uw.edu/2fa/" target="_blank">Two-factor authentication (2FA) settings</a></li>
        {{/if}}
     </ul>
 

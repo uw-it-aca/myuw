@@ -15,7 +15,6 @@ var UwnetidCard = {
         data.display_2fa = (window.user.stud_employee ||
                             window.user.employee ||
                             window.user.clinician);
-
         var source   = $("#accounts_card").html();
         var template = Handlebars.compile(source);
         var compiled = template(data);
