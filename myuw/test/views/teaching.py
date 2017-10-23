@@ -1,8 +1,6 @@
 from unittest2 import skipIf
 from django.test.utils import override_settings
 from django.core.urlresolvers import reverse
-from django.test.client import RequestFactory
-from myuw.views.page import _is_mobile
 from myuw.test.api import missing_url, MyuwApiTest
 
 
