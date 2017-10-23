@@ -59,11 +59,9 @@
 	                    <div class="pull-left">
 	                        <h4 class="card-badge-label">You owe</h4>
 	                    </div>
-			    <div class="pull-right">
+						<div class="pull-right">
 	                        <span class="card-badge-value text-danger">${{ tuition_accbalance }}</span>
-			        &nbsp;
-	                        <span class="card-badge-action pull-right"><a href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank" data-linklabel="Make Tuition Payment">Make payment</a></span>
-	                    </div>
+	            		</div>
 	                </div>
 		    </li>
 
@@ -73,15 +71,20 @@
 	                    <div class="pull-left">
 	                        <h4 class="card-badge-label">Tuition due </h4>
 	                    </div>
-			    <div class="pull-right">
+						<div class="pull-right">
 	                        <span class="card-badge-value" aria-hidden="true">{{ toFriendlyDate tuition_due }}</span>
-			        <span class="sr-only">{{ toFriendlyDateVerbose tuition_due }}</span>
+							<span class="sr-only">{{ toFriendlyDateVerbose tuition_due }}</span>
 			        &nbsp;
 	                        <span class="card-badge-action pull-right">in {{ tuition_date_offset }} days</span>
 	                    </div>
 	                </div>
-		    </li>
+				</li>
 	            {{ /if }}
+		    <div class="card-badge cleafix">
+			    <div class="pull-right">
+			    	<span class="btn btn-default card-badge-action-btn pull-right"><a href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank" data-linklabel="Make Tuition Payment">Make payment</a></span>
+		    	</div>
+		    </div>
 	        </ul>
 	    </div>
         <!-- end if tuition_credit -->
@@ -93,18 +96,20 @@
         <div class="card-badge-container">
 	    <ul class="card_list">
 		<li>
-	            <div class="card-badge clearfix">
+	        <div class="card-badge clearfix">
 	                <div class="pull-left">
 	                    <h4 class="card-badge-label">You owe PCE</h4>
 	                </div>
-			<div class="pull-right">
+					<div class="pull-right">
 	                    <span class="card-badge-value text-danger">${{ pce_accbalance }}</span>
-			    &nbsp;
-	                    <span class="card-badge-action pull-right"><a href="https://www.pce.uw.edu/help/registration-costs/payment-options" target="_blank" data-linklabel="PCE Payment Options">Make payment</a></span><br/>
-                        <span class="pull-right" style="width: 100%; line-height: 1.1em; font-size: .9em; text-align: right; margin-top: -.2em;"> Contact PCE for due date</span>
-	                </div>
-	            </div>
-		</li>
+	                    <span class="pull-right" style="width: 100%; line-height: 1.1em; font-size: .9em; text-align: right; margin-top: -.2em;"> Contact PCE for due date</span>
+	        		</div>            
+	        </div>
+	        <div class="card-badge clearfix">            
+	        	<div class="pull-right"><span class="btn btn-default card-badge-action-btn "><a href="https://www.pce.uw.edu/help/registration-costs/payment-options" target="_blank" data-linklabel="PCE Payment Options">Make payment to PCE</a></span>
+	        	</div>
+	        </div>
+	    </li>
 	    </ul>
 	</div>
     {{ /if }}
@@ -117,10 +122,11 @@
         {{ /each }}
     </div>
 
-    {{ #if finaid_notices }}
+    <div class="finaid-notices-container">
+	    <h4>Financial Aid</h4>
+	    <a href="" target="_blank">See the financial aid status</a> 
+		{{ #if finaid_notices }}
         <!-- finaid notices begin -->
-        <div class="finaid-notices-container">
-            <h4>Financial Aid</h4>
             <ul class="panel-group finaid-notices-panel-group" id="tui_finaid_notices_accordion" role="tablist" aria-multiselectable="true">
                 {{ #each finaid_notices}}
                 <li class="panel panel-default finaid-panel-default">
@@ -139,10 +145,11 @@
                 </li>
                 {{ /each }}
             </ul>
-        </div>
-        <!-- finaid notices end -->
-    {{ /if }}
 
+        <!-- finaid notices end -->
+		{{ /if }}
+     </div>
+     
     {% include "handlebars/card/accounts/tuition_resources.html" %}
 
 </div>
