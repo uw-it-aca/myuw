@@ -26,7 +26,8 @@ from myuw.dao.instructor_schedule import (
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.pws import (
-    get_url_key_for_regid, get_person_by_regid as get_pws_person_by_regid)
+    get_person_of_current_user, get_person_by_regid as get_pws_person_by_regid,
+    get_url_key_for_regid)
 from myuw.dao.registration import get_active_registrations_for_section
 from myuw.dao.term import (
     get_current_quarter, is_past, is_future, get_previous_number_quarters,
@@ -423,7 +424,10 @@ class InstSect(ProtectedAPI):
         <course_number>,<course_section>?
     """
     def is_authorized_for_section(self, request, schedule):
-        check_section_instructor(schedule.sections[0], schedule.person)
+        try:
+            check_section_instructor(schedule.sections[0], schedule.person)
+        except IndexError:
+            pass
 
     def make_http_resp(self, timer, year, quarter, curriculum, course_number,
                        course_section, request):
@@ -431,7 +435,8 @@ class InstSect(ProtectedAPI):
         @return instructor schedule data in json format
                 status 404: no schedule found (teaching no courses)
         """
-        schedule = get_instructor_section(year, quarter, curriculum,
+        person = get_person_of_current_user()
+        schedule = get_instructor_section(person, year, quarter, curriculum,
                                           course_number, course_section)
 
         try:
@@ -470,17 +475,32 @@ class OpenInstSectionDetails(OpenAPI):
     /api/v1/instructor_section/<year>,<quarter>,<curriculum>,
         <course_number>,<course_section>?
     """
+    def get_section_params(self, request, **kwargs):
+        return (kwargs.get("year"), kwargs.get("quarter"),
+                kwargs.get("curriculum"), kwargs.get("course_number"),
+                kwargs.get("course_section"))
+
+    def get_instructor(self):
+        raise NotSectionInstructorException()
+
     def is_authorized_for_section(self, request, schedule):
         raise NotSectionInstructorException()
 
-    def make_http_resp(self, timer, year, quarter, curriculum, course_number,
-                       course_section, request):
+    def make_http_resp(self, timer, request, **kwargs):
         """
         @return instructor schedule data in json format
                 status 404: no schedule found (teaching no courses)
         """
         self.processed_primary = False
-        schedule = get_instructor_section(year, quarter, curriculum,
+
+        try:
+            (year, quarter, curriculum, course_number,
+                course_section) = self.get_section_params(request, **kwargs)
+            person = self.get_instructor()
+        except NotSectionInstructorException:
+            return not_instructor_error()
+
+        schedule = get_instructor_section(person, year, quarter, curriculum,
                                           course_number, course_section,
                                           include_registrations=True,
                                           include_linked_sections=True)
@@ -628,38 +648,52 @@ class OpenInstSectionDetails(OpenAPI):
                 status 404: no schedule found (not registered)
                 status 543: data error
         """
-        year = kwargs.get("year")
-        quarter = kwargs.get("quarter")
-        curriculum = kwargs.get("curriculum")
-        course_number = kwargs.get("course_number")
-        course_section = kwargs.get("course_section")
         timer = Timer()
         try:
-            return self.make_http_resp(timer, year, quarter, curriculum,
-                                       course_number, course_section,
-                                       request)
+            return self.make_http_resp(timer, request, **kwargs)
         except Exception as ex:
+            traceback.print_exc()
             return handle_exception(logger, timer, traceback)
 
 
 @method_decorator(login_required, name='dispatch')
 class InstSectionDetails(OpenInstSectionDetails):
+    def get_instructor(self):
+        return get_person_of_current_user()
+
     def is_authorized_for_section(self, request, schedule):
-        check_section_instructor(schedule.sections[0], schedule.person)
+        try:
+            check_section_instructor(schedule.sections[0], schedule.person)
+        except IndexError:
+            pass
 
 
 @method_decorator(blti_admin_required, name='dispatch')
 class LTIInstSectionDetails(OpenInstSectionDetails):
+    def get_instructor(self):
+        if self.instructor_regid is not None:
+            return get_pws_person_by_regid(self.instructor_regid)
+        else:
+            return get_person_of_current_user()
+
     def is_authorized_for_section(self, request, schedule):
+        pass
+
+    def get_section_params(self, request, **kwargs):
         blti_data = BLTI().get_session(request)
+        authorized_sections = blti_data.get('authorized_sections', [])
+        section_id = kwargs.get('section_id')
 
-        # TODO: verify section is in the list of viewable sections
-        valid_sections = blti_data.get('authorized_sections')
+        if section_id not in authorized_sections:
+            raise NotSectionInstructorException
 
-        # For independent study, set the actual instructor if needed
-        inst_regid = blti_data.get('independent_study_instructor_regid')
-        if inst_regid is not None and inst_regid != schedule.person.uwregid:
-            try:
-                schedule.person = get_pws_person_by_regid(inst_regid)
-            except DataFailureException as ex:
-                raise NotSectionInstructorException
+        try:
+            (year, quarter, curr_abbr, course_num,
+                section_id, instructor_regid) = section_id.split('-', 5)
+        except ValueError:
+            (year, quarter, curr_abbr, course_num,
+                section_id) = section_id.split('-', 4)
+            instructor_regid = None
+
+        self.instructor_regid = instructor_regid
+        return (year, quarter, curr_abbr, course_num, section_id)

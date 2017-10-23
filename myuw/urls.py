@@ -163,10 +163,7 @@ urlpatterns += [
         r'(?P<course_section>[A-Z][A-Z0-9]?)$',
         InstSectionDetails.as_view(),
         name="myuw_instructor_section_details_api"),
-    url(r'^lti/api/v1/instructor_section_details/(?P<year>\d{4}),'
-        r'(?P<quarter>[a-zA-Z]+),'
-        r'(?P<curriculum>[\w& ]+),(?P<course_number>\d{3})\/'
-        r'(?P<course_section>[A-Z][A-Z0-9]?)$',
+    url(r'^lti/api/v1/instructor_section_details/(?P<section_id>[^/]*)$',
         LTIInstSectionDetails.as_view(),
         name="myuw_lti_instructor_section_details_api"),
     url(r'^api/v1/thrive/$',

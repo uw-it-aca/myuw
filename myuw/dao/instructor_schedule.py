@@ -94,7 +94,7 @@ def _get_sections_by_section_reference(section_references):
     return sections
 
 
-def get_instructor_section(year, quarter, curriculum,
+def get_instructor_section(person, year, quarter, curriculum,
                            course_number, course_section,
                            include_registrations=False,
                            include_linked_sections=False):
@@ -102,7 +102,7 @@ def get_instructor_section(year, quarter, curriculum,
     Return requested section instructor is teaching
     """
     schedule = ClassSchedule()
-    schedule.person = get_person_of_current_user()
+    schedule.person = person
     schedule.term = get_specific_term(year, quarter)
     schedule.sections = []
 

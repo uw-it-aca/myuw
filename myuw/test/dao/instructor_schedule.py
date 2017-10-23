@@ -2,14 +2,16 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User
 from uw_sws.models import Term, Section
+from uw_pws import PWS
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user, get_request
 from myuw.dao.instructor_schedule import is_instructor,\
     get_current_quarter_instructor_schedule,\
     get_instructor_schedule_by_term, get_section_by_label,\
     get_limit_estimate_enrollment_for_section,\
-    get_instructor_section, get_primary_section
+    get_instructor_section, get_primary_section, check_section_instructor
 from myuw.dao.term import get_current_quarter
+from myuw.dao.exceptions import NotSectionInstructorException
 from userservice.user import UserServiceMiddleware
 
 
@@ -44,27 +46,39 @@ class TestInstructorSchedule(TestCase):
         self.assertEqual(len(schedule.sections), 7)
 
     def test_get_instructor_section(self):
-        now_request = RequestFactory().get("/")
-        now_request.session = {}
-
-        user = User.objects.create_user(username='bill',
-                                        email='bill@example.com',
-                                        password='')
-        now_request.user = user
-        UserServiceMiddleware().process_request(now_request)
-        schedule = get_instructor_section('2013', 'spring', 'ESS', '102', 'A')
+        person = person = PWS().get_person_by_netid('bill')
+        schedule = get_instructor_section(
+            person, '2013', 'spring', 'ESS', '102', 'A')
         self.assertEqual(len(schedule.sections), 1)
 
     def test_get_instructor_secondary_section(self):
-        request = get_request_with_user('billsea',
-                                        get_request_with_date("2017-09-30"))
-        UserServiceMiddleware().process_request(request)
-        schedule = get_instructor_section('2017', 'autumn', 'CSE', '154', 'AA')
+        person = PWS().get_person_by_netid('billsea')
+
+        schedule = get_instructor_section(
+            person, '2017', 'autumn', 'CSE', '154', 'AA')
         self.assertEqual(len(schedule.sections), 1)
 
-        schedule = get_instructor_section('2017', 'autumn',
-                                          'EDC&I', '552', 'A')
+        schedule = get_instructor_section(
+            person, '2017', 'autumn', 'EDC&I', '552', 'A')
         self.assertEqual(len(schedule.sections), 1)
+
+    def test_check_instructor_section(self):
+        bill = PWS().get_person_by_netid('bill')
+        schedule = get_instructor_section(
+            bill, '2013', 'spring', 'ESS', '102', 'A')
+        ess_section = schedule.sections[0]
+        self.assertEqual(None, check_section_instructor(ess_section, bill))
+
+        billsea = PWS().get_person_by_netid('billsea')
+        schedule = get_instructor_section(
+            billsea, '2017', 'autumn', 'CSE', '154', 'AA')
+        cse_section = schedule.sections[0]
+        self.assertEqual(None, check_section_instructor(cse_section, billsea))
+
+        self.assertRaises(NotSectionInstructorException,
+                          check_section_instructor, ess_section, billsea)
+        self.assertRaises(NotSectionInstructorException,
+                          check_section_instructor, cse_section, bill)
 
     def test_get_limit_estimate_enrollment_for_section(self):
         term = Term()

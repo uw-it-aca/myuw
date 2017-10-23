@@ -1,9 +1,11 @@
 from myuw.test.api import require_url, MyuwApiTest
+from myuw.test.views.lti import get_lti_request, MyuwLTITest
 from restclients_core.exceptions import DataFailureException
-from myuw.views.api.instructor_schedule import InstScheCurQuar, InstSect
+from myuw.views.api.instructor_schedule import (
+    InstScheCurQuar, InstSect, InstSectionDetails, LTIInstSectionDetails)
 import json
-from myuw.dao.instructor_schedule import\
-    get_current_quarter_instructor_schedule
+from myuw.dao.instructor_schedule import (
+    get_current_quarter_instructor_schedule)
 from myuw.test import get_request, get_request_with_user, get_request_with_date
 
 
@@ -226,3 +228,67 @@ class TestInstructorSection(MyuwApiTest):
                          '2017_autumn_EDC_I_552_A')
         self.assertEqual(data['sections'][0]['curriculum_abbr'],
                          'EDC&I')
+
+
+class TestInstructorSectionDetails(MyuwApiTest):
+    def test_bill_section(self):
+        now_request = get_request()
+        get_request_with_user('bill', now_request)
+
+        year = '2013'
+        quarter = 'spring'
+        curriculum = 'ESS'
+        course_number = '102'
+        course_section = 'A'
+        resp = InstSectionDetails().get(now_request,
+                                        year=year,
+                                        quarter=quarter,
+                                        curriculum=curriculum,
+                                        course_number=course_number,
+                                        course_section=course_section)
+
+        self.assertEqual(resp.status_code, 200)
+
+        data = json.loads(resp.content)
+        self.assertEqual(len(data['sections']), 1)
+        self.assertEqual(
+            data['sections'][0]['limit_estimate_enrollment'], 15)
+        self.assertEqual(
+            data['sections'][0]['final_exam']['latitude'],
+            47.656645546715)
+        self.assertEqual(data['sections'][0]['canvas_url'],
+                         'https://canvas.uw.edu/courses/149651')
+        self.assertEqual(
+            len(data['sections'][0]['grade_submission_delegates']), 1)
+
+        self.assertGreater(len(data['related_terms']), 3)
+        self.assertEqual(data['related_terms'][
+            len(data['related_terms']) - 3]['quarter'], 'Spring')
+        self.assertEqual(data['related_terms'][5]['year'], 2013)
+
+
+class TestLTIInstructorSectionDetails(MyuwLTITest):
+    def test_bill_section(self):
+        request = get_lti_request()
+
+        section_id = '2013-spring-ESS-102-A'
+        resp = LTIInstSectionDetails().get(request, section_id=section_id)
+
+        self.assertEqual(resp.status_code, 200)
+
+        data = json.loads(resp.content)
+        self.assertEqual(len(data['sections']), 1)
+        self.assertEqual(
+            data['sections'][0]['limit_estimate_enrollment'], 15)
+        self.assertEqual(
+            data['sections'][0]['final_exam']['latitude'],
+            47.656645546715)
+        self.assertEqual(data['sections'][0]['canvas_url'],
+                         'https://canvas.uw.edu/courses/149651')
+        self.assertEqual(
+            len(data['sections'][0]['grade_submission_delegates']), 1)
+
+        self.assertGreater(len(data['related_terms']), 3)
+        self.assertEqual(data['related_terms'][
+            len(data['related_terms']) - 3]['quarter'], 'Spring')
+        self.assertEqual(data['related_terms'][5]['year'], 2013)

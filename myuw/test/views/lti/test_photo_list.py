@@ -38,7 +38,7 @@ class TestLTIPhotoList(MyuwLTITest):
         blti_data = {
             'custom_canvas_course_id': 12345,
             'lis_course_offering_sourcedid': '2013-spring-ESS-102-A',
-            'custom_canvas_user_id': 12345,
+            'custom_canvas_user_id': 123456,
             'context_label': 'ESS 102 A'
         }
         kwargs = {
@@ -47,5 +47,5 @@ class TestLTIPhotoList(MyuwLTITest):
         }
         context = LTIPhotoList().get_context_data(**kwargs)
         self.assertEquals(context['lti_course_name'], 'ESS 102 A')
-        self.assertEquals(context['section'], '2013,spring,ESS,102/A')
-        self.assertEquals(context['sections'], [])
+        self.assertEquals(context['section'], '2013-spring-ESS-102-AA')
+        self.assertEquals(len(context['sections']), 2)
