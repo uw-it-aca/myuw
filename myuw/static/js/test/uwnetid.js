@@ -1,6 +1,6 @@
 var Global = require("./global.js");
 
-describe('AccountsCard', function(){
+describe('UwnetidCard', function(){
     describe("UW NetID card", function() {
         before(function (done) {
             var render_id = 'render_acount_card';
@@ -8,10 +8,10 @@ describe('AccountsCard', function(){
             Global.Environment.init({
                 render_id: render_id,
                 scripts: [
-                    "myuw/static/js/card/accounts/account_card.js"
+                    "myuw/static/js/card/accounts/uwnetid.js"
                 ],
                 templates: [
-                    'myuw/templates/handlebars/card/accounts/account_card.html'
+                    'myuw/templates/handlebars/card/accounts/uwnetid.html'
                 ]
             });
 
@@ -23,11 +23,11 @@ describe('AccountsCard', function(){
                 done();
             });
 
-            AccountsCard.dom_target = $('#' + render_id);
-            AccountsCard.render_init();
+            UwnetidCard.dom_target = $('#' + render_id);
+            UwnetidCard.render_init();
         });
         it("Should render card", function() {
-            assert.equal(AccountsCard.dom_target.find('span.pw-exp-date').length, 1);
+            assert.equal(UwnetidCard.dom_target.find('span.pw-exp-date').length, 1);
         });
         after(function () {
             Global.Environment.ajax_stub_restore();
