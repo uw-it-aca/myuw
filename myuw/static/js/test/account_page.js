@@ -9,9 +9,9 @@ describe("AccountsPage", function() {
                                         "myuw/static/js/card/accounts/account_card.js",
                                         "myuw/static/js/card/accounts/account_medicine.js",
                                         "myuw/static/js/card/accounts/hr_payroll_card.js",
-                                        "myuw/static/js/card/hfs.js",
-                                        "myuw/static/js/card/library.js",
-                                        "myuw/static/js/card/upass.js"
+                                        "myuw/static/js/card/accounts/hfs.js",
+                                        "myuw/static/js/card/accounts/library.js",
+                                        "myuw/static/js/card/accounts/upass.js"
                                     ]
                                 });
     });
