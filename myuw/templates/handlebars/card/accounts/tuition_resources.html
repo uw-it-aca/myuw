@@ -2,8 +2,11 @@
 <div style="padding-bottom: 10px;">
     <h4>Related</h4>
     <ul class="unstyled-list">
+
         <li><a {{#if is_tacoma}}href="http://www.tacoma.uw.edu/uwt/financial-aid"{{else if is_bothell}}href="https://www.uwb.edu/financialaid"{{else}}href="http://www.washington.edu/students/osfa/"{{/if}} target="_blank">Financial Aid and Scholarships</a></li>
+        {{#if is_grad}}
         <li><a href="http://www.lib.washington.edu/commons/services/gfis" target="_blank">Graduate Funding Information Service (GFIS)</a></li>
+        {{/if}}
         <li><a href="http://f2.washington.edu/fm/sfs/tuition" target="_blank">Tuition Overview</a></li>
         <li><a href="http://f2.washington.edu/fm/sfs/tax" target="_blank">Student Tax Information</a></li>
         <li><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/irs1098t.aspx" target="_blank"> Form 1098-T</a></li>

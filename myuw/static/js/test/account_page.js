@@ -6,12 +6,12 @@ describe("AccountsPage", function() {
                                     scripts: [
                                         "myuw/static/js/accounts.js",
                                         "myuw/static/js/card/accounts/tuition.js",
-                                        "myuw/static/js/card/accounts/account_card.js",
+                                        "myuw/static/js/card/accounts/uwnetid.js",
                                         "myuw/static/js/card/accounts/account_medicine.js",
                                         "myuw/static/js/card/accounts/hr_payroll_card.js",
-                                        "myuw/static/js/card/hfs.js",
-                                        "myuw/static/js/card/library.js",
-                                        "myuw/static/js/card/upass.js"
+                                        "myuw/static/js/card/accounts/hfs.js",
+                                        "myuw/static/js/card/accounts/library.js",
+                                        "myuw/static/js/card/accounts/upass.js"
                                     ]
                                 });
     });
@@ -30,7 +30,7 @@ describe("AccountsPage", function() {
                 HfsCard,
                 LibraryCard,
                 UPassCard,
-                AccountsCard
+                UwnetidCard
             ];
             window.user.clinician = true;
             var card_order = AccountsPage._get_card_order_by_affiliation();
@@ -44,7 +44,7 @@ describe("AccountsPage", function() {
                 HfsCard,
                 LibraryCard,
                 UPassCard,
-                AccountsCard
+                UwnetidCard
             ];
             window.user.student = true;
             var card_order = AccountsPage._get_card_order_by_affiliation();
@@ -59,7 +59,7 @@ describe("AccountsPage", function() {
                 HRPayrollCard,
                 LibraryCard,
                 UPassCard,
-                AccountsCard
+                UwnetidCard
             ];
             window.user.student = true;
             window.user.stud_employee = true;
@@ -73,7 +73,7 @@ describe("AccountsPage", function() {
                 HfsCard,
                 LibraryCard,
                 UPassCard,
-                AccountsCard
+                UwnetidCard
             ];
             window.user.employee = true;
             var card_order = AccountsPage._get_card_order_by_affiliation();
@@ -87,7 +87,7 @@ describe("AccountsPage", function() {
                 HRPayrollCard,
                 LibraryCard,
                 UPassCard,
-                AccountsCard
+                UwnetidCard
             ];
             window.user.instructor = true;
             window.user.employee = true;
@@ -97,7 +97,7 @@ describe("AccountsPage", function() {
 
         it('should handle no affiliation', function() {
             var default_order = [LibraryCard,
-                                 AccountsCard
+                                 UwnetidCard
                                 ];
             var card_order = AccountsPage._get_card_order_by_affiliation();
             assert.deepEqual(card_order, default_order)
