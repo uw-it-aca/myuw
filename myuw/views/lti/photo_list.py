@@ -24,7 +24,6 @@ class LTIPhotoList(BLTILaunchView):
             sections = get_viewable_course_sections(course_id, user_id)
             section_id = sections[0].sis_section_id
         except (DataFailureException, IndexError) as err:
-            print err.url
             pass
 
         blti_data['authorized_sections'] = [s.sis_section_id for s in sections]

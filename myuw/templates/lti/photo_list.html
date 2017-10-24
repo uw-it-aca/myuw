@@ -15,7 +15,11 @@
 
 {% block content %}
     <div id="main-content" role="main" aria-labelledby="main"></div>
-    <div id="static-links"></div>
+    <div id="static-links">
+        <ol>
+            {% for section in sections %}<li><a href="#" data="{{ section.sis_section_id }}">{{ section.name }}</a></li>{% endfor %}
+        </ol>
+    </div>
 
     {% include "handlebars/teaching/photo_list.html" %}
     {% include "handlebars/loading.html" %}
