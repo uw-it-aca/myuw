@@ -27,7 +27,7 @@
 
     {{ #unless has_balance }}
         <!-- if tuition balance is 0 -->
-        <div class="card-badge-container">
+        <div class="card-badge-container ">
             <div class="card-badge">
                 <span class="card-badge-label" style="line-height:20px;">{{ #if is_pce}}Your PCE tuition<br/> has been paid{{ else  }}Your tuition and fees have been paid{{ /if }}</span>
                 <div class="card-badge-action" style="margin-top:10px; text-align:right;"><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank" data-linklabel="Tuition Statement">See tuition statement</a></div>
@@ -37,7 +37,7 @@
 
     {{ #if has_balance }}
         {{ #if is_credit }}
-            <div class="card-badge-container">
+            <div class="card-badge-container tuition">
                 <ul class="card_list">
                     <li>
                         <div class="card-badge clearfix">
@@ -52,7 +52,7 @@
                 </ul>
             </div>
         {{ else }}  <!-- else, there is a balance -->
-            <div class="card-badge-container">
+            <div class="card-badge-container tuition">
 	        <ul class="card_list">
 		    <li>
 	                <div class="card-badge clearfix">
@@ -67,7 +67,7 @@
 
 	            {{ #if tuition_date }}
 	            <li>
-	                <div class="card-badge clearfix">
+	                <div class="card-badge clearfix no-top-margin">
 	                    <div class="pull-left">
 	                        <h4 class="card-badge-label">Tuition due </h4>
 	                    </div>
@@ -82,8 +82,8 @@
 	            {{ /if }}
 		    
 		    <li>
-			    <div class="card-badge cleafix">
-			    	<div class="pull-right">
+			    <div class="card-badge cleafix no-top-margin">
+			    	<div class="pull-right" >
 			    		<div class="btn btn-default card-badge-action-btn"><a href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank" data-linklabel="Make Tuition Payment">Make payment</a></div>
 					</div>
 		    	</div>
@@ -96,7 +96,7 @@
     {{ /if }}
 
     {{ #if pce_accbalance }}
-        <div class="card-badge-container pce">
+        <div class="card-badge-container">
 	    <ul class="card_list">
 		<li>
 	        <div class="card-badge clearfix">
@@ -105,7 +105,7 @@
 	                </div>
 					<div class="pull-right">
 	                    <span class="card-badge-value text-danger">${{ pce_accbalance }}</span>
-	                    <span class="pull-right" style="width: 100%; line-height: 1.5em; font-size: .9em; text-align: right; margin-top: -.2em;"> Contact PCE for due date</span>
+	                    <span class="pull-right" style="width: 100%; line-height: 2em; font-size: .9em; text-align: right;">Contact PCE for due date</span>
 	        		</div>            
 	        </div>
 	        <div class="card-badge clearfix">            
