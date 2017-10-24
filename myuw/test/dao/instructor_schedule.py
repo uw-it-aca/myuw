@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User
 from uw_sws.models import Term, Section
+from uw_sws.exceptions import InvalidSectionID
 from uw_pws import PWS
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user, get_request
@@ -46,32 +47,38 @@ class TestInstructorSchedule(TestCase):
         self.assertEqual(len(schedule.sections), 7)
 
     def test_get_instructor_section(self):
-        person = person = PWS().get_person_by_netid('bill')
-        schedule = get_instructor_section(
-            person, '2013', 'spring', 'ESS', '102', 'A')
+        person = PWS().get_person_by_netid('bill')
+        schedule = get_instructor_section(person, '2013,spring,ESS,102/A')
         self.assertEqual(len(schedule.sections), 1)
+
+    def test_invalid_instructor_section(self):
+        person = PWS().get_person_by_netid('bill')
+
+        self.assertRaises(
+            InvalidSectionID, get_instructor_section, person, None)
+        self.assertRaises(
+            InvalidSectionID, get_instructor_section, person, '12345')
+        self.assertRaises(
+            InvalidSectionID, get_instructor_section, person,
+            '2013,spring,ESS,102')
 
     def test_get_instructor_secondary_section(self):
         person = PWS().get_person_by_netid('billsea')
 
-        schedule = get_instructor_section(
-            person, '2017', 'autumn', 'CSE', '154', 'AA')
+        schedule = get_instructor_section(person, '2017,autumn,CSE,154/AA')
         self.assertEqual(len(schedule.sections), 1)
 
-        schedule = get_instructor_section(
-            person, '2017', 'autumn', 'EDC&I', '552', 'A')
+        schedule = get_instructor_section(person, '2017,autumn,EDC&I,552/A')
         self.assertEqual(len(schedule.sections), 1)
 
     def test_check_instructor_section(self):
         bill = PWS().get_person_by_netid('bill')
-        schedule = get_instructor_section(
-            bill, '2013', 'spring', 'ESS', '102', 'A')
+        schedule = get_instructor_section(bill, '2013,spring,ESS,102/A')
         ess_section = schedule.sections[0]
         self.assertEqual(None, check_section_instructor(ess_section, bill))
 
         billsea = PWS().get_person_by_netid('billsea')
-        schedule = get_instructor_section(
-            billsea, '2017', 'autumn', 'CSE', '154', 'AA')
+        schedule = get_instructor_section(billsea, '2017,autumn,CSE,154/AA')
         cse_section = schedule.sections[0]
         self.assertEqual(None, check_section_instructor(cse_section, billsea))
 
