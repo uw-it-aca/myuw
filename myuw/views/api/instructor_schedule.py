@@ -15,7 +15,7 @@ from uw_sws.term import get_specific_term
 from uw_gradepage.grading_status import get_grading_status
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.building import get_buildings_by_schedule
-from myuw.dao.canvas import get_canvas_course_url
+from myuw.dao.canvas import get_canvas_course_url, sws_section_label
 from myuw.dao.course_color import get_colors_by_schedule
 from myuw.dao.enrollment import get_code_for_class_level
 from myuw.dao.gws import is_grad_student
@@ -25,7 +25,9 @@ from myuw.dao.instructor_schedule import (
     get_instructor_section, get_primary_section, check_section_instructor)
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
-from myuw.dao.pws import get_url_key_for_regid, get_regid_of_current_user
+from myuw.dao.pws import (
+    get_person_of_current_user, get_person_by_regid as get_pws_person_by_regid,
+    get_url_key_for_regid)
 from myuw.dao.registration import get_active_registrations_for_section
 from myuw.dao.term import (
     get_current_quarter, is_past, is_future, get_previous_number_quarters,
@@ -37,6 +39,7 @@ from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.api import OpenAPI, ProtectedAPI
 from myuw.views.api.base_schedule import irregular_start_end
 from myuw.views.decorators import blti_admin_required
+from blti import BLTI
 
 logger = logging.getLogger(__name__)
 EARLY_FALL_START = "EARLY FALL START"
@@ -105,13 +108,14 @@ def set_section_evaluation(section, person):
                 if section.sln and eval.section_sln == section.sln:
                     return eval.json_data()
         return {'eval_not_exist': True}
-    except Exception as ex:
+    except DataFailureException as ex:
         if isinstance(ex, TermEvalNotCreated):
             # eval not created for the term
             return {'eval_not_exist': True}
-        # eval search never returns 404
-        log_exception(
-            logger, 'set_section_evaluation', traceback.format_exc())
+
+        if ex.status != 404:
+            log_exception(
+                logger, 'set_section_evaluation', traceback.format_exc())
 
 
 def set_course_resources(section_data, section, person):
@@ -184,7 +188,7 @@ def set_indep_study_section_enrollments(section, section_json_data):
         return
     try:
         registrations = get_active_registrations_for_section(
-            section, get_regid_of_current_user())
+            section, section_json_data['independent_study_instructor_regid'])
         total_enrollment = len(registrations)
         if total_enrollment < section.current_enrollment:
             section_json_data['current_enrollment'] = total_enrollment
@@ -253,7 +257,7 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
         if section.is_independent_study:
             section_data['is_independent_study'] = True
             section_data['independent_study_instructor_regid'] =\
-                section.independent_study_instructor_regid
+                schedule.person.uwregid
 
             set_indep_study_section_enrollments(section, section_data)
         else:
@@ -420,16 +424,18 @@ class InstSect(ProtectedAPI):
         <course_number>,<course_section>?
     """
     def is_authorized_for_section(self, request, schedule):
-        check_section_instructor(schedule.sections[0], schedule.person)
+        try:
+            check_section_instructor(schedule.sections[0], schedule.person)
+        except IndexError:
+            pass
 
-    def make_http_resp(self, timer, year, quarter, curriculum, course_number,
-                       course_section, request):
+    def make_http_resp(self, timer, request, section_id):
         """
         @return instructor schedule data in json format
                 status 404: no schedule found (teaching no courses)
         """
-        schedule = get_instructor_section(year, quarter, curriculum,
-                                          course_number, course_section)
+        person = get_person_of_current_user()
+        schedule = get_instructor_section(person, section_id)
 
         try:
             self.is_authorized_for_section(request, schedule)
@@ -447,16 +453,10 @@ class InstSect(ProtectedAPI):
                 status 404: no schedule found (not registered)
                 status 543: data error
         """
-        year = kwargs.get("year")
-        quarter = kwargs.get("quarter")
-        curriculum = kwargs.get("curriculum")
-        course_number = kwargs.get("course_number")
-        course_section = kwargs.get("course_section")
+        section_id = kwargs.get("section_id")
         timer = Timer()
         try:
-            return self.make_http_resp(timer, year, quarter, curriculum,
-                                       course_number, course_section,
-                                       request)
+            return self.make_http_resp(timer, request, section_id)
         except Exception:
             return handle_exception(logger, timer, traceback)
 
@@ -467,18 +467,26 @@ class OpenInstSectionDetails(OpenAPI):
     /api/v1/instructor_section/<year>,<quarter>,<curriculum>,
         <course_number>,<course_section>?
     """
+    def validate_section_id(self, request, section_id):
+        return section_id
+
     def is_authorized_for_section(self, request, schedule):
         raise NotSectionInstructorException()
 
-    def make_http_resp(self, timer, year, quarter, curriculum, course_number,
-                       course_section, request):
+    def make_http_resp(self, timer, request, section_id):
         """
         @return instructor schedule data in json format
-                status 404: no schedule found (teaching no courses)
+            status 404: no schedule found (teaching no courses)
         """
         self.processed_primary = False
-        schedule = get_instructor_section(year, quarter, curriculum,
-                                          course_number, course_section,
+        self.person = get_person_of_current_user()
+
+        try:
+            section_id = self.validate_section_id(request, section_id)
+        except NotSectionInstructorException:
+            return not_instructor_error()
+
+        schedule = get_instructor_section(self.person, section_id,
                                           include_registrations=True,
                                           include_linked_sections=True)
 
@@ -487,7 +495,7 @@ class OpenInstSectionDetails(OpenAPI):
         except NotSectionInstructorException:
             return not_instructor_error()
 
-        self.term = get_specific_term(year, quarter)
+        self.term = schedule.term
         resp_data = load_schedule(request, schedule,
                                   section_callback=self.per_section_data)
 
@@ -625,16 +633,10 @@ class OpenInstSectionDetails(OpenAPI):
                 status 404: no schedule found (not registered)
                 status 543: data error
         """
-        year = kwargs.get("year")
-        quarter = kwargs.get("quarter")
-        curriculum = kwargs.get("curriculum")
-        course_number = kwargs.get("course_number")
-        course_section = kwargs.get("course_section")
+        section_id = kwargs.get('section_id')
         timer = Timer()
         try:
-            return self.make_http_resp(timer, year, quarter, curriculum,
-                                       course_number, course_section,
-                                       request)
+            return self.make_http_resp(timer, request, section_id)
         except Exception as ex:
             return handle_exception(logger, timer, traceback)
 
@@ -642,11 +644,27 @@ class OpenInstSectionDetails(OpenAPI):
 @method_decorator(login_required, name='dispatch')
 class InstSectionDetails(OpenInstSectionDetails):
     def is_authorized_for_section(self, request, schedule):
-        check_section_instructor(schedule.sections[0], schedule.person)
+        try:
+            check_section_instructor(schedule.sections[0], schedule.person)
+        except IndexError:
+            pass
 
 
 @method_decorator(blti_admin_required, name='dispatch')
 class LTIInstSectionDetails(OpenInstSectionDetails):
     def is_authorized_for_section(self, request, schedule):
-        # method_decorator validates LTI session with course admin role
         pass
+
+    def validate_section_id(self, request, section_id):
+        blti_data = BLTI().get_session(request)
+        authorized_sections = blti_data.get('authorized_sections', [])
+
+        if section_id not in authorized_sections:
+            raise NotSectionInstructorException
+
+        (sws_section_id, instructor_regid) = sws_section_label(section_id)
+
+        if instructor_regid is not None:
+            self.person = get_pws_person_by_regid(instructor_regid)
+
+        return sws_section_id

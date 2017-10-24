@@ -55,6 +55,3 @@ script:
 after_script:
   - coveralls --merge=js-coverage.json
 notifications:
-  webhooks:
-      urls:
-        - https://yarn.cac.washington.edu/rest/botalyst/v1/travis-ci

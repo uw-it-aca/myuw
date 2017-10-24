@@ -26,7 +26,7 @@
       window.section_data = {
           "lti_session_id": "{{ lti_session_id }}",
           "lti_course_name": "{{ lti_course_name }}",
-          "sections": [{% for section in sections %}{"name": "{{ section.name }}", "section_id": "{{ section.section_id}}"}{% if not forloop.last %},{% endif %}{% endfor %}],
+          "sections": [{% for section in sections %}{"name": "{{ section.name }}", "section_id": "{{ section.sis_section_id }}"}{% if not forloop.last %},{% endif %}{% endfor %}],
           "section": "{{ section }}"
       };
       window.user = {
