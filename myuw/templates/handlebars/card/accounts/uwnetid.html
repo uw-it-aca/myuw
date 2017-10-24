@@ -4,22 +4,20 @@
 
 <div class="card" style="position:relative;" id="netid-pw">
     <h3>UW NetID </h3>
-
-    <a href="https://uwnetid.washington.edu/manage/" target="_blank">Manage UW NetID account</a>
-
-    <div class="pw-exp">
-        <a href="https://uwnetid.washington.edu/manage/?password" class="pw-exp-date" target="_blank">Password</a><br>
-	<span>Last updated {{days_after_last_pw_change}} days ago</span>
-    </div>
-
-    <ul class="pw-link unstyled-list">
-       <li><a href="https://identity.uw.edu/account/recovery/" target="_blank">UW NetID account recovery settings</a></li>
-
-       {{#if display_2fa}}
-       <li><a href="https://identity.uw.edu/2fa/" target="_blank">Two-factor authentication (2FA) settings</a></li>
-       {{/if}}
-    </ul>
-
-    <p>This password is for applications like UW email, MyUW, etc.</p>
+	<div class="card-badge ">
+	    <div class="btn btn-default card-badge-action-btn">
+		    <a href="https://uwnetid.washington.edu/manage/" target="_blank" title="Manage UW NetID">Manage UW NetID account</a>
+		</div>
+	</div>	
+    <div class="links-container">
+	    <ul class="unstyled-list">
+		   <li><a href="https://uwnetid.washington.edu/manage/?password" target="_blank" title="Change UW NetID password">Change UW NetID password</a></li>
+	       <li><a href="https://identity.uw.edu/account/recovery/" target="_blank" title="NetID account recovery options">Set account recovery options</a></li>
+	
+	       {{#if display_2fa}}
+	       <li><a href="https://identity.uw.edu/2fa/" target="_blank" title="Manage two-factor authentication">Manage two-factor authentication (2FA)</a></li>
+	       {{/if}}
+	    </ul>
+	</div>
 </div>
 {% endtplhandlebars %}

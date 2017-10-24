@@ -646,9 +646,9 @@ label { font-weight: normal; margin-bottom: auto; }
                     font-weight: bold;
                 /*line-height: 35px;*/ }
                 .card-badge-action-btn { //change to button
-                    &:hover {background-color:#e8e3d3;border-color:#e8e3d3;}                   
+                    &:hover, &:focus {background-color:#e8e3d3;border-color:#e8e3d3;}                   
                     a {color:#444;
-                    	&:hover {color: #000; text-decoration: none; }
+                    	&:hover, &:focus {color: #000; text-decoration: none; }
                     }
                 }
 				 .card-badge-action {
@@ -675,7 +675,10 @@ label { font-weight: normal; margin-bottom: auto; }
                 }
             }
         }
-
+	//Related links chunk container	
+		.links-container {
+		margin: .5em 0 1em 0; 
+		}
         .card-related-messages {
             margin: 1em 0;
             font-size: 12px;
@@ -990,10 +993,10 @@ label { font-weight: normal; margin-bottom: auto; }
                     display: block;
                     font-weight: bold;
                 }
-                .card-badge-action-btn { 
-                    &:hover {background-color:#e8e3d3;border-color:#e8e3d3;}                   
+                .card-badge-action-btn { margin-bottom: 1em; margin-top: .5em;
+                    &:hover, &:focus {background-color:#e8e3d3;border-color:#e8e3d3;}                   
                     a {color:#444;
-                    	&:hover {color: #000; text-decoration: none; }
+                    	&:hover, &:focus {color: #000; text-decoration: none; }
                     }
                 }
                 .card-badge-action {
@@ -1011,7 +1014,10 @@ label { font-weight: normal; margin-bottom: auto; }
                     text-align: right;
                 }
 	}
-    } //end of Medicine card
+	.links-container {
+		margin: .5em 0 1em 0; 
+	}
+    } //end of Medicine and NetID card
 
 
        // registration card
@@ -2134,9 +2140,9 @@ th.mailman-sections-column { width: 99%; }
 }
 
 .card-badge-action-btn { //change to button
-                    &:hover {background-color:#e8e3d3;border-color:#e8e3d3;}                   
+                    &:hover, &:focus {background-color:#e8e3d3;border-color:#e8e3d3;}                   
                     a {color:#444;
-                    	&:hover {color: #000; text-decoration: none; }
+                    	&:hover, &:focus {color: #000; text-decoration: none; }
                     }
                 }
 
