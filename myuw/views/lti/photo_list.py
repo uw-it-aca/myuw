@@ -18,7 +18,7 @@ class LTIPhotoList(BLTILaunchView):
         sis_course_id = blti_data.get('lis_course_offering_sourcedid')
         user_id = blti_data.get('custom_canvas_user_id')
         sections = []
-        section_id = None
+        section_id = ''
 
         try:
             sections = get_viewable_course_sections(course_id, user_id)
