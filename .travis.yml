@@ -1,6 +1,5 @@
 sudo: false
 language: python
-dist: precise
 services:
   - memcached
   - mysql
