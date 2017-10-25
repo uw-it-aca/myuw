@@ -671,12 +671,14 @@ label { font-weight: normal; margin-bottom: auto; }
             }
         }
     // Card action button
-        .card-action-btn { //change to button
+        .card-action-btn { 
                     &:hover, &:focus {background-color:#e8e3d3;border-color:#e8e3d3;}                   
                     a {color:#444;
                     	&:hover, &:focus {color: #000; text-decoration: none; }
-                    }
-                }
+                    }     
+         }
+    //adding space for a right-aligned btn
+         .btn-rt { margin-right: 10px;}
 	//Related links chunk container in Account page cards 	
 		.links-container {
 		margin: .5em 0 1em 0; 
@@ -1413,7 +1415,7 @@ label { font-weight: normal; margin-bottom: auto; }
 				    }
 			    }
 		    }
-		    .card-badge-container .no-top-margin {
+		    .card-badge-container .middle-row {
 				padding-top: 0;
 	    	}	
 		    .card-badge-container.tuition {

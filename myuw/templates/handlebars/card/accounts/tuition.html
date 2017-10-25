@@ -67,7 +67,7 @@
 
 	            {{ #if tuition_date }}
 	            <li>
-	                <div class="card-badge clearfix no-top-margin">
+	                <div class="card-badge clearfix middle-row">
 	                    <div class="pull-left">
 	                        <h4 class="card-badge-label">Tuition due </h4>
 	                    </div>
@@ -78,16 +78,21 @@
 	                        <span class="card-badge-action pull-right">in {{ tuition_date_offset }} days</span>
 	                    </div>
 	                </div>
+	                <div class="cleafix middle-row">
+				    	<div class="pull-right" >
+				    		<div class="btn btn-default card-action-btn btn-rt"><a href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank" data-linklabel="Make Tuition Payment">Make payment</a></div>
+						</div>
+		    	</div>
 				</li>
 	            {{ /if }}
 		    
-		    <li>
+		  <!--   <li>
 			    <div class="card-badge cleafix no-top-margin">
 			    	<div class="pull-right" >
 			    		<div class="btn btn-default card-action-btn"><a href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank" data-linklabel="Make Tuition Payment">Make payment</a></div>
 					</div>
 		    	</div>
-		    </li>
+		    </li>-->
 	        </ul>
 	    </div>
         <!-- end if tuition_credit -->
