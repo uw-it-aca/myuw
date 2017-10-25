@@ -61,21 +61,22 @@ var TuitionCard = {
             has_credit_values;
 
         template_data.pce_tuition_dup = Notices.get_notices_for_tag("pce_tuition_dup");
-        template_data.is_pce = false;
 
         if (template_data.pce_accbalance == '0.00') {
             template_data.pce_accbalance = 0;
         }
-
+        template_data.is_grad = window.user.grad;
+        template_data.is_pce = false;  // window.user.pce;
         template_data.is_tacoma = window.user.tacoma_affil;
         template_data.is_bothell = window.user.bothell_affil;
         template_data.is_seattle = window.user.seattle_affil;
-        template_data.is_grad = window.user.grad;
+
         has_credit_values = TuitionCard.process_tuition(template_data.tuition_accbalance);
         template_data.plain_tuition = has_credit_values.tuition;
         template_data.is_credit = has_credit_values.is_credit;
 
         tuition_due_notice = Notices.get_notices_for_tag("tuition_due_date")[0];
+
         if (tuition_due_notice !== undefined) {
             for (var i = 0; i < tuition_due_notice.attributes.length; i += 1) {
                 if (tuition_due_notice.attributes[i].name === "Date") {
