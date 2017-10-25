@@ -1,6 +1,7 @@
 from dateutil.relativedelta import *
 from datetime import timedelta
 import math
+import copy
 
 
 def get_visual_schedule(schedule):
@@ -28,8 +29,37 @@ def get_visual_schedule(schedule):
         bounds = get_schedule_bounds(schedule)
         weeks = _get_weeks_from_bounds(bounds)
         weeks = _add_sections_to_weeks(schedule.sections, weeks)
+        weeks = trim_section_meetings(weeks)
+        weeks = trim_weeks_no_meetings(weeks)
         consolidated = _consolidate_weeks(weeks)
     return consolidated
+
+
+def trim_weeks_no_meetings(weeks):
+    trimmed_weeks = copy.copy(weeks)
+    for week in weeks:
+        non_meeting_sections = []
+        for section in week.sections:
+            for meeting in section.meetings:
+                if meeting.no_meeting() and not meeting.wont_meet():
+                    non_meeting_sections.append(section)
+        if len(non_meeting_sections) == len(week.sections):
+            trimmed_weeks.remove(week)
+    return trimmed_weeks
+
+
+def trim_section_meetings(weeks):
+    for week in weeks:
+        for section in week.sections:
+            if section.start_date > week.start_date:
+                trimmed = _trim_section_before(section, section.start_date)
+                if trimmed:
+                    week.meetings_trimmed = True
+            if section.end_date < week.end_date:
+                trimmed = _trim_section_after(section, section.end_date)
+                if trimmed:
+                    week.meetings_trimmed = True
+    return weeks
 
 
 def get_summer_schedule_bounds(schedule):
@@ -101,6 +131,68 @@ def _trim_sections_before(sections, date):
     return sections
 
 
+def _trim_section_after(section, date):
+    cutoff_day = int(date.strftime('%w'))
+    trimmed = False
+    for meeting in section.meetings:
+        if cutoff_day <= 5:
+            if meeting.meets_saturday:
+                trimmed = True
+            meeting.meets_saturday = False
+        if cutoff_day <= 4:
+            if meeting.meets_friday:
+                trimmed = True
+            meeting.meets_friday = False
+        if cutoff_day <= 3:
+            if meeting.meets_thursday:
+                trimmed = True
+            meeting.meets_thursday = False
+        if cutoff_day <= 2:
+            if meeting.meets_wednesday:
+                trimmed = True
+            meeting.meets_wednesday = False
+        if cutoff_day <= 1:
+            if meeting.meets_tuesday:
+                trimmed = True
+            meeting.meets_tuesday = False
+        if cutoff_day <= 0:
+            if meeting.meets_monday:
+                trimmed = True
+            meeting.meets_monday = False
+    return trimmed
+
+
+def _trim_section_before(section, date):
+    cutoff_day = int(date.strftime('%w'))
+    trimmed = False
+    for meeting in section.meetings:
+        if cutoff_day >= 1:
+            if meeting.meets_sunday:
+                trimmed = True
+            meeting.meets_sunday = False
+        if cutoff_day >= 2:
+            if meeting.meets_monday:
+                trimmed = True
+            meeting.meets_monday = False
+        if cutoff_day >= 3:
+            if meeting.meets_tuesday:
+                trimmed = True
+            meeting.meets_tuesday = False
+        if cutoff_day >= 4:
+            if meeting.meets_wednesday:
+                trimmed = True
+            meeting.meets_wednesday = False
+        if cutoff_day >= 5:
+            if meeting.meets_thursday:
+                trimmed = True
+            meeting.meets_thursday = False
+        if cutoff_day >= 6:
+            if meeting.meets_friday:
+                trimmed = True
+            meeting.meets_friday = False
+    return trimmed
+
+
 def _is_split_summer(schedule):
     if schedule.term.quarter != 'summer':
         return False
@@ -126,7 +218,8 @@ def _add_sections_to_weeks(sections, weeks):
         for section in sections:
             if section.start_date <= week.end_date \
                     and section.end_date >= week.start_date:
-                week.sections.append(section)
+                # make a copy of section as we'll modify meetings per week
+                week.sections.append(copy.deepcopy(section))
     return weeks
 
 
@@ -138,22 +231,29 @@ def _consolidate_weeks(weeks):
         if prev_week is None:
             prev_week = week
         else:
+            will_merge = True
             # Don't merge last week of A-term
             if week.summer_term == "A-term" \
                     and weeks.index(week) == len(weeks) - 1:
-                consolidated_weeks.append(prev_week)
-                prev_week = week
+                will_merge = False
             # Don't merge 2nd week of B term with 1st
             elif week.summer_term == "B-term" and weeks.index(week) == 1:
-                consolidated_weeks.append(prev_week)
-                prev_week = week
+                will_merge = False
             else:
                 #  Merge weeks with same sections
                 if _section_lists_are_same(prev_week.sections, week.sections):
-                    prev_week.end_date = week.end_date
+                    will_merge = True
                 else:
-                    consolidated_weeks.append(prev_week)
-                    prev_week = week
+                    will_merge = False
+            if week.meetings_trimmed or prev_week.meetings_trimmed:
+                will_merge = False
+
+            if will_merge:
+                prev_week.end_date = week.end_date
+            else:
+                consolidated_weeks.append(prev_week)
+                prev_week = week
+
     # Append last week block
     consolidated_weeks.append(prev_week)
     return consolidated_weeks
@@ -269,3 +369,4 @@ class SchedulePeriod():
         # sections will be either A term OR B term, full term classes will
         # be split into corresponding A and B term pieces
         self.summer_term = None
+        self.meetings_trimmed = False

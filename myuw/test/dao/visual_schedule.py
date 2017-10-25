@@ -20,14 +20,12 @@ class TestVisualSchedule(TestCase):
     def setUp(self):
         get_request()
 
-    # def test_get_vs(self):
-    #     regid = "9136CCB8F66711D5BE060004AC494FFE"
-    #     term = get_term_from_quarter_string("2013,summer")
-    #
-    #     schedule = _get_schedule(regid, term)
-    #     print schedule.sections
-    #
-    #     # vis = get_visual_schedule(schedule)
+    def _sections_are_same(self, sec1, sec2):
+        if sec1.curriculum_abbr == sec2.curriculum_abbr \
+                and sec1.course_number == sec2.course_number \
+                and sec1.section_id == sec2.section_id:
+            return True
+        return False
 
     def test_get_bounds(self):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
@@ -151,10 +149,12 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(len(consolidated), 2)
 
         self.assertEqual(len(consolidated[0].sections), 1)
-        self.assertEqual(consolidated[0].sections[0], section1)
+        self.assertTrue(_sections_are_same(consolidated[0].sections[0],
+                                           section1))
 
         self.assertEqual(len(consolidated[1].sections), 1)
-        self.assertEqual(consolidated[1].sections[0], section2)
+        self.assertTrue(_sections_are_same(consolidated[1].sections[0],
+                                           section2))
 
     def test_consolidate_weeks_partial_overlap(self):
         section1 = Section()
@@ -181,14 +181,18 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(len(consolidated), 3)
 
         self.assertEqual(len(consolidated[0].sections), 1)
-        self.assertEqual(consolidated[0].sections[0], section1)
+        self.assertTrue(_sections_are_same(consolidated[0].sections[0],
+                                           section1))
 
         self.assertEqual(len(consolidated[1].sections), 2)
-        self.assertEqual(consolidated[1].sections[0], section1)
-        self.assertEqual(consolidated[1].sections[1], section2)
+        self.assertTrue(_sections_are_same(consolidated[1].sections[0],
+                                           section1))
+        self.assertTrue(_sections_are_same(consolidated[1].sections[1],
+                                           section2))
 
         self.assertEqual(len(consolidated[2].sections), 1)
-        self.assertEqual(consolidated[2].sections[0], section2)
+        self.assertTrue(_sections_are_same(consolidated[2].sections[0],
+                                           section2))
 
     def test_consolidate_weeks_jpce(self):
         regid = "10000000000000000000000000000010"
@@ -323,7 +327,7 @@ class TestVisualSchedule(TestCase):
         a_weeks = _add_sections_to_weeks(schedule.sections, a_weeks)
         a_consolidated = _consolidate_weeks(a_weeks)
         a_consolidated = trim_summer_meetings(a_consolidated)
-        mtg = a_consolidated[0].sections[0].meetings[0]
+        mtg = a_consolidated[1].sections[0].meetings[0]
 
         self.assertTrue(mtg.meets_sunday)
         self.assertTrue(mtg.meets_monday)
@@ -398,8 +402,14 @@ class TestVisualSchedule(TestCase):
                              datetime.date(2013, 6, 23))
             self.assertEqual(consolidated[3].end_date,
                              datetime.date(2013, 8, 24))
+
+            # ensure section exists in each week
             for week in consolidated:
-                self.assertIn(section1, week.sections)
+                found_match = False
+                for section in week.sections:
+                    if _sections_are_same(section, section1):
+                        found_match = True
+                self.assertTrue(found_match)
 
     def test_summer_term_schedule_pce(self):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
@@ -453,28 +463,54 @@ class TestVisualSchedule(TestCase):
             pce_weeks = [consolidated[index] for index in [1, 2, 3, 4]]
             non_pce_weeks = [consolidated[index] for index in [0, 5]]
 
+            # ensure section exists in each week
             for week in pce_weeks:
-                self.assertIn(section1, week.sections)
+                found_match = False
+                for section in week.sections:
+                    if _sections_are_same(section, section1):
+                        found_match = True
+                self.assertTrue(found_match)
+
+            # ensure section doesn't exist in each week
             for week in non_pce_weeks:
-                self.assertNotIn(section1, week.sections)
+                found_match = False
+                for section in week.sections:
+                    if _sections_are_same(section, section1):
+                        found_match = True
+                self.assertFalse(found_match)
 
     def test_efs_schedule(self):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,autumn")
         schedule = _get_schedule(regid, term)
         consolidated = get_visual_schedule(schedule)
-        for week in consolidated:
-            print week.start_date, len(week.sections), week.end_date
+        self.assertEqual(len(consolidated), 4)
+
         self.assertEqual(consolidated[0].start_date,
-                         datetime.date(2013, 8, 18))
+                         datetime.date(2013, 8, 25))
         self.assertEqual(consolidated[0].end_date,
-                         datetime.date(2013, 9, 21))
+                         datetime.date(2013, 9, 14))
 
         self.assertEqual(consolidated[1].start_date,
-                         datetime.date(2013, 9, 22))
+                         datetime.date(2013, 9, 15))
         self.assertEqual(consolidated[1].end_date,
-                         datetime.date(2013, 12, 07))
+                         datetime.date(2013, 9, 21))
 
-        # TODO: have every period trim meetings based on section start date
-        # if it exists This will ensure EFS courses' meetings are cut down
-        # before/after section dates
+        self.assertEqual(consolidated[2].start_date,
+                         datetime.date(2013, 9, 22))
+        self.assertEqual(consolidated[2].end_date,
+                         datetime.date(2013, 9, 28))
+
+        self.assertEqual(consolidated[3].start_date,
+                         datetime.date(2013, 9, 29))
+        self.assertEqual(consolidated[3].end_date,
+                         datetime.date(2013, 12, 7))
+
+        trimmed_efs_mtg = consolidated[1].sections[0].meetings[0]
+        self.assertFalse(trimmed_efs_mtg.meets_sunday)
+        self.assertTrue(trimmed_efs_mtg.meets_monday)
+        self.assertTrue(trimmed_efs_mtg.meets_tuesday)
+        self.assertTrue(trimmed_efs_mtg.meets_wednesday)
+        self.assertFalse(trimmed_efs_mtg.meets_thursday)
+        self.assertFalse(trimmed_efs_mtg.meets_friday)
+        self.assertFalse(trimmed_efs_mtg.meets_saturday)
