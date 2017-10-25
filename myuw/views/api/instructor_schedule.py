@@ -613,8 +613,7 @@ class OpenInstSectionDetails(OpenAPI):
         sws_person = get_person_by_regid(person.uwregid)
         return {"name": sws_person.first_name.title(),
                 "surname": sws_person.last_name.title(),
-                "email": sws_person.email
-                }
+                "email": sws_person.email}
 
     def get_enrollments(self, person):
         regid = person.uwregid
@@ -630,6 +629,8 @@ class OpenInstSectionDetails(OpenAPI):
         """
         GET returns 200 with a specific term instructor schedule
         @return course schedule data in json format
+                status 400: invalid section_id
+                status 403: not authorized to view section details
                 status 404: no schedule found (not registered)
                 status 543: data error
         """
