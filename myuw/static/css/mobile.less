@@ -645,12 +645,7 @@ label { font-weight: normal; margin-bottom: auto; }
                     display: block;
                     font-weight: bold;
                 /*line-height: 35px;*/ }
-                .card-badge-action-btn { //change to button
-                    &:hover, &:focus {background-color:#e8e3d3;border-color:#e8e3d3;}                   
-                    a {color:#444;
-                    	&:hover, &:focus {color: #000; text-decoration: none; }
-                    }
-                }
+
 				 .card-badge-action {
                     display: block;
                     font-weight: normal;
@@ -675,10 +670,17 @@ label { font-weight: normal; margin-bottom: auto; }
                 }
             }
         }
-	//Related links chunk container	
+    // Card action button
+        .card-action-btn { //change to button
+                    &:hover, &:focus {background-color:#e8e3d3;border-color:#e8e3d3;}                   
+                    a {color:#444;
+                    	&:hover, &:focus {color: #000; text-decoration: none; }
+                    }
+                }
+	//Related links chunk container in Account page cards 	
 		.links-container {
 		margin: .5em 0 1em 0; 
-			h4{color:#85754d;}
+			h4{color:#85754d;} 
 		}
         .card-related-messages {
             margin: 1em 0;
@@ -985,7 +987,7 @@ label { font-weight: normal; margin-bottom: auto; }
 		.password-alert {color:#a94442;font-weight: normal;
 			a {text-decoration: underline;font-weight: bold;}
 		}
-		.pw-link{ clear:both; margin-bottom: 10px;}
+		.pw-link{ clear:both; margin-bottom: 20px;}
 	.card-badge {
                 padding: 8px 10px 0px 0px;
                 padding-top: 0px;
@@ -993,12 +995,6 @@ label { font-weight: normal; margin-bottom: auto; }
                 .card-badge-label {
                     display: block;
                     font-weight: bold;
-                }
-                .card-badge-action-btn { margin-bottom: 1em; margin-top: .5em;
-                    &:hover, &:focus {background-color:#e8e3d3;border-color:#e8e3d3;}                   
-                    a {color:#444;
-                    	&:hover, &:focus {color: #000; text-decoration: none; }
-                    }
                 }
                 .card-badge-action {
                     display: block;
@@ -2139,12 +2135,7 @@ th.mailman-sections-column { width: 99%; }
 .hr-payroll-card #og_workday {
     margin-bottom: 10px;
 }
-.card-badge-action-btn { //change to button
-                    &:hover, &:focus {background-color:#e8e3d3;border-color:#e8e3d3;}                   
-                    a {color:#444;
-                    	&:hover, &:focus {color: #000; text-decoration: none; }
-                    }
-                }
+
 
 
 /*** footer ***/
