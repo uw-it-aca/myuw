@@ -27,7 +27,7 @@
 
     {{ #unless has_balance }}
         <!-- if tuition balance is 0 -->
-        <div class="card-badge-container ">
+		<div class="card-badge-container ">
             <div class="card-badge">
                 <span class="card-badge-label" style="line-height:20px;">{{ #if is_pce}}Your PCE tuition<br/> has been paid{{ else  }}Your tuition and fees have been paid{{ /if }}</span>
                 <div class="card-badge-action" style="margin-top:10px; text-align:right;"><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank" data-linklabel="Tuition Statement">See tuition statement</a></div>
@@ -37,7 +37,7 @@
 
     {{ #if has_balance }}
         {{ #if is_credit }}
-            <div class="card-badge-container tuition">
+            <div class="card-badge-container">
                 <ul class="card_list">
                     <li>
                         <div class="card-badge clearfix">
@@ -52,9 +52,9 @@
                 </ul>
             </div>
         {{ else }}  <!-- else, there is a balance -->
-            <div class="card-badge-container tuition">
+            <div class="card-badge-container ">
 	        <ul class="card_list">
-		    <li>
+		    	<li>
 	                <div class="card-badge clearfix">
 	                    <div class="pull-left">
 	                        <h4 class="card-badge-label">You owe</h4>
@@ -63,10 +63,10 @@
 	                        <span class="card-badge-value text-danger">${{ tuition_accbalance }}</span>
 	            		</div>
 	                </div>
-		    </li>
+		    	</li>
 
 	            {{ #if tuition_date }}
-	            <li>
+	            <li class="tuition-due">
 	                <div class="card-badge clearfix middle-row">
 	                    <div class="pull-left">
 	                        <h4 class="card-badge-label">Tuition due </h4>
@@ -82,46 +82,35 @@
 				    	<div class="pull-right" >
 				    		<div class="btn btn-default card-action-btn btn-rt"><a href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank" data-linklabel="Make Tuition Payment">Make payment</a></div>
 						</div>
-		    	</div>
+		    		</div>
 				</li>
 	            {{ /if }}
-		    
-		  <!--   <li>
-			    <div class="card-badge cleafix no-top-margin">
-			    	<div class="pull-right" >
-			    		<div class="btn btn-default card-action-btn"><a href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank" data-linklabel="Make Tuition Payment">Make payment</a></div>
-					</div>
-		    	</div>
-		    </li>-->
-	        </ul>
-	    </div>
+
         <!-- end if tuition_credit -->
         {{ /if }}
         <!-- end if has_balance -->
     {{ /if }}
 
     {{ #if pce_accbalance }}
-        <div class="card-badge-container">
-	    <ul class="card_list">
-		<li>
-	        <div class="card-badge clearfix">
-	                <div class="pull-left">
-	                    <h4 class="card-badge-label">You owe PCE</h4>
-	                </div>
-					<div class="pull-right">
-	                    <span class="card-badge-value text-danger">${{ pce_accbalance }}</span>
-	                    <span class="pull-right" style="width: 100%; line-height: 2em; font-size: .9em; text-align: right;"><a href="https://www.pce.uw.edu/contact-us" target="_blank" title="PCE Help center contact information">Contact PCE</a> for due date</span>
-	        		</div>            
-	        </div>
-	        <div class="card-badge clearfix">            
-	        	<div class="pull-right"><div class="btn btn-default card-action-btn "><a href="https://www.pce.uw.edu/help/registration-costs/payment-options" target="_blank" data-linklabel="PCE Payment Options">Make payment to PCE</a></div>
-	        	</div>
-	        </div>
-	    </li>
-	    </ul>
-	</div>
-    {{ /if }}
 
+				<li class="pce-tuition">
+		        <div class="card-badge clearfix">
+		                <div class="pull-left">
+		                    <h4 class="card-badge-label">You owe PCE</h4>
+		                </div>
+						<div class="pull-right">
+		                    <span class="card-badge-value text-danger">${{ pce_accbalance }}</span>
+		                    <span class="pull-right" style="width: 100%; line-height: 2em; font-size: .9em; text-align: right;"><a href="https://www.pce.uw.edu/contact-us" target="_blank" title="PCE Help center contact information">Contact PCE for due date</a></span>
+		        		</div>            
+		        </div>
+		        <div class="clearfix middle-row">            
+		        	<div class="pull-right"><div class="btn btn-default card-action-btn btn-rt"><a href="https://www.pce.uw.edu/help/registration-costs/payment-options" target="_blank" data-linklabel="PCE Payment Options">Make payment to PCE</a></div>
+		        	</div>
+		        </div>
+		    </li>
+    {{ /if }}
+			</ul>
+		    </div><!-- .card-badge-container tuition -->
     <div class="card-related-messages">
         <p><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx" target="_blank">Give access to your tuition account and financial aid information</a> to parents or other third parties.</p>
 
