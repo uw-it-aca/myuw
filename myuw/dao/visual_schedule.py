@@ -1,10 +1,16 @@
+from myuw.dao.schedule import get_current_quarter_schedule
 from dateutil.relativedelta import *
 from datetime import timedelta
 import math
 import copy
 
 
-def get_visual_schedule(schedule):
+def get_current_visual_schedule(request):
+    schedule = get_current_quarter_schedule(request)
+    return _get_visual_schedule_from_schedule(schedule)
+
+
+def _get_visual_schedule_from_schedule(schedule):
     _add_dates_to_sections(schedule)
     if _is_split_summer(schedule):
         a_bounds, b_bounds = get_summer_schedule_bounds(schedule)

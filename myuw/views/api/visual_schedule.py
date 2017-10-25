@@ -1,7 +1,7 @@
 import logging
 import traceback
 from django.http import HttpResponse
-from myuw.dao.term import get_current_quarter
+from myuw.dao.visual_schedule import get_current_visual_schedule
 from myuw.logger.timer import Timer
 from myuw.views.error import handle_exception
 from myuw.views.api.base_schedule import StudClasSche
@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 class StuVisSchedCurQtr(StudClasSche):
     """
-    Performs actions on resource at /api/v1/schedule/current/.
+    Performs actions on resource at /api/v1/visual_schedule/current/.
     """
 
     def get(self, request, *args, **kwargs):
@@ -24,8 +24,7 @@ class StuVisSchedCurQtr(StudClasSche):
         """
         timer = Timer()
         try:
-            return self.make_http_resp(timer,
-                                       get_current_quarter(request),
-                                       request)
+            visual_schedule = get_current_visual_schedule(request)
+            return self.json_response(visual_schedule)
         except Exception:
             return handle_exception(logger, timer, traceback)

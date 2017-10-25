@@ -3,7 +3,7 @@ from restclients_core.exceptions import DataFailureException
 from uw_sws.models import Term, Section, ClassSchedule, SectionMeeting
 from myuw.dao.term import get_term_from_quarter_string
 from myuw.dao.registration import _get_schedule
-from myuw.dao.visual_schedule import get_visual_schedule, \
+from myuw.dao.visual_schedule import _get_visual_schedule_from_schedule, \
     get_schedule_bounds, _add_dates_to_sections, _get_weeks_from_bounds, \
     _add_sections_to_weeks, _section_lists_are_same, _sections_are_same, \
     _consolidate_weeks, _add_weekend_meeting_data, \
@@ -357,7 +357,7 @@ class TestVisualSchedule(TestCase):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,summer")
         schedule = _get_schedule(regid, term)
-        consolidated = get_visual_schedule(schedule)
+        consolidated = _get_visual_schedule_from_schedule(schedule)
 
         self.assertEqual(len(consolidated), 4)
         self.assertEqual(consolidated[0].summer_term, "A-term")
@@ -394,7 +394,7 @@ class TestVisualSchedule(TestCase):
             schedule = _get_schedule(regid, term)
             schedule.sections.append(section1)
 
-            consolidated = get_visual_schedule(schedule)
+            consolidated = _get_visual_schedule_from_schedule(schedule)
 
             self.assertEqual(len(consolidated), 4)
 
@@ -426,7 +426,7 @@ class TestVisualSchedule(TestCase):
             schedule = _get_schedule(regid, term)
             schedule.sections.append(section1)
 
-            consolidated = get_visual_schedule(schedule)
+            consolidated = _get_visual_schedule_from_schedule(schedule)
 
             self.assertEqual(len(consolidated), 6)
 
@@ -483,7 +483,7 @@ class TestVisualSchedule(TestCase):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,autumn")
         schedule = _get_schedule(regid, term)
-        consolidated = get_visual_schedule(schedule)
+        consolidated = _get_visual_schedule_from_schedule(schedule)
         self.assertEqual(len(consolidated), 4)
 
         self.assertEqual(consolidated[0].start_date,
