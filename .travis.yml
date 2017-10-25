@@ -24,7 +24,7 @@ before_script:
   - pip install pep8
   - pip install MySQL-python
   - npm install jshint
-  - npm install mocha
+  - npm install -g mocha
   - npm install jquery
   - npm install moment
   - npm install moment-timezone
