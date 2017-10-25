@@ -38,7 +38,7 @@ var PhotoClassList = {
             data.available_sections = window.section_data.available_sections;
         }
 
-        $("#app_content").html(template(data));
+        $("#main-content").html(template(data));
 
         // add event handlers
         $("#download_class_list").on("click", PhotoClassList.download_list);
@@ -70,9 +70,9 @@ var PhotoClassList = {
         });
 
         $("#available_sections").on("change", function() {
-            window.section_data.section = this.value;
+            window.section_data.section = $(this).val();
             PhotoClassList.render();
-        });
+        }).val(window.section_data.section);
 
     },
 
