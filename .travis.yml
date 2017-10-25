@@ -22,14 +22,14 @@ before_script:
   - pip install python-coveralls
   - pip install pep8
   - pip install MySQL-python
-  - npm install jshint
-  - npm install mocha
+  - npm install -g jshint
+  - npm install -g mocha
   - npm install jquery
   - npm install moment
   - npm install moment-timezone
   - npm install datejs
   - npm install jsdom
-  - npm install istanbul
+  - npm install -g istanbul
   - npm install sinon
   - npm install coveralls
   - gem install coveralls-lcov
