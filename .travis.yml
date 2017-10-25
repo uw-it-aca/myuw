@@ -6,8 +6,6 @@ services:
   - mysql
 python:
   - "2.7"
-node_js:
-  - "6"
 env:
   matrix:
     - DB=sqlite3
