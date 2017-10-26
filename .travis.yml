@@ -1,6 +1,5 @@
 sudo: false
 language: python
-dist: precise
 services:
   - memcached
   - mysql
@@ -22,17 +21,17 @@ before_script:
   - pip install coverage
   - pip install python-coveralls
   - pip install pep8
-  - pip install MySQL-python
-  - npm install jshint
-  - npm install mocha@3.5.3
   - npm install jquery
   - npm install moment
   - npm install moment-timezone
   - npm install datejs
-  - npm install jsdom@3
-  - npm install istanbul
-  - npm install sinon
-  - npm install coveralls
+  - pip install MySQL-python
+  - npm install --save-dev jshint
+  - npm install --save-dev mocha
+  - npm install --save-dev jsdom
+  - npm install --save-dev istanbul
+  - npm install --save-dev sinon
+  - npm install --save-dev coveralls
   - gem install coveralls-lcov
   - cp travis-ci/manage.py manage.py
   - python manage.py migrate
@@ -55,6 +54,3 @@ script:
 after_script:
   - coveralls --merge=js-coverage.json
 notifications:
-  webhooks:
-      urls:
-        - https://yarn.cac.washington.edu/rest/botalyst/v1/travis-ci
