@@ -26,12 +26,12 @@ before_script:
   - npm install moment-timezone
   - npm install datejs
   - pip install MySQL-python
-  - npm install --save-dev jshint
-  - npm install --save-dev mocha
-  - npm install --save-dev jsdom
-  - npm install --save-dev istanbul
-  - npm install --save-dev sinon
-  - npm install --save-dev coveralls
+  - npm install jshint
+  - npm install mocha
+  - npm install jsdom
+  - npm install istanbul
+  - npm install sinon
+  - npm install coveralls
   - gem install coveralls-lcov
   - cp travis-ci/manage.py manage.py
   - python manage.py migrate
