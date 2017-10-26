@@ -28,7 +28,7 @@ before_script:
   - npm install moment
   - npm install moment-timezone
   - npm install datejs
-  - npm install jsdom
+  - npm install -g jsdom
   - npm install -g istanbul
   - npm install sinon
   - npm install coveralls
