@@ -21,13 +21,13 @@ var Environment = {
         // create test document
         var jsdom = require('jsdom');
         const { JSDOM } = jsdom;
-        var window = new JSDOM('');
+        var dom = new JSDOM('');
 
         // pull in supporting tools
-        var $ = require('jquery')(window);
+        var $ = require('jquery')(dom.window);
         global.$ = $;
-        global.window = window;
-        global.document = window.prototype.document;
+        global.window = dom.window;
+        global.document = dom.window.document;
         global.assert = require("assert");
         global.moment = require("moment");
         global.Handlebars = require("../../vendor/js/handlebars-v4.0.5.js");
