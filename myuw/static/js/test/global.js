@@ -2,7 +2,6 @@ var path = require("path");
 var fs = require("fs");
 var assert = require("assert");
 var sinon = require("sinon");
-var jsdom = require('jsdom');
 
 var Environment = {
     _stub: null,
@@ -20,8 +19,9 @@ var Environment = {
         }
 
         // create test document
+        var jsdom = require('jsdom');
         const { JSDOM } = jsdom;
-        var window = JSDOM.window;
+        var window = JSDOM().window;
 
         // pull in supporting tools
         var $ = require('jquery')(window);

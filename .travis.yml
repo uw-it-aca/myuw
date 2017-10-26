@@ -9,8 +9,6 @@ env:
   matrix:
     - DB=sqlite3
     - DB=mysql
-  global:
-      #- TRAVIS_NODE_VERSION="6"
 install:
   - pip install -r requirements.txt
 before_script:
