@@ -26,10 +26,10 @@ before_script:
   - npm install moment
   - npm install moment-timezone
   - npm install datejs
-  - npm install jshint
+  - npm install -g jshint
   - npm install -g mocha
-  - npm install jsdom
-  - npm install istanbul
+  - npm install -g jsdom
+  - npm install -g istanbul
   - npm install sinon
   - npm install coveralls
   - gem install coveralls-lcov
