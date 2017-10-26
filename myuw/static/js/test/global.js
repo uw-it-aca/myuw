@@ -2,6 +2,7 @@ var path = require("path");
 var fs = require("fs");
 var assert = require("assert");
 var sinon = require("sinon");
+var jsdom = require('jsdom');
 
 var Environment = {
     _stub: null,
@@ -19,14 +20,14 @@ var Environment = {
         }
 
         // create test document
-        JSDom = require('jsdom');
-        var window = JSDom.jsdom().defaultView;
+        const { JSDOM } = jsdom;
+        var window = JSDOM.window;
 
         // pull in supporting tools
         var $ = require('jquery')(window);
         global.$ = $;
         global.window = window;
-        global.document = JSDom.jsdom();
+        global.document = window.prototype.document;
         global.assert = require("assert");
         global.moment = require("moment");
         global.Handlebars = require("../../vendor/js/handlebars-v4.0.5.js");
