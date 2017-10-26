@@ -26,8 +26,8 @@ before_script:
   - npm install datejs
   - npm install -g jshint
   - npm install -g mocha
-  - npm install -g jsdom
   - npm install -g istanbul
+  - npm install jsdom
   - npm install sinon
   - npm install coveralls
   - gem install coveralls-lcov
