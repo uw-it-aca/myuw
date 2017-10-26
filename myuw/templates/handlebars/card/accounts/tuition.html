@@ -36,8 +36,6 @@
     {{ /unless }}
 
     {{ #if has_balance }}
-        <div class="card-badge-container ">
-	    <ul class="card_list">
         {{ #if is_credit }}
          <div class="card-badge-container">
                 <ul class="card_list">
@@ -55,7 +53,7 @@
             </div>
         {{ else }}  <!-- else, there is a balance -->
             
-           <div class="card-badge-container ">
+           <div class="card-badge-container">
 	        <ul class="card_list">
 		    	<li>
 	                <div class="card-badge clearfix">
@@ -95,7 +93,7 @@
     {{ /if }}
 
     {{ #if pce_accbalance }}
-			<div class="card-badge-container ">
+		<div class="card-badge-container">
 	        <ul class="card_list">
 				<li class="pce-tuition">
 			        <div class="card-badge clearfix">
@@ -112,9 +110,10 @@
 			        	</div>
 			        </div>
 				</li>
-    {{ /if }}
 			</ul>
-		    </div><!-- .card-badge-container tuition -->
+		</div><!-- .card-badge-container tuition -->
+    {{ /if }}
+
     <div class="card-related-messages">
         <p><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx" target="_blank">Give access to your tuition account and financial aid information</a> to parents or other third parties.</p>
 
