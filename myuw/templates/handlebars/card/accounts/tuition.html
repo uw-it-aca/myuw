@@ -25,20 +25,20 @@
     {{ /if }}
         <!-- end if -->
 
+		<div class="card-badge-container ">
     {{ #unless has_balance }}
         <!-- if tuition balance is 0 -->
-		<div class="card-badge-container ">
+
             <div class="card-badge">
                 <span class="card-badge-label" style="line-height:20px;">{{ #if is_pce}}Your PCE tuition<br/> has been paid{{ else  }}Your tuition and fees have been paid{{ /if }}</span>
                 <div class="card-badge-action" style="margin-top:8px;"><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank" data-linklabel="Tuition Statement">See tuition statement</a></div>
             </div>
-        </div>
     {{ /unless }}
+        
 
+    <ul class="card_list">  <!-- balance list -->
     {{ #if has_balance }}
         {{ #if is_credit }}
-         <div class="card-badge-container">
-                <ul class="card_list">
                     <li>
                         <div class="card-badge clearfix">
                             <div class="pull-left">
@@ -49,12 +49,9 @@
                             </div>
                         </div>
                     </li>
-                </ul>
-            </div>
-        {{ else }}  <!-- else, there is a balance -->
-            
-           <div class="card-badge-container">
-	        <ul class="card_list">
+
+        {{ else }}  <!-- else, there is a balance -->         
+
 		    	<li>
 	                <div class="card-badge clearfix">
 	                    <div class="pull-left">
@@ -89,12 +86,11 @@
 
         <!-- end if tuition_credit -->
         {{ /if }}
-        <!-- end if has_balance -->
+    <!-- end if has_balance -->
     {{ /if }}
 
     {{ #if pce_accbalance }}
-		<div class="card-badge-container">
-	        <ul class="card_list">
+
 				<li class="pce-tuition">
 			        <div class="card-badge clearfix">
 			                <div class="pull-left">
@@ -110,10 +106,10 @@
 			        	</div>
 			        </div>
 				</li>
-			</ul>
-		</div><!-- .card-badge-container tuition -->
+     <!-- end pce balance -->
     {{ /if }}
-
+	</ul><!-- .end of the balance list -->
+	
     <div class="card-related-messages">
         <p><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx" target="_blank">Give access to your tuition account and financial aid information</a> to parents or other third parties.</p>
 
