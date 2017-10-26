@@ -66,11 +66,11 @@
 	</ul>
 	    {{#if student_husky_card}}
 
-        <div class="btn btn-default card-action-btn btn-rt btn-topbtm pull-right"><a href="{{student_husky_card.add_funds_url}}" target="_blank" data-linklabel="HFS Account Summary">Add funds to your accounts</a></div>
+        <div class="btn btn-default card-action-btn btn-rt pull-right"><a href="{{student_husky_card.add_funds_url}}" target="_blank" data-linklabel="HFS Account Summary">Add funds to your accounts</a></div>
 
         {{ else }}
             {{#if employee_husky_card}}
-            <div class="btn btn-default card-action-btn btn-rt btn-topbtm pull-right"><a href="{{employee_husky_card.add_funds_url}}" target="_blank">Add funds to your accounts</a></div>
+            <div class="btn btn-default card-action-btn btn-rt pull-right"><a href="{{employee_husky_card.add_funds_url}}" target="_blank">Add funds to your accounts</a></div>
             {{ /if}}
         {{ /if }}
 
