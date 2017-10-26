@@ -38,8 +38,6 @@ script:
   - which mocha
   - which _mocha
   - which istanbul
-  - ls -l ./node_modules/.bin/_mocha
-  - ls -l ./node_modules/mocha/bin/_mocha
   - pep8 myuw/ --exclude=migrations,myuw/south_migrations,myuw/static
   # Find </br> tags
   - grep -re '<\s*/\s*br\s*>' myuw/templates/ ; test $? -eq 1
