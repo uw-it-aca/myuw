@@ -3,14 +3,14 @@
 <div class="card hr-payroll-card" style="position:relative;">
     <h3>HR and Payroll</h3>
 
-    <div style="padding-bottom: 10px; padding-top:.5em;">
+    <div>
         <h4 class="sr-only">Workday</h4>
-        <div class="btn btn-default card-action-btn">
+        <div class="btn btn-default card-action-btn btn-topbtm">
         {% with link_text="Sign in to Workday" %}
         {% include "workday_link.html" %}
         {% endwith %}
-        </div>
-        <p class="card-related-messages">Workday is UW's human resources, benefits, payroll, and time tracking system.</p>
+     	</div>
+        <p class="card-related-messages padding-sm">Workday is UW's human resources, benefits, payroll, and time tracking system.</p>
     </div>
 
 {{#unless is_stud_employee}}
@@ -21,7 +21,7 @@
             <li><a href="https://isc.uw.edu" target="_blank">Integrated Service Center (ISC)</a></li>
             <li>{{#if is_faculty}}<a href="http://ap.washington.edu/ahr/" target="_blank">Academic HR</a>{{else}}<a href="http://hr.uw.edu/">UW Human Resources</a>{{/if}}</li>
         </ul>
-        <p class="card-related-messages">Learn how to <a href="https://isc.uw.edu/your-time-absence/time-off/" data-linklabel="ISC Time Off" target="_blank">look up sick and vacation time</a>, <a href="https://isc.uw.edu/your-time-absence/time-reporting/" target="_blank" data-linklabel="ISC Time Reporting">enter your hours in Workday</a>, <a href="https://isc.uw.edu/your-pay-taxes/paycheck-info/#direct-deposit" data-linklabel="ISC Set Up Direct Deposit" target="_blank">set up direct deposit</a>, and more.</p>
+        <p class="card-related-messages padding-sm">Learn how to <a href="https://isc.uw.edu/your-time-absence/time-off/" data-linklabel="ISC Time Off" target="_blank">look up sick and vacation time</a>, <a href="https://isc.uw.edu/your-time-absence/time-reporting/" target="_blank" data-linklabel="ISC Time Reporting">enter your hours in Workday</a>, <a href="https://isc.uw.edu/your-pay-taxes/paycheck-info/#direct-deposit" data-linklabel="ISC Set Up Direct Deposit" target="_blank">set up direct deposit</a>, and more.</p>
     </div>
 
     <div style="">
@@ -55,7 +55,7 @@
             <li><a href="https://grad.uw.edu/graduate-student-funding/funding-information-for-departments/administering-assistantships/tara-salaries/" target="_blank">Teaching or research assistant salary schedules</a></li>
             <li><a href="http://hr.uw.edu/" target="_blank">UW Human Resources</a></li>
         </ul>
-         <p class="card-related-messages">
+         <p class="card-related-messages padding-sm">
              Learn how to <a href="https://isc.uw.edu/your-time-absence/time-reporting/" data-linklabel="ISC Enter Time" target="_blank">enter your hours in Workday</a>, <a href="https://isc.uw.edu/your-pay-taxes/paycheck-info/#direct-deposit" target="_blank" data-linklabel="ISC Set Up direct deposit">set up direct deposit</a>, and more.
          </p>
 
