@@ -21,7 +21,7 @@ var Environment = {
         // create test document
         var jsdom = require('jsdom');
         const { JSDOM } = jsdom;
-        var window = JSDOM().window;
+        var window = new JSDOM('');
 
         // pull in supporting tools
         var $ = require('jquery')(window);
