@@ -10,7 +10,7 @@ env:
     - DB=sqlite3
     - DB=mysql
   global:
-    - TRAVIS_NODE_VERSION="6"
+      #- TRAVIS_NODE_VERSION="6"
 install:
   - pip install -r requirements.txt
 before_script:
@@ -21,13 +21,13 @@ before_script:
   - pip install coverage
   - pip install python-coveralls
   - pip install pep8
+  - pip install MySQL-python
   - npm install jquery
   - npm install moment
   - npm install moment-timezone
   - npm install datejs
-  - pip install MySQL-python
   - npm install jshint
-  - npm install mocha
+  - npm install -g mocha
   - npm install jsdom
   - npm install istanbul
   - npm install sinon
