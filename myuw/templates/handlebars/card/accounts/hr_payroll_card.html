@@ -10,12 +10,12 @@
         {% include "workday_link.html" %}
         {% endwith %}
      	</div>
-        <p class="card-related-messages padding-sm">Workday is UW's human resources, benefits, payroll, and time tracking system.</p>
+        <p class="card-related-messages padding-sm wd-byline">Workday is UW's human resources, benefits, payroll, and time tracking system.</p>
     </div>
 
 {{#unless is_stud_employee}}
     {{#if is_employee}}
-    <div style="padding-bottom: 10px;">
+    <div class="links-container">
         <h4>Get Help</h4>
         <ul class="unstyled-list">
             <li><a href="https://isc.uw.edu" target="_blank">Integrated Service Center (ISC)</a></li>
@@ -23,8 +23,8 @@
         </ul>
         <p class="card-related-messages padding-sm">Learn how to <a href="https://isc.uw.edu/your-time-absence/time-off/" data-linklabel="ISC Time Off" target="_blank">look up sick and vacation time</a>, <a href="https://isc.uw.edu/your-time-absence/time-reporting/" target="_blank" data-linklabel="ISC Time Reporting">enter your hours in Workday</a>, <a href="https://isc.uw.edu/your-pay-taxes/paycheck-info/#direct-deposit" data-linklabel="ISC Set Up Direct Deposit" target="_blank">set up direct deposit</a>, and more.</p>
     </div>
-
-    <div style="">
+ 
+    <div class="links-container" style="padding-top:1px;">
         <h4>Services and Perks</h4>
         <div class="row">
             <div class="col-xs-6">
@@ -47,7 +47,7 @@
     {{/if}}
 
 {{else}}
-    <div style="padding-bottom: 10px;">
+    <div class="links-container">
         <h4>Related</h4>
         <ul class="unstyled-list">
 	        <li><a href="https://isc.uw.edu/" target="_blank">Integrated Service Center (ISC)</a></li>
