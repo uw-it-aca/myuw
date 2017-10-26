@@ -2,7 +2,6 @@ from unittest2 import skipIf
 from django.test.utils import override_settings
 from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
-from myuw.views.page import _is_mobile
 from myuw.test.api import missing_url, MyuwApiTest
 
 
@@ -11,22 +10,6 @@ legacy_url = "http://some-test-server/myuw"
 
 @override_settings(MYUW_USER_SERVLET_URL=legacy_url)
 class TestPageMethods(MyuwApiTest):
-
-    def test_mobile_check(self):
-        request = RequestFactory().get("/",
-                                       HTTP_USER_AGENT='Fake iPhone Agent')
-        self.assertTrue(_is_mobile(request))
-
-        request = RequestFactory().get("/",
-                                       HTTP_USER_AGENT='Fake Android Mobile')
-        self.assertTrue(_is_mobile(request))
-
-        request = RequestFactory().get("/",
-                                       HTTP_USER_AGENT='Fake Android Agent')
-        self.assertFalse(_is_mobile(request))
-
-        request = RequestFactory().get("/", HTTP_USER_AGENT=None)
-        self.assertFalse(_is_mobile(request))
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_not_in_pws_applicant_access(self):

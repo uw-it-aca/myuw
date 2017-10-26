@@ -23,7 +23,8 @@ from myuw.views.profile import profile
 from myuw.views.link import outbound_link
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.instructor_schedule import (
-    InstScheCurQuar, InstScheQuar, InstSect, InstSectionDetails)
+    InstScheCurQuar, InstScheQuar, InstSect, InstSectionDetails,
+    LTIInstSectionDetails)
 from myuw.views.api.finance import Finance
 from myuw.views.api.hfs import HfsBalances
 from myuw.views.api.future_schedule import StudClasScheFutureQuar
@@ -46,6 +47,8 @@ from myuw.views.search import search_res
 from myuw.views.api.upass import UPass
 from myuw.views.api.link import ManageLinks
 from myuw.views.api.directory import MyDirectoryInfo
+from myuw.views.lti.photo_list import LTIPhotoList
+
 
 urlpatterns = []
 
@@ -160,6 +163,12 @@ urlpatterns += [
         r'(?P<course_section>[A-Z][A-Z0-9]?)$',
         InstSectionDetails.as_view(),
         name="myuw_instructor_section_details_api"),
+    url(r'^lti/api/v1/instructor_section_details/(?P<year>\d{4}),'
+        r'(?P<quarter>[a-zA-Z]+),'
+        r'(?P<curriculum>[\w& ]+),(?P<course_number>\d{3})\/'
+        r'(?P<course_section>[A-Z][A-Z0-9]?)$',
+        LTIInstSectionDetails.as_view(),
+        name="myuw_lti_instructor_section_details_api"),
     url(r'^api/v1/visual_schedule/current/?$',
         StudClasScheCurQuar.as_view(),
         name="myuw_current_visual_schedule"),
@@ -210,6 +219,8 @@ urlpatterns += [
     url(r'^logout', logout, name="myuw_logout"
         ),
 
+    url(r'lti/students$',
+        LTIPhotoList.as_view(), name='myuw_lti_photo_list'),
     url(r'photo/(?P<url_key>.*)', show_photo),
     url(r'out/?', outbound_link, name='myuw_outbound_link'),
     url(r'.*', index, name="myuw_home"),
