@@ -1,0 +1,7 @@
+[run]
+omit=
+    myuw/migrations/*
+    myuw/south_migrations/*
+branch=True
+source= myuw
+include= myuw/*
