@@ -12,9 +12,8 @@ var UwnetidCard = {
 
     render: function() {
         var data = WSData.profile_data().password;
-        data.display_2fa = (window.user.stud_employee ||
-                            window.user.employee ||
-                            window.user.clinician);
+        data.display_2fa = window.user.pmt_2fa;
+
         var source   = $("#accounts_card").html();
         var template = Handlebars.compile(source);
         var compiled = template(data);
