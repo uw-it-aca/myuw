@@ -39,18 +39,9 @@ describe('UwnetidCard', function(){
             assert.equal(UwnetidCard.dom_target.find('a')[2].href,
                          "https://identity.uw.edu/account/recovery/");
         });
-        it("Render 2fa link for emp", function() {
+        it("Render 2fa link", function() {
             UwnetidCard.dom_target.html('');
-            window.user.employee = true;
-            UwnetidCard.render();
-            assert.equal(UwnetidCard.dom_target.find('a').length, 4);
-            assert.equal(UwnetidCard.dom_target.find('a')[3].href,
-                         "https://identity.uw.edu/2fa/");
-        });
-        it("Render 2fa link for stud_emp", function() {
-            UwnetidCard.dom_target.html('');
-            window.user.employee = false;
-            window.user.stud_employee = true;
+            window.user.pmt_2fa = true;
             UwnetidCard.render();
             assert.equal(UwnetidCard.dom_target.find('a').length, 4);
             assert.equal(UwnetidCard.dom_target.find('a')[3].href,
