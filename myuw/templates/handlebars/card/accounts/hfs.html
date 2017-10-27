@@ -17,10 +17,10 @@
                         <h4 class="sr-only">Student Husky Account</h4>
                     </div>
                     <div class="pull-right">
-                        <span class="card-badge-value">${{ formatPrice balance }}</span>
+                        <span class="card-badge-value">${{formatPrice balance}}</span>
                     </div>
-                    {{#if last_updated }}
-                        <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
+                    {{#if last_updated}}
+                        <div class="card-badge-note">Last transaction: {{last_updated}}</div>
                     {{/if}}
                     {{/with}}
                 </div>
@@ -36,10 +36,10 @@
                         <h4 class="sr-only">Employee Husky Account</h4>
                     </div>
                     <div class="pull-right">
-                        <span class="card-badge-value">${{ formatPrice balance }}</span>
+                        <span class="card-badge-value">${{formatPrice balance}}</span>
                     </div>
-                    {{#if last_updated }}
-                        <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
+                    {{#if last_updated}}
+                        <div class="card-badge-note">Last transaction: {{last_updated}}</div>
                     {{/if}}
                     {{/with}}
                 </div>
@@ -54,10 +54,10 @@
                         <h4 class="card-badge-label">Resident Dining</h4>
                     </div>
                     <div class="pull-right">
-                        <span class="card-badge-value">${{ formatPrice balance }}</span>
+                        <span class="card-badge-value">${{formatPrice balance}}</span>
                     </div>
-                    {{#if last_updated }}
-                        <div class="card-badge-note">Last transaction: {{ last_updated }}</div>
+                    {{#if last_updated}}
+                        <div class="card-badge-note">Last transaction: {{last_updated}}</div>
                     {{/if}}
                     {{/with}}
                 </div>
@@ -67,12 +67,12 @@
 	    {{#if student_husky_card}}
         	<div class="btn btn-default card-action-btn pull-right"><a href="{{student_husky_card.add_funds_url}}" target="_blank" data-linklabel="HFS Account Summary">Add funds to your accounts</a></div>
 
-        {{ else }}
+        {{else}}
             {{#if employee_husky_card}}
             <div class="btn btn-default card-action-btn pull-right"><a href="{{employee_husky_card.add_funds_url}}" target="_blank">Add funds to your accounts</a></div>
-            {{ /if}}
+            {{/if}}
 
-        {{ /if }}
+        {{/if}}
 
     </div>
 </div>
