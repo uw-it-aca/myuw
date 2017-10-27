@@ -36,12 +36,14 @@ describe('TuitionCard', function(){
             TuitionCard.render_init();
         });
         it("Should have regular and pce tuition balances for javerage", function() {
-            assert.equal(TuitionCard.dom_target.find('h4').length, 3);
+            assert.equal(TuitionCard.dom_target.find('h4').length, 4);
             assert.equal(TuitionCard.dom_target.find('h4')[0].innerHTML,
                          "You owe");
             assert.equal(TuitionCard.dom_target.find('h4')[1].innerHTML,
                          "You owe PCE");
             assert.equal(TuitionCard.dom_target.find('h4')[2].innerHTML,
+                         "Financial Aid");
+            assert.equal(TuitionCard.dom_target.find('h4')[3].innerHTML,
                          "Related");
         });
         it('Detect a debit vs. a credit', function(){
