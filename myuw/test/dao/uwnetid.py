@@ -1,5 +1,6 @@
 from django.test import TestCase
-from myuw.dao.uwnetid import is_clinician, is_2fa_permitted, get_subscriptions
+from myuw.dao.uwnetid import (is_clinician, is_2fa_permitted,
+                              get_subscriptions, is_faculty, is_staff)
 from myuw.test import (fdao_uwnetid_override,
                        get_request, get_request_with_user)
 
@@ -31,3 +32,11 @@ class TestUWNetid(TestCase):
     def test_is_clinician(self):
         get_request_with_user('staff')
         self.assertTrue(is_clinician())
+
+    def test_is_faculty(self):
+        get_request_with_user('bill')
+        self.assertTrue(is_faculty())
+
+    def test_is_staff(self):
+        get_request_with_user('staff')
+        self.assertTrue(is_staff())

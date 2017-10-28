@@ -16,8 +16,8 @@
         {
           "type" : "permit",
           "mode" : "implicit",
-          "categoryCode" : 4,
-          "categoryName" : "Staff",
+          "categoryCode" : 5,
+          "categoryName" : "Faculty",
           "statusCode" : 1,
           "statusName" : "current"
         },
