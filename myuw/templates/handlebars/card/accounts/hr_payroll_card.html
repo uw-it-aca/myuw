@@ -3,28 +3,29 @@
 <div class="card hr-payroll-card" style="position:relative;">
     <h3>HR and Payroll</h3>
 
-    <div style="padding-bottom: 10px;">
-        <h4>Workday</h4>
-        <div class="wd-link">
+    <div>
+        <h4 class="sr-only">Workday</h4>
+        <div class="btn btn-default card-action-btn">
         {% with link_text="Sign in to Workday" %}
         {% include "workday_link.html" %}
         {% endwith %}
-        </div>
-        <p class="card-related-messages">Workday is UW's human resources, benefits, payroll, and time tracking system.</p>
+     	</div>
+        <p class="card-related-messages wd-byline">Workday is UW's human resources, benefits, payroll, and time tracking system.</p>
     </div>
+
 {{#unless is_stud_employee}}
     {{#if is_employee}}
-    <div style="padding-bottom: 10px;">
-        <h4>Get Help</h4>
+    <div class="links-container">
+        <h4 class="myuw-card-heading">Get Help</h4>
         <ul class="unstyled-list">
             <li><a href="https://isc.uw.edu" target="_blank">Integrated Service Center (ISC)</a></li>
             <li>{{#if is_faculty}}<a href="http://ap.washington.edu/ahr/" target="_blank">Academic HR</a>{{else}}<a href="http://hr.uw.edu/">UW Human Resources</a>{{/if}}</li>
         </ul>
         <p class="card-related-messages">Learn how to <a href="https://isc.uw.edu/your-time-absence/time-off/" data-linklabel="ISC Time Off" target="_blank">look up sick and vacation time</a>, <a href="https://isc.uw.edu/your-time-absence/time-reporting/" target="_blank" data-linklabel="ISC Time Reporting">enter your hours in Workday</a>, <a href="https://isc.uw.edu/your-pay-taxes/paycheck-info/#direct-deposit" data-linklabel="ISC Set Up Direct Deposit" target="_blank">set up direct deposit</a>, and more.</p>
     </div>
-
-    <div style="">
-        <h4>Services and Perks</h4>
+ 
+    <div class="links-container" style="padding-top:1px;">
+        <h4 class="myuw-card-heading">Services and Perks</h4>
         <div class="row">
             <div class="col-xs-6">
                 <ul class="unstyled-list">
@@ -44,10 +45,10 @@
         </div>
     </div>
     {{/if}}
-{{/unless}}
-    {{#if is_stud_employee}}
-    <div style="padding-bottom: 10px;">
-        <h4>Related</h4>
+
+{{else}}
+    <div class="links-container">
+        <h4 class="myuw-card-heading">Related</h4>
         <ul class="unstyled-list">
 	        <li><a href="https://isc.uw.edu/" target="_blank">Integrated Service Center (ISC)</a></li>
             <li><a href="http://hr.uw.edu/benefits/health-insurance/graduate-appointees-health-insurance/gaip-eligibility-and-coverage/" target="_blank">Graduate Appointee Insurance Program (GAIP)</a></li>
@@ -59,6 +60,6 @@
          </p>
 
     </div>
-    {{/if}}
+{{/unless}}
 </div>
 {% endtplhandlebars %}

@@ -1,5 +1,5 @@
 {
-  "uwNetID" : "javerage",
+  "uwNetID" : "eight",
   "subscriptionList" : [
     {
       "subscriptionCode" : 60,
@@ -24,6 +24,16 @@
           "statusCode" : 1,
           "statusName" : "current"
         }
+      ]
+    },
+    {
+      "subscriptionCode" : 64,
+      "subscriptionName" : "Duo Two-Factor Authentication",
+      "permitted" : false,
+      "statusCode" : 101,
+      "statusName" : "Unpermitted",
+      "actions" : [
+        "Show"
       ]
     }
   ],
