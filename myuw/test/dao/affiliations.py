@@ -74,3 +74,8 @@ class TestAffilliations(TestCase):
         log_str = get_identity_log_str(now_request)
         self.assertTrue('PCE-student' in log_str)
         self.assertFalse('Campus: PCE' in log_str)
+
+    def test_is_2fa_permitted(self):
+        now_request = get_request_with_user('javerage')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get('is_2fa_permitted'))

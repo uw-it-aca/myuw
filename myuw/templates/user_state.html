@@ -12,6 +12,7 @@
         "win_transfer": {{ user.affiliations.win_transfer|yesno:"true, false" }},
         "faculty": {{ user.affiliations.faculty|yesno:"true, false" }},
         "clinician": {{ user.affiliations.clinician|yesno:"true, false" }},
+        "pmt_2fa": {{ user.affiliations.is_2fa_permitted|yesno:"true, false" }},
         "instructor": {{ user.affiliations.instructor|yesno:"true, false" }},
         "seattle": {{ user.affiliations.official_seattle|yesno:"true, false" }},
         "bothell": {{ user.affiliations.official_bothell|yesno:"true, false" }},
