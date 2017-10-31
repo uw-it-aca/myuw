@@ -15,15 +15,15 @@
 
     <!-- component content templates -->
     {% include "handlebars/accounts.html" %}
-    {% include "handlebars/card/accounts/account_card.html" %}
-    {% include "handlebars/card/accounts/account_medicine.html" %}
-    {% include "handlebars/card/accounts/hr_payroll_card.html" %}
     {% include "handlebars/card/loading.html" %}
     {% include "handlebars/card/error.html" %}
-    {% include "handlebars/card/tuition.html" %}
-    {% include "handlebars/card/upass.html" %}
-    {% include "handlebars/card/library.html" %}
-    {% include "handlebars/card/hfs.html" %}
+    {% include "handlebars/card/accounts/tuition.html" %}
+    {% include "handlebars/card/accounts/account_medicine.html" %}
+    {% include "handlebars/card/accounts/hfs.html" %}
+    {% include "handlebars/card/accounts/hr_payroll_card.html" %}
+    {% include "handlebars/card/accounts/library.html" %}
+    {% include "handlebars/card/accounts/upass.html" %}
+    {% include "handlebars/card/accounts/uwnetid.html" %}
 
     <!-- page content templates -->
     {% include "handlebars/loading.html" %}
@@ -37,12 +37,12 @@
 {% block extra_js %}
     {% compress js inline %}
         <script src="{% static 'js/page/accounts.js' %}"></script>
-        <script src="{% static 'js/card/accounts/account_card.js' %}"></script>
+        <script src="{% static 'js/card/accounts/tuition.js' %}"></script>
         <script src="{% static 'js/card/accounts/account_medicine.js' %}"></script>
+        <script src="{% static 'js/card/accounts/hfs.js' %}"></script>
         <script src="{% static 'js/card/accounts/hr_payroll_card.js' %}"></script>
-        <script src="{% static 'js/card/hfs.js' %}"></script>
-        <script src="{% static 'js/card/library.js' %}"></script>
-        <script src="{% static 'js/card/upass.js' %}"></script>
-        <script src="{% static 'js/card/tuition.js' %}"></script>
+        <script src="{% static 'js/card/accounts/library.js' %}"></script>
+        <script src="{% static 'js/card/accounts/upass.js' %}"></script>
+        <script src="{% static 'js/card/accounts/uwnetid.js' %}"></script>
     {% endcompress %}
 {% endblock %}
