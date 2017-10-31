@@ -92,7 +92,7 @@ var AccountsPage = {
             cards.push(UPassCard);
         }
 
-        cards.push(AccountsCard);
+        cards.push(UwnetidCard);
         return cards;
     },
 

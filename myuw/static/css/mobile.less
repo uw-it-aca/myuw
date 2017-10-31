@@ -590,7 +590,8 @@ label { font-weight: normal; margin-bottom: auto; }
             font-weight: 400;
             font-size: 16px;
             color: #444; }
-
+		//card section heading
+		h4.myuw-card-heading {color:#85754d; font-weight: 500;} 	
         .card-btn {
             @media @over550 { position: absolute; top: 12px; right: 10px;}
         }
@@ -645,14 +646,14 @@ label { font-weight: normal; margin-bottom: auto; }
                     display: block;
                     font-weight: bold;
                 /*line-height: 35px;*/ }
-                .card-badge-action {
+
+				 .card-badge-action {
                     display: block;
                     font-weight: normal;
                     line-height: 35px;
                     margin-top: -10px;
                     a { display: block; }
                 }
-
                 .card-badge-value {
                     display: block;
                     font-size: 22px;
@@ -670,7 +671,21 @@ label { font-weight: normal; margin-bottom: auto; }
                 }
             }
         }
-
+    // Card action button
+        .card-action-btn { 
+	        margin-bottom: 16px; margin-top: 8px;
+                    &:hover, &:focus {background-color:#e8e3d3;border-color:#e8e3d3;}                   
+                    a {color:#444;
+                    	&:hover, &:focus {color: #000; text-decoration: none; }
+                    }     
+         }
+		//adding padding for right-aligned btn case
+		.card-action-btn.pull-right { margin-right: 10px;}  
+              
+	//Related links chunk container in Account page cards 	
+		.links-container {
+		margin: .75em 0 1em 0;  
+		}
         .card-related-messages {
             margin: 1em 0;
             font-size: 12px;
@@ -678,7 +693,8 @@ label { font-weight: normal; margin-bottom: auto; }
             // override pce message
             .pce-message { color: #888; margin-top: 1em; }
         }
-
+        //override spacing for Workday button
+        .card-related-messages.wd-byline {margin: 0 0 24px 0;}
         /*.nav-card-arrow { height: @line-height-base; position: absolute; right: 0; display: inline-block; top: 50%; margin-top: -@line-height-base / 2; }*/
 
         ul.fina-notice-list {
@@ -966,7 +982,7 @@ label { font-weight: normal; margin-bottom: auto; }
 		 h2 { font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size:26px; color: #444; }
     }
 
-    // ACCOUNT PAGE CARDS
+    // ACCOUNT PAGE CARDS: NetID and Medicine cards
     div#medicine-pw, div#netid-pw {
 	    .med-logo {margin:0px; clear: both; float: right;}
 	    h3 {clear:both;}
@@ -976,31 +992,33 @@ label { font-weight: normal; margin-bottom: auto; }
 		.password-alert {color:#a94442;font-weight: normal;
 			a {text-decoration: underline;font-weight: bold;}
 		}
-		.pw-link{ clear:both; margin-bottom: 10px;}
-	.card-badge {
-                padding: 8px 10px 0px 0px;
-                padding-top: 0px;
+		//adding back deleted
+		.card-badge {
+                padding: 8px 10px 10px 0px;
                 position: relative;
                 .card-badge-label {
                     display: block;
                     font-weight: bold;
-                /*line-height: 35px;*/ }
-                .card-badge-action {
+               }
+
+			   .card-badge-action {
                     display: block;
                     font-weight: normal;
                     line-height: 35px;
                     margin-top: -8px;
                     a { display: block; }
                 }
-
                 .card-badge-value {
                     display: block;
                     font-size: 22px;
                     font-weight: bold;
                     text-align: right;
                 }
-	}
-    } //end of Medicine card
+		}
+		.pw-link{ clear:both; margin-bottom: 20px;}
+		 // Overide the list of links top spacing
+		.links-container.actionlink-list {margin-top: 0;}
+    } //end of Medicine and NetID card
 
 
        // registration card
@@ -1160,7 +1178,7 @@ label { font-weight: normal; margin-bottom: auto; }
 // End --- STUFF PATRICK ADDED //
 
     	    .finaid-notices-container {
-                h4 {font-weight: bold; color: #85754d;}
+
                 .finaid-notices-panel-group {
                             list-style-type: none;
                             padding-left:0;
@@ -1370,14 +1388,15 @@ label { font-weight: normal; margin-bottom: auto; }
 			.no-instructors {  margin-bottom: -10px; margin-top: 1em; font-size: 12px;font-style:italic;background-color: #fefefe;color:#777; line-height: 40px;}
         }
     }
-
+//Tuition card
     #TuitionCard {
 
 	    .card {
 		    .finaid-notices-container h4 {font-family: 'Roboto', sans-serif; font-weight: 500; color: @darktan; margin-top: 1.5em; margin-bottom: .5em; font-size: 16px;  }
 
 		    .finaid-notices-container {
-			    .finaid-notices-panel-group {padding-left:0;line-height: 24px;
+			    padding-bottom: 8px;
+			    .finaid-notices-panel-group {padding-left:0; line-height: 24px;margin-bottom: 5px;
 				    .finaid-panel-default {border:none; box-shadow: none;-webkit-box-shadow: none; margin-left: -10px; margin-right: -10px;
 					    .finaid-panel-heading {padding: 0px 0px;background-color: transparent;
 						    .finaid-panel-title {font-size:14px;padding: 0 10px;
@@ -1399,6 +1418,11 @@ label { font-weight: normal; margin-bottom: auto; }
 				    }
 			    }
 		    }
+		    .card-badge-container .middle-row {
+				padding-top: 0; padding-bottom: 0;
+	    	}	
+			//spacing above the PCE tuition line
+		    li.pce-tuition {padding-top: 8px;}
 	    }
     }
 
@@ -1529,7 +1553,7 @@ label { font-weight: normal; margin-bottom: auto; }
         #upass-notices h4 { font-family: 'Roboto', sans-serif; font-weight: 500; color: @darktan; margin-top: 24px; font-size: 16px; }
         ul { list-style-type: none; padding-left: 0; }
         #upass-links { margin-top: 24px;
-            li {text-align: right;}
+            li {text-align: left;}
         }
     }
 
@@ -2100,8 +2124,6 @@ th.mailman-sections-column { width: 99%; }
 
 /*** Accounts page ***/
 
-.wd-link {margin-bottom:8px;}
-
 #og_workday {
     background-repeat: no-repeat;
     background-position: 0 50%;
@@ -2111,12 +2133,7 @@ th.mailman-sections-column { width: 99%; }
     padding-bottom: 8px;
 }
 
-.hr-payroll-card #og_workday {
-    margin-bottom: 10px;
-}
-
-
-
+.hr-payroll-card #og_workday { margin-bottom: 10px; }
 
 /*** footer ***/
 
