@@ -14,8 +14,7 @@ from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.instructor import is_seen_instructor, add_seen_instructor
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.registration import get_active_registrations_for_section
-from myuw.dao.term import get_current_quarter, get_specific_term
-
+from myuw.dao.term import get_current_quarter
 
 logger = logging.getLogger(__name__)
 
@@ -94,21 +93,17 @@ def _get_sections_by_section_reference(section_references):
     return sections
 
 
-def get_instructor_section(year, quarter, curriculum,
-                           course_number, course_section,
-                           include_registrations=False,
+def get_instructor_section(person, section_id, include_registrations=False,
                            include_linked_sections=False):
     """
     Return requested section instructor is teaching
     """
     schedule = ClassSchedule()
-    schedule.person = get_person_of_current_user()
-    schedule.term = get_specific_term(year, quarter)
+    schedule.person = person
     schedule.sections = []
 
-    section = get_section_by_label("%s,%s,%s,%s/%s" % (
-        year, quarter.lower(), curriculum.upper(),
-        course_number, course_section))
+    section = get_section_by_label(section_id)
+    schedule.term = section.term
 
     if include_registrations:
         section.registrations = get_active_registrations_for_section(
