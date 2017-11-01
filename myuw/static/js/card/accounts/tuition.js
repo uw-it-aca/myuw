@@ -128,15 +128,13 @@ var TuitionCard = {
     },
 
     _init_events: function(){
-        $(".finaid-panel-default").find('a').each(function(idx, elm){
-            $(elm).on('click', function(e){
-                var content = $(e.target).parents('li').find('.finaid-panel-collapse');
-                if(content.attr('aria-hidden')){
-                    content.attr('aria-hidden', false);
-                } else{
-                    content.attr('aria-hidden', true);
-                }
-            });
+        $("div[data-name='TuitionCard']").on('click', ".collapsed", function(e){
+            var content = $(e.target).parents('li').find('.finaid-panel-collapse');
+            if(content.attr('aria-hidden')){
+                content.attr('aria-hidden', false);
+            } else{
+                content.attr('aria-hidden', true);
+            }
         });
     }
 };
