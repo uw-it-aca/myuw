@@ -2,6 +2,7 @@ import sys
 from django.http import HttpResponse
 from restclients_core.exceptions import (DataFailureException, InvalidNetID,
                                          InvalidRegID)
+from uw_sws.exceptions import InvalidSectionID
 from myuw.logger.logresp import log_err
 
 
@@ -57,7 +58,8 @@ def handle_exception(logger, timer, stack_trace):
             isinstance(exc_value, InvalidRegID):
         return invalid_session()
 
-    if isinstance(exc_value, InvalidInputFormData):
+    if (isinstance(exc_value, InvalidInputFormData) or
+            isinstance(exc_value, InvalidSectionID)):
         return invalid_input_data()
 
     if isinstance(exc_value, DataFailureException) and\
