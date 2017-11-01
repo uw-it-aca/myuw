@@ -128,7 +128,7 @@ var TuitionCard = {
     },
 
     _init_events: function(){
-        $("body").on('click', ".collapsed", function(e){
+        $("div[data-name='TuitionCard']").on('click', ".collapsed", function(e){
             var content = $(e.target).parents('li').find('.finaid-panel-collapse');
             if(content.attr('aria-hidden')){
                 content.attr('aria-hidden', false);
