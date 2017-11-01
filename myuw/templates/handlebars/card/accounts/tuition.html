@@ -53,7 +53,7 @@
         {{else}}  <!-- else, there is a balance -->         
 
 		    	<li>
-	                <div class="card-badge clearfix">
+	                <div class="card-badge clearfix" style="padding-bottom:0">
 	                    <div class="pull-left">
 	                        <h4 class="card-badge-label">You owe</h4>
 	                    </div>
@@ -61,11 +61,11 @@
 	                        <span class="card-badge-value text-danger">${{tuition_accbalance}}</span>
 	            		</div>
 	                </div>
-		    	</li>
+
 
 	            {{#if tuition_date}}
-	            <li class="tuition-due">
-	                <div class="card-badge clearfix middle-row">
+
+	                <div class="tuition-due card-badge clearfix middle-row">
 	                    <div class="pull-left">
 	                        <h4 class="card-badge-label">Tuition due </h4>
 	                    </div>
@@ -76,14 +76,14 @@
 	                        <span class="card-badge-action pull-right">in {{tuition_date_offset}} days</span>
 	                    </div>
 	                </div>
-				</li>
+
 	            {{/if}}
                 <div class="card-badge clearfix middle-row">
                     <div class="pull-right" >
                         <div class="btn btn-default card-action-btn"><a href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank" data-linklabel="Make Tuition Payment">Make payment</a></div>
                     </div>
                 </div>
-
+				</li>
         <!-- end if tuition_credit -->
         {{/if}}
     <!-- end if has_balance -->
