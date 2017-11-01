@@ -128,8 +128,8 @@ var TuitionCard = {
     },
 
     _init_events: function(){
-        $(".finaid-panel-default").find('a').each(function(idx, elm){
-            $(elm).on('click', function(e){
+        $(".finaid-panel-default").find("a.collapsed").each(function(idx, elm){
+            $(elm).on( "click", function(e) {
                 var content = $(e.target).parents('li').find('.finaid-panel-collapse');
                 if(content.attr('aria-hidden')){
                     content.attr('aria-hidden', false);
