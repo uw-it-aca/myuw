@@ -54,11 +54,16 @@ var NoticeBanner = {
             NoticeBanner._mark_read(e.target);
             var notice_id = $(e.target).parents(".notice-container").first().attr('id');
             var aria_div = $("#"+notice_id+"_div");
-            if(aria_div.attr('aria-hidden')){
-                aria_div.attr('aria-hidden', false);
-            } else{
-                aria_div.attr('aria-hidden', true);
-            }
+
+            window.setTimeout(function() {
+
+                if(aria_div.attr('aria-hidden')){
+                    aria_div.attr('aria-hidden', false);
+                } else{
+                    aria_div.attr('aria-hidden', true);
+                }
+            }, 0);
+
         });
     },
 
@@ -93,4 +98,3 @@ var NoticeBanner = {
 
     }
 };
-
