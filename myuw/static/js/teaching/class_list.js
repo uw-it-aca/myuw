@@ -32,7 +32,13 @@ var PhotoClassList = {
         var registrations = data.sections[0].registrations;
         data.sections[0].registrations = PhotoClassList.sort_students(registrations,
                                                                       'surname,name');
-        $("#app_content").html(template(data));
+
+        if (window.section_data.hasOwnProperty('available_sections') &&
+                window.section_data.available_sections.length > 1) {
+            data.available_sections = window.section_data.available_sections;
+        }
+
+        $("#main-content").html(template(data));
 
         // add event handlers
         $("#download_class_list").on("click", PhotoClassList.download_list);
@@ -62,6 +68,11 @@ var PhotoClassList = {
             e.preventDefault();
             $("#student_sort").addClass("grid-view");
         });
+
+        $("#available_sections").on("change", function() {
+            window.section_data.section = $(this).val();
+            PhotoClassList.render();
+        }).val(window.section_data.section);
 
     },
 

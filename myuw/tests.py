@@ -50,9 +50,6 @@ from myuw.test.api.upass import TestUpassApi
 from myuw.test.api.thrive import TestApiThrive
 from myuw.test.api.academic_calendar import TestCalendarAPI
 from myuw.test.api.dept_calendar import TestDeptCalAPI
-from myuw.test.api.instructor_schedule import (
-    TestInstructorCurrentSchedule, TestInstructorTermSchedule,
-    TestInstructorSection)
 from myuw.test.loggers import TestSessionLog
 from myuw.test.views.choose import TestChoose
 from myuw.test.views.page import TestPageMethods
