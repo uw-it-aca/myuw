@@ -54,15 +54,33 @@ var NoticeBanner = {
             NoticeBanner._mark_read(e.target);
             var notice_id = $(e.target).parents(".notice-container").first().attr('id');
             var aria_div = $("#"+notice_id+"_div");
+            var aria_a = $(e.currentTarget);
 
-            window.setTimeout(function() {
 
-                if(aria_div.attr('aria-hidden')){
+            if(aria_div.attr('aria-hidden') == "true"){
+                // Remove hidden first to keep it from interfering with Bootstrap.
+                aria_div.removeAttr('hidden');
+
+                window.setTimeout(function() {
+                    // Set to visible
                     aria_div.attr('aria-hidden', false);
-                } else{
+                    aria_a.attr('aria-expanded', true);
+
+                    // Set focus on div
+                    aria_div.attr('tabindex', 0);
+                    aria_div.focus();
+                }, 300);
+            } else {
+                window.setTimeout(function() {
+                    // Set hidden
                     aria_div.attr('aria-hidden', true);
-                }
-            }, 0);
+                    aria_div.attr('hidden', 'hidden');
+                    aria_a.attr('aria-expanded', false);
+
+                    // Remove tabindex
+                    aria_div.removeAttr('tabindex');
+                }, 300);
+            }
 
         });
     },
