@@ -128,15 +128,44 @@ var TuitionCard = {
     },
 
     _init_events: function(){
-        $(".finaid-panel-default").find("a.collapsed").each(function(idx, elm){
-            $(elm).on( "click", function(e) {
-                var content = $(e.target).parents('li').find('.finaid-panel-collapse');
-                if(content.attr('aria-hidden')){
+        $("body").on('click', "#tui_finaid_notices_accordion a.finaid-disclosure-link", function(e){
+
+
+            var content = $(e.target).parents('li').find('.finaid-panel-collapse');
+
+            if(content.attr('aria-hidden') == "true"){
+                // Remove hidden first to keep it from interfering with Bootstrap.
+                content.removeAttr('hidden');
+
+                window.setTimeout(function() {
+
+                    // Set to visible
                     content.attr('aria-hidden', false);
-                } else{
+
+                    // Set focus on content
+                    content.attr('tabindex', 0);
+                    content.focus();
+
+                    // Look for and close any other open disclosures
+                    $("div.finaid-panel-collapse[aria-hidden='false'][aria-expanded='false']").each(function() {
+                        $(this).attr('aria-hidden', true);
+                        $(this).attr('hidden', 'hidden');
+                        $(this).removeAttr('tabindex');
+                    });
+
+                }, 400);
+
+            } else {
+                window.setTimeout(function() {
+                    // Set to hidden
                     content.attr('aria-hidden', true);
-                }
-            });
+                    content.attr('hidden', 'hidden');
+
+                    // Remove tabindex
+                    content.removeAttr('tabindex');
+                }, 400);
+            }
+
         });
     }
 };

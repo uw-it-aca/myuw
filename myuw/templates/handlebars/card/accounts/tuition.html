@@ -130,12 +130,12 @@
                 <li class="panel panel-default finaid-panel-default">
                     <div class="panel-heading finaid-panel-heading" id="Tf{{id_hash}}" role="tab">
                         <span class="panel-title finaid-panel-title">
-                            <a id="button{{id_hash}}" class="collapsed" role="button" data-toggle="collapse" data-parent="#tui_finaid_notices_accordion" href="#collapseTf{{id_hash}}" aria-expanded="false" aria-controls="collapseTf{{id_hash}}">
+                            <a id="button{{id_hash}}" class="finaid-disclosure-link collapsed" role="button" data-toggle="collapse" data-parent="#tui_finaid_notices_accordion" href="#collapseTf{{id_hash}}" aria-expanded="false" aria-controls="collapseTf{{id_hash}}">
                                 <span class="caret" aria-hidden="true"></span> {{{short_content}}}
                             </a>
                         </span>
                     </div>
-                    <div id="collapseTf{{id_hash}}" class="panel-collapse collapse finaid-panel-collapse" role="tabpanel" aria-labelledby="button{{id_hash}}" aria-hidden="true">
+                    <div id="collapseTf{{id_hash}}" class="panel-collapse collapse finaid-panel-collapse" role="tabpanel" aria-labelledby="button{{id_hash}}" aria-hidden="true" hidden="hidden">
                         <div class="panel-body finaid-panel-body">
                             {{{ notice_content }}}
                         </div>
