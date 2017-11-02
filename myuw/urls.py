@@ -152,21 +152,13 @@ urlpatterns += [
     url(r'^api/v1/instructor_schedule/(?P<year>\d{4}),(?P<quarter>[a-z]+)',
         InstScheQuar.as_view(),
         name="myuw_instructor_schedule_api"),
-    url(r'^api/v1/instructor_section/(?P<year>\d{4}),(?P<quarter>[a-zA-Z]+),'
-        r'(?P<curriculum>[\w& ]+),(?P<course_number>\d{3})\/'
-        r'(?P<course_section>[A-Z][A-Z0-9]?)$',
+    url(r'^api/v1/instructor_section/(?P<section_id>.*)/?$',
         InstSect.as_view(),
         name="myuw_instructor_section_api"),
-    url(r'^api/v1/instructor_section_details/(?P<year>\d{4}),'
-        r'(?P<quarter>[a-zA-Z]+),'
-        r'(?P<curriculum>[\w& ]+),(?P<course_number>\d{3})\/'
-        r'(?P<course_section>[A-Z][A-Z0-9]?)$',
+    url(r'^api/v1/instructor_section_details/(?P<section_id>.*)/?$',
         InstSectionDetails.as_view(),
         name="myuw_instructor_section_details_api"),
-    url(r'^lti/api/v1/instructor_section_details/(?P<year>\d{4}),'
-        r'(?P<quarter>[a-zA-Z]+),'
-        r'(?P<curriculum>[\w& ]+),(?P<course_number>\d{3})\/'
-        r'(?P<course_section>[A-Z][A-Z0-9]?)$',
+    url(r'^lti/api/v1/instructor_section_details/(?P<section_id>[^/]*)$',
         LTIInstSectionDetails.as_view(),
         name="myuw_lti_instructor_section_details_api"),
     url(r'^api/v1/thrive/$',

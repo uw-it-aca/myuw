@@ -15,7 +15,7 @@ from myuw.dao.gws import is_grad_student, is_student,\
     is_seattle_student, is_bothell_student, is_tacoma_student,\
     is_staff_employee
 from myuw.dao.instructor_schedule import is_instructor
-from myuw.dao.uwnetid import is_clinician
+from myuw.dao.uwnetid import is_clinician, is_2fa_permitted, get_subscriptions
 from myuw.dao.enrollment import get_main_campus
 from myuw.dao.thrive import get_target_group, is_fyp, is_aut_transfer,\
     is_win_transfer
@@ -66,6 +66,7 @@ def get_all_affiliations(request):
             "win_transfer": is_win_transfer(request),
             "faculty": is_faculty(),
             "clinician": is_clinician(),
+            "is_2fa_permitted": is_2fa_permitted(),
             "instructor": is_instructor(request),
             "seattle": is_seattle_student(),
             "bothell": is_bothell_student(),
@@ -225,8 +226,8 @@ def wrapped_is_bothell(request):
     return is_bothell_student()
 
 
-def wrapped_is_clinician(request):
-    return is_clinician()
+def wrapped_get_subscriptions(request):
+    return get_subscriptions()
 
 
 def wrapped_is_instructor(request):
@@ -245,7 +246,7 @@ def affiliation_prefetch():
             wrapped_is_seattle,
             wrapped_is_tacoma,
             wrapped_is_bothell,
-            wrapped_is_clinician,
+            wrapped_get_subscriptions,
             wrapped_is_instructor,
             ]
 
