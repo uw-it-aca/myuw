@@ -19,17 +19,19 @@ var Environment = {
         }
 
         // create test document
-        JSDom = require('jsdom');
-        var window = JSDom.jsdom().defaultView;
+        var jsdom = require('jsdom');
+        const { JSDOM } = jsdom;
+        var dom = new JSDOM('');
 
         // pull in supporting tools
-        var $ = require('jquery')(window);
+        var $ = require('jquery')(dom.window);
         global.$ = $;
-        global.window = window;
-        global.document = JSDom.jsdom();
+        global.window = dom.window;
+        global.document = dom.window.document;
         global.assert = require("assert");
         global.moment = require("moment");
         global.Handlebars = require("../../vendor/js/handlebars-v4.0.5.js");
+        global.dom = dom;
         var MomentTZ = require("moment-timezone");
         var HandlebarsHelpers = require("../handlebars-helpers.js")
 

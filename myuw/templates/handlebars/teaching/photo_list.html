@@ -6,7 +6,9 @@
         <div id="photoclasslist_popup">
 
             <div class="myuw-card myuw-photo-list" data-name="PhotoClasslistPopupCard" data-type="card">
-
+                {{ #if available_sections }} 
+                <div style="float:right;"><select id="available_sections">{{ #each available_sections }}<option value="{{ section_id }}">{{ name }}</option>{{ /each }}</select></div>
+                {{ /if }}
                 <h3 class="scheduleHeading myuw-card-title">{{ toTitleCase quarter }} {{ year }} | {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }} | SLN {{ sections.0.sln }}</h3>
 
                 <div id="classlist_controls" class="row myuw-photo-list-controls" style="padding-bottom: 40px;">

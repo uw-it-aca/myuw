@@ -98,11 +98,8 @@ def get_viewable_course_sections(canvas_course_id, canvas_user_id):
             limit_privileges_to_course_section = True
             limit_sections[enrollment.section_id] = True
 
-    sections = Sections(as_user=canvas_user_id).get_sections_in_course(
-        canvas_course_id)
-
     viewable_sections = []
-    for section in sections:
+    for section in Sections().get_sections_in_course(canvas_course_id):
         if not section.is_academic_sis_id():
             continue
 

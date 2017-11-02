@@ -22,6 +22,13 @@ MAILSTOP_MAX_BOTHELL = 358599
 logger = logging.getLogger(__name__)
 
 
+def get_person_by_regid(regid):
+    """
+    Retrieve the person data for the passed regid
+    """
+    return PWS().get_person_by_regid(regid)
+
+
 def get_person_of_current_user():
     """
     Retrieve the person data using the netid of the current user
