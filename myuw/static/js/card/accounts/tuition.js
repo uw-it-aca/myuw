@@ -129,21 +129,12 @@ var TuitionCard = {
 
     _init_events: function(){
         $("body").on('click', "#tui_finaid_notices_accordion a.finaid-disclosure-link", function(e){
-
-
             var content = $(e.target).parents('li').find('.finaid-panel-collapse');
-
             if(content.attr('aria-hidden') == "true"){
-                // Remove hidden first to keep it from interfering with Bootstrap.
-                content.removeAttr('hidden');
-
+                content.removeAttr('hidden'); // Keep it from interfering with Bootstrap.
                 window.setTimeout(function() {
-
-                    // Set to visible
-                    content.attr('aria-hidden', false);
-
-                    // Set focus on content
-                    content.attr('tabindex', 0);
+                    content.attr('aria-hidden', false); // Set to visible
+                    content.attr('tabindex', 0); // Set focus on content
                     content.focus();
 
                     // Look for and close any other open disclosures
@@ -152,20 +143,14 @@ var TuitionCard = {
                         $(this).attr('hidden', 'hidden');
                         $(this).removeAttr('tabindex');
                     });
-
                 }, 400);
-
             } else {
                 window.setTimeout(function() {
-                    // Set to hidden
-                    content.attr('aria-hidden', true);
+                    content.attr('aria-hidden', true); // Set to hidden
                     content.attr('hidden', 'hidden');
-
-                    // Remove tabindex
-                    content.removeAttr('tabindex');
+                    content.removeAttr('tabindex'); // Remove tabindex
                 }, 400);
             }
-
         });
     }
 };
