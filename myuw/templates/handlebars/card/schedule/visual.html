@@ -15,7 +15,7 @@
             <span class="shortTitle">{{summer_term}}</span>
             {{/if}}
     </h3>
-    <div><p class="sr-only"><a href="#CourseCards">Skip the visual schedule and go to course cards</a></p></div>
+    <div><p class="sr-only"><a href="/academics#academics_content_cards">Skip the visual schedule and go to course cards</a></p></div>
     <div aria-hidden="true" role="presentation"><!-- Wrap the content under aria-hidden -->
         <div id="schedule-tabs" class="schedule-period-module">
     		<ul class="nav nav-pills schedule-period-list">
@@ -24,7 +24,7 @@
             {{/each }}
     		</ul>
         </div>
-		<h4 class="sr-only">Your {{ucfirst quarter}} {{year}} class schedule</h4>
+		<h4 class="hidden">Your {{ucfirst quarter}} {{year}} class schedule</h4>
         <div id="schedule_area">
         {{#if display_hours }}
         <!-- week view -->
@@ -122,7 +122,7 @@
         <!-- end - if there are meetings with times to be arranged -->
         
         
-        <!--Adding SR only final exam schedule-->
+        <!--Adding SR only final exam schedule: Commenting out until gets fixed
         <h4 class="sr-only">Your {{ucfirst quarter}} {{year}} final exam schedule</h4>
         <div class="final_schedule_table sr-only">
     	<table>
@@ -155,7 +155,7 @@
     	        {{/each}}
     	    </tbody>
     	</table>
-        </div>
+        </div> -->
     </div>
 {{/if}}
 </div>
