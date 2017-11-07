@@ -23,11 +23,15 @@ def get_profile_of_current_user():
     return get_person_by_regid(regid)
 
 
+def get_applicant_profile(request):
+    return get_profile_of_current_user()
+
+
 def get_student_profile(request):
     """
     Returns the JSON response for a student's profile
     """
-    profile = get_profile_of_current_user()
+    profile = get_applicant_profile(request)
 
     response = profile.json_data()
     response['is_student'] = True

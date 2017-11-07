@@ -1,0 +1,42 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "applicant_profile_card" %}
+<div class="myuw-card">
+    <h2 class="myuw-card-title">
+        Applicant Profile
+    </h2>
+
+    <div class="myuw-card-section">
+        <div class="row">
+            <div class="col-sm-3">
+                <h4 class="myuw-card-row-heading">
+                    Permanent Address
+                </h4>
+            </div>
+            <div class="col-sm-9">
+                <span>
+                    BRAAMSTUKKEN 21 EELDE, DRENTHE 9761 LN NETHERLANDS {{address}}
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <a class="col-sm-9 col-sm-offset-3" href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx">Change Address</a>
+        </div>
+    </div>
+
+    <div class="myuw-card-section last">
+        <div class="row">
+            <div class="col-sm-3">
+                <h4 class="myuw-card-row-heading">
+                    Personal Email Address
+                </h4>
+            </div>
+            <div class="col-sm-9">
+                <span>
+                    myemailaddresshere@email.com{{email_address}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endtplhandlebars %}
