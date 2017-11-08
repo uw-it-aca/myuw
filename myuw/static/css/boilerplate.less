@@ -1,3 +1,5 @@
+@import (reference) "typography.less";
+
 /*** colors ***/
 @uw-purple: #4b2e83;
 @uw-purple-dark: darken(@uw-purple, 3%);
@@ -55,7 +57,7 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
             justify-content:flex-start;
             align-items:stretch;
 
-            .myuw-menu { order:1; flex-basis:200px; height:100%; }
+            .myuw-nav-col { order:1; flex-basis:200px; height:100%; }
             .myuw-content { order:2; flex:1; height:100%; margin: 0 0 0 16px; }
         }
 
@@ -385,6 +387,26 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
             display: block; color:#999; font-size: 13px; margin-top: 16px;
         }
     }
+}
+
+.myuw-welcome {
+    display: none;
+
+    @media @desktop {
+        display: block;
+        background-color: rgba(0, 0, 0, .05);
+        padding: 16px;
+        margin-top: 16px;
+    }
+    h2 {
+        font-size: @font-header-smallest;
+        margin-top: 0;
+    }
+
+    ul li {
+        font-size: @fontsize-small;
+    }
+
 }
 
 /*** banner messaging ***/

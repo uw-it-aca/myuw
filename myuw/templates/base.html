@@ -152,39 +152,54 @@
         <div class="myuw-body">
             <div class="myuw-wrapper">
 
-                <!-- app_navigation -->
-                {% block app_navigation %}
-                <div id="menu_container" class="myuw-menu" role="navigation">
+                <div class="myuw-nav-col">
 
-                    <ul>
+                    <!-- app_navigation -->
+                    {% block app_navigation %}
+                    <div id="menu_container" class="myuw-menu" role="navigation">
 
-                        {% load myuw_sidebar %}
-                        {% add_sidebar_context %}
-                        <li><a {% if is_myuw_home %}class="active"{% endif %}  href="/"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+                        <ul>
 
-                        {% if user.affiliations.student %}
-                        <li><a {% if is_myuw_academics_page %}class="active"{% endif %} href="/academics/"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Academics</a></li>
-                        <!--<li><a href="/huskyexp/"><i class="fa fa-paw" aria-hidden="true"></i>Husky Experience</a></li>-->
-                        {% endif %}
+                            {% load myuw_sidebar %}
+                            {% add_sidebar_context %}
+                            <li><a {% if is_myuw_home %}class="active"{% endif %}  href="/"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
 
-                        {% if instructor_schedule_enabled %}
-                          {% if user.affiliations.instructor %}
-                        <li><a {% if is_myuw_teaching_page %}class="active"{% endif %} href="/teaching/"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Teaching</a></li>
-                         {% endif %}
-                        {% endif %}
+                            {% if user.affiliations.student %}
+                            <li><a {% if is_myuw_academics_page %}class="active"{% endif %} href="/academics/"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Academics</a></li>
+                            <!--<li><a href="/huskyexp/"><i class="fa fa-paw" aria-hidden="true"></i>Husky Experience</a></li>-->
+                            {% endif %}
 
-                        <li><a {% if is_myuw_academic_calendar_page %}class="active"{% endif %} href="/academic_calendar/"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Calendar</a></li>
-                        <li><a {% if is_myuw_accounts_page  %}class="active"{% endif %} href="/accounts/"><i class="fa fa-credit-card" aria-hidden="true"></i>Accounts</a></li>
-                        {% if user.affiliations.student %}
-                        <li><a {% if is_myuw_notices_page %}class="active"{% endif %}  href="/notices/"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Notices</a></li>
-                        {% endif %}
-                        <li><a {% if is_myuw_profile_page %}class="active"{% endif %} href="/profile/"><i class="icon-user icon-user-female" aria-hidden="true" style="font-size:14px;"></i>Profile</a></li>
+                            {% if instructor_schedule_enabled %}
+                              {% if user.affiliations.instructor %}
+                            <li><a {% if is_myuw_teaching_page %}class="active"{% endif %} href="/teaching/"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Teaching</a></li>
+                             {% endif %}
+                            {% endif %}
 
-                    </ul>
+                            <li><a {% if is_myuw_academic_calendar_page %}class="active"{% endif %} href="/academic_calendar/"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Calendar</a></li>
+                            <li><a {% if is_myuw_accounts_page  %}class="active"{% endif %} href="/accounts/"><i class="fa fa-credit-card" aria-hidden="true"></i>Accounts</a></li>
+                            {% if user.affiliations.student %}
+                            <li><a {% if is_myuw_notices_page %}class="active"{% endif %}  href="/notices/"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Notices</a></li>
+                            {% endif %}
+                            <li><a {% if is_myuw_profile_page %}class="active"{% endif %} href="/profile/"><i class="icon-user icon-user-female" aria-hidden="true" style="font-size:14px;"></i>Profile</a></li>
 
+                        </ul>
+
+                    </div>
+                    {% endblock %}
+                    <!-- end app_navigation -->
+
+                    <!-- Unless applicant -->
+                    <div class="myuw-welcome" role="complementary">
+                        <h2>Welcome!</h2>
+                        <ul class="unstyled-list">
+                            <li><a id="welcome_modal_link" href="#" class="js-modal-toggle myuw-muted" data-toggle="modal" data-target="#message_modal">About the new MyUW</a></li>
+                            <li><a id="optout_link" href="#" class="myuw-muted" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW</a></li>
+                        </ul>
+                    </div>
+                    <!-- /end unless -->
                 </div>
-                {% endblock %}
-                <!-- end app_navigation -->
+
+
 
                 {% block mobile_banner %}
                 <!-- message banner (mobile only) -->
