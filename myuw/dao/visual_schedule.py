@@ -376,3 +376,15 @@ class SchedulePeriod():
         # be split into corresponding A and B term pieces
         self.summer_term = None
         self.meetings_trimmed = False
+
+    def json_data(self):
+        section_data = []
+        for section in self.sections:
+            section_data.append(section.json_data())
+        data = {'start_date': self.start_date,
+                'end_date': self.end_date,
+                'meets_saturday': self.meets_saturday,
+                'meets_sunday': self.meets_sunday,
+                'sections': section_data}
+        return data
+

@@ -36,7 +36,7 @@ WSData = {
     _myplan_data: {},
     _thrive_data: null,
     _upass_data: null,
-    _visual_schedule_data: null,
+    _visual_schedule_data: {},
 
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
@@ -418,6 +418,9 @@ WSData = {
     },
     upass_data: function() {
         return WSData._upass_data;
+    },
+    visual_schedule_data: function(term) {
+        return WSData._visual_schedule_data[term];
     },
 
     fetch_event_data: function(callback, err_callback, args) {

@@ -25,13 +25,26 @@ var VisualScheduleCard = {
             return;
         }
         console.log('123');
+        console.log(VisualScheduleCard.term);
         WSData.fetch_visual_schedule_term(VisualScheduleCard.term,
                                           VisualScheduleCard.render_handler,
                                           VisualScheduleCard.render_handler);
     },
 
     render_handler: function() {
-        console.log('handle');
+        var cur = WSData.visual_schedule_data('current');
+        var period = cur[0];
+        period.total_sections = true;
+        period.quarter = "foo";
+        period.year = 2012 ;
+        console.log('render handle');
+        console.log(period);
+        console.log();
+        source = $("#visual_schedule_card_content").html();
+        template = Handlebars.compile(source);
+        t = template(period);
+        VisualScheduleCard.dom_target.html(t);
+        console.log(t);
     },
 
     _render_error: function() {

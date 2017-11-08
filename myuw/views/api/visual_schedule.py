@@ -25,6 +25,10 @@ class StuVisSchedCurQtr(StudClasSche):
         timer = Timer()
         try:
             visual_schedule = get_current_visual_schedule(request)
-            return self.json_response(visual_schedule)
+            schedule_periods = []
+            for period in visual_schedule:
+                schedule_periods.append(period.json_data())
+            resp = self.json_response(schedule_periods)
+            return resp
         except Exception:
             return handle_exception(logger, timer, traceback)
