@@ -2,6 +2,7 @@ import logging
 import traceback
 from django.http import HttpResponse
 from myuw.dao.visual_schedule import get_current_visual_schedule
+from myuw.dao.term import get_current_quarter
 from myuw.logger.timer import Timer
 from myuw.views.error import handle_exception
 from myuw.views.api.base_schedule import StudClasSche
@@ -24,11 +25,25 @@ class StuVisSchedCurQtr(StudClasSche):
         """
         timer = Timer()
         try:
+            response = {}
             visual_schedule = get_current_visual_schedule(request)
             schedule_periods = []
+            id = 0
             for period in visual_schedule:
-                schedule_periods.append(period.json_data())
-            resp = self.json_response(schedule_periods)
+                period_data = period.json_data()
+                period_data['id'] = id
+                schedule_periods.append(period_data)
+                id += 1
+
+            response['periods'] = schedule_periods
+
+            # Add term data for schedule
+            term = get_current_quarter(request)
+            response['term'] = {
+                'year': term.year,
+                'quarter': term.quarter
+            }
+            resp = self.json_response(response)
             return resp
         except Exception:
             return handle_exception(logger, timer, traceback)
