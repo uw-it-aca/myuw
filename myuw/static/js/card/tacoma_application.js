@@ -4,7 +4,7 @@ var TacomaApplicationCard = {
 
     render_init: function() {
         if (window.user.applicant && !window.user.student) {
-            WSData.fetch_profile_data(TacomaApplicationCard.render_upon_data, TacomaApplicationCard.render_error);
+            WSData.fetch_applicant_data(TacomaApplicationCard.render_upon_data, TacomaApplicationCard.render_error);
         } else {
             $("#TacomaApplicationCard").hide();
             return;
@@ -19,16 +19,29 @@ var TacomaApplicationCard = {
     },
 
     _render: function () {
-        var applicant_info = WSData.profile_data();
+        var applicant_info = WSData.applicant_data();
+
+        var tacoma_application = undefined;
+
+        for(var i = 0; i < applicant_info.length; i++){
+            if(applicant_info[i].is_tacoma)
+                tacoma_application = applicant_info[i]
+        }
+
+        if (tacoma_application === undefined){
+            this.render_error();
+            return;
+        }
+
         var source = $("#tacoma_application_card").html();
         var template = Handlebars.compile(source);
 
-        TacomaApplicationCard.dom_target.html(template(applicant_info));
+        TacomaApplicationCard.dom_target.html(template(tacoma_application));
         LogUtils.cardLoaded(TacomaApplicationCard.name, TacomaApplicationCard.dom_target);
     },
 
     _has_all_data: function () {
-        if (WSData.profile_data()) {
+        if (WSData.applicant_data()) {
             return true;
         }
         return false;

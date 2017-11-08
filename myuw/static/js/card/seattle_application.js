@@ -4,7 +4,7 @@ var SeattleApplicationCard = {
 
     render_init: function() {
         if (window.user.applicant && !window.user.student) {
-            WSData.fetch_profile_data(SeattleApplicationCard.render_upon_data, SeattleApplicationCard.render_error);
+            WSData.fetch_applicant_data(SeattleApplicationCard.render_upon_data, SeattleApplicationCard.render_error);
         } else {
             $("#SeattleApplicationCard").hide();
             return;
@@ -19,16 +19,29 @@ var SeattleApplicationCard = {
     },
 
     _render: function () {
-        var applicant_info = WSData.profile_data();
+        var applicant_info = WSData.applicant_data();
+
+        var seattle_application = undefined;
+
+        for(var i = 0; i < applicant_info.length; i++){
+            if(applicant_info[i].is_seattle)
+                seattle_application = applicant_info[i]
+        }
+
+        if (seattle_application === undefined){
+            this.render_error();
+            return;
+        }
+
         var source = $("#seattle_application_card").html();
         var template = Handlebars.compile(source);
 
-        SeattleApplicationCard.dom_target.html(template(applicant_info));
+        SeattleApplicationCard.dom_target.html(template(seattle_application));
         LogUtils.cardLoaded(SeattleApplicationCard.name, SeattleApplicationCard.dom_target);
     },
 
     _has_all_data: function () {
-        if (WSData.profile_data()) {
+        if (WSData.applicant_data()) {
             return true;
         }
         return false;

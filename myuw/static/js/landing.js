@@ -58,7 +58,10 @@ var Landing = {
             TextbookCard,
             FutureSummaryScheduleCard,
             FutureQuarterCard1,
-            SummerRegStatusCard1
+            SummerRegStatusCard1,
+            SeattleApplicationCard,
+            BothellApplicationCard,
+            TacomaApplicationCard
         ];
         if(!window.user.student && !window.user.instructor &&
            (window.user.employee || window.user.clinician)) {
@@ -96,7 +99,10 @@ var Landing = {
             FutureQuarterCard1,
             SummerRegStatusCard1,
             AcadCalSnippet,
-            EventsCard
+            EventsCard,
+            SeattleApplicationCard,
+            BothellApplicationCard,
+            TacomaApplicationCard
         ];
         if(!window.user.student && !window.user.instructor &&
            (window.user.employee || window.user.clinician)) {

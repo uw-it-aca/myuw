@@ -4,7 +4,7 @@ var BothellApplicationCard = {
 
     render_init: function() {
         if (window.user.applicant && !window.user.student) {
-            WSData.fetch_profile_data(BothellApplicationCard.render_upon_data, BothellApplicationCard.render_error);
+            WSData.fetch_applicant_data(BothellApplicationCard.render_upon_data, BothellApplicationCard.render_error);
         } else {
             $("#BothellApplicationCard").hide();
             return;
@@ -19,16 +19,29 @@ var BothellApplicationCard = {
     },
 
     _render: function () {
-        var applicant_info = WSData.profile_data();
-        var source = $("#seattle_application_card").html();
+        var applicant_info = WSData.applicant_data();
+
+        var bothell_application = undefined;
+
+        for(var i = 0; i < applicant_info.length; i++){
+            if(applicant_info[i].is_bothell)
+                bothell_application = applicant_info[i]
+        }
+
+        if (bothell_application === undefined){
+            this.render_error();
+            return;
+        }
+
+        var source = $("#bothell_application_card").html();
         var template = Handlebars.compile(source);
 
-        BothellApplicationCard.dom_target.html(template(applicant_info));
+        BothellApplicationCard.dom_target.html(template(bothell_application));
         LogUtils.cardLoaded(BothellApplicationCard.name, BothellApplicationCard.dom_target);
     },
 
     _has_all_data: function () {
-        if (WSData.profile_data()) {
+        if (WSData.applicant_data()) {
             return true;
         }
         return false;
