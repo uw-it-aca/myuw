@@ -24,7 +24,7 @@ def get_profile_of_current_user():
 
 
 def get_applicant_profile(request):
-    return get_profile_of_current_user()
+    return get_profile_of_current_user().json_data()
 
 
 def get_student_profile(request):

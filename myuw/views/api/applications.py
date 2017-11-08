@@ -1,6 +1,7 @@
 import logging
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
+from myuw.dao.applications import get_applications
 from myuw.views.api import ProtectedAPI
 
 logger = logging.getLogger(__name__)

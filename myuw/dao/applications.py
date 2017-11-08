@@ -1,4 +1,5 @@
-from myuw.dao.pws import get_regid_of_current_user, get_person_by_regid
+from uw_sws.person import get_person_by_regid
+from myuw.dao.pws import get_regid_of_current_user
 from uw_sdbmyuw import get_app_status
 
 

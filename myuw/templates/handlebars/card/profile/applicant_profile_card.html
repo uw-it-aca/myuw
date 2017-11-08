@@ -13,9 +13,12 @@
                 </h4>
             </div>
             <div class="col-sm-9">
-                <span>
-                    BRAAMSTUKKEN 21 EELDE, DRENTHE 9761 LN NETHERLANDS {{address}}
-                </span>
+                {{#if address1}}
+                    <span>
+                        {{permanent_address}}
+                    </span>
+                    <br />
+                {{/if}}
             </div>
         </div>
 
@@ -33,7 +36,7 @@
             </div>
             <div class="col-sm-9">
                 <span>
-                    myemailaddresshere@email.com{{email_address}}
+                    {{email1}}
                 </span>
             </div>
         </div>
