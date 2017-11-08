@@ -123,19 +123,8 @@
         <!-- message banner (desktop only) -->
         <div class="myuw-banner-desktop app-messages" id="app_messages_desktop" aria-labelledby="app_messages_desktop_label" role="complementary">
             <div class="message-banner">
-                <h2 class="sr-only" id="app_messages_desktop_label">MyUW Announcements</h2>
-                <div class="message-text">
-
-                    {% if user.affiliations.undergrad %}
-                        <h2>New in MyUW<i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 20px; padding: 0 6px 0 6px;"></i>&nbsp;</h2>Quick Links, Pages, Search, and more! &nbsp;<a id="modal_toggle_desktop" href="#" class="js-modal-toggle btn btn-link" data-toggle="modal" data-target="#message_modal">Learn what's new in MyUW</a>
-                    {% else %} <!-- Everyone else -->
-                        <h2>Welcome to the new MyUW!</h2>&nbsp;&nbsp;<strong><a style="font-weight:bold;" id="modal_toggle_desktop" href="#" class="js-modal-toggle btn btn-link" data-toggle="modal" data-target="#message_modal">See what's new.</a></strong><br/>
-                        <span class="small">Not ready yet? <a id="optout_toggle_desktop" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW.</a></span>
-                    {% endif %}
-
-
-                </div>
                 {% if banner_messages %}
+                <h2 class="sr-only" id="app_messages_desktop_label">MyUW Announcements</h2>
                 <div id="message_banner_location">
                     <div id="messages" class="advert message-text">
                         {% for message in banner_messages %}
@@ -205,16 +194,8 @@
                 <!-- message banner (mobile only) -->
                 <div class="myuw-banner-mobile app-messages" id="app_messages_mobile" role="complementary" aria-labelledby="app_messages_mobile_label">
                     <div class="message-banner">
-                        <h2 class="sr-only" id="app_messages_mobile_label">MyUW Announcements</h2>
-                        <div class="message-text">
-                            {% if user.affiliations.undergrad %}
-                                <h2>New in MyUW<i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 20px; padding: 0 6px 0 6px;"></i>&nbsp;</h2>Quick Links, Pages, Search, and more! &nbsp;<a id="modal_toggle_mobile" href="#" class="js-modal-toggle btn btn-link" data-toggle="modal" data-target="#message_modal">Learn what's new in MyUW</a>
-                            {% else %} <!-- Everyone else -->
-                                <h2>Welcome to the new MyUW!</h2>&nbsp;&nbsp;<strong><a style="font-weight:bold;" id="modal_toggle_mobile" href="#" class="js-modal-toggle btn btn-link" data-toggle="modal" data-target="#message_modal">See what's new.</a></strong><br/>
-                                <span class="small">Not ready yet? <a id="optout_toggle_mobile" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW.</a></span>
-                            {% endif %}
-                        </div>
                         {% if banner_messages %}
+                        <h2 class="sr-only" id="app_messages_mobile_label">MyUW Announcements</h2>
                         <div id="message_banner_location">
                             <div id="messages" class="advert message-text">
                                 {% for message in banner_messages %}
