@@ -34,7 +34,7 @@
                 <div class="card-badge-action" style="margin-top:8px;"><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank" data-linklabel="Tuition Statement">See tuition statement</a></div>
             </div>
     {{/unless}}
-        
+
 
     <ul class="card_list">  <!-- balance list -->
     {{#if has_balance}}
@@ -50,7 +50,7 @@
                         </div>
                     </li>
 
-        {{else}}  <!-- else, there is a balance -->         
+        {{else}}  <!-- else, there is a balance -->
 
 		    	<li>
 	                <div class="card-badge clearfix" style="padding-bottom:0">
@@ -99,9 +99,9 @@
 							<div class="pull-right">
 			                    <span class="card-badge-value text-danger">${{pce_accbalance}}</span>
 			                    <span style="width: 100%; line-height: 2em; font-size: .9em; text-align: right;"><a href="https://www.pce.uw.edu/contact-us" target="_blank">Contact PCE for due date</a></span>
-			        		</div>            
+			        		</div>
 			        </div>
-			        <div class="card-badge clearfix middle-row">            
+			        <div class="card-badge clearfix middle-row">
 			        	<div class="pull-right"><div class="btn btn-default card-action-btn" style="margin-top:0"><a href="https://www.pce.uw.edu/help/registration-costs/payment-options" target="_blank" data-linklabel="PCE Payment Options">Make payment to PCE</a></div>
 			        	</div>
 			        </div>
@@ -109,7 +109,7 @@
      <!-- end pce balance -->
     {{/if}}
 	</ul><!-- .end of the balance list -->
-	
+
     <div class="card-related-messages">
         <p><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx" target="_blank">Give access to your tuition account and financial aid information</a> to parents or other third parties.</p>
 
@@ -120,23 +120,25 @@
 
     <div class="finaid-notices-container">
 	    <h4>Financial Aid</h4>
-	    <ul class="unstyled-list"><li><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx" target="_blank">Financial Aid Status</a><li>
-		 </ul>
+	    <ul class="unstyled-list">
+            <li><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx" target="_blank">Financial Aid Status</a><li>
+		</ul>
 		{{#if finaid_notices}}
         <!-- finaid notices begin -->
             <ul class="panel-group finaid-notices-panel-group" id="tui_finaid_notices_accordion" role="tablist" aria-multiselectable="true">
                 {{#each finaid_notices}}
                 <li class="panel panel-default finaid-panel-default">
-                    <div class="panel-heading finaid-panel-heading" role="tab" id="Tf{{id_hash}}">
+                    <div class="panel-heading finaid-panel-heading" id="Tf{{id_hash}}" role="tab">
                         <span class="panel-title finaid-panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#tui_finaid_notices_accordion" href="#collapseTf{{id_hash}}" aria-expanded="true" aria-controls="collapseTf{{id_hash}}">
-                                <span class="caret" aria-hidden="true"></span> {{{short_content}}}
+                            <a id="button{{id_hash}}" class="finaid-disclosure-link myuw-disclosurelink collapsed" role="button" data-toggle="collapse" data-parent="#tui_finaid_notices_accordion" href="#collapseTf{{id_hash}}" aria-expanded="false" aria-controls="collapseTf{{id_hash}}">
+                                <i
+                                class="fa fa-caret-right" aria-hidden="true"></i>{{{short_content}}}
                             </a>
                         </span>
                     </div>
-                    <div id="collapseTf{{id_hash}}" class="panel-collapse collapse finaid-panel-collapse" role="tabpanel" aria-labelledby="headingTf{{id_hash}}" aria-hidden="true">
+                    <div id="collapseTf{{id_hash}}" class="panel-collapse collapse finaid-panel-collapse" role="tabpanel" aria-labelledby="button{{id_hash}}" aria-hidden="true" hidden="hidden">
                         <div class="panel-body finaid-panel-body">
-                            {{{notice_content}}}
+                            {{{ notice_content }}}
                         </div>
                     </div>
                 </li>
@@ -146,7 +148,7 @@
         <!-- finaid notices end -->
 		{{/if}}
      </div>
-     
+
     {% include "handlebars/card/accounts/tuition_resources.html" %}
 
 </div>
