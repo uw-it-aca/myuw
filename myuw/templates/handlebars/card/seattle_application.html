@@ -6,8 +6,30 @@
     </h3>
 
     <div class="myuw-card-section">
-        Application Placeholder: {{type}}
-    </div>
+        
+        <div class="clearfix">
+             <span class="btn btn-default card-action-btn"><a href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp"  data-linklabel="Your application status details">View your {{type}} application status</a></span>
+		</div>
+		<div class="links-container actionlink-list">
+			<h4> Resources for Seattle Applicants</h4>
+				<h5>ADMISSIONS</h5>
+				<ul class="unstyled-list"> <!-- TO-DO: ADD different links by application type --->
+				    <li><a href="" target="_blank">Key dates & deadlines for {{type}} </a></li>
 
+
+				</ul>
+				<h5>FINANCES</h5>
+				<ul class="unstyled-list">
+				    <li><a href="" >Learn all about student financial aid and scholarships</a></li>
+				    <li><a href="">Set account recovery options</a></li>
+				    {{#if display_2fa}} <!-- TO-DO: ADD THE LINK FOR INT'LT STUDENTS --->
+				        <li><a href="">Refer to total cost of attendance for financial planning</a></li>
+				    {{/if}}
+				</ul>
+		
+		</div>
+
+    </div>
+    
 </div>
 {% endtplhandlebars %}
