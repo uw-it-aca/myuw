@@ -383,7 +383,7 @@
 
         <!-- Opt-out Modal -->
         <div id="optout_page-modal"></div>
-        <div class="myuw-modal modal fade" id="optout_modal" tabindex="-1" role="dialog" aria-labelledby="optout_modal_label" aria-hidden="true">
+        <div class="myuw-modal modal fade" id="optout_modal" tabindex="-1" role="dialog" aria-labelledby="optout_modal_label" aria-describedby="optout_modal_description" aria-hidden="true" aria-modal="true">
             <div class="modal-dialog message-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -391,8 +391,8 @@
                         <h3 class="modal-title" id="optout_modal_label">Switch to the Old Version of MyUW</h3>
                     </div>
                     <div class="modal-body">
-                        <div style=" margin-top:10px; margin-bottom:30px;">
-                            <p>Use the old version of MyUW as your default destination the next time you sign in.</p>
+                        <div style="margin-top:10px; margin-bottom:30px;">
+                            <p id="optout_modal_description">Use the old version of MyUW as your default destination the next time you sign in.</p>
 
                             <a href="/choose/legacy" class="btn btn-primary" title="Go to the old version of MyUW">Use the old version of MyUW</a> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
@@ -428,7 +428,7 @@
 
         <!-- App messages modal -->
         <div id="page-modal"></div>
-        <div class="myuw-modal modal fade" id="message_modal" tabindex="-1" role="dialog" aria-labelledby="MyUWMessageModal" aria-hidden="true">
+        <div class="myuw-modal modal fade" id="message_modal" tabindex="-1" role="dialog" aria-labelledby="MyUWMessageModal" aria-hidden="true" aria-modal="true">
             <div class="modal-dialog message-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
