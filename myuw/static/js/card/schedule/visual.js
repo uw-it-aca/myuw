@@ -7,39 +7,30 @@ var VisualScheduleCard = {
     day_label_offset: 0,
 
     hide_card: function() {
-        if (window.user.student) {
-            VisualScheduleCard.ck_student_schedule = true;
-        }
-        if (window.user.instructor) {
-            VisualScheduleCard.ck_instructor_schedule = true;
-        }
-        if (VisualScheduleCard.ck_student_schedule || VisualScheduleCard.ck_instructor_schedule) {
+        if (window.user.student || window.user.instructor) {
             return false;
         }
         return true;
     },
 
     render_init: function(term, course_index) {
-        console.log('INIT');
         if (VisualScheduleCard.hide_card()) {
             $("#VisualScheduleCard").hide();
             return;
         }
-        console.log('123');
-        console.log(VisualScheduleCard.term);
         WSData.fetch_visual_schedule_term(VisualScheduleCard.term,
                                           VisualScheduleCard.render_handler,
                                           VisualScheduleCard.render_handler);
     },
 
     render_handler: function() {
-        var default_period = 0;
+        var schedule_data = WSData.visual_schedule_data('current');
+        var default_period = VisualScheduleCard._get_default_period(schedule_data.periods);
 
         VisualScheduleCard.display_schedule_for_period(default_period);
     },
 
     _render_error: function() {
-        console.log('err');
         $("#VisualScheduleCard").hide();
     },
 
@@ -52,9 +43,6 @@ var VisualScheduleCard = {
         return periods;
     },
 
-    // The course_index will be given when a modal is shown.
-    _render: function() {
-    },
     _get_data_for_period: function(course_data, term){
         var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
         var visual_data = {
@@ -309,7 +297,6 @@ var VisualScheduleCard = {
 
 
         $("a.schedule-period-anchor").on("click", function(ev){
-            console.log('eventy');
             var period_id = $(this).attr('data-period_id');
             VisualScheduleCard.display_schedule_for_period(period_id);
             return false;
@@ -332,7 +319,7 @@ var VisualScheduleCard = {
         var processed_period = VisualScheduleCard._get_data_for_period(period, schedule_data.term);
         var period_labels = VisualScheduleCard._get_period_lables(schedule_data);
         processed_period['schedule_periods'] = period_labels;
-        processed_period.active_period_id = period;
+        processed_period.active_period_id = period_id;
 
         if(period === "finals"){
             var target = $("#schedule_area").first();
@@ -340,6 +327,26 @@ var VisualScheduleCard = {
         } else {
             VisualScheduleCard.render_schedule(processed_period);
         }
+        LogUtils.cardLoaded(VisualScheduleCard.name, VisualScheduleCard.dom_target);
+    },
+
+    _get_default_period: function(periods){
+        var today = moment.utc(window.card_display_dates.comparison_date, "YYYY-MM-DD"),
+            default_period,
+            i;
+
+        $.each(periods, function(idx, period){
+            if (moment.utc(period.start_date, "YYYY-MM-DD").isSameOrBefore(today) &&
+                            moment.utc(period.end_date, "YYYY-MM-DD").isSameOrAfter(today)){
+                default_period = period.id;
+            }
+        });
+
+        if (default_period === undefined){
+            default_period = Object.keys(periods)[0];
+        }
+
+        return default_period;
     }
 
 };
