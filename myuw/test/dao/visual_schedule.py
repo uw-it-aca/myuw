@@ -7,7 +7,7 @@ from myuw.dao.visual_schedule import _get_visual_schedule_from_schedule, \
     get_schedule_bounds, _add_dates_to_sections, _get_weeks_from_bounds, \
     _add_sections_to_weeks, _section_lists_are_same, _sections_are_same, \
     _consolidate_weeks, _add_weekend_meeting_data, \
-    get_summer_schedule_bounds, trim_summer_meetings
+    get_summer_schedule_bounds, trim_summer_meetings, _get_finals_period
 from myuw.test import fdao_sws_override, fdao_pws_override, \
     get_request
 import datetime
@@ -514,3 +514,10 @@ class TestVisualSchedule(TestCase):
         self.assertFalse(trimmed_efs_mtg.meets_thursday)
         self.assertFalse(trimmed_efs_mtg.meets_friday)
         self.assertFalse(trimmed_efs_mtg.meets_saturday)
+
+    def test_get_finals(self):
+        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        term = get_term_from_quarter_string("2013,spring")
+        schedule = _get_schedule(regid, term)
+        finals = _get_finals_period(schedule)
+        self.assertEqual(len(finals.sections), 5)

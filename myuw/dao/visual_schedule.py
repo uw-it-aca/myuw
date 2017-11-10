@@ -38,7 +38,18 @@ def _get_visual_schedule_from_schedule(schedule):
         weeks = trim_section_meetings(weeks)
         weeks = trim_weeks_no_meetings(weeks)
         consolidated = _consolidate_weeks(weeks)
+
+    finals = _get_finals_period(schedule)
+    if len(finals.sections) > 0:
+        consolidated.append(finals)
     return consolidated
+
+
+def _get_finals_period(schedule):
+    finals = SchedulePeriod()
+    finals.is_finals = True
+    finals.sections = copy.deepcopy(schedule.sections)
+    return finals
 
 
 def trim_weeks_no_meetings(weeks):
@@ -371,6 +382,7 @@ class SchedulePeriod():
         self.is_boundary_period = False
         self.meets_saturday = False
         self.meets_sunday = False
+        self.is_finals = False
 
         # sections will be either A term OR B term, full term classes will
         # be split into corresponding A and B term pieces

@@ -28,12 +28,15 @@ class StuVisSchedCurQtr(StudClasSche):
             response = {}
             visual_schedule = get_current_visual_schedule(request)
             schedule_periods = []
-            id = 0
+            period_id = 0
             for period in visual_schedule:
                 period_data = period.json_data()
-                period_data['id'] = id
+                if period.is_finals:
+                    period_data['id'] = 'finals'
+                else:
+                    period_data['id'] = period_id
                 schedule_periods.append(period_data)
-                id += 1
+                period_id += 1
 
             response['periods'] = schedule_periods
 
@@ -41,7 +44,8 @@ class StuVisSchedCurQtr(StudClasSche):
             term = get_current_quarter(request)
             response['term'] = {
                 'year': term.year,
-                'quarter': term.quarter
+                'quarter': term.quarter,
+                'last_final_exam_date': term.last_final_exam_date
             }
             resp = self.json_response(response)
             return resp
