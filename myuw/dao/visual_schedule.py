@@ -387,4 +387,3 @@ class SchedulePeriod():
                 'meets_sunday': self.meets_sunday,
                 'sections': section_data}
         return data
-
