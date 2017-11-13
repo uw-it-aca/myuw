@@ -1,13 +1,105 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "tacoma_application_card" %}
-<div class="myuw-card">
+<div class="myuw-card application-card">
+{{#if true}} 
+    <h3 class="myuw-card-title">
+        Your Returning Student application
+    </h3>
+	<div class="myuw-card-section">
+		<h4 class="myuw-header-msg"> For application status, contact the UW Tacoma Office of Registrar </h4>
+			<div class="row">
+                <div class="col-sm-3">
+                    <div class="myuw-card-row-heading">Email</div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="myuw-card-row-content"><a href="mailto:uwbifo@uw.edu">reguwt@uw.edu</a></div>
+                </div>
+            </div> 
+			<div class="row">
+                <div class="col-sm-3">
+                    <div class="myuw-card-row-heading">Phone</div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="myuw-card-row-content">(253) 692-4913 </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="myuw-card-row-heading">Fax</div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="myuw-card-row-content">(253) 692-4414</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="myuw-card-row-heading">Location</div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="myuw-card-row-content">MAT 253 </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="myuw-card-row-heading">Mail</div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="myuw-card-row-content">University of Washington Tacoma <br>1900 Commerce Street<br> Tacoma, WA 98402-3100 </div>
+                </div>
+            </div>			
+	</div>
+    <div class="myuw-card-section">
+		<div class="links-container actionlink-list">
+			<h4> Resources for Tacoma Applicants</h4>
+				<ul class="unstyled-list">
+				    <li><a href="http://www.tacoma.uw.edu/node/36610" target="_blank">Learn all about student financial aid</a></li>
+				    <li><a href="http://www.tacoma.uw.edu/node/41373" target="_blank">Financial aid key dates and deadlines</a></li>
+				   	<li><a href="http://www.tacoma.uw.edu/node/41353" target="_blank">View the UW Tacoma Academic calendars</a></li>
+				</ul>
+		</div> <!-- .links-container -->
+
+    </div>
+
+{{else}}   
     <h3 class="myuw-card-title">
         Your Tacoma Application for {{quarter}} {{year}}
     </h3>
 
     <div class="myuw-card-section">
-        Application Placeholder for: {{type}}
-    </div>
+        
+        <div class="clearfix">
+             <span class="btn btn-default card-action-btn myuw-btn-big"><a href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp"  data-linklabel="Your application status details"><h4>View your {{type}} application status</h4></a></span>
+		</div>
+		<div class="links-container actionlink-list">
+			<h4> Resources for Tacoma Applicants</h4>
+				<h5 class="resources-header">ADMISSIONS</h5>
+				<ul class="unstyled-list">
+				    <li><a href="http://www.tacoma.uw.edu/admissions/important-dates-deadlines-all-applicants" target="_blank">Important dates & deadlines </a></li>
+				</ul>
+				<h5 class="resources-header">FINANCES</h5>
+				<ul class="unstyled-list">
+				    <li><a href="http://www.tacoma.uw.edu/node/20240" target="_blank">Applying for a financial Aid</a></li>
+				    <li><a href="http://www.tacoma.uw.edu/node/41373" target="_blank">Financial aid key dates and deadlines</a></li>
+				</ul>
+				<h5 class="resources-header">STUDENT LIFE</h5>
+				<ul class="unstyled-list">
+				    <li><a href="http://www.tacoma.uw.edu/admissions/visit" target="_blank">Plan your visit: Tacoma campus tours</a></li>
+				    <li><a href="http://www.tacoma.uw.edu/node/38753" target="_blank">Learn about student Housing</a></li>
+				   	<li>Check out <a href="http://www.tacoma.uw.edu/new-student-family-programs/new-student-family-programs" target="_blank">New Student programs</a> and <a href="http://www.tacoma.uw.edu/drsuwt" target="_blank">Disability Resources for Students (DRS)
+</a></li>
+				</ul>
+				<h5 class="resources-header">FOR ADMITTED</h5>
+				<ul class="unstyled-list">
+				    <li><a href="http://www.tacoma.uw.edu/admissions/i-was-admitted-now-what" target="_blank">Next steps for Admitted students</a></li>
+				    <li><a href="http://www.tacoma.uw.edu/node/41496" target="_blank">Sign up for a New student orientation</a></li>
+				    {{#if is_international}} 
+				        <li><a href="http://www.tacoma.uw.edu/iss/to-do-list" target="_blank">View the Int’l student to-do list from International Student and Scholar Services (ISSS)</a></li>
+				    {{/if}}
+				</ul>
+		</div> <!-- .links-container -->
 
+    </div>
+{{/if}}    
 </div>
 {% endtplhandlebars %}
