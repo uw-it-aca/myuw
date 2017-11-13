@@ -358,6 +358,9 @@ class TestVisualSchedule(TestCase):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,summer")
         schedule = _get_schedule(regid, term)
+        get_request_with_user('javerage',
+                              get_request_with_date("2013-08-01"))
+
         consolidated = _get_visual_schedule_from_schedule(schedule)
 
         self.assertEqual(len(consolidated), 5)
@@ -383,6 +386,8 @@ class TestVisualSchedule(TestCase):
     def test_summer_term_schedule_pce_beyond_term(self):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = get_term_from_quarter_string("2013,summer")
+            get_request_with_user('javerage',
+                                  get_request_with_date("2013-08-01"))
 
             section1 = Section()
             section1.curriculum_abbr = 'ASD'
@@ -391,6 +396,7 @@ class TestVisualSchedule(TestCase):
             section1.start_date = datetime.date(2013, 6, 2)
             section1.end_date = datetime.date(2013, 9, 4)
             section1.meetings = []
+            section1.term = term
 
             schedule = _get_schedule(regid, term)
             schedule.sections.append(section1)
@@ -415,6 +421,8 @@ class TestVisualSchedule(TestCase):
     def test_summer_term_schedule_pce(self):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = get_term_from_quarter_string("2013,summer")
+            get_request_with_user('javerage',
+                                  get_request_with_date("2013-08-01"))
 
             section1 = Section()
             section1.curriculum_abbr = 'ASD'
@@ -423,6 +431,7 @@ class TestVisualSchedule(TestCase):
             section1.start_date = datetime.date(2013, 7, 10)
             section1.end_date = datetime.date(2013, 8, 4)
             section1.meetings = []
+            section1.term = term
 
             schedule = _get_schedule(regid, term)
             schedule.sections.append(section1)
@@ -484,6 +493,8 @@ class TestVisualSchedule(TestCase):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,autumn")
         schedule = _get_schedule(regid, term)
+        get_request_with_user('javerage',
+                              get_request_with_date("2013-10-01"))
         consolidated = _get_visual_schedule_from_schedule(schedule)
         self.assertEqual(len(consolidated), 5)
 
@@ -528,8 +539,8 @@ class TestVisualSchedule(TestCase):
         term = get_term_from_quarter_string("2013,spring")
         schedule = _get_schedule(regid, term)
 
-        request = get_request_with_user('javerage',
-                                        get_request_with_date("2013-04-01"))
+        get_request_with_user('javerage',
+                              get_request_with_date("2013-04-01"))
 
         _add_course_colors_to_schedule(schedule)
         self.assertEqual(schedule.sections[0].color_id, 1)

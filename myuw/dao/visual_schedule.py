@@ -50,8 +50,11 @@ def _get_visual_schedule_from_schedule(schedule):
 def _add_course_colors_to_schedule(schedule):
     colors = get_colors_by_schedule(schedule)
     for section in schedule.sections:
-        color = colors[section.section_label()]
-        section.color_id = color
+        try:
+            color = colors[section.section_label()]
+            section.color_id = color
+        except KeyError:
+            pass
     return schedule
 
 
