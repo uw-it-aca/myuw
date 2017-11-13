@@ -41,7 +41,6 @@ var Landing = {
     _load_desktop_cards: function() {
         Landing._reset_content_divs();
         var desktop_body_cards = [
-            WelcomeCard,
             ThriveCard,
             OutageCard,
             GradeCard,
@@ -61,7 +60,8 @@ var Landing = {
             SummerRegStatusCard1,
             SeattleApplicationCard,
             BothellApplicationCard,
-            TacomaApplicationCard
+            TacomaApplicationCard,
+            WelcomeCard
         ];
         if(!window.user.student && !window.user.instructor &&
            (window.user.employee || window.user.clinician)) {
@@ -102,7 +102,8 @@ var Landing = {
             EventsCard,
             SeattleApplicationCard,
             BothellApplicationCard,
-            TacomaApplicationCard
+            TacomaApplicationCard,
+            WelcomeCard
         ];
         if(!window.user.student && !window.user.instructor &&
            (window.user.employee || window.user.clinician)) {
