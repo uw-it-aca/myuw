@@ -313,14 +313,15 @@ var VisualScheduleCard = {
     },
 
     display_schedule_for_period: function(period_id){
-        var schedule_data = WSData.visual_schedule_data('current');
+        var schedule_data = WSData.visual_schedule_data('current'),
+            period;
 
         if(period_id === "finals"){
-            var period = VisualScheduleCard._get_finals_period(schedule_data.periods);
+            period = VisualScheduleCard._get_finals_period(schedule_data.periods);
             var target = $("#schedule_area").first();
             FinalExamSchedule.render(period, schedule_data.term, false, target);
         } else {
-            var period = schedule_data.periods[period_id];
+            period = schedule_data.periods[period_id];
             var processed_period = VisualScheduleCard._get_data_for_period(period, schedule_data.term);
             var period_labels = VisualScheduleCard._get_period_lables(schedule_data);
             processed_period.schedule_periods = period_labels;
