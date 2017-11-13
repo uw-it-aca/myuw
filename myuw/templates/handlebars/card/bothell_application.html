@@ -1,7 +1,7 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "bothell_application_card" %}
 <div class="myuw-card application-card">
-{{#if true}} 
+{{#if is_returning}}
     <h3 class="myuw-card-title">
         Your Returning Student application
     </h3>
@@ -56,7 +56,7 @@
              <span class="btn btn-default card-action-btn myuw-btn-big"><a href="https://admissions.uwb.edu/apply/status"  data-linklabel="Your application status details"><h4>View your first year application status and checklist</h4></a></span>
 		</div>
 		<div class="links-container">
-			<p>If you have questions regarding your application, please contact UW Bothell Office of Admissions at <a href="mailto:someone@example.com">uwbifo@uw.edu</a></p>
+			<p>If you have questions regarding your application, please contact UW Bothell Office of Admissions at <a href="mailto:uwbifo@uw.edu">uwbifo@uw.edu</a></p>
 
 		</div> <!-- .links-container -->
 
