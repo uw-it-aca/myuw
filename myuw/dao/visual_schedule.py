@@ -1,4 +1,5 @@
 from myuw.dao.schedule import get_current_quarter_schedule
+from myuw.dao.course_color import get_colors_by_schedule
 from dateutil.relativedelta import *
 from datetime import timedelta
 import math
@@ -11,6 +12,7 @@ def get_current_visual_schedule(request):
 
 
 def _get_visual_schedule_from_schedule(schedule):
+    _add_course_colors_to_schedule(schedule)
     _add_dates_to_sections(schedule)
     if _is_split_summer(schedule):
         a_bounds, b_bounds = get_summer_schedule_bounds(schedule)
@@ -43,6 +45,14 @@ def _get_visual_schedule_from_schedule(schedule):
     if len(finals.sections) > 0:
         consolidated.append(finals)
     return consolidated
+
+
+def _add_course_colors_to_schedule(schedule):
+    colors = get_colors_by_schedule(schedule)
+    for section in schedule.sections:
+        color = colors[section.section_label()]
+        section.color_id = color
+    return schedule
 
 
 def _get_finals_period(schedule):
@@ -392,7 +402,9 @@ class SchedulePeriod():
     def json_data(self):
         section_data = []
         for section in self.sections:
-            section_data.append(section.json_data())
+            section_json = section.json_data()
+            section_json['color_id'] = section.color_id
+            section_data.append(section_json)
         data = {'start_date': self.start_date,
                 'end_date': self.end_date,
                 'meets_saturday': self.meets_saturday,
