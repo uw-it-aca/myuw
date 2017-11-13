@@ -1,6 +1,6 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "seattle_application_card" %}
-<div class="myuw-card">
+<div class="myuw-card application-card">
     <h3 class="myuw-card-title">
         Your Seattle Application for {{quarter}} {{year}}
     </h3>
@@ -12,22 +12,37 @@
 		</div>
 		<div class="links-container actionlink-list">
 			<h4> Resources for Seattle Applicants</h4>
-				<h5>ADMISSIONS</h5>
+				<h5 class="resources-header">ADMISSIONS</h5>
 				<ul class="unstyled-list"> <!-- TO-DO: ADD different links by application type --->
 				    <li><a href="" target="_blank">Key dates & deadlines for {{type}} </a></li>
 
-
 				</ul>
-				<h5>FINANCES</h5>
+				<h5 class="resources-header">FINANCES</h5>
 				<ul class="unstyled-list">
-				    <li><a href="" >Learn all about student financial aid and scholarships</a></li>
-				    <li><a href="">Set account recovery options</a></li>
-				    {{#if display_2fa}} <!-- TO-DO: ADD THE LINK FOR INT'LT STUDENTS --->
-				        <li><a href="">Refer to total cost of attendance for financial planning</a></li>
-				    {{/if}}
+				    <li><a href="https://www.washington.edu/financialaid/" >Learn all about student financial aid and scholarships</a></li>
+				    <li><a href="http://admit.washington.edu/costs-and-financial-aid/total-cost-of-attendance">Refer to total cost of attendance for financial planning</a></li>
+				    				</ul>
+				<h5 class="resources-header">STUDENT LIFE</h5>
+				<ul class="unstyled-list">
+				    <li><a href="" >Plan your visit: Seattle campus tours</a></li>
+				    <li><a href="">Learn about campus-living </a></li>
+				   	<li><a href="">Check out student services: Disability Resources</a></li>
 				</ul>
-		
-		</div>
+				<h5 class="resources-header">FOR ADMITTED</h5>
+				<ul class="unstyled-list">
+				    <li><a href="" >Next steps for Admitted students</a></li>
+				    <li><a href="">Accept the admission offer and pay the New Student Enrollment & Orientation Fee</a></li>
+				    {{#if display_2fa}} <!-- TO-DO: ADD THE LINK FOR INT'LT STUDENTS --->
+				        <li><a href="https://iss.washington.edu/new-students/">View the Int’l student checklist from International Student Services (ISS)
+</a></li>
+				    {{/if}}
+
+				   	<li><a href="">Register for an Advising & Orientation session</a></li>
+				    <li><a href="">View undergraduate Majors</a></li>
+				   	<li><a href="">Learn about the First Year Programs</a></li>
+				   	<li><a href="">Check out the Student guide</a></li>
+				</ul>
+		</div> <!-- .links-container -->
 
     </div>
     
