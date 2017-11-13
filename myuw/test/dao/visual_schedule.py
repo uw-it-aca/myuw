@@ -359,7 +359,7 @@ class TestVisualSchedule(TestCase):
         schedule = _get_schedule(regid, term)
         consolidated = _get_visual_schedule_from_schedule(schedule)
 
-        self.assertEqual(len(consolidated), 4)
+        self.assertEqual(len(consolidated), 5)
         self.assertEqual(consolidated[0].summer_term, "A-term")
         self.assertEqual(consolidated[2].summer_term, "B-term")
 
@@ -396,7 +396,7 @@ class TestVisualSchedule(TestCase):
 
             consolidated = _get_visual_schedule_from_schedule(schedule)
 
-            self.assertEqual(len(consolidated), 4)
+            self.assertEqual(len(consolidated), 5)
 
             self.assertEqual(consolidated[0].start_date,
                              datetime.date(2013, 6, 23))
@@ -428,7 +428,7 @@ class TestVisualSchedule(TestCase):
 
             consolidated = _get_visual_schedule_from_schedule(schedule)
 
-            self.assertEqual(len(consolidated), 6)
+            self.assertEqual(len(consolidated), 7)
 
             self.assertEqual(consolidated[0].start_date,
                              datetime.date(2013, 6, 23))
@@ -484,7 +484,7 @@ class TestVisualSchedule(TestCase):
         term = get_term_from_quarter_string("2013,autumn")
         schedule = _get_schedule(regid, term)
         consolidated = _get_visual_schedule_from_schedule(schedule)
-        self.assertEqual(len(consolidated), 4)
+        self.assertEqual(len(consolidated), 5)
 
         self.assertEqual(consolidated[0].start_date,
                          datetime.date(2013, 8, 25))
