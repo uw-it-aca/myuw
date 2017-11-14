@@ -1,19 +1,17 @@
-from unittest import TestCase
-
+from django.test import TestCase
 from uw_sdbmyuw.util import fdao_sdbmyuw_override
 from uw_sws.util import fdao_sws_override
-
 from myuw.dao.applications import get_applications
-from myuw.test.api import MyuwApiTest
+from myuw.test import get_user_pass
 
 
 @fdao_sws_override
 @fdao_sdbmyuw_override
-class TestApplications(MyuwApiTest):
+class TestApplications(TestCase):
 
     def test_applications(self):
-        self.set_netid("japplicant")
-
+        self.client.login(username="japplicant",
+                          password=get_user_pass("japplicant"))
         applications = get_applications()
 
         self.assertEqual(len(applications), 3)
@@ -33,4 +31,3 @@ class TestApplications(MyuwApiTest):
         self.assertIsNotNone(seattle_application)
         self.assertIsNotNone(bothell_application)
         self.assertIsNotNone(tacoma_application)
-

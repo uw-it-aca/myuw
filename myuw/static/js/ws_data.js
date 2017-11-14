@@ -1176,7 +1176,6 @@ WSData = {
                     type: "GET",
                     accepts: {html: "text/html"},
                     success: function(results) {
-                        console.log(results)
                         WSData._applicant_data = results;
                         WSData._run_success_callbacks_for_url(url);
                     },

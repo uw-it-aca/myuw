@@ -21,11 +21,9 @@ var SeattleApplicationCard = {
     _render: function () {
         var applicant_info = WSData.applicant_data();
 
-        var seattle_application = undefined;
-
         for(var i = 0; i < applicant_info.length; i++){
             if(applicant_info[i].is_seattle)
-                seattle_application = applicant_info[i]
+                seattle_application = applicant_info[i];
 
                 if(window.user.student && !seattle_application.is_transfer)
                     seattle_application = undefined;
