@@ -8,7 +8,7 @@ from myuw.dao.visual_schedule import _get_visual_schedule_from_schedule, \
     _add_sections_to_weeks, _section_lists_are_same, _sections_are_same, \
     _consolidate_weeks, _add_weekend_meeting_data, \
     get_summer_schedule_bounds, trim_summer_meetings, _get_finals_period, \
-    _add_course_colors_to_schedule
+    _add_course_colors_to_schedule, _get_combined_schedule
 from myuw.test import fdao_sws_override, fdao_pws_override, \
     get_request, get_request_with_user, get_request_with_date
 import datetime
@@ -548,3 +548,24 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(schedule.sections[2].color_id, 3)
         self.assertEqual(schedule.sections[3].color_id, '3a')
         self.assertEqual(schedule.sections[4].color_id, '3a')
+
+    def test_get_instructor_sections(self):
+        request = get_request_with_user('bill',
+                                        get_request_with_date("2013-04-01"))
+
+        schedule = _get_combined_schedule(request)
+        for section in schedule.sections:
+            self.assertTrue(section.is_teaching)
+
+    def test_get_mixed_sections(self):
+        request = get_request_with_user('eight',
+                                        get_request_with_date("2013-04-01"))
+
+        schedule = _get_combined_schedule(request)
+
+        for section in schedule.sections:
+            # section for which user is an instructor
+            if section.curriculum_abbr == "ACCTG":
+                self.assertTrue(section.is_teaching)
+            else:
+                self.assertFalse(section.is_teaching)

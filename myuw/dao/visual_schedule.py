@@ -1,5 +1,8 @@
 from myuw.dao.schedule import get_current_quarter_schedule
+from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.course_color import get_colors_by_schedule
+from myuw.dao.term import get_current_quarter
+from restclients_core.exceptions import DataFailureException
 from dateutil.relativedelta import *
 from datetime import timedelta
 import math
@@ -7,8 +10,45 @@ import copy
 
 
 def get_current_visual_schedule(request):
-    schedule = get_current_quarter_schedule(request)
+    schedule = _get_combined_schedule(request)
     return _get_visual_schedule_from_schedule(schedule)
+
+
+def _get_combined_schedule(request):
+    current_term = get_current_quarter(request)
+    try:
+        student_schedule = get_current_quarter_schedule(request)
+        _set_student_sections(student_schedule)
+    except DataFailureException:
+        student_schedule = None
+
+    try:
+        instructor_schedule = get_instructor_schedule_by_term(current_term)
+        _set_instructor_sections(instructor_schedule)
+    except DataFailureException:
+        instructor_schedule = None
+
+    schedule = None
+    if student_schedule is not None:
+        schedule = student_schedule
+        if instructor_schedule is not None:
+            schedule.sections += instructor_schedule.sections
+    elif instructor_schedule is not None:
+        schedule = instructor_schedule
+
+    return schedule
+
+
+def _set_instructor_sections(instructor_schedule):
+    for section in instructor_schedule.sections:
+        section.is_teaching = True
+    return instructor_schedule
+
+
+def _set_student_sections(student_schedule):
+    for section in student_schedule.sections:
+        section.is_teaching = False
+    return student_schedule
 
 
 def _get_visual_schedule_from_schedule(schedule):
@@ -407,6 +447,7 @@ class SchedulePeriod():
         for section in self.sections:
             section_json = section.json_data()
             section_json['color_id'] = section.color_id
+            section_json['is_teaching'] = section.is_teaching
             section_data.append(section_json)
         data = {'start_date': self.start_date,
                 'end_date': self.end_date,

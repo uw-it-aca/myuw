@@ -72,7 +72,6 @@ var VisualScheduleCard = {
             //schedule_periods: (course_data && course_data.schedule_periods) ? course_data.schedule_periods
             //    : (instructed_course_data && instructed_course_data.schedule_periods) ? instructed_course_data.schedule_periods
             //    : {},
-            is_instructor: false
         };
 
         //if (instructed_course_data && instructed_course_data.schedule_periods) {
@@ -82,7 +81,7 @@ var VisualScheduleCard = {
         //    }
         //}
 
-        var set_meeting = function(course_data, is_instructor) {
+        var set_meeting = function(course_data) {
             //if (!(period in course_data.schedule_periods)) {
             //    return;
             //}
@@ -110,7 +109,7 @@ var VisualScheduleCard = {
 
                         var meeting_info = {
                             is_meeting: true,
-                            is_instructor: is_instructor,
+                            is_instructor: section.is_teaching,
                             start: start_minutes,
                             end: end_minutes,
                             color_id: section.color_id,
@@ -184,13 +183,8 @@ var VisualScheduleCard = {
         var day, day_index, i, height, top;
 
         if (course_data) {
-            set_meeting(course_data, false);
+            set_meeting(course_data);
         }
-
-        //if (instructed_course_data && instructed_course_data.sections.length) {
-        //    visual_data.is_instructor = true;
-        //    set_meeting(instructed_course_data, true);
-        //}
 
         // Make it so the start and end times are always on the hour:
         var start_hour = parseInt(visual_data.earliest_start / 60, 10);
