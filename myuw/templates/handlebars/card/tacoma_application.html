@@ -1,7 +1,7 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "tacoma_application_card" %}
 <div class="myuw-card application-card">
-{{#if is_returning}} 
+{{#if is_returning}}
     <h3 class="myuw-card-title">
         Your Returning Student application
     </h3>
@@ -14,7 +14,7 @@
                 <div class="col-sm-9">
                     <div class="myuw-card-row-content"><a href="mailto:uwbifo@uw.edu">reguwt@uw.edu</a></div>
                 </div>
-            </div> 
+            </div>
 			<div class="row">
                 <div class="col-sm-3">
                     <div class="myuw-card-row-heading">Phone</div>
@@ -47,7 +47,7 @@
                 <div class="col-sm-9">
                     <div class="myuw-card-row-content">University of Washington Tacoma <br>1900 Commerce Street<br> Tacoma, WA 98402-3100 </div>
                 </div>
-            </div>			
+            </div>
 	</div>
     <div class="myuw-card-section">
 		<div class="links-container actionlink-list">
@@ -61,13 +61,13 @@
 
     </div>
 
-{{else}}   
+{{else}}
     <h3 class="myuw-card-title">
-        Your Tacoma Application for {{quarter}} {{year}}
+        Your Tacoma Application for {{toTitleCase quarter}} {{year}}
     </h3>
 
     <div class="myuw-card-section">
-        
+
         <div class="clearfix">
              <span class="btn btn-default card-action-btn myuw-btn-big"><a href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp"  data-linklabel="Your application status details"><h4 class="applicant-card">View your {{type}} application status</h4></a></span>
 		</div>
@@ -93,13 +93,13 @@
 				<ul class="unstyled-list list-leading ">
 				    <li><a href="http://www.tacoma.uw.edu/admissions/i-was-admitted-now-what" target="_blank">Next steps for Admitted students</a></li>
 				    <li><a href="http://www.tacoma.uw.edu/node/41496" target="_blank">Sign up for a New student orientation</a></li>
-				    {{#if is_international}} 
+				    {{#if is_international}}
 				        <li><a href="http://www.tacoma.uw.edu/iss/to-do-list" target="_blank">View the Int’l student to-do list from International Student and Scholar Services (ISSS)</a></li>
 				    {{/if}}
 				</ul>
 		</div> <!-- .links-container -->
 
     </div>
-{{/if}}    
+{{/if}}
 </div>
 {% endtplhandlebars %}
