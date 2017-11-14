@@ -21,7 +21,6 @@ var ApplicantProfileCard = {
     _render: function () {
         var student_info = WSData.profile_data();
         var source = $("#applicant_profile_card").html();
-        console.log(student_info)
         var template = Handlebars.compile(source);
 
         ApplicantProfileCard.dom_target.html(template(student_info));

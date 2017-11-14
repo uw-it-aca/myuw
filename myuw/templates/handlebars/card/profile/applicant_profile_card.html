@@ -13,7 +13,7 @@
                 </h4>
             </div>
             <div class="col-sm-9">
-                {{#if permanent_address}}
+                {{#if permanent_address.street_line1}}
                     <span>
                         {{permanent_address.street_line1}}
                         <br>
@@ -24,7 +24,9 @@
                         {{permanent_address.country}}
                     </span>
                 {{else}}
-                    Placeholder content for no Address here
+                    <span>
+                        No address is available on file
+                    </span>
                 {{/if}}
             </div>
         </div>
