@@ -13,15 +13,19 @@
                 </h4>
             </div>
             <div class="col-sm-9">
-                {{#if address1}}
+                {{#if permanent_address}}
                     <span>
-                        {{permanent_address}}
+                        {{permanent_address.street_line1}}
+                        <br>
+                        {{permanent_address.street_line2}}
+                        <br>
+                        {{permanent_address.city}} {{permanent_address.state}} {{permanent_address.zip_code}}
+                        <br>
+                        {{permanent_address.country}}
                     </span>
-                    <br />
-                    {{else}}
+                {{else}}
                     <span class="my-text-muted">No address available</span>
                 {{/if}}
-                
             </div>
         </div>
 
