@@ -10,6 +10,31 @@ import math
 import copy
 
 
+def get_schedule_json(visual_schedule, term):
+    response = {}
+    schedule_periods = []
+    period_id = 0
+    for period in visual_schedule:
+        period_data = period.json_data()
+        if period.is_finals:
+            period_data['id'] = 'finals'
+        else:
+            period_data['id'] = period_id
+        schedule_periods.append(period_data)
+        period_id += 1
+
+    response['periods'] = schedule_periods
+
+    # Add term data for schedule
+    response['term'] = {
+        'year': term.year,
+        'quarter': term.quarter,
+        'last_final_exam_date': term.last_final_exam_date
+    }
+    return response
+
+
+
 def get_future_visual_schedule(term):
     schedule = _get_combined_future_schedule(term)
     return _get_visual_schedule_from_schedule(schedule)

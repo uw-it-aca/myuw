@@ -1,17 +1,18 @@
 import logging
 import traceback
 from django.http import HttpResponse
-from myuw.dao.visual_schedule import get_current_visual_schedule
+from myuw.dao.visual_schedule import get_current_visual_schedule, \
+    get_schedule_json
 from myuw.dao.term import get_current_quarter
 from myuw.logger.timer import Timer
 from myuw.views.error import handle_exception
-from myuw.views.api.base_schedule import StudClasSche
+from myuw.views.api import ProtectedAPI
 
 
 logger = logging.getLogger(__name__)
 
 
-class StuVisSchedCurQtr(StudClasSche):
+class VisSchedCurQtr(ProtectedAPI):
     """
     Performs actions on resource at /api/v1/visual_schedule/current/.
     """
@@ -27,26 +28,9 @@ class StuVisSchedCurQtr(StudClasSche):
         try:
             response = {}
             visual_schedule = get_current_visual_schedule(request)
-            schedule_periods = []
-            period_id = 0
-            for period in visual_schedule:
-                period_data = period.json_data()
-                if period.is_finals:
-                    period_data['id'] = 'finals'
-                else:
-                    period_data['id'] = period_id
-                schedule_periods.append(period_data)
-                period_id += 1
-
-            response['periods'] = schedule_periods
-
-            # Add term data for schedule
             term = get_current_quarter(request)
-            response['term'] = {
-                'year': term.year,
-                'quarter': term.quarter,
-                'last_final_exam_date': term.last_final_exam_date
-            }
+            response = get_schedule_json(visual_schedule, term)
+
             resp = self.json_response(response)
             return resp
         except Exception:
