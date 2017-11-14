@@ -53,8 +53,6 @@ class MyProfile(ProtectedAPI):
             except Exception as ex:
                 logger.error("%s get_pw_json: %s" % (netid, ex))
 
-            print response
-
             log_success_response(logger, timer)
             return self.json_response(response)
         except Exception as ex:
