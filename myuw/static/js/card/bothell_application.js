@@ -3,7 +3,7 @@ var BothellApplicationCard = {
     dom_target: undefined,
 
     render_init: function() {
-        if (window.user.applicant && !window.user.student) {
+        if (window.user.applicant) {
             WSData.fetch_applicant_data(BothellApplicationCard.render_upon_data, BothellApplicationCard.render_error);
         } else {
             $("#BothellApplicationCard").hide();
@@ -25,7 +25,10 @@ var BothellApplicationCard = {
 
         for(var i = 0; i < applicant_info.length; i++){
             if(applicant_info[i].is_bothell)
-                bothell_application = applicant_info[i]
+                bothell_application = applicant_info[i];
+
+                if(window.user.student && !bothell_application.is_transfer)
+                    bothell_application = undefined;
         }
 
         if (bothell_application === undefined){

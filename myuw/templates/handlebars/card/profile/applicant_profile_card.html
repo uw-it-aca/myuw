@@ -13,16 +13,19 @@
                 </h4>
             </div>
             <div class="col-sm-9">
-                <span>
-                    {{permanent_address.street_line1}}
-                    <br>
-                    {{permanent_address.street_line2}}
-                    <br>
-                    {{permanent_address.city}} {{permanent_address.state}} {{permanent_address.zip_code}}
-                    <br>
-                    {{permanent_address.country}}
-                </span>
-                <br />
+                {{#if permanent_address}}
+                    <span>
+                        {{permanent_address.street_line1}}
+                        <br>
+                        {{permanent_address.street_line2}}
+                        <br>
+                        {{permanent_address.city}} {{permanent_address.state}} {{permanent_address.zip_code}}
+                        <br>
+                        {{permanent_address.country}}
+                    </span>
+                {{else}}
+                    Placeholder content for no Address here
+                {{/if}}
             </div>
         </div>
 

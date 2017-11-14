@@ -56,5 +56,4 @@ class MyProfile(ProtectedAPI):
             log_success_response(logger, timer)
             return self.json_response(response)
         except Exception as ex:
-            print ex
             return handle_exception(logger, timer, traceback)
