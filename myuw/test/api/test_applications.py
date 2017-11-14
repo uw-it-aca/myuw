@@ -1,18 +1,29 @@
+import json
 from django.test import TestCase
+from uw_pws.util import fdao_pws_override
 from uw_sdbmyuw.util import fdao_sdbmyuw_override
 from uw_sws.util import fdao_sws_override
 from myuw.dao.applications import get_applications
-from myuw.test import get_user_pass
+from myuw.test import get_user_pass, get_user
+from myuw.test.api import MyuwApiTest, require_url
 
 
 @fdao_sws_override
+@fdao_pws_override
 @fdao_sdbmyuw_override
-class TestApplications(TestCase):
+@require_url("myuw_applications_api")
+class TestApplications(MyuwApiTest):
+
+    def get_applications_response(self, netid, adate=None):
+        self.set_user(netid)
+        if adate is not None:
+            self.set_date(adate)
+        return self.get_response_by_reverse('myuw_applications_api')
 
     def test_applications(self):
-        self.client.login(username="japplicant",
-                          password=get_user_pass("japplicant"))
-        applications = get_applications()
+
+        response = self.get_applications_response("japplicant")
+        applications = json.loads(response.content)
 
         self.assertEqual(len(applications), 3)
 
@@ -21,11 +32,11 @@ class TestApplications(TestCase):
         tacoma_application = None
 
         for application in applications:
-            if application.is_seattle:
+            if application['is_seattle']:
                 seattle_application = application
-            elif application.is_tacoma:
+            elif application['is_tacoma']:
                 tacoma_application = application
-            elif application.is_bothell:
+            elif application['is_bothell']:
                 bothell_application = application
 
         self.assertIsNotNone(seattle_application)
