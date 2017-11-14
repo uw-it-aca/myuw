@@ -1,6 +1,5 @@
 import logging
 import traceback
-
 from myuw.dao.student_profile import get_applicant_profile
 from myuw.dao.gws import is_student, is_applicant
 from myuw.dao.student_profile import get_student_profile
