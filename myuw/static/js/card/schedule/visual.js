@@ -44,7 +44,7 @@ var VisualScheduleCard = {
     },
 
     _get_data_for_period: function(course_data, term){
-        var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+        var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
         var visual_data = {
             //has_early_fall_start: ((course_data && course_data.has_early_fall_start) ||
             //                       (instructed_course_data &&
@@ -65,27 +65,17 @@ var VisualScheduleCard = {
             thursday: [],
             friday: [],
             saturday: [],
+            sunday: [],
             display_hours: [],
-            has_6_days: false,
+            day_class: "five-day",
             courses_meeting_tbd: [],
             courses_no_meeting: [],
-            //schedule_periods: (course_data && course_data.schedule_periods) ? course_data.schedule_periods
-            //    : (instructed_course_data && instructed_course_data.schedule_periods) ? instructed_course_data.schedule_periods
-            //    : {},
+            meets_saturday: false,
+            meets_sunday: false
         };
 
-        //if (instructed_course_data && instructed_course_data.schedule_periods) {
-        //    if (period in instructed_course_data.schedule_periods) {
-        //        visual_data.total_sections +=
-        //            instructed_course_data.schedule_periods[period].sections.length;
-        //    }
-        //}
 
         var set_meeting = function(course_data) {
-            //if (!(period in course_data.schedule_periods)) {
-            //    return;
-            //}
-
             $.each(course_data.sections, function(section_index) {
                 var section = this;
                 $.each(section.meetings, function(){
@@ -128,13 +118,20 @@ var VisualScheduleCard = {
                             early_fall_start: section.early_fall_start,
                             has_early_fall_start: course_data.has_early_fall_start
                         };
+                        if(course_data.meets_saturday && course_data.meets_sunday){
+                            visual_data.day_class = "seven-day";
+                        } else if(course_data.meets_saturday || course_data.meets_sunday){
+                            visual_data.day_class = "seven-day";
+                        } else {
+
+                        }
+
+                        visual_data.meets_saturday = course_data.meets_saturday;
+                        visual_data.meets_sunday = course_data.meets_sunday;
 
                         $.each(days, function(){
                             day = this.toString();
                             if (meeting.meeting_days[day]) {
-                                if (day === "saturday") {
-                                    visual_data.has_6_days = true;
-                                }
                                 visual_data[day].push(meeting_info);
                             }
                         });
