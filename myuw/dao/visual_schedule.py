@@ -34,7 +34,6 @@ def get_schedule_json(visual_schedule, term):
     return response
 
 
-
 def get_future_visual_schedule(term):
     schedule = _get_combined_future_schedule(term)
     return _get_visual_schedule_from_schedule(schedule)

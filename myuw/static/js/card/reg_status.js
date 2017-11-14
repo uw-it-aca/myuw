@@ -3,6 +3,7 @@ var RegStatusCard = {
     dom_target: undefined,
 
     render_init: function() {
+        console.log('init');
         if (!window.user.student) {
             $("#RegStatusCard").hide();
             return;

@@ -603,7 +603,7 @@ class TestVisualSchedule(TestCase):
         future_schedule = get_future_visual_schedule(term)
 
         request = get_request_with_user('javerage',
-                              get_request_with_date("2013-08-1"))
+                                        get_request_with_date("2013-08-1"))
 
         current_schedule = get_current_visual_schedule(request)
 
