@@ -81,6 +81,7 @@ def _get_visual_schedule_from_schedule(schedule):
         weeks = trim_weeks_no_meetings(weeks)
         consolidated = _consolidate_weeks(weeks)
 
+    _add_weekend_meeting_data(consolidated)
     finals = _get_finals_period(schedule)
     if len(finals.sections) > 0:
         consolidated.append(finals)

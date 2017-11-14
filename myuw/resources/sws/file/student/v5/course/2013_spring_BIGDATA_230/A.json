@@ -62,9 +62,12 @@
                 "Days": [
                     {
                         "Name": "Wednesday"
+                    },
+                    {
+                        "Name": "Sunday"
                     }
                 ],
-                "Text": "..W...."
+                "Text": "..W...S"
             },
             "DaysOfWeekToBeArranged": false,
             "EndTime": "21:00:00",

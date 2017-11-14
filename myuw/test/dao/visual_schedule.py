@@ -569,3 +569,15 @@ class TestVisualSchedule(TestCase):
                 self.assertTrue(section.is_teaching)
             else:
                 self.assertFalse(section.is_teaching)
+
+    def test_sunday_schedule(self):
+        request = get_request_with_user('jeos',
+                                        get_request_with_date("2013-04-01"))
+
+        schedule = _get_combined_schedule(request)
+        sunday_section = schedule.sections[0]
+
+        self.assertTrue(sunday_section.meetings[0].meets_sunday)
+
+        visual_schedule = _get_visual_schedule_from_schedule(schedule)
+        self.assertTrue(visual_schedule[1].meets_sunday)
