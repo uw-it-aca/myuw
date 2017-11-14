@@ -1,9 +1,9 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "applicant_profile_card" %}
 <div class="myuw-card">
-    <h2 class="myuw-card-title">
+    <h3 class="myuw-card-title">
         Applicant Profile
-    </h2>
+    </h3>
 
     <div class="myuw-card-section">
         <div class="row">
@@ -13,21 +13,22 @@
                 </h4>
             </div>
             <div class="col-sm-9">
-                <span>
-                    {{permanent_address.street_line1}}
-                    <br>
-                    {{permanent_address.street_line2}}
-                    <br>
-                    {{permanent_address.city}} {{permanent_address.state}} {{permanent_address.zip_code}}
-                    <br>
-                    {{permanent_address.country}}
-                </span>
-                <br />
+                {{#if address1}}
+                    <span>
+                        {{permanent_address}}
+                    </span>
+                    <br />
+                    {{else}}
+                    <span class="my-text-muted">No address available</span>
+                {{/if}}
+                
             </div>
         </div>
 
         <div class="row">
-            <a class="col-sm-9 col-sm-offset-3" href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx">Change Address</a>
+	        <div class="col-sm-9 col-sm-offset-3">
+            	<a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx" title="Change address on Student Personal Services website">Change Address</a>
+            </div>
         </div>
     </div>
 
@@ -35,13 +36,17 @@
         <div class="row">
             <div class="col-sm-3">
                 <h4 class="myuw-card-row-heading">
-                    Personal Email Address
+                    Email Address
                 </h4>
             </div>
             <div class="col-sm-9">
+	            {{#if email1}}
                 <span>
-                    {{email}}
+                    {{email1}}
                 </span>
+                {{else}}
+                <span class="my-text-muted">No email address available</span>
+                {{/if}}
             </div>
         </div>
     </div>
