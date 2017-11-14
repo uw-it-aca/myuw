@@ -48,7 +48,7 @@ from myuw.views.api.upass import UPass
 from myuw.views.api.link import ManageLinks
 from myuw.views.api.directory import MyDirectoryInfo
 from myuw.views.lti.photo_list import LTIPhotoList
-from myuw.views.api.visual_schedule import VisSchedCurQtr
+from myuw.views.api.visual_schedule import VisSchedCurQtr, VisSchedOthrQtr
 
 
 urlpatterns = []
@@ -165,8 +165,12 @@ urlpatterns += [
     url(r'^api/v1/visual_schedule/current/?$',
         VisSchedCurQtr.as_view(),
         name="myuw_current_visual_schedule"),
+    url(r'^api/v1/schedule/(?P<year>\d{4}),(?P<quarter>[a-z]+),'
+        r'(?P<summer_term>[-,abterm]*)$',
+        StudClasScheFutureQuar.as_view(),
+        name="myuw_future_summer_visual_schedule"),
     url(r'^api/v1/visual_schedule/(?P<year>\d{4}),(?P<quarter>[a-z]+)',
-        VisSchedCurQtr.as_view(),
+        VisSchedOthrQtr.as_view(),
         name="myuw_future_visual_schedule"),
     url(r'^api/v1/thrive/$',
         ThriveMessages.as_view(),

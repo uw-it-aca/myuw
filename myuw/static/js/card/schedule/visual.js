@@ -24,8 +24,8 @@ var VisualScheduleCard = {
     },
 
     render_handler: function() {
-        var schedule_data = WSData.visual_schedule_data('current');
-        var default_period = VisualScheduleCard._get_default_period(schedule_data.periods);
+        var schedule_data = WSData.visual_schedule_data(VisualScheduleCard.term);
+        var default_perqiod = VisualScheduleCard._get_default_period(schedule_data.periods);
 
         VisualScheduleCard.display_schedule_for_period(default_period);
     },
