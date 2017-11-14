@@ -1,4 +1,5 @@
 from myuw.dao.schedule import get_current_quarter_schedule
+from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.course_color import get_colors_by_schedule
 from myuw.dao.term import get_current_quarter
@@ -7,6 +8,11 @@ from dateutil.relativedelta import *
 from datetime import timedelta
 import math
 import copy
+
+
+def get_future_visual_schedule(term):
+    schedule = _get_combined_future_schedule(term)
+    return _get_visual_schedule_from_schedule(schedule)
 
 
 def get_current_visual_schedule(request):
@@ -24,6 +30,30 @@ def _get_combined_schedule(request):
 
     try:
         instructor_schedule = get_instructor_schedule_by_term(current_term)
+        _set_instructor_sections(instructor_schedule)
+    except DataFailureException:
+        instructor_schedule = None
+
+    schedule = None
+    if student_schedule is not None:
+        schedule = student_schedule
+        if instructor_schedule is not None:
+            schedule.sections += instructor_schedule.sections
+    elif instructor_schedule is not None:
+        schedule = instructor_schedule
+
+    return schedule
+
+
+def _get_combined_future_schedule(term):
+    try:
+        student_schedule = get_schedule_by_term(term)
+        _set_student_sections(student_schedule)
+    except DataFailureException:
+        student_schedule = None
+
+    try:
+        instructor_schedule = get_instructor_schedule_by_term(term)
         _set_instructor_sections(instructor_schedule)
     except DataFailureException:
         instructor_schedule = None

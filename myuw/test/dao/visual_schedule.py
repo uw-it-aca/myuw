@@ -8,7 +8,8 @@ from myuw.dao.visual_schedule import _get_visual_schedule_from_schedule, \
     _add_sections_to_weeks, _section_lists_are_same, _sections_are_same, \
     _consolidate_weeks, _add_weekend_meeting_data, \
     get_summer_schedule_bounds, trim_summer_meetings, _get_finals_period, \
-    _add_course_colors_to_schedule, _get_combined_schedule
+    _add_course_colors_to_schedule, _get_combined_schedule, \
+    get_future_visual_schedule, get_current_visual_schedule
 from myuw.test import fdao_sws_override, fdao_pws_override, \
     get_request, get_request_with_user, get_request_with_date
 import datetime
@@ -27,6 +28,19 @@ class TestVisualSchedule(TestCase):
                 and sec1.section_id == sec2.section_id:
             return True
         return False
+
+    def _period_lists_are_same(self, list1, list2):
+        for period1 in list1:
+            match = False
+            for period2 in list2:
+                if period1.start_date == period2.start_date and \
+                                period1.end_date == period2.end_date and \
+                        _section_lists_are_same(period1.sections,
+                                                period2.sections):
+                    match = True
+            if not match:
+                return False
+        return True
 
     def test_get_bounds(self):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
@@ -581,3 +595,19 @@ class TestVisualSchedule(TestCase):
 
         visual_schedule = _get_visual_schedule_from_schedule(schedule)
         self.assertTrue(visual_schedule[1].meets_sunday)
+
+    def test_future_term(self):
+        get_request_with_user('javerage',
+                              get_request_with_date("2013-03-01"))
+        term = get_term_from_quarter_string("2013,summer")
+        future_schedule = get_future_visual_schedule(term)
+
+        request = get_request_with_user('javerage',
+                              get_request_with_date("2013-08-1"))
+
+        current_schedule = get_current_visual_schedule(request)
+
+        # Ensure that getting summer as 'current' term returns same results
+        # as getting as future
+        self.assertTrue(self._period_lists_are_same(current_schedule,
+                                                    future_schedule))
