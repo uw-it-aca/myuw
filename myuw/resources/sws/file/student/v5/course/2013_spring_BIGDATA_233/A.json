@@ -3,9 +3,9 @@
     "Auditors": 0,
     "ClassWebsiteUrl": "",
     "Course": {
-        "CourseNumber": "230",
+        "CourseNumber": "233",
         "CurriculumAbbreviation": "BIGDATA",
-        "Href": "/student/v5/course/2013,spring,BIGDATA,230.json",
+        "Href": "/student/v5/course/2013,spring,BIGDATA,233.json",
         "Quarter": "spring",
         "Year": 2013
     },
@@ -24,7 +24,7 @@
     "DeleteFlag": "active",
     "DistanceLearning": false,
     "DuplicateEnrollmentAllowed": false,
-    "EndDate": "2013-05-11",
+    "EndDate": "2013-05-18",
     "EnrollmentRestrictions": false,
     "FeeAmount": null,
     "FeeBudget": null,
@@ -61,13 +61,10 @@
             "DaysOfWeek": {
                 "Days": [
                     {
-                        "Name": "Wednesday"
-                    },
-                    {
-                        "Name": "Sunday"
+                        "Name": "Saturday"
                     }
                 ],
-                "Text": "..W...S"
+                "Text": "S......"
             },
             "DaysOfWeekToBeArranged": false,
             "EndTime": "21:00:00",
@@ -75,7 +72,7 @@
                 {
                     "FacultySequenceNumber": "1",
                     "GradeRoster": {
-                        "Href": "/student/v5/graderoster/2013,spring,BIGDATA,230,A,10000000000000000000000000000011"
+                        "Href": "/student/v5/graderoster/2013,spring,BIGDATA,233,A,10000000000000000000000000000011"
                     },
                     "PercentInvolve": "",
                     "Person": {
@@ -108,7 +105,7 @@
                 {
                     "FacultySequenceNumber": "1",
                     "GradeRoster": {
-                        "Href": "/student/v5/graderoster/2017,spring,BIGDATA,230,A,10000000000000000000000000000011"
+                        "Href": "/student/v5/graderoster/2017,spring,BIGDATA,233,A,10000000000000000000000000000011"
                     },
                     "PercentInvolve": "",
                     "Person": {
@@ -137,18 +134,18 @@
     },
     "PrimaryLMS": "CANVAS",
     "PrimarySection": {
-        "CourseNumber": "230",
+        "CourseNumber": "233",
         "CurriculumAbbreviation": "BIGDATA",
-        "Href": "/student/v5/course/2013,spring,BIGDATA,230/A.json",
+        "Href": "/student/v5/course/2013,spring,BIGDATA,233/A.json",
         "Quarter": "spring",
         "SectionID": "A",
         "Year": 2013
     },
     "Registrations": {
         "ChangedSinceDate": "",
-        "CourseNumber": "230",
+        "CourseNumber": "233",
         "CurriculumAbbreviation": "BIGDATA",
-        "Href": "/student/v5/registration.json?year=2013&quarter=spring&curriculum_abbreviation=BIGDATA&course_number=230&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "Href": "/student/v5/registration.json?year=2013&quarter=spring&curriculum_abbreviation=BIGDATA&course_number=233&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
         "InstructorRegID": null,
         "IsActive": true,
         "PageSize": "",
@@ -170,7 +167,7 @@
     "SectionType": null,
     "SelfRegistrationAllowed": false,
     "ServiceLearning": false,
-    "StartDate": "2013-04-03",
+    "StartDate": "2013-05-05",
     "StudentCreditHours": null,
     "SummerTerm": "",
     "Term": {

@@ -226,11 +226,7 @@ var VisualScheduleCard = {
             visual_data.schedule_hours_class = "twelve-plus";
         }
 
-        var weekends = days.length;
-        if (!visual_data.has_6_days) {
-            weekends = 5;
-        }
-        for (day_index = 0; day_index < weekends; day_index++) {
+        for (day_index = 0; day_index < days.length; day_index++) {
             day = days[day_index];
             i = 0;
             while (i < visual_data[day].length) {
