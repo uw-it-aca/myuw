@@ -35,44 +35,52 @@
     	    </div>
     	    {{/each}}
     	</div>
-    
-    	<div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+        {{#if meets_sunday}}
+    	<div class="{{ day_class }}">
+    	    <div class="day-label">SUN</div>
+    	    <div class="day-col hours-{{total_hours}}">
+    	        {{ show_card_days_meetings sunday start_time end_time }}
+    	    </div>
+    	</div>
+    	{{/if}}
+
+    	<div class="{{ day_class }}">
     	    <div class="day-label">MON</div>
     	    <div class="day-col hours-{{total_hours}}">
     	        {{ show_card_days_meetings monday start_time end_time }}
     	    </div>
     	</div>
     
-    	<div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+    	<div class="{{ day_class }}">
     	    <div class="day-label">TUE</div>
     	    <div class="day-col hours-{{total_hours}}">
     	        {{ show_card_days_meetings tuesday start_time end_time }}
     	    </div>
     	</div>
     
-    	<div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+    	<div class="{{ day_class }}">
     	    <div class="day-label">WED</div>
     	    <div class="day-col hours-{{total_hours}}">
     	        {{ show_card_days_meetings wednesday start_time end_time }}
     	    </div>
     	</div>
     
-    	<div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+    	<div class="{{ day_class }}">
     	    <div class="day-label">THU</div>
     	    <div class="day-col hours-{{total_hours}}">
     	        {{ show_card_days_meetings thursday start_time end_time }}
     	    </div>
     	</div>
     
-    	<div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
+    	<div class="{{ day_class }}">
     	    <div class="day-label">FRI</div>
     	    <div class="day-col hours-{{total_hours}}">
     	        {{ show_card_days_meetings friday start_time end_time }}
     	    </div>
     	</div>
     
-    	{{#if has_6_days}}
-    	<div class="six-day">
+        {{#if meets_saturday}}
+    	<div class="{{ day_class }}">
     	    <div class="day-label">SAT</div>
     	    <div class="day-col hours-{{total_hours}}">
     	        {{ show_card_days_meetings saturday start_time end_time }}

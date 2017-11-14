@@ -49,6 +49,7 @@ from myuw.views.api.upass import UPass
 from myuw.views.api.link import ManageLinks
 from myuw.views.api.directory import MyDirectoryInfo
 from myuw.views.lti.photo_list import LTIPhotoList
+from myuw.views.api.visual_schedule import VisSchedCurQtr
 
 
 urlpatterns = []
@@ -165,6 +166,12 @@ urlpatterns += [
     url(r'^lti/api/v1/instructor_section_details/(?P<section_id>[^/]*)$',
         LTIInstSectionDetails.as_view(),
         name="myuw_lti_instructor_section_details_api"),
+    url(r'^api/v1/visual_schedule/current/?$',
+        VisSchedCurQtr.as_view(),
+        name="myuw_current_visual_schedule"),
+    url(r'^api/v1/visual_schedule/(?P<year>\d{4}),(?P<quarter>[a-z]+)',
+        VisSchedCurQtr.as_view(),
+        name="myuw_future_visual_schedule"),
     url(r'^api/v1/thrive/$',
         ThriveMessages.as_view(),
         name="myuw_thrive_api"),
