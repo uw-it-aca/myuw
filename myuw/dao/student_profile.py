@@ -33,7 +33,7 @@ def get_student_profile(request):
     """
     profile = get_applicant_profile(request)
 
-    response = profile.json_data()
+    response = profile
     response['is_student'] = True
     response['is_grad_student'] = is_grad_student()
 
@@ -109,24 +109,24 @@ def _get_degrees_for_terms(terms, enrollments, accessor):
 
     for term in terms:
         if term in enrollments:
-                entry = {}
-                entry['quarter'] = term.quarter
-                entry['year'] = term.year
+            entry = {}
+            entry['quarter'] = term.quarter
+            entry['year'] = term.year
 
-                term_degrees = getattr(enrollments[term], accessor)
-                entry[accessor] = []
+            term_degrees = getattr(enrollments[term], accessor)
+            entry[accessor] = []
 
-                entry['degrees_modified'] = _degree_has_changed(previous,
-                                                                term_degrees)
+            entry['degrees_modified'] = _degree_has_changed(previous,
+                                                            term_degrees)
 
-                entry['has_only_dropped'] = _has_only_dropped_degrees(
-                                                                 previous,
-                                                                 term_degrees)
-                for degree in term_degrees:
-                    entry[accessor].append(degree.json_data())
+            entry['has_only_dropped'] = _has_only_dropped_degrees(
+                                                             previous,
+                                                             term_degrees)
+            for degree in term_degrees:
+                entry[accessor].append(degree.json_data())
 
-                degrees.append(entry)
-                previous = term_degrees
+            degrees.append(entry)
+            previous = term_degrees
 
     return degrees
 
@@ -146,4 +146,4 @@ def _has_only_dropped_degrees(first, second):
     """
     has_dropped = len(set(first) - set(second)) > 0
     has_added = len(set(second) - set(first)) > 0
-    return (has_dropped and not has_added)
+    return has_dropped and not has_added
