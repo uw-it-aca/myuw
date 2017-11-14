@@ -4,7 +4,7 @@ var WelcomeCard = {
 
     render_init: function() {
         if (window.user.applicant && !window.user.student) {
-            this._render()
+            this._render();
         } else {
             return;
         }

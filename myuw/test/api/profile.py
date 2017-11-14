@@ -189,4 +189,3 @@ class TestProfile(MyuwApiTest):
         data = json.loads(response.content)
         self.assertEqual(data['email'], 'japplicant@u.washington.edu')
         self.assertNotIn("term_majors", data)
-

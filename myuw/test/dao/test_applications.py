@@ -33,4 +33,3 @@ class TestApplications(MyuwApiTest):
         self.assertIsNotNone(seattle_application)
         self.assertIsNotNone(bothell_application)
         self.assertIsNotNone(tacoma_application)
-
