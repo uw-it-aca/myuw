@@ -671,14 +671,7 @@ label { font-weight: normal; margin-bottom: auto; }
                 }
             }
         }
-    // Card action button
-        .card-action-btn { 
-	        margin-bottom: 16px; margin-top: 8px;
-                    &:hover, &:focus {background-color:#e8e3d3;border-color:#e8e3d3;}                   
-                    a {color:#444;
-                    	&:hover, &:focus {color: #000; text-decoration: none; }
-                    }     
-         }
+
 		//adding padding for right-aligned btn case
 		.card-action-btn.pull-right { margin-right: 10px;}  
               
@@ -828,11 +821,25 @@ label { font-weight: normal; margin-bottom: auto; }
         padding-left: 16px;
         ul { list-style-type: none; padding-left: 0; }
     }
-
-    // Application cards
-    .myuw-card.application-card {
+	// Move the action button out of the card
+	.card-action-btn { 
+	        margin-bottom: 16px; margin-top: 8px;
+                    &:hover, &:focus {background-color:#e8e3d3;border-color:#e8e3d3;}                   
+                    a {color:#444;
+                    	&:hover, &:focus {color: #000; text-decoration: none; }
+                    }     
+         }
+   
+    // Application cards styles
+   .myuw-card.application-card { //remove top padding
 		    margin-top: 0;
 	    }
+    h4.applicant-card {
+			font-family:'Roboto', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: #444;	
+	}
     .application-card {
 
 	    .myuw-btn-big {
@@ -848,6 +855,9 @@ label { font-weight: normal; margin-bottom: auto; }
 		.resources-header { 
 			margin-top: 15px;
             margin-bottom: 5px;
+		}
+		.list-leading {
+			li { margin-top: 3px; margin-bottom: 4px;}
 		}
     }
 

@@ -7,7 +7,7 @@
     </h3>
 
     <div class="myuw-card-section last">
-		<h4 class="myuw-header-msg"> For application status, contact The Office of the University Registrar</h4>
+		<h4 class="applicant-card myuw-header-msg"> For application status, contact The Office of the University Registrar</h4>
 			<div class="row">
                 <div class="col-sm-3">
                     <div class="myuw-card-row-heading">Email</div>
@@ -50,14 +50,14 @@
             </div>			
 	</div>
 	<div class="myuw-card-section">	
-		<div class="links-container actionlink-list">
-			<h4> Resources for Seattle Applicants</h4>
-				<ul class="unstyled-list">
-				    <li><a href="https://www.washington.edu/financialaid/" target="_blank">Learn all about student financial aid and scholarships</a></li>
-				    <li><a href="http://www.washington.edu/students/" target="_blank">Check out the Student guide for academics, student life, and more</a></li>
-				   	<li><a href="http://www.washington.edu/students/reg/calendar.html" target="_blank">View the UW Academic calendars</a></li>
-				</ul>
-		</div> <!-- .links-container -->
+
+		<h4 class="applicant-card"> Resources for Seattle Applicants</h4>
+			<ul class="unstyled-list list-leading">
+			    <li><a href="https://www.washington.edu/financialaid/" target="_blank">Learn all about student financial aid and scholarships</a></li>
+			    <li><a href="http://www.washington.edu/students/" target="_blank">Check out the Student guide for academics, student life, and more</a></li>
+			   	<li><a href="http://www.washington.edu/students/reg/calendar.html" target="_blank">View the UW Academic calendars</a></li>
+			</ul>
+
 
     </div>
 
@@ -69,12 +69,12 @@
     <div class="myuw-card-section">
         
         <div class="clearfix">
-             <span class="btn btn-default card-action-btn myuw-btn-big"><a href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp"  data-linklabel="Your application status details"><h4>View your {{type}} application status</h4></a></span>
+             <span class="btn btn-default card-action-btn myuw-btn-big"><a href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp"  data-linklabel="Your application status details"><h4 class="applicant-card">View your {{type}} application status</h4></a></span>
 		</div>
 		<div class="links-container actionlink-list">
-			<h4> Resources for Seattle Applicants</h4>
+			<h4 class="applicant-card"> Resources for Seattle Applicants</h4>
 				<h5 class="resources-header">ADMISSIONS</h5>
-				<ul class="unstyled-list">
+				<ul class="unstyled-list list-leading">
 				    {{#if is_freshman}}
 				    	<li><a href="http://admit.washington.edu/apply/freshman/deadlines" target="_blank">Key dates & deadlines for freshmen </a></li>
 				    {{else if is_transfer}}
@@ -85,18 +85,18 @@
 
 				</ul>
 				<h5 class="resources-header">FINANCES</h5>
-				<ul class="unstyled-list">
+				<ul class="unstyled-list list-leading">
 				    <li><a href="https://www.washington.edu/financialaid/" target="_blank">Learn all about student financial aid and scholarships</a></li>
 				    <li><a href="http://admit.washington.edu/costs-and-financial-aid/total-cost-of-attendance" target="_blank">Refer to total cost of attendance for financial planning</a></li>
 				</ul>
 				<h5 class="resources-header">STUDENT LIFE</h5>
-				<ul class="unstyled-list">
+				<ul class="unstyled-list list-leading ">
 				    <li><a href="http://admit.washington.edu/Visit" target="_blank">Plan your visit: Seattle campus tours</a></li>
 				    <li><a href="https://www.hfs.washington.edu/housing/Default.aspx?id=6413#gsc.tab=0" target="_blank">Learn about campus-living </a></li>
 				   	<li><a href="http://hr.uw.edu/dso/services/matriculated-students/" target="_blank">Check out student services: Disability Resources</a></li>
 				</ul>
 				<h5 class="resources-header">FOR ADMITTED</h5>
-				<ul class="unstyled-list">
+				<ul class="unstyled-list list-leading ">
 				    <li><a href="http://admit.washington.edu/apply/admitted" target="_blank">Next steps for Admitted students</a></li>
 				    <li><a href="http://www.washington.edu/newhuskies/must-do/#accept/" target="_blank">Accept the admission offer and pay the New Student Enrollment & Orientation Fee</a></li>
 				    {{#if is_international}} 
