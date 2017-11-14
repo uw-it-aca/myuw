@@ -13,12 +13,16 @@
                 </h4>
             </div>
             <div class="col-sm-9">
-                {{#if address1}}
-                    <span>
-                        {{permanent_address}}
-                    </span>
-                    <br />
-                {{/if}}
+                <span>
+                    {{permanent_address.street_line1}}
+                    <br>
+                    {{permanent_address.street_line2}}
+                    <br>
+                    {{permanent_address.city}} {{permanent_address.state}} {{permanent_address.zip_code}}
+                    <br>
+                    {{permanent_address.country}}
+                </span>
+                <br />
             </div>
         </div>
 
@@ -36,7 +40,7 @@
             </div>
             <div class="col-sm-9">
                 <span>
-                    {{email1}}
+                    {{email}}
                 </span>
             </div>
         </div>
