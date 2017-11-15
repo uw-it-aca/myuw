@@ -27,6 +27,8 @@ class TestLTILaunch(MyuwLTITest):
         self.assertEquals(response.status_code, 400)
 
 
+@override_settings(BLTI_AES_KEY=b"11111111111111111111111111111111",
+                   BLTI_AES_IV=b"1111111111111111")
 class TestLTIPhotoList(MyuwLTITest):
     def setUp(self):
         self.request = RequestFactory().post(reverse('myuw_lti_photo_list'))
