@@ -9,7 +9,8 @@ from myuw.dao.visual_schedule import _get_visual_schedule_from_schedule, \
     _consolidate_weeks, _add_weekend_meeting_data, \
     get_summer_schedule_bounds, trim_summer_meetings, _get_finals_period, \
     _add_course_colors_to_schedule, _get_combined_schedule, \
-    get_future_visual_schedule, get_current_visual_schedule
+    get_future_visual_schedule, get_current_visual_schedule, \
+    _trim_summer_term
 from myuw.test import fdao_sws_override, fdao_pws_override, \
     get_request, get_request_with_user, get_request_with_date
 import datetime
@@ -611,3 +612,17 @@ class TestVisualSchedule(TestCase):
         # as getting as future
         self.assertTrue(self._period_lists_are_same(current_schedule,
                                                     future_schedule))
+
+    def test_trim_summer_schedule(self):
+        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        term = get_term_from_quarter_string("2013,summer")
+        schedule = _get_schedule(regid, term)
+        get_request_with_user('javerage',
+                              get_request_with_date("2013-08-01"))
+
+        consolidated = _get_visual_schedule_from_schedule(schedule)
+
+        a_trimmed = _trim_summer_term(consolidated, 'a-term')
+        b_trimmed = _trim_summer_term(consolidated, 'b-term')
+        self.assertEqual(len(a_trimmed), 3)
+        self.assertEqual(len(b_trimmed), 3)

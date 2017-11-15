@@ -34,9 +34,13 @@ def get_schedule_json(visual_schedule, term):
     return response
 
 
-def get_future_visual_schedule(term):
+def get_future_visual_schedule(term, summer_term):
     schedule = _get_combined_future_schedule(term)
-    return _get_visual_schedule_from_schedule(schedule)
+    visual_schedule = _get_visual_schedule_from_schedule(schedule)
+    if summer_term is not None:
+        _trim_summer_term(visual_schedule, summer_term)
+
+    return visual_schedule
 
 
 def get_current_visual_schedule(request):
@@ -480,6 +484,18 @@ def _add_dates_to_sections(schedule):
                     section.end_date = schedule.term.last_day_instruction
 
     return schedule
+
+
+def _trim_summer_term(schedule, summer_term):
+    term_periods = []
+    for period in schedule:
+        if period.summer_term is not None:
+            if period.summer_term.lower() == summer_term:
+                term_periods.append(period)
+        elif period.is_finals:
+            term_periods.append(period)
+    return term_periods
+
 
 
 class SchedulePeriod():
