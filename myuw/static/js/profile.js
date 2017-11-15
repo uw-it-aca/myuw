@@ -39,7 +39,8 @@ var ProfilePage = {
         var desktop_body_cards = [
             CommonProfileCard,
             DirectoryInfoCard,
-            StudentInfoCard
+            StudentInfoCard,
+            ApplicantProfileCard
         ];
         var desktop_sidebar_cards = [
             ProfileHelpLinksCard
@@ -54,7 +55,8 @@ var ProfilePage = {
         var mobile_cards = [
             CommonProfileCard,
             DirectoryInfoCard,
-            StudentInfoCard
+            StudentInfoCard,
+            ApplicantProfileCard
         ];
         Cards.load_cards_in_order(mobile_cards, $("#profile_content_cards"));
     },

@@ -1,6 +1,7 @@
 import logging
 import traceback
-from myuw.dao.gws import is_student
+from myuw.dao.student_profile import get_applicant_profile
+from myuw.dao.gws import is_student, is_applicant
 from myuw.dao.student_profile import get_student_profile
 from myuw.dao.password import get_pw_json
 from myuw.dao.pws import get_display_name_of_current_user
@@ -36,6 +37,8 @@ class MyProfile(ProtectedAPI):
 
             if is_student():
                 response = get_student_profile(request)
+            elif is_applicant():
+                response = get_applicant_profile(request)
             else:
                 response = {}
                 response['is_grad_student'] = False
@@ -51,5 +54,5 @@ class MyProfile(ProtectedAPI):
 
             log_success_response(logger, timer)
             return self.json_response(response)
-        except Exception:
+        except Exception as ex:
             return handle_exception(logger, timer, traceback)
