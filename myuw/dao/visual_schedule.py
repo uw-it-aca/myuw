@@ -34,11 +34,11 @@ def get_schedule_json(visual_schedule, term):
     return response
 
 
-def get_future_visual_schedule(term, summer_term):
+def get_future_visual_schedule(term, summer_term=None):
     schedule = _get_combined_future_schedule(term)
     visual_schedule = _get_visual_schedule_from_schedule(schedule)
     if summer_term is not None:
-        _trim_summer_term(visual_schedule, summer_term)
+        visual_schedule = _trim_summer_term(visual_schedule, summer_term)
 
     return visual_schedule
 
@@ -495,7 +495,6 @@ def _trim_summer_term(schedule, summer_term):
         elif period.is_finals:
             term_periods.append(period)
     return term_periods
-
 
 
 class SchedulePeriod():
