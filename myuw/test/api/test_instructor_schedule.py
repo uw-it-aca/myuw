@@ -1,3 +1,4 @@
+from django.test.utils import override_settings
 from myuw.test.api import require_url, MyuwApiTest
 from myuw.test.views.lti import get_lti_request, MyuwLTITest
 from restclients_core.exceptions import DataFailureException
@@ -245,6 +246,8 @@ class TestInstructorSectionDetails(MyuwApiTest):
         self.assertEqual(resp.status_code, 400)
 
 
+@override_settings(BLTI_AES_KEY=b"11111111111111111111111111111111",
+                   BLTI_AES_IV=b"1111111111111111")
 class TestLTIInstructorSectionDetails(MyuwLTITest):
     def test_bill_section(self):
         request = get_lti_request()
