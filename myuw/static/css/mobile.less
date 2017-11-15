@@ -590,8 +590,7 @@ label { font-weight: normal; margin-bottom: auto; }
             font-weight: 400;
             font-size: 16px;
             color: #444; }
-		//card section heading
-		h4.myuw-card-heading {color:#85754d; font-weight: 500;}
+
         .card-btn {
             @media @over550 { position: absolute; top: 12px; right: 10px;}
         }
@@ -671,14 +670,7 @@ label { font-weight: normal; margin-bottom: auto; }
                 }
             }
         }
-    // Card action button
-        .card-action-btn {
-	        margin-bottom: 16px; margin-top: 8px;
-                    &:hover, &:focus {background-color:#e8e3d3;border-color:#e8e3d3;}
-                    a {color:#444;
-                    	&:hover, &:focus {color: #000; text-decoration: none; }
-                    }
-         }
+
 		//adding padding for right-aligned btn case
 		.card-action-btn.pull-right { margin-right: 10px;}
 
@@ -827,6 +819,43 @@ label { font-weight: normal; margin-bottom: auto; }
     .profile-links, .aside-links {
         padding-left: 16px;
         ul { list-style-type: none; padding-left: 0; }
+    }
+	// Move the action button out of the .card
+	.card-action-btn { 
+	        margin-bottom: 16px; margin-top: 8px;
+                    &:hover, &:focus {background-color:#e8e3d3;border-color:#e8e3d3;}                   
+                    a {color:#444;
+                    	&:hover, &:focus {color: #000; text-decoration: none; }
+                    }     
+         }
+	//Sub-heading style 
+	.myuw-card-heading {
+		font-size: 16px; 
+		font-family:'Roboto', sans-serif;
+		font-weight: 500;
+		color:#85754d;
+		line-height: 1.25;
+		}
+	
+    // Application cards styles
+   .myuw-card.application-card { //remove top padding
+		    margin-top: 0;
+	    }
+
+    .application-card {
+
+	    .myuw-header-msg {
+		    margin-top: -8px;
+		    margin-bottom: 16px;
+		    } 
+	     // Application card Resources section header:
+		.resources-header { 
+			margin-top: 15px;
+            margin-bottom: 5px;
+		}
+		.list-leading {
+			li { margin-top: 3px; margin-bottom: 4px;}
+		}
     }
 
     // Grades card
