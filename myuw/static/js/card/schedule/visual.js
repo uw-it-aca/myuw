@@ -300,7 +300,7 @@ var VisualScheduleCard = {
     },
 
     display_schedule_for_period: function(period_id){
-        var schedule_data = WSData.visual_schedule_data('current'),
+        var schedule_data = WSData.visual_schedule_data(VisualScheduleCard.term),
             period;
 
         if(period_id === "finals"){
