@@ -304,18 +304,29 @@ var VisualScheduleCard = {
             period;
 
         if(period_id === "finals"){
+            // Render VS with first period data to get correct labels
+            var processed_period = VisualScheduleCard._get_processed_data_for_period(0);
+            processed_period.active_period_id = period_id;
+            VisualScheduleCard.render_schedule(processed_period);
+
             period = VisualScheduleCard._get_finals_period(schedule_data.periods);
             var target = $("#schedule_area").first();
             FinalExamSchedule.render(period, schedule_data.term, false, target);
         } else {
-            period = schedule_data.periods[period_id];
-            var processed_period = VisualScheduleCard._get_data_for_period(period, schedule_data.term);
-            var period_labels = VisualScheduleCard._get_period_lables(schedule_data);
-            processed_period.schedule_periods = period_labels;
-            processed_period.active_period_id = period_id;
+            var processed_period = VisualScheduleCard._get_processed_data_for_period(period_id);
             VisualScheduleCard.render_schedule(processed_period);
         }
         LogUtils.cardLoaded(VisualScheduleCard.name, VisualScheduleCard.dom_target);
+    },
+
+    _get_processed_data_for_period: function(period_id){
+        var schedule_data = WSData.visual_schedule_data(VisualScheduleCard.term),
+            period = schedule_data.periods[period_id];
+        var processed_period = VisualScheduleCard._get_data_for_period(period, schedule_data.term);
+        var period_labels = VisualScheduleCard._get_period_lables(schedule_data);
+        processed_period.schedule_periods = period_labels;
+        processed_period.active_period_id = period_id;
+        return processed_period;
     },
 
     _get_finals_period: function(periods){
