@@ -79,6 +79,9 @@ var Landing = {
     _load_mobile_cards: function() {
         Landing._reset_content_divs();
         var mobile_cards = [
+            SeattleApplicationCard,
+            BothellApplicationCard,
+            TacomaApplicationCard,
             QuickLinksCard,
             ThriveCard,
             OutageCard,
@@ -99,9 +102,6 @@ var Landing = {
             SummerRegStatusCard1,
             AcadCalSnippet,
             EventsCard,
-            SeattleApplicationCard,
-            BothellApplicationCard,
-            TacomaApplicationCard,
             WelcomeCard
         ];
         if(!window.user.student && !window.user.instructor &&
