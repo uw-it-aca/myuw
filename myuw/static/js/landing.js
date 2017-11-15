@@ -57,7 +57,11 @@ var Landing = {
             TextbookCard,
             FutureSummaryScheduleCard,
             FutureQuarterCard1,
-            SummerRegStatusCard1
+            SummerRegStatusCard1,
+            SeattleApplicationCard,
+            BothellApplicationCard,
+            TacomaApplicationCard,
+            WelcomeCard
         ];
         if(!window.user.student && !window.user.instructor &&
            (window.user.employee || window.user.clinician)) {
@@ -75,6 +79,7 @@ var Landing = {
     _load_mobile_cards: function() {
         Landing._reset_content_divs();
         var mobile_cards = [
+            WelcomeCard,
             QuickLinksCard,
             ThriveCard,
             OutageCard,
@@ -94,7 +99,11 @@ var Landing = {
             FutureQuarterCard1,
             SummerRegStatusCard1,
             AcadCalSnippet,
-            EventsCard
+            EventsCard,
+            SeattleApplicationCard,
+            BothellApplicationCard,
+            TacomaApplicationCard,
+            WelcomeCard
         ];
         if(!window.user.student && !window.user.instructor &&
            (window.user.employee || window.user.clinician)) {

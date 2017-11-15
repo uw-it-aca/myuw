@@ -15,6 +15,7 @@ WSData = {
     _department_events: null,
     _grade_data: {},
     _hfs_data: null,
+    _applicant_data: null,
     _mygrad_data: null,
     _iasystem_data: null,
     _library_data: null,
@@ -36,6 +37,7 @@ WSData = {
     _myplan_data: {},
     _thrive_data: null,
     _upass_data: null,
+    _visual_schedule_data: {},
 
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
@@ -409,6 +411,10 @@ WSData = {
         return WSData._profile_data;
     },
 
+    applicant_data: function(){
+        return WSData._applicant_data;
+    },
+
     dept_event_data: function() {
         return WSData._department_events;
     },
@@ -417,6 +423,9 @@ WSData = {
     },
     upass_data: function() {
         return WSData._upass_data;
+    },
+    visual_schedule_data: function(term) {
+        return WSData._visual_schedule_data[term];
     },
 
     fetch_event_data: function(callback, err_callback, args) {
@@ -588,6 +597,45 @@ WSData = {
                     }
                     WSData._course_data_error_status[term] = null;
                     WSData._course_data[term] = results;
+                    WSData._run_success_callbacks_for_url(url);
+                },
+                error: function(xhr, status, error) {
+                    WSData._course_data_error_status[term] = xhr.status;
+                    WSData._run_error_callbacks_for_url(url);
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+
+    },
+
+    fetch_current_visual_schedule: function(callback, err_callback, args) {
+        return WSData.fetch_visual_schedule_term("current", callback, err_callback, args);
+    },
+
+    fetch_visual_schedule_term: function(term, callback, err_callback, args) {
+        if (!WSData._visual_schedule_data[term]) {
+            var url = "/api/v1/visual_schedule/"+term;
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+
+            $.ajax({
+                url: url,
+                dataType: "JSON",
+
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    WSData._visual_schedule_data[term] = results;
                     WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {
@@ -1140,6 +1188,38 @@ WSData = {
                     accepts: {html: "text/html"},
                     success: function(results) {
                         WSData._profile_data = results;
+                        WSData._run_success_callbacks_for_url(url);
+                    },
+                    error: function(xhr, status, error) {
+                        WSData._profile_error_status = xhr.status;
+                        WSData._run_error_callbacks_for_url(url);
+                    }
+                 });
+              }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
+    fetch_applicant_data: function(callback, err_callback, args) {
+        if (WSData._applicant_data === null) {
+            var url = "/api/v1/applications/";
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+            $.ajax({
+                url: url,
+                    dataType: "JSON",
+                    type: "GET",
+                    accepts: {html: "text/html"},
+                    success: function(results) {
+                        WSData._applicant_data = results;
                         WSData._run_success_callbacks_for_url(url);
                     },
                     error: function(xhr, status, error) {

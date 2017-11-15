@@ -15,6 +15,7 @@
         "pmt_2fa": {{ user.affiliations.is_2fa_permitted|yesno:"true, false" }},
         "instructor": {{ user.affiliations.instructor|yesno:"true, false" }},
         "seattle": {{ user.affiliations.official_seattle|yesno:"true, false" }},
+        "applicant": {{ user.affiliations.applicant|yesno:"true, false"}},
         "bothell": {{ user.affiliations.official_bothell|yesno:"true, false" }},
         "tacoma": {{ user.affiliations.official_tacoma|yesno:"true, false" }},
         "seattle_affil": {{ user.affiliations.seattle|yesno:"true, false" }},

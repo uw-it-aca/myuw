@@ -10,6 +10,7 @@ from myuw.views.thrive_messages import thrive_messages
 from myuw.views.academic_calendar import academic_calendar
 from myuw.views.future_quarters import future_quarters
 from myuw.views.textbooks import textbooks
+from myuw.views.api.applications import Applications
 from myuw.views.category import category
 from myuw.views.display_dates import override
 from myuw.views.message_admin import manage_messages
@@ -48,6 +49,7 @@ from myuw.views.api.upass import UPass
 from myuw.views.api.link import ManageLinks
 from myuw.views.api.directory import MyDirectoryInfo
 from myuw.views.lti.photo_list import LTIPhotoList
+from myuw.views.api.visual_schedule import VisSchedCurQtr
 
 
 urlpatterns = []
@@ -127,6 +129,9 @@ urlpatterns += [
     url(r'^api/v1/profile/$',
         MyProfile.as_view(),
         name="myuw_profile_api"),
+    url(r'^api/v1/applications/',
+        Applications.as_view(),
+        name="myuw_applications_api"),
     url(r'api/v1/link/?$',
         ManageLinks.as_view(),
         name='myuw_manage_links'),
@@ -161,6 +166,12 @@ urlpatterns += [
     url(r'^lti/api/v1/instructor_section_details/(?P<section_id>[^/]*)$',
         LTIInstSectionDetails.as_view(),
         name="myuw_lti_instructor_section_details_api"),
+    url(r'^api/v1/visual_schedule/current/?$',
+        VisSchedCurQtr.as_view(),
+        name="myuw_current_visual_schedule"),
+    url(r'^api/v1/visual_schedule/(?P<year>\d{4}),(?P<quarter>[a-z]+)',
+        VisSchedCurQtr.as_view(),
+        name="myuw_future_visual_schedule"),
     url(r'^api/v1/thrive/$',
         ThriveMessages.as_view(),
         name="myuw_thrive_api"),

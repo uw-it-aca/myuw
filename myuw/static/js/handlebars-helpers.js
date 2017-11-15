@@ -238,11 +238,11 @@ Handlebars.registerHelper("formatDateAsDate", function(date_str) {
 
 // converts date string into the label for the final exams schedule
 Handlebars.registerHelper("formatDateAsFinalsDay", function(date_str, days_back) {
-    var date = date_from_string(date_str);
-    date.setDate(date.getDate() - days_back);
-    var day_of_week = date.getDay();
-    var month_num = date.getMonth();
-    var day_of_month = date.getDate();
+    var date = moment(date_str);
+    date.subtract(days_back, "days");
+    var day_of_week = date.day();
+    var month_num = date.month();
+    var day_of_month = date.date();
 
     var month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
