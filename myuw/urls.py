@@ -10,6 +10,7 @@ from myuw.views.thrive_messages import thrive_messages
 from myuw.views.academic_calendar import academic_calendar
 from myuw.views.future_quarters import future_quarters
 from myuw.views.textbooks import textbooks
+from myuw.views.api.applications import Applications
 from myuw.views.category import category
 from myuw.views.display_dates import override
 from myuw.views.message_admin import manage_messages
@@ -127,6 +128,9 @@ urlpatterns += [
     url(r'^api/v1/profile/$',
         MyProfile.as_view(),
         name="myuw_profile_api"),
+    url(r'^api/v1/applications/',
+        Applications.as_view(),
+        name="myuw_applications_api"),
     url(r'api/v1/link/?$',
         ManageLinks.as_view(),
         name='myuw_manage_links'),

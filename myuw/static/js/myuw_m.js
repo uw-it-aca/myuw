@@ -309,7 +309,7 @@ var init_search_events = function() {
             else {
                 $("#search-nav").focus();
             }
-        }, 300);
+        }, 400);
 	});
 
 };
