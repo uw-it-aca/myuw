@@ -29,7 +29,7 @@ var SeattleApplicationCard = {
                     seattle_application = undefined;
         }
 
-        if (seattle_application === undefined){
+        if (typeof seattle_application === 'undefined'){
             this.render_error();
             return;
         }

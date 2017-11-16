@@ -29,7 +29,7 @@ var TacomaApplicationCard = {
                     tacoma_application = undefined;
         }
 
-        if (tacoma_application === undefined){
+        if (typeof tacoma_application === 'undefined'){
             this.render_error();
             return;
         }
