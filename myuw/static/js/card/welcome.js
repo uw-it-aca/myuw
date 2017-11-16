@@ -6,7 +6,7 @@ var WelcomeCard = {
         if (window.user.applicant && !window.user.student) {
             this._render();
         } else {
-            return;
+            this.render_error();
         }
     },
 
