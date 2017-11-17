@@ -21,7 +21,7 @@ var TacomaApplicationCard = {
     _render: function () {
         var applicant_info = WSData.applicant_data();
 
-        var tacoma_application = undefined;
+        var tacoma_application;
         for(var i = 0; i < applicant_info.length; i++) {
             if (applicant_info[i].is_tacoma) {
                 tacoma_application = applicant_info[i];
