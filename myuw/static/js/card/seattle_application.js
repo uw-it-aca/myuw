@@ -25,7 +25,8 @@ var SeattleApplicationCard = {
             if(applicant_info[i].is_seattle) {
                 var seattle_application = applicant_info[i];
 
-                if (window.user.student && !seattle_application.is_transfer)
+                if (window.user.student && !seattle_application.is_transfer &&
+                        !seattle_application.is_returning)
                     seattle_application = undefined;
             }
         }

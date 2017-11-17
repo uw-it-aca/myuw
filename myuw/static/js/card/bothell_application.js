@@ -25,7 +25,8 @@ var BothellApplicationCard = {
             if(applicant_info[i].is_bothell) {
                 var bothell_application = applicant_info[i];
 
-                if (window.user.student && !bothell_application.is_transfer)
+                if (window.user.student && !bothell_application.is_transfer &&
+                        !bothell_application.is_returning)
                     bothell_application = undefined;
             }
         }

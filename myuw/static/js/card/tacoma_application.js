@@ -25,7 +25,8 @@ var TacomaApplicationCard = {
             if (applicant_info[i].is_tacoma) {
                 var tacoma_application = applicant_info[i];
 
-                if (window.user.student && !tacoma_application.is_transfer)
+                if (window.user.student && !tacoma_application.is_transfer &&
+                        !tacoma_application.is_returning)
                     tacoma_application = undefined;
             }
         }
