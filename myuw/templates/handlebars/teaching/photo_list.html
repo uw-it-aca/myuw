@@ -42,6 +42,7 @@
                     <table class="table table-striped table-hover" id="student_list">
                         <thead>
                             <tr>
+                                <th>&nbsp;</th>
                                 <th>Number</th>
                                 <th>UW NetID</th>
                                 <th>First Name</th>
@@ -50,11 +51,13 @@
                                 <th>Class</th>
                                 <th>Major</th>
                                 <th>Credits</th>
+                                <th>Email</th>
                             </tr>
                         </thead>
                         <tbody id="student_sort">
                             {{ #each sections.0.registrations }}
                             <tr id="student_{{ regid }}">
+                                <td><img class="classlist-photo myuw-photo-list-image" src="/photo/{{ url_key }}"></td>
                                 <td>{{ student_number }} </td>
                                 <td>{{ netid }}</td>
                                 <td>{{ name }}</td>
@@ -73,53 +76,11 @@
                                 <td>{{ class }}</td>
                                 <td>{{ #each majors }}{{ full_name }}{{#unless @last}},&nbsp;{{/unless}}{{ /each }}</td>
                                 <td>{{ credits }}</td>
+                                <td><a href="mailto:{{ email }}">{{ email }}</a></td>
                             </tr>
                             {{ /each }}
                         </tbody>
                     </table>
-                </div>
-
-
-                <div >
-
-                    <ol >
-
-                        {{ #each sections.0.registrations }}
-                            <li id="student_{{ regid }}">
-
-                                <img class="classlist-photo myuw-photo-list-image" src="/photo/{{ url_key }}">
-
-                                <div class="myuw-photo-list-content">
-                                    <div>
-                                        <strong>{{ surname }}, {{ name }}</strong><br />
-                                        <span class="sr-only">Email:&nbsp;&nbsp;</span><a href="mailto:{{ email }}">{{ email }}</a>
-                                    </div>
-                                    <div class="myuw-photo-list-meta">
-                                        <div class="pull-left" style="width:50%; min-width: 272px;">
-                                        Student Number:&nbsp;&nbsp;{{ student_number }} <br />
-                                        UW NetID:&nbsp;&nbsp;{{ netid }} <br />
-                                        Major:&nbsp;&nbsp;{{ #each majors }}{{ full_name }}{{#unless @last}},&nbsp;{{/unless}}{{ /each }}<br />
-                                        Class:&nbsp;&nbsp;{{ class }}
-                                        </div>
-                                        <div class="pull-left" style="width:50%; min-width: 272px;">
-                                        Credits:&nbsp;&nbsp;{{ credits }} <br />
-                                        {{ #if linked_sections }}
-                                        {{ #each linked_sections }}
-                                            {{ ucfirst type }} Section:&nbsp;&nbsp;
-                                            {{ #each sections }}
-                                                {{ this }}
-                                            {{ /each }}
-                                            <br />
-                                        {{ /each }}
-                                        {{ /if }}
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
-                        {{ /each }}
-
-                    </ol>
                 </div>
 
             </div>
