@@ -30,11 +30,6 @@ class Textbook(ProtectedAPI):
         year = kwargs.get("year")
         quarter = kwargs.get("quarter")
         summer_term = kwargs.get("summer_term")
-
-        # Textbook API doesn't support future year terms, return no books if
-        # schedule is for different year
-        if current_date.year != int(year):
-            return data_not_found()
         return self.respond(request, year, quarter, summer_term)
 
     def respond(self, request, year, quarter, summer_term):

@@ -60,21 +60,3 @@ class TestApiBooks(MyuwApiTest):
                     'quarter': 'spring',
                     'summer_term': ''})
         self.assertEquals(response.status_code, 404)
-
-    @require_url('myuw_home')
-    def test_future_books(self):
-        self.set_user('javerage')
-        self.set_date("2013-02-11")
-        response = self.get_response_by_reverse(
-            'myuw_book_api',
-            kwargs={'year': 2013,
-                    'quarter': 'spring',
-                    'summer_term': ''})
-        self.assertEqual(response.status_code, 200)
-        self.set_date("2012-02-11")
-        response = self.get_response_by_reverse(
-            'myuw_book_api',
-            kwargs={'year': 2013,
-                    'quarter': 'spring',
-                    'summer_term': ''})
-        self.assertEqual(response.status_code, 404)
