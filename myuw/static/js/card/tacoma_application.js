@@ -21,12 +21,15 @@ var TacomaApplicationCard = {
     _render: function () {
         var applicant_info = WSData.applicant_data();
 
-        for(var i = 0; i < applicant_info.length; i++){
-            if(applicant_info[i].is_tacoma)
+        var tacoma_application;
+        for(var i = 0; i < applicant_info.length; i++) {
+            if (applicant_info[i].is_tacoma) {
                 tacoma_application = applicant_info[i];
 
-                if(window.user.student && !tacoma_application.is_transfer)
+                if (window.user.student && !tacoma_application.is_transfer &&
+                        !tacoma_application.is_returning)
                     tacoma_application = undefined;
+            }
         }
 
         if (typeof tacoma_application === 'undefined'){

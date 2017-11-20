@@ -21,12 +21,15 @@ var SeattleApplicationCard = {
     _render: function () {
         var applicant_info = WSData.applicant_data();
 
+        var seattke_application;
         for(var i = 0; i < applicant_info.length; i++){
-            if(applicant_info[i].is_seattle)
+            if(applicant_info[i].is_seattle) {
                 seattle_application = applicant_info[i];
 
-                if(window.user.student && !seattle_application.is_transfer)
+                if (window.user.student && !seattle_application.is_transfer &&
+                        !seattle_application.is_returning)
                     seattle_application = undefined;
+            }
         }
 
         if (typeof seattle_application === 'undefined'){

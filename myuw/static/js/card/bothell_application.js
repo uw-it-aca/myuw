@@ -21,12 +21,15 @@ var BothellApplicationCard = {
     _render: function () {
         var applicant_info = WSData.applicant_data();
 
+        var bothell_application;
         for(var i = 0; i < applicant_info.length; i++){
-            if(applicant_info[i].is_bothell)
+            if(applicant_info[i].is_bothell) {
                 bothell_application = applicant_info[i];
 
-                if(window.user.student && !bothell_application.is_transfer)
+                if (window.user.student && !bothell_application.is_transfer &&
+                        !bothell_application.is_returning)
                     bothell_application = undefined;
+            }
         }
 
         if (typeof bothell_application === 'undefined'){
