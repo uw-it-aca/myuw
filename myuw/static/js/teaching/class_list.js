@@ -225,7 +225,7 @@ var PhotoClassList = {
             source,
             course_template;
 
-        if (error_code == 410) {
+        if (error_code === 410) {
             Error410.render();
             return;
         }
@@ -248,7 +248,7 @@ var PhotoClassList = {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.PhotoClassList = PhotoClassList;
