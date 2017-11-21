@@ -57,14 +57,14 @@
                                 {{else}}
                                   {{#if is_primary_section}}
                                         {{#if grading_status.no_grades_submitted}}
-                                            <a href="{{ grading_status.section_url }}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">View this course in Gradepage</a>
+                                            <a href="{{ grading_status.section_url }}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">Submit grades in Gradepage</a>
                                         {{else}}
                                             {{grading_status.grading_status}}
                                         {{/if}}
                                   {{else}}
                                     {{#if allows_secondary_grading}}
                                         {{#if grading_status.no_grades_submitted}}
-                                            <a href="{{ grading_status.section_url }}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">View this course in Gradepage</a>
+                                            <a href="{{ grading_status.section_url }}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">Submit grades in Gradepage</a>
                                         {{else}}
                                             {{grading_status.grading_status}}
                                         {{/if}}
