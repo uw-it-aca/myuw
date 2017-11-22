@@ -141,12 +141,10 @@
         <div class="myuw-body">
             <div class="myuw-wrapper">
 
+                <!-- app_navigation -->
+                {% block app_navigation %}
                 <div class="myuw-nav-col">
-
-                    <!-- app_navigation -->
-                    {% block app_navigation %}
                     <div id="menu_container" class="myuw-menu" role="navigation">
-
                         <ul>
 
                             {% load myuw_sidebar %}
@@ -174,8 +172,6 @@
                         </ul>
 
                     </div>
-                    {% endblock %}
-                    <!-- end app_navigation -->
 
                     {% if user.affiliations.applicant is False %}
                     <div class="myuw-welcome" role="complementary">
@@ -186,7 +182,10 @@
                         </ul>
                     </div>
                     {% endif %}
+
                 </div>
+                {% endblock %}
+                <!-- end app_navigation -->
 
 
 
