@@ -43,7 +43,7 @@
                         </div>
                         <div class="col-sm-5">
                             <div class="myuw-photo-list-controls-actions">
-                                <a href="#" id="download_class_list"><i class="fa fa-download"></i>&nbsp;Download class list (Excel)</a> | <a href="javascript:window.print()" class="classlist-print"><i class="fa fa-print"></i>&nbsp;Print</a>
+                                <a href="#" id="download_class_list"><i class="fa fa-download"></i>&nbsp;Download (CSV)</a> <a href="javascript:window.print()" class="classlist-print"><i class="fa fa-print"></i>&nbsp;Print</a>
                             </div>
                         </div>
 
@@ -68,7 +68,7 @@
                             <tbody id="student_sort">
                                 {{ #each sections.0.registrations }}
                                 <tr id="student_{{ regid }}">
-                                    <td>{{ student_number }} </td>
+                                    <td>{{ student_number }}</td>
                                     <td>{{ netid }}</td>
                                     <td>{{ surname }}</td>
                                     <td>{{ name }}</td>
