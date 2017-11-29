@@ -75,6 +75,22 @@ abbr[title] {
     font-size: @fontsize-small;
 }
 
+/** Can be used on an element or as a container for multiples **/
+.myuw-muted {
+    color: #777;
+
+    a&,
+    a {
+        color: #777;
+        text-decoration: none;
+
+        &:hover, &:visited {
+            color: #777;
+            text-decoration: underline;
+        }
+    }
+}
+
 
 /** Responsive system alternates between the contents of the minimized
 **  and expanded version. Using " of " and "/" as the defaults **/
