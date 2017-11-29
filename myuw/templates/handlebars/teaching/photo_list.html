@@ -20,12 +20,12 @@
                     <div id="classlist_controls" class="row myuw-photo-list-controls">
 
                         <div class="col-sm-7">
-                            <div class="myuw-photo-list-controls-view">
+                            <div class="myuw-photo-list-controls-view" role="tablist" aria-label="Views">
                                 <div class="myuw-tab myuw-tab-selected">
-                                    <a id="list_view" href="#" class="myuw-tab-label"><i class="fa fa-table" aria-hidden="true"></i> Table</a>
+                                    <a id="list_view" href="#" class="myuw-iconlink myuw-tab-label" role="tab" aria-controls="classlist_table_view" aria-selected="true"><i class="fa fa-table" aria-hidden="true"></i>Table</a>
                                 </div>
                                 <div class="myuw-tab">
-                                    <a id="grid_view" href="#" class="myuw-tab-label"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Photo Grid</a>
+                                    <a id="grid_view" href="#" class="myuw-iconlink myuw-tab-label" role="tab" aria-controls="classlist_photogrid_view" aria-selected="false"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Photo Grid</a>
                                 </div>
                             </div>
                             <div class="myuw-photo-list-controls-sort">
@@ -43,58 +43,76 @@
                         </div>
                         <div class="col-sm-5">
                             <div class="myuw-photo-list-controls-actions">
-                                <a href="#" id="download_class_list"><i class="fa fa-download"></i>&nbsp;Download (CSV)</a> <a href="javascript:window.print()" class="classlist-print"><i class="fa fa-print"></i>&nbsp;Print</a>
+                                <a href="#" id="download_class_list" class="myuw-iconlink"><i class="fa fa-download"></i>Download (CSV)</a> <a href="javascript:window.print()" class="classlist-print myuw-iconlink"><i class="fa fa-print"></i>Print</a>
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="table-responsive">
-                        <table class="table table-condensed table-hover" id="student_list">
-                            <thead>
-                                <tr>
-                                    <th>Student No.</th>
-                                    <th>UW NetID</th>
-                                    <th>Last Name</th>
-                                    <th>First Name</th>
-                                    <th>Sex</th>
-                                    {{ #if linked_sections }}<th>QZ Section</th>{{ /if }}
-                                    <th>Credits</th>
-                                    <th>Class</th>
-                                    <th>Major</th>
-                                    <th><span class="sr-only">Email</span></th>
-                                </tr>
-                            </thead>
-                            <tbody id="student_sort">
-                                {{ #each sections.0.registrations }}
-                                <tr id="student_{{ regid }}">
-                                    <td>{{ student_number }}</td>
-                                    <td>{{ netid }}</td>
-                                    <td>{{ surname }}</td>
-                                    <td>{{ name }}</td>
-                                    <td>F/M</td>
-                                    {{ #if linked_sections }}
-                                    <td>
-                                    {{ #each linked_sections }}
-                                        {{ ucfirst type }} Section:&nbsp;&nbsp;
-                                        {{ #each sections }}
-                                            {{ this }}
-                                        {{ /each }}
-                                        <br />
-                                    {{ /each }}
-                                    </td>
-                                    {{ /if }}
-                                    <td>{{ credits }}</td>
-                                    <td>{{ class }}</td>
-                                    <td>{{ #each majors }}{{ full_name }}{{#unless @last}},&nbsp;{{/unless}}{{ /each }}</td>
-                                    <td><a href="mailto:{{ email }}" title="Email {{name}} {{surname}}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">{{ email }}</span></a></td>
-                                </tr>
-                                {{ /each }}
-                            </tbody>
-                        </table>
+                    <div id="classlist_table_view" class="js-tab-panel" aria-labelledby="list_view" role="tabpanel" aria-hidden="false">
+                        <h4 class="sr-only">Table of Student Information</h4>
 
-                        <!-- <img class="classlist-photo myuw-photo-list-image" src="/photo/{{ url_key }}"> -->
+                        <div class="table-responsive">
+                            <table class="table table-condensed table-hover" id="student_list">
+                                <thead>
+                                    <tr>
+                                        <th>Student No.</th>
+                                        <th>UW NetID</th>
+                                        <th>Last Name</th>
+                                        <th>First Name</th>
+                                        <th>Sex</th>
+                                        {{ #if linked_sections }}<th>QZ Section</th>{{ /if }}
+                                        <th>Credits</th>
+                                        <th>Class</th>
+                                        <th>Major</th>
+                                        <th><span class="sr-only">Email</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="student_sort">
+                                    {{ #each sections.0.registrations }}
+                                    <tr id="student_{{ regid }}">
+                                        <td>{{ student_number }}</td>
+                                        <td>{{ netid }}</td>
+                                        <td>{{ surname }}</td>
+                                        <td>{{ name }}</td>
+                                        <td>F/M</td>
+                                        {{ #if linked_sections }}
+                                        <td>
+                                        {{ #each linked_sections }}
+                                            {{ ucfirst type }} Section:&nbsp;&nbsp;
+                                            {{ #each sections }}
+                                                {{ this }}
+                                            {{ /each }}
+                                            <br />
+                                        {{ /each }}
+                                        </td>
+                                        {{ /if }}
+                                        <td>{{ credits }}</td>
+                                        <td>{{ class }}</td>
+                                        <td>{{ #each majors }}{{ full_name }}{{#unless @last}},&nbsp;{{/unless}}{{ /each }}</td>
+                                        <td><a href="mailto:{{ email }}" title="Email {{name}} {{surname}}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">{{ email }}</span></a></td>
+                                    </tr>
+                                    {{ /each }}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
+
+                    <div id="classlist_photogrid_view" class="js-tab-panel" aria-labelledby="grid_view" role="tabpanel" aria-hidden="true" hidden="true">
+                        <h4 class="sr-only">Grid of Student Photos</h4>
+
+                        <ol class="unstyled-list grid-view">
+                        {{ #each sections.0.registrations }}
+                            <li id="studentphoto_{{ regid }}">
+                                <img class="classlist-photo myuw-photo-list-image" src="/photo/{{ url_key }}">
+
+                                <div class="myuw-photo-list-content">{{ name }} {{ surname }} more and more name</div>
+
+                            </li>
+                        {{ /each }}
+                        </ol>
+                    </div>
+
                 </div>
             </div>
         </div>
