@@ -59,14 +59,16 @@ var InstructorCourseResourcePanel = {
         });
 
         $(".course_class_list", panel).on("click", function(ev) {
-            var width = 800;
-            var height = 400;
+            var width = 970;
+            var height = 600;
 
             var left = window.screenX + 200;
             var top = window.screenY + 200;
 
-            window.open(ev.currentTarget.href, '_blank', 'scrollbars=1,resizable=1,width='+width+',height='+height+',left='+left+',top='+top);
             var section_label = ev.currentTarget.getAttribute("rel");
+
+            window.open(ev.currentTarget.href, section_label, 'scrollbars=1,resizable=1,width='+width+',height='+height+',left='+left+',top='+top);
+
             WSData.log_interaction("open_course_classlist_"+section_label);
             return false;
         });

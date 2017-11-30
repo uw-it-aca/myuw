@@ -79,16 +79,17 @@ var SummaryScheduleCard = {
         });
 
         $(".course_class_list").on("click", function(ev) {
-            var width = 800;
-            var height = 400;
+            var width = 970;
+            var height = 600;
 
             var left = window.screenX + 200;
             var top = window.screenY + 200;
 
-            window.open(ev.currentTarget.href, '_blank', 'scrollbars=1,resizable=1,width='+width+',height='+height+',left='+left+',top='+top);
-
             var course_id = ev.currentTarget.getAttribute("rel");
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');
+
+            window.open(ev.currentTarget.href, course_id, 'scrollbars=1,resizable=1,width='+width+',height='+height+',left='+left+',top='+top);
+
             WSData.log_interaction("open_course_classlist_"+course_id, term);
             return false;
         });
