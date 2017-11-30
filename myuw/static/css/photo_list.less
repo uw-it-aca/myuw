@@ -18,6 +18,19 @@
     }
 
     .myuw-photo-list-controls {
+
+        @media @two-column {
+            .controls-row-1 {
+                display: inline-block;
+                width: 65%;
+            }
+
+            .controls-row-2 {
+                display: inline-block;
+                width: 34%;
+            }
+        }
+
         .myuw-photo-list-controls-view { display:inline-block; margin-right:16px; }
         .myuw-photo-list-controls-sort { display:inline-block; }
         .myuw-photo-list-controls-actions {
