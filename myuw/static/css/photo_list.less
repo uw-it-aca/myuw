@@ -10,12 +10,21 @@
         padding: 16px !important;
     }
 
+    .course-meta {
+        @media screen and (max-width: 420px) {
+            display: block;
+            position: relative;
+        }
+    }
+
     .myuw-photo-list-controls {
         .myuw-photo-list-controls-view { display:inline-block; margin-right:16px; }
         .myuw-photo-list-controls-sort { display:inline-block; }
         .myuw-photo-list-controls-actions {
+            margin: 8px 0px;
+            @media @two-column { text-align: right; margin: 0; }
+
             .classlist-print { margin-left: 16px; }
-            @media @two-column { text-align: right; }
         }
     }
 
