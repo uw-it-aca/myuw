@@ -3,6 +3,9 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 import re
 import traceback
+
+import myuw
+from myuw.dao import coda
 from myuw.views.error import (
     handle_exception, not_instructor_error, data_not_found)
 import logging
@@ -55,6 +58,19 @@ class InstSche(ProtectedAPI):
         """
         schedule = get_instructor_schedule_by_term(term)
         resp_data = load_schedule(request, schedule)
+        threads = []
+
+        for section in resp_data['sections']:
+            section_label = section['section_label']
+            t = Thread(target=coda.get_course_card_details,
+                       args=(section_label.replace("_", "-"),
+                             section,))
+            threads.append(t)
+            t.start()
+
+        for thread in threads:
+            thread.join()
+
         log_success_response(logger, timer)
         return self.json_response(resp_data)
 
@@ -464,7 +480,7 @@ class InstSect(ProtectedAPI):
 class OpenInstSectionDetails(OpenAPI):
     """
     Performs actions on resource at
-    /api/v1/instructor_section/<year>,<quarter>,<curriculum>,
+    /api/v1/instructor_section_details/<year>,<quarter>,<curriculum>,
         <course_number>,<course_section>?
     """
     def validate_section_id(self, request, section_id):
@@ -499,7 +515,26 @@ class OpenInstSectionDetails(OpenAPI):
         resp_data = load_schedule(request, schedule,
                                   section_callback=self.per_section_data)
 
+        # Concurrently fetch section data and ICD data
+        threads = []
+
+        t = Thread(target=self.add_linked_section_data,
+                   args=(resp_data,))
+        threads.append(t)
+        t.start()
+
+        for section in resp_data['sections']:
+            section_label = section['section_label']
+            t = Thread(target=coda.get_classlist_details,
+                       args=(section_label.replace("_", "-"), section,))
+            threads.append(t)
+            t.start()
+
+        for thread in threads:
+            thread.join()
+
         self.add_linked_section_data(resp_data)
+
         log_success_response(logger, timer)
 
         return self.json_response(resp_data)

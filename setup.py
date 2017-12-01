@@ -53,6 +53,7 @@ setup(
         'UW-RestClients-Trumba<1.0,>=0.3',
         'UW-RestClients-Django-Utils>=0.6.9.1,<1.0',
         'UW-RestClients-Sdbmyuw',
+        'UW-RestClients-CoDa',
         'Django-Safe-EmailBackend>=0.1,<1.0',
         'Django-SupportTools>=1.2,<2.0',
         'django_mobileesp',
