@@ -3,8 +3,6 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 import re
 import traceback
-
-import myuw
 from myuw.dao import coda
 from myuw.views.error import (
     handle_exception, not_instructor_error, data_not_found)
