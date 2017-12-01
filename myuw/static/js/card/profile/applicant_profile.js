@@ -40,7 +40,7 @@ var ApplicantProfileCard = {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.ApplicantProfileCard = ApplicantProfileCard;

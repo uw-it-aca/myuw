@@ -22,11 +22,12 @@ var TacomaApplicationCard = {
         var applicant_info = WSData.applicant_data();
 
         for(var i = 0; i < applicant_info.length; i++){
-            if(applicant_info[i].is_tacoma)
+            if(applicant_info[i].is_tacoma) {
                 tacoma_application = applicant_info[i];
-
-                if(window.user.student && !tacoma_application.is_transfer)
+                if (window.user.student && !tacoma_application.is_transfer) {
                     tacoma_application = undefined;
+                }
+            }
         }
 
         if (tacoma_application === undefined){
@@ -54,7 +55,7 @@ var TacomaApplicationCard = {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.TacomaApplicationCard = TacomaApplicationCard;

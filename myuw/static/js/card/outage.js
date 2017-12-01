@@ -104,7 +104,7 @@ var OutageCard = {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.OutageCard = OutageCard;
