@@ -14,7 +14,6 @@ var InstructorCourseResourcePanel = {
 
         var source = $("#instructor_course_resource_panel").html();
         var template = Handlebars.compile(source);
-        console.log(c_section);
         var raw = template(c_section);
         panel.html(raw);
 
