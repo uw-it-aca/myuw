@@ -311,15 +311,16 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
         background-position: 89% 100%;
         height: @nav-height;
         line-height: @nav-height;
+        font-size: 18px;
+        //text-transform: uppercase;
+        font-weight: 400;
+        text-decoration: none;
+        color: #fff;
 
         @media @desktop { background-position: 98% 100%; box-shadow: none; padding: 0; display: none; };
 
         button {
-            text-decoration: none;
-            color: #fff;
-            font-size: 18px;
-            //text-transform: uppercase;
-            font-weight: 400;
+
             line-height: @nav-height;
             height: @nav-height;
             display: inline-block;
@@ -331,6 +332,12 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
             .fa-stack { font-size: 15px; margin-top: -3px; color: #ccc; }
 
+        }
+
+        h2 {
+            display: inline-block;
+            font-size: inherit;
+            
         }
 
     }
