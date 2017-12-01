@@ -78,15 +78,6 @@ class TestProfile(MyuwApiTest):
         response = self.get_profile_response('none')
         self.assertEquals(response.status_code, 200)
 
-    def test_no_pending(self):
-        response = self.get_profile_response('javg005')
-        self.assertEquals(response.status_code, 200)
-
-        data = json.loads(response.content)
-        self.assertIn("term_majors", data)
-        for major_entry in data['term_majors']:
-            self.assertFalse(major_entry['degrees_modified'])
-
     def test_change_majors_once(self):
         response = self.get_profile_response('javg001')
         self.assertEquals(response.status_code, 200)
@@ -190,3 +181,11 @@ class TestProfile(MyuwApiTest):
 
         for minor in minors:
             self.assertFalse(minor['degrees_modified'])
+
+    def test_applicant_profile(self):
+        response = self.get_profile_response('japplicant')
+
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertEqual(data['email'], 'japplicant@u.washington.edu')
+        self.assertNotIn("term_majors", data)

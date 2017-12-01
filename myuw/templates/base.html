@@ -123,19 +123,8 @@
         <!-- message banner (desktop only) -->
         <div class="myuw-banner-desktop app-messages" id="app_messages_desktop" aria-labelledby="app_messages_desktop_label" role="complementary">
             <div class="message-banner">
-                <h2 class="sr-only" id="app_messages_desktop_label">MyUW Announcements</h2>
-                <div class="message-text">
-
-                    {% if user.affiliations.undergrad %}
-                        <h2>New in MyUW<i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 20px; padding: 0 6px 0 6px;"></i>&nbsp;</h2>Quick Links, Pages, Search, and more! &nbsp;<a id="modal_toggle_desktop" href="#" class="js-modal-toggle btn btn-link" data-toggle="modal" data-target="#message_modal">Learn what's new in MyUW</a>
-                    {% else %} <!-- Everyone else -->
-                        <h2>Welcome to the new MyUW!</h2>&nbsp;&nbsp;<strong><a style="font-weight:bold;" id="modal_toggle_desktop" href="#" class="js-modal-toggle btn btn-link" data-toggle="modal" data-target="#message_modal">See what's new.</a></strong><br/>
-                        <span class="small">Not ready yet? <a id="optout_toggle_desktop" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW.</a></span>
-                    {% endif %}
-
-
-                </div>
                 {% if banner_messages %}
+                <h2 class="sr-only" id="app_messages_desktop_label">MyUW Announcements</h2>
                 <div id="message_banner_location">
                     <div id="messages" class="advert message-text">
                         {% for message in banner_messages %}
@@ -154,52 +143,58 @@
 
                 <!-- app_navigation -->
                 {% block app_navigation %}
-                <div id="menu_container" class="myuw-menu" role="navigation">
+                <div class="myuw-nav-col">
+                    <div id="menu_container" class="myuw-menu" role="navigation">
+                        <ul>
 
-                    <ul>
+                            {% load myuw_sidebar %}
+                            {% add_sidebar_context %}
+                            <li><a {% if is_myuw_home %}class="active"{% endif %}  href="/"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
 
-                        {% load myuw_sidebar %}
-                        {% add_sidebar_context %}
-                        <li><a {% if is_myuw_home %}class="active"{% endif %}  href="/"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+                            {% if user.affiliations.student %}
+                            <li><a {% if is_myuw_academics_page %}class="active"{% endif %} href="/academics/"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Academics</a></li>
+                            <!--<li><a href="/huskyexp/"><i class="fa fa-paw" aria-hidden="true"></i>Husky Experience</a></li>-->
+                            {% endif %}
 
-                        {% if user.affiliations.student %}
-                        <li><a {% if is_myuw_academics_page %}class="active"{% endif %} href="/academics/"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Academics</a></li>
-                        <!--<li><a href="/huskyexp/"><i class="fa fa-paw" aria-hidden="true"></i>Husky Experience</a></li>-->
-                        {% endif %}
+                            {% if instructor_schedule_enabled %}
+                              {% if user.affiliations.instructor %}
+                            <li><a {% if is_myuw_teaching_page %}class="active"{% endif %} href="/teaching/"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Teaching</a></li>
+                             {% endif %}
+                            {% endif %}
 
-                        {% if instructor_schedule_enabled %}
-                          {% if user.affiliations.instructor %}
-                        <li><a {% if is_myuw_teaching_page %}class="active"{% endif %} href="/teaching/"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Teaching</a></li>
-                         {% endif %}
-                        {% endif %}
+                            <li><a {% if is_myuw_academic_calendar_page %}class="active"{% endif %} href="/academic_calendar/"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Calendar</a></li>
+                            <li><a {% if is_myuw_accounts_page  %}class="active"{% endif %} href="/accounts/"><i class="fa fa-credit-card" aria-hidden="true"></i>Accounts</a></li>
+                            {% if user.affiliations.student %}
+                            <li><a {% if is_myuw_notices_page %}class="active"{% endif %}  href="/notices/"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Notices</a></li>
+                            {% endif %}
+                            <li><a {% if is_myuw_profile_page %}class="active"{% endif %} href="/profile/"><i class="icon-user icon-user-female" aria-hidden="true" style="font-size:14px;"></i>Profile</a></li>
 
-                        <li><a {% if is_myuw_academic_calendar_page %}class="active"{% endif %} href="/academic_calendar/"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Calendar</a></li>
-                        <li><a {% if is_myuw_accounts_page  %}class="active"{% endif %} href="/accounts/"><i class="fa fa-credit-card" aria-hidden="true"></i>Accounts</a></li>
-                        {% if user.affiliations.student %}
-                        <li><a {% if is_myuw_notices_page %}class="active"{% endif %}  href="/notices/"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Notices</a></li>
-                        {% endif %}
-                        <li><a {% if is_myuw_profile_page %}class="active"{% endif %} href="/profile/"><i class="icon-user icon-user-female" aria-hidden="true" style="font-size:14px;"></i>Profile</a></li>
+                        </ul>
 
-                    </ul>
+                    </div>
+
+                    {% if user.affiliations.applicant is False %}
+                    <div class="myuw-welcome" role="complementary">
+                        <h2>Welcome!</h2>
+                        <ul class="unstyled-list myuw-muted">
+                            <li><a id="welcome_modal_link" href="#" class="js-modal-toggle" data-toggle="modal" data-target="#message_modal">About the new MyUW</a></li>
+                            <li><a id="optout_link" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW</a></li>
+                        </ul>
+                    </div>
+                    {% endif %}
 
                 </div>
                 {% endblock %}
                 <!-- end app_navigation -->
 
+
+
                 {% block mobile_banner %}
                 <!-- message banner (mobile only) -->
                 <div class="myuw-banner-mobile app-messages" id="app_messages_mobile" role="complementary" aria-labelledby="app_messages_mobile_label">
                     <div class="message-banner">
-                        <h2 class="sr-only" id="app_messages_mobile_label">MyUW Announcements</h2>
-                        <div class="message-text">
-                            {% if user.affiliations.undergrad %}
-                                <h2>New in MyUW<i class="fa fa-bullhorn" aria-hidden="true" style="font-size: 20px; padding: 0 6px 0 6px;"></i>&nbsp;</h2>Quick Links, Pages, Search, and more! &nbsp;<a id="modal_toggle_mobile" href="#" class="js-modal-toggle btn btn-link" data-toggle="modal" data-target="#message_modal">Learn what's new in MyUW</a>
-                            {% else %} <!-- Everyone else -->
-                                <h2>Welcome to the new MyUW!</h2>&nbsp;&nbsp;<strong><a style="font-weight:bold;" id="modal_toggle_mobile" href="#" class="js-modal-toggle btn btn-link" data-toggle="modal" data-target="#message_modal">See what's new.</a></strong><br/>
-                                <span class="small">Not ready yet? <a id="optout_toggle_mobile" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW.</a></span>
-                            {% endif %}
-                        </div>
                         {% if banner_messages %}
+                        <h2 class="sr-only" id="app_messages_mobile_label">MyUW Announcements</h2>
                         <div id="message_banner_location">
                             <div id="messages" class="advert message-text">
                                 {% for message in banner_messages %}
@@ -264,7 +259,8 @@
                         <li class="footer-links-list-item"><a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi"><i class="fa fa-envelope" role="presentation"></i> Contact</a></li>
                         <li class="footer-links-list-item"><a href="//www.washington.edu/online/terms/">Terms</a></li>
                         <li class="footer-links-list-item"><a href="//www.washington.edu/online/privacy/">Privacy</a></li>
-                        <li class="footer-links-list-item visible-xs-inline"><a href="/logout">Sign Out</a></li>
+                        <li class="footer-links-list-item visible-xs-inline-block visible-sm-inline-block"><a href="/logout">Sign Out</a></li>
+                        <li class="footer-links-list-item visible-xs-inline-block visible-sm-inline-block"><a href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW</a></li>
                    </ul>
                     <div style="clear:both;">&copy; {% now "Y" %} University of Washington</div>
                 </div>
@@ -391,7 +387,7 @@
 
         <!-- Opt-out Modal -->
         <div id="optout_page-modal"></div>
-        <div class="myuw-modal modal fade" id="optout_modal" tabindex="-1" role="dialog" aria-labelledby="optout_modal_label" aria-hidden="true">
+        <div class="myuw-modal modal fade" id="optout_modal" tabindex="-1" role="dialog" aria-labelledby="optout_modal_label" aria-describedby="optout_modal_description" aria-hidden="true" aria-modal="true">
             <div class="modal-dialog message-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -399,8 +395,8 @@
                         <h3 class="modal-title" id="optout_modal_label">Switch to the Old Version of MyUW</h3>
                     </div>
                     <div class="modal-body">
-                        <div style=" margin-top:10px; margin-bottom:30px;">
-                            <p>Use the old version of MyUW as your default destination the next time you sign in.</p>
+                        <div style="margin-top:10px; margin-bottom:30px;">
+                            <p id="optout_modal_description">Use the old version of MyUW as your default destination the next time you sign in.</p>
 
                             <a href="/choose/legacy" class="btn btn-primary" title="Go to the old version of MyUW">Use the old version of MyUW</a> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
@@ -436,7 +432,7 @@
 
         <!-- App messages modal -->
         <div id="page-modal"></div>
-        <div class="myuw-modal modal fade" id="message_modal" tabindex="-1" role="dialog" aria-labelledby="MyUWMessageModal" aria-hidden="true">
+        <div class="myuw-modal modal fade" id="message_modal" tabindex="-1" role="dialog" aria-labelledby="MyUWMessageModal" aria-hidden="true" aria-modal="true">
             <div class="modal-dialog message-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -471,7 +467,6 @@
                                     <li><strong>Quick Links</strong> - Access popular links and recently visited sites. Customize the list of links by adding your own.</li>
                                     <li><strong>Log out easier</strong> - We moved the logout link to the top right corner of every page: look for “Sign out.”</li>
                                 </ul>
-                                <p><strong><a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Let us know what you think!</a> We’ll keep making tweaks to improve MyUW for you.</strong></p>
                                 <!-- End undergrad student -->
                             {% else %}
                                 <!-- students who are new to MyUW -->
@@ -490,8 +485,6 @@
                                     {% endif %} <!-- end grad TA content -->
                                     <li><strong>Husky, Library, and Library account</strong> information is always visible</li>
                                 </ul>
-                                <h4>Share Your Feedback</h4>
-                                <p>We want to know how to make MyUW work better for you. Let us know what you think of it so far and share your ideas for future improvements. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Send us your feedback.</a></p>
                             {% endif %} <!-- End non-undergrad students -->
 
                         {% else %} <!-- End students -->
@@ -522,14 +515,9 @@
                                         <li><strong>Workday</strong> and related HR links are highlighted for easy access</li>
                                     </ul>
                                 {% endif %}
-                                <h4>Share Your Feedback</h4>
-                                <p>We want to know how to make MyUW work better for you. Let us know what you think of it so far and share your ideas for future improvements. <a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi" target="_blank">Send us your feedback.</a></p>
                             {% endif %}  <!-- End employees -->
                         {% endif %}  <!-- End ALL -->
 
-                        {% if user.affiliations.undergrad %}
-                            Still not convinced? <a id="optout_toggle_ugrad" href="#" data-toggle="modal" data-target="#optout_modal" data-dismiss="modal">Switch back to the old MyUW.</a>
-                        {% endif %}
 
                     </div>
                     <div class="modal-footer">
