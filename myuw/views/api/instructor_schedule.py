@@ -61,6 +61,7 @@ class InstSche(ProtectedAPI):
         threads = []
 
         for section in resp_data['sections']:
+            _set_current_or_future(term, request, section)
             section_label = section['section_label']
             t = Thread(target=coda.get_course_card_details,
                        args=(section_label.replace("_", "-"),
@@ -524,6 +525,7 @@ class OpenInstSectionDetails(OpenAPI):
         t.start()
 
         for section in resp_data['sections']:
+            _set_current_or_future(schedule.term, request, section)
             section_label = section['section_label']
             t = Thread(target=coda.get_classlist_details,
                        args=(section_label.replace("_", "-"), section,))
@@ -708,3 +710,9 @@ class LTIInstSectionDetails(OpenInstSectionDetails):
             self.person = get_pws_person_by_regid(instructor_regid)
 
         return sws_section_id
+
+
+def _set_current_or_future(term, request, section):
+    current_term = get_current_quarter(request)
+
+    section['current_or_future'] = current_term <= term

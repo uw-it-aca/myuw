@@ -36,9 +36,13 @@
                     </div>
                 </div>
 
-                <div style="margin-bottom: 16px;">
-                    <strong>Course Stats:</strong> {{sections.0.current_student_majors.0.percent_students}}% {{ toTitleCase sections.0.current_student_majors.0.major }} majors. <a href="#" rel="{{year}}_{{quarter}}_{{ sections.0.curriculum_abbr }}_{{ sections.0.course_number }}_{{ sections.0.section_id }}">View more in course stats</a>
-                </div>
+                {{#if sections.0.current_or_future}}
+                    {{#if sections.0.current_student_majors}}
+                        <div style="margin-bottom: 16px;">
+                            <strong>Course Stats:</strong> {{sections.0.current_student_majors.0.percent_students}}% {{ toTitleCase sections.0.current_student_majors.0.major }} majors. <a href="#" rel="{{year}}_{{quarter}}_{{ sections.0.curriculum_abbr }}_{{ sections.0.course_number }}_{{ sections.0.section_id }}">View more in course stats</a>
+                        </div>
+                    {{/if}}
+                {{/if}}
 
                 <div id="student_list">
 

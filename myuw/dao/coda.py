@@ -1,17 +1,22 @@
+import logging
+
 import uw_coda
+from restclients_core.exceptions import DataFailureException
 
 from myuw.util.thread import Thread
 
+logger = logging.getLogger(__name__)
+
 
 def get_classlist_details(section_label, json_data=None):
-    majors = uw_coda.get_majors(section_label, 1)
-    print majors
+    try:
+        majors = uw_coda.get_majors(section_label, 1)
+    except DataFailureException as ex:
+        logger.error(str(ex))
+        return
 
-    print section_label
     if json_data is not None:
-        print majors
         json_data.update(majors)
-        print json_data
 
     return majors
 
@@ -36,14 +41,18 @@ def get_course_card_details(section_label, json_data=None):
     if json_data is not None:
         json_data.update(json_obj)
 
-    print json_obj
-
     return json_obj
 
 
 def _set_json_fail_rate(section_label, json_obj):
-    json_obj.update(uw_coda.get_fail_rate(section_label))
+    try:
+        json_obj.update(uw_coda.get_fail_rate(section_label))
+    except DataFailureException as ex:
+        logger.error(str(ex))
 
 
 def _set_json_cgpa(section_label, json_obj):
-    json_obj.update(uw_coda.get_course_cgpa(section_label))
+    try:
+        json_obj.update(uw_coda.get_course_cgpa(section_label))
+    except DataFailureException as ex:
+        logger.error(str(ex))
