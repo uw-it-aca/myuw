@@ -15,6 +15,7 @@ WSData = {
     _department_events: null,
     _grade_data: {},
     _hfs_data: null,
+    _applicant_data: null,
     _mygrad_data: null,
     _iasystem_data: null,
     _library_data: null,
@@ -187,10 +188,10 @@ WSData = {
             WSData._normalize_instructors(course_data);
 
             $.each(course_data.related_terms, function () {
-                this.is_current = (window.term.year == this.year &&
-                                   window.term.quarter.toLowerCase() == this.quarter.toLowerCase());
-                this.matching_term = (course_data.year == this.year &&
-                                      course_data.quarter.toLowerCase() == this.quarter.toLowerCase());
+                this.is_current = (window.term.year === this.year &&
+                                   window.term.quarter.toLowerCase() === this.quarter.toLowerCase());
+                this.matching_term = (course_data.year === this.year &&
+                                      course_data.quarter.toLowerCase() === this.quarter.toLowerCase());
             });
 
             var grading_is_open = course_data.grading_period_is_open;
@@ -279,7 +280,7 @@ WSData = {
                     this.grading_status.all_grades_submitted =
                         (this.grading_status.unsubmitted_count === 0);
                     if (this.grading_status.submitted_date &&
-                        this.grading_status.submitted_date != 'None') {
+                        this.grading_status.submitted_date !== 'None') {
                         var submitted = moment(this.grading_status.submitted_date);
                         if (Math.abs(submitted.diff(ref, 'days')) > month_to_day_shift) {
                             this.grading_status.submitted_relative_date = submitted.format(fmt) + ' PST';
@@ -407,6 +408,10 @@ WSData = {
 
     profile_data: function() {
         return WSData._profile_data;
+    },
+
+    applicant_data: function(){
+        return WSData._applicant_data;
     },
 
     dept_event_data: function() {
@@ -609,14 +614,14 @@ WSData = {
         $.each(results.sections, function () {
             var canvas_url = this.canvas_url;
             if (canvas_url) {
-                if (this.class_website_url == canvas_url) {
+                if (this.class_website_url === canvas_url) {
                     this.class_website_url = null;
                 }
                 var matches = canvas_url.match(/\/([0-9]+)$/);
                 var canvas_id = matches[1];
                 var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
 
-                if (this.class_website_url == alternate_url) {
+                if (this.class_website_url === alternate_url) {
                     this.class_website_url = null;
                 }
             }
@@ -832,8 +837,12 @@ WSData = {
     },
 
     _sort_instructors_by_last_name: function(a, b) {
-        if (a.surname < b.surname) return -1;
-        if (a.surname > b.surname) return 1;
+        if (a.surname < b.surname){
+            return -1;
+        }
+        if (a.surname > b.surname){
+            return 1;
+        }
         return 0;
     },
 
@@ -1155,6 +1164,38 @@ WSData = {
         }
     },
 
+    fetch_applicant_data: function(callback, err_callback, args) {
+        if (WSData._applicant_data === null) {
+            var url = "/api/v1/applications/";
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+            $.ajax({
+                url: url,
+                    dataType: "JSON",
+                    type: "GET",
+                    accepts: {html: "text/html"},
+                    success: function(results) {
+                        WSData._applicant_data = results;
+                        WSData._run_success_callbacks_for_url(url);
+                    },
+                    error: function(xhr, status, error) {
+                        WSData._profile_error_status = xhr.status;
+                        WSData._run_error_callbacks_for_url(url);
+                    }
+                 });
+              }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
     fetch_myplan_data: function(year, quarter, callback, err_callback, args) {
         if (WSData.myplan_data(year, quarter) === null) {
             var url = "/api/v1/myplan/"+year+"/"+quarter;
@@ -1371,7 +1412,7 @@ WSData = {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.WSData = WSData;

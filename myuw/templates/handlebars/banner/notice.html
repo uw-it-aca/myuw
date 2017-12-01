@@ -13,14 +13,14 @@
                {{ #if notices }}
                <ul class="notice-content-list">
                    {{ #each notices }}
-                   <div id="{{ id_hash }}" class="notice-container">
-                       <li class="notice-content-list-item clearfix">
+                   <li class="notice-content-list-item clearfix">
+                       <div id="{{ id_hash }}" class="notice-container">
                            <div class="notice-category-icon"><i class="fa {{ icon_class }}" title="{{ category }}" aria-hidden="true"></i></div>
                            {{ #unless is_read }}<span class="new-status">New</span>{{ /unless }}
-                              <a href="#" class="crit-notice-title collapsed" data-toggle="collapse" data-target="#{{ id_hash }}_div" aria-controls="{{ id_hash }}_div">{{{ notice_title }}}</a>
-                              <div id="{{ id_hash }}_div" class="collapse" aria-hidden="true">{{{ notice_body }}}</div>
-                       </li>
-                   </div>
+                           <a href="#{{ id_hash }}_div" class="crit-notice-title collapsed" data-toggle="collapse" aria-controls="{{ id_hash }}_div" aria-expanded="false">{{{ notice_title }}}</a>
+                           <div id="{{ id_hash }}_div" class="collapse" aria-hidden="true" hidden="hidden">{{{ notice_body }}}</div>
+                       </div>
+                   </li>
                    {{ /each }}
                </ul>
                {{ else }}

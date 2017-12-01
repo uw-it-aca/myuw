@@ -1,6 +1,6 @@
 // used in profile banner
 Handlebars.registerHelper("formatPhoneNumber", function(str) {
-    if (str.length == 10) {
+    if (str.length === 10) {
         return str.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
     }
     return str;
@@ -63,7 +63,7 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
         var date1 = _get_date(d1);
         var date2 = _get_date(d2);
 
-        if (date1.getMonth() == date2.getMonth() && date1.getYear() == date2.getYear()) {
+        if (date1.getMonth() === date2.getMonth() && date1.getYear() === date2.getYear()) {
             return [months[date1.getMonth()], date1.getDate(), "-", date2.getDate()].join(" ");
         }
         else {
@@ -72,7 +72,7 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
     }
 
     Handlebars.registerHelper('acal_banner_date_format', function(d1, d2) {
-        if (typeof(d2) != 'string' || d1 == d2) {
+        if (typeof(d2) !== 'string' || d1 === d2) {
             var date1 = _get_date(d1);
             return [months[date1.getMonth()], date1.getDate(), "("+days[date1.getDay()]+")"].join(" ");
         }
@@ -81,7 +81,7 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
         }
     });
     Handlebars.registerHelper('acal_page_date_format', function(d1, d2) {
-        if (typeof(d2) != 'string' || d1 == d2) {
+        if (typeof(d2) !== 'string' || d1 === d2) {
             var date1 = _get_date(d1);
             return [months[date1.getMonth()], date1.getDate()].join(" ");
         }
@@ -257,7 +257,7 @@ Handlebars.registerHelper("ucfirst", function(str) {
 
 Handlebars.registerHelper("formatPrice", function(price) {
     formatted = price.toString().split(".");
-    if (formatted[1] && formatted[1].length == 1) {
+    if (formatted[1] && formatted[1].length === 1) {
         formatted[1] += "0";
     }
     if (!formatted[1] || formatted[1].length === 0) {
@@ -267,9 +267,10 @@ Handlebars.registerHelper("formatPrice", function(price) {
 });
 
 Handlebars.registerHelper('equal', function(value1, value2, options) {
-    if (arguments.length < 3)
+    if (arguments.length < 3) {
         throw new Error("Handlebars Helper equal needs 2 parameters");
-    if(value1 != value2) {
+    }
+    if(value1 !== value2) {
         return options.inverse(this);
     }
     else {
@@ -381,8 +382,9 @@ Handlebars.registerHelper('pluralize_by_size', function(list, single, plural) {
 });
 
 Handlebars.registerHelper('greater_than', function(value1, value2, options) {
-    if (arguments.length < 3)
+    if (arguments.length < 3) {
         throw new Error("Handlebars Helper greater_than needs 2 parameters");
+    }
     if(value1 > value2) {
         return options.inverse(this);
     }
@@ -393,17 +395,19 @@ Handlebars.registerHelper('greater_than', function(value1, value2, options) {
 
 Handlebars.registerHelper('not_first', function(index, block) {
     // display block if the index greater than 0
-    if (arguments.length < 2)
+    if (arguments.length < 2) {
         throw new Error("Handlebars Helper not_first needs 1 parameter");
+    }
     if(parseInt(index) > 0) {
         return block.fn(this);
     }
 });
 
 Handlebars.registerHelper('not_equal', function(obj, value, block) {
-    if (arguments.length < 3)
+    if (arguments.length < 3) {
         throw new Error("Handlebars Helper not_equal needs 2 parameters");
-    if(obj != value) {
+    }
+    if(obj !== value) {
         return block.fn(this);
     }
 });

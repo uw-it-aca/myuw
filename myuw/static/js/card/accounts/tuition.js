@@ -62,7 +62,7 @@ var TuitionCard = {
 
         template_data.pce_tuition_dup = Notices.get_notices_for_tag("pce_tuition_dup");
 
-        if (template_data.pce_accbalance == '0.00') {
+        if (template_data.pce_accbalance === '0.00') {
             template_data.pce_accbalance = 0;
         }
         template_data.is_grad = window.user.grad;
@@ -128,21 +128,35 @@ var TuitionCard = {
     },
 
     _init_events: function(){
-        $(".finaid-panel-default").find('a').each(function(idx, elm){
-            $(elm).on('click', function(e){
-                var content = $(e.target).parents('li').find('.finaid-panel-collapse');
-                if(content.attr('aria-hidden')){
-                    content.attr('aria-hidden', false);
-                } else{
-                    content.attr('aria-hidden', true);
-                }
-            });
+        $("body").on('click', "#tui_finaid_notices_accordion a.finaid-disclosure-link", function(e){
+            var content = $(e.target).parents('li').find('.finaid-panel-collapse');
+            if(content.attr('aria-hidden') === "true"){
+                content.removeAttr('hidden'); // Keep it from interfering with Bootstrap.
+                window.setTimeout(function() {
+                    content.attr('aria-hidden', false); // Set to visible
+                    content.attr('tabindex', 0); // Set focus on content
+                    content.focus();
+
+                    // Look for and close any other open disclosures
+                    $("div.finaid-panel-collapse[aria-hidden='false'][aria-expanded='false']").each(function() {
+                        $(this).attr('aria-hidden', true);
+                        $(this).attr('hidden', 'hidden');
+                        $(this).removeAttr('tabindex');
+                    });
+                }, 400);
+            } else {
+                window.setTimeout(function() {
+                    content.attr('aria-hidden', true); // Set to hidden
+                    content.attr('hidden', 'hidden');
+                    content.removeAttr('tabindex'); // Remove tabindex
+                }, 400);
+            }
         });
     }
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.TuitionCard = TuitionCard;
