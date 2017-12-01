@@ -321,7 +321,7 @@ Handlebars.registerHelper('time_percentage_height', function(start, end, min, ma
 
 Handlebars.registerHelper('to_percent', function(decimal){
     return Math.round(decimal * 100);
-})
+});
 
 Handlebars.registerHelper('show_days_meetings', function(list, start_time, end_time) {
     if (!VisualSchedule.day_template) {
