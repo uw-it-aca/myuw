@@ -50,7 +50,7 @@ var PrevTermCourseCards = {
 
     _render: function () {
         var results = WSData.course_data_for_term(PrevTermCourseCards.term);
-        if (results.length == 1) {
+        if (results.length === 1) {
             $("#PrevTermCourseCards1").hide();
         }
         for (i = 0; i < results.length; i++) {
@@ -92,7 +92,7 @@ var PrevTermCourseCards1 = {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.PrevTermCourseCards = PrevTermCourseCards;

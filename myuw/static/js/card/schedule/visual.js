@@ -138,7 +138,7 @@ var VisualScheduleCard = {
                     }
                     else if (meeting.days_tbd){
                         $.each(visual_data.courses_meeting_tbd, function () {
-                            if (this.section_index == section_index) {
+                            if (this.section_index === section_index) {
                                 seen = true;
                                 return false;
                             }
@@ -157,7 +157,7 @@ var VisualScheduleCard = {
                     }
                     else {
                         $.each(visual_data.courses_no_meeting, function () {
-                            if (this.section_index == section_index) {
+                            if (this.section_index === section_index) {
                                 seen = true;
                                 return false;
                             }
@@ -362,7 +362,7 @@ var VisualScheduleCard = {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.VisualScheduleCard = VisualScheduleCard;

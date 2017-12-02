@@ -59,5 +59,5 @@ def is_oldmyuw_user():
     if is_undergrad_student():
         return False
     if is_applicant():
-        return True
+        return False
     return True

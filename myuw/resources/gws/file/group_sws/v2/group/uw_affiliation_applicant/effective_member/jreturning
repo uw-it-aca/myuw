@@ -4,7 +4,7 @@
 </head>
 <body>
 <div class="group">
-    <span class="member" type="eff_member">japplicant</span>
+    <span class="member" type="eff_member">jreturning</span>
     <div class="parent_group">
         <a rel="parent_group" class="group"  href='/restclients/view/gws/group_sws/v2/group/uw_affiliation_applicant/'>uw_affiliation_applicant</a>
   </div>

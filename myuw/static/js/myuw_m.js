@@ -74,8 +74,23 @@ $(window.document).ready(function() {
     });
 
     // handle clicking on mobile menu
-    $("#menu_toggle").bind("click", function(ev) {
-		$("#menu_container").toggleClass("slide-down");
+    $("#menu_toggle_wrapper").bind("click", function(ev) {
+
+        var menuButton = $("#menu_toggle");
+        var menu = $("#menu_container");
+
+        // if open
+        if (menu.hasClass("slide-down")) {
+            menu.toggleClass("slide-down");
+            menuButton.attr("aria-expanded", false);
+        // if closed
+        } else {
+            menu.toggleClass("slide-down");
+            window.setTimeout(function() {
+                menuButton.attr("aria-expanded", true);
+                $("#main_menu li:first-child a").focus();
+            }, 0);
+        }
 	});
 
     // handle touchstart to mimic :hover event for mobile touch
@@ -284,8 +299,12 @@ var getUrlParameter = function (name) {
     name = name.replace(/[\[\]]/g, "\\$&");
     var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
         results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
+    if (!results){
+        return null;
+    }
+    if (!results[2]){
+        return '';
+    }
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 };
 
@@ -311,7 +330,7 @@ var remove_card = function(target) {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.capitalizeString = capitalizeString;
