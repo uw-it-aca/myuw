@@ -10,7 +10,7 @@
             <div class="col-sm-9">
                 <div class="myuw-card-row-content">
                     <div class="card-badge-value">
-                        <div class="dummy">{{current_median}} <abbr title="Median Cummulative GPA">GPA</abbr> (current students) &middot; {{to_percent failure_rate}}% historic course fail rate</div>
+                        <div>{{current_median}} <abbr title="Median Cummulative Grade Point Average">GPA</abbr> (current students) &middot; {{to_percent failure_rate}}% historic course fail rate</div>
                         <a href="https://coda.uw.edu/#{{ year }}-{{ quarter }}-{{ toUrlSafe curriculum_abbr }}-{{ course_number }}-{{ section_id }}" class="" data-linklabel="Course Dashboard for {{ toUrlSafe curriculum_abbr }} {{ course_number }} {{ section_id }}" rel="{{section_label}}">View course stats</a>
                     </div>
                 </div>
