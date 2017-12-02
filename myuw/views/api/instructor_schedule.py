@@ -33,7 +33,7 @@ from myuw.dao.term import (
     get_current_quarter, is_past, is_future, get_previous_number_quarters,
     get_future_number_quarters)
 from myuw.logger.logresp import log_success_response
-from myuw.logger.logback import log_exception, log_info
+from myuw.logger.logback import log_exception
 from myuw.logger.timer import Timer
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.api import OpenAPI, ProtectedAPI
@@ -591,27 +591,22 @@ class OpenInstSectionDetails(OpenAPI):
 
         registration_list = []
         for regid in name_threads:
-            try:
-                thread = name_threads[regid]
-                thread.join()
-                registrations[regid]["name"] = thread.response["name"]
-                registrations[regid]["surname"] = thread.response["surname"]
-                registrations[regid]["email"] = thread.response["email"]
+            thread = name_threads[regid]
+            thread.join()
+            registrations[regid]["name"] = thread.response["name"]
+            registrations[regid]["surname"] = thread.response["surname"]
+            registrations[regid]["email"] = thread.response["email"]
 
-                thread = enrollment_threads[regid]
-                thread.join()
-                if thread.response:
-                    registrations[regid]["majors"] = thread.response["majors"]
-                    registrations[regid]["class"] = thread.response["class"]
+            thread = enrollment_threads[regid]
+            thread.join()
+            if thread.response:
+                registrations[regid]["majors"] = thread.response["majors"]
+                registrations[regid]["class"] = thread.response["class"]
 
-                    code = get_code_for_class_level(thread.response["class"])
-                    registrations[regid]['class_code'] = code
+                code = get_code_for_class_level(thread.response["class"])
+                registrations[regid]['class_code'] = code
 
-                registration_list.append(registrations[regid])
-            except TypeError as ex:
-                msg = 'classlist_missing_registration_' + regid
-                log_exception(logger, msg, traceback.format_exc())
-                raise
+            registration_list.append(registrations[regid])
         section_data["registrations"] = registration_list
 
     def get_person_info(self, person):
