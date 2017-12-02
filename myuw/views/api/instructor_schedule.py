@@ -608,7 +608,7 @@ class OpenInstSectionDetails(OpenAPI):
                     registrations[regid]['class_code'] = code
 
                 registration_list.append(registrations[regid])
-            except KeyError as ex:
+            except TypeError as ex:
                 msg = 'classlist_missing_registration_' + regid
                 log_exception(logger, msg, traceback.format_exc())
                 raise
