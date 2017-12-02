@@ -33,7 +33,7 @@ from myuw.dao.term import (
     get_current_quarter, is_past, is_future, get_previous_number_quarters,
     get_future_number_quarters)
 from myuw.logger.logresp import log_success_response
-from myuw.logger.logback import log_exception
+from myuw.logger.logback import log_exception, log_info
 from myuw.logger.timer import Timer
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.api import OpenAPI, ProtectedAPI
@@ -616,7 +616,11 @@ class OpenInstSectionDetails(OpenAPI):
 
     def get_person_info(self, person):
         sws_person = get_person_by_regid(person.uwregid)
-        return {"name": sws_person.first_name.title(),
+        try:
+            fname = sws_person.first_name.title()
+        except AttributeError:
+            fname = ""
+        return {"name": fname,
                 "surname": sws_person.last_name.title(),
                 "email": sws_person.email}
 
