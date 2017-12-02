@@ -591,22 +591,27 @@ class OpenInstSectionDetails(OpenAPI):
 
         registration_list = []
         for regid in name_threads:
-            thread = name_threads[regid]
-            thread.join()
-            registrations[regid]["name"] = thread.response["name"]
-            registrations[regid]["surname"] = thread.response["surname"]
-            registrations[regid]["email"] = thread.response["email"]
+            try:
+                thread = name_threads[regid]
+                thread.join()
+                registrations[regid]["name"] = thread.response["name"]
+                registrations[regid]["surname"] = thread.response["surname"]
+                registrations[regid]["email"] = thread.response["email"]
 
-            thread = enrollment_threads[regid]
-            thread.join()
-            if thread.response:
-                registrations[regid]["majors"] = thread.response["majors"]
-                registrations[regid]["class"] = thread.response["class"]
+                thread = enrollment_threads[regid]
+                thread.join()
+                if thread.response:
+                    registrations[regid]["majors"] = thread.response["majors"]
+                    registrations[regid]["class"] = thread.response["class"]
 
-                code = get_code_for_class_level(thread.response["class"])
-                registrations[regid]['class_code'] = code
+                    code = get_code_for_class_level(thread.response["class"])
+                    registrations[regid]['class_code'] = code
 
-            registration_list.append(registrations[regid])
+                registration_list.append(registrations[regid])
+            except KeyError as ex:
+                msg = 'classlist_missing_registration_' + regid
+                log_exception(logger, msg, traceback.format_exc())
+                raise
         section_data["registrations"] = registration_list
 
     def get_person_info(self, person):
