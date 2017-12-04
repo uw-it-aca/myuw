@@ -87,7 +87,7 @@ var Notices = {
                 expanded = false;
                 for (i = 0; i < blocks.length; i++) {
                     block = blocks[i];
-                    if (block.css('display') != 'none') {
+                    if (block.css('display') !== 'none') {
                         Notices._hide_section(block, get_link_for_block(block));
                     }
                 }
@@ -98,7 +98,7 @@ var Notices = {
                 expanded = true;
                 for (i = 0; i < blocks.length; i++) {
                     block = blocks[i];
-                    if (block.css('display') == 'none') {
+                    if (block.css('display') === 'none') {
                         Notices._show_section(block, get_link_for_block(block));
                     }
                 }
@@ -116,7 +116,7 @@ var Notices = {
             
             var slide_link = $(this);
             
-            if (hidden_block.css('display') == 'none') {
+            if (hidden_block.css('display') === 'none') {
                 Notices._show_section(hidden_block, slide_link);
             }
             else {
@@ -440,7 +440,7 @@ var Notices = {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.Notices = Notices;

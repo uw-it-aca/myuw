@@ -34,7 +34,7 @@ var InstructorSectionCard = {
             source,
             course_template;
 
-        if (error_code == 410) {
+        if (error_code === 410) {
             Error410.render();
             return;
         }

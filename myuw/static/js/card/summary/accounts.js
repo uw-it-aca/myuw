@@ -15,7 +15,7 @@ var AccountSummaryCard = {
         if (AccountSummaryCard.calls < 2) {
             return;
         }
-        if (window.term_data.break_year != window.term_data.year) {
+        if (window.term_data.break_year !== window.term_data.year) {
             window.term_data.spans_years = true;
         }
 
@@ -49,7 +49,7 @@ var AccountSummaryCard = {
 
         test_date = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate());
         var original_monday_week = true;
-        if (test_date.getDay() != 1) {
+        if (test_date.getDay() !== 1) {
             original_monday_week = false;
             total_weeks++;
 
@@ -84,7 +84,7 @@ var AccountSummaryCard = {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.AccountSummaryCard = AccountSummaryCard;
