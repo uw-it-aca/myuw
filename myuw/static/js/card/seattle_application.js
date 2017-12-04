@@ -21,6 +21,7 @@ var SeattleApplicationCard = {
     _render: function () {
         var applicant_info = WSData.applicant_data();
 
+        var seattle_application;
         for(var i = 0; i < applicant_info.length; i++){
             if(applicant_info[i].is_seattle) {
                 seattle_application = applicant_info[i];
@@ -30,7 +31,7 @@ var SeattleApplicationCard = {
             }
         }
 
-        if (seattle_application === undefined){
+        if (typeof seattle_application === 'undefined'){
             this.render_error();
             return;
         }
