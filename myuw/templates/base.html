@@ -102,17 +102,16 @@
             {% block mobile_navigation %}
             <div class="myuw-navigation">
                 <div class="myuw-wrapper" style="background-image: url({% static 'images/w-logo-white.png' %})">
-                    <div class="myuw-title"><a href="/">MyUW</a></div>
-                    <div class="myuw-title-button">
-                        <button id="menu_toggle">
-                            <span class="fa-stack fa-md">
+                    <div class="myuw-title"><a href="/" aria-label="MyUW Home">MyUW</a></div>
+                    <div id="menu_toggle_wrapper" class="myuw-title-button">
+                        <button id="menu_toggle" aria-controls="main_menu" aria-haspopup="true" aria-expanded="false">
+                            <span class="fa-stack fa-md" aria-hidden="true">
                                 <i class="fa fa-square-o fa-stack-2x"></i>
                                 <i class="fa fa-bars fa-stack-1x"></i>
                             </span>
-
-                            {% if page_title == "Home" %}MyUW{% else %}{{page_title}}{% endif %}
-
+                            <span class="sr-only">Main Menu</span>
                         </button>
+                        <h2>{% if page_title == "Home" %}MyUW<span class="sr-only"> Home</span>{% else %}{{page_title}}{% endif %}</h2>
                     </div>
                 </div>
             </div>
@@ -141,41 +140,37 @@
         <div class="myuw-body">
             <div class="myuw-wrapper">
 
+                <!-- app_navigation -->
+                {% block app_navigation %}
                 <div class="myuw-nav-col">
-
-                    <!-- app_navigation -->
-                    {% block app_navigation %}
                     <div id="menu_container" class="myuw-menu" role="navigation">
-
-                        <ul>
+                        <ul id="main_menu" role="menubar" aria-orientation="vertical" aria-labelledby="menu_toggle">
 
                             {% load myuw_sidebar %}
                             {% add_sidebar_context %}
-                            <li><a {% if is_myuw_home %}class="active"{% endif %}  href="/"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+                            <li role="none"><a {% if is_myuw_home %}class="active"{% endif %} href="/" role="menuitem"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
 
                             {% if user.affiliations.student %}
-                            <li><a {% if is_myuw_academics_page %}class="active"{% endif %} href="/academics/"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Academics</a></li>
+                            <li role="none"><a {% if is_myuw_academics_page %}class="active"{% endif %} href="/academics/" role="menuitem"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Academics</a></li>
                             <!--<li><a href="/huskyexp/"><i class="fa fa-paw" aria-hidden="true"></i>Husky Experience</a></li>-->
                             {% endif %}
 
                             {% if instructor_schedule_enabled %}
                               {% if user.affiliations.instructor %}
-                            <li><a {% if is_myuw_teaching_page %}class="active"{% endif %} href="/teaching/"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Teaching</a></li>
+                            <li role="none"><a {% if is_myuw_teaching_page %}class="active"{% endif %} href="/teaching/" role="menuitem"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Teaching</a></li>
                              {% endif %}
                             {% endif %}
 
-                            <li><a {% if is_myuw_academic_calendar_page %}class="active"{% endif %} href="/academic_calendar/"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Calendar</a></li>
-                            <li><a {% if is_myuw_accounts_page  %}class="active"{% endif %} href="/accounts/"><i class="fa fa-credit-card" aria-hidden="true"></i>Accounts</a></li>
+                            <li role="none"><a {% if is_myuw_academic_calendar_page %}class="active"{% endif %} href="/academic_calendar/" role="menuitem"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Calendar</a></li>
+                            <li role="none"><a {% if is_myuw_accounts_page  %}class="active"{% endif %} href="/accounts/" role="menuitem"><i class="fa fa-credit-card" aria-hidden="true"></i>Accounts</a></li>
                             {% if user.affiliations.student %}
-                            <li><a {% if is_myuw_notices_page %}class="active"{% endif %}  href="/notices/"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Notices</a></li>
+                            <li role="none"><a {% if is_myuw_notices_page %}class="active"{% endif %} href="/notices/" role="menuitem"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Notices</a></li>
                             {% endif %}
-                            <li><a {% if is_myuw_profile_page %}class="active"{% endif %} href="/profile/"><i class="icon-user icon-user-female" aria-hidden="true" style="font-size:14px;"></i>Profile</a></li>
+                            <li role="none"><a {% if is_myuw_profile_page %}class="active"{% endif %} href="/profile/" role="menuitem"><i class="icon-user icon-user-female" aria-hidden="true" style="font-size:14px;"></i>Profile</a></li>
 
                         </ul>
 
                     </div>
-                    {% endblock %}
-                    <!-- end app_navigation -->
 
                     {% if user.affiliations.applicant is False %}
                     <div class="myuw-welcome" role="complementary">
@@ -186,7 +181,10 @@
                         </ul>
                     </div>
                     {% endif %}
+
                 </div>
+                {% endblock %}
+                <!-- end app_navigation -->
 
 
 
@@ -260,8 +258,8 @@
                         <li class="footer-links-list-item"><a href="//myuw.washington.edu/cgi-bin/contactmyuw.cgi"><i class="fa fa-envelope" role="presentation"></i> Contact</a></li>
                         <li class="footer-links-list-item"><a href="//www.washington.edu/online/terms/">Terms</a></li>
                         <li class="footer-links-list-item"><a href="//www.washington.edu/online/privacy/">Privacy</a></li>
-                        <li class="footer-links-list-item visible-xs-inline visible-sm-inline"><a href="/logout">Sign Out</a></li>
-                        <li class="footer-links-list-item visible-xs-inline visible-sm-inline"><a href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW</a></li>
+                        <li class="footer-links-list-item visible-xs-inline-block visible-sm-inline-block"><a href="/logout">Sign Out</a></li>
+                        <li class="footer-links-list-item visible-xs-inline-block visible-sm-inline-block"><a href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW</a></li>
                    </ul>
                     <div style="clear:both;">&copy; {% now "Y" %} University of Washington</div>
                 </div>

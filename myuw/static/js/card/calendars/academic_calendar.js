@@ -52,7 +52,7 @@ var AcademicCalendarCard = {
                 by_group[group_name] = new_group;
                 groups.push(new_group);
             }
-            else if (term_name != current_term) {
+            else if (term_name !== current_term) {
                 current_term = term_name;
 
                 by_group[group_name] = new_group;

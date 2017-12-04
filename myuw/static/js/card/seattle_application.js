@@ -25,7 +25,6 @@ var SeattleApplicationCard = {
         for(var i = 0; i < applicant_info.length; i++){
             if(applicant_info[i].is_seattle) {
                 seattle_application = applicant_info[i];
-
                 if (window.user.student && !seattle_application.is_transfer &&
                         !seattle_application.is_returning)
                     seattle_application = undefined;
@@ -57,7 +56,7 @@ var SeattleApplicationCard = {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.SeattleApplicationCard = SeattleApplicationCard;

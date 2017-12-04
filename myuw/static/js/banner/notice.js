@@ -57,7 +57,7 @@ var NoticeBanner = {
             var aria_a = $(e.currentTarget);
 
 
-            if(aria_div.attr('aria-hidden') == "true"){
+            if(aria_div.attr('aria-hidden') === "true"){
                 // Remove hidden first to keep it from interfering with Bootstrap.
                 aria_div.removeAttr('hidden');
 
