@@ -1,5 +1,6 @@
 import json
 from myuw.test.api import MyuwApiTest, require_url, fdao_bookstore_override
+from myuw.test import get_request_with_user, get_request_with_date
 
 
 VERBACOMPARE_URL_PREFIX = 'http://uw-seattle.verbacompare.com'
