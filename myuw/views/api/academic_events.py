@@ -236,7 +236,7 @@ class AcademicEvents(ProtectedAPI):
 
         not_too_future = []
         for event in events:
-            start = event.get('dtstart').dt
+            start = self.get_start_date(event)
             if start <= last_date:
                 not_too_future.append(event)
 
@@ -272,7 +272,7 @@ class AcademicEvents(ProtectedAPI):
                 round1.append(event)
             else:
                 start = self.get_start_date(event)
-                date_string = self.format_datetime(start)
+                date_string = self.format_native_datetime(start)
                 # There's an event outside of 4 weeks.  3 things can happen:
                 # 1) we already have events, and the event's start date isn't
                 #    in the ok_overlaps lookup
