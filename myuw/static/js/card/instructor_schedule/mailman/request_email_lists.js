@@ -20,7 +20,7 @@ var RequestEmailLists = {
 
     render_error: function() {
         var error_code = WSData._instructed_emaillist_data_error_status[RequestEmailLists.label];
-        if (error_code == 543) {
+        if (error_code === 543) {
             raw = CardWithError.render("Request Email List");
             $(RequestEmailLists.dom_target).html(raw);
         }
