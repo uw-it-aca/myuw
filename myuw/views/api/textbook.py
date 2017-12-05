@@ -5,8 +5,8 @@ from restclients_core.exceptions import DataFailureException
 from myuw.dao.schedule import (
     get_schedule_by_term, filter_schedule_sections_by_summer_term)
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
-from myuw.dao.term import (
-    get_specific_term, get_current_quarter, get_current_summer_term)
+from myuw.dao.term import get_specific_term, get_current_quarter, \
+    get_current_summer_term, get_comparison_datetime
 from myuw.dao.textbook import get_textbook_by_schedule
 from myuw.dao.textbook import get_verba_link_by_schedule
 from myuw.logger.timer import Timer
@@ -20,12 +20,13 @@ logger = logging.getLogger(__name__)
 
 class Textbook(ProtectedAPI):
     """
-    Performs actions on resource at /api/v1/books/current/.
+    Performs actions on resource at /api/v1/books/[year][quarter][summer_term].
     """
     def get(self, request, *args, **kwargs):
         """
-        GET returns 200 with textbooks for the current quarter
+        GET returns 200 with textbooks for the given quarter
         """
+        current_date = get_comparison_datetime(request)
         year = kwargs.get("year")
         quarter = kwargs.get("quarter")
         summer_term = kwargs.get("summer_term")

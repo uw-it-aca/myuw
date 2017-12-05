@@ -188,7 +188,7 @@ WSData = {
             WSData._normalize_instructors(course_data);
 
             $.each(course_data.related_terms, function () {
-                this.is_current = (window.term.year === this.year &&
+                this.is_current = (parseInt(window.term.year) === this.year &&
                                    window.term.quarter.toLowerCase() === this.quarter.toLowerCase());
                 this.matching_term = (course_data.year === this.year &&
                                       course_data.quarter.toLowerCase() === this.quarter.toLowerCase());
