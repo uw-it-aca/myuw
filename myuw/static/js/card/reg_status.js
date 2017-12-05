@@ -94,7 +94,7 @@ var RegStatusCard = {
             // 1. Extract the registration date:
             for (j = 0; j < notice.attributes.length; j++) {
                 attribute = notice.attributes[j];
-                if (attribute.name == "Date") {
+                if (attribute.name === "Date") {
                     registration_date = attribute.value;
                     break;
                 }
@@ -129,7 +129,7 @@ var RegStatusCard = {
             var terms = WSData.oquarter_data().terms;
             for (i = 0; i < terms.length; i++) {
                 var term = terms[i];
-                if ((term.quarter == quarter) && term.section_count) {
+                if ((term.quarter === quarter) && term.section_count) {
                     has_registration = true;
                 }
             }

@@ -96,7 +96,7 @@ function MyuwLog()  {
     this.get_appender = function() {
         var json_layout = new log4javascript.JsonLayout(true);
         var append;
-        if (window.location.hash == "#console") {
+        if (window.location.hash === "#console") {
             append = new log4javascript.BrowserConsoleAppender('/logging/log');
         }
         else {
@@ -308,14 +308,17 @@ var LogUtils = {
            return function debounced () {
                var obj = this, args = arguments;
                function delayed () {
-                   if (!execAsap)
+                   if (!execAsap){
                        func.apply(obj, args);
+                   }
                    timeout = null;
                }
-               if (timeout)
+               if (timeout) {
                    clearTimeout(timeout);
-               else if (execAsap)
+               }
+               else if (execAsap) {
                    func.apply(obj, args);
+               }
                timeout = setTimeout(delayed, threshold || interval);
            };
        };
@@ -483,7 +486,7 @@ var LogUtils = {
 
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.LogUtils = LogUtils;
