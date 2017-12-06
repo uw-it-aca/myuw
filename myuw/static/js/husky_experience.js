@@ -29,7 +29,7 @@ var HuskyExperiencePage = {
     },
 
     _load_desktop_cards: function() {
-        HuskyExperiencePage._reset_content_divs();
+    //    HuskyExperiencePage._reset_content_divs();
         var desktop_body_cards = [
     /*        CommonProfileCard,
             DirectoryInfoCard,
@@ -45,7 +45,7 @@ var HuskyExperiencePage = {
     },
 
     _load_mobile_cards: function() {
-        HuskyExperiencePage._reset_content_divs();
+    //    HuskyExperiencePage._reset_content_divs();
         var mobile_cards = [
         /*        CommonProfileCard,
             DirectoryInfoCard,
