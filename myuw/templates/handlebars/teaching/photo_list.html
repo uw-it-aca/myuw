@@ -39,7 +39,7 @@
                 {{#if sections.0.current_or_future}}
                     {{#if sections.0.current_student_majors}}
                         <div style="margin-bottom: 16px;">
-                            <strong>Course Stats:</strong> {{sections.0.current_student_majors.0.percent_students}}% {{ toTitleCase sections.0.current_student_majors.0.major }} majors. <a href="#" rel="{{year}}_{{quarter}}_{{ sections.0.curriculum_abbr }}_{{ sections.0.course_number }}_{{ sections.0.section_id }}">View more in course stats</a>
+                            <strong>Course Stats:</strong> {{sections.0.current_student_majors.0.percent_students}}% {{ toTitleCase sections.0.current_student_majors.0.major }} majors. <a href="https://coda.uw.edu/#{{ year }}-{{ quarter }}-{{ sections.0.curriculum_abbr }}-{{ sections.0.course_number }}-{{ sections.0.section_id }}" target="_blank" data-linklabel="Course Dashboard for {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}" rel="{{year}}_{{quarter}}_{{ sections.0.curriculum_abbr }}_{{ sections.0.course_number }}_{{ sections.0.section_id }}">View more course stats</a>
                         </div>
                     {{/if}}
                 {{/if}}
