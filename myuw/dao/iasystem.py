@@ -18,6 +18,16 @@ from myuw.dao.term import get_comparison_datetime, is_b_term,\
 logger = logging.getLogger(__name__)
 
 
+def _get_evaluations_domain(section):
+    if section.is_campus_seattle() or\
+       section.is_campus_bothell() or\
+       section.is_campus_tacoma():
+        return section.course_campus.lower()
+    if section.lms_ownership is not None:
+        return section.lms_ownership.lower()
+    return section.course_campus.lower()  # pce
+
+
 def get_evaluations_by_section(section):
     return _get_evaluations_by_section_and_student(
         section, get_profile_of_current_user().student_number)
@@ -30,7 +40,7 @@ def _get_evaluations_by_section_and_student(section, student_number):
                      'course_number': section.course_number,
                      'section_id': section.section_id,
                      'student_id': student_number}
-    return search_evaluations(section.course_campus.lower(),
+    return search_evaluations(_get_evaluations_domain(section),
                               **search_params)
 
 
@@ -41,7 +51,7 @@ def get_evaluation_by_section_and_instructor(section, instructor_id):
                      'course_number': section.course_number,
                      'section_id': section.section_id,
                      'instructor_id': instructor_id}
-    return search_evaluations(section.course_campus.lower(),
+    return search_evaluations(_get_evaluations_domain(section),
                               **search_params)
 
 
