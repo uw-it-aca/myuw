@@ -1,4 +1,5 @@
 import os
+import re
 import logging
 from django.conf import settings
 from uw_sws.dao import SWS_DAO
@@ -10,12 +11,23 @@ from uw_pws import PWS
 logger = logging.getLogger(__name__)
 
 
+EPPN_PATTERN = re.compile(r'^([^@]+)@[a-z]+.edu$')
+
+
+def __get_uid(username):
+    if username is not None and len(username):
+        found = re.match(EPPN_PATTERN, username)
+        if found and found.group(1) and len(found.group(1)):
+            return found.group(1)
+    return username
+
+
 def get_netid_of_current_user():
-    user_service = UserService()
-    logger.info("original_user=%s, user=%s",
-                user_service.get_original_user(),
-                user_service.get_user())
-    return user_service.get_user()
+    return __get_uid(UserService().get_user())
+
+
+def get_netid_of_original_user():
+    return __get_uid(UserService().get_original_user())
 
 
 def get_user_model():

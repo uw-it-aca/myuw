@@ -4,12 +4,11 @@ import datetime
 import bleach
 from dateutil.parser import parse
 from django.conf import settings
-from myuw.dao.term import get_comparison_datetime
-from myuw.dao import is_netid_in_list, get_netid_of_current_user
 from myuw.models import BannerMessage
+from myuw.dao import is_netid_in_list, get_netid_of_current_user
+from myuw.dao.term import get_comparison_datetime
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.affiliation_data import get_data_for_affiliations
-from userservice.user import UserService
 from authz_group import Group
 from django.utils import timezone
 
@@ -33,7 +32,7 @@ def get_current_messages(request):
                                          is_published=True)
 
     filtered = []
-    user = UserService().get_user()
+    user = get_netid_of_current_user()
     g = Group()
     for message in messages:
         if message.group_id:
