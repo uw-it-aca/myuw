@@ -17,6 +17,7 @@
     </h3>
     <div><p class="sr-only"><a href="/academics#academics_content_cards">Skip the visual schedule and go to course cards</a></p></div>
     <div aria-hidden="true" role="presentation"><!-- Wrap the content under aria-hidden -->
+        {{ #if show_period_headers }}
         <div id="schedule-tabs" class="schedule-period-module">
     		<ul class="nav nav-pills schedule-period-list">
             {{#each schedule_periods }}
@@ -24,6 +25,7 @@
             {{/each }}
     		</ul>
         </div>
+        {{ /if }}
 		<h4 class="hidden">Your {{ucfirst quarter}} {{year}} class schedule</h4>
         <div id="schedule_area">
         {{#if display_hours }}

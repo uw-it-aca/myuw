@@ -332,6 +332,7 @@ var VisualScheduleCard = {
         var processed_period = VisualScheduleCard._get_data_for_period(period, schedule_data.term);
         var period_labels = VisualScheduleCard._get_period_lables(schedule_data);
         processed_period.schedule_periods = period_labels;
+        processed_period.show_period_headers = Object.keys(period_labels).length > 1;
         processed_period.active_period_id = period_id;
         return processed_period;
     },
