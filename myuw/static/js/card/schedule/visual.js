@@ -308,6 +308,7 @@ var VisualScheduleCard = {
             // Render VS with first period data to get correct labels
             processed_period = VisualScheduleCard._get_processed_data_for_period(0);
             processed_period.active_period_id = period_id;
+            processed_period.sr_finals = VisualScheduleCard._get_finals_period(schedule_data.periods).sections;
             VisualScheduleCard.render_schedule(processed_period);
 
             period = VisualScheduleCard._get_finals_period(schedule_data.periods);
@@ -315,6 +316,7 @@ var VisualScheduleCard = {
             FinalExamSchedule.render(period, schedule_data.term, false, target);
         } else {
             processed_period = VisualScheduleCard._get_processed_data_for_period(period_id);
+            processed_period.sr_finals = VisualScheduleCard._get_finals_period(schedule_data.periods).sections;
             VisualScheduleCard.render_schedule(processed_period);
         }
         LogUtils.cardLoaded(VisualScheduleCard.name, VisualScheduleCard.dom_target);
