@@ -318,6 +318,7 @@ var VisualScheduleCard = {
             FinalExamSchedule.render(period, schedule_data.term, false, target);
         } else {
             processed_period = VisualScheduleCard._get_processed_data_for_period(period_id);
+            console.log(processed_period);
             if (VisualScheduleCard._get_finals_period(schedule_data.periods) !== undefined){
                 processed_period.sr_finals = VisualScheduleCard._get_finals_period(schedule_data.periods).sections;
             }
