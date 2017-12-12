@@ -20,4 +20,4 @@ def get_legacy_url():
 
 
 def get_logout_url():
-    return getattr(settings, "LOGOUT_URL", "/Shibboleth.sso/Logout")
+    return getattr(settings, "LOGOUT_URL", "/user_logout")
