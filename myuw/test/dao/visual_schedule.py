@@ -43,6 +43,41 @@ class TestVisualSchedule(TestCase):
                 return False
         return True
 
+    def _get_weekend_meeting_schedule(self):
+        section1 = Section()
+        section1.curriculum_abbr = 'ASD'
+        section1.course_number = 123
+        section1.section_id = 'A'
+        section1.start_date = datetime.date(2017, 10, 02)
+        section1.end_date = datetime.date(2017, 10, 20)
+
+        section2 = Section()
+        section2.curriculum_abbr = 'QWE'
+        section2.course_number = 456
+        section2.section_id = 'A'
+        section2.start_date = datetime.date(2017, 10, 02)
+        section2.end_date = datetime.date(2017, 10, 20)
+
+        sat_mtg = SectionMeeting()
+        sat_mtg.meets_saturday = True
+        section1.meetings = [sat_mtg]
+
+        sun_mtg = SectionMeeting()
+        sun_mtg.meets_sunday = True
+        section2.meetings = [sun_mtg]
+
+        schedule = ClassSchedule()
+        schedule.sections = [section1, section2]
+
+        schedule = _add_dates_to_sections(schedule)
+
+        bounds = get_schedule_bounds(schedule)
+        weeks = _get_weeks_from_bounds(bounds)
+        weeks = _add_sections_to_weeks(schedule.sections, weeks)
+        consolidated = _consolidate_weeks(weeks)
+        _add_weekend_meeting_data(consolidated)
+        return consolidated
+
     def test_get_bounds(self):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,spring")
@@ -243,38 +278,7 @@ class TestVisualSchedule(TestCase):
         self.assertTrue(_section_lists_are_same(consolidated[3].sections, w4))
 
     def test_weekend_meetings(self):
-        section1 = Section()
-        section1.curriculum_abbr = 'ASD'
-        section1.course_number = 123
-        section1.section_id = 'A'
-        section1.start_date = datetime.date(2017, 10, 02)
-        section1.end_date = datetime.date(2017, 10, 20)
-
-        section2 = Section()
-        section2.curriculum_abbr = 'QWE'
-        section2.course_number = 456
-        section2.section_id = 'A'
-        section2.start_date = datetime.date(2017, 10, 02)
-        section2.end_date = datetime.date(2017, 10, 20)
-
-        sat_mtg = SectionMeeting()
-        sat_mtg.meets_saturday = True
-        section1.meetings = [sat_mtg]
-
-        sun_mtg = SectionMeeting()
-        sun_mtg.meets_sunday = True
-        section2.meetings = [sun_mtg]
-
-        schedule = ClassSchedule()
-        schedule.sections = [section1, section2]
-
-        schedule = _add_dates_to_sections(schedule)
-
-        bounds = get_schedule_bounds(schedule)
-        weeks = _get_weeks_from_bounds(bounds)
-        weeks = _add_sections_to_weeks(schedule.sections, weeks)
-        consolidated = _consolidate_weeks(weeks)
-        _add_weekend_meeting_data(consolidated)
+        consolidated = self._get_weekend_meeting_schedule()
 
         self.assertTrue(consolidated[0].meets_saturday)
         self.assertTrue(consolidated[0].meets_sunday)
