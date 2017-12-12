@@ -25,7 +25,6 @@ from myuw.views import prefetch_resources, get_enabled_features
 from myuw.views.error import invalid_session
 
 
-
 logger = logging.getLogger(__name__)
 
 
