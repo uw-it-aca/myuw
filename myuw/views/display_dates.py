@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.template import RequestContext
-from django.conf import settings
 from django.http import Http404
 from datetime import datetime
 import logging

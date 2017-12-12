@@ -2,10 +2,10 @@ import re
 import pytz
 from datetime import timedelta, datetime, time
 from urllib import quote_plus, urlencode
-from django.conf import settings
 from django.utils import timezone
 from restclients_core.exceptions import DataFailureException
 from uw_trumba import get_calendar_by_name
+from myuw.util.settings import get_calendar_time_zone
 from myuw.dao.term import get_comparison_date
 from myuw.dao.calendar_mapping import get_calendars_for_current_user
 
@@ -195,8 +195,6 @@ def parse_event_location(event):
 def _get_date(date):
     if hasattr(date, 'hour'):
         return date
-    tz_name = getattr(settings,
-                      'TRUMBA_CALENDAR_TIMEZONE',
-                      'America/Los_Angeles')
-    midnight = time(hour=0, minute=0, tzinfo=pytz.timezone(tz_name))
+    midnight = time(hour=0, minute=0,
+                    tzinfo=pytz.timezone(get_calendar_time_zone()))
     return datetime.combine(date, midnight)

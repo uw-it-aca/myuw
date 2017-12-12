@@ -3,7 +3,6 @@ import os
 import datetime
 import bleach
 from dateutil.parser import parse
-from django.conf import settings
 from myuw.models import BannerMessage
 from myuw.dao import is_netid_in_list, get_netid_of_current_user
 from myuw.dao.term import get_comparison_datetime
