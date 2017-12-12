@@ -10,7 +10,9 @@ from myuw.dao.visual_schedule import _get_visual_schedule_from_schedule, \
     get_summer_schedule_bounds, trim_summer_meetings, _get_finals_period, \
     _add_course_colors_to_schedule, _get_combined_schedule, \
     get_future_visual_schedule, get_current_visual_schedule, \
-    _trim_summer_term
+    _trim_summer_term, _adjust_period_dates, _get_earliest_meeting_day, \
+    _get_latest_meeting_day, _get_earliest_start_from_period, \
+    _get_latest_end_from_period
 from myuw.test import fdao_sws_override, fdao_pws_override, \
     get_request, get_request_with_user, get_request_with_date
 import datetime
@@ -65,6 +67,43 @@ class TestVisualSchedule(TestCase):
         sun_mtg = SectionMeeting()
         sun_mtg.meets_sunday = True
         section2.meetings = [sun_mtg]
+
+        schedule = ClassSchedule()
+        schedule.sections = [section1, section2]
+
+        schedule = _add_dates_to_sections(schedule)
+
+        bounds = get_schedule_bounds(schedule)
+        weeks = _get_weeks_from_bounds(bounds)
+        weeks = _add_sections_to_weeks(schedule.sections, weeks)
+        consolidated = _consolidate_weeks(weeks)
+        _add_weekend_meeting_data(consolidated)
+        return consolidated
+
+    def _get_schedule_with_meetings(self):
+        section1 = Section()
+        section1.curriculum_abbr = 'ASD'
+        section1.course_number = 123
+        section1.section_id = 'A'
+        section1.start_date = datetime.date(2017, 10, 02)
+        section1.end_date = datetime.date(2017, 10, 20)
+
+        section2 = Section()
+        section2.curriculum_abbr = 'QWE'
+        section2.course_number = 456
+        section2.section_id = 'A'
+        section2.start_date = datetime.date(2017, 10, 02)
+        section2.end_date = datetime.date(2017, 10, 20)
+
+        s1_meetings = SectionMeeting()
+        s1_meetings.meets_saturday = True
+        s1_meetings.meets_tuesday = True
+        section1.meetings = [s1_meetings]
+
+        s2_meetings = SectionMeeting()
+        s2_meetings.meets_wednesday = True
+        s2_meetings.meets_friday = True
+        section2.meetings = [s2_meetings]
 
         schedule = ClassSchedule()
         schedule.sections = [section1, section2]
@@ -646,3 +685,35 @@ class TestVisualSchedule(TestCase):
         term = get_term_from_quarter_string("2013,autumn")
         future_schedule = get_future_visual_schedule(term)
         self.assertEqual(len(future_schedule), 5)
+
+
+    # def test_adjust_period_dates(self):
+    #     schedule = self._get_weekend_meeting_schedule()
+    #     _adjust_period_dates(schedule)
+    #
+
+    def test_get_earliest_start_from_period(self):
+        # TODO: test with no-meeting section
+        periods = self._get_schedule_with_meetings()
+        earliest_start = _get_earliest_start_from_period(periods[0])
+        self.assertEqual(earliest_start, datetime.date(2017, 10, 03))
+
+    def test_get_latest_end_from_period(self):
+        # TODO: test with no-meeting section
+        periods = self._get_schedule_with_meetings()
+        latest_end = _get_latest_end_from_period(periods[0])
+
+    def test_get_earliest_meeting(self):
+        # first is sat + tues, 2nd is wed + fri
+        periods = self._get_schedule_with_meetings()
+        meeting = periods[0].sections[0].meetings[0]
+        self.assertEqual(_get_earliest_meeting_day(meeting), 1)
+        meeting = periods[0].sections[1].meetings[0]
+        self.assertEqual(_get_earliest_meeting_day(meeting), 2)
+
+    def test_get_latest_meeting(self):
+        periods = self._get_schedule_with_meetings()
+        meeting = periods[0].sections[0].meetings[0]
+        self.assertEqual(_get_latest_meeting_day(meeting), 5)
+        meeting = periods[0].sections[1].meetings[0]
+        self.assertEqual(_get_latest_meeting_day(meeting), 4)
