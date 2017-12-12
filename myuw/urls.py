@@ -43,7 +43,7 @@ from myuw.views.api.textbook import Textbook, TextbookCur
 from myuw.views.api.notices import Notices
 from myuw.views.api.myplan import MyPlan
 from myuw.views.api.academic_events import AcademicEvents
-from myuw.views.api.thrive import ThriveMessages
+from myuw.views.api.thrive import ThriveMessages, HxToolkitMessage
 from myuw.views.api.calendar import DepartmentalCalendar
 from myuw.views.search import search_res
 from myuw.views.api.upass import UPass
@@ -169,6 +169,9 @@ urlpatterns += [
     url(r'^api/v1/thrive/$',
         ThriveMessages.as_view(),
         name="myuw_thrive_api"),
+    url(r'^api/v1/hx_toolkit/(?P<article_id>.*?)$',
+        HxToolkitMessage.as_view(),
+        name="myuw_hxtoolkit_api"),
     url(r'^api/v1/directory/$',
         MyDirectoryInfo.as_view(),
         name="myuw_directory_api"),
