@@ -110,6 +110,7 @@ class TextbookCur(Textbook):
                 summer_term = get_current_summer_term(request)
             # Disable all textbook API responses until ubookstore is restored
             return self.json_response({})
-            # return self.respond(request, term.year, term.quarter, summer_term)
+            # return self.respond(request, term.year,
+            # term.quarter, summer_term)
         except Exception:
             return handle_exception(logger, timer, traceback)
