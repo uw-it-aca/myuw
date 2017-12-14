@@ -35,6 +35,7 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
             'ess102a_sp13')
 
         section2 = data['sections'][5]
+        self.assertTrue(section2['current_or_future'])
         self.assertEqual(section2['canvas_url'],
                          'https://canvas.uw.edu/courses/149651')
         self.assertEqual(len(section2['grade_submission_delegates']), 1)
@@ -48,6 +49,9 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
         self.assertEqual(data['related_terms'][
             len(data['related_terms']) - 3]['quarter'], 'Spring')
         self.assertEqual(data['related_terms'][5]['year'], 2013)
+
+        self.assertEqual(data['sections'][1]['failure_rate'],
+                         0.01790613718411552)
 
 
 @require_url('myuw_instructor_schedule_api',
@@ -69,6 +73,8 @@ class TestInstructorTermSchedule(MyuwApiTest):
         self.set_user('bill')
         response = self.get_schedule(year=2013, quarter='winter')
         self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertFalse(data['sections'][0]['current_or_future'])
 
     def test_having_secondary_sections_case(self):
         now_request = get_request_with_user(
@@ -232,6 +238,7 @@ class TestInstructorSectionDetails(MyuwApiTest):
         self.assertEqual(data['related_terms'][
             len(data['related_terms']) - 3]['quarter'], 'Spring')
         self.assertEqual(data['related_terms'][5]['year'], 2013)
+        self.assertIn('current_student_majors', data['sections'][0])
 
     def test_invalid_section(self):
         request = get_request()

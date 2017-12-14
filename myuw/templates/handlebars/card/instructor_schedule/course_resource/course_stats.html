@@ -1,0 +1,22 @@
+{% load templatetag_handlebars %}
+
+    {% verbatim %}
+    <div class="myuw-card-section">
+        <div class="row">
+            <div class="col-sm-3">
+                <h4 class="myuw-card-row-heading">Course Stats</h4>
+            </div>
+
+            <div class="col-sm-9">
+                <div class="myuw-card-row-content">
+                    <div class="card-badge-value">
+                        <ul class="myuw-card-itemlist">
+                            <li><div>{{current_median}} <abbr title="Median Cummulative Grade Point Average">GPA</abbr> (current students) &middot; {{to_percent failure_rate}}% historic course fail rate</div></li>
+                            <li><a href="https://coda.uw.edu/#{{ year }}-{{ quarter }}-{{ toUrlSafe curriculum_abbr }}-{{ course_number }}-{{ section_id }}" class="" data-linklabel="Course Dashboard for {{ toUrlSafe curriculum_abbr }} {{ course_number }} {{ section_id }}" rel="{{section_label}}">View course stats</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endverbatim %}
