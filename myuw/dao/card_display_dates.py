@@ -5,7 +5,6 @@ https://docs.google.com/document/d/14q26auOLPU34KFtkUmC_bkoo5dAwegRzgpwmZEQMhaU
 """
 
 import logging
-from django.conf import settings
 from datetime import datetime, timedelta
 from myuw.dao.term import get_comparison_datetime,\
     get_current_quarter, get_next_quarter, get_previous_quarter,\
