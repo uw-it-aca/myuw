@@ -11,23 +11,18 @@ from uw_pws import PWS
 logger = logging.getLogger(__name__)
 
 
-USERNAME_PATTERN = re.compile(r'^([a-z][_a-z0-9]{0,31})@[a-z]+\.edu$')
-
-
-def __get_netid(username):
-    if username is not None and len(username):
-        found = re.match(USERNAME_PATTERN, username)
-        if found and found.group(1) and len(found.group(1)):
-            return found.group(1)
-    return username
-
-
 def get_netid_of_current_user():
-    return __get_netid(UserService().get_user())
+    """
+    return the over-ridden user if impersonated
+    """
+    return UserService().get_user()
 
 
 def get_netid_of_original_user():
-    return __get_netid(UserService().get_original_user())
+    """
+    return the actual authenticated user
+    """
+    return UserService().get_original_user()
 
 
 def get_user_model():
