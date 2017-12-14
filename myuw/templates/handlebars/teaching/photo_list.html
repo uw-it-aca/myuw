@@ -6,13 +6,12 @@
         <div id="photoclasslist_popup">
 
             <div class="myuw-card myuw-photo-list" data-name="PhotoClasslistPopupCard" data-type="card">
-                {{ #if available_sections }} 
+                {{ #if available_sections }}
                 <div style="float:right;"><select id="available_sections">{{ #each available_sections }}<option value="{{ section_id }}">{{ name }}</option>{{ /each }}</select></div>
                 {{ /if }}
                 <h3 class="scheduleHeading myuw-card-title">{{ toTitleCase quarter }} {{ year }} | {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }} | SLN {{ sections.0.sln }}</h3>
 
-                <div id="classlist_controls" class="row myuw-photo-list-controls" style="padding-bottom: 40px;">
-
+                <div id="classlist_controls" class="row myuw-photo-list-controls" style="padding-bottom: 16px;">
                     <div class="col-sm-7">
                         <div class="myuw-photo-list-controls-view">
                             View:&nbsp;&nbsp;<a id="list_view" href="#"><i class="fa fa-list" aria-hidden="true"></i> Detailed</a> | <a id="grid_view" href="#"><i class="fa fa-th" aria-hidden="true"></i> Simple</a>
@@ -35,8 +34,15 @@
                             <a href="#" id="download_class_list"><i class="fa fa-download"></i>&nbsp;Download class list (Excel)</a> | <a href="javascript:window.print()" class="classlist-print"><i class="fa fa-print"></i>&nbsp;Print</a>
                         </div>
                     </div>
-
                 </div>
+
+                {{#if sections.0.current_or_future}}
+                    {{#if sections.0.current_student_majors}}
+                        <div style="margin-bottom: 16px;">
+                            <strong>Course Stats:</strong> {{sections.0.current_student_majors.0.percent_students}}% {{ toTitleCase sections.0.current_student_majors.0.major }} majors. <a href="https://coda.uw.edu/#{{ year }}-{{ quarter }}-{{ sections.0.curriculum_abbr }}-{{ sections.0.course_number }}-{{ sections.0.section_id }}" target="_blank" data-linklabel="Course Dashboard for {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}" rel="{{year}}_{{quarter}}_{{ sections.0.curriculum_abbr }}_{{ sections.0.course_number }}_{{ sections.0.section_id }}">View more course stats</a>
+                        </div>
+                    {{/if}}
+                {{/if}}
 
                 <div id="student_list">
 
