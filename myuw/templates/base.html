@@ -125,9 +125,11 @@
                 {% if banner_messages %}
                 <h2 class="sr-only" id="app_messages_desktop_label">MyUW Announcements</h2>
                 <div id="message_banner_location">
-                    <div id="messages" class="advert message-text">
+                    <div id="messages" class="message-text myuw-wrapper">
                         {% for message in banner_messages %}
-                        <p>{{ message.message_body|safe }}</p>
+                        <div class="message">
+                            <p>{{ message.message_body|safe }}</p>
+                        </div>
                         {% endfor %}
                     </div>
                 </div>
@@ -195,9 +197,11 @@
                         {% if banner_messages %}
                         <h2 class="sr-only" id="app_messages_mobile_label">MyUW Announcements</h2>
                         <div id="message_banner_location">
-                            <div id="messages" class="advert message-text">
+                            <div id="messages" class="message-text">
                                 {% for message in banner_messages %}
-                                <p>{{ message.message_body|safe }}</p>
+                                <div class="message">
+                                    <p>{{ message.message_body|safe }}</p>
+                                </div>
                                 {% endfor %}
                             </div>
                         </div>
