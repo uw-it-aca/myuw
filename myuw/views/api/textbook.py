@@ -26,6 +26,7 @@ class Textbook(ProtectedAPI):
         """
         GET returns 200 with textbooks for the given quarter
         """
+        current_date = get_comparison_datetime(request)
         year = kwargs.get("year")
         quarter = kwargs.get("quarter")
         summer_term = kwargs.get("summer_term")

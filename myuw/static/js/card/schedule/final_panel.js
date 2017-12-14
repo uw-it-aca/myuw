@@ -38,10 +38,8 @@ var FinalExamSchedule = {
         // It's our current understanding that the last day of finals is always a friday -
         // grades are due on the following tuesday.  If the last day of finals isn't a friday,
         // fall back to the list view.
-
-        if (finals.last_day_of_finals.day() != FinalExamSchedule.FRIDAY) {
-
-
+        
+        if (finals.last_day_of_finals.day() !== FinalExamSchedule.FRIDAY) {
             finals.show_list_instead_of_visual = true;
         }
 

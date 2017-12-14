@@ -308,6 +308,9 @@ var VisualScheduleCard = {
             // Render VS with first period data to get correct labels
             processed_period = VisualScheduleCard._get_processed_data_for_period(0);
             processed_period.active_period_id = period_id;
+            if (VisualScheduleCard._get_finals_period(schedule_data.periods) !== undefined){
+                processed_period.sr_finals = VisualScheduleCard._get_finals_period(schedule_data.periods).sections;
+            }
             VisualScheduleCard.render_schedule(processed_period);
 
             period = VisualScheduleCard._get_finals_period(schedule_data.periods);
@@ -315,6 +318,10 @@ var VisualScheduleCard = {
             FinalExamSchedule.render(period, schedule_data.term, false, target);
         } else {
             processed_period = VisualScheduleCard._get_processed_data_for_period(period_id);
+            console.log(processed_period);
+            if (VisualScheduleCard._get_finals_period(schedule_data.periods) !== undefined){
+                processed_period.sr_finals = VisualScheduleCard._get_finals_period(schedule_data.periods).sections;
+            }
             VisualScheduleCard.render_schedule(processed_period);
         }
         LogUtils.cardLoaded(VisualScheduleCard.name, VisualScheduleCard.dom_target);
@@ -326,6 +333,7 @@ var VisualScheduleCard = {
         var processed_period = VisualScheduleCard._get_data_for_period(period, schedule_data.term);
         var period_labels = VisualScheduleCard._get_period_lables(schedule_data);
         processed_period.schedule_periods = period_labels;
+        processed_period.show_period_headers = Object.keys(period_labels).length > 1;
         processed_period.active_period_id = period_id;
         return processed_period;
     },
