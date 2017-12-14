@@ -1,4 +1,5 @@
 {% load templatetag_handlebars %}
+{% load static %}
     {% tplhandlebars "husky_experience_page" %}
 
 <div class="container huskyx-container">
@@ -9,18 +10,22 @@
                 <div id="huskyx_content_cards">
 
                     <!-- Temporary placement -->
-                    <div class="row">
-                        <div class="col-md-8">
-                            <p>Thrive weekly messages are designed to help you succeed wherever you are in your University career. These messages address four interconnected dimensions of the Husky Experience: Know Yourself, Know the World, Make Your Way, and Make Sense.
-                            </p>
-                            <p>Messages are intentionally scheduled to provide timely advice, but read and explore them anytime - your husky experience is more than a major.
-                            </p>
-                        </div>
-                        <div class="col-md-4">
-                            <img src="" alt="Husky Experience dimensions diagram" longdesc="" />
+                    <div class="huskyx-intro">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <p class="myuw-herosummary">Thrive weekly messages are designed to help you succeed wherever you are in your University career. These messages address four interconnected dimensions of the Husky Experience: Know Yourself, Know the World, Make Your Way, and Make Sense.
+                                </p>
+                                <p>Messages are intentionally scheduled to provide timely advice, but read and explore them anytime - your husky experience is more than a major.
+                                </p>
+                            </div>
+                            <div class="col-sm-5">
+                                <img class="huskyx-diagram" src="{% static '/images/HX_dimensions-1.0x.png' %}"
+                                srcset="{% static '/images/HX_dimensions-1.0x.png' %} 1x, {% static '/images/HX_dimensions-1.5x.png' %} 1.5x, {% static '/images/HX_dimensions-2.0x.png' %} 2x"
+                                sizes="300px"
+                                alt="Husky Experience dimensions diagram" longdesc="" />
+                            </div>
                         </div>
                     </div>
-
 
                     <div class="huskyx-topics">
 
