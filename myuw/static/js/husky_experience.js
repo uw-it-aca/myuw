@@ -4,6 +4,15 @@ var HuskyExperiencePage = {
     render: function() {
         showLoading();
         HuskyExperiencePage.make_html();
+        var article_id = getUrlParameter('article');
+        if(article_id !== null && article_id.length > 0){
+            WSData.fetch_hx_toolkit_msg_data(article_id,
+                                              HuskyExperiencePage.make_detail_html,
+                                              HuskyExperiencePage.render_error);
+            HuskyExperiencePage.make_detail_html(article_id);
+        } else {
+            HuskyExperiencePage.make_summary_html();
+        }
     },
 
     make_html: function () {
@@ -13,46 +22,27 @@ var HuskyExperiencePage = {
 
         $("#main-content").html(template());
 
-
-        HuskyExperiencePage.load_cards_for_viewport();
         // Set initial display state
         HuskyExperiencePage.is_desktop = get_is_desktop();
 
     },
 
-    load_cards_for_viewport: function() {
-        if (get_is_desktop()) {
-            HuskyExperiencePage._load_desktop_cards();
-        } else {
-            HuskyExperiencePage._load_mobile_cards();
-        }
+    make_detail_html: function () {
+        var article_html = WSData.hx_toolkit_msg_data();
+        $('html,body').animate({scrollTop: 0}, 'fast');
+        var source = $("#husky_experience_detail").html();
+        var template = Handlebars.compile(source);
+        var data = {article_html: article_html};
+
+        $("#huskyx_content").html(template(data));
+
+        // Set initial display state
+        HuskyExperiencePage.is_desktop = get_is_desktop();
+
     },
 
-    _load_desktop_cards: function() {
-        HuskyExperiencePage._reset_content_divs();
-        var desktop_body_cards = [
-    /*        CommonProfileCard,
-            DirectoryInfoCard,
-            StudentInfoCard,
-            ApplicantProfileCard */
-        ];
-        var desktop_sidebar_cards = [
-        /*    ProfileHelpLinksCard */
-        ];
-
-        Cards.load_cards_in_order(desktop_body_cards, $("#huskyx_content_cards"));
-        Cards.load_cards_in_order(desktop_sidebar_cards, $("#huskyx_sidebar_cards"));
-    },
-
-    _load_mobile_cards: function() {
-        HuskyExperiencePage._reset_content_divs();
-        var mobile_cards = [
-        /*        CommonProfileCard,
-            DirectoryInfoCard,
-            StudentInfoCard,
-            ApplicantProfileCard */
-        ];
-        Cards.load_cards_in_order(mobile_cards, $("#huskyx_content_cards"));
+    make_summary_html: function () {
+        return ''
     },
 
     _reset_content_divs: function() {

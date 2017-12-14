@@ -5,7 +5,7 @@ from myuw.logger.logresp import (
     log_data_not_found_response, log_success_response)
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found
-from myuw.dao.hx_toolkit_dao import get_article_by_id
+from myuw.dao.hx_toolkit_dao import get_rendered_article_by_id
 
 logger = logging.getLogger(__name__)
 
@@ -44,7 +44,8 @@ class HxToolkitMessage(ProtectedAPI):
         for the current user if they are a first year student
         """
         article_id = kwargs.get('article_id')
-        article = get_article_by_id(article_id)
+
+        article = get_rendered_article_by_id(article_id)
         if article:
             return self.html_response(article)
         else:

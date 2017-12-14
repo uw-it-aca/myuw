@@ -37,6 +37,7 @@ WSData = {
     _myplan_data: {},
     _thrive_data: null,
     _upass_data: null,
+    _hx_toolkit_msg: null,
 
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
@@ -422,6 +423,10 @@ WSData = {
     },
     upass_data: function() {
         return WSData._upass_data;
+    },
+
+    hx_toolkit_msg_data: function(){
+        return WSData._hx_toolkit_msg;
     },
 
     fetch_event_data: function(callback, err_callback, args) {
@@ -1242,6 +1247,33 @@ WSData = {
                 accepts: {html: "application/json"},
                 success: function(results) {
                     WSData._upass_data = results;
+                    if (callback !== null) {
+                        callback.apply(null, args);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    err_callback.call(null, xhr.status, error);
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
+    fetch_hx_toolkit_msg_data: function(message_id, callback, err_callback, args) {
+        if (WSData.hx_toolkit_msg_data() === null) {
+            var url = "/api/v1/hx_toolkit/" + message_id;
+            $.ajax({
+                url: url,
+                dataType: "html",
+
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    WSData._hx_toolkit_msg = results;
                     if (callback !== null) {
                         callback.apply(null, args);
                     }
