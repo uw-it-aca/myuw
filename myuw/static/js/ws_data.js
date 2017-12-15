@@ -1263,9 +1263,17 @@ WSData = {
         }
     },
 
+    fetch_hx_toolkit_week_msg: function(callback, err_callback, args) {
+        WSData.fetch_hx_toolkit_msg_data(undefined, callback, err_callback, args);
+    },
+
     fetch_hx_toolkit_msg_data: function(message_id, callback, err_callback, args) {
         if (WSData.hx_toolkit_msg_data() === null) {
-            var url = "/api/v1/hx_toolkit/" + message_id;
+            var url = "/api/v1/hx_toolkit/week/";
+            if(message_id){
+                url = "/api/v1/hx_toolkit/" + message_id;
+            }
+
             $.ajax({
                 url: url,
                 dataType: "html",
