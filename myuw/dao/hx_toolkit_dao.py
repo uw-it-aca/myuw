@@ -2,7 +2,7 @@ import math
 import datetime
 from myuw.dao.term import get_current_quarter, get_comparison_date
 from hx_toolkit.file_dao import get_rendered_article_by_id, \
-    get_article_by_phase_quarter_week
+    get_article_by_phase_quarter_week, get_article_links_by_category
 
 
 def get_article_html(article_id):
@@ -66,3 +66,6 @@ def _get_phase_by_year(year):
         phase_offset = years_since_start % 3
     return phases[phase_offset]
 
+
+def get_article_links():
+    return get_article_links_by_category()

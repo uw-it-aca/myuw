@@ -6,7 +6,7 @@ from myuw.logger.logresp import (
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found
 from myuw.dao.hx_toolkit_dao import get_rendered_article_by_id,\
-    get_article_of_week_by_request
+    get_article_of_week_by_request, get_article_links
 
 
 class HxToolkitMessage(ProtectedAPI):
@@ -15,8 +15,7 @@ class HxToolkitMessage(ProtectedAPI):
     """
     def get(self, request,  *args, **kwargs):
         """
-        GET returns 200 with current thrive message
-        for the current user if they are a first year student
+        GET returns 200 with the specified article html
         """
         article_id = kwargs.get('article_id')
 
@@ -33,13 +32,23 @@ class HxToolkitWeekMessage(ProtectedAPI):
     """
     def get(self, request,  *args, **kwargs):
         """
-        GET returns 200 with current thrive message
-        for the current user if they are a first year student
+        GET returns 200 with current weekly article short html
         """
 
         article = get_article_of_week_by_request(request)
-        # article = get_rendered_article_by_id('know-yourself-week-2', True)
         if article:
             return self.html_response(article)
         else:
             return data_not_found()
+
+
+class HxToolkitMessageList(ProtectedAPI):
+    """
+    Performs actions on resource at /api/v1/hx_toolkit/messages.
+    """
+    def get(self, request,  *args, **kwargs):
+        """
+        GET returns 200 with a list of links to all articles, by category
+        """
+        summary_data = get_article_links()
+        return self.json_response(summary_data)

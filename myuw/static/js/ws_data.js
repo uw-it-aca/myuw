@@ -37,7 +37,7 @@ WSData = {
     _myplan_data: {},
     _thrive_data: null,
     _upass_data: null,
-    _hx_toolkit_msg: null,
+    _hx_toolkit_data: null,
 
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
@@ -425,8 +425,17 @@ WSData = {
         return WSData._upass_data;
     },
 
-    hx_toolkit_msg_data: function(){
+    _get_hx_toolkit_data: function(){
         return WSData._hx_toolkit_msg;
+    },
+    hx_toolkit_msg: function(message_id){
+        return WSData._hx_toolkit_data[message_id];
+    },
+    hx_toolkit_list: function(){
+        return WSData._hx_toolkit_data[list];
+    },
+    hx_toolkit_week: function(){
+        return WSData._hx_toolkit_data[week];
     },
 
     fetch_event_data: function(callback, err_callback, args) {
@@ -1264,15 +1273,20 @@ WSData = {
     },
 
     fetch_hx_toolkit_week_msg: function(callback, err_callback, args) {
-        WSData.fetch_hx_toolkit_msg_data(undefined, callback, err_callback, args);
+        WSData._fetch_hx_toolkit_data('week', callback, err_callback, args);
     },
 
     fetch_hx_toolkit_msg_data: function(message_id, callback, err_callback, args) {
-        if (WSData.hx_toolkit_msg_data() === null) {
-            var url = "/api/v1/hx_toolkit/week/";
-            if(message_id){
-                url = "/api/v1/hx_toolkit/" + message_id;
-            }
+        WSData._fetch_hx_toolkit_data(message_id, callback, err_callback, args);
+    },
+
+    fetch_hx_toolkit_list_data: function(callback, err_callback, args) {
+        WSData._fetch_hx_toolkit_data('list', callback, err_callback, args);
+    },
+
+    _fetch_hx_toolkit_data: function(url_param, callback, err_callback, args) {
+        if (WSData._hx_toolkit_data(url_param) === null) {
+            url = "/api/v1/hx_toolkit/" + url_param;
 
             $.ajax({
                 url: url,
@@ -1281,7 +1295,7 @@ WSData = {
                 type: "GET",
                 accepts: {html: "text/html"},
                 success: function(results) {
-                    WSData._hx_toolkit_msg = results;
+                    WSData._hx_toolkit_data[url_param] = results;
                     if (callback !== null) {
                         callback.apply(null, args);
                     }

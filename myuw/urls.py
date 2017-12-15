@@ -50,7 +50,8 @@ from myuw.views.api.upass import UPass
 from myuw.views.api.link import ManageLinks
 from myuw.views.api.directory import MyDirectoryInfo
 from myuw.views.lti.photo_list import LTIPhotoList
-from myuw.views.api.hx_toolkit import HxToolkitMessage, HxToolkitWeekMessage
+from myuw.views.api.hx_toolkit import HxToolkitMessage, HxToolkitWeekMessage, \
+    HxToolkitMessageList
 
 
 urlpatterns = []
@@ -173,6 +174,9 @@ urlpatterns += [
     url(r'^api/v1/hx_toolkit/week/$',
         HxToolkitWeekMessage.as_view(),
         name="myuw_hxtoolkit_week_api"),
+    url(r'^api/v1/hx_toolkit/list/$',
+        HxToolkitMessageList.as_view(),
+        name="myuw_hxtoolkit_list_api"),
     url(r'^api/v1/hx_toolkit/(?P<article_id>.*?)$',
         HxToolkitMessage.as_view(),
         name="myuw_hxtoolkit_api"),
