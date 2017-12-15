@@ -7,6 +7,7 @@
 
 @fontsize-small: 12px;
 @fontsize-base: 14px;
+@fontsize-large: 18px;
 
 @font-header-larger: 26px;
 @font-header-large: 22px;
@@ -17,14 +18,19 @@
 
 
 /*** Headings ***/
-.heading-page, .myuw-heading-page {
+h2.heading-page, h2.myuw-heading-page {
     font-family: 'encode_sans_normalbold', sans-serif;
     font-weight: 600;
     color: #444;
     margin: 0 0 8px 0;
+    font-size: @font-header-larger;
+}
 
-    h2& { font-size: @font-header-larger; }
-    h3& { font-size: @font-header-large; }
+h3.heading-page, h3.myuw-heading-page {
+    font-family: @fontface-body;
+    font-weight: normal;
+    color: #000;
+    font-size: @font-header-medium;
 }
 
 #app_content .card .myuw-card-title {
@@ -57,6 +63,12 @@ abbr[title] {
     font-size: 16px;
     display: block;
     margin-top: 8px;
+}
+
+/* Larger typeface for introductory, summary text */
+.myuw-herosummary {
+    font-size: @fontsize-large;
+    line-height: 1.5555556;
 }
 
 .myuw-meta {

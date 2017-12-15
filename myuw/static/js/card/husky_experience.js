@@ -12,18 +12,19 @@ var HuskyExperienceCard = {
             $("#HuskyExperienceCard").hide();
             return;
         }
+        console.log('pre-fetch');
         WSData.fetch_hx_toolkit_week_msg(HuskyExperienceCard.render_upon_data,
                                          HuskyExperienceCard.render_error);
     },
 
     render_upon_data: function () {
-        if (WSData.hx_toolkit_msg_data()) {
+        if (WSData.hx_toolkit_week_data()) {
             HuskyExperienceCard._render();
         }
     },
 
     _render: function () {
-        var article_html = WSData.hx_toolkit_msg_data();
+        var article_html = WSData.hx_toolkit_week_data();
         var source = $("#husky_experice").html();
         var template = Handlebars.compile(source);
         var rendered = template({article_html: article_html});

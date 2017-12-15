@@ -37,7 +37,7 @@ WSData = {
     _myplan_data: {},
     _thrive_data: null,
     _upass_data: null,
-    _hx_toolkit_data: null,
+    _hx_toolkit_data: {},
 
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
@@ -428,14 +428,20 @@ WSData = {
     _get_hx_toolkit_data: function(){
         return WSData._hx_toolkit_msg;
     },
-    hx_toolkit_msg: function(message_id){
-        return WSData._hx_toolkit_data[message_id];
+    hx_toolkit_msg_data: function(message_id){
+        if(WSData._hx_toolkit_data.hasOwnProperty(message_id)){
+            return WSData._hx_toolkit_data[message_id];
+        }
     },
-    hx_toolkit_list: function(){
-        return WSData._hx_toolkit_data[list];
+    hx_toolkit_list_data: function(){
+        if(WSData._hx_toolkit_data.hasOwnProperty('list/')){
+            return WSData._hx_toolkit_data["list/"];
+        }
     },
-    hx_toolkit_week: function(){
-        return WSData._hx_toolkit_data[week];
+    hx_toolkit_week_data: function(){
+        if(WSData._hx_toolkit_data.hasOwnProperty('week/')){
+            return WSData._hx_toolkit_data["week/"];
+        }
     },
 
     fetch_event_data: function(callback, err_callback, args) {
@@ -1273,7 +1279,7 @@ WSData = {
     },
 
     fetch_hx_toolkit_week_msg: function(callback, err_callback, args) {
-        WSData._fetch_hx_toolkit_data('week', callback, err_callback, args);
+        WSData._fetch_hx_toolkit_data('week/', callback, err_callback, args);
     },
 
     fetch_hx_toolkit_msg_data: function(message_id, callback, err_callback, args) {
@@ -1281,13 +1287,13 @@ WSData = {
     },
 
     fetch_hx_toolkit_list_data: function(callback, err_callback, args) {
-        WSData._fetch_hx_toolkit_data('list', callback, err_callback, args);
+        WSData._fetch_hx_toolkit_data('list/', callback, err_callback, args);
     },
 
     _fetch_hx_toolkit_data: function(url_param, callback, err_callback, args) {
-        if (WSData._hx_toolkit_data(url_param) === null) {
+        if (WSData._get_hx_toolkit_data(url_param) === undefined) {
             url = "/api/v1/hx_toolkit/" + url_param;
-
+            console.log(url);
             $.ajax({
                 url: url,
                 dataType: "html",
@@ -1296,6 +1302,8 @@ WSData = {
                 accepts: {html: "text/html"},
                 success: function(results) {
                     WSData._hx_toolkit_data[url_param] = results;
+                    console.log(url_param);
+                    console.log(results);
                     if (callback !== null) {
                         callback.apply(null, args);
                     }
