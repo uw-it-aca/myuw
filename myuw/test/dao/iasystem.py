@@ -269,3 +269,20 @@ class IASystemDaoTest(TestCase):
         self.assertEqual(len(evals), 1)
         self.assertEqual(evals[0].section_sln, 157956)
         self.assertEqual(evals[0].domain, "uweo-ap")
+
+        section = get_section_by_label('2013,spring,CPROGRM,712/A')
+        evals = get_evaluation_by_section_and_instructor(
+            section, instructor_id)
+        self.assertIsNotNone(evals)
+        self.assertEqual(len(evals), 1)
+        self.assertEqual(evals[0].section_sln, 157462)
+        self.assertEqual(evals[0].domain, "uweo-ap")
+
+    def test_pce_student_evals(self):
+        section = get_section_by_label('2013,spring,BIGDATA,230/A')
+        student_id = "1000055"
+        evals = _get_evaluations_by_section_and_student(section, student_id)
+        self.assertIsNotNone(evals)
+        self.assertEqual(len(evals), 1)
+        self.assertFalse(evals[0].is_closed())
+        self.assertFalse(evals[0].is_completed)

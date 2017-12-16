@@ -2,11 +2,10 @@ from myuw.models import BannerMessage
 from myuw.views.decorators import admin_required
 from myuw.views import set_admin_wrapper_template
 from myuw.logger.logback import log_info
+from myuw.dao import get_netid_of_original_user
 from myuw.dao.term import get_comparison_datetime
 from myuw.dao.messages import clean_html
-from userservice.user import UserService
 from authz_group import Group
-from django.conf import settings
 from django.utils import timezone
 from datetime import timedelta, datetime
 from django.shortcuts import render, redirect
@@ -118,7 +117,7 @@ def _save_new_message(request, context):
         if request.POST.get('is_published', False):
             is_published = True
         group_id = request.POST.get('group_id', None)
-        added_by = UserService().get_original_user()
+        added_by = get_netid_of_original_user()
         BannerMessage.objects.create(start=start,
                                      end=end,
                                      added_by=added_by,

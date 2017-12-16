@@ -18,22 +18,27 @@ MAILSTOP_MAX_TACOMA = 358499
 MAILSTOP_MIN_BOTHELL = 358500
 MAILSTOP_MAX_BOTHELL = 358599
 
-
+_pws = PWS()
 logger = logging.getLogger(__name__)
+
+
+def get_person_by_employee_id(employee_id):
+    print employee_id
+    return _pws.get_person_by_employee_id(employee_id)
 
 
 def get_person_by_regid(regid):
     """
     Retrieve the person data for the passed regid
     """
-    return PWS().get_person_by_regid(regid)
+    return _pws.get_person_by_regid(regid)
 
 
 def get_person_of_current_user():
     """
     Retrieve the person data using the netid of the current user
     """
-    return PWS().get_person_by_netid(get_netid_of_current_user())
+    return _pws.get_person_by_netid(get_netid_of_current_user())
 
 
 def get_regid_of_current_user():
@@ -80,7 +85,7 @@ def get_regid_for_url_key(key):
 
 
 def get_idcard_photo(regid):
-    return PWS().get_idcard_photo(regid)
+    return _pws.get_idcard_photo(regid)
     pass
 
 

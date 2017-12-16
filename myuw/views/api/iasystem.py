@@ -2,7 +2,6 @@ import logging
 import time
 import traceback
 from operator import itemgetter
-from django.conf import settings
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.gws import is_student
 from myuw.dao.schedule import get_schedule_by_term

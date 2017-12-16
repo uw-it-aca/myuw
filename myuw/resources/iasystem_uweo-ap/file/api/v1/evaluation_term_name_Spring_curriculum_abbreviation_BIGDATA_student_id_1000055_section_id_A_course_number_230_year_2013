@@ -1,5 +1,7 @@
 {"collection":
-  {"queries":[{"href":"https://uweo-ap.iasystem.org/api/v1/evaluation","prompt":"Evaluation Search Resource","data":[{"required":true,"name":"year","prompt":"Year"},{"required":true,"prompt":"Term Name","name":"term_name"},{"name":"curriculum_abbreviation","prompt":"Curriculum Abbreviation"},{"prompt":"Course Number","name":"course_number"},{"name":"section_id","prompt":"Section ID"},{"prompt":"Student ID","name":"student_id"},{"name":"instructor_id","prompt":"Instructor ID"}],"rel":"collection filter"}],
+  {
+"queries":[{"href":"https://uweo-ap.iasystem.org/api/v1/evaluation","prompt":"Evaluation Search Resource","data":[{"required":true,"name":"year","prompt":"Year"},{"required":true,"prompt":"Term Name","name":"term_name"},{"name":"curriculum_abbreviation","prompt":"Curriculum Abbreviation"},{"prompt":"Course Number","name":"course_number"},{"name":"section_id","prompt":"Section ID"},{"prompt":"Student ID","name":"student_id"}],"rel":"collection filter"}],
+
 "items":[
   {"href":"https://uweo-ap.iasystem.org/api/v1/evaluation/19042",
    "links":[
@@ -13,7 +15,7 @@
     {"name":"year","prompt":"Year","value":"2013"},
     {"prompt":"Term","name":"termName","value":"Spring"},
     {"name":"deliveryMethod","prompt":"Delivery Method","value":"Online"},
-    {"prompt":"Status","name":"status","value":"Closed"},
+    {"prompt":"Status","name":"status","value":"Open"},
     {"name":"responseRate","prompt":"Response Rate","value":"0.5"},
     {"value":"2013-06-14T07:00:00Z","name":"reportAvailableDate","prompt":"Report Available Date"},
     {"value":"2013-05-29T07:00:00Z","prompt":"Open Date","name":"openDate"},
@@ -22,7 +24,9 @@
     {"name":"type","value":"evaluation"},
     {"name":"id","value":"1"},
     {"name":"childId","value":"2"},
-    {"value":"3","name":"childId"}]},
+    {"value":"3","name":"childId"},
+    {"value":"4","name":"childId"}
+    ]},
   {"meta":[
     {"value":"section","name":"type"},
     {"value":"2","name":"id"}],
@@ -40,11 +44,24 @@
    "data":[
     {"value":"100000011","name":"instInstructorId"},
     {"name":"firstName","value":"Bill"},
-    {"value":"Pce","name":"lastName"}]}],
+    {"value":"Pce","name":"lastName"}]},
+  {"meta":[
+    {"value": "4",
+     "name": "id"},
+    {"value" : "evaluation completion",
+     "name" : "type"}],
+   "data":[
+    {"name" : "evaluationId",
+     "value" : "19042"},
+    {"value" : "1000055",
+     "name" : "studentId"},
+    {"name" : "isCompleted",
+     "value" : false}]}
+],
   "version":"1.0",
   "href":"https://uweo-ap.iasystem.org/api/v1/evaluation",
   "links":[
     {"rel":"home","prompt":"IASystem v1 Web API","href":"https://uweo-ap.iasystem.org/api/v1"},
     {"prompt":"IASystem Evaluation Listing",
-     "href":"https://uweo-ap.iasystem.org/api/v1/evaluation?year=2013&term_name=Spring&curriculum_abbreviation=BIGDATA&course_number=230&section_id=A&instructor_id=",
+     "href":"https://uweo-ap.iasystem.org/api/v1/evaluation?year=2013&term_name=Spring&curriculum_abbreviation=BIGDATA&course_number=230&section_id=A&student_id=",
      "rel":"self"}]}}

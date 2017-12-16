@@ -6,9 +6,9 @@ to iasystem web service.
 import logging
 from datetime import datetime
 from django.utils import timezone
-from uw_pws import PWS
 from restclients_core.exceptions import DataFailureException
 from uw_iasystem.evaluation import search_evaluations
+from myuw.dao.pws import get_person_by_employee_id
 from myuw.dao.student_profile import get_profile_of_current_user
 from myuw.dao.term import get_comparison_datetime, is_b_term,\
     get_current_summer_term, get_bod_7d_before_last_instruction,\
@@ -109,8 +109,6 @@ def json_for_evaluation(request, evaluations, section):
     @return the json format of only the evaluations that
     should be shown; [] if none should be displaued at the moment;
     or None if error in fetching data.
-    This function should not be called if not in
-    in_coursevel_fetch_window.
     """
     if evaluations is None:
         return None
@@ -118,7 +116,6 @@ def json_for_evaluation(request, evaluations, section):
     # to compare with timezone aware datetime object
     now = _get_local_tz().localize(get_comparison_datetime(request))
 
-    pws = PWS()
     json_data = []
     for evaluation in evaluations:
 
@@ -127,16 +124,10 @@ def json_for_evaluation(request, evaluations, section):
 
         if summer_term_overlaped(request, section):
 
-            logger.debug(
-                "Is %s within eval open close dates (%s, %s)==>%s" % (
-                    now, evaluation.eval_open_date,
-                    evaluation.eval_close_date,
-                    (now >= evaluation.eval_open_date and
-                     now < evaluation.eval_close_date)))
-
             if evaluation.is_completed or\
-                    now < evaluation.eval_open_date or\
-                    now >= evaluation.eval_close_date:
+               evaluation.is_closed() or\
+               now < evaluation.eval_open_date or\
+               now >= evaluation.eval_close_date:
                 continue
 
             json_item = {
@@ -147,12 +138,19 @@ def json_for_evaluation(request, evaluations, section):
                 }
 
             for eid in evaluation.instructor_ids:
+                try:
+                    instructor = get_person_by_employee_id(eid)
+                except Exception as ex:
+                    logger.error(
+                        "get course %s instructor eid(%s) ==> %s",
+                        section.section_label(), eid, ex)
+                    continue
                 instructor_json = {}
-                instructor = pws.get_person_by_employee_id(eid)
                 instructor_json['instructor_name'] = instructor.display_name
                 instructor_json['instructor_title'] = instructor.title1
                 json_item['instructors'].append(instructor_json)
             json_data.append(json_item)
+
     return json_data
 
 

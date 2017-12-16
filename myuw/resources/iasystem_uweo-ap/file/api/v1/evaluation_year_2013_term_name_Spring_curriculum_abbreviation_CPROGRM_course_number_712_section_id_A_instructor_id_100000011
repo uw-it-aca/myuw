@@ -24,7 +24,7 @@
             {"value":"Online",
             "name":"deliveryMethod",
             "prompt":"Delivery Method"},
-            {"value":"Open",
+            {"value":"Closed",
             "name":"status",
             "prompt":"Status"},
             {"value":"0.548387096774194",
