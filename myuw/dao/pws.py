@@ -23,7 +23,6 @@ logger = logging.getLogger(__name__)
 
 
 def get_person_by_employee_id(employee_id):
-    print employee_id
     return _pws.get_person_by_employee_id(employee_id)
 
 

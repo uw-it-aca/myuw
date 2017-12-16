@@ -103,7 +103,7 @@ def set_section_evaluation(section, person):
     try:
         evaluations = get_evaluation_by_section_and_instructor(
             section, person.employee_id)
-        if evaluations is not None or len(evaluations) == 0:
+        if evaluations is not None:
             for eval in evaluations:
                 if eval.section_sln == section.sln or not section.sln:
                     return eval.json_data()

@@ -79,7 +79,7 @@
                     {
                         "prompt": "Status",
                         "name": "status",
-                        "value": "Closed"
+                        "value": "Open"
                     },
                     {
                         "name": "openDate",
