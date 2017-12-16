@@ -1292,11 +1292,15 @@ WSData = {
 
     _fetch_hx_toolkit_data: function(url_param, callback, err_callback, args) {
         if (WSData._get_hx_toolkit_data(url_param) === undefined) {
-            url = "/api/v1/hx_toolkit/" + url_param;
+            var url = "/api/v1/hx_toolkit/" + url_param;
+            var data_type = "html";
+
+            if(url_param === 'list/'){
+                data_type = "JSON";
+            }
             $.ajax({
                 url: url,
-                dataType: "html",
-
+                dataType: data_type,
                 type: "GET",
                 accepts: {html: "text/html"},
                 success: function(results) {
