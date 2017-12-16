@@ -24,9 +24,7 @@
                               <a href="{{evaluation.report_url}}" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation Report">View evaluation results report</a>
                           </li>
                         {{/if}}
-
                       {{/if}}
-
 
                       {{#if evaluation.is_open}}
                         <!-- online evaluation is open -->
@@ -37,44 +35,25 @@
                         <li class="evaluation-results">
                             <span>Results:&nbsp;&nbsp;Report will be available {{evaluation.report_available_date_display}}</span>
                         </li>
-                        <li><a {{#if evaluation.is_seattle}}
-                                 href="https://uw.iasystem.org/faculty"
-                               {{else if evaluation.is_bothell}}
-                                 href="https://uwb.iasystem.org/faculty"
-                               {{else if evaluation.is_tacoma}}
-                                 href="https://uwt.iasystem.org/faculty"
-                               {{else}}
-                                 {{#if evaluation.is_eo_ielp}}
-                                   href="https://uweo-ielp.iasystem.org/faculty"
-                                 {{else}}
-                                   href="https://uweo-ap.iasystem.org/faculty"
-                                 {{/if}}
-                               {{/if}} data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation ">Manage evaluation</a></li>
+                        <li><a href="https://{{evaluation.domain}}.iasystem.org/faculty"
+                               data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation ">Manage evaluation</a>
+                        </li>
                       {{/if}}
-
 
                       {{#if evaluation.is_pending}}
                           <!-- online evaluation is created but open in the future -->
-                          <li class="evaluation-schedule">Online evaluation will open {{evaluation.eval_open_date_display}}</li>
-                          <li><a {{#if evaluation.is_seattle}}
-                                   href="https://uw.iasystem.org/faculty"
-                                 {{else if evaluation.is_bothell}}
-                                   href="https://uwb.iasystem.org/faculty"
-                                 {{else if evaluation.is_tacoma}}
-                                   href="https://uwt.iasystem.org/faculty"
-                                 {{else}}
-                                   {{#if evaluation.is_eo_ielp}}
-                                     href="https://uweo-ielp.iasystem.org/faculty"
-                                   {{else}}
-                                   href="https://uweo-ap.iasystem.org/faculty"
-                                   {{/if}}
-                                 {{/if}} data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation ">Manage evaluation</a></li>
+                          <li class="evaluation-schedule">
+                              Online evaluation will open {{evaluation.eval_open_date_display}}
+                          </li>
+                          <li><a href="https://{{evaluation.domain}}.iasystem.org/faculty"
+                               data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation ">Manage evaluation</a>
+                          </li>
                       {{/if}}
 
                     {{else}}
                         <!-- no evaluation date, not scheduled -->
                         {{#if evaluation.report_available_date}}
-                            <li class="evaluation-schedule">Report Available {{evaluation.report_available_date_display}}</li>
+                          <li class="evaluation-schedule">Report Available {{evaluation.report_available_date_display}}</li>
                         {{/if}}
 
                         {{#if evaluation.report_url}}
@@ -86,26 +65,19 @@
 
                   {{else}}
                       <!-- paper evaluation -->
-                      <li class="evaluation-schedule">Paper-based evaluation</li>
-                      <li><a {{#if evaluation.is_seattle}}href="https://uw.iasystem.org/faculty"
-                             {{else if evaluation.is_bothell}}href="https://uwb.iasystem.org/faculty"
-                             {{else if evaluation.is_tacoma}}href="https://uwt.iasystem.org/faculty"
-                             {{else}}
-                               {{#if evaluation.is_eo_ielp}}href="https://uweo-ielp.iasystem.org/faculty"
-                               {{else}}href="https://uweo-ap.iasystem.org/faculty"
-                               {{/if}}
-                             {{/if}} data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation ">Manage evaluation</a></li>
+                      <li class="evaluation-schedule">
+                          Paper-based evaluation
+                      </li>
+                      <li><a href="https://{{evaluation.domain}}.iasystem.org/faculty"
+                             data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation ">Manage evaluation</a>
+                      </li>
                   {{/if}}
 
                 {{else}}
                   <!-- no evaluation -->
                   {{#if evaluation.eval_not_exist }}
                       <li class="evaluation-schedule">
-                          {{#if past_term}}
-                            You did not have an evaluation set up for this course.
-                          {{else}}
-                            You do not have an evaluation set up for this course.
-                          {{/if}}
+                          You {{#if past_term}}did{{else}}do{{/if}} not have an evaluation set up for this course.
                           <a href="https://www.washington.edu/assessment/course-evaluations/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="evaluation_help_link" target="_blank" data-linklabel="Learn About Course Evaluations"><i class="fa fa-question-circle"></i></a>
                       </li>
                   {{else}}
