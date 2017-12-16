@@ -42,7 +42,7 @@ setup(
         'UW-RestClients-GWS<1.0',
         'UW-RestClients-GradePage<1.0,>=0.1.1',
         'UW-RestClients-Libraries<1.0',
-        'UW-RestClients-IASystem==0.2.0a4',
+        'UW-RestClients-IASystem==0.2.0a5',
         'UW-RestClients-Canvas<1.0,>=0.6.6',
         'UW-RestClients-UPass>=0.2,<1.0',
         'UW-RestClients-UWNetID>=0.3.2,<1.0',

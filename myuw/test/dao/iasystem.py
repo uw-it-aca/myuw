@@ -150,7 +150,7 @@ class IASystemDaoTest(TestCase):
                          datetime.datetime(2013, 8, 29,
                                            6, 59, 59,
                                            tzinfo=pytz.utc))
-
+        self.assertTrue(evals[0].is_seattle)
         self.assertEqual(len(evals[0].instructor_ids), 3)
         self.assertEqual(evals[0].instructor_ids[0], 123456781)
         self.assertEqual(evals[0].instructor_ids[1], 123456782)
@@ -261,6 +261,7 @@ class IASystemDaoTest(TestCase):
         self.assertEqual(len(evals), 1)
         self.assertEqual(evals[0].section_sln, 164406)
         self.assertEqual(evals[0].domain, "uweo-ielp")
+        self.assertTrue(evals[0].is_eo_ielp)
 
         section = get_section_by_label('2013,spring,BIGDATA,230/A')
         evals = get_evaluation_by_section_and_instructor(
@@ -269,6 +270,7 @@ class IASystemDaoTest(TestCase):
         self.assertEqual(len(evals), 1)
         self.assertEqual(evals[0].section_sln, 157956)
         self.assertEqual(evals[0].domain, "uweo-ap")
+        self.assertTrue(evals[0].is_eo_ap)
 
         section = get_section_by_label('2013,spring,CPROGRM,712/A')
         evals = get_evaluation_by_section_and_instructor(
