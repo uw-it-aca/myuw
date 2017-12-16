@@ -1293,7 +1293,6 @@ WSData = {
     _fetch_hx_toolkit_data: function(url_param, callback, err_callback, args) {
         if (WSData._get_hx_toolkit_data(url_param) === undefined) {
             url = "/api/v1/hx_toolkit/" + url_param;
-            console.log(url);
             $.ajax({
                 url: url,
                 dataType: "html",
@@ -1302,8 +1301,6 @@ WSData = {
                 accepts: {html: "text/html"},
                 success: function(results) {
                     WSData._hx_toolkit_data[url_param] = results;
-                    console.log(url_param);
-                    console.log(results);
                     if (callback !== null) {
                         callback.apply(null, args);
                     }
