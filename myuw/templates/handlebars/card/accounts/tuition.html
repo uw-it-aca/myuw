@@ -50,10 +50,11 @@
 	    	<li>
                 <div class="card-badge clearfix" style="padding-bottom:0">
                     <div class="pull-left">
-                        <h4 class="card-badge-label">You owe</h4>
+                        <h4 class="card-badge-label">Amount Due <br><span style="font-weight:normal">Student Fiscal Services</span></h4>
                     </div>
 					<div class="pull-right">
                         <span class="card-badge-value text-danger">${{tuition_accbalance}}</span>
+                        <span class="card-badge-action pull-right" style="width: 100%; line-height: 2em; font-size: .9em; text-align: right;"><a href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank" data-linklabel="Tuition Statement">Tuition Statement</span>
             		</div>
                 </div>
 	            <div class="card-badge clearfix middle-row">
@@ -71,11 +72,11 @@
 			<li class="pce-tuition">
 		        <div class="card-badge clearfix">
 		                <div class="pull-left">
-		                    <h4 class="card-badge-label">You owe PCE</h4>
+		                    <h4 class="card-badge-label">Amount Due<br><span style="font-weight:normal">PCE-Continuum College</span></h4>
 		                </div>
 						<div class="pull-right">
 		                    <span class="card-badge-value text-danger">${{pce_accbalance}}</span>
-		                    <span style="width: 100%; line-height: 2em; font-size: .9em; text-align: right;"><a href="https://www.pce.uw.edu/contact-us" target="_blank" data-linklabel="Contact PCE">Contact PCE for due date</a></span>
+		                  
 		        		</div>
 		        </div>
 		        <div class="card-badge clearfix middle-row">
@@ -88,7 +89,7 @@
     {{#if tuition_date}} <!-- N-T-S. UPDATE THE LOGIC -->
 		    <li class="tuition-due card-badge clearfix middle-row">
 		        <div class="pull-left">
-		            <h4 class="card-badge-label">Tuition due </h4>
+		            <h4 class="card-badge-label">Payment Due </h4>
 		        </div>
 				<div class="pull-right">
 		            <span class="card-badge-value" aria-hidden="true">{{toFriendlyDate tuition_due}}</span>
