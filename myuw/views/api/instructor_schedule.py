@@ -105,8 +105,9 @@ def set_section_evaluation(section, person):
             section, person.employee_id)
         if evaluations is not None:
             for eval in evaluations:
-                if eval.section_sln == section.sln or not section.sln:
-                    return eval.json_data()
+                if eval is not None:
+                    if not section.sln or section.sln == eval.section_sln:
+                        return eval.json_data()
         return {'eval_not_exist': True}
     except DataFailureException as ex:
         if isinstance(ex, TermEvalNotCreated):
