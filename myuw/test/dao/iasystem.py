@@ -199,7 +199,7 @@ class IASystemDaoTest(TestCase):
                          datetime.datetime(2013, 6, 19,
                                            6, 59, 59,
                                            tzinfo=pytz.utc))
-        self.assertTrue(evals[2].is_completed)
+        self.assertFalse(evals[2].is_completed)
         now_request = get_request_with_date("2013-05-30")
         json_data = json_for_evaluation(now_request, evals, None)
         self.assertEqual(len(json_data), 0)
@@ -231,12 +231,12 @@ class IASystemDaoTest(TestCase):
         now_request = get_request_with_date("2013-06-10")
         json_data = json_for_evaluation(now_request, evals, None)
         self.assertIsNotNone(json_data)
-        self.assertEqual(len(json_data), 2)
+        self.assertEqual(len(json_data), 3)
 
         # after close date of one eval
         now_request = get_request_with_date("2013-06-17")
         json_data = json_for_evaluation(now_request, evals, None)
-        self.assertEqual(len(json_data), 1)
+        self.assertEqual(len(json_data), 2)
         self.assertEqual(json_data[0]['close_date'],
                          "2013-07-01 07:59:59 UTC+0000")
 

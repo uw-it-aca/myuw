@@ -19,13 +19,12 @@ logger = logging.getLogger(__name__)
 
 
 def _get_evaluations_domain(section):
-    if section.is_campus_seattle() or\
-       section.is_campus_bothell() or\
-       section.is_campus_tacoma():
-        return section.course_campus.lower()
-    if section.lms_ownership is not None:
-        return section.lms_ownership.lower()
-    return section.course_campus.lower()  # pce
+    if section.is_campus_pce() or\
+       section.course_campus is None:
+        if section.lms_ownership is not None:
+            return section.lms_ownership.lower()
+        return "pce"
+    return section.course_campus.lower()
 
 
 def get_evaluations_by_section(section):
@@ -125,7 +124,7 @@ def json_for_evaluation(request, evaluations, section):
         if summer_term_overlaped(request, section):
 
             if evaluation.is_completed or\
-               evaluation.is_closed() or\
+               not evaluation.is_open() or\
                now < evaluation.eval_open_date or\
                now >= evaluation.eval_close_date:
                 continue
