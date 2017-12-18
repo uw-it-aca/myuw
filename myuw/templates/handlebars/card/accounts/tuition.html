@@ -31,7 +31,6 @@
             </div>
     {{/unless}}
 
-
     <ul class="card_list">  <!-- balance list -->
     {{#if has_balance}}
         {{#if is_credit}}
@@ -105,10 +104,12 @@
      <!-- end pce balance -->
     {{/if}}
 	</ul><!-- .end of the balance list -->
-
+	
+    {{#unless is_pce}} <!-- Aaccess msg for non-PCE -->
     <div class="card-related-messages">
         <p><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx" target="_blank">Give access to your tuition account and financial aid information</a> to parents or other third parties.</p>
-
+	{{/unless}}
+	
         {{#each pce_tuition_dup}}
             <p class="pce-message">{{{this.notice_content}}}</p>
         {{/each}}
