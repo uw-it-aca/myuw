@@ -34,75 +34,70 @@
     <ul class="card_list">  <!-- balance list -->
     {{#if has_balance}}
         {{#if is_credit}}
-                    <li>
-                        <div class="card-badge clearfix">
-                            <div class="pull-left">
-                                <h4 class="card-badge-label">Account Credit</h4>
-                            </div>
-                            <div class="pull-right">
-                                <span class="card-badge-value">+${{plain_tuition}} CR</span>
-                            </div>
-                        </div>
-                    </li>
+	        <li>
+	            <div class="card-badge clearfix">
+	                <div class="pull-left">
+	                    <h4 class="card-badge-label">Account Credit</h4>
+	                </div>
+	                <div class="pull-right">
+	                    <span class="card-badge-value">+${{plain_tuition}} CR</span>
+	                </div>
+	            </div>
+	        </li>
 
         {{else}}  <!-- else, there is a balance -->
 
-		    	<li>
-	                <div class="card-badge clearfix" style="padding-bottom:0">
-	                    <div class="pull-left">
-	                        <h4 class="card-badge-label">You owe</h4>
-	                    </div>
-						<div class="pull-right">
-	                        <span class="card-badge-value text-danger">${{tuition_accbalance}}</span>
-	            		</div>
-	                </div>
-
-
-	            {{#if tuition_date}}
-
-	                <div class="tuition-due card-badge clearfix middle-row">
-	                    <div class="pull-left">
-	                        <h4 class="card-badge-label">Tuition due </h4>
-	                    </div>
-						<div class="pull-right">
-	                        <span class="card-badge-value" aria-hidden="true">{{toFriendlyDate tuition_due}}</span>
-							<span class="sr-only">{{toFriendlyDateVerbose tuition_due}}</span>
-			        &nbsp;
-	                        <span class="card-badge-action pull-right">in {{tuition_date_offset}} days</span>
-	                    </div>
-	                </div>
-
-	            {{/if}}
-                <div class="card-badge clearfix middle-row">
-                    <div class="pull-right" >
-                        <div class="btn btn-default card-action-btn"><a href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank" data-linklabel="Make Tuition Payment">Make payment</a></div>
+	    	<li>
+                <div class="card-badge clearfix" style="padding-bottom:0">
+                    <div class="pull-left">
+                        <h4 class="card-badge-label">You owe</h4>
                     </div>
+					<div class="pull-right">
+                        <span class="card-badge-value text-danger">${{tuition_accbalance}}</span>
+            		</div>
                 </div>
-				</li>
-        <!-- end if tuition_credit -->
-        {{/if}}
-    <!-- end if has_balance -->
-    {{/if}}
+	            <div class="card-badge clearfix middle-row">
+	                <div class="pull-right" >
+	                    <div class="btn btn-default card-action-btn"><a href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank" data-linklabel="Make Tuition Payment">Make payment</a></div>
+	                </div>
+	            </div>
+			</li>
+        
+        {{/if}} <!-- end if tuition_credit -->
+    {{/if}}<!-- end if has_balance -->
 
     {{#if pce_accbalance}}
 
-				<li class="pce-tuition">
-			        <div class="card-badge clearfix">
-			                <div class="pull-left">
-			                    <h4 class="card-badge-label">You owe PCE</h4>
-			                </div>
-							<div class="pull-right">
-			                    <span class="card-badge-value text-danger">${{pce_accbalance}}</span>
-			                    <span style="width: 100%; line-height: 2em; font-size: .9em; text-align: right;"><a href="https://www.pce.uw.edu/contact-us" target="_blank">Contact PCE for due date</a></span>
-			        		</div>
-			        </div>
-			        <div class="card-badge clearfix middle-row">
-			        	<div class="pull-right"><div class="btn btn-default card-action-btn" style="margin-top:0"><a href="https://www.pce.uw.edu/help/registration-costs/payment-options" target="_blank" data-linklabel="PCE Payment Options">Make payment to PCE</a></div>
-			        	</div>
-			        </div>
-				</li>
-     <!-- end pce balance -->
-    {{/if}}
+			<li class="pce-tuition">
+		        <div class="card-badge clearfix">
+		                <div class="pull-left">
+		                    <h4 class="card-badge-label">You owe PCE</h4>
+		                </div>
+						<div class="pull-right">
+		                    <span class="card-badge-value text-danger">${{pce_accbalance}}</span>
+		                    <span style="width: 100%; line-height: 2em; font-size: .9em; text-align: right;"><a href="https://www.pce.uw.edu/contact-us" target="_blank">Contact PCE for due date</a></span>
+		        		</div>
+		        </div>
+		        <div class="card-badge clearfix middle-row">
+		        	<div class="pull-right"><div class="btn btn-default card-action-btn" style="margin-top:0"><a href="https://www.pce.uw.edu/help/registration-costs/payment-options" target="_blank" data-linklabel="PCE Payment Options">Make payment <span class="sr-only"> to PCE</span></a></div>
+		        	</div>
+		        </div>
+			</li>
+    {{/if}}<!-- end pce balance -->
+    
+    {{#if tuition_date}} <!-- N-T-S. UPDATE THE LOGIC -->
+		    <li class="tuition-due card-badge clearfix middle-row">
+		        <div class="pull-left">
+		            <h4 class="card-badge-label">Tuition due </h4>
+		        </div>
+				<div class="pull-right">
+		            <span class="card-badge-value" aria-hidden="true">{{toFriendlyDate tuition_due}}</span>
+					<span class="sr-only">{{toFriendlyDateVerbose tuition_due}}</span>
+		    &nbsp;
+		            <span class="card-badge-action pull-right">in {{tuition_date_offset}} days</span>
+		        </div>
+		    </li>
+    {{/if}}<!-- end tuition_date -->
 	</ul><!-- .end of the balance list -->
 	
     {{#unless is_pce}} <!-- Aaccess msg for non-PCE -->
