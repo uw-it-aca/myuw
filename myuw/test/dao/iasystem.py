@@ -5,11 +5,12 @@ from django.conf import settings
 from django.test.utils import override_settings
 from uw_sws.models import Section, Term
 from uw_iasystem.evaluation import get_evaluation_by_id
-from myuw.dao.iasystem import json_for_evaluation,\
-    _get_evaluations_by_section_and_student, summer_term_overlaped
+from uw_sws.section import get_section_by_label
+from myuw.dao.iasystem import json_for_evaluation, _get_evaluations_domain,\
+    _get_evaluations_by_section_and_student, summer_term_overlaped,\
+    get_evaluation_by_section_and_instructor
 from myuw.dao.registration import _get_schedule
-from uw_iasystem.util import fdao_ias_override
-from myuw.test import fdao_pws_override, fdao_sws_override,\
+from myuw.test import fdao_pws_override, fdao_sws_override, fdao_ias_override,\
     get_request_with_date, get_request_with_user, get_request
 
 
@@ -19,6 +20,14 @@ from myuw.test import fdao_pws_override, fdao_sws_override,\
 class IASystemDaoTest(TestCase):
     def setUp(self):
         get_request()
+
+    def test_get_evaluations_domain(self):
+        section = get_section_by_label('2013,spring,AAES,150/A')
+        print _get_evaluations_domain(section)
+        self.assertEqual(_get_evaluations_domain(section), u'pce_ielp')
+
+        section = get_section_by_label('2013,spring,BIGDATA,230/A')
+        self.assertEqual(_get_evaluations_domain(section), "pce_ol")
 
     def test_summer_term_overlaped(self):
         term = Term()
@@ -141,7 +150,7 @@ class IASystemDaoTest(TestCase):
                          datetime.datetime(2013, 8, 29,
                                            6, 59, 59,
                                            tzinfo=pytz.utc))
-
+        self.assertTrue(evals[0].is_seattle)
         self.assertEqual(len(evals[0].instructor_ids), 3)
         self.assertEqual(evals[0].instructor_ids[0], 123456781)
         self.assertEqual(evals[0].instructor_ids[1], 123456782)
@@ -190,7 +199,7 @@ class IASystemDaoTest(TestCase):
                          datetime.datetime(2013, 6, 19,
                                            6, 59, 59,
                                            tzinfo=pytz.utc))
-        self.assertTrue(evals[2].is_completed)
+        self.assertFalse(evals[2].is_completed)
         now_request = get_request_with_date("2013-05-30")
         json_data = json_for_evaluation(now_request, evals, None)
         self.assertEqual(len(json_data), 0)
@@ -222,12 +231,12 @@ class IASystemDaoTest(TestCase):
         now_request = get_request_with_date("2013-06-10")
         json_data = json_for_evaluation(now_request, evals, None)
         self.assertIsNotNone(json_data)
-        self.assertEqual(len(json_data), 2)
+        self.assertEqual(len(json_data), 3)
 
         # after close date of one eval
         now_request = get_request_with_date("2013-06-17")
         json_data = json_for_evaluation(now_request, evals, None)
-        self.assertEqual(len(json_data), 1)
+        self.assertEqual(len(json_data), 2)
         self.assertEqual(json_data[0]['close_date'],
                          "2013-07-01 07:59:59 UTC+0000")
 
@@ -242,3 +251,40 @@ class IASystemDaoTest(TestCase):
         self.assertEqual(len(json_data), 0)
         # for spring 2013, grade submission deadline is
         # the day after tomorrow!
+
+    def test_pce_instructor_evals(self):
+        section = get_section_by_label('2013,spring,AAES,150/A')
+        instructor_id = "100000011"
+        evals = get_evaluation_by_section_and_instructor(
+            section, instructor_id)
+        self.assertIsNotNone(evals)
+        self.assertEqual(len(evals), 1)
+        self.assertEqual(evals[0].section_sln, 164406)
+        self.assertEqual(evals[0].domain, "uweo-ielp")
+        self.assertTrue(evals[0].is_eo_ielp)
+
+        section = get_section_by_label('2013,spring,BIGDATA,230/A')
+        evals = get_evaluation_by_section_and_instructor(
+            section, instructor_id)
+        self.assertIsNotNone(evals)
+        self.assertEqual(len(evals), 1)
+        self.assertEqual(evals[0].section_sln, 157956)
+        self.assertEqual(evals[0].domain, "uweo-ap")
+        self.assertTrue(evals[0].is_eo_ap)
+
+        section = get_section_by_label('2013,spring,CPROGRM,712/A')
+        evals = get_evaluation_by_section_and_instructor(
+            section, instructor_id)
+        self.assertIsNotNone(evals)
+        self.assertEqual(len(evals), 1)
+        self.assertEqual(evals[0].section_sln, 157462)
+        self.assertEqual(evals[0].domain, "uweo-ap")
+
+    def test_pce_student_evals(self):
+        section = get_section_by_label('2013,spring,BIGDATA,230/A')
+        student_id = "1000055"
+        evals = _get_evaluations_by_section_and_student(section, student_id)
+        self.assertIsNotNone(evals)
+        self.assertEqual(len(evals), 1)
+        self.assertFalse(evals[0].is_closed())
+        self.assertFalse(evals[0].is_completed)
