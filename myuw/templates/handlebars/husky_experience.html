@@ -33,23 +33,14 @@
                                 <h3 class="myuw-card-title">Know Yourself</h3>
 
                                 <p>Know your interests and what engages you. Gain experiences that will test ideas you have about who you are. Build a supportive social network and make decisions in your best interest. Understand how tending to your wellness provides the foundation to success in all other activities.</p>
-
-                                <ul class="list-unstyled">
-                                    {{#each categories.know-yourself}}
-                                        <li><a href="/husky_experience?article={{slug}}">{{title}}</a></li>
-                                    {{/each}}
-                                </ul>
+                                {{{ know-yourself }}}
                             </div>
 
                             <div class="myuw-card">
                                 <h3 class="myuw-card-title">Know the World</h3>
                                 <p>Know how your education relates to the world. Understand the relationship between major and career, and the relationships between different disciplines. Ensure you have the knowledge and skills to achieve academically and contribute to a changing world.</p>
 
-                                <ul class="list-unstyled">
-                                    {{#each categories.know-world}}
-                                        <li><a href="/husky_experience?article={{slug}}">{{title}}</a></li>
-                                    {{/each}}
-                                </ul>
+                                {{{ know-world }}}
                             </div>
 
 
@@ -57,9 +48,7 @@
                                 <h3 class="myuw-card-title">Make Your Way</h3>
                                 <p>Gather the tools and knowledge you need to intentionally construct a career. Identify your skills and learn to articulate them to potential employers. Build a professional network composed of the right people to support you on a path to success.</p>
                                 <ul class="list-unstyled">
-                                    {{#each categories.make-your-way}}
-                                        <li><a href="/husky_experience?article={{slug}}">{{title}}</a></li>
-                                    {{/each}}
+                                    {{{ make-your-way }}}
                                 </ul>
                             </div>
 
@@ -68,11 +57,7 @@
                                 <h3 class="myuw-card-title">Make Sense</h3>
                                 <p>Reflect on your experiences large and small, and draw meaningful connections between them. Work to see your experiences as a coherent whole.</p>
 
-                                <ul class="list-unstyled">
-                                    {{#each categories.make-sense}}
-                                        <li><a href="/husky_experience?article={{slug}}">{{title}}</a></li>
-                                    {{/each}}
-                                </ul>
+                                {{{ make-sense }}}
                             </div>
 
                     </div>

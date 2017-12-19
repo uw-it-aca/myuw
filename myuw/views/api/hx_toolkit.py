@@ -44,7 +44,7 @@ class HxToolkitWeekMessage(ProtectedAPI):
 
 class HxToolkitMessageList(ProtectedAPI):
     """
-    Performs actions on resource at /api/v1/hx_toolkit/messages.
+    Performs actions on resource at /api/v1/hx_toolkit/list.
     """
     def get(self, request,  *args, **kwargs):
         """

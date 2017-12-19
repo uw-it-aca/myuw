@@ -18,6 +18,10 @@ var HuskyExperiencePage = {
         }
     },
 
+    render_error: function () {
+        console.log('error')
+    },
+
     make_html: function () {
         $('html,body').animate({scrollTop: 0}, 'fast');
         var HuskyExperience_source = $("#husky_experience_page").html();
@@ -50,10 +54,7 @@ var HuskyExperiencePage = {
         var source = $("#husky_experience_page").html();
         var template = Handlebars.compile(source);
 
-        var data = {};
-        data['know-yourself'] = [{slug: "know-yourself-week-1", title: "Know Yourself Week 1"}];
-
-        var rendered = template({categories: summary_data});
+        var rendered = template(summary_data);
 
         $("#main-content").html(rendered);
         return ''

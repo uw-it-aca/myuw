@@ -7,12 +7,10 @@ var HuskyExperienceCard = {
     },
 
     render_init: function() {
-        console.log('asds');
         if (HuskyExperienceCard.hide_card()) {
             $("#HuskyExperienceCard").hide();
             return;
         }
-        console.log('pre-fetch');
         WSData.fetch_hx_toolkit_week_msg(HuskyExperienceCard.render_upon_data,
                                          HuskyExperienceCard.render_error);
     },
