@@ -21,23 +21,31 @@
     {{/if}}
         <!-- end if -->
 
-		<div class="card-badge-container ">
+	<div class="card-badge-container ">
+	<ul class="card_list">  <!-- balance list -->
     {{#unless has_balance}}
         <!-- if tuition balance is 0 -->
-
-            <div class="card-badge">
-                <span class="card-badge-label" style="line-height:20px;">Your tuition and fees have been paid</span>
-                <div class="card-badge-action" style="margin-top:8px;"><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank" data-linklabel="Tuition Statement">See tuition statement</a></div>
-            </div>
+		<li>
+	            <div class="card-badge clearfix">
+	                <div class="pull-left">
+	                    <h4 class="card-badge-label">Amount Due<br><span style="font-size:14px;font-weight:normal;line-height:32px;">Student Fiscal Services</span></h4>
+	                </div>
+	                <div class="pull-right">
+	                    <span class="card-badge-value">$ 0</span>
+	                    <span class="card-badge-action pull-right" style="clear:both;">Paid in full</br></span>
+	                    <span class="card-badge-action pull-right" style="clear:both;" ><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank" data-linklabel="Tuition Statement">Tuition Statement</span>
+	                </div>
+	            </div>
+	        </li>
     {{/unless}}
 
-    <ul class="card_list">  <!-- balance list -->
+
     {{#if has_balance}}
         {{#if is_credit}}
 	        <li>
 	            <div class="card-badge clearfix">
 	                <div class="pull-left">
-	                    <h4 class="card-badge-label">Account Credit</h4>
+	                    <h4 class="card-badge-label">Account Credit<br><span style="font-size:14px;font-weight:normal;line-height:32px;">Student Fiscal Services</span></h4>
 	                </div>
 	                <div class="pull-right">
 	                    <span class="card-badge-value">+${{plain_tuition}} CR</span>
@@ -101,7 +109,7 @@
     {{/if}}<!-- end tuition_date -->
 	</ul><!-- .end of the balance list -->
 	
-    {{#unless is_pce}} <!-- Aaccess msg for non-PCE -->
+    {{#unless is_pce}} <!-- Access msg for non-PCE -->
     <div class="card-related-messages">
         <p><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx" target="_blank">Give access to your tuition account and financial aid information</a> to parents or other third parties.</p>
 	{{/unless}}
