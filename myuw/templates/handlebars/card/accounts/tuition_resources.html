@@ -5,7 +5,7 @@
         {{#if is_pce}}
         <li><a href="http://www.degreereg.uw.edu/payment-procedures" target="_blank">How to pay PCE</a></li>
         {{/if}}
-        <li><a {{#if is_tacoma}}href="http://www.tacoma.uw.edu/uwt/financial-aid"{{else if is_bothell}}href="https://www.uwb.edu/financialaid"{{else}}href="http://www.washington.edu/students/osfa/"{{/if}} target="_blank">Financial Aid and Scholarships</a></li>
+        <li><a {{#if is_tacoma}}href="http://www.tacoma.uw.edu/uwt/financial-aid"{{else if is_bothell}}href="https://www.uwb.edu/financialaid"{{else if is_pce}}href="https://www.washington.edu/financialaid/getting-started/eligibility/fee-based-programs/"{{else}}href="http://www.washington.edu/students/osfa/"{{/if}} target="_blank">Financial Aid and Scholarships</a></li>
         {{#if is_grad}}
         <li><a href="http://www.lib.washington.edu/commons/services/gfis" target="_blank">Graduate Funding Information Service (GFIS)</a></li>
         {{/if}}
