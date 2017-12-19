@@ -6,7 +6,6 @@ the uwnetid subscription resource.
 import logging
 import re
 from django.core.mail import send_mail
-from django.conf import settings
 from uw_sws.section import get_section_by_label,\
     is_valid_section_label
 from uw_mailman.basic_list import get_admin_url
@@ -16,6 +15,7 @@ from uw_mailman.course_list import get_course_list_name,\
 from uw_mailman.instructor_term_list import\
     get_instructor_term_list_name, exists_instructor_term_list
 from myuw.util.thread import ThreadWithResponse
+from myuw.util.settings import get_mailman_courserequest_recipient
 from myuw.logger.logback import log_info
 from myuw.dao.exceptions import CourseRequestEmailRecipientNotFound
 
@@ -195,9 +195,7 @@ def request_mailman_lists(requestor_uwnetid,
     if num_sections_found == 0:
         ret_data["request_sent"] = False
     else:
-        recipient = getattr(settings,
-                            'MAILMAN_COURSEREQUEST_RECIPIENT',
-                            None)
+        recipient = get_mailman_courserequest_recipient()
         if recipient is None:
             raise CourseRequestEmailRecipientNotFound
         sender = "%s@uw.edu" % requestor_uwnetid

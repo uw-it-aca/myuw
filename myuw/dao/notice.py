@@ -105,7 +105,7 @@ def get_tuition_due_date():
         try:
             stored_tuition = TuitionDate.objects.get(user=get_user_model())
             tuition_date = stored_tuition.date
-        except:
+        except Exception:
             pass
     return tuition_date
 

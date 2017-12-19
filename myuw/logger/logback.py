@@ -1,5 +1,5 @@
 import logging
-from userservice.user import UserService
+from myuw.dao import get_netid_of_original_user, get_netid_of_current_user
 from myuw.logger.timer import Timer
 
 
@@ -44,9 +44,8 @@ def get_logging_userid():
     the user is acting as someone else, otherwise
     <actual user netid> no_override: <actual user netid>
     """
-    user_svc = UserService()
-    override_userid = user_svc.get_override_user()
-    actual_userid = user_svc.get_original_user()
+    override_userid = get_netid_of_current_user()
+    actual_userid = get_netid_of_original_user()
     log_format = 'base_user: %s acting_user: %s is_override: %s'
     try:
         if override_userid:
