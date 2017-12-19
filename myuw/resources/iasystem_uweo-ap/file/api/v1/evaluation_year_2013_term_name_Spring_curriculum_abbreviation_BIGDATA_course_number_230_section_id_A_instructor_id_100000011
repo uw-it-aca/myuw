@@ -1,0 +1,50 @@
+{"collection":
+  {"queries":[{"href":"https://uweo-ap.iasystem.org/api/v1/evaluation","prompt":"Evaluation Search Resource","data":[{"required":true,"name":"year","prompt":"Year"},{"required":true,"prompt":"Term Name","name":"term_name"},{"name":"curriculum_abbreviation","prompt":"Curriculum Abbreviation"},{"prompt":"Course Number","name":"course_number"},{"name":"section_id","prompt":"Section ID"},{"prompt":"Student ID","name":"student_id"},{"name":"instructor_id","prompt":"Instructor ID"}],"rel":"collection filter"}],
+"items":[
+  {"href":"https://uweo-ap.iasystem.org/api/v1/evaluation/19042",
+   "links":[
+    {"href":"https://uweo-ap.iasystem.org/api/v1/evaluation?evals=19042",
+    "prompt":"Course Report","rel":"report"},
+    {"prompt":"Evaluation URL",
+     "href":"https://uweo-ap.iasystem.org/survey/19042",
+     "rel":"publishedto"}],
+   "data":[
+    {"name":"id","prompt":"Id","value":"19042"},
+    {"name":"year","prompt":"Year","value":"2013"},
+    {"prompt":"Term","name":"termName","value":"Spring"},
+    {"name":"deliveryMethod","prompt":"Delivery Method","value":"Online"},
+    {"prompt":"Status","name":"status","value":"Closed"},
+    {"name":"responseRate","prompt":"Response Rate","value":"0.5"},
+    {"value":"2013-06-14T07:00:00Z","name":"reportAvailableDate","prompt":"Report Available Date"},
+    {"value":"2013-05-29T07:00:00Z","prompt":"Open Date","name":"openDate"},
+    {"value":"2013-06-08T06:59:59Z","prompt":"Close Date","name":"closeDate"}],
+   "meta":[
+    {"name":"type","value":"evaluation"},
+    {"name":"id","value":"1"},
+    {"name":"childId","value":"2"},
+    {"value":"3","name":"childId"}]},
+  {"meta":[
+    {"value":"section","name":"type"},
+    {"value":"2","name":"id"}],
+   "data":[
+    {"value":"157956","name":"instCourseId"},
+    {"name":"year","value":"2013"},
+    {"value":"Spring","name":"termName"},
+    {"name":"curriculumAbbreviation","value":"BIGDATA"},
+    {"name":"courseNumber","value":"230"},
+    {"name":"sectionId","value":"A"},
+    {"value":"Emerging Technologies in Big Data","name":"courseTitle"}]},
+  {"meta":[
+    {"value":"instructor","name":"type"},
+    {"value":"3","name":"id"}],
+   "data":[
+    {"value":"100000011","name":"instInstructorId"},
+    {"name":"firstName","value":"Bill"},
+    {"value":"Pce","name":"lastName"}]}],
+  "version":"1.0",
+  "href":"https://uweo-ap.iasystem.org/api/v1/evaluation",
+  "links":[
+    {"rel":"home","prompt":"IASystem v1 Web API","href":"https://uweo-ap.iasystem.org/api/v1"},
+    {"prompt":"IASystem Evaluation Listing",
+     "href":"https://uweo-ap.iasystem.org/api/v1/evaluation?year=2013&term_name=Spring&curriculum_abbreviation=BIGDATA&course_number=230&section_id=A&instructor_id=",
+     "rel":"self"}]}}

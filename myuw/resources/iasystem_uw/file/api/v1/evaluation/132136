@@ -58,7 +58,7 @@
                         "prompt": "Delivery Method"
                     },
                     {
-                        "value": "Closed",
+                        "value": "Open",
                         "name": "status",
                         "prompt": "Status"
                     },
