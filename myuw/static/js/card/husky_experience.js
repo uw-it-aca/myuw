@@ -7,12 +7,10 @@ var HuskyExperienceCard = {
     },
 
     render_init: function() {
-        console.log('asds');
         if (HuskyExperienceCard.hide_card()) {
             $("#HuskyExperienceCard").hide();
             return;
         }
-        console.log('pre-fetch');
         WSData.fetch_hx_toolkit_week_msg(HuskyExperienceCard.render_upon_data,
                                          HuskyExperienceCard.render_error);
     },
@@ -25,7 +23,7 @@ var HuskyExperienceCard = {
 
     _render: function () {
         var article_html = WSData.hx_toolkit_week_data();
-        var source = $("#husky_experice").html();
+        var source = $("#husky_experience").html();
         var template = Handlebars.compile(source);
         var rendered = template({article_html: article_html});
         HuskyExperienceCard.dom_target.html(rendered);

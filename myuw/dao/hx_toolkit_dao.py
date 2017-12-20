@@ -13,7 +13,7 @@ def get_article_html(article_id):
 def get_article_of_week_by_request(request):
     term = get_current_quarter(request)
 
-    phase = _get_phase_by_year(term.year)
+    phase = _get_phase_by_term(term)
 
     week = get_week_by_request(request)
 
@@ -53,11 +53,18 @@ def _make_start_sunday(date):
     return date
 
 
-def _get_phase_by_year(year):
+def _get_phase_by_term(term):
     """
     For date override purposes all phases prior to start of will
-    default to phase A
+    default to phase A; a Phase will run from AU of one year through SU of the
+    next, ie one 'academic' year
     """
+    year = term.year
+    quarter = term.quarter
+
+    if quarter == 'autumn':
+        year += 1
+
     phases = ['A', 'B', 'C']
     start_year = 2009
     years_since_start = year - start_year
