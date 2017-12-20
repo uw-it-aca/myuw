@@ -3,7 +3,8 @@ from django.test import TestCase
 from myuw.test import (get_request_with_date, get_request_with_user,
                        get_request, fdao_uwnetid_override)
 from myuw.dao.term import get_current_quarter
-from myuw.dao.hx_toolkit_dao import _get_week_between, _make_start_sunday
+from myuw.dao.hx_toolkit_dao import _get_week_between, _make_start_sunday, \
+    _get_phase_by_term
 
 
 @fdao_uwnetid_override
@@ -36,7 +37,6 @@ class TestHXTDao(TestCase):
         week = _get_week_between(term, after)
         self.assertEqual(week, 4)
 
-
     def test_make_start_sunday(self):
         sunday = _make_start_sunday(datetime(2013, 1, 5).date())
         self.assertEqual(sunday.weekday(), 6)
@@ -46,4 +46,15 @@ class TestHXTDao(TestCase):
 
         sunday = _make_start_sunday(datetime(2013, 1, 7).date())
         self.assertEqual(sunday.weekday(), 6)
+
+    def test_get_phase(self):
+        now_request = get_request_with_date('2013-01-20')
+        request = get_request_with_user('javerage', now_request)
+        term = get_current_quarter(request)
+        self.assertEqual(_get_phase_by_term(term), 'B')
+
+        now_request = get_request_with_date('2012-10-28')
+        request = get_request_with_user('javerage', now_request)
+        term = get_current_quarter(request)
+        self.assertEqual(_get_phase_by_term(term), 'B')
 

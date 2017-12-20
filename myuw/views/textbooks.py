@@ -9,5 +9,5 @@ def textbooks(request, term=None, textbook=None):
         'term': term,
         'textbook': textbook
     }
-    print context
+
     return page(request, context=context, template='textbooks.html')
