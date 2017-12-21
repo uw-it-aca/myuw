@@ -70,10 +70,6 @@
         }
     }
 
-    h2.myuw-heading-page {
-        margin-bottom: 32px;
-    }
-
     .myuw-article-footer {
         margin-top: 4em;
         border-top: 1px solid lightgray;
@@ -85,4 +81,16 @@
         color: #444;
     }
 
+}
+
+#app_content {
+    .myuw-article {
+        h2.myuw-heading-page {
+            display: block;
+            margin: 32px 0 16px 0;
+            @media @two-column {
+                margin: 0 0 32px 0;
+            }
+        }
+    }
 }
