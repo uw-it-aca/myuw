@@ -93,20 +93,8 @@
         {{/if}}
         <!-- end week view -->
     
-        <!-- begin - if there are meetings with times to be arranged -->
-        {{#if courses_meeting_tbd }}
-        <div class="courseTBD" aria-hidden="true">
-            {{#each courses_meeting_tbd }}
-    	    <div class="pull-left course-box">
-    	        <div class="c{{color_id}} course-info"><a href="/{{#if ../is_instructor}}teaching{{else}}academics{{/if}}/#{{curriculum}}-{{course_number}}-{{section_id}}" style="color: white;" class="show_section_card">{{curriculum}} {{course_number}}&nbsp;{{section_id}}</a></div>
-    	        <div style="font-size:.8em; color:#555; text-align:center; margin-top:3px;">Room TBD</div>
-    	    </div>
-            {{/each}}
-        </div>
-        {{/if}}
-        <!-- end - if there are meetings with times to be arranged -->
-    
-            <!-- begin - if there are meetings with times to be arranged -->
+
+        <!-- begin - if there are no meetings -->
         {{#if courses_no_meeting }}
         <div class="courseTBD" aria-hidden="true">
             <p>No meeting time specified:</p>
@@ -129,7 +117,7 @@
         </div>
         {{/if}}
     </div>
-        <!-- end - if there are meetings with times to be arranged -->
+        <!-- end - if there are no meetings -->
         
         
         <h4 class="sr-only">Your {{ucfirst quarter}} {{year}} final exam schedule</h4>

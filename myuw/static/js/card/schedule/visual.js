@@ -136,25 +136,6 @@ var VisualScheduleCard = {
                             }
                         });
                     }
-                    else if (meeting.days_tbd){
-                        $.each(visual_data.courses_meeting_tbd, function () {
-                            if (this.section_index === section_index) {
-                                seen = true;
-                                return false;
-                            }
-                        });
-
-                        // has meetings that are TBD
-                        if (!seen) {
-                            visual_data.courses_meeting_tbd.push({
-                                color_id: section.color_id,
-                                curriculum: section.curriculum_abbr,
-                                course_number: section.course_number,
-                                section_id: section.section_id,
-                                section_index: section_index
-                            });
-                        }
-                    }
                     else {
                         $.each(visual_data.courses_no_meeting, function () {
                             if (this.section_index === section_index) {
@@ -163,7 +144,7 @@ var VisualScheduleCard = {
                             }
                         });
 
-                        // Has no meetings, not TBD (eg individual start PCE courses)
+                        // Has no meetings, or TBD (eg individual start PCE courses)
                         if (!seen) {
                             visual_data.courses_no_meeting.push({
                                 color_id: section.color_id,
