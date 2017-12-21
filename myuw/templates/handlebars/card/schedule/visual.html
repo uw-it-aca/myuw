@@ -109,7 +109,7 @@
             <!-- begin - if there are meetings with times to be arranged -->
         {{#if courses_no_meeting }}
         <div class="courseTBD" aria-hidden="true">
-            <p>Following courses have not specified a meeting time:</p>
+            <p>No meeting time specified:</p>
             {{#each courses_no_meeting }}
     	    <div class="pull-left course-box">
     	        <div class="c{{color_id}} course-info"><a href="/{{#if ../is_instructor}}teaching{{else}}academics{{/if}}/#{{curriculum}}-{{course_number}}-{{section_id}}" style="color: white;" class="show_section_card">{{curriculum}} {{course_number}}&nbsp;{{section_id}}</a></div>
