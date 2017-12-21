@@ -133,7 +133,7 @@
     	    <tbody>
                {{#each sr_finals}}
     	        <tr>
-    	            <th scope="row">{{curriculum_abbr}} {{course_number}} {{course_title}}</th>
+    	            <th scope="row">{{curriculum_abbr}} {{course_number}} {{ section_id }} {{course_title}}</th>
                         {{#with final_exam}}
     <td>{{formatDateAsDate start_date}}, {{formatDateAsTimeAMPM start_date}} - {{formatDateAsTimeAMPM end_date}}</td>
                         <td>
