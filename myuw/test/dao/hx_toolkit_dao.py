@@ -70,7 +70,7 @@ class TestHXTDao(TestCase):
         request = get_request_with_user('jgrad')
         self.assertFalse(get_is_hxt_viewer(request))
 
-        #f yp
+        # fyp
         request = get_request_with_user('jnew')
         self.assertFalse(get_is_hxt_viewer(request))
 

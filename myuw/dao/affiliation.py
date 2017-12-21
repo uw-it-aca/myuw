@@ -8,6 +8,7 @@ from django.conf import settings
 from myuw.logger.logback import log_info
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.schedule import get_current_quarter_schedule
+from myuw.dao.hx_toolkit_dao import get_is_hxt_viewer
 from myuw.dao.pws import get_campus_of_current_user
 from myuw.dao.gws import is_grad_student, is_student, \
     is_current_graduate_student, is_undergrad_student, \
@@ -73,6 +74,7 @@ def get_all_affiliations(request):
             "seattle": is_seattle_student(),
             "bothell": is_bothell_student(),
             "tacoma": is_tacoma_student(),
+            "hxt_viewer": get_is_hxt_viewer(request)
             }
 
     # add 'official' campus info
