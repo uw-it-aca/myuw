@@ -10,11 +10,44 @@
     {{/if}}-->
 
     <h3 id="quarter-info" >
-            {{ucfirst quarter}} {{year}} A/B-term<span class="sr-only">Visual Schedule</span>
-            <!-- BUG TO FIX {{#if summer_term}}
-            <span class="shortTitle">{{summer_term}}</span>
-            {{/if}} -->
+            {{ucfirst quarter}} {{year}}{{#if summer_term}}{{summer_term}}{{/if}}<span class="sr-only">Final exam schedule and Visual Schedule</span>
     </h3>
+    <!--  SR-only Final exam schedule tabular data -->
+        <h4 class="sr-only">Your {{ucfirst quarter}} {{year}} final exam schedule</h4>
+        <div class="final_schedule_table sr-only">
+    	<table>
+	    	<caption>Final exam schedule</caption>
+    	    <thead>
+    	        <tr>
+    	            <th scope="col">Class</th>
+    	            <th scope="col">Exam date and time</th>
+    	            <th scope="col">Exam location</th>
+    	        </tr>
+    	    </thead>
+    	    <tbody>
+               {{#each sr_finals}}
+    	        <tr>
+    	            <th scope="row">{{curriculum_abbr}} {{course_number}} {{course_title}}</th>
+                        {{#with final_exam}}
+    <td>{{formatDateAsDate start_date}}, {{formatDateAsTimeAMPM start_date}} - {{formatDateAsTimeAMPM end_date}}</td>
+                        <td>
+    	                {{#if building_tbd}}
+    	                Room TBD
+    	                {{else}}
+    	                {{#if latitude}}
+    	                <a href="http://maps.google.com/maps?q={{latitude }},{{longitude }}+({{encodeForMaps building_name}})&z=18" target="_blank" class="show_map_modal" rel="{{building_name}}" data-linklabel="{{ building }} - Google Maps">
+    	                    {{/if}}
+    	                    {{building}} {{room_number}}
+    	                    {{#if final_exam.latitude}}</a>{{/if}}
+    	                {{/if}}
+    	            </td>
+    	            {{/with}}
+    	        </tr>
+    	        {{/each}}
+    	    </tbody>
+    	</table>
+        </div>
+        
     <div><p class="sr-only"><a href="/academics#academics_content_cards">Skip the visual schedule and go to course cards</a></p></div>
     <div aria-hidden="true" role="presentation"><!-- Wrap the content under aria-hidden -->
         {{#if show_period_headers}}
@@ -131,41 +164,7 @@
     </div>
         <!-- end - if there are meetings with times to be arranged -->
         
-        <!--  SR-only Final exam schedule tabular data -->
-        <h4 class="sr-only">Your {{ucfirst quarter}} {{year}} final exam schedule</h4>
-        <div class="final_schedule_table sr-only">
-    	<table>
-	    	<caption>Final exam schedule</caption>
-    	    <thead>
-    	        <tr>
-    	            <th scope="col">Class</th>
-    	            <th scope="col">Exam date and time</th>
-    	            <th scope="col">Exam location</th>
-    	        </tr>
-    	    </thead>
-    	    <tbody>
-               {{#each sr_finals}}
-    	        <tr>
-    	            <th scope="row">{{curriculum_abbr}} {{course_number}} {{course_title}}</th>
-                        {{#with final_exam}}
-    <td>{{formatDateAsDate start_date}}, {{formatDateAsTimeAMPM start_date}} - {{formatDateAsTimeAMPM end_date}}</td>
-                        <td>
-    	                {{#if building_tbd}}
-    	                Room TBD
-    	                {{else}}
-    	                {{#if latitude}}
-    	                <a href="http://maps.google.com/maps?q={{latitude }},{{longitude }}+({{encodeForMaps building_name}})&z=18" target="_blank" class="show_map_modal" rel="{{building_name}}" data-linklabel="{{ building }} - Google Maps">
-    	                    {{/if}}
-    	                    {{building}} {{room_number}}
-    	                    {{#if final_exam.latitude}}</a>{{/if}}
-    	                {{/if}}
-    	            </td>
-    	            {{/with}}
-    	        </tr>
-    	        {{/each}}
-    	    </tbody>
-    	</table>
-        </div>
+
     </div>
 {{/if}}
 </div>
