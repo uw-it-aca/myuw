@@ -188,6 +188,8 @@ urlpatterns += [
     url(r'^academics/?$', academics, name="myuw_academics_page"),
     url(r'^accounts/?$', accounts, name="myuw_accounts_page"),
     url(r'^profile/?$', profile, name="myuw_profile_page"),
+    url(r'^husky_experience_message/?$', husky_experience,
+        name="myuw_husky_experience_message_page"),
     url(r'^husky_experience/?$', husky_experience,
         name="myuw_husky_experience_page"),
     url(r'^search/?$', search_res, name="myuw_search_res_page"),
