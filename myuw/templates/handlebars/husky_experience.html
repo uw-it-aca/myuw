@@ -31,14 +31,23 @@
                                 <h3 class="myuw-card-title">Know Yourself</h3>
 
                                 <p>Know your interests and what engages you. Gain experiences that will test ideas you have about who you are. Build a supportive social network and make decisions in your best interest. Understand how tending to your wellness provides the foundation to success in all other activities.</p>
-                                {{{ know-yourself }}}
+
+                                <ul class="list-unstyled">
+                                    {{#each categories.know-yourself}}
+                                        <li><a href="/husky_experience?article={{slug}}">{{title}}</a></li>
+                                    {{/each}}
+                                </ul>
                             </div>
 
                             <div class="myuw-card">
                                 <h3 class="myuw-card-title">Know the World</h3>
                                 <p>Know how your education relates to the world. Understand the relationship between major and career, and the relationships between different disciplines. Ensure you have the knowledge and skills to achieve academically and contribute to a changing world.</p>
 
-                                {{{ know-world }}}
+                                <ul class="list-unstyled">
+                                    {{#each categories.know-world}}
+                                        <li><a href="/husky_experience?article={{slug}}">{{title}}</a></li>
+                                    {{/each}}
+                                </ul>
                             </div>
 
 
@@ -46,7 +55,9 @@
                                 <h3 class="myuw-card-title">Make Your Way</h3>
                                 <p>Gather the tools and knowledge you need to intentionally construct a career. Identify your skills and learn to articulate them to potential employers. Build a professional network composed of the right people to support you on a path to success.</p>
                                 <ul class="list-unstyled">
-                                    {{{ make-your-way }}}
+                                    {{#each categories.make-your-way}}
+                                        <li><a href="/husky_experience?article={{slug}}">{{title}}</a></li>
+                                    {{/each}}
                                 </ul>
                             </div>
 
@@ -55,7 +66,11 @@
                                 <h3 class="myuw-card-title">Weave it Together</h3>
                                 <p>Reflect on your experiences large and small, and draw meaningful connections between them. Work to see your experiences as a coherent whole.</p>
 
-                                {{{ make-sense }}}
+                                <ul class="list-unstyled">
+                                    {{#each categories.make-sense}}
+                                        <li><a href="/husky_experience?article={{slug}}">{{title}}</a></li>
+                                    {{/each}}
+                                </ul>
                             </div>
 
                     </div>
@@ -68,7 +83,7 @@
                             <h3 class="myuw-heading-page">How it works</h3>
                             <p>These articles are delivered here via MyUW so that all students have access to these ideas and resources. New articles are highlighted each week on the homepage to provide timely advice, but read and explore them anytime.</p>
                             <p>We plan to add new articles and resources each academic year.</p>
-                            <p class="myuw-footnote">Husky Experience Toolkit was curated by Michaelann Jundt of Undergraduate Academic Affairs, Janice Fournier and William Washington of UW Information Technology and Katy DeRosier from the Office of the Provost.</p>
+                            <p class="myuw-page-footnote">Husky Experience Toolkit was curated by Michaelann Jundt of Undergraduate Academic Affairs, Janice Fournier and William Washington of UW Information Technology and Katy DeRosier from the Office of the Provost.</p>
                         </div>
                     </div>
 
