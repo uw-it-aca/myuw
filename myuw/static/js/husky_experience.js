@@ -19,7 +19,7 @@ var HuskyExperiencePage = {
     },
 
     render_error: function () {
-        console.log('error')
+        console.log('error');
     },
 
     make_html: function () {
@@ -57,7 +57,7 @@ var HuskyExperiencePage = {
         var rendered = template(summary_data);
 
         $("#main-content").html(rendered);
-        return ''
+        return '';
     },
 
     _reset_content_divs: function() {
