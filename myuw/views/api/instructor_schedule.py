@@ -105,8 +105,9 @@ def set_section_evaluation(section, person):
             section, person.employee_id)
         if evaluations is not None:
             for eval in evaluations:
-                if section.sln and eval.section_sln == section.sln:
-                    return eval.json_data()
+                if eval is not None:
+                    if not section.sln or section.sln == eval.section_sln:
+                        return eval.json_data()
         return {'eval_not_exist': True}
     except DataFailureException as ex:
         if isinstance(ex, TermEvalNotCreated):
@@ -613,7 +614,11 @@ class OpenInstSectionDetails(OpenAPI):
 
     def get_person_info(self, person):
         sws_person = get_person_by_regid(person.uwregid)
-        return {"name": sws_person.first_name.title(),
+        try:
+            fname = sws_person.first_name.title()
+        except AttributeError:
+            fname = ""
+        return {"name": fname,
                 "surname": sws_person.last_name.title(),
                 "first_name": sws_person.first_name.title(),
                 "email": sws_person.email}

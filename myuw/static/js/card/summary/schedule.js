@@ -102,7 +102,7 @@ var SummaryScheduleCard = {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.SummaryScheduleCard = SummaryScheduleCard;

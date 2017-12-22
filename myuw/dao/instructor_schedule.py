@@ -133,7 +133,7 @@ def get_linked_section(url):
         linked.registrations = registrations
 
         return linked
-    except:
+    except Exception:
         return
 
 

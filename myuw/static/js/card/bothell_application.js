@@ -21,15 +21,17 @@ var BothellApplicationCard = {
     _render: function () {
         var applicant_info = WSData.applicant_data();
 
+        var bothell_application;
         for(var i = 0; i < applicant_info.length; i++){
-            if(applicant_info[i].is_bothell)
+            if(applicant_info[i].is_bothell) {
                 bothell_application = applicant_info[i];
-
-                if(window.user.student && !bothell_application.is_transfer)
+                if (window.user.student && !bothell_application.is_transfer) {
                     bothell_application = undefined;
+                }
+            }
         }
 
-        if (bothell_application === undefined){
+        if (typeof bothell_application === 'undefined'){
             this.render_error();
             return;
         }
@@ -54,7 +56,7 @@ var BothellApplicationCard = {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.BothellApplicationCard = BothellApplicationCard;

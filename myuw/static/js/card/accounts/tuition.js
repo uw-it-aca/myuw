@@ -62,7 +62,7 @@ var TuitionCard = {
 
         template_data.pce_tuition_dup = Notices.get_notices_for_tag("pce_tuition_dup");
 
-        if (template_data.pce_accbalance == '0.00') {
+        if (template_data.pce_accbalance === '0.00') {
             template_data.pce_accbalance = 0;
         }
         template_data.is_grad = window.user.grad;
@@ -130,7 +130,7 @@ var TuitionCard = {
     _init_events: function(){
         $("body").on('click', "#tui_finaid_notices_accordion a.finaid-disclosure-link", function(e){
             var content = $(e.target).parents('li').find('.finaid-panel-collapse');
-            if(content.attr('aria-hidden') == "true"){
+            if(content.attr('aria-hidden') === "true"){
                 content.removeAttr('hidden'); // Keep it from interfering with Bootstrap.
                 window.setTimeout(function() {
                     content.attr('aria-hidden', false); // Set to visible
@@ -156,7 +156,7 @@ var TuitionCard = {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.TuitionCard = TuitionCard;

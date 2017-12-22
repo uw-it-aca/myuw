@@ -7,7 +7,17 @@ from uw_pws import PWS
 
 
 def get_netid_of_current_user():
+    """
+    return the over-ridden user if impersonated
+    """
     return UserService().get_user()
+
+
+def get_netid_of_original_user():
+    """
+    return the actual authenticated user
+    """
+    return UserService().get_original_user()
 
 
 def get_user_model():

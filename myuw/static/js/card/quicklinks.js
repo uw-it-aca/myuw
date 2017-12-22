@@ -11,11 +11,11 @@ var QuickLinksCard = {
         var target = $(this);
         var type = target.attr('data-linktype');
 
-        if ("edit" == type) {
+        if ("edit" === type) {
             QuickLinksCard.display_edit_field(target);
             return false;
         }
-        if ("remove" == type) {
+        if ("remove" === type) {
             QuickLinksCard.hide_edit_panel();
         }
 
@@ -51,7 +51,7 @@ var QuickLinksCard = {
         $("#custom-link-edit-url").focus();
     },
     custom_add: function(ev) {
-        if (KEY_ENTER == ev.which) {
+        if (KEY_ENTER === ev.which) {
             QuickLinksCard._save_new();
         }
     },
@@ -63,12 +63,12 @@ var QuickLinksCard = {
         });
     },
     custom_edit: function(ev) {
-        if (KEY_ENTER == ev.which) {
+        if (KEY_ENTER === ev.which) {
             QuickLinksCard._save_edit();
         }
     },
     _post_custom_edit_save: function(response) {
-        if (response.status == 200) {
+        if (response.status === 200) {
             QuickLinksCard.redraw(response);
             QuickLinksCard.hide_edit_panel();
         }
@@ -112,7 +112,7 @@ var QuickLinksCard = {
         return false;
     },
     handle_escape: function(ev) {
-        if (KEY_ESCAPE == ev.which) {
+        if (KEY_ESCAPE === ev.which) {
             QuickLinksCard.hide_edit_panel();
         }
     },
@@ -153,7 +153,7 @@ var QuickLinksCard = {
 
     redraw: function(response) {
         $("#quicklink_saving").hide();
-        if (response.status == 200) {
+        if (response.status === 200) {
             window.quicklink_data = response.responseJSON;
             var html = $(QuickLinksCard.get_html());
             var replace_ids = ['#popular_qlinks', '.myuw-qlinks-active', '.myuw-qlinks-recent',
@@ -188,12 +188,12 @@ var QuickLinksCard = {
     collapse_event: function(caller) {
         // Closing a collapse that hasn't been opened at least once results in
         // a regex error in jquery code...
-        if ("popular" == caller) {
+        if ("popular" === caller) {
             if (QuickLinksCard.opened_panels.custom) {
                 $("#custom_qlinks").collapse("hide");
             }
         }
-        if ("custom" == caller) {
+        if ("custom" === caller) {
             if (QuickLinksCard.opened_panels.popular) {
                 $("#popular_qlinks").collapse("hide");
             }

@@ -2,7 +2,6 @@ import logging
 import time
 import traceback
 from operator import itemgetter
-from django.conf import settings
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.gws import is_student
 from myuw.dao.schedule import get_schedule_by_term
@@ -16,7 +15,7 @@ from myuw.logger.logresp import (
 from myuw.logger.timer import Timer
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found, handle_exception
-from uw_iasystem.dao import IASystem_DAO
+
 
 logger = logging.getLogger(__name__)
 MOCKDAO = 'restclients.dao_implementation.iasystem.File'

@@ -6,7 +6,7 @@ var WelcomeCard = {
         if (window.user.applicant && !window.user.student) {
             this._render();
         } else {
-            return;
+            this.render_error();
         }
     },
 
@@ -33,7 +33,7 @@ var WelcomeCard = {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.WelcomeCard = WelcomeCard;
