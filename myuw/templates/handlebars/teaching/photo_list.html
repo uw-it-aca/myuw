@@ -34,13 +34,13 @@
                             </div>
                             <div class="myuw-photo-list-controls-sort">
                                 Sort by:&nbsp;&nbsp;<select id="sort_list">
-                                    <option value="first_name,name">First Name</option>
-                                    <option value="surname,name" selected="selected">Last Name</option>
+                                    <option value="surname,first_name" selected="selected">Last Name</option>
+                                    <option value="first_name,surname">First Name</option>
                                     <option value="netid">UW NetID</option>
-                                    <option value="class_code,surname,name">Class</option>
-                                    <option value="credits,surname,name">Credits</option>
+                                    <option value="class_code,surname,first_name">Class</option>
+                                    <option value="credits,surname,first_name">Credits</option>
                                     {{ #each sections.0.linked_types }}
-                                    <option value="linked_type_{{ this }},surname,name">{{ ucfirst this }} Section</option>
+                                    <option value="linked_type_{{ this }},surname,first_name">{{ ucfirst this }} Section</option>
                                     {{ /each }}
                                 </select>
                             </div>

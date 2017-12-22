@@ -145,34 +145,20 @@ var PhotoClassList = {
     },
 
     build_download: function(data) {
-        var registrations = PhotoClassList.sort_students(data.registrations,
-                                                         'surname,name');
-        var lines = [],
-            header = ["Student Number", "UW NetID", "Last Name", "First Name"],
-            type;
-        for (var i = 0; i < data.linked_types.length; i++) {
-            type = data.linked_types[i];
-            var upper = type.replace(/^([a-z])/,
-                                     function(match) {
-                                         return match.toUpperCase();
-                                     });
-            header.push(upper+" Section");
-        }
-
-        header.push("Credits", "Class", "Majors", "Email");
-
-        lines.push(header.join(","));
+        var registrations = PhotoClassList.sort_students(
+            data.registrations, 'surname,first_name');
+        var lines = ['"StudentNo","UWNetID","LastName","FirstName","QZ Sect","Credits","Class","Major","Email"'];
 
         for (i = 0; i < registrations.length; i++) {
             var reg = registrations[i];
 
             var linked = reg.linked_sections;
 
-            var by_type = {};
+            var linked_sections = [];
             for (var j = 0; j < linked.length; j++) {
-                type = linked[j].type;
-                var section_string = linked[j].sections.join(",");
-                by_type[type] = section_string;
+                if (linked[j].sections.length) {
+                    linked_sections = linked_sections.concat(linked[j].sections);
+                }
             }
 
             var fields = [reg.student_number,
@@ -180,19 +166,15 @@ var PhotoClassList = {
                           reg.surname,
                           reg.first_name];
 
-            for (j = 0; j < data.linked_types.length; j++) {
-                type = data.linked_types[j];
-                if (by_type[type]) {
-                    fields.push(by_type[type]);
-                }
-                else {
-                    fields.push("");
-                }
+            if (linked_sections.length) {
+                fields.push(linked_sections.join(" "));
+            } else {
+                fields.push("");
             }
 
             var credits = reg.is_auditor?"Audit":reg.credits;
             fields.push(credits,
-                        reg.class,
+                        reg.class_code.toString(),
                         PhotoClassList.combine_majors(reg.majors),
                         reg.email);
 
