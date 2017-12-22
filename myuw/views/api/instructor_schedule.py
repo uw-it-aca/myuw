@@ -584,6 +584,7 @@ class OpenInstSectionDetails(OpenAPI):
                 'regid': person.uwregid,
                 'student_number': person.student_number,
                 'credits': registration.credits,
+                'is_auditor': registration.is_auditor,
                 'class': person.student_class,
                 'email': person.email1,
                 'url_key': get_url_key_for_regid(person.uwregid),
@@ -595,6 +596,7 @@ class OpenInstSectionDetails(OpenAPI):
             thread.join()
             registrations[regid]["name"] = thread.response["name"]
             registrations[regid]["surname"] = thread.response["surname"]
+            registrations[regid]["first_name"] = thread.response["first_name"]
             registrations[regid]["email"] = thread.response["email"]
 
             thread = enrollment_threads[regid]
@@ -613,6 +615,7 @@ class OpenInstSectionDetails(OpenAPI):
         sws_person = get_person_by_regid(person.uwregid)
         return {"name": sws_person.first_name.title(),
                 "surname": sws_person.last_name.title(),
+                "first_name": sws_person.first_name.title(),
                 "email": sws_person.email}
 
     def get_enrollments(self, person):

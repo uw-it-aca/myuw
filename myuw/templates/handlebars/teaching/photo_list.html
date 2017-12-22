@@ -3,21 +3,25 @@
 
 <div class="container">
 
-        <div id="photoclasslist_popup">
+    <div id="photoclasslist_popup">
 
-            <div class="myuw-card myuw-photo-list" data-name="PhotoClasslistPopupCard" data-type="card">
-                <div class="myuw-card-wrapper">
-                    {{ #if available_sections }}
-                    <div style="float:right;"><select id="available_sections">{{ #each available_sections }}<option value="{{ section_id }}">{{ name }}</option>{{ /each }}</select></div>
-                    {{ /if }}
-                    <h3 class="scheduleHeading myuw-card-title">{{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}, {{ toTitleCase quarter }} {{ year }}</h3>
+        <div class="myuw-card myuw-photo-list" data-name="PhotoClasslistPopupCard" data-type="card">
 
-                    <div class="course-meta">
-                        <span class="myuw-meta">SLN {{ sections.0.sln }}</span>
+            <div class="myuw-card-wrapper">
+                {{#if available_sections}}
+                    <div style="float:right;">
+                        <select id="available_sections">{{#each available_sections}}<option value="{{ section_id }}">{{ name }}</option>{{/each}}</select>
                     </div>
+                {{/if}}
+                <h3 class="scheduleHeading myuw-card-title">{{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}, {{ toTitleCase quarter }} {{ year }}</h3>
 
-                    <br/>
-                    <div id="classlist_controls" class="myuw-photo-list-controls">
+                <div class="course-meta">
+                    <span class="myuw-meta">SLN {{ sections.0.sln }}</span>
+                </div>
+
+                <br/>
+
+                <div id="classlist_controls" class="myuw-photo-list-controls">
 
                         <div class="controls-row-1">
                             <div class="myuw-photo-list-controls-view" role="tablist" aria-label="Views">
@@ -30,7 +34,7 @@
                             </div>
                             <div class="myuw-photo-list-controls-sort">
                                 Sort by:&nbsp;&nbsp;<select id="sort_list">
-                                    <option value="name,surname">First Name</option>
+                                    <option value="first_name,name">First Name</option>
                                     <option value="surname,name" selected="selected">Last Name</option>
                                     <option value="netid">UW NetID</option>
                                     <option value="class_code,surname,name">Class</option>
@@ -47,75 +51,77 @@
                             </div>
                         </div>
 
-                    </div>
+                </div>
 
-                    <div id="classlist_table_view" class="js-tab-panel" aria-labelledby="list_view" role="tabpanel" aria-hidden="false">
-                        <h4 class="sr-only">Table of Student Information</h4>
+                <div id="classlist_table_view" class="js-tab-panel" aria-labelledby="list_view" role="tabpanel" aria-hidden="false">
+                    <h4 class="sr-only">Table of Student Information</h4>
 
-                        <div class="table-responsive">
-                            <table class="table table-condensed table-hover" id="student_list">
-                                <thead>
-                                    <tr>
-                                        <th>Student No.</th>
-                                        <th>UW NetID</th>
-                                        <th>Last Name</th>
-                                        <th>First Name</th>
-                                        <th>Sex</th>
-                                        {{ #if linked_sections }}<th>QZ Section</th>{{ /if }}
-                                        <th>Credits</th>
-                                        <th>Class</th>
-                                        <th>Major</th>
-                                        <th><span class="sr-only">Email</span></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="student_sort">
-                                    {{ #each sections.0.registrations }}
-                                    <tr id="student_{{ regid }}">
-                                        <td>{{ student_number }}</td>
-                                        <td>{{ netid }}</td>
-                                        <td>{{ surname }}</td>
-                                        <td>{{ name }}</td>
-                                        <td>F/M</td>
-                                        {{ #if linked_sections }}
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-hover" id="student_list">
+                            <thead>
+                                <tr>
+                                    <th>Student No.</th>
+                                    <th>UW NetID</th>
+                                    <th>Last Name</th>
+                                    <th>First Name</th>
+                                    {{#if linked_sections}}<th>QZ Section</th>{{/if}}
+                                    <th>Credits</th>
+                                    <th>Class</th>
+                                    <th>Major</th>
+                                    <th><span class="sr-only">Email</span></th>
+                                </tr>
+                            </thead>
+                            <tbody id="student_sort">
+                                {{#each sections.0.registrations}}
+                                <tr id="student_{{ regid }}">
+                                    <td>{{ student_number }}</td>
+                                    <td>{{ netid }}</td>
+                                    <td>{{ surname }}</td>
+                                    <td>{{ first_name }}</td>
+                                    {{#if linked_sections}}
                                         <td>
-                                        {{ #each linked_sections }}
+                                        {{#each linked_sections}}
                                             {{ ucfirst type }} Section:&nbsp;&nbsp;
-                                            {{ #each sections }}
+                                            {{#each sections}}
                                                 {{ this }}
-                                            {{ /each }}
+                                            {{/each}}
                                             <br />
-                                        {{ /each }}
+                                        {{/each}}
                                         </td>
-                                        {{ /if }}
-                                        <td>{{ credits }}</td>
-                                        <td>{{ class }}</td>
-                                        <td>{{ #each majors }}{{ full_name }}{{#unless @last}},&nbsp;{{/unless}}{{ /each }}</td>
-                                        <td><a href="mailto:{{ email }}" title="Email {{name}} {{surname}}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">{{ email }}</span></a></td>
-                                    </tr>
-                                    {{ /each }}
-                                </tbody>
-                            </table>
-                        </div>
+                                    {{/if}}
+                                    <td>
+                                        {{#if is_auditor}}Audit{{else}}{{ credits }}{{/if}}
+                                    </td>
+                                    <td>{{ class }}</td>
+                                    <td>{{#each majors}}
+                                            {{ full_name }}{{#unless @last}},&nbsp;{{/unless}}
+                                        {{/each}}
+                                    </td>
+                                    <td><a href="mailto:{{ email }}" title="Email {{name}} {{surname}}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">{{ email }}</span></a></td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
                     </div>
+                </div>
 
-                    <div id="classlist_photogrid_view" class="js-tab-panel" aria-labelledby="grid_view" role="tabpanel" aria-hidden="true" hidden="true">
-                        <h4 class="sr-only">Grid of Student Photos</h4>
+                <div id="classlist_photogrid_view" class="js-tab-panel" aria-labelledby="grid_view" role="tabpanel" aria-hidden="true" hidden="true">
+                    <h4 class="sr-only">Grid of Student Photos</h4>
 
-                        <ol class="unstyled-list grid-view">
-                        {{ #each sections.0.registrations }}
+                    <ol class="unstyled-list grid-view">
+                        {{#each sections.0.registrations}}
                             <li id="studentphoto_{{ regid }}">
                                 <img class="classlist-photo myuw-photo-list-image" src="/photo/{{ url_key }}">
 
                                 <div class="myuw-photo-list-content">{{ name }} {{ surname }} more and more name</div>
 
                             </li>
-                        {{ /each }}
-                        </ol>
-                    </div>
-
+                        {{/each}}
+                    </ol>
                 </div>
+
             </div>
         </div>
-
+    </div>
 </div>
     {% endtplhandlebars %}

@@ -17,9 +17,10 @@ var PhotoClassList = {
         if (window.hasOwnProperty('section_data') &&
             window.section_data.hasOwnProperty('section')) {
 
-            WSData.fetch_instructed_section_details(window.section_data.section,
-                                                    PhotoClassList.render_upon_data,
-                                                    PhotoClassList.render_error);
+            WSData.fetch_instructed_section_details(
+                window.section_data.section,
+                PhotoClassList.render_upon_data,
+                PhotoClassList.render_error);
         }
         //PhotoClassList.make_html();
     },
@@ -30,8 +31,8 @@ var PhotoClassList = {
         var template = Handlebars.compile(source);
         var data = WSData.instructed_section_details();
         var registrations = data.sections[0].registrations;
-        data.sections[0].registrations = PhotoClassList.sort_students(registrations,
-                                                                      'surname,name');
+        data.sections[0].registrations = PhotoClassList.sort_students(
+            registrations, 'surname,name');
 
         if (window.section_data.hasOwnProperty('available_sections') &&
                 window.section_data.available_sections.length > 1) {
@@ -147,11 +148,14 @@ var PhotoClassList = {
         var registrations = PhotoClassList.sort_students(data.registrations,
                                                          'surname,name');
         var lines = [],
-            header = ["Student Number", "UW NetID", "Name", "Last Name"],
+            header = ["Student Number", "UW NetID", "Last Name", "First Name"],
             type;
         for (var i = 0; i < data.linked_types.length; i++) {
             type = data.linked_types[i];
-            var upper = type.replace(/^([a-z])/, function(match) { return match.toUpperCase(); });
+            var upper = type.replace(/^([a-z])/,
+                                     function(match) {
+                                         return match.toUpperCase();
+                                     });
             header.push(upper+" Section");
         }
 
@@ -173,8 +177,8 @@ var PhotoClassList = {
 
             var fields = [reg.student_number,
                           reg.netid,
-                          reg.name,
-                          reg.surname];
+                          reg.surname,
+                          reg.first_name];
 
             for (j = 0; j < data.linked_types.length; j++) {
                 type = data.linked_types[j];
@@ -186,7 +190,8 @@ var PhotoClassList = {
                 }
             }
 
-            fields.push(reg.credits,
+            var credits = reg.is_auditor?"Audit":reg.credits;
+            fields.push(credits,
                         reg.class,
                         PhotoClassList.combine_majors(reg.majors),
                         reg.email);
@@ -202,7 +207,9 @@ var PhotoClassList = {
         var blob = new Blob([download], {type: "text/csv" });
 
         var section = data.sections[0];
-        var filename = PhotoClassList.download_name(section, data.year, data.quarter);
+        var filename = PhotoClassList.download_name(section,
+                                                    data.year,
+                                                    data.quarter);
         // from http://stackoverflow.com/questions/3665115/create-a-file-in-memory-for-user-to-download-not-through-server
         if(window.navigator.msSaveOrOpenBlob) {
             window.navigator.msSaveBlob(blob, filename);
@@ -225,7 +232,7 @@ var PhotoClassList = {
             source,
             course_template;
 
-        if (error_code == 410) {
+        if (error_code === 410) {
             Error410.render();
             return;
         }
@@ -248,7 +255,7 @@ var PhotoClassList = {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.PhotoClassList = PhotoClassList;
