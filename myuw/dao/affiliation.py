@@ -4,7 +4,6 @@ This module provides affiliations of the current user
 
 import logging
 import traceback
-from django.conf import settings
 from myuw.logger.logback import log_info
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.schedule import get_current_quarter_schedule

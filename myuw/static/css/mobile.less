@@ -331,11 +331,12 @@ label { font-weight: normal; margin-bottom: auto; }
 	.message-banner {background-color: #558097;color:#fff; //#72adcb too light
         p {margin:0;}
 	    h2 { font-size: 15px; display: inline; font-weight: bold; }
-        .advert {
-            background: #F5E200; color: blue;
-            a#survey {color: blue;}
-        }
-		.message-text {padding:10px 15px;font-size: 15px;text-align: center;
+
+		.message-text { padding:10px 15px;font-size: 15px;text-align: center;
+            .message {
+                margin-bottom: 1em;
+            }
+            .message:last-child { margin: 0; }
 			a {text-decoration: underline; color:#fff;
 				&.btn-link {padding: 0;margin: 0;vertical-align: 0;font-size: inherit;}
 			}
@@ -344,9 +345,15 @@ label { font-weight: normal; margin-bottom: auto; }
 					button {padding: 0;margin: 0;vertical-align: 0;font-size: inherit;text-decoration: underline; color:#fff;}
 				}
 			}
+            .message-loud { // Used to highlight banner messages
+                background: #F5E200;
+                color: blue;
+                a { color: blue; }
+            }
 		}
 	}
 }
+
 .message-dialog {
 	.modal-content {
 		h3 {margin-bottom: 10px;font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: 18px;color: #85754d;}
