@@ -93,61 +93,61 @@
 
 }
 
-        /* Not the first row */
-        .row + .row { padding-top: 16px; }
+/* Not the first row */
+.row + .row { padding-top: 16px; }
 
-        @media @two-column {
-            .row + .row { padding-top: 8px; }
-        }
+@media @two-column {
+    .row + .row { padding-top: 8px; }
+}
 
-        // target the very last section of a card by usign the "last" class
-        &.last {
+// target the very last section of a card by usign the "last" class
+&.last {
 
-            // remove the bottom border for last element
-            .col-sm-9 {
-                border-bottom: none !important;
-                padding-bottom: 0 !important;
-            }
-        }
+    // remove the bottom border for last element
+    .col-sm-9 {
+        border-bottom: none !important;
+        padding-bottom: 0 !important;
+    }
+}
 
-        /*** workday specific link (need to move this)***/
-        .workday-link {
-            display: inline-block;
-            line-height: 30px;
-            background-position: 0 50% !important;
-            padding-left: 28px !important;
-        }
+/*** workday specific link (need to move this)***/
+.workday-link {
+    display: inline-block;
+    line-height: 30px;
+    background-position: 0 50% !important;
+    padding-left: 28px !important;
+}
+
+.myuw-card-section-fulldivider {
+    padding-top: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #EDEDED;
+
+    &.last {
+        border-bottom: none;
+        padding-bottom: 0;
     }
 
-    .myuw-card-section-fulldivider {
-        padding-top: 16px;
-        padding-bottom: 8px;
-        border-bottom: 1px solid #EDEDED;
+    /* Not the first row */
+    .row + .row { padding-top: 8px; }
 
-        &.last {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        /* Not the first row */
+    @media @two-column {
         .row + .row { padding-top: 8px; }
-
-        @media @two-column {
-            .row + .row { padding-top: 8px; }
-        }
-
     }
 
+}
 
-    /*** card section heading ***/
-    .myuw-card-row-heading {
-        margin: 0 16px 8px 0;
-        margin-right: 16px;
-        line-height: inherit;
-        font-family: @fontface-body;
-        font-size: @font-base;
-        font-weight: bold;
-        color: #333;
+
+/*** card section heading ***/
+.myuw-card-row-heading {
+    margin: 0 16px 8px 0;
+    margin-right: 16px;
+    line-height: inherit;
+    font-family: @fontface-body;
+    font-size: @font-base;
+    font-weight: bold;
+    color: #333;
+}
 
 #app_content {
     .myuw-article {
