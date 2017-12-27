@@ -33,6 +33,11 @@ class OpenAPI(View):
                             status=status,
                             content_type='application/json')
 
+    def html_response(self, content='', status=200):
+        return HttpResponse(content,
+                            status=status,
+                            content_type='text/html')
+
 
 @method_decorator(login_required, name='dispatch')
 class ProtectedAPI(OpenAPI):
