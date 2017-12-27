@@ -41,6 +41,7 @@ var Landing = {
     _load_desktop_cards: function() {
         Landing._reset_content_divs();
         var desktop_body_cards = [
+            HuskyExperienceCard,
             ThriveCard,
             OutageCard,
             GradeCard,
@@ -79,6 +80,7 @@ var Landing = {
     _load_mobile_cards: function() {
         Landing._reset_content_divs();
         var mobile_cards = [
+            HuskyExperienceCard,
             SeattleApplicationCard,
             BothellApplicationCard,
             TacomaApplicationCard,
