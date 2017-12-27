@@ -36,7 +36,7 @@ var InstructorCourseCards = {
     },
 
     _render_error: function(error_code) {
-        if (error_code == 410) {
+        if (error_code === 410) {
             Error410.render();
             return;
         }
@@ -103,7 +103,7 @@ var InstructorCourseCards = {
 
         $.each(course_data.related_terms, function () {
             var term_id = this.year +","+this.quarter.toLowerCase();
-            if (term_id == InstructorCourseCards.term) {
+            if (term_id === InstructorCourseCards.term) {
                 this.matching_term = true;
             }
             else {
@@ -178,7 +178,7 @@ var InstructorCourseCards = {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.InstructorCourseCards = InstructorCourseCards;

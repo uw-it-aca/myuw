@@ -188,10 +188,10 @@ WSData = {
             WSData._normalize_instructors(course_data);
 
             $.each(course_data.related_terms, function () {
-                this.is_current = (window.term.year == this.year &&
-                                   window.term.quarter.toLowerCase() == this.quarter.toLowerCase());
-                this.matching_term = (course_data.year == this.year &&
-                                      course_data.quarter.toLowerCase() == this.quarter.toLowerCase());
+                this.is_current = (parseInt(window.term.year) === this.year &&
+                                   window.term.quarter.toLowerCase() === this.quarter.toLowerCase());
+                this.matching_term = (course_data.year === this.year &&
+                                      course_data.quarter.toLowerCase() === this.quarter.toLowerCase());
             });
 
             var grading_is_open = course_data.grading_period_is_open;
@@ -280,7 +280,7 @@ WSData = {
                     this.grading_status.all_grades_submitted =
                         (this.grading_status.unsubmitted_count === 0);
                     if (this.grading_status.submitted_date &&
-                        this.grading_status.submitted_date != 'None') {
+                        this.grading_status.submitted_date !== 'None') {
                         var submitted = moment(this.grading_status.submitted_date);
                         if (Math.abs(submitted.diff(ref, 'days')) > month_to_day_shift) {
                             this.grading_status.submitted_relative_date = submitted.format(fmt) + ' PST';
@@ -614,14 +614,14 @@ WSData = {
         $.each(results.sections, function () {
             var canvas_url = this.canvas_url;
             if (canvas_url) {
-                if (this.class_website_url == canvas_url) {
+                if (this.class_website_url === canvas_url) {
                     this.class_website_url = null;
                 }
                 var matches = canvas_url.match(/\/([0-9]+)$/);
                 var canvas_id = matches[1];
                 var alternate_url = "https://uw.instructure.com/courses/"+canvas_id;
 
-                if (this.class_website_url == alternate_url) {
+                if (this.class_website_url === alternate_url) {
                     this.class_website_url = null;
                 }
             }
@@ -837,8 +837,12 @@ WSData = {
     },
 
     _sort_instructors_by_last_name: function(a, b) {
-        if (a.surname < b.surname) return -1;
-        if (a.surname > b.surname) return 1;
+        if (a.surname < b.surname){
+            return -1;
+        }
+        if (a.surname > b.surname){
+            return 1;
+        }
         return 0;
     },
 
@@ -1408,7 +1412,7 @@ WSData = {
 };
 
 /* node.js exports */
-if (typeof exports == "undefined") {
+if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.WSData = WSData;

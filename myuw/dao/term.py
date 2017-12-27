@@ -5,7 +5,6 @@ This module direct interfaces with restclient for the term data
 from datetime import date, datetime, timedelta
 import logging
 import pytz
-from django.conf import settings
 from django.utils import timezone
 from uw_sws.models import Term
 from uw_sws.util import convert_to_begin_of_day, convert_to_end_of_day

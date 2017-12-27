@@ -1,5 +1,14 @@
 @import (reference) "boilerplate.less";
-@import (reference) "typography.less";
+
+
+/*** Responsive Utility ***/
+
+/* Hides elements when browser width is greater than 1024px; */
+.myuw-hidden-desktop {
+    @media @desktop {
+        display: none !important;
+    }
+}
 
 /*** modals ***/
 .myuw-modal {
@@ -142,7 +151,7 @@
         }
 
     }
-	
+
 
     /*** card section heading ***/
     .myuw-card-row-heading {
