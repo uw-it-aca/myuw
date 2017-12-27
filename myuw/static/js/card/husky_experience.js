@@ -3,7 +3,7 @@ var HuskyExperienceCard = {
     dom_target: undefined,
 
     hide_card: function() {
-        return false;
+        return !window.user.is_hxt_viewer;
     },
 
     render_init: function() {
