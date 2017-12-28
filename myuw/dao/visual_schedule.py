@@ -45,7 +45,7 @@ def _get_off_term_trimmed(visual_schedule):
                                                  section.course_number,
                                                  section.section_id)
                 seen_sections[section_slug] = section
-    print seen_sections
+
     for slug, section in seen_sections.iteritems():
         trimmed_sections.append({'section': slug,
                                  'end_date': section.real_end_date})
