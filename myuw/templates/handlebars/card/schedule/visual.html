@@ -92,7 +92,13 @@
         </div>
         {{/if}}
         <!-- end week view -->
-    
+
+        <!-- begin - if there are courses that end after the quarter -->
+        <h1>OTT</h1>
+        {{#each off_term_trimmed}}
+        <p>Note: {{ section }} continues until {{ toFriendlyDate end_date }}</p>
+        {{/each}}
+        <!-- end - if there are courses that end after the quarter -->
 
         <!-- begin - if there are no meetings -->
         {{#if courses_no_meeting }}

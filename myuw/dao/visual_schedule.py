@@ -31,7 +31,25 @@ def get_schedule_json(visual_schedule, term):
         'quarter': term.quarter,
         'last_final_exam_date': term.last_final_exam_date
     }
+    response['off_term_trimmed'] = _get_off_term_trimmed(visual_schedule)
     return response
+
+
+def _get_off_term_trimmed(visual_schedule):
+    seen_sections = {}
+    trimmed_sections = []
+    for period in visual_schedule:
+        for section in period.sections:
+            if hasattr(section, 'real_end_date'):
+                section_slug = '{} {} {}'.format(section.curriculum_abbr,
+                                                 section.course_number,
+                                                 section.section_id)
+                seen_sections[section_slug] = section
+    print seen_sections
+    for slug, section in seen_sections.iteritems():
+        trimmed_sections.append({'section': slug,
+                                 'end_date': section.real_end_date})
+    return trimmed_sections
 
 
 def get_future_visual_schedule(term, summer_term=None):
@@ -132,6 +150,8 @@ def _get_visual_schedule_from_schedule(schedule):
         consolidated = a_consolidated + b_consolidated
 
     else:
+        # find sections beyond term
+        _adjust_off_term_dates(schedule)
         bounds = get_schedule_bounds(schedule)
         weeks = _get_weeks_from_bounds(bounds)
         weeks = _add_sections_to_weeks(schedule.sections, weeks)
@@ -144,6 +164,15 @@ def _get_visual_schedule_from_schedule(schedule):
     if len(finals.sections) > 0:
         consolidated.append(finals)
     return consolidated
+
+
+def _adjust_off_term_dates(schedule):
+    qtr_end_date = schedule.term.last_day_instruction
+    for section in schedule.sections:
+        if section.end_date > qtr_end_date:
+            print 'trimmed', section.curriculum_abbr
+            section.real_end_date = section.end_date
+            section.end_date = qtr_end_date
 
 
 def _add_course_colors_to_schedule(schedule):
@@ -502,7 +531,6 @@ class SchedulePeriod():
         self.start_date = None
         self.end_date = None
         self.sections = []
-        self.is_boundary_period = False
         self.meets_saturday = False
         self.meets_sunday = False
         self.is_finals = False

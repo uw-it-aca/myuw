@@ -83,7 +83,6 @@ var VisualScheduleCard = {
                     var has_meetings = VisualScheduleCard._meeting_has_meetings(meeting);
                     var seen = false;
                     if (!meeting.days_tbd && has_meetings) {
-
                         var start_parts = meeting.start_time.split(":");
                         var start_minutes = parseInt(start_parts[0], 10) * 60 + parseInt(start_parts[1], 10);
 
@@ -137,6 +136,7 @@ var VisualScheduleCard = {
                         });
                     }
                     else {
+                        console.log('else no mtgs');
                         $.each(visual_data.courses_no_meeting, function () {
                             if (this.section_index === section_index) {
                                 seen = true;
@@ -272,6 +272,9 @@ var VisualScheduleCard = {
     },
 
     render_schedule: function(data){
+        // Add in off_term data
+        var schedule_data = WSData.visual_schedule_data(VisualScheduleCard.term);
+        data.off_term_trimmed = schedule_data.off_term_trimmed;
         var source = $("#visual_schedule_card_content").html();
         var template = Handlebars.compile(source);
         var t = template(data);
