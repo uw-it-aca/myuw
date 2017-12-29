@@ -131,6 +131,7 @@ def _get_visual_schedule_from_schedule(schedule):
     _add_course_colors_to_schedule(schedule)
     _add_dates_to_sections(schedule)
     if _is_split_summer(schedule):
+        _adjust_off_term_dates(schedule)
         a_bounds, b_bounds = get_summer_schedule_bounds(schedule)
         a_weeks = _get_weeks_from_bounds(a_bounds)
 
@@ -160,17 +161,25 @@ def _get_visual_schedule_from_schedule(schedule):
         consolidated = _consolidate_weeks(weeks)
 
     _add_weekend_meeting_data(consolidated)
+    consolidated = _remove_empty_periods(consolidated)
+
     finals = _get_finals_period(schedule)
     if len(finals.sections) > 0:
         consolidated.append(finals)
     return consolidated
 
 
+def _remove_empty_periods(schedule):
+    periods = []
+    for period in schedule:
+        if len(period.sections) > 0:
+            periods.append(period)
+    return periods
+
 def _adjust_off_term_dates(schedule):
     qtr_end_date = schedule.term.last_day_instruction
     for section in schedule.sections:
         if section.end_date > qtr_end_date:
-            print 'trimmed', section.curriculum_abbr
             section.real_end_date = section.end_date
             section.end_date = qtr_end_date
 

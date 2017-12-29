@@ -74,7 +74,6 @@ var VisualScheduleCard = {
             meets_sunday: false
         };
 
-
         var set_meeting = function(course_data) {
             $.each(course_data.sections, function(section_index) {
                 var section = this;
