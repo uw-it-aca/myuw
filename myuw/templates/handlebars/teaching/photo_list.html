@@ -37,11 +37,9 @@
                                     <option value="surname,first_name" selected="selected">Last Name</option>
                                     <option value="first_name,surname">First Name</option>
                                     <option value="netid">UW NetID</option>
-                                    <option value="class_code,surname,first_name">Class</option>
-                                    <option value="credits,surname,first_name">Credits</option>
-                                    {{ #each sections.0.linked_types }}
-                                    <option value="linked_type_{{ this }},surname,first_name">{{ ucfirst this }} Section</option>
-                                    {{ /each }}
+                                    <option value="class_code">Class</option>
+                                    <option value="credits">Credits</option>
+                                    <option value="linked_sections">QZ Sect</option>
                                 </select>
                             </div>
                         </div>
@@ -64,7 +62,7 @@
                                     <th>UW NetID</th>
                                     <th>Last Name</th>
                                     <th>First Name</th>
-                                    {{#if linked_sections}}<th>QZ Section</th>{{/if}}
+                                    <th>QZ Sect</th>
                                     <th>Credits</th>
                                     <th>Class</th>
                                     <th>Major</th>
@@ -73,26 +71,16 @@
                             </thead>
                             <tbody id="student_sort">
                                 {{#each sections.0.registrations}}
-                                <tr id="student_{{ regid }}">
+                                <tr id="student_{{regid}}">
                                     <td>{{ student_number }}</td>
                                     <td>{{ netid }}</td>
                                     <td>{{ surname }}</td>
                                     <td>{{ first_name }}</td>
-                                    {{#if linked_sections}}
-                                        <td>
-                                        {{#each linked_sections}}
-                                            {{ ucfirst type }} Section:&nbsp;&nbsp;
-                                            {{#each sections}}
-                                                {{ this }}
-                                            {{/each}}
-                                            <br />
-                                        {{/each}}
-                                        </td>
-                                    {{/if}}
+                                    <td>{{ linked_sections }}</td>
                                     <td>
                                         {{#if is_auditor}}Audit{{else}}{{ credits }}{{/if}}
                                     </td>
-                                    <td>{{ class }}</td>
+                                    <td>{{ class_level }}</td>
                                     <td>{{#each majors}}
                                             {{ full_name }}{{#unless @last}},&nbsp;{{/unless}}
                                         {{/each}}

@@ -31,6 +31,7 @@ var PhotoClassList = {
         var template = Handlebars.compile(source);
         var data = WSData.instructed_section_details();
         var registrations = data.sections[0].registrations;
+
         data.sections[0].registrations = PhotoClassList.sort_students(
             registrations, 'surname,name');
 
@@ -151,30 +152,14 @@ var PhotoClassList = {
 
         for (i = 0; i < registrations.length; i++) {
             var reg = registrations[i];
-
-            var linked = reg.linked_sections;
-
-            var linked_sections = [];
-            for (var j = 0; j < linked.length; j++) {
-                if (linked[j].sections.length) {
-                    linked_sections = linked_sections.concat(linked[j].sections);
-                }
-            }
-
             var fields = [reg.student_number,
                           reg.netid,
                           reg.surname,
-                          reg.first_name];
-
-            if (linked_sections.length) {
-                fields.push(linked_sections.join(" "));
-            } else {
-                fields.push("");
-            }
-
+                          reg.first_name,
+                          reg.linked_sections];
             var credits = reg.is_auditor?"Audit":reg.credits;
             fields.push(credits,
-                        reg.class_code.toString(),
+                        reg.class_level,
                         PhotoClassList.combine_majors(reg.majors),
                         reg.email);
 

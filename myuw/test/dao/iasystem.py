@@ -29,6 +29,9 @@ class IASystemDaoTest(TestCase):
         section = get_section_by_label('2013,spring,BIGDATA,230/A')
         self.assertEqual(_get_evaluations_domain(section), "pce_ol")
 
+        section = get_section_by_label('2013,winter,PSYCH,203/A')
+        self.assertEqual(_get_evaluations_domain(section), "pce_ol")
+
     def test_summer_term_overlaped(self):
         term = Term()
         term.year = 2013

@@ -20,9 +20,11 @@ CLASS_CODES = {
     "SOPHOMORE": 2,
     "JUNIOR": 3,
     "SENIOR": 4,
-    "GRADUATE": 5,
+    "POST-BACCALAUREATE": 5,
+    "NON_MATRIC": 6,
+    "GRADUATE": 8
 }
-DEFAULT_CLASS_CODE = 6
+DEFAULT_CLASS_CODE = 9
 logger = logging.getLogger(__name__)
 
 

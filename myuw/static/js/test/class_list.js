@@ -84,7 +84,7 @@ describe("PhotoClassList", function() {
                                  "regid": "9136CCB8F66711D5BE060004AC494003",
                                  "student_number": "1033003",
                                  "url_key": "9136CCB8F66711D5BE060004AC494003",
-                                 "class": "FRESHMAN",
+                                 "class_level": "FRESHMAN",
                                  "majors": [{"degree_name": null,
                                              "short_name": "B PRE",
                                              "name": "TRAIN",
@@ -96,7 +96,7 @@ describe("PhotoClassList", function() {
                                              "campus": "Bothell"}],
                                  "name": "Jane",
                                  "netid": "javg003",
-                                 "linked_sections": [],
+                                 "linked_sections": "",
                                  "class_code": 1,
                                  "email": "javg003@uw.edu"},
                                 {"surname": "Student2",
@@ -106,7 +106,7 @@ describe("PhotoClassList", function() {
                                  "regid": "9136CCB8F66711D5BE060004AC494002",
                                  "student_number": "1033002",
                                  "url_key": "9136CCB8F66711D5BE060004AC494002",
-                                 "class": "JUNIOR",
+                                 "class_level": "JUNIOR",
                                  "majors": [{"degree_name": null,
                                              "short_name": "B PRE",
                                              "name": "TRAIN",
@@ -118,7 +118,7 @@ describe("PhotoClassList", function() {
                                              "campus": "Bothell"}],
                                  "name": "Jade",
                                  "netid": "javg002",
-                                 "linked_sections": [],
+                                 "linked_sections": "",
                                  "class_code": 3,
                                  "email": "javg002@uw.edu"},
                                 {"surname": "Student1",
@@ -128,7 +128,7 @@ describe("PhotoClassList", function() {
                                  "regid": "9136CCB8F66711D5BE060004AC494001",
                                  "student_number": "1033001",
                                  "url_key": "9136CCB8F66711D5BE060004AC494001",
-                                 "class": "SOPHOMORE",
+                                 "class_level": "SOPHOMORE",
                                  "majors": [{"degree_name": "ASD",
                                              "short_name": "UPCOM",
                                              "name": "UPCOM",
@@ -140,8 +140,7 @@ describe("PhotoClassList", function() {
                                              "campus": "Tacoma"}],
                                  "name": "Jake",
                                  "netid": "javg001",
-                                 "linked_sections": [{sections: ["A1"], type: "funtimes"},
-                                                     {sections: ["AQ"], type: "quiz"}],
+                                 "linked_sections": "A1 AQ",
                                  "class_code": 2,
                                  "email": "javg001@uw.edu"}],
                 };
@@ -156,7 +155,7 @@ describe("PhotoClassList", function() {
             assert.equal(row1[3], '"Jake"');
             assert.equal(row1[4], '"A1 AQ"');
             assert.equal(row1[5], '"2.0"');
-            assert.equal(row1[6], '"2"');
+            assert.equal(row1[6], '"SOPHOMORE"');
             assert.equal(row1[7], '"UPCOM (Tacoma Campus)"');
             assert.equal(row1[8], '"javg001@uw.edu"');
 

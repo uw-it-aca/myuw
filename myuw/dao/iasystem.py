@@ -19,12 +19,15 @@ logger = logging.getLogger(__name__)
 
 
 def _get_evaluations_domain(section):
-    if section.is_campus_pce() or\
-       section.course_campus is None:
-        if section.lms_ownership is not None:
-            return section.lms_ownership.lower()
-        return "pce"
-    return section.course_campus.lower()
+    if section.lms_ownership is None or\
+       section.lms_ownership.lower() == "campus":
+        if not section.is_campus_pce() and\
+           section.course_campus is not None:
+            return section.course_campus.lower()
+
+    if section.lms_ownership is not None:
+        return section.lms_ownership.lower()
+    return "pce"
 
 
 def get_evaluations_by_section(section):
