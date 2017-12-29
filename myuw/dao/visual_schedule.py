@@ -176,6 +176,7 @@ def _remove_empty_periods(schedule):
             periods.append(period)
     return periods
 
+
 def _adjust_off_term_dates(schedule):
     qtr_end_date = schedule.term.last_day_instruction
     for section in schedule.sections:
