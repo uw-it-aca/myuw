@@ -23,10 +23,10 @@ def _get_evaluations_domain(section):
        section.lms_ownership.lower() == "campus":
         if not section.is_campus_pce() and\
            section.course_campus is not None:
-            return section.course_campus.lower()
+            return section.course_campus
 
     if section.lms_ownership is not None:
-        return section.lms_ownership.lower()
+        return section.lms_ownership
     return "pce"
 
 

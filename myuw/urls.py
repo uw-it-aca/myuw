@@ -21,6 +21,7 @@ from myuw.views.photo import show_photo
 from myuw.views.academics import academics
 from myuw.views.accounts import accounts
 from myuw.views.profile import profile
+from myuw.views.husky_experience import husky_experience
 from myuw.views.link import outbound_link
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.instructor_section import (InstSectionDetails,
@@ -50,6 +51,8 @@ from myuw.views.api.upass import UPass
 from myuw.views.api.link import ManageLinks
 from myuw.views.api.directory import MyDirectoryInfo
 from myuw.views.lti.photo_list import LTIPhotoList
+from myuw.views.api.hx_toolkit import HxToolkitMessage, HxToolkitWeekMessage, \
+    HxToolkitMessageList
 
 
 urlpatterns = []
@@ -170,6 +173,15 @@ urlpatterns += [
     url(r'^api/v1/thrive/$',
         ThriveMessages.as_view(),
         name="myuw_thrive_api"),
+    url(r'^api/v1/hx_toolkit/week/$',
+        HxToolkitWeekMessage.as_view(),
+        name="myuw_hxtoolkit_week_api"),
+    url(r'^api/v1/hx_toolkit/list/$',
+        HxToolkitMessageList.as_view(),
+        name="myuw_hxtoolkit_list_api"),
+    url(r'^api/v1/hx_toolkit/(?P<article_id>.*?)$',
+        HxToolkitMessage.as_view(),
+        name="myuw_hxtoolkit_api"),
     url(r'^api/v1/directory/$',
         MyDirectoryInfo.as_view(),
         name="myuw_directory_api"),
@@ -178,6 +190,10 @@ urlpatterns += [
     url(r'^academics/?$', academics, name="myuw_academics_page"),
     url(r'^accounts/?$', accounts, name="myuw_accounts_page"),
     url(r'^profile/?$', profile, name="myuw_profile_page"),
+    url(r'^husky_experience_message/?$', husky_experience,
+        name="myuw_husky_experience_message_page"),
+    url(r'^husky_experience/?$', husky_experience,
+        name="myuw_husky_experience_page"),
     url(r'^search/?$', search_res, name="myuw_search_res_page"),
     url(r'^teaching/(?P<year>2[0-9]{3}),(?P<quarter>[A-Za-z]+),'
         r'(?P<section>[\w& ]+,\d{3}\/[A-Z][A-Z0-9]?)$',
