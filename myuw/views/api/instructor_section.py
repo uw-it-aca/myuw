@@ -126,11 +126,11 @@ class OpenInstSectionDetails(OpenAPI):
         enrollment_threads = {}
 
         for registration in section.registrations:
-            person = registration.person
+            person = registration.person  # pws person
             regid = person.uwregid
 
             name_email_thread = ThreadWithResponse(target=self.get_person_info,
-                                                   args=(person,))
+                                                   args=(regid,))
             enrollment_thread = ThreadWithResponse(target=self.get_enrollments,
                                                    args=(regid,))
 
@@ -146,7 +146,7 @@ class OpenInstSectionDetails(OpenAPI):
                 'student_number': person.student_number,
                 'credits': registration.credits,
                 'is_auditor': registration.is_auditor,
-                'class': person.student_class,
+                'class_level': person.student_class,
                 'email': person.email1,
                 'url_key': get_url_key_for_regid(person.uwregid),
             }
@@ -172,12 +172,13 @@ class OpenInstSectionDetails(OpenAPI):
             registration_list.append(registrations[regid])
         section_data["registrations"] = registration_list
 
-    def get_person_info(self, person):
-        sws_person = get_person_by_regid(person.uwregid)  # sws person
+    def get_person_info(self, regid):
+        sws_person = get_person_by_regid(regid)
         try:
             fname = sws_person.first_name.title()
         except AttributeError:
             fname = ""
+
         return {"first_name": fname,
                 "surname": sws_person.last_name.title(),
                 "email": sws_person.email}

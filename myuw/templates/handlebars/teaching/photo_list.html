@@ -23,35 +23,37 @@
 
                 <div id="classlist_controls" class="myuw-photo-list-controls">
 
-                        <div class="controls-row-1">
-                            <div class="myuw-photo-list-controls-view" role="tablist" aria-label="Views">
-                                <div class="myuw-tab myuw-tab-selected">
-                                    <a id="list_view" href="#" class="myuw-iconlink myuw-tab-label" role="tab" aria-controls="classlist_table_view" aria-selected="true"><i class="fa fa-table" aria-hidden="true"></i>Table</a>
-                                </div>
-                                <div class="myuw-tab">
-                                    <a id="grid_view" href="#" class="myuw-iconlink myuw-tab-label" role="tab" aria-controls="classlist_photogrid_view" aria-selected="false"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Photo Grid</a>
-                                </div>
+                    <div class="controls-row-1">
+                        <div class="myuw-photo-list-controls-view" role="tablist" aria-label="Views">
+                            <div class="myuw-tab myuw-tab-selected">
+                                <a id="list_view" href="#" class="myuw-iconlink myuw-tab-label" role="tab" aria-controls="classlist_table_view" aria-selected="true"><i class="fa fa-table" aria-hidden="true"></i>Table</a>
                             </div>
-                            <div class="myuw-photo-list-controls-sort">
-                                Sort by:&nbsp;&nbsp;<select id="sort_list">
-                                    <option value="surname,first_name" selected="selected">Last Name</option>
+
+                            <div class="myuw-tab">
+                                <a id="grid_view" href="#" class="myuw-iconlink myuw-tab-label" role="tab" aria-controls="classlist_photogrid_view" aria-selected="false"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Photo Grid</a>
+                            </div>
+                        </div>
+
+                        <div id="class-list-sort-controls" class="myuw-photo-list-controls-sort">
+                            Sort by:&nbsp;&nbsp;<select id="sort_list">
+                                <option value="surname,first_name" selected="selected">Last Name</option>
                                     <option value="first_name,surname">First Name</option>
                                     <option value="netid">UW NetID</option>
                                     <option value="class_code">Class</option>
                                     <option value="credits">Credits</option>
                                     <option value="linked_sections">QZ Sect</option>
-                                </select>
-                            </div>
+                            </select>
                         </div>
-                        <div class="controls-row-2">
-                            <div class="myuw-photo-list-controls-actions">
-                                <a href="#" id="download_class_list" class="myuw-iconlink"><i class="fa fa-download"></i>Download (CSV)</a> <a href="javascript:window.print()" class="classlist-print myuw-iconlink"><i class="fa fa-print"></i>Print</a>
-                            </div>
+                    </div>
+                    <div class="controls-row-2">
+                        <div class="myuw-photo-list-controls-actions">
+                            <a href="#" id="download_class_list" class="myuw-iconlink"><i class="fa fa-download"></i>Download (CSV)</a> <a href="javascript:window.print()" class="classlist-print myuw-iconlink"><i class="fa fa-print"></i>Print</a>
                         </div>
-
+                    </div>
                 </div>
 
-                <div id="classlist_table_view" class="js-tab-panel" aria-labelledby="list_view" role="tabpanel" aria-hidden="false">
+                <div id="classlist_table_view" class="js-tab-panel"
+                     aria-labelledby="list_view" role="tabpanel" aria-hidden="false">
                     <h4 class="sr-only">Table of Student Information</h4>
 
                     <div class="table-responsive">
@@ -85,7 +87,7 @@
                                             {{ full_name }}{{#unless @last}},&nbsp;{{/unless}}
                                         {{/each}}
                                     </td>
-                                    <td><a href="mailto:{{ email }}" title="Email {{name}} {{surname}}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">{{ email }}</span></a></td>
+                                    <td><a href="mailto:{{email}}" title="Email {{name}} {{surname}}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">{{email}}</span></a></td>
                                 </tr>
                                 {{/each}}
                             </tbody>
@@ -93,16 +95,17 @@
                     </div>
                 </div>
 
-                <div id="classlist_photogrid_view" class="js-tab-panel" aria-labelledby="grid_view" role="tabpanel" aria-hidden="true" hidden="true">
+                <div id="classlist_photogrid_view" class="js-tab-panel"
+                     aria-labelledby="grid_view" role="tabpanel" aria-hidden="true" hidden="true">
                     <h4 class="sr-only">Grid of Student Photos</h4>
 
                     <ol class="unstyled-list grid-view">
                         {{#each sections.0.registrations}}
                             <li id="studentphoto_{{ regid }}">
-                                <img class="classlist-photo myuw-photo-list-image" src="/photo/{{ url_key }}">
+                                <img class="classlist-photo myuw-photo-list-image"
+                                     src="/photo/{{ url_key }}">
 
-                                <div class="myuw-photo-list-content">{{ name }} {{ surname }} more and more name</div>
-
+                                <div class="myuw-photo-list-content">{{first_name}} {{surname}}</div>
                             </li>
                         {{/each}}
                     </ol>

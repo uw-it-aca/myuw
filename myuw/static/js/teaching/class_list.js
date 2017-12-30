@@ -63,12 +63,26 @@ var PhotoClassList = {
 
         $("#list_view").on("click", function(e) {
             e.preventDefault();
-            $("#student_sort").removeClass("grid-view");
+            $("#classlist_photogrid_view").attr("aria-hidden", true);
+            $("#classlist_photogrid_view").attr("hidden", true);
+            $("#classlist_table_view").attr("aria-hidden", false);
+            $("#classlist_table_view").attr("hidden", false);
+            $("#class-list-sort-controls").attr("aria-hidden", false);
+            $("#class-list-sort-controls").attr("hidden", false);
+            $("#list_view").attr("aria-selected", true);
+            $("#grid_view").attr("aria-selected", false);
         });
 
         $("#grid_view").on("click", function(e) {
             e.preventDefault();
-            $("#student_sort").addClass("grid-view");
+            $("#classlist_table_view").attr("aria-hidden", true);
+            $("#classlist_table_view").attr("hidden", true);
+            $("#classlist_photogrid_view").attr("aria-hidden", false);
+            $("#classlist_photogrid_view").attr("hidden", false);
+            $("#class-list-sort-controls").attr("aria-hidden", true);
+            $("#class-list-sort-controls").attr("hidden", true);
+            $("#list_view").attr("aria-selected", false);
+            $("#grid_view").attr("aria-selected", true);
         });
 
         $("#available_sections").on("change", function() {
