@@ -39,8 +39,8 @@ var PhotoClassList = {
                 window.section_data.available_sections.length > 1) {
             data.available_sections = window.section_data.available_sections;
         }
-
-        $("#main-content").html(template(data));
+        var raw = template(data);
+        $("#main-content").html(raw);
 
         // add event handlers
         $("#download_class_list").on("click", PhotoClassList.download_list);
