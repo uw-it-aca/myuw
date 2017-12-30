@@ -53,9 +53,17 @@ var InstructorCourseResourcePanel = {
 
         $(".manage_email_list", panel).on("click", function(ev) {
             var section_label = InstructorCourseResourcePanel.get_section_label(term, ev.currentTarget);
-            label = safe_label(section_label);
+            var label = safe_label(section_label);
             WSData.log_interaction("open_manage_email_list_"+label);
             ManageEmailLists.render_init(section_label);
+        });
+
+        $(".download_classlist_csv", panel).on("click", function(ev) {
+            var section_label = InstructorCourseResourcePanel.get_section_label(term, ev.currentTarget);
+
+            var label = safe_label(section_label);
+            WSData.log_interaction("download_course_classlist_"+label);
+            PhotoClassList.download_class_list(section_label);
         });
 
         $(".course_class_list", panel).on("click", function(ev) {

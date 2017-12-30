@@ -208,6 +208,12 @@ var PhotoClassList = {
         return false;
     },
 
+    download_class_list: function(section_label) {
+        WSData.fetch_instructed_section_details(section_label,
+                                                PhotoClassList.download_list,
+                                                PhotoClassList.render_error);
+    },
+
     render_error: function() {
         var error_code = WSData.instructed_section_details_error_code(),
             source,
