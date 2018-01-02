@@ -30,9 +30,7 @@ class Textbook(ProtectedAPI):
         quarter = kwargs.get("quarter")
         summer_term = kwargs.get("summer_term")
 
-        # Disable all textbook API responses until ubookstore is restored
-        return self.json_response({})
-        # return self.respond(request, year, quarter, summer_term)
+        return self.respond(request, year, quarter, summer_term)
 
     def respond(self, request, year, quarter, summer_term):
         timer = Timer()
@@ -103,14 +101,13 @@ class TextbookCur(Textbook):
         """
         GET returns 200 with the current quarter Textbook
         """
+        timer = Timer()
         try:
             term = get_current_quarter(request)
             summer_term = ""
             if term.quarter == "summer":
                 summer_term = get_current_summer_term(request)
-            # Disable all textbook API responses until ubookstore is restored
-            return self.json_response({})
-            # return self.respond(request, term.year,
-            # term.quarter, summer_term)
+            return self.respond(request, term.year,
+                                term.quarter, summer_term)
         except Exception:
             return handle_exception(logger, timer, traceback)
