@@ -166,7 +166,7 @@ var PhotoClassList = {
 
         for (i = 0; i < registrations.length; i++) {
             var reg = registrations[i];
-            var fields = [reg.student_number,
+            var fields = ["\t" + reg.student_number,  // MUWM-3978
                           reg.netid,
                           reg.surname,
                           reg.first_name,
