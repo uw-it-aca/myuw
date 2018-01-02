@@ -1,6 +1,17 @@
 
 @import (reference) "boilerplate.less";
 
+/*****  TABS  *************
+* Example HTML structure
+* <div role="tablist">
+*   <div class="myuw-tab">
+*       <a href="" class="myuw-tab-label" role="tab" aria-selected="true">Tab Label</a>
+*   </div>
+*   <div class="myuw-tab">
+*       <a href="" class="myuw-tab-label" role="tab" aria-selected="false">Tab Label</a>
+*   </div>
+* </div>
+**************************/
 .myuw-tab {
     display: inline-block;
 }
@@ -20,12 +31,16 @@
     color: #555;
 }
 
-.myuw-tab-selected .myuw-tab-label {
+/* Set containing div with 'myuw-tab-selected' or set the label to
+* selected with ARIA to show the underline */
+.myuw-tab-selected .myuw-tab-label,
+.myuw-tab-label[aria-selected="true"] {
     border-bottom: 3px solid #000;
     color: #000;
 }
 
 
+/* Tabs, but larger for use at the page level */
 .myuw-pagetabs {
 
     .myuw-tab-label {
