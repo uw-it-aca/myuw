@@ -70,9 +70,7 @@ var PhotoClassList = {
             $("#class-list-sort-controls").attr("aria-hidden", false);
             $("#class-list-sort-controls").attr("hidden", false);
             $("#list_view").attr("aria-selected", true);
-            $("#list_view").addClass("myuw-tab-selected");
             $("#grid_view").attr("aria-selected", false);
-            $("#grid_view").removeClass("myuw-tab-selected");
         });
 
         $("#grid_view").on("click", function(e) {
@@ -84,9 +82,7 @@ var PhotoClassList = {
             $("#class-list-sort-controls").attr("aria-hidden", true);
             $("#class-list-sort-controls").attr("hidden", true);
             $("#list_view").attr("aria-selected", false);
-            $("#list_view").removeClass("myuw-tab-selected");
             $("#grid_view").attr("aria-selected", true);
-            $("#grid_view").addClass("myuw-tab-selected");
         });
 
         $("#available_sections").on("change", function() {
