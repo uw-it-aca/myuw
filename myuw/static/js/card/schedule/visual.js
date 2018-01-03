@@ -74,7 +74,6 @@ var VisualScheduleCard = {
             meets_sunday: false
         };
 
-
         var set_meeting = function(course_data) {
             $.each(course_data.sections, function(section_index) {
                 var section = this;
@@ -83,7 +82,6 @@ var VisualScheduleCard = {
                     var has_meetings = VisualScheduleCard._meeting_has_meetings(meeting);
                     var seen = false;
                     if (!meeting.days_tbd && has_meetings) {
-
                         var start_parts = meeting.start_time.split(":");
                         var start_minutes = parseInt(start_parts[0], 10) * 60 + parseInt(start_parts[1], 10);
 
@@ -136,25 +134,6 @@ var VisualScheduleCard = {
                             }
                         });
                     }
-                    else if (meeting.days_tbd){
-                        $.each(visual_data.courses_meeting_tbd, function () {
-                            if (this.section_index === section_index) {
-                                seen = true;
-                                return false;
-                            }
-                        });
-
-                        // has meetings that are TBD
-                        if (!seen) {
-                            visual_data.courses_meeting_tbd.push({
-                                color_id: section.color_id,
-                                curriculum: section.curriculum_abbr,
-                                course_number: section.course_number,
-                                section_id: section.section_id,
-                                section_index: section_index
-                            });
-                        }
-                    }
                     else {
                         $.each(visual_data.courses_no_meeting, function () {
                             if (this.section_index === section_index) {
@@ -163,7 +142,7 @@ var VisualScheduleCard = {
                             }
                         });
 
-                        // Has no meetings, not TBD (eg individual start PCE courses)
+                        // Has no meetings, or TBD (eg individual start PCE courses)
                         if (!seen) {
                             visual_data.courses_no_meeting.push({
                                 color_id: section.color_id,
@@ -291,6 +270,9 @@ var VisualScheduleCard = {
     },
 
     render_schedule: function(data){
+        // Add in off_term data
+        var schedule_data = WSData.visual_schedule_data(VisualScheduleCard.term);
+        data.off_term_trimmed = schedule_data.off_term_trimmed;
         var source = $("#visual_schedule_card_content").html();
         var template = Handlebars.compile(source);
         var t = template(data);
@@ -318,7 +300,7 @@ var VisualScheduleCard = {
             FinalExamSchedule.render(period, schedule_data.term, false, target);
         } else {
             processed_period = VisualScheduleCard._get_processed_data_for_period(period_id);
-            console.log(processed_period);
+
             if (VisualScheduleCard._get_finals_period(schedule_data.periods) !== undefined){
                 processed_period.sr_finals = VisualScheduleCard._get_finals_period(schedule_data.periods).sections;
             }

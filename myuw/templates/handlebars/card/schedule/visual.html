@@ -4,11 +4,6 @@
 
 <div class="card"  data-name="VisualScheduleCard" data-type="card">
     {{#if total_sections}}
-   <!-- {{# if has_early_fall_start }}
-    <a href="#" class="show_full_term_meetings">Show {{ucfirst quarter}} Full Term Courses</a>
-    <a href="#" class="show_efs_meetings" style="display: none;">Show {{ucfirst quarter}} Early Fall Start Courses</a>
-    {{/if}}-->
-
     <h3 id="quarter-info" >
             {{ucfirst quarter}} {{year}}{{#if summer_term}}{{summer_term}}{{/if}}<span class="sr-only">Final exam schedule and Visual Schedule</span>
     </h3>
@@ -125,24 +120,18 @@
         </div>
         {{/if}}
         <!-- end week view -->
-    
-        <!-- begin - if there are meetings with times to be arranged -->
-        {{#if courses_meeting_tbd }}
-        <div class="courseTBD" aria-hidden="true">
-	        <p>No meeting time specified:</p>
-            {{#each courses_meeting_tbd }}
-    	    <div class="pull-left course-box">
-    	        <div class="c{{color_id}} course-info"><a href="/{{#if ../is_instructor}}teaching{{else}}academics{{/if}}/#{{curriculum}}-{{course_number}}-{{section_id}}" style="color: white;" class="show_section_card">{{curriculum}} {{course_number}}&nbsp;{{section_id}}</a></div>
-    	        <div style="font-size:.8em; color:#555; text-align:center; margin-top:3px;">Room TBD</div>
-    	    </div>
-            {{/each}}
-        </div>
-        {{/if}}
-        <!-- end - if there are meetings with times to be arranged -->
-    
-            <!-- begin - if there are meetings with times to be arranged -->
+
+        <!-- begin - if there are courses that end after the quarter -->
+        {{#each off_term_trimmed}}
+        <p>Note: {{ section }} continues until {{ toFriendlyDate end_date }}</p>
+        {{/each}}
+        <!-- end - if there are courses that end after the quarter -->
+
+        <!-- begin - if there are no meetings -->
         {{#if courses_no_meeting }}
         <div class="courseTBD" aria-hidden="true">
+            <p>No meeting time specified:</p>
+
             {{#each courses_no_meeting }}
     	    <div class="pull-left course-box">
     	        <div class="c{{color_id}} course-info"><a href="/{{#if ../is_instructor}}teaching{{else}}academics{{/if}}/#{{curriculum}}-{{course_number}}-{{section_id}}" style="color: white;" class="show_section_card">{{curriculum}} {{course_number}}&nbsp;{{section_id}}</a></div>
@@ -162,7 +151,7 @@
         </div>
         {{/if}}
     </div>
-        <!-- end - if there are meetings with times to be arranged -->
+        <!-- end - if there are no meetings -->
         
 
     </div>
