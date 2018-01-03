@@ -24,6 +24,7 @@ class TestInstSectDetails(MyuwApiTest):
         self.assertEqual(data['sections'][0]['section_label'],
                          '2017_autumn_CSE_154_A')
 
+        self.assertTrue(data['sections'][0]['has_linked_sections'])
         self.assertEqual(len(data['sections'][0]['registrations']), 3)
         self.assertEqual(
             data['sections'][0]['registrations'][0]['linked_sections'],

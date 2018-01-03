@@ -76,7 +76,7 @@ describe("PhotoClassList", function() {
     describe('build download csv', function() {
         it('should put data in right fields', function() {
             var data = {
-              "linked_types": ["funtimes", "quiz"],
+              "has_linked_sections": true,
               "registrations": [{"surname": "Student3",
                                  "first_name": "June",
                                  "credits": "2.0",
@@ -147,7 +147,8 @@ describe("PhotoClassList", function() {
             var result = PhotoClassList.build_download(data);
             var lines = result.split("\n");
             // Header...
-            assert.equal(lines[0], '"StudentNo","UWNetID","LastName","FirstName","QZ Sect","Credits","Class","Major","Email"');
+            assert.equal(lines[0],
+                         'StudentNo,UWNetID,LastName,FirstName,QZ Sect,Credits,Class,Major,Email');
             var row1 = lines[1].split(",");
             assert.equal(row1[0], '"\t1033001"');
             assert.equal(row1[1], '"javg001"');

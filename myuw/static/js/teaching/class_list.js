@@ -162,15 +162,26 @@ var PhotoClassList = {
     build_download: function(data) {
         var registrations = PhotoClassList.sort_students(
             data.registrations, 'surname,first_name');
-        var lines = ['"StudentNo","UWNetID","LastName","FirstName","QZ Sect","Credits","Class","Major","Email"'];
+        var add_qz_sect = data.has_linked_sections;
+        var lines = [];
+        var header = ["StudentNo","UWNetID","LastName","FirstName"];
+        if (add_qz_sect) {
+            header.push("QZ Sect");
+            }
+        header.push("Credits","Class","Major","Email");
+        lines.push(header.join(","));
 
         for (i = 0; i < registrations.length; i++) {
             var reg = registrations[i];
             var fields = ["\t" + reg.student_number,  // MUWM-3978
                           reg.netid,
                           reg.surname,
-                          reg.first_name,
-                          reg.linked_sections];
+                          reg.first_name];
+
+            if (add_qz_sect) {
+                fields.push(reg.linked_sections);
+                }
+
             var credits = reg.is_auditor?"Audit":reg.credits;
             fields.push(credits,
                         reg.class_level,

@@ -91,6 +91,7 @@ class OpenInstSectionDetails(OpenAPI):
 
     def add_linked_section_data(self, resp_data):
         sections_for_user = {}  # {regid: [section_id,]}
+        has_linked_sections = False
 
         # if having linked sections
         for section in resp_data["sections"][1:]:
@@ -108,6 +109,9 @@ class OpenInstSectionDetails(OpenAPI):
             if sections_for_user.get(regid):
                 registration["linked_sections"] = " ".join(
                     sections_for_user[regid])
+                has_linked_sections = True
+        resp_data["sections"][0]['has_linked_sections'] =\
+            has_linked_sections
 
     def per_section_data(self, section, section_data):
         # We don't want to fetch all this data a second time in for

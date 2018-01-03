@@ -41,7 +41,9 @@
                                     <option value="netid">UW NetID</option>
                                     <option value="class_code,surname,first_name">Class</option>
                                     <option value="credits,surname,first_name">Credits</option>
-                                    <option value="linked_sections,surname,first_name">QZ Sect</option>
+                                    {{#if sections.0.has_linked_sections}}
+                                        <option value="linked_sections,surname,first_name">QZ Sect</option>
+                                    {{/if}}
                             </select>
                         </div>
                     </div>
@@ -64,7 +66,9 @@
                                     <th>UW NetID</th>
                                     <th>Last Name</th>
                                     <th>First Name</th>
-                                    <th>QZ Sect</th>
+                                    {{#if sections.0.has_linked_sections}}
+                                        <th>QZ Sect</th>
+                                    {{/if}}
                                     <th>Credits</th>
                                     <th>Class</th>
                                     <th>Major</th>
@@ -78,7 +82,9 @@
                                     <td>{{ netid }}</td>
                                     <td>{{ surname }}</td>
                                     <td>{{ first_name }}</td>
-                                    <td>{{ linked_sections }}</td>
+                                    {{#if @root.sections.0.has_linked_sections}}
+                                        <td>{{ linked_sections }}</td>
+                                    {{/if}}
                                     <td>
                                         {{#if is_auditor}}Audit{{else}}{{ credits }}{{/if}}
                                     </td>
