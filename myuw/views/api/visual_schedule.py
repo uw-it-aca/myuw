@@ -3,7 +3,8 @@ import traceback
 from django.http import HttpResponse
 from myuw.dao.visual_schedule import get_current_visual_schedule, \
     get_schedule_json, get_future_visual_schedule
-from myuw.dao.term import get_current_quarter, get_specific_term, is_past
+from myuw.dao.term import get_current_quarter, get_specific_term, is_past, \
+    get_current_summer_term
 from myuw.dao.card_display_dates import in_show_grades_period
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_msg

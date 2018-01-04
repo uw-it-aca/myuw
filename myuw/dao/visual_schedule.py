@@ -2,7 +2,7 @@ from myuw.dao.schedule import get_current_quarter_schedule
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.course_color import get_colors_by_schedule
-from myuw.dao.term import get_current_quarter
+from myuw.dao.term import get_current_quarter, get_current_summer_term
 from restclients_core.exceptions import DataFailureException
 from dateutil.relativedelta import *
 from datetime import timedelta
@@ -10,7 +10,7 @@ import math
 import copy
 
 
-def get_schedule_json(visual_schedule, term):
+def get_schedule_json(visual_schedule, term, summer_term=None):
     response = {}
     schedule_periods = []
     period_id = 0
@@ -29,7 +29,8 @@ def get_schedule_json(visual_schedule, term):
     response['term'] = {
         'year': term.year,
         'quarter': term.quarter,
-        'last_final_exam_date': term.last_final_exam_date
+        'last_final_exam_date': term.last_final_exam_date,
+        'summer_term': summer_term
     }
     response['off_term_trimmed'] = _get_off_term_trimmed(visual_schedule)
     return response
@@ -63,7 +64,11 @@ def get_future_visual_schedule(term, summer_term=None):
 
 def get_current_visual_schedule(request):
     schedule = _get_combined_schedule(request)
-    return _get_visual_schedule_from_schedule(schedule)
+    schedule = _get_visual_schedule_from_schedule(schedule)
+    summer_term = get_current_summer_term(request)
+    if summer_term:
+        schedule = _trim_summer_term(schedule, summer_term)
+    return schedule
 
 
 def _get_combined_schedule(request):
@@ -87,7 +92,6 @@ def _get_combined_schedule(request):
             schedule.sections += instructor_schedule.sections
     elif instructor_schedule is not None:
         schedule = instructor_schedule
-
     return schedule
 
 
