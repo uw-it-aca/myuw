@@ -167,6 +167,7 @@ def _get_visual_schedule_from_schedule(schedule):
     _add_weekend_meeting_data(consolidated)
     consolidated = _remove_empty_periods(consolidated)
 
+    # _adjust_period_dates(consolidated)
     finals = _get_finals_period(schedule)
     if len(finals.sections) > 0:
         consolidated.append(finals)
@@ -188,6 +189,93 @@ def _adjust_off_term_dates(schedule):
             section.real_end_date = section.end_date
             section.end_date = qtr_end_date
 
+
+def _adjust_period_dates(schedule):
+    for period in schedule:
+        new_start = _get_earliest_start_from_period(period)
+        new_end = _get_latest_end_from_period(period)
+        period.start_date = new_start
+        period.end_date = new_end
+
+
+def _get_earliest_start_from_period(period):
+    earliest_meeting = None
+    for section in period.sections:
+        for meeting in section.meetings:
+            earliest_section_meeting = _get_earliest_meeting_day(meeting)
+            if earliest_meeting is None:
+                earliest_meeting = earliest_section_meeting
+            elif earliest_section_meeting < earliest_meeting:
+                earliest_meeting = earliest_section_meeting
+
+    print earliest_meeting
+    print period.start_date
+    print period.start_date.weekday()
+
+    start_day = period.start_date.weekday()
+    # Treat sunday as 'first' day
+    if start_day == 6:
+        days_to_add = earliest_meeting + 1
+    else:
+        days_to_add = earliest_meeting - start_day
+    print "adding", days_to_add
+    start_date = (period.start_date + timedelta(days=days_to_add))
+    print start_date
+    return start_date
+
+
+
+
+def _get_latest_end_from_period(period):
+    latest_meeting = None
+    for section in period.sections:
+        for meeting in section.meetings:
+            latest_section_meeting = _get_latest_meeting_day(meeting)
+            if latest_meeting is None:
+                latest_meeting = latest_section_meeting
+            elif latest_meeting < latest_section_meeting:
+                latest_meeting = latest_section_meeting
+
+    pass
+
+
+def _get_earliest_meeting_day(meeting):
+    day_index = None
+    if meeting.meets_saturday:
+        day_index = 5
+    if meeting.meets_friday:
+        day_index = 4
+    if meeting.meets_thursday:
+        day_index = 3
+    if meeting.meets_wednesday:
+        day_index = 2
+    if meeting.meets_tuesday:
+        day_index = 1
+    if meeting.meets_monday:
+        day_index = 0
+    if meeting.meets_sunday:
+        day_index = 6
+    return day_index
+
+
+def _get_latest_meeting_day(meeting):
+    day_index = None
+    if meeting.meets_sunday:
+        day_index = 6
+    if meeting.meets_monday:
+        day_index = 0
+    if meeting.meets_tuesday:
+        day_index = 1
+    if meeting.meets_wednesday:
+        day_index = 2
+    if meeting.meets_thursday:
+        day_index = 3
+    if meeting.meets_friday:
+        day_index = 4
+    if meeting.meets_saturday:
+        day_index = 5
+
+    return day_index
 
 def _add_course_colors_to_schedule(schedule):
     colors = get_colors_by_schedule(schedule)
