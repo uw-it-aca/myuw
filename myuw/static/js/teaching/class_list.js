@@ -166,7 +166,7 @@ var PhotoClassList = {
         var lines = [];
         var header = ["StudentNo","UWNetID","LastName","FirstName"];
         if (add_qz_sect) {
-            header.push("QZ Sect");
+            header.push("Section");
             }
         header.push("Credits","Class","Major","Email");
         lines.push(header.join(","));

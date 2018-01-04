@@ -99,9 +99,7 @@ class OpenInstSectionDetails(OpenAPI):
             for regid in section["registrations"]:
                 if regid not in sections_for_user:
                     sections_for_user[regid] = []
-                if section["is_quiz"] or section["is_lab"]:
-                    # linked_sections only wants quiz and lab
-                    sections_for_user[regid].append(section_id)
+                sections_for_user[regid].append(section_id)
 
         for registration in resp_data["sections"][0]["registrations"]:
             registration["linked_sections"] = ""
