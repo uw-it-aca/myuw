@@ -7,6 +7,7 @@ Academics,Registration,all,https://notify.uw.edu/,Notify.UW,,,,,,,yes
 Academics,Registration,all,https://sdb.admin.uw.edu/students/uwnetid/register.asp,Registration,,,,,,,yes
 Academics,Registration,all,,,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,,,yes
 Academics,Registration,all,,,http://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,http://www.uwb.edu/registration/time,UW Bothell Time Schedule,http://www.tacoma.uw.edu/ts-quicksearch/,UW Tacoma Time Schedule,no
+Academics,Registration,all,https://sdb.admin.uw.edu/sisStudents/uwnetid/nsc/,Self-Service Enrollment Verification,,,,,,,no
 Academics,Registration,pce,http://www.washington.edu/students/timeschd/95index.html,Professional & Continuing Education Time Schedule,,,,,,,no
 Academics,Advising & Tutoring,all,,,http://careers.washington.edu/,Career Center,http://www.bothell.washington.edu/careers,Career Services,http://www.tacoma.uw.edu/career-development/career-development-education,Career Development and Education,no
 Academics,Advising & Tutoring,ugrad,,,http://depts.washington.edu/aspuw/clue/home/,Center for Learning and Undergraduate Enrichment (CLUE),,,http://www.tacoma.uw.edu/teaching-learning-center/teaching-learning-center,Teaching and Learning Center,no
