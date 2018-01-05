@@ -220,6 +220,9 @@ def _get_earliest_start_from_period(period):
     earliest_meeting = None
     for section in period.sections:
         for meeting in section.meetings:
+            if meeting.wont_meet():
+                # if a section has a NON mtg set start date to section start
+                return section.start_date
             earliest_section_meeting = _get_earliest_meeting_day(meeting)
             if earliest_meeting is None:
                 earliest_meeting = earliest_section_meeting
@@ -240,6 +243,9 @@ def _get_latest_end_from_period(period):
     latest_meeting = None
     for section in period.sections:
         for meeting in section.meetings:
+            if meeting.wont_meet():
+                # if a section has a NON mtg set end date to section end
+                return section.end_date
             latest_section_meeting = _get_latest_meeting_day(meeting)
             if latest_meeting is None:
                 latest_meeting = latest_section_meeting

@@ -119,6 +119,43 @@ class TestVisualSchedule(TestCase):
         _add_weekend_meeting_data(consolidated)
         return consolidated
 
+    def _get_schedule_no_meetings(self):
+        section1 = Section()
+        section1.curriculum_abbr = 'ASD'
+        section1.course_number = 123
+        section1.section_id = 'A'
+        section1.start_date = datetime.date(2017, 10, 02)
+        section1.end_date = datetime.date(2017, 10, 20)
+
+        section2 = Section()
+        section2.curriculum_abbr = 'QWE'
+        section2.course_number = 456
+        section2.section_id = 'A'
+        section2.start_date = datetime.date(2017, 10, 02)
+        section2.end_date = datetime.date(2017, 10, 20)
+
+        s1_meetings = SectionMeeting()
+        s1_meetings.meeting_type = "NON"
+        section1.meetings = [s1_meetings]
+
+        s2_meetings = SectionMeeting()
+        s2_meetings.meeting_type = "NON"
+        section2.meetings = [s2_meetings]
+
+        schedule = ClassSchedule()
+        schedule.sections = [section1, section2]
+
+        schedule = _add_dates_to_sections(schedule)
+
+        bounds = get_schedule_bounds(schedule)
+        weeks = _get_weeks_from_bounds(bounds)
+        weeks = _add_sections_to_weeks(schedule.sections, weeks)
+        weeks = trim_section_meetings(weeks)
+        weeks = trim_weeks_no_meetings(weeks)
+        consolidated = _consolidate_weeks(weeks)
+        _add_weekend_meeting_data(consolidated)
+        return consolidated
+
     def test_get_bounds(self):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,spring")
@@ -693,15 +730,21 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(len(future_schedule), 5)
 
     def test_get_earliest_start_from_period(self):
-        # TODO: test with no-meeting section
         periods = self._get_schedule_with_meetings()
         earliest_start = _get_earliest_start_from_period(periods[0])
         self.assertEqual(earliest_start, datetime.date(2017, 10, 03))
 
+        no_mtg_periods = self._get_schedule_no_meetings()
+        earliest_start = _get_earliest_start_from_period(no_mtg_periods[0])
+        self.assertEqual(earliest_start, datetime.date(2017, 10, 02))
+
     def test_get_latest_end_from_period(self):
-        # TODO: test with no-meeting section
         periods = self._get_schedule_with_meetings()
         latest_end = _get_latest_end_from_period(periods[1])
+        self.assertEqual(latest_end, datetime.date(2017, 10, 20))
+
+        no_mtg_periods = self._get_schedule_no_meetings()
+        latest_end = _get_latest_end_from_period(no_mtg_periods[0])
         self.assertEqual(latest_end, datetime.date(2017, 10, 20))
 
     def test_get_earliest_meeting(self):
