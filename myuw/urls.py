@@ -24,14 +24,15 @@ from myuw.views.profile import profile
 from myuw.views.husky_experience import husky_experience
 from myuw.views.link import outbound_link
 from myuw.views.api.current_schedule import StudClasScheCurQuar
-from myuw.views.api.instructor_schedule import (
-    InstScheCurQuar, InstScheQuar, InstSect, InstSectionDetails,
-    LTIInstSectionDetails)
+from myuw.views.api.instructor_section import (InstSectionDetails,
+                                               LTIInstSectionDetails)
+from myuw.views.api.instructor_schedule import (InstScheCurQuar, InstScheQuar,
+                                                InstSect)
 from myuw.views.api.finance import Finance
 from myuw.views.api.hfs import HfsBalances
 from myuw.views.api.future_schedule import StudClasScheFutureQuar
-from myuw.views.api.prev_unfinished_schedule import (
-    StudUnfinishedPrevQuarClasSche)
+from myuw.views.api.prev_unfinished_schedule import \
+    StudUnfinishedPrevQuarClasSche
 from myuw.views.api.grad import MyGrad
 from myuw.views.api.iasystem import IASystem
 from myuw.views.api.library import MyLibInfo
@@ -55,6 +56,7 @@ from myuw.views.api.hx_toolkit import HxToolkitMessage, HxToolkitWeekMessage, \
 
 
 urlpatterns = []
+
 
 # debug routes error pages
 if settings.DEBUG:

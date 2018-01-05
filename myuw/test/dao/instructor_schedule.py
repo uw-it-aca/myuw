@@ -51,6 +51,22 @@ class TestInstructorSchedule(TestCase):
         schedule = get_instructor_section(person, '2013,spring,ESS,102/A')
         self.assertEqual(len(schedule.sections), 1)
 
+        person = PWS().get_person_by_netid('billsea')
+        schedule = get_instructor_section(person, '2017,autumn,CSE,154/A',
+                                          include_registrations=True,
+                                          include_linked_sections=True)
+        self.assertEqual(len(schedule.sections), 5)
+        self.assertEqual(schedule.sections[0].section_id, 'A')
+        self.assertEqual(len(schedule.sections[0].registrations), 3)
+        self.assertEqual(schedule.sections[1].section_id, 'AA')
+        self.assertEqual(len(schedule.sections[1].registrations), 2)
+        self.assertEqual(schedule.sections[2].section_id, 'AB')
+        self.assertEqual(len(schedule.sections[2].registrations), 1)
+        self.assertEqual(schedule.sections[3].section_id, 'AC')
+        self.assertEqual(len(schedule.sections[3].registrations), 1)
+        self.assertEqual(schedule.sections[4].section_id, 'AD')
+        self.assertEqual(len(schedule.sections[4].registrations), 1)
+
     def test_invalid_instructor_section(self):
         person = PWS().get_person_by_netid('bill')
 

@@ -728,7 +728,8 @@ WSData = {
     fetch_instructed_section_details: function(section_label, callback, err_callback, args) {
         var url = "/api/v1/instructor_section_details/" + section_label.replace(/&amp;/g, "%26");
 
-        if (window.section_data.hasOwnProperty('lti_session_id')) {
+        if (window.hasOwnProperty('section_data') &&
+            window.section_data.hasOwnProperty('lti_session_id')) {
             url = "/lti" + url;
         }
 

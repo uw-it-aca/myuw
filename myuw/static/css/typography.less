@@ -162,9 +162,24 @@ ul.unstyled-list, ol.unstyled-list, ul.unstyled, ol.unstyled {
 }
 
 
+/*** Icon Links
+* Use for links with an icon font icon placed to the left of the link text. e.g. "[ ] Link text"
+* Sample HTML: <a class="myuw-iconlink"><i class="fa"></i>Link text</a>
+***/
+.myuw-iconlink {
+    i,
+    .fa {
+        margin-right: .4em;
+    }
+}
 
-/* Disclosure Links */
 
+
+/*** Disclosure Links
+* Use for links with disclosure arrow icon to the left. e.g. "> Show more".
+* When open, rotates to "v Show less".
+* Sample HTML: <a class="myuw-disclosurelink"><i class="fa fa-caret-right"></i>Link Text</a>
+***/
 .myuw-disclosurelink {
 
     i.fa {

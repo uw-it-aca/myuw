@@ -3,85 +3,122 @@
 
 <div class="container">
 
-        <div id="photoclasslist_popup">
+    <div id="photoclasslist_popup">
 
-            <div class="myuw-card myuw-photo-list" data-name="PhotoClasslistPopupCard" data-type="card">
-                {{ #if available_sections }} 
-                <div style="float:right;"><select id="available_sections">{{ #each available_sections }}<option value="{{ section_id }}">{{ name }}</option>{{ /each }}</select></div>
-                {{ /if }}
-                <h3 class="scheduleHeading myuw-card-title">{{ toTitleCase quarter }} {{ year }} | {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }} | SLN {{ sections.0.sln }}</h3>
+        <div class="myuw-card myuw-photo-list" data-name="PhotoClasslistPopupCard" data-type="card">
 
-                <div id="classlist_controls" class="row myuw-photo-list-controls" style="padding-bottom: 40px;">
+            <div class="myuw-card-wrapper">
+                {{#if available_sections}}
+                    <div style="float:right;">
+                        <select id="available_sections">{{#each available_sections}}<option value="{{ section_id }}">{{ name }}</option>{{/each}}</select>
+                    </div>
+                {{/if}}
+                <h3 class="scheduleHeading myuw-card-title">{{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}, {{ toTitleCase quarter }} {{ year }}</h3>
 
-                    <div class="col-sm-7">
-                        <div class="myuw-photo-list-controls-view">
-                            View:&nbsp;&nbsp;<a id="list_view" href="#"><i class="fa fa-list" aria-hidden="true"></i> Detailed</a> | <a id="grid_view" href="#"><i class="fa fa-th" aria-hidden="true"></i> Simple</a>
+                <div class="course-meta">
+                    <span class="myuw-meta">SLN {{ sections.0.sln }}</span>
+                </div>
+
+                <br/>
+
+                <div id="classlist_controls" class="myuw-photo-list-controls">
+
+                    <div class="controls-row-1">
+                        <div class="myuw-photo-list-controls-view" role="tablist" aria-label="Views">
+                            <div class="myuw-tab">
+                                <a id="list_view" href="#" class="myuw-iconlink myuw-tab-label" role="tab" aria-controls="classlist_table_view" aria-selected="true"><i class="fa fa-table" aria-hidden="true"></i>Table</a>
+                            </div>
+
+                            <div class="myuw-tab">
+                                <a id="grid_view" href="#" class="myuw-iconlink myuw-tab-label" role="tab" aria-controls="classlist_photogrid_view" aria-selected="false"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Photo Grid</a>
+                            </div>
                         </div>
-                        <div class="myuw-photo-list-controls-sort">
+
+                        <div id="class-list-sort-controls" class="myuw-photo-list-controls-sort">
                             Sort by:&nbsp;&nbsp;<select id="sort_list">
-                                <option value="name,surname">First Name</option>
-                                <option value="surname,name" selected="selected">Last Name</option>
-                                <option value="netid">UW NetID</option>
-                                <option value="class_code,surname,name">Class</option>
-                                <option value="credits,surname,name">Credits</option>
-                                {{ #each sections.0.linked_types }}
-                                <option value="linked_type_{{ this }},surname,name">{{ ucfirst this }} Section</option>
-                                {{ /each }}
+                                <option value="surname,first_name" selected="selected">Last Name</option>
+                                    <option value="first_name,surname">First Name</option>
+                                    <option value="netid">UW NetID</option>
+                                    <option value="class_code,surname,first_name">Class</option>
+                                    <option value="credits,surname,first_name">Credits</option>
+                                    {{#if sections.0.has_linked_sections}}
+                                        <option value="linked_sections,surname,first_name">Section</option>
+                                    {{/if}}
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-5">
+                    <div class="controls-row-2">
                         <div class="myuw-photo-list-controls-actions">
-                            <a href="#" id="download_class_list"><i class="fa fa-download"></i>&nbsp;Download class list (Excel)</a> | <a href="javascript:window.print()" class="classlist-print"><i class="fa fa-print"></i>&nbsp;Print</a>
+                            <a href="#" id="download_class_list" class="myuw-iconlink"><i class="fa fa-download"></i>Download (CSV)</a> <a href="javascript:window.print()" class="classlist-print myuw-iconlink"><i class="fa fa-print"></i>Print</a>
                         </div>
                     </div>
-
                 </div>
 
-                <div id="student_list">
+                <div id="classlist_table_view" class="js-tab-panel"
+                     aria-labelledby="list_view" role="tabpanel" aria-hidden="false">
+                    <h4 class="sr-only">Table of Student Information</h4>
 
-                    <ol id="student_sort">
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-hover" id="student_list">
+                            <thead>
+                                <tr>
+                                    <th>Student No.</th>
+                                    <th>UW NetID</th>
+                                    <th>Last Name</th>
+                                    <th>First Name</th>
+                                    {{#if sections.0.has_linked_sections}}
+                                        <th title="linked secondary sections">Section</th>
+                                    {{/if}}
+                                    <th>Credits</th>
+                                    <th>Class</th>
+                                    <th>Major</th>
+                                    <th><span class="sr-only">Email</span></th>
+                                </tr>
+                            </thead>
+                            <tbody id="student_sort">
+                                {{#each sections.0.registrations}}
+                                <tr id="student_{{regid}}">
+                                    <td>{{ student_number }}</td>
+                                    <td>{{ netid }}</td>
+                                    <td>{{ surname }}</td>
+                                    <td>{{ first_name }}</td>
+                                    {{#if @root.sections.0.has_linked_sections}}
+                                        <td>{{ linked_sections }}</td>
+                                    {{/if}}
+                                    <td>
+                                        {{#if is_auditor}}Audit{{else}}{{ credits }}{{/if}}
+                                    </td>
+                                    <td>{{ucfirst class_level }}</td>
+                                    <td>{{#each majors}}
+                                            {{ucfirst name}}{{#unless @last}},&nbsp;{{/unless}}
+                                        {{/each}}
+                                    </td>
+                                    <td><a href="mailto:{{email}}" title="Email {{name}} {{surname}}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">{{email}}</span></a></td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-                        {{ #each sections.0.registrations }}
-                            <li id="student_{{ regid }}">
+                <div id="classlist_photogrid_view" class="js-tab-panel"
+                     aria-labelledby="grid_view" role="tabpanel" aria-hidden="true" hidden="true">
+                    <h4 class="sr-only">Grid of Student Photos</h4>
 
-                                <img class="classlist-photo myuw-photo-list-image" src="/photo/{{ url_key }}">
+                    <ol class="unstyled-list grid-view">
+                        {{#each sections.0.registrations}}
+                            <li id="studentphoto_{{ regid }}">
+                                <img class="classlist-photo myuw-photo-list-image"
+                                     src="/photo/{{ url_key }}">
 
-                                <div class="myuw-photo-list-content">
-                                    <div>
-                                        <strong>{{ surname }}, {{ name }}</strong><br />
-                                        <span class="sr-only">Email:&nbsp;&nbsp;</span><a href="mailto:{{ email }}">{{ email }}</a>
-                                    </div>
-                                    <div class="myuw-photo-list-meta">
-                                        <div class="pull-left" style="width:50%; min-width: 272px;">
-                                        Student Number:&nbsp;&nbsp;{{ student_number }} <br />
-                                        UW NetID:&nbsp;&nbsp;{{ netid }} <br />
-                                        Major:&nbsp;&nbsp;{{ #each majors }}{{ full_name }}{{#unless @last}},&nbsp;{{/unless}}{{ /each }}<br />
-                                        Class:&nbsp;&nbsp;{{ class }}
-                                        </div>
-                                        <div class="pull-left" style="width:50%; min-width: 272px;">
-                                        Credits:&nbsp;&nbsp;{{ credits }} <br />
-                                        {{ #if linked_sections }}
-                                        {{ #each linked_sections }}
-                                            {{ ucfirst type }} Section:&nbsp;&nbsp;
-                                            {{ #each sections }}
-                                                {{ this }}
-                                            {{ /each }}
-                                            <br />
-                                        {{ /each }}
-                                        {{ /if }}
-                                        </div>
-                                    </div>
-                                </div>
-
+                                <div class="myuw-photo-list-content">{{first_name}} {{surname}}</div>
                             </li>
-                        {{ /each }}
-
+                        {{/each}}
                     </ol>
                 </div>
 
             </div>
         </div>
-
+    </div>
 </div>
     {% endtplhandlebars %}
