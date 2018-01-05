@@ -144,6 +144,7 @@ def _get_visual_schedule_from_schedule(schedule):
         a_weeks = _add_sections_to_weeks(schedule.sections, a_weeks)
         a_consolidated = _consolidate_weeks(a_weeks)
         trim_summer_meetings(a_consolidated)
+        a_consolidated[-1].meetings_trimmed_back = True
 
         b_weeks = _get_weeks_from_bounds(b_bounds)
         for week in b_weeks:
@@ -151,6 +152,7 @@ def _get_visual_schedule_from_schedule(schedule):
         b_weeks = _add_sections_to_weeks(schedule.sections, b_weeks)
         b_consolidated = _consolidate_weeks(b_weeks)
         trim_summer_meetings(b_consolidated)
+        b_consolidated[0].meetings_trimmed_front = True
 
         consolidated = a_consolidated + b_consolidated
 
@@ -167,7 +169,7 @@ def _get_visual_schedule_from_schedule(schedule):
     _add_weekend_meeting_data(consolidated)
     consolidated = _remove_empty_periods(consolidated)
 
-    # _adjust_period_dates(consolidated)
+    _adjust_period_dates(consolidated)
     finals = _get_finals_period(schedule)
     if len(finals.sections) > 0:
         consolidated.append(finals)
@@ -191,11 +193,27 @@ def _adjust_off_term_dates(schedule):
 
 
 def _adjust_period_dates(schedule):
+    i = 0
     for period in schedule:
-        new_start = _get_earliest_start_from_period(period)
-        new_end = _get_latest_end_from_period(period)
-        period.start_date = new_start
-        period.end_date = new_end
+        i += 1
+        if period.meetings_trimmed_front:
+            try:
+                new_start = _get_earliest_start_from_period(period)
+                period.start_date = new_start
+            except TypeError:
+                # section has no meetings, leave date alone
+                pass
+        if period.meetings_trimmed_back:
+            try:
+                new_end = _get_latest_end_from_period(period)
+                period.end_date = new_end
+            except TypeError:
+                # section has no meetings, leave date alone
+                pass
+        if not period.meets_saturday and not period.meetings_trimmed_back:
+            period.end_date = period.end_date - timedelta(days=1)
+        if not period.meets_sunday and not period.meetings_trimmed_front:
+            period.start_date = period.start_date + timedelta(days=1)
 
 
 def _get_earliest_start_from_period(period):
@@ -208,22 +226,14 @@ def _get_earliest_start_from_period(period):
             elif earliest_section_meeting < earliest_meeting:
                 earliest_meeting = earliest_section_meeting
 
-    print earliest_meeting
-    print period.start_date
-    print period.start_date.weekday()
-
     start_day = period.start_date.weekday()
     # Treat sunday as 'first' day
     if start_day == 6:
         days_to_add = earliest_meeting + 1
     else:
         days_to_add = earliest_meeting - start_day
-    print "adding", days_to_add
     start_date = (period.start_date + timedelta(days=days_to_add))
-    print start_date
     return start_date
-
-
 
 
 def _get_latest_end_from_period(period):
@@ -235,8 +245,11 @@ def _get_latest_end_from_period(period):
                 latest_meeting = latest_section_meeting
             elif latest_meeting < latest_section_meeting:
                 latest_meeting = latest_section_meeting
+    end_day = period.end_date.weekday()
+    days_to_subtract = end_day - latest_meeting
 
-    pass
+    end_date = period.end_date - timedelta(days=days_to_subtract)
+    return end_date
 
 
 def _get_earliest_meeting_day(meeting):
@@ -277,6 +290,7 @@ def _get_latest_meeting_day(meeting):
 
     return day_index
 
+
 def _add_course_colors_to_schedule(schedule):
     colors = get_colors_by_schedule(schedule)
     for section in schedule.sections:
@@ -315,10 +329,12 @@ def trim_section_meetings(weeks):
                 trimmed = _trim_section_before(section, section.start_date)
                 if trimmed:
                     week.meetings_trimmed = True
+                    week.meetings_trimmed_front = True
             if section.end_date < week.end_date:
                 trimmed = _trim_section_after(section, section.end_date)
                 if trimmed:
                     week.meetings_trimmed = True
+                    week.meetings_trimmed_back = True
     return weeks
 
 
@@ -641,6 +657,8 @@ class SchedulePeriod():
         # be split into corresponding A and B term pieces
         self.summer_term = None
         self.meetings_trimmed = False
+        self.meetings_trimmed_front = False
+        self.meetings_trimmed_back = False
 
     def json_data(self):
         section_data = []
