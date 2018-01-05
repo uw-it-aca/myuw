@@ -17,9 +17,10 @@ var PhotoClassList = {
         if (window.hasOwnProperty('section_data') &&
             window.section_data.hasOwnProperty('section')) {
 
-            WSData.fetch_instructed_section_details(window.section_data.section,
-                                                    PhotoClassList.render_upon_data,
-                                                    PhotoClassList.render_error);
+            WSData.fetch_instructed_section_details(
+                window.section_data.section,
+                PhotoClassList.render_upon_data,
+                PhotoClassList.render_error);
         }
         //PhotoClassList.make_html();
     },
@@ -30,15 +31,16 @@ var PhotoClassList = {
         var template = Handlebars.compile(source);
         var data = WSData.instructed_section_details();
         var registrations = data.sections[0].registrations;
-        data.sections[0].registrations = PhotoClassList.sort_students(registrations,
-                                                                      'surname,name');
+
+        data.sections[0].registrations = PhotoClassList.sort_students(
+            registrations, 'surname,name');
 
         if (window.section_data.hasOwnProperty('available_sections') &&
                 window.section_data.available_sections.length > 1) {
             data.available_sections = window.section_data.available_sections;
         }
-
-        $("#main-content").html(template(data));
+        var raw = template(data);
+        $("#main-content").html(raw);
 
         // add event handlers
         $("#download_class_list").on("click", PhotoClassList.download_list);
@@ -61,12 +63,26 @@ var PhotoClassList = {
 
         $("#list_view").on("click", function(e) {
             e.preventDefault();
-            $("#student_sort").removeClass("grid-view");
+            $("#classlist_photogrid_view").attr("aria-hidden", true);
+            $("#classlist_photogrid_view").attr("hidden", true);
+            $("#classlist_table_view").attr("aria-hidden", false);
+            $("#classlist_table_view").attr("hidden", false);
+            $("#class-list-sort-controls").attr("aria-hidden", false);
+            $("#class-list-sort-controls").attr("hidden", false);
+            $("#list_view").attr("aria-selected", true);
+            $("#grid_view").attr("aria-selected", false);
         });
 
         $("#grid_view").on("click", function(e) {
             e.preventDefault();
-            $("#student_sort").addClass("grid-view");
+            $("#classlist_table_view").attr("aria-hidden", true);
+            $("#classlist_table_view").attr("hidden", true);
+            $("#classlist_photogrid_view").attr("aria-hidden", false);
+            $("#classlist_photogrid_view").attr("hidden", false);
+            $("#class-list-sort-controls").attr("aria-hidden", true);
+            $("#class-list-sort-controls").attr("hidden", true);
+            $("#list_view").attr("aria-selected", false);
+            $("#grid_view").attr("aria-selected", true);
         });
 
         $("#available_sections").on("change", function() {
@@ -144,50 +160,31 @@ var PhotoClassList = {
     },
 
     build_download: function(data) {
-        var registrations = PhotoClassList.sort_students(data.registrations,
-                                                         'surname,name');
-        var lines = [],
-            header = ["Student Number", "UW NetID", "Name", "Last Name"],
-            type;
-        for (var i = 0; i < data.linked_types.length; i++) {
-            type = data.linked_types[i];
-            var upper = type.replace(/^([a-z])/, function(match) { return match.toUpperCase(); });
-            header.push(upper+" Section");
-        }
-
-        header.push("Credits", "Class", "Majors", "Email");
-
+        var registrations = PhotoClassList.sort_students(
+            data.registrations, 'surname,first_name');
+        var add_qz_sect = data.has_linked_sections;
+        var lines = [];
+        var header = ["StudentNo","UWNetID","LastName","FirstName"];
+        if (add_qz_sect) {
+            header.push("Section");
+            }
+        header.push("Credits","Class","Major","Email");
         lines.push(header.join(","));
 
         for (i = 0; i < registrations.length; i++) {
             var reg = registrations[i];
-
-            var linked = reg.linked_sections;
-
-            var by_type = {};
-            for (var j = 0; j < linked.length; j++) {
-                type = linked[j].type;
-                var section_string = linked[j].sections.join(",");
-                by_type[type] = section_string;
-            }
-
-            var fields = [reg.student_number,
+            var fields = ["\t" + reg.student_number,  // MUWM-3978
                           reg.netid,
-                          reg.name,
-                          reg.surname];
+                          reg.surname,
+                          reg.first_name];
 
-            for (j = 0; j < data.linked_types.length; j++) {
-                type = data.linked_types[j];
-                if (by_type[type]) {
-                    fields.push(by_type[type]);
+            if (add_qz_sect) {
+                fields.push(reg.linked_sections);
                 }
-                else {
-                    fields.push("");
-                }
-            }
 
-            fields.push(reg.credits,
-                        reg.class,
+            var credits = reg.is_auditor?"Audit":reg.credits;
+            fields.push(credits,
+                        reg.class_level,
                         PhotoClassList.combine_majors(reg.majors),
                         reg.email);
 
@@ -202,7 +199,9 @@ var PhotoClassList = {
         var blob = new Blob([download], {type: "text/csv" });
 
         var section = data.sections[0];
-        var filename = PhotoClassList.download_name(section, data.year, data.quarter);
+        var filename = PhotoClassList.download_name(section,
+                                                    data.year,
+                                                    data.quarter);
         // from http://stackoverflow.com/questions/3665115/create-a-file-in-memory-for-user-to-download-not-through-server
         if(window.navigator.msSaveOrOpenBlob) {
             window.navigator.msSaveBlob(blob, filename);
@@ -218,6 +217,12 @@ var PhotoClassList = {
         }
 
         return false;
+    },
+
+    download_class_list: function(section_label) {
+        WSData.fetch_instructed_section_details(section_label,
+                                                PhotoClassList.download_list,
+                                                PhotoClassList.render_error);
     },
 
     render_error: function() {
