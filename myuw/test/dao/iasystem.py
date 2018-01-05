@@ -23,11 +23,16 @@ class IASystemDaoTest(TestCase):
 
     def test_get_evaluations_domain(self):
         section = get_section_by_label('2013,spring,AAES,150/A')
-        print _get_evaluations_domain(section)
-        self.assertEqual(_get_evaluations_domain(section), u'pce_ielp')
+        self.assertEqual(_get_evaluations_domain(section), 'PCE_IELP')
 
         section = get_section_by_label('2013,spring,BIGDATA,230/A')
-        self.assertEqual(_get_evaluations_domain(section), "pce_ol")
+        self.assertEqual(_get_evaluations_domain(section), "PCE_OL")
+
+        section = get_section_by_label('2013,winter,PSYCH,203/A')
+        self.assertEqual(_get_evaluations_domain(section), "PCE_OL")
+
+        section = get_section_by_label('2013,spring,ACCTG,508/A')
+        self.assertEqual(_get_evaluations_domain(section), "Seattle")
 
     def test_summer_term_overlaped(self):
         term = Term()
