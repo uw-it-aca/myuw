@@ -21,9 +21,13 @@
                             {{else}}
                                 <span>{{ current_enrollment }}{{#unless is_independent_study}} of {{ limit_estimate_enrollment }}{{/unless}}</span>
                                 {{#if current_enrollment }}
+                                  {{#if no_2nd_registration}}
+                                    <span title="There is no enrollment/registration data for secondary sections once the course work has been posted to transcripts" class="myuw-muted course_class_list">Class list not available</span>
+                                  {{else}}
                                     <a target="_blank" href="/teaching/{{ year }},{{ quarter }},{{ toUrlSafe curriculum_abbr }},{{ course_number }}/{{ section_id }}/students" class="course_class_list" rel="{{section_label}}">View class list</a>
                                     <a href="#" class="myuw-iconlink course-classlist-download download_classlist_csv"
                                        rel="{{ curriculum_abbr }}_{{ course_number }}_{{ section_id }}"><i class="fa fa-download"></i>Download (CSV)</a>
+                                  {{/if}}
                                 {{/if}}
                             {{/if}}
                         {{/if}}

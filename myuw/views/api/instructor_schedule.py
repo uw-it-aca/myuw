@@ -253,6 +253,9 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
             section_data["primary_section_label"] =\
                 safe_label(section.primary_section_label())
 
+            if json_data["past_term"]:
+                section_data["no_2nd_registration"] = True
+
         if section.is_independent_study:
             section_data['is_independent_study'] = True
             section_data['independent_study_instructor_regid'] =\
