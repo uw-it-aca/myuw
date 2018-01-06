@@ -16,6 +16,12 @@ def get_schedule_json(visual_schedule, term, summer_term=None):
     period_id = 0
     for period in visual_schedule:
         period_data = period.json_data()
+        if period.meetings_trimmed_front:
+            period_data['disabled_days'] = \
+                _get_disabled_days(period.start_date, True)
+        if period.meetings_trimmed_back:
+            period_data['disabled_days'] = \
+                _get_disabled_days(period.end_date, False)
         if period.is_finals:
             period_data['id'] = 'finals'
         else:
@@ -34,6 +40,50 @@ def get_schedule_json(visual_schedule, term, summer_term=None):
     }
     response['off_term_trimmed'] = _get_off_term_trimmed(visual_schedule)
     return response
+
+
+def _get_disabled_days(date, is_before):
+    disabled_days = {'sunday': False,
+                     'monday': False,
+                     'tuesday': False,
+                     'wednesday': False,
+                     'thursday': False,
+                     'friday': False,
+                     'saturday': False}
+    day_index = date.weekday()
+    if day_index == 6:
+        day_index = 0
+    else:
+        day_index += 1
+
+    if is_before:
+        if day_index > 0:
+            disabled_days['sunday'] = True
+        if day_index > 1:
+            disabled_days['monday'] = True
+        if day_index > 2:
+            disabled_days['tuesday'] = True
+        if day_index > 3:
+            disabled_days['wednesday'] = True
+        if day_index > 4:
+            disabled_days['thursday'] = True
+        if day_index > 5:
+            disabled_days['friday'] = True
+    else:
+        if day_index < 6:
+            disabled_days['saturday'] = True
+        if day_index < 5:
+            disabled_days['friday'] = True
+        if day_index < 4:
+            disabled_days['thursday'] = True
+        if day_index < 3:
+            disabled_days['wednesday'] = True
+        if day_index < 2:
+            disabled_days['tuesday'] = True
+        if day_index < 1:
+            disabled_days['monday'] = True
+
+    return disabled_days
 
 
 def _get_off_term_trimmed(visual_schedule):

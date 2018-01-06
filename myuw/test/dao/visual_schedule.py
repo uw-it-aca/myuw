@@ -10,7 +10,7 @@ from myuw.dao.visual_schedule import _get_visual_schedule_from_schedule, \
     get_summer_schedule_bounds, trim_summer_meetings, _get_finals_period, \
     _add_course_colors_to_schedule, _get_combined_schedule, \
     get_future_visual_schedule, get_current_visual_schedule, \
-    _trim_summer_term, _adjust_period_dates, _get_earliest_meeting_day, \
+    _trim_summer_term, _get_disabled_days, _get_earliest_meeting_day, \
     _get_latest_meeting_day, _get_earliest_start_from_period, \
     _get_latest_end_from_period, trim_section_meetings, trim_weeks_no_meetings
 from myuw.test import fdao_sws_override, fdao_pws_override, \
@@ -761,3 +761,26 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(_get_latest_meeting_day(meeting), 5)
         meeting = periods[0].sections[1].meetings[0]
         self.assertEqual(_get_latest_meeting_day(meeting), 4)
+
+    def test_get_disabled_days(self):
+        days = _get_disabled_days(datetime.date(2013, 07, 25), True)
+        disabled_days = {'sunday': True,
+                         'monday': True,
+                         'tuesday': True,
+                         'wednesday': True,
+                         'thursday': False,
+                         'friday': False,
+                         'saturday': False}
+
+        self.assertDictEqual(days, disabled_days)
+
+        days = _get_disabled_days(datetime.date(2013, 07, 25), False)
+        disabled_days = {'sunday': False,
+                         'monday': False,
+                         'tuesday': False,
+                         'wednesday': False,
+                         'thursday': False,
+                         'friday': True,
+                         'saturday': True}
+
+        self.assertDictEqual(days, disabled_days)

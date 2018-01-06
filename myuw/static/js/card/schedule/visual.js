@@ -68,7 +68,8 @@ var VisualScheduleCard = {
             courses_meeting_tbd: [],
             courses_no_meeting: [],
             meets_saturday: false,
-            meets_sunday: false
+            meets_sunday: false,
+            disabled_days: course_data.disabled_days
         };
 
         var set_meeting = function(course_data) {

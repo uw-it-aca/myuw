@@ -35,7 +35,7 @@
         {{#if meets_sunday}}
     	<div class="{{ day_class }}">
     	    <div class="day-label">SUN</div>
-    	    <div class="day-col hours-{{total_hours}}">
+    	    <div class="day-col hours-{{total_hours}}{{#if disabled_days.sunday}} day-disabled{{/if}}">
     	        {{ show_card_days_meetings sunday start_time end_time }}
     	    </div>
     	</div>
@@ -43,35 +43,35 @@
 
     	<div class="{{ day_class }}">
     	    <div class="day-label">MON</div>
-    	    <div class="day-col hours-{{total_hours}}">
+    	    <div class="day-col hours-{{total_hours}}{{#if disabled_days.monday}} day-disabled{{/if}}" >
     	        {{ show_card_days_meetings monday start_time end_time }}
     	    </div>
     	</div>
     
     	<div class="{{ day_class }}">
     	    <div class="day-label">TUE</div>
-    	    <div class="day-col hours-{{total_hours}}">
+    	    <div class="day-col hours-{{total_hours}}{{#if disabled_days.tuesday}} day-disabled{{/if}}">
     	        {{ show_card_days_meetings tuesday start_time end_time }}
     	    </div>
     	</div>
     
     	<div class="{{ day_class }}">
     	    <div class="day-label">WED</div>
-    	    <div class="day-col hours-{{total_hours}}">
+    	    <div class="day-col hours-{{total_hours}}{{#if disabled_days.wednesday}} day-disabled{{/if}}">
     	        {{ show_card_days_meetings wednesday start_time end_time }}
     	    </div>
     	</div>
     
     	<div class="{{ day_class }}">
     	    <div class="day-label">THU</div>
-    	    <div class="day-col hours-{{total_hours}}">
+    	    <div class="day-col hours-{{total_hours}}{{#if disabled_days.thursday}} day-disabled{{/if}}">
     	        {{ show_card_days_meetings thursday start_time end_time }}
     	    </div>
     	</div>
     
     	<div class="{{ day_class }}">
     	    <div class="day-label">FRI</div>
-    	    <div class="day-col hours-{{total_hours}}">
+    	    <div class="day-col hours-{{total_hours}}{{#if disabled_days.friday}} day-disabled{{/if}}">
     	        {{ show_card_days_meetings friday start_time end_time }}
     	    </div>
     	</div>
@@ -79,7 +79,7 @@
         {{#if meets_saturday}}
     	<div class="{{ day_class }}">
     	    <div class="day-label">SAT</div>
-    	    <div class="day-col hours-{{total_hours}}">
+    	    <div class="day-col hours-{{total_hours}}{{#if disabled_days.saturday}} day-disabled{{/if}}">
     	        {{ show_card_days_meetings saturday start_time end_time }}
     	    </div>
     	</div>
