@@ -13,7 +13,7 @@ from myuw.logger.timer import Timer
 from myuw.logger.logresp import (
     log_success_response, log_msg, log_data_not_found_response)
 from myuw.views.api import ProtectedAPI
-from myuw.views.error import handle_exception, data_not_found
+from myuw.views.error import handle_exception, data_not_found, data_error
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +30,10 @@ class Textbook(ProtectedAPI):
         year = kwargs.get("year")
         quarter = kwargs.get("quarter")
         summer_term = kwargs.get("summer_term")
-        return self.respond(request, year, quarter, summer_term)
+
+        # Disable all textbook API responses until ubookstore is restored
+        return self.json_response({})
+        # return self.respond(request, year, quarter, summer_term)
 
     def respond(self, request, year, quarter, summer_term):
         timer = Timer()
@@ -106,6 +109,9 @@ class TextbookCur(Textbook):
             summer_term = ""
             if term.quarter == "summer":
                 summer_term = get_current_summer_term(request)
-            return self.respond(request, term.year, term.quarter, summer_term)
+            # Disable all textbook API responses until ubookstore is restored
+            return self.json_response({})
+            # return self.respond(request, term.year,
+            # term.quarter, summer_term)
         except Exception:
             return handle_exception(logger, timer, traceback)
