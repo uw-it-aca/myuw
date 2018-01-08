@@ -7,6 +7,7 @@
 
 @fontsize-small: 12px;
 @fontsize-base: 14px;
+@fontsize-large: 18px;
 
 @font-header-larger: 26px;
 @font-header-large: 22px;
@@ -17,14 +18,19 @@
 
 
 /*** Headings ***/
-.heading-page, .myuw-heading-page {
+h2.heading-page, h2.myuw-heading-page {
     font-family: 'encode_sans_normalbold', sans-serif;
     font-weight: 600;
     color: #444;
     margin: 0 0 8px 0;
+    font-size: @font-header-larger;
+}
 
-    h2& { font-size: @font-header-larger; }
-    h3& { font-size: @font-header-large; }
+h3.heading-page, h3.myuw-heading-page, .myuw-article h3 {
+    font-family: @fontface-body;
+    font-weight: normal;
+    color: #000;
+    font-size: @font-header-medium;
 }
 
 #app_content .card .myuw-card-title {
@@ -59,6 +65,12 @@ abbr[title] {
     margin-top: 8px;
 }
 
+/* Larger typeface for introductory, summary text */
+.myuw-herosummary {
+    font-size: @fontsize-large;
+    line-height: 1.5555556;
+}
+
 .myuw-meta {
     font-family: @fontface-body;
     font-size: @fontsize-small;
@@ -68,6 +80,13 @@ abbr[title] {
 .myuw-note {
     font-style: italic;
     font-size: @fontsize-small;
+}
+
+.myuw-image-credit {
+    font-size: @fontsize-small;
+    color: #555;
+    font-style: italic;
+    text-align: right;
 }
 
 .myuw-error {
@@ -143,9 +162,24 @@ ul.unstyled-list, ol.unstyled-list, ul.unstyled, ol.unstyled {
 }
 
 
+/*** Icon Links
+* Use for links with an icon font icon placed to the left of the link text. e.g. "[ ] Link text"
+* Sample HTML: <a class="myuw-iconlink"><i class="fa"></i>Link text</a>
+***/
+.myuw-iconlink {
+    i,
+    .fa {
+        margin-right: .4em;
+    }
+}
 
-/* Disclosure Links */
 
+
+/*** Disclosure Links
+* Use for links with disclosure arrow icon to the left. e.g. "> Show more".
+* When open, rotates to "v Show less".
+* Sample HTML: <a class="myuw-disclosurelink"><i class="fa fa-caret-right"></i>Link Text</a>
+***/
 .myuw-disclosurelink {
 
     i.fa {

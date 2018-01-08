@@ -5,8 +5,7 @@ with the UW Affiliation Group API resource
 
 import logging
 from uw_gws import GWS
-from myuw.dao import get_netid_of_current_user
-from userservice.user import UserService
+from myuw.dao import get_netid_of_current_user, get_netid_of_original_user
 from django.conf import settings
 from authz_group import Group
 
@@ -133,8 +132,7 @@ def is_applicant():
 
 
 def is_in_admin_group(group_key):
-    user_service = UserService()
-    user_service.get_user()
+    get_netid_of_current_user()
     override_error_username = None
     override_error_msg = None
     # Do the group auth here.
@@ -144,7 +142,7 @@ def is_in_admin_group(group_key):
         print 'Configure that using %s="foo_group"' % group_key
         raise Exception("Missing %s in settings" % group_key)
 
-    actual_user = user_service.get_original_user()
+    actual_user = get_netid_of_original_user()
     if not actual_user:
         raise Exception("No user in session")
 

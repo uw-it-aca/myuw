@@ -4,28 +4,28 @@ import traceback
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import logout as django_logout
-from django.conf import settings
-from myuw.dao.term import add_term_data_to_context
+from restclients_core.exceptions import DataFailureException
 from myuw.dao.affiliation import get_all_affiliations
-from myuw.dao.user import is_oldmyuw_user, get_netid_of_current_user
 from myuw.dao.emaillink import get_service_url_for_address
 from myuw.dao.exceptions import EmailServiceUrlException
 from myuw.dao.quicklinks import get_quicklink_data
-from myuw.logger.timer import Timer
-from myuw.logger.logback import log_exception
-from myuw.logger.logresp import log_invalid_netid_response
-from myuw.logger.logresp import log_success_response_with_affiliation
-from myuw.logger.session_log import log_session
-from myuw.views.error import invalid_session
 from myuw.dao.uwemail import get_email_forwarding_for_current_user
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
-from myuw.views import prefetch_resources, get_enabled_features
-from restclients_core.exceptions import DataFailureException
 from myuw.dao.messages import get_current_messages
+from myuw.dao.term import add_term_data_to_context
+from myuw.dao.user import is_oldmyuw_user, get_netid_of_current_user
+from myuw.logger.timer import Timer
+from myuw.logger.logback import log_exception
+from myuw.logger.logresp import log_invalid_netid_response,\
+    log_success_response_with_affiliation
+from myuw.logger.session_log import log_session
+from myuw.util.settings import get_google_search_key,\
+    get_legacy_url, get_logout_url
+from myuw.views import prefetch_resources, get_enabled_features
+from myuw.views.error import invalid_session
 
 
 logger = logging.getLogger(__name__)
-LOGOUT_URL = "/user_logout"
 
 
 def page(request,
@@ -90,8 +90,7 @@ def page(request,
 
     context['enabled_features'] = get_enabled_features()
 
-    context['google_search_key'] = getattr(
-        settings, "GOOGLE_SEARCH_KEY", None)
+    context['google_search_key'] = get_google_search_key()
 
     if add_quicklink_context:
         _add_quicklink_context(affiliations, context)
@@ -115,18 +114,15 @@ def try_prefetch(request):
 
 
 def redirect_to_legacy_site():
-    legacy_url = getattr(settings,
-                         "MYUW_USER_SERVLET_URL",
-                         "https://myuw.washington.edu/servlet/user")
-    return HttpResponseRedirect(legacy_url)
+    return HttpResponseRedirect(get_legacy_url())
 
 
 def logout(request):
     # Expires current myuw session
     django_logout(request)
 
-    # Redirects to weblogin logout page
-    return HttpResponseRedirect(LOGOUT_URL)
+    # Redirects to authN service logout page
+    return HttpResponseRedirect(get_logout_url())
 
 
 def _add_quicklink_context(affiliations, context):
