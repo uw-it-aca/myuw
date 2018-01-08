@@ -53,10 +53,7 @@ var VisualScheduleCard = {
             total_sections: course_data.sections.length,
             quarter: term.quarter,
             year: term.year,
-            //year: course_data ? course_data.year : instructed_course_data.year,
-            //quarter: course_data ? course_data.quarter : instructed_course_data.quarter,
-            //term: term,
-            //summer_term: course_data ? course_data.summer_term : instructed_course_data.summer_term,
+            summer_term: term.summer_term,
             latest_ending: 0,
             earliest_start: 24*60,
             monday: [],
@@ -71,7 +68,8 @@ var VisualScheduleCard = {
             courses_meeting_tbd: [],
             courses_no_meeting: [],
             meets_saturday: false,
-            meets_sunday: false
+            meets_sunday: false,
+            disabled_days: course_data.disabled_days
         };
 
         var set_meeting = function(course_data) {

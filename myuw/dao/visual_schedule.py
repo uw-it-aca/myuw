@@ -2,7 +2,7 @@ from myuw.dao.schedule import get_current_quarter_schedule
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.course_color import get_colors_by_schedule
-from myuw.dao.term import get_current_quarter
+from myuw.dao.term import get_current_quarter, get_current_summer_term
 from restclients_core.exceptions import DataFailureException
 from dateutil.relativedelta import *
 from datetime import timedelta
@@ -10,12 +10,18 @@ import math
 import copy
 
 
-def get_schedule_json(visual_schedule, term):
+def get_schedule_json(visual_schedule, term, summer_term=None):
     response = {}
     schedule_periods = []
     period_id = 0
     for period in visual_schedule:
         period_data = period.json_data()
+        if period.meetings_trimmed_front:
+            period_data['disabled_days'] = \
+                _get_disabled_days(period.start_date, True)
+        if period.meetings_trimmed_back:
+            period_data['disabled_days'] = \
+                _get_disabled_days(period.end_date, False)
         if period.is_finals:
             period_data['id'] = 'finals'
         else:
@@ -29,10 +35,55 @@ def get_schedule_json(visual_schedule, term):
     response['term'] = {
         'year': term.year,
         'quarter': term.quarter,
-        'last_final_exam_date': term.last_final_exam_date
+        'last_final_exam_date': term.last_final_exam_date,
+        'summer_term': summer_term
     }
     response['off_term_trimmed'] = _get_off_term_trimmed(visual_schedule)
     return response
+
+
+def _get_disabled_days(date, is_before):
+    disabled_days = {'sunday': False,
+                     'monday': False,
+                     'tuesday': False,
+                     'wednesday': False,
+                     'thursday': False,
+                     'friday': False,
+                     'saturday': False}
+    day_index = date.weekday()
+    if day_index == 6:
+        day_index = 0
+    else:
+        day_index += 1
+
+    if is_before:
+        if day_index > 0:
+            disabled_days['sunday'] = True
+        if day_index > 1:
+            disabled_days['monday'] = True
+        if day_index > 2:
+            disabled_days['tuesday'] = True
+        if day_index > 3:
+            disabled_days['wednesday'] = True
+        if day_index > 4:
+            disabled_days['thursday'] = True
+        if day_index > 5:
+            disabled_days['friday'] = True
+    else:
+        if day_index < 6:
+            disabled_days['saturday'] = True
+        if day_index < 5:
+            disabled_days['friday'] = True
+        if day_index < 4:
+            disabled_days['thursday'] = True
+        if day_index < 3:
+            disabled_days['wednesday'] = True
+        if day_index < 2:
+            disabled_days['tuesday'] = True
+        if day_index < 1:
+            disabled_days['monday'] = True
+
+    return disabled_days
 
 
 def _get_off_term_trimmed(visual_schedule):
@@ -63,7 +114,11 @@ def get_future_visual_schedule(term, summer_term=None):
 
 def get_current_visual_schedule(request):
     schedule = _get_combined_schedule(request)
-    return _get_visual_schedule_from_schedule(schedule)
+    schedule = _get_visual_schedule_from_schedule(schedule)
+    summer_term = get_current_summer_term(request)
+    if summer_term:
+        schedule = _trim_summer_term(schedule, summer_term)
+    return schedule
 
 
 def _get_combined_schedule(request):
@@ -87,7 +142,6 @@ def _get_combined_schedule(request):
             schedule.sections += instructor_schedule.sections
     elif instructor_schedule is not None:
         schedule = instructor_schedule
-
     return schedule
 
 
@@ -140,6 +194,7 @@ def _get_visual_schedule_from_schedule(schedule):
         a_weeks = _add_sections_to_weeks(schedule.sections, a_weeks)
         a_consolidated = _consolidate_weeks(a_weeks)
         trim_summer_meetings(a_consolidated)
+        a_consolidated[-1].meetings_trimmed_back = True
 
         b_weeks = _get_weeks_from_bounds(b_bounds)
         for week in b_weeks:
@@ -147,6 +202,7 @@ def _get_visual_schedule_from_schedule(schedule):
         b_weeks = _add_sections_to_weeks(schedule.sections, b_weeks)
         b_consolidated = _consolidate_weeks(b_weeks)
         trim_summer_meetings(b_consolidated)
+        b_consolidated[0].meetings_trimmed_front = True
 
         consolidated = a_consolidated + b_consolidated
 
@@ -163,6 +219,7 @@ def _get_visual_schedule_from_schedule(schedule):
     _add_weekend_meeting_data(consolidated)
     consolidated = _remove_empty_periods(consolidated)
 
+    _adjust_period_dates(consolidated)
     finals = _get_finals_period(schedule)
     if len(finals.sections) > 0:
         consolidated.append(finals)
@@ -183,6 +240,111 @@ def _adjust_off_term_dates(schedule):
         if section.end_date > qtr_end_date:
             section.real_end_date = section.end_date
             section.end_date = qtr_end_date
+
+
+def _adjust_period_dates(schedule):
+    i = 0
+    for period in schedule:
+        i += 1
+        if period.meetings_trimmed_front:
+            try:
+                new_start = _get_earliest_start_from_period(period)
+                period.start_date = new_start
+            except TypeError:
+                # section has no meetings, leave date alone
+                pass
+        if period.meetings_trimmed_back:
+            try:
+                new_end = _get_latest_end_from_period(period)
+                period.end_date = new_end
+            except TypeError:
+                # section has no meetings, leave date alone
+                pass
+        if not period.meets_saturday and not period.meetings_trimmed_back:
+            period.end_date = period.end_date - timedelta(days=1)
+        if not period.meets_sunday and not period.meetings_trimmed_front:
+            period.start_date = period.start_date + timedelta(days=1)
+
+
+def _get_earliest_start_from_period(period):
+    earliest_meeting = None
+    for section in period.sections:
+        for meeting in section.meetings:
+            if meeting.wont_meet():
+                # if a section has a NON mtg set start date to section start
+                return section.start_date
+            earliest_section_meeting = _get_earliest_meeting_day(meeting)
+            if earliest_meeting is None:
+                earliest_meeting = earliest_section_meeting
+            elif earliest_section_meeting < earliest_meeting:
+                earliest_meeting = earliest_section_meeting
+
+    start_day = period.start_date.weekday()
+    # Treat sunday as 'first' day
+    if start_day == 6:
+        days_to_add = earliest_meeting + 1
+    else:
+        days_to_add = earliest_meeting - start_day
+    start_date = (period.start_date + timedelta(days=days_to_add))
+    return start_date
+
+
+def _get_latest_end_from_period(period):
+    latest_meeting = None
+    for section in period.sections:
+        for meeting in section.meetings:
+            if meeting.wont_meet():
+                # if a section has a NON mtg set end date to section end
+                return section.end_date
+            latest_section_meeting = _get_latest_meeting_day(meeting)
+            if latest_meeting is None:
+                latest_meeting = latest_section_meeting
+            elif latest_meeting < latest_section_meeting:
+                latest_meeting = latest_section_meeting
+    end_day = period.end_date.weekday()
+    days_to_subtract = end_day - latest_meeting
+
+    end_date = period.end_date - timedelta(days=days_to_subtract)
+    return end_date
+
+
+def _get_earliest_meeting_day(meeting):
+    day_index = None
+    if meeting.meets_saturday:
+        day_index = 5
+    if meeting.meets_friday:
+        day_index = 4
+    if meeting.meets_thursday:
+        day_index = 3
+    if meeting.meets_wednesday:
+        day_index = 2
+    if meeting.meets_tuesday:
+        day_index = 1
+    if meeting.meets_monday:
+        day_index = 0
+    if meeting.meets_sunday:
+        day_index = 6
+    return day_index
+
+
+def _get_latest_meeting_day(meeting):
+    day_index = None
+    if meeting.meets_sunday:
+        day_index = 6
+    if meeting.meets_monday:
+        day_index = 0
+    if meeting.meets_tuesday:
+        day_index = 1
+    if meeting.meets_wednesday:
+        day_index = 2
+    if meeting.meets_thursday:
+        day_index = 3
+    if meeting.meets_friday:
+        day_index = 4
+    if meeting.meets_saturday:
+        day_index = 5
+
+    return day_index
 
 
 def _add_course_colors_to_schedule(schedule):
@@ -223,10 +385,12 @@ def trim_section_meetings(weeks):
                 trimmed = _trim_section_before(section, section.start_date)
                 if trimmed:
                     week.meetings_trimmed = True
+                    week.meetings_trimmed_front = True
             if section.end_date < week.end_date:
                 trimmed = _trim_section_after(section, section.end_date)
                 if trimmed:
                     week.meetings_trimmed = True
+                    week.meetings_trimmed_back = True
     return weeks
 
 
@@ -549,6 +713,8 @@ class SchedulePeriod():
         # be split into corresponding A and B term pieces
         self.summer_term = None
         self.meetings_trimmed = False
+        self.meetings_trimmed_front = False
+        self.meetings_trimmed_back = False
 
     def json_data(self):
         section_data = []

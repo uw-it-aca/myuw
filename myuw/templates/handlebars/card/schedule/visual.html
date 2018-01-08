@@ -5,6 +5,11 @@
 <div class="card"  data-name="VisualScheduleCard" data-type="card">
     {{#if total_sections}}
     <h3 id="quarter-info" >
+            {{ucfirst quarter}} {{year}} Schedule
+            {{#if summer_term}}
+            <span class="shortTitle">{{ucfirst summer_term}}</span>
+            {{/if}}
+    </h3>
             {{ucfirst quarter}} {{year}}{{#if summer_term}}{{summer_term}}{{/if}}<span class="sr-only">Final exam schedule and Visual Schedule</span>
     </h3>
     <!--  SR-only Final exam schedule tabular data -->
@@ -42,7 +47,7 @@
     	    </tbody>
     	</table>
         </div>
-        
+
     <div><p class="sr-only"><a href="/academics#academics_content_cards">Skip the visual schedule and go to course cards</a></p></div>
     <div aria-hidden="true" role="presentation"><!-- Wrap the content under aria-hidden -->
         {{#if show_period_headers}}
@@ -68,7 +73,7 @@
         {{#if meets_sunday}}
     	<div class="{{ day_class }}">
     	    <div class="day-label">SUN</div>
-    	    <div class="day-col hours-{{total_hours}}">
+    	    <div class="day-col hours-{{total_hours}}{{#if disabled_days.sunday}} day-disabled{{/if}}">
     	        {{ show_card_days_meetings sunday start_time end_time }}
     	    </div>
     	</div>
@@ -76,35 +81,35 @@
 
     	<div class="{{ day_class }}">
     	    <div class="day-label">MON</div>
-    	    <div class="day-col hours-{{total_hours}}">
+    	    <div class="day-col hours-{{total_hours}}{{#if disabled_days.monday}} day-disabled{{/if}}" >
     	        {{ show_card_days_meetings monday start_time end_time }}
     	    </div>
     	</div>
     
     	<div class="{{ day_class }}">
     	    <div class="day-label">TUE</div>
-    	    <div class="day-col hours-{{total_hours}}">
+    	    <div class="day-col hours-{{total_hours}}{{#if disabled_days.tuesday}} day-disabled{{/if}}">
     	        {{ show_card_days_meetings tuesday start_time end_time }}
     	    </div>
     	</div>
     
     	<div class="{{ day_class }}">
     	    <div class="day-label">WED</div>
-    	    <div class="day-col hours-{{total_hours}}">
+    	    <div class="day-col hours-{{total_hours}}{{#if disabled_days.wednesday}} day-disabled{{/if}}">
     	        {{ show_card_days_meetings wednesday start_time end_time }}
     	    </div>
     	</div>
     
     	<div class="{{ day_class }}">
     	    <div class="day-label">THU</div>
-    	    <div class="day-col hours-{{total_hours}}">
+    	    <div class="day-col hours-{{total_hours}}{{#if disabled_days.thursday}} day-disabled{{/if}}">
     	        {{ show_card_days_meetings thursday start_time end_time }}
     	    </div>
     	</div>
     
     	<div class="{{ day_class }}">
     	    <div class="day-label">FRI</div>
-    	    <div class="day-col hours-{{total_hours}}">
+    	    <div class="day-col hours-{{total_hours}}{{#if disabled_days.friday}} day-disabled{{/if}}">
     	        {{ show_card_days_meetings friday start_time end_time }}
     	    </div>
     	</div>
@@ -112,7 +117,7 @@
         {{#if meets_saturday}}
     	<div class="{{ day_class }}">
     	    <div class="day-label">SAT</div>
-    	    <div class="day-col hours-{{total_hours}}">
+    	    <div class="day-col hours-{{total_hours}}{{#if disabled_days.saturday}} day-disabled{{/if}}">
     	        {{ show_card_days_meetings saturday start_time end_time }}
     	    </div>
     	</div>

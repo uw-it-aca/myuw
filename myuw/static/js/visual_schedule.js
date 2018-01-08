@@ -36,7 +36,7 @@ var VisualSchedule = {
 
         var source = $("#quarter-header").html();
         var template = Handlebars.compile(source);
-        $("#p age-header").html(template({
+        $("#page-header").html(template({
             year: course_data.year,
             quarter: course_data.quarter,
             summer_term: course_data.summer_term,

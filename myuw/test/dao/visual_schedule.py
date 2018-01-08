@@ -10,7 +10,9 @@ from myuw.dao.visual_schedule import _get_visual_schedule_from_schedule, \
     get_summer_schedule_bounds, trim_summer_meetings, _get_finals_period, \
     _add_course_colors_to_schedule, _get_combined_schedule, \
     get_future_visual_schedule, get_current_visual_schedule, \
-    _trim_summer_term
+    _trim_summer_term, _get_disabled_days, _get_earliest_meeting_day, \
+    _get_latest_meeting_day, _get_earliest_start_from_period, \
+    _get_latest_end_from_period, trim_section_meetings, trim_weeks_no_meetings
 from myuw.test import fdao_sws_override, fdao_pws_override, \
     get_request, get_request_with_user, get_request_with_date
 import datetime
@@ -74,6 +76,82 @@ class TestVisualSchedule(TestCase):
         bounds = get_schedule_bounds(schedule)
         weeks = _get_weeks_from_bounds(bounds)
         weeks = _add_sections_to_weeks(schedule.sections, weeks)
+        consolidated = _consolidate_weeks(weeks)
+        _add_weekend_meeting_data(consolidated)
+        return consolidated
+
+    def _get_schedule_with_meetings(self):
+        section1 = Section()
+        section1.curriculum_abbr = 'ASD'
+        section1.course_number = 123
+        section1.section_id = 'A'
+        section1.start_date = datetime.date(2017, 10, 02)
+        section1.end_date = datetime.date(2017, 10, 20)
+
+        section2 = Section()
+        section2.curriculum_abbr = 'QWE'
+        section2.course_number = 456
+        section2.section_id = 'A'
+        section2.start_date = datetime.date(2017, 10, 02)
+        section2.end_date = datetime.date(2017, 10, 20)
+
+        s1_meetings = SectionMeeting()
+        s1_meetings.meets_saturday = True
+        s1_meetings.meets_tuesday = True
+        section1.meetings = [s1_meetings]
+
+        s2_meetings = SectionMeeting()
+        s2_meetings.meets_wednesday = True
+        s2_meetings.meets_friday = True
+        section2.meetings = [s2_meetings]
+
+        schedule = ClassSchedule()
+        schedule.sections = [section1, section2]
+
+        schedule = _add_dates_to_sections(schedule)
+
+        bounds = get_schedule_bounds(schedule)
+        weeks = _get_weeks_from_bounds(bounds)
+        weeks = _add_sections_to_weeks(schedule.sections, weeks)
+        weeks = trim_section_meetings(weeks)
+        weeks = trim_weeks_no_meetings(weeks)
+        consolidated = _consolidate_weeks(weeks)
+        _add_weekend_meeting_data(consolidated)
+        return consolidated
+
+    def _get_schedule_no_meetings(self):
+        section1 = Section()
+        section1.curriculum_abbr = 'ASD'
+        section1.course_number = 123
+        section1.section_id = 'A'
+        section1.start_date = datetime.date(2017, 10, 02)
+        section1.end_date = datetime.date(2017, 10, 20)
+
+        section2 = Section()
+        section2.curriculum_abbr = 'QWE'
+        section2.course_number = 456
+        section2.section_id = 'A'
+        section2.start_date = datetime.date(2017, 10, 02)
+        section2.end_date = datetime.date(2017, 10, 20)
+
+        s1_meetings = SectionMeeting()
+        s1_meetings.meeting_type = "NON"
+        section1.meetings = [s1_meetings]
+
+        s2_meetings = SectionMeeting()
+        s2_meetings.meeting_type = "NON"
+        section2.meetings = [s2_meetings]
+
+        schedule = ClassSchedule()
+        schedule.sections = [section1, section2]
+
+        schedule = _add_dates_to_sections(schedule)
+
+        bounds = get_schedule_bounds(schedule)
+        weeks = _get_weeks_from_bounds(bounds)
+        weeks = _add_sections_to_weeks(schedule.sections, weeks)
+        weeks = trim_section_meetings(weeks)
+        weeks = trim_weeks_no_meetings(weeks)
         consolidated = _consolidate_weeks(weeks)
         _add_weekend_meeting_data(consolidated)
         return consolidated
@@ -387,20 +465,20 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(consolidated[2].summer_term, "B-term")
 
         self.assertEqual(consolidated[0].start_date,
-                         datetime.date(2013, 6, 23))
-        self.assertEqual(consolidated[0].end_date, datetime.date(2013, 7, 20))
+                         datetime.date(2013, 6, 24))
+        self.assertEqual(consolidated[0].end_date, datetime.date(2013, 7, 19))
 
         self.assertEqual(consolidated[1].start_date,
-                         datetime.date(2013, 7, 21))
+                         datetime.date(2013, 7, 22))
         self.assertEqual(consolidated[1].end_date, datetime.date(2013, 7, 24))
 
         self.assertEqual(consolidated[2].start_date,
                          datetime.date(2013, 7, 25))
-        self.assertEqual(consolidated[2].end_date, datetime.date(2013, 7, 27))
+        self.assertEqual(consolidated[2].end_date, datetime.date(2013, 7, 26))
 
         self.assertEqual(consolidated[3].start_date,
-                         datetime.date(2013, 7, 28))
-        self.assertEqual(consolidated[3].end_date, datetime.date(2013, 8, 24))
+                         datetime.date(2013, 7, 29))
+        self.assertEqual(consolidated[3].end_date, datetime.date(2013, 8, 23))
 
     def test_summer_term_schedule_pce_beyond_term(self):
             regid = "9136CCB8F66711D5BE060004AC494FFE"
@@ -414,8 +492,12 @@ class TestVisualSchedule(TestCase):
             section1.section_id = 'A'
             section1.start_date = datetime.date(2013, 6, 2)
             section1.end_date = datetime.date(2013, 9, 4)
-            section1.meetings = []
             section1.term = term
+
+            s1_meetings = SectionMeeting()
+            s1_meetings.meets_monday = True
+            s1_meetings.meets_friday = True
+            section1.meetings = [s1_meetings]
 
             schedule = _get_schedule(regid, term)
             schedule.sections.append(section1)
@@ -425,9 +507,9 @@ class TestVisualSchedule(TestCase):
             self.assertEqual(len(consolidated), 5)
 
             self.assertEqual(consolidated[0].start_date,
-                             datetime.date(2013, 6, 23))
+                             datetime.date(2013, 6, 24))
             self.assertEqual(consolidated[3].end_date,
-                             datetime.date(2013, 8, 24))
+                             datetime.date(2013, 8, 23))
 
             # ensure section exists in each week
             for week in consolidated:
@@ -460,34 +542,34 @@ class TestVisualSchedule(TestCase):
             self.assertEqual(len(consolidated), 7)
 
             self.assertEqual(consolidated[0].start_date,
-                             datetime.date(2013, 6, 23))
+                             datetime.date(2013, 6, 24))
             self.assertEqual(consolidated[0].end_date,
-                             datetime.date(2013, 7, 6))
+                             datetime.date(2013, 7, 5))
 
             self.assertEqual(consolidated[1].start_date,
-                             datetime.date(2013, 7, 7))
+                             datetime.date(2013, 7, 8))
             self.assertEqual(consolidated[1].end_date,
-                             datetime.date(2013, 7, 20))
+                             datetime.date(2013, 7, 19))
 
             self.assertEqual(consolidated[2].start_date,
-                             datetime.date(2013, 7, 21))
+                             datetime.date(2013, 7, 22))
             self.assertEqual(consolidated[2].end_date,
                              datetime.date(2013, 7, 24))
 
             self.assertEqual(consolidated[3].start_date,
                              datetime.date(2013, 7, 25))
             self.assertEqual(consolidated[3].end_date,
-                             datetime.date(2013, 7, 27))
+                             datetime.date(2013, 7, 26))
 
             self.assertEqual(consolidated[4].start_date,
-                             datetime.date(2013, 7, 28))
+                             datetime.date(2013, 7, 29))
             self.assertEqual(consolidated[4].end_date,
-                             datetime.date(2013, 8, 10))
+                             datetime.date(2013, 8, 9))
 
             self.assertEqual(consolidated[5].start_date,
-                             datetime.date(2013, 8, 11))
+                             datetime.date(2013, 8, 12))
             self.assertEqual(consolidated[5].end_date,
-                             datetime.date(2013, 8, 24))
+                             datetime.date(2013, 8, 23))
 
             pce_weeks = [consolidated[index] for index in [1, 2, 3, 4]]
             non_pce_weeks = [consolidated[index] for index in [0, 5]]
@@ -518,24 +600,24 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(len(consolidated), 5)
 
         self.assertEqual(consolidated[0].start_date,
-                         datetime.date(2013, 8, 25))
+                         datetime.date(2013, 8, 26))
         self.assertEqual(consolidated[0].end_date,
-                         datetime.date(2013, 9, 14))
+                         datetime.date(2013, 9, 13))
 
         self.assertEqual(consolidated[1].start_date,
-                         datetime.date(2013, 9, 15))
+                         datetime.date(2013, 9, 16))
         self.assertEqual(consolidated[1].end_date,
-                         datetime.date(2013, 9, 21))
+                         datetime.date(2013, 9, 18))
 
         self.assertEqual(consolidated[2].start_date,
-                         datetime.date(2013, 9, 22))
+                         datetime.date(2013, 9, 26))
         self.assertEqual(consolidated[2].end_date,
-                         datetime.date(2013, 9, 28))
+                         datetime.date(2013, 9, 27))
 
         self.assertEqual(consolidated[3].start_date,
-                         datetime.date(2013, 9, 29))
+                         datetime.date(2013, 9, 30))
         self.assertEqual(consolidated[3].end_date,
-                         datetime.date(2013, 12, 7))
+                         datetime.date(2013, 12, 6))
 
         trimmed_efs_mtg = consolidated[1].sections[0].meetings[0]
         self.assertFalse(trimmed_efs_mtg.meets_sunday)
@@ -646,3 +728,59 @@ class TestVisualSchedule(TestCase):
         term = get_term_from_quarter_string("2013,autumn")
         future_schedule = get_future_visual_schedule(term)
         self.assertEqual(len(future_schedule), 5)
+
+    def test_get_earliest_start_from_period(self):
+        periods = self._get_schedule_with_meetings()
+        earliest_start = _get_earliest_start_from_period(periods[0])
+        self.assertEqual(earliest_start, datetime.date(2017, 10, 03))
+
+        no_mtg_periods = self._get_schedule_no_meetings()
+        earliest_start = _get_earliest_start_from_period(no_mtg_periods[0])
+        self.assertEqual(earliest_start, datetime.date(2017, 10, 02))
+
+    def test_get_latest_end_from_period(self):
+        periods = self._get_schedule_with_meetings()
+        latest_end = _get_latest_end_from_period(periods[1])
+        self.assertEqual(latest_end, datetime.date(2017, 10, 20))
+
+        no_mtg_periods = self._get_schedule_no_meetings()
+        latest_end = _get_latest_end_from_period(no_mtg_periods[0])
+        self.assertEqual(latest_end, datetime.date(2017, 10, 20))
+
+    def test_get_earliest_meeting(self):
+        # first is sat + tues, 2nd is wed + fri
+        periods = self._get_schedule_with_meetings()
+        meeting = periods[0].sections[0].meetings[0]
+        self.assertEqual(_get_earliest_meeting_day(meeting), 1)
+        meeting = periods[0].sections[1].meetings[0]
+        self.assertEqual(_get_earliest_meeting_day(meeting), 2)
+
+    def test_get_latest_meeting(self):
+        periods = self._get_schedule_with_meetings()
+        meeting = periods[0].sections[0].meetings[0]
+        self.assertEqual(_get_latest_meeting_day(meeting), 5)
+        meeting = periods[0].sections[1].meetings[0]
+        self.assertEqual(_get_latest_meeting_day(meeting), 4)
+
+    def test_get_disabled_days(self):
+        days = _get_disabled_days(datetime.date(2013, 07, 25), True)
+        disabled_days = {'sunday': True,
+                         'monday': True,
+                         'tuesday': True,
+                         'wednesday': True,
+                         'thursday': False,
+                         'friday': False,
+                         'saturday': False}
+
+        self.assertDictEqual(days, disabled_days)
+
+        days = _get_disabled_days(datetime.date(2013, 07, 25), False)
+        disabled_days = {'sunday': False,
+                         'monday': False,
+                         'tuesday': False,
+                         'wednesday': False,
+                         'thursday': False,
+                         'friday': True,
+                         'saturday': True}
+
+        self.assertDictEqual(days, disabled_days)
