@@ -1,6 +1,5 @@
 from django.test import TestCase
-from restclients_core.exceptions import DataFailureException
-from uw_sws.models import Term, Section, ClassSchedule, SectionMeeting
+from uw_sws.models import Section, ClassSchedule, SectionMeeting
 from myuw.dao.term import get_term_from_quarter_string
 from myuw.dao.registration import _get_schedule
 from myuw.dao.visual_schedule import _get_visual_schedule_from_schedule, \
@@ -12,7 +11,8 @@ from myuw.dao.visual_schedule import _get_visual_schedule_from_schedule, \
     get_future_visual_schedule, get_current_visual_schedule, \
     _trim_summer_term, _get_disabled_days, _get_earliest_meeting_day, \
     _get_latest_meeting_day, _get_earliest_start_from_period, \
-    _get_latest_end_from_period, trim_section_meetings, trim_weeks_no_meetings
+    _get_latest_end_from_period, trim_section_meetings, \
+    trim_weeks_no_meetings, _get_off_term_trimmed
 from myuw.test import fdao_sws_override, fdao_pws_override, \
     get_request, get_request_with_user, get_request_with_date
 import datetime
@@ -784,3 +784,13 @@ class TestVisualSchedule(TestCase):
                          'saturday': True}
 
         self.assertDictEqual(days, disabled_days)
+
+    def test_get_off_term_trimmed(self):
+        request = get_request_with_user('jeos',
+                                        get_request_with_date("2013-04-01"))
+
+        schedule = _get_combined_schedule(request)
+
+        visual_schedule = _get_visual_schedule_from_schedule(schedule)
+        trimmed = _get_off_term_trimmed(visual_schedule)
+        self.assertEqual(trimmed[0]['section'], 'BIGDATA 233 A')
