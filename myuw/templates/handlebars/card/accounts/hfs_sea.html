@@ -9,16 +9,16 @@
 
     <div class="card-badge-container">
         {{#if resident_dining}}
-                <div class="card-badge clearfix">
-                    {{#with resident_dining}}
-                    <div class="pull-left">
-                        <h4 class="card-badge-label">Dining Balance</h4>
-                    </div>
-                    <div class="pull-right">
-                        <span class="card-badge-value">${{formatPrice balance}}</span>
-                    </div>
-                    {{/with}}
-                </div>
+           <div class="card-badge clearfix">
+               {{#with resident_dining}}
+                   <div class="pull-left">
+                       <h4 class="card-badge-label">Dining Balance</h4>
+                   </div>
+                   <div class="pull-right">
+                       <span class="card-badge-value">${{formatPrice balance}}</span>
+                   </div>
+                   {{/with}}
+           </div>
         {{/if}}
 
     </div>
