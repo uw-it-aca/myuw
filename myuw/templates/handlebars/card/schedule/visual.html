@@ -125,13 +125,7 @@
         </div>
         {{/if}}
         <!-- end week view -->
-
-        <!-- begin - if there are courses that end after the quarter -->
-        {{#each off_term_trimmed}}
-        <p>Note: {{ section }} continues until {{ toFriendlyDate end_date }}</p>
-        {{/each}}
-        <!-- end - if there are courses that end after the quarter -->
-
+		
         <!-- begin - if there are no meetings -->
         {{#if courses_no_meeting }}
         <div class="courseTBD" aria-hidden="true">
@@ -155,6 +149,13 @@
             {{/each}}
         </div>
         {{/if}}
+        
+         <!-- begin - if there are courses that end after the quarter -->
+        {{#each off_term_trimmed}}
+        <p style="font-size:85%; margin-top:16px; color:#777;">Note: {{ section }} course continues until {{ toFriendlyDate end_date }}</p>
+        {{/each}}
+        <!-- end - if there are courses that end after the quarter --> 
+        
     </div>
         <!-- end - if there are no meetings -->
         
