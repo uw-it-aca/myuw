@@ -1,0 +1,66 @@
+{
+    "Current": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "154",
+        "CurriculumAbbreviation": "CSE",
+        "Href": "/student/v5/registration.json?year=2017&quarter=autumn&curriculum_abbreviation=CSE&course_number=154&section_id=AD&reg_id=&is_active=&instructor_reg_id=&verbose=true&changed_since_date=&transcriptable_course=all&page_start=&page_size=10",
+        "InstructorRegID": "",
+        "IsActive": false,
+        "PageSize": "10",
+        "PageStart": null,
+        "Quarter": "autumn",
+        "RegID": null,
+        "SectionID": "A",
+        "TranscriptableCourse": "all",
+        "Verbose": true,
+        "Year": 2017
+    },
+    "Next": null,
+    "PageSize": "10",
+    "PageStart": null,
+    "Previous": null,
+    "Registrations": [
+        {
+            "AccessDateRangeEnd": "",
+            "AccessDateRangeStart": "",
+            "Auditor": false,
+            "Credits": "5",
+            "DuplicateCode": "",
+            "EducationUnitType": null,
+            "EndDate": "",
+            "FeeBaseType": "",
+            "Grade": "X",
+            "GradeDate": "",
+            "GradeDocumentID": "",
+            "GradingSystem": null,
+            "HonorsCourse": false,
+            "Href": "/student/v5/registration/2017,autumn,CSE,154,AD,9136CCB8F66711D5BE060004AC494001,.json",
+            "Instructor": null,
+            "IsActive": true,
+            "IsCredit": true,
+            "IsIndependentStart": false,
+            "Metadata": "RegistrationSourceLocation=SDB;",
+            "Person": {
+                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494001.json",
+                "Name": "Average S2dent",
+                "RegID": "9136CCB8F66711D5BE060004AC494001"
+            },
+            "RepeatCourse": false,
+            "RepositoryTimeStamp": "8/23/2017 8:24:13 AM",
+            "RequestDate": "2017-07-26",
+            "RequestStatus": "ADDED TO CLASS",
+            "Section": {
+                "CourseNumber": "154",
+                "CurriculumAbbreviation": "CSE",
+                "Href": "/student/v5/course/2017,autumn,CSE,154/AD.json",
+                "Quarter": "autumn",
+                "SectionID": "A",
+                "Year": 2017
+            },
+            "StartDate": "",
+            "VariableCredit": false,
+            "WritingCourse": false
+        }
+    ],
+    "TotalCount": 1
+}

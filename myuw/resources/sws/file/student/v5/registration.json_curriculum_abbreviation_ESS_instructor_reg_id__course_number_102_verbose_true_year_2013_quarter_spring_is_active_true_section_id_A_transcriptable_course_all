@@ -23,7 +23,7 @@
             {
             "AccessDateRangeEnd": "",
             "AccessDateRangeStart": "",
-            "Auditor": false,
+            "Auditor": true,
             "Credits": "2.0",
             "DuplicateCode": "",
             "EducationUnitType": null,

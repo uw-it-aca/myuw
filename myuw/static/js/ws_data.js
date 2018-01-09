@@ -37,6 +37,7 @@ WSData = {
     _myplan_data: {},
     _thrive_data: null,
     _upass_data: null,
+    _hx_toolkit_data: {},
 
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
@@ -424,6 +425,25 @@ WSData = {
         return WSData._upass_data;
     },
 
+    _get_hx_toolkit_data: function(){
+        return WSData._hx_toolkit_msg;
+    },
+    hx_toolkit_msg_data: function(message_id){
+        if(WSData._hx_toolkit_data.hasOwnProperty(message_id)){
+            return WSData._hx_toolkit_data[message_id];
+        }
+    },
+    hx_toolkit_list_data: function(){
+        if(WSData._hx_toolkit_data.hasOwnProperty('list/')){
+            return WSData._hx_toolkit_data["list/"];
+        }
+    },
+    hx_toolkit_week_data: function(){
+        if(WSData._hx_toolkit_data.hasOwnProperty('week/')){
+            return WSData._hx_toolkit_data["week/"];
+        }
+    },
+
     fetch_event_data: function(callback, err_callback, args) {
         if (WSData._department_events === null) {
             $.ajax({
@@ -708,7 +728,8 @@ WSData = {
     fetch_instructed_section_details: function(section_label, callback, err_callback, args) {
         var url = "/api/v1/instructor_section_details/" + section_label.replace(/&amp;/g, "%26");
 
-        if (window.section_data.hasOwnProperty('lti_session_id')) {
+        if (window.hasOwnProperty('section_data') &&
+            window.section_data.hasOwnProperty('lti_session_id')) {
             url = "/lti" + url;
         }
 
@@ -1242,6 +1263,49 @@ WSData = {
                 accepts: {html: "application/json"},
                 success: function(results) {
                     WSData._upass_data = results;
+                    if (callback !== null) {
+                        callback.apply(null, args);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    err_callback.call(null, xhr.status, error);
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
+    fetch_hx_toolkit_week_msg: function(callback, err_callback, args) {
+        WSData._fetch_hx_toolkit_data('week/', callback, err_callback, args);
+    },
+
+    fetch_hx_toolkit_msg_data: function(message_id, callback, err_callback, args) {
+        WSData._fetch_hx_toolkit_data(message_id, callback, err_callback, args);
+    },
+
+    fetch_hx_toolkit_list_data: function(callback, err_callback, args) {
+        WSData._fetch_hx_toolkit_data('list/', callback, err_callback, args);
+    },
+
+    _fetch_hx_toolkit_data: function(url_param, callback, err_callback, args) {
+        if (WSData._get_hx_toolkit_data(url_param) === undefined) {
+            var url = "/api/v1/hx_toolkit/" + url_param;
+            var data_type = "html";
+
+            if(url_param === 'list/'){
+                data_type = "JSON";
+            }
+            $.ajax({
+                url: url,
+                dataType: data_type,
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    WSData._hx_toolkit_data[url_param] = results;
                     if (callback !== null) {
                         callback.apply(null, args);
                     }

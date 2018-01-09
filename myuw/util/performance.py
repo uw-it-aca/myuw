@@ -13,7 +13,7 @@ def log_response_time(func):
         start = time.time()
         try:
             val = func(*args, **kwargs)
-        except:
+        except Exception:
             raise
         finally:
             module = self.__module__

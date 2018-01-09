@@ -16,6 +16,7 @@ from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.registration import get_active_registrations_for_section
 from myuw.dao.term import get_current_quarter
 
+
 logger = logging.getLogger(__name__)
 
 
@@ -93,12 +94,14 @@ def _get_sections_by_section_reference(section_references):
     return sections
 
 
-def get_instructor_section(person, section_id, include_registrations=False,
+def get_instructor_section(person, section_id,
+                           include_registrations=False,
                            include_linked_sections=False):
     """
     Return requested section instructor is teaching
     """
     schedule = ClassSchedule()
+    instructor_regid = person.uwregid
     schedule.person = person
     schedule.sections = []
 
@@ -107,13 +110,15 @@ def get_instructor_section(person, section_id, include_registrations=False,
 
     if include_registrations:
         section.registrations = get_active_registrations_for_section(
-            section, schedule.person.uwregid)
+            section, instructor_regid)
 
     schedule.sections.append(section)
+
     if include_linked_sections:
         threads = []
         for url in section.linked_section_urls:
-            t = ThreadWithResponse(target=get_linked_section, args=(url,))
+            t = ThreadWithResponse(target=get_linked_section,
+                                   args=(url, instructor_regid))
             t.start()
             threads.append(t)
 
@@ -126,14 +131,19 @@ def get_instructor_section(person, section_id, include_registrations=False,
     return schedule
 
 
-def get_linked_section(url):
+def get_linked_section(url, instructor_regid):
     try:
         linked = get_section_by_url(url)
-        registrations = get_active_registrations_by_section(linked)
-        linked.registrations = registrations
+
+        try:
+            linked.registrations = get_active_registrations_for_section(
+                linked, instructor_regid)
+        except DataFailureException as ex:
+            logger.error("get_linked_section(%s)==>%s", url, ex)
+            linked.registrations = []
 
         return linked
-    except:
+    except Exception:
         return
 
 

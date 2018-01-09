@@ -24,7 +24,8 @@
         "email_forward_url": "{{ user.email_forward_url }}",
         "email_forward_title": "{{ user.email_forward_title }}",
         "email_forward_icon": "{{ user.email_forward_icon }}",
-        "netid": "{{ user.netid }}"
+        "netid": "{{ user.netid }}",
+        "is_hxt_viewer": {{ user.affiliations.hxt_viewer|yesno:"true, false" }}
     };
     window.enabled_features = {
         {% for feature in enabled_features %}
