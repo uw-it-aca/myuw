@@ -31,6 +31,7 @@ var VisualScheduleCard = {
         var schedule_data = WSData.visual_schedule_data(VisualScheduleCard.term);
         if (schedule_data === undefined){
             VisualScheduleCard.hide();
+            return;
         }
         var default_period = VisualScheduleCard._get_default_period(schedule_data.periods);
 
