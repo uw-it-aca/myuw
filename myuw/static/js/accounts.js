@@ -77,7 +77,7 @@ var AccountsPage = {
            window.user.employee ||
            window.user.clinician) {
             cards = cards.concat([MedicineAccountsCard,
-                                  HfsCard]);
+                                  HuskyCard]);
         }
 
         if(window.user.stud_employee || window.user.instructor) {

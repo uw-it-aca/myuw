@@ -9,7 +9,7 @@ describe("AccountsPage", function() {
                                         "myuw/static/js/card/accounts/uwnetid.js",
                                         "myuw/static/js/card/accounts/account_medicine.js",
                                         "myuw/static/js/card/accounts/hr_payroll_card.js",
-                                        "myuw/static/js/card/accounts/hfs.js",
+                                        "myuw/static/js/card/accounts/husky.js",
                                         "myuw/static/js/card/accounts/library.js",
                                         "myuw/static/js/card/accounts/upass.js"
                                     ]
@@ -27,7 +27,7 @@ describe("AccountsPage", function() {
         it('should handle clinician affiliation', function() {
             var order = [
                 MedicineAccountsCard,
-                HfsCard,
+                HuskyCard,
                 LibraryCard,
                 UPassCard,
                 UwnetidCard
@@ -41,7 +41,7 @@ describe("AccountsPage", function() {
             var student_order = [
                 TuitionCard,
                 MedicineAccountsCard,
-                HfsCard,
+                HuskyCard,
                 LibraryCard,
                 UPassCard,
                 UwnetidCard
@@ -55,7 +55,7 @@ describe("AccountsPage", function() {
             var stud_employee_order = [
                 TuitionCard,
                 MedicineAccountsCard,
-                HfsCard,
+                HuskyCard,
                 HRPayrollCard,
                 LibraryCard,
                 UPassCard,
@@ -70,7 +70,7 @@ describe("AccountsPage", function() {
         it('should handle employee affiliation', function() {
             var employee_order = [
                 MedicineAccountsCard,
-                HfsCard,
+                HuskyCard,
                 LibraryCard,
                 UPassCard,
                 UwnetidCard
@@ -83,7 +83,7 @@ describe("AccountsPage", function() {
         it('should handle instructor affiliation', function() {
             var instructor_order = [
                 MedicineAccountsCard,
-                HfsCard,
+                HuskyCard,
                 HRPayrollCard,
                 LibraryCard,
                 UPassCard,
