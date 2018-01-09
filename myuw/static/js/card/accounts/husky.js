@@ -20,8 +20,7 @@ var HuskyCard = {
         var template = Handlebars.compile(source);
         var template_data;
         if (!hfs_data.student_husky_card &&
-            !hfs_data.employee_husky_card &&
-            !hfs_data.resident_dining) {
+            !hfs_data.employee_husky_card) {
             remove_card(HuskyCard.dom_target);
         } else {
             HuskyCard.dom_target.html(template(hfs_data));

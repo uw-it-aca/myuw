@@ -73,11 +73,17 @@ var AccountsPage = {
         if(window.user.student) {
             cards.push(TuitionCard);
         }
+
         if(window.user.student ||
            window.user.employee ||
            window.user.clinician) {
             cards = cards.concat([MedicineAccountsCard,
                                   HuskyCard]);
+        }
+
+        if(window.user.student &&
+           (window.user.seattle_affil || window.user.seattle)) {
+            cards.push(HfsSeaCard);
         }
 
         if(window.user.stud_employee || window.user.instructor) {

@@ -9,6 +9,7 @@ describe("AccountsPage", function() {
                                         "myuw/static/js/card/accounts/uwnetid.js",
                                         "myuw/static/js/card/accounts/account_medicine.js",
                                         "myuw/static/js/card/accounts/hr_payroll_card.js",
+                                        "myuw/static/js/card/accounts/hfs_sea.js",
                                         "myuw/static/js/card/accounts/husky.js",
                                         "myuw/static/js/card/accounts/library.js",
                                         "myuw/static/js/card/accounts/upass.js"
@@ -20,6 +21,7 @@ describe("AccountsPage", function() {
         window.user.employee = false;
         window.user.instructor = false;
         window.user.student = false;
+        window.user.seattle = false;
         window.user.stud_employee = false;
     });
     describe('_get_card_order_by_affiliation', function() {
@@ -47,6 +49,23 @@ describe("AccountsPage", function() {
                 UwnetidCard
             ];
             window.user.student = true;
+            console.log(window.user);
+            var card_order = AccountsPage._get_card_order_by_affiliation();
+            assert.deepEqual(card_order, student_order)
+        });
+
+        it('should handle seattle student affiliation', function() {
+            var student_order = [
+                TuitionCard,
+                MedicineAccountsCard,
+                HuskyCard,
+                HfsSeaCard,
+                LibraryCard,
+                UPassCard,
+                UwnetidCard
+            ];
+            window.user.student = true;
+            window.user.seattle = true;
             var card_order = AccountsPage._get_card_order_by_affiliation();
             assert.deepEqual(card_order, student_order)
         });
