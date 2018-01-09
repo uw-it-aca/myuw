@@ -1,14 +1,13 @@
 import logging
 import traceback
-from django.http import HttpResponse
 from myuw.dao.visual_schedule import get_current_visual_schedule, \
     get_schedule_json, get_future_visual_schedule
-from myuw.dao.term import get_current_quarter, get_specific_term, is_past, \
-    get_current_summer_term
+from myuw.dao.term import get_current_quarter, get_specific_term, is_past
 from myuw.dao.card_display_dates import in_show_grades_period
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_msg
-from myuw.views.error import handle_exception, invalid_future_term
+from myuw.views.error import handle_exception, invalid_future_term, \
+    data_not_found
 from myuw.views.api import ProtectedAPI
 
 
@@ -30,6 +29,8 @@ class VisSchedCurQtr(ProtectedAPI):
         timer = Timer()
         try:
             visual_schedule = get_current_visual_schedule(request)
+            if visual_schedule is None:
+                return data_not_found()
             term = get_current_quarter(request)
             response = get_schedule_json(visual_schedule, term)
 
@@ -63,6 +64,8 @@ class VisSchedOthrQtr(ProtectedAPI):
                     log_msg(logger, timer, "Future term has passed")
                     return invalid_future_term()
             visual_schedule = get_future_visual_schedule(term, summer_term)
+            if visual_schedule is None:
+                return data_not_found()
             response = get_schedule_json(visual_schedule, term)
 
             resp = self.json_response(response)

@@ -6,7 +6,7 @@ var VisualScheduleCard = {
     ck_instructor_schedule: false,
     day_label_offset: 0,
 
-    hide_card: function() {
+    should_hide: function() {
         if (window.user.student || window.user.instructor) {
             return false;
         }
@@ -14,8 +14,8 @@ var VisualScheduleCard = {
     },
 
     render_init: function(term, course_index) {
-        if (VisualScheduleCard.hide_card()) {
-            $("#VisualScheduleCard").hide();
+        if (VisualScheduleCard.should_hide()) {
+            VisualScheduleCard.hide();
             return;
         }
         WSData.fetch_visual_schedule_term(VisualScheduleCard.term,
@@ -23,15 +23,22 @@ var VisualScheduleCard = {
                                           VisualScheduleCard.render_handler);
     },
 
+    hide: function(){
+        $("#VisualScheduleCard").hide();
+    },
+
     render_handler: function() {
         var schedule_data = WSData.visual_schedule_data(VisualScheduleCard.term);
+        if (schedule_data === undefined){
+            VisualScheduleCard.hide();
+        }
         var default_period = VisualScheduleCard._get_default_period(schedule_data.periods);
 
         VisualScheduleCard.display_schedule_for_period(default_period);
     },
 
     _render_error: function() {
-        $("#VisualScheduleCard").hide();
+        VisualScheduleCard.hide();
     },
 
     _get_period_lables: function(schedule_data){

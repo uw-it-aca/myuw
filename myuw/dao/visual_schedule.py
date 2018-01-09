@@ -105,20 +105,22 @@ def _get_off_term_trimmed(visual_schedule):
 
 def get_future_visual_schedule(term, summer_term=None):
     schedule = _get_combined_future_schedule(term)
-    visual_schedule = _get_visual_schedule_from_schedule(schedule)
-    if summer_term is not None:
-        visual_schedule = _trim_summer_term(visual_schedule, summer_term)
+    if schedule is not None:
+        visual_schedule = _get_visual_schedule_from_schedule(schedule)
+        if summer_term is not None:
+            visual_schedule = _trim_summer_term(visual_schedule, summer_term)
 
-    return visual_schedule
+        return visual_schedule
 
 
 def get_current_visual_schedule(request):
     schedule = _get_combined_schedule(request)
-    schedule = _get_visual_schedule_from_schedule(schedule)
-    summer_term = get_current_summer_term(request)
-    if summer_term:
-        schedule = _trim_summer_term(schedule, summer_term)
-    return schedule
+    if schedule is not None:
+        schedule = _get_visual_schedule_from_schedule(schedule)
+        summer_term = get_current_summer_term(request)
+        if summer_term:
+            schedule = _trim_summer_term(schedule, summer_term)
+        return schedule
 
 
 def _get_combined_schedule(request):
