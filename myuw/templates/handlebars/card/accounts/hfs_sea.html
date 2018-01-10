@@ -1,26 +1,26 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "sea_hfs_card" %}
 
-<div class="card clearfix"  data-name="SeaHfsCard" data-type="card">
+<div class="myuw-card clearfix" data-name="SeaHfsCard" data-type="card">
 
-    <h3 aria-hidden="true">Housing &amp; Food Services</h3>
+    <div class="myuw-card-wrapper">
+        <h3 class="myuw-card-title">Housing &amp; Food Services</h3>
 
-    <h3 class="sr-only"></h3>
-
-    <div class="card-badge-container">
-        {{#if resident_dining}}
-           <div class="card-badge clearfix">
-               {{#with resident_dining}}
-                   <div class="pull-left">
-                       <h4 class="card-badge-label">Dining Balance</h4>
-                   </div>
-                   <div class="pull-right">
-                       <span class="card-badge-value">${{formatPrice balance}}</span>
-                   </div>
+        <div class="card-badge-container">
+            {{#if resident_dining}}
+               <div class="card-badge clearfix">
+                   {{#with resident_dining}}
+                       <div class="pull-left">
+                           <h4 class="card-badge-label">Dining Balance</h4>
+                       </div>
+                       <div class="pull-right">
+                           <span class="card-badge-value">${{formatPrice balance}}</span>
+                       </div>
                    {{/with}}
-           </div>
-        {{/if}}
+               </div>
+            {{/if}}
 
+        </div>
     </div>
 </div>
 {% endtplhandlebars %}
