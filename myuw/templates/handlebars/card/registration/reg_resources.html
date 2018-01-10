@@ -15,11 +15,11 @@
                            href="{{plan_data.myplan_href}}">Edit plan in MyPlan</a>
                     {{else}}
                         <a target="_blank" class="focus-link"
-                           href="{{plan_data.registration_href}}">Register using MyPlan</a>
+                           href="{{plan_data.registration_href}}">Register using MyPlan</a> <span>(Non-PCE courses only)</span>
                     {{/unless}}
                 {{else}}
                     <a target="_blank" class="focus-link"
-                       href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/{{reg_next_year}}{{get_quarter_code reg_next_quarter}}">Register using MyPlan</a>
+                       href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/{{reg_next_year}}{{get_quarter_code reg_next_quarter}}">Register using MyPlan</a> <span>(Non-PCE courses only)</span>
                 {{/if}}
             </li>
 
@@ -39,7 +39,7 @@
             {{/if}}
             <li>
                 <a target="_blank"
-                   href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">MyPlan</a>
+                   href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">MyPlan</a> <span>(Non-PCE courses only)</span>
             </li>
         {{/unless}}
 
@@ -82,15 +82,15 @@
             </li>
         {{ /if }}
 
-	{{ #if is_pce }}
+	{{ #if is_c2 }}
             <li>
                 <span id="pce_time_schedule"
                       class="sr-only">
-                    Browse time schedule for Professional and Continuing Education programs
+                    Learn how to register for PCE courses
                 </span>
                 <a aria-labelledby="pce_time_schedule"
                    target="_blank"
-                   href="https://www.washington.edu/students/timeschd/95index.html">PCE Time Schedule</a>
+                   href="https://www.degreereg.uw.edu/user-guide">How to register PCE courses</a>
             </li>
         {{ /if }}
 
@@ -99,6 +99,7 @@
             <a target="_blank"
                href="{{#if plan_data }}{{plan_data.degree_audit_href}}{{else}}https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree{{/if}}">Audit your degree (DARS)</a>
         </li>
+
     </ul>
 </div>
 
