@@ -17,9 +17,15 @@
 
     @media @two-column { border-left: solid 1px #ddd; border-right: solid 1px #ddd; margin-left: 0; margin-right: 0; }
 
+    .myuw-card-wrapper {
+        position: relative;
+    }
+
+    /*** Buttons ***/
     .card-btn {
         @media @two-column { position: absolute; top: 12px; right: 10px;}
     }
+
 	/* Big button  */
 	.myuw-btn-big {
 		    padding: 16px 20px;
@@ -29,9 +35,26 @@
             font-size: 16px;
             color: #444;
 	}
-    /*** card title ***/
-    .myuw-card-title { font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: 24px !important; color: @uw-metalic-gold; margin-top: 8px;
-        &.text-danger { color: #a94442; }
+
+    /*** Card Title and Subheadings ***/
+    .myuw-card-title {
+        font-family: 'encode_sans_normalbold', sans-serif;
+        font-weight: 600;
+        font-size: 24px !important;
+        color: @uw-metalic-gold;
+        margin-top: 8px;
+        margin-bottom: 16px;
+
+        &.text-danger {
+            color: #a94442;
+        }
+    }
+
+    .myuw-card-heading {
+        font-family: @fontface-card-heading;
+        font-weight: 400;
+        font-size: @font-header-smaller;
+        color: @uw-dark-gray;
     }
 
     .myuw-card-tagline {
@@ -39,9 +62,7 @@
         margin-top: -8px;
     }
 
-    .myuw-card-wrapper {
-        position: relative;
-    }
+
 
     /*** card section ***/
     .myuw-card-section {
@@ -178,6 +199,8 @@
     *  Item Label           Value
     ***/
     .card-badge {
+        padding: 8px 0 8px 0;
+
         .card-badge-label {
             display: block;
             font-weight: bold;
@@ -197,6 +220,10 @@
             color: #888;
             margin-top: 35px;
         }
+    }
+
+    .links-container {
+        margin: .75em 0 1em 0;
     }
 
     /*** card content table **/
