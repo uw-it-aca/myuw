@@ -204,6 +204,12 @@ request_cached_is_student = _build_cache_method("student",
 request_cached_is_pce_student = _build_cache_method("pce_student",
                                                     is_pce_student)
 
+request_cached_is_grad_c2 = _build_cache_method("grad_c2",
+                                                is_grad_c2)
+
+request_cached_is_undergrad_c2 = _build_cache_method("undergrad_c2",
+                                                     is_undergrad_c2)
+
 
 request_cached_is_student_employee = _build_cache_method("student_employee",
                                                          is_student_employee)
@@ -246,6 +252,8 @@ def affiliation_prefetch():
             request_cached_is_undergrad,
             request_cached_is_student,
             request_cached_is_pce_student,
+            request_cached_is_grad_c2,
+            request_cached_is_undergrad_c2,
             request_cached_is_student_employee,
             request_cached_is_staff_employee,
             request_cached_is_employee,
