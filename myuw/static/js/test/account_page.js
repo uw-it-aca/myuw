@@ -1,4 +1,4 @@
-ar Global = require("./global.js");
+var Global = require("./global.js");
 
 describe("AccountsPage", function() {
     before(function () {
