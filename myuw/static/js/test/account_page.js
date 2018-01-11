@@ -1,4 +1,4 @@
-var Global = require("./global.js");
+ar Global = require("./global.js");
 
 describe("AccountsPage", function() {
     before(function () {
@@ -49,7 +49,6 @@ describe("AccountsPage", function() {
                 UwnetidCard
             ];
             window.user.student = true;
-            console.log(window.user);
             var card_order = AccountsPage._get_card_order_by_affiliation();
             assert.deepEqual(card_order, student_order)
         });
