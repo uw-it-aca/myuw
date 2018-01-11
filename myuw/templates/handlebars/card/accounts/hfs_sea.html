@@ -1,26 +1,50 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "sea_hfs_card" %}
 
-<div class="card clearfix"  data-name="SeaHfsCard" data-type="card">
+<div class="myuw-card clearfix" data-name="SeaHfsCard" data-type="card">
 
-    <h3 aria-hidden="true">Housing &amp; Food Services</h3>
+    <div class="myuw-card-wrapper">
+        <h3 class="myuw-card-title">Housing &amp; Food Services</h3>
 
-    <h3 class="sr-only"></h3>
-
-    <div class="card-badge-container">
-        {{#if resident_dining}}
-           <div class="card-badge clearfix">
-               {{#with resident_dining}}
-                   <div class="pull-left">
-                       <h4 class="card-badge-label">Dining Balance</h4>
-                   </div>
-                   <div class="pull-right">
-                       <span class="card-badge-value">${{formatPrice balance}}</span>
-                   </div>
+        <div class="card-badge-container">
+            {{#if resident_dining}}
+               <div class="card-badge clearfix">
+                   {{#with resident_dining}}
+                       <div class="pull-left">
+                           <h4 class="card-badge-label">Dining Balance</h4>
+                       </div>
+                       <div class="pull-right">
+                           <span class="card-badge-value">${{formatPrice balance}}</span>
+                       </div>
                    {{/with}}
-           </div>
-        {{/if}}
+               </div>
+            {{/if}}
+        </div>
 
+        <div class="links-container">
+            <ul class="unstyled-list">
+                <li><a href="https://www.hfs.uw.edu" data-linklabel="Explore Campus Housing">Explore Campus Housing</a></li>
+                <li><a href="https://www.trumba.com/calendars/sea_hfs" data-linklabel="HFS Dates and Deadlines">Dates and Deadlines</a></li>
+                <li><a href="https://ucharm.hfs.washington.edu/ucharm" data-linklabel="Apply for Campus Housing">Apply for Campus Housing</a></li>
+                <li><a href="mailto:hfsinfo@uw.edu" data-linklabel="Contact HFS">Contact HFS</a></li>
+            </ul>
+        </div>
+        <div class="links-container">
+            <h4 class="myuw-card-heading">Your Account</h4>
+            <ul class="unstyled-list">
+                <li><a href="https://www.hfs.washington.edu/myhfs/account.aspx" data-linklabel="HFS: Make a Payment">Make a Payment</a></li>
+                <li><a href="https://www.hfs.washington.edu/myhfs/ledger.aspx" data-linklabel="HFS: View Charges">View Charges</a></li>
+                <li><a href="https://www.hfs.washington.edu/myhfs/dininglevel" data-linklabel="HFS: Change Dining Level">Change Dining Level</a></li>
+                <li><a href="https://ucharm.hfs.washington.edu/ucharm" data-linklabel="Update HFS Account">Update Account</a></li>
+            </ul>
+        </div>
+        <div class="links-container">
+            <h4 class="myuw-card-heading">Resident Resources</h4>
+            <ul class="unstyled-list">
+                <li><a href="https://mc360.maytag.com/#/" data-linklabel="Check Laundry Status">Check Laundry Status</a></li>
+                <li><a href="https://fms.admin.washington.edu/fs-works/uwnetid" data-linklabel="HFS: Submit a Work Order">Submit a Work Order</a></li>
+            </ul>
+        </div>
     </div>
 </div>
 {% endtplhandlebars %}
