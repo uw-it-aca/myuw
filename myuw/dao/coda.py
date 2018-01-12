@@ -30,11 +30,6 @@ def get_course_card_details(section_label, json_data=None):
     threads.append(t)
     t.start()
 
-    t = Thread(target=_set_json_cgpa,
-               args=(section_label, json_obj,))
-    threads.append(t)
-    t.start()
-
     for thread in threads:
         thread.join()
 
