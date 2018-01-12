@@ -15,7 +15,7 @@ var VisualScheduleCard = {
 
     render_init: function(term, course_index) {
         if (VisualScheduleCard.should_hide()) {
-            VisualScheduleCard.hide();
+            VisualScheduleCard.hide_card();
             return;
         }
         WSData.fetch_visual_schedule_term(VisualScheduleCard.term,
@@ -23,14 +23,15 @@ var VisualScheduleCard = {
                                           VisualScheduleCard.render_handler);
     },
 
-    hide: function(){
+    hide_card: function(){
         $("#VisualScheduleCard").hide();
     },
 
     render_handler: function() {
         var schedule_data = WSData.visual_schedule_data(VisualScheduleCard.term);
         if (schedule_data === undefined){
-            VisualScheduleCard.hide();
+            VisualScheduleCard.hide_card();
+            return;
         }
         var default_period = VisualScheduleCard._get_default_period(schedule_data.periods);
 
@@ -38,7 +39,7 @@ var VisualScheduleCard = {
     },
 
     _render_error: function() {
-        VisualScheduleCard.hide();
+        VisualScheduleCard.hide_card();
     },
 
     _get_period_lables: function(schedule_data){
