@@ -9,7 +9,7 @@
 
         {{#if registration_is_open}}
             <li>
-                {{#if plan_data }}
+                {{#if plan_data}}
                     {{#unless plan_data.has_ready_courses}}
                         <a target="_blank" class="focus-link"
                            href="{{plan_data.myplan_href}}">Edit plan in MyPlan</a>
@@ -37,35 +37,14 @@
                        href="https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp">Pre-Registration Requirements</a>
                 </li>
             {{/if}}
+
             <li>
                 <a target="_blank"
                    href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">MyPlan (Non-PCE courses only)</a>
             </li>
         {{/unless}}
 
-	{{ #if is_c2 }}
-            <li>
-                <span id="pce_time_schedule"
-                      class="sr-only">
-                    Learn how to register for PCE courses
-                </span>
-                <a aria-labelledby="pce_time_schedule"
-                   target="_blank"
-                   href="https://www.degreereg.uw.edu/user-guide">How to register PCE courses</a>
-            </li>
-
-            <li>
-                <span id="pce_time_schedule"
-                      class="sr-only">
-                    Browse time schedule for Professional and Continuing Education programs
-                </span>
-                <a aria-labelledby="pce_time_schedule"
-                   target="_blank"
-                   href="https://www.washington.edu/students/timeschd/95index.html">PCE Time Schedule</a>
-            </li>
-        {{ /if }}
-
-        {{ #if is_bothell }}
+        {{#if is_bothell}}
             <li>
                 <span id="bothell_time_schedule"
                       class="sr-only">
@@ -75,9 +54,9 @@
                    target="_blank"
                    href="http://www.uwb.edu/registration/time">Bothell Time Schedule</a>
             </li>
-        {{ /if }}
+        {{/if}}
 
-	{{ #if is_seattle }}
+	{{#if is_seattle}}
             <li>
                 <span id="seattle_time_schedule"
                       class="sr-only">
@@ -87,9 +66,9 @@
                    target="_blank"
                    href="http://www.washington.edu/students/timeschd/">Seattle Time Schedule</a>
             </li>
-        {{ /if }}
+        {{/if}}
 
-        {{ #if is_tacoma }}
+        {{#if is_tacoma}}
             <li>
                 <span id="tacoma_time_schedule" class="sr-only">Browse time schedule for Tacoma</span>
                 <a aria-labelledby="tacoma_time_schedule"
@@ -101,12 +80,38 @@
                    target="_blank"
                    href="http://www.tacoma.washington.edu/enrollment_apps/timeschedule/search.cfm">Tacoma Time Schedule Search</a>
             </li>
-        {{ /if }}
+        {{/if}}
+
+        {{#if is_c2}}
+            <li>
+                <span id="pce_time_schedule"
+                      class="sr-only">
+                    Browse time schedule for Professional and Continuing Education programs
+                </span>
+                <a aria-labelledby="pce_time_schedule"
+                   target="_blank"
+                   href="https://www.washington.edu/students/timeschd/95index.html">PCE Time Schedule</a>
+            </li>
+            <li>
+                <span id="pce_time_schedule"
+                      class="sr-only">
+                    Learn how to register for PCE courses
+                </span>
+                <a aria-labelledby="pce_time_schedule"
+                   target="_blank"
+                   href="https://www.degreereg.uw.edu/user-guide">How to register PCE courses</a>
+            </li>
+        {{/if}}
+
 
         <li>
             <span class="sr-only">Go to DARS</span>
             <a target="_blank"
-               href="{{#if plan_data }}{{plan_data.degree_audit_href}}{{else}}https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree{{/if}}">Audit your degree (DARS)</a>
+            {{#if plan_data}}
+                href="{{ plan_data.degree_audit_href }}"
+            {{else}}
+                href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree"
+            {{/if}}>Audit your degree (DARS)</a>
         </li>
 
     </ul>
