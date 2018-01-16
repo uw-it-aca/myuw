@@ -78,7 +78,7 @@ class TestAffilliations(TestCase):
         self.assertFalse(affiliations.get('undergrad_c2'))
         self.assertTrue(affiliations.get('grad_c2'))
 
-        now_request = get_request_with_user('jeos')
+        now_request = get_request_with_user('jpce')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations.get('undergrad_c2'))
         self.assertFalse(affiliations.get('grad_c2'))

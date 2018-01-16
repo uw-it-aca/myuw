@@ -121,14 +121,14 @@ def is_grad_c2():
     """
     Return True if the grad student taking PCE course within 90 day
     """
-    return _is_member('uw_affiliation_continuum-student_graduate')
+    return grad_c2 in get_groups(get_netid_of_current_user())
 
 
 def is_undergrad_c2():
     """
     Return True if the undergrad student taking PCE cours within 90 day
     """
-    return _is_member('uw_affiliation_continuum-student_undergraduate')
+    return undergrad_c2 in get_groups(get_netid_of_current_user())
 
 
 def is_student_employee():
