@@ -1,11 +1,10 @@
 from django.test import TestCase
 from restclients_core.exceptions import DataFailureException, InvalidNetID
-from uw_pws import PWS
 from myuw.dao.gws import get_groups, is_seattle_student,\
-is_bothell_student, is_tacoma_student, is_current_graduate_student,\
-is_grad_student, is_undergrad_student, is_student, is_pce_student,\
-is_student_employee, is_faculty, is_employee, is_staff_employee,\
-is_applicant
+    is_bothell_student, is_tacoma_student, is_current_graduate_student,\
+    is_grad_student, is_undergrad_student, is_student, is_pce_student,\
+    is_student_employee, is_faculty, is_employee, is_staff_employee,\
+    is_applicant
 from myuw.test import fdao_gws_override, get_request_with_user
 
 
