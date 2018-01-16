@@ -9,8 +9,7 @@ from myuw.dao import get_netid_of_current_user
 from myuw.dao.schedule import get_current_quarter_schedule
 from myuw.dao.hx_toolkit_dao import get_is_hxt_viewer
 from myuw.dao.pws import get_campus_of_current_user
-from myuw.dao.gws import is_grad_student, is_student, \
-    is_current_graduate_student, is_undergrad_student, \
+from myuw.dao.gws import is_grad_student, is_student, is_undergrad_student, \
     is_pce_student, is_student_employee, is_employee, is_faculty, \
     is_seattle_student, is_bothell_student, is_tacoma_student, \
     is_staff_employee, is_applicant
