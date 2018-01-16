@@ -6,7 +6,7 @@ from myuw.dao.instructor_schedule import is_instructor
 from myuw.dao.term import get_comparison_date, get_current_quarter
 from uw_trumba import get_calendar_by_name
 from uw_sws.term import get_term_after
-from datetime import timedelta
+from datetime import timedelta, date, datetime
 import re
 import json
 import logging
@@ -116,7 +116,7 @@ class AcademicEvents(ProtectedAPI):
                 self.format_native_datetime(self.event_end_date(event)))
 
     def event_end_date(self, event):
-        return event.get('dtend').dt - timedelta(days=1)
+        return self.get_end_date(event) - timedelta(days=1)
 
     def parse_year_quarter(self, event):
         desc = event.get('description')
@@ -188,9 +188,21 @@ class AcademicEvents(ProtectedAPI):
 
         return categories
 
+    def get_start_date(self, event):
+        start = event.get('dtstart').dt
+        if isinstance(start, datetime):
+            start = start.date()
+        return start
+
+    def get_end_date(self, event):
+        end = event.get('dtend').dt
+        if isinstance(end, datetime):
+            end = end.date()
+        return end
+
     def sort_events(self, events):
         return sorted(events,
-                      key=lambda e: e.get('dtstart').dt
+                      key=lambda e: self.get_start_date(e)
                       )
 
     def filter_past_events(self, request, events):
@@ -224,7 +236,7 @@ class AcademicEvents(ProtectedAPI):
 
         not_too_future = []
         for event in events:
-            start = event.get('dtstart').dt
+            start = self.get_start_date(event)
             if start <= last_date:
                 not_too_future.append(event)
 
@@ -237,10 +249,10 @@ class AcademicEvents(ProtectedAPI):
         ok_overlaps = {}
         round1 = []
         for event in events:
-            if event.get('dtstart').dt <= last_date:
+            if self.get_start_date(event) <= last_date:
                 # The comparison date is the first date of the event in
                 # the ideal event window (now -> 4 weeks from now)
-                start = event.get('dtstart').dt
+                start = self.get_start_date(event)
                 if start < comparison_date:
                     start = comparison_date
 
@@ -259,8 +271,8 @@ class AcademicEvents(ProtectedAPI):
                 # This event is in that first 3 matching days
                 round1.append(event)
             else:
-                start = event.get('dtstart')
-                date_string = self.format_datetime(start)
+                start = self.get_start_date(event)
+                date_string = self.format_native_datetime(start)
                 # There's an event outside of 4 weeks.  3 things can happen:
                 # 1) we already have events, and the event's start date isn't
                 #    in the ok_overlaps lookup

@@ -1,0 +1,45 @@
+{
+    "ClassLevel": "JUNIOR",
+    "FullName": "Average,Jake Joseph",
+    "HonorsProgram": false,
+    "LeaveEndQuarter": 0,
+    "LeaveEndYear": 0,
+    "Majors": [
+       {"Abbreviation":"TRAIN",
+       "Campus":"Bothell",
+       "DegreeLevel":0,
+       "DegreeName":null,
+       "DegreeType":0,
+       "FullName":"Premajor (Bothell Campus)",
+       "MajorName":"TRAIN",
+       "Pathway":0,
+       "ShortName":"B PRE"}],
+    "Minors":[
+        {"Abbreviation":"TRAINR",
+        "CampusName":"Seattle",
+        "FullName":"American Sign Language",
+        "Name":"TRAINR",
+        "Pathway":0,
+        "ShortName":"TRAINR"}],
+    "PendingClassChange": false,
+    "PendingHonorsChange": false,
+    "PendingMajorChange": false,
+    "PendingResidentChange": false,
+    "PendingSpecialProgramChange": false,
+    "Person": {
+        "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494002.json",
+        "Name": "Average,Jake Joseph",
+        "RegID": "9136CCB8F66711D5BE060004AC494002"
+    },
+    "QtrGradePoints": 30,
+    "QtrGradedAttmp": 10,
+    "QtrNonGrdEarned": 2,
+    "RegID": "9136CCB8F66711D5BE060004AC494002",
+    "Registrations": [
+    ],
+    "Term": {
+        "Href": "/student/v5/term/2017,autumn.json",
+        "Quarter": "autumn",
+        "Year": "2017"
+    }
+}

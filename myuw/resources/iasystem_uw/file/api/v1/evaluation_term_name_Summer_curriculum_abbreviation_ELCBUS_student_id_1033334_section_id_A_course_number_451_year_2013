@@ -40,7 +40,7 @@
                         {"name":"deliveryMethod",
                          "prompt":"Delivery Method",
                          "value":"Online"},
-                        {"value":"Closed",
+                        {"value":"Open",
                          "prompt":"Status",
                          "name":"status"},
                         {"value":"2013-07-23T14:00:00Z",

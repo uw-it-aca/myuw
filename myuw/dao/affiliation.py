@@ -4,16 +4,16 @@ This module provides affiliations of the current user
 
 import logging
 import traceback
-from django.conf import settings
 from myuw.logger.logback import log_info
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.schedule import get_current_quarter_schedule
+from myuw.dao.hx_toolkit_dao import get_is_hxt_viewer
 from myuw.dao.pws import get_campus_of_current_user
 from myuw.dao.gws import is_grad_student, is_student, \
     is_current_graduate_student, is_undergrad_student, \
     is_pce_student, is_student_employee, is_employee, is_faculty, \
     is_seattle_student, is_bothell_student, is_tacoma_student, \
-    is_staff_employee, is_applicant
+    is_staff_employee, is_applicant, is_grad_c2, is_undergrad_c2
 from myuw.dao.instructor_schedule import is_instructor
 from myuw.dao.uwnetid import is_clinician, is_2fa_permitted, get_subscriptions
 from myuw.dao.enrollment import get_main_campus
@@ -33,6 +33,8 @@ def get_all_affiliations(request):
     ["undergrad"]: True if the user is currently an UW undergraduate student.
     ["applicant"]: True if the user is currently a UW applicant
     ["pce"]: True if the user is currently an UW PCE student.
+    ["grad_c2"]: True if the user is an UW PCE grad student.
+    ["undergrad_c2"]: True if the user is an UW PCE undergrad student.
     ["employee"]: True if the user is currently a uw employee.
     ["stud_employee"]: True if the user is currently a student employee.
     ["faculty"]: True if the user is currently faculty.
@@ -60,6 +62,8 @@ def get_all_affiliations(request):
             "applicant": is_applicant(),
             "student": is_student(),
             "pce": is_pce_student(),
+            "grad_c2": is_grad_c2(),
+            "undergrad_c2": is_undergrad_c2(),
             "staff_employee": is_staff_employee(),
             "stud_employee": is_student_employee(),
             "employee": is_employee(),
@@ -68,11 +72,12 @@ def get_all_affiliations(request):
             "win_transfer": is_win_transfer(request),
             "faculty": is_faculty(),
             "clinician": is_clinician(),
-            "is_2fa_permitted": is_2fa_permitted(),
+            "2fa_permitted": is_2fa_permitted(),
             "instructor": is_instructor(request),
             "seattle": is_seattle_student(),
             "bothell": is_bothell_student(),
             "tacoma": is_tacoma_student(),
+            "hxt_viewer": get_is_hxt_viewer(request)
             }
 
     # add 'official' campus info
@@ -199,6 +204,12 @@ request_cached_is_student = _build_cache_method("student",
 request_cached_is_pce_student = _build_cache_method("pce_student",
                                                     is_pce_student)
 
+request_cached_is_grad_c2 = _build_cache_method("grad_c2",
+                                                is_grad_c2)
+
+request_cached_is_undergrad_c2 = _build_cache_method("undergrad_c2",
+                                                     is_undergrad_c2)
+
 
 request_cached_is_student_employee = _build_cache_method("student_employee",
                                                          is_student_employee)
@@ -241,6 +252,8 @@ def affiliation_prefetch():
             request_cached_is_undergrad,
             request_cached_is_student,
             request_cached_is_pce_student,
+            request_cached_is_grad_c2,
+            request_cached_is_undergrad_c2,
             request_cached_is_student_employee,
             request_cached_is_staff_employee,
             request_cached_is_employee,
@@ -266,6 +279,10 @@ def get_identity_log_str(request):
         res += ' Undergrad'
     if affi["pce"]:
         res += ' PCE-student'
+    if affi["grad_c2"]:
+        res += ' Grad_C2'
+    if affi["undergrad_c2"]:
+        res += ' Undergrad_C2'
     if affi["faculty"]:
         res += ' Faculty'
     if affi["staff_employee"]:

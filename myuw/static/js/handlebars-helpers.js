@@ -250,7 +250,8 @@ Handlebars.registerHelper("formatDateAsFinalsDay", function(date_str, days_back)
 });
 
 Handlebars.registerHelper("ucfirst", function(str) {
-    return str.replace(/^([a-z])/, function(match) {
+    lstr = str.toLowerCase();
+    return lstr.replace(/^([a-z])/, function(match) {
         return match.toUpperCase();
     });
 });

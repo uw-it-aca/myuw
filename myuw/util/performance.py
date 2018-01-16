@@ -1,6 +1,7 @@
 import time
 import logging
-from userservice.user import UserService
+from myuw.dao import get_netid_of_current_user
+
 
 logger = logging.getLogger(__name__)
 
@@ -12,7 +13,7 @@ def log_response_time(func):
         start = time.time()
         try:
             val = func(*args, **kwargs)
-        except:
+        except Exception:
             raise
         finally:
             module = self.__module__
@@ -31,7 +32,7 @@ def log_response_time(func):
             end = time.time()
 
             try:
-                netid = UserService().get_user()
+                netid = get_netid_of_current_user()
             except Exception as ex:
                 netid = 'unknown_user'
 
