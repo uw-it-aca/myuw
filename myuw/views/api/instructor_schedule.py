@@ -476,3 +476,9 @@ class InstSect(ProtectedAPI):
             return self.make_http_resp(timer, request, section_id)
         except Exception:
             return handle_exception(logger, timer, traceback)
+
+
+def _set_current_or_future(term, request, section):
+    current_term = get_current_quarter(request)
+
+    section['current_or_future'] = current_term <= term

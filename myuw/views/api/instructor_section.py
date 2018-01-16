@@ -5,6 +5,8 @@ from blti import BLTI
 from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+
+from myuw.dao import coda
 from myuw.views.error import \
     handle_exception, not_instructor_error, data_not_found
 from restclients_core.exceptions import DataFailureException
@@ -23,8 +25,8 @@ from myuw.logger.timer import Timer
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.api import OpenAPI
 from myuw.views.decorators import blti_admin_required
-from myuw.views.api.instructor_schedule import load_schedule
-
+from myuw.views.api.instructor_schedule import load_schedule, \
+    _set_current_or_future
 
 logger = logging.getLogger(__name__)
 
@@ -77,6 +79,27 @@ class OpenInstSectionDetails(OpenAPI):
         self.term = schedule.term
         resp_data = load_schedule(request, schedule,
                                   section_callback=self.per_section_data)
+
+        _set_current_or_future(self.term, request, resp_data)
+
+        # Concurrently fetch section data and ICD data
+        threads = []
+
+        t = Thread(target=self.add_linked_section_data,
+                   args=(resp_data,))
+        threads.append(t)
+        t.start()
+
+        for section in resp_data['sections']:
+            _set_current_or_future(schedule.term, request, section)
+            section_label = section['section_label']
+            t = Thread(target=coda.get_classlist_details,
+                       args=(section_label.replace("_", "-"), section,))
+            threads.append(t)
+            t.start()
+
+        for thread in threads:
+            thread.join()
 
         self.add_linked_section_data(resp_data)
         log_success_response(logger, timer)
