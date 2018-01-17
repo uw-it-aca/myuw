@@ -17,7 +17,7 @@ class TestChoose(MyuwApiTest):
             "myuw_pref_old_site urls not configured")
     def test_choose_old(self):
         UserMigrationPreference.objects.all().delete()
-        username = "test_set_pref"
+        username = "nobody"
         self.set_user(username)
         url = reverse("myuw_pref_old_site")
         response = self.get_response(url)
@@ -44,7 +44,7 @@ class TestChoose(MyuwApiTest):
             "myuw_pref_new_site urls not configured")
     def test_choose_new(self):
         UserMigrationPreference.objects.all().delete()
-        username = "test_set_pref"
+        username = "nobody"
         self.set_user(username)
         url = reverse("myuw_pref_new_site")
         response = self.get_response(url)
