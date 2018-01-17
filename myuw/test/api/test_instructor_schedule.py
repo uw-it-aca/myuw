@@ -2,8 +2,7 @@ import json
 from django.test.utils import override_settings
 from myuw.test.api import require_url, MyuwApiTest
 from restclients_core.exceptions import DataFailureException
-from myuw.views.api.instructor_schedule import InstScheCurQuar, InstSect,\
-    InstSectionDetails
+from myuw.views.api.instructor_schedule import InstScheCurQuar, InstSect
 from myuw.dao.instructor_schedule import (
     get_current_quarter_instructor_schedule)
 from myuw.test import get_request, get_request_with_user, get_request_with_date
