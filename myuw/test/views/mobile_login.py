@@ -51,7 +51,7 @@ class TestLoginRedirects(MyuwApiTest):
 
     def test_random_desktop_user(self):
         url = reverse("myuw_home")
-        self.set_user('staff1')
+        self.set_user('nobody')
         response = self.get_home_desktop()
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.get("Location"), redirect_to_legacy_url)
@@ -88,7 +88,7 @@ class TestLoginRedirects(MyuwApiTest):
         # Clear any existing data...
         UserMigrationPreference.objects.all().delete()
 
-        username = "test_set_pref"
+        username = "nobody"
         new_url = reverse('myuw_pref_new_site')
         old_url = reverse('myuw_pref_old_site')
 
