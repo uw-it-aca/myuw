@@ -341,7 +341,6 @@ var VisualScheduleCard = {
         var today = moment.utc(window.card_display_dates.comparison_date, "YYYY-MM-DD"),
             default_period,
             i;
-
         $.each(periods, function(idx, period){
             if (moment.utc(period.start_date, "YYYY-MM-DD").isSameOrBefore(today) &&
                             moment.utc(period.end_date, "YYYY-MM-DD").isSameOrAfter(today)){
@@ -349,6 +348,22 @@ var VisualScheduleCard = {
             }
         });
 
+        // Case where current date falls between weeks, pick closest future week
+        if (default_period === undefined){
+            $.each(periods, function(idx, period){
+                if (moment.utc(period.end_date, "YYYY-MM-DD").isBefore(today)){
+                    if(periods[idx + 1] !== undefined){
+                        if(moment.utc(periods[idx + 1].start_date, "YYYY-MM-DD").isAfter(today)){
+                            default_period = period.id + 1;
+                        }
+                    }
+
+
+                }
+            });
+        }
+
+        // Default to first period if no match
         if (default_period === undefined){
             default_period = Object.keys(periods)[0];
         }
