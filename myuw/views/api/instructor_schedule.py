@@ -3,6 +3,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 import re
 import traceback
+from myuw.dao import coda
 from myuw.views.error import (
     handle_exception, not_instructor_error, data_not_found)
 import logging
@@ -53,6 +54,19 @@ class InstSche(ProtectedAPI):
         """
         schedule = get_instructor_schedule_by_term(term)
         resp_data = load_schedule(request, schedule)
+        threads = []
+
+        for section in resp_data['sections']:
+            _set_current_or_future(term, request, section)
+            t = Thread(target=coda.get_course_card_details,
+                       args=(section['section_label'].replace("_", "-"),
+                             section,))
+            threads.append(t)
+            t.start()
+
+        for thread in threads:
+            thread.join()
+
         log_success_response(logger, timer)
         return self.json_response(resp_data)
 
@@ -461,3 +475,9 @@ class InstSect(ProtectedAPI):
             return self.make_http_resp(timer, request, section_id)
         except Exception:
             return handle_exception(logger, timer, traceback)
+
+
+def _set_current_or_future(term, request, section):
+    current_term = get_current_quarter(request)
+
+    section['current_or_future'] = current_term <= term
