@@ -39,7 +39,7 @@ setup(
         'UW-RestClients-SWS>=1.4.6.1,<2.0',
         'UW-RestClients-PWS<1.0,>=0.6',
         'UW-RestClients-HFS<1.0',
-        'UW-RestClients-GWS<1.0',
+        'UW-RestClients-GWS>=0.4,<1.0',
         'UW-RestClients-GradePage<1.0,>=0.1.1',
         'UW-RestClients-Libraries<1.0',
         'UW-RestClients-IASystem>=0.2.2,<1.0',
