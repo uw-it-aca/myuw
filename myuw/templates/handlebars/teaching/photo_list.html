@@ -4,9 +4,7 @@
 <div class="container">
 
     <div id="photoclasslist_popup">
-
         <div class="myuw-card myuw-photo-list" data-name="PhotoClasslistPopupCard" data-type="card">
-
             <div class="myuw-card-wrapper">
                 {{#if available_sections}}
                     <div style="float:right;">
@@ -54,70 +52,79 @@
                     </div>
                 </div>
 
-                <div id="classlist_table_view" class="js-tab-panel"
-                     aria-labelledby="list_view" role="tabpanel" aria-hidden="false">
-                    <h4 class="sr-only">Table of Student Information</h4>
-
-                    <div class="table-responsive">
-                        <table class="table table-condensed table-hover" id="student_list">
-                            <thead>
-                                <tr>
-                                    <th>Student No.</th>
-                                    <th>UW NetID</th>
-                                    <th>Last Name</th>
-                                    <th>First Name</th>
-                                    {{#if sections.0.has_linked_sections}}
-                                        <th title="linked secondary sections">Section</th>
-                                    {{/if}}
-                                    <th>Credits</th>
-                                    <th>Class</th>
-                                    <th>Major</th>
-                                    <th><span class="sr-only">Email</span></th>
-                                </tr>
-                            </thead>
-                            <tbody id="student_sort">
-                                {{#each sections.0.registrations}}
-                                <tr id="student_{{regid}}">
-                                    <td>{{ student_number }}</td>
-                                    <td>{{ netid }}</td>
-                                    <td>{{ surname }}</td>
-                                    <td>{{ first_name }}</td>
-                                    {{#if @root.sections.0.has_linked_sections}}
-                                        <td>{{ linked_sections }}</td>
-                                    {{/if}}
-                                    <td>
-                                        {{#if is_auditor}}Audit{{else}}{{ credits }}{{/if}}
-                                    </td>
-                                    <td>{{ucfirst class_level }}</td>
-                                    <td>{{#each majors}}
-                                            {{ucfirst name}}{{#unless @last}},&nbsp;{{/unless}}
-                                        {{/each}}
-                                    </td>
-                                    <td><a href="mailto:{{email}}" title="Email {{name}} {{surname}}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">{{email}}</span></a></td>
-                                </tr>
-                                {{/each}}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div id="classlist_photogrid_view" class="js-tab-panel"
-                     aria-labelledby="grid_view" role="tabpanel" aria-hidden="true" hidden="true">
-                    <h4 class="sr-only">Grid of Student Photos</h4>
-
-                    <ol class="unstyled-list grid-view">
-                        {{#each sections.0.registrations}}
-                            <li id="studentphoto_{{ regid }}">
-                                <img class="classlist-photo myuw-photo-list-image"
-                                     src="/photo/{{ url_key }}">
-
-                                <div class="myuw-photo-list-content">{{first_name}} {{surname}}</div>
-                            </li>
-                        {{/each}}
-                    </ol>
-                </div>
+                {{#if current_or_future}}
+                    {{#if sections.0.current_student_majors}}
+                        <div class="class-list-course-stats">
+                            <strong>Course Stats:</strong> {{sections.0.current_student_majors.0.percent_students}}% {{ toTitleCase sections.0.current_student_majors.0.major }} majors. <a href="https://coda.uw.edu/#{{ year }}-{{ quarter }}-{{ sections.0.curriculum_abbr }}-{{ sections.0.course_number }}-{{ sections.0.section_id }}" target="_blank" data-linklabel="Course Dashboard for {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}" rel="{{year}}_{{quarter}}_{{ sections.0.curriculum_abbr }}_{{ sections.0.course_number }}_{{ sections.0.section_id }}">View more course stats</a>
+                        </div>
+                    {{/if}}
+                {{/if}}
 
             </div>
+
+            <div id="classlist_table_view" class="js-tab-panel"
+                 aria-labelledby="list_view" role="tabpanel" aria-hidden="false">
+                <h4 class="sr-only">Table of Student Information</h4>
+
+                <div class="table-responsive">
+                    <table class="table table-condensed table-hover" id="student_list">
+                        <thead>
+                            <tr>
+                                <th>Student No.</th>
+                                <th>UW NetID</th>
+                                <th>Last Name</th>
+                                <th>First Name</th>
+                                {{#if sections.0.has_linked_sections}}
+                                    <th title="linked secondary sections">Section</th>
+                                {{/if}}
+                                <th>Credits</th>
+                                <th>Class</th>
+                                <th>Major</th>
+                                <th><span class="sr-only">Email</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="student_sort">
+                            {{#each sections.0.registrations}}
+                            <tr id="student_{{regid}}">
+                                <td>{{ student_number }}</td>
+                                <td>{{ netid }}</td>
+                                <td>{{ surname }}</td>
+                                <td>{{ first_name }}</td>
+                                {{#if @root.sections.0.has_linked_sections}}
+                                    <td>{{ linked_sections }}</td>
+                                {{/if}}
+                                <td>
+                                    {{#if is_auditor}}Audit{{else}}{{ credits }}{{/if}}
+                                </td>
+                                <td>{{ucfirst class_level }}</td>
+                                <td>{{#each majors}}
+                                        {{ucfirst name}}{{#unless @last}},&nbsp;{{/unless}}
+                                    {{/each}}
+                                </td>
+                                <td><a href="mailto:{{email}}" title="Email {{name}} {{surname}}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">{{email}}</span></a></td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="classlist_photogrid_view" class="js-tab-panel"
+                 aria-labelledby="grid_view" role="tabpanel" aria-hidden="true" hidden="true">
+                <h4 class="sr-only">Grid of Student Photos</h4>
+
+                <ol class="unstyled-list grid-view">
+                    {{#each sections.0.registrations}}
+                        <li id="studentphoto_{{ regid }}">
+                            <img class="classlist-photo myuw-photo-list-image"
+                                 src="/photo/{{ url_key }}">
+
+                            <div class="myuw-photo-list-content">{{first_name}} {{surname}}</div>
+                        </li>
+                    {{/each}}
+                </ol>
+            </div>
+
         </div>
     </div>
 </div>

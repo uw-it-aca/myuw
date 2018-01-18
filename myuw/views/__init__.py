@@ -3,6 +3,7 @@ from django import template
 from myuw.util.thread import PrefetchThread
 from myuw.dao.affiliation import affiliation_prefetch
 from myuw.dao.enrollment import enrollment_prefetch
+from myuw.dao.gws import groups_prefetch
 from myuw.dao.library import library_resource_prefetch
 from myuw.dao.password import password_prefetch
 from myuw.dao.pws import person_prefetch
@@ -38,6 +39,7 @@ def prefetch_resources(request,
     Common resource prefetched: affiliation, term
     """
     prefetch_methods = []
+    prefetch_methods.extend(groups_prefetch())
     prefetch_methods.extend(affiliation_prefetch())
     prefetch_methods.extend(current_terms_prefetch(request))
 
