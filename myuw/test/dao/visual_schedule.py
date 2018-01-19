@@ -610,7 +610,7 @@ class TestVisualSchedule(TestCase):
                          datetime.date(2013, 9, 18))
 
         self.assertEqual(consolidated[2].start_date,
-                         datetime.date(2013, 9, 26))
+                         datetime.date(2013, 9, 25))
         self.assertEqual(consolidated[2].end_date,
                          datetime.date(2013, 9, 27))
 
