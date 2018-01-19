@@ -27,7 +27,11 @@
     	        <tr>
     	            <th scope="row">{{curriculum_abbr}} {{course_number}} {{ section_id }} {{course_title}}</th>
                         {{#with final_exam}}
-    <td>{{formatDateAsDate start_date}}, {{formatDateAsTimeAMPM start_date}} - {{formatDateAsTimeAMPM end_date}}</td>
+                        {{#if start_date}}
+                        <td>{{formatDateAsDateFullName start_date}}, {{formatDateAsTimeAMPM start_date}} - {{formatDateAsTimeAMPM end_date}}</td>
+                        {{else}}
+                        <td>Final exam time to be determined or no final exam</td>
+                        {{/if}}
                         <td>
     	                {{#if building_tbd}}
     	                Room TBD
@@ -38,7 +42,7 @@
     	                    {{building}} {{room_number}}
     	                    {{#if final_exam.latitude}}</a>{{/if}}
     	                {{/if}}
-    	            </td>
+    	                </td>
     	            {{/with}}
     	        </tr>
     	        {{/each}}
