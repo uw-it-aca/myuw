@@ -153,9 +153,13 @@
         {{/if}}
         
          <!-- begin - if there are courses that end after the quarter -->
+        {{#if off_term_trimmed}}
+        <p style="font-size:85%; margin-top:16px; color:#777;">Note:
         {{#each off_term_trimmed}}
-        <p style="font-size:85%; margin-top:16px; color:#777;">Note: {{ section }} course continues until {{ toFriendlyDate end_date }}</p>
+        {{ section }} course continues until {{ toFriendlyDate end_date }}. 
         {{/each}}
+        </p>
+        {{ /if }}
         <!-- end - if there are courses that end after the quarter --> 
         
     </div>
