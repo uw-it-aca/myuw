@@ -77,9 +77,12 @@ var VisualScheduleCard = {
             courses_no_meeting: [],
             meets_saturday: false,
             meets_sunday: false,
-            disabled_days: course_data.disabled_days
+            disabled_days: course_data.disabled_days,
+            term_string: term.year + "," + term.quarter
         };
-
+        if (term.summer_term){
+            visual_data.term_string += "," + term.summer_term;
+        }
         var set_meeting = function(course_data) {
             $.each(course_data.sections, function(section_index) {
                 var section = this;

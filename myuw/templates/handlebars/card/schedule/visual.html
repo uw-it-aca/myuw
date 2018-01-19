@@ -5,10 +5,8 @@
 <div class="card"  data-name="VisualScheduleCard" data-type="card">
     {{#if total_sections}}
     <h3 id="quarter-info" >
-            {{ucfirst quarter}} {{year}} Schedule
-            {{#if summer_term}}
-            <span class="shortTitle">{{ucfirst summer_term}}</span>
-            {{/if}}
+        {{ titleFormatTerm term_string }} Schedule
+
     </h3>
             <span class="sr-only">Final exam schedule and Visual Schedule</span>
     </h3>
