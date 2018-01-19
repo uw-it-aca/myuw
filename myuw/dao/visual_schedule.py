@@ -213,6 +213,7 @@ def _get_visual_schedule_from_schedule(schedule):
         _adjust_off_term_dates(schedule)
         bounds = get_schedule_bounds(schedule)
         weeks = _get_weeks_from_bounds(bounds)
+        weeks = _add_qtr_start_data_to_weeks(weeks, schedule)
         weeks = _add_sections_to_weeks(schedule.sections, weeks)
         weeks = trim_section_meetings(weeks)
         weeks = trim_weeks_no_meetings(weeks)
@@ -226,6 +227,15 @@ def _get_visual_schedule_from_schedule(schedule):
     if len(finals.sections) > 0:
         consolidated.append(finals)
     return consolidated
+
+
+def _add_qtr_start_data_to_weeks(weeks, schedule):
+    if schedule.term.quarter != "summer":
+        qtr_start = schedule.term.first_day_quarter
+        for week in weeks:
+            if week.start_date < qtr_start < week.end_date:
+                week.qtr_start = schedule.term.first_day_quarter
+    return weeks
 
 
 def _remove_empty_periods(schedule):
@@ -248,13 +258,20 @@ def _adjust_period_dates(schedule):
     i = 0
     for period in schedule:
         i += 1
-        if period.meetings_trimmed_front:
-            try:
-                new_start = _get_earliest_start_from_period(period)
-                period.start_date = new_start
-            except TypeError:
-                # section has no meetings, leave date alone
-                pass
+        # modify start date
+        if period.qtr_start:
+            period.start_date = period.qtr_start
+        else:
+            if period.meetings_trimmed_front:
+                try:
+                    new_start = _get_earliest_start_from_period(period)
+                    period.start_date = new_start
+                except TypeError:
+                    # section has no meetings, leave date alone
+                    pass
+            if not period.meets_sunday and not period.meetings_trimmed_front:
+                period.start_date = period.start_date + timedelta(days=1)
+        # modify end date
         if period.meetings_trimmed_back:
             try:
                 new_end = _get_latest_end_from_period(period)
@@ -264,8 +281,6 @@ def _adjust_period_dates(schedule):
                 pass
         if not period.meets_saturday and not period.meetings_trimmed_back:
             period.end_date = period.end_date - timedelta(days=1)
-        if not period.meets_sunday and not period.meetings_trimmed_front:
-            period.start_date = period.start_date + timedelta(days=1)
 
 
 def _get_earliest_start_from_period(period):
@@ -710,6 +725,7 @@ class SchedulePeriod():
         self.meets_saturday = False
         self.meets_sunday = False
         self.is_finals = False
+        self.qtr_start = None
 
         # sections will be either A term OR B term, full term classes will
         # be split into corresponding A and B term pieces
