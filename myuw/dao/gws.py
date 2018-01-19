@@ -168,6 +168,7 @@ def is_applicant():
 
 
 def is_in_admin_group(group_key):
+    print "IS IN ADMIN GROUP"
     get_netid_of_current_user()
     override_error_username = None
     override_error_msg = None
@@ -183,4 +184,4 @@ def is_in_admin_group(group_key):
         raise Exception("No user in session")
 
     group_name = getattr(settings, group_key)
-    return True
+    return gws.is_effective_member(group_name, actual_user)
