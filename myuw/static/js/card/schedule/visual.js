@@ -245,7 +245,7 @@ var VisualScheduleCard = {
     _meeting_has_meetings: function(meeting){
         var has_meeting = false;
         $.each(meeting.meeting_days, function (idx, meeting) {
-            if (meeting !== null){
+            if (meeting !== null && meeting !== false){
                 has_meeting = true;
             }
         });
