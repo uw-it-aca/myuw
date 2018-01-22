@@ -168,11 +168,6 @@ def is_applicant():
 
 
 def is_in_admin_group(group_key):
-    get_netid_of_current_user()
-    override_error_username = None
-    override_error_msg = None
-    # Do the group auth here.
-
     if not hasattr(settings, group_key):
         print "You must have a group defined as your admin group."
         print 'Configure that using %s="foo_group"' % group_key
@@ -183,4 +178,4 @@ def is_in_admin_group(group_key):
         raise Exception("No user in session")
 
     group_name = getattr(settings, group_key)
-    return gws.is_effective_member(group_name, actual_user)
+    return Group().is_member_of_group(actual_user, group_name)
