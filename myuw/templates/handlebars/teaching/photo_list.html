@@ -98,7 +98,9 @@
                                 </td>
                                 <td>{{ucfirst class_level }}</td>
                                 <td>{{#each majors}}
+                                        {{#if name}}
                                         {{ucfirst name}}{{#unless @last}},&nbsp;{{/unless}}
+                                        {{/if}}
                                     {{/each}}
                                 </td>
                                 <td><a href="mailto:{{email}}" title="Email {{name}} {{surname}}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">{{email}}</span></a></td>
