@@ -7,7 +7,7 @@ from myuw.dao.gws import get_groups, is_seattle_student,\
     is_applicant, is_grad_c2, is_undergrad_c2, is_in_admin_group
 from myuw.test import fdao_gws_override, get_request_with_user
 
-GROUP_BACKEND='authz_group.authz_implementation.all_ok.AllOK'
+GROUP_BACKEND = 'authz_group.authz_implementation.all_ok.AllOK'
 
 
 @fdao_gws_override
