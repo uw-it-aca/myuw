@@ -1,7 +1,7 @@
 from django.conf import settings
 from django import template
 from myuw.util.thread import PrefetchThread
-from myuw.dao.affiliation import affiliation_prefetch
+from myuw.dao.canvas import canvas_prefetch
 from myuw.dao.enrollment import enrollment_prefetch
 from myuw.dao.gws import groups_prefetch
 from myuw.dao.library import library_resource_prefetch
@@ -10,7 +10,7 @@ from myuw.dao.pws import person_prefetch
 from myuw.dao.term import current_terms_prefetch
 from myuw.dao.upass import upass_prefetch
 from myuw.dao.uwemail import email_forwarding_prefetch
-from myuw.dao.canvas import canvas_prefetch
+from myuw.dao.uwnetid import uwnetid_prefetch
 
 
 def prefetch(request, prefetch_methods):
@@ -32,16 +32,16 @@ def prefetch_resources(request,
                        prefetch_enrollment=False,
                        prefetch_library=False,
                        prefetch_password=False,
-                       prefetch_person=False,
                        prefetch_canvas=False,
                        prefetch_upass=False):
     """
     Common resource prefetched: affiliation, term
     """
     prefetch_methods = []
-    prefetch_methods.extend(groups_prefetch())
-    prefetch_methods.extend(affiliation_prefetch())
     prefetch_methods.extend(current_terms_prefetch(request))
+    prefetch_methods.extend(groups_prefetch())
+    prefetch_methods.extend(uwnetid_prefetch())
+    prefetch_methods.extend(person_prefetch())
 
     if prefetch_email:
         prefetch_methods.extend(email_forwarding_prefetch())
@@ -54,9 +54,6 @@ def prefetch_resources(request,
 
     if prefetch_password:
         prefetch_methods.extend(password_prefetch())
-
-    if prefetch_person:
-        prefetch_methods.extend(person_prefetch())
 
     if prefetch_canvas:
         prefetch_methods.extend(canvas_prefetch())

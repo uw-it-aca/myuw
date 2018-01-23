@@ -25,7 +25,6 @@ class StudClasSche(ProtectedAPI):
         prefetch_resources(request,
                            prefetch_enrollment=True,
                            prefetch_library=True,
-                           prefetch_person=True,
                            prefetch_canvas=True)
         return super(StudClasSche, self).dispatch(request, *args, **kwargs)
 

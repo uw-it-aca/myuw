@@ -14,8 +14,7 @@ class DepartmentalCalendar(ProtectedAPI):
     def get(self, request, *args, **kwargs):
         timer = Timer()
         try:
-            prefetch_resources(request,
-                               prefetch_person=True)
+            prefetch_resources(request)
             response = api_request(request)
             log_success_response(logger, timer)
             return self.json_response(response)
