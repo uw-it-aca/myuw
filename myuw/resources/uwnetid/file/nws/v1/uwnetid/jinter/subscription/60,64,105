@@ -1,0 +1,139 @@
+{
+  "uwNetID": "jinter",
+  "subscriptionList": [
+    {
+      "subscriptionCode": 60,
+      "subscriptionName": "A Kerberos Principal",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate"
+      ],
+      "dataField": "KPW",
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 2,
+          "categoryName": "Graduate",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 14,
+          "categoryName": "Student Employee",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 18,
+          "categoryName": "EO Techfee Student",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 19,
+          "categoryName": "non-Techfee Student",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 28,
+          "categoryName": "Development Affiliate",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    },
+    {
+      "subscriptionCode": 64,
+      "subscriptionName": "Duo Two-Factor Authentication",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate",
+        "Activate"
+      ],
+      "dataValue": "user_id=DUGTG3R1NFMVMPLM091N",
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 14,
+          "categoryName": "Student Employee",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    },
+    {
+      "subscriptionCode": 105,
+      "subscriptionName": "U Forwarding",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate",
+        "Activate"
+      ],
+      "dataField": "FWD",
+      "dataValue": "jinter@gamail.uw.edu",
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 2,
+          "categoryName": "Graduate",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 14,
+          "categoryName": "Student Employee",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 18,
+          "categoryName": "EO Techfee Student",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 19,
+          "categoryName": "non-Techfee Student",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 28,
+          "categoryName": "Development Affiliate",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    }
+  ],
+  "timeStamp": "Mon, 22 Jan 2018 14:55:01 -0800"
+}

@@ -18,13 +18,7 @@ def get_current_quarter_schedule(request):
     """
     Return the actively enrolled sections in the current quarter
     """
-    if hasattr(request, "myuw_current_quarter_schedule"):
-        return request.myuw_current_quarter_schedule
-
-    schedule = get_schedule_by_term(get_current_quarter(request))
-    request.myuw_current_quarter_schedule = schedule
-
-    return schedule
+    return get_schedule_by_term(request, get_current_quarter(request))
 
 
 def get_next_quarter_schedule(request):
@@ -34,7 +28,7 @@ def get_next_quarter_schedule(request):
     # MUWM-1981
     if get_next_quarter(request) == get_current_quarter(request):
         return None
-    return get_schedule_by_term(get_next_quarter(request))
+    return get_schedule_by_term(request, get_next_quarter(request))
 
 
 def get_next_autumn_quarter_schedule(request):
@@ -44,7 +38,7 @@ def get_next_autumn_quarter_schedule(request):
     # MUWM-1981
     if get_next_autumn_quarter(request) == get_current_quarter(request):
         return None
-    return get_schedule_by_term(get_next_autumn_quarter(request))
+    return get_schedule_by_term(request, get_next_autumn_quarter(request))
 
 
 def filter_schedule_sections_by_summer_term(schedule, summer_term):

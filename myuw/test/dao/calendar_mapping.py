@@ -9,50 +9,48 @@ from myuw.test import get_request_with_user, get_request_with_date
 class TestCalendarMapping(TestCase):
 
     def test_get_by_major(self):
+        req = get_request_with_user('jeos')
         enrollments = {'majors': ['NON MATRICULATED'],
-                       'minors': [],
-                       'is_grad': False}
-
-        cals = _get_calendars(enrollments)
+                       'minors': []}
+        cals = _get_calendars(req, enrollments)
         self.assertEqual(len(cals), 3)
         self.assertTrue('5_current' in cals)
         self.assertEqual(cals['5_current'],
                          'http://art.washington.edu/calendar/')
 
     def test_get_by_minor(self):
+        req = get_request_with_user('javerage')
         enrollments = {'majors': [],
-                       'minors': ['ASL'],
-                       'is_grad': False}
-
-        cals = _get_calendars(enrollments)
+                       'minors': ['ASL']}
+        cals = _get_calendars(req, enrollments)
         self.assertEqual(len(cals), 3)
         self.assertTrue('2_current' in cals)
 
         self.assertIsNone(cals['2_current'])
 
     def test_get_by_gradmajor(self):
+        req = get_request_with_user('seagrad')
         enrollments = {'majors': ['ACMS (SOC & BEH SCI)'],
-                       'minors': [],
-                       'is_grad': True}
+                       'minors': []}
 
-        cals = _get_calendars(enrollments)
+        cals = _get_calendars(req, enrollments)
         self.assertEqual(len(cals), 3)
         self.assertIn('future_1', cals)
         self.assertIn('far_future', cals)
         self.assertIn('past', cals)
 
     def test_unknown_major(self):
+        req = get_request_with_user('javerage')
         enrollments = {'majors': ['WTFBBQ'],
-                       'minors': [],
-                       'is_grad': False}
-        cals = _get_calendars(enrollments)
+                       'minors': []}
+        cals = _get_calendars(req, enrollments)
         self.assertEqual(len(cals), 0)
 
     def test_dupe_calendar(self):
+        req = get_request_with_user('jeos')
         enrollments = {'majors': ['NON MATRICULATED'],
-                       'minors': ['ASL'],
-                       'is_grad': False}
-        cals = _get_calendars(enrollments)
+                       'minors': ['ASL']}
+        cals = _get_calendars(req, enrollments)
         self.assertEqual(len(cals), 5)
 
     def test_ids_from_text(self):

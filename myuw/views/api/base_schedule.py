@@ -6,8 +6,8 @@ from myuw.dao.canvas import (get_canvas_active_enrollments,
                              canvas_course_is_available)
 from myuw.dao.course_color import get_colors_by_schedule
 from myuw.dao.enrollment import get_enrollment_for_term, is_ended
-from myuw.dao.gws import is_grad_student
 from myuw.dao.library import get_subject_guide_by_section
+from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.schedule import (
     get_schedule_by_term, filter_schedule_sections_by_summer_term)
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
@@ -22,10 +22,10 @@ logger = logging.getLogger(__name__)
 
 class StudClasSche(ProtectedAPI):
     def dispatch(self, request, *args, **kwargs):
+        self.regid = get_regid_of_current_user(request)
         prefetch_resources(request,
                            prefetch_enrollment=True,
                            prefetch_library=True,
-                           prefetch_person=True,
                            prefetch_canvas=True)
         return super(StudClasSche, self).dispatch(request, *args, **kwargs)
 
@@ -34,7 +34,7 @@ class StudClasSche(ProtectedAPI):
         @return class schedule data in json format
                 status 404: no schedule found (not registered)
         """
-        schedule = get_schedule_by_term(term)
+        schedule = get_schedule_by_term(request, term)
 
         if summer_term is None:
             summer_term = get_current_summer_term_in_schedule(schedule,
@@ -60,7 +60,7 @@ def load_schedule(request, schedule, summer_term=""):
 
     json_data["summer_term"] = summer_term
 
-    colors = get_colors_by_schedule(schedule)
+    colors = get_colors_by_schedule(request, schedule)
 
     buildings = get_buildings_by_schedule(schedule)
 
@@ -75,7 +75,7 @@ def load_schedule(request, schedule, summer_term=""):
 
     canvas_enrollments = {}
     try:
-        canvas_enrollments = get_canvas_active_enrollments()
+        canvas_enrollments = get_canvas_active_enrollments(request)
     except Exception as ex:
         logger.error(ex)
         pass
@@ -178,8 +178,6 @@ def load_schedule(request, schedule, summer_term=""):
     for section in json_data["sections"]:
         section["index"] = index
         index = index + 1
-
-    json_data["is_grad_student"] = is_grad_student()
 
     return json_data
 

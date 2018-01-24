@@ -21,7 +21,7 @@ class HfsBalances(ProtectedAPI):
         """
         timer = Timer()
         try:
-            balances = get_account_balances_for_current_user()
+            balances = get_account_balances_for_current_user(request)
 
             resp_json = balances.json_data(use_custom_date_format=True)
             log_success_response(logger, timer)

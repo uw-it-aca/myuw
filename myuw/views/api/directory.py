@@ -16,7 +16,7 @@ class MyDirectoryInfo(ProtectedAPI):
         """
         timer = Timer()
         try:
-            person = get_person_of_current_user()
+            person = get_person_of_current_user(request)
             log_success_response(logger, timer)
             return self.json_response(self._json_directory(person))
         except Exception:

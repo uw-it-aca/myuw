@@ -1,0 +1,137 @@
+{
+  "uwNetID": "javg013",
+  "subscriptionList": [
+    {
+      "subscriptionCode": 60,
+      "subscriptionName": "A Kerberos Principal",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate"
+      ],
+      "dataField": "KPW",
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 1,
+          "categoryName": "Undergraduate",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 1,
+          "categoryName": "Undergraduate",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 14,
+          "categoryName": "Student Employee",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 16,
+          "categoryName": "Alumni",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 19,
+          "categoryName": "non-Techfee Student",
+          "statusCode": 3,
+          "statusName": "former"
+        }
+      ]
+    },
+    {
+      "subscriptionCode": 64,
+      "subscriptionName": "Duo Two-Factor Authentication",
+      "permitted": true,
+      "statusCode": 24,
+      "statusName": "Inactive",
+      "actions": [
+        "Show",
+        "Activate"
+      ],
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 14,
+          "categoryName": "Student Employee",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    },
+    {
+      "subscriptionCode": 105,
+      "subscriptionName": "U Forwarding",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate",
+        "Activate"
+      ],
+      "dataField": "FWD",
+      "dataValue": "javg013@Mac.com",
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 1,
+          "categoryName": "Undergraduate",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 1,
+          "categoryName": "Undergraduate",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+         "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 14,
+          "categoryName": "Student Employee",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 16,
+          "categoryName": "Alumni",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 19,
+          "categoryName": "non-Techfee Student",
+          "statusCode": 3,
+          "statusName": "former"
+        }
+      ]
+    }
+  ],
+  "timeStamp": "Mon, 22 Jan 2018 14:23:15 -0800"
+}

@@ -22,5 +22,5 @@ def get_account_balances_by_uwnetid(uwnetid):
     return get_hfs_accounts(uwnetid)
 
 
-def get_account_balances_for_current_user():
-    return get_account_balances_by_uwnetid(get_netid_of_current_user())
+def get_account_balances_for_current_user(request):
+    return get_account_balances_by_uwnetid(get_netid_of_current_user(request))

@@ -3,15 +3,14 @@ from django.test.client import RequestFactory
 from django.contrib.auth.models import User
 from uw_sws.models import Term, Section
 from uw_sws.exceptions import InvalidSectionID
-from uw_pws import PWS
 from myuw.test import fdao_sws_override, fdao_pws_override,\
-    get_request_with_date, get_request_with_user, get_request
+    get_request_with_date, get_request_with_user
 from myuw.dao.instructor_schedule import is_instructor,\
-    get_current_quarter_instructor_schedule,\
     get_instructor_schedule_by_term, get_section_by_label,\
     get_limit_estimate_enrollment_for_section,\
     get_instructor_section, get_primary_section, check_section_instructor
 from myuw.dao.term import get_current_quarter
+from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.exceptions import NotSectionInstructorException
 from userservice.user import UserServiceMiddleware
 
@@ -20,39 +19,37 @@ from userservice.user import UserServiceMiddleware
 @fdao_pws_override
 class TestInstructorSchedule(TestCase):
     def test_is_instructor(self):
-        now_request = get_request()
-        get_request_with_user('bill', now_request)
+        now_request = get_request_with_user('bill')
         self.assertTrue(is_instructor(now_request))
 
-        get_request_with_user('billsea', now_request)
+        now_request = get_request_with_user('billsea')
         self.assertTrue(is_instructor(now_request))
 
-        get_request_with_user('billseata', now_request)
+        now_request = get_request_with_user('billseata')
         self.assertTrue(is_instructor(now_request))
 
-        get_request_with_user('billpce', now_request)
+        now_request = get_request_with_user('billpce')
         self.assertTrue(is_instructor(now_request))
 
-    def test_get_current_quarter_instructor_schedule(self):
-        now_request = get_request()
-        get_request_with_user('bill', now_request)
-        schedule = get_current_quarter_instructor_schedule(now_request)
+    def test_current_quarter_instructor_schedule(self):
+        now_request = get_request_with_user('bill')
+        term = get_current_quarter(now_request)
+        schedule = get_instructor_schedule_by_term(now_request, term)
         self.assertEqual(len(schedule.sections), 6)
 
-        request = get_request_with_user('billseata',
-                                        get_request())
+        request = get_request_with_user('billseata')
         UserServiceMiddleware().process_request(request)
         term = get_current_quarter(request)
-        schedule = get_instructor_schedule_by_term(term)
+        schedule = get_instructor_schedule_by_term(request, term)
         self.assertEqual(len(schedule.sections), 7)
 
     def test_get_instructor_section(self):
-        person = PWS().get_person_by_netid('bill')
-        schedule = get_instructor_section(person, '2013,spring,ESS,102/A')
+        req = get_request_with_user('bill')
+        schedule = get_instructor_section(req, '2013,spring,ESS,102/A')
         self.assertEqual(len(schedule.sections), 1)
 
-        person = PWS().get_person_by_netid('billsea')
-        schedule = get_instructor_section(person, '2017,autumn,CSE,154/A',
+        req = get_request_with_user('billsea')
+        schedule = get_instructor_section(req, '2017,autumn,CSE,154/A',
                                           include_registrations=True,
                                           include_linked_sections=True)
         self.assertEqual(len(schedule.sections), 5)
@@ -68,34 +65,35 @@ class TestInstructorSchedule(TestCase):
         self.assertEqual(len(schedule.sections[4].registrations), 1)
 
     def test_invalid_instructor_section(self):
-        person = PWS().get_person_by_netid('bill')
-
+        req = get_request_with_user('bill')
         self.assertRaises(
-            InvalidSectionID, get_instructor_section, person, None)
+            InvalidSectionID, get_instructor_section, req, None)
         self.assertRaises(
-            InvalidSectionID, get_instructor_section, person, '12345')
+            InvalidSectionID, get_instructor_section, req, '12345')
         self.assertRaises(
-            InvalidSectionID, get_instructor_section, person,
+            InvalidSectionID, get_instructor_section, req,
             '2013,spring,ESS,102')
 
     def test_get_instructor_secondary_section(self):
-        person = PWS().get_person_by_netid('billsea')
-
-        schedule = get_instructor_section(person, '2017,autumn,CSE,154/AA')
+        req = get_request_with_user('billsea')
+        schedule = get_instructor_section(req, '2017,autumn,CSE,154/AA')
         self.assertEqual(len(schedule.sections), 1)
-
-        schedule = get_instructor_section(person, '2017,autumn,EDC&I,552/A')
+        schedule = get_instructor_section(req, '2017,autumn,EDC&I,552/A')
         self.assertEqual(len(schedule.sections), 1)
 
     def test_check_instructor_section(self):
-        bill = PWS().get_person_by_netid('bill')
-        schedule = get_instructor_section(bill, '2013,spring,ESS,102/A')
+        req = get_request_with_user('bill')
+        schedule = get_instructor_section(req, '2013,spring,ESS,102/A')
         ess_section = schedule.sections[0]
-        self.assertEqual(None, check_section_instructor(ess_section, bill))
 
-        billsea = PWS().get_person_by_netid('billsea')
-        schedule = get_instructor_section(billsea, '2017,autumn,CSE,154/AA')
+        bill = get_person_of_current_user(req)
+        self.assertIsNone(check_section_instructor(ess_section, bill))
+
+        req = get_request_with_user('billsea')
+        schedule = get_instructor_section(req, '2017,autumn,CSE,154/AA')
         cse_section = schedule.sections[0]
+
+        billsea = get_person_of_current_user(req)
         self.assertEqual(None, check_section_instructor(cse_section, billsea))
 
         self.assertRaises(NotSectionInstructorException,
@@ -119,7 +117,8 @@ class TestInstructorSchedule(TestCase):
     def test_pce_instructor_schedule(self):
         request = get_request_with_user('billpce',
                                         get_request_with_date("2013-10-01"))
-        schedule = get_current_quarter_instructor_schedule(request)
+        term = get_current_quarter(request)
+        schedule = get_instructor_schedule_by_term(request, term)
         self.assertEqual(len(schedule.sections), 1)
         self.assertEqual(schedule.sections[0].current_enrollment, 3)
 

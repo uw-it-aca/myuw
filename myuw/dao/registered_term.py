@@ -255,7 +255,7 @@ def should_highlight_future_quarters(registered_future_quarters, request):
 
     for term in registered_future_quarters:
         model, newly_created, now_datetime, summer_term =\
-            save_seen_registration_obj(get_user_model(), request, term)
+            save_seen_registration_obj(get_user_model(request), request, term)
 
         if not newly_created:
             # MUWM-3009

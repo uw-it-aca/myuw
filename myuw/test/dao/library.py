@@ -3,17 +3,15 @@ from django.test import TestCase
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.library import _get_account_by_uwnetid
 from myuw.dao.library import get_subject_guide_by_section
-from myuw.dao.registration import _get_schedule
+from myuw.dao.registration import get_schedule_by_term
 from uw_sws.models import Term
-from myuw.test import fdao_pws_override, fdao_sws_override, get_request
+from myuw.test import fdao_pws_override, fdao_sws_override,\
+    get_request_with_user
 
 
 @fdao_pws_override
 @fdao_sws_override
 class TestLibrary(TestCase):
-
-    def setUp(self):
-        get_request()
 
     def test_get_account_balance(self):
         self.assertEquals(_get_account_by_uwnetid(None), None)
@@ -26,11 +24,11 @@ class TestLibrary(TestCase):
                           "123notarealuser")
 
     def test_get_subject_guide_bothell(self):
-        regid = "FE36CCB8F66711D5BE060004AC494FCD"
+        req = get_request_with_user('jbothell')
         term = Term()
         term.year = 2013
         term.quarter = "spring"
-        schedule = _get_schedule(regid, term)
+        schedule = get_schedule_by_term(req, term)
         for section in schedule.sections:
             # has subject guide link
             if section.curriculum_abbr == 'BISSEB' and\
@@ -46,11 +44,11 @@ class TestLibrary(TestCase):
                     "http://guides.lib.uw.edu/bothell/")
 
     def test_get_subject_guide_seattle(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        req = get_request_with_user('javerage')
         term = Term()
         term.year = 2013
         term.quarter = "spring"
-        schedule = _get_schedule(regid, term)
+        schedule = get_schedule_by_term(req, term)
         for section in schedule.sections:
             # 404, general guide link
             if section.curriculum_abbr == 'TRAIN' and\
@@ -75,11 +73,11 @@ class TestLibrary(TestCase):
                                "s=research/physics_astronomy"))
 
     def test_get_subject_guide_tacoma(self):
-        regid = "12345678901234567890123456789012"
+        req = get_request_with_user('eight')
         term = Term()
         term.year = 2013
         term.quarter = "spring"
-        schedule = _get_schedule(regid, term)
+        schedule = get_schedule_by_term(req, term)
         for section in schedule.sections:
             # 404, general guide link
             if section.curriculum_abbr == 'ROLING' and\
