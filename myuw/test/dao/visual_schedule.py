@@ -1,7 +1,7 @@
 from django.test import TestCase
 from uw_sws.models import Section, ClassSchedule, SectionMeeting
 from myuw.dao.term import get_term_from_quarter_string
-from myuw.dao.registration import _get_schedule
+from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.visual_schedule import _get_visual_schedule_from_schedule, \
     get_schedule_bounds, _add_dates_to_sections, _get_weeks_from_bounds, \
     _add_sections_to_weeks, _section_lists_are_same, _sections_are_same, \
@@ -157,10 +157,9 @@ class TestVisualSchedule(TestCase):
         return consolidated
 
     def test_get_bounds(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,spring")
-
-        schedule = _get_schedule(regid, term)
+        request = get_request_with_user('javerage')
+        schedule = get_schedule_by_term(request, term)
 
         schedule = _add_dates_to_sections(schedule)
 
@@ -178,10 +177,10 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(weeks[1].start_date, datetime.date(2013, 3, 24))
 
     def test_add_schedule_to_weeks(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,spring")
 
-        schedule = _get_schedule(regid, term)
+        request = get_request_with_user('javerage')
+        schedule = get_schedule_by_term(request, term)
         schedule = _add_dates_to_sections(schedule)
         bounds = get_schedule_bounds(schedule)
         weeks = _get_weeks_from_bounds(bounds)
@@ -207,10 +206,10 @@ class TestVisualSchedule(TestCase):
         self.assertFalse(_sections_are_same(section1, section2))
 
     def test_section_lists_are_same(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,spring")
 
-        schedule = _get_schedule(regid, term)
+        request = get_request_with_user('javerage')
+        schedule = get_schedule_by_term(request, term)
         schedule = _add_dates_to_sections(schedule)
 
         list1 = copy.deepcopy(schedule.sections)
@@ -324,10 +323,10 @@ class TestVisualSchedule(TestCase):
                                            section2))
 
     def test_consolidate_weeks_jpce(self):
-        regid = "10000000000000000000000000000010"
         term = get_term_from_quarter_string("2013,spring")
 
-        schedule = _get_schedule(regid, term)
+        request = get_request_with_user('jpce')
+        schedule = get_schedule_by_term(request, term)
         schedule = _add_dates_to_sections(schedule)
 
         bounds = get_schedule_bounds(schedule)
@@ -362,10 +361,10 @@ class TestVisualSchedule(TestCase):
         self.assertTrue(consolidated[0].meets_sunday)
 
     def test_summer_term_dates(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,summer")
 
-        schedule = _get_schedule(regid, term)
+        request = get_request_with_user('javerage')
+        schedule = get_schedule_by_term(request, term)
         schedule = _add_dates_to_sections(schedule)
 
         self.assertEqual(schedule.sections[0].start_date,
@@ -384,10 +383,10 @@ class TestVisualSchedule(TestCase):
                          datetime.date(2013, 8, 23))
 
     def test_summer_schedule_bounds(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,summer")
 
-        schedule = _get_schedule(regid, term)
+        request = get_request_with_user('javerage')
+        schedule = get_schedule_by_term(request, term)
         schedule = _add_dates_to_sections(schedule)
         a_term, b_term = get_summer_schedule_bounds(schedule)
         self.assertEqual(a_term[0], datetime.date(2013, 6, 23))
@@ -397,9 +396,9 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(b_term[1], datetime.date(2013, 8, 24))
 
     def test_summer_trim_meetings(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,summer")
-        schedule = _get_schedule(regid, term)
+        request = get_request_with_user('javerage')
+        schedule = get_schedule_by_term(request, term)
         schedule.sections[0].meetings[0].meets_sunday = True
         schedule.sections[0].meetings[0].meets_monday = True
         schedule.sections[0].meetings[0].meets_tuesday = True
@@ -452,13 +451,13 @@ class TestVisualSchedule(TestCase):
         self.assertTrue(mtg.meets_saturday)
 
     def test_summer_term_schedule(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,summer")
-        schedule = _get_schedule(regid, term)
+        request = get_request_with_user('javerage')
+        schedule = get_schedule_by_term(request, term)
         get_request_with_user('javerage',
                               get_request_with_date("2013-08-01"))
 
-        consolidated = _get_visual_schedule_from_schedule(schedule)
+        consolidated = _get_visual_schedule_from_schedule(schedule, request)
 
         self.assertEqual(len(consolidated), 5)
         self.assertEqual(consolidated[0].summer_term, "A-term")
@@ -481,7 +480,6 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(consolidated[3].end_date, datetime.date(2013, 8, 23))
 
     def test_summer_term_schedule_pce_beyond_term(self):
-            regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = get_term_from_quarter_string("2013,summer")
             get_request_with_user('javerage',
                                   get_request_with_date("2013-08-01"))
@@ -499,10 +497,12 @@ class TestVisualSchedule(TestCase):
             s1_meetings.meets_friday = True
             section1.meetings = [s1_meetings]
 
-            schedule = _get_schedule(regid, term)
+            request = get_request_with_user('javerage')
+            schedule = get_schedule_by_term(request, term)
             schedule.sections.append(section1)
 
-            consolidated = _get_visual_schedule_from_schedule(schedule)
+            consolidated = _get_visual_schedule_from_schedule(schedule,
+                                                              request)
 
             self.assertEqual(len(consolidated), 5)
 
@@ -520,7 +520,6 @@ class TestVisualSchedule(TestCase):
                 self.assertTrue(found_match)
 
     def test_summer_term_schedule_pce(self):
-            regid = "9136CCB8F66711D5BE060004AC494FFE"
             term = get_term_from_quarter_string("2013,summer")
             get_request_with_user('javerage',
                                   get_request_with_date("2013-08-01"))
@@ -534,10 +533,12 @@ class TestVisualSchedule(TestCase):
             section1.meetings = []
             section1.term = term
 
-            schedule = _get_schedule(regid, term)
+            request = get_request_with_user('javerage')
+            schedule = get_schedule_by_term(request, term)
             schedule.sections.append(section1)
 
-            consolidated = _get_visual_schedule_from_schedule(schedule)
+            consolidated = _get_visual_schedule_from_schedule(schedule,
+                                                              request)
 
             self.assertEqual(len(consolidated), 7)
 
@@ -591,12 +592,12 @@ class TestVisualSchedule(TestCase):
                 self.assertFalse(found_match)
 
     def test_efs_schedule(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,autumn")
-        schedule = _get_schedule(regid, term)
+        request = get_request_with_user('javerage')
+        schedule = get_schedule_by_term(request, term)
         get_request_with_user('javerage',
                               get_request_with_date("2013-10-01"))
-        consolidated = _get_visual_schedule_from_schedule(schedule)
+        consolidated = _get_visual_schedule_from_schedule(schedule, request)
         self.assertEqual(len(consolidated), 5)
 
         self.assertEqual(consolidated[0].start_date,
@@ -629,21 +630,21 @@ class TestVisualSchedule(TestCase):
         self.assertFalse(trimmed_efs_mtg.meets_saturday)
 
     def test_get_finals(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,spring")
-        schedule = _get_schedule(regid, term)
+        request = get_request_with_user('javerage')
+        schedule = get_schedule_by_term(request, term)
         finals = _get_finals_period(schedule)
         self.assertEqual(len(finals.sections), 5)
 
     def test_add_section_color(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,spring")
-        schedule = _get_schedule(regid, term)
+        request = get_request_with_user('javerage')
+        schedule = get_schedule_by_term(request, term)
 
         get_request_with_user('javerage',
                               get_request_with_date("2013-04-01"))
 
-        _add_course_colors_to_schedule(schedule)
+        _add_course_colors_to_schedule(request, schedule)
         self.assertEqual(schedule.sections[0].color_id, 1)
         self.assertEqual(schedule.sections[1].color_id, 2)
         self.assertEqual(schedule.sections[2].color_id, 3)
@@ -680,19 +681,18 @@ class TestVisualSchedule(TestCase):
 
         self.assertTrue(sunday_section.meetings[0].meets_sunday)
 
-        visual_schedule = _get_visual_schedule_from_schedule(schedule)
+        visual_schedule = _get_visual_schedule_from_schedule(schedule, request)
         self.assertTrue(visual_schedule[1].meets_sunday)
 
     def test_future_term(self):
-        get_request_with_user('javerage',
-                              get_request_with_date("2013-03-01"))
-        term = get_term_from_quarter_string("2013,summer")
-        future_schedule = get_future_visual_schedule(term)
-
         request = get_request_with_user('javerage',
-                                        get_request_with_date("2013-08-1"))
+                                        get_request_with_date("2013-03-01"))
+        term = get_term_from_quarter_string("2013,summer")
+        future_schedule = get_future_visual_schedule(request, term)
 
-        current_schedule = get_current_visual_schedule(request)
+        now_req = get_request_with_date("2013-08-01")
+        second_request = get_request_with_user('javerage', now_req)
+        current_schedule = get_current_visual_schedule(second_request)
 
         # Ensure that getting summer as 'current' term returns same results
         # as getting as future
@@ -700,13 +700,13 @@ class TestVisualSchedule(TestCase):
                                                     future_schedule))
 
     def test_trim_summer_schedule(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = get_term_from_quarter_string("2013,summer")
-        schedule = _get_schedule(regid, term)
+        request = get_request_with_user('javerage')
+        schedule = get_schedule_by_term(request, term)
         get_request_with_user('javerage',
                               get_request_with_date("2013-08-01"))
 
-        consolidated = _get_visual_schedule_from_schedule(schedule)
+        consolidated = _get_visual_schedule_from_schedule(schedule, request)
 
         a_trimmed = _trim_summer_term(consolidated, 'a-term')
         b_trimmed = _trim_summer_term(consolidated, 'b-term')
@@ -716,17 +716,17 @@ class TestVisualSchedule(TestCase):
         self.assertTrue(b_trimmed[2].is_finals)
 
     def test_future_summer(self):
-        get_request_with_user('javerage',
-                              get_request_with_date("2013-03-01"))
+        request = get_request_with_user('javerage',
+                                        get_request_with_date("2013-03-01"))
         term = get_term_from_quarter_string("2013,summer")
-        future_schedule = get_future_visual_schedule(term, "a-term")
+        future_schedule = get_future_visual_schedule(request, term, "a-term")
         self.assertEqual(len(future_schedule), 3)
 
     def test_future_regular(self):
-        get_request_with_user('javerage',
-                              get_request_with_date("2013-03-01"))
+        request = get_request_with_user('javerage',
+                                        get_request_with_date("2013-03-01"))
         term = get_term_from_quarter_string("2013,autumn")
-        future_schedule = get_future_visual_schedule(term)
+        future_schedule = get_future_visual_schedule(request, term)
         self.assertEqual(len(future_schedule), 5)
 
     def test_get_earliest_start_from_period(self):
@@ -791,6 +791,6 @@ class TestVisualSchedule(TestCase):
 
         schedule = _get_combined_schedule(request)
 
-        visual_schedule = _get_visual_schedule_from_schedule(schedule)
+        visual_schedule = _get_visual_schedule_from_schedule(schedule, request)
         trimmed = _get_off_term_trimmed(visual_schedule)
         self.assertEqual(trimmed[0]['section'], 'BIGDATA 233 A')

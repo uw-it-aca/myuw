@@ -103,10 +103,10 @@ def _get_off_term_trimmed(visual_schedule):
     return trimmed_sections
 
 
-def get_future_visual_schedule(term, summer_term=None):
-    schedule = _get_combined_future_schedule(term)
+def get_future_visual_schedule(request, term, summer_term=None):
+    schedule = _get_combined_future_schedule(request, term)
     if schedule is not None:
-        visual_schedule = _get_visual_schedule_from_schedule(schedule)
+        visual_schedule = _get_visual_schedule_from_schedule(schedule, request)
         if summer_term is not None:
             visual_schedule = _trim_summer_term(visual_schedule, summer_term)
 
@@ -116,7 +116,7 @@ def get_future_visual_schedule(term, summer_term=None):
 def get_current_visual_schedule(request):
     schedule = _get_combined_schedule(request)
     if schedule is not None:
-        schedule = _get_visual_schedule_from_schedule(schedule)
+        schedule = _get_visual_schedule_from_schedule(schedule, request)
         summer_term = get_current_summer_term(request)
         if summer_term:
             schedule = _trim_summer_term(schedule, summer_term)
@@ -132,7 +132,8 @@ def _get_combined_schedule(request):
         student_schedule = None
 
     try:
-        instructor_schedule = get_instructor_schedule_by_term(current_term)
+        instructor_schedule = get_instructor_schedule_by_term(request,
+                                                              current_term)
         _set_instructor_sections(instructor_schedule)
     except DataFailureException:
         instructor_schedule = None
@@ -147,15 +148,15 @@ def _get_combined_schedule(request):
     return schedule
 
 
-def _get_combined_future_schedule(term):
+def _get_combined_future_schedule(request, term):
     try:
-        student_schedule = get_schedule_by_term(term)
+        student_schedule = get_schedule_by_term(request, term)
         _set_student_sections(student_schedule)
     except DataFailureException:
         student_schedule = None
 
     try:
-        instructor_schedule = get_instructor_schedule_by_term(term)
+        instructor_schedule = get_instructor_schedule_by_term(request, term)
         _set_instructor_sections(instructor_schedule)
     except DataFailureException:
         instructor_schedule = None
@@ -183,8 +184,8 @@ def _set_student_sections(student_schedule):
     return student_schedule
 
 
-def _get_visual_schedule_from_schedule(schedule):
-    _add_course_colors_to_schedule(schedule)
+def _get_visual_schedule_from_schedule(schedule, request):
+    _add_course_colors_to_schedule(request, schedule)
     _add_dates_to_sections(schedule)
     if _is_split_summer(schedule):
         _adjust_off_term_dates(schedule)
@@ -364,8 +365,8 @@ def _get_latest_meeting_day(meeting):
     return day_index
 
 
-def _add_course_colors_to_schedule(schedule):
-    colors = get_colors_by_schedule(schedule)
+def _add_course_colors_to_schedule(request, schedule):
+    colors = get_colors_by_schedule(request, schedule)
     for section in schedule.sections:
         try:
             color = colors[section.section_label()]

@@ -70,7 +70,8 @@ class VisSchedOthrQtr(ProtectedAPI):
                 if not in_show_grades_period(term, request):
                     log_msg(logger, timer, "Future term has passed")
                     return invalid_future_term()
-            visual_schedule = get_future_visual_schedule(term, summer_term)
+            visual_schedule = get_future_visual_schedule(request, term,
+                                                         summer_term)
             if visual_schedule is None:
                 return data_not_found()
             response = get_schedule_json(visual_schedule, term, summer_term)
