@@ -57,10 +57,9 @@ def _search_groups(uwnetid):
 
 
 def get_groups(request):
-    if hasattr(request, "myuwgwsgroups"):
-        return request.myuwgwsgroups
-
-    request.myuwgwsgroups = _search_groups(get_netid_of_current_user(request))
+    if not hasattr(request, "myuwgwsgroups"):
+        request.myuwgwsgroups = _search_groups(
+            get_netid_of_current_user(request))
     return request.myuwgwsgroups
 
 
