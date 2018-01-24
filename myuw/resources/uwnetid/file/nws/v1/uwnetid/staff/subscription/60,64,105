@@ -1,0 +1,123 @@
+{
+  "uwNetID": "staff",
+  "subscriptionList": [
+    {
+      "subscriptionCode": 60,
+      "subscriptionName": "A Kerberos Principal",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate"
+      ],
+      "dataField": "KPW",
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 4,
+          "categoryName": "Staff",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 28,
+          "categoryName": "Development Affiliate",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 49,
+          "categoryName": "UW Exchange User",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type" : "permit",
+          "mode" : "implicit",
+          "categoryCode" : 13,
+          "categoryName" : "UW Medicine Workforce",
+          "statusCode" : 1,
+          "statusName" : "current"
+        }
+      ]
+    },
+    {
+      "subscriptionCode": 64,
+      "subscriptionName": "Duo Two-Factor Authentication",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate",
+        "Activate"
+      ],
+      "dataValue": "user_id=DU7677F1PH8FSVMN8TPI",
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 4,
+          "categoryName": "Staff",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    },
+    {
+      "subscriptionCode": 105,
+      "subscriptionName": "U Forwarding",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate",
+        "Activate"
+      ],
+      "dataField": "FWD",
+      "dataValue": "staff@exchange.washington.edu",
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 4,
+          "categoryName": "Staff",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 28,
+          "categoryName": "Development Affiliate",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 49,
+          "categoryName": "UW Exchange User",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type" : "permit",
+          "mode" : "implicit",
+          "categoryCode" : 13,
+          "categoryName" : "UW Medicine Workforce",
+          "statusCode" : 1,
+          "statusName" : "current"
+        }
+      ]
+    }
+  ],
+  "timeStamp": "Mon, 22 Jan 2018 15:07:13 -0800"
+}

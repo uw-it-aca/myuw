@@ -1,0 +1,62 @@
+{
+  "uwNetID": "none",
+  "subscriptionList": [
+    {
+      "subscriptionCode": 60,
+      "subscriptionName": "A Kerberos Principal",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate"
+      ],
+      "dataField": "KPW",
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 24,
+          "categoryName": "Sup no svc",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    },
+    {
+      "subscriptionCode": 64,
+      "subscriptionName": "Duo Two-Factor Authentication",
+      "permitted": false,
+      "statusCode": 101,
+      "statusName": "Unpermitted",
+      "actions": [
+        "Show"
+      ]
+    },
+    {
+      "subscriptionCode": 105,
+      "subscriptionName": "U Forwarding",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate",
+        "Activate"
+      ],
+      "dataField": "FWD",
+      "dataValue": "none@u.washington.edu",
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 24,
+          "categoryName": "Sup no svc",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    }
+  ],
+  "timeStamp": "Mon, 22 Jan 2018 15:04:04 -0800"
+}

@@ -9,22 +9,18 @@ from myuw.dao.pws import get_regid_of_current_user
 logger = logging.getLogger(__name__)
 
 
-def get_canvas_active_enrollments():
-    return _get_canvas_enrollment_dict_for_regid(
-        get_regid_of_current_user())
+def canvas_prefetch():
+    def _method(request):
+        return get_canvas_active_enrollments(request)
+    return [_method]
 
 
-def _get_canvas_enrollment_dict_for_regid(regid):
-    return _enrollments_dict_by_sws_label(
-        _get_canvas_active_enrollments_for_regid(regid))
-
-
-def _get_canvas_active_enrollments_for_regid(regid):
-    return Enrollments().get_enrollments_for_regid(
-        regid,
-        {'type': ['StudentEnrollment'],
-         'state': ['active']},
-        include_courses=False)
+def get_canvas_active_enrollments(request):
+    if not hasattr(request, "canvas_act_enrollments"):
+        request.canvas_act_enrollments = _enrollments_dict_by_sws_label(
+            _get_canvas_active_enrollments_for_regid(
+                get_regid_of_current_user(request)))
+    return request.canvas_act_enrollments
 
 
 def _enrollments_dict_by_sws_label(enrollments):
@@ -39,6 +35,14 @@ def _enrollments_dict_by_sws_label(enrollments):
             enrollments_dict[sws_label] = enrollment
 
     return enrollments_dict
+
+
+def _get_canvas_active_enrollments_for_regid(regid):
+    return Enrollments().get_enrollments_for_regid(
+        regid,
+        {'type': ['StudentEnrollment'],
+         'state': ['active']},
+        include_courses=False)
 
 
 def get_canvas_course_from_section(sws_section):
@@ -110,7 +114,3 @@ def get_viewable_course_sections(canvas_course_id, canvas_user_id):
         viewable_sections.append(section)
 
     return viewable_sections
-
-
-def canvas_prefetch():
-    return [get_canvas_active_enrollments]

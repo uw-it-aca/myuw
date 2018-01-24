@@ -1,0 +1,76 @@
+{
+  "uwNetID" : "faculty",
+  "subscriptionList" : [
+     {
+      "subscriptionCode" : 60,
+      "subscriptionName" : "A Kerberos Principal",
+      "permitted" : true,
+      "statusCode" : 20,
+      "statusName" : "Active",
+      "actions" : [
+        "Show",
+        "Disuser",
+        "Deactivate",
+        "Permit",
+        "Deny"
+      ],
+      "dataField" : "KPW",
+      "permits" : [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 5,
+          "categoryName": "Faculty",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 16,
+          "categoryName": "Alumni",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 1,
+          "categoryName": "Undergraduate",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 2,
+          "categoryName": "Graduate",
+          "statusCode": 3,
+          "statusName": "former"
+        }
+      ]
+    },
+    {
+      "subscriptionCode" : 64,
+      "subscriptionName" : "Duo Two-Factor Authentication",
+      "permitted" : true,
+      "statusCode" : 20,
+      "statusName" : "Active",
+      "actions" : [
+        "Show"
+      ],
+      "dataValue" : "user_id=VMN8TPI",
+      "permits" : [
+        {
+         "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 5,
+          "categoryName": "Faculty",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    }
+  ],
+  "timeStamp" : "Thu, 26 Oct 2017 18:10:12 -0700"
+}

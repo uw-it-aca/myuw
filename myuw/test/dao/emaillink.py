@@ -1,7 +1,7 @@
 from django.test import TestCase
 from myuw.dao.exceptions import EmailServiceUrlException
 from myuw.dao.emaillink import get_service_url_for_address
-from uw_uwnetid.subscription import get_email_forwarding
+from uw_uwnetid.subscription_105 import get_email_forwarding
 
 
 class TestEmailServiceUrl(TestCase):

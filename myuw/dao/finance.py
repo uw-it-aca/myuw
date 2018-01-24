@@ -17,5 +17,5 @@ def _get_account_balances_by_regid(user_regid):
     return get_account_balances_by_regid(user_regid)
 
 
-def get_account_balances_for_current_user():
-    return _get_account_balances_by_regid(get_regid_of_current_user())
+def get_account_balances_for_current_user(request):
+    return _get_account_balances_by_regid(get_regid_of_current_user(request))

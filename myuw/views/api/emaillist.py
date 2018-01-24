@@ -6,9 +6,9 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from restclients_core.exceptions import DataFailureException
 from uw_sws.exceptions import InvalidSectionID
+from myuw.dao import get_netid_of_current_user
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.pws import get_person_of_current_user
-from myuw.dao.user import get_netid_of_current_user
 from myuw.dao.instructor_schedule import check_section_instructor
 from myuw.dao.mailman import (
     get_course_email_lists, request_mailman_lists, is_valid_section_label,
@@ -25,6 +25,7 @@ logger = logging.getLogger(__name__)
 
 
 class Emaillist(ProtectedAPI):
+
     def get(self, request, *args, **kwargs):
         """
         GET returns 200 with email lists for the course
@@ -42,7 +43,7 @@ class Emaillist(ProtectedAPI):
                                                 cur_abb.upper(),
                                                 course_number,
                                                 section_id)
-            if not is_emaillist_authorized(section_label):
+            if not is_emaillist_authorized(request, section_label):
                 return not_instructor_error()
 
             email_list_json = get_course_email_lists(
@@ -60,16 +61,17 @@ class Emaillist(ProtectedAPI):
     def post(self, request, *args, **kwargs):
         timer = Timer()
         try:
+            uwnetid = get_netid_of_current_user(request)
             single_section_labels = get_input(request)
-            if not validate_is_instructor(single_section_labels):
+            if not validate_is_instructor(request, single_section_labels):
                 logger.error("%s is not an instructor",
-                             get_netid_of_current_user())
+                             uwnetid)
                 return not_instructor_error()
 
             if len(single_section_labels) == 0:
                 resp = {"none_selected": True}
             else:
-                resp = request_mailman_lists(get_netid_of_current_user(),
+                resp = request_mailman_lists(uwnetid,
                                              single_section_labels)
             log_response_time(
                 logger,
@@ -118,31 +120,33 @@ def section_id_matched(key, value):
         return False
 
 
-def validate_is_instructor(section_labels):
+def validate_is_instructor(request, section_labels):
     """
     returns true if user is instructor/authorized submitter of **all** labels
     """
     for section_label in section_labels:
-        if is_emaillist_authorized(section_label) is False:
+        if is_emaillist_authorized(request, section_label) is False:
             return False
     return True
 
 
-def is_emaillist_authorized(section_label):
+def is_emaillist_authorized(request, section_label):
     """
     Determines if user is authorized to create mailing lists for that section:
     Instructor of section OR instructor of primary section
     """
+    person = get_person_of_current_user(request)
+    uwnetid = person.uwnetid
     try:
-        check_section_instructor(get_section_by_label(section_label))
+        check_section_instructor(get_section_by_label(section_label), person)
         return True
     except InvalidSectionID:
         logger.error("%s is_emaillist_authorized(%s) ==> InvalidSectionLabel",
-                     get_netid_of_current_user(), section_label)
+                     uwnetid, section_label)
         return False
     except NotSectionInstructorException:
         logger.error("%s is_emaillist_authorized(%s) ==> NotSectionInstructor",
-                     get_netid_of_current_user(), section_label)
+                     uwnetid, section_label)
         return False
     except DataFailureException as err:
         if err.status == 404:

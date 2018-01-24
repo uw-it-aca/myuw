@@ -10,15 +10,15 @@ def log_success_response(logger, timer):
     log_time(logger, 'fulfilled', timer)
 
 
-def log_success_response_with_affiliation(logger, timer, request):
+def log_success_response_with_affiliation(logger, timer, affiliations):
     log_time(logger,
-             get_identity_log_str(request) + 'fulfilled',
+             get_identity_log_str(affiliations) + 'fulfilled',
              timer)
 
 
-def log_msg_with_affiliation(logger, timer, request, msg):
+def log_msg_with_affiliation(logger, timer, affiliations, msg):
     log_time(logger,
-             "%s %s" % (get_identity_log_str(request), msg),
+             "%s %s" % (get_identity_log_str(affiliations), msg),
              timer)
 
 
