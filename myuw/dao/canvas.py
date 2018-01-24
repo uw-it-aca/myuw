@@ -9,18 +9,20 @@ from myuw.dao.pws import get_regid_of_current_user
 logger = logging.getLogger(__name__)
 
 
-def canvas_prefetch():
-    def _method(request):
-        return get_canvas_active_enrollments(request)
-    return [_method]
-
-
 def get_canvas_active_enrollments(request):
     if not hasattr(request, "canvas_act_enrollments"):
         request.canvas_act_enrollments = _enrollments_dict_by_sws_label(
             _get_canvas_active_enrollments_for_regid(
                 get_regid_of_current_user(request)))
     return request.canvas_act_enrollments
+
+
+def _get_canvas_active_enrollments_for_regid(regid):
+    return Enrollments().get_enrollments_for_regid(
+        regid,
+        {'type': ['StudentEnrollment'],
+         'state': ['active']},
+        include_courses=False)
 
 
 def _enrollments_dict_by_sws_label(enrollments):
@@ -37,12 +39,10 @@ def _enrollments_dict_by_sws_label(enrollments):
     return enrollments_dict
 
 
-def _get_canvas_active_enrollments_for_regid(regid):
-    return Enrollments().get_enrollments_for_regid(
-        regid,
-        {'type': ['StudentEnrollment'],
-         'state': ['active']},
-        include_courses=False)
+def canvas_prefetch():
+    def _method(request):
+        return get_canvas_active_enrollments(request)
+    return [_method]
 
 
 def get_canvas_course_from_section(sws_section):
