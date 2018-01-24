@@ -1,7 +1,8 @@
 from django.test import TestCase
 from myuw.dao.exceptions import EmailServiceUrlException
 from myuw.dao.emaillink import get_service_url_for_address
-from uw_uwnetid.subscription_105 import get_email_forwarding
+from myuw.dao.uwnetid import get_email_forwarding_for_current_user
+from myuw.test import get_request_with_user
 
 
 class TestEmailServiceUrl(TestCase):
@@ -27,7 +28,8 @@ class TestEmailServiceUrl(TestCase):
                   ('javg017', "https://www.icloud.com")]
 
         for netid in netids:
-            fwd = get_email_forwarding(netid[0])
+            req = get_request_with_user(netid[0])
+            fwd = get_email_forwarding_for_current_user(req)
             url, title, icon = get_service_url_for_address(fwd.fwd)
             self.assertEquals(url, netid[1])
             self.assertGreater(len(title), 0)
