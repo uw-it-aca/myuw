@@ -106,7 +106,8 @@ def try_prefetch(request):
     try:
         prefetch_resources(request,
                            prefetch_enrollment=True,
-                           prefetch_group=True)
+                           prefetch_group=True,
+                           prefetch_instructor=True)
     except DataFailureException:
         log_exception(logger,
                       "prefetch_resources",

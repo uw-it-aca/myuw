@@ -29,6 +29,7 @@ def prefetch(request, prefetch_methods):
 def prefetch_resources(request,
                        prefetch_enrollment=False,
                        prefetch_group=False,
+                       prefetch_instructor=False,
                        prefetch_library=False,
                        prefetch_password=False,
                        prefetch_canvas=False):
@@ -40,8 +41,9 @@ def prefetch_resources(request,
     prefetch_methods.extend(person_prefetch())
     prefetch_methods.extend(subscriptions_prefetch())
 
-    # depends on person
-    prefetch_methods.extend(is_instructor_prefetch())
+    if prefetch_instructor:
+        # depends on person
+        prefetch_methods.extend(is_instructor_prefetch())
 
     if prefetch_enrollment:
         # depends on pws.person

@@ -53,11 +53,12 @@ def get_all_affiliations(request):
     is_fy_stud = is_fyp(request)
     is_aut_xfer = is_aut_transfer(request)
     is_win_xfer = is_win_transfer(request)
-    is_hxt_viewer = get_is_hxt_viewer(request,
-                                      is_fy_stud, is_aut_xfer,
-                                      is_win_xfer)
+    is_sea_stud = is_seattle_student(request)
+    is_undergrad = is_undergrad_student(request)
+    is_hxt_viewer = get_is_hxt_viewer(request, is_undergrad, is_sea_stud,
+                                      is_fy_stud, is_aut_xfer, is_win_xfer)
     data = {"grad": is_grad_student(request),
-            "undergrad": is_undergrad_student(request),
+            "undergrad": is_undergrad,
             "applicant": is_applicant(request),
             "student": is_student(request),
             "pce": is_pce_student(request),
@@ -73,7 +74,7 @@ def get_all_affiliations(request):
             "clinician": is_clinician(request),
             "2fa_permitted": is_2fa_permitted(request),
             "instructor": is_instructor(request),
-            "seattle": is_seattle_student(request),
+            "seattle": is_sea_stud,
             "bothell": is_bothell_student(request),
             "tacoma": is_tacoma_student(request),
             "hxt_viewer": is_hxt_viewer,
@@ -143,12 +144,10 @@ def get_base_campus(affiliations):
     return campus
 
 
-def get_is_hxt_viewer(request,
+def get_is_hxt_viewer(request, is_undergrad, is_sea_stud,
                       is_fyp, is_aut_transfer, is_win_transfer):
     is_viewer = False
-    if is_seattle_student(request) and\
-       is_undergrad_student(request) and\
-       not is_fyp:
+    if is_sea_stud and is_undergrad and not is_fyp:
         term = get_current_quarter(request)
         if term.quarter == 'winter':
             is_viewer = not is_win_transfer
