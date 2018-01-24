@@ -3,17 +3,22 @@ from django.test.utils import override_settings
 from myuw.test.api import require_url, MyuwApiTest
 from restclients_core.exceptions import DataFailureException
 from myuw.views.api.instructor_schedule import InstScheCurQuar, InstSect
-from myuw.dao.instructor_schedule import (
-    get_current_quarter_instructor_schedule)
-from myuw.test import get_request, get_request_with_user, get_request_with_date
+from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
+from myuw.dao.term import get_current_quarter
+from myuw.test import get_request_with_user, get_request_with_date
+
+
+def get_current_quarter_instructor_schedule(request):
+    schedule = get_instructor_schedule_by_term(
+        request, get_current_quarter(request))
+    return schedule
 
 
 @require_url('myuw_instructor_current_schedule_api')
 class TestInstructorCurrentSchedule(MyuwApiTest):
 
     def test_bill_current_term(self):
-        now_request = get_request()
-        get_request_with_user('bill', now_request)
+        now_request = get_request_with_user('bill')
         schedule = get_current_quarter_instructor_schedule(now_request)
 
         resp = InstScheCurQuar().get(now_request)
@@ -110,8 +115,7 @@ class TestInstructorTermSchedule(MyuwApiTest):
 
 class TestInstructorSection(MyuwApiTest):
     def test_bill_section(self):
-        now_request = get_request()
-        get_request_with_user('bill', now_request)
+        now_request = get_request_with_user('bill')
 
         section_id = '2013,spring,ESS,102/A'
         resp = InstSect().get(now_request, section_id=section_id)
@@ -134,8 +138,7 @@ class TestInstructorSection(MyuwApiTest):
         self.assertEqual(data['related_terms'][5]['year'], 2013)
 
     def test_non_section(self):
-        now_request = get_request()
-        get_request_with_user('bill', now_request)
+        now_request = get_request_with_user('bill')
 
         section_id = '2013,spring,ESS,102/Z'
         resp = InstSect().get(now_request, section_id=section_id)
@@ -146,8 +149,7 @@ class TestInstructorSection(MyuwApiTest):
         self.assertEqual(resp.status_code, 400)
 
     def test_bill100_section(self):
-        now_request = get_request()
-        get_request_with_user('bill100', now_request)
+        now_request = get_request_with_user('bill100')
 
         section_id = '2013,spring,ESS,102/A'
         resp = InstSect().get(now_request, section_id=section_id)
@@ -155,8 +157,7 @@ class TestInstructorSection(MyuwApiTest):
         self.assertEqual(resp.status_code, 403)
 
     def test_billpce_current_term(self):
-        now_request = get_request()
-        get_request_with_user('bill', now_request)
+        now_request = get_request_with_user('bill')
         schedule = get_current_quarter_instructor_schedule(now_request)
 
         resp = InstScheCurQuar().get(now_request)
@@ -167,7 +168,7 @@ class TestInstructorSection(MyuwApiTest):
         self.assertFalse('cc_display_dates' in section1)
         self.assertFalse(section1['sln'] == 0)
 
-        get_request_with_user('billpce', now_request)
+        now_request = get_request_with_user('billpce')
         schedule = get_current_quarter_instructor_schedule(now_request)
 
         resp = InstScheCurQuar().get(now_request)
@@ -189,8 +190,7 @@ class TestInstructorSection(MyuwApiTest):
                          "Student1, Jake Average")
 
     def test_non_instructor(self):
-        now_request = get_request()
-        get_request_with_user('staff', now_request)
+        now_request = get_request_with_user('staff')
         sche = get_current_quarter_instructor_schedule(now_request)
         resp = InstScheCurQuar().get(now_request)
         self.assertEquals(resp.status_code, 200)
@@ -198,8 +198,7 @@ class TestInstructorSection(MyuwApiTest):
         self.assertEqual(len(data['sections']), 0)
 
     def test_billsea_section(self):
-        now_request = get_request()
-        get_request_with_user('billsea', now_request)
+        now_request = get_request_with_user('billsea')
 
         section_id = '2017,autumn,EDC&I,552/A'
         resp = InstSect().get(now_request, section_id=section_id)

@@ -19,18 +19,18 @@ class TestQuickLinkDAO(TransactionTestCase):
             return recent
 
         username = 'link_dao_user'
-        get_request_with_user(username)
+        req = get_request_with_user(username)
         user, created = User.objects.get_or_create(uwnetid=username)
 
         u1 = 'http://example.com?q=1'
         u2 = 'http://example.com?q=2'
 
         v1 = VisitedLinkNew.objects.create(user=user, url=u1)
-        self.assertTrue(get_recent_link_by_id(v1.pk))
+        self.assertTrue(get_recent_link_by_id(req, v1.pk))
 
         v2 = VisitedLinkNew.objects.create(user=user, url=u2)
 
-        data = get_quicklink_data({})
+        data = get_quicklink_data(req, {})
         recent = _get_recent(data)
 
         self.assertEquals(len(recent), 2)
@@ -40,14 +40,14 @@ class TestQuickLinkDAO(TransactionTestCase):
         plink = PopularLink.objects.create(url=u2)
         self.assertTrue(get_popular_link_by_id(plink.pk))
 
-        data = get_quicklink_data({})
+        data = get_quicklink_data(req, {})
         recent = _get_recent(data)
 
         self.assertEquals(len(recent), 1)
         self.assertTrue(u1 in recent)
 
         CustomLink.objects.create(user=user, url=u1)
-        data = get_quicklink_data({})
+        data = get_quicklink_data(req, {})
         recent = _get_recent(data)
 
         self.assertEquals(len(recent), 0)
@@ -56,7 +56,7 @@ class TestQuickLinkDAO(TransactionTestCase):
             VisitedLinkNew.objects.create(user=user,
                                           url="http://example.com?q=%s" % i)
 
-        data = get_quicklink_data({})
+        data = get_quicklink_data(req, {})
         recent = _get_recent(data)
 
         self.assertEquals(len(recent), 5)
@@ -79,54 +79,54 @@ class TestQuickLinkDAO(TransactionTestCase):
 
     def test_hidden_link(self):
         username = 'add_hidlink_user'
-        get_request_with_user(username)
+        req = get_request_with_user(username)
         url = "http://s.ss.edu"
-        link = add_hidden_link(url)
+        link = add_hidden_link(req, url)
         self.assertEquals(link.url, url)
         # second time
-        link1 = add_hidden_link(url)
+        link1 = add_hidden_link(req, url)
         self.assertEquals(link.pk, link1.pk)
 
-        self.assertIsNotNone(delete_hidden_link(link.pk))
+        self.assertIsNotNone(delete_hidden_link(req, link.pk))
         # second time
-        self.assertIsNone(delete_hidden_link(link.pk))
+        self.assertIsNone(delete_hidden_link(req, link.pk))
 
     def test_add_custom_link(self):
         username = 'add_link_user'
-        get_request_with_user(username)
-        link = add_custom_link("http://s1.ss.edu")
+        req = get_request_with_user(username)
+        link = add_custom_link(req, "http://s1.ss.edu")
         self.assertIsNone(link.label)
 
         url = "http://s.ss.edu"
         link_label = "ss"
-        link1 = add_custom_link(url, link_label)
+        link1 = add_custom_link(req, url, link_label)
         self.assertEquals(link1.url, url)
         self.assertEquals(link1.label, link_label)
         # second time
-        link2 = add_custom_link(url, link_label)
+        link2 = add_custom_link(req, url, link_label)
         self.assertEquals(link2.pk, link1.pk)
 
     def test_delete_custom_link(self):
         username = 'rm_link_user'
-        get_request_with_user(username)
+        req = get_request_with_user(username)
         url = "http://s.ss.edu"
-        link = add_custom_link(url)
-        self.assertIsNotNone(delete_custom_link(link.pk))
+        link = add_custom_link(req, url)
+        self.assertIsNotNone(delete_custom_link(req, link.pk))
         # second time
-        self.assertIsNone(delete_custom_link(link.pk))
+        self.assertIsNone(delete_custom_link(req, link.pk))
 
     def test_edit_custom_link(self):
         username = 'edit_link_user'
-        get_request_with_user(username)
+        req = get_request_with_user(username)
         url = "http://s.ss.edu"
-        link = add_custom_link(url)
+        link = add_custom_link(req, url)
 
         url1 = "http://s1.ss.edu"
-        link1 = edit_custom_link(link.pk, url1)
+        link1 = edit_custom_link(req, link.pk, url1)
         self.assertEquals(link1.url, url1)
 
         url2 = "http://s2.ss.edu"
         label2 = "s2"
-        link2 = edit_custom_link(link1.pk, url2, label2)
+        link2 = edit_custom_link(req, link1.pk, url2, label2)
         self.assertIsNotNone(link2)
         self.assertEquals(link2.label, label2)

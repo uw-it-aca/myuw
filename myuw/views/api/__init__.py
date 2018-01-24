@@ -1,10 +1,11 @@
+import simplejson as json
+import re
 from django.http import HttpResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from myuw.util.performance import log_response_time
-import simplejson as json
-import re
+from myuw.views import prefetch_resources
 
 SPACE_PATTERN = r'%20'
 AMP_PATTERN = r'%26'

@@ -6,6 +6,7 @@ from myuw.dao.term import get_previous_number_quarters
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import (
     log_msg, log_success_response, log_data_not_found_response)
+from myuw.views import prefetch_resources
 from myuw.views.api.base_schedule import StudClasSche, load_schedule
 from myuw.views.error import handle_exception, data_not_found
 
@@ -29,6 +30,7 @@ class StudUnfinishedPrevQuarClasSche(StudClasSche):
         """
         timer = Timer()
         try:
+            prefetch_resources(request)
             enrollment_dict = get_prev_enrollments_with_open_sections(
                 request, 2)
             has_unfinished_course = False
@@ -66,7 +68,7 @@ class StudUnfinishedPrevQuarClasSche(StudClasSche):
         """
         Return only unfinished course schedule
         """
-        schedule = get_schedule_by_term(term)
+        schedule = get_schedule_by_term(request, term)
         include_sections = []
         for section in schedule.sections:
             if section.section_label() in unfinished_sections:

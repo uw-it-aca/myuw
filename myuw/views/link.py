@@ -29,12 +29,14 @@ def save_visited_link(request):
     url = request.GET.get('u', '')
     label = request.GET.get('l', None)
     try:
-        user = get_user_model()
+        user = get_user_model(request)
     except IntegrityError:
         return
+
     if label:
         label = unquote(label)
-    prefetch_resources(request)
+
+    prefetch_resources(request, prefetch_group=True)
 
     is_anon = True
     affiliations = {}

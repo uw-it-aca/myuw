@@ -31,7 +31,7 @@ class MyPlan(ProtectedAPI):
                         "No MyPlan access during their peak load, abort!")
                 return self.json_response([])
 
-            plan = get_plan(regid=get_regid_of_current_user(),
+            plan = get_plan(regid=get_regid_of_current_user(request),
                             year=year,
                             quarter=quarter.lower(),
                             terms=1)

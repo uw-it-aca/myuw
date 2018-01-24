@@ -22,7 +22,7 @@ def get_target_group(request):
     if hasattr(request, CACHE_ID):
         return request.CACHE_ID
 
-    uwnetid = get_netid_of_current_user()
+    uwnetid = get_netid_of_current_user(request)
     for target in target_groups:
         try:
             if is_thrive_viewer(uwnetid, target):

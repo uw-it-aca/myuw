@@ -19,7 +19,7 @@ class Applications(ProtectedAPI):
 
         timer = Timer()
 
-        response = get_applications()
+        response = get_applications(request)
 
         log_success_response(logger, timer)
 
