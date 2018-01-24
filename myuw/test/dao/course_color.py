@@ -3,13 +3,11 @@ from django.conf import settings
 from userservice.user import UserServiceMiddleware
 from uw_sws.models import ClassSchedule, Term, Person, Section
 from myuw.dao.course_color import get_colors_by_regid_and_schedule
-from myuw.dao.registration import _get_schedule
-from myuw.test import get_request
+from myuw.dao.registration import get_schedule_by_term
+from myuw.test import get_request_with_user
 
 
 class TestCourseColors(TestCase):
-    def setUp(self):
-        get_request()
 
     def test_single_course(self):
         term = Term()
@@ -107,11 +105,12 @@ class TestCourseColors(TestCase):
         (colors[section2.section_label()], 2, "2nd section gets the 2nd color")
 
     def test_primary_secondary(self):
+        req = get_request_with_user('javerage')
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         term = Term()
         term.year = 2013
         term.quarter = "spring"
-        schedule = _get_schedule(regid, term)
+        schedule = get_schedule_by_term(req, term)
         colors = get_colors_by_regid_and_schedule(regid, schedule)
 
         self.assertEquals

@@ -6,11 +6,16 @@ from myuw.models import User
 from uw_pws import PWS
 
 
-def get_netid_of_current_user():
+def get_netid_of_current_user(request=None):
     """
     return the over-ridden user if impersonated
     """
-    return UserService().get_user()
+    if request is None:
+        return UserService().get_user()
+
+    if not hasattr(request, "myuwnetid"):
+        request.myuwnetid = UserService().get_user()
+    return request.myuwnetid
 
 
 def get_netid_of_original_user():
@@ -20,8 +25,8 @@ def get_netid_of_original_user():
     return UserService().get_original_user()
 
 
-def get_user_model():
-    user_netid = get_netid_of_current_user()
+def get_user_model(request):
+    user_netid = get_netid_of_current_user(request)
     user, created = User.objects.get_or_create(uwnetid=user_netid)
     return user
 

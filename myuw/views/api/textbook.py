@@ -1,6 +1,5 @@
 import logging
 import traceback
-from myuw.dao.gws import is_student
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.schedule import (
     get_schedule_by_term, filter_schedule_sections_by_summer_term)
@@ -12,6 +11,7 @@ from myuw.dao.textbook import get_verba_link_by_schedule
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import (
     log_success_response, log_msg, log_data_not_found_response)
+from myuw.views import prefetch_resources
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception, data_not_found, data_error
 
@@ -35,12 +35,12 @@ class Textbook(ProtectedAPI):
     def respond(self, request, year, quarter, summer_term):
         timer = Timer()
         try:
+            prefetch_resources(request)
             by_sln = {}
             term = get_specific_term(year=year, quarter=quarter)
-
             # enrolled sections
             try:
-                schedule = get_schedule_by_term(term)
+                schedule = get_schedule_by_term(request, term)
                 by_sln.update(self._get_schedule_textbooks(
                     schedule, summer_term))
 
@@ -53,7 +53,7 @@ class Textbook(ProtectedAPI):
 
             # instructed sections
             try:
-                schedule = get_instructor_schedule_by_term(term)
+                schedule = get_instructor_schedule_by_term(request, term)
                 by_sln.update(self._get_schedule_textbooks(
                     schedule, summer_term))
             except DataFailureException as ex:

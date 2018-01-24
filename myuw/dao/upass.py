@@ -7,35 +7,32 @@ import logging
 import re
 from uw_upass import get_upass_status
 from myuw.dao import get_netid_of_current_user
+from myuw.dao.gws import is_student, is_employee, is_student_employee
 from myuw.dao.term import Term, get_comparison_datetime,\
     get_current_quarter, get_next_quarter
-from myuw.dao.gws import is_student, is_employee, is_student_employee
 
 
 logger = logging.getLogger(__name__)
 
 
-def upass_prefetch():
-
-    def _method(request):
-        get_upass_status(get_netid_of_current_user())
-
-    return [_method]
+def _get_upass_status(request):
+    return get_upass_status(get_netid_of_current_user(request))
 
 
-def get_upass_by_netid(netid, request):
+def get_upass(request):
     """
     returns upass status for a netid
     """
-    status = get_upass_status(netid)
+    status = _get_upass_status(request)
     ret_json = status.json_data()
 
     if status.is_current:
         ret_json['display_activation'] = (status.is_employee or
                                           around_qtr_begin(request))
     ret_json['is_employee'] = (status.is_employee or
-                               (is_employee() and not is_student_employee()))
-    ret_json['is_student'] = (status.is_student or is_student())
+                               (is_employee(request) and
+                                not is_student_employee(request)))
+    ret_json['is_student'] = (status.is_student or is_student(request))
 
     if ret_json['is_student']:
         ret_json['in_summer'] = in_summer_display_window(request)

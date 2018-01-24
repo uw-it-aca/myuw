@@ -60,14 +60,14 @@ class OpenInstSectionDetails(OpenAPI):
             status 404: no schedule found (teaching no courses)
         """
         self.processed_primary = False
-        self.person = get_person_of_current_user()  # pws
+        self.person = get_person_of_current_user(request)  # pws
 
         try:
             section_id = self.validate_section_id(request, section_id)
         except NotSectionInstructorException:
             return not_instructor_error()
 
-        schedule = get_instructor_section(self.person, section_id,
+        schedule = get_instructor_section(request, section_id,
                                           include_registrations=True,
                                           include_linked_sections=True)
 

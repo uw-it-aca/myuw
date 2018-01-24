@@ -8,7 +8,8 @@ from datetime import datetime
 from django.utils import timezone
 from restclients_core.exceptions import DataFailureException
 from uw_iasystem.evaluation import search_evaluations
-from myuw.dao.pws import get_person_by_employee_id
+from myuw.dao.pws import get_student_number_of_current_user,\
+    get_person_by_employee_id
 from myuw.dao.student_profile import get_profile_of_current_user
 from myuw.dao.term import get_comparison_datetime, is_b_term,\
     get_current_summer_term, get_bod_7d_before_last_instruction,\
@@ -30,9 +31,9 @@ def _get_evaluations_domain(section):
     return "pce"
 
 
-def get_evaluations_by_section(section):
+def get_evaluations_by_section(request, section):
     return _get_evaluations_by_section_and_student(
-        section, get_profile_of_current_user().student_number)
+        section, get_student_number_of_current_user(request))
 
 
 def _get_evaluations_by_section_and_student(section, student_number):
@@ -117,7 +118,6 @@ def json_for_evaluation(request, evaluations, section):
 
     # to compare with timezone aware datetime object
     now = _get_local_tz().localize(get_comparison_datetime(request))
-
     json_data = []
     for evaluation in evaluations:
 

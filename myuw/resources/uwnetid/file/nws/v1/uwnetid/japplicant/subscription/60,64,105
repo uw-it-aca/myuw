@@ -1,0 +1,78 @@
+{
+  "uwNetID": "japplicant",
+  "subscriptionList": [
+    {
+      "subscriptionCode": 60,
+      "subscriptionName": "A Kerberos Principal",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate"
+      ],
+      "dataField": "KPW",
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 1,
+          "categoryName": "Undergraduate",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 20,
+          "categoryName": "Applicant",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    },
+    {
+      "subscriptionCode": 64,
+      "subscriptionName": "Duo Two-Factor Authentication",
+      "permitted": false,
+      "statusCode": 101,
+      "statusName": "Unpermitted",
+      "actions": [
+        "Show"
+      ]
+    },
+    {
+      "subscriptionCode": 105,
+      "subscriptionName": "U Forwarding",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate",
+        "Activate"
+      ],
+      "dataField": "FWD",
+      "dataValue": "japplicant@gmail.com",
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 1,
+          "categoryName": "Undergraduate",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 20,
+          "categoryName": "Applicant",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    }
+  ],
+  "timeStamp": "Mon, 22 Jan 2018 14:21:22 -0800"
+}

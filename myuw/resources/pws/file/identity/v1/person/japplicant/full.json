@@ -1,5 +1,6 @@
-{"DisplayName":"J. Average Applicant",
-"EduPersonAffiliations":[],
+{
+"DisplayName":"J. Average Applicant",
+"EduPersonAffiliations":["affiliate"],
 "IsTestEntity":true,
 "PriorUWNetIDs":[],
 "PriorUWRegIDs":[],
@@ -10,5 +11,17 @@
 "UWNetID":"japplicant",
 "UWRegID":"9136CCB8F66711D5BE060004AC494DDD",
 "WhitepagesPublish":false,
-"PersonAffiliations": {}
-}
+"PersonAffiliations": {
+    "StudentPersonAffiliation":{
+        "StudentNumber":"1033002",
+        "StudentSystemKey":"000000007",
+        "StudentWhitePages":{"Class":null,
+                             "Department1":null,
+                             "Department2":null,
+                             "Department3":null,
+                             "Email":null,
+                             "Name":null,
+                             "Phone":null,
+                             "PublishInDirectory":false}
+    }
+}}

@@ -9,7 +9,6 @@ from uw_sws.section import get_sections_by_instructor_and_term,\
     get_section_by_url, get_section_by_label
 from uw_sws.section_status import get_section_status_by_label
 from myuw.util.thread import Thread, ThreadWithResponse
-from myuw.dao import get_netid_of_current_user
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.instructor import is_seen_instructor, add_seen_instructor
 from myuw.dao.pws import get_person_of_current_user
@@ -20,30 +19,12 @@ from myuw.dao.term import get_current_quarter
 logger = logging.getLogger(__name__)
 
 
-def get_current_quarter_instructor_schedule(request):
-    """
-    Return sections instructor is teaching in the current quarter
-    """
-    if hasattr(request, "myuw_current_quarter_instructor_schedule"):
-        return request.myuw_current_quarter_instructor_schedule
-
-    schedule = get_instructor_schedule_by_term(get_current_quarter(request))
-    request.myuw_current_quarter_instructor_schedule = schedule
-
-    return schedule
-
-
-def get_instructor_schedule_by_term(term):
+def get_instructor_schedule_by_term(request, term):
     """
     Return the sections the current user is instructing
     in the given term/quarter
     """
-    person = get_person_of_current_user()
-    schedule = _get_instructor_schedule(person, term)
-    return schedule
-
-
-def _get_instructor_schedule(person, term):
+    person = get_person_of_current_user(request)
     schedule = ClassSchedule()
     schedule.person = person
     schedule.term = term
@@ -94,13 +75,14 @@ def _get_sections_by_section_reference(section_references):
     return sections
 
 
-def get_instructor_section(person, section_id,
+def get_instructor_section(request, section_id,
                            include_registrations=False,
                            include_linked_sections=False):
     """
     Return requested section instructor is teaching
     """
     schedule = ClassSchedule()
+    person = get_person_of_current_user(request)
     instructor_regid = person.uwregid
     schedule.person = person
     schedule.sections = []
@@ -156,33 +138,41 @@ def is_instructor(request):
     """
     Determines if user is an instructor of the request's term
     """
+    if hasattr(request, "myuw_is_instructor"):
+        return request.myuw_is_instructor
+
     try:
-        term = get_current_quarter(request)
-        user_netid = get_netid_of_current_user()
+        person = get_person_of_current_user(request)
+        user_netid = person.uwnetid
         if is_seen_instructor(user_netid):
+            request.myuw_is_instructor = True
             return True
 
-        person = get_person_of_current_user()
+        term = get_current_quarter(request)
         sections = _get_instructor_sections(person,
                                             term,
                                             future_terms=2,
                                             include_secondaries=False)
         if len(sections) > 0:
             add_seen_instructor(user_netid, term)
+            request.myuw_is_instructor = True
             return True
-
+        request.myuw_is_instructor = False
         return False
     except DataFailureException as err:
         if err.status == 404:
+            request.myuw_is_instructor = False
             return False
-
         raise
 
 
-def check_section_instructor(section, person=None):
-    if person is None:
-        person = get_person_of_current_user()
+def is_instructor_prefetch():
+    def _method(request):
+        is_instructor(request)
+    return [_method]
 
+
+def check_section_instructor(section, person):
     if not section.is_instructor(person):
         if section.is_primary_section:
             raise NotSectionInstructorException()
