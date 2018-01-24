@@ -1,12 +1,10 @@
 import logging
 import traceback
-from myuw.dao.student_profile import get_applicant_profile
+from myuw.dao import get_netid_of_current_user
 from myuw.dao.gws import is_student, is_applicant
-from myuw.dao.student_profile import get_student_profile
-from myuw.dao.password import get_pw_json
 from myuw.dao.pws import get_display_name_of_current_user
-from myuw.dao.student_profile import get_profile_of_current_user
-from myuw.dao.user import get_netid_of_current_user
+from myuw.dao.password import get_pw_json
+from myuw.dao.student_profile import get_applicant_profile, get_student_profile
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response, log_msg
 from myuw.views import prefetch_resources
@@ -29,15 +27,15 @@ class MyProfile(ProtectedAPI):
         """
         timer = Timer()
         try:
+            netid = get_netid_of_current_user(request)
             prefetch_resources(request,
+                               prefetch_group=True,
                                prefetch_enrollment=True,
                                prefetch_password=True)
 
-            netid = get_netid_of_current_user()
-
-            if is_student():
+            if is_student(request):
                 response = get_student_profile(request)
-            elif is_applicant():
+            elif is_applicant(request):
                 response = get_applicant_profile(request)
             else:
                 response = {}
@@ -45,10 +43,11 @@ class MyProfile(ProtectedAPI):
                 response['is_student'] = False
                 response['uwnetid'] = netid
 
-            response['display_name'] = get_display_name_of_current_user()
+            response['display_name'] = get_display_name_of_current_user(
+                request)
 
             try:
-                response['password'] = get_pw_json(netid, request)
+                response['password'] = get_pw_json(request)
             except Exception as ex:
                 logger.error("%s get_pw_json: %s" % (netid, ex))
 

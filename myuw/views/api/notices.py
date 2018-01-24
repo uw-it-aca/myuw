@@ -3,10 +3,10 @@ import logging
 import traceback
 from datetime import datetime
 from restclients_core.exceptions import DataFailureException
-from myuw.dao.gws import is_student
 from myuw.dao.notice import get_notices_for_current_user
 from myuw.dao.notice import mark_notices_read_for_current_user
 from myuw.dao.notice_mapping import get_json_for_notices
+from myuw.dao.pws import is_student
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
 from myuw.views.api import ProtectedAPI
@@ -28,9 +28,9 @@ class Notices(ProtectedAPI):
         timer = Timer()
         try:
             notice_json = []
-            if is_student():
+            if is_student(request):
                 notice_json = get_json_for_notices(
-                    request, get_notices_for_current_user())
+                    request, get_notices_for_current_user(request))
 
             log_success_response(logger, timer)
             return self.json_response(notice_json)
@@ -56,5 +56,5 @@ class Notices(ProtectedAPI):
 
     def put(self, request, *args, **kwargs):
         notice_hashes = json.loads(request.body).get('notice_hashes', None)
-        mark_notices_read_for_current_user(notice_hashes)
+        mark_notices_read_for_current_user(request, notice_hashes)
         return self.json_response()

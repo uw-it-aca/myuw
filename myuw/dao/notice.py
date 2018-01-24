@@ -30,18 +30,18 @@ def _get_notices_by_regid(user_regid):
     return categorize_notices(notices)
 
 
-def mark_notices_read_for_current_user(notice_hashes):
-    user = get_user_model()
+def mark_notices_read_for_current_user(request, notice_hashes):
+    user = get_user_model(request)
     UserNotices().mark_notices_read(notice_hashes, user)
 
 
-def get_notices_for_current_user():
-    notices = _get_notices_by_regid(get_regid_of_current_user())
-    return _get_user_notices(notices)
+def get_notices_for_current_user(request):
+    notices = _get_notices_by_regid(get_regid_of_current_user(request))
+    return _get_user_notices(request, notices)
 
 
-def _get_user_notices(notices):
-    user = get_user_model()
+def _get_user_notices(request, notices):
+    user = get_user_model(request)
     notice_dict = {}
     notices_with_read_status = []
     # Get all notice hashes
@@ -93,30 +93,32 @@ def _is_tuition_due_notice(notice):
     return False
 
 
-def get_tuition_due_date():
+def get_tuition_due_date(request):
     tuition_date = None
-    notices = get_notices_for_current_user()
+    notices = get_notices_for_current_user(request)
     for notice in notices:
         if _is_tuition_due_notice(notice):
-            tuition_notice = _store_tuition_notice_date(notice)
+            tuition_notice = _store_tuition_notice_date(request, notice)
             if tuition_notice is not None:
                 tuition_date = tuition_notice.date
     if tuition_date is None:
         try:
-            stored_tuition = TuitionDate.objects.get(user=get_user_model())
+            stored_tuition = TuitionDate.objects.get(
+                user=get_user_model(request))
             tuition_date = stored_tuition.date
         except Exception:
             pass
     return tuition_date
 
 
-def _store_tuition_notice_date(notice):
+def _store_tuition_notice_date(request, notice):
     for attrib in notice.attributes:
         if attrib.name == "Date":
             defaults = {'date': attrib.get_value()}
             td_get_or_create = TuitionDate.objects.get_or_create
-            tuition_date, created = td_get_or_create(user=get_user_model(),
-                                                     defaults=defaults)
+            tuition_date, created = td_get_or_create(
+                user=get_user_model(request),
+                defaults=defaults)
             if not created:
                 tuition_date.date = attrib.get_value()
                 tuition_date.save()

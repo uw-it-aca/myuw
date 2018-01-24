@@ -1,7 +1,6 @@
 import math
 import datetime
 from myuw.dao.term import get_current_quarter, get_comparison_date
-from myuw.dao.gws import is_seattle_student, is_undergrad_student
 from myuw.dao.thrive import is_fyp, is_aut_transfer, is_win_transfer
 from hx_toolkit.file_dao import get_rendered_article_by_id, \
     get_article_by_phase_quarter_week, get_article_links_by_category
@@ -78,16 +77,3 @@ def _get_phase_by_term(term):
 
 def get_article_links():
     return get_article_links_by_category()
-
-
-def get_is_hxt_viewer(request):
-    is_viewer = False
-    if is_seattle_student() and is_undergrad_student() and not is_fyp(request):
-        term = get_current_quarter(request)
-        if term.quarter == 'winter':
-            is_viewer = not is_win_transfer(request)
-        elif term.quarter == 'autumn':
-            is_viewer = not is_aut_transfer(request)
-        else:
-            is_viewer = True
-    return is_viewer

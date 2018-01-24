@@ -64,7 +64,7 @@ class TestIasystemApi(MyuwApiTest):
         self.assertEquals(response.status_code, 404)
 
     def test_missing_current_term(self):
-        self.set_user('err_user')
+        self.set_user('jerror')
         response = self.get_ias_response()
         self.assertEquals(response.status_code, 404)
 

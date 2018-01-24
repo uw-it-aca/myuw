@@ -26,7 +26,6 @@ from myuw.test.dao.pws import TestPwsDao
 from myuw.test.dao.password import TestDaoPassword
 from myuw.test.dao.textbook import TestTextbooks
 from myuw.test.dao.thrive import TestThrive
-from myuw.test.dao.uwemail import TestUwEmail
 from myuw.test.dao.emaillink import TestEmailServiceUrl
 from myuw.test.dao.user import TestUserDao
 from myuw.test.dao.upass import TestUPassDao

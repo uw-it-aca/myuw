@@ -20,7 +20,7 @@ class MyLibInfo(ProtectedAPI):
         """
         timer = Timer()
         try:
-            myaccount = get_account_info_for_current_user()
+            myaccount = get_account_info_for_current_user(request)
 
             resp_json = myaccount.json_data(
                 use_abbr_week_month_day_format=True)

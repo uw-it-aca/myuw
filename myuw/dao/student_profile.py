@@ -6,25 +6,25 @@ provides student record information of the current user
 import logging
 from uw_sws.person import get_person_by_regid
 from myuw.dao import get_netid_of_current_user
+from myuw.dao.gws import is_grad_student
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.enrollment import get_main_campus, get_enrollments_of_terms
 from myuw.dao.term import get_current_and_next_quarters
-from myuw.dao.gws import is_grad_student
 
 
 logger = logging.getLogger(__name__)
 
 
-def get_profile_of_current_user():
+def get_profile_of_current_user(request):
     """
     Return uw_sws.models.SwsPerson object
     """
-    regid = get_regid_of_current_user()
+    regid = get_regid_of_current_user(request)
     return get_person_by_regid(regid)
 
 
 def get_applicant_profile(request):
-    return get_profile_of_current_user().json_data()
+    return get_profile_of_current_user(request).json_data()
 
 
 def get_student_profile(request):
@@ -35,7 +35,7 @@ def get_student_profile(request):
 
     response = profile
     response['is_student'] = True
-    response['is_grad_student'] = is_grad_student()
+    response['is_grad_student'] = is_grad_student(request)
 
     campuses = get_main_campus(request)
     if 'Seattle' in campuses:
@@ -53,10 +53,11 @@ def get_student_profile(request):
 def get_cur_future_enrollments(request):
     try:
         terms = get_current_and_next_quarters(request, 4)
-        return terms, get_enrollments_of_terms(terms)
+        return terms, get_enrollments_of_terms(request, terms)
     except Exception as ex:
         logger.error(
-            "%s get_enrollments: %s" % (get_netid_of_current_user(), ex))
+            "%s get_enrollments: %s" % (get_netid_of_current_user(request),
+                                        ex))
         return None
 
 

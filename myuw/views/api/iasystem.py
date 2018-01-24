@@ -3,16 +3,16 @@ import time
 import traceback
 from operator import itemgetter
 from myuw.dao import get_netid_of_current_user
-from myuw.dao.gws import is_student
-from myuw.dao.schedule import get_schedule_by_term
-from myuw.dao.schedule import filter_schedule_sections_by_summer_term
+from myuw.dao.pws import is_student
+from myuw.dao.schedule import filter_schedule_sections_by_summer_term,\
+    get_current_quarter_schedule
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
-from myuw.dao.term import get_comparison_date, get_current_quarter
 from myuw.dao.iasystem import (
     get_evaluations_by_section, json_for_evaluation, in_coursevel_fetch_window)
 from myuw.logger.logresp import (
     log_data_not_found_response, log_msg, log_success_response)
 from myuw.logger.timer import Timer
+from myuw.views import prefetch_resources
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found, handle_exception
 
@@ -31,9 +31,10 @@ class IASystem(ProtectedAPI):
         """
         timer = Timer()
         try:
+            prefetch_resources(request)
 
             # time.sleep(10)
-            if not is_student():
+            if not is_student(request):
                 log_msg(logger, timer, "Not a student, abort!")
                 return data_not_found()
 
@@ -43,11 +44,11 @@ class IASystem(ProtectedAPI):
                 # grade submission deadline
                 log_msg(logger, timer, "Not in fetching window")
                 return data_not_found()
-            term = get_current_quarter(request)
-            schedule = get_schedule_by_term(term)
 
-            summer_term = get_current_summer_term_in_schedule(
-                schedule, request)
+            schedule = get_current_quarter_schedule(request)
+
+            summer_term = get_current_summer_term_in_schedule(schedule,
+                                                              request)
 
             filter_schedule_sections_by_summer_term(schedule, summer_term)
             if len(schedule.sections) == 0:
@@ -78,7 +79,7 @@ def load_course_eval(request, schedule, summer_term=""):
         section_index += 1
         try:
             section_data["evaluation_data"] = json_for_evaluation(
-                request, get_evaluations_by_section(section), section)
+                request, get_evaluations_by_section(request, section), section)
         except Exception as ex:
             section_data["evaluation_data"] = None
 
