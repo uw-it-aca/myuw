@@ -19,12 +19,10 @@ def get_password_info(request):
     returns uw_netid.models.UwPassword object
     for a given uwnetid
     """
-    if hasattr(request, "myuwupassword"):
-        return request.myuwupassword
-
-    request.myuwupassword = get_uwnetid_password(
-        get_netid_of_current_user(request))
-    return request.myuwupassword
+    if not hasattr(request, "myuw_netid_password"):
+        request.myuw_netid_password = get_uwnetid_password(
+            get_netid_of_current_user(request))
+    return request.myuw_netid_password
 
 
 def password_prefetch():

@@ -27,6 +27,8 @@ def log_session(netid, affiliations, session_key, request):
                  'is_instructor': affiliations["instructor"],
                  'is_employee': affiliations["employee"],
                  'is_applicant': affiliations["applicant"],
+                 'is_alumni': affiliations["alumni"],
+                 'is_clinician': affiliations["clinician"],
                  'sea_campus': affiliations['official_seattle'],
                  'bot_campus': affiliations['official_bothell'],
                  'tac_campus': affiliations['official_tacoma'],

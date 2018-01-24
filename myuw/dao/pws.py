@@ -32,12 +32,10 @@ def get_person_of_current_user(request):
     """
     Retrieve the person data using the netid of the current user
     """
-    if hasattr(request, "myuwpwsperson"):
-        return request.myuwpwsperson
-
-    request.myuwpwsperson = pws.get_person_by_netid(
-        get_netid_of_current_user(request))
-    return request.myuwpwsperson
+    if not hasattr(request, "myuw_pws_person"):
+        request.myuw_pws_person = pws.get_person_by_netid(
+            get_netid_of_current_user(request))
+    return request.myuw_pws_person
 
 
 def person_prefetch():

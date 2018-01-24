@@ -21,9 +21,9 @@ class TestPwsDao(TestCase):
 
     def test_get_person_of_current_user(self):
         req = get_request_with_user('javerage')
-        self.assertFalse(hasattr(req, "myuwpwsperson"))
+        self.assertFalse(hasattr(req, "myuw_pws_person"))
         person = get_person_of_current_user(req)
-        self.assertIsNotNone(req.myuwpwsperson)
+        self.assertIsNotNone(req.myuw_pws_person)
 
     def test_display_name(self):
         req = get_request_with_user('javerage')

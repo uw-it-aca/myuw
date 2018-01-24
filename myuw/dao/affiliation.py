@@ -7,7 +7,7 @@ from myuw.dao.enrollment import get_main_campus
 from myuw.dao.gws import is_grad_student, is_student, is_undergrad_student,\
     is_pce_student, is_student_employee, is_staff_employee,\
     is_seattle_student, is_bothell_student, is_tacoma_student,\
-    is_applicant, is_grad_c2, is_undergrad_c2, no_affiliation
+    is_applicant, is_grad_c2, is_undergrad_c2, is_alumni, no_affiliation
 from myuw.dao.instructor_schedule import is_instructor
 from myuw.dao.pws import get_employee_campus, is_employee
 from myuw.dao.term import get_current_quarter
@@ -22,13 +22,14 @@ logger = logging.getLogger(__name__)
 def get_all_affiliations(request):
     """
     return a dictionary of affiliation indicators.
+    ["alumni"]: True if the user is currently an UW alumni
     ["student"]: True if the user is currently an UW student.
     ["grad"]: True if the user is currently an UW graduate student.
     ["undergrad"]: True if the user is currently an UW undergraduate student.
     ["applicant"]: True if the user is currently a UW applicant
-    ["pce"]: True if the user is currently an UW PCE student.
-    ["grad_c2"]: True if the user is an UW PCE grad student.
-    ["undergrad_c2"]: True if the user is an UW PCE undergrad student.
+    ["pce"]: True if the user is an UW PCE student.
+    ["grad_c2"]: True if the user takes UW PCE grad courses
+    ["undergrad_c2"]: True if the user takes UW PCE undergrad courses
     ["employee"]: True if the user is currently a uw employee.
     ["stud_employee"]: True if the user is currently a student employee.
     ["faculty"]: True if the user is currently faculty.
@@ -44,8 +45,7 @@ def get_all_affiliations(request):
                  according to the SWS Enrollment.
     ["official_tacoma"]: True if the user is an UW Tacoma student
                 according to the SWS Enrollment.
-    ["official_pce"]: True if the user is an UW PCE student
-                according to the SWS Enrollment.
+    ["official_pce"]: waiting on sws to add a field in Enrollment.
     """
     if hasattr(request, 'myuw_user_affiliations'):
         return request.myuw_user_affiliations
@@ -78,6 +78,7 @@ def get_all_affiliations(request):
             "bothell": is_bothell_student(request),
             "tacoma": is_tacoma_student(request),
             "hxt_viewer": is_hxt_viewer,
+            "alumni": is_alumni(request),
             "no_affi": no_affiliation(request),
             }
 
@@ -128,8 +129,6 @@ def get_base_campus(affiliations):
             campus = "bothell"
         if affiliations["official_tacoma"]:
             campus = "tacoma"
-        if affiliations["undergrad_c2"] or affiliations["grad_c2"]:
-            campus = "pce"
     except KeyError:
         try:
             if affiliations["seattle"]:

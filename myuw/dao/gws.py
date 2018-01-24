@@ -192,7 +192,8 @@ def no_affiliation(request):
     return not is_employee(request) and\
         not is_student(request) and\
         not is_applicant(request) and\
-        not is_clinician(request)
+        not is_clinician(request) and\
+        not is_alumni(request)
 
 
 def is_in_admin_group(group_key):

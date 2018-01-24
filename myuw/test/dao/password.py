@@ -11,9 +11,9 @@ class TestDaoPassword(TestCase):
 
     def test_get_password_info(self):
         req = get_request_with_user('javerage')
-        self.assertFalse(hasattr(req, "myuwupassword"))
+        self.assertFalse(hasattr(req, "myuw_netid_password"))
         pw = get_password_info(req)
-        self.assertIsNotNone(req.myuwupassword)
+        self.assertIsNotNone(req.myuw_netid_password)
 
     def test_last_pw_change(self):
         now_request = get_request_with_date('2013-02-27')
