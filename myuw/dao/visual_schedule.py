@@ -388,9 +388,12 @@ def trim_weeks_no_meetings(weeks):
     for week in weeks:
         non_meeting_sections = []
         for section in week.sections:
+            is_non_meeting = True
             for meeting in section.meetings:
-                if meeting.no_meeting() and not meeting.wont_meet():
-                    non_meeting_sections.append(section)
+                if meeting.wont_meet() or not meeting.no_meeting():
+                    is_non_meeting = False
+            if is_non_meeting:
+                non_meeting_sections.append(section)
         if len(non_meeting_sections) == len(week.sections):
             trimmed_weeks.remove(week)
     return trimmed_weeks

@@ -12,7 +12,8 @@ from myuw.dao.visual_schedule import _get_visual_schedule_from_schedule, \
     _trim_summer_term, _get_disabled_days, _get_earliest_meeting_day, \
     _get_latest_meeting_day, _get_earliest_start_from_period, \
     _get_latest_end_from_period, trim_section_meetings, \
-    trim_weeks_no_meetings, _get_off_term_trimmed
+    trim_weeks_no_meetings, _get_off_term_trimmed, _adjust_off_term_dates, \
+    _add_qtr_start_data_to_weeks, _remove_empty_periods, _adjust_period_dates
 from myuw.test import fdao_sws_override, fdao_pws_override, \
     get_request, get_request_with_user, get_request_with_date
 import datetime
@@ -794,3 +795,66 @@ class TestVisualSchedule(TestCase):
         visual_schedule = _get_visual_schedule_from_schedule(schedule, request)
         trimmed = _get_off_term_trimmed(visual_schedule)
         self.assertEqual(trimmed[0]['section'], 'BIGDATA 233 A')
+
+    def test_pce_schedule(self):
+        mon_mtg = SectionMeeting()
+        mon_mtg.meets_monday = True
+        sat_mtg = SectionMeeting()
+        sat_mtg.meets_saturday = True
+        thu_mtg = SectionMeeting()
+        thu_mtg.meets_thursday = True
+
+        section1 = Section()
+        section1.curriculum_abbr = 'CLDAWS'
+        section1.course_number = 220
+        section1.section_id = 'A'
+        section1.start_date = datetime.date(2018, 1, 2)
+        section1.end_date = datetime.date(2018, 3, 26)
+        section1.meetings = [mon_mtg]
+
+        section2 = Section()
+        section2.curriculum_abbr = 'SOF DEV'
+        section2.course_number = 105
+        section2.section_id = 'A'
+        section2.start_date = datetime.date(2018, 1, 6)
+        section2.end_date = datetime.date(2018, 2, 24)
+        section2.meetings = [sat_mtg, thu_mtg, sat_mtg]
+
+        section3 = Section()
+        section3.curriculum_abbr = 'SOF DEV'
+        section3.course_number = 115
+        section3.section_id = 'A'
+        section3.start_date = datetime.date(2018, 3, 10)
+        section3.end_date = datetime.date(2018, 4, 24)
+        section3.meetings = [sat_mtg, thu_mtg, sat_mtg]
+
+        term = get_term_from_quarter_string("2018,winter")
+        schedule = ClassSchedule()
+        schedule.term = term
+        schedule.sections = [section1, section2, section3]
+
+        schedule = _add_dates_to_sections(schedule)
+
+        _adjust_off_term_dates(schedule)
+        bounds = get_schedule_bounds(schedule)
+        weeks = _get_weeks_from_bounds(bounds)
+        weeks = _add_qtr_start_data_to_weeks(weeks, schedule)
+        weeks = _add_sections_to_weeks(schedule.sections, weeks)
+        weeks = trim_section_meetings(weeks)
+        weeks = trim_weeks_no_meetings(weeks)
+        consolidated = _consolidate_weeks(weeks)
+        _add_weekend_meeting_data(consolidated)
+
+        consolidated = _remove_empty_periods(consolidated)
+        print "start"
+        for period in weeks:
+            print period.start_date, period.end_date, len(period.sections)
+            # for section in period.sections:
+            #     print section.curriculum_abbr, section.course_number
+        print 'end'
+        _adjust_period_dates(consolidated)
+        print '--------------------------------'
+        for period in consolidated:
+            print period.start_date, period.end_date, len(period.sections)
+            for section in period.sections:
+                print section.curriculum_abbr, section.course_number
