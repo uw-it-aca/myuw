@@ -53,7 +53,7 @@ class TestPwsDao(TestCase):
         req = get_request_with_user('jpce')
         self.assertTrue(is_undergrad_c2(req))
         self.assertFalse(is_grad_c2(req))
-        
+
         req = get_request_with_user('jinter')
         self.assertTrue(is_grad_c2(req))
         self.assertTrue(is_seattle_student(req))
