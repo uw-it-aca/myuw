@@ -117,10 +117,6 @@ var RegStatusCard = {
             }
         }
 
-        if (!reg_is_open) {
-            return;
-        }
-
         var year, has_registration, next_term_data;
         var financial_aid_notices = null;
 
