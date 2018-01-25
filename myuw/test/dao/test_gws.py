@@ -45,15 +45,21 @@ class TestPwsDao(TestCase):
         self.assertTrue(is_tacoma_student(req))
         self.assertTrue(is_undergrad_student(req))
 
-        req = get_request_with_user('jpce')
-        self.assertTrue(is_undergrad_c2(req))
-
         req = get_request_with_user('nobody')
         self.assertRaises(DataFailureException,
                           no_affiliation, req)
 
+    def test_is_pce(self):
+        req = get_request_with_user('jpce')
+        self.assertTrue(is_undergrad_c2(req))
+        self.assertFalse(is_grad_c2(req))
+
         req = get_request_with_user('jinter')
         self.assertTrue(is_grad_c2(req))
+        self.assertTrue(is_seattle_student(req))
+        self.assertTrue(is_grad_student(req))
+        self.assertTrue(is_pce_student(req))
+        self.assertTrue(is_student_employee(req))
 
     def test_is_in_admin_group(self):
         with self.settings(AUTHZ_GROUP_BACKEND=GROUP_BACKEND):

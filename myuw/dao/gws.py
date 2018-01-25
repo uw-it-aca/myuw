@@ -46,7 +46,7 @@ def _search_groups(uwnetid):
     group_names = Set([])
     group_refs = gws.search_groups(member=uwnetid,
                                    stem="uw_affiliation",
-                                   scope="one",
+                                   scope="all",
                                    type="effective")
     if group_refs:
         for gr in group_refs:
