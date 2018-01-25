@@ -77,7 +77,7 @@ var RegStatusCard = {
 
     _render_for_term: function(myplan_data, quarter, summer_card_label) {
         var est_reg_date_notices = Notices.get_notices_for_tag("est_reg_date");
-        var display_est_reg_date;
+        var display_est_reg_date = null;
         var is_summer_reg = (quarter === "Summer");
         var reg_is_open = false;
         var is_my_1st_reg_day = false;
@@ -118,7 +118,7 @@ var RegStatusCard = {
         }
 
         var year, has_registration, next_term_data;
-        var financial_aid_notices;
+        var financial_aid_notices = null;
 
         if (is_summer_reg) {
             var finaid_tags = ["reg_summeraid_avail_title"];
@@ -151,16 +151,16 @@ var RegStatusCard = {
         }
 
         var hide_card = true;
-        if (financial_aid_notices && financial_aid_notices.length) {
+        if (financial_aid_notices) {
              hide_card = false;
         }
-        if (hide_card && display_est_reg_date && display_est_reg_date.length) {
+        if (hide_card && display_est_reg_date) {
             hide_card = false;
         }
-        if (hide_card && reg_holds && reg_holds.length) {
+        if (hide_card && reg_holds) {
             hide_card = false;
         }
-        if (hide_card && plan_data && plan_data.length) {
+        if (hide_card && plan_data) {
             hide_card = false;
         }
 
