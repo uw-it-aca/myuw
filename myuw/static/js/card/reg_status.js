@@ -154,7 +154,7 @@ var RegStatusCard = {
         if (financial_aid_notices && financial_aid_notices.length) {
              hide_card = false;
         }
-        if (hide_card && display_est_reg_date) {
+        if (hide_card && display_est_reg_date && display_est_reg_date.length) {
             hide_card = false;
         }
         if (hide_card && reg_holds && reg_holds.length) {
@@ -197,7 +197,7 @@ var RegStatusCard = {
             "pre_reg_notice": pre_reg_notice,
             "reg_holds": reg_holds,
             "card": summer_card_label,
-            "registration_is_open": (reg_is_open || !has_est_reg_date_notice),
+            "registration_is_open": reg_is_open,
             "is_my_1st_reg_day": is_my_1st_reg_day,
             "is_tacoma": window.user.tacoma || window.user.tacoma_affil,
             "is_bothell": window.user.bothell || window.user.bothell_affil,
