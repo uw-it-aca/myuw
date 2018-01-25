@@ -822,13 +822,22 @@ label { font-weight: normal; margin-bottom: auto; }
         ul { list-style-type: none; padding-left: 0; }
     }
 	// Move the action button out of the .card
+	
+    .card-actions-wrapper {text-align: center; margin-top: 8px; margin-bottom: 16px;
+         .card-action-btn {margin-bottom: 8px;}
+    }
+ 
 	.card-action-btn {
 	        margin-bottom: 16px; margin-top: 8px;
                     &:hover, &:focus {background-color:#e8e3d3;border-color:#e8e3d3;}
                     a {color:#444;
                     	&:hover, &:focus {color: #000; text-decoration: none; }
                     }
-         }
+    }
+    
+    .card-action-btn-first {margin-right:16px;}
+    
+
 	//Sub-heading style
 	.myuw-card-heading {
 		font-size: 16px;
