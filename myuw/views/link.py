@@ -1,8 +1,10 @@
+import logging
 from django.http import HttpResponseRedirect, HttpResponse
 from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from myuw.dao.affiliation import get_all_affiliations
-from myuw.dao import get_user_model
+from myuw.dao import get_user_model, get_netid_of_current_user,\
+    get_netid_of_original_user
 from myuw.views import prefetch_resources
 from myuw.models import VisitedLinkNew
 from urllib import unquote
@@ -10,6 +12,7 @@ import os
 import re
 
 
+logger = logging.getLogger(__name__)
 ignored_links = set()
 
 
@@ -28,32 +31,27 @@ def outbound_link(request):
 def save_visited_link(request):
     url = request.GET.get('u', '')
     label = request.GET.get('l', None)
+
     try:
         user = get_user_model(request)
     except IntegrityError:
         return
 
+    prefetch_resources(request, prefetch_group=True)
+
     if label:
         label = unquote(label)
 
-    prefetch_resources(request, prefetch_group=True)
+    netid = get_netid_of_current_user(request)
+    original = get_netid_of_original_user()
 
-    is_anon = True
-    affiliations = {}
-
-    if request.user.is_active:
-        is_anon = False
-        affiliations = get_all_affiliations(request)
-
-    is_student_employee = affiliations.get('stud_employee', False)
-    is_undergrad = affiliations.get('undergrad', False)
-
+    affiliations = get_all_affiliations(request)
     link_data = {"user": user,
                  "url": url,
                  "label": label,
-                 "is_anonymous": is_anon,
+                 "is_anonymous": not (netid == original),
                  "is_student": affiliations.get('student', False),
-                 "is_undegrad": is_undergrad,
+                 "is_undegrad": affiliations.get('undergrad', False),
                  "is_grad_student": affiliations.get('grad', False),
                  "is_employee": affiliations.get('employee', False),
                  "is_faculty": affiliations.get('faculty', False),
@@ -61,8 +59,9 @@ def save_visited_link(request):
                  "is_tacoma": affiliations.get('tacoma', False),
                  "is_bothell": affiliations.get('bothell', False),
                  "is_pce": affiliations.get('pce', False),
-                 "is_student_employee": is_student_employee}
-
+                 "is_student_employee": affiliations.get('stud_employee',
+                                                         False)
+                 }
     VisitedLinkNew.objects.create(**link_data)
 
 
