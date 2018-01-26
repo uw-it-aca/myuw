@@ -1,9 +1,8 @@
 from django.test import TestCase
 from myuw.dao.canvas import (
-    _get_canvas_enrollment_dict_for_regid, canvas_course_is_available,
+    get_canvas_active_enrollments, canvas_course_is_available,
     get_canvas_course_from_section, get_canvas_course_url, sws_section_label,
     get_viewable_course_sections)
-from myuw.dao.registration import _get_schedule
 from uw_sws.models import Person
 from uw_sws.section import get_section_by_label
 from myuw.dao.term import get_current_quarter
@@ -16,8 +15,10 @@ class TestCanvas(TestCase):
         get_request()
 
     def test_crosslinks(self):
-        data = _get_canvas_enrollment_dict_for_regid(
-            "12345678901234567890123456789012")
+        req = get_request_with_user("eight")
+        self.assertFalse(hasattr(req, "canvas_act_enrollments"))
+        data = get_canvas_active_enrollments(req)
+        self.assertIsNotNone(req.canvas_act_enrollments)
 
         physics = data['2013,spring,PHYS,121/A']
         self.assertEquals(physics.course_url,

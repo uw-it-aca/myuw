@@ -166,6 +166,8 @@ class TestEmaillistApi(MyuwApiTest):
         self.assertEquals(resp.status_code, 200)
 
     def test_is_emaillist_authorized(self):
-        get_request_with_user('billbot')
-        self.assertTrue(is_emaillist_authorized("2013,summer,B BIO,180/A"))
-        self.assertFalse(is_emaillist_authorized("2013,summer,B%20BIO,180/A"))
+        req = get_request_with_user('billbot')
+        self.assertTrue(is_emaillist_authorized(req,
+                                                "2013,summer,B BIO,180/A"))
+        self.assertFalse(is_emaillist_authorized(req,
+                                                 "2013,summer,B%20BIO,180/A"))

@@ -32,12 +32,6 @@ def log_time(logger, action_message, timer):
              )
 
 
-def log_resp_time(logger, action, timer):
-    log_time(logger,
-             action + ' fulfilled',
-             timer)
-
-
 def get_logging_userid():
     """
     Return <actual user netid> acting_as: <override user netid> if

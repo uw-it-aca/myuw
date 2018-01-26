@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
+ <title>Advancement Donor Relations</title>
+</head>
+<body>
+    <div>
+      UW Groups search results: 
+      (effective)
+
+    <ul class="groupreferences">
+
+    <li class="groupreference">
+      <span class="regid">A8FEDF2F303145F787CF4F30E6FF9632</span>
+      <span class="title">UW members</span>
+      <span class="description">UW members</span>
+      <ul>
+      <li><a class="name" href="/group_sws/v2/group/uw_member">uw_member</a></li>
+      </ul>
+    </li>
+
+
+
+   </ul>
+  </div>
+</body>
+</html>

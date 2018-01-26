@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
+ <title>Advancement Donor Relations</title>
+</head>
+<body>
+    <div>
+      UW Groups search results: 
+      (effective)
+
+    <ul class="groupreferences">
+
+    <li class="groupreference">
+      <span class="regid">aade9f4dd3174feeae144f675c46acf5</span>
+      <span class="title">UW Graduate Students - Graduate</span>
+      <span class="description">UW students who are identified as graduate students, including approved on-leave graduate students. Membership includes 90 days of grace status. This is an automatically generated group from the UW Identity Registry. It is updated nightly.</span>
+      <ul>
+      <li><a class="name" href="/group_sws/v2/group/uw_affiliation_graduate-grad">uw_affiliation_graduate-grad</a></li>
+      </ul>
+    </li>
+
+
+    <li class="groupreference">
+      <span class="regid">1439c337ff1b44c7b36f05468845cfe6</span>
+      <span class="title">UW Graduate Students - Current</span>
+      <span class="description">UW students who are identified as graduate students for the current quarter only, including approved on-leave graduate students. This is an automatically generated group from the UW Identity Registry. It is updated nightly.</span>
+      <ul>
+      <li><a class="name" href="/group_sws/v2/group/uw_affiliation_graduate-current">uw_affiliation_graduate-current</a></li>
+      </ul>
+    </li>
+
+    <li class="groupreference">
+      <span class="regid">9b9dab58766a25b1ce605968a347b4ee</span>
+      <span class="title">UW Students</span>
+      <span class="description">UW NetIDs with eduperson affiliation of 'student'</span>
+      <ul>
+      <li><a class="name" href="/group_sws/v2/group/uw_student">uw_student</a></li>
+      </ul>
+    </li>
+
+
+    <li class="groupreference">
+      <span class="regid">2364284941D949959DE70C672B616084</span>
+      <span class="title">UW Employees</span>
+      <span class="description">UW NetIDs with eduperson affiliation of 'employee'</span>
+      <ul>
+      <li><a class="name" href="/group_sws/v2/group/uw_employee">uw_employee</a></li>
+      </ul>
+    </li>
+
+    <li class="groupreference">
+      <span class="regid">A8FEDF2F303145F787CF4F30E6FF9632</span>
+      <span class="title">UW members</span>
+      <span class="description">UW members</span>
+      <ul>
+      <li><a class="name" href="/group_sws/v2/group/uw_member">uw_member</a></li>
+      </ul>
+    </li>
+
+
+
+   </ul>
+  </div>
+</body>
+</html>

@@ -4,139 +4,199 @@ with the UW Affiliation Group API resource
 """
 
 import logging
-from uw_gws import GWS
-from myuw.dao import get_netid_of_current_user, get_netid_of_original_user
+from sets import Set, ImmutableSet
 from django.conf import settings
 from authz_group import Group
+from uw_gws import GWS
+from myuw.dao import get_netid_of_current_user, get_netid_of_original_user
+from myuw.dao.pws import (is_bothell_employee, is_tacoma_employee,
+                          is_seattle_employee, is_employee)
+from myuw.dao.uwnetid import is_clinician, is_faculty
 
 
 logger = logging.getLogger(__name__)
+gws = GWS()
+
+alumni = 'uw_affiliation_alumni'
+alumni_asso = 'uw_affiliation_alumni-association-members'
+applicant = 'uw_affiliation_applicant'
+staff = 'uw_affiliation_staff-employee'
+stud_emp = 'uw_affiliation_student-employee'
+bot_stud = 'uw_affiliation_bothell-student'
+sea_stud = 'uw_affiliation_seattle-student'
+tac_stud = 'uw_affiliation_tacoma-student'
+grad = 'uw_affiliation_graduate-grad'
+cur_grad_prof = 'uw_affiliation_graduate-current'
+undergrad = 'uw_affiliation_undergraduate'
+pce = 'uw_affiliation_extension-student'
+grad_c2 = 'uw_affiliation_continuum-student_graduate'
+undergrad_c2 = 'uw_affiliation_continuum-student_undergraduate'
+all_groups = [alumni, alumni_asso,
+              applicant, staff, stud_emp,
+              bot_stud, sea_stud, tac_stud,
+              undergrad, grad, cur_grad_prof,
+              pce, grad_c2, undergrad_c2]
+RELEVANT_GROUPS = ImmutableSet(all_groups)
 
 
-def _is_member(groupid):
+def _search_groups(uwnetid):
     """
-    Return True if the current user netid is
-    an effective member of the given group
+    Returns a Set of the uw groups the uwnetid is an effective member of
     """
-    return GWS().is_effective_member(groupid,
-                                     get_netid_of_current_user())
+    group_names = Set([])
+    group_refs = gws.search_groups(member=uwnetid,
+                                   stem="uw_affiliation",
+                                   scope="all",
+                                   type="effective")
+    if group_refs:
+        for gr in group_refs:
+            name = "%s" % gr.name
+            if name in RELEVANT_GROUPS:
+                group_names.add(name)
+    return group_names
 
 
-def is_seattle_student():
+def get_groups(request):
+    if not hasattr(request, "myuwgwsgroups"):
+        request.myuwgwsgroups = _search_groups(
+            get_netid_of_current_user(request))
+    return request.myuwgwsgroups
+
+
+def group_prefetch():
+    def _method(request):
+        return get_groups(request)
+    return [_method]
+
+
+def is_alumni(request):
     """
-    Return True if the user is an UW Seattle student
-    in the current quarter
+    In Advancement database (grace 30 days)
     """
-    return _is_member('uw_affiliation_seattle-student')
+    return alumni in get_groups(request)
 
 
-def is_bothell_student():
+def is_alum_asso(request):
     """
-    Return True if the user is an UW Bothell student
-    in the current quarter
+    A current alumni association member
     """
-    return _is_member('uw_affiliation_bothell-student')
+    return alumni_asso in get_groups(request)
 
 
-def is_tacoma_student():
+def is_seattle_student(request):
     """
-    Return True if the user is an UW Tacoma student
-    in the current quarter
+    An UW Seattle student in the current quarter
     """
-    return _is_member('uw_affiliation_tacoma-student')
+    return sea_stud in get_groups(request)
 
 
-def is_graduate_student():
+def is_bothell_student(request):
     """
-    Return True if the user is an UW graduate student
-    within 90 day, and status is not EO or applicaNt.
+    An UW Bothell student in the current quarter
     """
-    return _is_member('uw_affiliation_graduate')
+    return bot_stud in get_groups(request)
 
 
-def is_current_graduate_student():
+def is_tacoma_student(request):
     """
-    Return True if the user is In SDB, class is one of
-    (00, 08, 11, 12, 13, 14), and status is Enrolled or on Leave
+    An UW Tacoma student in the current quarter
     """
-    return _is_member('uw_affiliation_graduate-current')
+    return tac_stud in get_groups(request)
 
 
-def is_grad_student():
+def is_current_graduate_student(request):
     """
-    Return True if the user is class-08 graduate student
-    within 90 day, and status is not EO or applicaNt
+    In SDB, class is one of (00, 08, 11, 12, 13, 14),
+    and status is Enrolled or on Leave
     """
-    return _is_member('uw_affiliation_graduate-grad')
+    return cur_grad_prof in get_groups(request)
 
 
-def is_undergrad_student():
+def is_grad_student(request):
     """
-    Return True if the user is an UW undergraduate student
-    class is one of (01, 02, 03, 04, 05, 06),
-    within 90 day, and status is not EO or applicaNt
+    A class-08 graduate student (grace 90 days),
+    and status is not EO or applicant
     """
-    return _is_member('uw_affiliation_undergraduate')
+    return grad in get_groups(request)
 
 
-def is_student():
-    return (is_undergrad_student() or
-            is_graduate_student() or
-            is_pce_student())
-
-
-def is_pce_student():
+def is_undergrad_student(request):
     """
-    Return True if the user is an UW PEC student within 90 day
+    An UW undergraduate student class is one of (01, 02, 03, 04, 05, 06),
+    (grace 90 days), and status is not EO or applicaNt
     """
-    return _is_member('uw_affiliation_extension-student')
+    return undergrad in get_groups(request)
 
 
-def is_student_employee():
+def is_student(request):
+    return (is_undergrad_student(request) or
+            is_current_graduate_student(request) or
+            is_pce_student(request))
+
+
+def is_pce_student(request):
     """
-    Return True if the user is an UW student employee (valid in 15 days)
+    An UW PEC student (grace 90 days)
     """
-    return _is_member('uw_affiliation_student-employee')
+    return pce in get_groups(request)
 
 
-def is_faculty():
+def is_grad_c2(request):
     """
-    Return True if the user is UW faculty currently
+    An UW grad student taking PCE course (grace 90 days)
     """
-    return _is_member('uw_faculty')
+    return grad_c2 in get_groups(request)
 
 
-# The is_student function is in pws.py
-
-
-def is_employee():
+def is_undergrad_c2(request):
     """
-    Return True if the user is an UW employee currently
+    An undergrad student taking PCE cours (grace 90 days)
     """
-    return _is_member('uw_employee')
+    return undergrad_c2 in get_groups(request)
 
 
-def is_staff_employee():
+def is_student_employee(request):
     """
-    Return True if the user is identified an UW staff employee
-    within 15 days
+    An UW student employee (grace 15 days)
     """
-    return _is_member('uw_affiliation_staff-employee')
+    return stud_emp in get_groups(request)
 
 
-def is_applicant():
+def is_staff_employee(request):
     """
-    Return True if the user is identified a UW applicant
+    An UW staff employee (grace 15 days)
     """
-    return _is_member('uw_affiliation_applicant')
+    return staff in get_groups(request)
+
+
+def is_bothell_employee(request):
+    return is_bothell_employee(request)
+
+
+def is_seattle_employee(request):
+    return is_seattle_employee(request)
+
+
+def is_tacoma_employee(request):
+    return is_tacoma_employee(request)
+
+
+def is_applicant(request):
+    """
+    An UW applicant ((grace 90 days)
+    """
+    return applicant in get_groups(request)
+
+
+def no_affiliation(request):
+    return not is_employee(request) and\
+        not is_student(request) and\
+        not is_applicant(request) and\
+        not is_clinician(request) and\
+        not is_alumni(request)
 
 
 def is_in_admin_group(group_key):
-    get_netid_of_current_user()
-    override_error_username = None
-    override_error_msg = None
-    # Do the group auth here.
-
     if not hasattr(settings, group_key):
         print "You must have a group defined as your admin group."
         print 'Configure that using %s="foo_group"' % group_key
@@ -146,6 +206,5 @@ def is_in_admin_group(group_key):
     if not actual_user:
         raise Exception("No user in session")
 
-    g = Group()
     group_name = getattr(settings, group_key)
-    return g.is_member_of_group(actual_user, group_name)
+    return Group().is_member_of_group(actual_user, group_name)

@@ -31,7 +31,7 @@ def get_current_messages(request):
                                          is_published=True)
 
     filtered = []
-    user = get_netid_of_current_user()
+    user = get_netid_of_current_user(request)
     g = Group()
     for message in messages:
         if message.group_id:

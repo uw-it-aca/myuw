@@ -1,7 +1,7 @@
 import csv
 import os
-from myuw.dao.student_profile import get_cur_future_enrollments
 from myuw.dao.gws import is_grad_student
+from myuw.dao.student_profile import get_cur_future_enrollments
 
 
 DEGREE_TYPE_COLUMN_MAP = {"major": 2,
@@ -12,15 +12,14 @@ CALENDAR_URL_COL = 6
 
 
 def get_calendars_for_current_user(request):
-    return _get_calendars(_get_enrollments(request))
+    return _get_calendars(request, _get_enrollments(request))
 
 
-def _get_calendars(enrollments):
+def _get_calendars(request, enrollments):
     calendars = {}
-
     minor_cals = get_calendars_for_minors(enrollments['minors'])
     calendars = dict(calendars.items() + minor_cals.items())
-    if enrollments['is_grad']:
+    if is_grad_student(request):
         grad_cals = get_calendars_for_gradmajors(enrollments['majors'])
         calendars = dict(calendars.items() + grad_cals.items())
     else:
@@ -46,8 +45,7 @@ def _get_enrollments(request):
                         minors.append(minor.short_name)
     except Exception:
         pass
-    return {'is_grad': is_grad_student(),
-            'majors': majors,
+    return {'majors': majors,
             'minors': minors}
 
 
