@@ -1,7 +1,10 @@
 import re
 import pytz
 from datetime import timedelta, datetime, time
-from urllib import quote_plus, urlencode
+try:
+    from urllib.parse import quote_plus, urlencode
+except ImportError:
+    from urllib import quote_plus, urlencode
 from django.utils import timezone
 from restclients_core.exceptions import DataFailureException
 from uw_trumba import get_calendar_by_name
