@@ -90,3 +90,29 @@ class TestAffilliations(TestCase):
         now_request = get_request_with_user('javerage')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations.get('2fa_permitted'))
+
+    def test_official_campus(self):
+        now_request = get_request_with_user('jbothell')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("bothell"))
+        self.assertTrue(affiliations.get("official_bothell"))
+
+        now_request = get_request_with_user('seagrad')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("official_seattle"))
+
+        now_request = get_request_with_user('eight')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("official_tacoma"))
+
+        now_request = get_request_with_user('billbot')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("official_bothell"))
+
+        now_request = get_request_with_user('billsea')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("official_seattle"))
+
+        now_request = get_request_with_user('billtac')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("official_tacoma"))
