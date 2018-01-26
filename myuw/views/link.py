@@ -54,7 +54,7 @@ def save_visited_link(request):
     link_data = {"user": user,
                  "url": url,
                  "label": label,
-                 "is_anonymous": not (netid == original),
+                 "is_anonymous": not request.user.is_active,
                  "is_student": affiliations.get('student', False),
                  "is_undegrad": affiliations.get('undergrad', False),
                  "is_grad_student": affiliations.get('grad', False),
