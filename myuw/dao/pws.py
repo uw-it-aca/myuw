@@ -32,10 +32,14 @@ def get_person_of_current_user(request):
     """
     Retrieve the person data using the netid of the current user
     """
-    if not hasattr(request, "myuw_pws_person"):
-        request.myuw_pws_person = pws.get_person_by_netid(
-            get_netid_of_current_user(request))
-    return request.myuw_pws_person
+    if hasattr(request, "myuw_pws_person"):
+        return request.myuw_pws_person
+
+    person = pws.get_person_by_netid(get_netid_of_current_user(request))
+    if person:
+        request.myuw_pws_person = person
+        # we do not cache None value (rare case) in request
+    return person
 
 
 def person_prefetch():
@@ -46,27 +50,27 @@ def person_prefetch():
 
 def get_display_name_of_current_user(request):
     person = get_person_of_current_user(request)
-    return person.display_name
+    return person is not None and person.display_name
 
 
 def get_regid_of_current_user(request):
     person = get_person_of_current_user(request)
-    return person.uwregid
+    return person is not None and person.uwregid
 
 
 def get_employee_id_of_current_user(request):
     person = get_person_of_current_user(request)
-    return person.employee_id
+    return person is not None and person.employee_id
 
 
 def get_student_number_of_current_user(request):
     person = get_person_of_current_user(request)
-    return person.student_number
+    return person is not None and person.student_number
 
 
 def get_student_system_key_of_current_user(request):
     person = get_person_of_current_user(request)
-    return person.student_system_key
+    return person is not None and person.student_system_key
 
 
 def is_student(request):
@@ -77,17 +81,17 @@ def is_student(request):
     the previous quarter, or a future quarter
     """
     person = get_person_of_current_user(request)
-    return person.is_student
+    return person is not None and person.is_student
 
 
 def is_employee(request):
     person = get_person_of_current_user(request)
-    return person.is_employee
+    return person is not None and person.is_employee
 
 
 def is_bothell_employee(request):
     person = get_person_of_current_user(request)
-    if person.mailstop:
+    if person is not None and person.mailstop:
         mailstop = int(person.mailstop)
         return MAILSTOP_MIN_BOTHELL <= mailstop <= MAILSTOP_MAX_BOTHELL
     return False
@@ -95,7 +99,7 @@ def is_bothell_employee(request):
 
 def is_tacoma_employee(request):
     person = get_person_of_current_user(request)
-    if person.mailstop:
+    if person is not None and person.mailstop:
         mailstop = int(person.mailstop)
         return MAILSTOP_MIN_TACOMA <= mailstop <= MAILSTOP_MAX_TACOMA
     return False
@@ -103,7 +107,7 @@ def is_tacoma_employee(request):
 
 def is_seattle_employee(request):
     person = get_person_of_current_user(request)
-    return person.mailstop and\
+    return person is not None and person.mailstop and\
         not is_tacoma_employee(request) and\
         not is_bothell_employee(request)
 

@@ -32,18 +32,20 @@ def save_visited_link(request):
     url = request.GET.get('u', '')
     label = request.GET.get('l', None)
 
+    netid = get_netid_of_current_user(request)
+    if not netid:
+        return
+
     try:
         user = get_user_model(request)
     except IntegrityError:
         return
 
+    original = get_netid_of_original_user()
     prefetch_resources(request, prefetch_group=True)
 
     if label:
         label = unquote(label)
-
-    netid = get_netid_of_current_user(request)
-    original = get_netid_of_original_user()
 
     affiliations = get_all_affiliations(request)
     link_data = {"user": user,
