@@ -96,7 +96,7 @@ class TestAffilliations(TestCase):
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations.get("bothell"))
         self.assertTrue(affiliations.get("official_bothell"))
-        
+
         now_request = get_request_with_user('seagrad')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations.get("official_seattle"))
