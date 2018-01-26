@@ -77,12 +77,12 @@ def is_student(request):
     the previous quarter, or a future quarter
     """
     person = get_person_of_current_user(request)
-    return person.is_student
+    return person.is_student is True
 
 
 def is_employee(request):
     person = get_person_of_current_user(request)
-    return person.is_employee
+    return person.is_employee is True
 
 
 def is_bothell_employee(request):
