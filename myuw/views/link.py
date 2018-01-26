@@ -4,7 +4,7 @@ from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao import get_user_model, get_netid_of_current_user,\
-    get_netid_of_original_user
+    get_netid_of_original_user, is_using_file_dao
 from myuw.views import prefetch_resources
 from myuw.models import VisitedLinkNew
 from urllib import unquote
@@ -32,6 +32,14 @@ def save_visited_link(request):
     url = request.GET.get('u', '')
     label = request.GET.get('l', None)
 
+    netid = get_netid_of_current_user(request)
+    original = get_netid_of_original_user()
+
+    is_overriding = (netid != original)
+    if is_overriding and not is_using_file_dao():
+        # not record visited link when overriding in Live
+        return
+
     try:
         user = get_user_model(request)
     except IntegrityError:
@@ -42,14 +50,11 @@ def save_visited_link(request):
     if label:
         label = unquote(label)
 
-    netid = get_netid_of_current_user(request)
-    original = get_netid_of_original_user()
-
     affiliations = get_all_affiliations(request)
     link_data = {"user": user,
                  "url": url,
                  "label": label,
-                 "is_anonymous": not (netid == original),
+                 "is_anonymous": not request.user.is_active,
                  "is_student": affiliations.get('student', False),
                  "is_undegrad": affiliations.get('undergrad', False),
                  "is_grad_student": affiliations.get('grad', False),

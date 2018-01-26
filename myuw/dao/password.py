@@ -52,6 +52,9 @@ def get_pw_json(request):
     }
     """
     pw = get_password_info(request)
+    if pw is None:
+        return None
+
     now_dt = get_comparison_datetime_with_tz(request)
 
     json_data = pw.json_data()
