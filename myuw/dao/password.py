@@ -19,10 +19,14 @@ def get_password_info(request):
     returns uw_netid.models.UwPassword object
     for a given uwnetid
     """
-    if not hasattr(request, "myuw_netid_password"):
-        request.myuw_netid_password = get_uwnetid_password(
-            get_netid_of_current_user(request))
-    return request.myuw_netid_password
+    if hasattr(request, "myuw_netid_password"):
+        return request.myuw_netid_password
+
+    password = get_uwnetid_password(get_netid_of_current_user(request))
+    # we do not cache None value (rare case) in request
+    if password:
+        request.myuw_netid_password = password
+    return password
 
 
 def password_prefetch():
@@ -52,6 +56,9 @@ def get_pw_json(request):
     }
     """
     pw = get_password_info(request)
+    if pw is None:
+        return None
+
     now_dt = get_comparison_datetime_with_tz(request)
 
     json_data = pw.json_data()

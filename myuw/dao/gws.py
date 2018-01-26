@@ -57,10 +57,13 @@ def _search_groups(uwnetid):
 
 
 def get_groups(request):
-    if not hasattr(request, "myuwgwsgroups"):
-        request.myuwgwsgroups = _search_groups(
-            get_netid_of_current_user(request))
-    return request.myuwgwsgroups
+    if hasattr(request, "myuwgwsgroups"):
+        return request.myuwgwsgroups
+    groups = _search_groups(get_netid_of_current_user(request))
+    if groups:
+        request.myuwgwsgroups = groups
+        # we do not cache None value (rare case) in request
+    return groups
 
 
 def group_prefetch():
@@ -73,35 +76,40 @@ def is_alumni(request):
     """
     In Advancement database (grace 30 days)
     """
-    return alumni in get_groups(request)
+    groups = get_groups(request)
+    return groups is not None and alumni in groups
 
 
 def is_alum_asso(request):
     """
     A current alumni association member
     """
-    return alumni_asso in get_groups(request)
+    groups = get_groups(request)
+    return groups is not None and alumni_asso in groups
 
 
 def is_seattle_student(request):
     """
     An UW Seattle student in the current quarter
     """
-    return sea_stud in get_groups(request)
+    groups = get_groups(request)
+    return groups is not None and sea_stud in groups
 
 
 def is_bothell_student(request):
     """
     An UW Bothell student in the current quarter
     """
-    return bot_stud in get_groups(request)
+    groups = get_groups(request)
+    return groups is not None and bot_stud in groups
 
 
 def is_tacoma_student(request):
     """
     An UW Tacoma student in the current quarter
     """
-    return tac_stud in get_groups(request)
+    groups = get_groups(request)
+    return groups is not None and tac_stud in groups
 
 
 def is_current_graduate_student(request):
@@ -109,7 +117,8 @@ def is_current_graduate_student(request):
     In SDB, class is one of (00, 08, 11, 12, 13, 14),
     and status is Enrolled or on Leave
     """
-    return cur_grad_prof in get_groups(request)
+    groups = get_groups(request)
+    return groups is not None and cur_grad_prof in groups
 
 
 def is_grad_student(request):
@@ -117,7 +126,8 @@ def is_grad_student(request):
     A class-08 graduate student (grace 90 days),
     and status is not EO or applicant
     """
-    return grad in get_groups(request)
+    groups = get_groups(request)
+    return groups is not None and grad in groups
 
 
 def is_undergrad_student(request):
@@ -125,7 +135,8 @@ def is_undergrad_student(request):
     An UW undergraduate student class is one of (01, 02, 03, 04, 05, 06),
     (grace 90 days), and status is not EO or applicaNt
     """
-    return undergrad in get_groups(request)
+    groups = get_groups(request)
+    return groups is not None and undergrad in groups
 
 
 def is_student(request):
@@ -138,35 +149,40 @@ def is_pce_student(request):
     """
     An UW PEC student (grace 90 days)
     """
-    return pce in get_groups(request)
+    groups = get_groups(request)
+    return groups is not None and pce in groups
 
 
 def is_grad_c2(request):
     """
     An UW grad student taking PCE course (grace 90 days)
     """
-    return grad_c2 in get_groups(request)
+    groups = get_groups(request)
+    return groups is not None and grad_c2 in groups
 
 
 def is_undergrad_c2(request):
     """
     An undergrad student taking PCE cours (grace 90 days)
     """
-    return undergrad_c2 in get_groups(request)
+    groups = get_groups(request)
+    return groups is not None and undergrad_c2 in groups
 
 
 def is_student_employee(request):
     """
     An UW student employee (grace 15 days)
     """
-    return stud_emp in get_groups(request)
+    groups = get_groups(request)
+    return groups is not None and stud_emp in groups
 
 
 def is_staff_employee(request):
     """
     An UW staff employee (grace 15 days)
     """
-    return staff in get_groups(request)
+    groups = get_groups(request)
+    return groups is not None and staff in groups
 
 
 def is_bothell_employee(request):
@@ -185,7 +201,8 @@ def is_applicant(request):
     """
     An UW applicant ((grace 90 days)
     """
-    return applicant in get_groups(request)
+    groups = get_groups(request)
+    return groups is not None and applicant in groups
 
 
 def no_affiliation(request):
