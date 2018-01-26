@@ -16,11 +16,12 @@ before_script:
   - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create database myuw'; fi
   - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create user "myuw" identified by "my_pass"'; fi
   - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'grant all on *.* to myuw'; fi
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then pip install MySQL-python
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "3.6" ]]; then pip install PyMySql
 
   - pip install coverage
   - pip install python-coveralls
   - pip install pycodestyle
-  - pip install MySQL-python
   - npm install jquery
   - npm install moment
   - npm install moment-timezone
