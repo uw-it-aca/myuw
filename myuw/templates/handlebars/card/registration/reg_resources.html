@@ -1,104 +1,105 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "reg_resources_tmpl" %}
 
-<div class="card-badge-container reg_resources_disc">
-
-    <h4 class="sr-only">Registration resources</h4>
-
-    <ul class="reg-resources-list no-header-space">
-
-        {{#if registration_is_open}}
-            <li>
-                {{#if plan_data }}
-                    {{#unless plan_data.has_ready_courses}}
-                        <a target="_blank" class="focus-link"
-                           href="{{plan_data.myplan_href}}">Edit plan in MyPlan</a>
-                    {{else}}
-                        <a target="_blank" class="focus-link"
-                           href="{{plan_data.registration_href}}">Register using MyPlan</a>
-                    {{/unless}}
+    {{#if registration_is_open}}
+    <div class="card-actions-wrapper">
+        <div class="btn btn-default card-action-btn card-action-btn-first">
+            {{#if plan_data}}
+                {{#unless plan_data.has_ready_courses}}
+                        <a target="_blank" class="focus-link" data-linklabel="Edit plan in MyPlan"
+                           href="{{plan_data.myplan_href}}">Edit Plan in MyPlan</a>
                 {{else}}
-                    <a target="_blank" class="focus-link"
-                       href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/{{reg_next_year}}{{get_quarter_code reg_next_quarter}}">Register using MyPlan</a>
-                {{/if}}
-            </li>
-
-            <li class="focus-link last-focus-link">
-                <a target="_blank"
-                   class="reg-link"
-                   href="https://sdb.admin.uw.edu/students/uwnetid/register.asp">Register using SLN codes</a>
-            </li>
-        {{/if}}
-
-        {{#unless registration_is_open}}
-            {{#if pre_reg_notice}}
-                <li class="focus-link last-focus-link">
-                    <a target="_blank"
-                       href="https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp">Pre-Registration Requirements</a>
-                </li>
+                        <a target="_blank" class="focus-link" data-linklabel="Register using MyPlan"
+                           href="{{plan_data.registration_href}}">Use MyPlan to Register</a>
+                {{/unless}}
+            {{else}}
+                <a target="_blank" class="focus-link" data-linklabel="Register using MyPlan"
+                   href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/{{reg_next_year}}{{get_quarter_code reg_next_quarter}}">Use MyPlan to Register</a>
             {{/if}}
+        </div>
+
+        <div class="btn btn-default card-action-btn">
+            <a target="_blank" class="reg-link" data-linklabel="Register using SLN codes"
+               href="https://sdb.admin.uw.edu/students/uwnetid/register.asp">Register using SLN codes</a>
+        </div>
+        {{#if is_c2}}
+            <br>
+            <a target="_blank"
+            href="https://www.degreereg.uw.edu/user-guide">How to register for PCE courses</a>
+       {{/if}}
+    </div>
+
+    {{/if}}
+            
+    {{#unless registration_is_open}}
+        {{#if pre_reg_notice}}
+        <div class="card-actions-wrapper">
+            <div class="btn btn-default card-action-btn">
+                <a target="_blank"
+                       href="https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp">Complete Pre-Registration Requirements</a>
+            </div>
+        </div>
+        {{/if}}
+    {{/unless}}
+
+
+<div class="reg_resources_disc">
+    <h4 class="sr-only">Registration resources</h4>
+    <ul class="reg-resources-list no-header-space">
+        {{#unless registration_is_open}}
             <li>
                 <a target="_blank"
                    href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">MyPlan</a>
             </li>
         {{/unless}}
 
-
-        {{ #if is_bothell }}
+        {{#if is_bothell}}
             <li>
-                <span id="bothell_time_schedule"
-                      class="sr-only">
-                    Browse time schedule for Bothell
-                </span>
-                <a aria-labelledby="bothell_time_schedule"
-                   target="_blank"
+                <a target="_blank"
                    href="http://www.uwb.edu/registration/time">Bothell Time Schedule</a>
             </li>
-        {{ /if }}
+        {{/if}}
 
-	{{ #if is_seattle }}
+        {{#if is_seattle}}
             <li>
-                <span id="seattle_time_schedule"
-                      class="sr-only">
-                    Browse time schedule for Seattle
-                </span>
-                <a aria-labelledby="seattle_time_schedule"
-                   target="_blank"
+                <a target="_blank"
                    href="http://www.washington.edu/students/timeschd/">Seattle Time Schedule</a>
             </li>
-        {{ /if }}
+        {{/if}}
 
-        {{ #if is_tacoma }}
+        {{#if is_tacoma}}
             <li>
-                <span id="tacoma_time_schedule" class="sr-only">Browse time schedule for Tacoma</span>
-                <a aria-labelledby="tacoma_time_schedule"
-                   target="_blank"
+                <a target="_blank"
                    href="http://www.washington.edu/students/timeschd/T/">Tacoma Time Schedule Browse</a></li>
 
             <li>
-                <a aria-labelledby="tacoma_time_schedule_search"
-                   target="_blank"
+                <a target="_blank"
                    href="http://www.tacoma.washington.edu/enrollment_apps/timeschedule/search.cfm">Tacoma Time Schedule Search</a>
             </li>
-        {{ /if }}
+        {{/if}}
 
-	{{ #if is_pce }}
+        {{#if is_c2}}
             <li>
-                <span id="pce_time_schedule"
-                      class="sr-only">
-                    Browse time schedule for Professional and Continuing Education programs
-                </span>
-                <a aria-labelledby="pce_time_schedule"
-                   target="_blank"
+                <a target="_blank"
                    href="https://www.washington.edu/students/timeschd/95index.html">PCE Time Schedule</a>
             </li>
-        {{ /if }}
+            {{#unless registration_is_open}}
+                <li>
+                    <a target="_blank"
+                       href="https://www.degreereg.uw.edu/user-guide">How to register for PCE courses</a>
+                </li>
+            {{/unless}}
+        {{/if}}
 
         <li>
-            <span class="sr-only">Go to DARS</span>
             <a target="_blank"
-               href="{{#if plan_data }}{{plan_data.degree_audit_href}}{{else}}https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree{{/if}}">Audit your degree (DARS)</a>
+            {{#if plan_data}}
+                href="{{ plan_data.degree_audit_href }}"
+            {{else}}
+                href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree"
+            {{/if}}>Audit your degree (DARS)</a>
         </li>
+
     </ul>
 </div>
 

@@ -3,6 +3,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 import re
 import traceback
+from myuw.dao import coda
 from myuw.views.error import (
     handle_exception, not_instructor_error, data_not_found)
 import logging
@@ -18,14 +19,12 @@ from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_course_url, sws_section_label
 from myuw.dao.course_color import get_colors_by_schedule
 from myuw.dao.enrollment import get_code_for_class_level
-from myuw.dao.gws import is_grad_student
 from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.instructor_schedule import (
     get_instructor_schedule_by_term, get_limit_estimate_enrollment_for_section,
     get_instructor_section, get_primary_section, check_section_instructor)
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
-from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.registration import get_active_registrations_for_section
 from myuw.dao.term import (
     get_current_quarter, is_past, is_future, get_previous_number_quarters,
@@ -34,7 +33,7 @@ from myuw.logger.logresp import log_success_response
 from myuw.logger.logback import log_exception
 from myuw.logger.timer import Timer
 from myuw.util.thread import Thread, ThreadWithResponse
-from myuw.views.api import OpenAPI, ProtectedAPI
+from myuw.views.api import OpenAPI, ProtectedAPI, prefetch_resources
 from myuw.views.api.base_schedule import irregular_start_end
 from myuw.views.decorators import blti_admin_required
 from blti import BLTI
@@ -51,8 +50,22 @@ class InstSche(ProtectedAPI):
         @return instructor schedule data in json format
                 status 404: no schedule found (teaching no courses)
         """
-        schedule = get_instructor_schedule_by_term(term)
+        prefetch_resources(request)
+        schedule = get_instructor_schedule_by_term(request, term)
         resp_data = load_schedule(request, schedule)
+        threads = []
+
+        for section in resp_data['sections']:
+            _set_current_or_future(term, request, section)
+            t = Thread(target=coda.get_course_card_details,
+                       args=(section['section_label'].replace("_", "-"),
+                             section,))
+            threads.append(t)
+            t.start()
+
+        for thread in threads:
+            thread.join()
+
         log_success_response(logger, timer)
         return self.json_response(resp_data)
 
@@ -225,7 +238,7 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
     json_data["grading_period_is_past"] =\
         schedule.term.is_grading_period_past()
 
-    colors = get_colors_by_schedule(schedule)
+    colors = get_colors_by_schedule(request, schedule)
 
     buildings = get_buildings_by_schedule(schedule)
 
@@ -348,7 +361,6 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
         section["index"] = index
         index = index + 1
 
-    json_data["is_grad_student"] = is_grad_student()
     return json_data
 
 
@@ -436,8 +448,8 @@ class InstSect(ProtectedAPI):
         @return instructor schedule data in json format
                 status 404: no schedule found (teaching no courses)
         """
-        person = get_person_of_current_user()
-        schedule = get_instructor_section(person, section_id)
+        prefetch_resources(request)
+        schedule = get_instructor_section(request, section_id)
 
         try:
             self.is_authorized_for_section(request, schedule)
@@ -461,3 +473,9 @@ class InstSect(ProtectedAPI):
             return self.make_http_resp(timer, request, section_id)
         except Exception:
             return handle_exception(logger, timer, traceback)
+
+
+def _set_current_or_future(term, request, section):
+    current_term = get_current_quarter(request)
+
+    section['current_or_future'] = current_term <= term

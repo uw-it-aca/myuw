@@ -17,16 +17,16 @@ class TestPageMethods(MyuwApiTest):
         self.set_user('jnone')
         response = self.client.get(url,
                                    HTTP_USER_AGENT='Fake Android Mobile')
-        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.status_code, 400)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_desktop_redirect(self):
         url = reverse("myuw_home")
-        self.set_user('testcal1')
+        self.set_user('nobody')
         response = self.client.get(
             url,
             HTTP_USER_AGENT="Mozilla/4.0 (compatible; MSIE 5.01; WebISOGet")
-        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.status_code, 400)
 
         self.set_user('faculty')
         response = self.client.get(

@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
+ <title>Advancement Donor Relations</title>
+</head>
+<body>
+
+    <div>
+      UW Groups search results: 
+      (effective)
+
+      <ul class="groupreferences">
+
+    <li class="groupreference">
+      <span class="regid">8a6449feb1f14fd88d8785aa05931687</span>
+      <span class="title">Current Seattle students</span>
+      <span class="description">A group containing all current students whose primary campus is identified as Seattle.  This is an automatically generated group; it is updated nightly.</span>
+      <ul>
+      <li><a class="name" href="/group_sws/v2/group/uw_affiliation_seattle-student">uw_affiliation_seattle-student</a></li>
+      </ul>
+    </li>
+
+    <li class="groupreference">
+      <span class="regid">3c681d1216dd47eeb36beb484d0136a5</span>
+      <span class="title">UW Continuum College Graduate Students</span>
+      <span class="description">Students who are enrolled with the Continuum College and have SDB class levels of 08, 11, 12, 13 or 14. This is an automatically generated group from the UW Identity Registry. It is updated nightly.</span>
+      <ul>
+      <li><a class="name" href="/group_sws/v2/group/uw_affiliation_continuum-student_graduate">uw_affiliation_continuum-student_graduate</a></li>
+      </ul>
+    </li>
+
+    <li class="groupreference">
+      <span class="regid">8acdc23c0c4c43498c95c8997642d691</span>
+      <span class="title">UW Extension Students</span>
+      <span class="description">Students who are in the Professional &amp; Continuing Education program.  This is an automatically generated group from the UW Identity Registry. It is updated nightly.</span>
+      <ul>
+      <li><a class="name" href="/group_sws/v2/group/uw_affiliation_extension-student">uw_affiliation_extension-student</a></li>
+      </ul>
+    </li>
+
+    <li class="groupreference">
+      <span class="regid">26878311206A767FC48FBA9687634D1E</span>
+      <span class="title">UW Graduate Students</span>
+      <span class="description">UW students who are identified as graduate students, including professional degree programs (Dentistry, Law, Medicine, etc.) and approved on-leave graduate students. Membership includes 90 days of grace status. This is an automatically generated group from the UW Identity Registry. It is updated nightly.</span>
+      <ul>
+      <li><a class="name" href="/group_sws/v2/group/uw_affiliation_graduate">uw_affiliation_graduate</a></li>
+      </ul>
+    </li>
+
+    <li class="groupreference">
+      <span class="regid">1439c337ff1b44c7b36f05468845cfe6</span>
+      <span class="title">UW Graduate Students - Current</span>
+      <span class="description">UW students who are identified as graduate students for the current quarter only, including approved on-leave graduate students. This is an automatically generated group from the UW Identity Registry. It is updated nightly.</span>
+      <ul>
+      <li><a class="name" href="/group_sws/v2/group/uw_affiliation_graduate-current">uw_affiliation_graduate-current</a></li>
+      </ul>
+    </li>
+
+    <li class="groupreference">
+      <span class="regid">aade9f4dd3174feeae144f675c46acf5</span>
+      <span class="title">UW Graduate Students - Graduate</span>
+      <span class="description">UW students who are identified as graduate students, including approved on-leave graduate students. Membership includes 90 days of grace status. This is an automatically generated group from the UW Identity Registry. It is updated nightly.</span>
+      <ul>
+      <li><a class="name" href="/group_sws/v2/group/uw_affiliation_graduate-grad">uw_affiliation_graduate-grad</a></li>
+      </ul>
+    </li>
+
+    <li class="groupreference">
+      <span class="regid">9b9dab58766a25b1ce605968a347b4ee</span>
+      <span class="title">UW Students</span>
+      <span class="description">UW NetIDs with eduperson affiliation of 'student'</span>
+      <ul>
+      <li><a class="name" href="/group_sws/v2/group/uw_student">uw_student</a></li>
+      </ul>
+    </li>
+
+    <li class="groupreference">
+      <span class="regid">c0bb186dd509480dae99280d682f573c</span>
+      <span class="title">UW Student Employees</span>
+      <span class="description">UW student employees.  This is an automatically generated group from the UW Identity Registry. It is updated nightly.</span>
+      <ul>
+      <li><a class="name" href="/group_sws/v2/group/uw_affiliation_student-employee">uw_affiliation_student-employee</a></li>
+      </ul>
+    </li>
+
+    <li class="groupreference">
+      <span class="regid">2364284941D949959DE70C672B616084</span>
+      <span class="title">UW Employees</span>
+      <span class="description">UW NetIDs with eduperson affiliation of 'employee'</span>
+      <ul>
+      <li><a class="name" href="/group_sws/v2/group/uw_employee">uw_employee</a></li>
+      </ul>
+    </li>
+
+   </ul>
+  </div>
+</body>
+</html>

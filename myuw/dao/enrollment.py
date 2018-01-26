@@ -6,13 +6,13 @@ the SWS Enrollment resource.
 import logging
 from uw_sws.enrollment import enrollment_search_by_regid
 from myuw.dao import is_using_file_dao
-from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import (get_current_quarter,
                            get_current_and_next_quarters,
                            get_previous_number_quarters,
                            get_comparison_date)
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.exceptions import IndeterminateCampusException
+from myuw.dao.pws import get_regid_of_current_user
 
 
 CLASS_CODES = {
@@ -28,12 +28,37 @@ DEFAULT_CLASS_CODE = 9
 logger = logging.getLogger(__name__)
 
 
-def get_all_enrollments():
+def enrollment_search(request):
+    if not hasattr(request, "academic_enrollments"):
+        request.academic_enrollments = enrollment_search_by_regid(
+            get_regid_of_current_user(request))
+    return request.academic_enrollments
+
+
+def enrollment_prefetch():
+    def _method(request):
+        return enrollment_search(request)
+    return [_method]
+
+
+def get_enrollment_for_term(request, term):
     """
-    :return: the dictionary of {Term: Enrollment}
+    :return: an Enrollment object or None if no object exists
     """
-    regid = get_regid_of_current_user()
-    return enrollment_search_by_regid(regid)
+    enrollments = enrollment_search(request)
+    return enrollments.get(term)
+
+
+def get_enrollments_of_terms(request, term_list):
+    """
+    :return: the dictionary of {Term: Enrollment} of the given terms
+    """
+    enrollments = enrollment_search(request)
+    selected_dict = {}
+    for term in term_list:
+        if term in enrollments:
+            selected_dict[term] = enrollments.get(term)
+    return selected_dict
 
 
 def get_current_quarter_enrollment(request):
@@ -44,37 +69,13 @@ def get_current_quarter_enrollment(request):
                                    get_current_quarter(request))
 
 
-def get_enrollment_for_term(request, term):
-    """
-    :return: an Enrollment object or None if no object exists
-    """
-    id = "%d%s_%s" % (term.year, term.quarter, 'enrollment')
-    if hasattr(request, id):
-        return request.id
-    enrollment = get_all_enrollments().get(term)
-    request.id = enrollment
-    return enrollment
-
-
-def get_enrollments_of_terms(term_list):
-    """
-    :return: the dictionary of {Term: Enrollment} of the given terms
-    """
-    result_dict = get_all_enrollments()
-    selected_dict = {}
-    for term in term_list:
-        if term in result_dict:
-            selected_dict[term] = result_dict[term]
-    return selected_dict
-
-
 def get_prev_enrollments_with_open_sections(request, num_of_prev_terms):
     """
     :return: the dictionary of {Term: Enrollment} of the given
     number of previous terms with unfinished sections
     """
     terms = get_previous_number_quarters(request, num_of_prev_terms)
-    result_dict = get_enrollments_of_terms(terms)
+    result_dict = get_enrollments_of_terms(request, terms)
     return remove_finished(request, result_dict)
 
 
@@ -82,7 +83,7 @@ def get_main_campus(request):
     campuses = []
     try:
         result_dict = get_enrollments_of_terms(
-            get_current_and_next_quarters(request, 2))
+            request, get_current_and_next_quarters(request, 2))
 
         for term in result_dict.keys():
             enrollment = result_dict.get(term)
@@ -95,14 +96,7 @@ def get_main_campus(request):
     except Exception as ex:
         logger.error("get_main_campus: %s" % ex)
         pass
-
     return campuses
-
-
-def enrollment_prefetch():
-    def _method(request):
-        return get_all_enrollments()
-    return [_method]
 
 
 def get_code_for_class_level(class_name):

@@ -24,8 +24,8 @@ def _get_account_by_uwnetid(uwnetid):
     return get_account(uwnetid)
 
 
-def get_account_info_for_current_user():
-    return _get_account_by_uwnetid(get_netid_of_current_user())
+def get_account_info_for_current_user(request):
+    return _get_account_by_uwnetid(get_netid_of_current_user(request))
 
 
 def get_subject_guide_by_section(section):

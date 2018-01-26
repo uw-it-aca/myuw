@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 import logging
-from myuw.dao.user import get_netid_of_current_user
+from myuw.dao import get_netid_of_current_user
 from myuw.views.decorators import admin_required
 from myuw.views import set_admin_wrapper_template
 from myuw.models import VisitedLinkNew, PopularLink
@@ -10,12 +10,13 @@ from myuw.models import VisitedLinkNew, PopularLink
 
 PAGE_SIZE = 10
 MAX_PAGE = 5
+logger = logging.getLogger(__name__)
 
 
 @login_required
 @admin_required('MYUW_ADMIN_GROUP')
 def popular_links(request, page):
-    logger = logging.getLogger(__name__)
+    uwnetid = get_netid_of_current_user(request)
     if request.POST:
         if 'url' in request.POST and 'label' in request.POST:
             create_args = {'url': request.POST['url'],
@@ -33,7 +34,7 @@ def popular_links(request, page):
 
             PopularLink.objects.create(**create_args)
             logger.info("popular link added.  user: %s, link: %s" %
-                        (get_netid_of_current_user(), request.POST['url']))
+                        (uwnetid, request.POST['url']))
 
         if 'remove_popular' in request.POST:
             for popular_id in request.POST.getlist('remove_popular'):
@@ -41,7 +42,7 @@ def popular_links(request, page):
                 url = link.url
                 link.delete()
                 logger.error("popular link removed.  user: %s, link:  %s" %
-                             (get_netid_of_current_user(), url))
+                             (uwnetid, url))
 
     curated_popular = PopularLink.objects.all()
     existing_lookup = set()

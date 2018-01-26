@@ -18,43 +18,44 @@ class TestUserDao(TransactionTestCase):
         self.assertFalse(has_legacy_preference('nobody'))
 
         with self.assertRaises(UserMigrationPreference.DoesNotExist):
-            UserMigrationPreference.objects.get(username='iprefold')
+            UserMigrationPreference.objects.get(username='nobody')
 
-        set_preference_to_old_myuw('iprefold')
-        obj = UserMigrationPreference.objects.get(username='iprefold')
+        set_preference_to_old_myuw('nobody')
+        obj = UserMigrationPreference.objects.get(username='nobody')
         self.assertTrue(obj.use_legacy_site)
-        self.assertTrue(has_legacy_preference('iprefold'))
+        self.assertTrue(has_legacy_preference('nobody'))
 
     def test_has_newmyuw_preference(self):
         self.assertFalse(has_newmyuw_preference('nobody'))
 
         with self.assertRaises(UserMigrationPreference.DoesNotExist):
-            UserMigrationPreference.objects.get(username='iprefnew')
+            UserMigrationPreference.objects.get(username='nobody')
 
-        set_preference_to_new_myuw('iprefnew')
-        self.assertTrue(has_newmyuw_preference('iprefnew'))
-        obj = UserMigrationPreference.objects.get(username='iprefnew')
+        set_preference_to_new_myuw('nobody')
+        self.assertTrue(has_newmyuw_preference('nobody'))
+        obj = UserMigrationPreference.objects.get(username='nobody')
         self.assertFalse(obj.use_legacy_site)
 
     def test_is_oldmyuw_user(self):
-        get_request_with_user('nobody')
-        self.assertTrue(is_oldmyuw_user())
+        req = get_request_with_user('none')
+        # in opt_in_list.txt
+        self.assertFalse(is_oldmyuw_user(req))
 
-        get_request_with_user('jnew')
-        self.assertFalse(is_oldmyuw_user())
+        req = get_request_with_user('jnew')
+        self.assertFalse(is_oldmyuw_user(req))
 
-        get_request_with_user('javerage')
-        self.assertFalse(is_oldmyuw_user())
+        req = get_request_with_user('javerage')
+        self.assertFalse(is_oldmyuw_user(req))
 
         # cur grad opt_in
-        get_request_with_user('seagrad')
-        self.assertFalse(is_oldmyuw_user())
+        req = get_request_with_user('seagrad')
+        self.assertFalse(is_oldmyuw_user(req))
 
-        get_request_with_user('currgrad')
-        self.assertTrue(is_oldmyuw_user())
+        req = get_request_with_user('curgrad')
+        self.assertTrue(is_oldmyuw_user(req))
 
-        get_request_with_user('faculty')
-        self.assertTrue(is_oldmyuw_user())
+        req = get_request_with_user('faculty')
+        self.assertTrue(is_oldmyuw_user(req))
 
-        get_request_with_user('japplicant')
-        self.assertFalse(is_oldmyuw_user())
+        req = get_request_with_user('japplicant')
+        self.assertFalse(is_oldmyuw_user(req))
