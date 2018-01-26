@@ -5,6 +5,7 @@ services:
   - mysql
 python:
   - "2.7"
+  = "3.6"
 env:
   matrix:
     - DB=sqlite3
@@ -18,7 +19,7 @@ before_script:
 
   - pip install coverage
   - pip install python-coveralls
-  - pip install pep8
+  - pip install pycodestyle
   - pip install MySQL-python
   - npm install jquery
   - npm install moment
@@ -38,7 +39,7 @@ script:
   - which mocha
   - which _mocha
   - which istanbul
-  - pep8 myuw/ --exclude=migrations,myuw/south_migrations,myuw/static
+  - pycodestyle myuw/ --exclude=migrations,myuw/south_migrations,myuw/static
   # Find </br> tags
   - grep -re '<\s*/\s*br\s*>' myuw/templates/ ; test $? -eq 1
   - grep -r 'static/' myuw/ | grep -v /test/ | grep -v washington.edu/static; test $? -eq 1
