@@ -97,8 +97,7 @@ def get_all_affiliations(request):
         except IndeterminateCampusException:
             pass
 
-    official_campuses = _get_official_campuses(campuses)
-    data = dict(data.items() + official_campuses.items())
+    data.update(_get_official_campuses(campuses))
     request.myuw_user_affiliations = data
     return data
 
