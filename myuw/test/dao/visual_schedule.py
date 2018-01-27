@@ -788,13 +788,13 @@ class TestVisualSchedule(TestCase):
 
     def test_get_off_term_trimmed(self):
         request = get_request_with_user('jeos',
-                                        get_request_with_date("2013-04-01"))
+                                        get_request_with_date("2013-07-01"))
 
         schedule = _get_combined_schedule(request)
 
         visual_schedule = _get_visual_schedule_from_schedule(schedule, request)
         trimmed = _get_off_term_trimmed(visual_schedule)
-        self.assertEqual(trimmed[0]['section'], 'BIGDATA 233 A')
+        self.assertEqual(trimmed[0]['section'], 'LIS 498 C')
 
     def test_pce_schedule(self):
         mon_mtg = SectionMeeting()
@@ -808,7 +808,7 @@ class TestVisualSchedule(TestCase):
         section1.curriculum_abbr = 'CLDAWS'
         section1.course_number = 220
         section1.section_id = 'A'
-        section1.start_date = datetime.date(2018, 1, 2)
+        section1.start_date = datetime.date(2018, 1, 8)
         section1.end_date = datetime.date(2018, 3, 26)
         section1.meetings = [mon_mtg]
 
@@ -835,7 +835,6 @@ class TestVisualSchedule(TestCase):
 
         schedule = _add_dates_to_sections(schedule)
 
-        _adjust_off_term_dates(schedule)
         bounds = get_schedule_bounds(schedule)
         weeks = _get_weeks_from_bounds(bounds)
         weeks = _add_qtr_start_data_to_weeks(weeks, schedule)
@@ -844,17 +843,19 @@ class TestVisualSchedule(TestCase):
         weeks = trim_weeks_no_meetings(weeks)
         consolidated = _consolidate_weeks(weeks)
         _add_weekend_meeting_data(consolidated)
-
-        consolidated = _remove_empty_periods(consolidated)
-        print "start"
-        for period in weeks:
-            print period.start_date, period.end_date, len(period.sections)
-            # for section in period.sections:
-            #     print section.curriculum_abbr, section.course_number
-        print 'end'
         _adjust_period_dates(consolidated)
-        print '--------------------------------'
-        for period in consolidated:
-            print period.start_date, period.end_date, len(period.sections)
-            for section in period.sections:
-                print section.curriculum_abbr, section.course_number
+
+        self.assertEqual(len(consolidated), 6)
+        self.assertEqual(consolidated[0].start_date, datetime.date(2018, 1, 3))
+        self.assertEqual(consolidated[0].end_date, datetime.date(2018, 1, 6))
+        self.assertEqual(consolidated[1].start_date, datetime.date(2018, 1, 8))
+        self.assertEqual(consolidated[1].end_date, datetime.date(2018, 2, 24))
+        self.assertEqual(consolidated[2].start_date,
+                         datetime.date(2018, 2, 26))
+        self.assertEqual(consolidated[2].end_date, datetime.date(2018, 3, 2))
+        self.assertEqual(consolidated[3].start_date, datetime.date(2018, 3, 5))
+        self.assertEqual(consolidated[3].end_date, datetime.date(2018, 3, 10))
+        self.assertEqual(consolidated[4].start_date, datetime.date(2018, 3, 12))
+        self.assertEqual(consolidated[4].end_date, datetime.date(2018, 3, 31))
+        self.assertEqual(consolidated[5].start_date, datetime.date(2018, 4, 2))
+        self.assertEqual(consolidated[5].end_date, datetime.date(2018, 4, 21))

@@ -211,7 +211,6 @@ def _get_visual_schedule_from_schedule(schedule, request):
 
     else:
         # find sections beyond term
-        _adjust_off_term_dates(schedule)
         bounds = get_schedule_bounds(schedule)
         weeks = _get_weeks_from_bounds(bounds)
         weeks = _add_qtr_start_data_to_weeks(weeks, schedule)
@@ -292,10 +291,11 @@ def _get_earliest_start_from_period(period):
                 # if a section has a NON mtg set start date to section start
                 return section.start_date
             earliest_section_meeting = _get_earliest_meeting_day(meeting)
-            if earliest_meeting is None:
-                earliest_meeting = earliest_section_meeting
-            elif earliest_section_meeting < earliest_meeting:
-                earliest_meeting = earliest_section_meeting
+            if earliest_section_meeting is not None:
+                if earliest_meeting is None:
+                    earliest_meeting = earliest_section_meeting
+                elif earliest_section_meeting < earliest_meeting:
+                    earliest_meeting = earliest_section_meeting
 
     start_day = period.start_date.weekday()
     # Treat sunday as 'first' day
