@@ -11,7 +11,7 @@ TRUMBA_PREFIX = 'http://www.trumba.com/calendar/5_current'
 
 class TestCalendar(TestCase):
     def setUp(self):
-        self.now = datetime(2013, 04, 15, 0, 0, 0, tzinfo=pytz.utc)
+        self.now = datetime(2013, 4, 15, 0, 0, 0, tzinfo=pytz.utc)
 
     def test_far_future(self):
         cal = {'far_future': None}
