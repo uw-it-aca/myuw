@@ -22,13 +22,13 @@ class TestStudUnfinishedPrevQuarClasSche(MyuwApiTest):
 
     def test_404(self):
         response = self.get_prev_unfinished_schedule('javerage')
-        self.assertEquals(response.content, 'Data not found')
+        self.assertEquals(response.content, b'Data not found')
         self.assertEquals(response.status_code, 404)
 
     def test_no_prev_terms(self):
         response = self.get_prev_unfinished_schedule('jpce',
                                                      '2013-08-08 00:00:01')
-        self.assertEquals(response.content, 'Data not found')
+        self.assertEquals(response.content, b'Data not found')
         self.assertEquals(response.status_code, 404)
 
     def test_one_prev_term(self):
