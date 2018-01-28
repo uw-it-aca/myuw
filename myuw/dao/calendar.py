@@ -68,8 +68,8 @@ def _get_future_event_json(events):
         else:
             future_cals[event.cal_id]['count'] += 1
     future_cal_list = []
-    for key, value in future_cals.iteritems():
-        future_cal_list.append(value)
+    for key in future_cals:
+        future_cal_list.append(future_cals[key])
     return future_cal_list
 
 
