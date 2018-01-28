@@ -1,7 +1,10 @@
 from django.test import TestCase
 import datetime
 import csv
-import StringIO
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 from myuw.dao.thrive import _get_offset, _make_urls, _is_displayed, \
     _make_thrive_payload, get_current_message, get_previous_messages,\
     get_target_group, is_fyp, is_aut_transfer, is_win_transfer, TARGET_FYP,\
@@ -100,7 +103,7 @@ class TestThrive(TestCase):
         one_url_row = '9,11/23/2015,autumn,-10,week_label,category_label,'\
                       'title,this is the message,'\
                       'try this,urlone,http://www.google.com'
-        string = StringIO.StringIO(one_url_row)
+        string = StringIO(one_url_row)
         reader = csv.reader(string)
         for row in reader:
             urls = _make_urls(row)
@@ -110,7 +113,7 @@ class TestThrive(TestCase):
                         'title,this is the message,'\
                         'try this,urlone,http://www.google.com,urltwo,' \
                         'http://www.uw.edu,urlthree,http://my.uw.edu'
-        string = StringIO.StringIO(three_url_row)
+        string = StringIO(three_url_row)
         reader = csv.reader(string)
         for row in reader:
             urls = _make_urls(row)
@@ -122,7 +125,7 @@ class TestThrive(TestCase):
 
         no_url_row = '9,11/23/2015,autumn,-10,week_label,category_label,'\
                      'title,this is the message,try this'
-        string = StringIO.StringIO(no_url_row)
+        string = StringIO(no_url_row)
         reader = csv.reader(string)
         for row in reader:
             urls = _make_urls(row)
@@ -130,7 +133,7 @@ class TestThrive(TestCase):
 
         empty_url_row = '9,11/23/2015,autumn,-10,week_label,category_label,'\
                         'title,this is the message,try this,,,,,,'
-        string = StringIO.StringIO(empty_url_row)
+        string = StringIO(empty_url_row)
         reader = csv.reader(string)
         for row in reader:
             urls = _make_urls(row)
@@ -140,7 +143,7 @@ class TestThrive(TestCase):
         one_url_row = '9,11/23/2015,autumn,-10,week_label,category_label,'\
                       'title,this is the message,try this,urlone,'\
                       'http://www.google.com'
-        string = StringIO.StringIO(one_url_row)
+        string = StringIO(one_url_row)
         reader = csv.reader(string)
         for row in reader:
             # Shows after start of display
@@ -159,7 +162,7 @@ class TestThrive(TestCase):
                         'title,this is the message,try this,'\
                         'urlone,http://www.google.com,'\
                         'urltwo,http://www.uw.edu,urlthree,http://my.uw.edu'
-        string = StringIO.StringIO(three_url_row)
+        string = StringIO(three_url_row)
         reader = csv.reader(string)
         for row in reader:
             payload = _make_thrive_payload(row, TARGET_FYP)
