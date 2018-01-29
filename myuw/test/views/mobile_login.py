@@ -53,7 +53,7 @@ class TestLoginRedirects(MyuwApiTest):
         url = reverse("myuw_home")
         self.set_user('nobody')
         response = self.get_home_desktop()
-        self.assertEquals(response.status_code, 400)
+        self.assertEquals(response.status_code, 302)
 
         self.set_user('jnew')
         response = self.get_home_desktop()
