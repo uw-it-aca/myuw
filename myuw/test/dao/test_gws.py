@@ -46,6 +46,9 @@ class TestPwsDao(TestCase):
         self.assertTrue(is_undergrad_student(req))
 
         req = get_request_with_user('nobody')
+        self.assertTrue(no_affiliation(req))
+
+        req = get_request_with_user('no_entity')
         self.assertRaises(DataFailureException,
                           no_affiliation, req)
 
