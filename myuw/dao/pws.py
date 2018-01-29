@@ -4,7 +4,7 @@ provides information of the current user
 """
 
 import logging
-from uw_pws import PWS
+from uw_pws import PWS, Person
 from restclients_core.exceptions import DataFailureException
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.exceptions import IndeterminateCampusException
@@ -31,7 +31,8 @@ def get_person_by_regid(regid):
 
 def get_person_of_current_user(request):
     """
-    Retrieve the person data using the netid of the current user
+    Retturn a pws Person object with the netid of the current user,
+    If no Person exists return a pws Entity object
     """
     if not hasattr(request, "myuw_pws_person"):
         netid = get_netid_of_current_user(request)
@@ -63,17 +64,23 @@ def get_regid_of_current_user(request):
 
 def get_employee_id_of_current_user(request):
     person = get_person_of_current_user(request)
-    return person.employee_id
+    if isinstance(person, Person):
+        return person.employee_id
+    return None
 
 
 def get_student_number_of_current_user(request):
     person = get_person_of_current_user(request)
-    return person.student_number
+    if isinstance(person, Person):
+        return person.student_number
+    return None
 
 
 def get_student_system_key_of_current_user(request):
     person = get_person_of_current_user(request)
-    return person.student_system_key
+    if isinstance(person, Person):
+        return person.student_system_key
+    return None
 
 
 def is_student(request):
@@ -84,17 +91,17 @@ def is_student(request):
     the previous quarter, or a future quarter
     """
     person = get_person_of_current_user(request)
-    return person.is_student is True
+    return isinstance(person, Person) and person.is_student is True
 
 
 def is_employee(request):
     person = get_person_of_current_user(request)
-    return person.is_employee is True
+    return isinstance(person, Person) and person.is_employee is True
 
 
 def is_bothell_employee(request):
     person = get_person_of_current_user(request)
-    if person.mailstop:
+    if isinstance(person, Person) and person.mailstop:
         mailstop = int(person.mailstop)
         return MAILSTOP_MIN_BOTHELL <= mailstop <= MAILSTOP_MAX_BOTHELL
     return False
@@ -102,7 +109,7 @@ def is_bothell_employee(request):
 
 def is_tacoma_employee(request):
     person = get_person_of_current_user(request)
-    if person.mailstop:
+    if isinstance(person, Person) and person.mailstop:
         mailstop = int(person.mailstop)
         return MAILSTOP_MIN_TACOMA <= mailstop <= MAILSTOP_MAX_TACOMA
     return False
@@ -110,7 +117,7 @@ def is_tacoma_employee(request):
 
 def is_seattle_employee(request):
     person = get_person_of_current_user(request)
-    return person.mailstop and\
+    return isinstance(person, Person) and person.mailstop and\
         not is_tacoma_employee(request) and\
         not is_bothell_employee(request)
 
@@ -134,7 +141,6 @@ def get_employee_campus(request):
     determine based on mailstop ranges supplied by
     UW Campus Mailing Services mailserv@uw.edu
     """
-    person = get_person_of_current_user(request)
     if is_tacoma_employee(request):
         return 'Tacoma'
     if is_bothell_employee(request):
