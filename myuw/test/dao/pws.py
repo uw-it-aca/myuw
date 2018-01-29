@@ -9,15 +9,15 @@ from myuw.test import fdao_pws_override, get_request_with_user
 @fdao_pws_override
 class TestPwsDao(TestCase):
 
-    def test_not_in_pws_netid(self):
+    def test_no_entity_netid(self):
         self.assertRaises(InvalidNetID,
                           pws.get_person_by_netid,
                           "thisisnotarealnetid")
 
-    def test_pws_err(self):
-        self.assertRaises(DataFailureException,
-                          pws.get_person_by_netid,
-                          "nobody")
+    def test_no_pws_person_netid(self):
+        req = get_request_with_user('nobody')
+        person = get_person_of_current_user(req)
+        self.assertIsNotNone(req.myuw_pws_person)
 
     def test_get_person_of_current_user(self):
         req = get_request_with_user('javerage')
