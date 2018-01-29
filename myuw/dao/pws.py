@@ -5,6 +5,7 @@ provides information of the current user
 
 import logging
 from uw_pws import PWS
+from restclients_core.exceptions import DataFailureException
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.exceptions import IndeterminateCampusException
 
@@ -33,8 +34,14 @@ def get_person_of_current_user(request):
     Retrieve the person data using the netid of the current user
     """
     if not hasattr(request, "myuw_pws_person"):
-        request.myuw_pws_person = pws.get_person_by_netid(
-            get_netid_of_current_user(request))
+        netid = get_netid_of_current_user(request)
+        try:
+            request.myuw_pws_person = pws.get_person_by_netid(netid)
+        except DataFailureException as err:
+            if err.status == 404:  # Non-personal
+                request.myuw_pws_person = pws.get_entity_by_netid(netid)
+            else:
+                raise
     return request.myuw_pws_person
 
 
