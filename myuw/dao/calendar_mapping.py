@@ -17,14 +17,11 @@ def get_calendars_for_current_user(request):
 
 def _get_calendars(request, enrollments):
     calendars = {}
-    minor_cals = get_calendars_for_minors(enrollments['minors'])
-    calendars = dict(calendars.items() + minor_cals.items())
+    calendars.update(get_calendars_for_minors(enrollments['minors']))
     if is_grad_student(request):
-        grad_cals = get_calendars_for_gradmajors(enrollments['majors'])
-        calendars = dict(calendars.items() + grad_cals.items())
+        calendars.update(get_calendars_for_gradmajors(enrollments['majors']))
     else:
-        major_cals = get_calendars_for_majors(enrollments['majors'])
-        calendars = dict(calendars.items() + major_cals.items())
+        calendars.update(get_calendars_for_majors(enrollments['majors']))
     return calendars
 
 
