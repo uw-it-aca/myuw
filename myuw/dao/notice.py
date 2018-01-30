@@ -81,7 +81,7 @@ def _get_user_notices(request, notices):
         pass
 
     # Add newly created UserNotices into returned list
-    notices_with_read_status = notices_with_read_status + notice_dict.values()
+    notices_with_read_status.extend(list(notice_dict.values()))
     return notices_with_read_status
 
 
