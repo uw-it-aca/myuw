@@ -174,10 +174,10 @@ def parse_event_url(event, cal_url, cal_id):
     base_url = get_calendar_url(cal_id)
     if cal_url is not None:
         base_url = cal_url
-    url_params = {'view': 'event',
-                  'eventid': event_id}
+    url_params = (('eventid', event_id), ('view', 'event'))
 
-    url = base_url + "?trumbaEmbed=" + quote_plus(urlencode(url_params))
+    url = "%s?trumbaEmbed=%s" % (
+        base_url, quote_plus(urlencode(url_params, doseq=True)))
 
     return url
 
