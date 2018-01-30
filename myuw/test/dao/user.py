@@ -10,8 +10,8 @@ from myuw.test import get_request_with_user
 class TestUserDao(TransactionTestCase):
 
     def test_is_optin_user(self):
-        self.assertTrue(is_optin_user('javerage'))
         self.assertTrue(is_optin_user('seagrad'))
+        self.assertTrue(is_optin_user('jeos'))
         self.assertFalse(is_optin_user('nobody'))
 
     def test_has_legacy_preference(self):
@@ -37,10 +37,11 @@ class TestUserDao(TransactionTestCase):
         self.assertFalse(obj.use_legacy_site)
 
     def test_is_oldmyuw_user(self):
-        req = get_request_with_user('none')
         # in opt_in_list.txt
+        req = get_request_with_user('none')
         self.assertFalse(is_oldmyuw_user(req))
 
+        # undergrad student
         req = get_request_with_user('jnew')
         self.assertFalse(is_oldmyuw_user(req))
 
@@ -57,5 +58,10 @@ class TestUserDao(TransactionTestCase):
         req = get_request_with_user('faculty')
         self.assertTrue(is_oldmyuw_user(req))
 
+        # applicant
         req = get_request_with_user('japplicant')
+        self.assertFalse(is_oldmyuw_user(req))
+
+        # C2
+        req = get_request_with_user('jpce')
         self.assertFalse(is_oldmyuw_user(req))
