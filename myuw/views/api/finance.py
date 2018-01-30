@@ -37,3 +37,5 @@ class Finance(ProtectedAPI):
             return self.json_response(response)
         except KeyError:
             return handle_exception(logger, timer, traceback)
+        except Exception:
+            raise
