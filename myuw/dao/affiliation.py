@@ -107,11 +107,11 @@ def _get_official_campuses(campuses):
                          'official_bothell': False,
                          'official_tacoma': False}
     if 'Bothell' in campuses:
-        official_campuses['official_tacoma'] = True
+        official_campuses['official_bothell'] = True
     if 'Seattle' in campuses:
         official_campuses['official_seattle'] = True
     if 'Tacoma' in campuses:
-        official_campuses['official_bothell'] = True
+        official_campuses['official_tacoma'] = True
     return official_campuses
 
 
