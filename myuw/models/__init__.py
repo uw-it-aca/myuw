@@ -100,9 +100,9 @@ class UserNotices(models.Model):
     @staticmethod
     def generate_hash(notice):
         notice_hash = hashlib.md5()
-        notice_hash.update(notice.notice_type)
-        notice_hash.update(notice.notice_category)
-        notice_hash.update(notice.notice_content)
+        notice_hash.update(notice.notice_type.encode('utf-8'))
+        notice_hash.update(notice.notice_category.encode('utf-8'))
+        notice_hash.update(notice.notice_content.encode('utf-8'))
         return notice_hash.hexdigest()
 
     @staticmethod
