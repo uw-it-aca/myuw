@@ -9,7 +9,7 @@ from myuw.test import fdao_sws_override, fdao_pws_override,\
 @fdao_sws_override
 class TestNetidInList(TestCase):
     def test_optin_user(self):
-        is_optin = _is_optin_user('javerage')
+        is_optin = _is_optin_user('jerror')
         self.assertTrue(is_optin)
 
         not_optin = _is_optin_user('jtacoma')
