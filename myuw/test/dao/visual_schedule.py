@@ -741,8 +741,8 @@ class TestVisualSchedule(TestCase):
 
     def test_get_latest_end_from_period(self):
         periods = self._get_schedule_with_meetings()
-        latest_end = _get_latest_end_from_period(periods[1])
-        self.assertEqual(latest_end, datetime.date(2017, 10, 20))
+        latest_end = _get_latest_end_from_period(periods[0])
+        self.assertEqual(latest_end, datetime.date(2017, 10, 21))
 
         no_mtg_periods = self._get_schedule_no_meetings()
         latest_end = _get_latest_end_from_period(no_mtg_periods[0])
@@ -845,7 +845,7 @@ class TestVisualSchedule(TestCase):
         _add_weekend_meeting_data(consolidated)
         _adjust_period_dates(consolidated)
 
-        self.assertEqual(len(consolidated), 6)
+        self.assertEqual(len(consolidated), 5)
         self.assertEqual(consolidated[0].start_date, datetime.date(2018, 1, 3))
         self.assertEqual(consolidated[0].end_date, datetime.date(2018, 1, 6))
         self.assertEqual(consolidated[1].start_date, datetime.date(2018, 1, 8))
@@ -854,9 +854,7 @@ class TestVisualSchedule(TestCase):
                          datetime.date(2018, 2, 26))
         self.assertEqual(consolidated[2].end_date, datetime.date(2018, 3, 2))
         self.assertEqual(consolidated[3].start_date, datetime.date(2018, 3, 5))
-        self.assertEqual(consolidated[3].end_date, datetime.date(2018, 3, 10))
+        self.assertEqual(consolidated[3].end_date, datetime.date(2018, 3, 31))
         self.assertEqual(consolidated[4].start_date,
-                         datetime.date(2018, 3, 12))
-        self.assertEqual(consolidated[4].end_date, datetime.date(2018, 3, 31))
-        self.assertEqual(consolidated[5].start_date, datetime.date(2018, 4, 2))
-        self.assertEqual(consolidated[5].end_date, datetime.date(2018, 4, 21))
+                         datetime.date(2018, 4, 2))
+        self.assertEqual(consolidated[4].end_date, datetime.date(2018, 4, 21))
