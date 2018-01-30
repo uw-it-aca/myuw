@@ -35,6 +35,7 @@ class Notices(ProtectedAPI):
             log_success_response(logger, timer)
             return self.json_response(notice_json)
         except Exception:
+            raise
             return handle_exception(logger, timer, traceback)
 
     def _get_json(self, notices):
