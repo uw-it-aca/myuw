@@ -567,12 +567,15 @@ def _is_split_summer(schedule):
 
 def _add_weekend_meeting_data(weeks):
     for week in weeks:
-        for section in week.sections:
-            for meeting in section.meetings:
-                if meeting.meets_saturday:
-                    week.meets_saturday = True
-                if meeting.meets_sunday:
-                    week.meets_sunday = True
+        try:
+            for section in week.sections:
+                for meeting in section.meetings:
+                    if meeting.meets_saturday:
+                        week.meets_saturday = True
+                    if meeting.meets_sunday:
+                        week.meets_sunday = True
+        except AttributeError:
+            pass
     return weeks
 
 
