@@ -241,8 +241,11 @@ def _add_qtr_start_data_to_weeks(weeks, schedule):
 def _remove_empty_periods(schedule):
     periods = []
     for period in schedule:
-        if len(period.sections) > 0:
-            periods.append(period)
+        try:
+            if len(period.sections) > 0:
+                periods.append(period)
+        except AttributeError:
+            pass
     return periods
 
 
