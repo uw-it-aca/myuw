@@ -46,6 +46,7 @@ def _set_json_fail_rate(section_label, json_obj):
     try:
         json_obj.update(uw_coda.get_fail_rate(section_label))
     except DataFailureException as ex:
+        logger.error("Error in data retrieval!")
         logger.error(ex.url)
         logger.error(ex.status)
         logger.error(ex.msg)
