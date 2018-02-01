@@ -48,7 +48,7 @@ def _indexed_colors_by_section_label(query, regid, schedule):
 
     for section in primary_sections:
         label = section.section_label()
-        if section.section_label() not in color_lookup:
+        if label not in color_lookup:
             color = _get_section_color(existing_sections,
                                        active_colors,
                                        schedule,
