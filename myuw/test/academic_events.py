@@ -89,7 +89,7 @@ class TestAcademicEvents(TestCase):
         request = get_request_with_date("2011-01-01")
 
         past = Event()
-        past.add('dtstart', date(2010, 01, 01))
+        past.add('dtstart', date(2010, 1, 1))
         past.add('dtend', date(2010, 12, 31))
         past['summary'] = "Past Event"
 
@@ -104,7 +104,7 @@ class TestAcademicEvents(TestCase):
         request = get_request_with_date("2012-12-01")
 
         past = Event()
-        past.add('dtstart', date(2014, 01, 01))
+        past.add('dtstart', date(2014, 1, 1))
         past.add('dtend', date(2014, 12, 31))
         past['summary'] = "Future Event"
 

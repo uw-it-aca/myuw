@@ -51,14 +51,14 @@ class TestVisualSchedule(TestCase):
         section1.curriculum_abbr = 'ASD'
         section1.course_number = 123
         section1.section_id = 'A'
-        section1.start_date = datetime.date(2017, 10, 02)
+        section1.start_date = datetime.date(2017, 10, 2)
         section1.end_date = datetime.date(2017, 10, 20)
 
         section2 = Section()
         section2.curriculum_abbr = 'QWE'
         section2.course_number = 456
         section2.section_id = 'A'
-        section2.start_date = datetime.date(2017, 10, 02)
+        section2.start_date = datetime.date(2017, 10, 2)
         section2.end_date = datetime.date(2017, 10, 20)
 
         sat_mtg = SectionMeeting()
@@ -86,14 +86,14 @@ class TestVisualSchedule(TestCase):
         section1.curriculum_abbr = 'ASD'
         section1.course_number = 123
         section1.section_id = 'A'
-        section1.start_date = datetime.date(2017, 10, 02)
+        section1.start_date = datetime.date(2017, 10, 2)
         section1.end_date = datetime.date(2017, 10, 20)
 
         section2 = Section()
         section2.curriculum_abbr = 'QWE'
         section2.course_number = 456
         section2.section_id = 'A'
-        section2.start_date = datetime.date(2017, 10, 02)
+        section2.start_date = datetime.date(2017, 10, 2)
         section2.end_date = datetime.date(2017, 10, 20)
 
         s1_meetings = SectionMeeting()
@@ -125,14 +125,14 @@ class TestVisualSchedule(TestCase):
         section1.curriculum_abbr = 'ASD'
         section1.course_number = 123
         section1.section_id = 'A'
-        section1.start_date = datetime.date(2017, 10, 02)
+        section1.start_date = datetime.date(2017, 10, 2)
         section1.end_date = datetime.date(2017, 10, 20)
 
         section2 = Section()
         section2.curriculum_abbr = 'QWE'
         section2.course_number = 456
         section2.section_id = 'A'
-        section2.start_date = datetime.date(2017, 10, 02)
+        section2.start_date = datetime.date(2017, 10, 2)
         section2.end_date = datetime.date(2017, 10, 20)
 
         s1_meetings = SectionMeeting()
@@ -228,7 +228,7 @@ class TestVisualSchedule(TestCase):
                                                  list3))
 
     def test_consolidate_weeks_same(self):
-        start = datetime.date(2017, 10, 02)
+        start = datetime.date(2017, 10, 2)
         end = datetime.date(2017, 10, 13)
 
         section1 = Section()
@@ -258,7 +258,7 @@ class TestVisualSchedule(TestCase):
         section1.curriculum_abbr = 'ASD'
         section1.course_number = 123
         section1.section_id = 'A'
-        section1.start_date = datetime.date(2017, 10, 02)
+        section1.start_date = datetime.date(2017, 10, 2)
         section1.end_date = datetime.date(2017, 10, 13)
 
         section2 = Section()
@@ -290,7 +290,7 @@ class TestVisualSchedule(TestCase):
         section1.curriculum_abbr = 'ASD'
         section1.course_number = 123
         section1.section_id = 'A'
-        section1.start_date = datetime.date(2017, 10, 02)
+        section1.start_date = datetime.date(2017, 10, 2)
         section1.end_date = datetime.date(2017, 10, 20)
 
         section2 = Section()
@@ -733,11 +733,11 @@ class TestVisualSchedule(TestCase):
     def test_get_earliest_start_from_period(self):
         periods = self._get_schedule_with_meetings()
         earliest_start = _get_earliest_start_from_period(periods[0])
-        self.assertEqual(earliest_start, datetime.date(2017, 10, 03))
+        self.assertEqual(earliest_start, datetime.date(2017, 10, 3))
 
         no_mtg_periods = self._get_schedule_no_meetings()
         earliest_start = _get_earliest_start_from_period(no_mtg_periods[0])
-        self.assertEqual(earliest_start, datetime.date(2017, 10, 02))
+        self.assertEqual(earliest_start, datetime.date(2017, 10, 2))
 
     def test_get_latest_end_from_period(self):
         periods = self._get_schedule_with_meetings()
@@ -764,7 +764,7 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(_get_latest_meeting_day(meeting), 4)
 
     def test_get_disabled_days(self):
-        days = _get_disabled_days(datetime.date(2013, 07, 25), True)
+        days = _get_disabled_days(datetime.date(2013, 7, 25), True)
         disabled_days = {'sunday': True,
                          'monday': True,
                          'tuesday': True,
@@ -775,7 +775,7 @@ class TestVisualSchedule(TestCase):
 
         self.assertDictEqual(days, disabled_days)
 
-        days = _get_disabled_days(datetime.date(2013, 07, 25), False)
+        days = _get_disabled_days(datetime.date(2013, 7, 25), False)
         disabled_days = {'sunday': False,
                          'monday': False,
                          'tuesday': False,

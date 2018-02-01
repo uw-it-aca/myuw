@@ -248,6 +248,6 @@ def set_js_overrides(request, values):
            'myuw_in_coursevel_fetch_window': 'in_coursevel_fetch_window'
            }
 
-    for key, value in MAP.iteritems():
+    for key in MAP:
         if key in request.session:
-            values[value] = request.session[key]
+            values[MAP[key]] = request.session[key]

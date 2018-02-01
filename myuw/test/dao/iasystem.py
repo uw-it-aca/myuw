@@ -75,7 +75,7 @@ class IASystemDaoTest(TestCase):
         self.assertIsNotNone(evals)
         self.assertEqual(evals[0].section_sln, 13833)
         self.assertEqual(evals[0].eval_open_date,
-                         datetime.datetime(2013, 7, 02,
+                         datetime.datetime(2013, 7, 2,
                                            14, 0,
                                            tzinfo=pytz.utc))
         self.assertEqual(evals[0].eval_close_date,

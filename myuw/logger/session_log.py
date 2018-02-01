@@ -14,7 +14,7 @@ def log_session(netid, affiliations, session_key, request):
     if affiliations is None:
         affiliations = get_all_affiliations(request)
 
-    session_hash = hashlib.md5(session_key).hexdigest()
+    session_hash = hashlib.md5(session_key.encode('utf-8')).hexdigest()
     log_entry = {'netid': netid,
                  'session_key': session_hash,
                  'class_level': None,
