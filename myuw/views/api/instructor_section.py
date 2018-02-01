@@ -92,8 +92,9 @@ class OpenInstSectionDetails(OpenAPI):
 
         for section in resp_data['sections']:
             _set_current_or_future(schedule.term, request, section)
+            section_id.replace(",", "-")
             t = Thread(target=coda.get_classlist_details,
-                       args=(section['section_label'].replace("_", "-"),
+                       args=(section_id,
                              section,))
             threads.append(t)
             t.start()
