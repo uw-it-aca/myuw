@@ -18,7 +18,7 @@ class Command(BaseCommand):
 
         skipped = []
 
-        print "URL Name,0 seconds,0.1 seconds,0.5 seconds,1.0 seconds"
+        print("URL Name,0 seconds,0.1 seconds,0.5 seconds,1.0 seconds")
         for pattern in urlpatterns:
             values = [pattern.name]
 
@@ -72,6 +72,6 @@ class Command(BaseCommand):
 
                 values.append(run_it())
 
-            print ",".join(values)
+            print(",".join(values))
 
-        print "skipped: ", skipped
+        print("skipped: ", skipped)

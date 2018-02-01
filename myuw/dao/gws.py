@@ -4,7 +4,10 @@ with the UW Affiliation Group API resource
 """
 
 import logging
-from sets import Set, ImmutableSet
+try:
+    from sets import Set as set, ImmutableSet as frozenset
+except ImportError:
+    pass
 from django.conf import settings
 from authz_group import Group
 from uw_gws import GWS
@@ -36,14 +39,14 @@ all_groups = [alumni, alumni_asso,
               bot_stud, sea_stud, tac_stud,
               undergrad, grad, cur_grad_prof,
               pce, grad_c2, undergrad_c2]
-RELEVANT_GROUPS = ImmutableSet(all_groups)
+RELEVANT_GROUPS = frozenset(all_groups)
 
 
 def _search_groups(uwnetid):
     """
     Returns a Set of the uw groups the uwnetid is an effective member of
     """
-    group_names = Set([])
+    group_names = set([])
     group_refs = gws.search_groups(member=uwnetid,
                                    stem="uw_affiliation",
                                    scope="all",
@@ -198,8 +201,8 @@ def no_affiliation(request):
 
 def is_in_admin_group(group_key):
     if not hasattr(settings, group_key):
-        print "You must have a group defined as your admin group."
-        print 'Configure that using %s="foo_group"' % group_key
+        print('You must have a group defined as your admin group.')
+        print('Configure that using %s="foo_group"' % group_key)
         raise Exception("Missing %s in settings" % group_key)
 
     actual_user = get_netid_of_original_user()

@@ -9,7 +9,7 @@
 <div aria-labelledby="your_courses">
 
     {{#each sections}}
-    <a name="{{ curriculum_abbr }}-{{course_number}}-{{section_id}}"></a>
+    <a name="{{safeLabel curriculum_abbr }}-{{course_number}}-{{section_id}}"></a>
     <div class="card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
         <div class=" c{{color_id}}Border" style="position:absolute; top:0; left:0; right:0;">&nbsp;</div>
 

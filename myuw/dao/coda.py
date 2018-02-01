@@ -12,7 +12,7 @@ def get_classlist_details(section_label, json_data=None):
     try:
         majors = uw_coda.get_majors(section_label, 1)
     except DataFailureException as ex:
-        logger.error(str(ex))
+        logger.error("%s" % ex)
         return
 
     if json_data is not None:
@@ -43,11 +43,11 @@ def _set_json_fail_rate(section_label, json_obj):
     try:
         json_obj.update(uw_coda.get_fail_rate(section_label))
     except DataFailureException as ex:
-        logger.error(str(ex))
+        logger.error("%s" % ex)
 
 
 def _set_json_cgpa(section_label, json_obj):
     try:
         json_obj.update(uw_coda.get_course_cgpa(section_label))
     except DataFailureException as ex:
-        logger.error(str(ex))
+        logger.error("%s" % ex)

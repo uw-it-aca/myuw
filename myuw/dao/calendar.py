@@ -1,7 +1,10 @@
 import re
 import pytz
 from datetime import timedelta, datetime, time
-from urllib import quote_plus, urlencode
+try:
+    from urllib.parse import quote_plus, urlencode
+except ImportError:
+    from urllib import quote_plus, urlencode
 from django.utils import timezone
 from restclients_core.exceptions import DataFailureException
 from uw_trumba import get_calendar_by_name
@@ -65,8 +68,8 @@ def _get_future_event_json(events):
         else:
             future_cals[event.cal_id]['count'] += 1
     future_cal_list = []
-    for key, value in future_cals.iteritems():
-        future_cal_list.append(value)
+    for key in future_cals:
+        future_cal_list.append(future_cals[key])
     return future_cal_list
 
 
@@ -171,10 +174,10 @@ def parse_event_url(event, cal_url, cal_id):
     base_url = get_calendar_url(cal_id)
     if cal_url is not None:
         base_url = cal_url
-    url_params = {'view': 'event',
-                  'eventid': event_id}
+    url_params = (('eventid', event_id), ('view', 'event'))
 
-    url = base_url + "?trumbaEmbed=" + quote_plus(urlencode(url_params))
+    url = "%s?trumbaEmbed=%s" % (
+        base_url, quote_plus(urlencode(url_params, doseq=True)))
 
     return url
 

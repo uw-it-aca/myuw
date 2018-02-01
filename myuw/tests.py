@@ -59,3 +59,4 @@ from myuw.test.views.test_api import TestDispatchErrorCases
 from myuw.test.views.textbooks import TestTextbook
 from myuw.test.userservice_validation import TestValidation
 from myuw.test.speed import TestPageSpeeds
+from myuw.test.dao.visual_schedule import TestVisualSchedule

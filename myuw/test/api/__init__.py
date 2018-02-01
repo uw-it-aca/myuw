@@ -18,7 +18,7 @@ def missing_url(name, kwargs=None):
     try:
         reverse(name, kwargs=kwargs)
     except NoReverseMatch as ex:
-        print "NoReverseMatch: %s" % ex
+        print("NoReverseMatch: %s" % ex)
         return True
 
     return False
