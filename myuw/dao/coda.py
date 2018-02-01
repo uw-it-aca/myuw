@@ -9,6 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 def get_classlist_details(section_label, json_data=None):
+    section_label = _process_section_label(section_label)
     try:
         majors = uw_coda.get_majors(section_label, 1)
     except DataFailureException as ex:
@@ -25,6 +26,7 @@ def get_classlist_details(section_label, json_data=None):
 
 
 def get_course_card_details(section_label, json_data=None):
+    section_label = _process_section_label(section_label)
     json_obj = {}
     threads = []
 
@@ -61,3 +63,7 @@ def _set_json_cgpa(section_label, json_obj):
         logger.error(ex.status)
         logger.error(ex.msg)
         logger.error("%s" % ex)
+
+
+def _process_section_label(section_label):
+    return section_label.replace(" ", "%20")
