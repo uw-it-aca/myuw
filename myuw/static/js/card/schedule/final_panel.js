@@ -10,7 +10,8 @@ var FinalExamSchedule = {
         return a_date - b_date;
     },
 
-    render: function(student_course_data, instructed_course_data, term, show_title, dom_target) {
+    //render: function(student_course_data, instructed_course_data, term, show_title, dom_target) {
+    render: function(course_data, term, show_title, dom_target) {
         var index = 0;
         var finals = {
             tbd_or_nonexistent: [],
@@ -25,13 +26,7 @@ var FinalExamSchedule = {
             show_list_instead_of_visual: false
         };
 
-        if (student_course_data) {
-            FinalExamSchedule.process_final_data(student_course_data, false, finals);
-        }
-
-        if (instructed_course_data) {
-            FinalExamSchedule.process_final_data(instructed_course_data, true, finals);
-        }
+        FinalExamSchedule.process_final_data(course_data, term, false, finals);
 
         // This shouldn't happen, but if we have over a week span of finals, just list them out.
         if (finals.scheduled_finals.length) {
@@ -43,7 +38,8 @@ var FinalExamSchedule = {
         // It's our current understanding that the last day of finals is always a friday -
         // grades are due on the following tuesday.  If the last day of finals isn't a friday,
         // fall back to the list view.
-        if (finals.last_day_of_finals.getDay() !== FinalExamSchedule.FRIDAY) {
+
+        if (finals.last_day_of_finals.day() !== FinalExamSchedule.FRIDAY) {
             finals.show_list_instead_of_visual = true;
         }
 
@@ -54,7 +50,7 @@ var FinalExamSchedule = {
 
         if (!finals.is_summer_qtr) {
             // summer quarter doesn't have properly scheduled finals
-            visual_data = FinalExamSchedule._build_visual_schedule_data(finals.scheduled_finals, finals.term_data);
+            visual_data = FinalExamSchedule._build_visual_schedule_data(finals.scheduled_finals, term);
         }
 
         var template_data = {
@@ -75,12 +71,11 @@ var FinalExamSchedule = {
         FinalExamSchedule.add_events(term);
     },
 
-    process_final_data: function(course_data, for_instructor, finals) {
-        var date = date_from_string(course_data.term.last_final_exam_date);
-
+    process_final_data: function(course_data, term, for_instructor, finals) {
+        var date = moment(term.last_final_exam_date);
         finals.last_day_of_finals = date;
-        finals.is_summer_qtr = course_data.quarter === "summer";
-        finals.term_data = course_data.term;
+        finals.is_summer_qtr = term.quarter === "summer";
+        finals.term_data = term.term;
         $.each(course_data.sections, function (index) {
             var section = this;
             // We need to set this here, since the code that displays links doesn't have access
