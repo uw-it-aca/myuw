@@ -764,7 +764,7 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(_get_latest_meeting_day(meeting), 4)
 
     def test_get_disabled_days(self):
-        days = _get_disabled_days(datetime.date(2013, 07, 25), True)
+        days = _get_disabled_days(datetime.date(2013, 7, 25), True)
         disabled_days = {'sunday': True,
                          'monday': True,
                          'tuesday': True,
@@ -775,7 +775,7 @@ class TestVisualSchedule(TestCase):
 
         self.assertDictEqual(days, disabled_days)
 
-        days = _get_disabled_days(datetime.date(2013, 07, 25), False)
+        days = _get_disabled_days(datetime.date(2013, 7, 25), False)
         disabled_days = {'sunday': False,
                          'monday': False,
                          'tuesday': False,
