@@ -659,7 +659,6 @@ WSData = {
                     WSData._run_success_callbacks_for_url(url);
                 },
                 error: function(xhr, status, error) {
-                    WSData._visual_schedule_data[term] = xhr.status;
                     WSData._run_error_callbacks_for_url(url);
                 }
             });
